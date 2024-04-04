@@ -22,6 +22,8 @@ class TestNode extends godot_1.Button {
     work() {
         console.log("test bark at the moon");
     }
+    static unbound_call() {
+    }
 }
 exports.default = TestNode;
 //# sourceMappingURL=test_button.js.map

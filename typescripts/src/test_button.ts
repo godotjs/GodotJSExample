@@ -28,4 +28,8 @@ export default class TestNode extends Button {
     work() {
         console.log("test bark at the moon")
     }
+
+    static unbound_call() {
+
+    }
 }
