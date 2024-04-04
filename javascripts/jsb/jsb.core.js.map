@@ -1,1 +1,1 @@
-{"version":3,"file":"jsb.core.js","sourceRoot":"../src/","sources":["jsb.core.ts"],"names":[],"mappings":";;;AACA,SAAgB,IAAI;AAEpB,CAAC;AAFD,oBAEC"}
+{"version":3,"file":"jsb.core.js","sourceRoot":"./src/","sources":["jsb/jsb.core.ts"],"names":[],"mappings":";;;AACA,SAAgB,IAAI;AAEpB,CAAC;AAFD,oBAEC"}
