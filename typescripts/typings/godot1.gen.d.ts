@@ -1,6 +1,2770 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    class GridMapEditor extends VBoxContainer {
+        _configure(): void
+        _set_selection(_unnamed_arg0: boolean, _unnamed_arg1: Vector3, _unnamed_arg2: Vector3): void
+    }
+    class GridMapEditorPlugin extends EditorPlugin {
+    }
+    class GrooveJoint2D extends Joint2D {
+        set_length(length: number /*f64*/): void
+        get_length(): number /*f64*/
+        set_initial_offset(offset: number /*f64*/): void
+        get_initial_offset(): number /*f64*/
+        // // godot.getset: length: number /*f64*/
+        // // godot.getset: initial_offset: number /*f64*/
+    }
+    class GroupDialog extends AcceptDialog {
+        _delete_group_item(_unnamed_arg0: string): void
+        _add_group(_unnamed_arg0: string): void
+        _rename_group_item(_unnamed_arg0: string, _unnamed_arg1: string): void
+        _group_selected(): void
+        group_edited: Signal
+    }
+    class GroupsEditor extends VBoxContainer {
+        update_tree(): void
+        _group_selected(): void
+    }
+    class HBoxContainer extends BoxContainer {
+    }
+    class HFlowContainer extends FlowContainer {
+    }
+    class HMACContext extends RefCounted {
+        start(hash_type: HashingContext.HashType, key: PackedByteArray): GodotError
+        update(data: PackedByteArray): GodotError
+        finish(): PackedByteArray
+    }
+    class HScrollBar extends ScrollBar {
+    }
+    class HSeparator extends Separator {
+    }
+    class HSlider extends Slider {
+    }
+    class HSplitContainer extends SplitContainer {
+    }
+    namespace HTTPClient {
+        enum Method {
+            METHOD_GET = 0,
+            METHOD_HEAD = 1,
+            METHOD_POST = 2,
+            METHOD_PUT = 3,
+            METHOD_DELETE = 4,
+            METHOD_OPTIONS = 5,
+            METHOD_TRACE = 6,
+            METHOD_CONNECT = 7,
+            METHOD_PATCH = 8,
+            METHOD_MAX = 9,
+        }
+        enum Status {
+            STATUS_DISCONNECTED = 0,
+            STATUS_RESOLVING = 1,
+            STATUS_CANT_RESOLVE = 2,
+            STATUS_CONNECTING = 3,
+            STATUS_CANT_CONNECT = 4,
+            STATUS_CONNECTED = 5,
+            STATUS_REQUESTING = 6,
+            STATUS_BODY = 7,
+            STATUS_CONNECTION_ERROR = 8,
+            STATUS_TLS_HANDSHAKE_ERROR = 9,
+        }
+        enum ResponseCode {
+            RESPONSE_CONTINUE = 100,
+            RESPONSE_SWITCHING_PROTOCOLS = 101,
+            RESPONSE_PROCESSING = 102,
+            RESPONSE_OK = 200,
+            RESPONSE_CREATED = 201,
+            RESPONSE_ACCEPTED = 202,
+            RESPONSE_NON_AUTHORITATIVE_INFORMATION = 203,
+            RESPONSE_NO_CONTENT = 204,
+            RESPONSE_RESET_CONTENT = 205,
+            RESPONSE_PARTIAL_CONTENT = 206,
+            RESPONSE_MULTI_STATUS = 207,
+            RESPONSE_ALREADY_REPORTED = 208,
+            RESPONSE_IM_USED = 226,
+            RESPONSE_MULTIPLE_CHOICES = 300,
+            RESPONSE_MOVED_PERMANENTLY = 301,
+            RESPONSE_FOUND = 302,
+            RESPONSE_SEE_OTHER = 303,
+            RESPONSE_NOT_MODIFIED = 304,
+            RESPONSE_USE_PROXY = 305,
+            RESPONSE_SWITCH_PROXY = 306,
+            RESPONSE_TEMPORARY_REDIRECT = 307,
+            RESPONSE_PERMANENT_REDIRECT = 308,
+            RESPONSE_BAD_REQUEST = 400,
+            RESPONSE_UNAUTHORIZED = 401,
+            RESPONSE_PAYMENT_REQUIRED = 402,
+            RESPONSE_FORBIDDEN = 403,
+            RESPONSE_NOT_FOUND = 404,
+            RESPONSE_METHOD_NOT_ALLOWED = 405,
+            RESPONSE_NOT_ACCEPTABLE = 406,
+            RESPONSE_PROXY_AUTHENTICATION_REQUIRED = 407,
+            RESPONSE_REQUEST_TIMEOUT = 408,
+            RESPONSE_CONFLICT = 409,
+            RESPONSE_GONE = 410,
+            RESPONSE_LENGTH_REQUIRED = 411,
+            RESPONSE_PRECONDITION_FAILED = 412,
+            RESPONSE_REQUEST_ENTITY_TOO_LARGE = 413,
+            RESPONSE_REQUEST_URI_TOO_LONG = 414,
+            RESPONSE_UNSUPPORTED_MEDIA_TYPE = 415,
+            RESPONSE_REQUESTED_RANGE_NOT_SATISFIABLE = 416,
+            RESPONSE_EXPECTATION_FAILED = 417,
+            RESPONSE_IM_A_TEAPOT = 418,
+            RESPONSE_MISDIRECTED_REQUEST = 421,
+            RESPONSE_UNPROCESSABLE_ENTITY = 422,
+            RESPONSE_LOCKED = 423,
+            RESPONSE_FAILED_DEPENDENCY = 424,
+            RESPONSE_UPGRADE_REQUIRED = 426,
+            RESPONSE_PRECONDITION_REQUIRED = 428,
+            RESPONSE_TOO_MANY_REQUESTS = 429,
+            RESPONSE_REQUEST_HEADER_FIELDS_TOO_LARGE = 431,
+            RESPONSE_UNAVAILABLE_FOR_LEGAL_REASONS = 451,
+            RESPONSE_INTERNAL_SERVER_ERROR = 500,
+            RESPONSE_NOT_IMPLEMENTED = 501,
+            RESPONSE_BAD_GATEWAY = 502,
+            RESPONSE_SERVICE_UNAVAILABLE = 503,
+            RESPONSE_GATEWAY_TIMEOUT = 504,
+            RESPONSE_HTTP_VERSION_NOT_SUPPORTED = 505,
+            RESPONSE_VARIANT_ALSO_NEGOTIATES = 506,
+            RESPONSE_INSUFFICIENT_STORAGE = 507,
+            RESPONSE_LOOP_DETECTED = 508,
+            RESPONSE_NOT_EXTENDED = 510,
+            RESPONSE_NETWORK_AUTH_REQUIRED = 511,
+        }
+    }
+    class HTTPClient extends RefCounted {
+        connect_to_host(host: string, port: number /*i64*/, tls_options: TLSOptions): GodotError
+        set_connection(connection: StreamPeer): void
+        get_connection(): StreamPeer
+        request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: PackedByteArray): GodotError
+        request(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: string): GodotError
+        close(): void
+        has_response(): boolean
+        is_response_chunked(): boolean
+        get_response_code(): number /*i64*/
+        get_response_headers(): PackedStringArray
+        get_response_headers_as_dictionary(): Dictionary
+        get_response_body_length(): number /*i64*/
+        read_response_body_chunk(): PackedByteArray
+        set_read_chunk_size(bytes: number /*i64*/): void
+        get_read_chunk_size(): number /*i64*/
+        set_blocking_mode(enabled: boolean): void
+        is_blocking_mode_enabled(): boolean
+        get_status(): HTTPClient.Status
+        poll(): GodotError
+        set_http_proxy(host: string, port: number /*i64*/): void
+        set_https_proxy(host: string, port: number /*i64*/): void
+        query_string_from_dict(fields: Dictionary): string
+        // // godot.getset: blocking_mode_enabled: boolean
+        // // godot.getset: connection: Object
+        // // godot.getset: read_chunk_size: number /*i64*/
+    }
+    namespace HTTPRequest {
+        enum Result {
+            RESULT_SUCCESS = 0,
+            RESULT_CHUNKED_BODY_SIZE_MISMATCH = 1,
+            RESULT_CANT_CONNECT = 2,
+            RESULT_CANT_RESOLVE = 3,
+            RESULT_CONNECTION_ERROR = 4,
+            RESULT_TLS_HANDSHAKE_ERROR = 5,
+            RESULT_NO_RESPONSE = 6,
+            RESULT_BODY_SIZE_LIMIT_EXCEEDED = 7,
+            RESULT_BODY_DECOMPRESS_FAILED = 8,
+            RESULT_REQUEST_FAILED = 9,
+            RESULT_DOWNLOAD_FILE_CANT_OPEN = 10,
+            RESULT_DOWNLOAD_FILE_WRITE_ERROR = 11,
+            RESULT_REDIRECT_LIMIT_REACHED = 12,
+            RESULT_TIMEOUT = 13,
+        }
+    }
+    class HTTPRequest extends Node {
+        request(url: string, custom_headers: PackedStringArray, method: HTTPClient.Method, request_data: string): GodotError
+        request_raw(url: string, custom_headers: PackedStringArray, method: HTTPClient.Method, request_data_raw: PackedByteArray): GodotError
+        cancel_request(): void
+        set_tls_options(client_options: TLSOptions): void
+        get_http_client_status(): HTTPClient.Status
+        set_use_threads(enable: boolean): void
+        is_using_threads(): boolean
+        set_accept_gzip(enable: boolean): void
+        is_accepting_gzip(): boolean
+        set_body_size_limit(bytes: number /*i64*/): void
+        get_body_size_limit(): number /*i64*/
+        set_max_redirects(amount: number /*i64*/): void
+        get_max_redirects(): number /*i64*/
+        set_download_file(path: string): void
+        get_download_file(): string
+        get_downloaded_bytes(): number /*i64*/
+        get_body_size(): number /*i64*/
+        _request_done(_unnamed_arg0: number /*i64*/, _unnamed_arg1: number /*i64*/, _unnamed_arg2: PackedStringArray, _unnamed_arg3: PackedByteArray): void
+        set_timeout(timeout: number /*f64*/): void
+        get_timeout(): number /*f64*/
+        set_download_chunk_size(chunk_size: number /*i64*/): void
+        get_download_chunk_size(): number /*i64*/
+        set_http_proxy(host: string, port: number /*i64*/): void
+        set_https_proxy(host: string, port: number /*i64*/): void
+        // // godot.getset: download_file: string
+        // // godot.getset: download_chunk_size: number /*i64*/
+        // // godot.getset: use_threads: boolean
+        // // godot.getset: accept_gzip: boolean
+        // // godot.getset: body_size_limit: number /*i64*/
+        // // godot.getset: max_redirects: number /*i64*/
+        // // godot.getset: timeout: number /*f64*/
+        request_completed: Signal
+    }
+    namespace HashingContext {
+        enum HashType {
+            HASH_MD5 = 0,
+            HASH_SHA1 = 1,
+            HASH_SHA256 = 2,
+        }
+    }
+    class HashingContext extends RefCounted {
+        start(type: HashingContext.HashType): GodotError
+        update(chunk: PackedByteArray): GodotError
+        finish(): PackedByteArray
+    }
+    class HeightMapShape3D extends Shape3D {
+        set_map_width(width: number /*i64*/): void
+        get_map_width(): number /*i64*/
+        set_map_depth(height: number /*i64*/): void
+        get_map_depth(): number /*i64*/
+        set_map_data(data: PackedFloat32Array): void
+        get_map_data(): PackedFloat32Array
+        // // godot.getset: map_width: number /*i64*/
+        // // godot.getset: map_depth: number /*i64*/
+        // // godot.getset: map_data: PackedFloat32Array
+    }
+    namespace HingeJoint3D {
+        enum Param {
+            PARAM_BIAS = 0,
+            PARAM_LIMIT_UPPER = 1,
+            PARAM_LIMIT_LOWER = 2,
+            PARAM_LIMIT_BIAS = 3,
+            PARAM_LIMIT_SOFTNESS = 4,
+            PARAM_LIMIT_RELAXATION = 5,
+            PARAM_MOTOR_TARGET_VELOCITY = 6,
+            PARAM_MOTOR_MAX_IMPULSE = 7,
+            PARAM_MAX = 8,
+        }
+        enum Flag {
+            FLAG_USE_LIMIT = 0,
+            FLAG_ENABLE_MOTOR = 1,
+            FLAG_MAX = 2,
+        }
+    }
+    class HingeJoint3D extends Joint3D {
+        set_param(param: HingeJoint3D.Param, value: number /*f64*/): void
+        get_param(param: HingeJoint3D.Param): number /*f64*/
+        set_flag(flag: HingeJoint3D.Flag, enabled: boolean): void
+        get_flag(flag: HingeJoint3D.Flag): boolean
+        // // godot.getset: params/bias: number /*f64*/
+        // // godot.getset: angular_limit/enable: boolean
+        // // godot.getset: angular_limit/upper: number /*f64*/
+        // // godot.getset: angular_limit/lower: number /*f64*/
+        // // godot.getset: angular_limit/bias: number /*f64*/
+        // // godot.getset: angular_limit/softness: number /*f64*/
+        // // godot.getset: angular_limit/relaxation: number /*f64*/
+        // // godot.getset: motor/enable: boolean
+        // // godot.getset: motor/target_velocity: number /*f64*/
+        // // godot.getset: motor/max_impulse: number /*f64*/
+    }
+    class HistoryDock extends VBoxContainer {
+    }
+    namespace Image {
+        enum Format {
+            FORMAT_L8 = 0,
+            FORMAT_LA8 = 1,
+            FORMAT_R8 = 2,
+            FORMAT_RG8 = 3,
+            FORMAT_RGB8 = 4,
+            FORMAT_RGBA8 = 5,
+            FORMAT_RGBA4444 = 6,
+            FORMAT_RGB565 = 7,
+            FORMAT_RF = 8,
+            FORMAT_RGF = 9,
+            FORMAT_RGBF = 10,
+            FORMAT_RGBAF = 11,
+            FORMAT_RH = 12,
+            FORMAT_RGH = 13,
+            FORMAT_RGBH = 14,
+            FORMAT_RGBAH = 15,
+            FORMAT_RGBE9995 = 16,
+            FORMAT_DXT1 = 17,
+            FORMAT_DXT3 = 18,
+            FORMAT_DXT5 = 19,
+            FORMAT_RGTC_R = 20,
+            FORMAT_RGTC_RG = 21,
+            FORMAT_BPTC_RGBA = 22,
+            FORMAT_BPTC_RGBF = 23,
+            FORMAT_BPTC_RGBFU = 24,
+            FORMAT_ETC = 25,
+            FORMAT_ETC2_R11 = 26,
+            FORMAT_ETC2_R11S = 27,
+            FORMAT_ETC2_RG11 = 28,
+            FORMAT_ETC2_RG11S = 29,
+            FORMAT_ETC2_RGB8 = 30,
+            FORMAT_ETC2_RGBA8 = 31,
+            FORMAT_ETC2_RGB8A1 = 32,
+            FORMAT_ETC2_RA_AS_RG = 33,
+            FORMAT_DXT5_RA_AS_RG = 34,
+            FORMAT_ASTC_4x4 = 35,
+            FORMAT_ASTC_4x4_HDR = 36,
+            FORMAT_ASTC_8x8 = 37,
+            FORMAT_ASTC_8x8_HDR = 38,
+            FORMAT_MAX = 39,
+        }
+        enum Interpolation {
+            INTERPOLATE_NEAREST = 0,
+            INTERPOLATE_BILINEAR = 1,
+            INTERPOLATE_CUBIC = 2,
+            INTERPOLATE_TRILINEAR = 3,
+            INTERPOLATE_LANCZOS = 4,
+        }
+        enum AlphaMode {
+            ALPHA_NONE = 0,
+            ALPHA_BIT = 1,
+            ALPHA_BLEND = 2,
+        }
+        enum CompressMode {
+            COMPRESS_S3TC = 0,
+            COMPRESS_ETC = 1,
+            COMPRESS_ETC2 = 2,
+            COMPRESS_BPTC = 3,
+            COMPRESS_ASTC = 4,
+            COMPRESS_MAX = 5,
+        }
+        enum UsedChannels {
+            USED_CHANNELS_L = 0,
+            USED_CHANNELS_LA = 1,
+            USED_CHANNELS_R = 2,
+            USED_CHANNELS_RG = 3,
+            USED_CHANNELS_RGB = 4,
+            USED_CHANNELS_RGBA = 5,
+        }
+        enum CompressSource {
+            COMPRESS_SOURCE_GENERIC = 0,
+            COMPRESS_SOURCE_SRGB = 1,
+            COMPRESS_SOURCE_NORMAL = 2,
+        }
+        enum ASTCFormat {
+            ASTC_FORMAT_4x4 = 0,
+            ASTC_FORMAT_8x8 = 1,
+        }
+    }
+    class Image extends Resource {
+        static readonly MAX_WIDTH = 16777216
+        static readonly MAX_HEIGHT = 16777216
+        get_width(): number /*i64*/
+        get_height(): number /*i64*/
+        get_size(): Vector2i
+        has_mipmaps(): boolean
+        get_format(): Image.Format
+        get_data(): PackedByteArray
+        convert(format: Image.Format): void
+        get_mipmap_count(): number /*i64*/
+        get_mipmap_offset(mipmap: number /*i64*/): number /*i64*/
+        resize_to_po2(square: boolean, interpolation: Image.Interpolation): void
+        resize(width: number /*i64*/, height: number /*i64*/, interpolation: Image.Interpolation): void
+        shrink_x2(): void
+        crop(width: number /*i64*/, height: number /*i64*/): void
+        flip_x(): void
+        flip_y(): void
+        generate_mipmaps(renormalize: boolean): GodotError
+        clear_mipmaps(): void
+        static create(width: number /*i64*/, height: number /*i64*/, use_mipmaps: boolean, format: Image.Format): Image
+        static create_from_data(width: number /*i64*/, height: number /*i64*/, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray): Image
+        set_data(width: number /*i64*/, height: number /*i64*/, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray): void
+        is_empty(): boolean
+        load(path: string): GodotError
+        static load_from_file(path: string): Image
+        save_png(path: string): GodotError
+        save_png_to_buffer(): PackedByteArray
+        save_jpg(path: string, quality: number /*f64*/): GodotError
+        save_jpg_to_buffer(quality: number /*f64*/): PackedByteArray
+        save_exr(path: string, grayscale: boolean): GodotError
+        save_exr_to_buffer(grayscale: boolean): PackedByteArray
+        save_webp(path: string, lossy: boolean, quality: number /*f64*/): GodotError
+        save_webp_to_buffer(lossy: boolean, quality: number /*f64*/): PackedByteArray
+        detect_alpha(): Image.AlphaMode
+        is_invisible(): boolean
+        detect_used_channels(source: Image.CompressSource): Image.UsedChannels
+        compress(mode: Image.CompressMode, source: Image.CompressSource, astc_format: Image.ASTCFormat): GodotError
+        compress_from_channels(mode: Image.CompressMode, channels: Image.UsedChannels, astc_format: Image.ASTCFormat): GodotError
+        decompress(): GodotError
+        is_compressed(): boolean
+        rotate_90(direction: ClockDirection): void
+        rotate_180(): void
+        fix_alpha_edges(): void
+        premultiply_alpha(): void
+        srgb_to_linear(): void
+        normal_map_to_xy(): void
+        rgbe_to_srgb(): Image
+        bump_map_to_normal_map(bump_scale: number /*f64*/): void
+        compute_image_metrics(compared_image: Image, use_luma: boolean): Dictionary
+        blit_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
+        blit_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
+        blend_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
+        blend_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
+        fill(color: Color): void
+        fill_rect(rect: Rect2i, color: Color): void
+        get_used_rect(): Rect2i
+        get_region(region: Rect2i): Image
+        copy_from(src: Image): void
+        _set_data(data: Dictionary): void
+        _get_data(): Dictionary
+        get_pixelv(point: Vector2i): Color
+        get_pixel(x: number /*i64*/, y: number /*i64*/): Color
+        set_pixelv(point: Vector2i, color: Color): void
+        set_pixel(x: number /*i64*/, y: number /*i64*/, color: Color): void
+        adjust_bcs(brightness: number /*f64*/, contrast: number /*f64*/, saturation: number /*f64*/): void
+        load_png_from_buffer(buffer: PackedByteArray): GodotError
+        load_jpg_from_buffer(buffer: PackedByteArray): GodotError
+        load_webp_from_buffer(buffer: PackedByteArray): GodotError
+        load_tga_from_buffer(buffer: PackedByteArray): GodotError
+        load_bmp_from_buffer(buffer: PackedByteArray): GodotError
+        load_ktx_from_buffer(buffer: PackedByteArray): GodotError
+        load_svg_from_buffer(buffer: PackedByteArray, scale: number /*f64*/): GodotError
+        load_svg_from_string(svg_str: string, scale: number /*f64*/): GodotError
+        // // godot.getset: data: Dictionary
+    }
+    namespace ImageFormatLoader {
+        enum LoaderFlags {
+            FLAG_NONE = 0,
+            FLAG_FORCE_LINEAR = 1,
+            FLAG_CONVERT_COLORS = 2,
+        }
+    }
+    class ImageFormatLoader extends RefCounted {
+    }
+    class ImageFormatLoaderExtension extends ImageFormatLoader {
+        add_format_loader(): void
+        remove_format_loader(): void
+    }
+    class ImageTexture extends Texture2D {
+        static create_from_image(image: Image): ImageTexture
+        get_format(): Image.Format
+        set_image(image: Image): void
+        update(image: Image): void
+        set_size_override(size: Vector2i): void
+    }
+    class ImageTexture3D extends Texture3D {
+        create(format: Image.Format, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, use_mipmaps: boolean, data: Array): GodotError
+        update(data: Array): void
+        _get_images(): Array
+        _set_images(images: Array): void
+        // // godot.getset: _images: Array
+    }
+    class ImageTextureLayered extends TextureLayered {
+        create_from_images(images: Array): GodotError
+        update_layer(image: Image, layer: number /*i64*/): void
+        _get_images(): Array
+        _set_images(images: Array): void
+        // // godot.getset: _images: Array
+    }
+    class ImmediateMesh extends Mesh {
+        surface_begin(primitive: Mesh.PrimitiveType, material: Material): void
+        surface_set_color(color: Color): void
+        surface_set_normal(normal: Vector3): void
+        surface_set_tangent(tangent: Plane): void
+        surface_set_uv(uv: Vector2): void
+        surface_set_uv2(uv2: Vector2): void
+        surface_add_vertex(vertex: Vector3): void
+        surface_add_vertex_2d(vertex: Vector2): void
+        surface_end(): void
+        clear_surfaces(): void
+    }
+    class ImportDefaultsEditor extends VBoxContainer {
+    }
+    class ImportDefaultsEditorSettings extends Object {
+    }
+    class ImportDock extends VBoxContainer {
+        _reimport(): void
+    }
+    class ImportDockParameters extends Object {
+    }
+    class ImporterMesh extends Resource {
+        add_blend_shape(name: string): void
+        get_blend_shape_count(): number /*i64*/
+        get_blend_shape_name(blend_shape_idx: number /*i64*/): string
+        set_blend_shape_mode(mode: Mesh.BlendShapeMode): void
+        get_blend_shape_mode(): Mesh.BlendShapeMode
+        add_surface(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array, lods: Dictionary, material: Material, name: string, flags: number /*i64*/): void
+        get_surface_count(): number /*i64*/
+        get_surface_primitive_type(surface_idx: number /*i64*/): Mesh.PrimitiveType
+        get_surface_name(surface_idx: number /*i64*/): string
+        get_surface_arrays(surface_idx: number /*i64*/): Array
+        get_surface_blend_shape_arrays(surface_idx: number /*i64*/, blend_shape_idx: number /*i64*/): Array
+        get_surface_lod_count(surface_idx: number /*i64*/): number /*i64*/
+        get_surface_lod_size(surface_idx: number /*i64*/, lod_idx: number /*i64*/): number /*f64*/
+        get_surface_lod_indices(surface_idx: number /*i64*/, lod_idx: number /*i64*/): PackedInt32Array
+        get_surface_material(surface_idx: number /*i64*/): Material
+        get_surface_format(surface_idx: number /*i64*/): number /*i64*/
+        set_surface_name(surface_idx: number /*i64*/, name: string): void
+        set_surface_material(surface_idx: number /*i64*/, material: Material): void
+        generate_lods(normal_merge_angle: number /*f64*/, normal_split_angle: number /*f64*/, bone_transform_array: Array): void
+        get_mesh(base_mesh: ArrayMesh): ArrayMesh
+        clear(): void
+        _set_data(data: Dictionary): void
+        _get_data(): Dictionary
+        set_lightmap_size_hint(size: Vector2i): void
+        get_lightmap_size_hint(): Vector2i
+        // // godot.getset: _data: Dictionary
+    }
+    class ImporterMeshInstance3D extends Node3D {
+        set_mesh(mesh: ImporterMesh): void
+        get_mesh(): ImporterMesh
+        set_skin(skin: Skin): void
+        get_skin(): Skin
+        set_skeleton_path(skeleton_path: NodePath): void
+        get_skeleton_path(): NodePath
+        set_layer_mask(layer_mask: number /*i64*/): void
+        get_layer_mask(): number /*i64*/
+        set_cast_shadows_setting(shadow_casting_setting: GeometryInstance3D.ShadowCastingSetting): void
+        get_cast_shadows_setting(): GeometryInstance3D.ShadowCastingSetting
+        set_visibility_range_end_margin(distance: number /*f64*/): void
+        get_visibility_range_end_margin(): number /*f64*/
+        set_visibility_range_end(distance: number /*f64*/): void
+        get_visibility_range_end(): number /*f64*/
+        set_visibility_range_begin_margin(distance: number /*f64*/): void
+        get_visibility_range_begin_margin(): number /*f64*/
+        set_visibility_range_begin(distance: number /*f64*/): void
+        get_visibility_range_begin(): number /*f64*/
+        set_visibility_range_fade_mode(mode: GeometryInstance3D.VisibilityRangeFadeMode): void
+        get_visibility_range_fade_mode(): GeometryInstance3D.VisibilityRangeFadeMode
+        // // godot.getset: mesh: Object
+        // // godot.getset: skin: Object
+        // // godot.getset: skeleton_path: NodePath
+        // // godot.getset: layer_mask: number /*i64*/
+        // // godot.getset: cast_shadow: number /*i64*/
+        // // godot.getset: visibility_range_begin: number /*f64*/
+        // // godot.getset: visibility_range_begin_margin: number /*f64*/
+        // // godot.getset: visibility_range_end: number /*f64*/
+        // // godot.getset: visibility_range_end_margin: number /*f64*/
+        // // godot.getset: visibility_range_fade_mode: number /*i64*/
+    }
+    class InputEvent extends Resource {
+        set_device(device: number /*i64*/): void
+        get_device(): number /*i64*/
+        is_action(action: StringName, exact_match: boolean): boolean
+        is_action_pressed(action: StringName, allow_echo: boolean, exact_match: boolean): boolean
+        is_action_released(action: StringName, exact_match: boolean): boolean
+        get_action_strength(action: StringName, exact_match: boolean): number /*f64*/
+        is_canceled(): boolean
+        is_pressed(): boolean
+        is_released(): boolean
+        is_echo(): boolean
+        as_text(): string
+        is_match(event: InputEvent, exact_match: boolean): boolean
+        is_action_type(): boolean
+        accumulate(with_event: InputEvent): boolean
+        xformed_by(xform: Transform2D, local_ofs: Vector2): InputEvent
+        // // godot.getset: device: number /*i64*/
+    }
+    class InputEventAction extends InputEvent {
+        set_action(action: StringName): void
+        get_action(): StringName
+        set_pressed(pressed: boolean): void
+        set_strength(strength: number /*f64*/): void
+        get_strength(): number /*f64*/
+        // // godot.getset: action: StringName
+        // // godot.getset: pressed: boolean
+        // // godot.getset: strength: number /*f64*/
+    }
+    class InputEventConfigurationDialog extends ConfirmationDialog {
+    }
+    class InputEventEditorPlugin extends EditorPlugin {
+    }
+    class InputEventFromWindow extends InputEvent {
+        set_window_id(id: number /*i64*/): void
+        get_window_id(): number /*i64*/
+        // // godot.getset: window_id: number /*i64*/
+    }
+    class InputEventGesture extends InputEventWithModifiers {
+        set_position(position: Vector2): void
+        get_position(): Vector2
+        // // godot.getset: position: Vector2
+    }
+    class InputEventJoypadButton extends InputEvent {
+        set_button_index(button_index: JoyButton): void
+        get_button_index(): JoyButton
+        set_pressure(pressure: number /*f64*/): void
+        get_pressure(): number /*f64*/
+        set_pressed(pressed: boolean): void
+        // // godot.getset: button_index: number /*i64*/
+        // // godot.getset: pressure: number /*f64*/
+        // // godot.getset: pressed: boolean
+    }
+    class InputEventJoypadMotion extends InputEvent {
+        set_axis(axis: JoyAxis): void
+        get_axis(): JoyAxis
+        set_axis_value(axis_value: number /*f64*/): void
+        get_axis_value(): number /*f64*/
+        // // godot.getset: axis: number /*i64*/
+        // // godot.getset: axis_value: number /*f64*/
+    }
+    class InputEventKey extends InputEventWithModifiers {
+        set_pressed(pressed: boolean): void
+        set_keycode(keycode: Key): void
+        get_keycode(): Key
+        set_physical_keycode(physical_keycode: Key): void
+        get_physical_keycode(): Key
+        set_key_label(key_label: Key): void
+        get_key_label(): Key
+        set_unicode(unicode: number /*i64*/): void
+        get_unicode(): number /*i64*/
+        set_echo(echo: boolean): void
+        get_keycode_with_modifiers(): Key
+        get_physical_keycode_with_modifiers(): Key
+        get_key_label_with_modifiers(): Key
+        as_text_keycode(): string
+        as_text_physical_keycode(): string
+        as_text_key_label(): string
+        // // godot.getset: pressed: boolean
+        // // godot.getset: keycode: number /*i64*/
+        // // godot.getset: physical_keycode: number /*i64*/
+        // // godot.getset: key_label: number /*i64*/
+        // // godot.getset: unicode: number /*i64*/
+        // // godot.getset: echo: boolean
+    }
+    class InputEventMIDI extends InputEvent {
+        set_channel(channel: number /*i64*/): void
+        get_channel(): number /*i64*/
+        set_message(message: MIDIMessage): void
+        get_message(): MIDIMessage
+        set_pitch(pitch: number /*i64*/): void
+        get_pitch(): number /*i64*/
+        set_velocity(velocity: number /*i64*/): void
+        get_velocity(): number /*i64*/
+        set_instrument(instrument: number /*i64*/): void
+        get_instrument(): number /*i64*/
+        set_pressure(pressure: number /*i64*/): void
+        get_pressure(): number /*i64*/
+        set_controller_number(controller_number: number /*i64*/): void
+        get_controller_number(): number /*i64*/
+        set_controller_value(controller_value: number /*i64*/): void
+        get_controller_value(): number /*i64*/
+        // // godot.getset: channel: number /*i64*/
+        // // godot.getset: message: number /*i64*/
+        // // godot.getset: pitch: number /*i64*/
+        // // godot.getset: velocity: number /*i64*/
+        // // godot.getset: instrument: number /*i64*/
+        // // godot.getset: pressure: number /*i64*/
+        // // godot.getset: controller_number: number /*i64*/
+        // // godot.getset: controller_value: number /*i64*/
+    }
+    class InputEventMagnifyGesture extends InputEventGesture {
+        set_factor(factor: number /*f64*/): void
+        get_factor(): number /*f64*/
+        // // godot.getset: factor: number /*f64*/
+    }
+    class InputEventMouse extends InputEventWithModifiers {
+        set_button_mask(button_mask: MouseButtonMask): void
+        get_button_mask(): MouseButtonMask
+        set_position(position: Vector2): void
+        get_position(): Vector2
+        set_global_position(global_position: Vector2): void
+        get_global_position(): Vector2
+        // // godot.getset: button_mask: number /*i64*/
+        // // godot.getset: position: Vector2
+        // // godot.getset: global_position: Vector2
+    }
+    class InputEventMouseButton extends InputEventMouse {
+        set_factor(factor: number /*f64*/): void
+        get_factor(): number /*f64*/
+        set_button_index(button_index: MouseButton): void
+        get_button_index(): MouseButton
+        set_pressed(pressed: boolean): void
+        set_canceled(canceled: boolean): void
+        set_double_click(double_click: boolean): void
+        is_double_click(): boolean
+        // // godot.getset: factor: number /*f64*/
+        // // godot.getset: button_index: number /*i64*/
+        // // godot.getset: canceled: boolean
+        // // godot.getset: pressed: boolean
+        // // godot.getset: double_click: boolean
+    }
+    class InputEventMouseMotion extends InputEventMouse {
+        set_tilt(tilt: Vector2): void
+        get_tilt(): Vector2
+        set_pressure(pressure: number /*f64*/): void
+        get_pressure(): number /*f64*/
+        set_pen_inverted(pen_inverted: boolean): void
+        get_pen_inverted(): boolean
+        set_relative(relative: Vector2): void
+        get_relative(): Vector2
+        set_velocity(velocity: Vector2): void
+        get_velocity(): Vector2
+        // // godot.getset: tilt: Vector2
+        // // godot.getset: pressure: number /*f64*/
+        // // godot.getset: pen_inverted: boolean
+        // // godot.getset: relative: Vector2
+        // // godot.getset: velocity: Vector2
+    }
+    class InputEventPanGesture extends InputEventGesture {
+        set_delta(delta: Vector2): void
+        get_delta(): Vector2
+        // // godot.getset: delta: Vector2
+    }
+    class InputEventScreenDrag extends InputEventFromWindow {
+        set_index(index: number /*i64*/): void
+        get_index(): number /*i64*/
+        set_tilt(tilt: Vector2): void
+        get_tilt(): Vector2
+        set_pressure(pressure: number /*f64*/): void
+        get_pressure(): number /*f64*/
+        set_pen_inverted(pen_inverted: boolean): void
+        get_pen_inverted(): boolean
+        set_position(position: Vector2): void
+        get_position(): Vector2
+        set_relative(relative: Vector2): void
+        get_relative(): Vector2
+        set_velocity(velocity: Vector2): void
+        get_velocity(): Vector2
+        // // godot.getset: index: number /*i64*/
+        // // godot.getset: tilt: Vector2
+        // // godot.getset: pressure: number /*f64*/
+        // // godot.getset: pen_inverted: boolean
+        // // godot.getset: position: Vector2
+        // // godot.getset: relative: Vector2
+        // // godot.getset: velocity: Vector2
+    }
+    class InputEventScreenTouch extends InputEventFromWindow {
+        set_index(index: number /*i64*/): void
+        get_index(): number /*i64*/
+        set_position(position: Vector2): void
+        get_position(): Vector2
+        set_pressed(pressed: boolean): void
+        set_canceled(canceled: boolean): void
+        set_double_tap(double_tap: boolean): void
+        is_double_tap(): boolean
+        // // godot.getset: index: number /*i64*/
+        // // godot.getset: position: Vector2
+        // // godot.getset: canceled: boolean
+        // // godot.getset: pressed: boolean
+        // // godot.getset: double_tap: boolean
+    }
+    class InputEventShortcut extends InputEvent {
+        set_shortcut(shortcut: Shortcut): void
+        get_shortcut(): Shortcut
+        // // godot.getset: shortcut: Object
+    }
+    class InputEventWithModifiers extends InputEventFromWindow {
+        set_command_or_control_autoremap(enable: boolean): void
+        is_command_or_control_autoremap(): boolean
+        is_command_or_control_pressed(): boolean
+        set_alt_pressed(pressed: boolean): void
+        is_alt_pressed(): boolean
+        set_shift_pressed(pressed: boolean): void
+        is_shift_pressed(): boolean
+        set_ctrl_pressed(pressed: boolean): void
+        is_ctrl_pressed(): boolean
+        set_meta_pressed(pressed: boolean): void
+        is_meta_pressed(): boolean
+        get_modifiers_mask(): KeyModifierMask
+        // // godot.getset: command_or_control_autoremap: boolean
+        // // godot.getset: alt_pressed: boolean
+        // // godot.getset: shift_pressed: boolean
+        // // godot.getset: ctrl_pressed: boolean
+        // // godot.getset: meta_pressed: boolean
+    }
+    class InspectorDock extends VBoxContainer {
+        _unref_resource(): void
+        _paste_resource(): void
+        _copy_resource(): void
+        _menu_collapseall(): void
+        _menu_expandall(): void
+        edit_resource(_unnamed_arg0: Resource): void
+        store_script_properties(_unnamed_arg0: Object): void
+        apply_script_properties(_unnamed_arg0: Object): void
+        request_help: Signal
+    }
+    class InstancePlaceholder extends Node {
+        get_stored_values(with_order: boolean): Dictionary
+        create_instance(replace: boolean, custom_scene: PackedScene): Node
+        get_instance_path(): string
+    }
+    class IntervalTweener extends Tweener {
+    }
+    namespace ItemList {
+        enum IconMode {
+            ICON_MODE_TOP = 0,
+            ICON_MODE_LEFT = 1,
+        }
+        enum SelectMode {
+            SELECT_SINGLE = 0,
+            SELECT_MULTI = 1,
+        }
+    }
+    class ItemList extends Control {
+        add_item(text: string, icon: Texture2D, selectable: boolean): number /*i64*/
+        add_icon_item(icon: Texture2D, selectable: boolean): number /*i64*/
+        set_item_text(idx: number /*i64*/, text: string): void
+        get_item_text(idx: number /*i64*/): string
+        set_item_icon(idx: number /*i64*/, icon: Texture2D): void
+        get_item_icon(idx: number /*i64*/): Texture2D
+        set_item_text_direction(idx: number /*i64*/, direction: Control.TextDirection): void
+        get_item_text_direction(idx: number /*i64*/): Control.TextDirection
+        set_item_language(idx: number /*i64*/, language: string): void
+        get_item_language(idx: number /*i64*/): string
+        set_item_icon_transposed(idx: number /*i64*/, transposed: boolean): void
+        is_item_icon_transposed(idx: number /*i64*/): boolean
+        set_item_icon_region(idx: number /*i64*/, rect: Rect2): void
+        get_item_icon_region(idx: number /*i64*/): Rect2
+        set_item_icon_modulate(idx: number /*i64*/, modulate: Color): void
+        get_item_icon_modulate(idx: number /*i64*/): Color
+        set_item_selectable(idx: number /*i64*/, selectable: boolean): void
+        is_item_selectable(idx: number /*i64*/): boolean
+        set_item_disabled(idx: number /*i64*/, disabled: boolean): void
+        is_item_disabled(idx: number /*i64*/): boolean
+        set_item_metadata(idx: number /*i64*/, metadata: any): void
+        get_item_metadata(idx: number /*i64*/): any
+        set_item_custom_bg_color(idx: number /*i64*/, custom_bg_color: Color): void
+        get_item_custom_bg_color(idx: number /*i64*/): Color
+        set_item_custom_fg_color(idx: number /*i64*/, custom_fg_color: Color): void
+        get_item_custom_fg_color(idx: number /*i64*/): Color
+        get_item_rect(idx: number /*i64*/, expand: boolean): Rect2
+        set_item_tooltip_enabled(idx: number /*i64*/, enable: boolean): void
+        is_item_tooltip_enabled(idx: number /*i64*/): boolean
+        set_item_tooltip(idx: number /*i64*/, tooltip: string): void
+        get_item_tooltip(idx: number /*i64*/): string
+        select(idx: number /*i64*/, single: boolean): void
+        deselect(idx: number /*i64*/): void
+        deselect_all(): void
+        is_selected(idx: number /*i64*/): boolean
+        get_selected_items(): PackedInt32Array
+        move_item(from_idx: number /*i64*/, to_idx: number /*i64*/): void
+        set_item_count(count: number /*i64*/): void
+        get_item_count(): number /*i64*/
+        remove_item(idx: number /*i64*/): void
+        clear(): void
+        sort_items_by_text(): void
+        set_fixed_column_width(width: number /*i64*/): void
+        get_fixed_column_width(): number /*i64*/
+        set_same_column_width(enable: boolean): void
+        is_same_column_width(): boolean
+        set_max_text_lines(lines: number /*i64*/): void
+        get_max_text_lines(): number /*i64*/
+        set_max_columns(amount: number /*i64*/): void
+        get_max_columns(): number /*i64*/
+        set_select_mode(mode: ItemList.SelectMode): void
+        get_select_mode(): ItemList.SelectMode
+        set_icon_mode(mode: ItemList.IconMode): void
+        get_icon_mode(): ItemList.IconMode
+        set_fixed_icon_size(size: Vector2i): void
+        get_fixed_icon_size(): Vector2i
+        set_icon_scale(scale: number /*f64*/): void
+        get_icon_scale(): number /*f64*/
+        set_allow_rmb_select(allow: boolean): void
+        get_allow_rmb_select(): boolean
+        set_allow_reselect(allow: boolean): void
+        get_allow_reselect(): boolean
+        set_allow_search(allow: boolean): void
+        get_allow_search(): boolean
+        set_auto_height(enable: boolean): void
+        has_auto_height(): boolean
+        is_anything_selected(): boolean
+        get_item_at_position(position: Vector2, exact: boolean): number /*i64*/
+        ensure_current_is_visible(): void
+        get_v_scroll_bar(): VScrollBar
+        set_text_overrun_behavior(overrun_behavior: TextServer.OverrunBehavior): void
+        get_text_overrun_behavior(): TextServer.OverrunBehavior
+        force_update_list_size(): void
+        // // godot.getset: select_mode: number /*i64*/
+        // // godot.getset: allow_reselect: boolean
+        // // godot.getset: allow_rmb_select: boolean
+        // // godot.getset: allow_search: boolean
+        // // godot.getset: max_text_lines: number /*i64*/
+        // // godot.getset: auto_height: boolean
+        // // godot.getset: text_overrun_behavior: number /*i64*/
+        // // godot.getset: item_count: number /*i64*/
+        // // godot.getset: max_columns: number /*i64*/
+        // // godot.getset: same_column_width: boolean
+        // // godot.getset: fixed_column_width: number /*i64*/
+        // // godot.getset: icon_mode: number /*i64*/
+        // // godot.getset: icon_scale: number /*f64*/
+        // // godot.getset: fixed_icon_size: Vector2i
+        item_selected: Signal
+        empty_clicked: Signal
+        item_clicked: Signal
+        multi_selected: Signal
+        item_activated: Signal
+    }
+    class JNISingleton extends Object {
+    }
+    class JSON extends Resource {
+        static stringify(data: any, indent: string, sort_keys: boolean, full_precision: boolean): string
+        static parse_string(json_string: string): any
+        parse(json_text: string, keep_text: boolean): GodotError
+        get_data(): any
+        set_data(data: any): void
+        get_parsed_text(): string
+        get_error_line(): number /*i64*/
+        get_error_message(): string
+        // // godot.getset: data: any
+    }
+    namespace JSONRPC {
+        enum ErrorCode {
+            PARSE_ERROR = -32700,
+            INVALID_REQUEST = -32600,
+            METHOD_NOT_FOUND = -32601,
+            INVALID_PARAMS = -32602,
+            INTERNAL_ERROR = -32603,
+        }
+    }
+    class JSONRPC extends Object {
+        set_scope(scope: string, target: Object): void
+        process_action(action: any, recurse: boolean): any
+        process_string(action: string): string
+        make_request(method: string, params: any, id: any): Dictionary
+        make_response(result: any, id: any): Dictionary
+        make_notification(method: string, params: any): Dictionary
+        make_response_error(code: number /*i64*/, message: string, id: any): Dictionary
+    }
+    class JavaClass extends RefCounted {
+    }
+    class JavaScriptObject extends RefCounted {
+    }
+    class Joint2D extends Node2D {
+        set_node_a(node: NodePath): void
+        get_node_a(): NodePath
+        set_node_b(node: NodePath): void
+        get_node_b(): NodePath
+        set_bias(bias: number /*f64*/): void
+        get_bias(): number /*f64*/
+        set_exclude_nodes_from_collision(enable: boolean): void
+        get_exclude_nodes_from_collision(): boolean
+        get_rid(): RID
+        // // godot.getset: node_a: NodePath
+        // // godot.getset: node_b: NodePath
+        // // godot.getset: bias: number /*f64*/
+        // // godot.getset: disable_collision: boolean
+    }
+    class Joint3D extends Node3D {
+        set_node_a(node: NodePath): void
+        get_node_a(): NodePath
+        set_node_b(node: NodePath): void
+        get_node_b(): NodePath
+        set_solver_priority(priority: number /*i64*/): void
+        get_solver_priority(): number /*i64*/
+        set_exclude_nodes_from_collision(enable: boolean): void
+        get_exclude_nodes_from_collision(): boolean
+        get_rid(): RID
+        // // godot.getset: node_a: NodePath
+        // // godot.getset: node_b: NodePath
+        // // godot.getset: solver_priority: number /*i64*/
+        // // godot.getset: exclude_nodes_from_collision: boolean
+    }
+    class Joint3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class KinematicCollision2D extends RefCounted {
+        get_position(): Vector2
+        get_normal(): Vector2
+        get_travel(): Vector2
+        get_remainder(): Vector2
+        get_angle(up_direction: Vector2): number /*f64*/
+        get_depth(): number /*f64*/
+        get_local_shape(): Object
+        get_collider(): Object
+        get_collider_id(): number /*i64*/
+        get_collider_rid(): RID
+        get_collider_shape(): Object
+        get_collider_shape_index(): number /*i64*/
+        get_collider_velocity(): Vector2
+    }
+    class KinematicCollision3D extends RefCounted {
+        get_travel(): Vector3
+        get_remainder(): Vector3
+        get_depth(): number /*f64*/
+        get_collision_count(): number /*i64*/
+        get_position(collision_index: number /*i64*/): Vector3
+        get_normal(collision_index: number /*i64*/): Vector3
+        get_angle(collision_index: number /*i64*/, up_direction: Vector3): number /*f64*/
+        get_local_shape(collision_index: number /*i64*/): Object
+        get_collider(collision_index: number /*i64*/): Object
+        get_collider_id(collision_index: number /*i64*/): number /*i64*/
+        get_collider_rid(collision_index: number /*i64*/): RID
+        get_collider_shape(collision_index: number /*i64*/): Object
+        get_collider_shape_index(collision_index: number /*i64*/): number /*i64*/
+        get_collider_velocity(collision_index: number /*i64*/): Vector3
+    }
+    class Label extends Control {
+        set_horizontal_alignment(alignment: HorizontalAlignment): void
+        get_horizontal_alignment(): HorizontalAlignment
+        set_vertical_alignment(alignment: VerticalAlignment): void
+        get_vertical_alignment(): VerticalAlignment
+        set_text(text: string): void
+        get_text(): string
+        set_label_settings(settings: LabelSettings): void
+        get_label_settings(): LabelSettings
+        set_text_direction(direction: Control.TextDirection): void
+        get_text_direction(): Control.TextDirection
+        set_language(language: string): void
+        get_language(): string
+        set_autowrap_mode(autowrap_mode: TextServer.AutowrapMode): void
+        get_autowrap_mode(): TextServer.AutowrapMode
+        set_justification_flags(justification_flags: TextServer.JustificationFlag): void
+        get_justification_flags(): TextServer.JustificationFlag
+        set_clip_text(enable: boolean): void
+        is_clipping_text(): boolean
+        set_tab_stops(tab_stops: PackedFloat32Array): void
+        get_tab_stops(): PackedFloat32Array
+        set_text_overrun_behavior(overrun_behavior: TextServer.OverrunBehavior): void
+        get_text_overrun_behavior(): TextServer.OverrunBehavior
+        set_uppercase(enable: boolean): void
+        is_uppercase(): boolean
+        get_line_height(line: number /*i64*/): number /*i64*/
+        get_line_count(): number /*i64*/
+        get_visible_line_count(): number /*i64*/
+        get_total_character_count(): number /*i64*/
+        set_visible_characters(amount: number /*i64*/): void
+        get_visible_characters(): number /*i64*/
+        get_visible_characters_behavior(): TextServer.VisibleCharactersBehavior
+        set_visible_characters_behavior(behavior: TextServer.VisibleCharactersBehavior): void
+        set_visible_ratio(ratio: number /*f64*/): void
+        get_visible_ratio(): number /*f64*/
+        set_lines_skipped(lines_skipped: number /*i64*/): void
+        get_lines_skipped(): number /*i64*/
+        set_max_lines_visible(lines_visible: number /*i64*/): void
+        get_max_lines_visible(): number /*i64*/
+        set_structured_text_bidi_override(parser: TextServer.StructuredTextParser): void
+        get_structured_text_bidi_override(): TextServer.StructuredTextParser
+        set_structured_text_bidi_override_options(args: Array): void
+        get_structured_text_bidi_override_options(): Array
+        // // godot.getset: text: string
+        // // godot.getset: label_settings: Object
+        // // godot.getset: horizontal_alignment: number /*i64*/
+        // // godot.getset: vertical_alignment: number /*i64*/
+        // // godot.getset: autowrap_mode: number /*i64*/
+        // // godot.getset: justification_flags: number /*i64*/
+        // // godot.getset: clip_text: boolean
+        // // godot.getset: text_overrun_behavior: number /*i64*/
+        // // godot.getset: uppercase: boolean
+        // // godot.getset: tab_stops: PackedFloat32Array
+        // // godot.getset: lines_skipped: number /*i64*/
+        // // godot.getset: max_lines_visible: number /*i64*/
+        // // godot.getset: visible_characters: number /*i64*/
+        // // godot.getset: visible_characters_behavior: number /*i64*/
+        // // godot.getset: visible_ratio: number /*f64*/
+        // // godot.getset: text_direction: number /*i64*/
+        // // godot.getset: language: string
+        // // godot.getset: structured_text_bidi_override: number /*i64*/
+        // // godot.getset: structured_text_bidi_override_options: Array
+    }
+    namespace Label3D {
+        enum DrawFlags {
+            FLAG_SHADED = 0,
+            FLAG_DOUBLE_SIDED = 1,
+            FLAG_DISABLE_DEPTH_TEST = 2,
+            FLAG_FIXED_SIZE = 3,
+            FLAG_MAX = 4,
+        }
+        enum AlphaCutMode {
+            ALPHA_CUT_DISABLED = 0,
+            ALPHA_CUT_DISCARD = 1,
+            ALPHA_CUT_OPAQUE_PREPASS = 2,
+            ALPHA_CUT_HASH = 3,
+        }
+    }
+    class Label3D extends GeometryInstance3D {
+        set_horizontal_alignment(alignment: HorizontalAlignment): void
+        get_horizontal_alignment(): HorizontalAlignment
+        set_vertical_alignment(alignment: VerticalAlignment): void
+        get_vertical_alignment(): VerticalAlignment
+        set_modulate(modulate: Color): void
+        get_modulate(): Color
+        set_outline_modulate(modulate: Color): void
+        get_outline_modulate(): Color
+        set_text(text: string): void
+        get_text(): string
+        set_text_direction(direction: TextServer.Direction): void
+        get_text_direction(): TextServer.Direction
+        set_language(language: string): void
+        get_language(): string
+        set_structured_text_bidi_override(parser: TextServer.StructuredTextParser): void
+        get_structured_text_bidi_override(): TextServer.StructuredTextParser
+        set_structured_text_bidi_override_options(args: Array): void
+        get_structured_text_bidi_override_options(): Array
+        set_uppercase(enable: boolean): void
+        is_uppercase(): boolean
+        set_render_priority(priority: number /*i64*/): void
+        get_render_priority(): number /*i64*/
+        set_outline_render_priority(priority: number /*i64*/): void
+        get_outline_render_priority(): number /*i64*/
+        set_font(font: Font): void
+        get_font(): Font
+        set_font_size(size: number /*i64*/): void
+        get_font_size(): number /*i64*/
+        set_outline_size(outline_size: number /*i64*/): void
+        get_outline_size(): number /*i64*/
+        set_line_spacing(line_spacing: number /*f64*/): void
+        get_line_spacing(): number /*f64*/
+        set_autowrap_mode(autowrap_mode: TextServer.AutowrapMode): void
+        get_autowrap_mode(): TextServer.AutowrapMode
+        set_justification_flags(justification_flags: TextServer.JustificationFlag): void
+        get_justification_flags(): TextServer.JustificationFlag
+        set_width(width: number /*f64*/): void
+        get_width(): number /*f64*/
+        set_pixel_size(pixel_size: number /*f64*/): void
+        get_pixel_size(): number /*f64*/
+        set_offset(offset: Vector2): void
+        get_offset(): Vector2
+        set_draw_flag(flag: Label3D.DrawFlags, enabled: boolean): void
+        get_draw_flag(flag: Label3D.DrawFlags): boolean
+        set_billboard_mode(mode: BaseMaterial3D.BillboardMode): void
+        get_billboard_mode(): BaseMaterial3D.BillboardMode
+        set_alpha_cut_mode(mode: Label3D.AlphaCutMode): void
+        get_alpha_cut_mode(): Label3D.AlphaCutMode
+        set_alpha_scissor_threshold(threshold: number /*f64*/): void
+        get_alpha_scissor_threshold(): number /*f64*/
+        set_alpha_hash_scale(threshold: number /*f64*/): void
+        get_alpha_hash_scale(): number /*f64*/
+        set_alpha_antialiasing(alpha_aa: BaseMaterial3D.AlphaAntiAliasing): void
+        get_alpha_antialiasing(): BaseMaterial3D.AlphaAntiAliasing
+        set_alpha_antialiasing_edge(edge: number /*f64*/): void
+        get_alpha_antialiasing_edge(): number /*f64*/
+        set_texture_filter(mode: BaseMaterial3D.TextureFilter): void
+        get_texture_filter(): BaseMaterial3D.TextureFilter
+        generate_triangle_mesh(): TriangleMesh
+        // // godot.getset: pixel_size: number /*f64*/
+        // // godot.getset: offset: Vector2
+        // // godot.getset: billboard: number /*i64*/
+        // // godot.getset: shaded: boolean
+        // // godot.getset: double_sided: boolean
+        // // godot.getset: no_depth_test: boolean
+        // // godot.getset: fixed_size: boolean
+        // // godot.getset: alpha_cut: number /*i64*/
+        // // godot.getset: alpha_scissor_threshold: number /*f64*/
+        // // godot.getset: alpha_hash_scale: number /*f64*/
+        // // godot.getset: alpha_antialiasing_mode: number /*i64*/
+        // // godot.getset: alpha_antialiasing_edge: number /*f64*/
+        // // godot.getset: texture_filter: number /*i64*/
+        // // godot.getset: render_priority: number /*i64*/
+        // // godot.getset: outline_render_priority: number /*i64*/
+        // // godot.getset: modulate: Color
+        // // godot.getset: outline_modulate: Color
+        // // godot.getset: text: string
+        // // godot.getset: font: Object
+        // // godot.getset: font_size: number /*i64*/
+        // // godot.getset: outline_size: number /*i64*/
+        // // godot.getset: horizontal_alignment: number /*i64*/
+        // // godot.getset: vertical_alignment: number /*i64*/
+        // // godot.getset: uppercase: boolean
+        // // godot.getset: line_spacing: number /*f64*/
+        // // godot.getset: autowrap_mode: number /*i64*/
+        // // godot.getset: justification_flags: number /*i64*/
+        // // godot.getset: width: number /*f64*/
+        // // godot.getset: text_direction: number /*i64*/
+        // // godot.getset: language: string
+        // // godot.getset: structured_text_bidi_override: number /*i64*/
+        // // godot.getset: structured_text_bidi_override_options: Array
+    }
+    class Label3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class LabelSettings extends Resource {
+        set_line_spacing(spacing: number /*f64*/): void
+        get_line_spacing(): number /*f64*/
+        set_font(font: Font): void
+        get_font(): Font
+        set_font_size(size: number /*i64*/): void
+        get_font_size(): number /*i64*/
+        set_font_color(color: Color): void
+        get_font_color(): Color
+        set_outline_size(size: number /*i64*/): void
+        get_outline_size(): number /*i64*/
+        set_outline_color(color: Color): void
+        get_outline_color(): Color
+        set_shadow_size(size: number /*i64*/): void
+        get_shadow_size(): number /*i64*/
+        set_shadow_color(color: Color): void
+        get_shadow_color(): Color
+        set_shadow_offset(offset: Vector2): void
+        get_shadow_offset(): Vector2
+        // // godot.getset: line_spacing: number /*f64*/
+        // // godot.getset: font: Object
+        // // godot.getset: font_size: number /*i64*/
+        // // godot.getset: font_color: Color
+        // // godot.getset: outline_size: number /*i64*/
+        // // godot.getset: outline_color: Color
+        // // godot.getset: shadow_size: number /*i64*/
+        // // godot.getset: shadow_color: Color
+        // // godot.getset: shadow_offset: Vector2
+    }
+    namespace Light2D {
+        enum ShadowFilter {
+            SHADOW_FILTER_NONE = 0,
+            SHADOW_FILTER_PCF5 = 1,
+            SHADOW_FILTER_PCF13 = 2,
+        }
+        enum BlendMode {
+            BLEND_MODE_ADD = 0,
+            BLEND_MODE_SUB = 1,
+            BLEND_MODE_MIX = 2,
+        }
+    }
+    class Light2D extends Node2D {
+        set_enabled(enabled: boolean): void
+        is_enabled(): boolean
+        set_editor_only(editor_only: boolean): void
+        is_editor_only(): boolean
+        set_color(color: Color): void
+        get_color(): Color
+        set_energy(energy: number /*f64*/): void
+        get_energy(): number /*f64*/
+        set_z_range_min(z: number /*i64*/): void
+        get_z_range_min(): number /*i64*/
+        set_z_range_max(z: number /*i64*/): void
+        get_z_range_max(): number /*i64*/
+        set_layer_range_min(layer: number /*i64*/): void
+        get_layer_range_min(): number /*i64*/
+        set_layer_range_max(layer: number /*i64*/): void
+        get_layer_range_max(): number /*i64*/
+        set_item_cull_mask(item_cull_mask: number /*i64*/): void
+        get_item_cull_mask(): number /*i64*/
+        set_item_shadow_cull_mask(item_shadow_cull_mask: number /*i64*/): void
+        get_item_shadow_cull_mask(): number /*i64*/
+        set_shadow_enabled(enabled: boolean): void
+        is_shadow_enabled(): boolean
+        set_shadow_smooth(smooth: number /*f64*/): void
+        get_shadow_smooth(): number /*f64*/
+        set_shadow_filter(filter: Light2D.ShadowFilter): void
+        get_shadow_filter(): Light2D.ShadowFilter
+        set_shadow_color(shadow_color: Color): void
+        get_shadow_color(): Color
+        set_blend_mode(mode: Light2D.BlendMode): void
+        get_blend_mode(): Light2D.BlendMode
+        set_height(height: number /*f64*/): void
+        get_height(): number /*f64*/
+        // // godot.getset: enabled: boolean
+        // // godot.getset: editor_only: boolean
+        // // godot.getset: color: Color
+        // // godot.getset: energy: number /*f64*/
+        // // godot.getset: blend_mode: number /*i64*/
+        // // godot.getset: range_z_min: number /*i64*/
+        // // godot.getset: range_z_max: number /*i64*/
+        // // godot.getset: range_layer_min: number /*i64*/
+        // // godot.getset: range_layer_max: number /*i64*/
+        // // godot.getset: range_item_cull_mask: number /*i64*/
+        // // godot.getset: shadow_enabled: boolean
+        // // godot.getset: shadow_color: Color
+        // // godot.getset: shadow_filter: number /*i64*/
+        // // godot.getset: shadow_filter_smooth: number /*f64*/
+        // // godot.getset: shadow_item_cull_mask: number /*i64*/
+    }
+    namespace Light3D {
+        enum Param {
+            PARAM_ENERGY = 0,
+            PARAM_INDIRECT_ENERGY = 1,
+            PARAM_VOLUMETRIC_FOG_ENERGY = 2,
+            PARAM_SPECULAR = 3,
+            PARAM_RANGE = 4,
+            PARAM_SIZE = 5,
+            PARAM_ATTENUATION = 6,
+            PARAM_SPOT_ANGLE = 7,
+            PARAM_SPOT_ATTENUATION = 8,
+            PARAM_SHADOW_MAX_DISTANCE = 9,
+            PARAM_SHADOW_SPLIT_1_OFFSET = 10,
+            PARAM_SHADOW_SPLIT_2_OFFSET = 11,
+            PARAM_SHADOW_SPLIT_3_OFFSET = 12,
+            PARAM_SHADOW_FADE_START = 13,
+            PARAM_SHADOW_NORMAL_BIAS = 14,
+            PARAM_SHADOW_BIAS = 15,
+            PARAM_SHADOW_PANCAKE_SIZE = 16,
+            PARAM_SHADOW_OPACITY = 17,
+            PARAM_SHADOW_BLUR = 18,
+            PARAM_TRANSMITTANCE_BIAS = 19,
+            PARAM_INTENSITY = 20,
+            PARAM_MAX = 21,
+        }
+        enum BakeMode {
+            BAKE_DISABLED = 0,
+            BAKE_STATIC = 1,
+            BAKE_DYNAMIC = 2,
+        }
+    }
+    class Light3D extends VisualInstance3D {
+        set_editor_only(editor_only: boolean): void
+        is_editor_only(): boolean
+        set_param(param: Light3D.Param, value: number /*f64*/): void
+        get_param(param: Light3D.Param): number /*f64*/
+        set_shadow(enabled: boolean): void
+        has_shadow(): boolean
+        set_negative(enabled: boolean): void
+        is_negative(): boolean
+        set_cull_mask(cull_mask: number /*i64*/): void
+        get_cull_mask(): number /*i64*/
+        set_enable_distance_fade(enable: boolean): void
+        is_distance_fade_enabled(): boolean
+        set_distance_fade_begin(distance: number /*f64*/): void
+        get_distance_fade_begin(): number /*f64*/
+        set_distance_fade_shadow(distance: number /*f64*/): void
+        get_distance_fade_shadow(): number /*f64*/
+        set_distance_fade_length(distance: number /*f64*/): void
+        get_distance_fade_length(): number /*f64*/
+        set_color(color: Color): void
+        get_color(): Color
+        set_shadow_reverse_cull_face(enable: boolean): void
+        get_shadow_reverse_cull_face(): boolean
+        set_bake_mode(bake_mode: Light3D.BakeMode): void
+        get_bake_mode(): Light3D.BakeMode
+        set_projector(projector: Texture2D): void
+        get_projector(): Texture2D
+        set_temperature(temperature: number /*f64*/): void
+        get_temperature(): number /*f64*/
+        get_correlated_color(): Color
+        // // godot.getset: light_intensity_lumens: number /*f64*/
+        // // godot.getset: light_intensity_lux: number /*f64*/
+        // // godot.getset: light_temperature: number /*f64*/
+        // // godot.getset: light_color: Color
+        // // godot.getset: light_energy: number /*f64*/
+        // // godot.getset: light_indirect_energy: number /*f64*/
+        // // godot.getset: light_volumetric_fog_energy: number /*f64*/
+        // // godot.getset: light_projector: Object
+        // // godot.getset: light_size: number /*f64*/
+        // // godot.getset: light_angular_distance: number /*f64*/
+        // // godot.getset: light_negative: boolean
+        // // godot.getset: light_specular: number /*f64*/
+        // // godot.getset: light_bake_mode: number /*i64*/
+        // // godot.getset: light_cull_mask: number /*i64*/
+        // // godot.getset: shadow_enabled: boolean
+        // // godot.getset: shadow_bias: number /*f64*/
+        // // godot.getset: shadow_normal_bias: number /*f64*/
+        // // godot.getset: shadow_reverse_cull_face: boolean
+        // // godot.getset: shadow_transmittance_bias: number /*f64*/
+        // // godot.getset: shadow_opacity: number /*f64*/
+        // // godot.getset: shadow_blur: number /*f64*/
+        // // godot.getset: distance_fade_enabled: boolean
+        // // godot.getset: distance_fade_begin: number /*f64*/
+        // // godot.getset: distance_fade_shadow: number /*f64*/
+        // // godot.getset: distance_fade_length: number /*f64*/
+        // // godot.getset: editor_only: boolean
+    }
+    class Light3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class LightOccluder2D extends Node2D {
+        set_occluder_polygon(polygon: OccluderPolygon2D): void
+        get_occluder_polygon(): OccluderPolygon2D
+        set_occluder_light_mask(mask: number /*i64*/): void
+        get_occluder_light_mask(): number /*i64*/
+        set_as_sdf_collision(enable: boolean): void
+        is_set_as_sdf_collision(): boolean
+        // // godot.getset: occluder: Object
+        // // godot.getset: sdf_collision: boolean
+        // // godot.getset: occluder_light_mask: number /*i64*/
+    }
+    class LightOccluder2DEditor extends AbstractPolygon2DEditor {
+    }
+    class LightOccluder2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
+    }
+    namespace LightmapGI {
+        enum BakeQuality {
+            BAKE_QUALITY_LOW = 0,
+            BAKE_QUALITY_MEDIUM = 1,
+            BAKE_QUALITY_HIGH = 2,
+            BAKE_QUALITY_ULTRA = 3,
+        }
+        enum GenerateProbes {
+            GENERATE_PROBES_DISABLED = 0,
+            GENERATE_PROBES_SUBDIV_4 = 1,
+            GENERATE_PROBES_SUBDIV_8 = 2,
+            GENERATE_PROBES_SUBDIV_16 = 3,
+            GENERATE_PROBES_SUBDIV_32 = 4,
+        }
+        enum BakeError {
+            BAKE_ERROR_OK = 0,
+            BAKE_ERROR_NO_SCENE_ROOT = 1,
+            BAKE_ERROR_FOREIGN_DATA = 2,
+            BAKE_ERROR_NO_LIGHTMAPPER = 3,
+            BAKE_ERROR_NO_SAVE_PATH = 4,
+            BAKE_ERROR_NO_MESHES = 5,
+            BAKE_ERROR_MESHES_INVALID = 6,
+            BAKE_ERROR_CANT_CREATE_IMAGE = 7,
+            BAKE_ERROR_USER_ABORTED = 8,
+            BAKE_ERROR_TEXTURE_SIZE_TOO_SMALL = 9,
+        }
+        enum EnvironmentMode {
+            ENVIRONMENT_MODE_DISABLED = 0,
+            ENVIRONMENT_MODE_SCENE = 1,
+            ENVIRONMENT_MODE_CUSTOM_SKY = 2,
+            ENVIRONMENT_MODE_CUSTOM_COLOR = 3,
+        }
+    }
+    class LightmapGI extends VisualInstance3D {
+        set_light_data(data: LightmapGIData): void
+        get_light_data(): LightmapGIData
+        set_bake_quality(bake_quality: LightmapGI.BakeQuality): void
+        get_bake_quality(): LightmapGI.BakeQuality
+        set_bounces(bounces: number /*i64*/): void
+        get_bounces(): number /*i64*/
+        set_bounce_indirect_energy(bounce_indirect_energy: number /*f64*/): void
+        get_bounce_indirect_energy(): number /*f64*/
+        set_generate_probes(subdivision: LightmapGI.GenerateProbes): void
+        get_generate_probes(): LightmapGI.GenerateProbes
+        set_bias(bias: number /*f64*/): void
+        get_bias(): number /*f64*/
+        set_environment_mode(mode: LightmapGI.EnvironmentMode): void
+        get_environment_mode(): LightmapGI.EnvironmentMode
+        set_environment_custom_sky(sky: Sky): void
+        get_environment_custom_sky(): Sky
+        set_environment_custom_color(color: Color): void
+        get_environment_custom_color(): Color
+        set_environment_custom_energy(energy: number /*f64*/): void
+        get_environment_custom_energy(): number /*f64*/
+        set_max_texture_size(max_texture_size: number /*i64*/): void
+        get_max_texture_size(): number /*i64*/
+        set_use_denoiser(use_denoiser: boolean): void
+        is_using_denoiser(): boolean
+        set_denoiser_strength(denoiser_strength: number /*f64*/): void
+        get_denoiser_strength(): number /*f64*/
+        set_interior(enable: boolean): void
+        is_interior(): boolean
+        set_directional(directional: boolean): void
+        is_directional(): boolean
+        set_use_texture_for_bounces(use_texture_for_bounces: boolean): void
+        is_using_texture_for_bounces(): boolean
+        set_camera_attributes(camera_attributes: CameraAttributes): void
+        get_camera_attributes(): CameraAttributes
+        // // godot.getset: quality: number /*i64*/
+        // // godot.getset: bounces: number /*i64*/
+        // // godot.getset: bounce_indirect_energy: number /*f64*/
+        // // godot.getset: directional: boolean
+        // // godot.getset: use_texture_for_bounces: boolean
+        // // godot.getset: interior: boolean
+        // // godot.getset: use_denoiser: boolean
+        // // godot.getset: denoiser_strength: number /*f64*/
+        // // godot.getset: bias: number /*f64*/
+        // // godot.getset: max_texture_size: number /*i64*/
+        // // godot.getset: environment_mode: number /*i64*/
+        // // godot.getset: environment_custom_sky: Object
+        // // godot.getset: environment_custom_color: Color
+        // // godot.getset: environment_custom_energy: number /*f64*/
+        // // godot.getset: camera_attributes: Object
+        // // godot.getset: generate_probes_subdiv: number /*i64*/
+        // // godot.getset: light_data: Object
+    }
+    class LightmapGIData extends Resource {
+        _set_user_data(data: Array): void
+        _get_user_data(): Array
+        set_lightmap_textures(light_textures: Array): void
+        get_lightmap_textures(): Array
+        set_uses_spherical_harmonics(uses_spherical_harmonics: boolean): void
+        is_using_spherical_harmonics(): boolean
+        add_user(path: NodePath, uv_scale: Rect2, slice_index: number /*i64*/, sub_instance: number /*i64*/): void
+        get_user_count(): number /*i64*/
+        get_user_path(user_idx: number /*i64*/): NodePath
+        clear_users(): void
+        _set_probe_data(data: Dictionary): void
+        _get_probe_data(): Dictionary
+        set_light_texture(light_texture: TextureLayered): void
+        get_light_texture(): TextureLayered
+        _set_light_textures_data(data: Array): void
+        _get_light_textures_data(): Array
+        // // godot.getset: lightmap_textures: Array
+        // // godot.getset: uses_spherical_harmonics: boolean
+        // // godot.getset: user_data: Array
+        // // godot.getset: probe_data: Dictionary
+        // // godot.getset: light_texture: Object
+        // // godot.getset: light_textures: Array
+    }
+    class LightmapGIEditorPlugin extends EditorPlugin {
+        _bake(): void
+    }
+    class LightmapGIGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class LightmapProbe extends Node3D {
+    }
+    class LightmapProbeGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class Lightmapper extends RefCounted {
+    }
+    class LightmapperRD extends Lightmapper {
+    }
+    namespace Line2D {
+        enum LineJointMode {
+            LINE_JOINT_SHARP = 0,
+            LINE_JOINT_BEVEL = 1,
+            LINE_JOINT_ROUND = 2,
+        }
+        enum LineCapMode {
+            LINE_CAP_NONE = 0,
+            LINE_CAP_BOX = 1,
+            LINE_CAP_ROUND = 2,
+        }
+        enum LineTextureMode {
+            LINE_TEXTURE_NONE = 0,
+            LINE_TEXTURE_TILE = 1,
+            LINE_TEXTURE_STRETCH = 2,
+        }
+    }
+    class Line2D extends Node2D {
+        set_points(points: PackedVector2Array): void
+        get_points(): PackedVector2Array
+        set_point_position(index: number /*i64*/, position: Vector2): void
+        get_point_position(index: number /*i64*/): Vector2
+        get_point_count(): number /*i64*/
+        add_point(position: Vector2, index: number /*i64*/): void
+        remove_point(index: number /*i64*/): void
+        clear_points(): void
+        set_closed(closed: boolean): void
+        is_closed(): boolean
+        set_width(width: number /*f64*/): void
+        get_width(): number /*f64*/
+        set_curve(curve: Curve): void
+        get_curve(): Curve
+        set_default_color(color: Color): void
+        get_default_color(): Color
+        set_gradient(color: Gradient): void
+        get_gradient(): Gradient
+        set_texture(texture: Texture2D): void
+        get_texture(): Texture2D
+        set_texture_mode(mode: Line2D.LineTextureMode): void
+        get_texture_mode(): Line2D.LineTextureMode
+        set_joint_mode(mode: Line2D.LineJointMode): void
+        get_joint_mode(): Line2D.LineJointMode
+        set_begin_cap_mode(mode: Line2D.LineCapMode): void
+        get_begin_cap_mode(): Line2D.LineCapMode
+        set_end_cap_mode(mode: Line2D.LineCapMode): void
+        get_end_cap_mode(): Line2D.LineCapMode
+        set_sharp_limit(limit: number /*f64*/): void
+        get_sharp_limit(): number /*f64*/
+        set_round_precision(precision: number /*i64*/): void
+        get_round_precision(): number /*i64*/
+        set_antialiased(antialiased: boolean): void
+        get_antialiased(): boolean
+        // // godot.getset: points: PackedVector2Array
+        // // godot.getset: closed: boolean
+        // // godot.getset: width: number /*f64*/
+        // // godot.getset: width_curve: Object
+        // // godot.getset: default_color: Color
+        // // godot.getset: gradient: Object
+        // // godot.getset: texture: Object
+        // // godot.getset: texture_mode: number /*i64*/
+        // // godot.getset: joint_mode: number /*i64*/
+        // // godot.getset: begin_cap_mode: number /*i64*/
+        // // godot.getset: end_cap_mode: number /*i64*/
+        // // godot.getset: sharp_limit: number /*f64*/
+        // // godot.getset: round_precision: number /*i64*/
+        // // godot.getset: antialiased: boolean
+    }
+    class Line2DEditor extends AbstractPolygon2DEditor {
+    }
+    class Line2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
+    }
+    namespace LineEdit {
+        enum MenuItems {
+            MENU_CUT = 0,
+            MENU_COPY = 1,
+            MENU_PASTE = 2,
+            MENU_CLEAR = 3,
+            MENU_SELECT_ALL = 4,
+            MENU_UNDO = 5,
+            MENU_REDO = 6,
+            MENU_SUBMENU_TEXT_DIR = 7,
+            MENU_DIR_INHERITED = 8,
+            MENU_DIR_AUTO = 9,
+            MENU_DIR_LTR = 10,
+            MENU_DIR_RTL = 11,
+            MENU_DISPLAY_UCC = 12,
+            MENU_SUBMENU_INSERT_UCC = 13,
+            MENU_INSERT_LRM = 14,
+            MENU_INSERT_RLM = 15,
+            MENU_INSERT_LRE = 16,
+            MENU_INSERT_RLE = 17,
+            MENU_INSERT_LRO = 18,
+            MENU_INSERT_RLO = 19,
+            MENU_INSERT_PDF = 20,
+            MENU_INSERT_ALM = 21,
+            MENU_INSERT_LRI = 22,
+            MENU_INSERT_RLI = 23,
+            MENU_INSERT_FSI = 24,
+            MENU_INSERT_PDI = 25,
+            MENU_INSERT_ZWJ = 26,
+            MENU_INSERT_ZWNJ = 27,
+            MENU_INSERT_WJ = 28,
+            MENU_INSERT_SHY = 29,
+            MENU_MAX = 30,
+        }
+        enum VirtualKeyboardType {
+            KEYBOARD_TYPE_DEFAULT = 0,
+            KEYBOARD_TYPE_MULTILINE = 1,
+            KEYBOARD_TYPE_NUMBER = 2,
+            KEYBOARD_TYPE_NUMBER_DECIMAL = 3,
+            KEYBOARD_TYPE_PHONE = 4,
+            KEYBOARD_TYPE_EMAIL_ADDRESS = 5,
+            KEYBOARD_TYPE_PASSWORD = 6,
+            KEYBOARD_TYPE_URL = 7,
+        }
+    }
+    class LineEdit extends Control {
+        _text_changed(): void
+        set_horizontal_alignment(alignment: HorizontalAlignment): void
+        get_horizontal_alignment(): HorizontalAlignment
+        clear(): void
+        select(from: number /*i64*/, to: number /*i64*/): void
+        select_all(): void
+        deselect(): void
+        has_selection(): boolean
+        get_selected_text(): string
+        get_selection_from_column(): number /*i64*/
+        get_selection_to_column(): number /*i64*/
+        set_text(text: string): void
+        get_text(): string
+        get_draw_control_chars(): boolean
+        set_draw_control_chars(enable: boolean): void
+        set_text_direction(direction: Control.TextDirection): void
+        get_text_direction(): Control.TextDirection
+        set_language(language: string): void
+        get_language(): string
+        set_structured_text_bidi_override(parser: TextServer.StructuredTextParser): void
+        get_structured_text_bidi_override(): TextServer.StructuredTextParser
+        set_structured_text_bidi_override_options(args: Array): void
+        get_structured_text_bidi_override_options(): Array
+        set_placeholder(text: string): void
+        get_placeholder(): string
+        set_caret_column(position: number /*i64*/): void
+        get_caret_column(): number /*i64*/
+        get_scroll_offset(): number /*f64*/
+        set_expand_to_text_length_enabled(enabled: boolean): void
+        is_expand_to_text_length_enabled(): boolean
+        set_caret_blink_enabled(enabled: boolean): void
+        is_caret_blink_enabled(): boolean
+        set_caret_mid_grapheme_enabled(enabled: boolean): void
+        is_caret_mid_grapheme_enabled(): boolean
+        set_caret_force_displayed(enabled: boolean): void
+        is_caret_force_displayed(): boolean
+        set_caret_blink_interval(interval: number /*f64*/): void
+        get_caret_blink_interval(): number /*f64*/
+        set_max_length(chars: number /*i64*/): void
+        get_max_length(): number /*i64*/
+        insert_text_at_caret(text: string): void
+        delete_char_at_caret(): void
+        delete_text(from_column: number /*i64*/, to_column: number /*i64*/): void
+        set_editable(enabled: boolean): void
+        is_editable(): boolean
+        set_secret(enabled: boolean): void
+        is_secret(): boolean
+        set_secret_character(character: string): void
+        get_secret_character(): string
+        menu_option(option: number /*i64*/): void
+        get_menu(): PopupMenu
+        is_menu_visible(): boolean
+        set_context_menu_enabled(enable: boolean): void
+        is_context_menu_enabled(): boolean
+        set_virtual_keyboard_enabled(enable: boolean): void
+        is_virtual_keyboard_enabled(): boolean
+        set_virtual_keyboard_type(type: LineEdit.VirtualKeyboardType): void
+        get_virtual_keyboard_type(): LineEdit.VirtualKeyboardType
+        set_clear_button_enabled(enable: boolean): void
+        is_clear_button_enabled(): boolean
+        set_shortcut_keys_enabled(enable: boolean): void
+        is_shortcut_keys_enabled(): boolean
+        set_middle_mouse_paste_enabled(enable: boolean): void
+        is_middle_mouse_paste_enabled(): boolean
+        set_selecting_enabled(enable: boolean): void
+        is_selecting_enabled(): boolean
+        set_deselect_on_focus_loss_enabled(enable: boolean): void
+        is_deselect_on_focus_loss_enabled(): boolean
+        set_drag_and_drop_selection_enabled(enable: boolean): void
+        is_drag_and_drop_selection_enabled(): boolean
+        set_right_icon(icon: Texture2D): void
+        get_right_icon(): Texture2D
+        set_flat(enabled: boolean): void
+        is_flat(): boolean
+        set_select_all_on_focus(enabled: boolean): void
+        is_select_all_on_focus(): boolean
+        // // godot.getset: text: string
+        // // godot.getset: placeholder_text: string
+        // // godot.getset: alignment: number /*i64*/
+        // // godot.getset: max_length: number /*i64*/
+        // // godot.getset: editable: boolean
+        // // godot.getset: expand_to_text_length: boolean
+        // // godot.getset: context_menu_enabled: boolean
+        // // godot.getset: virtual_keyboard_enabled: boolean
+        // // godot.getset: virtual_keyboard_type: number /*i64*/
+        // // godot.getset: clear_button_enabled: boolean
+        // // godot.getset: shortcut_keys_enabled: boolean
+        // // godot.getset: middle_mouse_paste_enabled: boolean
+        // // godot.getset: selecting_enabled: boolean
+        // // godot.getset: deselect_on_focus_loss_enabled: boolean
+        // // godot.getset: drag_and_drop_selection_enabled: boolean
+        // // godot.getset: right_icon: Object
+        // // godot.getset: flat: boolean
+        // // godot.getset: draw_control_chars: boolean
+        // // godot.getset: select_all_on_focus: boolean
+        // // godot.getset: caret_blink: boolean
+        // // godot.getset: caret_blink_interval: number /*f64*/
+        // // godot.getset: caret_column: number /*i64*/
+        // // godot.getset: caret_force_displayed: boolean
+        // // godot.getset: caret_mid_grapheme: boolean
+        // // godot.getset: secret: boolean
+        // // godot.getset: secret_character: string
+        // // godot.getset: text_direction: number /*i64*/
+        // // godot.getset: language: string
+        // // godot.getset: structured_text_bidi_override: number /*i64*/
+        // // godot.getset: structured_text_bidi_override_options: Array
+        text_changed: Signal
+        text_change_rejected: Signal
+        text_submitted: Signal
+    }
+    namespace LinkButton {
+        enum UnderlineMode {
+            UNDERLINE_MODE_ALWAYS = 0,
+            UNDERLINE_MODE_ON_HOVER = 1,
+            UNDERLINE_MODE_NEVER = 2,
+        }
+    }
+    class LinkButton extends BaseButton {
+        set_text(text: string): void
+        get_text(): string
+        set_text_direction(direction: Control.TextDirection): void
+        get_text_direction(): Control.TextDirection
+        set_language(language: string): void
+        get_language(): string
+        set_uri(uri: string): void
+        get_uri(): string
+        set_underline_mode(underline_mode: LinkButton.UnderlineMode): void
+        get_underline_mode(): LinkButton.UnderlineMode
+        set_structured_text_bidi_override(parser: TextServer.StructuredTextParser): void
+        get_structured_text_bidi_override(): TextServer.StructuredTextParser
+        set_structured_text_bidi_override_options(args: Array): void
+        get_structured_text_bidi_override_options(): Array
+        // // godot.getset: text: string
+        // // godot.getset: underline: number /*i64*/
+        // // godot.getset: uri: string
+        // // godot.getset: text_direction: number /*i64*/
+        // // godot.getset: language: string
+        // // godot.getset: structured_text_bidi_override: number /*i64*/
+        // // godot.getset: structured_text_bidi_override_options: Array
+    }
+    class LocalizationEditor extends VBoxContainer {
+        update_translations(): void
+        localization_changed: Signal
+    }
+    class MainLoop extends Object {
+        static readonly NOTIFICATION_OS_MEMORY_WARNING = 2009
+        static readonly NOTIFICATION_TRANSLATION_CHANGED = 2010
+        static readonly NOTIFICATION_WM_ABOUT = 2011
+        static readonly NOTIFICATION_CRASH = 2012
+        static readonly NOTIFICATION_OS_IME_UPDATE = 2013
+        static readonly NOTIFICATION_APPLICATION_RESUMED = 2014
+        static readonly NOTIFICATION_APPLICATION_PAUSED = 2015
+        static readonly NOTIFICATION_APPLICATION_FOCUS_IN = 2016
+        static readonly NOTIFICATION_APPLICATION_FOCUS_OUT = 2017
+        static readonly NOTIFICATION_TEXT_SERVER_CHANGED = 2018
+        on_request_permissions_result: Signal
+    }
+    class MarginContainer extends Container {
+    }
+    class Marker2D extends Node2D {
+        set_gizmo_extents(extents: number /*f64*/): void
+        get_gizmo_extents(): number /*f64*/
+        // // godot.getset: gizmo_extents: number /*f64*/
+    }
+    class Marker3D extends Node3D {
+        set_gizmo_extents(extents: number /*f64*/): void
+        get_gizmo_extents(): number /*f64*/
+        // // godot.getset: gizmo_extents: number /*f64*/
+    }
+    class Marker3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class Material extends Resource {
+        static readonly RENDER_PRIORITY_MAX = 127
+        static readonly RENDER_PRIORITY_MIN = -128
+        set_next_pass(next_pass: Material): void
+        get_next_pass(): Material
+        set_render_priority(priority: number /*i64*/): void
+        get_render_priority(): number /*i64*/
+        inspect_native_shader_code(): void
+        create_placeholder(): Resource
+        // // godot.getset: render_priority: number /*i64*/
+        // // godot.getset: next_pass: Object
+    }
+    class MaterialEditorPlugin extends EditorPlugin {
+    }
+    class MenuBar extends Control {
+        set_switch_on_hover(enable: boolean): void
+        is_switch_on_hover(): boolean
+        set_disable_shortcuts(disabled: boolean): void
+        set_prefer_global_menu(enabled: boolean): void
+        is_prefer_global_menu(): boolean
+        is_native_menu(): boolean
+        get_menu_count(): number /*i64*/
+        set_text_direction(direction: Control.TextDirection): void
+        get_text_direction(): Control.TextDirection
+        set_language(language: string): void
+        get_language(): string
+        set_flat(enabled: boolean): void
+        is_flat(): boolean
+        set_start_index(enabled: number /*i64*/): void
+        get_start_index(): number /*i64*/
+        set_menu_title(menu: number /*i64*/, title: string): void
+        get_menu_title(menu: number /*i64*/): string
+        set_menu_tooltip(menu: number /*i64*/, tooltip: string): void
+        get_menu_tooltip(menu: number /*i64*/): string
+        set_menu_disabled(menu: number /*i64*/, disabled: boolean): void
+        is_menu_disabled(menu: number /*i64*/): boolean
+        set_menu_hidden(menu: number /*i64*/, hidden: boolean): void
+        is_menu_hidden(menu: number /*i64*/): boolean
+        get_menu_popup(menu: number /*i64*/): PopupMenu
+        // // godot.getset: flat: boolean
+        // // godot.getset: start_index: number /*i64*/
+        // // godot.getset: switch_on_hover: boolean
+        // // godot.getset: prefer_global_menu: boolean
+        // // godot.getset: text_direction: number /*i64*/
+        // // godot.getset: language: string
+    }
+    class MenuButton extends Button {
+        get_popup(): PopupMenu
+        show_popup(): void
+        set_switch_on_hover(enable: boolean): void
+        is_switch_on_hover(): boolean
+        set_disable_shortcuts(disabled: boolean): void
+        set_item_count(count: number /*i64*/): void
+        get_item_count(): number /*i64*/
+        // // godot.getset: switch_on_hover: boolean
+        // // godot.getset: item_count: number /*i64*/
+        about_to_popup: Signal
+    }
+    namespace Mesh {
+        enum PrimitiveType {
+            PRIMITIVE_POINTS = 0,
+            PRIMITIVE_LINES = 1,
+            PRIMITIVE_LINE_STRIP = 2,
+            PRIMITIVE_TRIANGLES = 3,
+            PRIMITIVE_TRIANGLE_STRIP = 4,
+        }
+        enum ArrayType {
+            ARRAY_VERTEX = 0,
+            ARRAY_NORMAL = 1,
+            ARRAY_TANGENT = 2,
+            ARRAY_COLOR = 3,
+            ARRAY_TEX_UV = 4,
+            ARRAY_TEX_UV2 = 5,
+            ARRAY_CUSTOM0 = 6,
+            ARRAY_CUSTOM1 = 7,
+            ARRAY_CUSTOM2 = 8,
+            ARRAY_CUSTOM3 = 9,
+            ARRAY_BONES = 10,
+            ARRAY_WEIGHTS = 11,
+            ARRAY_INDEX = 12,
+            ARRAY_MAX = 13,
+        }
+        enum ArrayCustomFormat {
+            ARRAY_CUSTOM_RGBA8_UNORM = 0,
+            ARRAY_CUSTOM_RGBA8_SNORM = 1,
+            ARRAY_CUSTOM_RG_HALF = 2,
+            ARRAY_CUSTOM_RGBA_HALF = 3,
+            ARRAY_CUSTOM_R_FLOAT = 4,
+            ARRAY_CUSTOM_RG_FLOAT = 5,
+            ARRAY_CUSTOM_RGB_FLOAT = 6,
+            ARRAY_CUSTOM_RGBA_FLOAT = 7,
+            ARRAY_CUSTOM_MAX = 8,
+        }
+        enum ArrayFormat {
+            ARRAY_FORMAT_VERTEX = 1,
+            ARRAY_FORMAT_NORMAL = 2,
+            ARRAY_FORMAT_TANGENT = 4,
+            ARRAY_FORMAT_COLOR = 8,
+            ARRAY_FORMAT_TEX_UV = 16,
+            ARRAY_FORMAT_TEX_UV2 = 32,
+            ARRAY_FORMAT_CUSTOM0 = 64,
+            ARRAY_FORMAT_CUSTOM1 = 128,
+            ARRAY_FORMAT_CUSTOM2 = 256,
+            ARRAY_FORMAT_CUSTOM3 = 512,
+            ARRAY_FORMAT_BONES = 1024,
+            ARRAY_FORMAT_WEIGHTS = 2048,
+            ARRAY_FORMAT_INDEX = 4096,
+            ARRAY_FORMAT_BLEND_SHAPE_MASK = 7,
+            ARRAY_FORMAT_CUSTOM_BASE = 13,
+            ARRAY_FORMAT_CUSTOM_BITS = 3,
+            ARRAY_FORMAT_CUSTOM0_SHIFT = 13,
+            ARRAY_FORMAT_CUSTOM1_SHIFT = 16,
+            ARRAY_FORMAT_CUSTOM2_SHIFT = 19,
+            ARRAY_FORMAT_CUSTOM3_SHIFT = 22,
+            ARRAY_FORMAT_CUSTOM_MASK = 7,
+            ARRAY_COMPRESS_FLAGS_BASE = 25,
+            ARRAY_FLAG_USE_2D_VERTICES = 33554432,
+            ARRAY_FLAG_USE_DYNAMIC_UPDATE = 67108864,
+            ARRAY_FLAG_USE_8_BONE_WEIGHTS = 134217728,
+            ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY = 268435456,
+            ARRAY_FLAG_COMPRESS_ATTRIBUTES = 536870912,
+        }
+        enum BlendShapeMode {
+            BLEND_SHAPE_MODE_NORMALIZED = 0,
+            BLEND_SHAPE_MODE_RELATIVE = 1,
+        }
+    }
+    class Mesh extends Resource {
+        set_lightmap_size_hint(size: Vector2i): void
+        get_lightmap_size_hint(): Vector2i
+        get_aabb(): AABB
+        get_faces(): PackedVector3Array
+        get_surface_count(): number /*i64*/
+        surface_get_arrays(surf_idx: number /*i64*/): Array
+        surface_get_blend_shape_arrays(surf_idx: number /*i64*/): Array
+        surface_set_material(surf_idx: number /*i64*/, material: Material): void
+        surface_get_material(surf_idx: number /*i64*/): Material
+        create_placeholder(): Resource
+        create_trimesh_shape(): ConcavePolygonShape3D
+        create_convex_shape(clean: boolean, simplify: boolean): ConvexPolygonShape3D
+        create_outline(margin: number /*f64*/): Mesh
+        generate_triangle_mesh(): TriangleMesh
+        // // godot.getset: lightmap_size_hint: Vector2i
+    }
+    namespace MeshConvexDecompositionSettings {
+        enum Mode {
+            CONVEX_DECOMPOSITION_MODE_VOXEL = 0,
+            CONVEX_DECOMPOSITION_MODE_TETRAHEDRON = 1,
+        }
+    }
+    class MeshConvexDecompositionSettings extends RefCounted {
+        set_max_concavity(max_concavity: number /*f64*/): void
+        get_max_concavity(): number /*f64*/
+        set_symmetry_planes_clipping_bias(symmetry_planes_clipping_bias: number /*f64*/): void
+        get_symmetry_planes_clipping_bias(): number /*f64*/
+        set_revolution_axes_clipping_bias(revolution_axes_clipping_bias: number /*f64*/): void
+        get_revolution_axes_clipping_bias(): number /*f64*/
+        set_min_volume_per_convex_hull(min_volume_per_convex_hull: number /*f64*/): void
+        get_min_volume_per_convex_hull(): number /*f64*/
+        set_resolution(min_volume_per_convex_hull: number /*i64*/): void
+        get_resolution(): number /*i64*/
+        set_max_num_vertices_per_convex_hull(max_num_vertices_per_convex_hull: number /*i64*/): void
+        get_max_num_vertices_per_convex_hull(): number /*i64*/
+        set_plane_downsampling(plane_downsampling: number /*i64*/): void
+        get_plane_downsampling(): number /*i64*/
+        set_convex_hull_downsampling(convex_hull_downsampling: number /*i64*/): void
+        get_convex_hull_downsampling(): number /*i64*/
+        set_normalize_mesh(normalize_mesh: boolean): void
+        get_normalize_mesh(): boolean
+        set_mode(mode: MeshConvexDecompositionSettings.Mode): void
+        get_mode(): MeshConvexDecompositionSettings.Mode
+        set_convex_hull_approximation(convex_hull_approximation: boolean): void
+        get_convex_hull_approximation(): boolean
+        set_max_convex_hulls(max_convex_hulls: number /*i64*/): void
+        get_max_convex_hulls(): number /*i64*/
+        set_project_hull_vertices(project_hull_vertices: boolean): void
+        get_project_hull_vertices(): boolean
+        // // godot.getset: max_concavity: number /*f64*/
+        // // godot.getset: symmetry_planes_clipping_bias: number /*f64*/
+        // // godot.getset: revolution_axes_clipping_bias: number /*f64*/
+        // // godot.getset: min_volume_per_convex_hull: number /*f64*/
+        // // godot.getset: resolution: number /*i64*/
+        // // godot.getset: max_num_vertices_per_convex_hull: number /*i64*/
+        // // godot.getset: plane_downsampling: number /*i64*/
+        // // godot.getset: convex_hull_downsampling: number /*i64*/
+        // // godot.getset: normalize_mesh: boolean
+        // // godot.getset: mode: number /*i64*/
+        // // godot.getset: convex_hull_approximation: boolean
+        // // godot.getset: max_convex_hulls: number /*i64*/
+        // // godot.getset: project_hull_vertices: boolean
+    }
+    class MeshDataTool extends RefCounted {
+        clear(): void
+        create_from_surface(mesh: ArrayMesh, surface: number /*i64*/): GodotError
+        commit_to_surface(mesh: ArrayMesh, compression_flags: number /*i64*/): GodotError
+        get_format(): number /*i64*/
+        get_vertex_count(): number /*i64*/
+        get_edge_count(): number /*i64*/
+        get_face_count(): number /*i64*/
+        set_vertex(idx: number /*i64*/, vertex: Vector3): void
+        get_vertex(idx: number /*i64*/): Vector3
+        set_vertex_normal(idx: number /*i64*/, normal: Vector3): void
+        get_vertex_normal(idx: number /*i64*/): Vector3
+        set_vertex_tangent(idx: number /*i64*/, tangent: Plane): void
+        get_vertex_tangent(idx: number /*i64*/): Plane
+        set_vertex_uv(idx: number /*i64*/, uv: Vector2): void
+        get_vertex_uv(idx: number /*i64*/): Vector2
+        set_vertex_uv2(idx: number /*i64*/, uv2: Vector2): void
+        get_vertex_uv2(idx: number /*i64*/): Vector2
+        set_vertex_color(idx: number /*i64*/, color: Color): void
+        get_vertex_color(idx: number /*i64*/): Color
+        set_vertex_bones(idx: number /*i64*/, bones: PackedInt32Array): void
+        get_vertex_bones(idx: number /*i64*/): PackedInt32Array
+        set_vertex_weights(idx: number /*i64*/, weights: PackedFloat32Array): void
+        get_vertex_weights(idx: number /*i64*/): PackedFloat32Array
+        set_vertex_meta(idx: number /*i64*/, meta: any): void
+        get_vertex_meta(idx: number /*i64*/): any
+        get_vertex_edges(idx: number /*i64*/): PackedInt32Array
+        get_vertex_faces(idx: number /*i64*/): PackedInt32Array
+        get_edge_vertex(idx: number /*i64*/, vertex: number /*i64*/): number /*i64*/
+        get_edge_faces(idx: number /*i64*/): PackedInt32Array
+        set_edge_meta(idx: number /*i64*/, meta: any): void
+        get_edge_meta(idx: number /*i64*/): any
+        get_face_vertex(idx: number /*i64*/, vertex: number /*i64*/): number /*i64*/
+        get_face_edge(idx: number /*i64*/, edge: number /*i64*/): number /*i64*/
+        set_face_meta(idx: number /*i64*/, meta: any): void
+        get_face_meta(idx: number /*i64*/): any
+        get_face_normal(idx: number /*i64*/): Vector3
+        set_material(material: Material): void
+        get_material(): Material
+    }
+    class MeshEditorPlugin extends EditorPlugin {
+    }
+    class MeshInstance2D extends Node2D {
+        set_mesh(mesh: Mesh): void
+        get_mesh(): Mesh
+        set_texture(texture: Texture2D): void
+        get_texture(): Texture2D
+        // // godot.getset: mesh: Object
+        // // godot.getset: texture: Object
+        texture_changed: Signal
+    }
+    class MeshInstance3D extends GeometryInstance3D {
+        set_mesh(mesh: Mesh): void
+        get_mesh(): Mesh
+        set_skeleton_path(skeleton_path: NodePath): void
+        get_skeleton_path(): NodePath
+        set_skin(skin: Skin): void
+        get_skin(): Skin
+        get_surface_override_material_count(): number /*i64*/
+        set_surface_override_material(surface: number /*i64*/, material: Material): void
+        get_surface_override_material(surface: number /*i64*/): Material
+        get_active_material(surface: number /*i64*/): Material
+        create_trimesh_collision(): void
+        create_convex_collision(clean: boolean, simplify: boolean): void
+        create_multiple_convex_collisions(settings: MeshConvexDecompositionSettings): void
+        get_blend_shape_count(): number /*i64*/
+        find_blend_shape_by_name(name: StringName): number /*i64*/
+        get_blend_shape_value(blend_shape_idx: number /*i64*/): number /*f64*/
+        set_blend_shape_value(blend_shape_idx: number /*i64*/, value: number /*f64*/): void
+        create_debug_tangents(): void
+        // // godot.getset: mesh: Object
+        // // godot.getset: skin: Object
+        // // godot.getset: skeleton: NodePath
+    }
+    class MeshInstance3DEditor extends Control {
+    }
+    class MeshInstance3DEditorPlugin extends EditorPlugin {
+    }
+    class MeshInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class MeshLibrary extends Resource {
+        create_item(id: number /*i64*/): void
+        set_item_name(id: number /*i64*/, name: string): void
+        set_item_mesh(id: number /*i64*/, mesh: Mesh): void
+        set_item_mesh_transform(id: number /*i64*/, mesh_transform: Transform3D): void
+        set_item_navigation_mesh(id: number /*i64*/, navigation_mesh: NavigationMesh): void
+        set_item_navigation_mesh_transform(id: number /*i64*/, navigation_mesh: Transform3D): void
+        set_item_navigation_layers(id: number /*i64*/, navigation_layers: number /*i64*/): void
+        set_item_shapes(id: number /*i64*/, shapes: Array): void
+        set_item_preview(id: number /*i64*/, texture: Texture2D): void
+        get_item_name(id: number /*i64*/): string
+        get_item_mesh(id: number /*i64*/): Mesh
+        get_item_mesh_transform(id: number /*i64*/): Transform3D
+        get_item_navigation_mesh(id: number /*i64*/): NavigationMesh
+        get_item_navigation_mesh_transform(id: number /*i64*/): Transform3D
+        get_item_navigation_layers(id: number /*i64*/): number /*i64*/
+        get_item_shapes(id: number /*i64*/): Array
+        get_item_preview(id: number /*i64*/): Texture2D
+        remove_item(id: number /*i64*/): void
+        find_item_by_name(name: string): number /*i64*/
+        clear(): void
+        get_item_list(): PackedInt32Array
+        get_last_unused_item_id(): number /*i64*/
+    }
+    class MeshLibraryEditor extends Control {
+    }
+    class MeshLibraryEditorPlugin extends EditorPlugin {
+    }
+    class MeshTexture extends Texture2D {
+        set_mesh(mesh: Mesh): void
+        get_mesh(): Mesh
+        set_image_size(size: Vector2): void
+        get_image_size(): Vector2
+        set_base_texture(texture: Texture2D): void
+        get_base_texture(): Texture2D
+        // // godot.getset: mesh: Object
+        // // godot.getset: base_texture: Object
+        // // godot.getset: image_size: Vector2
+    }
+    class MethodTweener extends Tweener {
+        set_delay(delay: number /*f64*/): MethodTweener
+        set_trans(trans: Tween.TransitionType): MethodTweener
+        set_ease(ease: Tween.EaseType): MethodTweener
+    }
+    class MissingNode extends Node {
+        set_original_class(name: string): void
+        get_original_class(): string
+        set_recording_properties(enable: boolean): void
+        is_recording_properties(): boolean
+        // // godot.getset: original_class: string
+        // // godot.getset: recording_properties: boolean
+    }
+    class MissingResource extends Resource {
+        set_original_class(name: string): void
+        get_original_class(): string
+        set_recording_properties(enable: boolean): void
+        is_recording_properties(): boolean
+        // // godot.getset: original_class: string
+        // // godot.getset: recording_properties: boolean
+    }
+    class MobileVRInterface extends XRInterface {
+        set_eye_height(eye_height: number /*f64*/): void
+        get_eye_height(): number /*f64*/
+        set_iod(iod: number /*f64*/): void
+        get_iod(): number /*f64*/
+        set_display_width(display_width: number /*f64*/): void
+        get_display_width(): number /*f64*/
+        set_display_to_lens(display_to_lens: number /*f64*/): void
+        get_display_to_lens(): number /*f64*/
+        set_oversample(oversample: number /*f64*/): void
+        get_oversample(): number /*f64*/
+        set_k1(k: number /*f64*/): void
+        get_k1(): number /*f64*/
+        set_k2(k: number /*f64*/): void
+        get_k2(): number /*f64*/
+        // // godot.getset: eye_height: number /*f64*/
+        // // godot.getset: iod: number /*f64*/
+        // // godot.getset: display_width: number /*f64*/
+        // // godot.getset: display_to_lens: number /*f64*/
+        // // godot.getset: oversample: number /*f64*/
+        // // godot.getset: k1: number /*f64*/
+        // // godot.getset: k2: number /*f64*/
+    }
+    class MovieWriter extends Object {
+        static add_writer(writer: MovieWriter): void
+    }
+    class MovieWriterMJPEG extends MovieWriter {
+    }
+    class MovieWriterPNGWAV extends MovieWriter {
+    }
+    namespace MultiMesh {
+        enum TransformFormat {
+            TRANSFORM_2D = 0,
+            TRANSFORM_3D = 1,
+        }
+    }
+    class MultiMesh extends Resource {
+        set_mesh(mesh: Mesh): void
+        get_mesh(): Mesh
+        set_use_colors(enable: boolean): void
+        is_using_colors(): boolean
+        set_use_custom_data(enable: boolean): void
+        is_using_custom_data(): boolean
+        set_transform_format(format: MultiMesh.TransformFormat): void
+        get_transform_format(): MultiMesh.TransformFormat
+        set_instance_count(count: number /*i64*/): void
+        get_instance_count(): number /*i64*/
+        set_visible_instance_count(count: number /*i64*/): void
+        get_visible_instance_count(): number /*i64*/
+        set_instance_transform(instance: number /*i64*/, transform: Transform3D): void
+        set_instance_transform_2d(instance: number /*i64*/, transform: Transform2D): void
+        get_instance_transform(instance: number /*i64*/): Transform3D
+        get_instance_transform_2d(instance: number /*i64*/): Transform2D
+        set_instance_color(instance: number /*i64*/, color: Color): void
+        get_instance_color(instance: number /*i64*/): Color
+        set_instance_custom_data(instance: number /*i64*/, custom_data: Color): void
+        get_instance_custom_data(instance: number /*i64*/): Color
+        get_aabb(): AABB
+        get_buffer(): PackedFloat32Array
+        set_buffer(buffer: PackedFloat32Array): void
+        _set_transform_array(array: PackedVector3Array): void
+        _get_transform_array(): PackedVector3Array
+        _set_transform_2d_array(array: PackedVector2Array): void
+        _get_transform_2d_array(): PackedVector2Array
+        _set_color_array(array: PackedColorArray): void
+        _get_color_array(): PackedColorArray
+        _set_custom_data_array(array: PackedColorArray): void
+        _get_custom_data_array(): PackedColorArray
+        // // godot.getset: transform_format: number /*i64*/
+        // // godot.getset: use_colors: boolean
+        // // godot.getset: use_custom_data: boolean
+        // // godot.getset: instance_count: number /*i64*/
+        // // godot.getset: visible_instance_count: number /*i64*/
+        // // godot.getset: mesh: Object
+        // // godot.getset: buffer: PackedFloat32Array
+        // // godot.getset: transform_array: PackedVector3Array
+        // // godot.getset: transform_2d_array: PackedVector2Array
+        // // godot.getset: color_array: PackedColorArray
+        // // godot.getset: custom_data_array: PackedColorArray
+    }
+    class MultiMeshEditor extends Control {
+    }
+    class MultiMeshEditorPlugin extends EditorPlugin {
+    }
+    class MultiMeshInstance2D extends Node2D {
+        set_multimesh(multimesh: MultiMesh): void
+        get_multimesh(): MultiMesh
+        set_texture(texture: Texture2D): void
+        get_texture(): Texture2D
+        // // godot.getset: multimesh: Object
+        // // godot.getset: texture: Object
+        texture_changed: Signal
+    }
+    class MultiMeshInstance3D extends GeometryInstance3D {
+        set_multimesh(multimesh: MultiMesh): void
+        get_multimesh(): MultiMesh
+        // // godot.getset: multimesh: Object
+    }
+    namespace MultiplayerAPI {
+        enum RPCMode {
+            RPC_MODE_DISABLED = 0,
+            RPC_MODE_ANY_PEER = 1,
+            RPC_MODE_AUTHORITY = 2,
+        }
+    }
+    class MultiplayerAPI extends RefCounted {
+        has_multiplayer_peer(): boolean
+        get_multiplayer_peer(): MultiplayerPeer
+        set_multiplayer_peer(peer: MultiplayerPeer): void
+        get_unique_id(): number /*i64*/
+        is_server(): boolean
+        get_remote_sender_id(): number /*i64*/
+        poll(): GodotError
+        rpc(peer: number /*i64*/, object: Object, method: StringName, arguments: Array): GodotError
+        object_configuration_add(object: Object, configuration: any): GodotError
+        object_configuration_remove(object: Object, configuration: any): GodotError
+        get_peers(): PackedInt32Array
+        static set_default_interface(interface_name: StringName): void
+        static get_default_interface(): StringName
+        static create_default_interface(): MultiplayerAPI
+        // // godot.getset: multiplayer_peer: Object
+        peer_connected: Signal
+        peer_disconnected: Signal
+        connected_to_server: Signal
+        connection_failed: Signal
+        server_disconnected: Signal
+    }
+    class MultiplayerAPIExtension extends MultiplayerAPI {
+    }
+    class MultiplayerEditorDebugger extends EditorDebuggerPlugin {
+        open_request: Signal
+    }
+    class MultiplayerEditorPlugin extends EditorPlugin {
+    }
+    namespace MultiplayerPeer {
+        enum ConnectionStatus {
+            CONNECTION_DISCONNECTED = 0,
+            CONNECTION_CONNECTING = 1,
+            CONNECTION_CONNECTED = 2,
+        }
+        enum TransferMode {
+            TRANSFER_MODE_UNRELIABLE = 0,
+            TRANSFER_MODE_UNRELIABLE_ORDERED = 1,
+            TRANSFER_MODE_RELIABLE = 2,
+        }
+    }
+    class MultiplayerPeer extends PacketPeer {
+        static readonly TARGET_PEER_BROADCAST = 0
+        static readonly TARGET_PEER_SERVER = 1
+        set_transfer_channel(channel: number /*i64*/): void
+        get_transfer_channel(): number /*i64*/
+        set_transfer_mode(mode: MultiplayerPeer.TransferMode): void
+        get_transfer_mode(): MultiplayerPeer.TransferMode
+        set_target_peer(id: number /*i64*/): void
+        get_packet_peer(): number /*i64*/
+        get_packet_channel(): number /*i64*/
+        get_packet_mode(): MultiplayerPeer.TransferMode
+        poll(): void
+        close(): void
+        disconnect_peer(peer: number /*i64*/, force: boolean): void
+        get_connection_status(): MultiplayerPeer.ConnectionStatus
+        get_unique_id(): number /*i64*/
+        generate_unique_id(): number /*i64*/
+        set_refuse_new_connections(enable: boolean): void
+        is_refusing_new_connections(): boolean
+        is_server_relay_supported(): boolean
+        // // godot.getset: refuse_new_connections: boolean
+        // // godot.getset: transfer_mode: number /*i64*/
+        // // godot.getset: transfer_channel: number /*i64*/
+        peer_connected: Signal
+        peer_disconnected: Signal
+    }
+    class MultiplayerPeerExtension extends MultiplayerPeer {
+    }
+    class MultiplayerSpawner extends Node {
+        add_spawnable_scene(path: string): void
+        get_spawnable_scene_count(): number /*i64*/
+        get_spawnable_scene(index: number /*i64*/): string
+        clear_spawnable_scenes(): void
+        _get_spawnable_scenes(): PackedStringArray
+        _set_spawnable_scenes(scenes: PackedStringArray): void
+        spawn(data: any): Node
+        get_spawn_path(): NodePath
+        set_spawn_path(path: NodePath): void
+        get_spawn_limit(): number /*i64*/
+        set_spawn_limit(limit: number /*i64*/): void
+        get_spawn_function(): Callable
+        set_spawn_function(spawn_function: Callable): void
+        // // godot.getset: _spawnable_scenes: PackedStringArray
+        // // godot.getset: spawn_path: NodePath
+        // // godot.getset: spawn_limit: number /*i64*/
+        // // godot.getset: spawn_function: Callable
+        despawned: Signal
+        spawned: Signal
+    }
+    namespace MultiplayerSynchronizer {
+        enum VisibilityUpdateMode {
+            VISIBILITY_PROCESS_IDLE = 0,
+            VISIBILITY_PROCESS_PHYSICS = 1,
+            VISIBILITY_PROCESS_NONE = 2,
+        }
+    }
+    class MultiplayerSynchronizer extends Node {
+        set_root_path(path: NodePath): void
+        get_root_path(): NodePath
+        set_replication_interval(milliseconds: number /*f64*/): void
+        get_replication_interval(): number /*f64*/
+        set_delta_interval(milliseconds: number /*f64*/): void
+        get_delta_interval(): number /*f64*/
+        set_replication_config(config: SceneReplicationConfig): void
+        get_replication_config(): SceneReplicationConfig
+        set_visibility_update_mode(mode: MultiplayerSynchronizer.VisibilityUpdateMode): void
+        get_visibility_update_mode(): MultiplayerSynchronizer.VisibilityUpdateMode
+        update_visibility(for_peer: number /*i64*/): void
+        set_visibility_public(visible: boolean): void
+        is_visibility_public(): boolean
+        add_visibility_filter(filter: Callable): void
+        remove_visibility_filter(filter: Callable): void
+        set_visibility_for(peer: number /*i64*/, visible: boolean): void
+        get_visibility_for(peer: number /*i64*/): boolean
+        // // godot.getset: root_path: NodePath
+        // // godot.getset: replication_interval: number /*f64*/
+        // // godot.getset: delta_interval: number /*f64*/
+        // // godot.getset: replication_config: Object
+        // // godot.getset: visibility_update_mode: number /*i64*/
+        // // godot.getset: public_visibility: boolean
+        synchronized: Signal
+        delta_synchronized: Signal
+        visibility_changed: Signal
+    }
+    class Mutex extends RefCounted {
+        lock(): void
+        try_lock(): boolean
+        unlock(): void
+    }
+    class NavigationAgent2D extends Node {
+        get_rid(): RID
+        set_avoidance_enabled(enabled: boolean): void
+        get_avoidance_enabled(): boolean
+        set_path_desired_distance(desired_distance: number /*f64*/): void
+        get_path_desired_distance(): number /*f64*/
+        set_target_desired_distance(desired_distance: number /*f64*/): void
+        get_target_desired_distance(): number /*f64*/
+        set_radius(radius: number /*f64*/): void
+        get_radius(): number /*f64*/
+        set_neighbor_distance(neighbor_distance: number /*f64*/): void
+        get_neighbor_distance(): number /*f64*/
+        set_max_neighbors(max_neighbors: number /*i64*/): void
+        get_max_neighbors(): number /*i64*/
+        set_time_horizon_agents(time_horizon: number /*f64*/): void
+        get_time_horizon_agents(): number /*f64*/
+        set_time_horizon_obstacles(time_horizon: number /*f64*/): void
+        get_time_horizon_obstacles(): number /*f64*/
+        set_max_speed(max_speed: number /*f64*/): void
+        get_max_speed(): number /*f64*/
+        set_path_max_distance(max_speed: number /*f64*/): void
+        get_path_max_distance(): number /*f64*/
+        set_navigation_layers(navigation_layers: number /*i64*/): void
+        get_navigation_layers(): number /*i64*/
+        set_navigation_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_navigation_layer_value(layer_number: number /*i64*/): boolean
+        set_pathfinding_algorithm(pathfinding_algorithm: NavigationPathQueryParameters2D.PathfindingAlgorithm): void
+        get_pathfinding_algorithm(): NavigationPathQueryParameters2D.PathfindingAlgorithm
+        set_path_postprocessing(path_postprocessing: NavigationPathQueryParameters2D.PathPostProcessing): void
+        get_path_postprocessing(): NavigationPathQueryParameters2D.PathPostProcessing
+        set_path_metadata_flags(flags: NavigationPathQueryParameters2D.PathMetadataFlags): void
+        get_path_metadata_flags(): NavigationPathQueryParameters2D.PathMetadataFlags
+        set_navigation_map(navigation_map: RID): void
+        get_navigation_map(): RID
+        set_target_position(position: Vector2): void
+        get_target_position(): Vector2
+        get_next_path_position(): Vector2
+        set_velocity_forced(velocity: Vector2): void
+        set_velocity(velocity: Vector2): void
+        get_velocity(): Vector2
+        distance_to_target(): number /*f64*/
+        get_current_navigation_result(): NavigationPathQueryResult2D
+        get_current_navigation_path(): PackedVector2Array
+        get_current_navigation_path_index(): number /*i64*/
+        is_target_reached(): boolean
+        is_target_reachable(): boolean
+        is_navigation_finished(): boolean
+        get_final_position(): Vector2
+        _avoidance_done(new_velocity: Vector3): void
+        set_avoidance_layers(layers: number /*i64*/): void
+        get_avoidance_layers(): number /*i64*/
+        set_avoidance_mask(mask: number /*i64*/): void
+        get_avoidance_mask(): number /*i64*/
+        set_avoidance_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_avoidance_layer_value(layer_number: number /*i64*/): boolean
+        set_avoidance_mask_value(mask_number: number /*i64*/, value: boolean): void
+        get_avoidance_mask_value(mask_number: number /*i64*/): boolean
+        set_avoidance_priority(priority: number /*f64*/): void
+        get_avoidance_priority(): number /*f64*/
+        set_debug_enabled(enabled: boolean): void
+        get_debug_enabled(): boolean
+        set_debug_use_custom(enabled: boolean): void
+        get_debug_use_custom(): boolean
+        set_debug_path_custom_color(color: Color): void
+        get_debug_path_custom_color(): Color
+        set_debug_path_custom_point_size(point_size: number /*f64*/): void
+        get_debug_path_custom_point_size(): number /*f64*/
+        set_debug_path_custom_line_width(line_width: number /*f64*/): void
+        get_debug_path_custom_line_width(): number /*f64*/
+        // // godot.getset: target_position: Vector2
+        // // godot.getset: path_desired_distance: number /*f64*/
+        // // godot.getset: target_desired_distance: number /*f64*/
+        // // godot.getset: path_max_distance: number /*f64*/
+        // // godot.getset: navigation_layers: number /*i64*/
+        // // godot.getset: pathfinding_algorithm: number /*i64*/
+        // // godot.getset: path_postprocessing: number /*i64*/
+        // // godot.getset: path_metadata_flags: number /*i64*/
+        // // godot.getset: avoidance_enabled: boolean
+        // // godot.getset: velocity: Vector2
+        // // godot.getset: radius: number /*f64*/
+        // // godot.getset: neighbor_distance: number /*f64*/
+        // // godot.getset: max_neighbors: number /*i64*/
+        // // godot.getset: time_horizon_agents: number /*f64*/
+        // // godot.getset: time_horizon_obstacles: number /*f64*/
+        // // godot.getset: max_speed: number /*f64*/
+        // // godot.getset: avoidance_layers: number /*i64*/
+        // // godot.getset: avoidance_mask: number /*i64*/
+        // // godot.getset: avoidance_priority: number /*f64*/
+        // // godot.getset: debug_enabled: boolean
+        // // godot.getset: debug_use_custom: boolean
+        // // godot.getset: debug_path_custom_color: Color
+        // // godot.getset: debug_path_custom_point_size: number /*f64*/
+        // // godot.getset: debug_path_custom_line_width: number /*f64*/
+        path_changed: Signal
+        target_reached: Signal
+        waypoint_reached: Signal
+        link_reached: Signal
+        navigation_finished: Signal
+        velocity_computed: Signal
+    }
+    class NavigationAgent3D extends Node {
+        get_rid(): RID
+        set_avoidance_enabled(enabled: boolean): void
+        get_avoidance_enabled(): boolean
+        set_path_desired_distance(desired_distance: number /*f64*/): void
+        get_path_desired_distance(): number /*f64*/
+        set_target_desired_distance(desired_distance: number /*f64*/): void
+        get_target_desired_distance(): number /*f64*/
+        set_radius(radius: number /*f64*/): void
+        get_radius(): number /*f64*/
+        set_height(height: number /*f64*/): void
+        get_height(): number /*f64*/
+        set_path_height_offset(path_height_offset: number /*f64*/): void
+        get_path_height_offset(): number /*f64*/
+        set_use_3d_avoidance(enabled: boolean): void
+        get_use_3d_avoidance(): boolean
+        set_keep_y_velocity(enabled: boolean): void
+        get_keep_y_velocity(): boolean
+        set_neighbor_distance(neighbor_distance: number /*f64*/): void
+        get_neighbor_distance(): number /*f64*/
+        set_max_neighbors(max_neighbors: number /*i64*/): void
+        get_max_neighbors(): number /*i64*/
+        set_time_horizon_agents(time_horizon: number /*f64*/): void
+        get_time_horizon_agents(): number /*f64*/
+        set_time_horizon_obstacles(time_horizon: number /*f64*/): void
+        get_time_horizon_obstacles(): number /*f64*/
+        set_max_speed(max_speed: number /*f64*/): void
+        get_max_speed(): number /*f64*/
+        set_path_max_distance(max_speed: number /*f64*/): void
+        get_path_max_distance(): number /*f64*/
+        set_navigation_layers(navigation_layers: number /*i64*/): void
+        get_navigation_layers(): number /*i64*/
+        set_navigation_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_navigation_layer_value(layer_number: number /*i64*/): boolean
+        set_pathfinding_algorithm(pathfinding_algorithm: NavigationPathQueryParameters3D.PathfindingAlgorithm): void
+        get_pathfinding_algorithm(): NavigationPathQueryParameters3D.PathfindingAlgorithm
+        set_path_postprocessing(path_postprocessing: NavigationPathQueryParameters3D.PathPostProcessing): void
+        get_path_postprocessing(): NavigationPathQueryParameters3D.PathPostProcessing
+        set_path_metadata_flags(flags: NavigationPathQueryParameters3D.PathMetadataFlags): void
+        get_path_metadata_flags(): NavigationPathQueryParameters3D.PathMetadataFlags
+        set_navigation_map(navigation_map: RID): void
+        get_navigation_map(): RID
+        set_target_position(position: Vector3): void
+        get_target_position(): Vector3
+        get_next_path_position(): Vector3
+        set_velocity_forced(velocity: Vector3): void
+        set_velocity(velocity: Vector3): void
+        get_velocity(): Vector3
+        distance_to_target(): number /*f64*/
+        get_current_navigation_result(): NavigationPathQueryResult3D
+        get_current_navigation_path(): PackedVector3Array
+        get_current_navigation_path_index(): number /*i64*/
+        is_target_reached(): boolean
+        is_target_reachable(): boolean
+        is_navigation_finished(): boolean
+        get_final_position(): Vector3
+        _avoidance_done(new_velocity: Vector3): void
+        set_avoidance_layers(layers: number /*i64*/): void
+        get_avoidance_layers(): number /*i64*/
+        set_avoidance_mask(mask: number /*i64*/): void
+        get_avoidance_mask(): number /*i64*/
+        set_avoidance_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_avoidance_layer_value(layer_number: number /*i64*/): boolean
+        set_avoidance_mask_value(mask_number: number /*i64*/, value: boolean): void
+        get_avoidance_mask_value(mask_number: number /*i64*/): boolean
+        set_avoidance_priority(priority: number /*f64*/): void
+        get_avoidance_priority(): number /*f64*/
+        set_debug_enabled(enabled: boolean): void
+        get_debug_enabled(): boolean
+        set_debug_use_custom(enabled: boolean): void
+        get_debug_use_custom(): boolean
+        set_debug_path_custom_color(color: Color): void
+        get_debug_path_custom_color(): Color
+        set_debug_path_custom_point_size(point_size: number /*f64*/): void
+        get_debug_path_custom_point_size(): number /*f64*/
+        // // godot.getset: target_position: Vector3
+        // // godot.getset: path_desired_distance: number /*f64*/
+        // // godot.getset: target_desired_distance: number /*f64*/
+        // // godot.getset: path_height_offset: number /*f64*/
+        // // godot.getset: path_max_distance: number /*f64*/
+        // // godot.getset: navigation_layers: number /*i64*/
+        // // godot.getset: pathfinding_algorithm: number /*i64*/
+        // // godot.getset: path_postprocessing: number /*i64*/
+        // // godot.getset: path_metadata_flags: number /*i64*/
+        // // godot.getset: avoidance_enabled: boolean
+        // // godot.getset: velocity: Vector3
+        // // godot.getset: height: number /*f64*/
+        // // godot.getset: radius: number /*f64*/
+        // // godot.getset: neighbor_distance: number /*f64*/
+        // // godot.getset: max_neighbors: number /*i64*/
+        // // godot.getset: time_horizon_agents: number /*f64*/
+        // // godot.getset: time_horizon_obstacles: number /*f64*/
+        // // godot.getset: max_speed: number /*f64*/
+        // // godot.getset: use_3d_avoidance: boolean
+        // // godot.getset: keep_y_velocity: boolean
+        // // godot.getset: avoidance_layers: number /*i64*/
+        // // godot.getset: avoidance_mask: number /*i64*/
+        // // godot.getset: avoidance_priority: number /*f64*/
+        // // godot.getset: debug_enabled: boolean
+        // // godot.getset: debug_use_custom: boolean
+        // // godot.getset: debug_path_custom_color: Color
+        // // godot.getset: debug_path_custom_point_size: number /*f64*/
+        path_changed: Signal
+        target_reached: Signal
+        waypoint_reached: Signal
+        link_reached: Signal
+        navigation_finished: Signal
+        velocity_computed: Signal
+    }
+    class NavigationLink2D extends Node2D {
+        get_rid(): RID
+        set_enabled(enabled: boolean): void
+        is_enabled(): boolean
+        set_bidirectional(bidirectional: boolean): void
+        is_bidirectional(): boolean
+        set_navigation_layers(navigation_layers: number /*i64*/): void
+        get_navigation_layers(): number /*i64*/
+        set_navigation_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_navigation_layer_value(layer_number: number /*i64*/): boolean
+        set_start_position(position: Vector2): void
+        get_start_position(): Vector2
+        set_end_position(position: Vector2): void
+        get_end_position(): Vector2
+        set_global_start_position(position: Vector2): void
+        get_global_start_position(): Vector2
+        set_global_end_position(position: Vector2): void
+        get_global_end_position(): Vector2
+        set_enter_cost(enter_cost: number /*f64*/): void
+        get_enter_cost(): number /*f64*/
+        set_travel_cost(travel_cost: number /*f64*/): void
+        get_travel_cost(): number /*f64*/
+        // // godot.getset: enabled: boolean
+        // // godot.getset: bidirectional: boolean
+        // // godot.getset: navigation_layers: number /*i64*/
+        // // godot.getset: start_position: Vector2
+        // // godot.getset: end_position: Vector2
+        // // godot.getset: enter_cost: number /*f64*/
+        // // godot.getset: travel_cost: number /*f64*/
+    }
+    class NavigationLink2DEditor extends Control {
+    }
+    class NavigationLink2DEditorPlugin extends EditorPlugin {
+    }
+    class NavigationLink3D extends Node3D {
+        get_rid(): RID
+        set_enabled(enabled: boolean): void
+        is_enabled(): boolean
+        set_bidirectional(bidirectional: boolean): void
+        is_bidirectional(): boolean
+        set_navigation_layers(navigation_layers: number /*i64*/): void
+        get_navigation_layers(): number /*i64*/
+        set_navigation_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_navigation_layer_value(layer_number: number /*i64*/): boolean
+        set_start_position(position: Vector3): void
+        get_start_position(): Vector3
+        set_end_position(position: Vector3): void
+        get_end_position(): Vector3
+        set_global_start_position(position: Vector3): void
+        get_global_start_position(): Vector3
+        set_global_end_position(position: Vector3): void
+        get_global_end_position(): Vector3
+        set_enter_cost(enter_cost: number /*f64*/): void
+        get_enter_cost(): number /*f64*/
+        set_travel_cost(travel_cost: number /*f64*/): void
+        get_travel_cost(): number /*f64*/
+        // // godot.getset: enabled: boolean
+        // // godot.getset: bidirectional: boolean
+        // // godot.getset: navigation_layers: number /*i64*/
+        // // godot.getset: start_position: Vector3
+        // // godot.getset: end_position: Vector3
+        // // godot.getset: enter_cost: number /*f64*/
+        // // godot.getset: travel_cost: number /*f64*/
+    }
+    class NavigationLink3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    namespace NavigationMesh {
+        enum SamplePartitionType {
+            SAMPLE_PARTITION_WATERSHED = 0,
+            SAMPLE_PARTITION_MONOTONE = 1,
+            SAMPLE_PARTITION_LAYERS = 2,
+            SAMPLE_PARTITION_MAX = 3,
+        }
+        enum ParsedGeometryType {
+            PARSED_GEOMETRY_MESH_INSTANCES = 0,
+            PARSED_GEOMETRY_STATIC_COLLIDERS = 1,
+            PARSED_GEOMETRY_BOTH = 2,
+            PARSED_GEOMETRY_MAX = 3,
+        }
+        enum SourceGeometryMode {
+            SOURCE_GEOMETRY_ROOT_NODE_CHILDREN = 0,
+            SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN = 1,
+            SOURCE_GEOMETRY_GROUPS_EXPLICIT = 2,
+            SOURCE_GEOMETRY_MAX = 3,
+        }
+    }
+    class NavigationMesh extends Resource {
+        set_sample_partition_type(sample_partition_type: NavigationMesh.SamplePartitionType): void
+        get_sample_partition_type(): NavigationMesh.SamplePartitionType
+        set_parsed_geometry_type(geometry_type: NavigationMesh.ParsedGeometryType): void
+        get_parsed_geometry_type(): NavigationMesh.ParsedGeometryType
+        set_collision_mask(mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        set_source_geometry_mode(mask: NavigationMesh.SourceGeometryMode): void
+        get_source_geometry_mode(): NavigationMesh.SourceGeometryMode
+        set_source_group_name(mask: StringName): void
+        get_source_group_name(): StringName
+        set_cell_size(cell_size: number /*f64*/): void
+        get_cell_size(): number /*f64*/
+        set_cell_height(cell_height: number /*f64*/): void
+        get_cell_height(): number /*f64*/
+        set_agent_height(agent_height: number /*f64*/): void
+        get_agent_height(): number /*f64*/
+        set_agent_radius(agent_radius: number /*f64*/): void
+        get_agent_radius(): number /*f64*/
+        set_agent_max_climb(agent_max_climb: number /*f64*/): void
+        get_agent_max_climb(): number /*f64*/
+        set_agent_max_slope(agent_max_slope: number /*f64*/): void
+        get_agent_max_slope(): number /*f64*/
+        set_region_min_size(region_min_size: number /*f64*/): void
+        get_region_min_size(): number /*f64*/
+        set_region_merge_size(region_merge_size: number /*f64*/): void
+        get_region_merge_size(): number /*f64*/
+        set_edge_max_length(edge_max_length: number /*f64*/): void
+        get_edge_max_length(): number /*f64*/
+        set_edge_max_error(edge_max_error: number /*f64*/): void
+        get_edge_max_error(): number /*f64*/
+        set_vertices_per_polygon(vertices_per_polygon: number /*f64*/): void
+        get_vertices_per_polygon(): number /*f64*/
+        set_detail_sample_distance(detail_sample_dist: number /*f64*/): void
+        get_detail_sample_distance(): number /*f64*/
+        set_detail_sample_max_error(detail_sample_max_error: number /*f64*/): void
+        get_detail_sample_max_error(): number /*f64*/
+        set_filter_low_hanging_obstacles(filter_low_hanging_obstacles: boolean): void
+        get_filter_low_hanging_obstacles(): boolean
+        set_filter_ledge_spans(filter_ledge_spans: boolean): void
+        get_filter_ledge_spans(): boolean
+        set_filter_walkable_low_height_spans(filter_walkable_low_height_spans: boolean): void
+        get_filter_walkable_low_height_spans(): boolean
+        set_filter_baking_aabb(baking_aabb: AABB): void
+        get_filter_baking_aabb(): AABB
+        set_filter_baking_aabb_offset(baking_aabb_offset: Vector3): void
+        get_filter_baking_aabb_offset(): Vector3
+        set_vertices(vertices: PackedVector3Array): void
+        get_vertices(): PackedVector3Array
+        add_polygon(polygon: PackedInt32Array): void
+        get_polygon_count(): number /*i64*/
+        get_polygon(idx: number /*i64*/): PackedInt32Array
+        clear_polygons(): void
+        create_from_mesh(mesh: Mesh): void
+        _set_polygons(polygons: Array): void
+        _get_polygons(): Array
+        clear(): void
+        // // godot.getset: vertices: PackedVector3Array
+        // // godot.getset: polygons: Array
+        // // godot.getset: sample_partition_type: number /*i64*/
+        // // godot.getset: geometry_parsed_geometry_type: number /*i64*/
+        // // godot.getset: geometry_collision_mask: number /*i64*/
+        // // godot.getset: geometry_source_geometry_mode: number /*i64*/
+        // // godot.getset: geometry_source_group_name: string
+        // // godot.getset: cell_size: number /*f64*/
+        // // godot.getset: cell_height: number /*f64*/
+        // // godot.getset: agent_height: number /*f64*/
+        // // godot.getset: agent_radius: number /*f64*/
+        // // godot.getset: agent_max_climb: number /*f64*/
+        // // godot.getset: agent_max_slope: number /*f64*/
+        // // godot.getset: region_min_size: number /*f64*/
+        // // godot.getset: region_merge_size: number /*f64*/
+        // // godot.getset: edge_max_length: number /*f64*/
+        // // godot.getset: edge_max_error: number /*f64*/
+        // // godot.getset: vertices_per_polygon: number /*f64*/
+        // // godot.getset: detail_sample_distance: number /*f64*/
+        // // godot.getset: detail_sample_max_error: number /*f64*/
+        // // godot.getset: filter_low_hanging_obstacles: boolean
+        // // godot.getset: filter_ledge_spans: boolean
+        // // godot.getset: filter_walkable_low_height_spans: boolean
+        // // godot.getset: filter_baking_aabb: AABB
+        // // godot.getset: filter_baking_aabb_offset: Vector3
+    }
+    class NavigationMeshEditor extends Control {
+    }
+    class NavigationMeshEditorPlugin extends EditorPlugin {
+    }
+    class NavigationMeshSourceGeometryData2D extends Resource {
+        clear(): void
+        has_data(): boolean
+        set_traversable_outlines(traversable_outlines: Array): void
+        get_traversable_outlines(): Array
+        set_obstruction_outlines(obstruction_outlines: Array): void
+        get_obstruction_outlines(): Array
+        add_traversable_outline(shape_outline: PackedVector2Array): void
+        add_obstruction_outline(shape_outline: PackedVector2Array): void
+        // // godot.getset: traversable_outlines: Array
+        // // godot.getset: obstruction_outlines: Array
+    }
+    class NavigationMeshSourceGeometryData3D extends Resource {
+        set_vertices(vertices: PackedFloat32Array): void
+        get_vertices(): PackedFloat32Array
+        set_indices(indices: PackedInt32Array): void
+        get_indices(): PackedInt32Array
+        clear(): void
+        has_data(): boolean
+        add_mesh(mesh: Mesh, xform: Transform3D): void
+        add_mesh_array(mesh_array: Array, xform: Transform3D): void
+        add_faces(faces: PackedVector3Array, xform: Transform3D): void
+        // // godot.getset: vertices: PackedVector3Array
+        // // godot.getset: indices: PackedInt32Array
+    }
+    class NavigationObstacle2D extends Node2D {
+        get_rid(): RID
+        set_avoidance_enabled(enabled: boolean): void
+        get_avoidance_enabled(): boolean
+        set_navigation_map(navigation_map: RID): void
+        get_navigation_map(): RID
+        set_radius(radius: number /*f64*/): void
+        get_radius(): number /*f64*/
+        set_velocity(velocity: Vector2): void
+        get_velocity(): Vector2
+        set_vertices(vertices: PackedVector2Array): void
+        get_vertices(): PackedVector2Array
+        set_avoidance_layers(layers: number /*i64*/): void
+        get_avoidance_layers(): number /*i64*/
+        set_avoidance_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_avoidance_layer_value(layer_number: number /*i64*/): boolean
+        // // godot.getset: avoidance_enabled: boolean
+        // // godot.getset: velocity: Vector2
+        // // godot.getset: radius: number /*f64*/
+        // // godot.getset: vertices: PackedVector2Array
+        // // godot.getset: avoidance_layers: number /*i64*/
+    }
+    class NavigationObstacle2DEditor extends AbstractPolygon2DEditor {
+    }
     class NavigationObstacle2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
     }
     class NavigationObstacle3D extends Node3D {
@@ -23,6 +2787,13 @@ declare module "godot" {
         get_avoidance_layer_value(layer_number: number /*i64*/): boolean
         set_use_3d_avoidance(enabled: boolean): void
         get_use_3d_avoidance(): boolean
+        // // godot.getset: avoidance_enabled: boolean
+        // // godot.getset: velocity: Vector3
+        // // godot.getset: radius: number /*f64*/
+        // // godot.getset: height: number /*f64*/
+        // // godot.getset: vertices: PackedVector3Array
+        // // godot.getset: avoidance_layers: number /*i64*/
+        // // godot.getset: use_3d_avoidance: boolean
     }
     class NavigationObstacle3DEditor extends HBoxContainer {
         _polygon_draw(): void
@@ -60,6 +2831,13 @@ declare module "godot" {
         get_navigation_layers(): number /*i64*/
         set_metadata_flags(flags: NavigationPathQueryParameters2D.PathMetadataFlags): void
         get_metadata_flags(): NavigationPathQueryParameters2D.PathMetadataFlags
+        // // godot.getset: map: RID
+        // // godot.getset: start_position: Vector2
+        // // godot.getset: target_position: Vector2
+        // // godot.getset: navigation_layers: number /*i64*/
+        // // godot.getset: pathfinding_algorithm: number /*i64*/
+        // // godot.getset: path_postprocessing: number /*i64*/
+        // // godot.getset: metadata_flags: number /*i64*/
     }
     namespace NavigationPathQueryParameters3D {
         enum PathfindingAlgorithm {
@@ -92,6 +2870,13 @@ declare module "godot" {
         get_navigation_layers(): number /*i64*/
         set_metadata_flags(flags: NavigationPathQueryParameters3D.PathMetadataFlags): void
         get_metadata_flags(): NavigationPathQueryParameters3D.PathMetadataFlags
+        // // godot.getset: map: RID
+        // // godot.getset: start_position: Vector3
+        // // godot.getset: target_position: Vector3
+        // // godot.getset: navigation_layers: number /*i64*/
+        // // godot.getset: pathfinding_algorithm: number /*i64*/
+        // // godot.getset: path_postprocessing: number /*i64*/
+        // // godot.getset: metadata_flags: number /*i64*/
     }
     namespace NavigationPathQueryResult2D {
         enum PathSegmentType {
@@ -109,6 +2894,10 @@ declare module "godot" {
         set_path_owner_ids(path_owner_ids: PackedInt64Array): void
         get_path_owner_ids(): PackedInt64Array
         reset(): void
+        // // godot.getset: path: PackedVector2Array
+        // // godot.getset: path_types: PackedInt32Array
+        // // godot.getset: path_rids: Array
+        // // godot.getset: path_owner_ids: PackedInt64Array
     }
     namespace NavigationPathQueryResult3D {
         enum PathSegmentType {
@@ -126,6 +2915,10 @@ declare module "godot" {
         set_path_owner_ids(path_owner_ids: PackedInt64Array): void
         get_path_owner_ids(): PackedInt64Array
         reset(): void
+        // // godot.getset: path: PackedVector3Array
+        // // godot.getset: path_types: PackedInt32Array
+        // // godot.getset: path_rids: Array
+        // // godot.getset: path_owner_ids: PackedInt64Array
     }
     namespace NavigationPolygon {
         enum ParsedGeometryType {
@@ -176,6 +2969,15 @@ declare module "godot" {
         set_agent_radius(agent_radius: number /*f64*/): void
         get_agent_radius(): number /*f64*/
         clear(): void
+        // // godot.getset: vertices: PackedVector2Array
+        // // godot.getset: polygons: Array
+        // // godot.getset: outlines: Array
+        // // godot.getset: parsed_geometry_type: number /*i64*/
+        // // godot.getset: parsed_collision_mask: number /*i64*/
+        // // godot.getset: source_geometry_mode: number /*i64*/
+        // // godot.getset: source_geometry_group_name: string
+        // // godot.getset: cell_size: number /*f64*/
+        // // godot.getset: agent_radius: number /*f64*/
     }
     class NavigationPolygonEditor extends AbstractPolygon2DEditor {
     }
@@ -208,8 +3010,16 @@ declare module "godot" {
         get_travel_cost(): number /*f64*/
         bake_navigation_polygon(on_thread: boolean): void
         _navigation_polygon_changed(): void
-        // SIGNAL: navigation_polygon_changed
-        // SIGNAL: bake_finished
+        // // godot.getset: navigation_polygon: Object
+        // // godot.getset: enabled: boolean
+        // // godot.getset: use_edge_connections: boolean
+        // // godot.getset: navigation_layers: number /*i64*/
+        // // godot.getset: enter_cost: number /*f64*/
+        // // godot.getset: travel_cost: number /*f64*/
+        // // godot.getset: constrain_avoidance: boolean
+        // // godot.getset: avoidance_layers: number /*i64*/
+        navigation_polygon_changed: Signal
+        bake_finished: Signal
     }
     class NavigationRegion3D extends Node3D {
         get_rid(): RID
@@ -232,8 +3042,14 @@ declare module "godot" {
         get_travel_cost(): number /*f64*/
         bake_navigation_mesh(on_thread: boolean): void
         _bake_finished(navigation_mesh: NavigationMesh): void
-        // SIGNAL: navigation_mesh_changed
-        // SIGNAL: bake_finished
+        // // godot.getset: navigation_mesh: Object
+        // // godot.getset: enabled: boolean
+        // // godot.getset: use_edge_connections: boolean
+        // // godot.getset: navigation_layers: number /*i64*/
+        // // godot.getset: enter_cost: number /*f64*/
+        // // godot.getset: travel_cost: number /*f64*/
+        navigation_mesh_changed: Signal
+        bake_finished: Signal
     }
     class NavigationRegion3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -257,7 +3073,16 @@ declare module "godot" {
         get_h_axis_stretch_mode(): NinePatchRect.AxisStretchMode
         set_v_axis_stretch_mode(mode: NinePatchRect.AxisStretchMode): void
         get_v_axis_stretch_mode(): NinePatchRect.AxisStretchMode
-        // SIGNAL: texture_changed
+        // // godot.getset: texture: Object
+        // // godot.getset: draw_center: boolean
+        // // godot.getset: region_rect: Rect2
+        // // godot.getset: patch_margin_left: number /*i64*/
+        // // godot.getset: patch_margin_top: number /*i64*/
+        // // godot.getset: patch_margin_right: number /*i64*/
+        // // godot.getset: patch_margin_bottom: number /*i64*/
+        // // godot.getset: axis_stretch_horizontal: number /*i64*/
+        // // godot.getset: axis_stretch_vertical: number /*i64*/
+        texture_changed: Signal
     }
     namespace Node {
         enum ProcessMode {
@@ -440,15 +3265,28 @@ declare module "godot" {
         call_thread_safe(method: StringName): any
         set_thread_safe(property: StringName, value: any): void
         notify_thread_safe(what: number /*i64*/): void
-        // SIGNAL: ready
-        // SIGNAL: renamed
-        // SIGNAL: tree_entered
-        // SIGNAL: tree_exiting
-        // SIGNAL: tree_exited
-        // SIGNAL: child_entered_tree
-        // SIGNAL: child_exiting_tree
-        // SIGNAL: child_order_changed
-        // SIGNAL: replacing_by
+        // // godot.getset: _import_path: NodePath
+        // // godot.getset: name: StringName
+        // // godot.getset: unique_name_in_owner: boolean
+        // // godot.getset: scene_file_path: string
+        // // godot.getset: owner: Object
+        // // godot.getset: multiplayer: Object
+        // // godot.getset: process_mode: number /*i64*/
+        // // godot.getset: process_priority: number /*i64*/
+        // // godot.getset: process_physics_priority: number /*i64*/
+        // // godot.getset: process_thread_group: number /*i64*/
+        // // godot.getset: process_thread_group_order: number /*i64*/
+        // // godot.getset: process_thread_messages: number /*i64*/
+        // // godot.getset: editor_description: string
+        ready: Signal
+        renamed: Signal
+        tree_entered: Signal
+        tree_exiting: Signal
+        tree_exited: Signal
+        child_entered_tree: Signal
+        child_exiting_tree: Signal
+        child_order_changed: Signal
+        replacing_by: Signal
     }
     class Node2D extends CanvasItem {
         set_position(position: Vector2): void
@@ -484,6 +3322,18 @@ declare module "godot" {
         to_local(global_point: Vector2): Vector2
         to_global(local_point: Vector2): Vector2
         get_relative_transform_to_parent(parent: Node): Transform2D
+        // // godot.getset: position: Vector2
+        // // godot.getset: rotation: number /*f64*/
+        // // godot.getset: rotation_degrees: number /*f64*/
+        // // godot.getset: scale: Vector2
+        // // godot.getset: skew: number /*f64*/
+        // // godot.getset: transform: Transform2D
+        // // godot.getset: global_position: Vector2
+        // // godot.getset: global_rotation: number /*f64*/
+        // // godot.getset: global_rotation_degrees: number /*f64*/
+        // // godot.getset: global_scale: Vector2
+        // // godot.getset: global_skew: number /*f64*/
+        // // godot.getset: global_transform: Transform2D
     }
     namespace Node3D {
         enum RotationEditMode {
@@ -568,7 +3418,24 @@ declare module "godot" {
         look_at_from_position(position: Vector3, target: Vector3, up: Vector3, use_model_front: boolean): void
         to_local(global_point: Vector3): Vector3
         to_global(local_point: Vector3): Vector3
-        // SIGNAL: visibility_changed
+        // // godot.getset: transform: Transform3D
+        // // godot.getset: global_transform: Transform3D
+        // // godot.getset: position: Vector3
+        // // godot.getset: rotation: Vector3
+        // // godot.getset: rotation_degrees: Vector3
+        // // godot.getset: quaternion: Quaternion
+        // // godot.getset: basis: Basis
+        // // godot.getset: scale: Vector3
+        // // godot.getset: rotation_edit_mode: number /*i64*/
+        // // godot.getset: rotation_order: number /*i64*/
+        // // godot.getset: top_level: boolean
+        // // godot.getset: global_position: Vector3
+        // // godot.getset: global_basis: Basis
+        // // godot.getset: global_rotation: Vector3
+        // // godot.getset: global_rotation_degrees: Vector3
+        // // godot.getset: visible: boolean
+        // // godot.getset: visibility_parent: NodePath
+        visibility_changed: Signal
     }
     class Node3DEditor extends VBoxContainer {
         _get_editor_data(_unnamed_arg0: Object): Object
@@ -577,16 +3444,16 @@ declare module "godot" {
         _set_subgizmo_selection(_unnamed_arg0: Object, _unnamed_arg1: Node3DGizmo, _unnamed_arg2: number /*i64*/, _unnamed_arg3: Transform3D): void
         _clear_subgizmo_selection(_unnamed_arg0: Object): void
         _refresh_menu_icons(): void
-        // SIGNAL: transform_key_request
-        // SIGNAL: item_lock_status_changed
-        // SIGNAL: item_group_status_changed
+        transform_key_request: Signal
+        item_lock_status_changed: Signal
+        item_group_status_changed: Signal
     }
     class Node3DEditorPlugin extends EditorPlugin {
     }
     class Node3DEditorViewport extends Control {
         update_transform_gizmo_view(): void
-        // SIGNAL: toggle_maximize_view
-        // SIGNAL: clicked
+        toggle_maximize_view: Signal
+        clicked: Signal
     }
     class Node3DEditorViewportContainer extends Container {
     }
@@ -635,6 +3502,18 @@ declare module "godot" {
         get_color_ramp(): Gradient
         set_noise(noise: Noise): void
         get_noise(): Noise
+        // // godot.getset: width: number /*i64*/
+        // // godot.getset: height: number /*i64*/
+        // // godot.getset: invert: boolean
+        // // godot.getset: in_3d_space: boolean
+        // // godot.getset: generate_mipmaps: boolean
+        // // godot.getset: seamless: boolean
+        // // godot.getset: seamless_blend_skirt: number /*f64*/
+        // // godot.getset: as_normal_map: boolean
+        // // godot.getset: bump_strength: number /*f64*/
+        // // godot.getset: normalize: boolean
+        // // godot.getset: color_ramp: Object
+        // // godot.getset: noise: Object
     }
     class NoiseTexture3D extends Texture3D {
         _update_texture(): void
@@ -655,6 +3534,15 @@ declare module "godot" {
         get_color_ramp(): Gradient
         set_noise(noise: Noise): void
         get_noise(): Noise
+        // // godot.getset: width: number /*i64*/
+        // // godot.getset: height: number /*i64*/
+        // // godot.getset: depth: number /*i64*/
+        // // godot.getset: invert: boolean
+        // // godot.getset: seamless: boolean
+        // // godot.getset: seamless_blend_skirt: number /*f64*/
+        // // godot.getset: normalize: boolean
+        // // godot.getset: color_ramp: Object
+        // // godot.getset: noise: Object
     }
     class ORMMaterial3D extends BaseMaterial3D {
     }
@@ -671,6 +3559,7 @@ declare module "godot" {
     class Object {
         static readonly NOTIFICATION_POSTINITIALIZE = 0
         static readonly NOTIFICATION_PREDELETE = 1
+        static readonly NOTIFICATION_EXTENSION_RELOADED = 2
         get_class(): string
         is_class(class_: string): boolean
         set(property: StringName, value: any): void
@@ -703,9 +3592,9 @@ declare module "godot" {
         get_signal_list(): Array
         get_signal_connection_list(signal: StringName): Array
         get_incoming_connections(): Array
-        connect(signal: StringName, callable: any /*CALLABLE*/, flags: number /*i64*/): GodotError
-        disconnect(signal: StringName, callable: any /*CALLABLE*/): void
-        is_connected(signal: StringName, callable: any /*CALLABLE*/): boolean
+        connect(signal: StringName, callable: Callable, flags: number /*i64*/): GodotError
+        disconnect(signal: StringName, callable: Callable): void
+        is_connected(signal: StringName, callable: Callable): boolean
         set_block_signals(enable: boolean): void
         is_blocking_signals(): boolean
         notify_property_list_changed(): void
@@ -715,8 +3604,8 @@ declare module "godot" {
         tr_n(message: StringName, plural_message: StringName, n: number /*i64*/, context: StringName): string
         is_queued_for_deletion(): boolean
         cancel_free(): void
-        // SIGNAL: script_changed
-        // SIGNAL: property_list_changed
+        script_changed: Signal
+        property_list_changed: Signal
     }
     class Occluder3D extends Resource {
         get_vertices(): PackedVector3Array
@@ -733,6 +3622,9 @@ declare module "godot" {
         get_occluder(): Occluder3D
         _is_editable_3d_polygon(): boolean
         _get_editable_3d_polygon_resource(): Resource
+        // // godot.getset: occluder: Object
+        // // godot.getset: bake_mask: number /*i64*/
+        // // godot.getset: bake_simplification_distance: number /*f64*/
     }
     class OccluderInstance3DEditorPlugin extends EditorPlugin {
         _bake(): void
@@ -753,6 +3645,9 @@ declare module "godot" {
         get_cull_mode(): OccluderPolygon2D.CullMode
         set_polygon(polygon: PackedVector2Array): void
         get_polygon(): PackedVector2Array
+        // // godot.getset: closed: boolean
+        // // godot.getset: cull_mode: number /*i64*/
+        // // godot.getset: polygon: PackedVector2Array
     }
     class OfflineMultiplayerPeer extends MultiplayerPeer {
     }
@@ -764,6 +3659,9 @@ declare module "godot" {
         set_sampling_rate(sampling_rate: number /*f64*/): void
         get_sampling_rate(): number /*f64*/
         get_length(): number /*f64*/
+        // // godot.getset: packet_data: Array
+        // // godot.getset: granule_positions: PackedInt64Array
+        // // godot.getset: sampling_rate: number /*f64*/
     }
     class OggPacketSequencePlayback extends RefCounted {
     }
@@ -776,6 +3674,9 @@ declare module "godot" {
     class OmniLight3D extends Light3D {
         set_shadow_mode(mode: OmniLight3D.ShadowMode): void
         get_shadow_mode(): OmniLight3D.ShadowMode
+        // // godot.getset: omni_range: number /*f64*/
+        // // godot.getset: omni_attenuation: number /*f64*/
+        // // godot.getset: omni_shadow_mode: number /*i64*/
     }
     class OpenXRAPIExtension extends RefCounted {
         get_instance(): number /*i64*/
@@ -808,6 +3709,9 @@ declare module "godot" {
         get_action_type(): OpenXRAction.ActionType
         set_toplevel_paths(toplevel_paths: PackedStringArray): void
         get_toplevel_paths(): PackedStringArray
+        // // godot.getset: localized_name: string
+        // // godot.getset: action_type: number /*i64*/
+        // // godot.getset: toplevel_paths: PackedStringArray
     }
     class OpenXRActionMap extends Resource {
         set_action_sets(action_sets: Array): void
@@ -825,6 +3729,8 @@ declare module "godot" {
         add_interaction_profile(interaction_profile: OpenXRInteractionProfile): void
         remove_interaction_profile(interaction_profile: OpenXRInteractionProfile): void
         create_default_action_sets(): void
+        // // godot.getset: action_sets: Array
+        // // godot.getset: interaction_profiles: Array
     }
     class OpenXRActionSet extends Resource {
         set_localized_name(localized_name: string): void
@@ -836,6 +3742,9 @@ declare module "godot" {
         get_actions(): Array
         add_action(action: OpenXRAction): void
         remove_action(action: OpenXRAction): void
+        // // godot.getset: localized_name: string
+        // // godot.getset: priority: number /*i64*/
+        // // godot.getset: actions: Array
     }
     class OpenXRExtensionWrapperExtension extends Object {
         get_openxr_api(): OpenXRAPIExtension
@@ -860,6 +3769,9 @@ declare module "godot" {
         get_hand_skeleton(): NodePath
         set_motion_range(motion_range: OpenXRHand.MotionRange): void
         get_motion_range(): OpenXRHand.MotionRange
+        // // godot.getset: hand: number /*i64*/
+        // // godot.getset: motion_range: number /*i64*/
+        // // godot.getset: hand_skeleton: NodePath
     }
     class OpenXRIPBinding extends Resource {
         set_action(action: OpenXRAction): void
@@ -870,6 +3782,8 @@ declare module "godot" {
         has_path(path: string): boolean
         add_path(path: string): void
         remove_path(path: string): void
+        // // godot.getset: action: Object
+        // // godot.getset: paths: PackedStringArray
     }
     class OpenXRInteractionProfile extends Resource {
         set_interaction_profile_path(interaction_profile_path: string): void
@@ -878,6 +3792,8 @@ declare module "godot" {
         get_binding(index: number /*i64*/): OpenXRIPBinding
         set_bindings(bindings: Array): void
         get_bindings(): Array
+        // // godot.getset: interaction_profile_path: string
+        // // godot.getset: bindings: Array
     }
     class OpenXRInteractionProfileMetadata extends Object {
         register_profile_rename(old_name: string, new_name: string): void
@@ -959,11 +3875,15 @@ declare module "godot" {
         get_hand_joint_angular_velocity(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): Vector3
         is_hand_tracking_supported(): boolean
         is_eye_gaze_interaction_supported(): boolean
-        // SIGNAL: session_begun
-        // SIGNAL: session_stopping
-        // SIGNAL: session_focussed
-        // SIGNAL: session_visible
-        // SIGNAL: pose_recentered
+        // // godot.getset: display_refresh_rate: number /*f64*/
+        // // godot.getset: render_target_size_multiplier: number /*f64*/
+        // // godot.getset: foveation_level: number /*i64*/
+        // // godot.getset: foveation_dynamic: boolean
+        session_begun: Signal
+        session_stopping: Signal
+        session_focussed: Signal
+        session_visible: Signal
+        pose_recentered: Signal
     }
     class OptimizedTranslation extends Translation {
         generate(from: Translation): void
@@ -1004,8 +3924,12 @@ declare module "godot" {
         set_allow_reselect(allow: boolean): void
         get_allow_reselect(): boolean
         set_disable_shortcuts(disabled: boolean): void
-        // SIGNAL: item_selected
-        // SIGNAL: item_focused
+        // // godot.getset: item_count: number /*i64*/
+        // // godot.getset: selected: number /*i64*/
+        // // godot.getset: fit_to_longest_item: boolean
+        // // godot.getset: allow_reselect: boolean
+        item_selected: Signal
+        item_focused: Signal
     }
     class OrphanResourcesDialog extends ConfirmationDialog {
     }
@@ -1022,6 +3946,7 @@ declare module "godot" {
         _iter_next(_unnamed_arg0: Array): any
         pack(value: any): GodotError
         size(): number /*i64*/
+        // // godot.getset: __data__: PackedByteArray
     }
     class PackedDataContainerRef extends RefCounted {
         size(): number /*i64*/
@@ -1044,6 +3969,7 @@ declare module "godot" {
         _set_bundled_scene(scene: Dictionary): void
         _get_bundled_scene(): Dictionary
         get_state(): SceneState
+        // // godot.getset: _bundled: Dictionary
     }
     class PackedSceneEditorPlugin extends EditorPlugin {
     }
@@ -1058,6 +3984,7 @@ declare module "godot" {
         get_available_packet_count(): number /*i64*/
         get_encode_buffer_max_size(): number /*i64*/
         set_encode_buffer_max_size(max_size: number /*i64*/): void
+        // // godot.getset: encode_buffer_max_size: number /*i64*/
     }
     namespace PacketPeerDTLS {
         enum Status {
@@ -1083,6 +4010,9 @@ declare module "godot" {
         set_output_buffer_max_size(max_size_bytes: number /*i64*/): void
         get_input_buffer_max_size(): number /*i64*/
         get_output_buffer_max_size(): number /*i64*/
+        // // godot.getset: input_buffer_max_size: number /*i64*/
+        // // godot.getset: output_buffer_max_size: number /*i64*/
+        // // godot.getset: stream_peer: Object
     }
     class PacketPeerUDP extends PacketPeer {
         bind(port: number /*i64*/, bind_address: string, recv_buf_size: number /*i64*/): GodotError
@@ -1108,6 +4038,8 @@ declare module "godot" {
         get_panorama(): Texture2D
         set_filtering_enabled(enabled: boolean): void
         is_filtering_enabled(): boolean
+        // // godot.getset: panorama: Object
+        // // godot.getset: filter: boolean
     }
     class PanoramaSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
@@ -1125,6 +4057,12 @@ declare module "godot" {
         get_limit_end(): Vector2
         set_ignore_camera_zoom(ignore: boolean): void
         is_ignore_camera_zoom(): boolean
+        // // godot.getset: scroll_offset: Vector2
+        // // godot.getset: scroll_base_offset: Vector2
+        // // godot.getset: scroll_base_scale: Vector2
+        // // godot.getset: scroll_limit_begin: Vector2
+        // // godot.getset: scroll_limit_end: Vector2
+        // // godot.getset: scroll_ignore_camera_zoom: boolean
     }
     class ParallaxLayer extends Node2D {
         set_motion_scale(scale: Vector2): void
@@ -1133,6 +4071,9 @@ declare module "godot" {
         get_motion_offset(): Vector2
         set_mirroring(mirror: Vector2): void
         get_mirroring(): Vector2
+        // // godot.getset: motion_scale: Vector2
+        // // godot.getset: motion_offset: Vector2
+        // // godot.getset: motion_mirroring: Vector2
     }
     namespace ParticleProcessMaterial {
         enum Parameter {
@@ -1278,12 +4219,107 @@ declare module "godot" {
         get_collision_friction(): number /*f64*/
         set_collision_bounce(bounce: number /*f64*/): void
         get_collision_bounce(): number /*f64*/
+        // // godot.getset: lifetime_randomness: number /*f64*/
+        // // godot.getset: particle_flag_align_y: boolean
+        // // godot.getset: particle_flag_rotate_y: boolean
+        // // godot.getset: particle_flag_disable_z: boolean
+        // // godot.getset: particle_flag_damping_as_friction: boolean
+        // // godot.getset: emission_shape_offset: Vector3
+        // // godot.getset: emission_shape_scale: Vector3
+        // // godot.getset: emission_shape: number /*i64*/
+        // // godot.getset: emission_sphere_radius: number /*f64*/
+        // // godot.getset: emission_box_extents: Vector3
+        // // godot.getset: emission_point_texture: Object
+        // // godot.getset: emission_normal_texture: Object
+        // // godot.getset: emission_color_texture: Object
+        // // godot.getset: emission_point_count: number /*i64*/
+        // // godot.getset: emission_ring_axis: Vector3
+        // // godot.getset: emission_ring_height: number /*f64*/
+        // // godot.getset: emission_ring_radius: number /*f64*/
+        // // godot.getset: emission_ring_inner_radius: number /*f64*/
+        // // godot.getset: angle_min: number /*f64*/
+        // // godot.getset: angle_max: number /*f64*/
+        // // godot.getset: angle_curve: Object
+        // // godot.getset: inherit_velocity_ratio: number /*f64*/
+        // // godot.getset: velocity_pivot: Vector3
+        // // godot.getset: direction: Vector3
+        // // godot.getset: spread: number /*f64*/
+        // // godot.getset: flatness: number /*f64*/
+        // // godot.getset: initial_velocity_min: number /*f64*/
+        // // godot.getset: initial_velocity_max: number /*f64*/
+        // // godot.getset: angular_velocity_min: number /*f64*/
+        // // godot.getset: angular_velocity_max: number /*f64*/
+        // // godot.getset: angular_velocity_curve: Object
+        // // godot.getset: directional_velocity_min: number /*f64*/
+        // // godot.getset: directional_velocity_max: number /*f64*/
+        // // godot.getset: directional_velocity_curve: Object
+        // // godot.getset: orbit_velocity_min: number /*f64*/
+        // // godot.getset: orbit_velocity_max: number /*f64*/
+        // // godot.getset: orbit_velocity_curve: Object
+        // // godot.getset: radial_velocity_min: number /*f64*/
+        // // godot.getset: radial_velocity_max: number /*f64*/
+        // // godot.getset: radial_velocity_curve: Object
+        // // godot.getset: velocity_limit_curve: Object
+        // // godot.getset: gravity: Vector3
+        // // godot.getset: linear_accel_min: number /*f64*/
+        // // godot.getset: linear_accel_max: number /*f64*/
+        // // godot.getset: linear_accel_curve: Object
+        // // godot.getset: radial_accel_min: number /*f64*/
+        // // godot.getset: radial_accel_max: number /*f64*/
+        // // godot.getset: radial_accel_curve: Object
+        // // godot.getset: tangential_accel_min: number /*f64*/
+        // // godot.getset: tangential_accel_max: number /*f64*/
+        // // godot.getset: tangential_accel_curve: Object
+        // // godot.getset: damping_min: number /*f64*/
+        // // godot.getset: damping_max: number /*f64*/
+        // // godot.getset: damping_curve: Object
+        // // godot.getset: attractor_interaction_enabled: boolean
+        // // godot.getset: scale_min: number /*f64*/
+        // // godot.getset: scale_max: number /*f64*/
+        // // godot.getset: scale_curve: Object
+        // // godot.getset: scale_over_velocity_min: number /*f64*/
+        // // godot.getset: scale_over_velocity_max: number /*f64*/
+        // // godot.getset: scale_over_velocity_curve: Object
+        // // godot.getset: color: Color
+        // // godot.getset: color_ramp: Object
+        // // godot.getset: color_initial_ramp: Object
+        // // godot.getset: alpha_curve: Object
+        // // godot.getset: emission_curve: Object
+        // // godot.getset: hue_variation_min: number /*f64*/
+        // // godot.getset: hue_variation_max: number /*f64*/
+        // // godot.getset: hue_variation_curve: Object
+        // // godot.getset: anim_speed_min: number /*f64*/
+        // // godot.getset: anim_speed_max: number /*f64*/
+        // // godot.getset: anim_speed_curve: Object
+        // // godot.getset: anim_offset_min: number /*f64*/
+        // // godot.getset: anim_offset_max: number /*f64*/
+        // // godot.getset: anim_offset_curve: Object
+        // // godot.getset: turbulence_enabled: boolean
+        // // godot.getset: turbulence_noise_strength: number /*f64*/
+        // // godot.getset: turbulence_noise_scale: number /*f64*/
+        // // godot.getset: turbulence_noise_speed: Vector3
+        // // godot.getset: turbulence_noise_speed_random: number /*f64*/
+        // // godot.getset: turbulence_influence_min: number /*f64*/
+        // // godot.getset: turbulence_influence_max: number /*f64*/
+        // // godot.getset: turbulence_initial_displacement_min: number /*f64*/
+        // // godot.getset: turbulence_initial_displacement_max: number /*f64*/
+        // // godot.getset: turbulence_influence_over_life: Object
+        // // godot.getset: collision_mode: number /*i64*/
+        // // godot.getset: collision_friction: number /*f64*/
+        // // godot.getset: collision_bounce: number /*f64*/
+        // // godot.getset: collision_use_scale: boolean
+        // // godot.getset: sub_emitter_mode: number /*i64*/
+        // // godot.getset: sub_emitter_frequency: number /*f64*/
+        // // godot.getset: sub_emitter_amount_at_end: number /*i64*/
+        // // godot.getset: sub_emitter_amount_at_collision: number /*i64*/
+        // // godot.getset: sub_emitter_keep_velocity: boolean
     }
     class ParticleProcessMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
     class Path2D extends Node2D {
         set_curve(curve: Curve2D): void
         get_curve(): Curve2D
+        // // godot.getset: curve: Object
     }
     class Path2DEditor extends HBoxContainer {
     }
@@ -1292,7 +4328,8 @@ declare module "godot" {
     class Path3D extends Node3D {
         set_curve(curve: Curve3D): void
         get_curve(): Curve3D
-        // SIGNAL: curve_changed
+        // // godot.getset: curve: Object
+        curve_changed: Signal
     }
     class Path3DEditorPlugin extends EditorPlugin {
     }
@@ -1313,6 +4350,13 @@ declare module "godot" {
         get_cubic_interpolation(): boolean
         set_loop(loop: boolean): void
         has_loop(): boolean
+        // // godot.getset: progress: number /*f64*/
+        // // godot.getset: progress_ratio: number /*f64*/
+        // // godot.getset: h_offset: number /*f64*/
+        // // godot.getset: v_offset: number /*f64*/
+        // // godot.getset: rotates: boolean
+        // // godot.getset: cubic_interp: boolean
+        // // godot.getset: loop: boolean
     }
     namespace PathFollow3D {
         enum RotationMode {
@@ -1343,6 +4387,15 @@ declare module "godot" {
         set_tilt_enabled(enabled: boolean): void
         is_tilt_enabled(): boolean
         static correct_posture(transform: Transform3D, rotation_mode: PathFollow3D.RotationMode): Transform3D
+        // // godot.getset: progress: number /*f64*/
+        // // godot.getset: progress_ratio: number /*f64*/
+        // // godot.getset: h_offset: number /*f64*/
+        // // godot.getset: v_offset: number /*f64*/
+        // // godot.getset: rotation_mode: number /*i64*/
+        // // godot.getset: use_model_front: boolean
+        // // godot.getset: cubic_interp: boolean
+        // // godot.getset: loop: boolean
+        // // godot.getset: tilt_enabled: boolean
     }
     class PhysicalBone2D extends RigidBody2D {
         get_joint(): Joint2D
@@ -1357,6 +4410,11 @@ declare module "godot" {
         get_bone2d_index(): number /*i64*/
         set_follow_bone_when_simulating(follow_bone: boolean): void
         get_follow_bone_when_simulating(): boolean
+        // // godot.getset: bone2d_nodepath: NodePath
+        // // godot.getset: bone2d_index: number /*i64*/
+        // // godot.getset: auto_configure_joint: boolean
+        // // godot.getset: simulate_physics: boolean
+        // // godot.getset: follow_bone_when_simulating: boolean
     }
     namespace PhysicalBone3D {
         enum DampMode {
@@ -1410,6 +4468,22 @@ declare module "godot" {
         is_using_custom_integrator(): boolean
         set_can_sleep(able_to_sleep: boolean): void
         is_able_to_sleep(): boolean
+        // // godot.getset: joint_type: number /*i64*/
+        // // godot.getset: joint_offset: Transform3D
+        // // godot.getset: joint_rotation: Vector3
+        // // godot.getset: body_offset: Transform3D
+        // // godot.getset: mass: number /*f64*/
+        // // godot.getset: friction: number /*f64*/
+        // // godot.getset: bounce: number /*f64*/
+        // // godot.getset: gravity_scale: number /*f64*/
+        // // godot.getset: custom_integrator: boolean
+        // // godot.getset: linear_damp_mode: number /*i64*/
+        // // godot.getset: linear_damp: number /*f64*/
+        // // godot.getset: angular_damp_mode: number /*i64*/
+        // // godot.getset: angular_damp: number /*f64*/
+        // // godot.getset: linear_velocity: Vector3
+        // // godot.getset: angular_velocity: Vector3
+        // // godot.getset: can_sleep: boolean
     }
     class PhysicalBone3DEditorPlugin extends EditorPlugin {
     }
@@ -1438,6 +4512,17 @@ declare module "godot" {
         get_use_debanding(): boolean
         set_night_sky(night_sky: Texture2D): void
         get_night_sky(): Texture2D
+        // // godot.getset: rayleigh_coefficient: number /*f64*/
+        // // godot.getset: rayleigh_color: Color
+        // // godot.getset: mie_coefficient: number /*f64*/
+        // // godot.getset: mie_eccentricity: number /*f64*/
+        // // godot.getset: mie_color: Color
+        // // godot.getset: turbidity: number /*f64*/
+        // // godot.getset: sun_disk_scale: number /*f64*/
+        // // godot.getset: ground_color: Color
+        // // godot.getset: energy_multiplier: number /*f64*/
+        // // godot.getset: use_debanding: boolean
+        // // godot.getset: night_sky: Object
     }
     class PhysicalSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
@@ -1456,6 +4541,12 @@ declare module "godot" {
         get_collision_exceptions(): Array
         add_collision_exception_with(body: Node): void
         remove_collision_exception_with(body: Node): void
+        // // godot.getset: axis_lock_linear_x: boolean
+        // // godot.getset: axis_lock_linear_y: boolean
+        // // godot.getset: axis_lock_linear_z: boolean
+        // // godot.getset: axis_lock_angular_x: boolean
+        // // godot.getset: axis_lock_angular_y: boolean
+        // // godot.getset: axis_lock_angular_z: boolean
     }
     class PhysicsDirectBodyState2D extends Object {
         get_total_gravity(): Vector2
@@ -1502,6 +4593,18 @@ declare module "godot" {
         get_step(): number /*f64*/
         integrate_forces(): void
         get_space_state(): PhysicsDirectSpaceState2D
+        // // godot.getset: step: number /*f64*/
+        // // godot.getset: inverse_mass: number /*f64*/
+        // // godot.getset: inverse_inertia: number /*f64*/
+        // // godot.getset: total_angular_damp: number /*f64*/
+        // // godot.getset: total_linear_damp: number /*f64*/
+        // // godot.getset: total_gravity: Vector2
+        // // godot.getset: center_of_mass: Vector2
+        // // godot.getset: center_of_mass_local: Vector2
+        // // godot.getset: angular_velocity: number /*f64*/
+        // // godot.getset: linear_velocity: Vector2
+        // // godot.getset: sleeping: boolean
+        // // godot.getset: transform: Transform2D
     }
     class PhysicsDirectBodyState2DExtension extends PhysicsDirectBodyState2D {
     }
@@ -1552,6 +4655,20 @@ declare module "godot" {
         get_step(): number /*f64*/
         integrate_forces(): void
         get_space_state(): PhysicsDirectSpaceState3D
+        // // godot.getset: step: number /*f64*/
+        // // godot.getset: inverse_mass: number /*f64*/
+        // // godot.getset: total_angular_damp: number /*f64*/
+        // // godot.getset: total_linear_damp: number /*f64*/
+        // // godot.getset: inverse_inertia: Vector3
+        // // godot.getset: inverse_inertia_tensor: Basis
+        // // godot.getset: total_gravity: Vector3
+        // // godot.getset: center_of_mass: Vector3
+        // // godot.getset: center_of_mass_local: Vector3
+        // // godot.getset: principal_inertia_axes: Basis
+        // // godot.getset: angular_velocity: Vector3
+        // // godot.getset: linear_velocity: Vector3
+        // // godot.getset: sleeping: boolean
+        // // godot.getset: transform: Transform3D
     }
     class PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
     }
@@ -1586,6 +4703,10 @@ declare module "godot" {
         get_bounce(): number /*f64*/
         set_absorbent(absorbent: boolean): void
         is_absorbent(): boolean
+        // // godot.getset: friction: number /*f64*/
+        // // godot.getset: rough: boolean
+        // // godot.getset: bounce: number /*f64*/
+        // // godot.getset: absorbent: boolean
     }
     class PhysicsPointQueryParameters2D extends RefCounted {
         set_position(position: Vector2): void
@@ -1600,6 +4721,12 @@ declare module "godot" {
         is_collide_with_bodies_enabled(): boolean
         set_collide_with_areas(enable: boolean): void
         is_collide_with_areas_enabled(): boolean
+        // // godot.getset: position: Vector2
+        // // godot.getset: canvas_instance_id: number /*i64*/
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: exclude: Array
+        // // godot.getset: collide_with_bodies: boolean
+        // // godot.getset: collide_with_areas: boolean
     }
     class PhysicsPointQueryParameters3D extends RefCounted {
         set_position(position: Vector3): void
@@ -1612,6 +4739,11 @@ declare module "godot" {
         is_collide_with_bodies_enabled(): boolean
         set_collide_with_areas(enable: boolean): void
         is_collide_with_areas_enabled(): boolean
+        // // godot.getset: position: Vector3
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: exclude: Array
+        // // godot.getset: collide_with_bodies: boolean
+        // // godot.getset: collide_with_areas: boolean
     }
     class PhysicsRayQueryParameters2D extends RefCounted {
         static create(from: Vector2, to: Vector2, collision_mask: number /*i64*/, exclude: Array): PhysicsRayQueryParameters2D
@@ -1629,6 +4761,13 @@ declare module "godot" {
         is_collide_with_areas_enabled(): boolean
         set_hit_from_inside(enable: boolean): void
         is_hit_from_inside_enabled(): boolean
+        // // godot.getset: from: Vector2
+        // // godot.getset: to: Vector2
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: exclude: Array
+        // // godot.getset: collide_with_bodies: boolean
+        // // godot.getset: collide_with_areas: boolean
+        // // godot.getset: hit_from_inside: boolean
     }
     class PhysicsRayQueryParameters3D extends RefCounted {
         static create(from: Vector3, to: Vector3, collision_mask: number /*i64*/, exclude: Array): PhysicsRayQueryParameters3D
@@ -1648,6 +4787,14 @@ declare module "godot" {
         is_hit_from_inside_enabled(): boolean
         set_hit_back_faces(enable: boolean): void
         is_hit_back_faces_enabled(): boolean
+        // // godot.getset: from: Vector3
+        // // godot.getset: to: Vector3
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: exclude: Array
+        // // godot.getset: collide_with_bodies: boolean
+        // // godot.getset: collide_with_areas: boolean
+        // // godot.getset: hit_from_inside: boolean
+        // // godot.getset: hit_back_faces: boolean
     }
     class PhysicsServer3DRenderingServerHandler extends Object {
         set_vertex(vertex_id: number /*i64*/, vertex: Vector3): void
@@ -1673,6 +4820,15 @@ declare module "godot" {
         is_collide_with_bodies_enabled(): boolean
         set_collide_with_areas(enable: boolean): void
         is_collide_with_areas_enabled(): boolean
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: exclude: Array
+        // // godot.getset: margin: number /*f64*/
+        // // godot.getset: motion: Vector2
+        // // godot.getset: shape: Object
+        // // godot.getset: shape_rid: RID
+        // // godot.getset: transform: Transform2D
+        // // godot.getset: collide_with_bodies: boolean
+        // // godot.getset: collide_with_areas: boolean
     }
     class PhysicsShapeQueryParameters3D extends RefCounted {
         set_shape(shape: Resource): void
@@ -1693,6 +4849,15 @@ declare module "godot" {
         is_collide_with_bodies_enabled(): boolean
         set_collide_with_areas(enable: boolean): void
         is_collide_with_areas_enabled(): boolean
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: exclude: Array
+        // // godot.getset: margin: number /*f64*/
+        // // godot.getset: motion: Vector2
+        // // godot.getset: shape: Object
+        // // godot.getset: shape_rid: RID
+        // // godot.getset: transform: Transform3D
+        // // godot.getset: collide_with_bodies: boolean
+        // // godot.getset: collide_with_areas: boolean
     }
     class PhysicsTestMotionParameters2D extends RefCounted {
         get_from(): Transform2D
@@ -1709,6 +4874,13 @@ declare module "godot" {
         set_exclude_objects(exclude_list: Array): void
         is_recovery_as_collision_enabled(): boolean
         set_recovery_as_collision_enabled(enabled: boolean): void
+        // // godot.getset: from: Transform2D
+        // // godot.getset: motion: Vector2
+        // // godot.getset: margin: number /*f64*/
+        // // godot.getset: collide_separation_ray: boolean
+        // // godot.getset: exclude_bodies: Array
+        // // godot.getset: exclude_objects: Array
+        // // godot.getset: recovery_as_collision: boolean
     }
     class PhysicsTestMotionParameters3D extends RefCounted {
         get_from(): Transform3D
@@ -1727,6 +4899,14 @@ declare module "godot" {
         set_exclude_objects(exclude_list: Array): void
         is_recovery_as_collision_enabled(): boolean
         set_recovery_as_collision_enabled(enabled: boolean): void
+        // // godot.getset: from: Transform3D
+        // // godot.getset: motion: Vector3
+        // // godot.getset: margin: number /*f64*/
+        // // godot.getset: max_collisions: number /*i64*/
+        // // godot.getset: collide_separation_ray: boolean
+        // // godot.getset: exclude_bodies: Array
+        // // godot.getset: exclude_objects: Array
+        // // godot.getset: recovery_as_collision: boolean
     }
     class PhysicsTestMotionResult2D extends RefCounted {
         get_travel(): Vector2
@@ -1772,6 +4952,12 @@ declare module "godot" {
         is_motor_enabled(): boolean
         set_angular_limit_enabled(enabled: boolean): void
         is_angular_limit_enabled(): boolean
+        // // godot.getset: softness: number /*f64*/
+        // // godot.getset: angular_limit_enabled: boolean
+        // // godot.getset: angular_limit_lower: number /*f64*/
+        // // godot.getset: angular_limit_upper: number /*f64*/
+        // // godot.getset: motor_enabled: boolean
+        // // godot.getset: motor_target_velocity: number /*f64*/
     }
     namespace PinJoint3D {
         enum Param {
@@ -1783,6 +4969,9 @@ declare module "godot" {
     class PinJoint3D extends Joint3D {
         set_param(param: PinJoint3D.Param, value: number /*f64*/): void
         get_param(param: PinJoint3D.Param): number /*f64*/
+        // // godot.getset: params/bias: number /*f64*/
+        // // godot.getset: params/damping: number /*f64*/
+        // // godot.getset: params/impulse_clamp: number /*f64*/
     }
     class PlaceholderCubemap extends PlaceholderTextureLayered {
     }
@@ -1792,20 +4981,25 @@ declare module "godot" {
     }
     class PlaceholderMesh extends Mesh {
         set_aabb(aabb: AABB): void
+        // // godot.getset: aabb: AABB
     }
     class PlaceholderTexture2D extends Texture2D {
         set_size(size: Vector2): void
+        // // godot.getset: size: Vector2
     }
     class PlaceholderTexture2DArray extends PlaceholderTextureLayered {
     }
     class PlaceholderTexture3D extends Texture3D {
         set_size(size: Vector3i): void
         get_size(): Vector3i
+        // // godot.getset: size: Vector3i
     }
     class PlaceholderTextureLayered extends TextureLayered {
         set_size(size: Vector2i): void
         get_size(): Vector2i
         set_layers(layers: number /*i64*/): void
+        // // godot.getset: size: Vector2i
+        // // godot.getset: layers: number /*i64*/
     }
     namespace PlaneMesh {
         enum Orientation {
@@ -1825,9 +5019,14 @@ declare module "godot" {
         get_center_offset(): Vector3
         set_orientation(orientation: PlaneMesh.Orientation): void
         get_orientation(): PlaneMesh.Orientation
+        // // godot.getset: size: Vector2
+        // // godot.getset: subdivide_width: number /*i64*/
+        // // godot.getset: subdivide_depth: number /*i64*/
+        // // godot.getset: center_offset: Vector3
+        // // godot.getset: orientation: number /*i64*/
     }
     class PluginConfigDialog extends ConfirmationDialog {
-        // SIGNAL: plugin_ready
+        plugin_ready: Signal
     }
     class PointLight2D extends Light2D {
         set_texture(texture: Texture2D): void
@@ -1836,6 +5035,10 @@ declare module "godot" {
         get_texture_offset(): Vector2
         set_texture_scale(texture_scale: number /*f64*/): void
         get_texture_scale(): number /*f64*/
+        // // godot.getset: texture: Object
+        // // godot.getset: offset: Vector2
+        // // godot.getset: texture_scale: number /*f64*/
+        // // godot.getset: height: number /*f64*/
     }
     class PointMesh extends PrimitiveMesh {
     }
@@ -1880,6 +5083,22 @@ declare module "godot" {
         get_internal_vertex_count(): number /*i64*/
         _set_bones(bones: Array): void
         _get_bones(): Array
+        // // godot.getset: color: Color
+        // // godot.getset: offset: Vector2
+        // // godot.getset: antialiased: boolean
+        // // godot.getset: texture: Object
+        // // godot.getset: texture_offset: Vector2
+        // // godot.getset: texture_scale: Vector2
+        // // godot.getset: texture_rotation: number /*f64*/
+        // // godot.getset: skeleton: NodePath
+        // // godot.getset: invert_enabled: boolean
+        // // godot.getset: invert_border: number /*f64*/
+        // // godot.getset: polygon: PackedVector2Array
+        // // godot.getset: uv: PackedVector2Array
+        // // godot.getset: vertex_colors: PackedColorArray
+        // // godot.getset: polygons: Array
+        // // godot.getset: bones: Array
+        // // godot.getset: internal_vertex_count: number /*i64*/
     }
     class Polygon2DEditor extends AbstractPolygon2DEditor {
         _update_bone_list(): void
@@ -1896,6 +5115,7 @@ declare module "godot" {
         set_polygon(polygon: PackedVector2Array): void
         get_polygon(): PackedVector2Array
         _has_editable_3d_polygon_no_depth(): boolean
+        // // godot.getset: polygon: PackedVector2Array
     }
     class PolygonPathFinder extends Resource {
         setup(points: PackedVector2Array, connections: PackedInt32Array): void
@@ -1908,9 +5128,10 @@ declare module "godot" {
         get_bounds(): Rect2
         _set_data(data: Dictionary): void
         _get_data(): Dictionary
+        // // godot.getset: data: Dictionary
     }
     class Popup extends Window {
-        // SIGNAL: popup_hide
+        popup_hide: Signal
     }
     class PopupMenu extends Popup {
         activate_item_by_event(event: InputEvent, for_global_only: boolean): boolean
@@ -1988,10 +5209,16 @@ declare module "godot" {
         get_submenu_popup_delay(): number /*f64*/
         set_allow_search(allow: boolean): void
         get_allow_search(): boolean
-        // SIGNAL: id_pressed
-        // SIGNAL: id_focused
-        // SIGNAL: index_pressed
-        // SIGNAL: menu_changed
+        // // godot.getset: hide_on_item_selection: boolean
+        // // godot.getset: hide_on_checkable_item_selection: boolean
+        // // godot.getset: hide_on_state_item_selection: boolean
+        // // godot.getset: submenu_popup_delay: number /*f64*/
+        // // godot.getset: allow_search: boolean
+        // // godot.getset: item_count: number /*i64*/
+        id_pressed: Signal
+        id_focused: Signal
+        index_pressed: Signal
+        menu_changed: Signal
     }
     class PopupPanel extends Popup {
     }
@@ -2017,6 +5244,9 @@ declare module "godot" {
         _get_data(): PackedByteArray
         static set_keep_all_compressed_buffers(keep: boolean): void
         static is_keeping_all_compressed_buffers(): boolean
+        // // godot.getset: _data: PackedByteArray
+        // // godot.getset: size_override: Vector2
+        // // godot.getset: keep_compressed_buffer: boolean
     }
     class PostImportPluginSkeletonRenamer extends EditorScenePostImportPlugin {
     }
@@ -2038,6 +5268,11 @@ declare module "godot" {
         set_uv2_padding(uv2_padding: number /*f64*/): void
         get_uv2_padding(): number /*f64*/
         _request_update(): void
+        // // godot.getset: material: Object
+        // // godot.getset: custom_aabb: AABB
+        // // godot.getset: flip_faces: boolean
+        // // godot.getset: add_uv2: boolean
+        // // godot.getset: uv2_padding: number /*f64*/
     }
     class PrismMesh extends PrimitiveMesh {
         set_left_to_right(left_to_right: number /*f64*/): void
@@ -2050,6 +5285,11 @@ declare module "godot" {
         get_subdivide_height(): number /*i64*/
         set_subdivide_depth(segments: number /*i64*/): void
         get_subdivide_depth(): number /*i64*/
+        // // godot.getset: left_to_right: number /*f64*/
+        // // godot.getset: size: Vector3
+        // // godot.getset: subdivide_width: number /*i64*/
+        // // godot.getset: subdivide_height: number /*i64*/
+        // // godot.getset: subdivide_depth: number /*i64*/
     }
     class ProceduralSkyMaterial extends Material {
         set_sky_top_color(color: Color): void
@@ -2078,6 +5318,19 @@ declare module "godot" {
         get_sun_curve(): number /*f64*/
         set_use_debanding(use_debanding: boolean): void
         get_use_debanding(): boolean
+        // // godot.getset: sky_top_color: Color
+        // // godot.getset: sky_horizon_color: Color
+        // // godot.getset: sky_curve: number /*f64*/
+        // // godot.getset: sky_energy_multiplier: number /*f64*/
+        // // godot.getset: sky_cover: Object
+        // // godot.getset: sky_cover_modulate: Color
+        // // godot.getset: ground_bottom_color: Color
+        // // godot.getset: ground_horizon_color: Color
+        // // godot.getset: ground_curve: number /*f64*/
+        // // godot.getset: ground_energy_multiplier: number /*f64*/
+        // // godot.getset: sun_angle_max: number /*f64*/
+        // // godot.getset: sun_curve: number /*f64*/
+        // // godot.getset: use_debanding: boolean
     }
     class ProceduralSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
@@ -2094,6 +5347,8 @@ declare module "godot" {
         get_fill_mode(): number /*i64*/
         set_show_percentage(visible: boolean): void
         is_percentage_shown(): boolean
+        // // godot.getset: fill_mode: number /*i64*/
+        // // godot.getset: show_percentage: boolean
     }
     class ProgressDialog extends PopupPanel {
     }
@@ -2102,16 +5357,17 @@ declare module "godot" {
         set_export_path(_unnamed_arg0: string): void
         get_export_path(): string
         get_current_preset(): any /*EditorExportPreset*/
+        // // godot.getset: export_path: string
     }
     class ProjectExportTextureFormatError extends HBoxContainer {
-        // SIGNAL: texture_format_enabled
+        texture_format_enabled: Signal
     }
     class ProjectSettingsEditor extends AcceptDialog {
         queue_save(): void
         _update_action_map_editor(): void
     }
     class PropertySelector extends ConfirmationDialog {
-        // SIGNAL: selected
+        selected: Signal
     }
     class PropertyTweener extends Tweener {
         from(value: any): PropertyTweener
@@ -2126,6 +5382,7 @@ declare module "godot" {
     class QuadOccluder3D extends Occluder3D {
         set_size(size: Vector2): void
         get_size(): Vector2
+        // // godot.getset: size: Vector2
     }
     class RDAttachmentFormat extends RefCounted {
         set_format(p_member: RenderingDevice.DataFormat): void
@@ -2134,6 +5391,9 @@ declare module "godot" {
         get_samples(): RenderingDevice.TextureSamples
         set_usage_flags(p_member: number /*i64*/): void
         get_usage_flags(): number /*i64*/
+        // // godot.getset: format: number /*i64*/
+        // // godot.getset: samples: number /*i64*/
+        // // godot.getset: usage_flags: number /*i64*/
     }
     class RDFramebufferPass extends RefCounted {
         static readonly ATTACHMENT_UNUSED = -1
@@ -2147,6 +5407,11 @@ declare module "godot" {
         get_preserve_attachments(): PackedInt32Array
         set_depth_attachment(p_member: number /*i64*/): void
         get_depth_attachment(): number /*i64*/
+        // // godot.getset: color_attachments: PackedInt32Array
+        // // godot.getset: input_attachments: PackedInt32Array
+        // // godot.getset: resolve_attachments: PackedInt32Array
+        // // godot.getset: preserve_attachments: PackedInt32Array
+        // // godot.getset: depth_attachment: number /*i64*/
     }
     class RDPipelineColorBlendState extends RefCounted {
         set_enable_logic_op(p_member: boolean): void
@@ -2157,6 +5422,10 @@ declare module "godot" {
         get_blend_constant(): Color
         set_attachments(attachments: Array): void
         get_attachments(): Array
+        // // godot.getset: enable_logic_op: boolean
+        // // godot.getset: logic_op: number /*i64*/
+        // // godot.getset: blend_constant: Color
+        // // godot.getset: attachments: Array
     }
     class RDPipelineColorBlendStateAttachment extends RefCounted {
         set_as_mix(): void
@@ -2182,6 +5451,17 @@ declare module "godot" {
         get_write_b(): boolean
         set_write_a(p_member: boolean): void
         get_write_a(): boolean
+        // // godot.getset: enable_blend: boolean
+        // // godot.getset: src_color_blend_factor: number /*i64*/
+        // // godot.getset: dst_color_blend_factor: number /*i64*/
+        // // godot.getset: color_blend_op: number /*i64*/
+        // // godot.getset: src_alpha_blend_factor: number /*i64*/
+        // // godot.getset: dst_alpha_blend_factor: number /*i64*/
+        // // godot.getset: alpha_blend_op: number /*i64*/
+        // // godot.getset: write_r: boolean
+        // // godot.getset: write_g: boolean
+        // // godot.getset: write_b: boolean
+        // // godot.getset: write_a: boolean
     }
     class RDPipelineDepthStencilState extends RefCounted {
         set_enable_depth_test(p_member: boolean): void
@@ -2226,6 +5506,27 @@ declare module "godot" {
         get_back_op_write_mask(): number /*i64*/
         set_back_op_reference(p_member: number /*i64*/): void
         get_back_op_reference(): number /*i64*/
+        // // godot.getset: enable_depth_test: boolean
+        // // godot.getset: enable_depth_write: boolean
+        // // godot.getset: depth_compare_operator: number /*i64*/
+        // // godot.getset: enable_depth_range: boolean
+        // // godot.getset: depth_range_min: number /*f64*/
+        // // godot.getset: depth_range_max: number /*f64*/
+        // // godot.getset: enable_stencil: boolean
+        // // godot.getset: front_op_fail: number /*i64*/
+        // // godot.getset: front_op_pass: number /*i64*/
+        // // godot.getset: front_op_depth_fail: number /*i64*/
+        // // godot.getset: front_op_compare: number /*i64*/
+        // // godot.getset: front_op_compare_mask: number /*i64*/
+        // // godot.getset: front_op_write_mask: number /*i64*/
+        // // godot.getset: front_op_reference: number /*i64*/
+        // // godot.getset: back_op_fail: number /*i64*/
+        // // godot.getset: back_op_pass: number /*i64*/
+        // // godot.getset: back_op_depth_fail: number /*i64*/
+        // // godot.getset: back_op_compare: number /*i64*/
+        // // godot.getset: back_op_compare_mask: number /*i64*/
+        // // godot.getset: back_op_write_mask: number /*i64*/
+        // // godot.getset: back_op_reference: number /*i64*/
     }
     class RDPipelineMultisampleState extends RefCounted {
         set_sample_count(p_member: RenderingDevice.TextureSamples): void
@@ -2240,6 +5541,12 @@ declare module "godot" {
         get_enable_alpha_to_one(): boolean
         set_sample_masks(masks: Array): void
         get_sample_masks(): Array
+        // // godot.getset: sample_count: number /*i64*/
+        // // godot.getset: enable_sample_shading: boolean
+        // // godot.getset: min_sample_shading: number /*f64*/
+        // // godot.getset: enable_alpha_to_coverage: boolean
+        // // godot.getset: enable_alpha_to_one: boolean
+        // // godot.getset: sample_masks: Array
     }
     class RDPipelineRasterizationState extends RefCounted {
         set_enable_depth_clamp(p_member: boolean): void
@@ -2264,12 +5571,25 @@ declare module "godot" {
         get_line_width(): number /*f64*/
         set_patch_control_points(p_member: number /*i64*/): void
         get_patch_control_points(): number /*i64*/
+        // // godot.getset: enable_depth_clamp: boolean
+        // // godot.getset: discard_primitives: boolean
+        // // godot.getset: wireframe: boolean
+        // // godot.getset: cull_mode: number /*i64*/
+        // // godot.getset: front_face: number /*i64*/
+        // // godot.getset: depth_bias_enabled: boolean
+        // // godot.getset: depth_bias_constant_factor: number /*f64*/
+        // // godot.getset: depth_bias_clamp: number /*f64*/
+        // // godot.getset: depth_bias_slope_factor: number /*f64*/
+        // // godot.getset: line_width: number /*f64*/
+        // // godot.getset: patch_control_points: number /*i64*/
     }
     class RDPipelineSpecializationConstant extends RefCounted {
         set_value(value: any): void
         get_value(): any
         set_constant_id(constant_id: number /*i64*/): void
         get_constant_id(): number /*i64*/
+        // // godot.getset: value: any
+        // // godot.getset: constant_id: number /*i64*/
     }
     class RDSamplerState extends RefCounted {
         set_mag_filter(p_member: RenderingDevice.SamplerFilter): void
@@ -2302,6 +5622,21 @@ declare module "godot" {
         get_border_color(): RenderingDevice.SamplerBorderColor
         set_unnormalized_uvw(p_member: boolean): void
         get_unnormalized_uvw(): boolean
+        // // godot.getset: mag_filter: number /*i64*/
+        // // godot.getset: min_filter: number /*i64*/
+        // // godot.getset: mip_filter: number /*i64*/
+        // // godot.getset: repeat_u: number /*i64*/
+        // // godot.getset: repeat_v: number /*i64*/
+        // // godot.getset: repeat_w: number /*i64*/
+        // // godot.getset: lod_bias: number /*f64*/
+        // // godot.getset: use_anisotropy: boolean
+        // // godot.getset: anisotropy_max: number /*f64*/
+        // // godot.getset: enable_compare: boolean
+        // // godot.getset: compare_op: number /*i64*/
+        // // godot.getset: min_lod: number /*f64*/
+        // // godot.getset: max_lod: number /*f64*/
+        // // godot.getset: border_color: number /*i64*/
+        // // godot.getset: unnormalized_uvw: boolean
     }
     class RDShaderFile extends Resource {
         set_bytecode(bytecode: RDShaderSPIRV, version: StringName): void
@@ -2311,18 +5646,36 @@ declare module "godot" {
         get_base_error(): string
         _set_versions(versions: Dictionary): void
         _get_versions(): Dictionary
+        // // godot.getset: _versions: Dictionary
+        // // godot.getset: base_error: string
     }
     class RDShaderSPIRV extends Resource {
         set_stage_bytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray): void
         get_stage_bytecode(stage: RenderingDevice.ShaderStage): PackedByteArray
         set_stage_compile_error(stage: RenderingDevice.ShaderStage, compile_error: string): void
         get_stage_compile_error(stage: RenderingDevice.ShaderStage): string
+        // // godot.getset: bytecode_vertex: PackedByteArray
+        // // godot.getset: bytecode_fragment: PackedByteArray
+        // // godot.getset: bytecode_tesselation_control: PackedByteArray
+        // // godot.getset: bytecode_tesselation_evaluation: PackedByteArray
+        // // godot.getset: bytecode_compute: PackedByteArray
+        // // godot.getset: compile_error_vertex: string
+        // // godot.getset: compile_error_fragment: string
+        // // godot.getset: compile_error_tesselation_control: string
+        // // godot.getset: compile_error_tesselation_evaluation: string
+        // // godot.getset: compile_error_compute: string
     }
     class RDShaderSource extends RefCounted {
         set_stage_source(stage: RenderingDevice.ShaderStage, source: string): void
         get_stage_source(stage: RenderingDevice.ShaderStage): string
         set_language(language: RenderingDevice.ShaderLanguage): void
         get_language(): RenderingDevice.ShaderLanguage
+        // // godot.getset: source_vertex: string
+        // // godot.getset: source_fragment: string
+        // // godot.getset: source_tesselation_control: string
+        // // godot.getset: source_tesselation_evaluation: string
+        // // godot.getset: source_compute: string
+        // // godot.getset: language: number /*i64*/
     }
     class RDTextureFormat extends RefCounted {
         set_format(p_member: RenderingDevice.DataFormat): void
@@ -2345,6 +5698,15 @@ declare module "godot" {
         get_usage_bits(): RenderingDevice.TextureUsageBits
         add_shareable_format(format: RenderingDevice.DataFormat): void
         remove_shareable_format(format: RenderingDevice.DataFormat): void
+        // // godot.getset: format: number /*i64*/
+        // // godot.getset: width: number /*i64*/
+        // // godot.getset: height: number /*i64*/
+        // // godot.getset: depth: number /*i64*/
+        // // godot.getset: array_layers: number /*i64*/
+        // // godot.getset: mipmaps: number /*i64*/
+        // // godot.getset: texture_type: number /*i64*/
+        // // godot.getset: samples: number /*i64*/
+        // // godot.getset: usage_bits: number /*i64*/
     }
     class RDTextureView extends RefCounted {
         set_format_override(p_member: RenderingDevice.DataFormat): void
@@ -2357,6 +5719,11 @@ declare module "godot" {
         get_swizzle_b(): RenderingDevice.TextureSwizzle
         set_swizzle_a(p_member: RenderingDevice.TextureSwizzle): void
         get_swizzle_a(): RenderingDevice.TextureSwizzle
+        // // godot.getset: format_override: number /*i64*/
+        // // godot.getset: swizzle_r: number /*i64*/
+        // // godot.getset: swizzle_g: number /*i64*/
+        // // godot.getset: swizzle_b: number /*i64*/
+        // // godot.getset: swizzle_a: number /*i64*/
     }
     class RDUniform extends RefCounted {
         set_uniform_type(p_member: RenderingDevice.UniformType): void
@@ -2367,6 +5734,9 @@ declare module "godot" {
         clear_ids(): void
         _set_ids(ids: Array): void
         get_ids(): Array
+        // // godot.getset: uniform_type: number /*i64*/
+        // // godot.getset: binding: number /*i64*/
+        // // godot.getset: _ids: Array
     }
     class RDVertexAttribute extends RefCounted {
         set_location(p_member: number /*i64*/): void
@@ -2379,6 +5749,11 @@ declare module "godot" {
         get_stride(): number /*i64*/
         set_frequency(p_member: RenderingDevice.VertexFrequency): void
         get_frequency(): RenderingDevice.VertexFrequency
+        // // godot.getset: location: number /*i64*/
+        // // godot.getset: offset: number /*i64*/
+        // // godot.getset: format: number /*i64*/
+        // // godot.getset: stride: number /*i64*/
+        // // godot.getset: frequency: number /*i64*/
     }
     class RandomNumberGenerator extends RefCounted {
         set_seed(seed: number /*i64*/): void
@@ -2391,6 +5766,8 @@ declare module "godot" {
         randf_range(from: number /*f64*/, to: number /*f64*/): number /*f64*/
         randi_range(from: number /*i64*/, to: number /*i64*/): number /*i64*/
         randomize(): void
+        // // godot.getset: seed: number /*i64*/
+        // // godot.getset: state: number /*i64*/
     }
     class Range extends Control {
         get_value(): number /*f64*/
@@ -2416,8 +5793,18 @@ declare module "godot" {
         is_lesser_allowed(): boolean
         share(with_: Node): void
         unshare(): void
-        // SIGNAL: value_changed
-        // SIGNAL: changed
+        // // godot.getset: min_value: number /*f64*/
+        // // godot.getset: max_value: number /*f64*/
+        // // godot.getset: step: number /*f64*/
+        // // godot.getset: page: number /*f64*/
+        // // godot.getset: value: number /*f64*/
+        // // godot.getset: ratio: number /*f64*/
+        // // godot.getset: exp_edit: boolean
+        // // godot.getset: rounded: boolean
+        // // godot.getset: allow_greater: boolean
+        // // godot.getset: allow_lesser: boolean
+        value_changed: Signal
+        changed: Signal
     }
     class RayCast2D extends Node2D {
         set_enabled(enabled: boolean): void
@@ -2448,6 +5835,13 @@ declare module "godot" {
         is_collide_with_bodies_enabled(): boolean
         set_hit_from_inside(enable: boolean): void
         is_hit_from_inside_enabled(): boolean
+        // // godot.getset: enabled: boolean
+        // // godot.getset: exclude_parent: boolean
+        // // godot.getset: target_position: Vector2
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: hit_from_inside: boolean
+        // // godot.getset: collide_with_areas: boolean
+        // // godot.getset: collide_with_bodies: boolean
     }
     class RayCast3D extends Node3D {
         set_enabled(enabled: boolean): void
@@ -2485,12 +5879,23 @@ declare module "godot" {
         get_debug_shape_custom_color(): Color
         set_debug_shape_thickness(debug_shape_thickness: number /*i64*/): void
         get_debug_shape_thickness(): number /*i64*/
+        // // godot.getset: enabled: boolean
+        // // godot.getset: exclude_parent: boolean
+        // // godot.getset: target_position: Vector3
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: hit_from_inside: boolean
+        // // godot.getset: hit_back_faces: boolean
+        // // godot.getset: collide_with_areas: boolean
+        // // godot.getset: collide_with_bodies: boolean
+        // // godot.getset: debug_shape_custom_color: Color
+        // // godot.getset: debug_shape_thickness: number /*i64*/
     }
     class RayCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     class RectangleShape2D extends Shape2D {
         set_size(size: Vector2): void
         get_size(): Vector2
+        // // godot.getset: size: Vector2
     }
     class RefCounted extends Object {
         init_ref(): boolean
@@ -2505,6 +5910,9 @@ declare module "godot" {
         set_border_width(width: number /*f64*/): void
         get_editor_only(): boolean
         set_editor_only(enabled: boolean): void
+        // // godot.getset: border_color: Color
+        // // godot.getset: border_width: number /*f64*/
+        // // godot.getset: editor_only: boolean
     }
     namespace ReflectionProbe {
         enum UpdateMode {
@@ -2544,6 +5952,19 @@ declare module "godot" {
         get_cull_mask(): number /*i64*/
         set_update_mode(mode: ReflectionProbe.UpdateMode): void
         get_update_mode(): ReflectionProbe.UpdateMode
+        // // godot.getset: update_mode: number /*i64*/
+        // // godot.getset: intensity: number /*f64*/
+        // // godot.getset: max_distance: number /*f64*/
+        // // godot.getset: size: Vector3
+        // // godot.getset: origin_offset: Vector3
+        // // godot.getset: box_projection: boolean
+        // // godot.getset: interior: boolean
+        // // godot.getset: enable_shadows: boolean
+        // // godot.getset: cull_mask: number /*i64*/
+        // // godot.getset: mesh_lod_threshold: number /*f64*/
+        // // godot.getset: ambient_mode: number /*i64*/
+        // // godot.getset: ambient_color: Color
+        // // godot.getset: ambient_color_energy: number /*f64*/
     }
     class ReflectionProbeGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -2567,6 +5988,9 @@ declare module "godot" {
         get_string(name: any): string
         get_start(name: any): number /*i64*/
         get_end(name: any): number /*i64*/
+        // // godot.getset: subject: string
+        // // godot.getset: names: Dictionary
+        // // godot.getset: strings: Array
     }
     class RemoteTransform2D extends Node2D {
         set_remote_node(path: NodePath): void
@@ -2580,6 +6004,11 @@ declare module "godot" {
         get_update_rotation(): boolean
         set_update_scale(update_remote_scale: boolean): void
         get_update_scale(): boolean
+        // // godot.getset: remote_path: NodePath
+        // // godot.getset: use_global_coordinates: boolean
+        // // godot.getset: update_position: boolean
+        // // godot.getset: update_rotation: boolean
+        // // godot.getset: update_scale: boolean
     }
     class RemoteTransform3D extends Node3D {
         set_remote_node(path: NodePath): void
@@ -2593,6 +6022,11 @@ declare module "godot" {
         get_update_rotation(): boolean
         set_update_scale(update_remote_scale: boolean): void
         get_update_scale(): boolean
+        // // godot.getset: remote_path: NodePath
+        // // godot.getset: use_global_coordinates: boolean
+        // // godot.getset: update_position: boolean
+        // // godot.getset: update_rotation: boolean
+        // // godot.getset: update_scale: boolean
     }
     class RenameDialog extends ConfirmationDialog {
         rename(): void
@@ -2625,6 +6059,15 @@ declare module "godot" {
         set_fsr_sharpness(fsr_sharpness: number /*f64*/): void
         get_texture_mipmap_bias(): number /*f64*/
         set_texture_mipmap_bias(texture_mipmap_bias: number /*f64*/): void
+        // // godot.getset: render_target: RID
+        // // godot.getset: internal_size: Vector2i
+        // // godot.getset: target_size: Vector2i
+        // // godot.getset: view_count: number /*i64*/
+        // // godot.getset: scaling_3d_mode: number /*i64*/
+        // // godot.getset: msaa_3d: number /*i64*/
+        // // godot.getset: screen_space_aa: number /*i64*/
+        // // godot.getset: fsr_sharpness: boolean
+        // // godot.getset: texture_mipmap_bias: boolean
     }
     class RenderSceneBuffersExtension extends RenderSceneBuffers {
     }
@@ -3283,7 +6726,7 @@ declare module "godot" {
     }
     class ReparentDialog extends ConfirmationDialog {
         _cancel(): void
-        // SIGNAL: reparent
+        reparent: Signal
     }
     class ReplicationEditor extends VBoxContainer {
         _update_config(): void
@@ -3302,8 +6745,11 @@ declare module "godot" {
         setup_local_to_scene(): void
         emit_changed(): void
         duplicate(subresources: boolean): Resource
-        // SIGNAL: changed
-        // SIGNAL: setup_local_to_scene_requested
+        // // godot.getset: resource_local_to_scene: boolean
+        // // godot.getset: resource_path: string
+        // // godot.getset: resource_name: string
+        changed: Signal
+        setup_local_to_scene_requested: Signal
     }
     class ResourceFormatImporterSaver extends ResourceFormatSaver {
     }
@@ -3367,6 +6813,7 @@ declare module "godot" {
         has_resource(name: StringName): boolean
         get_resource(name: StringName): Resource
         get_resource_list(): PackedStringArray
+        // // godot.getset: resources: Array
     }
     class ResourcePreloaderEditor extends PanelContainer {
         _update_library(): void
@@ -3393,6 +6840,12 @@ declare module "godot" {
         get_curve(): Curve
         set_shape(shape: RibbonTrailMesh.Shape): void
         get_shape(): RibbonTrailMesh.Shape
+        // // godot.getset: shape: number /*i64*/
+        // // godot.getset: size: number /*f64*/
+        // // godot.getset: sections: number /*i64*/
+        // // godot.getset: section_length: number /*f64*/
+        // // godot.getset: section_segments: number /*i64*/
+        // // godot.getset: curve: Object
     }
     class RichTextEffect extends Resource {
     }
@@ -3537,10 +6990,34 @@ declare module "godot" {
         is_menu_visible(): boolean
         menu_option(option: number /*i64*/): void
         _thread_end(): void
-        // SIGNAL: meta_clicked
-        // SIGNAL: meta_hover_started
-        // SIGNAL: meta_hover_ended
-        // SIGNAL: finished
+        // // godot.getset: bbcode_enabled: boolean
+        // // godot.getset: text: string
+        // // godot.getset: fit_content: boolean
+        // // godot.getset: scroll_active: boolean
+        // // godot.getset: scroll_following: boolean
+        // // godot.getset: autowrap_mode: number /*i64*/
+        // // godot.getset: tab_size: number /*i64*/
+        // // godot.getset: context_menu_enabled: boolean
+        // // godot.getset: shortcut_keys_enabled: boolean
+        // // godot.getset: custom_effects: Array
+        // // godot.getset: meta_underlined: boolean
+        // // godot.getset: hint_underlined: boolean
+        // // godot.getset: threaded: boolean
+        // // godot.getset: progress_bar_delay: number /*i64*/
+        // // godot.getset: selection_enabled: boolean
+        // // godot.getset: deselect_on_focus_loss_enabled: boolean
+        // // godot.getset: drag_and_drop_selection_enabled: boolean
+        // // godot.getset: visible_characters: number /*i64*/
+        // // godot.getset: visible_characters_behavior: number /*i64*/
+        // // godot.getset: visible_ratio: number /*f64*/
+        // // godot.getset: text_direction: number /*i64*/
+        // // godot.getset: language: string
+        // // godot.getset: structured_text_bidi_override: number /*i64*/
+        // // godot.getset: structured_text_bidi_override_options: Array
+        meta_clicked: Signal
+        meta_hover_started: Signal
+        meta_hover_ended: Signal
+        finished: Signal
     }
     namespace RigidBody2D {
         enum FreezeMode {
@@ -3620,11 +7097,34 @@ declare module "godot" {
         set_freeze_mode(freeze_mode: RigidBody2D.FreezeMode): void
         get_freeze_mode(): RigidBody2D.FreezeMode
         get_colliding_bodies(): Array
-        // SIGNAL: body_shape_entered
-        // SIGNAL: body_shape_exited
-        // SIGNAL: body_entered
-        // SIGNAL: body_exited
-        // SIGNAL: sleeping_state_changed
+        // // godot.getset: mass: number /*f64*/
+        // // godot.getset: physics_material_override: Object
+        // // godot.getset: gravity_scale: number /*f64*/
+        // // godot.getset: center_of_mass_mode: number /*i64*/
+        // // godot.getset: center_of_mass: Vector2
+        // // godot.getset: inertia: number /*f64*/
+        // // godot.getset: sleeping: boolean
+        // // godot.getset: can_sleep: boolean
+        // // godot.getset: lock_rotation: boolean
+        // // godot.getset: freeze: boolean
+        // // godot.getset: freeze_mode: number /*i64*/
+        // // godot.getset: custom_integrator: boolean
+        // // godot.getset: continuous_cd: number /*i64*/
+        // // godot.getset: max_contacts_reported: number /*i64*/
+        // // godot.getset: contact_monitor: boolean
+        // // godot.getset: linear_velocity: Vector2
+        // // godot.getset: linear_damp_mode: number /*i64*/
+        // // godot.getset: linear_damp: number /*f64*/
+        // // godot.getset: angular_velocity: number /*f64*/
+        // // godot.getset: angular_damp_mode: number /*i64*/
+        // // godot.getset: angular_damp: number /*f64*/
+        // // godot.getset: constant_force: Vector2
+        // // godot.getset: constant_torque: number /*f64*/
+        body_shape_entered: Signal
+        body_shape_exited: Signal
+        body_entered: Signal
+        body_exited: Signal
+        sleeping_state_changed: Signal
     }
     namespace RigidBody3D {
         enum FreezeMode {
@@ -3700,11 +7200,34 @@ declare module "godot" {
         set_freeze_mode(freeze_mode: RigidBody3D.FreezeMode): void
         get_freeze_mode(): RigidBody3D.FreezeMode
         get_colliding_bodies(): Array
-        // SIGNAL: body_shape_entered
-        // SIGNAL: body_shape_exited
-        // SIGNAL: body_entered
-        // SIGNAL: body_exited
-        // SIGNAL: sleeping_state_changed
+        // // godot.getset: mass: number /*f64*/
+        // // godot.getset: physics_material_override: Object
+        // // godot.getset: gravity_scale: number /*f64*/
+        // // godot.getset: center_of_mass_mode: number /*i64*/
+        // // godot.getset: center_of_mass: Vector3
+        // // godot.getset: inertia: Vector3
+        // // godot.getset: sleeping: boolean
+        // // godot.getset: can_sleep: boolean
+        // // godot.getset: lock_rotation: boolean
+        // // godot.getset: freeze: boolean
+        // // godot.getset: freeze_mode: number /*i64*/
+        // // godot.getset: custom_integrator: boolean
+        // // godot.getset: continuous_cd: boolean
+        // // godot.getset: max_contacts_reported: number /*i64*/
+        // // godot.getset: contact_monitor: boolean
+        // // godot.getset: linear_velocity: Vector3
+        // // godot.getset: linear_damp_mode: number /*i64*/
+        // // godot.getset: linear_damp: number /*f64*/
+        // // godot.getset: angular_velocity: Vector3
+        // // godot.getset: angular_damp_mode: number /*i64*/
+        // // godot.getset: angular_damp: number /*f64*/
+        // // godot.getset: constant_force: Vector3
+        // // godot.getset: constant_torque: Vector3
+        body_shape_entered: Signal
+        body_shape_exited: Signal
+        body_entered: Signal
+        body_exited: Signal
+        sleeping_state_changed: Signal
     }
     class RootMotionView extends VisualInstance3D {
         set_animation_path(path: NodePath): void
@@ -3717,14 +7240,19 @@ declare module "godot" {
         get_radius(): number /*f64*/
         set_zero_y(enable: boolean): void
         get_zero_y(): boolean
+        // // godot.getset: animation_path: NodePath
+        // // godot.getset: color: Color
+        // // godot.getset: cell_size: number /*f64*/
+        // // godot.getset: radius: number /*f64*/
+        // // godot.getset: zero_y: boolean
     }
     class RsConsole extends RefCounted {
         process_input(p_text: string): void
-        register_command(p_text: string, p_callable: any /*CALLABLE*/, p_help: string): number /*i64*/
+        register_command(p_text: string, p_callable: Callable, p_help: string): number /*i64*/
         unregister_command(p_id: number /*i64*/): void
         find_objects(p_keyword: string): PackedStringArray
-        // SIGNAL: on_output
-        // SIGNAL: on_clear
+        on_output: Signal
+        on_clear: Signal
     }
     class RsEditorPlugin extends EditorPlugin {
     }
@@ -3752,9 +7280,11 @@ declare module "godot" {
         get_direction(): Vector3
         set_is_moving(_unnamed_arg0: boolean): void
         get_is_moving(): boolean
-        // SIGNAL: game_over
-        // SIGNAL: damage_emitted
-        // SIGNAL: info_updated
+        // // godot.getset: direction: Vector3
+        // // godot.getset: is_moving: boolean
+        game_over: Signal
+        damage_emitted: Signal
+        info_updated: Signal
     }
     class RsOutputDevice extends RefCounted {
         log(): void
@@ -3770,7 +7300,10 @@ declare module "godot" {
         set_texture(value: Texture2D): void
         get_texture(): Texture2D
         _im_update(): void
-        // SIGNAL: frame_changed
+        // // godot.getset: view_position: Vector3
+        // // godot.getset: shader: Object
+        // // godot.getset: texture: Object
+        frame_changed: Signal
     }
     class RsTerrainGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -3792,8 +7325,8 @@ declare module "godot" {
         get_authenticating_peers(): PackedInt32Array
         send_auth(id: number /*i64*/, data: PackedByteArray): GodotError
         complete_auth(id: number /*i64*/): GodotError
-        set_auth_callback(callback: any /*CALLABLE*/): void
-        get_auth_callback(): any /*CALLABLE*/
+        set_auth_callback(callback: Callable): void
+        get_auth_callback(): Callable
         set_auth_timeout(timeout: number /*f64*/): void
         get_auth_timeout(): number /*f64*/
         set_refuse_new_connections(refuse: boolean): void
@@ -3807,9 +7340,17 @@ declare module "godot" {
         set_max_sync_packet_size(size: number /*i64*/): void
         get_max_delta_packet_size(): number /*i64*/
         set_max_delta_packet_size(size: number /*i64*/): void
-        // SIGNAL: peer_authenticating
-        // SIGNAL: peer_authentication_failed
-        // SIGNAL: peer_packet
+        // // godot.getset: root_path: NodePath
+        // // godot.getset: auth_callback: Callable
+        // // godot.getset: auth_timeout: number /*f64*/
+        // // godot.getset: allow_object_decoding: boolean
+        // // godot.getset: refuse_new_connections: boolean
+        // // godot.getset: server_relay: boolean
+        // // godot.getset: max_sync_packet_size: number /*i64*/
+        // // godot.getset: max_delta_packet_size: number /*i64*/
+        peer_authenticating: Signal
+        peer_authentication_failed: Signal
+        peer_packet: Signal
     }
     class SceneRPCInterface extends RefCounted {
     }
@@ -3869,7 +7410,7 @@ declare module "godot" {
         get_connection_unbinds(idx: number /*i64*/): number /*i64*/
     }
     class SceneTileProxyObject extends Object {
-        // SIGNAL: changed
+        changed: Signal
     }
     namespace SceneTree {
         enum GroupCallFlags {
@@ -3921,18 +7462,28 @@ declare module "godot" {
         get_multiplayer(for_path: NodePath): MultiplayerAPI
         set_multiplayer_poll_enabled(enabled: boolean): void
         is_multiplayer_poll_enabled(): boolean
-        // SIGNAL: tree_changed
-        // SIGNAL: tree_process_mode_changed
-        // SIGNAL: node_added
-        // SIGNAL: node_removed
-        // SIGNAL: node_renamed
-        // SIGNAL: node_configuration_warning_changed
-        // SIGNAL: process_frame
-        // SIGNAL: physics_frame
+        // // godot.getset: auto_accept_quit: boolean
+        // // godot.getset: quit_on_go_back: boolean
+        // // godot.getset: debug_collisions_hint: boolean
+        // // godot.getset: debug_paths_hint: boolean
+        // // godot.getset: debug_navigation_hint: boolean
+        // // godot.getset: paused: boolean
+        // // godot.getset: edited_scene_root: Object
+        // // godot.getset: current_scene: Object
+        // // godot.getset: root: Object
+        // // godot.getset: multiplayer_poll: boolean
+        tree_changed: Signal
+        tree_process_mode_changed: Signal
+        node_added: Signal
+        node_removed: Signal
+        node_renamed: Signal
+        node_configuration_warning_changed: Signal
+        process_frame: Signal
+        physics_frame: Signal
     }
     class SceneTreeDialog extends ConfirmationDialog {
         _cancel(): void
-        // SIGNAL: selected
+        selected: Signal
     }
     class SceneTreeDock extends VBoxContainer {
         _set_owners(_unnamed_arg0: Node, _unnamed_arg1: Array): void
@@ -3940,34 +7491,35 @@ declare module "godot" {
         instantiate(_unnamed_arg0: string): void
         get_tree_editor(): SceneTreeEditor
         replace_node(_unnamed_arg0: Node, _unnamed_arg1: Node, _unnamed_arg2: boolean, _unnamed_arg3: boolean): void
-        // SIGNAL: remote_tree_selected
-        // SIGNAL: add_node_used
-        // SIGNAL: node_created
+        remote_tree_selected: Signal
+        add_node_used: Signal
+        node_created: Signal
     }
     class SceneTreeEditor extends Control {
         _update_tree(_unnamed_arg0: boolean): void
         _rename_node(_unnamed_arg0: Node, _unnamed_arg1: string): void
         _test_update_tree(): void
         update_tree(): void
-        // SIGNAL: node_selected
-        // SIGNAL: node_renamed
-        // SIGNAL: node_prerename
-        // SIGNAL: node_changed
-        // SIGNAL: nodes_dragged
-        // SIGNAL: nodes_rearranged
-        // SIGNAL: files_dropped
-        // SIGNAL: script_dropped
-        // SIGNAL: rmb_pressed
-        // SIGNAL: open
-        // SIGNAL: open_script
+        node_selected: Signal
+        node_renamed: Signal
+        node_prerename: Signal
+        node_changed: Signal
+        nodes_dragged: Signal
+        nodes_rearranged: Signal
+        files_dropped: Signal
+        script_dropped: Signal
+        rmb_pressed: Signal
+        open: Signal
+        open_script: Signal
     }
     class SceneTreeTimer extends RefCounted {
         set_time_left(time: number /*f64*/): void
         get_time_left(): number /*f64*/
-        // SIGNAL: timeout
+        // // godot.getset: time_left: number /*f64*/
+        timeout: Signal
     }
     class ScreenSelect extends Button {
-        // SIGNAL: request_open_in_screen
+        request_open_in_screen: Signal
     }
     class Script extends Resource {
         can_instantiate(): boolean
@@ -3986,10 +7538,11 @@ declare module "godot" {
         get_property_default_value(property: StringName): any
         is_tool(): boolean
         is_abstract(): boolean
+        // // godot.getset: source_code: string
     }
     class ScriptCreateDialog extends ConfirmationDialog {
         config(inherits: string, path: string, built_in_enabled: boolean, load_enabled: boolean): void
-        // SIGNAL: script_created
+        script_created: Signal
     }
     class ScriptEditor extends PanelContainer {
         _close_docs_tab(): void
@@ -4010,21 +7563,21 @@ declare module "godot" {
         get_current_script(): Script
         get_open_scripts(): Array
         open_script_create_dialog(base_name: string, base_path: string): void
-        // SIGNAL: editor_script_changed
-        // SIGNAL: script_close
+        editor_script_changed: Signal
+        script_close: Signal
     }
     class ScriptEditorBase extends VBoxContainer {
         get_base_editor(): Control
         add_syntax_highlighter(highlighter: EditorSyntaxHighlighter): void
-        // SIGNAL: name_changed
-        // SIGNAL: edited_script_changed
-        // SIGNAL: request_help
-        // SIGNAL: request_open_script_at_line
-        // SIGNAL: request_save_history
-        // SIGNAL: go_to_help
-        // SIGNAL: search_in_files_requested
-        // SIGNAL: replace_in_files_requested
-        // SIGNAL: go_to_method
+        name_changed: Signal
+        edited_script_changed: Signal
+        request_help: Signal
+        request_open_script_at_line: Signal
+        request_save_history: Signal
+        go_to_help: Signal
+        search_in_files_requested: Signal
+        replace_in_files_requested: Signal
+        go_to_method: Signal
     }
     class ScriptEditorDebugger extends MarginContainer {
         live_debug_create_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
@@ -4036,27 +7589,27 @@ declare module "godot" {
         live_debug_reparent_node(_unnamed_arg0: NodePath, _unnamed_arg1: NodePath, _unnamed_arg2: string, _unnamed_arg3: number /*i64*/): void
         request_remote_object(id: number /*i64*/): void
         update_remote_object(id: number /*i64*/, property: string, value: any): void
-        // SIGNAL: started
-        // SIGNAL: stopped
-        // SIGNAL: stop_requested
-        // SIGNAL: stack_frame_selected
-        // SIGNAL: error_selected
-        // SIGNAL: breakpoint_selected
-        // SIGNAL: set_execution
-        // SIGNAL: clear_execution
-        // SIGNAL: breaked
-        // SIGNAL: remote_object_requested
-        // SIGNAL: remote_object_updated
-        // SIGNAL: remote_object_property_updated
-        // SIGNAL: remote_tree_updated
-        // SIGNAL: output
-        // SIGNAL: stack_dump
-        // SIGNAL: stack_frame_vars
-        // SIGNAL: stack_frame_var
-        // SIGNAL: debug_data
-        // SIGNAL: set_breakpoint
-        // SIGNAL: clear_breakpoints
-        // SIGNAL: errors_cleared
+        started: Signal
+        stopped: Signal
+        stop_requested: Signal
+        stack_frame_selected: Signal
+        error_selected: Signal
+        breakpoint_selected: Signal
+        set_execution: Signal
+        clear_execution: Signal
+        breaked: Signal
+        remote_object_requested: Signal
+        remote_object_updated: Signal
+        remote_object_property_updated: Signal
+        remote_tree_updated: Signal
+        output: Signal
+        stack_dump: Signal
+        stack_frame_vars: Signal
+        stack_frame_var: Signal
+        debug_data: Signal
+        set_breakpoint: Signal
+        clear_breakpoints: Signal
+        errors_cleared: Signal
     }
     class ScriptEditorPlugin extends EditorPlugin {
     }
@@ -4102,7 +7655,8 @@ declare module "godot" {
     class ScrollBar extends Range {
         set_custom_step(step: number /*f64*/): void
         get_custom_step(): number /*f64*/
-        // SIGNAL: scrolling
+        // // godot.getset: custom_step: number /*f64*/
+        scrolling: Signal
     }
     namespace ScrollContainer {
         enum ScrollMode {
@@ -4133,8 +7687,16 @@ declare module "godot" {
         get_h_scroll_bar(): HScrollBar
         get_v_scroll_bar(): VScrollBar
         ensure_control_visible(control: Control): void
-        // SIGNAL: scroll_started
-        // SIGNAL: scroll_ended
+        // // godot.getset: follow_focus: boolean
+        // // godot.getset: scroll_horizontal: number /*i64*/
+        // // godot.getset: scroll_vertical: number /*i64*/
+        // // godot.getset: scroll_horizontal_custom_step: number /*f64*/
+        // // godot.getset: scroll_vertical_custom_step: number /*f64*/
+        // // godot.getset: horizontal_scroll_mode: number /*i64*/
+        // // godot.getset: vertical_scroll_mode: number /*i64*/
+        // // godot.getset: scroll_deadzone: number /*i64*/
+        scroll_started: Signal
+        scroll_ended: Signal
     }
     class SectionedInspector extends HSplitContainer {
         update_category_list(): void
@@ -4146,6 +7708,8 @@ declare module "godot" {
         get_a(): Vector2
         set_b(b: Vector2): void
         get_b(): Vector2
+        // // godot.getset: a: Vector2
+        // // godot.getset: b: Vector2
     }
     class Semaphore extends RefCounted {
         wait(): void
@@ -4157,12 +7721,16 @@ declare module "godot" {
         get_length(): number /*f64*/
         set_slide_on_slope(active: boolean): void
         get_slide_on_slope(): boolean
+        // // godot.getset: length: number /*f64*/
+        // // godot.getset: slide_on_slope: boolean
     }
     class SeparationRayShape3D extends Shape3D {
         set_length(length: number /*f64*/): void
         get_length(): number /*f64*/
         set_slide_on_slope(active: boolean): void
         get_slide_on_slope(): boolean
+        // // godot.getset: length: number /*f64*/
+        // // godot.getset: slide_on_slope: boolean
     }
     class Separator extends Control {
     }
@@ -4182,11 +7750,12 @@ declare module "godot" {
         set_default_texture_parameter(name: StringName, texture: Texture2D, index: number /*i64*/): void
         get_default_texture_parameter(name: StringName, index: number /*i64*/): Texture2D
         get_shader_uniform_list(get_groups: boolean): Array
+        // // godot.getset: code: string
     }
     class ShaderCreateDialog extends ConfirmationDialog {
         config(path: string, built_in_enabled: boolean, load_enabled: boolean, _unnamed_arg3: number /*i64*/, _unnamed_arg4: number /*i64*/): void
-        // SIGNAL: shader_created
-        // SIGNAL: shader_include_created
+        shader_created: Signal
+        shader_include_created: Signal
     }
     class ShaderEditorPlugin extends EditorPlugin {
     }
@@ -4196,12 +7765,12 @@ declare module "godot" {
     }
     class ShaderGlobalsEditor extends VBoxContainer {
         _changed(): void
-        // SIGNAL: globals_changed
+        globals_changed: Signal
     }
     class ShaderGlobalsEditorInterface extends Object {
         _set_var(_unnamed_arg0: StringName, _unnamed_arg1: any, _unnamed_arg2: any): void
         _var_changed(): void
-        // SIGNAL: var_changed
+        var_changed: Signal
     }
     class ShaderGlobalsOverride extends Node {
         _activate(): void
@@ -4209,12 +7778,14 @@ declare module "godot" {
     class ShaderInclude extends Resource {
         set_code(code: string): void
         get_code(): string
+        // // godot.getset: code: string
     }
     class ShaderMaterial extends Material {
         set_shader(shader: Shader): void
         get_shader(): Shader
         set_shader_parameter(param: StringName, value: any): void
         get_shader_parameter(param: StringName): any
+        // // godot.getset: shader: Object
     }
     class Shape2D extends Resource {
         set_custom_solver_bias(bias: number /*f64*/): void
@@ -4225,6 +7796,7 @@ declare module "godot" {
         collide_with_motion_and_get_contacts(local_xform: Transform2D, local_motion: Vector2, with_shape: Shape2D, shape_xform: Transform2D, shape_motion: Vector2): PackedVector2Array
         draw(canvas_item: RID, color: Color): void
         get_rect(): Rect2
+        // // godot.getset: custom_solver_bias: number /*f64*/
     }
     class Shape3D extends Resource {
         set_custom_solver_bias(bias: number /*f64*/): void
@@ -4232,6 +7804,8 @@ declare module "godot" {
         set_margin(margin: number /*f64*/): void
         get_margin(): number /*f64*/
         get_debug_mesh(): ArrayMesh
+        // // godot.getset: custom_solver_bias: number /*f64*/
+        // // godot.getset: margin: number /*f64*/
     }
     class ShapeCast2D extends Node2D {
         set_enabled(enabled: boolean): void
@@ -4270,6 +7844,16 @@ declare module "godot" {
         set_collide_with_bodies(enable: boolean): void
         is_collide_with_bodies_enabled(): boolean
         _get_collision_result(): Array
+        // // godot.getset: enabled: boolean
+        // // godot.getset: shape: Object
+        // // godot.getset: exclude_parent: boolean
+        // // godot.getset: target_position: Vector2
+        // // godot.getset: margin: number /*f64*/
+        // // godot.getset: max_results: number /*i64*/
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: collision_result: Array
+        // // godot.getset: collide_with_areas: boolean
+        // // godot.getset: collide_with_bodies: boolean
     }
     class ShapeCast3D extends Node3D {
         resource_changed(resource: Resource): void
@@ -4311,6 +7895,17 @@ declare module "godot" {
         _get_collision_result(): Array
         set_debug_shape_custom_color(debug_shape_custom_color: Color): void
         get_debug_shape_custom_color(): Color
+        // // godot.getset: enabled: boolean
+        // // godot.getset: shape: Object
+        // // godot.getset: exclude_parent: boolean
+        // // godot.getset: target_position: Vector3
+        // // godot.getset: margin: number /*f64*/
+        // // godot.getset: max_results: number /*i64*/
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: collision_result: Array
+        // // godot.getset: collide_with_areas: boolean
+        // // godot.getset: collide_with_bodies: boolean
+        // // godot.getset: debug_shape_custom_color: Color
     }
     class ShapeCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -4320,11 +7915,12 @@ declare module "godot" {
         has_valid_event(): boolean
         matches_event(event: InputEvent): boolean
         get_as_text(): string
+        // // godot.getset: events: Array
     }
     class ShortcutBin extends Node {
     }
     class SizeFlagPresetPicker extends ControlEditorPresetPicker {
-        // SIGNAL: size_flags_selected
+        size_flags_selected: Signal
     }
     class Skeleton2D extends Node2D {
         _update_bone_setup(): void
@@ -4337,7 +7933,7 @@ declare module "godot" {
         execute_modifications(delta: number /*f64*/, execution_mode: number /*i64*/): void
         set_bone_local_pose_override(bone_idx: number /*i64*/, override_pose: Transform2D, strength: number /*f64*/, persistent: boolean): void
         get_bone_local_pose_override(bone_idx: number /*i64*/): Transform2D
-        // SIGNAL: bone_setup_changed
+        bone_setup_changed: Signal
     }
     class Skeleton2DEditor extends Control {
     }
@@ -4391,10 +7987,13 @@ declare module "godot" {
         physical_bones_start_simulation(bones: Array): void
         physical_bones_add_collision_exception(exception: RID): void
         physical_bones_remove_collision_exception(exception: RID): void
-        // SIGNAL: pose_updated
-        // SIGNAL: bone_pose_changed
-        // SIGNAL: bone_enabled_changed
-        // SIGNAL: show_rest_only_changed
+        // // godot.getset: motion_scale: number /*f64*/
+        // // godot.getset: show_rest_only: boolean
+        // // godot.getset: animate_physical_bones: boolean
+        pose_updated: Signal
+        bone_pose_changed: Signal
+        bone_enabled_changed: Signal
+        show_rest_only_changed: Signal
     }
     class Skeleton3DEditorPlugin extends EditorPlugin {
     }
@@ -4425,6 +8024,16 @@ declare module "godot" {
         get_max_iterations(): number /*i64*/
         start(one_time: boolean): void
         stop(): void
+        // // godot.getset: root_bone: StringName
+        // // godot.getset: tip_bone: StringName
+        // // godot.getset: interpolation: number /*f64*/
+        // // godot.getset: target: Transform3D
+        // // godot.getset: override_tip_basis: boolean
+        // // godot.getset: use_magnet: boolean
+        // // godot.getset: magnet: Vector3
+        // // godot.getset: target_node: NodePath
+        // // godot.getset: min_distance: number /*f64*/
+        // // godot.getset: max_iterations: number /*i64*/
     }
     class SkeletonIK3DEditorPlugin extends EditorPlugin {
     }
@@ -4439,6 +8048,8 @@ declare module "godot" {
         clamp_angle(angle: number /*f64*/, min: number /*f64*/, max: number /*f64*/, invert: boolean): number /*f64*/
         set_editor_draw_gizmo(draw_gizmo: boolean): void
         get_editor_draw_gizmo(): boolean
+        // // godot.getset: enabled: boolean
+        // // godot.getset: execution_mode: number /*i64*/
     }
     class SkeletonModification2DCCDIK extends SkeletonModification2D {
         set_target_node(target_nodepath: NodePath): void
@@ -4461,6 +8072,9 @@ declare module "godot" {
         get_ccdik_joint_constraint_angle_max(joint_idx: number /*i64*/): number /*f64*/
         set_ccdik_joint_constraint_angle_invert(joint_idx: number /*i64*/, invert: boolean): void
         get_ccdik_joint_constraint_angle_invert(joint_idx: number /*i64*/): boolean
+        // // godot.getset: target_nodepath: NodePath
+        // // godot.getset: tip_nodepath: NodePath
+        // // godot.getset: ccdik_data_chain_length: number /*i64*/
     }
     class SkeletonModification2DFABRIK extends SkeletonModification2D {
         set_target_node(target_nodepath: NodePath): void
@@ -4475,6 +8089,8 @@ declare module "godot" {
         get_fabrik_joint_magnet_position(joint_idx: number /*i64*/): Vector2
         set_fabrik_joint_use_target_rotation(joint_idx: number /*i64*/, use_target_rotation: boolean): void
         get_fabrik_joint_use_target_rotation(joint_idx: number /*i64*/): boolean
+        // // godot.getset: target_nodepath: NodePath
+        // // godot.getset: fabrik_data_chain_length: number /*i64*/
     }
     class SkeletonModification2DJiggle extends SkeletonModification2D {
         set_target_node(target_nodepath: NodePath): void
@@ -4511,6 +8127,13 @@ declare module "godot" {
         get_jiggle_joint_use_gravity(joint_idx: number /*i64*/): boolean
         set_jiggle_joint_gravity(joint_idx: number /*i64*/, gravity: Vector2): void
         get_jiggle_joint_gravity(joint_idx: number /*i64*/): Vector2
+        // // godot.getset: target_nodepath: NodePath
+        // // godot.getset: jiggle_data_chain_length: number /*i64*/
+        // // godot.getset: stiffness: number /*f64*/
+        // // godot.getset: mass: number /*f64*/
+        // // godot.getset: damping: number /*f64*/
+        // // godot.getset: use_gravity: boolean
+        // // godot.getset: gravity: Vector2
     }
     class SkeletonModification2DLookAt extends SkeletonModification2D {
         set_bone2d_node(bone2d_nodepath: NodePath): void
@@ -4529,6 +8152,9 @@ declare module "godot" {
         get_constraint_angle_max(): number /*f64*/
         set_constraint_angle_invert(invert: boolean): void
         get_constraint_angle_invert(): boolean
+        // // godot.getset: bone_index: number /*i64*/
+        // // godot.getset: bone2d_node: NodePath
+        // // godot.getset: target_nodepath: NodePath
     }
     class SkeletonModification2DPhysicalBones extends SkeletonModification2D {
         set_physical_bone_chain_length(length: number /*i64*/): void
@@ -4538,6 +8164,7 @@ declare module "godot" {
         fetch_physical_bones(): void
         start_simulation(bones: Array): void
         stop_simulation(bones: Array): void
+        // // godot.getset: physical_bone_chain_length: number /*i64*/
     }
     class SkeletonModification2DStackHolder extends SkeletonModification2D {
         set_held_modification_stack(held_modification_stack: SkeletonModificationStack2D): void
@@ -4560,6 +8187,10 @@ declare module "godot" {
         get_joint_two_bone2d_node(): NodePath
         set_joint_two_bone_idx(bone_idx: number /*i64*/): void
         get_joint_two_bone_idx(): number /*i64*/
+        // // godot.getset: target_nodepath: NodePath
+        // // godot.getset: target_minimum_distance: number /*f64*/
+        // // godot.getset: target_maximum_distance: number /*f64*/
+        // // godot.getset: flip_bend_direction: boolean
     }
     class SkeletonModificationStack2D extends Resource {
         setup(): void
@@ -4577,6 +8208,9 @@ declare module "godot" {
         set_strength(strength: number /*f64*/): void
         get_strength(): number /*f64*/
         get_skeleton(): Skeleton2D
+        // // godot.getset: enabled: boolean
+        // // godot.getset: strength: number /*f64*/
+        // // godot.getset: modification_count: number /*i64*/
     }
     namespace SkeletonProfile {
         enum TailDirection {
@@ -4613,7 +8247,11 @@ declare module "godot" {
         set_handle_offset(bone_idx: number /*i64*/, handle_offset: Vector2): void
         get_group(bone_idx: number /*i64*/): StringName
         set_group(bone_idx: number /*i64*/, group: StringName): void
-        // SIGNAL: profile_updated
+        // // godot.getset: root_bone: StringName
+        // // godot.getset: scale_base_bone: StringName
+        // // godot.getset: group_size: number /*i64*/
+        // // godot.getset: bone_size: number /*i64*/
+        profile_updated: Signal
     }
     class SkeletonProfileHumanoid extends SkeletonProfile {
     }
@@ -4659,6 +8297,9 @@ declare module "godot" {
         get_process_mode(): Sky.ProcessMode
         set_material(material: Material): void
         get_material(): Material
+        // // godot.getset: sky_material: Object
+        // // godot.getset: process_mode: number /*i64*/
+        // // godot.getset: radiance_size: number /*i64*/
     }
     class Slider extends Range {
         set_ticks(count: number /*i64*/): void
@@ -4669,8 +8310,12 @@ declare module "godot" {
         is_editable(): boolean
         set_scrollable(scrollable: boolean): void
         is_scrollable(): boolean
-        // SIGNAL: drag_started
-        // SIGNAL: drag_ended
+        // // godot.getset: editable: boolean
+        // // godot.getset: scrollable: boolean
+        // // godot.getset: tick_count: number /*i64*/
+        // // godot.getset: ticks_on_borders: boolean
+        drag_started: Signal
+        drag_ended: Signal
     }
     namespace SliderJoint3D {
         enum Param {
@@ -4702,6 +8347,28 @@ declare module "godot" {
     class SliderJoint3D extends Joint3D {
         set_param(param: SliderJoint3D.Param, value: number /*f64*/): void
         get_param(param: SliderJoint3D.Param): number /*f64*/
+        // // godot.getset: linear_limit/upper_distance: number /*f64*/
+        // // godot.getset: linear_limit/lower_distance: number /*f64*/
+        // // godot.getset: linear_limit/softness: number /*f64*/
+        // // godot.getset: linear_limit/restitution: number /*f64*/
+        // // godot.getset: linear_limit/damping: number /*f64*/
+        // // godot.getset: linear_motion/softness: number /*f64*/
+        // // godot.getset: linear_motion/restitution: number /*f64*/
+        // // godot.getset: linear_motion/damping: number /*f64*/
+        // // godot.getset: linear_ortho/softness: number /*f64*/
+        // // godot.getset: linear_ortho/restitution: number /*f64*/
+        // // godot.getset: linear_ortho/damping: number /*f64*/
+        // // godot.getset: angular_limit/upper_angle: number /*f64*/
+        // // godot.getset: angular_limit/lower_angle: number /*f64*/
+        // // godot.getset: angular_limit/softness: number /*f64*/
+        // // godot.getset: angular_limit/restitution: number /*f64*/
+        // // godot.getset: angular_limit/damping: number /*f64*/
+        // // godot.getset: angular_motion/softness: number /*f64*/
+        // // godot.getset: angular_motion/restitution: number /*f64*/
+        // // godot.getset: angular_motion/damping: number /*f64*/
+        // // godot.getset: angular_ortho/softness: number /*f64*/
+        // // godot.getset: angular_ortho/restitution: number /*f64*/
+        // // godot.getset: angular_ortho/damping: number /*f64*/
     }
     class SnapDialog extends ConfirmationDialog {
     }
@@ -4745,6 +8412,17 @@ declare module "godot" {
         is_point_pinned(point_index: number /*i64*/): boolean
         set_ray_pickable(ray_pickable: boolean): void
         is_ray_pickable(): boolean
+        // // godot.getset: collision_layer: number /*i64*/
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: parent_collision_ignore: NodePath
+        // // godot.getset: simulation_precision: number /*i64*/
+        // // godot.getset: total_mass: number /*f64*/
+        // // godot.getset: linear_stiffness: number /*f64*/
+        // // godot.getset: pressure_coefficient: number /*f64*/
+        // // godot.getset: damping_coefficient: number /*f64*/
+        // // godot.getset: drag_coefficient: number /*f64*/
+        // // godot.getset: ray_pickable: boolean
+        // // godot.getset: disable_mode: number /*i64*/
     }
     class SoftBody3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -4759,14 +8437,21 @@ declare module "godot" {
         get_rings(): number /*i64*/
         set_is_hemisphere(is_hemisphere: boolean): void
         get_is_hemisphere(): boolean
+        // // godot.getset: radius: number /*f64*/
+        // // godot.getset: height: number /*f64*/
+        // // godot.getset: radial_segments: number /*i64*/
+        // // godot.getset: rings: number /*i64*/
+        // // godot.getset: is_hemisphere: boolean
     }
     class SphereOccluder3D extends Occluder3D {
         set_radius(radius: number /*f64*/): void
         get_radius(): number /*f64*/
+        // // godot.getset: radius: number /*f64*/
     }
     class SphereShape3D extends Shape3D {
         set_radius(radius: number /*f64*/): void
         get_radius(): number /*f64*/
+        // // godot.getset: radius: number /*f64*/
     }
     class SpinBox extends Range {
         set_horizontal_alignment(alignment: HorizontalAlignment): void
@@ -4785,6 +8470,13 @@ declare module "godot" {
         is_select_all_on_focus(): boolean
         apply(): void
         get_line_edit(): LineEdit
+        // // godot.getset: alignment: number /*i64*/
+        // // godot.getset: editable: boolean
+        // // godot.getset: update_on_text_changed: boolean
+        // // godot.getset: prefix: string
+        // // godot.getset: suffix: string
+        // // godot.getset: custom_arrow_step: number /*f64*/
+        // // godot.getset: select_all_on_focus: boolean
     }
     namespace SplitContainer {
         enum DraggerVisibility {
@@ -4803,11 +8495,19 @@ declare module "godot" {
         get_dragger_visibility(): SplitContainer.DraggerVisibility
         set_vertical(vertical: boolean): void
         is_vertical(): boolean
-        // SIGNAL: dragged
+        // // godot.getset: split_offset: number /*i64*/
+        // // godot.getset: collapsed: boolean
+        // // godot.getset: dragger_visibility: number /*i64*/
+        // // godot.getset: vertical: boolean
+        dragged: Signal
     }
     class SplitContainerDragger extends Control {
     }
     class SpotLight3D extends Light3D {
+        // // godot.getset: spot_range: number /*f64*/
+        // // godot.getset: spot_attenuation: number /*f64*/
+        // // godot.getset: spot_angle: number /*f64*/
+        // // godot.getset: spot_angle_attenuation: number /*f64*/
     }
     class SpringArm3D extends Node3D {
         get_hit_length(): number /*f64*/
@@ -4822,6 +8522,10 @@ declare module "godot" {
         get_collision_mask(): number /*i64*/
         set_margin(margin: number /*f64*/): void
         get_margin(): number /*f64*/
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: shape: Object
+        // // godot.getset: spring_length: number /*f64*/
+        // // godot.getset: margin: number /*f64*/
     }
     class SpringArm3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -4852,8 +8556,20 @@ declare module "godot" {
         set_hframes(hframes: number /*i64*/): void
         get_hframes(): number /*i64*/
         get_rect(): Rect2
-        // SIGNAL: frame_changed
-        // SIGNAL: texture_changed
+        // // godot.getset: texture: Object
+        // // godot.getset: centered: boolean
+        // // godot.getset: offset: Vector2
+        // // godot.getset: flip_h: boolean
+        // // godot.getset: flip_v: boolean
+        // // godot.getset: hframes: number /*i64*/
+        // // godot.getset: vframes: number /*i64*/
+        // // godot.getset: frame: number /*i64*/
+        // // godot.getset: frame_coords: Vector2i
+        // // godot.getset: region_enabled: boolean
+        // // godot.getset: region_rect: Rect2
+        // // godot.getset: region_filter_clip_enabled: boolean
+        frame_changed: Signal
+        texture_changed: Signal
     }
     class Sprite2DEditor extends Control {
         _add_as_sibling_or_child(_unnamed_arg0: Node, _unnamed_arg1: Node): void
@@ -4875,8 +8591,15 @@ declare module "godot" {
         get_vframes(): number /*i64*/
         set_hframes(hframes: number /*i64*/): void
         get_hframes(): number /*i64*/
-        // SIGNAL: frame_changed
-        // SIGNAL: texture_changed
+        // // godot.getset: texture: Object
+        // // godot.getset: hframes: number /*i64*/
+        // // godot.getset: vframes: number /*i64*/
+        // // godot.getset: frame: number /*i64*/
+        // // godot.getset: frame_coords: Vector2
+        // // godot.getset: region_enabled: boolean
+        // // godot.getset: region_rect: Rect2
+        frame_changed: Signal
+        texture_changed: Signal
     }
     namespace SpriteBase3D {
         enum DrawFlags {
@@ -4929,6 +8652,26 @@ declare module "godot" {
         get_texture_filter(): BaseMaterial3D.TextureFilter
         get_item_rect(): Rect2
         generate_triangle_mesh(): TriangleMesh
+        // // godot.getset: centered: boolean
+        // // godot.getset: offset: Vector2
+        // // godot.getset: flip_h: boolean
+        // // godot.getset: flip_v: boolean
+        // // godot.getset: modulate: Color
+        // // godot.getset: pixel_size: number /*f64*/
+        // // godot.getset: axis: number /*i64*/
+        // // godot.getset: billboard: number /*i64*/
+        // // godot.getset: transparent: boolean
+        // // godot.getset: shaded: boolean
+        // // godot.getset: double_sided: boolean
+        // // godot.getset: no_depth_test: boolean
+        // // godot.getset: fixed_size: boolean
+        // // godot.getset: alpha_cut: number /*i64*/
+        // // godot.getset: alpha_scissor_threshold: number /*f64*/
+        // // godot.getset: alpha_hash_scale: number /*f64*/
+        // // godot.getset: alpha_antialiasing_mode: number /*i64*/
+        // // godot.getset: alpha_antialiasing_edge: number /*f64*/
+        // // godot.getset: texture_filter: number /*i64*/
+        // // godot.getset: render_priority: number /*i64*/
     }
     class SpriteBase3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -4952,6 +8695,7 @@ declare module "godot" {
         clear_all(): void
         _set_animations(animations: Array): void
         _get_animations(): Array
+        // // godot.getset: animations: Array
     }
     class SpriteFramesEditor extends HSplitContainer {
         _update_library(skipsel: boolean): void
@@ -4970,6 +8714,9 @@ declare module "godot" {
         get_constant_angular_velocity(): number /*f64*/
         set_physics_material_override(physics_material_override: PhysicsMaterial): void
         get_physics_material_override(): PhysicsMaterial
+        // // godot.getset: physics_material_override: Object
+        // // godot.getset: constant_linear_velocity: Vector2
+        // // godot.getset: constant_angular_velocity: number /*f64*/
     }
     class StaticBody3D extends PhysicsBody3D {
         set_constant_linear_velocity(vel: Vector3): void
@@ -4978,6 +8725,9 @@ declare module "godot" {
         get_constant_angular_velocity(): Vector3
         set_physics_material_override(physics_material_override: PhysicsMaterial): void
         get_physics_material_override(): PhysicsMaterial
+        // // godot.getset: physics_material_override: Object
+        // // godot.getset: constant_linear_velocity: Vector3
+        // // godot.getset: constant_angular_velocity: Vector3
     }
     class StreamPeer extends RefCounted {
         put_data(data: PackedByteArray): GodotError
@@ -5013,6 +8763,7 @@ declare module "godot" {
         get_string(bytes: number /*i64*/): string
         get_utf8_string(bytes: number /*i64*/): string
         get_var(allow_objects: boolean): any
+        // // godot.getset: big_endian: boolean
     }
     class StreamPeerBuffer extends StreamPeer {
         seek(position: number /*i64*/): void
@@ -5023,6 +8774,7 @@ declare module "godot" {
         get_data_array(): PackedByteArray
         clear(): void
         duplicate(): StreamPeerBuffer
+        // // godot.getset: data_array: PackedByteArray
     }
     class StreamPeerExtension extends StreamPeer {
     }
@@ -5078,6 +8830,10 @@ declare module "godot" {
         draw(canvas_item: RID, rect: Rect2): void
         get_current_item_drawn(): CanvasItem
         test_mask(point: Vector2, rect: Rect2): boolean
+        // // godot.getset: content_margin_left: number /*f64*/
+        // // godot.getset: content_margin_top: number /*f64*/
+        // // godot.getset: content_margin_right: number /*f64*/
+        // // godot.getset: content_margin_bottom: number /*f64*/
     }
     class StyleBoxEditorPlugin extends EditorPlugin {
     }
@@ -5116,6 +8872,29 @@ declare module "godot" {
         get_aa_size(): number /*f64*/
         set_corner_detail(detail: number /*i64*/): void
         get_corner_detail(): number /*i64*/
+        // // godot.getset: bg_color: Color
+        // // godot.getset: draw_center: boolean
+        // // godot.getset: skew: Vector2
+        // // godot.getset: border_width_left: number /*i64*/
+        // // godot.getset: border_width_top: number /*i64*/
+        // // godot.getset: border_width_right: number /*i64*/
+        // // godot.getset: border_width_bottom: number /*i64*/
+        // // godot.getset: border_color: Color
+        // // godot.getset: border_blend: boolean
+        // // godot.getset: corner_radius_top_left: number /*i64*/
+        // // godot.getset: corner_radius_top_right: number /*i64*/
+        // // godot.getset: corner_radius_bottom_right: number /*i64*/
+        // // godot.getset: corner_radius_bottom_left: number /*i64*/
+        // // godot.getset: corner_detail: number /*i64*/
+        // // godot.getset: expand_margin_left: number /*f64*/
+        // // godot.getset: expand_margin_top: number /*f64*/
+        // // godot.getset: expand_margin_right: number /*f64*/
+        // // godot.getset: expand_margin_bottom: number /*f64*/
+        // // godot.getset: shadow_color: Color
+        // // godot.getset: shadow_size: number /*i64*/
+        // // godot.getset: shadow_offset: Vector2
+        // // godot.getset: anti_aliasing: boolean
+        // // godot.getset: anti_aliasing_size: number /*f64*/
     }
     class StyleBoxLine extends StyleBox {
         set_color(color: Color): void
@@ -5128,6 +8907,11 @@ declare module "godot" {
         get_grow_end(): number /*f64*/
         set_vertical(vertical: boolean): void
         is_vertical(): boolean
+        // // godot.getset: color: Color
+        // // godot.getset: grow_begin: number /*f64*/
+        // // godot.getset: grow_end: number /*f64*/
+        // // godot.getset: thickness: number /*i64*/
+        // // godot.getset: vertical: boolean
     }
     namespace StyleBoxTexture {
         enum AxisStretchMode {
@@ -5155,6 +8939,20 @@ declare module "godot" {
         get_h_axis_stretch_mode(): StyleBoxTexture.AxisStretchMode
         set_v_axis_stretch_mode(mode: StyleBoxTexture.AxisStretchMode): void
         get_v_axis_stretch_mode(): StyleBoxTexture.AxisStretchMode
+        // // godot.getset: texture: Object
+        // // godot.getset: texture_margin_left: number /*f64*/
+        // // godot.getset: texture_margin_top: number /*f64*/
+        // // godot.getset: texture_margin_right: number /*f64*/
+        // // godot.getset: texture_margin_bottom: number /*f64*/
+        // // godot.getset: expand_margin_left: number /*f64*/
+        // // godot.getset: expand_margin_top: number /*f64*/
+        // // godot.getset: expand_margin_right: number /*f64*/
+        // // godot.getset: expand_margin_bottom: number /*f64*/
+        // // godot.getset: axis_stretch_horizontal: number /*i64*/
+        // // godot.getset: axis_stretch_vertical: number /*i64*/
+        // // godot.getset: region_rect: Rect2
+        // // godot.getset: modulate_color: Color
+        // // godot.getset: draw_center: boolean
     }
     namespace SubViewport {
         enum ClearMode {
@@ -5181,12 +8979,19 @@ declare module "godot" {
         get_update_mode(): SubViewport.UpdateMode
         set_clear_mode(mode: SubViewport.ClearMode): void
         get_clear_mode(): SubViewport.ClearMode
+        // // godot.getset: size: Vector2i
+        // // godot.getset: size_2d_override: Vector2i
+        // // godot.getset: size_2d_override_stretch: boolean
+        // // godot.getset: render_target_clear_mode: number /*i64*/
+        // // godot.getset: render_target_update_mode: number /*i64*/
     }
     class SubViewportContainer extends Container {
         set_stretch(enable: boolean): void
         is_stretch_enabled(): boolean
         set_stretch_shrink(amount: number /*i64*/): void
         get_stretch_shrink(): number /*i64*/
+        // // godot.getset: stretch: boolean
+        // // godot.getset: stretch_shrink: number /*i64*/
     }
     class SubViewportPreviewEditorPlugin extends EditorPlugin {
     }
@@ -5244,7 +9049,7 @@ declare module "godot" {
     class SurfaceUpgradeDialog extends ConfirmationDialog {
     }
     class SurfaceUpgradeTool extends Object {
-        // SIGNAL: upgrade_finished
+        upgrade_finished: Signal
     }
     class SyntaxHighlighter extends Resource {
         get_line_syntax_highlighting(line: number /*i64*/): Dictionary
@@ -5279,6 +9084,20 @@ declare module "godot" {
         set_font_italic(italic: boolean): void
         set_font_weight(weight: number /*i64*/): void
         set_font_stretch(stretch: number /*i64*/): void
+        // // godot.getset: font_names: PackedStringArray
+        // // godot.getset: font_italic: boolean
+        // // godot.getset: font_weight: number /*i64*/
+        // // godot.getset: font_stretch: number /*i64*/
+        // // godot.getset: antialiasing: number /*i64*/
+        // // godot.getset: generate_mipmaps: boolean
+        // // godot.getset: allow_system_fallback: boolean
+        // // godot.getset: force_autohinter: boolean
+        // // godot.getset: hinting: number /*i64*/
+        // // godot.getset: subpixel_positioning: number /*i64*/
+        // // godot.getset: multichannel_signed_distance_field: boolean
+        // // godot.getset: msdf_pixel_range: number /*i64*/
+        // // godot.getset: msdf_size: number /*i64*/
+        // // godot.getset: oversampling: number /*f64*/
     }
     class TCPServer extends RefCounted {
         listen(port: number /*i64*/, bind_address: string): GodotError
@@ -5360,14 +9179,25 @@ declare module "godot" {
         set_select_with_rmb(enabled: boolean): void
         get_select_with_rmb(): boolean
         clear_tabs(): void
-        // SIGNAL: tab_selected
-        // SIGNAL: tab_changed
-        // SIGNAL: tab_clicked
-        // SIGNAL: tab_rmb_clicked
-        // SIGNAL: tab_close_pressed
-        // SIGNAL: tab_button_pressed
-        // SIGNAL: tab_hovered
-        // SIGNAL: active_tab_rearranged
+        // // godot.getset: tab_count: number /*i64*/
+        // // godot.getset: current_tab: number /*i64*/
+        // // godot.getset: tab_alignment: number /*i64*/
+        // // godot.getset: clip_tabs: boolean
+        // // godot.getset: tab_close_display_policy: number /*i64*/
+        // // godot.getset: max_tab_width: number /*i64*/
+        // // godot.getset: scrolling_enabled: boolean
+        // // godot.getset: drag_to_rearrange_enabled: boolean
+        // // godot.getset: tabs_rearrange_group: number /*i64*/
+        // // godot.getset: scroll_to_selected: boolean
+        // // godot.getset: select_with_rmb: boolean
+        tab_selected: Signal
+        tab_changed: Signal
+        tab_clicked: Signal
+        tab_rmb_clicked: Signal
+        tab_close_pressed: Signal
+        tab_button_pressed: Signal
+        tab_hovered: Signal
+        active_tab_rearranged: Signal
     }
     class TabContainer extends Container {
         get_tab_count(): number /*i64*/
@@ -5411,13 +9241,22 @@ declare module "godot" {
         get_use_hidden_tabs_for_min_size(): boolean
         set_tab_focus_mode(focus_mode: Control.FocusMode): void
         get_tab_focus_mode(): Control.FocusMode
-        // SIGNAL: active_tab_rearranged
-        // SIGNAL: tab_changed
-        // SIGNAL: tab_clicked
-        // SIGNAL: tab_hovered
-        // SIGNAL: tab_selected
-        // SIGNAL: tab_button_pressed
-        // SIGNAL: pre_popup_pressed
+        // // godot.getset: tab_alignment: number /*i64*/
+        // // godot.getset: current_tab: number /*i64*/
+        // // godot.getset: clip_tabs: boolean
+        // // godot.getset: tabs_visible: boolean
+        // // godot.getset: all_tabs_in_front: boolean
+        // // godot.getset: drag_to_rearrange_enabled: boolean
+        // // godot.getset: tabs_rearrange_group: number /*i64*/
+        // // godot.getset: use_hidden_tabs_for_min_size: boolean
+        // // godot.getset: tab_focus_mode: number /*i64*/
+        active_tab_rearranged: Signal
+        tab_changed: Signal
+        tab_clicked: Signal
+        tab_hovered: Signal
+        tab_selected: Signal
+        tab_button_pressed: Signal
+        pre_popup_pressed: Signal
     }
     namespace TextEdit {
         enum MenuItems {
@@ -5549,7 +9388,7 @@ declare module "godot" {
         set_search_text(search_text: string): void
         set_search_flags(flags: number /*i64*/): void
         search(text: string, flags: number /*i64*/, from_line: number /*i64*/, from_colum: number /*i64*/): Vector2i
-        set_tooltip_request_func(callback: any /*CALLABLE*/): void
+        set_tooltip_request_func(callback: Callable): void
         get_local_mouse_pos(): Vector2
         get_word_at_pos(position: Vector2): string
         get_line_column_at_pos(position: Vector2i, allow_out_of_bounds: boolean): Vector2i
@@ -5667,7 +9506,7 @@ declare module "godot" {
         set_gutter_overwritable(gutter: number /*i64*/, overwritable: boolean): void
         is_gutter_overwritable(gutter: number /*i64*/): boolean
         merge_gutters(from_line: number /*i64*/, to_line: number /*i64*/): void
-        set_gutter_custom_draw(column: number /*i64*/, draw_callback: any /*CALLABLE*/): void
+        set_gutter_custom_draw(column: number /*i64*/, draw_callback: Callable): void
         get_total_gutter_width(): number /*i64*/
         set_line_gutter_metadata(line: number /*i64*/, gutter: number /*i64*/, metadata: any): void
         get_line_gutter_metadata(line: number /*i64*/, gutter: number /*i64*/): any
@@ -5696,13 +9535,50 @@ declare module "godot" {
         get_menu(): PopupMenu
         is_menu_visible(): boolean
         menu_option(option: number /*i64*/): void
-        // SIGNAL: text_set
-        // SIGNAL: text_changed
-        // SIGNAL: lines_edited_from
-        // SIGNAL: caret_changed
-        // SIGNAL: gutter_clicked
-        // SIGNAL: gutter_added
-        // SIGNAL: gutter_removed
+        // // godot.getset: text: string
+        // // godot.getset: placeholder_text: string
+        // // godot.getset: editable: boolean
+        // // godot.getset: context_menu_enabled: boolean
+        // // godot.getset: shortcut_keys_enabled: boolean
+        // // godot.getset: selecting_enabled: boolean
+        // // godot.getset: deselect_on_focus_loss_enabled: boolean
+        // // godot.getset: drag_and_drop_selection_enabled: boolean
+        // // godot.getset: virtual_keyboard_enabled: boolean
+        // // godot.getset: middle_mouse_paste_enabled: boolean
+        // // godot.getset: wrap_mode: number /*i64*/
+        // // godot.getset: autowrap_mode: number /*i64*/
+        // // godot.getset: scroll_smooth: boolean
+        // // godot.getset: scroll_v_scroll_speed: number /*f64*/
+        // // godot.getset: scroll_past_end_of_file: boolean
+        // // godot.getset: scroll_vertical: number /*f64*/
+        // // godot.getset: scroll_horizontal: number /*i64*/
+        // // godot.getset: scroll_fit_content_height: boolean
+        // // godot.getset: minimap_draw: boolean
+        // // godot.getset: minimap_width: number /*i64*/
+        // // godot.getset: caret_type: number /*i64*/
+        // // godot.getset: caret_blink: boolean
+        // // godot.getset: caret_blink_interval: number /*f64*/
+        // // godot.getset: caret_draw_when_editable_disabled: boolean
+        // // godot.getset: caret_move_on_right_click: boolean
+        // // godot.getset: caret_mid_grapheme: boolean
+        // // godot.getset: caret_multiple: boolean
+        // // godot.getset: syntax_highlighter: Object
+        // // godot.getset: highlight_all_occurrences: boolean
+        // // godot.getset: highlight_current_line: boolean
+        // // godot.getset: draw_control_chars: boolean
+        // // godot.getset: draw_tabs: boolean
+        // // godot.getset: draw_spaces: boolean
+        // // godot.getset: text_direction: number /*i64*/
+        // // godot.getset: language: string
+        // // godot.getset: structured_text_bidi_override: number /*i64*/
+        // // godot.getset: structured_text_bidi_override_options: Array
+        text_set: Signal
+        text_changed: Signal
+        lines_edited_from: Signal
+        caret_changed: Signal
+        gutter_clicked: Signal
+        gutter_added: Signal
+        gutter_removed: Signal
     }
     class TextLine extends RefCounted {
         clear(): void
@@ -5739,6 +9615,14 @@ declare module "godot" {
         draw(canvas: RID, pos: Vector2, color: Color): void
         draw_outline(canvas: RID, pos: Vector2, outline_size: number /*i64*/, color: Color): void
         hit_test(coords: number /*f64*/): number /*i64*/
+        // // godot.getset: direction: number /*i64*/
+        // // godot.getset: orientation: number /*i64*/
+        // // godot.getset: preserve_invalid: boolean
+        // // godot.getset: preserve_control: boolean
+        // // godot.getset: width: number /*f64*/
+        // // godot.getset: alignment: number /*i64*/
+        // // godot.getset: flags: number /*i64*/
+        // // godot.getset: text_overrun_behavior: number /*i64*/
     }
     class TextMesh extends PrimitiveMesh {
         set_horizontal_alignment(alignment: HorizontalAlignment): void
@@ -5778,6 +9662,24 @@ declare module "godot" {
         set_uppercase(enable: boolean): void
         is_uppercase(): boolean
         _font_changed(): void
+        // // godot.getset: text: string
+        // // godot.getset: font: Object
+        // // godot.getset: font_size: number /*i64*/
+        // // godot.getset: horizontal_alignment: number /*i64*/
+        // // godot.getset: vertical_alignment: number /*i64*/
+        // // godot.getset: uppercase: boolean
+        // // godot.getset: line_spacing: number /*f64*/
+        // // godot.getset: autowrap_mode: number /*i64*/
+        // // godot.getset: justification_flags: number /*i64*/
+        // // godot.getset: pixel_size: number /*f64*/
+        // // godot.getset: curve_step: number /*f64*/
+        // // godot.getset: depth: number /*f64*/
+        // // godot.getset: width: number /*f64*/
+        // // godot.getset: offset: Vector2
+        // // godot.getset: text_direction: number /*i64*/
+        // // godot.getset: language: string
+        // // godot.getset: structured_text_bidi_override: number /*i64*/
+        // // godot.getset: structured_text_bidi_override_options: Array
     }
     class TextParagraph extends RefCounted {
         clear(): void
@@ -5834,6 +9736,17 @@ declare module "godot" {
         draw_dropcap(canvas: RID, pos: Vector2, color: Color): void
         draw_dropcap_outline(canvas: RID, pos: Vector2, outline_size: number /*i64*/, color: Color): void
         hit_test(coords: Vector2): number /*i64*/
+        // // godot.getset: direction: number /*i64*/
+        // // godot.getset: custom_punctuation: string
+        // // godot.getset: orientation: number /*i64*/
+        // // godot.getset: preserve_invalid: boolean
+        // // godot.getset: preserve_control: boolean
+        // // godot.getset: alignment: number /*i64*/
+        // // godot.getset: break_flags: number /*i64*/
+        // // godot.getset: justification_flags: number /*i64*/
+        // // godot.getset: text_overrun_behavior: number /*i64*/
+        // // godot.getset: width: number /*f64*/
+        // // godot.getset: max_lines_visible: number /*i64*/
     }
     namespace TextServer {
         enum FontAntialiasing {
@@ -6215,6 +10128,7 @@ declare module "godot" {
     class Texture2DRD extends Texture2D {
         set_texture_rd_rid(texture_rd_rid: RID): void
         get_texture_rd_rid(): RID
+        // // godot.getset: texture_rd_rid: RID
     }
     class Texture3D extends Texture {
         get_format(): Image.Format
@@ -6230,6 +10144,7 @@ declare module "godot" {
     class Texture3DRD extends Texture3D {
         set_texture_rd_rid(texture_rd_rid: RID): void
         get_texture_rd_rid(): RID
+        // // godot.getset: texture_rd_rid: RID
     }
     namespace TextureButton {
         enum StretchMode {
@@ -6263,6 +10178,16 @@ declare module "godot" {
         get_click_mask(): BitMap
         get_ignore_texture_size(): boolean
         get_stretch_mode(): TextureButton.StretchMode
+        // // godot.getset: texture_normal: Object
+        // // godot.getset: texture_pressed: Object
+        // // godot.getset: texture_hover: Object
+        // // godot.getset: texture_disabled: Object
+        // // godot.getset: texture_focused: Object
+        // // godot.getset: texture_click_mask: Object
+        // // godot.getset: ignore_texture_size: boolean
+        // // godot.getset: stretch_mode: number /*i64*/
+        // // godot.getset: flip_h: boolean
+        // // godot.getset: flip_v: boolean
     }
     class TextureCubemapArrayRD extends TextureLayeredRD {
     }
@@ -6291,6 +10216,7 @@ declare module "godot" {
     class TextureLayeredRD extends TextureLayered {
         set_texture_rd_rid(texture_rd_rid: RID): void
         get_texture_rd_rid(): RID
+        // // godot.getset: texture_rd_rid: RID
     }
     namespace TextureProgressBar {
         enum FillMode {
@@ -6332,6 +10258,22 @@ declare module "godot" {
         get_stretch_margin(margin: Side): number /*i64*/
         set_nine_patch_stretch(stretch: boolean): void
         get_nine_patch_stretch(): boolean
+        // // godot.getset: fill_mode: number /*i64*/
+        // // godot.getset: nine_patch_stretch: boolean
+        // // godot.getset: stretch_margin_left: number /*i64*/
+        // // godot.getset: stretch_margin_top: number /*i64*/
+        // // godot.getset: stretch_margin_right: number /*i64*/
+        // // godot.getset: stretch_margin_bottom: number /*i64*/
+        // // godot.getset: texture_under: Object
+        // // godot.getset: texture_over: Object
+        // // godot.getset: texture_progress: Object
+        // // godot.getset: texture_progress_offset: Vector2
+        // // godot.getset: tint_under: Color
+        // // godot.getset: tint_over: Color
+        // // godot.getset: tint_progress: Color
+        // // godot.getset: radial_initial_angle: number /*f64*/
+        // // godot.getset: radial_fill_degrees: number /*f64*/
+        // // godot.getset: radial_center_offset: Vector2
     }
     namespace TextureRect {
         enum ExpandMode {
@@ -6363,6 +10305,11 @@ declare module "godot" {
         is_flipped_v(): boolean
         set_stretch_mode(stretch_mode: TextureRect.StretchMode): void
         get_stretch_mode(): TextureRect.StretchMode
+        // // godot.getset: texture: Object
+        // // godot.getset: expand_mode: number /*i64*/
+        // // godot.getset: stretch_mode: number /*i64*/
+        // // godot.getset: flip_h: boolean
+        // // godot.getset: flip_v: boolean
     }
     class TextureRegionEditor extends AcceptDialog {
         _update_rect(): void
@@ -6449,26 +10396,29 @@ declare module "godot" {
         get_type_list(): PackedStringArray
         merge_with(other: Theme): void
         clear(): void
+        // // godot.getset: default_base_scale: number /*f64*/
+        // // godot.getset: default_font: Object
+        // // godot.getset: default_font_size: number /*i64*/
     }
     class ThemeContext extends Object {
-        // SIGNAL: changed
+        changed: Signal
     }
     class ThemeEditor extends VBoxContainer {
     }
     class ThemeEditorPlugin extends EditorPlugin {
     }
     class ThemeEditorPreview extends VBoxContainer {
-        // SIGNAL: control_picked
+        control_picked: Signal
     }
     class ThemeItemEditorDialog extends AcceptDialog {
         _update_edit_types(): void
         _update_edit_item_tree(_unnamed_arg0: string): void
     }
     class ThemeItemImportTree extends VBoxContainer {
-        // SIGNAL: items_imported
+        items_imported: Signal
     }
     class ThemeTypeDialog extends ConfirmationDialog {
-        // SIGNAL: type_selected
+        type_selected: Signal
     }
     class ThemeTypeEditor extends MarginContainer {
         _update_type_items(): void
@@ -6484,7 +10434,7 @@ declare module "godot" {
         }
     }
     class Thread extends RefCounted {
-        start(callable: any /*CALLABLE*/, priority: Thread.Priority): GodotError
+        start(callable: Callable, priority: Thread.Priority): GodotError
         get_id(): string
         is_started(): boolean
         is_alive(): boolean
@@ -6492,7 +10442,7 @@ declare module "godot" {
         static set_thread_safety_checks_enabled(enabled: boolean): void
     }
     class TileAtlasView extends Control {
-        // SIGNAL: transform_changed
+        transform_changed: Signal
     }
     class TileData extends Object {
         set_flip_h(flip_h: boolean): void
@@ -6541,7 +10491,18 @@ declare module "godot" {
         get_custom_data(layer_name: string): any
         set_custom_data_by_layer_id(layer_id: number /*i64*/, value: any): void
         get_custom_data_by_layer_id(layer_id: number /*i64*/): any
-        // SIGNAL: changed
+        // // godot.getset: flip_h: boolean
+        // // godot.getset: flip_v: boolean
+        // // godot.getset: transpose: boolean
+        // // godot.getset: texture_origin: Vector2i
+        // // godot.getset: modulate: Color
+        // // godot.getset: material: Object
+        // // godot.getset: z_index: number /*i64*/
+        // // godot.getset: y_sort_origin: number /*i64*/
+        // // godot.getset: terrain_set: number /*i64*/
+        // // godot.getset: terrain: number /*i64*/
+        // // godot.getset: probability: number /*f64*/
+        changed: Signal
     }
     namespace TileMap {
         enum VisibilityMode {
@@ -6609,7 +10570,12 @@ declare module "godot" {
         map_to_local(map_position: Vector2i): Vector2
         local_to_map(local_position: Vector2): Vector2i
         get_neighbor_cell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i
-        // SIGNAL: changed
+        // // godot.getset: tile_set: Object
+        // // godot.getset: rendering_quadrant_size: number /*i64*/
+        // // godot.getset: collision_animatable: boolean
+        // // godot.getset: collision_visibility_mode: number /*i64*/
+        // // godot.getset: navigation_visibility_mode: number /*i64*/
+        changed: Signal
     }
     class TileMapEditor extends VBoxContainer {
     }
@@ -6768,6 +10734,11 @@ declare module "godot" {
         get_pattern(index: number /*i64*/): TileMapPattern
         remove_pattern(index: number /*i64*/): void
         get_patterns_count(): number /*i64*/
+        // // godot.getset: tile_shape: number /*i64*/
+        // // godot.getset: tile_layout: number /*i64*/
+        // // godot.getset: tile_offset_axis: number /*i64*/
+        // // godot.getset: tile_size: Vector2i
+        // // godot.getset: uv_clipping: boolean
     }
     namespace TileSetAtlasSource {
         enum TileAnimationMode {
@@ -6822,14 +10793,19 @@ declare module "godot" {
         _update_padded_texture(): void
         get_runtime_texture(): Texture2D
         get_runtime_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/): Rect2i
+        // // godot.getset: texture: Object
+        // // godot.getset: margins: Vector2i
+        // // godot.getset: separation: Vector2i
+        // // godot.getset: texture_region_size: Vector2i
+        // // godot.getset: use_texture_padding: boolean
     }
     class TileSetAtlasSourceEditor extends HSplitContainer {
         _set_selection_from_array(_unnamed_arg0: Array): void
         _check_outside_tiles(): void
-        // SIGNAL: source_id_changed
+        source_id_changed: Signal
     }
     class TileSetAtlasSourceProxyObject extends Object {
-        // SIGNAL: changed
+        changed: Signal
     }
     class TileSetEditor extends Control {
     }
@@ -6838,7 +10814,8 @@ declare module "godot" {
     class TileSetScenesCollectionProxyObject extends Object {
         set_id(id: number /*i64*/): void
         get_id(): number /*i64*/
-        // SIGNAL: changed
+        // // godot.getset: id: number /*i64*/
+        changed: Signal
     }
     class TileSetScenesCollectionSource extends TileSetSource {
         get_scene_tiles_count(): number /*i64*/
@@ -6855,7 +10832,7 @@ declare module "godot" {
     }
     class TileSetScenesCollectionSourceEditor extends HBoxContainer {
         _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
-        // SIGNAL: source_id_changed
+        source_id_changed: Signal
     }
     class TileSetSource extends Resource {
         get_tiles_count(): number /*i64*/
@@ -6890,7 +10867,13 @@ declare module "godot" {
         get_time_left(): number /*f64*/
         set_timer_process_callback(callback: Timer.TimerProcessCallback): void
         get_timer_process_callback(): Timer.TimerProcessCallback
-        // SIGNAL: timeout
+        // // godot.getset: process_callback: number /*i64*/
+        // // godot.getset: wait_time: number /*f64*/
+        // // godot.getset: one_shot: boolean
+        // // godot.getset: autostart: boolean
+        // // godot.getset: paused: boolean
+        // // godot.getset: time_left: number /*f64*/
+        timeout: Signal
     }
     class TorusMesh extends PrimitiveMesh {
         set_inner_radius(radius: number /*f64*/): void
@@ -6901,6 +10884,10 @@ declare module "godot" {
         get_rings(): number /*i64*/
         set_ring_segments(rings: number /*i64*/): void
         get_ring_segments(): number /*i64*/
+        // // godot.getset: inner_radius: number /*f64*/
+        // // godot.getset: outer_radius: number /*f64*/
+        // // godot.getset: rings: number /*i64*/
+        // // godot.getset: ring_segments: number /*i64*/
     }
     namespace TouchScreenButton {
         enum VisibilityMode {
@@ -6928,8 +10915,17 @@ declare module "godot" {
         set_passby_press(enabled: boolean): void
         is_passby_press_enabled(): boolean
         is_pressed(): boolean
-        // SIGNAL: pressed
-        // SIGNAL: released
+        // // godot.getset: texture_normal: Object
+        // // godot.getset: texture_pressed: Object
+        // // godot.getset: bitmask: Object
+        // // godot.getset: shape: Object
+        // // godot.getset: shape_centered: boolean
+        // // godot.getset: shape_visible: boolean
+        // // godot.getset: passby_press: boolean
+        // // godot.getset: action: StringName
+        // // godot.getset: visibility_mode: number /*i64*/
+        pressed: Signal
+        released: Signal
     }
     class Translation extends Resource {
         set_locale(locale: string): void
@@ -6944,6 +10940,8 @@ declare module "godot" {
         get_message_count(): number /*i64*/
         _set_messages(messages: Dictionary): void
         _get_messages(): Dictionary
+        // // godot.getset: messages: Dictionary
+        // // godot.getset: locale: string
     }
     namespace Tree {
         enum SelectMode {
@@ -7019,21 +11017,33 @@ declare module "godot" {
         get_allow_reselect(): boolean
         set_allow_search(allow: boolean): void
         get_allow_search(): boolean
-        // SIGNAL: item_selected
-        // SIGNAL: cell_selected
-        // SIGNAL: multi_selected
-        // SIGNAL: item_mouse_selected
-        // SIGNAL: empty_clicked
-        // SIGNAL: item_edited
-        // SIGNAL: custom_item_clicked
-        // SIGNAL: item_icon_double_clicked
-        // SIGNAL: item_collapsed
-        // SIGNAL: check_propagated_to_item
-        // SIGNAL: button_clicked
-        // SIGNAL: custom_popup_edited
-        // SIGNAL: item_activated
-        // SIGNAL: column_title_clicked
-        // SIGNAL: nothing_selected
+        // // godot.getset: columns: number /*i64*/
+        // // godot.getset: column_titles_visible: boolean
+        // // godot.getset: allow_reselect: boolean
+        // // godot.getset: allow_rmb_select: boolean
+        // // godot.getset: allow_search: boolean
+        // // godot.getset: hide_folding: boolean
+        // // godot.getset: enable_recursive_folding: boolean
+        // // godot.getset: hide_root: boolean
+        // // godot.getset: drop_mode_flags: number /*i64*/
+        // // godot.getset: select_mode: number /*i64*/
+        // // godot.getset: scroll_horizontal_enabled: boolean
+        // // godot.getset: scroll_vertical_enabled: boolean
+        item_selected: Signal
+        cell_selected: Signal
+        multi_selected: Signal
+        item_mouse_selected: Signal
+        empty_clicked: Signal
+        item_edited: Signal
+        custom_item_clicked: Signal
+        item_icon_double_clicked: Signal
+        item_collapsed: Signal
+        check_propagated_to_item: Signal
+        button_clicked: Signal
+        custom_popup_edited: Signal
+        item_activated: Signal
+        column_title_clicked: Signal
+        nothing_selected: Signal
     }
     namespace TreeItem {
         enum TreeCellMode {
@@ -7152,6 +11162,10 @@ declare module "godot" {
         move_before(item: TreeItem): void
         move_after(item: TreeItem): void
         call_recursive(method: StringName): void
+        // // godot.getset: collapsed: boolean
+        // // godot.getset: visible: boolean
+        // // godot.getset: disable_folding: boolean
+        // // godot.getset: custom_minimum_height: number /*i64*/
     }
     class TriangleMesh extends RefCounted {
     }
@@ -7172,6 +11186,14 @@ declare module "godot" {
         is_cap_bottom(): boolean
         set_curve(curve: Curve): void
         get_curve(): Curve
+        // // godot.getset: radius: number /*f64*/
+        // // godot.getset: radial_steps: number /*i64*/
+        // // godot.getset: sections: number /*i64*/
+        // // godot.getset: section_length: number /*f64*/
+        // // godot.getset: section_rings: number /*i64*/
+        // // godot.getset: cap_top: boolean
+        // // godot.getset: cap_bottom: boolean
+        // // godot.getset: curve: Object
     }
     namespace Tween {
         enum TweenProcessMode {
@@ -7207,8 +11229,8 @@ declare module "godot" {
     class Tween extends RefCounted {
         tween_property(object: Object, property: NodePath, final_val: any, duration: number /*f64*/): PropertyTweener
         tween_interval(time: number /*f64*/): IntervalTweener
-        tween_callback(callback: any /*CALLABLE*/): CallbackTweener
-        tween_method(method: any /*CALLABLE*/, from: any, to: any, duration: number /*f64*/): MethodTweener
+        tween_callback(callback: Callable): CallbackTweener
+        tween_method(method: Callable, from: any, to: any, duration: number /*f64*/): MethodTweener
         custom_step(delta: number /*f64*/): boolean
         stop(): void
         pause(): void
@@ -7229,12 +11251,12 @@ declare module "godot" {
         parallel(): Tween
         chain(): Tween
         static interpolate_value(initial_value: any, delta_value: any, elapsed_time: number /*f64*/, duration: number /*f64*/, trans_type: Tween.TransitionType, ease_type: Tween.EaseType): any
-        // SIGNAL: step_finished
-        // SIGNAL: loop_finished
-        // SIGNAL: finished
+        step_finished: Signal
+        loop_finished: Signal
+        finished: Signal
     }
     class Tweener extends RefCounted {
-        // SIGNAL: finished
+        finished: Signal
     }
     class UDPServer extends RefCounted {
         listen(port: number /*i64*/, bind_address: string): GodotError
@@ -7246,6 +11268,7 @@ declare module "godot" {
         stop(): void
         set_max_pending_connections(max_pending_connections: number /*i64*/): void
         get_max_pending_connections(): number /*i64*/
+        // // godot.getset: max_pending_connections: number /*i64*/
     }
     namespace UPNP {
         enum UPNPResult {
@@ -7298,6 +11321,9 @@ declare module "godot" {
         get_discover_local_port(): number /*i64*/
         set_discover_ipv6(ipv6: boolean): void
         is_discover_ipv6(): boolean
+        // // godot.getset: discover_multicast_if: string
+        // // godot.getset: discover_local_port: number /*i64*/
+        // // godot.getset: discover_ipv6: boolean
     }
     namespace UPNPDevice {
         enum IGDStatus {
@@ -7330,6 +11356,12 @@ declare module "godot" {
         get_igd_our_addr(): string
         set_igd_status(status: UPNPDevice.IGDStatus): void
         get_igd_status(): UPNPDevice.IGDStatus
+        // // godot.getset: description_url: string
+        // // godot.getset: service_type: string
+        // // godot.getset: igd_control_url: string
+        // // godot.getset: igd_service_type: string
+        // // godot.getset: igd_our_addr: string
+        // // godot.getset: igd_status: number /*i64*/
     }
     namespace UndoRedo {
         enum MergeMode {
@@ -7342,8 +11374,8 @@ declare module "godot" {
         create_action(name: string, merge_mode: UndoRedo.MergeMode, backward_undo_ops: boolean): void
         commit_action(execute: boolean): void
         is_committing_action(): boolean
-        add_do_method(callable: any /*CALLABLE*/): void
-        add_undo_method(callable: any /*CALLABLE*/): void
+        add_do_method(callable: Callable): void
+        add_undo_method(callable: Callable): void
         add_do_property(object: Object, property: StringName, value: any): void
         add_undo_property(object: Object, property: StringName, value: any): void
         add_do_reference(object: Object): void
@@ -7360,7 +11392,7 @@ declare module "godot" {
         get_version(): number /*i64*/
         redo(): boolean
         undo(): boolean
-        // SIGNAL: version_changed
+        version_changed: Signal
     }
     class UniformSetCacheRD extends Object {
     }
@@ -7383,6 +11415,9 @@ declare module "godot" {
         get_brake(): number /*f64*/
         set_steering(steering: number /*f64*/): void
         get_steering(): number /*f64*/
+        // // godot.getset: engine_force: number /*f64*/
+        // // godot.getset: brake: number /*f64*/
+        // // godot.getset: steering: number /*f64*/
     }
     class VehicleWheel3D extends Node3D {
         set_radius(length: number /*f64*/): void
@@ -7417,6 +11452,20 @@ declare module "godot" {
         get_brake(): number /*f64*/
         set_steering(steering: number /*f64*/): void
         get_steering(): number /*f64*/
+        // // godot.getset: engine_force: number /*f64*/
+        // // godot.getset: brake: number /*f64*/
+        // // godot.getset: steering: number /*f64*/
+        // // godot.getset: use_as_traction: boolean
+        // // godot.getset: use_as_steering: boolean
+        // // godot.getset: wheel_roll_influence: number /*f64*/
+        // // godot.getset: wheel_radius: number /*f64*/
+        // // godot.getset: wheel_rest_length: number /*f64*/
+        // // godot.getset: wheel_friction_slip: number /*f64*/
+        // // godot.getset: suspension_travel: number /*f64*/
+        // // godot.getset: suspension_stiffness: number /*f64*/
+        // // godot.getset: suspension_max_force: number /*f64*/
+        // // godot.getset: damping_compression: number /*f64*/
+        // // godot.getset: damping_relaxation: number /*f64*/
     }
     class VehicleWheel3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -7425,6 +11474,7 @@ declare module "godot" {
     class VideoStream extends Resource {
         set_file(file: string): void
         get_file(): string
+        // // godot.getset: file: string
     }
     class VideoStreamPlayback extends Resource {
         mix_audio(num_frames: number /*i64*/, buffer: PackedFloat32Array, offset: number /*i64*/): number /*i64*/
@@ -7458,7 +11508,18 @@ declare module "godot" {
         set_bus(bus: StringName): void
         get_bus(): StringName
         get_video_texture(): Texture2D
-        // SIGNAL: finished
+        // // godot.getset: audio_track: number /*i64*/
+        // // godot.getset: stream: Object
+        // // godot.getset: volume_db: number /*f64*/
+        // // godot.getset: volume: number /*f64*/
+        // // godot.getset: autoplay: boolean
+        // // godot.getset: paused: boolean
+        // // godot.getset: expand: boolean
+        // // godot.getset: loop: boolean
+        // // godot.getset: buffering_msec: number /*i64*/
+        // // godot.getset: stream_position: number /*f64*/
+        // // godot.getset: bus: StringName
+        finished: Signal
     }
     class VideoStreamTheora extends VideoStream {
     }
@@ -7678,8 +11739,52 @@ declare module "godot" {
         get_vrs_mode(): Viewport.VRSMode
         set_vrs_texture(texture: Texture2D): void
         get_vrs_texture(): Texture2D
-        // SIGNAL: size_changed
-        // SIGNAL: gui_focus_changed
+        // // godot.getset: disable_3d: boolean
+        // // godot.getset: use_xr: boolean
+        // // godot.getset: own_world_3d: boolean
+        // // godot.getset: world_3d: Object
+        // // godot.getset: world_2d: Object
+        // // godot.getset: transparent_bg: boolean
+        // // godot.getset: handle_input_locally: boolean
+        // // godot.getset: snap_2d_transforms_to_pixel: boolean
+        // // godot.getset: snap_2d_vertices_to_pixel: boolean
+        // // godot.getset: msaa_2d: number /*i64*/
+        // // godot.getset: msaa_3d: number /*i64*/
+        // // godot.getset: screen_space_aa: number /*i64*/
+        // // godot.getset: use_taa: boolean
+        // // godot.getset: use_debanding: boolean
+        // // godot.getset: use_occlusion_culling: boolean
+        // // godot.getset: mesh_lod_threshold: number /*f64*/
+        // // godot.getset: debug_draw: number /*i64*/
+        // // godot.getset: use_hdr_2d: boolean
+        // // godot.getset: scaling_3d_mode: number /*i64*/
+        // // godot.getset: scaling_3d_scale: number /*f64*/
+        // // godot.getset: texture_mipmap_bias: number /*f64*/
+        // // godot.getset: fsr_sharpness: number /*f64*/
+        // // godot.getset: vrs_mode: number /*i64*/
+        // // godot.getset: vrs_texture: Object
+        // // godot.getset: canvas_item_default_texture_filter: number /*i64*/
+        // // godot.getset: canvas_item_default_texture_repeat: number /*i64*/
+        // // godot.getset: audio_listener_enable_2d: boolean
+        // // godot.getset: audio_listener_enable_3d: boolean
+        // // godot.getset: physics_object_picking: boolean
+        // // godot.getset: physics_object_picking_sort: boolean
+        // // godot.getset: gui_disable_input: boolean
+        // // godot.getset: gui_snap_controls_to_pixels: boolean
+        // // godot.getset: gui_embed_subwindows: boolean
+        // // godot.getset: sdf_oversize: number /*i64*/
+        // // godot.getset: sdf_scale: number /*i64*/
+        // // godot.getset: positional_shadow_atlas_size: number /*i64*/
+        // // godot.getset: positional_shadow_atlas_16_bits: boolean
+        // // godot.getset: positional_shadow_atlas_quad_0: number /*i64*/
+        // // godot.getset: positional_shadow_atlas_quad_1: number /*i64*/
+        // // godot.getset: positional_shadow_atlas_quad_2: number /*i64*/
+        // // godot.getset: positional_shadow_atlas_quad_3: number /*i64*/
+        // // godot.getset: canvas_transform: Transform2D
+        // // godot.getset: global_canvas_transform: Transform2D
+        // // godot.getset: canvas_cull_mask: number /*i64*/
+        size_changed: Signal
+        gui_focus_changed: Signal
     }
     class ViewportNavigationControl extends Control {
     }
@@ -7688,6 +11793,7 @@ declare module "godot" {
     class ViewportTexture extends Texture2D {
         set_viewport_path_in_scene(path: NodePath): void
         get_viewport_path_in_scene(): NodePath
+        // // godot.getset: viewport_path: NodePath
     }
     namespace VisibleOnScreenEnabler2D {
         enum EnableMode {
@@ -7701,6 +11807,8 @@ declare module "godot" {
         get_enable_mode(): VisibleOnScreenEnabler2D.EnableMode
         set_enable_node_path(path: NodePath): void
         get_enable_node_path(): NodePath
+        // // godot.getset: enable_mode: number /*i64*/
+        // // godot.getset: enable_node_path: NodePath
     }
     namespace VisibleOnScreenEnabler3D {
         enum EnableMode {
@@ -7714,19 +11822,23 @@ declare module "godot" {
         get_enable_mode(): VisibleOnScreenEnabler3D.EnableMode
         set_enable_node_path(path: NodePath): void
         get_enable_node_path(): NodePath
+        // // godot.getset: enable_mode: number /*i64*/
+        // // godot.getset: enable_node_path: NodePath
     }
     class VisibleOnScreenNotifier2D extends Node2D {
         set_rect(rect: Rect2): void
         get_rect(): Rect2
         is_on_screen(): boolean
-        // SIGNAL: screen_entered
-        // SIGNAL: screen_exited
+        // // godot.getset: rect: Rect2
+        screen_entered: Signal
+        screen_exited: Signal
     }
     class VisibleOnScreenNotifier3D extends VisualInstance3D {
         set_aabb(rect: AABB): void
         is_on_screen(): boolean
-        // SIGNAL: screen_entered
-        // SIGNAL: screen_exited
+        // // godot.getset: aabb: AABB
+        screen_entered: Signal
+        screen_exited: Signal
     }
     class VisibleOnScreenNotifier3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -7743,6 +11855,9 @@ declare module "godot" {
         set_sorting_use_aabb_center(enabled: boolean): void
         is_sorting_use_aabb_center(): boolean
         get_aabb(): AABB
+        // // godot.getset: layers: number /*i64*/
+        // // godot.getset: sorting_offset: number /*f64*/
+        // // godot.getset: sorting_use_aabb_center: boolean
     }
     namespace VisualShader {
         enum Type {
@@ -7799,6 +11914,7 @@ declare module "godot" {
         remove_varying(name: string): void
         has_varying(name: string): boolean
         _update_shader(): void
+        // // godot.getset: graph_offset: Vector2
     }
     class VisualShaderConversionPlugin extends EditorResourceConversionPlugin {
     }
@@ -7830,6 +11946,9 @@ declare module "godot" {
         clear_default_input_values(): void
         set_default_input_values(values: Array): void
         get_default_input_values(): Array
+        // // godot.getset: output_port_for_preview: number /*i64*/
+        // // godot.getset: default_input_values: Array
+        // // godot.getset: expanded_output_ports: Array
     }
     namespace VisualShaderNodeBillboard {
         enum BillboardType {
@@ -7845,16 +11964,21 @@ declare module "godot" {
         get_billboard_type(): VisualShaderNodeBillboard.BillboardType
         set_keep_scale_enabled(enabled: boolean): void
         is_keep_scale_enabled(): boolean
+        // // godot.getset: billboard_type: number /*i64*/
+        // // godot.getset: keep_scale: boolean
     }
     class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
         set_constant(constant: boolean): void
         get_constant(): boolean
+        // // godot.getset: constant: boolean
     }
     class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
         set_default_value_enabled(enabled: boolean): void
         is_default_value_enabled(): boolean
         set_default_value(value: boolean): void
         get_default_value(): boolean
+        // // godot.getset: default_value_enabled: boolean
+        // // godot.getset: default_value: boolean
     }
     namespace VisualShaderNodeClamp {
         enum OpType {
@@ -7870,10 +11994,12 @@ declare module "godot" {
     class VisualShaderNodeClamp extends VisualShaderNode {
         set_op_type(op_type: VisualShaderNodeClamp.OpType): void
         get_op_type(): VisualShaderNodeClamp.OpType
+        // // godot.getset: op_type: number /*i64*/
     }
     class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
         set_constant(constant: Color): void
         get_constant(): Color
+        // // godot.getset: constant: Color
     }
     namespace VisualShaderNodeColorFunc {
         enum Function {
@@ -7887,2036 +12013,6 @@ declare module "godot" {
     class VisualShaderNodeColorFunc extends VisualShaderNode {
         set_function(func: VisualShaderNodeColorFunc.Function): void
         get_function(): VisualShaderNodeColorFunc.Function
-    }
-    namespace VisualShaderNodeColorOp {
-        enum Operator {
-            OP_SCREEN = 0,
-            OP_DIFFERENCE = 1,
-            OP_DARKEN = 2,
-            OP_LIGHTEN = 3,
-            OP_OVERLAY = 4,
-            OP_DODGE = 5,
-            OP_BURN = 6,
-            OP_SOFT_LIGHT = 7,
-            OP_HARD_LIGHT = 8,
-            OP_MAX = 9,
-        }
-    }
-    class VisualShaderNodeColorOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeColorOp.Operator): void
-        get_operator(): VisualShaderNodeColorOp.Operator
-    }
-    class VisualShaderNodeColorParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Color): void
-        get_default_value(): Color
-    }
-    class VisualShaderNodeComment extends VisualShaderNodeResizableBase {
-        set_title(title: string): void
-        get_title(): string
-        set_description(description: string): void
-        get_description(): string
-    }
-    namespace VisualShaderNodeCompare {
-        enum ComparisonType {
-            CTYPE_SCALAR = 0,
-            CTYPE_SCALAR_INT = 1,
-            CTYPE_SCALAR_UINT = 2,
-            CTYPE_VECTOR_2D = 3,
-            CTYPE_VECTOR_3D = 4,
-            CTYPE_VECTOR_4D = 5,
-            CTYPE_BOOLEAN = 6,
-            CTYPE_TRANSFORM = 7,
-            CTYPE_MAX = 8,
-        }
-        enum Function {
-            FUNC_EQUAL = 0,
-            FUNC_NOT_EQUAL = 1,
-            FUNC_GREATER_THAN = 2,
-            FUNC_GREATER_THAN_EQUAL = 3,
-            FUNC_LESS_THAN = 4,
-            FUNC_LESS_THAN_EQUAL = 5,
-            FUNC_MAX = 6,
-        }
-        enum Condition {
-            COND_ALL = 0,
-            COND_ANY = 1,
-            COND_MAX = 2,
-        }
-    }
-    class VisualShaderNodeCompare extends VisualShaderNode {
-        set_comparison_type(type: VisualShaderNodeCompare.ComparisonType): void
-        get_comparison_type(): VisualShaderNodeCompare.ComparisonType
-        set_function(func: VisualShaderNodeCompare.Function): void
-        get_function(): VisualShaderNodeCompare.Function
-        set_condition(condition: VisualShaderNodeCompare.Condition): void
-        get_condition(): VisualShaderNodeCompare.Condition
-    }
-    class VisualShaderNodeConstant extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeCubemap {
-        enum Source {
-            SOURCE_TEXTURE = 0,
-            SOURCE_PORT = 1,
-            SOURCE_MAX = 2,
-        }
-        enum TextureType {
-            TYPE_DATA = 0,
-            TYPE_COLOR = 1,
-            TYPE_NORMAL_MAP = 2,
-            TYPE_MAX = 3,
-        }
-    }
-    class VisualShaderNodeCubemap extends VisualShaderNode {
-        set_source(value: VisualShaderNodeCubemap.Source): void
-        get_source(): VisualShaderNodeCubemap.Source
-        set_cube_map(value: Cubemap): void
-        get_cube_map(): Cubemap
-        set_texture_type(value: VisualShaderNodeCubemap.TextureType): void
-        get_texture_type(): VisualShaderNodeCubemap.TextureType
-    }
-    class VisualShaderNodeCubemapParameter extends VisualShaderNodeTextureParameter {
-    }
-    class VisualShaderNodeCurveTexture extends VisualShaderNodeResizableBase {
-        set_texture(texture: CurveTexture): void
-        get_texture(): CurveTexture
-    }
-    class VisualShaderNodeCurveXYZTexture extends VisualShaderNodeResizableBase {
-        set_texture(texture: CurveXYZTexture): void
-        get_texture(): CurveXYZTexture
-    }
-    class VisualShaderNodeCustom extends VisualShaderNode {
-        _set_initialized(enabled: boolean): void
-        _is_initialized(): boolean
-        _set_input_port_default_value(port: number /*i64*/, value: any): void
-        _set_option_index(option: number /*i64*/, value: number /*i64*/): void
-        _set_properties(properties: string): void
-        _get_properties(): string
-        get_option_index(option: number /*i64*/): number /*i64*/
-    }
-    namespace VisualShaderNodeDerivativeFunc {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_3D = 2,
-            OP_TYPE_VECTOR_4D = 3,
-            OP_TYPE_MAX = 4,
-        }
-        enum Function {
-            FUNC_SUM = 0,
-            FUNC_X = 1,
-            FUNC_Y = 2,
-            FUNC_MAX = 3,
-        }
-        enum Precision {
-            PRECISION_NONE = 0,
-            PRECISION_COARSE = 1,
-            PRECISION_FINE = 2,
-            PRECISION_MAX = 3,
-        }
-    }
-    class VisualShaderNodeDerivativeFunc extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeDerivativeFunc.OpType): void
-        get_op_type(): VisualShaderNodeDerivativeFunc.OpType
-        set_function(func: VisualShaderNodeDerivativeFunc.Function): void
-        get_function(): VisualShaderNodeDerivativeFunc.Function
-        set_precision(precision: VisualShaderNodeDerivativeFunc.Precision): void
-        get_precision(): VisualShaderNodeDerivativeFunc.Precision
-    }
-    class VisualShaderNodeDeterminant extends VisualShaderNode {
-    }
-    class VisualShaderNodeDistanceFade extends VisualShaderNode {
-    }
-    class VisualShaderNodeDotProduct extends VisualShaderNode {
-    }
-    class VisualShaderNodeExpression extends VisualShaderNodeGroupBase {
-        set_expression(expression: string): void
-        get_expression(): string
-    }
-    class VisualShaderNodeFaceForward extends VisualShaderNodeVectorBase {
-    }
-    class VisualShaderNodeFloatConstant extends VisualShaderNodeConstant {
-        set_constant(constant: number /*f64*/): void
-        get_constant(): number /*f64*/
-    }
-    namespace VisualShaderNodeFloatFunc {
-        enum Function {
-            FUNC_SIN = 0,
-            FUNC_COS = 1,
-            FUNC_TAN = 2,
-            FUNC_ASIN = 3,
-            FUNC_ACOS = 4,
-            FUNC_ATAN = 5,
-            FUNC_SINH = 6,
-            FUNC_COSH = 7,
-            FUNC_TANH = 8,
-            FUNC_LOG = 9,
-            FUNC_EXP = 10,
-            FUNC_SQRT = 11,
-            FUNC_ABS = 12,
-            FUNC_SIGN = 13,
-            FUNC_FLOOR = 14,
-            FUNC_ROUND = 15,
-            FUNC_CEIL = 16,
-            FUNC_FRACT = 17,
-            FUNC_SATURATE = 18,
-            FUNC_NEGATE = 19,
-            FUNC_ACOSH = 20,
-            FUNC_ASINH = 21,
-            FUNC_ATANH = 22,
-            FUNC_DEGREES = 23,
-            FUNC_EXP2 = 24,
-            FUNC_INVERSE_SQRT = 25,
-            FUNC_LOG2 = 26,
-            FUNC_RADIANS = 27,
-            FUNC_RECIPROCAL = 28,
-            FUNC_ROUNDEVEN = 29,
-            FUNC_TRUNC = 30,
-            FUNC_ONEMINUS = 31,
-            FUNC_MAX = 32,
-        }
-    }
-    class VisualShaderNodeFloatFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeFloatFunc.Function): void
-        get_function(): VisualShaderNodeFloatFunc.Function
-    }
-    namespace VisualShaderNodeFloatOp {
-        enum Operator {
-            OP_ADD = 0,
-            OP_SUB = 1,
-            OP_MUL = 2,
-            OP_DIV = 3,
-            OP_MOD = 4,
-            OP_POW = 5,
-            OP_MAX = 6,
-            OP_MIN = 7,
-            OP_ATAN2 = 8,
-            OP_STEP = 9,
-            OP_ENUM_SIZE = 10,
-        }
-    }
-    class VisualShaderNodeFloatOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeFloatOp.Operator): void
-        get_operator(): VisualShaderNodeFloatOp.Operator
-    }
-    namespace VisualShaderNodeFloatParameter {
-        enum Hint {
-            HINT_NONE = 0,
-            HINT_RANGE = 1,
-            HINT_RANGE_STEP = 2,
-            HINT_MAX = 3,
-        }
-    }
-    class VisualShaderNodeFloatParameter extends VisualShaderNodeParameter {
-        set_hint(hint: VisualShaderNodeFloatParameter.Hint): void
-        get_hint(): VisualShaderNodeFloatParameter.Hint
-        set_min(value: number /*f64*/): void
-        get_min(): number /*f64*/
-        set_max(value: number /*f64*/): void
-        get_max(): number /*f64*/
-        set_step(value: number /*f64*/): void
-        get_step(): number /*f64*/
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: number /*f64*/): void
-        get_default_value(): number /*f64*/
-    }
-    class VisualShaderNodeFresnel extends VisualShaderNode {
-    }
-    class VisualShaderNodeGlobalExpression extends VisualShaderNodeExpression {
-    }
-    class VisualShaderNodeGroupBase extends VisualShaderNodeResizableBase {
-        set_inputs(inputs: string): void
-        get_inputs(): string
-        set_outputs(outputs: string): void
-        get_outputs(): string
-        is_valid_port_name(name: string): boolean
-        add_input_port(id: number /*i64*/, type: number /*i64*/, name: string): void
-        remove_input_port(id: number /*i64*/): void
-        get_input_port_count(): number /*i64*/
-        has_input_port(id: number /*i64*/): boolean
-        clear_input_ports(): void
-        add_output_port(id: number /*i64*/, type: number /*i64*/, name: string): void
-        remove_output_port(id: number /*i64*/): void
-        get_output_port_count(): number /*i64*/
-        has_output_port(id: number /*i64*/): boolean
-        clear_output_ports(): void
-        set_input_port_name(id: number /*i64*/, name: string): void
-        set_input_port_type(id: number /*i64*/, type: number /*i64*/): void
-        set_output_port_name(id: number /*i64*/, name: string): void
-        set_output_port_type(id: number /*i64*/, type: number /*i64*/): void
-        get_free_input_port_id(): number /*i64*/
-        get_free_output_port_id(): number /*i64*/
-    }
-    class VisualShaderNodeIf extends VisualShaderNode {
-    }
-    class VisualShaderNodeInput extends VisualShaderNode {
-        set_input_name(name: string): void
-        get_input_name(): string
-        get_input_real_name(): string
-        // SIGNAL: input_type_changed
-    }
-    class VisualShaderNodeIntConstant extends VisualShaderNodeConstant {
-        set_constant(constant: number /*i64*/): void
-        get_constant(): number /*i64*/
-    }
-    namespace VisualShaderNodeIntFunc {
-        enum Function {
-            FUNC_ABS = 0,
-            FUNC_NEGATE = 1,
-            FUNC_SIGN = 2,
-            FUNC_BITWISE_NOT = 3,
-            FUNC_MAX = 4,
-        }
-    }
-    class VisualShaderNodeIntFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeIntFunc.Function): void
-        get_function(): VisualShaderNodeIntFunc.Function
-    }
-    namespace VisualShaderNodeIntOp {
-        enum Operator {
-            OP_ADD = 0,
-            OP_SUB = 1,
-            OP_MUL = 2,
-            OP_DIV = 3,
-            OP_MOD = 4,
-            OP_MAX = 5,
-            OP_MIN = 6,
-            OP_BITWISE_AND = 7,
-            OP_BITWISE_OR = 8,
-            OP_BITWISE_XOR = 9,
-            OP_BITWISE_LEFT_SHIFT = 10,
-            OP_BITWISE_RIGHT_SHIFT = 11,
-            OP_ENUM_SIZE = 12,
-        }
-    }
-    class VisualShaderNodeIntOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeIntOp.Operator): void
-        get_operator(): VisualShaderNodeIntOp.Operator
-    }
-    namespace VisualShaderNodeIntParameter {
-        enum Hint {
-            HINT_NONE = 0,
-            HINT_RANGE = 1,
-            HINT_RANGE_STEP = 2,
-            HINT_MAX = 3,
-        }
-    }
-    class VisualShaderNodeIntParameter extends VisualShaderNodeParameter {
-        set_hint(hint: VisualShaderNodeIntParameter.Hint): void
-        get_hint(): VisualShaderNodeIntParameter.Hint
-        set_min(value: number /*i64*/): void
-        get_min(): number /*i64*/
-        set_max(value: number /*i64*/): void
-        get_max(): number /*i64*/
-        set_step(value: number /*i64*/): void
-        get_step(): number /*i64*/
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: number /*i64*/): void
-        get_default_value(): number /*i64*/
-    }
-    namespace VisualShaderNodeIs {
-        enum Function {
-            FUNC_IS_INF = 0,
-            FUNC_IS_NAN = 1,
-            FUNC_MAX = 2,
-        }
-    }
-    class VisualShaderNodeIs extends VisualShaderNode {
-        set_function(func: VisualShaderNodeIs.Function): void
-        get_function(): VisualShaderNodeIs.Function
-    }
-    class VisualShaderNodeLinearSceneDepth extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeMix {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_2D_SCALAR = 2,
-            OP_TYPE_VECTOR_3D = 3,
-            OP_TYPE_VECTOR_3D_SCALAR = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_VECTOR_4D_SCALAR = 6,
-            OP_TYPE_MAX = 7,
-        }
-    }
-    class VisualShaderNodeMix extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeMix.OpType): void
-        get_op_type(): VisualShaderNodeMix.OpType
-    }
-    namespace VisualShaderNodeMultiplyAdd {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_3D = 2,
-            OP_TYPE_VECTOR_4D = 3,
-            OP_TYPE_MAX = 4,
-        }
-    }
-    class VisualShaderNodeMultiplyAdd extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeMultiplyAdd.OpType): void
-        get_op_type(): VisualShaderNodeMultiplyAdd.OpType
-    }
-    class VisualShaderNodeOuterProduct extends VisualShaderNode {
-    }
-    class VisualShaderNodeOutput extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeParameter {
-        enum Qualifier {
-            QUAL_NONE = 0,
-            QUAL_GLOBAL = 1,
-            QUAL_INSTANCE = 2,
-            QUAL_MAX = 3,
-        }
-    }
-    class VisualShaderNodeParameter extends VisualShaderNode {
-        set_parameter_name(name: string): void
-        get_parameter_name(): string
-        set_qualifier(qualifier: VisualShaderNodeParameter.Qualifier): void
-        get_qualifier(): VisualShaderNodeParameter.Qualifier
-    }
-    class VisualShaderNodeParameterRef extends VisualShaderNode {
-        set_parameter_name(name: string): void
-        get_parameter_name(): string
-        _set_parameter_type(type: number /*i64*/): void
-        _get_parameter_type(): number /*i64*/
-    }
-    namespace VisualShaderNodeParticleAccelerator {
-        enum Mode {
-            MODE_LINEAR = 0,
-            MODE_RADIAL = 1,
-            MODE_TANGENTIAL = 2,
-            MODE_MAX = 3,
-        }
-    }
-    class VisualShaderNodeParticleAccelerator extends VisualShaderNode {
-        set_mode(mode: VisualShaderNodeParticleAccelerator.Mode): void
-        get_mode(): VisualShaderNodeParticleAccelerator.Mode
-    }
-    class VisualShaderNodeParticleBoxEmitter extends VisualShaderNodeParticleEmitter {
-    }
-    class VisualShaderNodeParticleConeVelocity extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeParticleEmit {
-        enum EmitFlags {
-            EMIT_FLAG_POSITION = 1,
-            EMIT_FLAG_ROT_SCALE = 2,
-            EMIT_FLAG_VELOCITY = 4,
-            EMIT_FLAG_COLOR = 8,
-            EMIT_FLAG_CUSTOM = 16,
-        }
-    }
-    class VisualShaderNodeParticleEmit extends VisualShaderNode {
-        set_flags(flags: VisualShaderNodeParticleEmit.EmitFlags): void
-        get_flags(): VisualShaderNodeParticleEmit.EmitFlags
-    }
-    class VisualShaderNodeParticleEmitter extends VisualShaderNode {
-        set_mode_2d(enabled: boolean): void
-        is_mode_2d(): boolean
-    }
-    class VisualShaderNodeParticleMeshEmitter extends VisualShaderNodeParticleEmitter {
-        set_mesh(mesh: Mesh): void
-        get_mesh(): Mesh
-        set_use_all_surfaces(enabled: boolean): void
-        is_use_all_surfaces(): boolean
-        set_surface_index(surface_index: number /*i64*/): void
-        get_surface_index(): number /*i64*/
-    }
-    class VisualShaderNodeParticleMultiplyByAxisAngle extends VisualShaderNode {
-        set_degrees_mode(enabled: boolean): void
-        is_degrees_mode(): boolean
-    }
-    class VisualShaderNodeParticleOutput extends VisualShaderNodeOutput {
-    }
-    namespace VisualShaderNodeParticleRandomness {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_3D = 2,
-            OP_TYPE_VECTOR_4D = 3,
-            OP_TYPE_MAX = 4,
-        }
-    }
-    class VisualShaderNodeParticleRandomness extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeParticleRandomness.OpType): void
-        get_op_type(): VisualShaderNodeParticleRandomness.OpType
-    }
-    class VisualShaderNodeParticleRingEmitter extends VisualShaderNodeParticleEmitter {
-    }
-    class VisualShaderNodeParticleSphereEmitter extends VisualShaderNodeParticleEmitter {
-    }
-    class VisualShaderNodeProximityFade extends VisualShaderNode {
-    }
-    class VisualShaderNodeRandomRange extends VisualShaderNode {
-    }
-    class VisualShaderNodeRemap extends VisualShaderNode {
-    }
-    class VisualShaderNodeResizableBase extends VisualShaderNode {
-        set_size(size: Vector2): void
-        get_size(): Vector2
-    }
-    class VisualShaderNodeRotationByAxis extends VisualShaderNode {
-    }
-    class VisualShaderNodeSDFRaymarch extends VisualShaderNode {
-    }
-    class VisualShaderNodeSDFToScreenUV extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeSample3D {
-        enum Source {
-            SOURCE_TEXTURE = 0,
-            SOURCE_PORT = 1,
-            SOURCE_MAX = 2,
-        }
-    }
-    class VisualShaderNodeSample3D extends VisualShaderNode {
-        set_source(value: VisualShaderNodeSample3D.Source): void
-        get_source(): VisualShaderNodeSample3D.Source
-    }
-    class VisualShaderNodeScreenNormalWorldSpace extends VisualShaderNode {
-    }
-    class VisualShaderNodeScreenUVToSDF extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeSmoothStep {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_2D_SCALAR = 2,
-            OP_TYPE_VECTOR_3D = 3,
-            OP_TYPE_VECTOR_3D_SCALAR = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_VECTOR_4D_SCALAR = 6,
-            OP_TYPE_MAX = 7,
-        }
-    }
-    class VisualShaderNodeSmoothStep extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeSmoothStep.OpType): void
-        get_op_type(): VisualShaderNodeSmoothStep.OpType
-    }
-    namespace VisualShaderNodeStep {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_2D_SCALAR = 2,
-            OP_TYPE_VECTOR_3D = 3,
-            OP_TYPE_VECTOR_3D_SCALAR = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_VECTOR_4D_SCALAR = 6,
-            OP_TYPE_MAX = 7,
-        }
-    }
-    class VisualShaderNodeStep extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeStep.OpType): void
-        get_op_type(): VisualShaderNodeStep.OpType
-    }
-    namespace VisualShaderNodeSwitch {
-        enum OpType {
-            OP_TYPE_FLOAT = 0,
-            OP_TYPE_INT = 1,
-            OP_TYPE_UINT = 2,
-            OP_TYPE_VECTOR_2D = 3,
-            OP_TYPE_VECTOR_3D = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_BOOLEAN = 6,
-            OP_TYPE_TRANSFORM = 7,
-            OP_TYPE_MAX = 8,
-        }
-    }
-    class VisualShaderNodeSwitch extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeSwitch.OpType): void
-        get_op_type(): VisualShaderNodeSwitch.OpType
-    }
-    namespace VisualShaderNodeTexture {
-        enum Source {
-            SOURCE_TEXTURE = 0,
-            SOURCE_SCREEN = 1,
-            SOURCE_2D_TEXTURE = 2,
-            SOURCE_2D_NORMAL = 3,
-            SOURCE_DEPTH = 4,
-            SOURCE_PORT = 5,
-            SOURCE_3D_NORMAL = 6,
-            SOURCE_ROUGHNESS = 7,
-            SOURCE_MAX = 8,
-        }
-        enum TextureType {
-            TYPE_DATA = 0,
-            TYPE_COLOR = 1,
-            TYPE_NORMAL_MAP = 2,
-            TYPE_MAX = 3,
-        }
-    }
-    class VisualShaderNodeTexture extends VisualShaderNode {
-        set_source(value: VisualShaderNodeTexture.Source): void
-        get_source(): VisualShaderNodeTexture.Source
-        set_texture(value: Texture2D): void
-        get_texture(): Texture2D
-        set_texture_type(value: VisualShaderNodeTexture.TextureType): void
-        get_texture_type(): VisualShaderNodeTexture.TextureType
-    }
-    class VisualShaderNodeTexture2DArray extends VisualShaderNodeSample3D {
-        set_texture_array(value: Texture2DArray): void
-        get_texture_array(): Texture2DArray
-    }
-    class VisualShaderNodeTexture2DArrayParameter extends VisualShaderNodeTextureParameter {
-    }
-    class VisualShaderNodeTexture2DParameter extends VisualShaderNodeTextureParameter {
-    }
-    class VisualShaderNodeTexture3D extends VisualShaderNodeSample3D {
-        set_texture(value: Texture3D): void
-        get_texture(): Texture3D
-    }
-    class VisualShaderNodeTexture3DParameter extends VisualShaderNodeTextureParameter {
-    }
-    namespace VisualShaderNodeTextureParameter {
-        enum TextureType {
-            TYPE_DATA = 0,
-            TYPE_COLOR = 1,
-            TYPE_NORMAL_MAP = 2,
-            TYPE_ANISOTROPY = 3,
-            TYPE_MAX = 4,
-        }
-        enum ColorDefault {
-            COLOR_DEFAULT_WHITE = 0,
-            COLOR_DEFAULT_BLACK = 1,
-            COLOR_DEFAULT_TRANSPARENT = 2,
-            COLOR_DEFAULT_MAX = 3,
-        }
-        enum TextureFilter {
-            FILTER_DEFAULT = 0,
-            FILTER_NEAREST = 1,
-            FILTER_LINEAR = 2,
-            FILTER_NEAREST_MIPMAP = 3,
-            FILTER_LINEAR_MIPMAP = 4,
-            FILTER_NEAREST_MIPMAP_ANISOTROPIC = 5,
-            FILTER_LINEAR_MIPMAP_ANISOTROPIC = 6,
-            FILTER_MAX = 7,
-        }
-        enum TextureRepeat {
-            REPEAT_DEFAULT = 0,
-            REPEAT_ENABLED = 1,
-            REPEAT_DISABLED = 2,
-            REPEAT_MAX = 3,
-        }
-        enum TextureSource {
-            SOURCE_NONE = 0,
-            SOURCE_SCREEN = 1,
-            SOURCE_DEPTH = 2,
-            SOURCE_NORMAL_ROUGHNESS = 3,
-            SOURCE_MAX = 4,
-        }
-    }
-    class VisualShaderNodeTextureParameter extends VisualShaderNodeParameter {
-        set_texture_type(type: VisualShaderNodeTextureParameter.TextureType): void
-        get_texture_type(): VisualShaderNodeTextureParameter.TextureType
-        set_color_default(color: VisualShaderNodeTextureParameter.ColorDefault): void
-        get_color_default(): VisualShaderNodeTextureParameter.ColorDefault
-        set_texture_filter(filter: VisualShaderNodeTextureParameter.TextureFilter): void
-        get_texture_filter(): VisualShaderNodeTextureParameter.TextureFilter
-        set_texture_repeat(repeat: VisualShaderNodeTextureParameter.TextureRepeat): void
-        get_texture_repeat(): VisualShaderNodeTextureParameter.TextureRepeat
-        set_texture_source(source: VisualShaderNodeTextureParameter.TextureSource): void
-        get_texture_source(): VisualShaderNodeTextureParameter.TextureSource
-    }
-    class VisualShaderNodeTextureParameterTriplanar extends VisualShaderNodeTextureParameter {
-    }
-    class VisualShaderNodeTextureSDF extends VisualShaderNode {
-    }
-    class VisualShaderNodeTextureSDFNormal extends VisualShaderNode {
-    }
-    class VisualShaderNodeTransformCompose extends VisualShaderNode {
-    }
-    class VisualShaderNodeTransformConstant extends VisualShaderNodeConstant {
-        set_constant(constant: Transform3D): void
-        get_constant(): Transform3D
-    }
-    class VisualShaderNodeTransformDecompose extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeTransformFunc {
-        enum Function {
-            FUNC_INVERSE = 0,
-            FUNC_TRANSPOSE = 1,
-            FUNC_MAX = 2,
-        }
-    }
-    class VisualShaderNodeTransformFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeTransformFunc.Function): void
-        get_function(): VisualShaderNodeTransformFunc.Function
-    }
-    namespace VisualShaderNodeTransformOp {
-        enum Operator {
-            OP_AxB = 0,
-            OP_BxA = 1,
-            OP_AxB_COMP = 2,
-            OP_BxA_COMP = 3,
-            OP_ADD = 4,
-            OP_A_MINUS_B = 5,
-            OP_B_MINUS_A = 6,
-            OP_A_DIV_B = 7,
-            OP_B_DIV_A = 8,
-            OP_MAX = 9,
-        }
-    }
-    class VisualShaderNodeTransformOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeTransformOp.Operator): void
-        get_operator(): VisualShaderNodeTransformOp.Operator
-    }
-    class VisualShaderNodeTransformParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Transform3D): void
-        get_default_value(): Transform3D
-    }
-    namespace VisualShaderNodeTransformVecMult {
-        enum Operator {
-            OP_AxB = 0,
-            OP_BxA = 1,
-            OP_3x3_AxB = 2,
-            OP_3x3_BxA = 3,
-            OP_MAX = 4,
-        }
-    }
-    class VisualShaderNodeTransformVecMult extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeTransformVecMult.Operator): void
-        get_operator(): VisualShaderNodeTransformVecMult.Operator
-    }
-    class VisualShaderNodeUIntConstant extends VisualShaderNodeConstant {
-        set_constant(constant: number /*i64*/): void
-        get_constant(): number /*i64*/
-    }
-    namespace VisualShaderNodeUIntFunc {
-        enum Function {
-            FUNC_NEGATE = 0,
-            FUNC_BITWISE_NOT = 1,
-            FUNC_MAX = 2,
-        }
-    }
-    class VisualShaderNodeUIntFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeUIntFunc.Function): void
-        get_function(): VisualShaderNodeUIntFunc.Function
-    }
-    namespace VisualShaderNodeUIntOp {
-        enum Operator {
-            OP_ADD = 0,
-            OP_SUB = 1,
-            OP_MUL = 2,
-            OP_DIV = 3,
-            OP_MOD = 4,
-            OP_MAX = 5,
-            OP_MIN = 6,
-            OP_BITWISE_AND = 7,
-            OP_BITWISE_OR = 8,
-            OP_BITWISE_XOR = 9,
-            OP_BITWISE_LEFT_SHIFT = 10,
-            OP_BITWISE_RIGHT_SHIFT = 11,
-            OP_ENUM_SIZE = 12,
-        }
-    }
-    class VisualShaderNodeUIntOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeUIntOp.Operator): void
-        get_operator(): VisualShaderNodeUIntOp.Operator
-    }
-    class VisualShaderNodeUIntParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: number /*i64*/): void
-        get_default_value(): number /*i64*/
-    }
-    namespace VisualShaderNodeUVFunc {
-        enum Function {
-            FUNC_PANNING = 0,
-            FUNC_SCALING = 1,
-            FUNC_MAX = 2,
-        }
-    }
-    class VisualShaderNodeUVFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeUVFunc.Function): void
-        get_function(): VisualShaderNodeUVFunc.Function
-    }
-    class VisualShaderNodeUVPolarCoord extends VisualShaderNode {
-    }
-    class VisualShaderNodeVarying extends VisualShaderNode {
-        set_varying_name(name: string): void
-        get_varying_name(): string
-        set_varying_type(type: VisualShader.VaryingType): void
-        get_varying_type(): VisualShader.VaryingType
-    }
-    class VisualShaderNodeVaryingGetter extends VisualShaderNodeVarying {
-    }
-    class VisualShaderNodeVaryingSetter extends VisualShaderNodeVarying {
-    }
-    class VisualShaderNodeVec2Constant extends VisualShaderNodeConstant {
-        set_constant(constant: Vector2): void
-        get_constant(): Vector2
-    }
-    class VisualShaderNodeVec2Parameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Vector2): void
-        get_default_value(): Vector2
-    }
-    class VisualShaderNodeVec3Constant extends VisualShaderNodeConstant {
-        set_constant(constant: Vector3): void
-        get_constant(): Vector3
-    }
-    class VisualShaderNodeVec3Parameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Vector3): void
-        get_default_value(): Vector3
-    }
-    class VisualShaderNodeVec4Constant extends VisualShaderNodeConstant {
-        set_constant(constant: Quaternion): void
-        get_constant(): Quaternion
-    }
-    class VisualShaderNodeVec4Parameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Vector4): void
-        get_default_value(): Vector4
-    }
-    namespace VisualShaderNodeVectorBase {
-        enum OpType {
-            OP_TYPE_VECTOR_2D = 0,
-            OP_TYPE_VECTOR_3D = 1,
-            OP_TYPE_VECTOR_4D = 2,
-            OP_TYPE_MAX = 3,
-        }
-    }
-    class VisualShaderNodeVectorBase extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeVectorBase.OpType): void
-        get_op_type(): VisualShaderNodeVectorBase.OpType
-    }
-    class VisualShaderNodeVectorCompose extends VisualShaderNodeVectorBase {
-    }
-    class VisualShaderNodeVectorDecompose extends VisualShaderNodeVectorBase {
-    }
-    class VisualShaderNodeVectorDistance extends VisualShaderNodeVectorBase {
-    }
-    namespace VisualShaderNodeVectorFunc {
-        enum Function {
-            FUNC_NORMALIZE = 0,
-            FUNC_SATURATE = 1,
-            FUNC_NEGATE = 2,
-            FUNC_RECIPROCAL = 3,
-            FUNC_ABS = 4,
-            FUNC_ACOS = 5,
-            FUNC_ACOSH = 6,
-            FUNC_ASIN = 7,
-            FUNC_ASINH = 8,
-            FUNC_ATAN = 9,
-            FUNC_ATANH = 10,
-            FUNC_CEIL = 11,
-            FUNC_COS = 12,
-            FUNC_COSH = 13,
-            FUNC_DEGREES = 14,
-            FUNC_EXP = 15,
-            FUNC_EXP2 = 16,
-            FUNC_FLOOR = 17,
-            FUNC_FRACT = 18,
-            FUNC_INVERSE_SQRT = 19,
-            FUNC_LOG = 20,
-            FUNC_LOG2 = 21,
-            FUNC_RADIANS = 22,
-            FUNC_ROUND = 23,
-            FUNC_ROUNDEVEN = 24,
-            FUNC_SIGN = 25,
-            FUNC_SIN = 26,
-            FUNC_SINH = 27,
-            FUNC_SQRT = 28,
-            FUNC_TAN = 29,
-            FUNC_TANH = 30,
-            FUNC_TRUNC = 31,
-            FUNC_ONEMINUS = 32,
-            FUNC_MAX = 33,
-        }
-    }
-    class VisualShaderNodeVectorFunc extends VisualShaderNodeVectorBase {
-        set_function(func: VisualShaderNodeVectorFunc.Function): void
-        get_function(): VisualShaderNodeVectorFunc.Function
-    }
-    class VisualShaderNodeVectorLen extends VisualShaderNodeVectorBase {
-    }
-    namespace VisualShaderNodeVectorOp {
-        enum Operator {
-            OP_ADD = 0,
-            OP_SUB = 1,
-            OP_MUL = 2,
-            OP_DIV = 3,
-            OP_MOD = 4,
-            OP_POW = 5,
-            OP_MAX = 6,
-            OP_MIN = 7,
-            OP_CROSS = 8,
-            OP_ATAN2 = 9,
-            OP_REFLECT = 10,
-            OP_STEP = 11,
-            OP_ENUM_SIZE = 12,
-        }
-    }
-    class VisualShaderNodeVectorOp extends VisualShaderNodeVectorBase {
-        set_operator(op: VisualShaderNodeVectorOp.Operator): void
-        get_operator(): VisualShaderNodeVectorOp.Operator
-    }
-    class VisualShaderNodeVectorRefract extends VisualShaderNodeVectorBase {
-    }
-    class VisualShaderNodeWorldPositionFromDepth extends VisualShaderNode {
-    }
-    namespace VoxelGI {
-        enum Subdiv {
-            SUBDIV_64 = 0,
-            SUBDIV_128 = 1,
-            SUBDIV_256 = 2,
-            SUBDIV_512 = 3,
-            SUBDIV_MAX = 4,
-        }
-    }
-    class VoxelGI extends VisualInstance3D {
-        set_probe_data(data: VoxelGIData): void
-        get_probe_data(): VoxelGIData
-        set_subdiv(subdiv: VoxelGI.Subdiv): void
-        get_subdiv(): VoxelGI.Subdiv
-        set_size(size: Vector3): void
-        get_size(): Vector3
-        set_camera_attributes(camera_attributes: CameraAttributes): void
-        get_camera_attributes(): CameraAttributes
-        bake(from_node: Node, create_visual_debug: boolean): void
-        debug_bake(): void
-    }
-    class VoxelGIData extends Resource {
-        allocate(to_cell_xform: Transform3D, aabb: AABB, octree_size: Vector3, octree_cells: PackedByteArray, data_cells: PackedByteArray, distance_field: PackedByteArray, level_counts: PackedInt32Array): void
-        get_bounds(): AABB
-        get_octree_size(): Vector3
-        get_to_cell_xform(): Transform3D
-        get_octree_cells(): PackedByteArray
-        get_data_cells(): PackedByteArray
-        get_level_counts(): PackedInt32Array
-        set_dynamic_range(dynamic_range: number /*f64*/): void
-        get_dynamic_range(): number /*f64*/
-        set_energy(energy: number /*f64*/): void
-        get_energy(): number /*f64*/
-        set_bias(bias: number /*f64*/): void
-        get_bias(): number /*f64*/
-        set_normal_bias(bias: number /*f64*/): void
-        get_normal_bias(): number /*f64*/
-        set_propagation(propagation: number /*f64*/): void
-        get_propagation(): number /*f64*/
-        set_interior(interior: boolean): void
-        is_interior(): boolean
-        set_use_two_bounces(enable: boolean): void
-        is_using_two_bounces(): boolean
-        _set_data(data: Dictionary): void
-        _get_data(): Dictionary
-    }
-    class VoxelGIEditorPlugin extends EditorPlugin {
-    }
-    class VoxelGIGizmoPlugin extends EditorNode3DGizmoPlugin {
-    }
-    class WeakRef extends RefCounted {
-        get_ref(): any
-    }
-    namespace WebRTCDataChannel {
-        enum WriteMode {
-            WRITE_MODE_TEXT = 0,
-            WRITE_MODE_BINARY = 1,
-        }
-        enum ChannelState {
-            STATE_CONNECTING = 0,
-            STATE_OPEN = 1,
-            STATE_CLOSING = 2,
-            STATE_CLOSED = 3,
-        }
-    }
-    class WebRTCDataChannel extends PacketPeer {
-        poll(): GodotError
-        close(): void
-        was_string_packet(): boolean
-        set_write_mode(write_mode: WebRTCDataChannel.WriteMode): void
-        get_write_mode(): WebRTCDataChannel.WriteMode
-        get_ready_state(): WebRTCDataChannel.ChannelState
-        get_label(): string
-        is_ordered(): boolean
-        get_id(): number /*i64*/
-        get_max_packet_life_time(): number /*i64*/
-        get_max_retransmits(): number /*i64*/
-        get_protocol(): string
-        is_negotiated(): boolean
-        get_buffered_amount(): number /*i64*/
-    }
-    class WebRTCDataChannelExtension extends WebRTCDataChannel {
-    }
-    class WebRTCMultiplayerPeer extends MultiplayerPeer {
-        create_server(channels_config: Array): GodotError
-        create_client(peer_id: number /*i64*/, channels_config: Array): GodotError
-        create_mesh(peer_id: number /*i64*/, channels_config: Array): GodotError
-        add_peer(peer: WebRTCPeerConnection, peer_id: number /*i64*/, unreliable_lifetime: number /*i64*/): GodotError
-        remove_peer(peer_id: number /*i64*/): void
-        has_peer(peer_id: number /*i64*/): boolean
-        get_peer(peer_id: number /*i64*/): Dictionary
-        get_peers(): Dictionary
-    }
-    namespace WebRTCPeerConnection {
-        enum ConnectionState {
-            STATE_NEW = 0,
-            STATE_CONNECTING = 1,
-            STATE_CONNECTED = 2,
-            STATE_DISCONNECTED = 3,
-            STATE_FAILED = 4,
-            STATE_CLOSED = 5,
-        }
-        enum GatheringState {
-            GATHERING_STATE_NEW = 0,
-            GATHERING_STATE_GATHERING = 1,
-            GATHERING_STATE_COMPLETE = 2,
-        }
-        enum SignalingState {
-            SIGNALING_STATE_STABLE = 0,
-            SIGNALING_STATE_HAVE_LOCAL_OFFER = 1,
-            SIGNALING_STATE_HAVE_REMOTE_OFFER = 2,
-            SIGNALING_STATE_HAVE_LOCAL_PRANSWER = 3,
-            SIGNALING_STATE_HAVE_REMOTE_PRANSWER = 4,
-            SIGNALING_STATE_CLOSED = 5,
-        }
-    }
-    class WebRTCPeerConnection extends RefCounted {
-        static set_default_extension(extension_class: StringName): void
-        initialize(configuration: Dictionary): GodotError
-        create_data_channel(label: string, options: Dictionary): WebRTCDataChannel
-        create_offer(): GodotError
-        set_local_description(type: string, sdp: string): GodotError
-        set_remote_description(type: string, sdp: string): GodotError
-        add_ice_candidate(media: string, index: number /*i64*/, name: string): GodotError
-        poll(): GodotError
-        close(): void
-        get_connection_state(): WebRTCPeerConnection.ConnectionState
-        get_gathering_state(): WebRTCPeerConnection.GatheringState
-        get_signaling_state(): WebRTCPeerConnection.SignalingState
-        // SIGNAL: session_description_created
-        // SIGNAL: ice_candidate_created
-        // SIGNAL: data_channel_received
-    }
-    class WebRTCPeerConnectionExtension extends WebRTCPeerConnection {
-    }
-    namespace WebXRInterface {
-        enum TargetRayMode {
-            TARGET_RAY_MODE_UNKNOWN = 0,
-            TARGET_RAY_MODE_GAZE = 1,
-            TARGET_RAY_MODE_TRACKED_POINTER = 2,
-            TARGET_RAY_MODE_SCREEN = 3,
-        }
-    }
-    class WebXRInterface extends XRInterface {
-        is_session_supported(session_mode: string): void
-        set_session_mode(session_mode: string): void
-        get_session_mode(): string
-        set_required_features(required_features: string): void
-        get_required_features(): string
-        set_optional_features(optional_features: string): void
-        get_optional_features(): string
-        get_reference_space_type(): string
-        set_requested_reference_space_types(requested_reference_space_types: string): void
-        get_requested_reference_space_types(): string
-        is_input_source_active(input_source_id: number /*i64*/): boolean
-        get_input_source_tracker(input_source_id: number /*i64*/): XRPositionalTracker
-        get_input_source_target_ray_mode(input_source_id: number /*i64*/): WebXRInterface.TargetRayMode
-        get_visibility_state(): string
-        get_display_refresh_rate(): number /*f64*/
-        set_display_refresh_rate(refresh_rate: number /*f64*/): void
-        get_available_display_refresh_rates(): Array
-        // SIGNAL: session_supported
-        // SIGNAL: session_started
-        // SIGNAL: session_ended
-        // SIGNAL: session_failed
-        // SIGNAL: selectstart
-        // SIGNAL: select
-        // SIGNAL: selectend
-        // SIGNAL: squeezestart
-        // SIGNAL: squeeze
-        // SIGNAL: squeezeend
-        // SIGNAL: visibility_state_changed
-        // SIGNAL: reference_space_reset
-        // SIGNAL: display_refresh_rate_changed
-    }
-    namespace Window {
-        enum Mode {
-            MODE_WINDOWED = 0,
-            MODE_MINIMIZED = 1,
-            MODE_MAXIMIZED = 2,
-            MODE_FULLSCREEN = 3,
-            MODE_EXCLUSIVE_FULLSCREEN = 4,
-        }
-        enum Flags {
-            FLAG_RESIZE_DISABLED = 0,
-            FLAG_BORDERLESS = 1,
-            FLAG_ALWAYS_ON_TOP = 2,
-            FLAG_TRANSPARENT = 3,
-            FLAG_NO_FOCUS = 4,
-            FLAG_POPUP = 5,
-            FLAG_EXTEND_TO_TITLE = 6,
-            FLAG_MOUSE_PASSTHROUGH = 7,
-            FLAG_MAX = 8,
-        }
-        enum ContentScaleMode {
-            CONTENT_SCALE_MODE_DISABLED = 0,
-            CONTENT_SCALE_MODE_CANVAS_ITEMS = 1,
-            CONTENT_SCALE_MODE_VIEWPORT = 2,
-        }
-        enum ContentScaleAspect {
-            CONTENT_SCALE_ASPECT_IGNORE = 0,
-            CONTENT_SCALE_ASPECT_KEEP = 1,
-            CONTENT_SCALE_ASPECT_KEEP_WIDTH = 2,
-            CONTENT_SCALE_ASPECT_KEEP_HEIGHT = 3,
-            CONTENT_SCALE_ASPECT_EXPAND = 4,
-        }
-        enum ContentScaleStretch {
-            CONTENT_SCALE_STRETCH_FRACTIONAL = 0,
-            CONTENT_SCALE_STRETCH_INTEGER = 1,
-        }
-        enum LayoutDirection {
-            LAYOUT_DIRECTION_INHERITED = 0,
-            LAYOUT_DIRECTION_LOCALE = 1,
-            LAYOUT_DIRECTION_LTR = 2,
-            LAYOUT_DIRECTION_RTL = 3,
-        }
-        enum WindowInitialPosition {
-            WINDOW_INITIAL_POSITION_ABSOLUTE = 0,
-            WINDOW_INITIAL_POSITION_CENTER_PRIMARY_SCREEN = 1,
-            WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN = 2,
-            WINDOW_INITIAL_POSITION_CENTER_OTHER_SCREEN = 3,
-            WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_MOUSE_FOCUS = 4,
-            WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_KEYBOARD_FOCUS = 5,
-        }
-    }
-    class Window extends Viewport {
-        static readonly NOTIFICATION_VISIBILITY_CHANGED = 30
-        static readonly NOTIFICATION_THEME_CHANGED = 32
-        set_title(title: string): void
-        get_title(): string
-        get_window_id(): number /*i64*/
-        set_initial_position(initial_position: Window.WindowInitialPosition): void
-        get_initial_position(): Window.WindowInitialPosition
-        set_current_screen(index: number /*i64*/): void
-        get_current_screen(): number /*i64*/
-        set_position(position: Vector2i): void
-        get_position(): Vector2i
-        move_to_center(): void
-        set_size(size: Vector2i): void
-        get_size(): Vector2i
-        reset_size(): void
-        get_position_with_decorations(): Vector2i
-        get_size_with_decorations(): Vector2i
-        set_max_size(max_size: Vector2i): void
-        get_max_size(): Vector2i
-        set_min_size(min_size: Vector2i): void
-        get_min_size(): Vector2i
-        set_mode(mode: Window.Mode): void
-        get_mode(): Window.Mode
-        set_flag(flag: Window.Flags, enabled: boolean): void
-        get_flag(flag: Window.Flags): boolean
-        is_maximize_allowed(): boolean
-        request_attention(): void
-        move_to_foreground(): void
-        set_visible(visible: boolean): void
-        is_visible(): boolean
-        hide(): void
-        show(): void
-        set_transient(transient: boolean): void
-        is_transient(): boolean
-        set_exclusive(exclusive: boolean): void
-        is_exclusive(): boolean
-        set_unparent_when_invisible(unparent: boolean): void
-        can_draw(): boolean
-        has_focus(): boolean
-        grab_focus(): void
-        set_ime_active(active: boolean): void
-        set_ime_position(position: Vector2i): void
-        is_embedded(): boolean
-        get_contents_minimum_size(): Vector2
-        set_content_scale_size(size: Vector2i): void
-        get_content_scale_size(): Vector2i
-        set_content_scale_mode(mode: Window.ContentScaleMode): void
-        get_content_scale_mode(): Window.ContentScaleMode
-        set_content_scale_aspect(aspect: Window.ContentScaleAspect): void
-        get_content_scale_aspect(): Window.ContentScaleAspect
-        set_content_scale_stretch(stretch: Window.ContentScaleStretch): void
-        get_content_scale_stretch(): Window.ContentScaleStretch
-        set_keep_title_visible(title_visible: boolean): void
-        get_keep_title_visible(): boolean
-        set_content_scale_factor(factor: number /*f64*/): void
-        get_content_scale_factor(): number /*f64*/
-        set_use_font_oversampling(enable: boolean): void
-        is_using_font_oversampling(): boolean
-        set_mouse_passthrough_polygon(polygon: PackedVector2Array): void
-        get_mouse_passthrough_polygon(): PackedVector2Array
-        set_wrap_controls(enable: boolean): void
-        is_wrapping_controls(): boolean
-        child_controls_changed(): void
-        _update_child_controls(): void
-        _update_embedded_window(): void
-        set_theme(theme: Theme): void
-        get_theme(): Theme
-        set_theme_type_variation(theme_type: StringName): void
-        get_theme_type_variation(): StringName
-        begin_bulk_theme_override(): void
-        end_bulk_theme_override(): void
-        add_theme_icon_override(name: StringName, texture: Texture2D): void
-        add_theme_stylebox_override(name: StringName, stylebox: StyleBox): void
-        add_theme_font_override(name: StringName, font: Font): void
-        add_theme_font_size_override(name: StringName, font_size: number /*i64*/): void
-        add_theme_color_override(name: StringName, color: Color): void
-        add_theme_constant_override(name: StringName, constant: number /*i64*/): void
-        remove_theme_icon_override(name: StringName): void
-        remove_theme_stylebox_override(name: StringName): void
-        remove_theme_font_override(name: StringName): void
-        remove_theme_font_size_override(name: StringName): void
-        remove_theme_color_override(name: StringName): void
-        remove_theme_constant_override(name: StringName): void
-        get_theme_icon(name: StringName, theme_type: StringName): Texture2D
-        get_theme_stylebox(name: StringName, theme_type: StringName): StyleBox
-        get_theme_font(name: StringName, theme_type: StringName): Font
-        get_theme_font_size(name: StringName, theme_type: StringName): number /*i64*/
-        get_theme_color(name: StringName, theme_type: StringName): Color
-        get_theme_constant(name: StringName, theme_type: StringName): number /*i64*/
-        has_theme_icon_override(name: StringName): boolean
-        has_theme_stylebox_override(name: StringName): boolean
-        has_theme_font_override(name: StringName): boolean
-        has_theme_font_size_override(name: StringName): boolean
-        has_theme_color_override(name: StringName): boolean
-        has_theme_constant_override(name: StringName): boolean
-        has_theme_icon(name: StringName, theme_type: StringName): boolean
-        has_theme_stylebox(name: StringName, theme_type: StringName): boolean
-        has_theme_font(name: StringName, theme_type: StringName): boolean
-        has_theme_font_size(name: StringName, theme_type: StringName): boolean
-        has_theme_color(name: StringName, theme_type: StringName): boolean
-        has_theme_constant(name: StringName, theme_type: StringName): boolean
-        get_theme_default_base_scale(): number /*f64*/
-        get_theme_default_font(): Font
-        get_theme_default_font_size(): number /*i64*/
-        set_layout_direction(direction: Window.LayoutDirection): void
-        get_layout_direction(): Window.LayoutDirection
-        is_layout_rtl(): boolean
-        set_auto_translate(enable: boolean): void
-        is_auto_translating(): boolean
-        popup(rect: Rect2i): void
-        popup_on_parent(parent_rect: Rect2i): void
-        popup_centered(minsize: Vector2i): void
-        popup_centered_ratio(ratio: number /*f64*/): void
-        popup_centered_clamped(minsize: Vector2i, fallback_ratio: number /*f64*/): void
-        popup_exclusive(from_node: Node, rect: Rect2i): void
-        popup_exclusive_on_parent(from_node: Node, parent_rect: Rect2i): void
-        popup_exclusive_centered(from_node: Node, minsize: Vector2i): void
-        popup_exclusive_centered_ratio(from_node: Node, ratio: number /*f64*/): void
-        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i, fallback_ratio: number /*f64*/): void
-        // SIGNAL: window_input
-        // SIGNAL: files_dropped
-        // SIGNAL: mouse_entered
-        // SIGNAL: mouse_exited
-        // SIGNAL: focus_entered
-        // SIGNAL: focus_exited
-        // SIGNAL: close_requested
-        // SIGNAL: go_back_requested
-        // SIGNAL: visibility_changed
-        // SIGNAL: about_to_popup
-        // SIGNAL: theme_changed
-        // SIGNAL: dpi_changed
-        // SIGNAL: titlebar_changed
-    }
-    class WindowWrapper extends MarginContainer {
-        // SIGNAL: window_visibility_changed
-        // SIGNAL: window_close_requested
-    }
-    class World2D extends Resource {
-        get_canvas(): RID
-        get_space(): RID
-        get_navigation_map(): RID
-        get_direct_space_state(): PhysicsDirectSpaceState2D
-    }
-    class World3D extends Resource {
-        get_space(): RID
-        get_navigation_map(): RID
-        get_scenario(): RID
-        set_environment(env: Environment): void
-        get_environment(): Environment
-        set_fallback_environment(env: Environment): void
-        get_fallback_environment(): Environment
-        set_camera_attributes(attributes: CameraAttributes): void
-        get_camera_attributes(): CameraAttributes
-        get_direct_space_state(): PhysicsDirectSpaceState3D
-    }
-    class WorldBoundaryShape2D extends Shape2D {
-        set_normal(normal: Vector2): void
-        get_normal(): Vector2
-        set_distance(distance: number /*f64*/): void
-        get_distance(): number /*f64*/
-    }
-    class WorldBoundaryShape3D extends Shape3D {
-        set_plane(plane: Plane): void
-        get_plane(): Plane
-    }
-    class WorldEnvironment extends Node {
-        set_environment(env: Environment): void
-        get_environment(): Environment
-        set_camera_attributes(camera_attributes: CameraAttributes): void
-        get_camera_attributes(): CameraAttributes
-    }
-    class X509Certificate extends Resource {
-        save(path: string): GodotError
-        load(path: string): GodotError
-        save_to_string(): string
-        load_from_string(string_: string): GodotError
-    }
-    namespace XMLParser {
-        enum NodeType {
-            NODE_NONE = 0,
-            NODE_ELEMENT = 1,
-            NODE_ELEMENT_END = 2,
-            NODE_TEXT = 3,
-            NODE_COMMENT = 4,
-            NODE_CDATA = 5,
-            NODE_UNKNOWN = 6,
-        }
-    }
-    class XMLParser extends RefCounted {
-        read(): GodotError
-        get_node_type(): XMLParser.NodeType
-        get_node_name(): string
-        get_node_data(): string
-        get_node_offset(): number /*i64*/
-        get_attribute_count(): number /*i64*/
-        get_attribute_name(idx: number /*i64*/): string
-        get_attribute_value(idx: number /*i64*/): string
-        has_attribute(name: string): boolean
-        get_named_attribute_value(name: string): string
-        get_named_attribute_value_safe(name: string): string
-        is_empty(): boolean
-        get_current_line(): number /*i64*/
-        skip_section(): void
-        seek(position: number /*i64*/): GodotError
-        open(file: string): GodotError
-        open_buffer(buffer: PackedByteArray): GodotError
-    }
-    class XRAnchor3D extends XRNode3D {
-        get_size(): Vector3
-        get_plane(): Plane
-    }
-    class XRCamera3D extends Camera3D {
-    }
-    class XRController3D extends XRNode3D {
-        is_button_pressed(name: StringName): boolean
-        get_input(name: StringName): any
-        get_float(name: StringName): number /*f64*/
-        get_vector2(name: StringName): Vector2
-        get_tracker_hand(): XRPositionalTracker.TrackerHand
-        // SIGNAL: button_pressed
-        // SIGNAL: button_released
-        // SIGNAL: input_float_changed
-        // SIGNAL: input_vector2_changed
-    }
-    namespace XRInterface {
-        enum Capabilities {
-            XR_NONE = 0,
-            XR_MONO = 1,
-            XR_STEREO = 2,
-            XR_QUAD = 4,
-            XR_VR = 8,
-            XR_AR = 16,
-            XR_EXTERNAL = 32,
-        }
-        enum TrackingStatus {
-            XR_NORMAL_TRACKING = 0,
-            XR_EXCESSIVE_MOTION = 1,
-            XR_INSUFFICIENT_FEATURES = 2,
-            XR_UNKNOWN_TRACKING = 3,
-            XR_NOT_TRACKING = 4,
-        }
-        enum PlayAreaMode {
-            XR_PLAY_AREA_UNKNOWN = 0,
-            XR_PLAY_AREA_3DOF = 1,
-            XR_PLAY_AREA_SITTING = 2,
-            XR_PLAY_AREA_ROOMSCALE = 3,
-            XR_PLAY_AREA_STAGE = 4,
-        }
-        enum EnvironmentBlendMode {
-            XR_ENV_BLEND_MODE_OPAQUE = 0,
-            XR_ENV_BLEND_MODE_ADDITIVE = 1,
-            XR_ENV_BLEND_MODE_ALPHA_BLEND = 2,
-        }
-    }
-    class XRInterface extends RefCounted {
-        get_name(): StringName
-        get_capabilities(): number /*i64*/
-        is_primary(): boolean
-        set_primary(primary: boolean): void
-        is_initialized(): boolean
-        initialize(): boolean
-        uninitialize(): void
-        get_system_info(): Dictionary
-        get_tracking_status(): XRInterface.TrackingStatus
-        get_render_target_size(): Vector2
-        get_view_count(): number /*i64*/
-        trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
-        supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        get_play_area_mode(): XRInterface.PlayAreaMode
-        set_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        get_play_area(): PackedVector3Array
-        get_anchor_detection_is_enabled(): boolean
-        set_anchor_detection_is_enabled(enable: boolean): void
-        get_camera_feed_id(): number /*i64*/
-        is_passthrough_supported(): boolean
-        is_passthrough_enabled(): boolean
-        start_passthrough(): boolean
-        stop_passthrough(): void
-        get_transform_for_view(view: number /*i64*/, cam_transform: Transform3D): Transform3D
-        get_projection_for_view(view: number /*i64*/, aspect: number /*f64*/, near: number /*f64*/, far: number /*f64*/): Projection
-        get_supported_environment_blend_modes(): Array
-        set_environment_blend_mode(mode: XRInterface.EnvironmentBlendMode): boolean
-        get_environment_blend_mode(): XRInterface.EnvironmentBlendMode
-        // SIGNAL: play_area_changed
-    }
-    class XRInterfaceExtension extends XRInterface {
-        get_color_texture(): RID
-        get_depth_texture(): RID
-        get_velocity_texture(): RID
-        add_blit(render_target: RID, src_rect: Rect2, dst_rect: Rect2i, use_layer: boolean, layer: number /*i64*/, apply_lens_distortion: boolean, eye_center: Vector2, k1: number /*f64*/, k2: number /*f64*/, upscale: number /*f64*/, aspect_ratio: number /*f64*/): void
-        get_render_target_texture(render_target: RID): RID
-    }
-    class XRNode3D extends Node3D {
-        set_tracker(tracker_name: StringName): void
-        get_tracker(): StringName
-        set_pose_name(pose: StringName): void
-        get_pose_name(): StringName
-        get_is_active(): boolean
-        get_has_tracking_data(): boolean
-        get_pose(): XRPose
-        trigger_haptic_pulse(action_name: string, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
-        // SIGNAL: tracking_changed
-    }
-    class XROrigin3D extends Node3D {
-        set_world_scale(world_scale: number /*f64*/): void
-        get_world_scale(): number /*f64*/
-        set_current(enabled: boolean): void
-        is_current(): boolean
-    }
-    namespace XRPose {
-        enum TrackingConfidence {
-            XR_TRACKING_CONFIDENCE_NONE = 0,
-            XR_TRACKING_CONFIDENCE_LOW = 1,
-            XR_TRACKING_CONFIDENCE_HIGH = 2,
-        }
-    }
-    class XRPose extends RefCounted {
-        set_has_tracking_data(has_tracking_data: boolean): void
-        get_has_tracking_data(): boolean
-        set_name(name: StringName): void
-        get_name(): StringName
-        set_transform(transform: Transform3D): void
-        get_transform(): Transform3D
-        get_adjusted_transform(): Transform3D
-        set_linear_velocity(velocity: Vector3): void
-        get_linear_velocity(): Vector3
-        set_angular_velocity(velocity: Vector3): void
-        get_angular_velocity(): Vector3
-        set_tracking_confidence(tracking_confidence: XRPose.TrackingConfidence): void
-        get_tracking_confidence(): XRPose.TrackingConfidence
-    }
-    namespace XRPositionalTracker {
-        enum TrackerHand {
-            TRACKER_HAND_UNKNOWN = 0,
-            TRACKER_HAND_LEFT = 1,
-            TRACKER_HAND_RIGHT = 2,
-        }
-    }
-    class XRPositionalTracker extends RefCounted {
-        get_tracker_type(): XRServer.TrackerType
-        set_tracker_type(type: XRServer.TrackerType): void
-        get_tracker_name(): StringName
-        set_tracker_name(name: StringName): void
-        get_tracker_desc(): string
-        set_tracker_desc(description: string): void
-        get_tracker_profile(): string
-        set_tracker_profile(profile: string): void
-        get_tracker_hand(): XRPositionalTracker.TrackerHand
-        set_tracker_hand(hand: XRPositionalTracker.TrackerHand): void
-        has_pose(name: StringName): boolean
-        get_pose(name: StringName): XRPose
-        invalidate_pose(name: StringName): void
-        set_pose(name: StringName, transform: Transform3D, linear_velocity: Vector3, angular_velocity: Vector3, tracking_confidence: XRPose.TrackingConfidence): void
-        get_input(name: StringName): any
-        set_input(name: StringName, value: any): void
-        // SIGNAL: pose_changed
-        // SIGNAL: pose_lost_tracking
-        // SIGNAL: button_pressed
-        // SIGNAL: button_released
-        // SIGNAL: input_float_changed
-        // SIGNAL: input_vector2_changed
-        // SIGNAL: profile_changed
-    }
-    namespace ZIPPacker {
-        enum ZipAppend {
-            APPEND_CREATE = 0,
-            APPEND_CREATEAFTER = 1,
-            APPEND_ADDINZIP = 2,
-        }
-    }
-    class ZIPPacker extends RefCounted {
-        open(path: string, append: ZIPPacker.ZipAppend): GodotError
-        start_file(path: string): GodotError
-        write_file(data: PackedByteArray): GodotError
-        close_file(): GodotError
-        close(): GodotError
-    }
-    class ZIPReader extends RefCounted {
-        open(path: string): GodotError
-        close(): GodotError
-        get_files(): PackedStringArray
-        read_file(path: string, case_sensitive: boolean): PackedByteArray
-        file_exists(path: string, case_sensitive: boolean): boolean
-    }
-    enum Side {
-        SIDE_LEFT = 0,
-        SIDE_TOP = 1,
-        SIDE_RIGHT = 2,
-        SIDE_BOTTOM = 3,
-    }
-    enum Corner {
-        CORNER_TOP_LEFT = 0,
-        CORNER_TOP_RIGHT = 1,
-        CORNER_BOTTOM_RIGHT = 2,
-        CORNER_BOTTOM_LEFT = 3,
-    }
-    enum Orientation {
-        VERTICAL = 1,
-        HORIZONTAL = 0,
-    }
-    enum ClockDirection {
-        CLOCKWISE = 0,
-        COUNTERCLOCKWISE = 1,
-    }
-    enum HorizontalAlignment {
-        HORIZONTAL_ALIGNMENT_LEFT = 0,
-        HORIZONTAL_ALIGNMENT_CENTER = 1,
-        HORIZONTAL_ALIGNMENT_RIGHT = 2,
-        HORIZONTAL_ALIGNMENT_FILL = 3,
-    }
-    enum VerticalAlignment {
-        VERTICAL_ALIGNMENT_TOP = 0,
-        VERTICAL_ALIGNMENT_CENTER = 1,
-        VERTICAL_ALIGNMENT_BOTTOM = 2,
-        VERTICAL_ALIGNMENT_FILL = 3,
-    }
-    enum InlineAlignment {
-        INLINE_ALIGNMENT_TOP_TO = 0,
-        INLINE_ALIGNMENT_CENTER_TO = 1,
-        INLINE_ALIGNMENT_BASELINE_TO = 3,
-        INLINE_ALIGNMENT_BOTTOM_TO = 2,
-        INLINE_ALIGNMENT_TO_TOP = 0,
-        INLINE_ALIGNMENT_TO_CENTER = 4,
-        INLINE_ALIGNMENT_TO_BASELINE = 8,
-        INLINE_ALIGNMENT_TO_BOTTOM = 12,
-        INLINE_ALIGNMENT_TOP = 0,
-        INLINE_ALIGNMENT_CENTER = 5,
-        INLINE_ALIGNMENT_BOTTOM = 14,
-        INLINE_ALIGNMENT_IMAGE_MASK = 3,
-        INLINE_ALIGNMENT_TEXT_MASK = 12,
-    }
-    enum EulerOrder {
-        EULER_ORDER_XYZ = 0,
-        EULER_ORDER_XZY = 1,
-        EULER_ORDER_YXZ = 2,
-        EULER_ORDER_YZX = 3,
-        EULER_ORDER_ZXY = 4,
-        EULER_ORDER_ZYX = 5,
-    }
-    enum Key {
-        KEY_NONE = 0,
-        KEY_SPECIAL = 4194304,
-        KEY_ESCAPE = 4194305,
-        KEY_TAB = 4194306,
-        KEY_BACKTAB = 4194307,
-        KEY_BACKSPACE = 4194308,
-        KEY_ENTER = 4194309,
-        KEY_KP_ENTER = 4194310,
-        KEY_INSERT = 4194311,
-        KEY_DELETE = 4194312,
-        KEY_PAUSE = 4194313,
-        KEY_PRINT = 4194314,
-        KEY_SYSREQ = 4194315,
-        KEY_CLEAR = 4194316,
-        KEY_HOME = 4194317,
-        KEY_END = 4194318,
-        KEY_LEFT = 4194319,
-        KEY_UP = 4194320,
-        KEY_RIGHT = 4194321,
-        KEY_DOWN = 4194322,
-        KEY_PAGEUP = 4194323,
-        KEY_PAGEDOWN = 4194324,
-        KEY_SHIFT = 4194325,
-        KEY_CTRL = 4194326,
-        KEY_META = 4194327,
-        KEY_ALT = 4194328,
-        KEY_CAPSLOCK = 4194329,
-        KEY_NUMLOCK = 4194330,
-        KEY_SCROLLLOCK = 4194331,
-        KEY_F1 = 4194332,
-        KEY_F2 = 4194333,
-        KEY_F3 = 4194334,
-        KEY_F4 = 4194335,
-        KEY_F5 = 4194336,
-        KEY_F6 = 4194337,
-        KEY_F7 = 4194338,
-        KEY_F8 = 4194339,
-        KEY_F9 = 4194340,
-        KEY_F10 = 4194341,
-        KEY_F11 = 4194342,
-        KEY_F12 = 4194343,
-        KEY_F13 = 4194344,
-        KEY_F14 = 4194345,
-        KEY_F15 = 4194346,
-        KEY_F16 = 4194347,
-        KEY_F17 = 4194348,
-        KEY_F18 = 4194349,
-        KEY_F19 = 4194350,
-        KEY_F20 = 4194351,
-        KEY_F21 = 4194352,
-        KEY_F22 = 4194353,
-        KEY_F23 = 4194354,
-        KEY_F24 = 4194355,
-        KEY_F25 = 4194356,
-        KEY_F26 = 4194357,
-        KEY_F27 = 4194358,
-        KEY_F28 = 4194359,
-        KEY_F29 = 4194360,
-        KEY_F30 = 4194361,
-        KEY_F31 = 4194362,
-        KEY_F32 = 4194363,
-        KEY_F33 = 4194364,
-        KEY_F34 = 4194365,
-        KEY_F35 = 4194366,
-        KEY_KP_MULTIPLY = 4194433,
-        KEY_KP_DIVIDE = 4194434,
-        KEY_KP_SUBTRACT = 4194435,
-        KEY_KP_PERIOD = 4194436,
-        KEY_KP_ADD = 4194437,
-        KEY_KP_0 = 4194438,
-        KEY_KP_1 = 4194439,
-        KEY_KP_2 = 4194440,
-        KEY_KP_3 = 4194441,
-        KEY_KP_4 = 4194442,
-        KEY_KP_5 = 4194443,
-        KEY_KP_6 = 4194444,
-        KEY_KP_7 = 4194445,
-        KEY_KP_8 = 4194446,
-        KEY_KP_9 = 4194447,
-        KEY_MENU = 4194370,
-        KEY_HYPER = 4194371,
-        KEY_HELP = 4194373,
-        KEY_BACK = 4194376,
-        KEY_FORWARD = 4194377,
-        KEY_STOP = 4194378,
-        KEY_REFRESH = 4194379,
-        KEY_VOLUMEDOWN = 4194380,
-        KEY_VOLUMEMUTE = 4194381,
-        KEY_VOLUMEUP = 4194382,
-        KEY_MEDIAPLAY = 4194388,
-        KEY_MEDIASTOP = 4194389,
-        KEY_MEDIAPREVIOUS = 4194390,
-        KEY_MEDIANEXT = 4194391,
-        KEY_MEDIARECORD = 4194392,
-        KEY_HOMEPAGE = 4194393,
-        KEY_FAVORITES = 4194394,
-        KEY_SEARCH = 4194395,
-        KEY_STANDBY = 4194396,
-        KEY_OPENURL = 4194397,
-        KEY_LAUNCHMAIL = 4194398,
-        KEY_LAUNCHMEDIA = 4194399,
-        KEY_LAUNCH0 = 4194400,
-        KEY_LAUNCH1 = 4194401,
-        KEY_LAUNCH2 = 4194402,
-        KEY_LAUNCH3 = 4194403,
-        KEY_LAUNCH4 = 4194404,
-        KEY_LAUNCH5 = 4194405,
-        KEY_LAUNCH6 = 4194406,
-        KEY_LAUNCH7 = 4194407,
-        KEY_LAUNCH8 = 4194408,
-        KEY_LAUNCH9 = 4194409,
-        KEY_LAUNCHA = 4194410,
-        KEY_LAUNCHB = 4194411,
-        KEY_LAUNCHC = 4194412,
-        KEY_LAUNCHD = 4194413,
-        KEY_LAUNCHE = 4194414,
-        KEY_LAUNCHF = 4194415,
-        KEY_GLOBE = 4194416,
-        KEY_KEYBOARD = 4194417,
-        KEY_JIS_EISU = 4194418,
-        KEY_JIS_KANA = 4194419,
-        KEY_UNKNOWN = 8388607,
-        KEY_SPACE = 32,
-        KEY_EXCLAM = 33,
-        KEY_QUOTEDBL = 34,
-        KEY_NUMBERSIGN = 35,
-        KEY_DOLLAR = 36,
-        KEY_PERCENT = 37,
-        KEY_AMPERSAND = 38,
-        KEY_APOSTROPHE = 39,
-        KEY_PARENLEFT = 40,
-        KEY_PARENRIGHT = 41,
-        KEY_ASTERISK = 42,
-        KEY_PLUS = 43,
-        KEY_COMMA = 44,
-        KEY_MINUS = 45,
-        KEY_PERIOD = 46,
-        KEY_SLASH = 47,
-        KEY_0 = 48,
-        KEY_1 = 49,
-        KEY_2 = 50,
-        KEY_3 = 51,
-        KEY_4 = 52,
-        KEY_5 = 53,
-        KEY_6 = 54,
-        KEY_7 = 55,
-        KEY_8 = 56,
-        KEY_9 = 57,
-        KEY_COLON = 58,
-        KEY_SEMICOLON = 59,
-        KEY_LESS = 60,
-        KEY_EQUAL = 61,
-        KEY_GREATER = 62,
-        KEY_QUESTION = 63,
-        KEY_AT = 64,
-        KEY_A = 65,
-        KEY_B = 66,
-        KEY_C = 67,
-        KEY_D = 68,
-        KEY_E = 69,
-        KEY_F = 70,
-        KEY_G = 71,
-        KEY_H = 72,
-        KEY_I = 73,
-        KEY_J = 74,
-        KEY_K = 75,
-        KEY_L = 76,
-        KEY_M = 77,
-        KEY_N = 78,
-        KEY_O = 79,
-        KEY_P = 80,
-        KEY_Q = 81,
-        KEY_R = 82,
-        KEY_S = 83,
-        KEY_T = 84,
-        KEY_U = 85,
-        KEY_V = 86,
-        KEY_W = 87,
-        KEY_X = 88,
-        KEY_Y = 89,
-        KEY_Z = 90,
-        KEY_BRACKETLEFT = 91,
-        KEY_BACKSLASH = 92,
-        KEY_BRACKETRIGHT = 93,
-        KEY_ASCIICIRCUM = 94,
-        KEY_UNDERSCORE = 95,
-        KEY_QUOTELEFT = 96,
-        KEY_BRACELEFT = 123,
-        KEY_BAR = 124,
-        KEY_BRACERIGHT = 125,
-        KEY_ASCIITILDE = 126,
-        KEY_YEN = 165,
-        KEY_SECTION = 167,
-    }
-    enum KeyModifierMask {
-        KEY_CODE_MASK = 8388607,
-        KEY_MODIFIER_MASK = 532676608,
-        KEY_MASK_CMD_OR_CTRL = 16777216,
-        KEY_MASK_SHIFT = 33554432,
-        KEY_MASK_ALT = 67108864,
-        KEY_MASK_META = 134217728,
-        KEY_MASK_CTRL = 268435456,
-        KEY_MASK_KPAD = 536870912,
-        KEY_MASK_GROUP_SWITCH = 1073741824,
-    }
-    enum MouseButton {
-        MOUSE_BUTTON_NONE = 0,
-        MOUSE_BUTTON_LEFT = 1,
-        MOUSE_BUTTON_RIGHT = 2,
-        MOUSE_BUTTON_MIDDLE = 3,
-        MOUSE_BUTTON_WHEEL_UP = 4,
-        MOUSE_BUTTON_WHEEL_DOWN = 5,
-        MOUSE_BUTTON_WHEEL_LEFT = 6,
-        MOUSE_BUTTON_WHEEL_RIGHT = 7,
-        MOUSE_BUTTON_XBUTTON1 = 8,
-        MOUSE_BUTTON_XBUTTON2 = 9,
-    }
-    enum MouseButtonMask {
-        MOUSE_BUTTON_MASK_LEFT = 1,
-        MOUSE_BUTTON_MASK_RIGHT = 2,
-        MOUSE_BUTTON_MASK_MIDDLE = 4,
-        MOUSE_BUTTON_MASK_MB_XBUTTON1 = 128,
-        MOUSE_BUTTON_MASK_MB_XBUTTON2 = 256,
-    }
-    enum JoyButton {
-        JOY_BUTTON_INVALID = -1,
-        JOY_BUTTON_A = 0,
-        JOY_BUTTON_B = 1,
-        JOY_BUTTON_X = 2,
-        JOY_BUTTON_Y = 3,
-        JOY_BUTTON_BACK = 4,
-        JOY_BUTTON_GUIDE = 5,
-        JOY_BUTTON_START = 6,
-        JOY_BUTTON_LEFT_STICK = 7,
-        JOY_BUTTON_RIGHT_STICK = 8,
-        JOY_BUTTON_LEFT_SHOULDER = 9,
-        JOY_BUTTON_RIGHT_SHOULDER = 10,
-        JOY_BUTTON_DPAD_UP = 11,
-        JOY_BUTTON_DPAD_DOWN = 12,
-        JOY_BUTTON_DPAD_LEFT = 13,
-        JOY_BUTTON_DPAD_RIGHT = 14,
-        JOY_BUTTON_MISC1 = 15,
-        JOY_BUTTON_PADDLE1 = 16,
-        JOY_BUTTON_PADDLE2 = 17,
-        JOY_BUTTON_PADDLE3 = 18,
-        JOY_BUTTON_PADDLE4 = 19,
-        JOY_BUTTON_TOUCHPAD = 20,
-        JOY_BUTTON_SDL_MAX = 21,
-        JOY_BUTTON_MAX = 128,
-    }
-    enum JoyAxis {
-        JOY_AXIS_INVALID = -1,
-        JOY_AXIS_LEFT_X = 0,
-        JOY_AXIS_LEFT_Y = 1,
-        JOY_AXIS_RIGHT_X = 2,
-        JOY_AXIS_RIGHT_Y = 3,
-        JOY_AXIS_TRIGGER_LEFT = 4,
-        JOY_AXIS_TRIGGER_RIGHT = 5,
-        JOY_AXIS_SDL_MAX = 6,
-        JOY_AXIS_MAX = 10,
-    }
-    enum MIDIMessage {
-        MIDI_MESSAGE_NONE = 0,
-        MIDI_MESSAGE_NOTE_OFF = 8,
-        MIDI_MESSAGE_NOTE_ON = 9,
-        MIDI_MESSAGE_AFTERTOUCH = 10,
-        MIDI_MESSAGE_CONTROL_CHANGE = 11,
-        MIDI_MESSAGE_PROGRAM_CHANGE = 12,
-        MIDI_MESSAGE_CHANNEL_PRESSURE = 13,
-        MIDI_MESSAGE_PITCH_BEND = 14,
-        MIDI_MESSAGE_SYSTEM_EXCLUSIVE = 240,
-        MIDI_MESSAGE_QUARTER_FRAME = 241,
-        MIDI_MESSAGE_SONG_POSITION_POINTER = 242,
-        MIDI_MESSAGE_SONG_SELECT = 243,
-        MIDI_MESSAGE_TUNE_REQUEST = 246,
-        MIDI_MESSAGE_TIMING_CLOCK = 248,
-        MIDI_MESSAGE_START = 250,
-        MIDI_MESSAGE_CONTINUE = 251,
-        MIDI_MESSAGE_STOP = 252,
-        MIDI_MESSAGE_ACTIVE_SENSING = 254,
-        MIDI_MESSAGE_SYSTEM_RESET = 255,
-    }
-    enum Error {
-        OK = 0,
-        FAILED = 1,
-        ERR_UNAVAILABLE = 2,
-        ERR_UNCONFIGURED = 3,
-        ERR_UNAUTHORIZED = 4,
-        ERR_PARAMETER_RANGE_ERROR = 5,
-        ERR_OUT_OF_MEMORY = 6,
-        ERR_FILE_NOT_FOUND = 7,
-        ERR_FILE_BAD_DRIVE = 8,
-        ERR_FILE_BAD_PATH = 9,
-        ERR_FILE_NO_PERMISSION = 10,
-        ERR_FILE_ALREADY_IN_USE = 11,
-        ERR_FILE_CANT_OPEN = 12,
-        ERR_FILE_CANT_WRITE = 13,
-        ERR_FILE_CANT_READ = 14,
-        ERR_FILE_UNRECOGNIZED = 15,
-        ERR_FILE_CORRUPT = 16,
-        ERR_FILE_MISSING_DEPENDENCIES = 17,
-        ERR_FILE_EOF = 18,
-        ERR_CANT_OPEN = 19,
-        ERR_CANT_CREATE = 20,
-        ERR_QUERY_FAILED = 21,
-        ERR_ALREADY_IN_USE = 22,
-        ERR_LOCKED = 23,
-        ERR_TIMEOUT = 24,
-        ERR_CANT_CONNECT = 25,
-        ERR_CANT_RESOLVE = 26,
-        ERR_CONNECTION_ERROR = 27,
-        ERR_CANT_ACQUIRE_RESOURCE = 28,
-        ERR_CANT_FORK = 29,
-        ERR_INVALID_DATA = 30,
-        ERR_INVALID_PARAMETER = 31,
-        ERR_ALREADY_EXISTS = 32,
-        ERR_DOES_NOT_EXIST = 33,
-        ERR_DATABASE_CANT_READ = 34,
-        ERR_DATABASE_CANT_WRITE = 35,
-        ERR_COMPILATION_FAILED = 36,
-        ERR_METHOD_NOT_FOUND = 37,
-        ERR_LINK_FAILED = 38,
-        ERR_SCRIPT_FAILED = 39,
-        ERR_CYCLIC_LINK = 40,
-        ERR_INVALID_DECLARATION = 41,
-        ERR_DUPLICATE_SYMBOL = 42,
-        ERR_PARSE_ERROR = 43,
-        ERR_BUSY = 44,
-        ERR_SKIP = 45,
-        ERR_HELP = 46,
-        ERR_BUG = 47,
-        ERR_PRINTER_ON_FIRE = 48,
-    }
-    enum PropertyHint {
-        PROPERTY_HINT_NONE = 0,
-        PROPERTY_HINT_RANGE = 1,
-        PROPERTY_HINT_ENUM = 2,
-        PROPERTY_HINT_ENUM_SUGGESTION = 3,
-        PROPERTY_HINT_EXP_EASING = 4,
-        PROPERTY_HINT_LINK = 5,
-        PROPERTY_HINT_FLAGS = 6,
-        PROPERTY_HINT_LAYERS_2D_RENDER = 7,
-        PROPERTY_HINT_LAYERS_2D_PHYSICS = 8,
-        PROPERTY_HINT_LAYERS_2D_NAVIGATION = 9,
-        PROPERTY_HINT_LAYERS_3D_RENDER = 10,
-        PROPERTY_HINT_LAYERS_3D_PHYSICS = 11,
-        PROPERTY_HINT_LAYERS_3D_NAVIGATION = 12,
-        PROPERTY_HINT_LAYERS_AVOIDANCE = 37,
-        PROPERTY_HINT_FILE = 13,
-        PROPERTY_HINT_DIR = 14,
-        PROPERTY_HINT_GLOBAL_FILE = 15,
-        PROPERTY_HINT_GLOBAL_DIR = 16,
-        PROPERTY_HINT_RESOURCE_TYPE = 17,
-        PROPERTY_HINT_MULTILINE_TEXT = 18,
-        PROPERTY_HINT_EXPRESSION = 19,
-        PROPERTY_HINT_PLACEHOLDER_TEXT = 20,
-        PROPERTY_HINT_COLOR_NO_ALPHA = 21,
-        PROPERTY_HINT_OBJECT_ID = 22,
-        PROPERTY_HINT_TYPE_STRING = 23,
-        PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE = 24,
-        PROPERTY_HINT_OBJECT_TOO_BIG = 25,
-        PROPERTY_HINT_NODE_PATH_VALID_TYPES = 26,
-        PROPERTY_HINT_SAVE_FILE = 27,
-        PROPERTY_HINT_GLOBAL_SAVE_FILE = 28,
-        PROPERTY_HINT_INT_IS_OBJECTID = 29,
-        PROPERTY_HINT_INT_IS_POINTER = 30,
-        PROPERTY_HINT_ARRAY_TYPE = 31,
-        PROPERTY_HINT_LOCALE_ID = 32,
-        PROPERTY_HINT_LOCALIZABLE_STRING = 33,
-        PROPERTY_HINT_NODE_TYPE = 34,
-        PROPERTY_HINT_HIDE_QUATERNION_EDIT = 35,
-        PROPERTY_HINT_PASSWORD = 36,
-        PROPERTY_HINT_MAX = 38,
-    }
-    enum PropertyUsageFlags {
-        PROPERTY_USAGE_NONE = 0,
-        PROPERTY_USAGE_STORAGE = 2,
-        PROPERTY_USAGE_EDITOR = 4,
-        PROPERTY_USAGE_INTERNAL = 8,
-        PROPERTY_USAGE_CHECKABLE = 16,
-        PROPERTY_USAGE_CHECKED = 32,
-        PROPERTY_USAGE_GROUP = 64,
-        PROPERTY_USAGE_CATEGORY = 128,
-        PROPERTY_USAGE_SUBGROUP = 256,
-        PROPERTY_USAGE_CLASS_IS_BITFIELD = 512,
-        PROPERTY_USAGE_NO_INSTANCE_STATE = 1024,
-        PROPERTY_USAGE_RESTART_IF_CHANGED = 2048,
-        PROPERTY_USAGE_SCRIPT_VARIABLE = 4096,
-        PROPERTY_USAGE_STORE_IF_NULL = 8192,
-        PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED = 16384,
-        PROPERTY_USAGE_SCRIPT_DEFAULT_VALUE = 32768,
-        PROPERTY_USAGE_CLASS_IS_ENUM = 65536,
-        PROPERTY_USAGE_NIL_IS_VARIANT = 131072,
-        PROPERTY_USAGE_ARRAY = 262144,
-        PROPERTY_USAGE_ALWAYS_DUPLICATE = 524288,
-        PROPERTY_USAGE_NEVER_DUPLICATE = 1048576,
-        PROPERTY_USAGE_HIGH_END_GFX = 2097152,
-        PROPERTY_USAGE_NODE_PATH_FROM_SCENE_ROOT = 4194304,
-        PROPERTY_USAGE_RESOURCE_NOT_PERSISTENT = 8388608,
-        PROPERTY_USAGE_KEYING_INCREMENTS = 16777216,
-        PROPERTY_USAGE_DEFERRED_SET_RESOURCE = 33554432,
-        PROPERTY_USAGE_EDITOR_INSTANTIATE_OBJECT = 67108864,
-        PROPERTY_USAGE_EDITOR_BASIC_SETTING = 134217728,
-        PROPERTY_USAGE_READ_ONLY = 268435456,
-        PROPERTY_USAGE_SECRET = 536870912,
-        PROPERTY_USAGE_DEFAULT = 6,
-        PROPERTY_USAGE_NO_EDITOR = 2,
-    }
-    enum MethodFlags {
-        METHOD_FLAG_NORMAL = 1,
-        METHOD_FLAG_EDITOR = 2,
-        METHOD_FLAG_CONST = 4,
-        METHOD_FLAG_VIRTUAL = 8,
-        METHOD_FLAG_VARARG = 16,
-        METHOD_FLAG_STATIC = 32,
-        METHOD_FLAG_OBJECT_CORE = 64,
-        METHOD_FLAGS_DEFAULT = 1,
-    }
-    namespace Variant {
-        enum Type {
-            TYPE_NIL = 0,
-            TYPE_BOOL = 1,
-            TYPE_INT = 2,
-            TYPE_FLOAT = 3,
-            TYPE_STRING = 4,
-            TYPE_VECTOR2 = 5,
-            TYPE_VECTOR2I = 6,
-            TYPE_RECT2 = 7,
-            TYPE_RECT2I = 8,
-            TYPE_VECTOR3 = 9,
-            TYPE_VECTOR3I = 10,
-            TYPE_TRANSFORM2D = 11,
-            TYPE_VECTOR4 = 12,
-            TYPE_VECTOR4I = 13,
-            TYPE_PLANE = 14,
-            TYPE_QUATERNION = 15,
-            TYPE_AABB = 16,
-            TYPE_BASIS = 17,
-            TYPE_TRANSFORM3D = 18,
-            TYPE_PROJECTION = 19,
-            TYPE_COLOR = 20,
-            TYPE_STRING_NAME = 21,
-            TYPE_NODE_PATH = 22,
-            TYPE_RID = 23,
-            TYPE_OBJECT = 24,
-            TYPE_CALLABLE = 25,
-            TYPE_SIGNAL = 26,
-            TYPE_DICTIONARY = 27,
-            TYPE_ARRAY = 28,
-            TYPE_PACKED_BYTE_ARRAY = 29,
-            TYPE_PACKED_INT32_ARRAY = 30,
-            TYPE_PACKED_INT64_ARRAY = 31,
-            TYPE_PACKED_FLOAT32_ARRAY = 32,
-            TYPE_PACKED_FLOAT64_ARRAY = 33,
-            TYPE_PACKED_STRING_ARRAY = 34,
-            TYPE_PACKED_VECTOR2_ARRAY = 35,
-            TYPE_PACKED_VECTOR3_ARRAY = 36,
-            TYPE_PACKED_COLOR_ARRAY = 37,
-            TYPE_MAX = 38,
-        }
-    }
-    namespace Variant {
-        enum Operator {
-            OP_EQUAL = 0,
-            OP_NOT_EQUAL = 1,
-            OP_LESS = 2,
-            OP_LESS_EQUAL = 3,
-            OP_GREATER = 4,
-            OP_GREATER_EQUAL = 5,
-            OP_ADD = 6,
-            OP_SUBTRACT = 7,
-            OP_MULTIPLY = 8,
-            OP_DIVIDE = 9,
-            OP_NEGATE = 10,
-            OP_POSITIVE = 11,
-            OP_MODULE = 12,
-            OP_POWER = 13,
-            OP_SHIFT_LEFT = 14,
-            OP_SHIFT_RIGHT = 15,
-            OP_BIT_AND = 16,
-            OP_BIT_OR = 17,
-            OP_BIT_XOR = 18,
-            OP_BIT_NEGATE = 19,
-            OP_AND = 20,
-            OP_OR = 21,
-            OP_XOR = 22,
-            OP_NOT = 23,
-            OP_IN = 24,
-            OP_MAX = 25,
-        }
+        // // godot.getset: function: number /*i64*/
     }
 }

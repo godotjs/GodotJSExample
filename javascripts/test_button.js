@@ -26,4 +26,10 @@ class TestNode extends godot_1.Button {
     }
 }
 exports.default = TestNode;
+// const v2 = new Vector2()
+// v2.x = v2.y = 123;
+// console.log(v2.x, v2.y);
+// v2.x ++;
+// v2.y --;
+// console.log(v2.x, v2.y);
 //# sourceMappingURL=test_button.js.map
