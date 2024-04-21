@@ -4461,6 +4461,8 @@ declare module "godot" {
         update_graph(): void
         _update_filters(_unnamed_arg0: AnimationNode): boolean
     }
+    class AnimationNodeEndState extends AnimationRootNode {
+    }
     namespace AnimationNodeOneShot {
         enum OneShotRequest {
             ONE_SHOT_REQUEST_NONE = 0,
@@ -4500,6 +4502,8 @@ declare module "godot" {
         // // godot.getset: autorestart_random_delay: number /*f64*/
     }
     class AnimationNodeOutput extends AnimationNode {
+    }
+    class AnimationNodeStartState extends AnimationRootNode {
     }
     namespace AnimationNodeStateMachine {
         enum StateMachineType {

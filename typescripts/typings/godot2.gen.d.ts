@@ -1,6 +1,20 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    namespace VisualShaderNodeColorFunc {
+        enum Function {
+            FUNC_GRAYSCALE = 0,
+            FUNC_HSV2RGB = 1,
+            FUNC_RGB2HSV = 2,
+            FUNC_SEPIA = 3,
+            FUNC_MAX = 4,
+        }
+    }
+    class VisualShaderNodeColorFunc extends VisualShaderNode {
+        set_function(func: VisualShaderNodeColorFunc.Function): void
+        get_function(): VisualShaderNodeColorFunc.Function
+        // // godot.getset: function: number /*i64*/
+    }
     namespace VisualShaderNodeColorOp {
         enum Operator {
             OP_SCREEN = 0,
@@ -1723,13 +1737,13 @@ declare module "godot" {
         clamp(min: Vector2, max: Vector2): Vector2
         snapped(step: Vector2): Vector2
         static from_angle(angle: number /*f64*/): Vector2
-        static op_ADD(left: Vector2, right: Vector2): Vector2
-        static op_SUBTRACT(left: Vector2, right: Vector2): Vector2
-        static op_MULTIPLY(left: Vector2, right: Vector2): Vector2
-        static op_MULTIPLY(left: number /*f64*/, right: Vector2): Vector2
-        static op_MULTIPLY(left: Vector2, right: number /*f64*/): Vector2
-        static op_DIVIDE(left: Vector2, right: Vector2): Vector2
-        static op_DIVIDE(left: Vector2, right: number /*f64*/): Vector2
+        static ADD(left: Vector2, right: Vector2): Vector2
+        static SUBTRACT(left: Vector2, right: Vector2): Vector2
+        static MULTIPLY(left: Vector2, right: Vector2): Vector2
+        static MULTIPLY(left: number /*f64*/, right: Vector2): Vector2
+        static MULTIPLY(left: Vector2, right: number /*f64*/): Vector2
+        static DIVIDE(left: Vector2, right: Vector2): Vector2
+        static DIVIDE(left: Vector2, right: number /*f64*/): Vector2
         x: number /*f64*/
         y: number /*f64*/
     }
@@ -1881,13 +1895,13 @@ declare module "godot" {
         sign(): Vector3
         octahedron_encode(): Vector2
         static octahedron_decode(uv: Vector2): Vector3
-        static op_ADD(left: Vector3, right: Vector3): Vector3
-        static op_SUBTRACT(left: Vector3, right: Vector3): Vector3
-        static op_MULTIPLY(left: Vector3, right: Vector3): Vector3
-        static op_MULTIPLY(left: number /*f64*/, right: Vector3): Vector3
-        static op_MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
-        static op_DIVIDE(left: Vector3, right: Vector3): Vector3
-        static op_DIVIDE(left: Vector3, right: number /*f64*/): Vector3
+        static ADD(left: Vector3, right: Vector3): Vector3
+        static SUBTRACT(left: Vector3, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: Vector3): Vector3
+        static MULTIPLY(left: number /*f64*/, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
+        static DIVIDE(left: Vector3, right: Vector3): Vector3
+        static DIVIDE(left: Vector3, right: number /*f64*/): Vector3
         x: number /*f64*/
         y: number /*f64*/
         z: number /*f64*/
