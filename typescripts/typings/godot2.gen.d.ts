@@ -1677,6 +1677,10 @@ declare module "godot" {
         static readonly RIGHT: Vector2
         static readonly UP: Vector2
         static readonly DOWN: Vector2
+        constructor()
+        constructor(from: Vector2)
+        constructor(from: Vector2i)
+        constructor(x: number /*f64*/, y: number /*f64*/)
         angle(): number /*f64*/
         angle_to(to: Vector2): number /*f64*/
         angle_to_point(to: Vector2): number /*f64*/
@@ -1737,6 +1741,10 @@ declare module "godot" {
         static readonly RIGHT: Vector2i
         static readonly UP: Vector2i
         static readonly DOWN: Vector2i
+        constructor()
+        constructor(from: Vector2i)
+        constructor(from: Vector2)
+        constructor(x: number /*i64*/, y: number /*i64*/)
         aspect(): number /*f64*/
         max_axis_index(): number /*i64*/
         min_axis_index(): number /*i64*/
@@ -1750,6 +1758,11 @@ declare module "godot" {
         y: number /*i64*/
     }
     class Rect2 {
+        constructor()
+        constructor(from: Rect2)
+        constructor(from: Rect2i)
+        constructor(position: Vector2, size: Vector2)
+        constructor(x: number /*f64*/, y: number /*f64*/, width: number /*f64*/, height: number /*f64*/)
         get_center(): Vector2
         get_area(): number /*f64*/
         has_area(): boolean
@@ -1770,6 +1783,11 @@ declare module "godot" {
         end: Vector2
     }
     class Rect2i {
+        constructor()
+        constructor(from: Rect2i)
+        constructor(from: Rect2)
+        constructor(position: Vector2i, size: Vector2i)
+        constructor(x: number /*i64*/, y: number /*i64*/, width: number /*i64*/, height: number /*i64*/)
         get_center(): Vector2i
         get_area(): number /*i64*/
         has_area(): boolean
@@ -1810,6 +1828,10 @@ declare module "godot" {
         static readonly MODEL_BOTTOM: Vector3
         static readonly MODEL_FRONT: Vector3
         static readonly MODEL_REAR: Vector3
+        constructor()
+        constructor(from: Vector3)
+        constructor(from: Vector3i)
+        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/)
         min_axis_index(): number /*i64*/
         max_axis_index(): number /*i64*/
         angle_to(to: Vector3): number /*f64*/
@@ -1874,6 +1896,10 @@ declare module "godot" {
         static readonly DOWN: Vector3i
         static readonly FORWARD: Vector3i
         static readonly BACK: Vector3i
+        constructor()
+        constructor(from: Vector3i)
+        constructor(from: Vector3)
+        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/)
         min_axis_index(): number /*i64*/
         max_axis_index(): number /*i64*/
         length(): number /*f64*/
@@ -1890,6 +1916,11 @@ declare module "godot" {
         static readonly IDENTITY: Transform2D
         static readonly FLIP_X: Transform2D
         static readonly FLIP_Y: Transform2D
+        constructor()
+        constructor(from: Transform2D)
+        constructor(rotation: number /*f64*/, position: Vector2)
+        constructor(rotation: number /*f64*/, scale: Vector2, skew: number /*f64*/, position: Vector2)
+        constructor(x_axis: Vector2, y_axis: Vector2, origin: Vector2)
         inverse(): Transform2D
         affine_inverse(): Transform2D
         get_rotation(): number /*f64*/
@@ -1927,6 +1958,10 @@ declare module "godot" {
         static readonly ZERO: Vector4
         static readonly ONE: Vector4
         static readonly INF: Vector4
+        constructor()
+        constructor(from: Vector4)
+        constructor(from: Vector4i)
+        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
         min_axis_index(): number /*i64*/
         max_axis_index(): number /*i64*/
         length(): number /*f64*/
@@ -1971,6 +2006,10 @@ declare module "godot" {
         static readonly ONE: Vector4i
         static readonly MIN: Vector4i
         static readonly MAX: Vector4i
+        constructor()
+        constructor(from: Vector4i)
+        constructor(from: Vector4)
+        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/, w: number /*i64*/)
         min_axis_index(): number /*i64*/
         max_axis_index(): number /*i64*/
         length(): number /*f64*/
@@ -1988,6 +2027,13 @@ declare module "godot" {
         static readonly PLANE_YZ: Plane
         static readonly PLANE_XZ: Plane
         static readonly PLANE_XY: Plane
+        constructor()
+        constructor(from: Plane)
+        constructor(normal: Vector3)
+        constructor(normal: Vector3, d: number /*f64*/)
+        constructor(normal: Vector3, point: Vector3)
+        constructor(point1: Vector3, point2: Vector3, point3: Vector3)
+        constructor(a: number /*f64*/, b: number /*f64*/, c: number /*f64*/, d: number /*f64*/)
         normalized(): Plane
         get_center(): Vector3
         is_equal_approx(to_plane: Plane): boolean
@@ -2007,6 +2053,12 @@ declare module "godot" {
     }
     class Quaternion {
         static readonly IDENTITY: Quaternion
+        constructor()
+        constructor(from: Quaternion)
+        constructor(from: Basis)
+        constructor(axis: Vector3, angle: number /*f64*/)
+        constructor(arc_from: Vector3, arc_to: Vector3)
+        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
         length(): number /*f64*/
         length_squared(): number /*f64*/
         normalized(): Quaternion
@@ -2032,6 +2084,9 @@ declare module "godot" {
         w: number /*f64*/
     }
     class AABB {
+        constructor()
+        constructor(from: AABB)
+        constructor(position: Vector3, size: Vector3)
         abs(): AABB
         get_center(): Vector3
         get_volume(): number /*f64*/
@@ -2066,6 +2121,11 @@ declare module "godot" {
         static readonly FLIP_X: Basis
         static readonly FLIP_Y: Basis
         static readonly FLIP_Z: Basis
+        constructor()
+        constructor(from: Basis)
+        constructor(from: Quaternion)
+        constructor(axis: Vector3, angle: number /*f64*/)
+        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3)
         inverse(): Basis
         transposed(): Basis
         orthonormalized(): Basis
@@ -2094,6 +2154,11 @@ declare module "godot" {
         static readonly FLIP_X: Transform3D
         static readonly FLIP_Y: Transform3D
         static readonly FLIP_Z: Transform3D
+        constructor()
+        constructor(from: Transform3D)
+        constructor(basis: Basis, origin: Vector3)
+        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3, origin: Vector3)
+        constructor(from: Projection)
         inverse(): Transform3D
         affine_inverse(): Transform3D
         orthonormalized(): Transform3D
@@ -2123,6 +2188,10 @@ declare module "godot" {
     class Projection {
         static readonly IDENTITY: Projection
         static readonly ZERO: Projection
+        constructor()
+        constructor(from: Projection)
+        constructor(from: Transform3D)
+        constructor(x_axis: Vector4, y_axis: Vector4, z_axis: Vector4, w_axis: Vector4)
         static create_depth_correction(flip_y: boolean): Projection
         static create_light_atlas_rect(rect: Rect2): Projection
         static create_perspective(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean): Projection
@@ -2301,6 +2370,13 @@ declare module "godot" {
         static readonly WHITE_SMOKE: Color
         static readonly YELLOW: Color
         static readonly YELLOW_GREEN: Color
+        constructor()
+        constructor(from: Color)
+        constructor(from: Color, alpha: number /*f64*/)
+        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/)
+        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/, a: number /*f64*/)
+        constructor(code: string)
+        constructor(code: string, alpha: number /*f64*/)
         to_argb32(): number /*i64*/
         to_abgr32(): number /*i64*/
         to_rgba32(): number /*i64*/
@@ -2339,10 +2415,15 @@ declare module "godot" {
         v: number /*f64*/
     }
     class RID {
+        constructor()
+        constructor(from: RID)
         is_valid(): boolean
         get_id(): number /*i64*/
     }
     class Callable {
+        constructor()
+        constructor(from: Callable)
+        constructor(object: Object, method: StringName)
         callv(arguments: Array): void
         is_null(): boolean
         is_custom(): boolean
@@ -2363,6 +2444,9 @@ declare module "godot" {
         bind(): Callable
     }
     class Signal {
+        constructor()
+        constructor(from: Signal)
+        constructor(object: Object, signal: StringName)
         is_null(): boolean
         get_object(): Object
         get_object_id(): number /*i64*/
@@ -2374,6 +2458,8 @@ declare module "godot" {
         emit(): void
     }
     class Dictionary {
+        constructor()
+        constructor(from: Dictionary)
         size(): number /*i64*/
         is_empty(): boolean
         clear(): void
@@ -2391,6 +2477,18 @@ declare module "godot" {
         is_read_only(): boolean
     }
     class Array {
+        constructor()
+        constructor(from: Array)
+        constructor(base: Array, type: number /*i64*/, class_name: StringName, script: any)
+        constructor(from: PackedByteArray)
+        constructor(from: PackedInt32Array)
+        constructor(from: PackedInt64Array)
+        constructor(from: PackedFloat32Array)
+        constructor(from: PackedFloat64Array)
+        constructor(from: PackedStringArray)
+        constructor(from: PackedVector2Array)
+        constructor(from: PackedVector3Array)
+        constructor(from: PackedColorArray)
         size(): number /*i64*/
         is_empty(): boolean
         clear(): void
@@ -2439,6 +2537,9 @@ declare module "godot" {
         is_read_only(): boolean
     }
     class PackedByteArray {
+        constructor()
+        constructor(from: PackedByteArray)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: number /*i64*/): void
@@ -2500,6 +2601,9 @@ declare module "godot" {
         encode_var(byte_offset: number /*i64*/, value: any, allow_objects: boolean): number /*i64*/
     }
     class PackedInt32Array {
+        constructor()
+        constructor(from: PackedInt32Array)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: number /*i64*/): void
@@ -2523,6 +2627,9 @@ declare module "godot" {
         count(value: number /*i64*/): number /*i64*/
     }
     class PackedInt64Array {
+        constructor()
+        constructor(from: PackedInt64Array)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: number /*i64*/): void
@@ -2546,6 +2653,9 @@ declare module "godot" {
         count(value: number /*i64*/): number /*i64*/
     }
     class PackedFloat32Array {
+        constructor()
+        constructor(from: PackedFloat32Array)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: number /*f64*/): void
@@ -2569,6 +2679,9 @@ declare module "godot" {
         count(value: number /*f64*/): number /*i64*/
     }
     class PackedFloat64Array {
+        constructor()
+        constructor(from: PackedFloat64Array)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: number /*f64*/): void
@@ -2592,6 +2705,9 @@ declare module "godot" {
         count(value: number /*f64*/): number /*i64*/
     }
     class PackedStringArray {
+        constructor()
+        constructor(from: PackedStringArray)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: string): void
@@ -2615,6 +2731,9 @@ declare module "godot" {
         count(value: string): number /*i64*/
     }
     class PackedVector2Array {
+        constructor()
+        constructor(from: PackedVector2Array)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: Vector2): void
@@ -2638,6 +2757,9 @@ declare module "godot" {
         count(value: Vector2): number /*i64*/
     }
     class PackedVector3Array {
+        constructor()
+        constructor(from: PackedVector3Array)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: Vector3): void
@@ -2661,6 +2783,9 @@ declare module "godot" {
         count(value: Vector3): number /*i64*/
     }
     class PackedColorArray {
+        constructor()
+        constructor(from: PackedColorArray)
+        constructor(from: Array)
         size(): number /*i64*/
         is_empty(): boolean
         set(index: number /*i64*/, value: Color): void

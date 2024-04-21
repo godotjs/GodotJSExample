@@ -9396,12 +9396,6 @@ declare module "godot" {
     }
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
     }
-    class EditorInspectorSection extends Container {
-        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: number /*i64*/): void
-        get_vbox(): VBoxContainer
-        unfold(): void
-        fold(): void
-    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
     }
     class EditorJSONSyntaxHighlighter extends EditorSyntaxHighlighter {
@@ -9613,21 +9607,9 @@ declare module "godot" {
     }
     class EditorPropertyCheck extends EditorProperty {
     }
-    class EditorPropertyColor extends EditorProperty {
-    }
     class EditorPropertyDictionaryObject extends RefCounted {
     }
-    class EditorPropertyEnum extends EditorProperty {
-    }
-    class EditorPropertyFloat extends EditorProperty {
-    }
     class EditorPropertyInteger extends EditorProperty {
-    }
-    class EditorPropertyLayers extends EditorProperty {
-    }
-    class EditorPropertyLayersGrid extends Control {
-        flag_changed: Signal
-        rename_confirmed: Signal
     }
     class EditorPropertyLocalizableString extends EditorProperty {
     }
@@ -9640,8 +9622,6 @@ declare module "godot" {
     class EditorPropertyResource extends EditorProperty {
     }
     class EditorPropertyText extends EditorProperty {
-    }
-    class EditorPropertyVector2 extends EditorPropertyVectorN {
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
     }
@@ -11725,6 +11705,8 @@ declare module "godot" {
     class Gizmo3DHelper extends RefCounted {
     }
     class GodotJSEditorPlugin extends EditorPlugin {
+    }
+    class GodotJSREPL extends VBoxContainer {
     }
     class GodotJSScript extends Script {
     }
