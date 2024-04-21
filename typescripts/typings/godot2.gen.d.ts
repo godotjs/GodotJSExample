@@ -1723,6 +1723,13 @@ declare module "godot" {
         clamp(min: Vector2, max: Vector2): Vector2
         snapped(step: Vector2): Vector2
         static from_angle(angle: number /*f64*/): Vector2
+        static op_ADD(left: Vector2, right: Vector2): Vector2
+        static op_SUBTRACT(left: Vector2, right: Vector2): Vector2
+        static op_MULTIPLY(left: Vector2, right: Vector2): Vector2
+        static op_MULTIPLY(left: number /*f64*/, right: Vector2): Vector2
+        static op_MULTIPLY(left: Vector2, right: number /*f64*/): Vector2
+        static op_DIVIDE(left: Vector2, right: Vector2): Vector2
+        static op_DIVIDE(left: Vector2, right: number /*f64*/): Vector2
         x: number /*f64*/
         y: number /*f64*/
     }
@@ -1874,6 +1881,13 @@ declare module "godot" {
         sign(): Vector3
         octahedron_encode(): Vector2
         static octahedron_decode(uv: Vector2): Vector3
+        static op_ADD(left: Vector3, right: Vector3): Vector3
+        static op_SUBTRACT(left: Vector3, right: Vector3): Vector3
+        static op_MULTIPLY(left: Vector3, right: Vector3): Vector3
+        static op_MULTIPLY(left: number /*f64*/, right: Vector3): Vector3
+        static op_MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
+        static op_DIVIDE(left: Vector3, right: Vector3): Vector3
+        static op_DIVIDE(left: Vector3, right: number /*f64*/): Vector3
         x: number /*f64*/
         y: number /*f64*/
         z: number /*f64*/
