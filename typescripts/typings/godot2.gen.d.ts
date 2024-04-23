@@ -1,20 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    namespace VisualShaderNodeColorFunc {
-        enum Function {
-            FUNC_GRAYSCALE = 0,
-            FUNC_HSV2RGB = 1,
-            FUNC_RGB2HSV = 2,
-            FUNC_SEPIA = 3,
-            FUNC_MAX = 4,
-        }
-    }
-    class VisualShaderNodeColorFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeColorFunc.Function): void
-        get_function(): VisualShaderNodeColorFunc.Function
-        // // godot.getset: function: number /*i64*/
-    }
     namespace VisualShaderNodeColorOp {
         enum Operator {
             OP_SCREEN = 0,

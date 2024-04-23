@@ -10588,8 +10588,6 @@ declare module "godot" {
         _set_tile_map_selection(selection: Array): void
         _get_tile_map_selection(): Array
     }
-    class TileMapLayer extends RefCounted {
-    }
     class TileMapPattern extends Resource {
         set_cell(coords: Vector2i, source_id: number /*i64*/, atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
         has_cell(coords: Vector2i): boolean
@@ -12002,5 +12000,19 @@ declare module "godot" {
         set_constant(constant: Color): void
         get_constant(): Color
         // // godot.getset: constant: Color
+    }
+    namespace VisualShaderNodeColorFunc {
+        enum Function {
+            FUNC_GRAYSCALE = 0,
+            FUNC_HSV2RGB = 1,
+            FUNC_RGB2HSV = 2,
+            FUNC_SEPIA = 3,
+            FUNC_MAX = 4,
+        }
+    }
+    class VisualShaderNodeColorFunc extends VisualShaderNode {
+        set_function(func: VisualShaderNodeColorFunc.Function): void
+        get_function(): VisualShaderNodeColorFunc.Function
+        // // godot.getset: function: number /*i64*/
     }
 }

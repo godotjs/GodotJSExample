@@ -1,4 +1,5 @@
-import { Button, Vector2 } from "godot";
+import { Button, Signal, Vector2 } from "godot";
+import { signal } from "./jsb/jsb.core";
 
 export default class TestNode extends Button {
     private _v1 = 0
@@ -7,6 +8,9 @@ export default class TestNode extends Button {
     set foo(value: number) { this._v1 = value }
 
     text = "hello"
+
+    @signal
+    test_signal: Signal | undefined;
 
     constructor() {
         super()
