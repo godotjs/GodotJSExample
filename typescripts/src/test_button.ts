@@ -10,7 +10,7 @@ export default class TestNode extends Button {
     text = "hello"
 
     @signal
-    test_signal: Signal | undefined;
+    test_signal!: Signal; // signal field will automatically instantiated by JSRealm
 
     constructor() {
         super()
@@ -27,6 +27,15 @@ export default class TestNode extends Button {
 
     _on_pressed() {
         console.log("test on clicked!")
+
+        this.test_signal.connect(jsb.callable(this, this.on_test_signal), 0);
+        this.test_signal.emit();
+        this.test_signal.disconnect(jsb.callable(this, this.on_test_signal));
+        this.test_signal.emit();
+    }
+
+    private on_test_signal() {
+        console.log("on test signal");
     }
 
     work() {

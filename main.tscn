@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvykv0u5duqyj"]
+[gd_scene load_steps=3 format=3 uid="uid://bvykv0u5duqyj"]
 
 [ext_resource type="Script" path="res://javascripts/test_button.js" id="1_ewk4v"]
+[ext_resource type="Script" path="res://gdscripts/gds_button.gd" id="2_415o4"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -20,7 +21,18 @@ offset_left = 32.0
 offset_top = 19.0
 offset_right = 105.0
 offset_bottom = 50.0
-text = "Click Me"
+text = "GodotJS Button
+"
 script = ExtResource("1_ewk4v")
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 69.0
+offset_right = 155.0
+offset_bottom = 94.0
+text = "GDScript Button
+"
+script = ExtResource("2_415o4")
 
 [connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]
