@@ -14,7 +14,7 @@ class TestNode extends godot_1.Button {
     constructor() {
         super();
         this._v1 = 0;
-        this.text = "hello";
+        this.hello = "hello";
         console.log("test constructor");
     }
     _notification(what) {
@@ -41,7 +41,13 @@ class TestNode extends godot_1.Button {
 }
 exports.default = TestNode;
 __decorate([
-    jsb_core_1.signal
+    (0, jsb_core_1.onready_)("ready_node")
+], TestNode.prototype, "ready_node", void 0);
+__decorate([
+    (0, jsb_core_1.export_)(jsb.VariantType.TYPE_STRING)
+], TestNode.prototype, "hello", void 0);
+__decorate([
+    (0, jsb_core_1.signal_)()
 ], TestNode.prototype, "test_signal", void 0);
 // const v2 = new Vector2()
 // v2.x = v2.y = 123;

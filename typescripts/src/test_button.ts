@@ -1,5 +1,5 @@
-import { Button, Signal, Vector2 } from "godot";
-import { signal } from "./jsb/jsb.core";
+import { Button, Node, Signal, Vector2 } from "godot";
+import { export_, onready_, signal_ } from "./jsb/jsb.core";
 
 export default class TestNode extends Button {
     private _v1 = 0
@@ -7,9 +7,13 @@ export default class TestNode extends Button {
     get foo() { return this._v1 }
     set foo(value: number) { this._v1 = value }
 
-    text = "hello"
+    @onready_("ready_node")
+    ready_node!: Node;
 
-    @signal
+    @export_(jsb.VariantType.TYPE_STRING)
+    hello = "hello"
+
+    @signal_()
     test_signal!: Signal; // signal field will automatically instantiated by JSRealm
 
     constructor() {

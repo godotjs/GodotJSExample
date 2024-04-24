@@ -34,5 +34,6 @@ offset_bottom = 94.0
 text = "GDScript Button
 "
 script = ExtResource("2_415o4")
+hello = "hello 4"
 
 [connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]
