@@ -9,15 +9,16 @@ export default class MainUI extends Node2D {
         if (button) {
             button.test_signal.connect(jsb.callable(this, this.on_test), 0);
         }
+        
+    }
+
+    private on_test() {
+        console.log("test signal emitted");
         const label = <Label>this.get_node(new NodePath("Control/Label"));
         if (label) {
             label.set_text(`hello ${this._pc++}`);
         } else {
             console.warn("Control/Label not found");
         }
-    }
-
-    private on_test() {
-        console.log("test signal emitted");
     }
 }

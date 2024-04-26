@@ -11,6 +11,9 @@ class MainUI extends godot_1.Node2D {
         if (button) {
             button.test_signal.connect(jsb.callable(this, this.on_test), 0);
         }
+    }
+    on_test() {
+        console.log("test signal emitted");
         const label = this.get_node(new godot_1.NodePath("Control/Label"));
         if (label) {
             label.set_text(`hello ${this._pc++}`);
@@ -18,9 +21,6 @@ class MainUI extends godot_1.Node2D {
         else {
             console.warn("Control/Label not found");
         }
-    }
-    on_test() {
-        console.log("test signal emitted");
     }
 }
 exports.default = MainUI;
