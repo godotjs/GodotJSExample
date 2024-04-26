@@ -7336,6 +7336,8 @@ declare module "godot" {
     }
     class CanvasItemEditorPlugin extends EditorPlugin {
     }
+    class CanvasItemEditorSelectedItem extends Object {
+    }
     class CanvasItemEditorViewport extends Control {
     }
     namespace CanvasItemMaterial {
@@ -7865,6 +7867,12 @@ declare module "godot" {
         // // godot.getset: member_keyword_colors: Dictionary
         // // godot.getset: color_regions: Dictionary
     }
+    class CodeTextEditor extends VBoxContainer {
+        validate_script: Signal
+        load_theme_settings: Signal
+        show_errors_panel: Signal
+        show_warnings_panel: Signal
+    }
     namespace CollisionObject2D {
         enum DisableMode {
             DISABLE_MODE_REMOVE = 0,
@@ -8208,6 +8216,8 @@ declare module "godot" {
     }
     class ConnectDialogBinds extends Object {
     }
+    class ConnectionInfoDialog extends AcceptDialog {
+    }
     class ConnectionsDock extends VBoxContainer {
         update_tree(): void
     }
@@ -8509,6 +8519,8 @@ declare module "godot" {
     class ControlEditorPresetPicker extends MarginContainer {
     }
     class ControlEditorToolbar extends HBoxContainer {
+    }
+    class ControlPositioningWarning extends MarginContainer {
     }
     class ConvexPolygonShape2D extends Shape2D {
         set_point_cloud(point_cloud: PackedVector2Array): void
@@ -9479,6 +9491,8 @@ declare module "godot" {
     }
     class EditorPerformanceProfiler extends HSplitContainer {
     }
+    class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
+    }
     namespace EditorPlugin {
         enum CustomControlContainer {
             CONTAINER_TOOLBAR = 0,
@@ -9611,6 +9625,10 @@ declare module "godot" {
         object_id_selected: Signal
         selected: Signal
     }
+    class EditorPropertyArray extends EditorProperty {
+    }
+    class EditorPropertyArrayObject extends RefCounted {
+    }
     class EditorPropertyCheck extends EditorProperty {
     }
     class EditorPropertyColor extends EditorProperty {
@@ -9629,17 +9647,23 @@ declare module "godot" {
         flag_changed: Signal
         rename_confirmed: Signal
     }
+    class EditorPropertyLocale extends EditorProperty {
+    }
     class EditorPropertyLocalizableString extends EditorProperty {
     }
     class EditorPropertyMultilineText extends EditorProperty {
     }
     class EditorPropertyNameProcessor extends Node {
     }
+    class EditorPropertyNodePath extends EditorProperty {
+    }
     class EditorPropertyPath extends EditorProperty {
     }
     class EditorPropertyResource extends EditorProperty {
     }
     class EditorPropertyText extends EditorProperty {
+    }
+    class EditorPropertyTextEnum extends EditorProperty {
     }
     class EditorPropertyVector2 extends EditorPropertyVectorN {
     }
@@ -9801,6 +9825,8 @@ declare module "godot" {
         ungrabbed: Signal
         value_focus_entered: Signal
         value_focus_exited: Signal
+    }
+    class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     class EditorSyntaxHighlighter extends SyntaxHighlighter {
         _get_edited_resource(): RefCounted
@@ -10732,8 +10758,6 @@ declare module "godot" {
         // // godot.getset: spacing_space: number /*i64*/
         // // godot.getset: spacing_top: number /*i64*/
         // // godot.getset: spacing_bottom: number /*i64*/
-    }
-    class FramebufferCacheRD extends Object {
     }
     namespace GDExtension {
         enum InitializationLevel {
@@ -11732,6 +11756,8 @@ declare module "godot" {
     }
     class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
     }
+    class GotoLineDialog extends ConfirmationDialog {
+    }
     namespace Gradient {
         enum InterpolationMode {
             GRADIENT_INTERPOLATE_LINEAR = 0,
@@ -11986,75 +12012,5 @@ declare module "godot" {
         get_output_port_slot(port_idx: number /*i64*/): number /*i64*/
         // // godot.getset: title: string
         slot_updated: Signal
-    }
-    class GridContainer extends Container {
-        set_columns(columns: number /*i64*/): void
-        get_columns(): number /*i64*/
-        // // godot.getset: columns: number /*i64*/
-    }
-    class GridMap extends Node3D {
-        static readonly INVALID_CELL_ITEM = -1
-        set_collision_layer(layer: number /*i64*/): void
-        get_collision_layer(): number /*i64*/
-        set_collision_mask(mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
-        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
-        get_collision_mask_value(layer_number: number /*i64*/): boolean
-        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
-        get_collision_layer_value(layer_number: number /*i64*/): boolean
-        set_collision_priority(priority: number /*f64*/): void
-        get_collision_priority(): number /*f64*/
-        set_physics_material(material: PhysicsMaterial): void
-        get_physics_material(): PhysicsMaterial
-        set_bake_navigation(bake_navigation: boolean): void
-        is_baking_navigation(): boolean
-        set_navigation_map(navigation_map: RID): void
-        get_navigation_map(): RID
-        set_mesh_library(mesh_library: MeshLibrary): void
-        get_mesh_library(): MeshLibrary
-        set_cell_size(size: Vector3): void
-        get_cell_size(): Vector3
-        set_cell_scale(scale: number /*f64*/): void
-        get_cell_scale(): number /*f64*/
-        set_octant_size(size: number /*i64*/): void
-        get_octant_size(): number /*i64*/
-        set_cell_item(position: Vector3i, item: number /*i64*/, orientation: number /*i64*/): void
-        get_cell_item(position: Vector3i): number /*i64*/
-        get_cell_item_orientation(position: Vector3i): number /*i64*/
-        get_cell_item_basis(position: Vector3i): Basis
-        get_basis_with_orthogonal_index(index: number /*i64*/): Basis
-        get_orthogonal_index_from_basis(basis: Basis): number /*i64*/
-        local_to_map(local_position: Vector3): Vector3i
-        map_to_local(map_position: Vector3i): Vector3
-        _update_octants_callback(): void
-        resource_changed(resource: Resource): void
-        set_center_x(enable: boolean): void
-        get_center_x(): boolean
-        set_center_y(enable: boolean): void
-        get_center_y(): boolean
-        set_center_z(enable: boolean): void
-        get_center_z(): boolean
-        clear(): void
-        get_used_cells(): Array
-        get_used_cells_by_item(item: number /*i64*/): Array
-        get_meshes(): Array
-        get_bake_meshes(): Array
-        get_bake_mesh_instance(idx: number /*i64*/): RID
-        clear_baked_meshes(): void
-        make_baked_meshes(gen_lightmap_uv: boolean, lightmap_uv_texel_size: number /*f64*/): void
-        // // godot.getset: mesh_library: Object
-        // // godot.getset: physics_material: Object
-        // // godot.getset: cell_size: Vector3
-        // // godot.getset: cell_octant_size: number /*i64*/
-        // // godot.getset: cell_center_x: boolean
-        // // godot.getset: cell_center_y: boolean
-        // // godot.getset: cell_center_z: boolean
-        // // godot.getset: cell_scale: number /*f64*/
-        // // godot.getset: collision_layer: number /*i64*/
-        // // godot.getset: collision_mask: number /*i64*/
-        // // godot.getset: collision_priority: number /*f64*/
-        // // godot.getset: bake_navigation: boolean
-        cell_size_changed: Signal
-        changed: Signal
     }
 }

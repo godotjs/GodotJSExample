@@ -25,9 +25,9 @@ class TestNode extends godot_1.Button {
     }
     _on_pressed() {
         console.log("test on clicked!");
-        this.test_signal.connect(jsb.callable(this, this.on_test_signal), 0);
-        this.test_signal.emit();
-        this.test_signal.disconnect(jsb.callable(this, this.on_test_signal));
+        // this.test_signal.connect(jsb.callable(this, this.on_test_signal), 0);
+        // this.test_signal.emit();
+        // this.test_signal.disconnect(jsb.callable(this, this.on_test_signal));
         this.test_signal.emit();
     }
     on_test_signal() {
