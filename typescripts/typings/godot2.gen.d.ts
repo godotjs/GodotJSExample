@@ -1795,6 +1795,8 @@ declare module "godot" {
         static MULTIPLY(left: Vector2, right: number /*f64*/): Vector2
         static DIVIDE(left: Vector2, right: Vector2): Vector2
         static DIVIDE(left: Vector2, right: number /*f64*/): Vector2
+        static EQUAL(left: Vector2, right: Vector2): boolean
+        static NOT_EQUAL(left: Vector2, right: Vector2): boolean
         x: number /*f64*/
         y: number /*f64*/
     }
@@ -1953,6 +1955,8 @@ declare module "godot" {
         static MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
         static DIVIDE(left: Vector3, right: Vector3): Vector3
         static DIVIDE(left: Vector3, right: number /*f64*/): Vector3
+        static EQUAL(left: Vector3, right: Vector3): boolean
+        static NOT_EQUAL(left: Vector3, right: Vector3): boolean
         x: number /*f64*/
         y: number /*f64*/
         z: number /*f64*/
@@ -2537,6 +2541,7 @@ declare module "godot" {
         rpc_id(peer_id: number /*i64*/): void
         bind(): Callable
         static EQUAL(left: Callable, right: Callable): boolean
+        static NOT_EQUAL(left: Callable, right: Callable): boolean
     }
     class Signal {
         constructor()
@@ -2570,6 +2575,8 @@ declare module "godot" {
         get(key: any, default_: any): void
         make_read_only(): void
         is_read_only(): boolean
+        static EQUAL(left: Dictionary, right: Dictionary): boolean
+        static NOT_EQUAL(left: Dictionary, right: Dictionary): boolean
     }
     class Array {
         constructor()

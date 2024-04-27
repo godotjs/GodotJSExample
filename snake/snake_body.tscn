@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8x4bj1swa5pv"]
+
+[ext_resource type="Texture2D" uid="uid://b0phm4xfkhy54" path="res://snake/body.png" id="1_7k0pl"]
+[ext_resource type="Script" path="res://javascripts/snake/snake_body.js" id="1_w7gl3"]
+
+[node name="SnakeBody" type="Sprite2D"]
+texture = ExtResource("1_7k0pl")
+centered = false
+script = ExtResource("1_w7gl3")

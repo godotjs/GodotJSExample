@@ -6101,6 +6101,12 @@ declare module "godot" {
     class RenameDialog extends ConfirmationDialog {
         rename(): void
     }
+    class RenderBufferCustomDataRD extends RefCounted {
+    }
+    class RenderBufferDataForwardClustered extends RenderBufferCustomDataRD {
+    }
+    class RenderBuffersGI extends RenderBufferCustomDataRD {
+    }
     class RenderSceneBuffers extends RefCounted {
         configure(config: RenderSceneBuffersConfiguration): void
     }
@@ -6134,8 +6140,6 @@ declare module "godot" {
         // // godot.getset: texture_mipmap_bias: boolean
     }
     class RenderSceneBuffersExtension extends RenderSceneBuffers {
-    }
-    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
     }
     class RenderSceneBuffersRD extends RenderSceneBuffers {
         has_texture(context: StringName, name: StringName): boolean
@@ -10289,6 +10293,8 @@ declare module "godot" {
         get_texture_rd_rid(): RID
         // // godot.getset: texture_rd_rid: RID
     }
+    class TexturePreview extends MarginContainer {
+    }
     namespace TextureProgressBar {
         enum FillMode {
             FILL_LEFT_TO_RIGHT = 0,
@@ -10658,6 +10664,8 @@ declare module "godot" {
         _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         _set_tile_map_selection(selection: Array): void
         _get_tile_map_selection(): Array
+    }
+    class TileMapLayer extends RefCounted {
     }
     class TileMapPattern extends Resource {
         set_cell(coords: Vector2i, source_id: number /*i64*/, atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
@@ -11464,6 +11472,8 @@ declare module "godot" {
         redo(): boolean
         undo(): boolean
         version_changed: Signal
+    }
+    class UniformSetCacheRD extends Object {
     }
     class VBoxContainer extends BoxContainer {
     }

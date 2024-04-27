@@ -4461,6 +4461,8 @@ declare module "godot" {
         update_graph(): void
         _update_filters(_unnamed_arg0: AnimationNode): boolean
     }
+    class AnimationNodeEndState extends AnimationRootNode {
+    }
     namespace AnimationNodeOneShot {
         enum OneShotRequest {
             ONE_SHOT_REQUEST_NONE = 0,
@@ -4500,6 +4502,8 @@ declare module "godot" {
         // // godot.getset: autorestart_random_delay: number /*f64*/
     }
     class AnimationNodeOutput extends AnimationNode {
+    }
+    class AnimationNodeStartState extends AnimationRootNode {
     }
     namespace AnimationNodeStateMachine {
         enum StateMachineType {
@@ -8520,8 +8524,6 @@ declare module "godot" {
     }
     class ControlEditorToolbar extends HBoxContainer {
     }
-    class ControlPositioningWarning extends MarginContainer {
-    }
     class ConvexPolygonShape2D extends Shape2D {
         set_point_cloud(point_cloud: PackedVector2Array): void
         set_points(points: PackedVector2Array): void
@@ -9330,6 +9332,8 @@ declare module "godot" {
     class EditorHelpSearch extends ConfirmationDialog {
         go_to_help: Signal
     }
+    class EditorHelpTooltip extends EditorHelpBit {
+    }
     class EditorImagePreviewPlugin extends EditorResourcePreviewGenerator {
     }
     class EditorImportBlendRunner extends Node {
@@ -9625,10 +9629,6 @@ declare module "godot" {
         object_id_selected: Signal
         selected: Signal
     }
-    class EditorPropertyArray extends EditorProperty {
-    }
-    class EditorPropertyArrayObject extends RefCounted {
-    }
     class EditorPropertyCheck extends EditorProperty {
     }
     class EditorPropertyColor extends EditorProperty {
@@ -9647,23 +9647,17 @@ declare module "godot" {
         flag_changed: Signal
         rename_confirmed: Signal
     }
-    class EditorPropertyLocale extends EditorProperty {
-    }
     class EditorPropertyLocalizableString extends EditorProperty {
     }
     class EditorPropertyMultilineText extends EditorProperty {
     }
     class EditorPropertyNameProcessor extends Node {
     }
-    class EditorPropertyNodePath extends EditorProperty {
-    }
     class EditorPropertyPath extends EditorProperty {
     }
     class EditorPropertyResource extends EditorProperty {
     }
     class EditorPropertyText extends EditorProperty {
-    }
-    class EditorPropertyTextEnum extends EditorProperty {
     }
     class EditorPropertyVector2 extends EditorPropertyVectorN {
     }
@@ -10758,6 +10752,8 @@ declare module "godot" {
         // // godot.getset: spacing_space: number /*i64*/
         // // godot.getset: spacing_top: number /*i64*/
         // // godot.getset: spacing_bottom: number /*i64*/
+    }
+    class FramebufferCacheRD extends Object {
     }
     namespace GDExtension {
         enum InitializationLevel {
