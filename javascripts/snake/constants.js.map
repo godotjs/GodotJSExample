@@ -1,0 +1,1 @@
+{"version":3,"file":"constants.js","sourceRoot":"./src/","sources":["snake/constants.ts"],"names":[],"mappings":";;;AACA,IAAY,cAEX;AAFD,WAAY,cAAc;IACtB,+CAAE,CAAA;IAAE,mDAAI,CAAA;IAAE,qDAAK,CAAA;IAAE,mDAAI,CAAA;AACzB,CAAC,EAFW,cAAc,8BAAd,cAAc,QAEzB;AAEY,QAAA,UAAU,GAAG,EAAE,CAAC;AAChB,QAAA,MAAM,GAAG,EAAE,CAAC;AACZ,QAAA,OAAO,GAAG,EAAE,CAAC"}

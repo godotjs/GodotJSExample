@@ -1,21 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl03a0k5wwo6k"]
+[gd_scene load_steps=2 format=3 uid="uid://bl03a0k5wwo6k"]
 
 [ext_resource type="Script" path="res://javascripts/snake/snake.js" id="1_aj54u"]
-[ext_resource type="Texture2D" uid="uid://bxgp7l6skoc6y" path="res://snake/head.png" id="2_35lld"]
-[ext_resource type="Script" path="res://javascripts/snake/coin.js" id="3_3m4cb"]
-[ext_resource type="Texture2D" uid="uid://cg5erk8a56k0d" path="res://snake/coin.png" id="3_u5mcm"]
 
 [node name="SnakeMain" type="Node2D"]
 
-[node name="Snake" type="Node2D" parent="."]
+[node name="SnakeController" type="Node2D" parent="."]
 script = ExtResource("1_aj54u")
-
-[node name="Sprite2D" type="Sprite2D" parent="Snake"]
-texture = ExtResource("2_35lld")
-centered = false
-
-[node name="Coin" type="Sprite2D" parent="."]
-position = Vector2(128, 0)
-texture = ExtResource("3_u5mcm")
-centered = false
-script = ExtResource("3_3m4cb")
