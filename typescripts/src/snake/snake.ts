@@ -1,4 +1,4 @@
-import { Input, Node, Node2D, PackedScene, ResourceLoader, Vector2, Vector2i } from "godot";
+import { Input, Label, Node, Node2D, NodePath, PackedScene, ResourceLoader, Vector2, Vector2i } from "godot";
 import SnakeBody from "./snake_body";
 import { kBlockSize, kHeight, kWidth, SnakeDirection } from "./constants";
 import Coin from "./coin";
@@ -13,15 +13,22 @@ enum GameState {
     ENDED,
 }
 
-export default class Snake extends Node2D {
+export default class Snake extends Node {
     private _next_dir = SnakeDirection.RIGHT;
+    private _current_dir = SnakeDirection.RIGHT;
     private _move = 0;
     private _speed = 128;
     private _bodies: Array<SnakeBody> = [];
     private _coin!: Coin;
     private _state = GameState.PLAYING;
+    private _control_node!: Node;
+    private _score_label!: Label;
+    private _state_label!: Label;
 
     _ready() {
+        this._control_node = this.get_node(new NodePath("Control"));
+        this._score_label = <Label> this.get_node(new NodePath("UI/VBoxContainer/ScoreLabel"));
+        this._state_label = <Label> this.get_node(new NodePath("UI/VBoxContainer/StateLabel"));
         this._coin = <Coin>this.instantiate_asset(kCoinAssetPath);
         this.restart();
     }
@@ -31,22 +38,24 @@ export default class Snake extends Node2D {
         this._bodies.push(body);
         body.x = x; body.y = y;
         body.update_position();
+        this._score_label.set_text(`Score ${this._bodies.length}`);
         return body;
     }
 
     private instantiate_asset(path: string) {
-        console.log(PackedScene);
         const scene = <PackedScene>ResourceLoader.load(path, "", ResourceLoader.CacheMode.CACHE_MODE_REUSE);
         if (scene) {
             const node = <Node2D>scene.instantiate(PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED);
-            this.add_child(node, false, Node.InternalMode.INTERNAL_MODE_DISABLED);
+            this._control_node.add_child(node, false, Node.InternalMode.INTERNAL_MODE_DISABLED);
             node.set_scale(new Vector2(0.25, 0.25))
             return node;
         }
     }
 
-    private check_body(x: number, y: number) {
-        for (let body of this._bodies) {
+    private check_body(x: number, y: number, start_index: number = 0) {
+        let n = this._bodies.length;
+        for (let i = start_index; i < n; ++i) {
+            let body = this._bodies[i];
             if (body.x == x && body.y == y) {
                 return true;
             }
@@ -55,8 +64,8 @@ export default class Snake extends Node2D {
     }
 
     private set_coin_location() {
-        let x = Math.floor(Math.random() * 10);
-        let y = Math.floor(Math.random() * 10);
+        let x = Math.floor(Math.random() * kWidth);
+        let y = Math.floor(Math.random() * kHeight);
         let rx = x;
         let ry = y;
         while (true) {
@@ -99,8 +108,8 @@ export default class Snake extends Node2D {
         let mx = head.x; let my = head.y;
         if (delta_mode) { head.x = x + mx; head.y = y + my; }
         else { head.x = x; head.y = y; }
-        if (this.check_wall(head.x, head.y)) {
-            this._state = GameState.ENDED;
+        if (this.check_wall(head.x, head.y) || this.check_body(head.x, head.y, 1)) {
+            this.change_state(GameState.ENDED);
             return;
         }
         const eat = head.x == this._coin.x && head.y == this._coin.y;
@@ -128,10 +137,16 @@ export default class Snake extends Node2D {
         this.add_snake_body(5, 4);
         this.add_snake_body(5, 3);
         this._next_dir = SnakeDirection.DOWN;
+        this._current_dir = SnakeDirection.DOWN;
         this._move = 0;
         // this._speed 
         this.set_coin_location();
-        this._state = GameState.PLAYING;
+        this.change_state(GameState.PLAYING);
+    }
+
+    private change_state(state: GameState) {
+        this._state = state;
+        this._state_label.set_text(`State ${GameState[state]}`);
     }
 
     _process(dt: number) {
@@ -144,23 +159,23 @@ export default class Snake extends Node2D {
             }
             case GameState.PLAYING: {
                 if (Input.is_action_pressed("right", true)) {
-                    if (this._next_dir != SnakeDirection.LEFT) {
+                    if (this._current_dir != SnakeDirection.LEFT) {
                         this._next_dir = SnakeDirection.RIGHT;
                     }
                 } else if (Input.is_action_pressed("left", true)) {
-                    if (this._next_dir != SnakeDirection.RIGHT) {
+                    if (this._current_dir != SnakeDirection.RIGHT) {
                         this._next_dir = SnakeDirection.LEFT;
                     }
                 } else if (Input.is_action_pressed("up", true)) {
-                    if (this._next_dir != SnakeDirection.DOWN) {
+                    if (this._current_dir != SnakeDirection.DOWN) {
                         this._next_dir = SnakeDirection.UP;
                     }
                 } else if (Input.is_action_pressed("down", true)) {
-                    if (this._next_dir != SnakeDirection.UP) {
+                    if (this._current_dir != SnakeDirection.UP) {
                         this._next_dir = SnakeDirection.DOWN;
                     }
                 } else if (Input.is_action_just_pressed("confirm", true)) {
-                    this._state = GameState.PAUSED;
+                    this.change_state(GameState.PAUSED);
                     return;
                 }
 
@@ -169,7 +184,8 @@ export default class Snake extends Node2D {
                 if (this._move >= kBlockSize) {
                     this._move -= kBlockSize;
 
-                    switch (this._next_dir) {
+                    this._current_dir = this._next_dir;
+                    switch (this._current_dir) {
                         case SnakeDirection.RIGHT: this.set_head_location(1, 0, true); break;
                         case SnakeDirection.LEFT: this.set_head_location(-1, 0, true); break;
                         case SnakeDirection.UP: this.set_head_location(0, -1, true); break;
@@ -180,7 +196,7 @@ export default class Snake extends Node2D {
             }
             default: {
                 if (Input.is_action_just_pressed("confirm", true)) {
-                    this._state = GameState.PLAYING;
+                    this.change_state(GameState.PLAYING);
                 }
                 return;
             }

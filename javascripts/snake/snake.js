@@ -11,16 +11,20 @@ var GameState;
     GameState[GameState["PAUSED"] = 1] = "PAUSED";
     GameState[GameState["ENDED"] = 2] = "ENDED";
 })(GameState || (GameState = {}));
-class Snake extends godot_1.Node2D {
+class Snake extends godot_1.Node {
     constructor() {
         super(...arguments);
         this._next_dir = constants_1.SnakeDirection.RIGHT;
+        this._current_dir = constants_1.SnakeDirection.RIGHT;
         this._move = 0;
         this._speed = 128;
         this._bodies = [];
         this._state = GameState.PLAYING;
     }
     _ready() {
+        this._control_node = this.get_node(new godot_1.NodePath("Control"));
+        this._score_label = this.get_node(new godot_1.NodePath("UI/VBoxContainer/ScoreLabel"));
+        this._state_label = this.get_node(new godot_1.NodePath("UI/VBoxContainer/StateLabel"));
         this._coin = this.instantiate_asset(kCoinAssetPath);
         this.restart();
     }
@@ -30,20 +34,22 @@ class Snake extends godot_1.Node2D {
         body.x = x;
         body.y = y;
         body.update_position();
+        this._score_label.set_text(`Score ${this._bodies.length}`);
         return body;
     }
     instantiate_asset(path) {
-        console.log(godot_1.PackedScene);
         const scene = godot_1.ResourceLoader.load(path, "", godot_1.ResourceLoader.CacheMode.CACHE_MODE_REUSE);
         if (scene) {
             const node = scene.instantiate(godot_1.PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED);
-            this.add_child(node, false, godot_1.Node.InternalMode.INTERNAL_MODE_DISABLED);
+            this._control_node.add_child(node, false, godot_1.Node.InternalMode.INTERNAL_MODE_DISABLED);
             node.set_scale(new godot_1.Vector2(0.25, 0.25));
             return node;
         }
     }
-    check_body(x, y) {
-        for (let body of this._bodies) {
+    check_body(x, y, start_index = 0) {
+        let n = this._bodies.length;
+        for (let i = start_index; i < n; ++i) {
+            let body = this._bodies[i];
             if (body.x == x && body.y == y) {
                 return true;
             }
@@ -51,8 +57,8 @@ class Snake extends godot_1.Node2D {
         return false;
     }
     set_coin_location() {
-        let x = Math.floor(Math.random() * 10);
-        let y = Math.floor(Math.random() * 10);
+        let x = Math.floor(Math.random() * constants_1.kWidth);
+        let y = Math.floor(Math.random() * constants_1.kHeight);
         let rx = x;
         let ry = y;
         while (true) {
@@ -105,8 +111,8 @@ class Snake extends godot_1.Node2D {
             head.x = x;
             head.y = y;
         }
-        if (this.check_wall(head.x, head.y)) {
-            this._state = GameState.ENDED;
+        if (this.check_wall(head.x, head.y) || this.check_body(head.x, head.y, 1)) {
+            this.change_state(GameState.ENDED);
             return;
         }
         const eat = head.x == this._coin.x && head.y == this._coin.y;
@@ -135,10 +141,15 @@ class Snake extends godot_1.Node2D {
         this.add_snake_body(5, 4);
         this.add_snake_body(5, 3);
         this._next_dir = constants_1.SnakeDirection.DOWN;
+        this._current_dir = constants_1.SnakeDirection.DOWN;
         this._move = 0;
         // this._speed 
         this.set_coin_location();
-        this._state = GameState.PLAYING;
+        this.change_state(GameState.PLAYING);
+    }
+    change_state(state) {
+        this._state = state;
+        this._state_label.set_text(`State ${GameState[state]}`);
     }
     _process(dt) {
         switch (this._state) {
@@ -150,34 +161,35 @@ class Snake extends godot_1.Node2D {
             }
             case GameState.PLAYING: {
                 if (godot_1.Input.is_action_pressed("right", true)) {
-                    if (this._next_dir != constants_1.SnakeDirection.LEFT) {
+                    if (this._current_dir != constants_1.SnakeDirection.LEFT) {
                         this._next_dir = constants_1.SnakeDirection.RIGHT;
                     }
                 }
                 else if (godot_1.Input.is_action_pressed("left", true)) {
-                    if (this._next_dir != constants_1.SnakeDirection.RIGHT) {
+                    if (this._current_dir != constants_1.SnakeDirection.RIGHT) {
                         this._next_dir = constants_1.SnakeDirection.LEFT;
                     }
                 }
                 else if (godot_1.Input.is_action_pressed("up", true)) {
-                    if (this._next_dir != constants_1.SnakeDirection.DOWN) {
+                    if (this._current_dir != constants_1.SnakeDirection.DOWN) {
                         this._next_dir = constants_1.SnakeDirection.UP;
                     }
                 }
                 else if (godot_1.Input.is_action_pressed("down", true)) {
-                    if (this._next_dir != constants_1.SnakeDirection.UP) {
+                    if (this._current_dir != constants_1.SnakeDirection.UP) {
                         this._next_dir = constants_1.SnakeDirection.DOWN;
                     }
                 }
                 else if (godot_1.Input.is_action_just_pressed("confirm", true)) {
-                    this._state = GameState.PAUSED;
+                    this.change_state(GameState.PAUSED);
                     return;
                 }
                 const step = dt * this._speed;
                 this._move += step;
                 if (this._move >= constants_1.kBlockSize) {
                     this._move -= constants_1.kBlockSize;
-                    switch (this._next_dir) {
+                    this._current_dir = this._next_dir;
+                    switch (this._current_dir) {
                         case constants_1.SnakeDirection.RIGHT:
                             this.set_head_location(1, 0, true);
                             break;
@@ -196,7 +208,7 @@ class Snake extends godot_1.Node2D {
             }
             default: {
                 if (godot_1.Input.is_action_just_pressed("confirm", true)) {
-                    this._state = GameState.PLAYING;
+                    this.change_state(GameState.PLAYING);
                 }
                 return;
             }

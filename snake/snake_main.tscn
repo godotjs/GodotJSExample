@@ -1,8 +1,31 @@
 [gd_scene load_steps=2 format=3 uid="uid://bl03a0k5wwo6k"]
 
-[ext_resource type="Script" path="res://javascripts/snake/snake.js" id="1_aj54u"]
+[ext_resource type="Script" path="res://javascripts/snake/snake.js" id="1_m12bw"]
 
-[node name="SnakeMain" type="Node2D"]
+[node name="SnakeMain" type="Node"]
+script = ExtResource("1_m12bw")
 
-[node name="SnakeController" type="Node2D" parent="."]
-script = ExtResource("1_aj54u")
+[node name="Control" type="Node2D" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 72.0
+
+[node name="ScoreLabel" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = " SCORE 0"
+
+[node name="StateLabel" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = " Playing"
