@@ -8,9 +8,9 @@ const kCoinAssetPath = "res://snake/coin.tscn";
 const kWallAssetPath = "res://snake/wall.tscn";
 
 enum GameState {
-    Playing,
-    Paused,
-    Ended,
+    PLAYING,
+    PAUSED,
+    ENDED,
 }
 
 export default class Snake extends Node2D {
@@ -19,7 +19,7 @@ export default class Snake extends Node2D {
     private _speed = 128;
     private _bodies: Array<SnakeBody> = [];
     private _coin!: Coin;
-    private _state = GameState.Playing;
+    private _state = GameState.PLAYING;
 
     _ready() {
         this._coin = <Coin>this.instantiate_asset(kCoinAssetPath);
@@ -100,7 +100,7 @@ export default class Snake extends Node2D {
         if (delta_mode) { head.x = x + mx; head.y = y + my; }
         else { head.x = x; head.y = y; }
         if (this.check_wall(head.x, head.y)) {
-            this._state = GameState.Ended;
+            this._state = GameState.ENDED;
             return;
         }
         const eat = head.x == this._coin.x && head.y == this._coin.y;
@@ -131,18 +131,18 @@ export default class Snake extends Node2D {
         this._move = 0;
         // this._speed 
         this.set_coin_location();
-        this._state = GameState.Playing;
+        this._state = GameState.PLAYING;
     }
 
     _process(dt: number) {
         switch (this._state) {
-            case GameState.Ended: {
+            case GameState.ENDED: {
                 if (Input.is_action_just_pressed("confirm", true)) {
                     this.restart();
                 }
                 return;
             }
-            case GameState.Playing: {
+            case GameState.PLAYING: {
                 if (Input.is_action_pressed("right", true)) {
                     if (this._next_dir != SnakeDirection.LEFT) {
                         this._next_dir = SnakeDirection.RIGHT;
@@ -160,7 +160,7 @@ export default class Snake extends Node2D {
                         this._next_dir = SnakeDirection.DOWN;
                     }
                 } else if (Input.is_action_just_pressed("confirm", true)) {
-                    this._state = GameState.Paused;
+                    this._state = GameState.PAUSED;
                     return;
                 }
 
@@ -180,7 +180,7 @@ export default class Snake extends Node2D {
             }
             default: {
                 if (Input.is_action_just_pressed("confirm", true)) {
-                    this._state = GameState.Playing;
+                    this._state = GameState.PLAYING;
                 }
                 return;
             }

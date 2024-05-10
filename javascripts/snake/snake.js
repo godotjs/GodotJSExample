@@ -7,9 +7,9 @@ const kCoinAssetPath = "res://snake/coin.tscn";
 const kWallAssetPath = "res://snake/wall.tscn";
 var GameState;
 (function (GameState) {
-    GameState[GameState["Playing"] = 0] = "Playing";
-    GameState[GameState["Paused"] = 1] = "Paused";
-    GameState[GameState["Ended"] = 2] = "Ended";
+    GameState[GameState["PLAYING"] = 0] = "PLAYING";
+    GameState[GameState["PAUSED"] = 1] = "PAUSED";
+    GameState[GameState["ENDED"] = 2] = "ENDED";
 })(GameState || (GameState = {}));
 class Snake extends godot_1.Node2D {
     constructor() {
@@ -18,7 +18,7 @@ class Snake extends godot_1.Node2D {
         this._move = 0;
         this._speed = 128;
         this._bodies = [];
-        this._state = GameState.Playing;
+        this._state = GameState.PLAYING;
     }
     _ready() {
         this._coin = this.instantiate_asset(kCoinAssetPath);
@@ -106,7 +106,7 @@ class Snake extends godot_1.Node2D {
             head.y = y;
         }
         if (this.check_wall(head.x, head.y)) {
-            this._state = GameState.Ended;
+            this._state = GameState.ENDED;
             return;
         }
         const eat = head.x == this._coin.x && head.y == this._coin.y;
@@ -138,17 +138,17 @@ class Snake extends godot_1.Node2D {
         this._move = 0;
         // this._speed 
         this.set_coin_location();
-        this._state = GameState.Playing;
+        this._state = GameState.PLAYING;
     }
     _process(dt) {
         switch (this._state) {
-            case GameState.Ended: {
+            case GameState.ENDED: {
                 if (godot_1.Input.is_action_just_pressed("confirm", true)) {
                     this.restart();
                 }
                 return;
             }
-            case GameState.Playing: {
+            case GameState.PLAYING: {
                 if (godot_1.Input.is_action_pressed("right", true)) {
                     if (this._next_dir != constants_1.SnakeDirection.LEFT) {
                         this._next_dir = constants_1.SnakeDirection.RIGHT;
@@ -170,7 +170,7 @@ class Snake extends godot_1.Node2D {
                     }
                 }
                 else if (godot_1.Input.is_action_just_pressed("confirm", true)) {
-                    this._state = GameState.Paused;
+                    this._state = GameState.PAUSED;
                     return;
                 }
                 const step = dt * this._speed;
@@ -196,7 +196,7 @@ class Snake extends godot_1.Node2D {
             }
             default: {
                 if (godot_1.Input.is_action_just_pressed("confirm", true)) {
-                    this._state = GameState.Playing;
+                    this._state = GameState.PLAYING;
                 }
                 return;
             }
