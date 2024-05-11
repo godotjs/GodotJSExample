@@ -4,6 +4,7 @@
 
 [node name="SnakeMain" type="Node"]
 script = ExtResource("1_m12bw")
+_speed = 80.0
 
 [node name="Control" type="Node2D" parent="."]
 

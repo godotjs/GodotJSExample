@@ -1,4 +1,4 @@
-import { Sprite2D, Vector2, Vector2i } from "godot";
+import { Sprite2D, Vector2 } from "godot";
 import { kBlockSize } from "./constants";
 
 export default class Coin extends Sprite2D {

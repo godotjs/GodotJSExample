@@ -54,10 +54,4 @@ __decorate([
 __decorate([
     (0, jsb_core_1.signal_)()
 ], TestNode.prototype, "test_signal", void 0);
-// const v2 = new Vector2()
-// v2.x = v2.y = 123;
-// console.log(v2.x, v2.y);
-// v2.x ++;
-// v2.y --;
-// console.log(v2.x, v2.y);
 //# sourceMappingURL=test_button.js.map

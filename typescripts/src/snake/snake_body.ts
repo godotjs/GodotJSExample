@@ -1,9 +1,11 @@
-import { Sprite2D, Vector2, Vector2i } from "godot";
+import { Sprite2D, Vector2 } from "godot";
 import { kBlockSize } from "./constants";
 
 export default class SnakeBody extends Sprite2D {
     private _x: number = 0;
     private _y: number = 0;
+
+    // use cached Vector2 to avoid unnecessary garbages
     private _cached_pos!: Vector2;
 
     _ready() {

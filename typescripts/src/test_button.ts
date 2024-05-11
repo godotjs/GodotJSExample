@@ -17,7 +17,7 @@ export default class TestNode extends Button {
     int_value = 0;
 
     @signal_()
-    test_signal!: Signal; // signal field will automatically instantiated by JSRealm
+    test_signal!: Signal; // signal field will automatically instantiated by GodotJS
 
     constructor() {
         super()
@@ -54,10 +54,3 @@ export default class TestNode extends Button {
 
     }
 }
-
-// const v2 = new Vector2()
-// v2.x = v2.y = 123;
-// console.log(v2.x, v2.y);
-// v2.x ++;
-// v2.y --;
-// console.log(v2.x, v2.y);

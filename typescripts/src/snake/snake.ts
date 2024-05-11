@@ -1,7 +1,8 @@
-import { Input, Label, Node, Node2D, NodePath, PackedScene, ResourceLoader, Vector2, Vector2i } from "godot";
+import { Engine, Input, Label, Node, Node2D, NodePath, PackedScene, ResourceLoader, Vector2 } from "godot";
 import SnakeBody from "./snake_body";
 import { kBlockSize, kHeight, kWidth, SnakeDirection } from "./constants";
 import Coin from "./coin";
+import { export_ } from "../jsb/jsb.core";
 
 const kSnakeBodyAssetPath = "res://snake/snake_body.tscn";
 const kCoinAssetPath = "res://snake/coin.tscn";
@@ -14,10 +15,14 @@ enum GameState {
 }
 
 export default class Snake extends Node {
+    // the value exported field will be restored by godot on loading instance
+    // all modifications before 'ready' on this field will be discarded 
+    @export_(jsb.VariantType.TYPE_FLOAT)
+    private _speed!: number;
+
     private _next_dir = SnakeDirection.RIGHT;
     private _current_dir = SnakeDirection.RIGHT;
     private _move = 0;
-    private _speed = 128;
     private _bodies: Array<SnakeBody> = [];
     private _coin!: Coin;
     private _state = GameState.PLAYING;
@@ -26,6 +31,12 @@ export default class Snake extends Node {
     private _state_label!: Label;
 
     _ready() {
+        if (Engine.is_editor_hint()) {
+            console.log("snake ready in editor mode?");
+            return;
+        }
+        console.log("snake ready speed:", this._speed);
+        console.assert(typeof this._speed === "number");
         this._control_node = this.get_node(new NodePath("Control"));
         this._score_label = <Label> this.get_node(new NodePath("UI/VBoxContainer/ScoreLabel"));
         this._state_label = <Label> this.get_node(new NodePath("UI/VBoxContainer/StateLabel"));
