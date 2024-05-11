@@ -17,9 +17,14 @@ function export_(type, details) {
     };
 }
 exports.export_ = export_;
+/**
+ * auto initialized on ready (before _ready called)
+ * @param evaluator for now, only string is accepted
+ */
 function onready_(evaluator) {
     return function (target, key) {
-        //TODO
+        let ebd = { name: key, evaluator: evaluator };
+        jsb.internal.add_script_ready(target, ebd);
     };
 }
 exports.onready_ = onready_;

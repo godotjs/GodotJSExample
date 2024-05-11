@@ -2,6 +2,9 @@ extends Button
 class_name GDScriptButton
 
 @export var hello := "hello"
+
+@onready var child := get_node("GDButtonChildNode")
+
 signal test_signal
 
 # Called when the node enters the scene tree for the first time.

@@ -7,11 +7,14 @@ export default class TestNode extends Button {
     get foo() { return this._v1 }
     set foo(value: number) { this._v1 = value }
 
-    @onready_("ready_node")
+    @onready_("JSButtonChildNode")
     ready_node!: Node;
 
     @export_(jsb.VariantType.TYPE_STRING)
-    hello = "hello"
+    hello = "hello";
+
+    @export_(jsb.VariantType.TYPE_INT)
+    int_value = 0;
 
     @signal_()
     test_signal!: Signal; // signal field will automatically instantiated by JSRealm
@@ -26,7 +29,8 @@ export default class TestNode extends Button {
     }
 
     _ready() {
-        console.log("test ready")
+        console.log("test ready", this.hello);
+        console.log("ready_node:", this.ready_node);
     }
 
     _on_pressed() {
