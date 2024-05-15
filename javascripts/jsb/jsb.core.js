@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.onready_ = exports.export_ = exports.signal_ = void 0;
+exports.tool_ = exports.onready_ = exports.export_ = exports.signal_ = void 0;
 /**
  *
  */
@@ -28,4 +28,10 @@ function onready_(evaluator) {
     };
 }
 exports.onready_ = onready_;
+function tool_() {
+    return function (target) {
+        jsb.internal.add_script_tool(target);
+    };
+}
+exports.tool_ = tool_;
 //# sourceMappingURL=jsb.core.js.map
