@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvykv0u5duqyj"]
+[gd_scene load_steps=6 format=3 uid="uid://bvykv0u5duqyj"]
 
 [ext_resource type="Script" path="res://javascripts/test_button.js" id="1_ewk4v"]
 [ext_resource type="Script" path="res://javascripts/ui/main_ui.js" id="1_j74ag"]
 [ext_resource type="Script" path="res://gdscripts/gds_button.gd" id="2_415o4"]
+[ext_resource type="Texture2D" uid="uid://dx3san3aa6mwy" path="res://icon.svg" id="4_2050k"]
+[ext_resource type="Script" path="res://javascripts/tests/my_editor_sprite.js" id="5_l2t80"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_j74ag")
@@ -59,5 +61,12 @@ offset_top = 172.0
 offset_right = 239.0
 offset_bottom = 263.0
 placeholder_text = "Input text"
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(386, 134)
+rotation = 6.97005
+texture = ExtResource("4_2050k")
+script = ExtResource("5_l2t80")
+speed = 0.25
 
 [connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]
