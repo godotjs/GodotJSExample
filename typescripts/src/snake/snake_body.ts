@@ -19,8 +19,8 @@ export default class SnakeBody extends Sprite2D {
     set y(value: number) { this._y = value; }
 
     update_position() {
-        this._cached_pos.x = this._x * kBlockSize;
-        this._cached_pos.y = this._y * kBlockSize;
+        this._cached_pos.x = (this._x+1) * kBlockSize;
+        this._cached_pos.y = (this._y+1) * kBlockSize;
         this.set_position(this._cached_pos);
     }
 }

@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl03a0k5wwo6k"]
+[gd_scene load_steps=3 format=3 uid="uid://bl03a0k5wwo6k"]
 
 [ext_resource type="Script" path="res://javascripts/snake/snake.js" id="1_m12bw"]
+[ext_resource type="Texture2D" uid="uid://cnjdpt0kv5met" path="res://snake/block.png" id="2_jaf55"]
 
 [node name="SnakeMain" type="Node"]
 script = ExtResource("1_m12bw")
-_speed = 80.0
+_speed = 105.0
 
 [node name="Control" type="Node2D" parent="."]
 
@@ -25,8 +26,48 @@ offset_bottom = 72.0
 
 [node name="ScoreLabel" type="Label" parent="UI/VBoxContainer"]
 layout_mode = 2
-text = " SCORE 0"
+text = "Score 0"
 
 [node name="StateLabel" type="Label" parent="UI/VBoxContainer"]
 layout_mode = 2
-text = " Playing"
+text = "Playing"
+
+[node name="SpeedLabel" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Speed 0"
+
+[node name="wall_right" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 496.0
+offset_right = 512.0
+offset_bottom = 352.0
+texture = ExtResource("2_jaf55")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="wall_bottom" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 336.0
+offset_right = 496.0
+offset_bottom = 352.0
+texture = ExtResource("2_jaf55")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="wall_top" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 496.0
+offset_bottom = 16.0
+texture = ExtResource("2_jaf55")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="wall_left" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 352.0
+texture = ExtResource("2_jaf55")
+expand_mode = 1
+stretch_mode = 1

@@ -16,8 +16,8 @@ class SnakeBody extends godot_1.Sprite2D {
     get y() { return this._y; }
     set y(value) { this._y = value; }
     update_position() {
-        this._cached_pos.x = this._x * constants_1.kBlockSize;
-        this._cached_pos.y = this._y * constants_1.kBlockSize;
+        this._cached_pos.x = (this._x + 1) * constants_1.kBlockSize;
+        this._cached_pos.y = (this._y + 1) * constants_1.kBlockSize;
         this.set_position(this._cached_pos);
     }
 }

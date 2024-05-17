@@ -37,6 +37,7 @@ class Snake extends godot_1.Node {
         this._control_node = this.get_node(new godot_1.NodePath("Control"));
         this._score_label = this.get_node(new godot_1.NodePath("UI/VBoxContainer/ScoreLabel"));
         this._state_label = this.get_node(new godot_1.NodePath("UI/VBoxContainer/StateLabel"));
+        this._speed_label = this.get_node(new godot_1.NodePath("UI/VBoxContainer/SpeedLabel"));
         this._coin = this.instantiate_asset(kCoinAssetPath);
         this.restart();
     }
@@ -158,10 +159,15 @@ class Snake extends godot_1.Node {
         // this._speed 
         this.set_coin_location();
         this.change_state(GameState.PLAYING);
+        this.change_speed(0);
     }
     change_state(state) {
         this._state = state;
         this._state_label.set_text(`State ${GameState[state]}`);
+    }
+    change_speed(delta) {
+        this._speed = Math.floor(Math.min(Math.max(this._speed + delta, 20), 300));
+        this._speed_label.set_text(`Speed ${this._speed}`);
     }
     _process(dt) {
         switch (this._state) {
@@ -194,6 +200,14 @@ class Snake extends godot_1.Node {
                 }
                 else if (godot_1.Input.is_action_just_pressed("confirm", true)) {
                     this.change_state(GameState.PAUSED);
+                    return;
+                }
+                else if (godot_1.Input.is_action_just_pressed("cheat_speed_up", true)) {
+                    this.change_speed(10);
+                    return;
+                }
+                else if (godot_1.Input.is_action_just_pressed("cheat_speed_down", true)) {
+                    this.change_speed(-10);
                     return;
                 }
                 const step = dt * this._speed;

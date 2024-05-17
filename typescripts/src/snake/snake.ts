@@ -29,6 +29,7 @@ export default class Snake extends Node {
     private _control_node!: Node;
     private _score_label!: Label;
     private _state_label!: Label;
+    private _speed_label!: Label;
 
     _ready() {
         if (Engine.is_editor_hint()) {
@@ -40,6 +41,7 @@ export default class Snake extends Node {
         this._control_node = this.get_node(new NodePath("Control"));
         this._score_label = <Label> this.get_node(new NodePath("UI/VBoxContainer/ScoreLabel"));
         this._state_label = <Label> this.get_node(new NodePath("UI/VBoxContainer/StateLabel"));
+        this._speed_label = <Label> this.get_node(new NodePath("UI/VBoxContainer/SpeedLabel"));
         this._coin = <Coin>this.instantiate_asset(kCoinAssetPath);
         this.restart();
     }
@@ -153,11 +155,17 @@ export default class Snake extends Node {
         // this._speed 
         this.set_coin_location();
         this.change_state(GameState.PLAYING);
+        this.change_speed(0);
     }
 
     private change_state(state: GameState) {
         this._state = state;
         this._state_label.set_text(`State ${GameState[state]}`);
+    }
+
+    private change_speed(delta: number) {
+        this._speed = Math.floor(Math.min(Math.max(this._speed + delta, 20), 300));
+        this._speed_label.set_text(`Speed ${this._speed}`);
     }
 
     _process(dt: number) {
@@ -188,8 +196,14 @@ export default class Snake extends Node {
                 } else if (Input.is_action_just_pressed("confirm", true)) {
                     this.change_state(GameState.PAUSED);
                     return;
+                } else if (Input.is_action_just_pressed("cheat_speed_up", true)) {
+                    this.change_speed(10);
+                    return;
+                } else if (Input.is_action_just_pressed("cheat_speed_down", true)) {
+                    this.change_speed(-10);
+                    return;
                 }
-
+                
                 const step = dt * this._speed;
                 this._move += step;
                 if (this._move >= kBlockSize) {
