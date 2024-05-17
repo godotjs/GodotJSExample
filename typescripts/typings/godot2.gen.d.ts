@@ -1,71 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    namespace VisualShaderNodeBillboard {
-        enum BillboardType {
-            BILLBOARD_TYPE_DISABLED = 0,
-            BILLBOARD_TYPE_ENABLED = 1,
-            BILLBOARD_TYPE_FIXED_Y = 2,
-            BILLBOARD_TYPE_PARTICLES = 3,
-            BILLBOARD_TYPE_MAX = 4,
-        }
-    }
-    class VisualShaderNodeBillboard extends VisualShaderNode {
-        set_billboard_type(billboard_type: VisualShaderNodeBillboard.BillboardType): void
-        get_billboard_type(): VisualShaderNodeBillboard.BillboardType
-        set_keep_scale_enabled(enabled: boolean): void
-        is_keep_scale_enabled(): boolean
-        // // godot.getset: billboard_type: number /*i64*/
-        // // godot.getset: keep_scale: boolean
-    }
-    class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
-        set_constant(constant: boolean): void
-        get_constant(): boolean
-        // // godot.getset: constant: boolean
-    }
-    class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: boolean): void
-        get_default_value(): boolean
-        // // godot.getset: default_value_enabled: boolean
-        // // godot.getset: default_value: boolean
-    }
-    namespace VisualShaderNodeClamp {
-        enum OpType {
-            OP_TYPE_FLOAT = 0,
-            OP_TYPE_INT = 1,
-            OP_TYPE_UINT = 2,
-            OP_TYPE_VECTOR_2D = 3,
-            OP_TYPE_VECTOR_3D = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_MAX = 6,
-        }
-    }
-    class VisualShaderNodeClamp extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeClamp.OpType): void
-        get_op_type(): VisualShaderNodeClamp.OpType
-        // // godot.getset: op_type: number /*i64*/
-    }
-    class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
-        set_constant(constant: Color): void
-        get_constant(): Color
-        // // godot.getset: constant: Color
-    }
-    namespace VisualShaderNodeColorFunc {
-        enum Function {
-            FUNC_GRAYSCALE = 0,
-            FUNC_HSV2RGB = 1,
-            FUNC_RGB2HSV = 2,
-            FUNC_SEPIA = 3,
-            FUNC_MAX = 4,
-        }
-    }
-    class VisualShaderNodeColorFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeColorFunc.Function): void
-        get_function(): VisualShaderNodeColorFunc.Function
-        // // godot.getset: function: number /*i64*/
-    }
     namespace VisualShaderNodeColorOp {
         enum Operator {
             OP_SCREEN = 0,
@@ -2522,7 +2457,7 @@ declare module "godot" {
         constructor()
         constructor(from: Callable)
         constructor(object: Object, method: StringName)
-        callv(arguments: Array): void
+        callv(arguments_: Array): void
         is_null(): boolean
         is_custom(): boolean
         is_standard(): boolean
@@ -2533,13 +2468,13 @@ declare module "godot" {
         get_bound_arguments_count(): number /*i64*/
         get_bound_arguments(): Array
         hash(): number /*i64*/
-        bindv(arguments: Array): Callable
+        bindv(arguments_: Array): Callable
         unbind(argcount: number /*i64*/): Callable
-        call(): void
-        call_deferred(): void
-        rpc(): void
-        rpc_id(peer_id: number /*i64*/): void
-        bind(): Callable
+        call(...vargargs: any[]): void
+        call_deferred(...vargargs: any[]): void
+        rpc(...vargargs: any[]): void
+        rpc_id(peer_id: number /*i64*/, ...vargargs: any[]): void
+        bind(...vargargs: any[]): Callable
         static EQUAL(left: Callable, right: Callable): boolean
         static NOT_EQUAL(left: Callable, right: Callable): boolean
     }
@@ -2555,7 +2490,7 @@ declare module "godot" {
         disconnect(callable: Callable): void
         is_connected(callable: Callable): boolean
         get_connections(): Array
-        emit(): void
+        emit(...vargargs: any[]): void
     }
     class Dictionary {
         constructor()

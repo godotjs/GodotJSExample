@@ -1,76 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    class GridContainer extends Container {
-        set_columns(columns: number /*i64*/): void
-        get_columns(): number /*i64*/
-        // // godot.getset: columns: number /*i64*/
-    }
-    class GridMap extends Node3D {
-        static readonly INVALID_CELL_ITEM = -1
-        set_collision_layer(layer: number /*i64*/): void
-        get_collision_layer(): number /*i64*/
-        set_collision_mask(mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
-        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
-        get_collision_mask_value(layer_number: number /*i64*/): boolean
-        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
-        get_collision_layer_value(layer_number: number /*i64*/): boolean
-        set_collision_priority(priority: number /*f64*/): void
-        get_collision_priority(): number /*f64*/
-        set_physics_material(material: PhysicsMaterial): void
-        get_physics_material(): PhysicsMaterial
-        set_bake_navigation(bake_navigation: boolean): void
-        is_baking_navigation(): boolean
-        set_navigation_map(navigation_map: RID): void
-        get_navigation_map(): RID
-        set_mesh_library(mesh_library: MeshLibrary): void
-        get_mesh_library(): MeshLibrary
-        set_cell_size(size: Vector3): void
-        get_cell_size(): Vector3
-        set_cell_scale(scale: number /*f64*/): void
-        get_cell_scale(): number /*f64*/
-        set_octant_size(size: number /*i64*/): void
-        get_octant_size(): number /*i64*/
-        set_cell_item(position: Vector3i, item: number /*i64*/, orientation: number /*i64*/): void
-        get_cell_item(position: Vector3i): number /*i64*/
-        get_cell_item_orientation(position: Vector3i): number /*i64*/
-        get_cell_item_basis(position: Vector3i): Basis
-        get_basis_with_orthogonal_index(index: number /*i64*/): Basis
-        get_orthogonal_index_from_basis(basis: Basis): number /*i64*/
-        local_to_map(local_position: Vector3): Vector3i
-        map_to_local(map_position: Vector3i): Vector3
-        _update_octants_callback(): void
-        resource_changed(resource: Resource): void
-        set_center_x(enable: boolean): void
-        get_center_x(): boolean
-        set_center_y(enable: boolean): void
-        get_center_y(): boolean
-        set_center_z(enable: boolean): void
-        get_center_z(): boolean
-        clear(): void
-        get_used_cells(): Array
-        get_used_cells_by_item(item: number /*i64*/): Array
-        get_meshes(): Array
-        get_bake_meshes(): Array
-        get_bake_mesh_instance(idx: number /*i64*/): RID
-        clear_baked_meshes(): void
-        make_baked_meshes(gen_lightmap_uv: boolean, lightmap_uv_texel_size: number /*f64*/): void
-        // // godot.getset: mesh_library: Object
-        // // godot.getset: physics_material: Object
-        // // godot.getset: cell_size: Vector3
-        // // godot.getset: cell_octant_size: number /*i64*/
-        // // godot.getset: cell_center_x: boolean
-        // // godot.getset: cell_center_y: boolean
-        // // godot.getset: cell_center_z: boolean
-        // // godot.getset: cell_scale: number /*f64*/
-        // // godot.getset: collision_layer: number /*i64*/
-        // // godot.getset: collision_mask: number /*i64*/
-        // // godot.getset: collision_priority: number /*f64*/
-        // // godot.getset: bake_navigation: boolean
-        cell_size_changed: Signal
-        changed: Signal
-    }
     class GridMapEditor extends VBoxContainer {
         _configure(): void
         _set_selection(_unnamed_arg0: boolean, _unnamed_arg1: Vector3, _unnamed_arg2: Vector3): void
@@ -2280,7 +2210,7 @@ declare module "godot" {
         is_server(): boolean
         get_remote_sender_id(): number /*i64*/
         poll(): GodotError
-        rpc(peer: number /*i64*/, object: Object, method: StringName, arguments: Array): GodotError
+        rpc(peer: number /*i64*/, object: Object, method: StringName, arguments_: Array): GodotError
         object_configuration_add(object: Object, configuration: any): GodotError
         object_configuration_remove(object: Object, configuration: any): GodotError
         get_peers(): PackedInt32Array
@@ -3326,13 +3256,13 @@ declare module "godot" {
         set_unique_name_in_owner(enable: boolean): void
         is_unique_name_in_owner(): boolean
         _set_property_pinned(property: string, pinned: boolean): void
-        rpc(method: StringName): GodotError
-        rpc_id(peer_id: number /*i64*/, method: StringName): GodotError
+        rpc(method: StringName, ...vargargs: any[]): GodotError
+        rpc_id(peer_id: number /*i64*/, method: StringName, ...vargargs: any[]): GodotError
         update_configuration_warnings(): void
-        call_deferred_thread_group(method: StringName): any
+        call_deferred_thread_group(method: StringName, ...vargargs: any[]): any
         set_deferred_thread_group(property: StringName, value: any): void
         notify_deferred_thread_group(what: number /*i64*/): void
-        call_thread_safe(method: StringName): any
+        call_thread_safe(method: StringName, ...vargargs: any[]): any
         set_thread_safe(property: StringName, value: any): void
         notify_thread_safe(what: number /*i64*/): void
         // // godot.getset: _import_path: NodePath
@@ -3650,11 +3580,11 @@ declare module "godot" {
         get_meta(name: StringName, default_: any): any
         has_meta(name: StringName): boolean
         get_meta_list(): Array
-        add_user_signal(signal: string, arguments: Array): void
+        add_user_signal(signal: string, arguments_: Array): void
         has_user_signal(signal: StringName): boolean
-        emit_signal(signal: StringName): GodotError
-        call(method: StringName): any
-        call_deferred(method: StringName): any
+        emit_signal(signal: StringName, ...vargargs: any[]): GodotError
+        call(method: StringName, ...vargargs: any[]): any
+        call_deferred(method: StringName, ...vargargs: any[]): any
         set_deferred(property: StringName, value: any): void
         callv(method: StringName, arg_array: Array): any
         has_method(method: StringName): boolean
@@ -6101,12 +6031,6 @@ declare module "godot" {
     class RenameDialog extends ConfirmationDialog {
         rename(): void
     }
-    class RenderBufferCustomDataRD extends RefCounted {
-    }
-    class RenderBufferDataForwardClustered extends RenderBufferCustomDataRD {
-    }
-    class RenderBuffersGI extends RenderBufferCustomDataRD {
-    }
     class RenderSceneBuffers extends RefCounted {
         configure(config: RenderSceneBuffersConfiguration): void
     }
@@ -6140,6 +6064,8 @@ declare module "godot" {
         // // godot.getset: texture_mipmap_bias: boolean
     }
     class RenderSceneBuffersExtension extends RenderSceneBuffers {
+    }
+    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
     }
     class RenderSceneBuffersRD extends RenderSceneBuffers {
         has_texture(context: StringName, name: StringName): boolean
@@ -7357,7 +7283,7 @@ declare module "godot" {
         info_updated: Signal
     }
     class RsOutputDevice extends RefCounted {
-        log(): void
+        log(...vargargs: any[]): void
     }
     class RsTerrain extends GeometryInstance3D {
         set_radius(value: number /*f64*/): void
@@ -7514,10 +7440,10 @@ declare module "godot" {
         get_frame(): number /*i64*/
         quit(exit_code: number /*i64*/): void
         queue_delete(obj: Object): void
-        call_group_flags(flags: number /*i64*/, group: StringName, method: StringName): void
+        call_group_flags(flags: number /*i64*/, group: StringName, method: StringName, ...vargargs: any[]): void
         notify_group_flags(call_flags: number /*i64*/, group: StringName, notification: number /*i64*/): void
         set_group_flags(call_flags: number /*i64*/, group: StringName, property: string, value: any): void
-        call_group(group: StringName, method: StringName): void
+        call_group(group: StringName, method: StringName, ...vargargs: any[]): void
         notify_group(group: StringName, notification: number /*i64*/): void
         set_group(group: StringName, property: string, value: any): void
         get_nodes_in_group(group: StringName): Array
@@ -10293,8 +10219,6 @@ declare module "godot" {
         get_texture_rd_rid(): RID
         // // godot.getset: texture_rd_rid: RID
     }
-    class TexturePreview extends MarginContainer {
-    }
     namespace TextureProgressBar {
         enum FillMode {
             FILL_LEFT_TO_RIGHT = 0,
@@ -10664,8 +10588,6 @@ declare module "godot" {
         _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         _set_tile_map_selection(selection: Array): void
         _get_tile_map_selection(): Array
-    }
-    class TileMapLayer extends RefCounted {
     }
     class TileMapPattern extends Resource {
         set_cell(coords: Vector2i, source_id: number /*i64*/, atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
@@ -11240,7 +11162,7 @@ declare module "godot" {
         get_index(): number /*i64*/
         move_before(item: TreeItem): void
         move_after(item: TreeItem): void
-        call_recursive(method: StringName): void
+        call_recursive(method: StringName, ...vargargs: any[]): void
         // // godot.getset: collapsed: boolean
         // // godot.getset: visible: boolean
         // // godot.getset: disable_folding: boolean
@@ -11472,8 +11394,6 @@ declare module "godot" {
         redo(): boolean
         undo(): boolean
         version_changed: Signal
-    }
-    class UniformSetCacheRD extends Object {
     }
     class VBoxContainer extends BoxContainer {
     }
@@ -12028,5 +11948,70 @@ declare module "godot" {
         // // godot.getset: output_port_for_preview: number /*i64*/
         // // godot.getset: default_input_values: Array
         // // godot.getset: expanded_output_ports: Array
+    }
+    namespace VisualShaderNodeBillboard {
+        enum BillboardType {
+            BILLBOARD_TYPE_DISABLED = 0,
+            BILLBOARD_TYPE_ENABLED = 1,
+            BILLBOARD_TYPE_FIXED_Y = 2,
+            BILLBOARD_TYPE_PARTICLES = 3,
+            BILLBOARD_TYPE_MAX = 4,
+        }
+    }
+    class VisualShaderNodeBillboard extends VisualShaderNode {
+        set_billboard_type(billboard_type: VisualShaderNodeBillboard.BillboardType): void
+        get_billboard_type(): VisualShaderNodeBillboard.BillboardType
+        set_keep_scale_enabled(enabled: boolean): void
+        is_keep_scale_enabled(): boolean
+        // // godot.getset: billboard_type: number /*i64*/
+        // // godot.getset: keep_scale: boolean
+    }
+    class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
+        set_constant(constant: boolean): void
+        get_constant(): boolean
+        // // godot.getset: constant: boolean
+    }
+    class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
+        set_default_value_enabled(enabled: boolean): void
+        is_default_value_enabled(): boolean
+        set_default_value(value: boolean): void
+        get_default_value(): boolean
+        // // godot.getset: default_value_enabled: boolean
+        // // godot.getset: default_value: boolean
+    }
+    namespace VisualShaderNodeClamp {
+        enum OpType {
+            OP_TYPE_FLOAT = 0,
+            OP_TYPE_INT = 1,
+            OP_TYPE_UINT = 2,
+            OP_TYPE_VECTOR_2D = 3,
+            OP_TYPE_VECTOR_3D = 4,
+            OP_TYPE_VECTOR_4D = 5,
+            OP_TYPE_MAX = 6,
+        }
+    }
+    class VisualShaderNodeClamp extends VisualShaderNode {
+        set_op_type(op_type: VisualShaderNodeClamp.OpType): void
+        get_op_type(): VisualShaderNodeClamp.OpType
+        // // godot.getset: op_type: number /*i64*/
+    }
+    class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
+        set_constant(constant: Color): void
+        get_constant(): Color
+        // // godot.getset: constant: Color
+    }
+    namespace VisualShaderNodeColorFunc {
+        enum Function {
+            FUNC_GRAYSCALE = 0,
+            FUNC_HSV2RGB = 1,
+            FUNC_RGB2HSV = 2,
+            FUNC_SEPIA = 3,
+            FUNC_MAX = 4,
+        }
+    }
+    class VisualShaderNodeColorFunc extends VisualShaderNode {
+        set_function(func: VisualShaderNodeColorFunc.Function): void
+        get_function(): VisualShaderNodeColorFunc.Function
+        // // godot.getset: function: number /*i64*/
     }
 }

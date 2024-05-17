@@ -43,7 +43,7 @@ declare module "godot" {
     }
     class Performance extends Object {
         static get_monitor(monitor: Performance.Monitor): number /*f64*/
-        static add_custom_monitor(id: StringName, callable: Callable, arguments: Array): void
+        static add_custom_monitor(id: StringName, callable: Callable, arguments_: Array): void
         static remove_custom_monitor(id: StringName): void
         static has_custom_monitor(id: StringName): boolean
         static get_custom_monitor(id: StringName): any
@@ -277,9 +277,9 @@ declare module "godot" {
         static get_system_font_path_for_text(font_name: string, text: string, locale: string, script: string, weight: number /*i64*/, stretch: number /*i64*/, italic: boolean): PackedStringArray
         static get_executable_path(): string
         static read_string_from_stdin(): string
-        static execute(path: string, arguments: PackedStringArray, output: Array, read_stderr: boolean, open_console: boolean): number /*i64*/
-        static create_process(path: string, arguments: PackedStringArray, open_console: boolean): number /*i64*/
-        static create_instance(arguments: PackedStringArray): number /*i64*/
+        static execute(path: string, arguments_: PackedStringArray, output: Array, read_stderr: boolean, open_console: boolean): number /*i64*/
+        static create_process(path: string, arguments_: PackedStringArray, open_console: boolean): number /*i64*/
+        static create_instance(arguments_: PackedStringArray): number /*i64*/
         static kill(pid: number /*i64*/): GodotError
         static shell_open(uri: string): GodotError
         static shell_show_in_file_manager(file_or_dir_path: string, open_folder: boolean): GodotError
@@ -295,7 +295,7 @@ declare module "godot" {
         static get_cmdline_args(): PackedStringArray
         static get_cmdline_user_args(): PackedStringArray
         static get_video_adapter_driver_info(): PackedStringArray
-        static set_restart_on_exit(restart: boolean, arguments: PackedStringArray): void
+        static set_restart_on_exit(restart: boolean, arguments_: PackedStringArray): void
         static is_restart_on_exit_set(): boolean
         static get_restart_on_exit_arguments(): PackedStringArray
         static delay_usec(usec: number /*i64*/): void
@@ -548,7 +548,7 @@ declare module "godot" {
         static is_profiling(name: StringName): boolean
         static has_profiler(name: StringName): boolean
         static profiler_add_frame_data(name: StringName, data: Array): void
-        static profiler_enable(name: StringName, enable: boolean, arguments: Array): void
+        static profiler_enable(name: StringName, enable: boolean, arguments_: Array): void
         static register_message_capture(name: StringName, callable: Callable): void
         static unregister_message_capture(name: StringName): void
         static has_capture(name: StringName): boolean
@@ -731,7 +731,7 @@ declare module "godot" {
         static eval(code: string, use_global_execution_context: boolean): any
         static get_interface(interface: string): JavaScriptObject
         static create_callback(callable: Callable): JavaScriptObject
-        static create_object(object: string): any
+        static create_object(object: string, ...vargargs: any[]): any
         static download_buffer(buffer: PackedByteArray, name: string, mime: string): void
         static pwa_needs_update(): boolean
         static pwa_update(): GodotError
@@ -4461,8 +4461,6 @@ declare module "godot" {
         update_graph(): void
         _update_filters(_unnamed_arg0: AnimationNode): boolean
     }
-    class AnimationNodeEndState extends AnimationRootNode {
-    }
     namespace AnimationNodeOneShot {
         enum OneShotRequest {
             ONE_SHOT_REQUEST_NONE = 0,
@@ -4502,8 +4500,6 @@ declare module "godot" {
         // // godot.getset: autorestart_random_delay: number /*f64*/
     }
     class AnimationNodeOutput extends AnimationNode {
-    }
-    class AnimationNodeStartState extends AnimationRootNode {
     }
     namespace AnimationNodeStateMachine {
         enum StateMachineType {
@@ -9332,8 +9328,6 @@ declare module "godot" {
     class EditorHelpSearch extends ConfirmationDialog {
         go_to_help: Signal
     }
-    class EditorHelpTooltip extends EditorHelpBit {
-    }
     class EditorImagePreviewPlugin extends EditorResourcePreviewGenerator {
     }
     class EditorImportBlendRunner extends Node {
@@ -9849,8 +9843,8 @@ declare module "godot" {
         create_action(name: string, merge_mode: UndoRedo.MergeMode, custom_context: Object, backward_undo_ops: boolean): void
         commit_action(execute: boolean): void
         is_committing_action(): boolean
-        add_do_method(object: Object, method: StringName): void
-        add_undo_method(object: Object, method: StringName): void
+        add_do_method(object: Object, method: StringName, ...vargargs: any[]): void
+        add_undo_method(object: Object, method: StringName, ...vargargs: any[]): void
         add_do_property(object: Object, property: StringName, value: any): void
         add_undo_property(object: Object, property: StringName, value: any): void
         add_do_reference(object: Object): void
@@ -10753,8 +10747,6 @@ declare module "godot" {
         // // godot.getset: spacing_top: number /*i64*/
         // // godot.getset: spacing_bottom: number /*i64*/
     }
-    class FramebufferCacheRD extends Object {
-    }
     namespace GDExtension {
         enum InitializationLevel {
             INITIALIZATION_LEVEL_CORE = 0,
@@ -10769,16 +10761,6 @@ declare module "godot" {
         is_library_open(): boolean
         get_minimum_library_initialization_level(): GDExtension.InitializationLevel
         initialize_library(level: GDExtension.InitializationLevel): void
-    }
-    class GDScript extends Script {
-        new(): any
-    }
-    class GDScriptEditorTranslationParserPlugin extends EditorTranslationParserPlugin {
-    }
-    class GDScriptNativeClass extends RefCounted {
-        new(): any
-    }
-    class GDScriptSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     class GLTFAccessor extends Resource {
         get_buffer_view(): number /*i64*/
@@ -12008,5 +11990,75 @@ declare module "godot" {
         get_output_port_slot(port_idx: number /*i64*/): number /*i64*/
         // // godot.getset: title: string
         slot_updated: Signal
+    }
+    class GridContainer extends Container {
+        set_columns(columns: number /*i64*/): void
+        get_columns(): number /*i64*/
+        // // godot.getset: columns: number /*i64*/
+    }
+    class GridMap extends Node3D {
+        static readonly INVALID_CELL_ITEM = -1
+        set_collision_layer(layer: number /*i64*/): void
+        get_collision_layer(): number /*i64*/
+        set_collision_mask(mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_collision_layer_value(layer_number: number /*i64*/): boolean
+        set_collision_priority(priority: number /*f64*/): void
+        get_collision_priority(): number /*f64*/
+        set_physics_material(material: PhysicsMaterial): void
+        get_physics_material(): PhysicsMaterial
+        set_bake_navigation(bake_navigation: boolean): void
+        is_baking_navigation(): boolean
+        set_navigation_map(navigation_map: RID): void
+        get_navigation_map(): RID
+        set_mesh_library(mesh_library: MeshLibrary): void
+        get_mesh_library(): MeshLibrary
+        set_cell_size(size: Vector3): void
+        get_cell_size(): Vector3
+        set_cell_scale(scale: number /*f64*/): void
+        get_cell_scale(): number /*f64*/
+        set_octant_size(size: number /*i64*/): void
+        get_octant_size(): number /*i64*/
+        set_cell_item(position: Vector3i, item: number /*i64*/, orientation: number /*i64*/): void
+        get_cell_item(position: Vector3i): number /*i64*/
+        get_cell_item_orientation(position: Vector3i): number /*i64*/
+        get_cell_item_basis(position: Vector3i): Basis
+        get_basis_with_orthogonal_index(index: number /*i64*/): Basis
+        get_orthogonal_index_from_basis(basis: Basis): number /*i64*/
+        local_to_map(local_position: Vector3): Vector3i
+        map_to_local(map_position: Vector3i): Vector3
+        _update_octants_callback(): void
+        resource_changed(resource: Resource): void
+        set_center_x(enable: boolean): void
+        get_center_x(): boolean
+        set_center_y(enable: boolean): void
+        get_center_y(): boolean
+        set_center_z(enable: boolean): void
+        get_center_z(): boolean
+        clear(): void
+        get_used_cells(): Array
+        get_used_cells_by_item(item: number /*i64*/): Array
+        get_meshes(): Array
+        get_bake_meshes(): Array
+        get_bake_mesh_instance(idx: number /*i64*/): RID
+        clear_baked_meshes(): void
+        make_baked_meshes(gen_lightmap_uv: boolean, lightmap_uv_texel_size: number /*f64*/): void
+        // // godot.getset: mesh_library: Object
+        // // godot.getset: physics_material: Object
+        // // godot.getset: cell_size: Vector3
+        // // godot.getset: cell_octant_size: number /*i64*/
+        // // godot.getset: cell_center_x: boolean
+        // // godot.getset: cell_center_y: boolean
+        // // godot.getset: cell_center_z: boolean
+        // // godot.getset: cell_scale: number /*f64*/
+        // // godot.getset: collision_layer: number /*i64*/
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: collision_priority: number /*f64*/
+        // // godot.getset: bake_navigation: boolean
+        cell_size_changed: Signal
+        changed: Signal
     }
 }
