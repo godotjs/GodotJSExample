@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbhmowwswy0h1"]
+
+[ext_resource type="Script" path="res://javascripts/jumpybird/jumpybird_main.js" id="1_g32yg"]
+[ext_resource type="Texture2D" uid="uid://cyaeul2yrvsg1" path="res://jumpybird/sky.png" id="1_ldqsc"]
+[ext_resource type="Shader" path="res://jumpybird/offset.gdshader" id="2_c4h7u"]
+[ext_resource type="Texture2D" uid="uid://dc0hacnvedgyi" path="res://jumpybird/skyline.png" id="2_oel3y"]
+[ext_resource type="Texture2D" uid="uid://c5dfcwysc3lgi" path="res://jumpybird/cloud.png" id="2_qrqrq"]
+[ext_resource type="PackedScene" uid="uid://cvxq68xbkvo7d" path="res://jumpybird/bird.tscn" id="5_omrhw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x34gf"]
+shader = ExtResource("2_c4h7u")
+shader_parameter/speed = Vector2(0.05, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8245n"]
+shader = ExtResource("2_c4h7u")
+shader_parameter/speed = Vector2(0.08, 0)
+
+[node name="JumpyBirdRoot" type="Node"]
+script = ExtResource("1_g32yg")
+
+[node name="scene" type="Node2D" parent="."]
+
+[node name="sky" type="TextureRect" parent="scene"]
+offset_right = 1151.0
+offset_bottom = 652.0
+texture = ExtResource("1_ldqsc")
+
+[node name="cloud" type="TextureRect" parent="scene"]
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("ShaderMaterial_x34gf")
+offset_left = -40.0
+offset_top = 397.0
+offset_right = 1222.0
+offset_bottom = 758.0
+texture = ExtResource("2_qrqrq")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="skyline" type="TextureRect" parent="scene"]
+material = SubResource("ShaderMaterial_8245n")
+offset_left = -16.0
+offset_top = 441.0
+offset_right = 1162.0
+offset_bottom = 692.0
+texture = ExtResource("2_oel3y")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="bird" parent="scene" instance=ExtResource("5_omrhw")]
+rotation = -0.523599

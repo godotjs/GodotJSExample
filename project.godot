@@ -13,7 +13,13 @@ config_version=5
 config/name="GodotJSExample"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+run/max_fps=30
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [input]
 

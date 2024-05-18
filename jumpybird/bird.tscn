@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvxq68xbkvo7d"]
+
+[ext_resource type="Texture2D" uid="uid://tis2qu4yt3mh" path="res://jumpybird/bird.png" id="1_3gqnq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7q5t8"]
+radius = 12.0
+
+[node name="bird" type="Sprite2D"]
+position = Vector2(141, 300)
+texture = ExtResource("1_3gqnq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7q5t8")

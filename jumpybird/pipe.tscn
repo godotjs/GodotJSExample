@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcyjlm7w8rgft"]
+
+[ext_resource type="Texture2D" uid="uid://cwjv1p47xs2dp" path="res://jumpybird/pipe_body.png" id="1_4fia4"]
+[ext_resource type="Script" path="res://javascripts/jumpybird/jumpybird_pipe.js" id="1_lbshs"]
+[ext_resource type="Texture2D" uid="uid://cnnjuocdd25u8" path="res://jumpybird/pipe_head.png" id="2_vn6qa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0lqh"]
+size = Vector2(62, 38.7554)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6p4d"]
+size = Vector2(85, 35)
+
+[node name="pipe" type="Node2D"]
+position = Vector2(205, 0)
+script = ExtResource("1_lbshs")
+
+[node name="body" type="TextureRect" parent="."]
+offset_right = 64.0
+offset_bottom = 40.0
+texture = ExtResource("1_4fia4")
+
+[node name="Area2D" type="Area2D" parent="body"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
+position = Vector2(32, 18.6223)
+shape = SubResource("RectangleShape2D_p0lqh")
+
+[node name="head" type="TextureRect" parent="."]
+offset_left = -11.0
+offset_top = 40.0
+offset_right = 76.0
+offset_bottom = 80.0
+texture = ExtResource("2_vn6qa")
+
+[node name="Area2D" type="Area2D" parent="head"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="head/Area2D"]
+position = Vector2(42.5, 18.5)
+shape = SubResource("RectangleShape2D_m6p4d")
