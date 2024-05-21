@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbhmowwswy0h1"]
+[gd_scene load_steps=10 format=3 uid="uid://dbhmowwswy0h1"]
 
 [ext_resource type="Script" path="res://javascripts/jumpybird/jumpybird_main.js" id="1_g32yg"]
 [ext_resource type="Texture2D" uid="uid://cyaeul2yrvsg1" path="res://jumpybird/sky.png" id="1_ldqsc"]
@@ -14,6 +14,11 @@ shader_parameter/speed = Vector2(0.05, 0)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8245n"]
 shader = ExtResource("2_c4h7u")
 shader_parameter/speed = Vector2(0.08, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sy8nx"]
+font_size = 24
+outline_size = 2
+outline_color = Color(0, 0, 0, 0.87451)
 
 [node name="JumpyBirdRoot" type="Node"]
 script = ExtResource("1_g32yg")
@@ -49,3 +54,22 @@ stretch_mode = 1
 
 [node name="bird" parent="scene" instance=ExtResource("5_omrhw")]
 rotation = -0.523599
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 250.0
+offset_bottom = 46.0
+text = "Press 'space' to start"
+label_settings = SubResource("LabelSettings_sy8nx")

@@ -3,12 +3,10 @@
 
 ## Snake 
 A simple snake game.  
-[Souce Code](./typescripts/src/snake/snake.ts)
 
-![Snake](./raw/screenshots/snake_01.gif)
+[![Snake](./raw/screenshots/snake_01.gif)](./typescripts/src/snake/snake.ts)
 
 
 ## JumpyBird
 
-[Source Code](./typescripts/src/jumpybird/jumpybird_main.ts)
-![JumpyBird](./raw/screenshots/jumpybird.gif)
+[![JumpyBird](./raw/screenshots/jumpybird.gif)](./typescripts/src/snake/snake.ts)
