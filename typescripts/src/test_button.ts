@@ -1,4 +1,4 @@
-import { Button, Node, Signal, Vector2 } from "godot";
+import { Basis, Button, Input, Node, Signal, Time, Vector2, Vector3 } from "godot";
 import { $wait, export_, onready_, signal_ } from "./jsb/jsb.core";
 
 export default class TestNode extends Button {
@@ -41,12 +41,21 @@ export default class TestNode extends Button {
     }
 
     _on_pressed() {
-        console.log("test on clicked!")
+        console.log("test on clicked!");
 
         // this.test_signal.connect(jsb.callable(this, this.on_test_signal), 0);
         // this.test_signal.emit();
         // this.test_signal.disconnect(jsb.callable(this, this.on_test_signal));
         this.test_signal.emit(123);
+
+        // test godot object method with default arguments
+        console.log("get_datetime_string_from_system(true)", Time.get_datetime_string_from_system(true));
+        console.log("get_datetime_string_from_system(true, true)", Time.get_datetime_string_from_system(true, true));
+        console.log("get_datetime_string_from_system(true, false)", Time.get_datetime_string_from_system(true, false));
+        
+        // test variant static method with default arguments
+        const basis = Basis.looking_at(new Vector3(1, 2, 0), Vector3.UP);
+        console.log("Basis.looking_at(new Vector3(1, 2, 0), Vector3.UP)", basis.x, basis.y, basis.y);
     }
 
     private on_test_signal() {

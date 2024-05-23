@@ -48,6 +48,13 @@ class TestNode extends godot_1.Button {
         // this.test_signal.emit();
         // this.test_signal.disconnect(jsb.callable(this, this.on_test_signal));
         this.test_signal.emit(123);
+        // test godot object method with default arguments
+        console.log("get_datetime_string_from_system(true)", godot_1.Time.get_datetime_string_from_system(true));
+        console.log("get_datetime_string_from_system(true, true)", godot_1.Time.get_datetime_string_from_system(true, true));
+        console.log("get_datetime_string_from_system(true, false)", godot_1.Time.get_datetime_string_from_system(true, false));
+        // test variant static method with default arguments
+        const basis = godot_1.Basis.looking_at(new godot_1.Vector3(1, 2, 0), godot_1.Vector3.UP);
+        console.log("Basis.looking_at(new Vector3(1, 2, 0), Vector3.UP)", basis.x, basis.y, basis.y);
     }
     on_test_signal() {
         console.log("on test signal");

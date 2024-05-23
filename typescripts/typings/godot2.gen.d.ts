@@ -1,6 +1,71 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    namespace VisualShaderNodeBillboard {
+        enum BillboardType {
+            BILLBOARD_TYPE_DISABLED = 0,
+            BILLBOARD_TYPE_ENABLED = 1,
+            BILLBOARD_TYPE_FIXED_Y = 2,
+            BILLBOARD_TYPE_PARTICLES = 3,
+            BILLBOARD_TYPE_MAX = 4,
+        }
+    }
+    class VisualShaderNodeBillboard extends VisualShaderNode {
+        set_billboard_type(billboard_type: VisualShaderNodeBillboard.BillboardType): void
+        get_billboard_type(): VisualShaderNodeBillboard.BillboardType
+        set_keep_scale_enabled(enabled: boolean): void
+        is_keep_scale_enabled(): boolean
+        // // godot.getset: billboard_type: number /*i64*/
+        // // godot.getset: keep_scale: boolean
+    }
+    class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
+        set_constant(constant: boolean): void
+        get_constant(): boolean
+        // // godot.getset: constant: boolean
+    }
+    class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
+        set_default_value_enabled(enabled: boolean): void
+        is_default_value_enabled(): boolean
+        set_default_value(value: boolean): void
+        get_default_value(): boolean
+        // // godot.getset: default_value_enabled: boolean
+        // // godot.getset: default_value: boolean
+    }
+    namespace VisualShaderNodeClamp {
+        enum OpType {
+            OP_TYPE_FLOAT = 0,
+            OP_TYPE_INT = 1,
+            OP_TYPE_UINT = 2,
+            OP_TYPE_VECTOR_2D = 3,
+            OP_TYPE_VECTOR_3D = 4,
+            OP_TYPE_VECTOR_4D = 5,
+            OP_TYPE_MAX = 6,
+        }
+    }
+    class VisualShaderNodeClamp extends VisualShaderNode {
+        set_op_type(op_type: VisualShaderNodeClamp.OpType): void
+        get_op_type(): VisualShaderNodeClamp.OpType
+        // // godot.getset: op_type: number /*i64*/
+    }
+    class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
+        set_constant(constant: Color): void
+        get_constant(): Color
+        // // godot.getset: constant: Color
+    }
+    namespace VisualShaderNodeColorFunc {
+        enum Function {
+            FUNC_GRAYSCALE = 0,
+            FUNC_HSV2RGB = 1,
+            FUNC_RGB2HSV = 2,
+            FUNC_SEPIA = 3,
+            FUNC_MAX = 4,
+        }
+    }
+    class VisualShaderNodeColorFunc extends VisualShaderNode {
+        set_function(func: VisualShaderNodeColorFunc.Function): void
+        get_function(): VisualShaderNodeColorFunc.Function
+        // // godot.getset: function: number /*i64*/
+    }
     namespace VisualShaderNodeColorOp {
         enum Operator {
             OP_SCREEN = 0,
@@ -987,7 +1052,7 @@ declare module "godot" {
         get_size(): Vector3
         set_camera_attributes(camera_attributes: CameraAttributes): void
         get_camera_attributes(): CameraAttributes
-        bake(from_node: Node, create_visual_debug: boolean): void
+        bake(from_node: Node = <any> {} /*compound.type from nil*/, create_visual_debug: boolean = false): void
         debug_bake(): void
         // // godot.getset: subdiv: number /*i64*/
         // // godot.getset: size: Vector3
@@ -1066,10 +1131,10 @@ declare module "godot" {
     class WebRTCDataChannelExtension extends WebRTCDataChannel {
     }
     class WebRTCMultiplayerPeer extends MultiplayerPeer {
-        create_server(channels_config: Array): GodotError
-        create_client(peer_id: number /*i64*/, channels_config: Array): GodotError
-        create_mesh(peer_id: number /*i64*/, channels_config: Array): GodotError
-        add_peer(peer: WebRTCPeerConnection, peer_id: number /*i64*/, unreliable_lifetime: number /*i64*/): GodotError
+        create_server(channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        create_client(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        create_mesh(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        add_peer(peer: WebRTCPeerConnection, peer_id: number /*i64*/, unreliable_lifetime: number /*i64*/ = 1): GodotError
         remove_peer(peer_id: number /*i64*/): void
         has_peer(peer_id: number /*i64*/): boolean
         get_peer(peer_id: number /*i64*/): Dictionary
@@ -1100,8 +1165,8 @@ declare module "godot" {
     }
     class WebRTCPeerConnection extends RefCounted {
         static set_default_extension(extension_class: StringName): void
-        initialize(configuration: Dictionary): GodotError
-        create_data_channel(label: string, options: Dictionary): WebRTCDataChannel
+        initialize(configuration: Dictionary = <any> {} /*compound.type from 27([object Object])*/): GodotError
+        create_data_channel(label: string, options: Dictionary = <any> {} /*compound.type from 27([object Object])*/): WebRTCDataChannel
         create_offer(): GodotError
         set_local_description(type: string, sdp: string): GodotError
         set_remote_description(type: string, sdp: string): GodotError
@@ -1297,24 +1362,24 @@ declare module "godot" {
         remove_theme_font_size_override(name: StringName): void
         remove_theme_color_override(name: StringName): void
         remove_theme_constant_override(name: StringName): void
-        get_theme_icon(name: StringName, theme_type: StringName): Texture2D
-        get_theme_stylebox(name: StringName, theme_type: StringName): StyleBox
-        get_theme_font(name: StringName, theme_type: StringName): Font
-        get_theme_font_size(name: StringName, theme_type: StringName): number /*i64*/
-        get_theme_color(name: StringName, theme_type: StringName): Color
-        get_theme_constant(name: StringName, theme_type: StringName): number /*i64*/
+        get_theme_icon(name: StringName, theme_type: StringName = ''): Texture2D
+        get_theme_stylebox(name: StringName, theme_type: StringName = ''): StyleBox
+        get_theme_font(name: StringName, theme_type: StringName = ''): Font
+        get_theme_font_size(name: StringName, theme_type: StringName = ''): number /*i64*/
+        get_theme_color(name: StringName, theme_type: StringName = ''): Color
+        get_theme_constant(name: StringName, theme_type: StringName = ''): number /*i64*/
         has_theme_icon_override(name: StringName): boolean
         has_theme_stylebox_override(name: StringName): boolean
         has_theme_font_override(name: StringName): boolean
         has_theme_font_size_override(name: StringName): boolean
         has_theme_color_override(name: StringName): boolean
         has_theme_constant_override(name: StringName): boolean
-        has_theme_icon(name: StringName, theme_type: StringName): boolean
-        has_theme_stylebox(name: StringName, theme_type: StringName): boolean
-        has_theme_font(name: StringName, theme_type: StringName): boolean
-        has_theme_font_size(name: StringName, theme_type: StringName): boolean
-        has_theme_color(name: StringName, theme_type: StringName): boolean
-        has_theme_constant(name: StringName, theme_type: StringName): boolean
+        has_theme_icon(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_stylebox(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_font(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_font_size(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_color(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_constant(name: StringName, theme_type: StringName = ''): boolean
         get_theme_default_base_scale(): number /*f64*/
         get_theme_default_font(): Font
         get_theme_default_font_size(): number /*i64*/
@@ -1323,16 +1388,16 @@ declare module "godot" {
         is_layout_rtl(): boolean
         set_auto_translate(enable: boolean): void
         is_auto_translating(): boolean
-        popup(rect: Rect2i): void
+        popup(rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
         popup_on_parent(parent_rect: Rect2i): void
-        popup_centered(minsize: Vector2i): void
-        popup_centered_ratio(ratio: number /*f64*/): void
-        popup_centered_clamped(minsize: Vector2i, fallback_ratio: number /*f64*/): void
-        popup_exclusive(from_node: Node, rect: Rect2i): void
+        popup_centered(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        popup_centered_ratio(ratio: number /*f64*/ = 0.8): void
+        popup_centered_clamped(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
+        popup_exclusive(from_node: Node, rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
         popup_exclusive_on_parent(from_node: Node, parent_rect: Rect2i): void
-        popup_exclusive_centered(from_node: Node, minsize: Vector2i): void
-        popup_exclusive_centered_ratio(from_node: Node, ratio: number /*f64*/): void
-        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i, fallback_ratio: number /*f64*/): void
+        popup_exclusive_centered(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        popup_exclusive_centered_ratio(from_node: Node, ratio: number /*f64*/ = 0.8): void
+        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
         // // godot.getset: mode: number /*i64*/
         // // godot.getset: title: string
         // // godot.getset: initial_position: number /*i64*/
@@ -1650,7 +1715,7 @@ declare module "godot" {
         }
     }
     class ZIPPacker extends RefCounted {
-        open(path: string, append: ZIPPacker.ZipAppend): GodotError
+        open(path: string, append: ZIPPacker.ZipAppend = 0): GodotError
         start_file(path: string): GodotError
         write_file(data: PackedByteArray): GodotError
         close_file(): GodotError
@@ -1660,8 +1725,8 @@ declare module "godot" {
         open(path: string): GodotError
         close(): GodotError
         get_files(): PackedStringArray
-        read_file(path: string, case_sensitive: boolean): PackedByteArray
-        file_exists(path: string, case_sensitive: boolean): boolean
+        read_file(path: string, case_sensitive: boolean = true): PackedByteArray
+        file_exists(path: string, case_sensitive: boolean = true): boolean
     }
     namespace Vector2 {
         enum Axis {
@@ -1689,7 +1754,7 @@ declare module "godot" {
         distance_squared_to(to: Vector2): number /*f64*/
         length(): number /*f64*/
         length_squared(): number /*f64*/
-        limit_length(length: number /*f64*/): Vector2
+        limit_length(length: number /*f64*/ = 1): Vector2
         normalized(): Vector2
         is_normalized(): boolean
         is_equal_approx(to: Vector2): boolean
@@ -1778,7 +1843,7 @@ declare module "godot" {
         has_point(point: Vector2): boolean
         is_equal_approx(rect: Rect2): boolean
         is_finite(): boolean
-        intersects(b: Rect2, include_borders: boolean): boolean
+        intersects(b: Rect2, include_borders: boolean = false): boolean
         encloses(b: Rect2): boolean
         intersection(b: Rect2): Rect2
         merge(b: Rect2): Rect2
@@ -1850,7 +1915,7 @@ declare module "godot" {
         distance_squared_to(to: Vector3): number /*f64*/
         length(): number /*f64*/
         length_squared(): number /*f64*/
-        limit_length(length: number /*f64*/): Vector3
+        limit_length(length: number /*f64*/ = 1): Vector3
         normalized(): Vector3
         is_normalized(): boolean
         is_equal_approx(to: Vector3): boolean
@@ -1959,7 +2024,7 @@ declare module "godot" {
         is_conformal(): boolean
         is_equal_approx(xform: Transform2D): boolean
         is_finite(): boolean
-        looking_at(target: Vector2): Transform2D
+        looking_at(target: Vector2 = Vector2.ZERO): Transform2D
         x: Vector2
         y: Vector2
         origin: Vector2
@@ -2058,7 +2123,7 @@ declare module "godot" {
         is_finite(): boolean
         is_point_over(point: Vector3): boolean
         distance_to(point: Vector3): number /*f64*/
-        has_point(point: Vector3, tolerance: number /*f64*/): boolean
+        has_point(point: Vector3, tolerance: number /*f64*/ = 0.00001): boolean
         project(point: Vector3): Vector3
         intersect_3(b: Plane, c: Plane): void
         intersects_ray(from: Vector3, dir: Vector3): void
@@ -2092,7 +2157,7 @@ declare module "godot" {
         slerpni(to: Quaternion, weight: number /*f64*/): Quaternion
         spherical_cubic_interpolate(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/): Quaternion
         spherical_cubic_interpolate_in_time(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Quaternion
-        get_euler(order: number /*i64*/): Vector3
+        get_euler(order: number /*i64*/ = 2): Vector3
         static from_euler(euler: Vector3): Quaternion
         get_axis(): Vector3
         get_angle(): number /*f64*/
@@ -2151,7 +2216,7 @@ declare module "godot" {
         rotated(axis: Vector3, angle: number /*f64*/): Basis
         scaled(scale: Vector3): Basis
         get_scale(): Vector3
-        get_euler(order: number /*i64*/): Vector3
+        get_euler(order: number /*i64*/ = 2): Vector3
         tdotx(with_: Vector3): number /*f64*/
         tdoty(with_: Vector3): number /*f64*/
         tdotz(with_: Vector3): number /*f64*/
@@ -2160,9 +2225,9 @@ declare module "godot" {
         is_equal_approx(b: Basis): boolean
         is_finite(): boolean
         get_rotation_quaternion(): Quaternion
-        static looking_at(target: Vector3, up: Vector3, use_model_front: boolean): Basis
+        static looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Basis
         static from_scale(scale: Vector3): Basis
-        static from_euler(euler: Vector3, order: number /*i64*/): Basis
+        static from_euler(euler: Vector3, order: number /*i64*/ = 2): Basis
         x: Vector3
         y: Vector3
         z: Vector3
@@ -2186,7 +2251,7 @@ declare module "godot" {
         scaled_local(scale: Vector3): Transform3D
         translated(offset: Vector3): Transform3D
         translated_local(offset: Vector3): Transform3D
-        looking_at(target: Vector3, up: Vector3, use_model_front: boolean): Transform3D
+        looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Transform3D
         interpolate_with(xform: Transform3D, weight: number /*f64*/): Transform3D
         is_equal_approx(xform: Transform3D): boolean
         is_finite(): boolean
@@ -2212,13 +2277,13 @@ declare module "godot" {
         constructor(x_axis: Vector4, y_axis: Vector4, z_axis: Vector4, w_axis: Vector4)
         static create_depth_correction(flip_y: boolean): Projection
         static create_light_atlas_rect(rect: Rect2): Projection
-        static create_perspective(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean): Projection
+        static create_perspective(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
         static create_perspective_hmd(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean, eye: number /*i64*/, intraocular_dist: number /*f64*/, convergence_dist: number /*f64*/): Projection
         static create_for_hmd(eye: number /*i64*/, aspect: number /*f64*/, intraocular_dist: number /*f64*/, display_width: number /*f64*/, display_to_lens: number /*f64*/, oversample: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
         static create_orthogonal(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
-        static create_orthogonal_aspect(size: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean): Projection
+        static create_orthogonal_aspect(size: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
         static create_frustum(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
-        static create_frustum_aspect(size: number /*f64*/, aspect: number /*f64*/, offset: Vector2, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean): Projection
+        static create_frustum_aspect(size: number /*f64*/, aspect: number /*f64*/, offset: Vector2, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
         static create_fit_aabb(aabb: AABB): Projection
         determinant(): number /*f64*/
         perspective_znear_adjusted(new_znear: number /*f64*/): Projection
@@ -2401,8 +2466,8 @@ declare module "godot" {
         to_argb64(): number /*i64*/
         to_abgr64(): number /*i64*/
         to_rgba64(): number /*i64*/
-        to_html(with_alpha: boolean): string
-        clamp(min: Color, max: Color): Color
+        to_html(with_alpha: boolean = true): string
+        clamp(min: Color = new Color(0, 0, 0, 0), max: Color = new Color(1, 1, 1, 1)): Color
         inverted(): Color
         lerp(to: Color, weight: number /*f64*/): Color
         lightened(amount: number /*f64*/): Color
@@ -2417,8 +2482,8 @@ declare module "godot" {
         static html(rgba: string): Color
         static html_is_valid(color: string): boolean
         static from_string(str: string, default_: Color): Color
-        static from_hsv(h: number /*f64*/, s: number /*f64*/, v: number /*f64*/, alpha: number /*f64*/): Color
-        static from_ok_hsl(h: number /*f64*/, s: number /*f64*/, l: number /*f64*/, alpha: number /*f64*/): Color
+        static from_hsv(h: number /*f64*/, s: number /*f64*/, v: number /*f64*/, alpha: number /*f64*/ = 1): Color
+        static from_ok_hsl(h: number /*f64*/, s: number /*f64*/, l: number /*f64*/, alpha: number /*f64*/ = 1): Color
         static from_rgbe9995(rgbe: number /*i64*/): Color
         r: number /*f64*/
         g: number /*f64*/
@@ -2486,7 +2551,7 @@ declare module "godot" {
         get_object(): Object
         get_object_id(): number /*i64*/
         get_name(): StringName
-        connect(callable: Callable, flags: number /*i64*/): number /*i64*/
+        connect(callable: Callable, flags: number /*i64*/ = 0): number /*i64*/
         disconnect(callable: Callable): void
         is_connected(callable: Callable): boolean
         get_connections(): Array
@@ -2498,7 +2563,7 @@ declare module "godot" {
         size(): number /*i64*/
         is_empty(): boolean
         clear(): void
-        merge(dictionary: Dictionary, overwrite: boolean): void
+        merge(dictionary: Dictionary, overwrite: boolean = false): void
         has(key: any): boolean
         has_all(keys: Array): boolean
         find_key(value: any): void
@@ -2506,8 +2571,8 @@ declare module "godot" {
         hash(): number /*i64*/
         keys(): Array
         values(): Array
-        duplicate(deep: boolean): Dictionary
-        get(key: any, default_: any): void
+        duplicate(deep: boolean = false): Dictionary
+        get(key: any, default_: any = <any> {} /*compound.type from nil*/): void
         make_read_only(): void
         is_read_only(): boolean
         static EQUAL(left: Dictionary, right: Dictionary): boolean
@@ -2543,8 +2608,8 @@ declare module "godot" {
         front(): void
         back(): void
         pick_random(): void
-        find(what: any, from: number /*i64*/): number /*i64*/
-        rfind(what: any, from: number /*i64*/): number /*i64*/
+        find(what: any, from: number /*i64*/ = 0): number /*i64*/
+        rfind(what: any, from: number /*i64*/ = -1): number /*i64*/
         count(value: any): number /*i64*/
         has(value: any): boolean
         pop_back(): void
@@ -2553,14 +2618,14 @@ declare module "godot" {
         sort(): void
         sort_custom(func: Callable): void
         shuffle(): void
-        bsearch(value: any, before: boolean): number /*i64*/
-        bsearch_custom(value: any, func: Callable, before: boolean): number /*i64*/
+        bsearch(value: any, before: boolean = true): number /*i64*/
+        bsearch_custom(value: any, func: Callable, before: boolean = true): number /*i64*/
         reverse(): void
-        duplicate(deep: boolean): Array
-        slice(begin: number /*i64*/, end: number /*i64*/, step: number /*i64*/, deep: boolean): Array
+        duplicate(deep: boolean = false): Array
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647, step: number /*i64*/ = 1, deep: boolean = false): Array
         filter(method: Callable): Array
         map(method: Callable): Array
-        reduce(method: Callable, accum: any): void
+        reduce(method: Callable, accum: any = <any> {} /*compound.type from nil*/): void
         any(method: Callable): boolean
         all(method: Callable): boolean
         max(): void
@@ -2590,12 +2655,12 @@ declare module "godot" {
         clear(): void
         has(value: number /*i64*/): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedByteArray
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedByteArray
         sort(): void
-        bsearch(value: number /*i64*/, before: boolean): number /*i64*/
+        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
         duplicate(): PackedByteArray
-        find(value: number /*i64*/, from: number /*i64*/): number /*i64*/
-        rfind(value: number /*i64*/, from: number /*i64*/): number /*i64*/
+        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*i64*/): number /*i64*/
         get_string_from_ascii(): string
         get_string_from_utf8(): string
@@ -2603,9 +2668,9 @@ declare module "godot" {
         get_string_from_utf32(): string
         get_string_from_wchar(): string
         hex_encode(): string
-        compress(compression_mode: number /*i64*/): PackedByteArray
-        decompress(buffer_size: number /*i64*/, compression_mode: number /*i64*/): PackedByteArray
-        decompress_dynamic(max_output_size: number /*i64*/, compression_mode: number /*i64*/): PackedByteArray
+        compress(compression_mode: number /*i64*/ = 0): PackedByteArray
+        decompress(buffer_size: number /*i64*/, compression_mode: number /*i64*/ = 0): PackedByteArray
+        decompress_dynamic(max_output_size: number /*i64*/, compression_mode: number /*i64*/ = 0): PackedByteArray
         decode_u8(byte_offset: number /*i64*/): number /*i64*/
         decode_s8(byte_offset: number /*i64*/): number /*i64*/
         decode_u16(byte_offset: number /*i64*/): number /*i64*/
@@ -2617,9 +2682,9 @@ declare module "godot" {
         decode_half(byte_offset: number /*i64*/): number /*f64*/
         decode_float(byte_offset: number /*i64*/): number /*f64*/
         decode_double(byte_offset: number /*i64*/): number /*f64*/
-        has_encoded_var(byte_offset: number /*i64*/, allow_objects: boolean): boolean
-        decode_var(byte_offset: number /*i64*/, allow_objects: boolean): void
-        decode_var_size(byte_offset: number /*i64*/, allow_objects: boolean): number /*i64*/
+        has_encoded_var(byte_offset: number /*i64*/, allow_objects: boolean = false): boolean
+        decode_var(byte_offset: number /*i64*/, allow_objects: boolean = false): void
+        decode_var_size(byte_offset: number /*i64*/, allow_objects: boolean = false): number /*i64*/
         to_int32_array(): PackedInt32Array
         to_int64_array(): PackedInt64Array
         to_float32_array(): PackedFloat32Array
@@ -2635,7 +2700,7 @@ declare module "godot" {
         encode_half(byte_offset: number /*i64*/, value: number /*f64*/): void
         encode_float(byte_offset: number /*i64*/, value: number /*f64*/): void
         encode_double(byte_offset: number /*i64*/, value: number /*f64*/): void
-        encode_var(byte_offset: number /*i64*/, value: any, allow_objects: boolean): number /*i64*/
+        encode_var(byte_offset: number /*i64*/, value: any, allow_objects: boolean = false): number /*i64*/
     }
     class PackedInt32Array {
         constructor()
@@ -2654,13 +2719,13 @@ declare module "godot" {
         clear(): void
         has(value: number /*i64*/): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedInt32Array
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedInt32Array
         to_byte_array(): PackedByteArray
         sort(): void
-        bsearch(value: number /*i64*/, before: boolean): number /*i64*/
+        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
         duplicate(): PackedInt32Array
-        find(value: number /*i64*/, from: number /*i64*/): number /*i64*/
-        rfind(value: number /*i64*/, from: number /*i64*/): number /*i64*/
+        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*i64*/): number /*i64*/
     }
     class PackedInt64Array {
@@ -2680,13 +2745,13 @@ declare module "godot" {
         clear(): void
         has(value: number /*i64*/): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedInt64Array
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedInt64Array
         to_byte_array(): PackedByteArray
         sort(): void
-        bsearch(value: number /*i64*/, before: boolean): number /*i64*/
+        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
         duplicate(): PackedInt64Array
-        find(value: number /*i64*/, from: number /*i64*/): number /*i64*/
-        rfind(value: number /*i64*/, from: number /*i64*/): number /*i64*/
+        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*i64*/): number /*i64*/
     }
     class PackedFloat32Array {
@@ -2706,13 +2771,13 @@ declare module "godot" {
         clear(): void
         has(value: number /*f64*/): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedFloat32Array
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedFloat32Array
         to_byte_array(): PackedByteArray
         sort(): void
-        bsearch(value: number /*f64*/, before: boolean): number /*i64*/
+        bsearch(value: number /*f64*/, before: boolean = true): number /*i64*/
         duplicate(): PackedFloat32Array
-        find(value: number /*f64*/, from: number /*i64*/): number /*i64*/
-        rfind(value: number /*f64*/, from: number /*i64*/): number /*i64*/
+        find(value: number /*f64*/, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: number /*f64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*f64*/): number /*i64*/
     }
     class PackedFloat64Array {
@@ -2732,13 +2797,13 @@ declare module "godot" {
         clear(): void
         has(value: number /*f64*/): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedFloat64Array
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedFloat64Array
         to_byte_array(): PackedByteArray
         sort(): void
-        bsearch(value: number /*f64*/, before: boolean): number /*i64*/
+        bsearch(value: number /*f64*/, before: boolean = true): number /*i64*/
         duplicate(): PackedFloat64Array
-        find(value: number /*f64*/, from: number /*i64*/): number /*i64*/
-        rfind(value: number /*f64*/, from: number /*i64*/): number /*i64*/
+        find(value: number /*f64*/, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: number /*f64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*f64*/): number /*i64*/
     }
     class PackedStringArray {
@@ -2758,13 +2823,13 @@ declare module "godot" {
         clear(): void
         has(value: string): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedStringArray
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedStringArray
         to_byte_array(): PackedByteArray
         sort(): void
-        bsearch(value: string, before: boolean): number /*i64*/
+        bsearch(value: string, before: boolean = true): number /*i64*/
         duplicate(): PackedStringArray
-        find(value: string, from: number /*i64*/): number /*i64*/
-        rfind(value: string, from: number /*i64*/): number /*i64*/
+        find(value: string, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: string, from: number /*i64*/ = -1): number /*i64*/
         count(value: string): number /*i64*/
     }
     class PackedVector2Array {
@@ -2784,13 +2849,13 @@ declare module "godot" {
         clear(): void
         has(value: Vector2): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedVector2Array
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedVector2Array
         to_byte_array(): PackedByteArray
         sort(): void
-        bsearch(value: Vector2, before: boolean): number /*i64*/
+        bsearch(value: Vector2, before: boolean = true): number /*i64*/
         duplicate(): PackedVector2Array
-        find(value: Vector2, from: number /*i64*/): number /*i64*/
-        rfind(value: Vector2, from: number /*i64*/): number /*i64*/
+        find(value: Vector2, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: Vector2, from: number /*i64*/ = -1): number /*i64*/
         count(value: Vector2): number /*i64*/
     }
     class PackedVector3Array {
@@ -2810,13 +2875,13 @@ declare module "godot" {
         clear(): void
         has(value: Vector3): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedVector3Array
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedVector3Array
         to_byte_array(): PackedByteArray
         sort(): void
-        bsearch(value: Vector3, before: boolean): number /*i64*/
+        bsearch(value: Vector3, before: boolean = true): number /*i64*/
         duplicate(): PackedVector3Array
-        find(value: Vector3, from: number /*i64*/): number /*i64*/
-        rfind(value: Vector3, from: number /*i64*/): number /*i64*/
+        find(value: Vector3, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: Vector3, from: number /*i64*/ = -1): number /*i64*/
         count(value: Vector3): number /*i64*/
     }
     class PackedColorArray {
@@ -2836,13 +2901,13 @@ declare module "godot" {
         clear(): void
         has(value: Color): boolean
         reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/): PackedColorArray
+        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedColorArray
         to_byte_array(): PackedByteArray
         sort(): void
-        bsearch(value: Color, before: boolean): number /*i64*/
+        bsearch(value: Color, before: boolean = true): number /*i64*/
         duplicate(): PackedColorArray
-        find(value: Color, from: number /*i64*/): number /*i64*/
-        rfind(value: Color, from: number /*i64*/): number /*i64*/
+        find(value: Color, from: number /*i64*/ = 0): number /*i64*/
+        rfind(value: Color, from: number /*i64*/ = -1): number /*i64*/
         count(value: Color): number /*i64*/
     }
     enum Side {

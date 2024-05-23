@@ -1,6 +1,76 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    class GridContainer extends Container {
+        set_columns(columns: number /*i64*/): void
+        get_columns(): number /*i64*/
+        // // godot.getset: columns: number /*i64*/
+    }
+    class GridMap extends Node3D {
+        static readonly INVALID_CELL_ITEM = -1
+        set_collision_layer(layer: number /*i64*/): void
+        get_collision_layer(): number /*i64*/
+        set_collision_mask(mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
+        get_collision_layer_value(layer_number: number /*i64*/): boolean
+        set_collision_priority(priority: number /*f64*/): void
+        get_collision_priority(): number /*f64*/
+        set_physics_material(material: PhysicsMaterial): void
+        get_physics_material(): PhysicsMaterial
+        set_bake_navigation(bake_navigation: boolean): void
+        is_baking_navigation(): boolean
+        set_navigation_map(navigation_map: RID): void
+        get_navigation_map(): RID
+        set_mesh_library(mesh_library: MeshLibrary): void
+        get_mesh_library(): MeshLibrary
+        set_cell_size(size: Vector3): void
+        get_cell_size(): Vector3
+        set_cell_scale(scale: number /*f64*/): void
+        get_cell_scale(): number /*f64*/
+        set_octant_size(size: number /*i64*/): void
+        get_octant_size(): number /*i64*/
+        set_cell_item(position: Vector3i, item: number /*i64*/, orientation: number /*i64*/ = 0): void
+        get_cell_item(position: Vector3i): number /*i64*/
+        get_cell_item_orientation(position: Vector3i): number /*i64*/
+        get_cell_item_basis(position: Vector3i): Basis
+        get_basis_with_orthogonal_index(index: number /*i64*/): Basis
+        get_orthogonal_index_from_basis(basis: Basis): number /*i64*/
+        local_to_map(local_position: Vector3): Vector3i
+        map_to_local(map_position: Vector3i): Vector3
+        _update_octants_callback(): void
+        resource_changed(resource: Resource): void
+        set_center_x(enable: boolean): void
+        get_center_x(): boolean
+        set_center_y(enable: boolean): void
+        get_center_y(): boolean
+        set_center_z(enable: boolean): void
+        get_center_z(): boolean
+        clear(): void
+        get_used_cells(): Array
+        get_used_cells_by_item(item: number /*i64*/): Array
+        get_meshes(): Array
+        get_bake_meshes(): Array
+        get_bake_mesh_instance(idx: number /*i64*/): RID
+        clear_baked_meshes(): void
+        make_baked_meshes(gen_lightmap_uv: boolean = false, lightmap_uv_texel_size: number /*f64*/ = 0.1): void
+        // // godot.getset: mesh_library: Object
+        // // godot.getset: physics_material: Object
+        // // godot.getset: cell_size: Vector3
+        // // godot.getset: cell_octant_size: number /*i64*/
+        // // godot.getset: cell_center_x: boolean
+        // // godot.getset: cell_center_y: boolean
+        // // godot.getset: cell_center_z: boolean
+        // // godot.getset: cell_scale: number /*f64*/
+        // // godot.getset: collision_layer: number /*i64*/
+        // // godot.getset: collision_mask: number /*i64*/
+        // // godot.getset: collision_priority: number /*f64*/
+        // // godot.getset: bake_navigation: boolean
+        cell_size_changed: Signal
+        changed: Signal
+    }
     class GridMapEditor extends VBoxContainer {
         _configure(): void
         _set_selection(_unnamed_arg0: boolean, _unnamed_arg1: Vector3, _unnamed_arg2: Vector3): void
@@ -133,11 +203,11 @@ declare module "godot" {
         }
     }
     class HTTPClient extends RefCounted {
-        connect_to_host(host: string, port: number /*i64*/, tls_options: TLSOptions): GodotError
+        connect_to_host(host: string, port: number /*i64*/ = -1, tls_options: TLSOptions = <any> {} /*compound.type from nil*/): GodotError
         set_connection(connection: StreamPeer): void
         get_connection(): StreamPeer
         request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: PackedByteArray): GodotError
-        request(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: string): GodotError
+        request(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: string = ''): GodotError
         close(): void
         has_response(): boolean
         is_response_chunked(): boolean
@@ -178,8 +248,8 @@ declare module "godot" {
         }
     }
     class HTTPRequest extends Node {
-        request(url: string, custom_headers: PackedStringArray, method: HTTPClient.Method, request_data: string): GodotError
-        request_raw(url: string, custom_headers: PackedStringArray, method: HTTPClient.Method, request_data_raw: PackedByteArray): GodotError
+        request(url: string, custom_headers: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data: string = ''): GodotError
+        request_raw(url: string, custom_headers: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data_raw: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): GodotError
         cancel_request(): void
         set_tls_options(client_options: TLSOptions): void
         get_http_client_status(): HTTPClient.Status
@@ -363,13 +433,13 @@ declare module "godot" {
         convert(format: Image.Format): void
         get_mipmap_count(): number /*i64*/
         get_mipmap_offset(mipmap: number /*i64*/): number /*i64*/
-        resize_to_po2(square: boolean, interpolation: Image.Interpolation): void
-        resize(width: number /*i64*/, height: number /*i64*/, interpolation: Image.Interpolation): void
+        resize_to_po2(square: boolean = false, interpolation: Image.Interpolation = 1): void
+        resize(width: number /*i64*/, height: number /*i64*/, interpolation: Image.Interpolation = 1): void
         shrink_x2(): void
         crop(width: number /*i64*/, height: number /*i64*/): void
         flip_x(): void
         flip_y(): void
-        generate_mipmaps(renormalize: boolean): GodotError
+        generate_mipmaps(renormalize: boolean = false): GodotError
         clear_mipmaps(): void
         static create(width: number /*i64*/, height: number /*i64*/, use_mipmaps: boolean, format: Image.Format): Image
         static create_from_data(width: number /*i64*/, height: number /*i64*/, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray): Image
@@ -379,17 +449,17 @@ declare module "godot" {
         static load_from_file(path: string): Image
         save_png(path: string): GodotError
         save_png_to_buffer(): PackedByteArray
-        save_jpg(path: string, quality: number /*f64*/): GodotError
-        save_jpg_to_buffer(quality: number /*f64*/): PackedByteArray
-        save_exr(path: string, grayscale: boolean): GodotError
-        save_exr_to_buffer(grayscale: boolean): PackedByteArray
-        save_webp(path: string, lossy: boolean, quality: number /*f64*/): GodotError
-        save_webp_to_buffer(lossy: boolean, quality: number /*f64*/): PackedByteArray
+        save_jpg(path: string, quality: number /*f64*/ = 0.75): GodotError
+        save_jpg_to_buffer(quality: number /*f64*/ = 0.75): PackedByteArray
+        save_exr(path: string, grayscale: boolean = false): GodotError
+        save_exr_to_buffer(grayscale: boolean = false): PackedByteArray
+        save_webp(path: string, lossy: boolean = false, quality: number /*f64*/ = 0.75): GodotError
+        save_webp_to_buffer(lossy: boolean = false, quality: number /*f64*/ = 0.75): PackedByteArray
         detect_alpha(): Image.AlphaMode
         is_invisible(): boolean
-        detect_used_channels(source: Image.CompressSource): Image.UsedChannels
-        compress(mode: Image.CompressMode, source: Image.CompressSource, astc_format: Image.ASTCFormat): GodotError
-        compress_from_channels(mode: Image.CompressMode, channels: Image.UsedChannels, astc_format: Image.ASTCFormat): GodotError
+        detect_used_channels(source: Image.CompressSource = 0): Image.UsedChannels
+        compress(mode: Image.CompressMode, source: Image.CompressSource = 0, astc_format: Image.ASTCFormat = 0): GodotError
+        compress_from_channels(mode: Image.CompressMode, channels: Image.UsedChannels, astc_format: Image.ASTCFormat = 0): GodotError
         decompress(): GodotError
         is_compressed(): boolean
         rotate_90(direction: ClockDirection): void
@@ -399,7 +469,7 @@ declare module "godot" {
         srgb_to_linear(): void
         normal_map_to_xy(): void
         rgbe_to_srgb(): Image
-        bump_map_to_normal_map(bump_scale: number /*f64*/): void
+        bump_map_to_normal_map(bump_scale: number /*f64*/ = 1): void
         compute_image_metrics(compared_image: Image, use_luma: boolean): Dictionary
         blit_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
         blit_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
@@ -423,8 +493,8 @@ declare module "godot" {
         load_tga_from_buffer(buffer: PackedByteArray): GodotError
         load_bmp_from_buffer(buffer: PackedByteArray): GodotError
         load_ktx_from_buffer(buffer: PackedByteArray): GodotError
-        load_svg_from_buffer(buffer: PackedByteArray, scale: number /*f64*/): GodotError
-        load_svg_from_string(svg_str: string, scale: number /*f64*/): GodotError
+        load_svg_from_buffer(buffer: PackedByteArray, scale: number /*f64*/ = 1): GodotError
+        load_svg_from_string(svg_str: string, scale: number /*f64*/ = 1): GodotError
         // // godot.getset: data: Dictionary
     }
     namespace ImageFormatLoader {
@@ -462,7 +532,7 @@ declare module "godot" {
         // // godot.getset: _images: Array
     }
     class ImmediateMesh extends Mesh {
-        surface_begin(primitive: Mesh.PrimitiveType, material: Material): void
+        surface_begin(primitive: Mesh.PrimitiveType, material: Material = <any> {} /*compound.type from nil*/): void
         surface_set_color(color: Color): void
         surface_set_normal(normal: Vector3): void
         surface_set_tangent(tangent: Plane): void
@@ -488,7 +558,7 @@ declare module "godot" {
         get_blend_shape_name(blend_shape_idx: number /*i64*/): string
         set_blend_shape_mode(mode: Mesh.BlendShapeMode): void
         get_blend_shape_mode(): Mesh.BlendShapeMode
-        add_surface(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array, lods: Dictionary, material: Material, name: string, flags: number /*i64*/): void
+        add_surface(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array = <any> {} /*compound.type from 28([object Object])*/, lods: Dictionary = <any> {} /*compound.type from 27([object Object])*/, material: Material = <any> {} /*compound.type from nil*/, name: string = '', flags: number /*i64*/ = 0): void
         get_surface_count(): number /*i64*/
         get_surface_primitive_type(surface_idx: number /*i64*/): Mesh.PrimitiveType
         get_surface_name(surface_idx: number /*i64*/): string
@@ -502,7 +572,7 @@ declare module "godot" {
         set_surface_name(surface_idx: number /*i64*/, name: string): void
         set_surface_material(surface_idx: number /*i64*/, material: Material): void
         generate_lods(normal_merge_angle: number /*f64*/, normal_split_angle: number /*f64*/, bone_transform_array: Array): void
-        get_mesh(base_mesh: ArrayMesh): ArrayMesh
+        get_mesh(base_mesh: ArrayMesh = <any> {} /*compound.type from nil*/): ArrayMesh
         clear(): void
         _set_data(data: Dictionary): void
         _get_data(): Dictionary
@@ -545,19 +615,19 @@ declare module "godot" {
     class InputEvent extends Resource {
         set_device(device: number /*i64*/): void
         get_device(): number /*i64*/
-        is_action(action: StringName, exact_match: boolean): boolean
-        is_action_pressed(action: StringName, allow_echo: boolean, exact_match: boolean): boolean
-        is_action_released(action: StringName, exact_match: boolean): boolean
-        get_action_strength(action: StringName, exact_match: boolean): number /*f64*/
+        is_action(action: StringName, exact_match: boolean = false): boolean
+        is_action_pressed(action: StringName, allow_echo: boolean = false, exact_match: boolean = false): boolean
+        is_action_released(action: StringName, exact_match: boolean = false): boolean
+        get_action_strength(action: StringName, exact_match: boolean = false): number /*f64*/
         is_canceled(): boolean
         is_pressed(): boolean
         is_released(): boolean
         is_echo(): boolean
         as_text(): string
-        is_match(event: InputEvent, exact_match: boolean): boolean
+        is_match(event: InputEvent, exact_match: boolean = true): boolean
         is_action_type(): boolean
         accumulate(with_event: InputEvent): boolean
-        xformed_by(xform: Transform2D, local_ofs: Vector2): InputEvent
+        xformed_by(xform: Transform2D, local_ofs: Vector2 = Vector2.ZERO): InputEvent
         // // godot.getset: device: number /*i64*/
     }
     class InputEventAction extends InputEvent {
@@ -779,8 +849,8 @@ declare module "godot" {
         request_help: Signal
     }
     class InstancePlaceholder extends Node {
-        get_stored_values(with_order: boolean): Dictionary
-        create_instance(replace: boolean, custom_scene: PackedScene): Node
+        get_stored_values(with_order: boolean = false): Dictionary
+        create_instance(replace: boolean = false, custom_scene: PackedScene = <any> {} /*compound.type from nil*/): Node
         get_instance_path(): string
     }
     class IntervalTweener extends Tweener {
@@ -796,8 +866,8 @@ declare module "godot" {
         }
     }
     class ItemList extends Control {
-        add_item(text: string, icon: Texture2D, selectable: boolean): number /*i64*/
-        add_icon_item(icon: Texture2D, selectable: boolean): number /*i64*/
+        add_item(text: string, icon: Texture2D = <any> {} /*compound.type from nil*/, selectable: boolean = true): number /*i64*/
+        add_icon_item(icon: Texture2D, selectable: boolean = true): number /*i64*/
         set_item_text(idx: number /*i64*/, text: string): void
         get_item_text(idx: number /*i64*/): string
         set_item_icon(idx: number /*i64*/, icon: Texture2D): void
@@ -822,12 +892,12 @@ declare module "godot" {
         get_item_custom_bg_color(idx: number /*i64*/): Color
         set_item_custom_fg_color(idx: number /*i64*/, custom_fg_color: Color): void
         get_item_custom_fg_color(idx: number /*i64*/): Color
-        get_item_rect(idx: number /*i64*/, expand: boolean): Rect2
+        get_item_rect(idx: number /*i64*/, expand: boolean = true): Rect2
         set_item_tooltip_enabled(idx: number /*i64*/, enable: boolean): void
         is_item_tooltip_enabled(idx: number /*i64*/): boolean
         set_item_tooltip(idx: number /*i64*/, tooltip: string): void
         get_item_tooltip(idx: number /*i64*/): string
-        select(idx: number /*i64*/, single: boolean): void
+        select(idx: number /*i64*/, single: boolean = true): void
         deselect(idx: number /*i64*/): void
         deselect_all(): void
         is_selected(idx: number /*i64*/): boolean
@@ -863,7 +933,7 @@ declare module "godot" {
         set_auto_height(enable: boolean): void
         has_auto_height(): boolean
         is_anything_selected(): boolean
-        get_item_at_position(position: Vector2, exact: boolean): number /*i64*/
+        get_item_at_position(position: Vector2, exact: boolean = false): number /*i64*/
         ensure_current_is_visible(): void
         get_v_scroll_bar(): VScrollBar
         set_text_overrun_behavior(overrun_behavior: TextServer.OverrunBehavior): void
@@ -892,9 +962,9 @@ declare module "godot" {
     class JNISingleton extends Object {
     }
     class JSON extends Resource {
-        static stringify(data: any, indent: string, sort_keys: boolean, full_precision: boolean): string
+        static stringify(data: any, indent: string = '', sort_keys: boolean = true, full_precision: boolean = false): string
         static parse_string(json_string: string): any
-        parse(json_text: string, keep_text: boolean): GodotError
+        parse(json_text: string, keep_text: boolean = false): GodotError
         get_data(): any
         set_data(data: any): void
         get_parsed_text(): string
@@ -913,12 +983,12 @@ declare module "godot" {
     }
     class JSONRPC extends Object {
         set_scope(scope: string, target: Object): void
-        process_action(action: any, recurse: boolean): any
+        process_action(action: any, recurse: boolean = false): any
         process_string(action: string): string
         make_request(method: string, params: any, id: any): Dictionary
         make_response(result: any, id: any): Dictionary
         make_notification(method: string, params: any): Dictionary
-        make_response_error(code: number /*i64*/, message: string, id: any): Dictionary
+        make_response_error(code: number /*i64*/, message: string, id: any = <any> {} /*compound.type from nil*/): Dictionary
     }
     class JavaClass extends RefCounted {
     }
@@ -961,7 +1031,7 @@ declare module "godot" {
         get_normal(): Vector2
         get_travel(): Vector2
         get_remainder(): Vector2
-        get_angle(up_direction: Vector2): number /*f64*/
+        get_angle(up_direction: Vector2 = new Vector2(0, -1)): number /*f64*/
         get_depth(): number /*f64*/
         get_local_shape(): Object
         get_collider(): Object
@@ -976,16 +1046,16 @@ declare module "godot" {
         get_remainder(): Vector3
         get_depth(): number /*f64*/
         get_collision_count(): number /*i64*/
-        get_position(collision_index: number /*i64*/): Vector3
-        get_normal(collision_index: number /*i64*/): Vector3
-        get_angle(collision_index: number /*i64*/, up_direction: Vector3): number /*f64*/
-        get_local_shape(collision_index: number /*i64*/): Object
-        get_collider(collision_index: number /*i64*/): Object
-        get_collider_id(collision_index: number /*i64*/): number /*i64*/
-        get_collider_rid(collision_index: number /*i64*/): RID
-        get_collider_shape(collision_index: number /*i64*/): Object
-        get_collider_shape_index(collision_index: number /*i64*/): number /*i64*/
-        get_collider_velocity(collision_index: number /*i64*/): Vector3
+        get_position(collision_index: number /*i64*/ = 0): Vector3
+        get_normal(collision_index: number /*i64*/ = 0): Vector3
+        get_angle(collision_index: number /*i64*/ = 0, up_direction: Vector3 = Vector3.ZERO): number /*f64*/
+        get_local_shape(collision_index: number /*i64*/ = 0): Object
+        get_collider(collision_index: number /*i64*/ = 0): Object
+        get_collider_id(collision_index: number /*i64*/ = 0): number /*i64*/
+        get_collider_rid(collision_index: number /*i64*/ = 0): RID
+        get_collider_shape(collision_index: number /*i64*/ = 0): Object
+        get_collider_shape_index(collision_index: number /*i64*/ = 0): number /*i64*/
+        get_collider_velocity(collision_index: number /*i64*/ = 0): Vector3
     }
     class Label extends Control {
         set_horizontal_alignment(alignment: HorizontalAlignment): void
@@ -1012,7 +1082,7 @@ declare module "godot" {
         get_text_overrun_behavior(): TextServer.OverrunBehavior
         set_uppercase(enable: boolean): void
         is_uppercase(): boolean
-        get_line_height(line: number /*i64*/): number /*i64*/
+        get_line_height(line: number /*i64*/ = -1): number /*i64*/
         get_line_count(): number /*i64*/
         get_visible_line_count(): number /*i64*/
         get_total_character_count(): number /*i64*/
@@ -1501,7 +1571,7 @@ declare module "godot" {
         set_point_position(index: number /*i64*/, position: Vector2): void
         get_point_position(index: number /*i64*/): Vector2
         get_point_count(): number /*i64*/
-        add_point(position: Vector2, index: number /*i64*/): void
+        add_point(position: Vector2, index: number /*i64*/ = -1): void
         remove_point(index: number /*i64*/): void
         clear_points(): void
         set_closed(closed: boolean): void
@@ -1599,7 +1669,7 @@ declare module "godot" {
         set_horizontal_alignment(alignment: HorizontalAlignment): void
         get_horizontal_alignment(): HorizontalAlignment
         clear(): void
-        select(from: number /*i64*/, to: number /*i64*/): void
+        select(from: number /*i64*/ = 0, to: number /*i64*/ = -1): void
         select_all(): void
         deselect(): void
         has_selection(): boolean
@@ -1905,7 +1975,7 @@ declare module "godot" {
         surface_get_material(surf_idx: number /*i64*/): Material
         create_placeholder(): Resource
         create_trimesh_shape(): ConcavePolygonShape3D
-        create_convex_shape(clean: boolean, simplify: boolean): ConvexPolygonShape3D
+        create_convex_shape(clean: boolean = true, simplify: boolean = false): ConvexPolygonShape3D
         create_outline(margin: number /*f64*/): Mesh
         generate_triangle_mesh(): TriangleMesh
         // // godot.getset: lightmap_size_hint: Vector2i
@@ -1960,7 +2030,7 @@ declare module "godot" {
     class MeshDataTool extends RefCounted {
         clear(): void
         create_from_surface(mesh: ArrayMesh, surface: number /*i64*/): GodotError
-        commit_to_surface(mesh: ArrayMesh, compression_flags: number /*i64*/): GodotError
+        commit_to_surface(mesh: ArrayMesh, compression_flags: number /*i64*/ = 0): GodotError
         get_format(): number /*i64*/
         get_vertex_count(): number /*i64*/
         get_edge_count(): number /*i64*/
@@ -2020,8 +2090,8 @@ declare module "godot" {
         get_surface_override_material(surface: number /*i64*/): Material
         get_active_material(surface: number /*i64*/): Material
         create_trimesh_collision(): void
-        create_convex_collision(clean: boolean, simplify: boolean): void
-        create_multiple_convex_collisions(settings: MeshConvexDecompositionSettings): void
+        create_convex_collision(clean: boolean = true, simplify: boolean = false): void
+        create_multiple_convex_collisions(settings: MeshConvexDecompositionSettings = <any> {} /*compound.type from nil*/): void
         get_blend_shape_count(): number /*i64*/
         find_blend_shape_by_name(name: StringName): number /*i64*/
         get_blend_shape_value(blend_shape_idx: number /*i64*/): number /*f64*/
@@ -2210,7 +2280,7 @@ declare module "godot" {
         is_server(): boolean
         get_remote_sender_id(): number /*i64*/
         poll(): GodotError
-        rpc(peer: number /*i64*/, object: Object, method: StringName, arguments_: Array): GodotError
+        rpc(peer: number /*i64*/, object: Object, method: StringName, arguments_: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
         object_configuration_add(object: Object, configuration: any): GodotError
         object_configuration_remove(object: Object, configuration: any): GodotError
         get_peers(): PackedInt32Array
@@ -2256,7 +2326,7 @@ declare module "godot" {
         get_packet_mode(): MultiplayerPeer.TransferMode
         poll(): void
         close(): void
-        disconnect_peer(peer: number /*i64*/, force: boolean): void
+        disconnect_peer(peer: number /*i64*/, force: boolean = false): void
         get_connection_status(): MultiplayerPeer.ConnectionStatus
         get_unique_id(): number /*i64*/
         generate_unique_id(): number /*i64*/
@@ -2278,7 +2348,7 @@ declare module "godot" {
         clear_spawnable_scenes(): void
         _get_spawnable_scenes(): PackedStringArray
         _set_spawnable_scenes(scenes: PackedStringArray): void
-        spawn(data: any): Node
+        spawn(data: any = <any> {} /*compound.type from nil*/): Node
         get_spawn_path(): NodePath
         set_spawn_path(path: NodePath): void
         get_spawn_limit(): number /*i64*/
@@ -2310,7 +2380,7 @@ declare module "godot" {
         get_replication_config(): SceneReplicationConfig
         set_visibility_update_mode(mode: MultiplayerSynchronizer.VisibilityUpdateMode): void
         get_visibility_update_mode(): MultiplayerSynchronizer.VisibilityUpdateMode
-        update_visibility(for_peer: number /*i64*/): void
+        update_visibility(for_peer: number /*i64*/ = 0): void
         set_visibility_public(visible: boolean): void
         is_visibility_public(): boolean
         add_visibility_filter(filter: Callable): void
@@ -3008,7 +3078,7 @@ declare module "godot" {
         get_enter_cost(): number /*f64*/
         set_travel_cost(travel_cost: number /*f64*/): void
         get_travel_cost(): number /*f64*/
-        bake_navigation_polygon(on_thread: boolean): void
+        bake_navigation_polygon(on_thread: boolean = true): void
         _navigation_polygon_changed(): void
         // // godot.getset: navigation_polygon: Object
         // // godot.getset: enabled: boolean
@@ -3040,7 +3110,7 @@ declare module "godot" {
         get_enter_cost(): number /*f64*/
         set_travel_cost(travel_cost: number /*f64*/): void
         get_travel_cost(): number /*f64*/
-        bake_navigation_mesh(on_thread: boolean): void
+        bake_navigation_mesh(on_thread: boolean = true): void
         _bake_finished(navigation_mesh: NavigationMesh): void
         // // godot.getset: navigation_mesh: Object
         // // godot.getset: enabled: boolean
@@ -3158,21 +3228,21 @@ declare module "godot" {
         static readonly NOTIFICATION_APPLICATION_FOCUS_OUT = 2017
         static readonly NOTIFICATION_TEXT_SERVER_CHANGED = 2018
         static print_orphan_nodes(): void
-        add_sibling(sibling: Node, force_readable_name: boolean): void
+        add_sibling(sibling: Node, force_readable_name: boolean = false): void
         set_name(name: string): void
         get_name(): StringName
-        add_child(node: Node, force_readable_name: boolean, internal: Node.InternalMode): void
+        add_child(node: Node, force_readable_name: boolean = false, internal: Node.InternalMode = 0): void
         remove_child(node: Node): void
-        reparent(new_parent: Node, keep_global_transform: boolean): void
-        get_child_count(include_internal: boolean): number /*i64*/
-        get_children(include_internal: boolean): Array
-        get_child(idx: number /*i64*/, include_internal: boolean): Node
+        reparent(new_parent: Node, keep_global_transform: boolean = true): void
+        get_child_count(include_internal: boolean = false): number /*i64*/
+        get_children(include_internal: boolean = false): Array
+        get_child(idx: number /*i64*/, include_internal: boolean = false): Node
         has_node(path: NodePath): boolean
         get_node(path: NodePath): Node
         get_node_or_null(path: NodePath): Node
         get_parent(): Node
-        find_child(pattern: string, recursive: boolean, owned: boolean): Node
-        find_children(pattern: string, type: string, recursive: boolean, owned: boolean): Array
+        find_child(pattern: string, recursive: boolean = true, owned: boolean = true): Node
+        find_children(pattern: string, type: string = '', recursive: boolean = true, owned: boolean = true): Array
         find_parent(pattern: string): Node
         has_node_and_resource(path: NodePath): boolean
         get_node_and_resource(path: NodePath): Array
@@ -3180,15 +3250,15 @@ declare module "godot" {
         is_ancestor_of(node: Node): boolean
         is_greater_than(node: Node): boolean
         get_path(): NodePath
-        get_path_to(node: Node, use_unique_path: boolean): NodePath
-        add_to_group(group: StringName, persistent: boolean): void
+        get_path_to(node: Node, use_unique_path: boolean = false): NodePath
+        add_to_group(group: StringName, persistent: boolean = false): void
         remove_from_group(group: StringName): void
         is_in_group(group: StringName): boolean
         move_child(child_node: Node, to_index: number /*i64*/): void
         get_groups(): Array
         set_owner(owner: Node): void
         get_owner(): Node
-        get_index(include_internal: boolean): number /*i64*/
+        get_index(include_internal: boolean = false): number /*i64*/
         print_tree(): void
         print_tree_pretty(): void
         get_tree_string(): string
@@ -3196,7 +3266,7 @@ declare module "godot" {
         set_scene_file_path(scene_file_path: string): void
         get_scene_file_path(): string
         propagate_notification(what: number /*i64*/): void
-        propagate_call(method: StringName, args: Array, parent_first: boolean): void
+        propagate_call(method: StringName, args: Array = <any> {} /*compound.type from 28([object Object])*/, parent_first: boolean = false): void
         set_physics_process(enable: boolean): void
         get_physics_process_delta_time(): number /*f64*/
         is_physics_processing(): boolean
@@ -3234,8 +3304,8 @@ declare module "godot" {
         get_last_exclusive_window(): Window
         get_tree(): SceneTree
         create_tween(): Tween
-        duplicate(flags: number /*i64*/): Node
-        replace_by(node: Node, keep_groups: boolean): void
+        duplicate(flags: number /*i64*/ = 15): Node
+        replace_by(node: Node, keep_groups: boolean = false): void
         set_scene_instance_load_placeholder(load_placeholder: boolean): void
         get_scene_instance_load_placeholder(): boolean
         set_editable_instance(node: Node, is_editable: boolean): void
@@ -3244,7 +3314,7 @@ declare module "godot" {
         queue_free(): void
         request_ready(): void
         is_node_ready(): boolean
-        set_multiplayer_authority(id: number /*i64*/, recursive: boolean): void
+        set_multiplayer_authority(id: number /*i64*/, recursive: boolean = true): void
         get_multiplayer_authority(): number /*i64*/
         is_multiplayer_authority(): boolean
         get_multiplayer(): MultiplayerAPI
@@ -3300,8 +3370,8 @@ declare module "godot" {
         get_skew(): number /*f64*/
         get_scale(): Vector2
         rotate(radians: number /*f64*/): void
-        move_local_x(delta: number /*f64*/, scaled: boolean): void
-        move_local_y(delta: number /*f64*/, scaled: boolean): void
+        move_local_x(delta: number /*f64*/, scaled: boolean = false): void
+        move_local_y(delta: number /*f64*/, scaled: boolean = false): void
         translate(offset: Vector2): void
         global_translate(offset: Vector2): void
         apply_scale(ratio: Vector2): void
@@ -3414,8 +3484,8 @@ declare module "godot" {
         translate(offset: Vector3): void
         orthonormalize(): void
         set_identity(): void
-        look_at(target: Vector3, up: Vector3, use_model_front: boolean): void
-        look_at_from_position(position: Vector3, target: Vector3, up: Vector3, use_model_front: boolean): void
+        look_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): void
+        look_at_from_position(position: Vector3, target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): void
         to_local(global_point: Vector3): Vector3
         to_global(local_point: Vector3): Vector3
         // // godot.getset: transform: Transform3D
@@ -3467,10 +3537,10 @@ declare module "godot" {
         get_noise_2dv(v: Vector2): number /*f64*/
         get_noise_3d(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/): number /*f64*/
         get_noise_3dv(v: Vector3): number /*f64*/
-        get_image(width: number /*i64*/, height: number /*i64*/, invert: boolean, in_3d_space: boolean, normalize: boolean): Image
-        get_seamless_image(width: number /*i64*/, height: number /*i64*/, invert: boolean, in_3d_space: boolean, skirt: number /*f64*/, normalize: boolean): Image
-        get_image_3d(width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, invert: boolean, normalize: boolean): Array
-        get_seamless_image_3d(width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, invert: boolean, skirt: number /*f64*/, normalize: boolean): Array
+        get_image(width: number /*i64*/, height: number /*i64*/, invert: boolean = false, in_3d_space: boolean = false, normalize: boolean = true): Image
+        get_seamless_image(width: number /*i64*/, height: number /*i64*/, invert: boolean = false, in_3d_space: boolean = false, skirt: number /*f64*/ = 0.1, normalize: boolean = true): Image
+        get_image_3d(width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, invert: boolean = false, normalize: boolean = true): Array
+        get_seamless_image_3d(width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, invert: boolean = false, skirt: number /*f64*/ = 0.1, normalize: boolean = true): Array
     }
     class NoiseEditorInspectorPlugin extends EditorInspectorPlugin {
     }
@@ -3570,17 +3640,17 @@ declare module "godot" {
         get_method_list(): Array
         property_can_revert(property: StringName): boolean
         property_get_revert(property: StringName): any
-        notification(what: number /*i64*/, reversed: boolean): void
+        notification(what: number /*i64*/, reversed: boolean = false): void
         to_string(): string
         get_instance_id(): number /*i64*/
         set_script(script: any): void
         get_script(): any
         set_meta(name: StringName, value: any): void
         remove_meta(name: StringName): void
-        get_meta(name: StringName, default_: any): any
+        get_meta(name: StringName, default_: any = <any> {} /*compound.type from nil*/): any
         has_meta(name: StringName): boolean
         get_meta_list(): Array
-        add_user_signal(signal: string, arguments_: Array): void
+        add_user_signal(signal: string, arguments_: Array = <any> {} /*compound.type from 28([object Object])*/): void
         has_user_signal(signal: StringName): boolean
         emit_signal(signal: StringName, ...vargargs: any[]): GodotError
         call(method: StringName, ...vargargs: any[]): any
@@ -3592,7 +3662,7 @@ declare module "godot" {
         get_signal_list(): Array
         get_signal_connection_list(signal: StringName): Array
         get_incoming_connections(): Array
-        connect(signal: StringName, callable: Callable, flags: number /*i64*/): GodotError
+        connect(signal: StringName, callable: Callable, flags: number /*i64*/ = 0): GodotError
         disconnect(signal: StringName, callable: Callable): void
         is_connected(signal: StringName, callable: Callable): boolean
         set_block_signals(enable: boolean): void
@@ -3600,8 +3670,8 @@ declare module "godot" {
         notify_property_list_changed(): void
         set_message_translation(enable: boolean): void
         can_translate_messages(): boolean
-        tr(message: StringName, context: StringName): string
-        tr_n(message: StringName, plural_message: StringName, n: number /*i64*/, context: StringName): string
+        tr(message: StringName, context: StringName = ''): string
+        tr_n(message: StringName, plural_message: StringName, n: number /*i64*/, context: StringName = ''): string
         is_queued_for_deletion(): boolean
         cancel_free(): void
         script_changed: Signal
@@ -3889,8 +3959,8 @@ declare module "godot" {
         generate(from: Translation): void
     }
     class OptionButton extends Button {
-        add_item(label: string, id: number /*i64*/): void
-        add_icon_item(texture: Texture2D, label: string, id: number /*i64*/): void
+        add_item(label: string, id: number /*i64*/ = -1): void
+        add_icon_item(texture: Texture2D, label: string, id: number /*i64*/ = -1): void
         set_item_text(idx: number /*i64*/, text: string): void
         set_item_icon(idx: number /*i64*/, texture: Texture2D): void
         set_item_disabled(idx: number /*i64*/, disabled: boolean): void
@@ -3905,7 +3975,7 @@ declare module "godot" {
         get_item_tooltip(idx: number /*i64*/): string
         is_item_disabled(idx: number /*i64*/): boolean
         is_item_separator(idx: number /*i64*/): boolean
-        add_separator(text: string): void
+        add_separator(text: string = ''): void
         clear(): void
         select(idx: number /*i64*/): void
         get_selected(): number /*i64*/
@@ -3918,7 +3988,7 @@ declare module "godot" {
         set_item_count(count: number /*i64*/): void
         get_item_count(): number /*i64*/
         has_selectable_items(): boolean
-        get_selectable_item(from_last: boolean): number /*i64*/
+        get_selectable_item(from_last: boolean = false): number /*i64*/
         set_fit_to_longest_item(fit: boolean): void
         is_fit_to_longest_item(): boolean
         set_allow_reselect(allow: boolean): void
@@ -3934,9 +4004,9 @@ declare module "godot" {
     class OrphanResourcesDialog extends ConfirmationDialog {
     }
     class PCKPacker extends RefCounted {
-        pck_start(pck_name: string, alignment: number /*i64*/, key: string, encrypt_directory: boolean): GodotError
-        add_file(pck_path: string, source_path: string, encrypt: boolean): GodotError
-        flush(verbose: boolean): GodotError
+        pck_start(pck_name: string, alignment: number /*i64*/ = 32, key: string = '0000000000000000000000000000000000000000000000000000000000000000', encrypt_directory: boolean = false): GodotError
+        add_file(pck_path: string, source_path: string, encrypt: boolean = false): GodotError
+        flush(verbose: boolean = false): GodotError
     }
     class PackedDataContainer extends Resource {
         _set_data(data: PackedByteArray): void
@@ -3964,7 +4034,7 @@ declare module "godot" {
     }
     class PackedScene extends Resource {
         pack(path: Node): GodotError
-        instantiate(edit_state: PackedScene.GenEditState): Node
+        instantiate(edit_state: PackedScene.GenEditState = 0): Node
         can_instantiate(): boolean
         _set_bundled_scene(scene: Dictionary): void
         _get_bundled_scene(): Dictionary
@@ -3976,8 +4046,8 @@ declare module "godot" {
     class PackedSceneEditorTranslationParserPlugin extends EditorTranslationParserPlugin {
     }
     class PacketPeer extends RefCounted {
-        get_var(allow_objects: boolean): any
-        put_var(var_: any, full_objects: boolean): GodotError
+        get_var(allow_objects: boolean = false): any
+        put_var(var_: any, full_objects: boolean = false): GodotError
         get_packet(): PackedByteArray
         put_packet(buffer: PackedByteArray): GodotError
         get_packet_error(): GodotError
@@ -3997,7 +4067,7 @@ declare module "godot" {
     }
     class PacketPeerDTLS extends PacketPeer {
         poll(): void
-        connect_to_peer(packet_peer: PacketPeerUDP, hostname: string, client_options: TLSOptions): GodotError
+        connect_to_peer(packet_peer: PacketPeerUDP, hostname: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): GodotError
         get_status(): PacketPeerDTLS.Status
         disconnect_from_peer(): void
     }
@@ -4015,7 +4085,7 @@ declare module "godot" {
         // // godot.getset: stream_peer: Object
     }
     class PacketPeerUDP extends PacketPeer {
-        bind(port: number /*i64*/, bind_address: string, recv_buf_size: number /*i64*/): GodotError
+        bind(port: number /*i64*/, bind_address: string = '*', recv_buf_size: number /*i64*/ = 65536): GodotError
         close(): void
         wait(): GodotError
         is_bound(): boolean
@@ -4432,7 +4502,7 @@ declare module "godot" {
     }
     class PhysicalBone3D extends PhysicsBody3D {
         apply_central_impulse(impulse: Vector3): void
-        apply_impulse(impulse: Vector3, position: Vector3): void
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
         set_joint_type(joint_type: PhysicalBone3D.JointType): void
         get_joint_type(): PhysicalBone3D.JointType
         set_joint_offset(offset: Transform3D): void
@@ -4527,15 +4597,15 @@ declare module "godot" {
     class PhysicalSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
     class PhysicsBody2D extends CollisionObject2D {
-        move_and_collide(motion: Vector2, test_only: boolean, safe_margin: number /*f64*/, recovery_as_collision: boolean): KinematicCollision2D
-        test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D, safe_margin: number /*f64*/, recovery_as_collision: boolean): boolean
+        move_and_collide(motion: Vector2, test_only: boolean = false, safe_margin: number /*f64*/ = 0.08, recovery_as_collision: boolean = false): KinematicCollision2D
+        test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = <any> {} /*compound.type from nil*/, safe_margin: number /*f64*/ = 0.08, recovery_as_collision: boolean = false): boolean
         get_collision_exceptions(): Array
         add_collision_exception_with(body: Node): void
         remove_collision_exception_with(body: Node): void
     }
     class PhysicsBody3D extends CollisionObject3D {
-        move_and_collide(motion: Vector3, test_only: boolean, safe_margin: number /*f64*/, recovery_as_collision: boolean, max_collisions: number /*i64*/): KinematicCollision3D
-        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D, safe_margin: number /*f64*/, recovery_as_collision: boolean, max_collisions: number /*i64*/): boolean
+        move_and_collide(motion: Vector3, test_only: boolean = false, safe_margin: number /*f64*/ = 0.001, recovery_as_collision: boolean = false, max_collisions: number /*i64*/ = 1): KinematicCollision3D
+        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = <any> {} /*compound.type from nil*/, safe_margin: number /*f64*/ = 0.001, recovery_as_collision: boolean = false, max_collisions: number /*i64*/ = 1): boolean
         set_axis_lock(axis: PhysicsServer3D.BodyAxis, lock: boolean): void
         get_axis_lock(axis: PhysicsServer3D.BodyAxis): boolean
         get_collision_exceptions(): Array
@@ -4565,12 +4635,12 @@ declare module "godot" {
         get_velocity_at_local_position(local_position: Vector2): Vector2
         apply_central_impulse(impulse: Vector2): void
         apply_torque_impulse(impulse: number /*f64*/): void
-        apply_impulse(impulse: Vector2, position: Vector2): void
-        apply_central_force(force: Vector2): void
-        apply_force(force: Vector2, position: Vector2): void
+        apply_impulse(impulse: Vector2, position: Vector2 = Vector2.ZERO): void
+        apply_central_force(force: Vector2 = Vector2.ZERO): void
+        apply_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
         apply_torque(torque: number /*f64*/): void
-        add_constant_central_force(force: Vector2): void
-        add_constant_force(force: Vector2, position: Vector2): void
+        add_constant_central_force(force: Vector2 = Vector2.ZERO): void
+        add_constant_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
         add_constant_torque(torque: number /*f64*/): void
         set_constant_force(force: Vector2): void
         get_constant_force(): Vector2
@@ -4625,14 +4695,14 @@ declare module "godot" {
         set_transform(transform: Transform3D): void
         get_transform(): Transform3D
         get_velocity_at_local_position(local_position: Vector3): Vector3
-        apply_central_impulse(impulse: Vector3): void
-        apply_impulse(impulse: Vector3, position: Vector3): void
+        apply_central_impulse(impulse: Vector3 = new Vector3(0, 0, 0)): void
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
         apply_torque_impulse(impulse: Vector3): void
-        apply_central_force(force: Vector3): void
-        apply_force(force: Vector3, position: Vector3): void
+        apply_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
+        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
         apply_torque(torque: Vector3): void
-        add_constant_central_force(force: Vector3): void
-        add_constant_force(force: Vector3, position: Vector3): void
+        add_constant_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
+        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
         add_constant_torque(torque: Vector3): void
         set_constant_force(force: Vector3): void
         get_constant_force(): Vector3
@@ -4673,22 +4743,22 @@ declare module "godot" {
     class PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
     }
     class PhysicsDirectSpaceState2D extends Object {
-        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: number /*i64*/): Array
+        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: number /*i64*/ = 32): Array
         intersect_ray(parameters: PhysicsRayQueryParameters2D): Dictionary
-        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: number /*i64*/): Array
+        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: number /*i64*/ = 32): Array
         cast_motion(parameters: PhysicsShapeQueryParameters2D): PackedFloat32Array
-        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: number /*i64*/): Array
+        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: number /*i64*/ = 32): Array
         get_rest_info(parameters: PhysicsShapeQueryParameters2D): Dictionary
     }
     class PhysicsDirectSpaceState2DExtension extends PhysicsDirectSpaceState2D {
         is_body_excluded_from_query(body: RID): boolean
     }
     class PhysicsDirectSpaceState3D extends Object {
-        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: number /*i64*/): Array
+        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: number /*i64*/ = 32): Array
         intersect_ray(parameters: PhysicsRayQueryParameters3D): Dictionary
-        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: number /*i64*/): Array
+        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: number /*i64*/ = 32): Array
         cast_motion(parameters: PhysicsShapeQueryParameters3D): PackedFloat32Array
-        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: number /*i64*/): Array
+        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: number /*i64*/ = 32): Array
         get_rest_info(parameters: PhysicsShapeQueryParameters3D): Dictionary
     }
     class PhysicsDirectSpaceState3DExtension extends PhysicsDirectSpaceState3D {
@@ -4746,7 +4816,7 @@ declare module "godot" {
         // // godot.getset: collide_with_areas: boolean
     }
     class PhysicsRayQueryParameters2D extends RefCounted {
-        static create(from: Vector2, to: Vector2, collision_mask: number /*i64*/, exclude: Array): PhysicsRayQueryParameters2D
+        static create(from: Vector2, to: Vector2, collision_mask: number /*i64*/ = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters2D
         set_from(from: Vector2): void
         get_from(): Vector2
         set_to(to: Vector2): void
@@ -4770,7 +4840,7 @@ declare module "godot" {
         // // godot.getset: hit_from_inside: boolean
     }
     class PhysicsRayQueryParameters3D extends RefCounted {
-        static create(from: Vector3, to: Vector3, collision_mask: number /*i64*/, exclude: Array): PhysicsRayQueryParameters3D
+        static create(from: Vector3, to: Vector3, collision_mask: number /*i64*/ = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters3D
         set_from(from: Vector3): void
         get_from(): Vector3
         set_to(to: Vector3): void
@@ -4929,15 +4999,15 @@ declare module "godot" {
         get_collision_safe_fraction(): number /*f64*/
         get_collision_unsafe_fraction(): number /*f64*/
         get_collision_count(): number /*i64*/
-        get_collision_point(collision_index: number /*i64*/): Vector3
-        get_collision_normal(collision_index: number /*i64*/): Vector3
-        get_collider_velocity(collision_index: number /*i64*/): Vector3
-        get_collider_id(collision_index: number /*i64*/): number /*i64*/
-        get_collider_rid(collision_index: number /*i64*/): RID
-        get_collider(collision_index: number /*i64*/): Object
-        get_collider_shape(collision_index: number /*i64*/): number /*i64*/
-        get_collision_local_shape(collision_index: number /*i64*/): number /*i64*/
-        get_collision_depth(collision_index: number /*i64*/): number /*f64*/
+        get_collision_point(collision_index: number /*i64*/ = 0): Vector3
+        get_collision_normal(collision_index: number /*i64*/ = 0): Vector3
+        get_collider_velocity(collision_index: number /*i64*/ = 0): Vector3
+        get_collider_id(collision_index: number /*i64*/ = 0): number /*i64*/
+        get_collider_rid(collision_index: number /*i64*/ = 0): RID
+        get_collider(collision_index: number /*i64*/ = 0): Object
+        get_collider_shape(collision_index: number /*i64*/ = 0): number /*i64*/
+        get_collision_local_shape(collision_index: number /*i64*/ = 0): number /*i64*/
+        get_collision_depth(collision_index: number /*i64*/ = 0): number /*f64*/
     }
     class PinJoint2D extends Joint2D {
         set_softness(softness: number /*f64*/): void
@@ -5134,21 +5204,21 @@ declare module "godot" {
         popup_hide: Signal
     }
     class PopupMenu extends Popup {
-        activate_item_by_event(event: InputEvent, for_global_only: boolean): boolean
-        add_item(label: string, id: number /*i64*/, accel: Key): void
-        add_icon_item(texture: Texture2D, label: string, id: number /*i64*/, accel: Key): void
-        add_check_item(label: string, id: number /*i64*/, accel: Key): void
-        add_icon_check_item(texture: Texture2D, label: string, id: number /*i64*/, accel: Key): void
-        add_radio_check_item(label: string, id: number /*i64*/, accel: Key): void
-        add_icon_radio_check_item(texture: Texture2D, label: string, id: number /*i64*/, accel: Key): void
-        add_multistate_item(label: string, max_states: number /*i64*/, default_state: number /*i64*/, id: number /*i64*/, accel: Key): void
-        add_shortcut(shortcut: Shortcut, id: number /*i64*/, global: boolean, allow_echo: boolean): void
-        add_icon_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/, global: boolean, allow_echo: boolean): void
-        add_check_shortcut(shortcut: Shortcut, id: number /*i64*/, global: boolean): void
-        add_icon_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/, global: boolean): void
-        add_radio_check_shortcut(shortcut: Shortcut, id: number /*i64*/, global: boolean): void
-        add_icon_radio_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/, global: boolean): void
-        add_submenu_item(label: string, submenu: string, id: number /*i64*/): void
+        activate_item_by_event(event: InputEvent, for_global_only: boolean = false): boolean
+        add_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_icon_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_check_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_icon_check_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_radio_check_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_icon_radio_check_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_multistate_item(label: string, max_states: number /*i64*/, default_state: number /*i64*/ = 0, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false, allow_echo: boolean = false): void
+        add_icon_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false, allow_echo: boolean = false): void
+        add_check_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        add_icon_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        add_radio_check_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        add_icon_radio_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        add_submenu_item(label: string, submenu: string, id: number /*i64*/ = -1): void
         set_item_text(index: number /*i64*/, text: string): void
         set_item_text_direction(index: number /*i64*/, direction: Control.TextDirection): void
         set_item_language(index: number /*i64*/, language: string): void
@@ -5165,7 +5235,7 @@ declare module "godot" {
         set_item_as_checkable(index: number /*i64*/, enable: boolean): void
         set_item_as_radio_checkable(index: number /*i64*/, enable: boolean): void
         set_item_tooltip(index: number /*i64*/, tooltip: string): void
-        set_item_shortcut(index: number /*i64*/, shortcut: Shortcut, global: boolean): void
+        set_item_shortcut(index: number /*i64*/, shortcut: Shortcut, global: boolean = false): void
         set_item_indent(index: number /*i64*/, indent: number /*i64*/): void
         set_item_multistate(index: number /*i64*/, state: number /*i64*/): void
         set_item_shortcut_disabled(index: number /*i64*/, disabled: boolean): void
@@ -5197,8 +5267,8 @@ declare module "godot" {
         get_item_count(): number /*i64*/
         scroll_to_item(index: number /*i64*/): void
         remove_item(index: number /*i64*/): void
-        add_separator(label: string, id: number /*i64*/): void
-        clear(free_submenus: boolean): void
+        add_separator(label: string = '', id: number /*i64*/ = -1): void
+        clear(free_submenus: boolean = false): void
         set_hide_on_item_selection(enable: boolean): void
         is_hide_on_item_selection(): boolean
         set_hide_on_checkable_item_selection(enable: boolean): void
@@ -5233,7 +5303,7 @@ declare module "godot" {
         }
     }
     class PortableCompressedTexture2D extends Texture2D {
-        create_from_image(image: Image, compression_mode: PortableCompressedTexture2D.CompressionMode, normal_map: boolean, lossy_quality: number /*f64*/): void
+        create_from_image(image: Image, compression_mode: PortableCompressedTexture2D.CompressionMode, normal_map: boolean = false, lossy_quality: number /*f64*/ = 0.8): void
         get_format(): Image.Format
         get_compression_mode(): PortableCompressedTexture2D.CompressionMode
         set_size_override(size: Vector2): void
@@ -5639,8 +5709,8 @@ declare module "godot" {
         // // godot.getset: unnormalized_uvw: boolean
     }
     class RDShaderFile extends Resource {
-        set_bytecode(bytecode: RDShaderSPIRV, version: StringName): void
-        get_spirv(version: StringName): RDShaderSPIRV
+        set_bytecode(bytecode: RDShaderSPIRV, version: StringName = ''): void
+        get_spirv(version: StringName = ''): RDShaderSPIRV
         get_version_list(): Array
         set_base_error(error: string): void
         get_base_error(): string
@@ -5762,7 +5832,7 @@ declare module "godot" {
         get_state(): number /*i64*/
         randi(): number /*i64*/
         randf(): number /*f64*/
-        randfn(mean: number /*f64*/, deviation: number /*f64*/): number /*f64*/
+        randfn(mean: number /*f64*/ = 0, deviation: number /*f64*/ = 1): number /*f64*/
         randf_range(from: number /*f64*/, to: number /*f64*/): number /*f64*/
         randi_range(from: number /*i64*/, to: number /*i64*/): number /*i64*/
         randomize(): void
@@ -5972,9 +6042,9 @@ declare module "godot" {
         static create_from_string(pattern: string): RegEx
         clear(): void
         compile(pattern: string): GodotError
-        search(subject: string, offset: number /*i64*/, end: number /*i64*/): RegExMatch
-        search_all(subject: string, offset: number /*i64*/, end: number /*i64*/): Array
-        sub(subject: string, replacement: string, all: boolean, offset: number /*i64*/, end: number /*i64*/): string
+        search(subject: string, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): RegExMatch
+        search_all(subject: string, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): Array
+        sub(subject: string, replacement: string, all: boolean = false, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): string
         is_valid(): boolean
         get_pattern(): string
         get_group_count(): number /*i64*/
@@ -5985,9 +6055,9 @@ declare module "godot" {
         get_group_count(): number /*i64*/
         get_names(): Dictionary
         get_strings(): PackedStringArray
-        get_string(name: any): string
-        get_start(name: any): number /*i64*/
-        get_end(name: any): number /*i64*/
+        get_string(name: any = <any> {} /*compound.type from nil*/): string
+        get_start(name: any = <any> {} /*compound.type from nil*/): number /*i64*/
+        get_end(name: any = <any> {} /*compound.type from nil*/): number /*i64*/
         // // godot.getset: subject: string
         // // godot.getset: names: Dictionary
         // // godot.getset: strings: Array
@@ -6623,79 +6693,79 @@ declare module "godot" {
     class RenderingDevice extends Object {
         static readonly INVALID_ID = -1
         static readonly INVALID_FORMAT_ID = -1
-        texture_create(format: RDTextureFormat, view: RDTextureView, data: Array): RID
+        texture_create(format: RDTextureFormat, view: RDTextureView, data: Array = <any> {} /*compound.type from 28([object Object])*/): RID
         texture_create_shared(view: RDTextureView, with_texture: RID): RID
-        texture_create_shared_from_slice(view: RDTextureView, with_texture: RID, layer: number /*i64*/, mipmap: number /*i64*/, mipmaps: number /*i64*/, slice_type: RenderingDevice.TextureSliceType): RID
+        texture_create_shared_from_slice(view: RDTextureView, with_texture: RID, layer: number /*i64*/, mipmap: number /*i64*/, mipmaps: number /*i64*/ = 1, slice_type: RenderingDevice.TextureSliceType = 0): RID
         texture_create_from_extension(type: RenderingDevice.TextureType, format: RenderingDevice.DataFormat, samples: RenderingDevice.TextureSamples, usage_flags: RenderingDevice.TextureUsageBits, image: number /*i64*/, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, layers: number /*i64*/): RID
-        texture_update(texture: RID, layer: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask): GodotError
+        texture_update(texture: RID, layer: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
         texture_get_data(texture: RID, layer: number /*i64*/): PackedByteArray
         texture_is_format_supported_for_usage(format: RenderingDevice.DataFormat, usage_flags: RenderingDevice.TextureUsageBits): boolean
         texture_is_shared(texture: RID): boolean
         texture_is_valid(texture: RID): boolean
-        texture_copy(from_texture: RID, to_texture: RID, from_pos: Vector3, to_pos: Vector3, size: Vector3, src_mipmap: number /*i64*/, dst_mipmap: number /*i64*/, src_layer: number /*i64*/, dst_layer: number /*i64*/, post_barrier: RenderingDevice.BarrierMask): GodotError
-        texture_clear(texture: RID, color: Color, base_mipmap: number /*i64*/, mipmap_count: number /*i64*/, base_layer: number /*i64*/, layer_count: number /*i64*/, post_barrier: RenderingDevice.BarrierMask): GodotError
-        texture_resolve_multisample(from_texture: RID, to_texture: RID, post_barrier: RenderingDevice.BarrierMask): GodotError
+        texture_copy(from_texture: RID, to_texture: RID, from_pos: Vector3, to_pos: Vector3, size: Vector3, src_mipmap: number /*i64*/, dst_mipmap: number /*i64*/, src_layer: number /*i64*/, dst_layer: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        texture_clear(texture: RID, color: Color, base_mipmap: number /*i64*/, mipmap_count: number /*i64*/, base_layer: number /*i64*/, layer_count: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        texture_resolve_multisample(from_texture: RID, to_texture: RID, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
         texture_get_format(texture: RID): RDTextureFormat
         texture_get_native_handle(texture: RID): number /*i64*/
-        framebuffer_format_create(attachments: Array, view_count: number /*i64*/): number /*i64*/
-        framebuffer_format_create_multipass(attachments: Array, passes: Array, view_count: number /*i64*/): number /*i64*/
-        framebuffer_format_create_empty(samples: RenderingDevice.TextureSamples): number /*i64*/
-        framebuffer_format_get_texture_samples(format: number /*i64*/, render_pass: number /*i64*/): RenderingDevice.TextureSamples
-        framebuffer_create(textures: Array, validate_with_format: number /*i64*/, view_count: number /*i64*/): RID
-        framebuffer_create_multipass(textures: Array, passes: Array, validate_with_format: number /*i64*/, view_count: number /*i64*/): RID
-        framebuffer_create_empty(size: Vector2i, samples: RenderingDevice.TextureSamples, validate_with_format: number /*i64*/): RID
+        framebuffer_format_create(attachments: Array, view_count: number /*i64*/ = 1): number /*i64*/
+        framebuffer_format_create_multipass(attachments: Array, passes: Array, view_count: number /*i64*/ = 1): number /*i64*/
+        framebuffer_format_create_empty(samples: RenderingDevice.TextureSamples = 0): number /*i64*/
+        framebuffer_format_get_texture_samples(format: number /*i64*/, render_pass: number /*i64*/ = 0): RenderingDevice.TextureSamples
+        framebuffer_create(textures: Array, validate_with_format: number /*i64*/ = -1, view_count: number /*i64*/ = 1): RID
+        framebuffer_create_multipass(textures: Array, passes: Array, validate_with_format: number /*i64*/ = -1, view_count: number /*i64*/ = 1): RID
+        framebuffer_create_empty(size: Vector2i, samples: RenderingDevice.TextureSamples = 0, validate_with_format: number /*i64*/ = -1): RID
         framebuffer_get_format(framebuffer: RID): number /*i64*/
         framebuffer_is_valid(framebuffer: RID): boolean
         sampler_create(state: RDSamplerState): RID
         sampler_is_format_supported_for_filter(format: RenderingDevice.DataFormat, sampler_filter: RenderingDevice.SamplerFilter): boolean
-        vertex_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray, use_as_storage: boolean): RID
+        vertex_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_as_storage: boolean = false): RID
         vertex_format_create(vertex_descriptions: Array): number /*i64*/
-        vertex_array_create(vertex_count: number /*i64*/, vertex_format: number /*i64*/, src_buffers: Array, offsets: PackedInt64Array): RID
-        index_buffer_create(size_indices: number /*i64*/, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray, use_restart_indices: boolean): RID
+        vertex_array_create(vertex_count: number /*i64*/, vertex_format: number /*i64*/, src_buffers: Array, offsets: PackedInt64Array = <any> {} /*compound.type from 31([object Object])*/): RID
+        index_buffer_create(size_indices: number /*i64*/, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_restart_indices: boolean = false): RID
         index_array_create(index_buffer: RID, index_offset: number /*i64*/, index_count: number /*i64*/): RID
-        shader_compile_spirv_from_source(shader_source: RDShaderSource, allow_cache: boolean): RDShaderSPIRV
-        shader_compile_binary_from_spirv(spirv_data: RDShaderSPIRV, name: string): PackedByteArray
-        shader_create_from_spirv(spirv_data: RDShaderSPIRV, name: string): RID
-        shader_create_from_bytecode(binary_data: PackedByteArray, placeholder_rid: RID): RID
+        shader_compile_spirv_from_source(shader_source: RDShaderSource, allow_cache: boolean = true): RDShaderSPIRV
+        shader_compile_binary_from_spirv(spirv_data: RDShaderSPIRV, name: string = ''): PackedByteArray
+        shader_create_from_spirv(spirv_data: RDShaderSPIRV, name: string = ''): RID
+        shader_create_from_bytecode(binary_data: PackedByteArray, placeholder_rid: RID = <any> {} /*compound.type from 23([object Object])*/): RID
         shader_create_placeholder(): RID
         shader_get_vertex_input_attribute_mask(shader: RID): number /*i64*/
-        uniform_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray): RID
-        storage_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray, usage: RenderingDevice.StorageBufferUsage): RID
-        texture_buffer_create(size_bytes: number /*i64*/, format: RenderingDevice.DataFormat, data: PackedByteArray): RID
+        uniform_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
+        storage_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, usage: RenderingDevice.StorageBufferUsage = 0): RID
+        texture_buffer_create(size_bytes: number /*i64*/, format: RenderingDevice.DataFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
         uniform_set_create(uniforms: Array, shader: RID, shader_set: number /*i64*/): RID
         uniform_set_is_valid(uniform_set: RID): boolean
-        buffer_update(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask): GodotError
-        buffer_clear(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, post_barrier: RenderingDevice.BarrierMask): GodotError
-        buffer_get_data(buffer: RID, offset_bytes: number /*i64*/, size_bytes: number /*i64*/): PackedByteArray
-        render_pipeline_create(shader: RID, framebuffer_format: number /*i64*/, vertex_format: number /*i64*/, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags, for_render_pass: number /*i64*/, specialization_constants: Array): RID
+        buffer_update(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        buffer_clear(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        buffer_get_data(buffer: RID, offset_bytes: number /*i64*/ = 0, size_bytes: number /*i64*/ = 0): PackedByteArray
+        render_pipeline_create(shader: RID, framebuffer_format: number /*i64*/, vertex_format: number /*i64*/, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: number /*i64*/ = 0, specialization_constants: Array = <any> {} /*compound.type from 28([object Object])*/): RID
         render_pipeline_is_valid(render_pipeline: RID): boolean
-        compute_pipeline_create(shader: RID, specialization_constants: Array): RID
+        compute_pipeline_create(shader: RID, specialization_constants: Array = <any> {} /*compound.type from 28([object Object])*/): RID
         compute_pipeline_is_valid(compute_pipeline: RID): boolean
-        screen_get_width(screen: number /*i64*/): number /*i64*/
-        screen_get_height(screen: number /*i64*/): number /*i64*/
+        screen_get_width(screen: number /*i64*/ = 0): number /*i64*/
+        screen_get_height(screen: number /*i64*/ = 0): number /*i64*/
         screen_get_framebuffer_format(): number /*i64*/
-        draw_list_begin_for_screen(screen: number /*i64*/, clear_color: Color): number /*i64*/
-        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray, clear_depth: number /*f64*/, clear_stencil: number /*i64*/, region: Rect2, storage_textures: Array): number /*i64*/
-        draw_list_begin_split(framebuffer: RID, splits: number /*i64*/, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray, clear_depth: number /*f64*/, clear_stencil: number /*i64*/, region: Rect2, storage_textures: Array): PackedInt64Array
+        draw_list_begin_for_screen(screen: number /*i64*/ = 0, clear_color: Color = new Color(0, 0, 0, 1)): number /*i64*/
+        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: number /*f64*/ = 1, clear_stencil: number /*i64*/ = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): number /*i64*/
+        draw_list_begin_split(framebuffer: RID, splits: number /*i64*/, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: number /*f64*/ = 1, clear_stencil: number /*i64*/ = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): PackedInt64Array
         draw_list_set_blend_constants(draw_list: number /*i64*/, color: Color): void
         draw_list_bind_render_pipeline(draw_list: number /*i64*/, render_pipeline: RID): void
         draw_list_bind_uniform_set(draw_list: number /*i64*/, uniform_set: RID, set_index: number /*i64*/): void
         draw_list_bind_vertex_array(draw_list: number /*i64*/, vertex_array: RID): void
         draw_list_bind_index_array(draw_list: number /*i64*/, index_array: RID): void
         draw_list_set_push_constant(draw_list: number /*i64*/, buffer: PackedByteArray, size_bytes: number /*i64*/): void
-        draw_list_draw(draw_list: number /*i64*/, use_indices: boolean, instances: number /*i64*/, procedural_vertex_count: number /*i64*/): void
-        draw_list_enable_scissor(draw_list: number /*i64*/, rect: Rect2): void
+        draw_list_draw(draw_list: number /*i64*/, use_indices: boolean, instances: number /*i64*/, procedural_vertex_count: number /*i64*/ = 0): void
+        draw_list_enable_scissor(draw_list: number /*i64*/, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/): void
         draw_list_disable_scissor(draw_list: number /*i64*/): void
         draw_list_switch_to_next_pass(): number /*i64*/
         draw_list_switch_to_next_pass_split(splits: number /*i64*/): PackedInt64Array
-        draw_list_end(post_barrier: RenderingDevice.BarrierMask): void
-        compute_list_begin(allow_draw_overlap: boolean): number /*i64*/
+        draw_list_end(post_barrier: RenderingDevice.BarrierMask = 32767): void
+        compute_list_begin(allow_draw_overlap: boolean = false): number /*i64*/
         compute_list_bind_compute_pipeline(compute_list: number /*i64*/, compute_pipeline: RID): void
         compute_list_set_push_constant(compute_list: number /*i64*/, buffer: PackedByteArray, size_bytes: number /*i64*/): void
         compute_list_bind_uniform_set(compute_list: number /*i64*/, uniform_set: RID, set_index: number /*i64*/): void
         compute_list_dispatch(compute_list: number /*i64*/, x_groups: number /*i64*/, y_groups: number /*i64*/, z_groups: number /*i64*/): void
         compute_list_add_barrier(compute_list: number /*i64*/): void
-        compute_list_end(post_barrier: RenderingDevice.BarrierMask): void
+        compute_list_end(post_barrier: RenderingDevice.BarrierMask = 32767): void
         free_rid(rid: RID): void
         capture_timestamp(name: string): void
         get_captured_timestamps_count(): number /*i64*/
@@ -6707,7 +6777,7 @@ declare module "godot" {
         get_frame_delay(): number /*i64*/
         submit(): void
         sync(): void
-        barrier(from: RenderingDevice.BarrierMask, to: RenderingDevice.BarrierMask): void
+        barrier(from: RenderingDevice.BarrierMask = 32767, to: RenderingDevice.BarrierMask = 32767): void
         full_barrier(): void
         create_local_device(): RenderingDevice
         set_resource_name(id: RID, name: string): void
@@ -6740,7 +6810,7 @@ declare module "godot" {
         get_local_scene(): Node
         setup_local_to_scene(): void
         emit_changed(): void
-        duplicate(subresources: boolean): Resource
+        duplicate(subresources: boolean = false): Resource
         // // godot.getset: resource_local_to_scene: boolean
         // // godot.getset: resource_path: string
         // // godot.getset: resource_name: string
@@ -6872,11 +6942,11 @@ declare module "godot" {
         get_parsed_text(): string
         add_text(text: string): void
         set_text(text: string): void
-        add_image(image: Texture2D, width: number /*i64*/, height: number /*i64*/, color: Color, inline_align: InlineAlignment, region: Rect2, key: any, pad: boolean, tooltip: string, size_in_percent: boolean): void
-        update_image(key: any, mask: RichTextLabel.ImageUpdateMask, image: Texture2D, width: number /*i64*/, height: number /*i64*/, color: Color, inline_align: InlineAlignment, region: Rect2, pad: boolean, tooltip: string, size_in_percent: boolean): void
+        add_image(image: Texture2D, width: number /*i64*/ = 0, height: number /*i64*/ = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, key: any = <any> {} /*compound.type from nil*/, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        update_image(key: any, mask: RichTextLabel.ImageUpdateMask, image: Texture2D, width: number /*i64*/ = 0, height: number /*i64*/ = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
         newline(): void
         remove_paragraph(paragraph: number /*i64*/): boolean
-        push_font(font: Font, font_size: number /*i64*/): void
+        push_font(font: Font, font_size: number /*i64*/ = 0): void
         push_font_size(font_size: number /*i64*/): void
         push_normal(): void
         push_bold(): void
@@ -6886,17 +6956,17 @@ declare module "godot" {
         push_color(color: Color): void
         push_outline_size(outline_size: number /*i64*/): void
         push_outline_color(color: Color): void
-        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection, language: string, st_parser: TextServer.StructuredTextParser, justification_flags: TextServer.JustificationFlag, tab_stops: PackedFloat32Array): void
+        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/): void
         push_indent(level: number /*i64*/): void
-        push_list(level: number /*i64*/, type: RichTextLabel.ListType, capitalize: boolean, bullet: string): void
+        push_list(level: number /*i64*/, type: RichTextLabel.ListType, capitalize: boolean, bullet: string = '•'): void
         push_meta(data: any): void
         push_hint(description: string): void
         push_language(language: string): void
         push_underline(): void
         push_strikethrough(): void
-        push_table(columns: number /*i64*/, inline_align: InlineAlignment, align_to_row: number /*i64*/): void
-        push_dropcap(string_: string, font: Font, size: number /*i64*/, dropcap_margins: Rect2, color: Color, outline_size: number /*i64*/, outline_color: Color): void
-        set_table_column_expand(column: number /*i64*/, expand: boolean, ratio: number /*i64*/): void
+        push_table(columns: number /*i64*/, inline_align: InlineAlignment = 0, align_to_row: number /*i64*/ = -1): void
+        push_dropcap(string_: string, font: Font, size: number /*i64*/, dropcap_margins: Rect2 = <any> {} /*compound.type from 7([object Object])*/, color: Color = new Color(1, 1, 1, 1), outline_size: number /*i64*/ = 0, outline_color: Color = new Color(0, 0, 0, 0)): void
+        set_table_column_expand(column: number /*i64*/, expand: boolean, ratio: number /*i64*/ = 1): void
         set_cell_row_background_color(odd_row_bg: Color, even_row_bg: Color): void
         set_cell_border_color(color: Color): void
         set_cell_size_override(min_size: Vector2, max_size: Vector2): void
@@ -7069,14 +7139,14 @@ declare module "godot" {
         set_continuous_collision_detection_mode(mode: RigidBody2D.CCDMode): void
         get_continuous_collision_detection_mode(): RigidBody2D.CCDMode
         set_axis_velocity(axis_velocity: Vector2): void
-        apply_central_impulse(impulse: Vector2): void
-        apply_impulse(impulse: Vector2, position: Vector2): void
+        apply_central_impulse(impulse: Vector2 = Vector2.ZERO): void
+        apply_impulse(impulse: Vector2, position: Vector2 = Vector2.ZERO): void
         apply_torque_impulse(torque: number /*f64*/): void
         apply_central_force(force: Vector2): void
-        apply_force(force: Vector2, position: Vector2): void
+        apply_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
         apply_torque(torque: number /*f64*/): void
         add_constant_central_force(force: Vector2): void
-        add_constant_force(force: Vector2, position: Vector2): void
+        add_constant_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
         add_constant_torque(torque: number /*f64*/): void
         set_constant_force(force: Vector2): void
         get_constant_force(): Vector2
@@ -7173,13 +7243,13 @@ declare module "godot" {
         is_using_continuous_collision_detection(): boolean
         set_axis_velocity(axis_velocity: Vector3): void
         apply_central_impulse(impulse: Vector3): void
-        apply_impulse(impulse: Vector3, position: Vector3): void
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
         apply_torque_impulse(impulse: Vector3): void
         apply_central_force(force: Vector3): void
-        apply_force(force: Vector3, position: Vector3): void
+        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
         apply_torque(torque: Vector3): void
         add_constant_central_force(force: Vector3): void
-        add_constant_force(force: Vector3, position: Vector3): void
+        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
         add_constant_torque(torque: Vector3): void
         set_constant_force(force: Vector3): void
         get_constant_force(): Vector3
@@ -7331,7 +7401,7 @@ declare module "godot" {
         is_object_decoding_allowed(): boolean
         set_server_relay_enabled(enabled: boolean): void
         is_server_relay_enabled(): boolean
-        send_bytes(bytes: PackedByteArray, id: number /*i64*/, mode: MultiplayerPeer.TransferMode, channel: number /*i64*/): GodotError
+        send_bytes(bytes: PackedByteArray, id: number /*i64*/ = 0, mode: MultiplayerPeer.TransferMode = 2, channel: number /*i64*/ = 0): GodotError
         get_max_sync_packet_size(): number /*i64*/
         set_max_sync_packet_size(size: number /*i64*/): void
         get_max_delta_packet_size(): number /*i64*/
@@ -7359,7 +7429,7 @@ declare module "godot" {
     }
     class SceneReplicationConfig extends Resource {
         get_properties(): Array
-        add_property(path: NodePath, index: number /*i64*/): void
+        add_property(path: NodePath, index: number /*i64*/ = -1): void
         has_property(path: NodePath): boolean
         remove_property(path: NodePath): void
         property_get_index(path: NodePath): number /*i64*/
@@ -7386,7 +7456,7 @@ declare module "godot" {
         get_node_count(): number /*i64*/
         get_node_type(idx: number /*i64*/): StringName
         get_node_name(idx: number /*i64*/): StringName
-        get_node_path(idx: number /*i64*/, for_parent: boolean): NodePath
+        get_node_path(idx: number /*i64*/, for_parent: boolean = false): NodePath
         get_node_owner_path(idx: number /*i64*/): NodePath
         is_node_instance_placeholder(idx: number /*i64*/): boolean
         get_node_instance_placeholder(idx: number /*i64*/): string
@@ -7433,12 +7503,12 @@ declare module "godot" {
         get_edited_scene_root(): Node
         set_pause(enable: boolean): void
         is_paused(): boolean
-        create_timer(time_sec: number /*f64*/, process_always: boolean, process_in_physics: boolean, ignore_time_scale: boolean): SceneTreeTimer
+        create_timer(time_sec: number /*f64*/, process_always: boolean = true, process_in_physics: boolean = false, ignore_time_scale: boolean = false): SceneTreeTimer
         create_tween(): Tween
         get_processed_tweens(): Array
         get_node_count(): number /*i64*/
         get_frame(): number /*i64*/
-        quit(exit_code: number /*i64*/): void
+        quit(exit_code: number /*i64*/ = 0): void
         queue_delete(obj: Object): void
         call_group_flags(flags: number /*i64*/, group: StringName, method: StringName, ...vargargs: any[]): void
         notify_group_flags(call_flags: number /*i64*/, group: StringName, notification: number /*i64*/): void
@@ -7454,8 +7524,8 @@ declare module "godot" {
         change_scene_to_packed(packed_scene: PackedScene): GodotError
         reload_current_scene(): GodotError
         unload_current_scene(): void
-        set_multiplayer(multiplayer: MultiplayerAPI, root_path: NodePath): void
-        get_multiplayer(for_path: NodePath): MultiplayerAPI
+        set_multiplayer(multiplayer: MultiplayerAPI, root_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): void
+        get_multiplayer(for_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): MultiplayerAPI
         set_multiplayer_poll_enabled(enabled: boolean): void
         is_multiplayer_poll_enabled(): boolean
         // // godot.getset: auto_accept_quit: boolean
@@ -7492,7 +7562,7 @@ declare module "godot" {
         node_created: Signal
     }
     class SceneTreeEditor extends Control {
-        _update_tree(_unnamed_arg0: boolean): void
+        _update_tree(_unnamed_arg0: boolean = false): void
         _rename_node(_unnamed_arg0: Node, _unnamed_arg1: string): void
         _test_update_tree(): void
         update_tree(): void
@@ -7523,7 +7593,7 @@ declare module "godot" {
         has_source_code(): boolean
         get_source_code(): string
         set_source_code(source: string): void
-        reload(keep_state: boolean): GodotError
+        reload(keep_state: boolean = false): GodotError
         get_base_script(): Script
         get_instance_base_type(): StringName
         has_script_signal(signal_name: StringName): boolean
@@ -7537,7 +7607,7 @@ declare module "godot" {
         // // godot.getset: source_code: string
     }
     class ScriptCreateDialog extends ConfirmationDialog {
-        config(inherits: string, path: string, built_in_enabled: boolean, load_enabled: boolean): void
+        config(inherits: string, path: string, built_in_enabled: boolean = true, load_enabled: boolean = true): void
         script_created: Signal
     }
     class ScriptEditor extends PanelContainer {
@@ -7748,13 +7818,13 @@ declare module "godot" {
         get_mode(): Shader.Mode
         set_code(code: string): void
         get_code(): string
-        set_default_texture_parameter(name: StringName, texture: Texture2D, index: number /*i64*/): void
-        get_default_texture_parameter(name: StringName, index: number /*i64*/): Texture2D
-        get_shader_uniform_list(get_groups: boolean): Array
+        set_default_texture_parameter(name: StringName, texture: Texture2D, index: number /*i64*/ = 0): void
+        get_default_texture_parameter(name: StringName, index: number /*i64*/ = 0): Texture2D
+        get_shader_uniform_list(get_groups: boolean = false): Array
         // // godot.getset: code: string
     }
     class ShaderCreateDialog extends ConfirmationDialog {
-        config(path: string, built_in_enabled: boolean, load_enabled: boolean, _unnamed_arg3: number /*i64*/, _unnamed_arg4: number /*i64*/): void
+        config(path: string, built_in_enabled: boolean, load_enabled: boolean, _unnamed_arg3: number /*i64*/ = 1, _unnamed_arg4: number /*i64*/ = 1): void
         shader_created: Signal
         shader_include_created: Signal
     }
@@ -7970,9 +8040,9 @@ declare module "godot" {
         reset_bone_pose(bone_idx: number /*i64*/): void
         reset_bone_poses(): void
         is_bone_enabled(bone_idx: number /*i64*/): boolean
-        set_bone_enabled(bone_idx: number /*i64*/, enabled: boolean): void
+        set_bone_enabled(bone_idx: number /*i64*/, enabled: boolean = true): void
         clear_bones_global_pose_override(): void
-        set_bone_global_pose_override(bone_idx: number /*i64*/, pose: Transform3D, amount: number /*f64*/, persistent: boolean): void
+        set_bone_global_pose_override(bone_idx: number /*i64*/, pose: Transform3D, amount: number /*f64*/, persistent: boolean = false): void
         get_bone_global_pose_override(bone_idx: number /*i64*/): Transform3D
         get_bone_global_pose(bone_idx: number /*i64*/): Transform3D
         get_bone_global_pose_no_override(bone_idx: number /*i64*/): Transform3D
@@ -7985,7 +8055,7 @@ declare module "godot" {
         set_animate_physical_bones(enabled: boolean): void
         get_animate_physical_bones(): boolean
         physical_bones_stop_simulation(): void
-        physical_bones_start_simulation(bones: Array): void
+        physical_bones_start_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
         physical_bones_add_collision_exception(exception: RID): void
         physical_bones_remove_collision_exception(exception: RID): void
         // // godot.getset: motion_scale: number /*f64*/
@@ -8023,7 +8093,7 @@ declare module "godot" {
         get_min_distance(): number /*f64*/
         set_max_iterations(iterations: number /*i64*/): void
         get_max_iterations(): number /*i64*/
-        start(one_time: boolean): void
+        start(one_time: boolean = false): void
         stop(): void
         // // godot.getset: root_bone: StringName
         // // godot.getset: tip_bone: StringName
@@ -8163,8 +8233,8 @@ declare module "godot" {
         set_physical_bone_node(joint_idx: number /*i64*/, physicalbone2d_node: NodePath): void
         get_physical_bone_node(joint_idx: number /*i64*/): NodePath
         fetch_physical_bones(): void
-        start_simulation(bones: Array): void
-        stop_simulation(bones: Array): void
+        start_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        stop_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
         // // godot.getset: physical_bone_chain_length: number /*i64*/
     }
     class SkeletonModification2DStackHolder extends SkeletonModification2D {
@@ -8409,7 +8479,7 @@ declare module "godot" {
         set_drag_coefficient(drag_coefficient: number /*f64*/): void
         get_drag_coefficient(): number /*f64*/
         get_point_transform(point_index: number /*i64*/): Vector3
-        set_point_pinned(point_index: number /*i64*/, pinned: boolean, attachment_path: NodePath): void
+        set_point_pinned(point_index: number /*i64*/, pinned: boolean, attachment_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): void
         is_point_pinned(point_index: number /*i64*/): boolean
         set_ray_pickable(ray_pickable: boolean): void
         is_ray_pickable(): boolean
@@ -8686,8 +8756,8 @@ declare module "godot" {
         get_animation_speed(anim: StringName): number /*f64*/
         set_animation_loop(anim: StringName, loop: boolean): void
         get_animation_loop(anim: StringName): boolean
-        add_frame(anim: StringName, texture: Texture2D, duration: number /*f64*/, at_position: number /*i64*/): void
-        set_frame(anim: StringName, idx: number /*i64*/, texture: Texture2D, duration: number /*f64*/): void
+        add_frame(anim: StringName, texture: Texture2D, duration: number /*f64*/ = 1, at_position: number /*i64*/ = -1): void
+        set_frame(anim: StringName, idx: number /*i64*/, texture: Texture2D, duration: number /*f64*/ = 1): void
         remove_frame(anim: StringName, idx: number /*i64*/): void
         get_frame_count(anim: StringName): number /*i64*/
         get_frame_texture(anim: StringName, idx: number /*i64*/): Texture2D
@@ -8699,8 +8769,8 @@ declare module "godot" {
         // // godot.getset: animations: Array
     }
     class SpriteFramesEditor extends HSplitContainer {
-        _update_library(skipsel: boolean): void
-        _select_animation(name: string, update_node: boolean): void
+        _update_library(skipsel: boolean = false): void
+        _select_animation(name: string, update_node: boolean = true): void
     }
     class SpriteFramesEditorPlugin extends EditorPlugin {
     }
@@ -8750,7 +8820,7 @@ declare module "godot" {
         put_double(value: number /*f64*/): void
         put_string(value: string): void
         put_utf8_string(value: string): void
-        put_var(value: any, full_objects: boolean): void
+        put_var(value: any, full_objects: boolean = false): void
         get_8(): number /*i64*/
         get_u8(): number /*i64*/
         get_16(): number /*i64*/
@@ -8761,9 +8831,9 @@ declare module "godot" {
         get_u64(): number /*i64*/
         get_float(): number /*f64*/
         get_double(): number /*f64*/
-        get_string(bytes: number /*i64*/): string
-        get_utf8_string(bytes: number /*i64*/): string
-        get_var(allow_objects: boolean): any
+        get_string(bytes: number /*i64*/ = -1): string
+        get_utf8_string(bytes: number /*i64*/ = -1): string
+        get_var(allow_objects: boolean = false): any
         // // godot.getset: big_endian: boolean
     }
     class StreamPeerBuffer extends StreamPeer {
@@ -8780,8 +8850,8 @@ declare module "godot" {
     class StreamPeerExtension extends StreamPeer {
     }
     class StreamPeerGZIP extends StreamPeer {
-        start_compression(use_deflate: boolean, buffer_size: number /*i64*/): GodotError
-        start_decompression(use_deflate: boolean, buffer_size: number /*i64*/): GodotError
+        start_compression(use_deflate: boolean = false, buffer_size: number /*i64*/ = 65535): GodotError
+        start_decompression(use_deflate: boolean = false, buffer_size: number /*i64*/ = 65535): GodotError
         finish(): GodotError
         clear(): void
     }
@@ -8794,7 +8864,7 @@ declare module "godot" {
         }
     }
     class StreamPeerTCP extends StreamPeer {
-        bind(port: number /*i64*/, host: string): GodotError
+        bind(port: number /*i64*/, host: string = '*'): GodotError
         connect_to_host(host: string, port: number /*i64*/): GodotError
         poll(): GodotError
         get_status(): StreamPeerTCP.Status
@@ -8816,7 +8886,7 @@ declare module "godot" {
     class StreamPeerTLS extends StreamPeer {
         poll(): void
         accept_stream(stream: StreamPeer, server_options: TLSOptions): GodotError
-        connect_to_stream(stream: StreamPeer, common_name: string, client_options: TLSOptions): GodotError
+        connect_to_stream(stream: StreamPeer, common_name: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): GodotError
         get_status(): StreamPeerTLS.Status
         get_stream(): StreamPeer
         disconnect_from_stream(): void
@@ -9029,22 +9099,22 @@ declare module "godot" {
         set_weights(weights: PackedFloat32Array): void
         set_custom(channel_index: number /*i64*/, custom_color: Color): void
         set_smooth_group(index: number /*i64*/): void
-        add_triangle_fan(vertices: PackedVector3Array, uvs: PackedVector2Array, colors: PackedColorArray, uv2s: PackedVector2Array, normals: PackedVector3Array, tangents: Array): void
+        add_triangle_fan(vertices: PackedVector3Array, uvs: PackedVector2Array = <any> {} /*compound.type from 35([object Object])*/, colors: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, uv2s: PackedVector2Array = <any> {} /*compound.type from 35([object Object])*/, normals: PackedVector3Array = <any> {} /*compound.type from 36([object Object])*/, tangents: Array = <any> {} /*compound.type from 28([object Object])*/): void
         add_index(index: number /*i64*/): void
         index(): void
         deindex(): void
-        generate_normals(flip: boolean): void
+        generate_normals(flip: boolean = false): void
         generate_tangents(): void
         optimize_indices_for_cache(): void
         get_aabb(): AABB
-        generate_lod(nd_threshold: number /*f64*/, target_index_count: number /*i64*/): PackedInt32Array
+        generate_lod(nd_threshold: number /*f64*/, target_index_count: number /*i64*/ = 3): PackedInt32Array
         set_material(material: Material): void
         get_primitive_type(): Mesh.PrimitiveType
         clear(): void
         create_from(existing: Mesh, surface: number /*i64*/): void
         create_from_blend_shape(existing: Mesh, surface: number /*i64*/, blend_shape: string): void
         append_from(existing: Mesh, surface: number /*i64*/, transform: Transform3D): void
-        commit(existing: ArrayMesh, flags: number /*i64*/): ArrayMesh
+        commit(existing: ArrayMesh = <any> {} /*compound.type from nil*/, flags: number /*i64*/ = 0): ArrayMesh
         commit_to_arrays(): Array
     }
     class SurfaceUpgradeDialog extends ConfirmationDialog {
@@ -9101,7 +9171,7 @@ declare module "godot" {
         // // godot.getset: oversampling: number /*f64*/
     }
     class TCPServer extends RefCounted {
-        listen(port: number /*i64*/, bind_address: string): GodotError
+        listen(port: number /*i64*/, bind_address: string = '*'): GodotError
         is_connection_available(): boolean
         is_listening(): boolean
         get_local_port(): number /*i64*/
@@ -9109,8 +9179,8 @@ declare module "godot" {
         stop(): void
     }
     class TLSOptions extends RefCounted {
-        static client(trusted_chain: X509Certificate, common_name_override: string): TLSOptions
-        static client_unsafe(trusted_chain: X509Certificate): TLSOptions
+        static client(trusted_chain: X509Certificate = <any> {} /*compound.type from nil*/, common_name_override: string = ''): TLSOptions
+        static client_unsafe(trusted_chain: X509Certificate = <any> {} /*compound.type from nil*/): TLSOptions
         static server(key: CryptoKey, certificate: X509Certificate): TLSOptions
     }
     namespace TabBar {
@@ -9154,7 +9224,7 @@ declare module "godot" {
         set_tab_metadata(tab_idx: number /*i64*/, metadata: any): void
         get_tab_metadata(tab_idx: number /*i64*/): any
         remove_tab(tab_idx: number /*i64*/): void
-        add_tab(title: string, icon: Texture2D): void
+        add_tab(title: string = '', icon: Texture2D = <any> {} /*compound.type from nil*/): void
         get_tab_idx_at_point(point: Vector2): number /*i64*/
         set_tab_alignment(alignment: TabBar.AlignmentMode): void
         get_tab_alignment(): TabBar.AlignmentMode
@@ -9358,22 +9428,22 @@ declare module "godot" {
         get_placeholder(): string
         set_line(line: number /*i64*/, new_text: string): void
         get_line(line: number /*i64*/): string
-        get_line_width(line: number /*i64*/, wrap_index: number /*i64*/): number /*i64*/
+        get_line_width(line: number /*i64*/, wrap_index: number /*i64*/ = -1): number /*i64*/
         get_line_height(): number /*i64*/
         get_indent_level(line: number /*i64*/): number /*i64*/
         get_first_non_whitespace_column(line: number /*i64*/): number /*i64*/
         swap_lines(from_line: number /*i64*/, to_line: number /*i64*/): void
         insert_line_at(line: number /*i64*/, text: string): void
-        insert_text_at_caret(text: string, caret_index: number /*i64*/): void
+        insert_text_at_caret(text: string, caret_index: number /*i64*/ = -1): void
         remove_text(from_line: number /*i64*/, from_column: number /*i64*/, to_line: number /*i64*/, to_column: number /*i64*/): void
         get_last_unhidden_line(): number /*i64*/
         get_next_visible_line_offset_from(line: number /*i64*/, visible_amount: number /*i64*/): number /*i64*/
         get_next_visible_line_index_offset_from(line: number /*i64*/, wrap_index: number /*i64*/, visible_amount: number /*i64*/): Vector2i
-        backspace(caret_index: number /*i64*/): void
-        cut(caret_index: number /*i64*/): void
-        copy(caret_index: number /*i64*/): void
-        paste(caret_index: number /*i64*/): void
-        paste_primary_clipboard(caret_index: number /*i64*/): void
+        backspace(caret_index: number /*i64*/ = -1): void
+        cut(caret_index: number /*i64*/ = -1): void
+        copy(caret_index: number /*i64*/ = -1): void
+        paste(caret_index: number /*i64*/ = -1): void
+        paste_primary_clipboard(caret_index: number /*i64*/ = -1): void
         start_action(action: TextEdit.EditAction): void
         end_action(): void
         begin_complex_operation(): void
@@ -9392,12 +9462,12 @@ declare module "godot" {
         set_tooltip_request_func(callback: Callable): void
         get_local_mouse_pos(): Vector2
         get_word_at_pos(position: Vector2): string
-        get_line_column_at_pos(position: Vector2i, allow_out_of_bounds: boolean): Vector2i
+        get_line_column_at_pos(position: Vector2i, allow_out_of_bounds: boolean = true): Vector2i
         get_pos_at_line_column(line: number /*i64*/, column: number /*i64*/): Vector2i
         get_rect_at_line_column(line: number /*i64*/, column: number /*i64*/): Rect2i
         get_minimap_line_at_pos(position: Vector2i): number /*i64*/
         is_dragging_cursor(): boolean
-        is_mouse_over_selection(edges: boolean, caret_index: number /*i64*/): boolean
+        is_mouse_over_selection(edges: boolean, caret_index: number /*i64*/ = -1): boolean
         _emit_caret_changed(): void
         set_caret_type(type: TextEdit.CaretType): void
         get_caret_type(): TextEdit.CaretType
@@ -9421,37 +9491,37 @@ declare module "godot" {
         add_caret_at_carets(below: boolean): void
         get_caret_index_edit_order(): PackedInt32Array
         adjust_carets_after_edit(caret: number /*i64*/, from_line: number /*i64*/, from_col: number /*i64*/, to_line: number /*i64*/, to_col: number /*i64*/): void
-        is_caret_visible(caret_index: number /*i64*/): boolean
-        get_caret_draw_pos(caret_index: number /*i64*/): Vector2
-        set_caret_line(line: number /*i64*/, adjust_viewport: boolean, can_be_hidden: boolean, wrap_index: number /*i64*/, caret_index: number /*i64*/): void
-        get_caret_line(caret_index: number /*i64*/): number /*i64*/
-        set_caret_column(column: number /*i64*/, adjust_viewport: boolean, caret_index: number /*i64*/): void
-        get_caret_column(caret_index: number /*i64*/): number /*i64*/
-        get_caret_wrap_index(caret_index: number /*i64*/): number /*i64*/
-        get_word_under_caret(caret_index: number /*i64*/): string
+        is_caret_visible(caret_index: number /*i64*/ = 0): boolean
+        get_caret_draw_pos(caret_index: number /*i64*/ = 0): Vector2
+        set_caret_line(line: number /*i64*/, adjust_viewport: boolean = true, can_be_hidden: boolean = true, wrap_index: number /*i64*/ = 0, caret_index: number /*i64*/ = 0): void
+        get_caret_line(caret_index: number /*i64*/ = 0): number /*i64*/
+        set_caret_column(column: number /*i64*/, adjust_viewport: boolean = true, caret_index: number /*i64*/ = 0): void
+        get_caret_column(caret_index: number /*i64*/ = 0): number /*i64*/
+        get_caret_wrap_index(caret_index: number /*i64*/ = 0): number /*i64*/
+        get_word_under_caret(caret_index: number /*i64*/ = -1): string
         set_selecting_enabled(enable: boolean): void
         is_selecting_enabled(): boolean
         set_deselect_on_focus_loss_enabled(enable: boolean): void
         is_deselect_on_focus_loss_enabled(): boolean
         set_drag_and_drop_selection_enabled(enable: boolean): void
         is_drag_and_drop_selection_enabled(): boolean
-        set_selection_mode(mode: TextEdit.SelectionMode, line: number /*i64*/, column: number /*i64*/, caret_index: number /*i64*/): void
+        set_selection_mode(mode: TextEdit.SelectionMode, line: number /*i64*/ = -1, column: number /*i64*/ = -1, caret_index: number /*i64*/ = 0): void
         get_selection_mode(): TextEdit.SelectionMode
         select_all(): void
-        select_word_under_caret(caret_index: number /*i64*/): void
+        select_word_under_caret(caret_index: number /*i64*/ = -1): void
         add_selection_for_next_occurrence(): void
-        select(from_line: number /*i64*/, from_column: number /*i64*/, to_line: number /*i64*/, to_column: number /*i64*/, caret_index: number /*i64*/): void
-        has_selection(caret_index: number /*i64*/): boolean
-        get_selected_text(caret_index: number /*i64*/): string
-        get_selection_line(caret_index: number /*i64*/): number /*i64*/
-        get_selection_column(caret_index: number /*i64*/): number /*i64*/
-        get_selection_from_line(caret_index: number /*i64*/): number /*i64*/
-        get_selection_from_column(caret_index: number /*i64*/): number /*i64*/
-        get_selection_to_line(caret_index: number /*i64*/): number /*i64*/
-        get_selection_to_column(caret_index: number /*i64*/): number /*i64*/
-        deselect(caret_index: number /*i64*/): void
-        delete_selection(caret_index: number /*i64*/): void
-        _update_wrap_at_column(force: boolean): void
+        select(from_line: number /*i64*/, from_column: number /*i64*/, to_line: number /*i64*/, to_column: number /*i64*/, caret_index: number /*i64*/ = 0): void
+        has_selection(caret_index: number /*i64*/ = -1): boolean
+        get_selected_text(caret_index: number /*i64*/ = -1): string
+        get_selection_line(caret_index: number /*i64*/ = 0): number /*i64*/
+        get_selection_column(caret_index: number /*i64*/ = 0): number /*i64*/
+        get_selection_from_line(caret_index: number /*i64*/ = 0): number /*i64*/
+        get_selection_from_column(caret_index: number /*i64*/ = 0): number /*i64*/
+        get_selection_to_line(caret_index: number /*i64*/ = 0): number /*i64*/
+        get_selection_to_column(caret_index: number /*i64*/ = 0): number /*i64*/
+        deselect(caret_index: number /*i64*/ = -1): void
+        delete_selection(caret_index: number /*i64*/ = -1): void
+        _update_wrap_at_column(force: boolean = false): void
         set_line_wrapping_mode(mode: TextEdit.LineWrappingMode): void
         get_line_wrapping_mode(): TextEdit.LineWrappingMode
         set_autowrap_mode(autowrap_mode: TextServer.AutowrapMode): void
@@ -9474,24 +9544,24 @@ declare module "godot" {
         get_v_scroll_speed(): number /*f64*/
         set_fit_content_height_enabled(enabled: boolean): void
         is_fit_content_height_enabled(): boolean
-        get_scroll_pos_for_line(line: number /*i64*/, wrap_index: number /*i64*/): number /*f64*/
-        set_line_as_first_visible(line: number /*i64*/, wrap_index: number /*i64*/): void
+        get_scroll_pos_for_line(line: number /*i64*/, wrap_index: number /*i64*/ = 0): number /*f64*/
+        set_line_as_first_visible(line: number /*i64*/, wrap_index: number /*i64*/ = 0): void
         get_first_visible_line(): number /*i64*/
-        set_line_as_center_visible(line: number /*i64*/, wrap_index: number /*i64*/): void
-        set_line_as_last_visible(line: number /*i64*/, wrap_index: number /*i64*/): void
+        set_line_as_center_visible(line: number /*i64*/, wrap_index: number /*i64*/ = 0): void
+        set_line_as_last_visible(line: number /*i64*/, wrap_index: number /*i64*/ = 0): void
         get_last_full_visible_line(): number /*i64*/
         get_last_full_visible_line_wrap_index(): number /*i64*/
         get_visible_line_count(): number /*i64*/
         get_visible_line_count_in_range(from_line: number /*i64*/, to_line: number /*i64*/): number /*i64*/
         get_total_visible_line_count(): number /*i64*/
-        adjust_viewport_to_caret(caret_index: number /*i64*/): void
-        center_viewport_to_caret(caret_index: number /*i64*/): void
+        adjust_viewport_to_caret(caret_index: number /*i64*/ = 0): void
+        center_viewport_to_caret(caret_index: number /*i64*/ = 0): void
         set_draw_minimap(enabled: boolean): void
         is_drawing_minimap(): boolean
         set_minimap_width(width: number /*i64*/): void
         get_minimap_width(): number /*i64*/
         get_minimap_visible_lines(): number /*i64*/
-        add_gutter(at: number /*i64*/): void
+        add_gutter(at: number /*i64*/ = -1): void
         remove_gutter(gutter: number /*i64*/): void
         get_gutter_count(): number /*i64*/
         set_gutter_name(gutter: number /*i64*/, name: string): void
@@ -9592,9 +9662,9 @@ declare module "godot" {
         set_preserve_control(enabled: boolean): void
         get_preserve_control(): boolean
         set_bidi_override(override: Array): void
-        add_string(text: string, font: Font, font_size: number /*i64*/, language: string, meta: any): boolean
-        add_object(key: any, size: Vector2, inline_align: InlineAlignment, length: number /*i64*/, baseline: number /*f64*/): boolean
-        resize_object(key: any, size: Vector2, inline_align: InlineAlignment, baseline: number /*f64*/): boolean
+        add_string(text: string, font: Font, font_size: number /*i64*/, language: string = '', meta: any = <any> {} /*compound.type from nil*/): boolean
+        add_object(key: any, size: Vector2, inline_align: InlineAlignment = 5, length: number /*i64*/ = 1, baseline: number /*f64*/ = 0): boolean
+        resize_object(key: any, size: Vector2, inline_align: InlineAlignment = 5, baseline: number /*f64*/ = 0): boolean
         set_width(width: number /*f64*/): void
         get_width(): number /*f64*/
         set_horizontal_alignment(alignment: HorizontalAlignment): void
@@ -9613,8 +9683,8 @@ declare module "godot" {
         get_line_width(): number /*f64*/
         get_line_underline_position(): number /*f64*/
         get_line_underline_thickness(): number /*f64*/
-        draw(canvas: RID, pos: Vector2, color: Color): void
-        draw_outline(canvas: RID, pos: Vector2, outline_size: number /*i64*/, color: Color): void
+        draw(canvas: RID, pos: Vector2, color: Color = new Color(1, 1, 1, 1)): void
+        draw_outline(canvas: RID, pos: Vector2, outline_size: number /*i64*/ = 1, color: Color = new Color(1, 1, 1, 1)): void
         hit_test(coords: number /*f64*/): number /*i64*/
         // // godot.getset: direction: number /*i64*/
         // // godot.getset: orientation: number /*i64*/
@@ -9695,11 +9765,11 @@ declare module "godot" {
         set_preserve_control(enabled: boolean): void
         get_preserve_control(): boolean
         set_bidi_override(override: Array): void
-        set_dropcap(text: string, font: Font, font_size: number /*i64*/, dropcap_margins: Rect2, language: string): boolean
+        set_dropcap(text: string, font: Font, font_size: number /*i64*/, dropcap_margins: Rect2 = <any> {} /*compound.type from 7([object Object])*/, language: string = ''): boolean
         clear_dropcap(): void
-        add_string(text: string, font: Font, font_size: number /*i64*/, language: string, meta: any): boolean
-        add_object(key: any, size: Vector2, inline_align: InlineAlignment, length: number /*i64*/, baseline: number /*f64*/): boolean
-        resize_object(key: any, size: Vector2, inline_align: InlineAlignment, baseline: number /*f64*/): boolean
+        add_string(text: string, font: Font, font_size: number /*i64*/, language: string = '', meta: any = <any> {} /*compound.type from nil*/): boolean
+        add_object(key: any, size: Vector2, inline_align: InlineAlignment = 5, length: number /*i64*/ = 1, baseline: number /*f64*/ = 0): boolean
+        resize_object(key: any, size: Vector2, inline_align: InlineAlignment = 5, baseline: number /*f64*/ = 0): boolean
         set_alignment(alignment: HorizontalAlignment): void
         get_alignment(): HorizontalAlignment
         tab_align(tab_stops: PackedFloat32Array): void
@@ -9730,12 +9800,12 @@ declare module "godot" {
         get_line_underline_thickness(line: number /*i64*/): number /*f64*/
         get_dropcap_size(): Vector2
         get_dropcap_lines(): number /*i64*/
-        draw(canvas: RID, pos: Vector2, color: Color, dc_color: Color): void
-        draw_outline(canvas: RID, pos: Vector2, outline_size: number /*i64*/, color: Color, dc_color: Color): void
-        draw_line(canvas: RID, pos: Vector2, line: number /*i64*/, color: Color): void
-        draw_line_outline(canvas: RID, pos: Vector2, line: number /*i64*/, outline_size: number /*i64*/, color: Color): void
-        draw_dropcap(canvas: RID, pos: Vector2, color: Color): void
-        draw_dropcap_outline(canvas: RID, pos: Vector2, outline_size: number /*i64*/, color: Color): void
+        draw(canvas: RID, pos: Vector2, color: Color = new Color(1, 1, 1, 1), dc_color: Color = new Color(1, 1, 1, 1)): void
+        draw_outline(canvas: RID, pos: Vector2, outline_size: number /*i64*/ = 1, color: Color = new Color(1, 1, 1, 1), dc_color: Color = new Color(1, 1, 1, 1)): void
+        draw_line(canvas: RID, pos: Vector2, line: number /*i64*/, color: Color = new Color(1, 1, 1, 1)): void
+        draw_line_outline(canvas: RID, pos: Vector2, line: number /*i64*/, outline_size: number /*i64*/ = 1, color: Color = new Color(1, 1, 1, 1)): void
+        draw_dropcap(canvas: RID, pos: Vector2, color: Color = new Color(1, 1, 1, 1)): void
+        draw_dropcap_outline(canvas: RID, pos: Vector2, outline_size: number /*i64*/ = 1, color: Color = new Color(1, 1, 1, 1)): void
         hit_test(coords: Vector2): number /*i64*/
         // // godot.getset: direction: number /*i64*/
         // // godot.getset: custom_punctuation: string
@@ -10006,8 +10076,8 @@ declare module "godot" {
         font_get_supported_chars(font_rid: RID): string
         font_render_range(font_rid: RID, size: Vector2i, start: number /*i64*/, end: number /*i64*/): void
         font_render_glyph(font_rid: RID, size: Vector2i, index: number /*i64*/): void
-        font_draw_glyph(font_rid: RID, canvas: RID, size: number /*i64*/, pos: Vector2, index: number /*i64*/, color: Color): void
-        font_draw_glyph_outline(font_rid: RID, canvas: RID, size: number /*i64*/, outline_size: number /*i64*/, pos: Vector2, index: number /*i64*/, color: Color): void
+        font_draw_glyph(font_rid: RID, canvas: RID, size: number /*i64*/, pos: Vector2, index: number /*i64*/, color: Color = new Color(1, 1, 1, 1)): void
+        font_draw_glyph_outline(font_rid: RID, canvas: RID, size: number /*i64*/, outline_size: number /*i64*/, pos: Vector2, index: number /*i64*/, color: Color = new Color(1, 1, 1, 1)): void
         font_is_language_supported(font_rid: RID, language: string): boolean
         font_set_language_support_override(font_rid: RID, language: string, supported: boolean): void
         font_get_language_support_override(font_rid: RID, language: string): boolean
@@ -10026,15 +10096,15 @@ declare module "godot" {
         font_set_global_oversampling(oversampling: number /*f64*/): void
         get_hex_code_box_size(size: number /*i64*/, index: number /*i64*/): Vector2
         draw_hex_code_box(canvas: RID, size: number /*i64*/, pos: Vector2, index: number /*i64*/, color: Color): void
-        create_shaped_text(direction: TextServer.Direction, orientation: TextServer.Orientation): RID
+        create_shaped_text(direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): RID
         shaped_text_clear(rid: RID): void
-        shaped_text_set_direction(shaped: RID, direction: TextServer.Direction): void
+        shaped_text_set_direction(shaped: RID, direction: TextServer.Direction = 0): void
         shaped_text_get_direction(shaped: RID): TextServer.Direction
         shaped_text_get_inferred_direction(shaped: RID): TextServer.Direction
         shaped_text_set_bidi_override(shaped: RID, override: Array): void
         shaped_text_set_custom_punctuation(shaped: RID, punct: string): void
         shaped_text_get_custom_punctuation(shaped: RID): string
-        shaped_text_set_orientation(shaped: RID, orientation: TextServer.Orientation): void
+        shaped_text_set_orientation(shaped: RID, orientation: TextServer.Orientation = 0): void
         shaped_text_get_orientation(shaped: RID): TextServer.Orientation
         shaped_text_set_preserve_invalid(shaped: RID, enabled: boolean): void
         shaped_text_get_preserve_invalid(shaped: RID): boolean
@@ -10042,15 +10112,15 @@ declare module "godot" {
         shaped_text_get_preserve_control(shaped: RID): boolean
         shaped_text_set_spacing(shaped: RID, spacing: TextServer.SpacingType, value: number /*i64*/): void
         shaped_text_get_spacing(shaped: RID, spacing: TextServer.SpacingType): number /*i64*/
-        shaped_text_add_string(shaped: RID, text: string, fonts: Array, size: number /*i64*/, opentype_features: Dictionary, language: string, meta: any): boolean
-        shaped_text_add_object(shaped: RID, key: any, size: Vector2, inline_align: InlineAlignment, length: number /*i64*/, baseline: number /*f64*/): boolean
-        shaped_text_resize_object(shaped: RID, key: any, size: Vector2, inline_align: InlineAlignment, baseline: number /*f64*/): boolean
+        shaped_text_add_string(shaped: RID, text: string, fonts: Array, size: number /*i64*/, opentype_features: Dictionary = <any> {} /*compound.type from 27([object Object])*/, language: string = '', meta: any = <any> {} /*compound.type from nil*/): boolean
+        shaped_text_add_object(shaped: RID, key: any, size: Vector2, inline_align: InlineAlignment = 5, length: number /*i64*/ = 1, baseline: number /*f64*/ = 0): boolean
+        shaped_text_resize_object(shaped: RID, key: any, size: Vector2, inline_align: InlineAlignment = 5, baseline: number /*f64*/ = 0): boolean
         shaped_get_span_count(shaped: RID): number /*i64*/
         shaped_get_span_meta(shaped: RID, index: number /*i64*/): any
-        shaped_set_span_update_font(shaped: RID, index: number /*i64*/, fonts: Array, size: number /*i64*/, opentype_features: Dictionary): void
+        shaped_set_span_update_font(shaped: RID, index: number /*i64*/, fonts: Array, size: number /*i64*/, opentype_features: Dictionary = <any> {} /*compound.type from 27([object Object])*/): void
         shaped_text_substr(shaped: RID, start: number /*i64*/, length: number /*i64*/): RID
         shaped_text_get_parent(shaped: RID): RID
-        shaped_text_fit_to_width(shaped: RID, width: number /*f64*/, justification_flags: TextServer.JustificationFlag): number /*f64*/
+        shaped_text_fit_to_width(shaped: RID, width: number /*f64*/, justification_flags: TextServer.JustificationFlag = 3): number /*f64*/
         shaped_text_tab_align(shaped: RID, tab_stops: PackedFloat32Array): number /*f64*/
         shaped_text_shape(shaped: RID): boolean
         shaped_text_is_ready(shaped: RID): boolean
@@ -10059,14 +10129,14 @@ declare module "godot" {
         shaped_text_sort_logical(shaped: RID): Array
         shaped_text_get_glyph_count(shaped: RID): number /*i64*/
         shaped_text_get_range(shaped: RID): Vector2i
-        shaped_text_get_line_breaks_adv(shaped: RID, width: PackedFloat32Array, start: number /*i64*/, once: boolean, break_flags: TextServer.LineBreakFlag): PackedInt32Array
-        shaped_text_get_line_breaks(shaped: RID, width: number /*f64*/, start: number /*i64*/, break_flags: TextServer.LineBreakFlag): PackedInt32Array
-        shaped_text_get_word_breaks(shaped: RID, grapheme_flags: TextServer.GraphemeFlag): PackedInt32Array
+        shaped_text_get_line_breaks_adv(shaped: RID, width: PackedFloat32Array, start: number /*i64*/ = 0, once: boolean = true, break_flags: TextServer.LineBreakFlag = 3): PackedInt32Array
+        shaped_text_get_line_breaks(shaped: RID, width: number /*f64*/, start: number /*i64*/ = 0, break_flags: TextServer.LineBreakFlag = 3): PackedInt32Array
+        shaped_text_get_word_breaks(shaped: RID, grapheme_flags: TextServer.GraphemeFlag = 264): PackedInt32Array
         shaped_text_get_trim_pos(shaped: RID): number /*i64*/
         shaped_text_get_ellipsis_pos(shaped: RID): number /*i64*/
         shaped_text_get_ellipsis_glyphs(shaped: RID): Array
         shaped_text_get_ellipsis_glyph_count(shaped: RID): number /*i64*/
-        shaped_text_overrun_trim_to_width(shaped: RID, width: number /*f64*/, overrun_trim_flags: TextServer.TextOverrunFlag): void
+        shaped_text_overrun_trim_to_width(shaped: RID, width: number /*f64*/ = 0, overrun_trim_flags: TextServer.TextOverrunFlag = 0): void
         shaped_text_get_objects(shaped: RID): Array
         shaped_text_get_object_rect(shaped: RID, key: any): Rect2
         shaped_text_get_size(shaped: RID): Vector2
@@ -10086,20 +10156,20 @@ declare module "godot" {
         shaped_text_next_character_pos(shaped: RID, pos: number /*i64*/): number /*i64*/
         shaped_text_prev_character_pos(shaped: RID, pos: number /*i64*/): number /*i64*/
         shaped_text_closest_character_pos(shaped: RID, pos: number /*i64*/): number /*i64*/
-        shaped_text_draw(shaped: RID, canvas: RID, pos: Vector2, clip_l: number /*f64*/, clip_r: number /*f64*/, color: Color): void
-        shaped_text_draw_outline(shaped: RID, canvas: RID, pos: Vector2, clip_l: number /*f64*/, clip_r: number /*f64*/, outline_size: number /*i64*/, color: Color): void
+        shaped_text_draw(shaped: RID, canvas: RID, pos: Vector2, clip_l: number /*f64*/ = -1, clip_r: number /*f64*/ = -1, color: Color = new Color(1, 1, 1, 1)): void
+        shaped_text_draw_outline(shaped: RID, canvas: RID, pos: Vector2, clip_l: number /*f64*/ = -1, clip_r: number /*f64*/ = -1, outline_size: number /*i64*/ = 1, color: Color = new Color(1, 1, 1, 1)): void
         shaped_text_get_dominant_direction_in_range(shaped: RID, start: number /*i64*/, end: number /*i64*/): TextServer.Direction
-        format_number(number: string, language: string): string
-        parse_number(number: string, language: string): string
-        percent_sign(language: string): string
-        string_get_word_breaks(string_: string, language: string, chars_per_line: number /*i64*/): PackedInt32Array
-        string_get_character_breaks(string_: string, language: string): PackedInt32Array
+        format_number(number: string, language: string = ''): string
+        parse_number(number: string, language: string = ''): string
+        percent_sign(language: string = ''): string
+        string_get_word_breaks(string_: string, language: string = '', chars_per_line: number /*i64*/ = 0): PackedInt32Array
+        string_get_character_breaks(string_: string, language: string = ''): PackedInt32Array
         is_confusable(string_: string, dict: PackedStringArray): number /*i64*/
         spoof_check(string_: string): boolean
         strip_diacritics(string_: string): string
         is_valid_identifier(string_: string): boolean
-        string_to_upper(string_: string, language: string): string
-        string_to_lower(string_: string, language: string): string
+        string_to_upper(string_: string, language: string = ''): string
+        string_to_lower(string_: string, language: string = ''): string
         parse_structured_text(parser_type: TextServer.StructuredTextParser, args: Array, text: string): Array
     }
     class TextServerAdvanced extends TextServerExtension {
@@ -10115,9 +10185,9 @@ declare module "godot" {
         get_height(): number /*i64*/
         get_size(): Vector2
         has_alpha(): boolean
-        draw(canvas_item: RID, position: Vector2, modulate: Color, transpose: boolean): void
-        draw_rect(canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color, transpose: boolean): void
-        draw_rect_region(canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: boolean, clip_uv: boolean): void
+        draw(canvas_item: RID, position: Vector2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
+        draw_rect(canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
+        draw_rect_region(canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false, clip_uv: boolean = true): void
         get_image(): Image
         create_placeholder(): Resource
     }
@@ -10435,7 +10505,7 @@ declare module "godot" {
         }
     }
     class Thread extends RefCounted {
-        start(callable: Callable, priority: Thread.Priority): GodotError
+        start(callable: Callable, priority: Thread.Priority = 1): GodotError
         get_id(): string
         is_started(): boolean
         is_alive(): boolean
@@ -10515,7 +10585,7 @@ declare module "godot" {
     class TileMap extends Node2D {
         set_navigation_map(layer: number /*i64*/, map: RID): void
         get_navigation_map(layer: number /*i64*/): RID
-        force_update(layer: number /*i64*/): void
+        force_update(layer: number /*i64*/ = -1): void
         set_tileset(tileset: TileSet): void
         get_tileset(): TileSet
         set_rendering_quadrant_size(size: number /*i64*/): void
@@ -10546,27 +10616,27 @@ declare module "godot" {
         get_collision_visibility_mode(): TileMap.VisibilityMode
         set_navigation_visibility_mode(navigation_visibility_mode: TileMap.VisibilityMode): void
         get_navigation_visibility_mode(): TileMap.VisibilityMode
-        set_cell(layer: number /*i64*/, coords: Vector2i, source_id: number /*i64*/, atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
+        set_cell(layer: number /*i64*/, coords: Vector2i, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = 0): void
         erase_cell(layer: number /*i64*/, coords: Vector2i): void
-        get_cell_source_id(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean): number /*i64*/
-        get_cell_atlas_coords(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean): Vector2i
-        get_cell_alternative_tile(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean): number /*i64*/
-        get_cell_tile_data(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean): TileData
+        get_cell_source_id(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): number /*i64*/
+        get_cell_atlas_coords(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): Vector2i
+        get_cell_alternative_tile(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): number /*i64*/
+        get_cell_tile_data(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): TileData
         get_coords_for_body_rid(body: RID): Vector2i
         get_layer_for_body_rid(body: RID): number /*i64*/
         get_pattern(layer: number /*i64*/, coords_array: Array): TileMapPattern
         map_pattern(position_in_tilemap: Vector2i, coords_in_pattern: Vector2i, pattern: TileMapPattern): Vector2i
         set_pattern(layer: number /*i64*/, position: Vector2i, pattern: TileMapPattern): void
-        set_cells_terrain_connect(layer: number /*i64*/, cells: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean): void
-        set_cells_terrain_path(layer: number /*i64*/, path: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean): void
+        set_cells_terrain_connect(layer: number /*i64*/, cells: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean = true): void
+        set_cells_terrain_path(layer: number /*i64*/, path: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean = true): void
         fix_invalid_tiles(): void
         clear_layer(layer: number /*i64*/): void
         clear(): void
         update_internals(): void
-        notify_runtime_tile_data_update(layer: number /*i64*/): void
+        notify_runtime_tile_data_update(layer: number /*i64*/ = -1): void
         get_surrounding_cells(coords: Vector2i): Array
         get_used_cells(layer: number /*i64*/): Array
-        get_used_cells_by_id(layer: number /*i64*/, source_id: number /*i64*/, atlas_coords: Vector2i, alternative_tile: number /*i64*/): Array
+        get_used_cells_by_id(layer: number /*i64*/, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = -1): Array
         get_used_rect(): Rect2i
         map_to_local(map_position: Vector2i): Vector2
         local_to_map(local_position: Vector2): Vector2i
@@ -10590,7 +10660,7 @@ declare module "godot" {
         _get_tile_map_selection(): Array
     }
     class TileMapPattern extends Resource {
-        set_cell(coords: Vector2i, source_id: number /*i64*/, atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
+        set_cell(coords: Vector2i, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = -1): void
         has_cell(coords: Vector2i): boolean
         remove_cell(coords: Vector2i, update_size: boolean): void
         get_cell_source_id(coords: Vector2i): number /*i64*/
@@ -10650,7 +10720,7 @@ declare module "godot" {
     }
     class TileSet extends Resource {
         get_next_source_id(): number /*i64*/
-        add_source(source: TileSetSource, atlas_source_id_override: number /*i64*/): number /*i64*/
+        add_source(source: TileSetSource, atlas_source_id_override: number /*i64*/ = -1): number /*i64*/
         remove_source(source_id: number /*i64*/): void
         set_source_id(source_id: number /*i64*/, new_source_id: number /*i64*/): void
         get_source_count(): number /*i64*/
@@ -10668,7 +10738,7 @@ declare module "godot" {
         set_uv_clipping(uv_clipping: boolean): void
         is_uv_clipping(): boolean
         get_occlusion_layers_count(): number /*i64*/
-        add_occlusion_layer(to_position: number /*i64*/): void
+        add_occlusion_layer(to_position: number /*i64*/ = -1): void
         move_occlusion_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
         remove_occlusion_layer(layer_index: number /*i64*/): void
         set_occlusion_layer_light_mask(layer_index: number /*i64*/, light_mask: number /*i64*/): void
@@ -10676,7 +10746,7 @@ declare module "godot" {
         set_occlusion_layer_sdf_collision(layer_index: number /*i64*/, sdf_collision: boolean): void
         get_occlusion_layer_sdf_collision(layer_index: number /*i64*/): boolean
         get_physics_layers_count(): number /*i64*/
-        add_physics_layer(to_position: number /*i64*/): void
+        add_physics_layer(to_position: number /*i64*/ = -1): void
         move_physics_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
         remove_physics_layer(layer_index: number /*i64*/): void
         set_physics_layer_collision_layer(layer_index: number /*i64*/, layer: number /*i64*/): void
@@ -10686,13 +10756,13 @@ declare module "godot" {
         set_physics_layer_physics_material(layer_index: number /*i64*/, physics_material: PhysicsMaterial): void
         get_physics_layer_physics_material(layer_index: number /*i64*/): PhysicsMaterial
         get_terrain_sets_count(): number /*i64*/
-        add_terrain_set(to_position: number /*i64*/): void
+        add_terrain_set(to_position: number /*i64*/ = -1): void
         move_terrain_set(terrain_set: number /*i64*/, to_position: number /*i64*/): void
         remove_terrain_set(terrain_set: number /*i64*/): void
         set_terrain_set_mode(terrain_set: number /*i64*/, mode: TileSet.TerrainMode): void
         get_terrain_set_mode(terrain_set: number /*i64*/): TileSet.TerrainMode
         get_terrains_count(terrain_set: number /*i64*/): number /*i64*/
-        add_terrain(terrain_set: number /*i64*/, to_position: number /*i64*/): void
+        add_terrain(terrain_set: number /*i64*/, to_position: number /*i64*/ = -1): void
         move_terrain(terrain_set: number /*i64*/, terrain_index: number /*i64*/, to_position: number /*i64*/): void
         remove_terrain(terrain_set: number /*i64*/, terrain_index: number /*i64*/): void
         set_terrain_name(terrain_set: number /*i64*/, terrain_index: number /*i64*/, name: string): void
@@ -10700,7 +10770,7 @@ declare module "godot" {
         set_terrain_color(terrain_set: number /*i64*/, terrain_index: number /*i64*/, color: Color): void
         get_terrain_color(terrain_set: number /*i64*/, terrain_index: number /*i64*/): Color
         get_navigation_layers_count(): number /*i64*/
-        add_navigation_layer(to_position: number /*i64*/): void
+        add_navigation_layer(to_position: number /*i64*/ = -1): void
         move_navigation_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
         remove_navigation_layer(layer_index: number /*i64*/): void
         set_navigation_layer_layers(layer_index: number /*i64*/, layers: number /*i64*/): void
@@ -10708,7 +10778,7 @@ declare module "godot" {
         set_navigation_layer_layer_value(layer_index: number /*i64*/, layer_number: number /*i64*/, value: boolean): void
         get_navigation_layer_layer_value(layer_index: number /*i64*/, layer_number: number /*i64*/): boolean
         get_custom_data_layers_count(): number /*i64*/
-        add_custom_data_layer(to_position: number /*i64*/): void
+        add_custom_data_layer(to_position: number /*i64*/ = -1): void
         move_custom_data_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
         remove_custom_data_layer(layer_index: number /*i64*/): void
         get_custom_data_layer_by_name(layer_name: string): number /*i64*/
@@ -10731,8 +10801,8 @@ declare module "godot" {
         map_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): Array
         cleanup_invalid_tile_proxies(): void
         clear_tile_proxies(): void
-        add_pattern(pattern: TileMapPattern, index: number /*i64*/): number /*i64*/
-        get_pattern(index: number /*i64*/): TileMapPattern
+        add_pattern(pattern: TileMapPattern, index: number /*i64*/ = -1): number /*i64*/
+        get_pattern(index: number /*i64*/ = -1): TileMapPattern
         remove_pattern(index: number /*i64*/): void
         get_patterns_count(): number /*i64*/
         // // godot.getset: tile_shape: number /*i64*/
@@ -10762,11 +10832,11 @@ declare module "godot" {
         get_texture_region_size(): Vector2i
         set_use_texture_padding(use_texture_padding: boolean): void
         get_use_texture_padding(): boolean
-        create_tile(atlas_coords: Vector2i, size: Vector2i): void
+        create_tile(atlas_coords: Vector2i, size: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
         remove_tile(atlas_coords: Vector2i): void
-        move_tile_in_atlas(atlas_coords: Vector2i, new_atlas_coords: Vector2i, new_size: Vector2i): void
+        move_tile_in_atlas(atlas_coords: Vector2i, new_atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, new_size: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
         get_tile_size_in_atlas(atlas_coords: Vector2i): Vector2i
-        has_room_for_tile(atlas_coords: Vector2i, size: Vector2i, animation_columns: number /*i64*/, animation_separation: Vector2i, frames_count: number /*i64*/, ignored_tile: Vector2i): boolean
+        has_room_for_tile(atlas_coords: Vector2i, size: Vector2i, animation_columns: number /*i64*/, animation_separation: Vector2i, frames_count: number /*i64*/, ignored_tile: Vector2i = <any> {} /*compound.type from 6([object Object])*/): boolean
         get_tiles_to_be_removed_on_change(texture: Texture2D, margins: Vector2i, separation: Vector2i, texture_region_size: Vector2i): PackedVector2Array
         get_tile_at_coords(atlas_coords: Vector2i): Vector2i
         has_tiles_outside_texture(): boolean
@@ -10784,13 +10854,13 @@ declare module "godot" {
         set_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: number /*i64*/, duration: number /*f64*/): void
         get_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: number /*i64*/): number /*f64*/
         get_tile_animation_total_duration(atlas_coords: Vector2i): number /*f64*/
-        create_alternative_tile(atlas_coords: Vector2i, alternative_id_override: number /*i64*/): number /*i64*/
+        create_alternative_tile(atlas_coords: Vector2i, alternative_id_override: number /*i64*/ = -1): number /*i64*/
         remove_alternative_tile(atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
         set_alternative_tile_id(atlas_coords: Vector2i, alternative_tile: number /*i64*/, new_id: number /*i64*/): void
         get_next_alternative_tile_id(atlas_coords: Vector2i): number /*i64*/
         get_tile_data(atlas_coords: Vector2i, alternative_tile: number /*i64*/): TileData
         get_atlas_grid_size(): Vector2i
-        get_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/): Rect2i
+        get_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/ = 0): Rect2i
         _update_padded_texture(): void
         get_runtime_texture(): Texture2D
         get_runtime_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/): Rect2i
@@ -10822,7 +10892,7 @@ declare module "godot" {
         get_scene_tiles_count(): number /*i64*/
         get_scene_tile_id(index: number /*i64*/): number /*i64*/
         has_scene_tile_id(id: number /*i64*/): boolean
-        create_scene_tile(packed_scene: PackedScene, id_override: number /*i64*/): number /*i64*/
+        create_scene_tile(packed_scene: PackedScene, id_override: number /*i64*/ = -1): number /*i64*/
         set_scene_tile_id(id: number /*i64*/, new_id: number /*i64*/): void
         set_scene_tile_scene(id: number /*i64*/, packed_scene: PackedScene): void
         get_scene_tile_scene(id: number /*i64*/): PackedScene
@@ -10860,7 +10930,7 @@ declare module "godot" {
         is_one_shot(): boolean
         set_autostart(enable: boolean): void
         has_autostart(): boolean
-        start(time_sec: number /*f64*/): void
+        start(time_sec: number /*f64*/ = -1): void
         stop(): void
         set_paused(paused: boolean): void
         is_paused(): boolean
@@ -10931,11 +11001,11 @@ declare module "godot" {
     class Translation extends Resource {
         set_locale(locale: string): void
         get_locale(): string
-        add_message(src_message: StringName, xlated_message: StringName, context: StringName): void
-        add_plural_message(src_message: StringName, xlated_messages: PackedStringArray, context: StringName): void
-        get_message(src_message: StringName, context: StringName): StringName
-        get_plural_message(src_message: StringName, src_plural_message: StringName, n: number /*i64*/, context: StringName): StringName
-        erase_message(src_message: StringName, context: StringName): void
+        add_message(src_message: StringName, xlated_message: StringName, context: StringName = ''): void
+        add_plural_message(src_message: StringName, xlated_messages: PackedStringArray, context: StringName = ''): void
+        get_message(src_message: StringName, context: StringName = ''): StringName
+        get_plural_message(src_message: StringName, src_plural_message: StringName, n: number /*i64*/, context: StringName = ''): StringName
+        erase_message(src_message: StringName, context: StringName = ''): void
         get_message_list(): PackedStringArray
         get_translated_message_list(): PackedStringArray
         get_message_count(): number /*i64*/
@@ -10958,7 +11028,7 @@ declare module "godot" {
     }
     class Tree extends Control {
         clear(): void
-        create_item(parent: TreeItem, index: number /*i64*/): TreeItem
+        create_item(parent: TreeItem = <any> {} /*compound.type from nil*/, index: number /*i64*/ = -1): TreeItem
         get_root(): TreeItem
         set_column_custom_minimum_width(column: number /*i64*/, min_width: number /*i64*/): void
         set_column_expand(column: number /*i64*/, expand: boolean): void
@@ -10982,9 +11052,9 @@ declare module "godot" {
         get_columns(): number /*i64*/
         get_edited(): TreeItem
         get_edited_column(): number /*i64*/
-        edit_selected(force_edit: boolean): boolean
+        edit_selected(force_edit: boolean = false): boolean
         get_custom_popup_rect(): Rect2
-        get_item_area_rect(item: TreeItem, column: number /*i64*/, button_index: number /*i64*/): Rect2
+        get_item_area_rect(item: TreeItem, column: number /*i64*/ = -1, button_index: number /*i64*/ = -1): Rect2
         get_item_at_position(position: Vector2): TreeItem
         get_column_at_position(position: Vector2): number /*i64*/
         get_drop_section_at_position(position: Vector2): number /*i64*/
@@ -11001,7 +11071,7 @@ declare module "godot" {
         set_column_title_language(column: number /*i64*/, language: string): void
         get_column_title_language(column: number /*i64*/): string
         get_scroll(): Vector2
-        scroll_to_item(item: TreeItem, center_on_item: boolean): void
+        scroll_to_item(item: TreeItem, center_on_item: boolean = false): void
         set_h_scroll_enabled(h_scroll: boolean): void
         is_h_scroll_enabled(): boolean
         set_v_scroll_enabled(h_scroll: boolean): void
@@ -11064,7 +11134,7 @@ declare module "godot" {
         set_indeterminate(column: number /*i64*/, indeterminate: boolean): void
         is_checked(column: number /*i64*/): boolean
         is_indeterminate(column: number /*i64*/): boolean
-        propagate_check(column: number /*i64*/, emit_signal: boolean): void
+        propagate_check(column: number /*i64*/, emit_signal: boolean = true): void
         set_text(column: number /*i64*/, text: string): void
         get_text(column: number /*i64*/): string
         set_text_direction(column: number /*i64*/, direction: Control.TextDirection): void
@@ -11091,7 +11161,7 @@ declare module "godot" {
         get_icon_modulate(column: number /*i64*/): Color
         set_range(column: number /*i64*/, value: number /*f64*/): void
         get_range(column: number /*i64*/): number /*f64*/
-        set_range_config(column: number /*i64*/, min: number /*f64*/, max: number /*f64*/, step: number /*f64*/, expr: boolean): void
+        set_range_config(column: number /*i64*/, min: number /*f64*/, max: number /*f64*/, step: number /*f64*/, expr: boolean = false): void
         get_range_config(column: number /*i64*/): Dictionary
         set_metadata(column: number /*i64*/, meta: any): void
         get_metadata(column: number /*i64*/): any
@@ -11099,7 +11169,7 @@ declare module "godot" {
         set_collapsed(enable: boolean): void
         is_collapsed(): boolean
         set_collapsed_recursive(enable: boolean): void
-        is_any_collapsed(only_visible: boolean): boolean
+        is_any_collapsed(only_visible: boolean = false): boolean
         set_visible(enable: boolean): void
         is_visible(): boolean
         uncollapse_tree(): void
@@ -11119,12 +11189,12 @@ declare module "godot" {
         get_custom_font(column: number /*i64*/): Font
         set_custom_font_size(column: number /*i64*/, font_size: number /*i64*/): void
         get_custom_font_size(column: number /*i64*/): number /*i64*/
-        set_custom_bg_color(column: number /*i64*/, color: Color, just_outline: boolean): void
+        set_custom_bg_color(column: number /*i64*/, color: Color, just_outline: boolean = false): void
         clear_custom_bg_color(column: number /*i64*/): void
         get_custom_bg_color(column: number /*i64*/): Color
         set_custom_as_button(column: number /*i64*/, enable: boolean): void
         is_custom_set_as_button(column: number /*i64*/): boolean
-        add_button(column: number /*i64*/, button: Texture2D, id: number /*i64*/, disabled: boolean, tooltip_text: string): void
+        add_button(column: number /*i64*/, button: Texture2D, id: number /*i64*/ = -1, disabled: boolean = false, tooltip_text: string = ''): void
         get_button_count(column: number /*i64*/): number /*i64*/
         get_button_tooltip_text(column: number /*i64*/, button_index: number /*i64*/): string
         get_button_id(column: number /*i64*/, button_index: number /*i64*/): number /*i64*/
@@ -11144,7 +11214,7 @@ declare module "godot" {
         get_expand_right(column: number /*i64*/): boolean
         set_disable_folding(disable: boolean): void
         is_folding_disabled(): boolean
-        create_child(index: number /*i64*/): TreeItem
+        create_child(index: number /*i64*/ = -1): TreeItem
         add_child(child: TreeItem): void
         remove_child(child: TreeItem): void
         get_tree(): Tree
@@ -11152,10 +11222,10 @@ declare module "godot" {
         get_prev(): TreeItem
         get_parent(): TreeItem
         get_first_child(): TreeItem
-        get_next_in_tree(wrap: boolean): TreeItem
-        get_prev_in_tree(wrap: boolean): TreeItem
-        get_next_visible(wrap: boolean): TreeItem
-        get_prev_visible(wrap: boolean): TreeItem
+        get_next_in_tree(wrap: boolean = false): TreeItem
+        get_prev_in_tree(wrap: boolean = false): TreeItem
+        get_next_visible(wrap: boolean = false): TreeItem
+        get_prev_visible(wrap: boolean = false): TreeItem
         get_child(index: number /*i64*/): TreeItem
         get_child_count(): number /*i64*/
         get_children(): Array
@@ -11243,8 +11313,8 @@ declare module "godot" {
         bind_node(node: Node): Tween
         set_process_mode(mode: Tween.TweenProcessMode): Tween
         set_pause_mode(mode: Tween.TweenPauseMode): Tween
-        set_parallel(parallel: boolean): Tween
-        set_loops(loops: number /*i64*/): Tween
+        set_parallel(parallel: boolean = true): Tween
+        set_loops(loops: number /*i64*/ = 0): Tween
         get_loops_left(): number /*i64*/
         set_speed_scale(speed: number /*f64*/): Tween
         set_trans(trans: Tween.TransitionType): Tween
@@ -11260,7 +11330,7 @@ declare module "godot" {
         finished: Signal
     }
     class UDPServer extends RefCounted {
-        listen(port: number /*i64*/, bind_address: string): GodotError
+        listen(port: number /*i64*/, bind_address: string = '*'): GodotError
         poll(): GodotError
         is_connection_available(): boolean
         get_local_port(): number /*i64*/
@@ -11312,10 +11382,10 @@ declare module "godot" {
         remove_device(index: number /*i64*/): void
         clear_devices(): void
         get_gateway(): UPNPDevice
-        discover(timeout: number /*i64*/, ttl: number /*i64*/, device_filter: string): number /*i64*/
+        discover(timeout: number /*i64*/ = 2000, ttl: number /*i64*/ = 2, device_filter: string = 'InternetGatewayDevice'): number /*i64*/
         query_external_address(): string
-        add_port_mapping(port: number /*i64*/, port_internal: number /*i64*/, desc: string, proto: string, duration: number /*i64*/): number /*i64*/
-        delete_port_mapping(port: number /*i64*/, proto: string): number /*i64*/
+        add_port_mapping(port: number /*i64*/, port_internal: number /*i64*/ = 0, desc: string = '', proto: string = 'UDP', duration: number /*i64*/ = 0): number /*i64*/
+        delete_port_mapping(port: number /*i64*/, proto: string = 'UDP'): number /*i64*/
         set_discover_multicast_if(m_if: string): void
         get_discover_multicast_if(): string
         set_discover_local_port(port: number /*i64*/): void
@@ -11343,8 +11413,8 @@ declare module "godot" {
     class UPNPDevice extends RefCounted {
         is_valid_gateway(): boolean
         query_external_address(): string
-        add_port_mapping(port: number /*i64*/, port_internal: number /*i64*/, desc: string, proto: string, duration: number /*i64*/): number /*i64*/
-        delete_port_mapping(port: number /*i64*/, proto: string): number /*i64*/
+        add_port_mapping(port: number /*i64*/, port_internal: number /*i64*/ = 0, desc: string = '', proto: string = 'UDP', duration: number /*i64*/ = 0): number /*i64*/
+        delete_port_mapping(port: number /*i64*/, proto: string = 'UDP'): number /*i64*/
         set_description_url(url: string): void
         get_description_url(): string
         set_service_type(type: string): void
@@ -11372,8 +11442,8 @@ declare module "godot" {
         }
     }
     class UndoRedo extends Object {
-        create_action(name: string, merge_mode: UndoRedo.MergeMode, backward_undo_ops: boolean): void
-        commit_action(execute: boolean): void
+        create_action(name: string, merge_mode: UndoRedo.MergeMode = 0, backward_undo_ops: boolean = false): void
+        commit_action(execute: boolean = true): void
         is_committing_action(): boolean
         add_do_method(callable: Callable): void
         add_undo_method(callable: Callable): void
@@ -11386,7 +11456,7 @@ declare module "godot" {
         get_history_count(): number /*i64*/
         get_current_action(): number /*i64*/
         get_action_name(id: number /*i64*/): string
-        clear_history(increase_version: boolean): void
+        clear_history(increase_version: boolean = true): void
         get_current_action_name(): string
         has_undo(): boolean
         has_redo(): boolean
@@ -11476,7 +11546,7 @@ declare module "godot" {
         // // godot.getset: file: string
     }
     class VideoStreamPlayback extends Resource {
-        mix_audio(num_frames: number /*i64*/, buffer: PackedFloat32Array, offset: number /*i64*/): number /*i64*/
+        mix_audio(num_frames: number /*i64*/, buffer: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/, offset: number /*i64*/ = 0): number /*i64*/
     }
     class VideoStreamPlayer extends Control {
         set_stream(stream: VideoStream): void
@@ -11663,8 +11733,8 @@ declare module "godot" {
         get_physics_object_picking_sort(): boolean
         get_viewport_rid(): RID
         push_text_input(text: string): void
-        push_input(event: InputEvent, in_local_coords: boolean): void
-        push_unhandled_input(event: InputEvent, in_local_coords: boolean): void
+        push_input(event: InputEvent, in_local_coords: boolean = false): void
+        push_unhandled_input(event: InputEvent, in_local_coords: boolean = false): void
         get_camera_2d(): Camera2D
         set_as_audio_listener_2d(enable: boolean): void
         is_audio_listener_2d(): boolean
@@ -11939,7 +12009,7 @@ declare module "godot" {
         _is_output_port_expanded(_unnamed_arg0: number /*i64*/): boolean
         _set_output_ports_expanded(values: Array): void
         _get_output_ports_expanded(): Array
-        set_input_port_default_value(port: number /*i64*/, value: any, prev_value: any): void
+        set_input_port_default_value(port: number /*i64*/, value: any, prev_value: any = <any> {} /*compound.type from nil*/): void
         get_input_port_default_value(port: number /*i64*/): any
         remove_input_port_default_value(port: number /*i64*/): void
         clear_default_input_values(): void
@@ -11948,70 +12018,5 @@ declare module "godot" {
         // // godot.getset: output_port_for_preview: number /*i64*/
         // // godot.getset: default_input_values: Array
         // // godot.getset: expanded_output_ports: Array
-    }
-    namespace VisualShaderNodeBillboard {
-        enum BillboardType {
-            BILLBOARD_TYPE_DISABLED = 0,
-            BILLBOARD_TYPE_ENABLED = 1,
-            BILLBOARD_TYPE_FIXED_Y = 2,
-            BILLBOARD_TYPE_PARTICLES = 3,
-            BILLBOARD_TYPE_MAX = 4,
-        }
-    }
-    class VisualShaderNodeBillboard extends VisualShaderNode {
-        set_billboard_type(billboard_type: VisualShaderNodeBillboard.BillboardType): void
-        get_billboard_type(): VisualShaderNodeBillboard.BillboardType
-        set_keep_scale_enabled(enabled: boolean): void
-        is_keep_scale_enabled(): boolean
-        // // godot.getset: billboard_type: number /*i64*/
-        // // godot.getset: keep_scale: boolean
-    }
-    class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
-        set_constant(constant: boolean): void
-        get_constant(): boolean
-        // // godot.getset: constant: boolean
-    }
-    class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: boolean): void
-        get_default_value(): boolean
-        // // godot.getset: default_value_enabled: boolean
-        // // godot.getset: default_value: boolean
-    }
-    namespace VisualShaderNodeClamp {
-        enum OpType {
-            OP_TYPE_FLOAT = 0,
-            OP_TYPE_INT = 1,
-            OP_TYPE_UINT = 2,
-            OP_TYPE_VECTOR_2D = 3,
-            OP_TYPE_VECTOR_3D = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_MAX = 6,
-        }
-    }
-    class VisualShaderNodeClamp extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeClamp.OpType): void
-        get_op_type(): VisualShaderNodeClamp.OpType
-        // // godot.getset: op_type: number /*i64*/
-    }
-    class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
-        set_constant(constant: Color): void
-        get_constant(): Color
-        // // godot.getset: constant: Color
-    }
-    namespace VisualShaderNodeColorFunc {
-        enum Function {
-            FUNC_GRAYSCALE = 0,
-            FUNC_HSV2RGB = 1,
-            FUNC_RGB2HSV = 2,
-            FUNC_SEPIA = 3,
-            FUNC_MAX = 4,
-        }
-    }
-    class VisualShaderNodeColorFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeColorFunc.Function): void
-        get_function(): VisualShaderNodeColorFunc.Function
-        // // godot.getset: function: number /*i64*/
     }
 }
