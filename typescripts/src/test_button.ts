@@ -1,5 +1,6 @@
 import { Basis, Button, Input, Node, Signal, Time, Vector2, Vector3 } from "godot";
 import { $wait, export_, onready_, signal_ } from "./jsb/jsb.core";
+import { CyclicClass1 } from "./tests/cyclic_import_1";
 
 export default class TestNode extends Button {
     private _v1 = 0
@@ -32,6 +33,9 @@ export default class TestNode extends Button {
         console.log("test ready", this.hello);
         console.log("ready_node:", this.ready_node);
         this.test_wait_for_signal();
+
+        // test cyclic imported modules
+        CyclicClass1.call1();
     }
 
     private async test_wait_for_signal() {

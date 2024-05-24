@@ -1,0 +1,1 @@
+{"version":3,"file":"cyclic_import_2.js","sourceRoot":"./src/","sources":["tests/cyclic_import_2.ts"],"names":[],"mappings":";;;AAAA,uDAAiD;AAEjD,MAAa,YAAY;IACrB,MAAM,CAAC,KAAK;QACR,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAC;QACrB,8BAAY,CAAC,KAAK,EAAE,CAAC;IACzB,CAAC;CACJ;AALD,oCAKC"}

@@ -17,6 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const godot_1 = require("godot");
 const jsb_core_1 = require("./jsb/jsb.core");
+const cyclic_import_1_1 = require("./tests/cyclic_import_1");
 class TestNode extends godot_1.Button {
     get foo() { return this._v1; }
     set foo(value) { this._v1 = value; }
@@ -34,6 +35,8 @@ class TestNode extends godot_1.Button {
         console.log("test ready", this.hello);
         console.log("ready_node:", this.ready_node);
         this.test_wait_for_signal();
+        // test cyclic imported modules
+        cyclic_import_1_1.CyclicClass1.call1();
     }
     test_wait_for_signal() {
         return __awaiter(this, void 0, void 0, function* () {
