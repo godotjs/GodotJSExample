@@ -37,7 +37,6 @@ layout_mode = 2
 text = "Speed 0"
 
 [node name="wall_right" type="TextureRect" parent="UI"]
-layout_mode = 0
 offset_left = 496.0
 offset_right = 512.0
 offset_bottom = 352.0
@@ -46,7 +45,6 @@ expand_mode = 1
 stretch_mode = 1
 
 [node name="wall_bottom" type="TextureRect" parent="UI"]
-layout_mode = 0
 offset_left = 16.0
 offset_top = 336.0
 offset_right = 496.0
@@ -56,7 +54,6 @@ expand_mode = 1
 stretch_mode = 1
 
 [node name="wall_top" type="TextureRect" parent="UI"]
-layout_mode = 0
 offset_left = 16.0
 offset_right = 496.0
 offset_bottom = 16.0
@@ -65,7 +62,6 @@ expand_mode = 1
 stretch_mode = 1
 
 [node name="wall_left" type="TextureRect" parent="UI"]
-layout_mode = 0
 offset_right = 16.0
 offset_bottom = 352.0
 texture = ExtResource("2_jaf55")

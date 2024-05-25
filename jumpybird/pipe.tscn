@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cnnjuocdd25u8" path="res://jumpybird/pipe_head.png" id="2_vn6qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0lqh"]
-size = Vector2(62, 38.7554)
+size = Vector2(62, 41.7554)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6p4d"]
 size = Vector2(85, 35)
@@ -23,7 +23,7 @@ texture = ExtResource("1_4fia4")
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body/Area2D"]
-position = Vector2(32, 18.6223)
+position = Vector2(32, 21.1223)
 shape = SubResource("RectangleShape2D_p0lqh")
 
 [node name="head" type="TextureRect" parent="."]

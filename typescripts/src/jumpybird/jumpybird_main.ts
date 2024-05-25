@@ -31,16 +31,16 @@ export default class JumpyBirdMain extends Node {
         const up_pipe = <JumpyBirdPipe>this.instantiate_asset("res://jumpybird/pipe.tscn");
         const down_pipe = <JumpyBirdPipe>this.instantiate_asset("res://jumpybird/pipe.tscn");
         const space = Math.random() * 100 + 200;
-        const up_size = Math.random() * 150 + 150;
-        const down_size = 650 - up_size - space;
+        const up_size = Math.random() * 100 + 80;
+        const down_size = 480 - up_size - space;
 
         if (up_pipe) {
             this._pipelist.push(up_pipe);
-            up_pipe.setup(1240, true, up_size);
+            up_pipe.setup(640+100, true, up_size);
         }
         if (down_pipe) {
             this._pipelist.push(down_pipe);
-            down_pipe.setup(1240, false, down_size);
+            down_pipe.setup(640+100, false, down_size);
         }
     }
 

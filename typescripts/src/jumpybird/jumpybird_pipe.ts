@@ -11,7 +11,7 @@ export default class JumpyBirdPipe extends Node2D {
         if (up) {
             this.set_scale(new Vector2(1, 1));
         } else {
-            this._pos.y = 651;
+            this._pos.y = 480;
             this.set_scale(new Vector2(1, -1));
         }
         const body = <TextureRect>this.get_node(new NodePath("body"));
