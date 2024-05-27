@@ -1,4 +1,4 @@
-import { Basis, Button, Input, Node, Signal, Time, Vector2, Vector3 } from "godot";
+import { Basis, Button, Input, Node, Object, Signal, Time, Vector2, Vector3 } from "godot";
 import { $wait, export_, onready_, signal_ } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 
@@ -36,6 +36,13 @@ export default class TestNode extends Button {
 
         // test cyclic imported modules
         CyclicClass1.call1();
+
+        const stub = new Object();
+        console.assert(jsb.is_instance_valid(stub));
+        stub.free();
+        // an `bad this` error will be thrown if you use it after `free` 
+        // stub.do_something(); 
+        console.assert(!jsb.is_instance_valid(stub));
     }
 
     private async test_wait_for_signal() {

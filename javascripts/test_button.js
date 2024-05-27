@@ -37,6 +37,12 @@ class TestNode extends godot_1.Button {
         this.test_wait_for_signal();
         // test cyclic imported modules
         cyclic_import_1_1.CyclicClass1.call1();
+        const stub = new godot_1.Object();
+        console.assert(jsb.is_instance_valid(stub));
+        stub.free();
+        // an `bad this` error will be thrown if you use it after `free` 
+        // stub.do_something(); 
+        console.assert(!jsb.is_instance_valid(stub));
     }
     test_wait_for_signal() {
         return __awaiter(this, void 0, void 0, function* () {

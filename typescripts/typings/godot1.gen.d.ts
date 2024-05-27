@@ -3630,6 +3630,7 @@ declare module "godot" {
         static readonly NOTIFICATION_POSTINITIALIZE = 0
         static readonly NOTIFICATION_PREDELETE = 1
         static readonly NOTIFICATION_EXTENSION_RELOADED = 2
+        free(): void
         get_class(): string
         is_class(class_: string): boolean
         set(property: StringName, value: any): void

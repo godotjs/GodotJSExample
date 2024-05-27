@@ -6,16 +6,19 @@ declare namespace jsb {
     const TOOLS_ENABLED: boolean;
 
     /**
-     * @todo not implemented yet
-     * create godot Callable with a bound object `self`
+     * Create godot Callable with a bound object `self`
      */
     function callable(self: GDObject, fn: Function): GDCallable;
 
     /**
-     * @todo not implemented yet
-     * create godot Callable without a bound object
+     * Create godot Callable without a bound object
      */
     function callable(fn: Function): GDCallable;
+
+    /**
+     * If the given `self` is instance of `godot.Object` and is still alive.
+     */
+    function is_instance_valid(self: GDObject): boolean;
 
     interface ScriptPropertyInfo {
         name: string;
@@ -205,7 +208,7 @@ declare namespace jsb {
             argument_count: number; /** int32_t */
 
             args_: Array<PropertyInfo>;
-            default_arguments: Array<DefaultArgumentInfo>;
+            default_arguments?: Array<DefaultArgumentInfo>;
             return_: PropertyInfo | undefined;
         }
 
@@ -219,7 +222,7 @@ declare namespace jsb {
             argument_count: number; /** int32_t */
 
             args_: Array<PropertyInfo>;
-            default_arguments: Array<DefaultArgumentInfo>;
+            default_arguments?: Array<DefaultArgumentInfo>;
             return_: PropertyInfo | undefined;
         }
 
