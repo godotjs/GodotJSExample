@@ -18,7 +18,7 @@ export default class Snake extends Node {
     // the value of exported field will be restored by godot on loading instance
     // all modifications before 'ready' on this field will be discarded 
     @export_(jsb.VariantType.TYPE_FLOAT)
-    private _speed!: number;
+    private _speed: number = 100;
 
     private _next_dir = SnakeDirection.RIGHT;
     private _current_dir = SnakeDirection.RIGHT;
