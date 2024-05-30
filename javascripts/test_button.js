@@ -18,14 +18,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const godot_1 = require("godot");
 const jsb_core_1 = require("./jsb/jsb.core");
 const cyclic_import_1_1 = require("./tests/cyclic_import_1");
+var MyColor;
+(function (MyColor) {
+    MyColor[MyColor["White"] = 0] = "White";
+    MyColor[MyColor["Black"] = 1] = "Black";
+    MyColor[MyColor["Red"] = 2] = "Red";
+    MyColor[MyColor["Blue"] = 3] = "Blue";
+    MyColor[MyColor["Green"] = 4] = "Green";
+})(MyColor || (MyColor = {}));
 class TestNode extends godot_1.Button {
     get foo() { return this._v1; }
     set foo(value) { this._v1 = value; }
     constructor() {
         super();
         this._v1 = 0;
+        this.color = MyColor.White;
         this.hello = "hello";
         this.int_value = 0;
+        console.log(MyColor);
         console.log("test constructor");
     }
     _notification(what) {
@@ -78,6 +88,9 @@ exports.default = TestNode;
 __decorate([
     (0, jsb_core_1.onready_)("JSButtonChildNode")
 ], TestNode.prototype, "ready_node", void 0);
+__decorate([
+    (0, jsb_core_1.export_enum)(MyColor)
+], TestNode.prototype, "color", void 0);
 __decorate([
     (0, jsb_core_1.export_)(jsb.VariantType.TYPE_STRING)
 ], TestNode.prototype, "hello", void 0);
