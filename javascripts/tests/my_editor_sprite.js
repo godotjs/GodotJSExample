@@ -46,10 +46,10 @@ let MyEditorSprite = class MyEditorSprite extends godot_1.Sprite2D {
     }
 };
 __decorate([
-    (0, jsb_core_1.export_)(jsb.VariantType.TYPE_FLOAT)
+    (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_FLOAT)
 ], MyEditorSprite.prototype, "speed", null);
 __decorate([
-    (0, jsb_core_1.export_)(jsb.VariantType.TYPE_INT)
+    (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_INT)
 ], MyEditorSprite.prototype, "unused_int", void 0);
 MyEditorSprite = __decorate([
     (0, jsb_core_1.tool_)()

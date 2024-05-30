@@ -105,10 +105,10 @@ __decorate([
     (0, jsb_core_1.export_enum)(MyColor)
 ], TestNode.prototype, "color", void 0);
 __decorate([
-    (0, jsb_core_1.export_)(jsb.VariantType.TYPE_STRING)
+    (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_STRING)
 ], TestNode.prototype, "hello", void 0);
 __decorate([
-    (0, jsb_core_1.export_)(jsb.VariantType.TYPE_INT)
+    (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_INT)
 ], TestNode.prototype, "int_value", void 0);
 __decorate([
     (0, jsb_core_1.signal_)()

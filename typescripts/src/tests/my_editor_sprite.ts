@@ -1,4 +1,4 @@
-import { Engine, PackedStringArray, Sprite2D } from "godot";
+import { Engine, PackedStringArray, Sprite2D, Variant } from "godot";
 import { export_, tool_ } from "../jsb/jsb.core";
 
 // see example code in GDScript/C# at:
@@ -10,7 +10,7 @@ export default class MyEditorSprite extends Sprite2D {
     /**
      * get/set property for `export` (both must be defined)
      */
-    @export_(jsb.VariantType.TYPE_FLOAT)
+    @export_(Variant.Type.TYPE_FLOAT)
     get speed(): number { return this._speed; }
     set speed(value: number) {
         if (this._speed != value) {
@@ -22,7 +22,7 @@ export default class MyEditorSprite extends Sprite2D {
     /**
      * plain field for `export`
      */
-    @export_(jsb.VariantType.TYPE_INT)
+    @export_(Variant.Type.TYPE_INT)
     unused_int = 0;
 
     private _clockwise = false;

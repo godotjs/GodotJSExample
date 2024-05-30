@@ -246,6 +246,6 @@ class Snake extends godot_1.Node {
 }
 exports.default = Snake;
 __decorate([
-	(0, jsb_core_1.export_)(jsb.VariantType.TYPE_FLOAT)
+	(0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_FLOAT)
 ], Snake.prototype, "_speed", void 0);
 //# sourceMappingURL=snake.js.map

@@ -1,4 +1,4 @@
-import { Basis, Button, Input, Node, Object, Signal, Time, Vector2, Vector3 } from "godot";
+import { Basis, Button, Input, Node, Object, Signal, Time, Variant, Vector2, Vector3 } from "godot";
 import { $wait, export_, export_enum, export_flags, onready_, signal_ } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 
@@ -34,10 +34,10 @@ export default class TestNode extends Button {
     @export_enum(MyColor)
     color: MyColor = MyColor.White;
 
-    @export_(jsb.VariantType.TYPE_STRING)
+    @export_(Variant.Type.TYPE_STRING)
     hello = "hello";
 
-    @export_(jsb.VariantType.TYPE_INT)
+    @export_(Variant.Type.TYPE_INT)
     int_value = 0;
 
     @signal_()

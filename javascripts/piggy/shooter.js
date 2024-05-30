@@ -42,7 +42,7 @@ class Shooter extends godot_1.Sprite2D {
 }
 exports.default = Shooter;
 __decorate([
-    (0, jsb_core_1.export_)(jsb.VariantType.TYPE_FLOAT)
+    (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_FLOAT)
 ], Shooter.prototype, "speed", void 0);
 __decorate([
     (0, jsb_core_1.signal_)()

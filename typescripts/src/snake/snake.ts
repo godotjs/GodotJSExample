@@ -1,4 +1,4 @@
-import { Engine, Input, Label, Node, Node2D, NodePath, PackedScene, ResourceLoader, Vector2 } from "godot";
+import { Engine, Input, Label, Node, Node2D, NodePath, PackedScene, ResourceLoader, Variant, Vector2 } from "godot";
 import SnakeBody from "./snake_body";
 import { kBlockSize, kHeight, kWidth, SnakeDirection } from "./constants";
 import Coin from "./coin";
@@ -17,7 +17,7 @@ enum GameState {
 export default class Snake extends Node {
     // the value of exported field will be restored by godot on loading instance
     // all modifications before 'ready' on this field will be discarded 
-    @export_(jsb.VariantType.TYPE_FLOAT)
+    @export_(Variant.Type.TYPE_FLOAT)
     private _speed: number = 100;
 
     private _next_dir = SnakeDirection.RIGHT;

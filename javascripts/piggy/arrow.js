@@ -36,6 +36,6 @@ __decorate([
     (0, jsb_core_1.signal_)()
 ], Arrow.prototype, "die", void 0);
 __decorate([
-    (0, jsb_core_1.export_)(jsb.VariantType.TYPE_FLOAT)
+    (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_FLOAT)
 ], Arrow.prototype, "speed", void 0);
 //# sourceMappingURL=arrow.js.map
