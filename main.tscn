@@ -28,6 +28,8 @@ offset_bottom = 50.0
 text = "GodotJS Button
 "
 script = ExtResource("1_ewk4v")
+tags = 6
+color = 2
 hello = "hello111"
 
 [node name="JSButtonChildNode" type="Node" parent="Control/Button"]
@@ -63,7 +65,7 @@ placeholder_text = "Input text"
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 position = Vector2(386, 134)
-rotation = 145.246
+rotation = 187.908
 texture = ExtResource("4_2050k")
 script = ExtResource("5_l2t80")
 speed = 0.25

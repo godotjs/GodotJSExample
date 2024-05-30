@@ -1,5 +1,5 @@
 import { Basis, Button, Input, Node, Object, Signal, Time, Vector2, Vector3 } from "godot";
-import { $wait, export_, export_enum, onready_, signal_ } from "./jsb/jsb.core";
+import { $wait, export_, export_enum, export_flags, onready_, signal_ } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 
 enum MyColor {
@@ -10,6 +10,15 @@ enum MyColor {
     Green, 
 }
 
+enum MyTags {
+    None = 0, 
+    Cold = 1, 
+    Hot = 2, 
+    Soft = 4, 
+    Hard = 8, 
+    Opaque = 16, 
+}
+
 export default class TestNode extends Button {
     private _v1 = 0
 
@@ -18,6 +27,9 @@ export default class TestNode extends Button {
 
     @onready_("JSButtonChildNode")
     ready_node!: Node;
+
+    @export_flags(MyTags)
+    tags: MyTags = MyTags.None;
 
     @export_enum(MyColor)
     color: MyColor = MyColor.White;

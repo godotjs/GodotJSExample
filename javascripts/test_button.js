@@ -26,12 +26,22 @@ var MyColor;
     MyColor[MyColor["Blue"] = 3] = "Blue";
     MyColor[MyColor["Green"] = 4] = "Green";
 })(MyColor || (MyColor = {}));
+var MyTags;
+(function (MyTags) {
+    MyTags[MyTags["None"] = 0] = "None";
+    MyTags[MyTags["Cold"] = 1] = "Cold";
+    MyTags[MyTags["Hot"] = 2] = "Hot";
+    MyTags[MyTags["Soft"] = 4] = "Soft";
+    MyTags[MyTags["Hard"] = 8] = "Hard";
+    MyTags[MyTags["Opaque"] = 16] = "Opaque";
+})(MyTags || (MyTags = {}));
 class TestNode extends godot_1.Button {
     get foo() { return this._v1; }
     set foo(value) { this._v1 = value; }
     constructor() {
         super();
         this._v1 = 0;
+        this.tags = MyTags.None;
         this.color = MyColor.White;
         this.hello = "hello";
         this.int_value = 0;
@@ -88,6 +98,9 @@ exports.default = TestNode;
 __decorate([
     (0, jsb_core_1.onready_)("JSButtonChildNode")
 ], TestNode.prototype, "ready_node", void 0);
+__decorate([
+    (0, jsb_core_1.export_flags)(MyTags)
+], TestNode.prototype, "tags", void 0);
 __decorate([
     (0, jsb_core_1.export_enum)(MyColor)
 ], TestNode.prototype, "color", void 0);
