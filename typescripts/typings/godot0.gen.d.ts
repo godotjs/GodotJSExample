@@ -9625,10 +9625,6 @@ declare module "godot" {
         object_id_selected: Signal
         selected: Signal
     }
-    class EditorPropertyArray extends EditorProperty {
-    }
-    class EditorPropertyArrayObject extends RefCounted {
-    }
     class EditorPropertyCheck extends EditorProperty {
     }
     class EditorPropertyColor extends EditorProperty {
@@ -11742,7 +11738,7 @@ declare module "godot" {
     }
     class GodotJSEditorPlugin extends EditorPlugin {
     }
-    class GodotJSREPL extends VBoxContainer {
+    class GodotJSREPL extends Control {
     }
     class GodotJSScript extends Script {
     }
@@ -12004,5 +12000,10 @@ declare module "godot" {
         get_output_port_slot(port_idx: number /*i64*/): number /*i64*/
         // // godot.getset: title: string
         slot_updated: Signal
+    }
+    class GridContainer extends Container {
+        set_columns(columns: number /*i64*/): void
+        get_columns(): number /*i64*/
+        // // godot.getset: columns: number /*i64*/
     }
 }

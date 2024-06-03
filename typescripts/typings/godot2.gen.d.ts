@@ -1790,13 +1790,18 @@ declare module "godot" {
         static from_angle(angle: number /*f64*/): Vector2
         static ADD(left: Vector2, right: Vector2): Vector2
         static SUBTRACT(left: Vector2, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: Vector2): Vector2
         static MULTIPLY(left: number /*f64*/, right: Vector2): Vector2
+        static MULTIPLY(left: Vector2, right: Vector2): Vector2
         static MULTIPLY(left: Vector2, right: number /*f64*/): Vector2
         static DIVIDE(left: Vector2, right: Vector2): Vector2
         static DIVIDE(left: Vector2, right: number /*f64*/): Vector2
+        static NEGATE(left: Vector2, right: any): boolean
         static EQUAL(left: Vector2, right: Vector2): boolean
         static NOT_EQUAL(left: Vector2, right: Vector2): boolean
+        static LESS(left: Vector2, right: Vector2): boolean
+        static LESS_EQUAL(left: Vector2, right: Vector2): boolean
+        static GREATER(left: Vector2, right: Vector2): boolean
+        static GREATER_EQUAL(left: Vector2, right: Vector2): boolean
         x: number /*f64*/
         y: number /*f64*/
     }
@@ -1828,6 +1833,20 @@ declare module "godot" {
         abs(): Vector2i
         clamp(min: Vector2i, max: Vector2i): Vector2i
         snapped(step: Vector2i): Vector2i
+        static ADD(left: Vector2i, right: Vector2i): Vector2i
+        static SUBTRACT(left: Vector2i, right: Vector2i): Vector2i
+        static MULTIPLY(left: number /*f64*/, right: Vector2i): Vector2i
+        static MULTIPLY(left: Vector2i, right: Vector2i): Vector2i
+        static MULTIPLY(left: Vector2i, right: number /*f64*/): Vector2i
+        static DIVIDE(left: Vector2i, right: Vector2i): Vector2i
+        static DIVIDE(left: Vector2i, right: number /*f64*/): Vector2i
+        static NEGATE(left: Vector2i, right: any): boolean
+        static EQUAL(left: Vector2i, right: Vector2i): boolean
+        static NOT_EQUAL(left: Vector2i, right: Vector2i): boolean
+        static LESS(left: Vector2i, right: Vector2i): boolean
+        static LESS_EQUAL(left: Vector2i, right: Vector2i): boolean
+        static GREATER(left: Vector2i, right: Vector2i): boolean
+        static GREATER_EQUAL(left: Vector2i, right: Vector2i): boolean
         x: number /*i64*/
         y: number /*i64*/
     }
@@ -1950,13 +1969,18 @@ declare module "godot" {
         static octahedron_decode(uv: Vector2): Vector3
         static ADD(left: Vector3, right: Vector3): Vector3
         static SUBTRACT(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Vector3): Vector3
         static MULTIPLY(left: number /*f64*/, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: Vector3): Vector3
         static MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
         static DIVIDE(left: Vector3, right: Vector3): Vector3
         static DIVIDE(left: Vector3, right: number /*f64*/): Vector3
+        static NEGATE(left: Vector3, right: any): boolean
         static EQUAL(left: Vector3, right: Vector3): boolean
         static NOT_EQUAL(left: Vector3, right: Vector3): boolean
+        static LESS(left: Vector3, right: Vector3): boolean
+        static LESS_EQUAL(left: Vector3, right: Vector3): boolean
+        static GREATER(left: Vector3, right: Vector3): boolean
+        static GREATER_EQUAL(left: Vector3, right: Vector3): boolean
         x: number /*f64*/
         y: number /*f64*/
         z: number /*f64*/
@@ -1991,6 +2015,20 @@ declare module "godot" {
         abs(): Vector3i
         clamp(min: Vector3i, max: Vector3i): Vector3i
         snapped(step: Vector3i): Vector3i
+        static ADD(left: Vector3i, right: Vector3i): Vector3i
+        static SUBTRACT(left: Vector3i, right: Vector3i): Vector3i
+        static MULTIPLY(left: number /*f64*/, right: Vector3i): Vector3i
+        static MULTIPLY(left: Vector3i, right: Vector3i): Vector3i
+        static MULTIPLY(left: Vector3i, right: number /*f64*/): Vector3i
+        static DIVIDE(left: Vector3i, right: Vector3i): Vector3i
+        static DIVIDE(left: Vector3i, right: number /*f64*/): Vector3i
+        static NEGATE(left: Vector3i, right: any): boolean
+        static EQUAL(left: Vector3i, right: Vector3i): boolean
+        static NOT_EQUAL(left: Vector3i, right: Vector3i): boolean
+        static LESS(left: Vector3i, right: Vector3i): boolean
+        static LESS_EQUAL(left: Vector3i, right: Vector3i): boolean
+        static GREATER(left: Vector3i, right: Vector3i): boolean
+        static GREATER_EQUAL(left: Vector3i, right: Vector3i): boolean
         x: number /*i64*/
         y: number /*i64*/
         z: number /*i64*/
@@ -2025,6 +2063,16 @@ declare module "godot" {
         is_equal_approx(xform: Transform2D): boolean
         is_finite(): boolean
         looking_at(target: Vector2 = Vector2.ZERO): Transform2D
+        static MULTIPLY(left: Transform2D, right: Transform2D): Transform2D
+        static MULTIPLY(left: Transform2D, right: number /*f64*/): Transform2D
+        static MULTIPLY(left: Transform2D, right: Vector2): Vector2
+        static MULTIPLY(left: Vector2, right: Transform2D): Vector2
+        static MULTIPLY(left: Transform2D, right: Rect2): Rect2
+        static MULTIPLY(left: Rect2, right: Transform2D): Rect2
+        static MULTIPLY(left: Transform2D, right: PackedVector2Array): PackedVector2Array
+        static MULTIPLY(left: PackedVector2Array, right: Transform2D): PackedVector2Array
+        static EQUAL(left: Transform2D, right: Transform2D): boolean
+        static NOT_EQUAL(left: Transform2D, right: Transform2D): boolean
         x: Vector2
         y: Vector2
         origin: Vector2
@@ -2071,6 +2119,20 @@ declare module "godot" {
         is_equal_approx(to: Vector4): boolean
         is_zero_approx(): boolean
         is_finite(): boolean
+        static ADD(left: Vector4, right: Vector4): Vector4
+        static SUBTRACT(left: Vector4, right: Vector4): Vector4
+        static MULTIPLY(left: number /*f64*/, right: Vector4): Vector4
+        static MULTIPLY(left: Vector4, right: Vector4): Vector4
+        static MULTIPLY(left: Vector4, right: number /*f64*/): Vector4
+        static DIVIDE(left: Vector4, right: Vector4): Vector4
+        static DIVIDE(left: Vector4, right: number /*f64*/): Vector4
+        static NEGATE(left: Vector4, right: any): boolean
+        static EQUAL(left: Vector4, right: Vector4): boolean
+        static NOT_EQUAL(left: Vector4, right: Vector4): boolean
+        static LESS(left: Vector4, right: Vector4): boolean
+        static LESS_EQUAL(left: Vector4, right: Vector4): boolean
+        static GREATER(left: Vector4, right: Vector4): boolean
+        static GREATER_EQUAL(left: Vector4, right: Vector4): boolean
         x: number /*f64*/
         y: number /*f64*/
         z: number /*f64*/
@@ -2101,6 +2163,20 @@ declare module "godot" {
         abs(): Vector4i
         clamp(min: Vector4i, max: Vector4i): Vector4i
         snapped(step: Vector4i): Vector4i
+        static ADD(left: Vector4i, right: Vector4i): Vector4i
+        static SUBTRACT(left: Vector4i, right: Vector4i): Vector4i
+        static MULTIPLY(left: number /*f64*/, right: Vector4i): Vector4i
+        static MULTIPLY(left: Vector4i, right: Vector4i): Vector4i
+        static MULTIPLY(left: Vector4i, right: number /*f64*/): Vector4i
+        static DIVIDE(left: Vector4i, right: Vector4i): Vector4i
+        static DIVIDE(left: Vector4i, right: number /*f64*/): Vector4i
+        static NEGATE(left: Vector4i, right: any): boolean
+        static EQUAL(left: Vector4i, right: Vector4i): boolean
+        static NOT_EQUAL(left: Vector4i, right: Vector4i): boolean
+        static LESS(left: Vector4i, right: Vector4i): boolean
+        static LESS_EQUAL(left: Vector4i, right: Vector4i): boolean
+        static GREATER(left: Vector4i, right: Vector4i): boolean
+        static GREATER_EQUAL(left: Vector4i, right: Vector4i): boolean
         x: number /*i64*/
         y: number /*i64*/
         z: number /*i64*/
@@ -2128,6 +2204,9 @@ declare module "godot" {
         intersect_3(b: Plane, c: Plane): void
         intersects_ray(from: Vector3, dir: Vector3): void
         intersects_segment(from: Vector3, to: Vector3): void
+        static NEGATE(left: Plane, right: any): boolean
+        static EQUAL(left: Plane, right: Plane): boolean
+        static NOT_EQUAL(left: Plane, right: Plane): boolean
         x: number /*f64*/
         y: number /*f64*/
         z: number /*f64*/
@@ -2161,6 +2240,17 @@ declare module "godot" {
         static from_euler(euler: Vector3): Quaternion
         get_axis(): Vector3
         get_angle(): number /*f64*/
+        static ADD(left: Quaternion, right: Quaternion): Quaternion
+        static SUBTRACT(left: Quaternion, right: Quaternion): Quaternion
+        static MULTIPLY(left: Quaternion, right: Quaternion): Quaternion
+        static MULTIPLY(left: Quaternion, right: number /*f64*/): Quaternion
+        static MULTIPLY(left: number /*f64*/, right: Quaternion): Quaternion
+        static MULTIPLY(left: Vector3, right: Quaternion): Vector3
+        static MULTIPLY(left: Quaternion, right: Vector3): Vector3
+        static DIVIDE(left: Quaternion, right: number /*f64*/): Quaternion
+        static NEGATE(left: Quaternion, right: any): boolean
+        static EQUAL(left: Quaternion, right: Quaternion): boolean
+        static NOT_EQUAL(left: Quaternion, right: Quaternion): boolean
         x: number /*f64*/
         y: number /*f64*/
         z: number /*f64*/
@@ -2195,6 +2285,8 @@ declare module "godot" {
         get_endpoint(idx: number /*i64*/): Vector3
         intersects_segment(from: Vector3, to: Vector3): void
         intersects_ray(from: Vector3, dir: Vector3): void
+        static EQUAL(left: AABB, right: AABB): boolean
+        static NOT_EQUAL(left: AABB, right: AABB): boolean
         position: Vector3
         size: Vector3
         end: Vector3
@@ -2228,6 +2320,12 @@ declare module "godot" {
         static looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Basis
         static from_scale(scale: Vector3): Basis
         static from_euler(euler: Vector3, order: number /*i64*/ = 2): Basis
+        static MULTIPLY(left: Basis, right: Basis): Basis
+        static MULTIPLY(left: Basis, right: number /*f64*/): Basis
+        static MULTIPLY(left: Basis, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: Basis): Vector3
+        static EQUAL(left: Basis, right: Basis): boolean
+        static NOT_EQUAL(left: Basis, right: Basis): boolean
         x: Vector3
         y: Vector3
         z: Vector3
@@ -2255,6 +2353,18 @@ declare module "godot" {
         interpolate_with(xform: Transform3D, weight: number /*f64*/): Transform3D
         is_equal_approx(xform: Transform3D): boolean
         is_finite(): boolean
+        static MULTIPLY(left: Transform3D, right: Transform3D): Transform3D
+        static MULTIPLY(left: Transform3D, right: number /*f64*/): Transform3D
+        static MULTIPLY(left: Transform3D, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: Transform3D): Vector3
+        static MULTIPLY(left: Transform3D, right: AABB): AABB
+        static MULTIPLY(left: AABB, right: Transform3D): AABB
+        static MULTIPLY(left: Transform3D, right: Plane): Plane
+        static MULTIPLY(left: Plane, right: Transform3D): Plane
+        static MULTIPLY(left: Transform3D, right: PackedVector3Array): PackedVector3Array
+        static MULTIPLY(left: PackedVector3Array, right: Transform3D): PackedVector3Array
+        static EQUAL(left: Transform3D, right: Transform3D): boolean
+        static NOT_EQUAL(left: Transform3D, right: Transform3D): boolean
         basis: Basis
         origin: Vector3
     }
@@ -2301,6 +2411,11 @@ declare module "godot" {
         inverse(): Projection
         get_pixels_per_meter(for_pixel_width: number /*i64*/): number /*i64*/
         get_lod_multiplier(): number /*f64*/
+        static MULTIPLY(left: Projection, right: Projection): Projection
+        static MULTIPLY(left: Projection, right: Vector4): Vector4
+        static MULTIPLY(left: Vector4, right: Projection): Vector4
+        static EQUAL(left: Projection, right: Projection): boolean
+        static NOT_EQUAL(left: Projection, right: Projection): boolean
         x: Vector4
         y: Vector4
         z: Vector4
@@ -2485,6 +2600,16 @@ declare module "godot" {
         static from_hsv(h: number /*f64*/, s: number /*f64*/, v: number /*f64*/, alpha: number /*f64*/ = 1): Color
         static from_ok_hsl(h: number /*f64*/, s: number /*f64*/, l: number /*f64*/, alpha: number /*f64*/ = 1): Color
         static from_rgbe9995(rgbe: number /*i64*/): Color
+        static ADD(left: Color, right: Color): Color
+        static SUBTRACT(left: Color, right: Color): Color
+        static MULTIPLY(left: Color, right: Color): Color
+        static MULTIPLY(left: Color, right: number /*f64*/): Color
+        static MULTIPLY(left: number /*f64*/, right: Color): Color
+        static DIVIDE(left: Color, right: Color): Color
+        static DIVIDE(left: Color, right: number /*f64*/): Color
+        static NEGATE(left: Color, right: any): boolean
+        static EQUAL(left: Color, right: Color): boolean
+        static NOT_EQUAL(left: Color, right: Color): boolean
         r: number /*f64*/
         g: number /*f64*/
         b: number /*f64*/
@@ -2511,12 +2636,20 @@ declare module "godot" {
         get_concatenated_subnames(): StringName
         get_as_property_path(): NodePath
         is_empty(): boolean
+        static EQUAL(left: NodePath, right: NodePath): boolean
+        static NOT_EQUAL(left: NodePath, right: NodePath): boolean
     }
     class RID {
         constructor()
         constructor(from: RID)
         is_valid(): boolean
         get_id(): number /*i64*/
+        static EQUAL(left: RID, right: RID): boolean
+        static NOT_EQUAL(left: RID, right: RID): boolean
+        static LESS(left: RID, right: RID): boolean
+        static LESS_EQUAL(left: RID, right: RID): boolean
+        static GREATER(left: RID, right: RID): boolean
+        static GREATER_EQUAL(left: RID, right: RID): boolean
     }
     class Callable {
         constructor()
@@ -2556,6 +2689,8 @@ declare module "godot" {
         is_connected(callable: Callable): boolean
         get_connections(): Array
         emit(...vargargs: any[]): void
+        static EQUAL(left: Signal, right: Signal): boolean
+        static NOT_EQUAL(left: Signal, right: Signal): boolean
     }
     class Dictionary {
         constructor()
@@ -2637,6 +2772,12 @@ declare module "godot" {
         get_typed_script(): void
         make_read_only(): void
         is_read_only(): boolean
+        static EQUAL(left: Array, right: Array): boolean
+        static NOT_EQUAL(left: Array, right: Array): boolean
+        static LESS(left: Array, right: Array): boolean
+        static LESS_EQUAL(left: Array, right: Array): boolean
+        static GREATER(left: Array, right: Array): boolean
+        static GREATER_EQUAL(left: Array, right: Array): boolean
     }
     class PackedByteArray {
         constructor()
@@ -2701,6 +2842,8 @@ declare module "godot" {
         encode_float(byte_offset: number /*i64*/, value: number /*f64*/): void
         encode_double(byte_offset: number /*i64*/, value: number /*f64*/): void
         encode_var(byte_offset: number /*i64*/, value: any, allow_objects: boolean = false): number /*i64*/
+        static EQUAL(left: PackedByteArray, right: PackedByteArray): boolean
+        static NOT_EQUAL(left: PackedByteArray, right: PackedByteArray): boolean
     }
     class PackedInt32Array {
         constructor()
@@ -2727,6 +2870,8 @@ declare module "godot" {
         find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
         rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*i64*/): number /*i64*/
+        static EQUAL(left: PackedInt32Array, right: PackedInt32Array): boolean
+        static NOT_EQUAL(left: PackedInt32Array, right: PackedInt32Array): boolean
     }
     class PackedInt64Array {
         constructor()
@@ -2753,6 +2898,8 @@ declare module "godot" {
         find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
         rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*i64*/): number /*i64*/
+        static EQUAL(left: PackedInt64Array, right: PackedInt64Array): boolean
+        static NOT_EQUAL(left: PackedInt64Array, right: PackedInt64Array): boolean
     }
     class PackedFloat32Array {
         constructor()
@@ -2779,6 +2926,8 @@ declare module "godot" {
         find(value: number /*f64*/, from: number /*i64*/ = 0): number /*i64*/
         rfind(value: number /*f64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*f64*/): number /*i64*/
+        static EQUAL(left: PackedFloat32Array, right: PackedFloat32Array): boolean
+        static NOT_EQUAL(left: PackedFloat32Array, right: PackedFloat32Array): boolean
     }
     class PackedFloat64Array {
         constructor()
@@ -2805,6 +2954,8 @@ declare module "godot" {
         find(value: number /*f64*/, from: number /*i64*/ = 0): number /*i64*/
         rfind(value: number /*f64*/, from: number /*i64*/ = -1): number /*i64*/
         count(value: number /*f64*/): number /*i64*/
+        static EQUAL(left: PackedFloat64Array, right: PackedFloat64Array): boolean
+        static NOT_EQUAL(left: PackedFloat64Array, right: PackedFloat64Array): boolean
     }
     class PackedStringArray {
         constructor()
@@ -2831,6 +2982,8 @@ declare module "godot" {
         find(value: string, from: number /*i64*/ = 0): number /*i64*/
         rfind(value: string, from: number /*i64*/ = -1): number /*i64*/
         count(value: string): number /*i64*/
+        static EQUAL(left: PackedStringArray, right: PackedStringArray): boolean
+        static NOT_EQUAL(left: PackedStringArray, right: PackedStringArray): boolean
     }
     class PackedVector2Array {
         constructor()
@@ -2857,6 +3010,8 @@ declare module "godot" {
         find(value: Vector2, from: number /*i64*/ = 0): number /*i64*/
         rfind(value: Vector2, from: number /*i64*/ = -1): number /*i64*/
         count(value: Vector2): number /*i64*/
+        static EQUAL(left: PackedVector2Array, right: PackedVector2Array): boolean
+        static NOT_EQUAL(left: PackedVector2Array, right: PackedVector2Array): boolean
     }
     class PackedVector3Array {
         constructor()
@@ -2883,6 +3038,8 @@ declare module "godot" {
         find(value: Vector3, from: number /*i64*/ = 0): number /*i64*/
         rfind(value: Vector3, from: number /*i64*/ = -1): number /*i64*/
         count(value: Vector3): number /*i64*/
+        static EQUAL(left: PackedVector3Array, right: PackedVector3Array): boolean
+        static NOT_EQUAL(left: PackedVector3Array, right: PackedVector3Array): boolean
     }
     class PackedColorArray {
         constructor()
@@ -2909,6 +3066,8 @@ declare module "godot" {
         find(value: Color, from: number /*i64*/ = 0): number /*i64*/
         rfind(value: Color, from: number /*i64*/ = -1): number /*i64*/
         count(value: Color): number /*i64*/
+        static EQUAL(left: PackedColorArray, right: PackedColorArray): boolean
+        static NOT_EQUAL(left: PackedColorArray, right: PackedColorArray): boolean
     }
     enum Side {
         SIDE_LEFT = 0,

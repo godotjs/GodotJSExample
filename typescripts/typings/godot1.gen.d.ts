@@ -1,11 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    class GridContainer extends Container {
-        set_columns(columns: number /*i64*/): void
-        get_columns(): number /*i64*/
-        // // godot.getset: columns: number /*i64*/
-    }
     class GridMap extends Node3D {
         static readonly INVALID_CELL_ITEM = -1
         set_collision_layer(layer: number /*i64*/): void
