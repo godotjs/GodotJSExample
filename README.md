@@ -1,6 +1,8 @@
 # GodotJSExample
 This project includes examples at different complexity levels, incrementally introducing and utilizing more engine features.
 
+A prebuilt version of `Godot Editor` can be downloaded from [GodotJS-Build](https://github.com/ialex32x/GodotJS-Build).
+
 ## Snake 
 A simple snake game. 
 In this example, only a limited subset of Godot's features is utilized: 
