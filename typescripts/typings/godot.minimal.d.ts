@@ -1,5 +1,5 @@
 
-declare namespace jsb {
+declare module "godot-jsb" {
     import { Callable as GDCallable, Object as GDObject, PackedByteArray, PropertyUsageFlags, PropertyHint, MethodFlags, Variant } from "godot";
 
     const DEV_ENABLED: boolean;
@@ -20,6 +20,9 @@ declare namespace jsb {
      */
     function is_instance_valid(self: GDObject): boolean;
 
+    /**
+     * Explicitly convert a `PackedByteArray`(aka Vector<uint8_t>) into a javascript `ArrayBuffer`
+     */
     function to_array_buffer(packed: PackedByteArray): ArrayBuffer;
 
     interface ScriptPropertyInfo {

@@ -1,4 +1,5 @@
 import { Label, Node2D, NodePath } from "godot";
+import * as jsb from "godot-jsb";
 import TestNode from "../test_button";
 
 export default class MainUI extends Node2D {

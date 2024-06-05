@@ -1,4 +1,5 @@
 import { Basis, Button, Input, Node, Object, Signal, Time, Variant, Vector2, Vector3 } from "godot";
+import * as jsb from "godot-jsb";
 import { $wait, export_, export_enum, export_flags, onready_, signal_ } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 

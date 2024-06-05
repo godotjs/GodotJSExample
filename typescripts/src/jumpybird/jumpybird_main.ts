@@ -1,4 +1,5 @@
 import { Area2D, Input, Node, Node2D, NodePath, PackedScene, ResourceLoader, Sprite2D, Vector2 } from "godot";
+import * as jsb from "godot-jsb";
 import JumpyBirdPipe from "./jumpybird_pipe";
 
 const kGScale = 40;
