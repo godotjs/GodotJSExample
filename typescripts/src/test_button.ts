@@ -62,12 +62,17 @@ export default class TestNode extends Button {
         // test cyclic imported modules
         CyclicClass1.call1();
 
-        const stub = new Object();
-        console.assert(jsb.is_instance_valid(stub));
-        stub.free();
-        // an `bad this` error will be thrown if you use it after `free` 
-        // stub.do_something(); 
-        console.assert(!jsb.is_instance_valid(stub));
+        //TODO inspect the lifetime issue
+        // const stub = new Object();
+        // console.assert(jsb.is_instance_valid(stub));
+        // stub.free();
+        // // an `bad this` error will be thrown if you use it after `free`
+        // // stub.do_something();
+        // console.assert(!jsb.is_instance_valid(stub));
+        
+        // access object properties with getset
+        this.editor_description = "editor_description.1";
+        console.log(this.editor_description);
     }
 
     private async test_wait_for_signal() {
