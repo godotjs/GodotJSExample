@@ -28,7 +28,7 @@ declare module "godot" {
         get_direct_space_state(): PhysicsDirectSpaceState3D
         environment: Environment
         fallback_environment: Environment
-        camera_attributes: any /*CameraAttributesPractical,CameraAttributesPhysical*/
+        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
         readonly space: RID
         readonly navigation_map: RID
         readonly scenario: RID
@@ -53,7 +53,7 @@ declare module "godot" {
         set_camera_attributes(camera_attributes: CameraAttributes): void
         get_camera_attributes(): CameraAttributes
         environment: Environment
-        camera_attributes: any /*CameraAttributesPractical,CameraAttributesPhysical*/
+        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
     }
     class X509Certificate extends Resource {
         save(path: string): GodotError
@@ -223,7 +223,6 @@ declare module "godot" {
         set_tracking_confidence(tracking_confidence: XRPose.TrackingConfidence): void
         get_tracking_confidence(): XRPose.TrackingConfidence
         has_tracking_data: boolean
-        name: string
         transform: string
         linear_velocity: string
         angular_velocity: string
@@ -254,7 +253,6 @@ declare module "godot" {
         get_input(name: StringName): any
         set_input(name: StringName, value: any): void
         type: number /*i64*/
-        name: string
         description: string
         profile: string
         hand: number /*i64*/

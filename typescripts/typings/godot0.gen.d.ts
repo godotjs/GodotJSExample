@@ -5770,7 +5770,7 @@ declare module "godot" {
         set_material(material: Material): void
         get_material(): Material
         size: Vector3
-        material: any /*BaseMaterial3D,ShaderMaterial*/
+        material: BaseMaterial3D | ShaderMaterial
     }
     class CSGCombiner3D extends CSGShape3D {
     }
@@ -5792,7 +5792,7 @@ declare module "godot" {
         sides: number /*i64*/
         cone: boolean
         smooth_faces: boolean
-        material: any /*BaseMaterial3D,ShaderMaterial*/
+        material: BaseMaterial3D | ShaderMaterial
     }
     class CSGMesh3D extends CSGPrimitive3D {
         set_mesh(mesh: Mesh): void
@@ -5800,7 +5800,7 @@ declare module "godot" {
         set_material(material: Material): void
         get_material(): Material
         mesh: Mesh
-        material: any /*BaseMaterial3D,ShaderMaterial*/
+        material: BaseMaterial3D | ShaderMaterial
     }
     namespace CSGPolygon3D {
         enum Mode {
@@ -5868,7 +5868,7 @@ declare module "godot" {
         path_u_distance: number /*f64*/
         path_joined: boolean
         smooth_faces: boolean
-        material: any /*BaseMaterial3D,ShaderMaterial*/
+        material: BaseMaterial3D | ShaderMaterial
     }
     class CSGPrimitive3D extends CSGShape3D {
         set_flip_faces(flip_faces: boolean): void
@@ -5929,7 +5929,7 @@ declare module "godot" {
         radial_segments: number /*i64*/
         rings: number /*i64*/
         smooth_faces: boolean
-        material: any /*BaseMaterial3D,ShaderMaterial*/
+        material: BaseMaterial3D | ShaderMaterial
     }
     class CSGTorus3D extends CSGPrimitive3D {
         set_inner_radius(radius: number /*f64*/): void
@@ -5949,7 +5949,7 @@ declare module "godot" {
         sides: number /*i64*/
         ring_sides: number /*i64*/
         smooth_faces: boolean
-        material: any /*BaseMaterial3D,ShaderMaterial*/
+        material: BaseMaterial3D | ShaderMaterial
     }
     class CallbackTweener extends Tweener {
         set_delay(delay: number /*f64*/): CallbackTweener
@@ -6104,7 +6104,7 @@ declare module "godot" {
         keep_aspect: number /*i64*/
         cull_mask: number /*i64*/
         environment: Environment
-        attributes: any /*CameraAttributesPractical,CameraAttributesPhysical*/
+        attributes: CameraAttributesPractical | CameraAttributesPhysical
         h_offset: number /*f64*/
         v_offset: number /*f64*/
         doppler_tracking: number /*i64*/
@@ -6393,7 +6393,7 @@ declare module "godot" {
         y_sort_enabled: boolean
         texture_filter: number /*i64*/
         texture_repeat: number /*i64*/
-        material: any /*CanvasItemMaterial,ShaderMaterial*/
+        material: CanvasItemMaterial | ShaderMaterial
         use_parent_material: boolean
         readonly draw: Signal
         readonly visibility_changed: Signal
@@ -8366,13 +8366,6 @@ declare module "godot" {
     }
     class EditorGradientPreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    class EditorHelp extends VBoxContainer {
-        _class_list_select(_unnamed_arg0: string): void
-        _request_help(_unnamed_arg0: string): void
-        _search(_unnamed_arg0: boolean): void
-        _help_callback(_unnamed_arg0: string): void
-        readonly go_to_help: Signal
-    }
     class EditorHelpBit extends MarginContainer {
         set_text(text: string): void
         readonly request_hide: Signal
@@ -9253,7 +9246,7 @@ declare module "godot" {
         adjustment_brightness: number /*f64*/
         adjustment_contrast: number /*f64*/
         adjustment_saturation: number /*f64*/
-        adjustment_color_correction: any /*Texture2D,Texture3D*/
+        adjustment_color_correction: Texture2D | Texture3D
     }
     class EventListenerLineEdit extends LineEdit {
         readonly event_changed: Signal
@@ -9540,8 +9533,6 @@ declare module "godot" {
     class FileSystemList extends ItemList {
         readonly item_edited: Signal
     }
-    class FindBar extends HBoxContainer {
-    }
     class FindInFiles extends Node {
         readonly result_found: Signal
         readonly finished: Signal
@@ -9608,7 +9599,7 @@ declare module "godot" {
         get_material(): Material
         size: Vector3
         shape: number /*i64*/
-        material: any /*FogMaterial,ShaderMaterial*/
+        material: FogMaterial | ShaderMaterial
     }
     class FogVolumeGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -9806,8 +9797,6 @@ declare module "godot" {
         is_library_open(): boolean
         get_minimum_library_initialization_level(): GDExtension.InitializationLevel
         initialize_library(level: GDExtension.InitializationLevel): void
-    }
-    class GDShaderSyntaxHighlighter extends CodeHighlighter {
     }
     class GLTFAccessor extends Resource {
         get_buffer_view(): number /*i64*/
@@ -10314,7 +10303,7 @@ declare module "godot" {
         amount: number /*i64*/
         amount_ratio: number /*f64*/
         sub_emitter: NodePath
-        process_material: any /*ShaderMaterial,ParticleProcessMaterial*/
+        process_material: ShaderMaterial | ParticleProcessMaterial
         texture: Texture2D
         lifetime: number /*f64*/
         one_shot: boolean
@@ -10436,7 +10425,7 @@ declare module "godot" {
         transform_align: number /*i64*/
         trail_enabled: boolean
         trail_lifetime: number /*f64*/
-        process_material: any /*ShaderMaterial,ParticleProcessMaterial*/
+        process_material: ShaderMaterial | ParticleProcessMaterial
         draw_passes: number /*i64*/
         draw_skin: Skin
         readonly finished: Signal
@@ -10667,8 +10656,8 @@ declare module "godot" {
         is_ignoring_occlusion_culling(): boolean
         set_custom_aabb(aabb: AABB): void
         get_custom_aabb(): AABB
-        material_override: any /*BaseMaterial3D,ShaderMaterial*/
-        material_overlay: any /*BaseMaterial3D,ShaderMaterial*/
+        material_override: BaseMaterial3D | ShaderMaterial
+        material_overlay: BaseMaterial3D | ShaderMaterial
         transparency: number /*f64*/
         cast_shadow: number /*i64*/
         extra_cull_margin: number /*f64*/

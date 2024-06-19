@@ -371,7 +371,7 @@ declare module "godot" {
         environment_custom_sky: Sky
         environment_custom_color: Color
         environment_custom_energy: number /*f64*/
-        camera_attributes: any /*CameraAttributesPractical,CameraAttributesPhysical*/
+        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
         generate_probes_subdiv: number /*i64*/
         light_data: LightmapGIData
     }
@@ -2196,7 +2196,6 @@ declare module "godot" {
         set_thread_safe(property: StringName, value: any): void
         notify_thread_safe(what: number /*i64*/): void
         _import_path: NodePath
-        name: StringName
         unique_name_in_owner: boolean
         scene_file_path: string
         owner: Node
@@ -4135,7 +4134,7 @@ declare module "godot" {
         set_uv2_padding(uv2_padding: number /*f64*/): void
         get_uv2_padding(): number /*f64*/
         _request_update(): void
-        material: any /*BaseMaterial3D,ShaderMaterial*/
+        material: BaseMaterial3D | ShaderMaterial
         custom_aabb: AABB
         flip_faces: boolean
         add_uv2: boolean
@@ -6644,9 +6643,6 @@ declare module "godot" {
         get_shader_parameter(param: StringName): any
         shader: Shader
     }
-    class ShaderTextEditor extends CodeTextEditor {
-        readonly script_validated: Signal
-    }
     class Shape2D extends Resource {
         set_custom_solver_bias(bias: number /*f64*/): void
         get_custom_solver_bias(): number /*f64*/
@@ -7157,7 +7153,7 @@ declare module "godot" {
         get_process_mode(): Sky.ProcessMode
         set_material(material: Material): void
         get_material(): Material
-        sky_material: any /*ShaderMaterial,PanoramaSkyMaterial,ProceduralSkyMaterial,PhysicalSkyMaterial*/
+        sky_material: ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial
         process_mode: number /*i64*/
         radiance_size: number /*i64*/
     }
@@ -8912,11 +8908,6 @@ declare module "godot" {
     }
     class TextServerExtension extends TextServer {
     }
-    class TextShaderEditor extends MarginContainer {
-        _show_warnings_panel(_unnamed_arg0: boolean): void
-        _warning_clicked(_unnamed_arg0: any): void
-        readonly validation_changed: Signal
-    }
     class Texture extends Resource {
     }
     class Texture2D extends Texture {
@@ -9302,7 +9293,7 @@ declare module "godot" {
         transpose: boolean
         texture_origin: Vector2i
         modulate: Color
-        material: any /*CanvasItemMaterial,ShaderMaterial*/
+        material: CanvasItemMaterial | ShaderMaterial
         z_index: number /*i64*/
         y_sort_origin: number /*i64*/
         terrain_set: number /*i64*/
@@ -11807,7 +11798,7 @@ declare module "godot" {
         debug_bake(): void
         subdiv: number /*i64*/
         size: Vector3
-        camera_attributes: any /*CameraAttributesPractical,CameraAttributesPhysical*/
+        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
         data: VoxelGIData
     }
     class VoxelGIData extends Resource {
