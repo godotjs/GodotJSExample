@@ -1,6 +1,1087 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    namespace VisualShaderNodeIntOp {
+        enum Operator {
+            OP_ADD = 0,
+            OP_SUB = 1,
+            OP_MUL = 2,
+            OP_DIV = 3,
+            OP_MOD = 4,
+            OP_MAX = 5,
+            OP_MIN = 6,
+            OP_BITWISE_AND = 7,
+            OP_BITWISE_OR = 8,
+            OP_BITWISE_XOR = 9,
+            OP_BITWISE_LEFT_SHIFT = 10,
+            OP_BITWISE_RIGHT_SHIFT = 11,
+            OP_ENUM_SIZE = 12,
+        }
+    }
+    class VisualShaderNodeIntOp extends VisualShaderNode {
+        set_operator(op: VisualShaderNodeIntOp.Operator): void
+        get_operator(): VisualShaderNodeIntOp.Operator
+        operator: number /*i64*/
+    }
+    namespace VisualShaderNodeIntParameter {
+        enum Hint {
+            HINT_NONE = 0,
+            HINT_RANGE = 1,
+            HINT_RANGE_STEP = 2,
+            HINT_MAX = 3,
+        }
+    }
+    class VisualShaderNodeIntParameter extends VisualShaderNodeParameter {
+        set_hint(hint: VisualShaderNodeIntParameter.Hint): void
+        get_hint(): VisualShaderNodeIntParameter.Hint
+        set_min(value: number /*i64*/): void
+        get_min(): number /*i64*/
+        set_max(value: number /*i64*/): void
+        get_max(): number /*i64*/
+        set_step(value: number /*i64*/): void
+        get_step(): number /*i64*/
+        set_default_value_enabled(enabled: boolean): void
+        is_default_value_enabled(): boolean
+        set_default_value(value: number /*i64*/): void
+        get_default_value(): number /*i64*/
+        hint: number /*i64*/
+        min: number /*i64*/
+        max: number /*i64*/
+        step: number /*i64*/
+        default_value_enabled: boolean
+        default_value: number /*i64*/
+    }
+    namespace VisualShaderNodeIs {
+        enum Function {
+            FUNC_IS_INF = 0,
+            FUNC_IS_NAN = 1,
+            FUNC_MAX = 2,
+        }
+    }
+    class VisualShaderNodeIs extends VisualShaderNode {
+        set_function(func: VisualShaderNodeIs.Function): void
+        get_function(): VisualShaderNodeIs.Function
+        function: number /*i64*/
+    }
+    class VisualShaderNodeLinearSceneDepth extends VisualShaderNode {
+    }
+    namespace VisualShaderNodeMix {
+        enum OpType {
+            OP_TYPE_SCALAR = 0,
+            OP_TYPE_VECTOR_2D = 1,
+            OP_TYPE_VECTOR_2D_SCALAR = 2,
+            OP_TYPE_VECTOR_3D = 3,
+            OP_TYPE_VECTOR_3D_SCALAR = 4,
+            OP_TYPE_VECTOR_4D = 5,
+            OP_TYPE_VECTOR_4D_SCALAR = 6,
+            OP_TYPE_MAX = 7,
+        }
+    }
+    class VisualShaderNodeMix extends VisualShaderNode {
+        set_op_type(op_type: VisualShaderNodeMix.OpType): void
+        get_op_type(): VisualShaderNodeMix.OpType
+        op_type: number /*i64*/
+    }
+    namespace VisualShaderNodeMultiplyAdd {
+        enum OpType {
+            OP_TYPE_SCALAR = 0,
+            OP_TYPE_VECTOR_2D = 1,
+            OP_TYPE_VECTOR_3D = 2,
+            OP_TYPE_VECTOR_4D = 3,
+            OP_TYPE_MAX = 4,
+        }
+    }
+    class VisualShaderNodeMultiplyAdd extends VisualShaderNode {
+        set_op_type(type: VisualShaderNodeMultiplyAdd.OpType): void
+        get_op_type(): VisualShaderNodeMultiplyAdd.OpType
+        op_type: number /*i64*/
+    }
+    class VisualShaderNodeOuterProduct extends VisualShaderNode {
+    }
+    class VisualShaderNodeOutput extends VisualShaderNode {
+    }
+    namespace VisualShaderNodeParameter {
+        enum Qualifier {
+            QUAL_NONE = 0,
+            QUAL_GLOBAL = 1,
+            QUAL_INSTANCE = 2,
+            QUAL_MAX = 3,
+        }
+    }
+    class VisualShaderNodeParameter extends VisualShaderNode {
+        set_parameter_name(name: string): void
+        get_parameter_name(): string
+        set_qualifier(qualifier: VisualShaderNodeParameter.Qualifier): void
+        get_qualifier(): VisualShaderNodeParameter.Qualifier
+        parameter_name: StringName
+        qualifier: number /*i64*/
+    }
+    class VisualShaderNodeParameterRef extends VisualShaderNode {
+        set_parameter_name(name: string): void
+        get_parameter_name(): string
+        _set_parameter_type(type: number /*i64*/): void
+        _get_parameter_type(): number /*i64*/
+        parameter_name: StringName
+        param_type: number /*i64*/
+    }
+    namespace VisualShaderNodeParticleAccelerator {
+        enum Mode {
+            MODE_LINEAR = 0,
+            MODE_RADIAL = 1,
+            MODE_TANGENTIAL = 2,
+            MODE_MAX = 3,
+        }
+    }
+    class VisualShaderNodeParticleAccelerator extends VisualShaderNode {
+        set_mode(mode: VisualShaderNodeParticleAccelerator.Mode): void
+        get_mode(): VisualShaderNodeParticleAccelerator.Mode
+        mode: number /*i64*/
+    }
+    class VisualShaderNodeParticleBoxEmitter extends VisualShaderNodeParticleEmitter {
+    }
+    class VisualShaderNodeParticleConeVelocity extends VisualShaderNode {
+    }
+    namespace VisualShaderNodeParticleEmit {
+        enum EmitFlags {
+            EMIT_FLAG_POSITION = 1,
+            EMIT_FLAG_ROT_SCALE = 2,
+            EMIT_FLAG_VELOCITY = 4,
+            EMIT_FLAG_COLOR = 8,
+            EMIT_FLAG_CUSTOM = 16,
+        }
+    }
+    class VisualShaderNodeParticleEmit extends VisualShaderNode {
+        set_flags(flags: VisualShaderNodeParticleEmit.EmitFlags): void
+        get_flags(): VisualShaderNodeParticleEmit.EmitFlags
+        flags: number /*i64*/
+    }
+    class VisualShaderNodeParticleEmitter extends VisualShaderNode {
+        set_mode_2d(enabled: boolean): void
+        is_mode_2d(): boolean
+        mode_2d: boolean
+    }
+    class VisualShaderNodeParticleMeshEmitter extends VisualShaderNodeParticleEmitter {
+        set_mesh(mesh: Mesh): void
+        get_mesh(): Mesh
+        set_use_all_surfaces(enabled: boolean): void
+        is_use_all_surfaces(): boolean
+        set_surface_index(surface_index: number /*i64*/): void
+        get_surface_index(): number /*i64*/
+        mesh: Mesh
+        use_all_surfaces: boolean
+        surface_index: number /*i64*/
+    }
+    class VisualShaderNodeParticleMultiplyByAxisAngle extends VisualShaderNode {
+        set_degrees_mode(enabled: boolean): void
+        is_degrees_mode(): boolean
+        degrees_mode: boolean
+    }
+    class VisualShaderNodeParticleOutput extends VisualShaderNodeOutput {
+    }
+    namespace VisualShaderNodeParticleRandomness {
+        enum OpType {
+            OP_TYPE_SCALAR = 0,
+            OP_TYPE_VECTOR_2D = 1,
+            OP_TYPE_VECTOR_3D = 2,
+            OP_TYPE_VECTOR_4D = 3,
+            OP_TYPE_MAX = 4,
+        }
+    }
+    class VisualShaderNodeParticleRandomness extends VisualShaderNode {
+        set_op_type(type: VisualShaderNodeParticleRandomness.OpType): void
+        get_op_type(): VisualShaderNodeParticleRandomness.OpType
+        op_type: number /*i64*/
+    }
+    class VisualShaderNodeParticleRingEmitter extends VisualShaderNodeParticleEmitter {
+    }
+    class VisualShaderNodeParticleSphereEmitter extends VisualShaderNodeParticleEmitter {
+    }
+    class VisualShaderNodeProximityFade extends VisualShaderNode {
+    }
+    class VisualShaderNodeRandomRange extends VisualShaderNode {
+    }
+    class VisualShaderNodeRemap extends VisualShaderNode {
+    }
+    class VisualShaderNodeResizableBase extends VisualShaderNode {
+        set_size(size: Vector2): void
+        get_size(): Vector2
+        size: Vector2
+    }
+    class VisualShaderNodeRotationByAxis extends VisualShaderNode {
+    }
+    class VisualShaderNodeSDFRaymarch extends VisualShaderNode {
+    }
+    class VisualShaderNodeSDFToScreenUV extends VisualShaderNode {
+    }
+    namespace VisualShaderNodeSample3D {
+        enum Source {
+            SOURCE_TEXTURE = 0,
+            SOURCE_PORT = 1,
+            SOURCE_MAX = 2,
+        }
+    }
+    class VisualShaderNodeSample3D extends VisualShaderNode {
+        set_source(value: VisualShaderNodeSample3D.Source): void
+        get_source(): VisualShaderNodeSample3D.Source
+        source: number /*i64*/
+    }
+    class VisualShaderNodeScreenNormalWorldSpace extends VisualShaderNode {
+    }
+    class VisualShaderNodeScreenUVToSDF extends VisualShaderNode {
+    }
+    namespace VisualShaderNodeSmoothStep {
+        enum OpType {
+            OP_TYPE_SCALAR = 0,
+            OP_TYPE_VECTOR_2D = 1,
+            OP_TYPE_VECTOR_2D_SCALAR = 2,
+            OP_TYPE_VECTOR_3D = 3,
+            OP_TYPE_VECTOR_3D_SCALAR = 4,
+            OP_TYPE_VECTOR_4D = 5,
+            OP_TYPE_VECTOR_4D_SCALAR = 6,
+            OP_TYPE_MAX = 7,
+        }
+    }
+    class VisualShaderNodeSmoothStep extends VisualShaderNode {
+        set_op_type(op_type: VisualShaderNodeSmoothStep.OpType): void
+        get_op_type(): VisualShaderNodeSmoothStep.OpType
+        op_type: number /*i64*/
+    }
+    namespace VisualShaderNodeStep {
+        enum OpType {
+            OP_TYPE_SCALAR = 0,
+            OP_TYPE_VECTOR_2D = 1,
+            OP_TYPE_VECTOR_2D_SCALAR = 2,
+            OP_TYPE_VECTOR_3D = 3,
+            OP_TYPE_VECTOR_3D_SCALAR = 4,
+            OP_TYPE_VECTOR_4D = 5,
+            OP_TYPE_VECTOR_4D_SCALAR = 6,
+            OP_TYPE_MAX = 7,
+        }
+    }
+    class VisualShaderNodeStep extends VisualShaderNode {
+        set_op_type(op_type: VisualShaderNodeStep.OpType): void
+        get_op_type(): VisualShaderNodeStep.OpType
+        op_type: number /*i64*/
+    }
+    namespace VisualShaderNodeSwitch {
+        enum OpType {
+            OP_TYPE_FLOAT = 0,
+            OP_TYPE_INT = 1,
+            OP_TYPE_UINT = 2,
+            OP_TYPE_VECTOR_2D = 3,
+            OP_TYPE_VECTOR_3D = 4,
+            OP_TYPE_VECTOR_4D = 5,
+            OP_TYPE_BOOLEAN = 6,
+            OP_TYPE_TRANSFORM = 7,
+            OP_TYPE_MAX = 8,
+        }
+    }
+    class VisualShaderNodeSwitch extends VisualShaderNode {
+        set_op_type(type: VisualShaderNodeSwitch.OpType): void
+        get_op_type(): VisualShaderNodeSwitch.OpType
+        op_type: number /*i64*/
+    }
+    namespace VisualShaderNodeTexture {
+        enum Source {
+            SOURCE_TEXTURE = 0,
+            SOURCE_SCREEN = 1,
+            SOURCE_2D_TEXTURE = 2,
+            SOURCE_2D_NORMAL = 3,
+            SOURCE_DEPTH = 4,
+            SOURCE_PORT = 5,
+            SOURCE_3D_NORMAL = 6,
+            SOURCE_ROUGHNESS = 7,
+            SOURCE_MAX = 8,
+        }
+        enum TextureType {
+            TYPE_DATA = 0,
+            TYPE_COLOR = 1,
+            TYPE_NORMAL_MAP = 2,
+            TYPE_MAX = 3,
+        }
+    }
+    class VisualShaderNodeTexture extends VisualShaderNode {
+        set_source(value: VisualShaderNodeTexture.Source): void
+        get_source(): VisualShaderNodeTexture.Source
+        set_texture(value: Texture2D): void
+        get_texture(): Texture2D
+        set_texture_type(value: VisualShaderNodeTexture.TextureType): void
+        get_texture_type(): VisualShaderNodeTexture.TextureType
+        source: number /*i64*/
+        texture: Texture2D
+        texture_type: number /*i64*/
+    }
+    class VisualShaderNodeTexture2DArray extends VisualShaderNodeSample3D {
+        set_texture_array(value: Texture2DArray): void
+        get_texture_array(): Texture2DArray
+        texture_array: Texture2DArray
+    }
+    class VisualShaderNodeTexture2DArrayParameter extends VisualShaderNodeTextureParameter {
+    }
+    class VisualShaderNodeTexture2DParameter extends VisualShaderNodeTextureParameter {
+    }
+    class VisualShaderNodeTexture3D extends VisualShaderNodeSample3D {
+        set_texture(value: Texture3D): void
+        get_texture(): Texture3D
+        texture: Texture3D
+    }
+    class VisualShaderNodeTexture3DParameter extends VisualShaderNodeTextureParameter {
+    }
+    namespace VisualShaderNodeTextureParameter {
+        enum TextureType {
+            TYPE_DATA = 0,
+            TYPE_COLOR = 1,
+            TYPE_NORMAL_MAP = 2,
+            TYPE_ANISOTROPY = 3,
+            TYPE_MAX = 4,
+        }
+        enum ColorDefault {
+            COLOR_DEFAULT_WHITE = 0,
+            COLOR_DEFAULT_BLACK = 1,
+            COLOR_DEFAULT_TRANSPARENT = 2,
+            COLOR_DEFAULT_MAX = 3,
+        }
+        enum TextureFilter {
+            FILTER_DEFAULT = 0,
+            FILTER_NEAREST = 1,
+            FILTER_LINEAR = 2,
+            FILTER_NEAREST_MIPMAP = 3,
+            FILTER_LINEAR_MIPMAP = 4,
+            FILTER_NEAREST_MIPMAP_ANISOTROPIC = 5,
+            FILTER_LINEAR_MIPMAP_ANISOTROPIC = 6,
+            FILTER_MAX = 7,
+        }
+        enum TextureRepeat {
+            REPEAT_DEFAULT = 0,
+            REPEAT_ENABLED = 1,
+            REPEAT_DISABLED = 2,
+            REPEAT_MAX = 3,
+        }
+        enum TextureSource {
+            SOURCE_NONE = 0,
+            SOURCE_SCREEN = 1,
+            SOURCE_DEPTH = 2,
+            SOURCE_NORMAL_ROUGHNESS = 3,
+            SOURCE_MAX = 4,
+        }
+    }
+    class VisualShaderNodeTextureParameter extends VisualShaderNodeParameter {
+        set_texture_type(type: VisualShaderNodeTextureParameter.TextureType): void
+        get_texture_type(): VisualShaderNodeTextureParameter.TextureType
+        set_color_default(color: VisualShaderNodeTextureParameter.ColorDefault): void
+        get_color_default(): VisualShaderNodeTextureParameter.ColorDefault
+        set_texture_filter(filter: VisualShaderNodeTextureParameter.TextureFilter): void
+        get_texture_filter(): VisualShaderNodeTextureParameter.TextureFilter
+        set_texture_repeat(repeat: VisualShaderNodeTextureParameter.TextureRepeat): void
+        get_texture_repeat(): VisualShaderNodeTextureParameter.TextureRepeat
+        set_texture_source(source: VisualShaderNodeTextureParameter.TextureSource): void
+        get_texture_source(): VisualShaderNodeTextureParameter.TextureSource
+        texture_type: number /*i64*/
+        color_default: number /*i64*/
+        texture_filter: number /*i64*/
+        texture_repeat: number /*i64*/
+        texture_source: number /*i64*/
+    }
+    class VisualShaderNodeTextureParameterTriplanar extends VisualShaderNodeTextureParameter {
+    }
+    class VisualShaderNodeTextureSDF extends VisualShaderNode {
+    }
+    class VisualShaderNodeTextureSDFNormal extends VisualShaderNode {
+    }
+    class VisualShaderNodeTransformCompose extends VisualShaderNode {
+    }
+    class VisualShaderNodeTransformConstant extends VisualShaderNodeConstant {
+        set_constant(constant: Transform3D): void
+        get_constant(): Transform3D
+        constant: Transform3D
+    }
+    class VisualShaderNodeTransformDecompose extends VisualShaderNode {
+    }
+    namespace VisualShaderNodeTransformFunc {
+        enum Function {
+            FUNC_INVERSE = 0,
+            FUNC_TRANSPOSE = 1,
+            FUNC_MAX = 2,
+        }
+    }
+    class VisualShaderNodeTransformFunc extends VisualShaderNode {
+        set_function(func: VisualShaderNodeTransformFunc.Function): void
+        get_function(): VisualShaderNodeTransformFunc.Function
+        function: number /*i64*/
+    }
+    namespace VisualShaderNodeTransformOp {
+        enum Operator {
+            OP_AxB = 0,
+            OP_BxA = 1,
+            OP_AxB_COMP = 2,
+            OP_BxA_COMP = 3,
+            OP_ADD = 4,
+            OP_A_MINUS_B = 5,
+            OP_B_MINUS_A = 6,
+            OP_A_DIV_B = 7,
+            OP_B_DIV_A = 8,
+            OP_MAX = 9,
+        }
+    }
+    class VisualShaderNodeTransformOp extends VisualShaderNode {
+        set_operator(op: VisualShaderNodeTransformOp.Operator): void
+        get_operator(): VisualShaderNodeTransformOp.Operator
+        operator: number /*i64*/
+    }
+    class VisualShaderNodeTransformParameter extends VisualShaderNodeParameter {
+        set_default_value_enabled(enabled: boolean): void
+        is_default_value_enabled(): boolean
+        set_default_value(value: Transform3D): void
+        get_default_value(): Transform3D
+        default_value_enabled: boolean
+        default_value: Transform3D
+    }
+    namespace VisualShaderNodeTransformVecMult {
+        enum Operator {
+            OP_AxB = 0,
+            OP_BxA = 1,
+            OP_3x3_AxB = 2,
+            OP_3x3_BxA = 3,
+            OP_MAX = 4,
+        }
+    }
+    class VisualShaderNodeTransformVecMult extends VisualShaderNode {
+        set_operator(op: VisualShaderNodeTransformVecMult.Operator): void
+        get_operator(): VisualShaderNodeTransformVecMult.Operator
+        operator: number /*i64*/
+    }
+    class VisualShaderNodeUIntConstant extends VisualShaderNodeConstant {
+        set_constant(constant: number /*i64*/): void
+        get_constant(): number /*i64*/
+        constant: number /*i64*/
+    }
+    namespace VisualShaderNodeUIntFunc {
+        enum Function {
+            FUNC_NEGATE = 0,
+            FUNC_BITWISE_NOT = 1,
+            FUNC_MAX = 2,
+        }
+    }
+    class VisualShaderNodeUIntFunc extends VisualShaderNode {
+        set_function(func: VisualShaderNodeUIntFunc.Function): void
+        get_function(): VisualShaderNodeUIntFunc.Function
+        function: number /*i64*/
+    }
+    namespace VisualShaderNodeUIntOp {
+        enum Operator {
+            OP_ADD = 0,
+            OP_SUB = 1,
+            OP_MUL = 2,
+            OP_DIV = 3,
+            OP_MOD = 4,
+            OP_MAX = 5,
+            OP_MIN = 6,
+            OP_BITWISE_AND = 7,
+            OP_BITWISE_OR = 8,
+            OP_BITWISE_XOR = 9,
+            OP_BITWISE_LEFT_SHIFT = 10,
+            OP_BITWISE_RIGHT_SHIFT = 11,
+            OP_ENUM_SIZE = 12,
+        }
+    }
+    class VisualShaderNodeUIntOp extends VisualShaderNode {
+        set_operator(op: VisualShaderNodeUIntOp.Operator): void
+        get_operator(): VisualShaderNodeUIntOp.Operator
+        operator: number /*i64*/
+    }
+    class VisualShaderNodeUIntParameter extends VisualShaderNodeParameter {
+        set_default_value_enabled(enabled: boolean): void
+        is_default_value_enabled(): boolean
+        set_default_value(value: number /*i64*/): void
+        get_default_value(): number /*i64*/
+        default_value_enabled: boolean
+        default_value: number /*i64*/
+    }
+    namespace VisualShaderNodeUVFunc {
+        enum Function {
+            FUNC_PANNING = 0,
+            FUNC_SCALING = 1,
+            FUNC_MAX = 2,
+        }
+    }
+    class VisualShaderNodeUVFunc extends VisualShaderNode {
+        set_function(func: VisualShaderNodeUVFunc.Function): void
+        get_function(): VisualShaderNodeUVFunc.Function
+        function: number /*i64*/
+    }
+    class VisualShaderNodeUVPolarCoord extends VisualShaderNode {
+    }
+    class VisualShaderNodeVarying extends VisualShaderNode {
+        set_varying_name(name: string): void
+        get_varying_name(): string
+        set_varying_type(type: VisualShader.VaryingType): void
+        get_varying_type(): VisualShader.VaryingType
+        varying_name: StringName
+        varying_type: number /*i64*/
+    }
+    class VisualShaderNodeVaryingGetter extends VisualShaderNodeVarying {
+    }
+    class VisualShaderNodeVaryingSetter extends VisualShaderNodeVarying {
+    }
+    class VisualShaderNodeVec2Constant extends VisualShaderNodeConstant {
+        set_constant(constant: Vector2): void
+        get_constant(): Vector2
+        constant: Vector2
+    }
+    class VisualShaderNodeVec2Parameter extends VisualShaderNodeParameter {
+        set_default_value_enabled(enabled: boolean): void
+        is_default_value_enabled(): boolean
+        set_default_value(value: Vector2): void
+        get_default_value(): Vector2
+        default_value_enabled: boolean
+        default_value: Vector2
+    }
+    class VisualShaderNodeVec3Constant extends VisualShaderNodeConstant {
+        set_constant(constant: Vector3): void
+        get_constant(): Vector3
+        constant: Vector3
+    }
+    class VisualShaderNodeVec3Parameter extends VisualShaderNodeParameter {
+        set_default_value_enabled(enabled: boolean): void
+        is_default_value_enabled(): boolean
+        set_default_value(value: Vector3): void
+        get_default_value(): Vector3
+        default_value_enabled: boolean
+        default_value: Vector3
+    }
+    class VisualShaderNodeVec4Constant extends VisualShaderNodeConstant {
+        set_constant(constant: Quaternion): void
+        get_constant(): Quaternion
+        constant: Quaternion
+    }
+    class VisualShaderNodeVec4Parameter extends VisualShaderNodeParameter {
+        set_default_value_enabled(enabled: boolean): void
+        is_default_value_enabled(): boolean
+        set_default_value(value: Vector4): void
+        get_default_value(): Vector4
+        default_value_enabled: boolean
+        default_value: Vector4
+    }
+    namespace VisualShaderNodeVectorBase {
+        enum OpType {
+            OP_TYPE_VECTOR_2D = 0,
+            OP_TYPE_VECTOR_3D = 1,
+            OP_TYPE_VECTOR_4D = 2,
+            OP_TYPE_MAX = 3,
+        }
+    }
+    class VisualShaderNodeVectorBase extends VisualShaderNode {
+        set_op_type(type: VisualShaderNodeVectorBase.OpType): void
+        get_op_type(): VisualShaderNodeVectorBase.OpType
+        op_type: number /*i64*/
+    }
+    class VisualShaderNodeVectorCompose extends VisualShaderNodeVectorBase {
+    }
+    class VisualShaderNodeVectorDecompose extends VisualShaderNodeVectorBase {
+    }
+    class VisualShaderNodeVectorDistance extends VisualShaderNodeVectorBase {
+    }
+    namespace VisualShaderNodeVectorFunc {
+        enum Function {
+            FUNC_NORMALIZE = 0,
+            FUNC_SATURATE = 1,
+            FUNC_NEGATE = 2,
+            FUNC_RECIPROCAL = 3,
+            FUNC_ABS = 4,
+            FUNC_ACOS = 5,
+            FUNC_ACOSH = 6,
+            FUNC_ASIN = 7,
+            FUNC_ASINH = 8,
+            FUNC_ATAN = 9,
+            FUNC_ATANH = 10,
+            FUNC_CEIL = 11,
+            FUNC_COS = 12,
+            FUNC_COSH = 13,
+            FUNC_DEGREES = 14,
+            FUNC_EXP = 15,
+            FUNC_EXP2 = 16,
+            FUNC_FLOOR = 17,
+            FUNC_FRACT = 18,
+            FUNC_INVERSE_SQRT = 19,
+            FUNC_LOG = 20,
+            FUNC_LOG2 = 21,
+            FUNC_RADIANS = 22,
+            FUNC_ROUND = 23,
+            FUNC_ROUNDEVEN = 24,
+            FUNC_SIGN = 25,
+            FUNC_SIN = 26,
+            FUNC_SINH = 27,
+            FUNC_SQRT = 28,
+            FUNC_TAN = 29,
+            FUNC_TANH = 30,
+            FUNC_TRUNC = 31,
+            FUNC_ONEMINUS = 32,
+            FUNC_MAX = 33,
+        }
+    }
+    class VisualShaderNodeVectorFunc extends VisualShaderNodeVectorBase {
+        set_function(func: VisualShaderNodeVectorFunc.Function): void
+        get_function(): VisualShaderNodeVectorFunc.Function
+        function: number /*i64*/
+    }
+    class VisualShaderNodeVectorLen extends VisualShaderNodeVectorBase {
+    }
+    namespace VisualShaderNodeVectorOp {
+        enum Operator {
+            OP_ADD = 0,
+            OP_SUB = 1,
+            OP_MUL = 2,
+            OP_DIV = 3,
+            OP_MOD = 4,
+            OP_POW = 5,
+            OP_MAX = 6,
+            OP_MIN = 7,
+            OP_CROSS = 8,
+            OP_ATAN2 = 9,
+            OP_REFLECT = 10,
+            OP_STEP = 11,
+            OP_ENUM_SIZE = 12,
+        }
+    }
+    class VisualShaderNodeVectorOp extends VisualShaderNodeVectorBase {
+        set_operator(op: VisualShaderNodeVectorOp.Operator): void
+        get_operator(): VisualShaderNodeVectorOp.Operator
+        operator: number /*i64*/
+    }
+    class VisualShaderNodeVectorRefract extends VisualShaderNodeVectorBase {
+    }
+    class VisualShaderNodeWorldPositionFromDepth extends VisualShaderNode {
+    }
+    namespace VoxelGI {
+        enum Subdiv {
+            SUBDIV_64 = 0,
+            SUBDIV_128 = 1,
+            SUBDIV_256 = 2,
+            SUBDIV_512 = 3,
+            SUBDIV_MAX = 4,
+        }
+    }
+    class VoxelGI extends VisualInstance3D {
+        set_probe_data(data: VoxelGIData): void
+        get_probe_data(): VoxelGIData
+        set_subdiv(subdiv: VoxelGI.Subdiv): void
+        get_subdiv(): VoxelGI.Subdiv
+        set_size(size: Vector3): void
+        get_size(): Vector3
+        set_camera_attributes(camera_attributes: CameraAttributes): void
+        get_camera_attributes(): CameraAttributes
+        bake(from_node: Node = <any> {} /*compound.type from nil*/, create_visual_debug: boolean = false): void
+        debug_bake(): void
+        subdiv: number /*i64*/
+        size: Vector3
+        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
+        data: VoxelGIData
+    }
+    class VoxelGIData extends Resource {
+        allocate(to_cell_xform: Transform3D, aabb: AABB, octree_size: Vector3, octree_cells: PackedByteArray, data_cells: PackedByteArray, distance_field: PackedByteArray, level_counts: PackedInt32Array): void
+        get_bounds(): AABB
+        get_octree_size(): Vector3
+        get_to_cell_xform(): Transform3D
+        get_octree_cells(): PackedByteArray
+        get_data_cells(): PackedByteArray
+        get_level_counts(): PackedInt32Array
+        set_dynamic_range(dynamic_range: number /*f64*/): void
+        get_dynamic_range(): number /*f64*/
+        set_energy(energy: number /*f64*/): void
+        get_energy(): number /*f64*/
+        set_bias(bias: number /*f64*/): void
+        get_bias(): number /*f64*/
+        set_normal_bias(bias: number /*f64*/): void
+        get_normal_bias(): number /*f64*/
+        set_propagation(propagation: number /*f64*/): void
+        get_propagation(): number /*f64*/
+        set_interior(interior: boolean): void
+        is_interior(): boolean
+        set_use_two_bounces(enable: boolean): void
+        is_using_two_bounces(): boolean
+        _set_data(data: Dictionary): void
+        _get_data(): Dictionary
+        _data: Dictionary
+        dynamic_range: number /*f64*/
+        energy: number /*f64*/
+        bias: number /*f64*/
+        normal_bias: number /*f64*/
+        propagation: number /*f64*/
+        use_two_bounces: boolean
+        interior: boolean
+    }
+    class VoxelGIEditorPlugin extends EditorPlugin {
+    }
+    class VoxelGIGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class WeakRef extends RefCounted {
+        get_ref(): any
+    }
+    namespace WebRTCDataChannel {
+        enum WriteMode {
+            WRITE_MODE_TEXT = 0,
+            WRITE_MODE_BINARY = 1,
+        }
+        enum ChannelState {
+            STATE_CONNECTING = 0,
+            STATE_OPEN = 1,
+            STATE_CLOSING = 2,
+            STATE_CLOSED = 3,
+        }
+    }
+    class WebRTCDataChannel extends PacketPeer {
+        poll(): GodotError
+        close(): void
+        was_string_packet(): boolean
+        set_write_mode(write_mode: WebRTCDataChannel.WriteMode): void
+        get_write_mode(): WebRTCDataChannel.WriteMode
+        get_ready_state(): WebRTCDataChannel.ChannelState
+        get_label(): string
+        is_ordered(): boolean
+        get_id(): number /*i64*/
+        get_max_packet_life_time(): number /*i64*/
+        get_max_retransmits(): number /*i64*/
+        get_protocol(): string
+        is_negotiated(): boolean
+        get_buffered_amount(): number /*i64*/
+        write_mode: number /*i64*/
+    }
+    class WebRTCDataChannelExtension extends WebRTCDataChannel {
+        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): GodotError
+        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): GodotError
+        /* gdvirtual */ _get_available_packet_count(): number /*i64*/
+        /* gdvirtual */ _get_max_packet_size(): number /*i64*/
+        /* gdvirtual */ _poll(): GodotError
+        /* gdvirtual */ _close(): void
+        /* gdvirtual */ _set_write_mode(p_write_mode: WebRTCDataChannel.WriteMode): void
+        /* gdvirtual */ _get_write_mode(): WebRTCDataChannel.WriteMode
+        /* gdvirtual */ _was_string_packet(): boolean
+        /* gdvirtual */ _get_ready_state(): WebRTCDataChannel.ChannelState
+        /* gdvirtual */ _get_label(): string
+        /* gdvirtual */ _is_ordered(): boolean
+        /* gdvirtual */ _get_id(): number /*i64*/
+        /* gdvirtual */ _get_max_packet_life_time(): number /*i64*/
+        /* gdvirtual */ _get_max_retransmits(): number /*i64*/
+        /* gdvirtual */ _get_protocol(): string
+        /* gdvirtual */ _is_negotiated(): boolean
+        /* gdvirtual */ _get_buffered_amount(): number /*i64*/
+    }
+    class WebRTCMultiplayerPeer extends MultiplayerPeer {
+        create_server(channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        create_client(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        create_mesh(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        add_peer(peer: WebRTCPeerConnection, peer_id: number /*i64*/, unreliable_lifetime: number /*i64*/ = 1): GodotError
+        remove_peer(peer_id: number /*i64*/): void
+        has_peer(peer_id: number /*i64*/): boolean
+        get_peer(peer_id: number /*i64*/): Dictionary
+        get_peers(): Dictionary
+    }
+    namespace WebRTCPeerConnection {
+        enum ConnectionState {
+            STATE_NEW = 0,
+            STATE_CONNECTING = 1,
+            STATE_CONNECTED = 2,
+            STATE_DISCONNECTED = 3,
+            STATE_FAILED = 4,
+            STATE_CLOSED = 5,
+        }
+        enum GatheringState {
+            GATHERING_STATE_NEW = 0,
+            GATHERING_STATE_GATHERING = 1,
+            GATHERING_STATE_COMPLETE = 2,
+        }
+        enum SignalingState {
+            SIGNALING_STATE_STABLE = 0,
+            SIGNALING_STATE_HAVE_LOCAL_OFFER = 1,
+            SIGNALING_STATE_HAVE_REMOTE_OFFER = 2,
+            SIGNALING_STATE_HAVE_LOCAL_PRANSWER = 3,
+            SIGNALING_STATE_HAVE_REMOTE_PRANSWER = 4,
+            SIGNALING_STATE_CLOSED = 5,
+        }
+    }
+    class WebRTCPeerConnection extends RefCounted {
+        static set_default_extension(extension_class: StringName): void
+        initialize(configuration: Dictionary = <any> {} /*compound.type from 27([object Object])*/): GodotError
+        create_data_channel(label: string, options: Dictionary = <any> {} /*compound.type from 27([object Object])*/): WebRTCDataChannel
+        create_offer(): GodotError
+        set_local_description(type: string, sdp: string): GodotError
+        set_remote_description(type: string, sdp: string): GodotError
+        add_ice_candidate(media: string, index: number /*i64*/, name: string): GodotError
+        poll(): GodotError
+        close(): void
+        get_connection_state(): WebRTCPeerConnection.ConnectionState
+        get_gathering_state(): WebRTCPeerConnection.GatheringState
+        get_signaling_state(): WebRTCPeerConnection.SignalingState
+        readonly session_description_created: Signal
+        readonly ice_candidate_created: Signal
+        readonly data_channel_received: Signal
+    }
+    class WebRTCPeerConnectionExtension extends WebRTCPeerConnection {
+        /* gdvirtual */ _get_connection_state(): WebRTCPeerConnection.ConnectionState
+        /* gdvirtual */ _get_gathering_state(): WebRTCPeerConnection.GatheringState
+        /* gdvirtual */ _get_signaling_state(): WebRTCPeerConnection.SignalingState
+        /* gdvirtual */ _initialize(p_config: Dictionary): GodotError
+        /* gdvirtual */ _create_data_channel(p_label: string, p_config: Dictionary): WebRTCDataChannel
+        /* gdvirtual */ _create_offer(): GodotError
+        /* gdvirtual */ _set_remote_description(p_type: string, p_sdp: string): GodotError
+        /* gdvirtual */ _set_local_description(p_type: string, p_sdp: string): GodotError
+        /* gdvirtual */ _add_ice_candidate(p_sdp_mid_name: string, p_sdp_mline_index: number /*i64*/, p_sdp_name: string): GodotError
+        /* gdvirtual */ _poll(): GodotError
+        /* gdvirtual */ _close(): void
+    }
+    namespace WebXRInterface {
+        enum TargetRayMode {
+            TARGET_RAY_MODE_UNKNOWN = 0,
+            TARGET_RAY_MODE_GAZE = 1,
+            TARGET_RAY_MODE_TRACKED_POINTER = 2,
+            TARGET_RAY_MODE_SCREEN = 3,
+        }
+    }
+    class WebXRInterface extends XRInterface {
+        is_session_supported(session_mode: string): void
+        set_session_mode(session_mode: string): void
+        get_session_mode(): string
+        set_required_features(required_features: string): void
+        get_required_features(): string
+        set_optional_features(optional_features: string): void
+        get_optional_features(): string
+        get_reference_space_type(): string
+        set_requested_reference_space_types(requested_reference_space_types: string): void
+        get_requested_reference_space_types(): string
+        is_input_source_active(input_source_id: number /*i64*/): boolean
+        get_input_source_tracker(input_source_id: number /*i64*/): XRPositionalTracker
+        get_input_source_target_ray_mode(input_source_id: number /*i64*/): WebXRInterface.TargetRayMode
+        get_visibility_state(): string
+        get_display_refresh_rate(): number /*f64*/
+        set_display_refresh_rate(refresh_rate: number /*f64*/): void
+        get_available_display_refresh_rates(): Array
+        session_mode: string
+        required_features: string
+        optional_features: string
+        requested_reference_space_types: string
+        readonly reference_space_type: string
+        readonly visibility_state: string
+        readonly session_supported: Signal
+        readonly session_started: Signal
+        readonly session_ended: Signal
+        readonly session_failed: Signal
+        readonly selectstart: Signal
+        readonly select: Signal
+        readonly selectend: Signal
+        readonly squeezestart: Signal
+        readonly squeeze: Signal
+        readonly squeezeend: Signal
+        readonly visibility_state_changed: Signal
+        readonly reference_space_reset: Signal
+        readonly display_refresh_rate_changed: Signal
+    }
+    namespace Window {
+        enum Mode {
+            MODE_WINDOWED = 0,
+            MODE_MINIMIZED = 1,
+            MODE_MAXIMIZED = 2,
+            MODE_FULLSCREEN = 3,
+            MODE_EXCLUSIVE_FULLSCREEN = 4,
+        }
+        enum Flags {
+            FLAG_RESIZE_DISABLED = 0,
+            FLAG_BORDERLESS = 1,
+            FLAG_ALWAYS_ON_TOP = 2,
+            FLAG_TRANSPARENT = 3,
+            FLAG_NO_FOCUS = 4,
+            FLAG_POPUP = 5,
+            FLAG_EXTEND_TO_TITLE = 6,
+            FLAG_MOUSE_PASSTHROUGH = 7,
+            FLAG_MAX = 8,
+        }
+        enum ContentScaleMode {
+            CONTENT_SCALE_MODE_DISABLED = 0,
+            CONTENT_SCALE_MODE_CANVAS_ITEMS = 1,
+            CONTENT_SCALE_MODE_VIEWPORT = 2,
+        }
+        enum ContentScaleAspect {
+            CONTENT_SCALE_ASPECT_IGNORE = 0,
+            CONTENT_SCALE_ASPECT_KEEP = 1,
+            CONTENT_SCALE_ASPECT_KEEP_WIDTH = 2,
+            CONTENT_SCALE_ASPECT_KEEP_HEIGHT = 3,
+            CONTENT_SCALE_ASPECT_EXPAND = 4,
+        }
+        enum ContentScaleStretch {
+            CONTENT_SCALE_STRETCH_FRACTIONAL = 0,
+            CONTENT_SCALE_STRETCH_INTEGER = 1,
+        }
+        enum LayoutDirection {
+            LAYOUT_DIRECTION_INHERITED = 0,
+            LAYOUT_DIRECTION_LOCALE = 1,
+            LAYOUT_DIRECTION_LTR = 2,
+            LAYOUT_DIRECTION_RTL = 3,
+        }
+        enum WindowInitialPosition {
+            WINDOW_INITIAL_POSITION_ABSOLUTE = 0,
+            WINDOW_INITIAL_POSITION_CENTER_PRIMARY_SCREEN = 1,
+            WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN = 2,
+            WINDOW_INITIAL_POSITION_CENTER_OTHER_SCREEN = 3,
+            WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_MOUSE_FOCUS = 4,
+            WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_KEYBOARD_FOCUS = 5,
+        }
+    }
+    class Window extends Viewport {
+        static readonly NOTIFICATION_VISIBILITY_CHANGED = 30
+        static readonly NOTIFICATION_THEME_CHANGED = 32
+        /* gdvirtual */ _get_contents_minimum_size(): Vector2
+        set_title(title: string): void
+        get_title(): string
+        get_window_id(): number /*i64*/
+        set_initial_position(initial_position: Window.WindowInitialPosition): void
+        get_initial_position(): Window.WindowInitialPosition
+        set_current_screen(index: number /*i64*/): void
+        get_current_screen(): number /*i64*/
+        set_position(position: Vector2i): void
+        get_position(): Vector2i
+        move_to_center(): void
+        set_size(size: Vector2i): void
+        get_size(): Vector2i
+        reset_size(): void
+        get_position_with_decorations(): Vector2i
+        get_size_with_decorations(): Vector2i
+        set_max_size(max_size: Vector2i): void
+        get_max_size(): Vector2i
+        set_min_size(min_size: Vector2i): void
+        get_min_size(): Vector2i
+        set_mode(mode: Window.Mode): void
+        get_mode(): Window.Mode
+        set_flag(flag: Window.Flags, enabled: boolean): void
+        get_flag(flag: Window.Flags): boolean
+        is_maximize_allowed(): boolean
+        request_attention(): void
+        move_to_foreground(): void
+        set_visible(visible: boolean): void
+        is_visible(): boolean
+        hide(): void
+        show(): void
+        set_transient(transient: boolean): void
+        is_transient(): boolean
+        set_exclusive(exclusive: boolean): void
+        is_exclusive(): boolean
+        set_unparent_when_invisible(unparent: boolean): void
+        can_draw(): boolean
+        has_focus(): boolean
+        grab_focus(): void
+        set_ime_active(active: boolean): void
+        set_ime_position(position: Vector2i): void
+        is_embedded(): boolean
+        get_contents_minimum_size(): Vector2
+        set_content_scale_size(size: Vector2i): void
+        get_content_scale_size(): Vector2i
+        set_content_scale_mode(mode: Window.ContentScaleMode): void
+        get_content_scale_mode(): Window.ContentScaleMode
+        set_content_scale_aspect(aspect: Window.ContentScaleAspect): void
+        get_content_scale_aspect(): Window.ContentScaleAspect
+        set_content_scale_stretch(stretch: Window.ContentScaleStretch): void
+        get_content_scale_stretch(): Window.ContentScaleStretch
+        set_keep_title_visible(title_visible: boolean): void
+        get_keep_title_visible(): boolean
+        set_content_scale_factor(factor: number /*f64*/): void
+        get_content_scale_factor(): number /*f64*/
+        set_use_font_oversampling(enable: boolean): void
+        is_using_font_oversampling(): boolean
+        set_mouse_passthrough_polygon(polygon: PackedVector2Array): void
+        get_mouse_passthrough_polygon(): PackedVector2Array
+        set_wrap_controls(enable: boolean): void
+        is_wrapping_controls(): boolean
+        child_controls_changed(): void
+        _update_child_controls(): void
+        _update_embedded_window(): void
+        set_theme(theme: Theme): void
+        get_theme(): Theme
+        set_theme_type_variation(theme_type: StringName): void
+        get_theme_type_variation(): StringName
+        begin_bulk_theme_override(): void
+        end_bulk_theme_override(): void
+        add_theme_icon_override(name: StringName, texture: Texture2D): void
+        add_theme_stylebox_override(name: StringName, stylebox: StyleBox): void
+        add_theme_font_override(name: StringName, font: Font): void
+        add_theme_font_size_override(name: StringName, font_size: number /*i64*/): void
+        add_theme_color_override(name: StringName, color: Color): void
+        add_theme_constant_override(name: StringName, constant: number /*i64*/): void
+        remove_theme_icon_override(name: StringName): void
+        remove_theme_stylebox_override(name: StringName): void
+        remove_theme_font_override(name: StringName): void
+        remove_theme_font_size_override(name: StringName): void
+        remove_theme_color_override(name: StringName): void
+        remove_theme_constant_override(name: StringName): void
+        get_theme_icon(name: StringName, theme_type: StringName = ''): Texture2D
+        get_theme_stylebox(name: StringName, theme_type: StringName = ''): StyleBox
+        get_theme_font(name: StringName, theme_type: StringName = ''): Font
+        get_theme_font_size(name: StringName, theme_type: StringName = ''): number /*i64*/
+        get_theme_color(name: StringName, theme_type: StringName = ''): Color
+        get_theme_constant(name: StringName, theme_type: StringName = ''): number /*i64*/
+        has_theme_icon_override(name: StringName): boolean
+        has_theme_stylebox_override(name: StringName): boolean
+        has_theme_font_override(name: StringName): boolean
+        has_theme_font_size_override(name: StringName): boolean
+        has_theme_color_override(name: StringName): boolean
+        has_theme_constant_override(name: StringName): boolean
+        has_theme_icon(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_stylebox(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_font(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_font_size(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_color(name: StringName, theme_type: StringName = ''): boolean
+        has_theme_constant(name: StringName, theme_type: StringName = ''): boolean
+        get_theme_default_base_scale(): number /*f64*/
+        get_theme_default_font(): Font
+        get_theme_default_font_size(): number /*i64*/
+        set_layout_direction(direction: Window.LayoutDirection): void
+        get_layout_direction(): Window.LayoutDirection
+        is_layout_rtl(): boolean
+        set_auto_translate(enable: boolean): void
+        is_auto_translating(): boolean
+        popup(rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
+        popup_on_parent(parent_rect: Rect2i): void
+        popup_centered(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        popup_centered_ratio(ratio: number /*f64*/ = 0.8): void
+        popup_centered_clamped(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
+        popup_exclusive(from_node: Node, rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
+        popup_exclusive_on_parent(from_node: Node, parent_rect: Rect2i): void
+        popup_exclusive_centered(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        popup_exclusive_centered_ratio(from_node: Node, ratio: number /*f64*/ = 0.8): void
+        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
+        mode: number /*i64*/
+        title: string
+        initial_position: number /*i64*/
+        position: Vector2i
+        size: Vector2i
+        current_screen: number /*i64*/
+        mouse_passthrough_polygon: PackedVector2Array
+        visible: boolean
+        wrap_controls: boolean
+        transient: boolean
+        exclusive: boolean
+        min_size: Vector2i
+        max_size: Vector2i
+        keep_title_visible: boolean
+        content_scale_size: Vector2i
+        content_scale_mode: number /*i64*/
+        content_scale_aspect: number /*i64*/
+        content_scale_stretch: number /*i64*/
+        content_scale_factor: number /*f64*/
+        auto_translate: boolean
+        theme: Theme
+        theme_type_variation: string
+        readonly window_input: Signal
+        readonly files_dropped: Signal
+        readonly mouse_entered: Signal
+        readonly mouse_exited: Signal
+        readonly focus_entered: Signal
+        readonly focus_exited: Signal
+        readonly close_requested: Signal
+        readonly go_back_requested: Signal
+        readonly visibility_changed: Signal
+        readonly about_to_popup: Signal
+        readonly theme_changed: Signal
+        readonly dpi_changed: Signal
+        readonly titlebar_changed: Signal
+    }
     class WindowWrapper extends MarginContainer {
         readonly window_visibility_changed: Signal
         readonly window_close_requested: Signal
@@ -174,6 +1255,37 @@ declare module "godot" {
         readonly play_area_changed: Signal
     }
     class XRInterfaceExtension extends XRInterface {
+        /* gdvirtual */ _get_name(): StringName
+        /* gdvirtual */ _get_capabilities(): number /*i64*/
+        /* gdvirtual */ _is_initialized(): boolean
+        /* gdvirtual */ _initialize(): boolean
+        /* gdvirtual */ _uninitialize(): void
+        /* gdvirtual */ _get_system_info(): Dictionary
+        /* gdvirtual */ _supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
+        /* gdvirtual */ _get_play_area_mode(): XRInterface.PlayAreaMode
+        /* gdvirtual */ _set_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
+        /* gdvirtual */ _get_play_area(): PackedVector3Array
+        /* gdvirtual */ _get_render_target_size(): Vector2
+        /* gdvirtual */ _get_view_count(): number /*i64*/
+        /* gdvirtual */ _get_camera_transform(): Transform3D
+        /* gdvirtual */ _get_transform_for_view(view: number /*i64*/, cam_transform: Transform3D): Transform3D
+        /* gdvirtual */ _get_projection_for_view(view: number /*i64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): PackedFloat64Array
+        /* gdvirtual */ _get_vrs_texture(): RID
+        /* gdvirtual */ _process(): void
+        /* gdvirtual */ _pre_render(): void
+        /* gdvirtual */ _pre_draw_viewport(render_target: RID): boolean
+        /* gdvirtual */ _post_draw_viewport(render_target: RID, screen_rect: Rect2): void
+        /* gdvirtual */ _end_frame(): void
+        /* gdvirtual */ _get_suggested_tracker_names(): PackedStringArray
+        /* gdvirtual */ _get_suggested_pose_names(tracker_name: StringName): PackedStringArray
+        /* gdvirtual */ _get_tracking_status(): XRInterface.TrackingStatus
+        /* gdvirtual */ _trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
+        /* gdvirtual */ _get_anchor_detection_is_enabled(): boolean
+        /* gdvirtual */ _set_anchor_detection_is_enabled(enabled: boolean): void
+        /* gdvirtual */ _get_camera_feed_id(): number /*i64*/
+        /* gdvirtual */ _get_color_texture(): RID
+        /* gdvirtual */ _get_depth_texture(): RID
+        /* gdvirtual */ _get_velocity_texture(): RID
         get_color_texture(): RID
         get_depth_texture(): RID
         get_velocity_texture(): RID

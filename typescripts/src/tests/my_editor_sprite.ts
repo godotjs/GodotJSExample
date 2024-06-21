@@ -1,4 +1,4 @@
-import { Engine, PackedStringArray, Sprite2D, Variant } from "godot";
+import { Engine, InputEvent, PackedStringArray, Sprite2D, Variant } from "godot";
 import { export_, tool_ } from "../jsb/jsb.core";
 
 // see example code in GDScript/C# at:

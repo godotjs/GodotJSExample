@@ -3044,6 +3044,8 @@ declare module "godot" {
         finish(): void
     }
     class AStar2D extends RefCounted {
+        /* gdvirtual */ _estimate_cost(from_id: number /*i64*/, to_id: number /*i64*/): number /*f64*/
+        /* gdvirtual */ _compute_cost(from_id: number /*i64*/, to_id: number /*i64*/): number /*f64*/
         get_available_point_id(): number /*i64*/
         add_point(id: number /*i64*/, position: Vector2, weight_scale: number /*f64*/ = 1): void
         get_point_position(id: number /*i64*/): Vector2
@@ -3069,6 +3071,8 @@ declare module "godot" {
         get_id_path(from_id: number /*i64*/, to_id: number /*i64*/): PackedInt64Array
     }
     class AStar3D extends RefCounted {
+        /* gdvirtual */ _estimate_cost(from_id: number /*i64*/, to_id: number /*i64*/): number /*f64*/
+        /* gdvirtual */ _compute_cost(from_id: number /*i64*/, to_id: number /*i64*/): number /*f64*/
         get_available_point_id(): number /*i64*/
         add_point(id: number /*i64*/, position: Vector3, weight_scale: number /*f64*/ = 1): void
         get_point_position(id: number /*i64*/): Vector3
@@ -3110,6 +3114,8 @@ declare module "godot" {
         }
     }
     class AStarGrid2D extends RefCounted {
+        /* gdvirtual */ _estimate_cost(from_id: Vector2i, to_id: Vector2i): number /*f64*/
+        /* gdvirtual */ _compute_cost(from_id: Vector2i, to_id: Vector2i): number /*f64*/
         set_region(region: Rect2i): void
         get_region(): Rect2i
         set_size(size: Vector2i): void
@@ -3467,6 +3473,7 @@ declare module "godot" {
         }
     }
     class AnimationMixer extends Node {
+        /* gdvirtual */ _post_process_key_value(animation: Animation, track: number /*i64*/, value: any, object: Object, object_idx: number /*i64*/): void
         add_animation_library(name: StringName, library: AnimationLibrary): GodotError
         remove_animation_library(name: StringName): void
         rename_animation_library(name: StringName, newname: StringName): void
@@ -3528,6 +3535,14 @@ declare module "godot" {
         }
     }
     class AnimationNode extends Resource {
+        /* gdvirtual */ _get_child_nodes(): Dictionary
+        /* gdvirtual */ _get_parameter_list(): Array
+        /* gdvirtual */ _get_child_by_name(name: StringName): AnimationNode
+        /* gdvirtual */ _get_parameter_default_value(parameter: StringName): void
+        /* gdvirtual */ _is_parameter_read_only(parameter: StringName): boolean
+        /* gdvirtual */ _process(time: number /*f64*/, seek: boolean, is_external_seeking: boolean, test_only: boolean): number /*f64*/
+        /* gdvirtual */ _get_caption(): string
+        /* gdvirtual */ _has_filter(): boolean
         add_input(name: string): boolean
         remove_input(index: number /*i64*/): void
         set_input_name(input: number /*i64*/, name: string): boolean
@@ -4237,6 +4252,7 @@ declare module "godot" {
     class AudioBusesEditorPlugin extends EditorPlugin {
     }
     class AudioEffect extends Resource {
+        /* gdvirtual */ _instantiate(): AudioEffectInstance
     }
     class AudioEffectAmplify extends AudioEffect {
         set_volume_db(volume: number /*f64*/): void
@@ -4410,6 +4426,8 @@ declare module "godot" {
     class AudioEffectHighShelfFilter extends AudioEffectFilter {
     }
     class AudioEffectInstance extends RefCounted {
+        /* gdvirtual */ _process(src_buffer: number /*i64*/, dst_buffer: number /*i64*/, frame_count: number /*i64*/): void
+        /* gdvirtual */ _process_silence(): boolean
     }
     class AudioEffectLimiter extends AudioEffect {
         set_ceiling_db(ceiling: number /*f64*/): void
@@ -4563,6 +4581,12 @@ declare module "godot" {
     class AudioListener3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     class AudioStream extends Resource {
+        /* gdvirtual */ _instantiate_playback(): AudioStreamPlayback
+        /* gdvirtual */ _get_stream_name(): string
+        /* gdvirtual */ _get_length(): number /*f64*/
+        /* gdvirtual */ _is_monophonic(): boolean
+        /* gdvirtual */ _get_bpm(): number /*f64*/
+        /* gdvirtual */ _get_beat_count(): number /*i64*/
         get_length(): number /*f64*/
         is_monophonic(): boolean
         instantiate_playback(): AudioStreamPlayback
@@ -4632,6 +4656,14 @@ declare module "godot" {
         loop_offset: number /*f64*/
     }
     class AudioStreamPlayback extends RefCounted {
+        /* gdvirtual */ _start(from_pos: number /*f64*/): void
+        /* gdvirtual */ _stop(): void
+        /* gdvirtual */ _is_playing(): boolean
+        /* gdvirtual */ _get_loop_count(): number /*i64*/
+        /* gdvirtual */ _get_playback_position(): number /*f64*/
+        /* gdvirtual */ _seek(position: number /*f64*/): void
+        /* gdvirtual */ _mix(buffer: number /*i64*/, rate_scale: number /*f64*/, frames: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _tag_used_streams(): void
     }
     class AudioStreamPlaybackOggVorbis extends AudioStreamPlaybackResampled {
     }
@@ -4644,6 +4676,8 @@ declare module "godot" {
         stop_stream(stream: number /*i64*/): void
     }
     class AudioStreamPlaybackResampled extends AudioStreamPlayback {
+        /* gdvirtual */ _mix_resampled(dst_buffer: number /*i64*/, frame_count: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _get_stream_sampling_rate(): number /*f64*/
         begin_resample(): void
     }
     namespace AudioStreamPlayer {
@@ -4933,6 +4967,8 @@ declare module "godot" {
         }
     }
     class BaseButton extends Control {
+        /* gdvirtual */ _pressed(): void
+        /* gdvirtual */ _toggled(toggled_on: boolean): void
         set_pressed(pressed: boolean): void
         is_pressed(): boolean
         set_pressed_no_signal(pressed: boolean): void
@@ -6277,6 +6313,7 @@ declare module "godot" {
         static readonly NOTIFICATION_ENTER_CANVAS = 32
         static readonly NOTIFICATION_EXIT_CANVAS = 33
         static readonly NOTIFICATION_WORLD_2D_CHANGED = 36
+        /* gdvirtual */ _draw(): void
         _top_level_raise_self(): void
         _edit_set_state(state: Dictionary): void
         _edit_get_state(): Dictionary
@@ -6773,6 +6810,9 @@ declare module "godot" {
         }
     }
     class CodeEdit extends TextEdit {
+        /* gdvirtual */ _confirm_code_completion(replace: boolean): void
+        /* gdvirtual */ _request_code_completion(force: boolean): void
+        /* gdvirtual */ _filter_code_completion_candidates(candidates: Array): Array
         set_indent_size(size: number /*i64*/): void
         get_indent_size(): number /*i64*/
         set_indent_using_spaces(use_spaces: boolean): void
@@ -6953,6 +6993,11 @@ declare module "godot" {
         }
     }
     class CollisionObject2D extends Node2D {
+        /* gdvirtual */ _input_event(viewport: Viewport, event: InputEvent, shape_idx: number /*i64*/): void
+        /* gdvirtual */ _mouse_enter(): void
+        /* gdvirtual */ _mouse_exit(): void
+        /* gdvirtual */ _mouse_shape_enter(shape_idx: number /*i64*/): void
+        /* gdvirtual */ _mouse_shape_exit(shape_idx: number /*i64*/): void
         get_rid(): RID
         set_collision_layer(layer: number /*i64*/): void
         get_collision_layer(): number /*i64*/
@@ -7006,6 +7051,9 @@ declare module "godot" {
         }
     }
     class CollisionObject3D extends Node3D {
+        /* gdvirtual */ _input_event(camera: Camera3D, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: number /*i64*/): void
+        /* gdvirtual */ _mouse_enter(): void
+        /* gdvirtual */ _mouse_exit(): void
         set_collision_layer(layer: number /*i64*/): void
         get_collision_layer(): number /*i64*/
         set_collision_mask(mask: number /*i64*/): void
@@ -7291,6 +7339,8 @@ declare module "godot" {
     class Container extends Control {
         static readonly NOTIFICATION_PRE_SORT_CHILDREN = 50
         static readonly NOTIFICATION_SORT_CHILDREN = 51
+        /* gdvirtual */ _get_allowed_size_flags_horizontal(): PackedInt32Array
+        /* gdvirtual */ _get_allowed_size_flags_vertical(): PackedInt32Array
         queue_sort(): void
         fit_child_in_rect(child: Control, rect: Rect2): void
         readonly pre_sort_children: Signal
@@ -7392,6 +7442,15 @@ declare module "godot" {
         static readonly NOTIFICATION_SCROLL_BEGIN = 47
         static readonly NOTIFICATION_SCROLL_END = 48
         static readonly NOTIFICATION_LAYOUT_DIRECTION_CHANGED = 49
+        /* gdvirtual */ _has_point(point: Vector2): boolean
+        /* gdvirtual */ _structured_text_parser(args: Array, text: string): Array
+        /* gdvirtual */ _get_minimum_size(): Vector2
+        /* gdvirtual */ _get_tooltip(at_position: Vector2): string
+        /* gdvirtual */ _get_drag_data(at_position: Vector2): void
+        /* gdvirtual */ _can_drop_data(at_position: Vector2, data: any): boolean
+        /* gdvirtual */ _drop_data(at_position: Vector2, data: any): void
+        /* gdvirtual */ _make_custom_tooltip(for_text: string): Object
+        /* gdvirtual */ _gui_input(event: InputEvent): void
         accept_event(): void
         get_minimum_size(): Vector2
         get_combined_minimum_size(): Vector2
@@ -8169,6 +8228,9 @@ declare module "godot" {
         readonly breakpoints_cleared_in_tree: Signal
     }
     class EditorDebuggerPlugin extends RefCounted {
+        /* gdvirtual */ _setup_session(session_id: number /*i64*/): void
+        /* gdvirtual */ _has_capture(capture: string): boolean
+        /* gdvirtual */ _capture(message: string, data: Array, session_id: number /*i64*/): boolean
         get_session(id: number /*i64*/): EditorDebuggerSession
         get_sessions(): Array
     }
@@ -8223,6 +8285,28 @@ declare module "godot" {
     class EditorExportPlatformWindows extends EditorExportPlatformPC {
     }
     class EditorExportPlugin extends RefCounted {
+        /* gdvirtual */ _export_file(path: string, type: string, features: PackedStringArray): void
+        /* gdvirtual */ _export_begin(features: PackedStringArray, is_debug: boolean, path: string, flags: number /*i64*/): void
+        /* gdvirtual */ _export_end(): void
+        /* gdvirtual */ _begin_customize_resources(platform: EditorExportPlatform, features: PackedStringArray): boolean
+        /* gdvirtual */ _customize_resource(resource: Resource, path: string): Resource
+        /* gdvirtual */ _begin_customize_scenes(platform: EditorExportPlatform, features: PackedStringArray): boolean
+        /* gdvirtual */ _customize_scene(scene: Node, path: string): Node
+        /* gdvirtual */ _get_customization_configuration_hash(): number /*i64*/
+        /* gdvirtual */ _end_customize_scenes(): void
+        /* gdvirtual */ _end_customize_resources(): void
+        /* gdvirtual */ _get_export_options(platform: EditorExportPlatform): Array
+        /* gdvirtual */ _should_update_export_options(platform: EditorExportPlatform): boolean
+        /* gdvirtual */ _get_export_option_warning(platform: EditorExportPlatform, option: string): string
+        /* gdvirtual */ _get_export_features(platform: EditorExportPlatform, debug: boolean): PackedStringArray
+        /* gdvirtual */ _get_name(): string
+        /* gdvirtual */ _supports_platform(platform: EditorExportPlatform): boolean
+        /* gdvirtual */ _get_android_dependencies(platform: EditorExportPlatform, debug: boolean): PackedStringArray
+        /* gdvirtual */ _get_android_dependencies_maven_repos(platform: EditorExportPlatform, debug: boolean): PackedStringArray
+        /* gdvirtual */ _get_android_libraries(platform: EditorExportPlatform, debug: boolean): PackedStringArray
+        /* gdvirtual */ _get_android_manifest_activity_element_contents(platform: EditorExportPlatform, debug: boolean): string
+        /* gdvirtual */ _get_android_manifest_application_element_contents(platform: EditorExportPlatform, debug: boolean): string
+        /* gdvirtual */ _get_android_manifest_element_contents(platform: EditorExportPlatform, debug: boolean): string
         add_shared_object(path: string, tags: PackedStringArray, target: string): void
         add_ios_project_static_lib(path: string): void
         add_file(path: string, file: PackedByteArray, remap: boolean): void
@@ -8359,6 +8443,9 @@ declare module "godot" {
         find_dir_index(name: string): number /*i64*/
     }
     class EditorFileSystemImportFormatSupportQuery extends RefCounted {
+        /* gdvirtual */ _is_active(): boolean
+        /* gdvirtual */ _get_file_extensions(): PackedStringArray
+        /* gdvirtual */ _query(): boolean
     }
     class EditorFileSystemImportFormatSupportQueryFBX extends EditorFileSystemImportFormatSupportQuery {
     }
@@ -8378,6 +8465,18 @@ declare module "godot" {
     class EditorImportBlendRunner extends Node {
     }
     class EditorImportPlugin extends ResourceImporter {
+        /* gdvirtual */ _get_importer_name(): string
+        /* gdvirtual */ _get_visible_name(): string
+        /* gdvirtual */ _get_preset_count(): number /*i64*/
+        /* gdvirtual */ _get_preset_name(preset_index: number /*i64*/): string
+        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
+        /* gdvirtual */ _get_import_options(path: string, preset_index: number /*i64*/): Array
+        /* gdvirtual */ _get_save_extension(): string
+        /* gdvirtual */ _get_resource_type(): string
+        /* gdvirtual */ _get_priority(): number /*f64*/
+        /* gdvirtual */ _get_import_order(): number /*i64*/
+        /* gdvirtual */ _get_option_visibility(path: string, option_name: StringName, options: Dictionary): boolean
+        /* gdvirtual */ _import(source_file: string, save_path: string, options: Dictionary, platform_variants: Array, gen_files: Array): GodotError
         append_import_external_resource(path: string, custom_options: Dictionary = <any> {} /*compound.type from 27([object Object])*/, custom_importer: string = '', generator_parameters: any = <any> {} /*compound.type from nil*/): GodotError
     }
     class EditorInspector extends ScrollContainer {
@@ -8399,6 +8498,12 @@ declare module "godot" {
     class EditorInspectorDefaultPlugin extends EditorInspectorPlugin {
     }
     class EditorInspectorPlugin extends RefCounted {
+        /* gdvirtual */ _can_handle(object: Object): boolean
+        /* gdvirtual */ _parse_begin(object: Object): void
+        /* gdvirtual */ _parse_category(object: Object, category: string): void
+        /* gdvirtual */ _parse_group(object: Object, group: string): void
+        /* gdvirtual */ _parse_property(object: Object, type: Variant.Type, name: string, hint_type: PropertyHint, hint_string: string, usage_flags: PropertyUsageFlags, wide: boolean): boolean
+        /* gdvirtual */ _parse_end(object: Object): void
         add_custom_control(control: Control): void
         add_property_editor(property: string, editor: Control, add_to_end: boolean = false): void
         add_property_editor_for_multiple_properties(label: string, properties: PackedStringArray, editor: Control): void
@@ -8451,12 +8556,6 @@ declare module "godot" {
     }
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
     }
-    class EditorInspectorSection extends Container {
-        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: number /*i64*/): void
-        get_vbox(): VBoxContainer
-        unfold(): void
-        fold(): void
-    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
     }
     class EditorJSONSyntaxHighlighter extends EditorSyntaxHighlighter {
@@ -8497,6 +8596,18 @@ declare module "godot" {
         readonly scene_closed: Signal
     }
     class EditorNode3DGizmo extends Node3DGizmo {
+        /* gdvirtual */ _redraw(): void
+        /* gdvirtual */ _get_handle_name(id: number /*i64*/, secondary: boolean): string
+        /* gdvirtual */ _is_handle_highlighted(id: number /*i64*/, secondary: boolean): boolean
+        /* gdvirtual */ _get_handle_value(id: number /*i64*/, secondary: boolean): void
+        /* gdvirtual */ _begin_handle_action(id: number /*i64*/, secondary: boolean): void
+        /* gdvirtual */ _set_handle(id: number /*i64*/, secondary: boolean, camera: Camera3D, point: Vector2): void
+        /* gdvirtual */ _commit_handle(id: number /*i64*/, secondary: boolean, restore: any, cancel: boolean): void
+        /* gdvirtual */ _subgizmos_intersect_ray(camera: Camera3D, point: Vector2): number /*i64*/
+        /* gdvirtual */ _subgizmos_intersect_frustum(camera: Camera3D, frustum: Array): PackedInt32Array
+        /* gdvirtual */ _set_subgizmo_transform(id: number /*i64*/, transform: Transform3D): void
+        /* gdvirtual */ _get_subgizmo_transform(id: number /*i64*/): Transform3D
+        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array, restores: Array, cancel: boolean): void
         add_lines(lines: PackedVector3Array, material: Material, billboard: boolean = false, modulate: Color = new Color(1, 1, 1, 1)): void
         add_mesh(mesh: Mesh, material: Material = <any> {} /*compound.type from nil*/, transform: Transform3D = <any> {} /*compound.type from 18([object Object])*/, skeleton: SkinReference = <any> {} /*compound.type from nil*/): void
         add_collision_segments(segments: PackedVector3Array): void
@@ -8512,6 +8623,24 @@ declare module "godot" {
         get_subgizmo_selection(): PackedInt32Array
     }
     class EditorNode3DGizmoPlugin extends Resource {
+        /* gdvirtual */ _has_gizmo(for_node_3d: Node3D): boolean
+        /* gdvirtual */ _create_gizmo(for_node_3d: Node3D): EditorNode3DGizmo
+        /* gdvirtual */ _get_gizmo_name(): string
+        /* gdvirtual */ _get_priority(): number /*i64*/
+        /* gdvirtual */ _can_be_hidden(): boolean
+        /* gdvirtual */ _is_selectable_when_hidden(): boolean
+        /* gdvirtual */ _redraw(gizmo: EditorNode3DGizmo): void
+        /* gdvirtual */ _get_handle_name(gizmo: EditorNode3DGizmo, handle_id: number /*i64*/, secondary: boolean): string
+        /* gdvirtual */ _is_handle_highlighted(gizmo: EditorNode3DGizmo, handle_id: number /*i64*/, secondary: boolean): boolean
+        /* gdvirtual */ _get_handle_value(gizmo: EditorNode3DGizmo, handle_id: number /*i64*/, secondary: boolean): void
+        /* gdvirtual */ _begin_handle_action(gizmo: EditorNode3DGizmo, handle_id: number /*i64*/, secondary: boolean): void
+        /* gdvirtual */ _set_handle(gizmo: EditorNode3DGizmo, handle_id: number /*i64*/, secondary: boolean, camera: Camera3D, screen_pos: Vector2): void
+        /* gdvirtual */ _commit_handle(gizmo: EditorNode3DGizmo, handle_id: number /*i64*/, secondary: boolean, restore: any, cancel: boolean): void
+        /* gdvirtual */ _subgizmos_intersect_ray(gizmo: EditorNode3DGizmo, camera: Camera3D, screen_pos: Vector2): number /*i64*/
+        /* gdvirtual */ _subgizmos_intersect_frustum(gizmo: EditorNode3DGizmo, camera: Camera3D, frustum_planes: Array): PackedInt32Array
+        /* gdvirtual */ _get_subgizmo_transform(gizmo: EditorNode3DGizmo, subgizmo_id: number /*i64*/): Transform3D
+        /* gdvirtual */ _set_subgizmo_transform(gizmo: EditorNode3DGizmo, subgizmo_id: number /*i64*/, transform: Transform3D): void
+        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array, restores: Array, cancel: boolean): void
         create_material(name: string, color: Color, billboard: boolean = false, on_top: boolean = false, use_vertex_color: boolean = false): void
         create_icon_material(name: string, texture: Texture2D, on_top: boolean = false, color: Color = new Color(1, 1, 1, 1)): void
         create_handle_material(name: string, billboard: boolean = false, texture: Texture2D = <any> {} /*compound.type from nil*/): void
@@ -8569,6 +8698,30 @@ declare module "godot" {
         }
     }
     class EditorPlugin extends Node {
+        /* gdvirtual */ _forward_canvas_gui_input(event: InputEvent): boolean
+        /* gdvirtual */ _forward_canvas_draw_over_viewport(viewport_control: Control): void
+        /* gdvirtual */ _forward_canvas_force_draw_over_viewport(viewport_control: Control): void
+        /* gdvirtual */ _forward_3d_gui_input(viewport_camera: Camera3D, event: InputEvent): number /*i64*/
+        /* gdvirtual */ _forward_3d_draw_over_viewport(viewport_control: Control): void
+        /* gdvirtual */ _forward_3d_force_draw_over_viewport(viewport_control: Control): void
+        /* gdvirtual */ _get_plugin_name(): string
+        /* gdvirtual */ _get_plugin_icon(): Texture2D
+        /* gdvirtual */ _has_main_screen(): boolean
+        /* gdvirtual */ _make_visible(visible: boolean): void
+        /* gdvirtual */ _edit(object: Object): void
+        /* gdvirtual */ _handles(object: Object): boolean
+        /* gdvirtual */ _get_state(): Dictionary
+        /* gdvirtual */ _set_state(state: Dictionary): void
+        /* gdvirtual */ _clear(): void
+        /* gdvirtual */ _get_unsaved_status(for_scene: string): string
+        /* gdvirtual */ _save_external_data(): void
+        /* gdvirtual */ _apply_changes(): void
+        /* gdvirtual */ _get_breakpoints(): PackedStringArray
+        /* gdvirtual */ _set_window_layout(configuration: ConfigFile): void
+        /* gdvirtual */ _get_window_layout(configuration: ConfigFile): void
+        /* gdvirtual */ _build(): boolean
+        /* gdvirtual */ _enable_plugin(): void
+        /* gdvirtual */ _disable_plugin(): void
         add_control_to_container(container: EditorPlugin.CustomControlContainer, control: Control): void
         add_control_to_bottom_panel(control: Control, title: string): Button
         add_control_to_dock(slot: EditorPlugin.DockSlot, control: Control): void
@@ -8628,6 +8781,8 @@ declare module "godot" {
         readonly break_request: Signal
     }
     class EditorProperty extends Container {
+        /* gdvirtual */ _update_property(): void
+        /* gdvirtual */ _set_read_only(read_only: boolean): void
         set_label(text: string): void
         get_label(): string
         set_read_only(read_only: boolean): void
@@ -8670,21 +8825,9 @@ declare module "godot" {
     }
     class EditorPropertyCheck extends EditorProperty {
     }
-    class EditorPropertyColor extends EditorProperty {
-    }
     class EditorPropertyDictionaryObject extends RefCounted {
     }
-    class EditorPropertyEnum extends EditorProperty {
-    }
-    class EditorPropertyFloat extends EditorProperty {
-    }
     class EditorPropertyInteger extends EditorProperty {
-    }
-    class EditorPropertyLayers extends EditorProperty {
-    }
-    class EditorPropertyLayersGrid extends Control {
-        readonly flag_changed: Signal
-        readonly rename_confirmed: Signal
     }
     class EditorPropertyLocalizableString extends EditorProperty {
     }
@@ -8698,8 +8841,6 @@ declare module "godot" {
     }
     class EditorPropertyText extends EditorProperty {
     }
-    class EditorPropertyVector2 extends EditorPropertyVectorN {
-    }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
     }
     class EditorPropertyVectorN extends EditorProperty {
@@ -8708,8 +8849,13 @@ declare module "godot" {
         readonly quick_open: Signal
     }
     class EditorResourceConversionPlugin extends RefCounted {
+        /* gdvirtual */ _converts_to(): string
+        /* gdvirtual */ _handles(resource: Resource): boolean
+        /* gdvirtual */ _convert(resource: Resource): Resource
     }
     class EditorResourcePicker extends HBoxContainer {
+        /* gdvirtual */ _set_create_options(menu_node: Object): void
+        /* gdvirtual */ _handle_menu_selected(id: number /*i64*/): boolean
         _update_resource_preview(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: number /*i64*/): void
         set_base_type(base_type: string): void
         get_base_type(): string
@@ -8737,8 +8883,15 @@ declare module "godot" {
         readonly preview_invalidated: Signal
     }
     class EditorResourcePreviewGenerator extends RefCounted {
+        /* gdvirtual */ _handles(type: string): boolean
+        /* gdvirtual */ _generate(resource: Resource, size: Vector2i, metadata: Dictionary): Texture2D
+        /* gdvirtual */ _generate_from_path(path: string, size: Vector2i, metadata: Dictionary): Texture2D
+        /* gdvirtual */ _generate_small_preview_automatically(): boolean
+        /* gdvirtual */ _can_generate_small_preview(): boolean
     }
     class EditorResourceTooltipPlugin extends RefCounted {
+        /* gdvirtual */ _handles(type: string): boolean
+        /* gdvirtual */ _make_tooltip_for_path(path: string, metadata: Dictionary, base: Control): Control
         _thumbnail_ready(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         request_thumbnail(path: string, control: TextureRect): void
     }
@@ -8757,6 +8910,11 @@ declare module "godot" {
         static readonly IMPORT_USE_NAMED_SKIN_BINDS = 16
         static readonly IMPORT_DISCARD_MESHES_AND_MATERIALS = 32
         static readonly IMPORT_FORCE_DISABLE_MESH_COMPRESSION = 64
+        /* gdvirtual */ _get_import_flags(): number /*i64*/
+        /* gdvirtual */ _get_extensions(): PackedStringArray
+        /* gdvirtual */ _import_scene(path: string, flags: number /*i64*/, options: Dictionary): Object
+        /* gdvirtual */ _get_import_options(path: string): void
+        /* gdvirtual */ _get_option_visibility(path: string, for_animation: boolean, option: string): void
     }
     class EditorSceneFormatImporterBlend extends EditorSceneFormatImporter {
     }
@@ -8769,6 +8927,7 @@ declare module "godot" {
     class EditorSceneFormatImporterGLTF extends EditorSceneFormatImporter {
     }
     class EditorScenePostImport extends RefCounted {
+        /* gdvirtual */ _post_import(scene: Node): Object
         get_source_file(): string
     }
     namespace EditorScenePostImportPlugin {
@@ -8784,6 +8943,14 @@ declare module "godot" {
         }
     }
     class EditorScenePostImportPlugin extends RefCounted {
+        /* gdvirtual */ _get_internal_import_options(category: number /*i64*/): void
+        /* gdvirtual */ _get_internal_option_visibility(category: number /*i64*/, for_animation: boolean, option: string): void
+        /* gdvirtual */ _get_internal_option_update_view_required(category: number /*i64*/, option: string): void
+        /* gdvirtual */ _internal_process(category: number /*i64*/, base_node: Node, node: Node, resource: Resource): void
+        /* gdvirtual */ _get_import_options(path: string): void
+        /* gdvirtual */ _get_option_visibility(path: string, for_animation: boolean, option: string): void
+        /* gdvirtual */ _pre_process(scene: Node): void
+        /* gdvirtual */ _post_process(scene: Node): void
         get_option_value(name: StringName): any
         add_import_option(name: string, value: any): void
         add_import_option_advanced(type: Variant.Type, name: string, default_value: any, hint: PropertyHint = 0, hint_string: string = '', usage_flags: number /*i64*/ = 6): void
@@ -8794,6 +8961,7 @@ declare module "godot" {
         readonly tab_closed: Signal
     }
     class EditorScript extends RefCounted {
+        /* gdvirtual */ _run(): void
         add_root_node(node: Node): void
         get_scene(): Node
         get_editor_interface(): EditorInterface
@@ -8862,6 +9030,8 @@ declare module "godot" {
     class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     class EditorSyntaxHighlighter extends SyntaxHighlighter {
+        /* gdvirtual */ _get_name(): string
+        /* gdvirtual */ _get_supported_languages(): PackedStringArray
         _get_edited_resource(): RefCounted
     }
     class EditorTexturePreviewPlugin extends EditorResourcePreviewGenerator {
@@ -8876,6 +9046,8 @@ declare module "godot" {
         _popup_str(message: string, severity: any /*EditorToaster.Severity*/, tooltip: string): void
     }
     class EditorTranslationParserPlugin extends RefCounted {
+        /* gdvirtual */ _parse_file(path: string, msgids: Array, msgids_context_plural: Array): void
+        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
     }
     namespace EditorUndoRedoManager {
         enum SpecialHistory {
@@ -8915,6 +9087,29 @@ declare module "godot" {
         }
     }
     class EditorVCSInterface extends Object {
+        /* gdvirtual */ _initialize(project_path: string): boolean
+        /* gdvirtual */ _set_credentials(username: string, password: string, ssh_public_key_path: string, ssh_private_key_path: string, ssh_passphrase: string): void
+        /* gdvirtual */ _get_modified_files_data(): Array
+        /* gdvirtual */ _stage_file(file_path: string): void
+        /* gdvirtual */ _unstage_file(file_path: string): void
+        /* gdvirtual */ _discard_file(file_path: string): void
+        /* gdvirtual */ _commit(msg: string): void
+        /* gdvirtual */ _get_diff(identifier: string, area: number /*i64*/): Array
+        /* gdvirtual */ _shut_down(): boolean
+        /* gdvirtual */ _get_vcs_name(): string
+        /* gdvirtual */ _get_previous_commits(max_commits: number /*i64*/): Array
+        /* gdvirtual */ _get_branch_list(): Array
+        /* gdvirtual */ _get_remotes(): Array
+        /* gdvirtual */ _create_branch(branch_name: string): void
+        /* gdvirtual */ _remove_branch(branch_name: string): void
+        /* gdvirtual */ _create_remote(remote_name: string, remote_url: string): void
+        /* gdvirtual */ _remove_remote(remote_name: string): void
+        /* gdvirtual */ _get_current_branch_name(): string
+        /* gdvirtual */ _checkout_branch(branch_name: string): boolean
+        /* gdvirtual */ _pull(remote: string): void
+        /* gdvirtual */ _push(remote: string, force: boolean): void
+        /* gdvirtual */ _fetch(remote: string): void
+        /* gdvirtual */ _get_line_diff(file_path: string, text: string): Array
         create_diff_line(new_line_no: number /*i64*/, old_line_no: number /*i64*/, content: string, status: string): Dictionary
         create_diff_hunk(old_start: number /*i64*/, new_start: number /*i64*/, old_lines: number /*i64*/, new_lines: number /*i64*/): Dictionary
         create_diff_file(new_file: string, old_file: string): Dictionary
@@ -8942,6 +9137,9 @@ declare module "godot" {
         object_id: number /*i64*/
     }
     class EngineProfiler extends RefCounted {
+        /* gdvirtual */ _toggle(enable: boolean, options: Array): void
+        /* gdvirtual */ _add_frame(data: Array): void
+        /* gdvirtual */ _tick(frame_time: number /*f64*/, process_time: number /*f64*/, physics_time: number /*f64*/, physics_frame_time: number /*f64*/): void
     }
     namespace Environment {
         enum BGMode {
@@ -9781,8 +9979,6 @@ declare module "godot" {
         variation_transform: Transform2D
         opentype_features: Dictionary
     }
-    class FramebufferCacheRD extends Object {
-    }
     namespace GDExtension {
         enum InitializationLevel {
             INITIALIZATION_LEVEL_CORE = 0,
@@ -9912,6 +10108,25 @@ declare module "godot" {
         root_node_mode: number /*i64*/
     }
     class GLTFDocumentExtension extends Resource {
+        /* gdvirtual */ _import_preflight(state: GLTFState, extensions: PackedStringArray): GodotError
+        /* gdvirtual */ _get_supported_extensions(): PackedStringArray
+        /* gdvirtual */ _parse_node_extensions(state: GLTFState, gltf_node: GLTFNode, extensions: Dictionary): GodotError
+        /* gdvirtual */ _parse_image_data(state: GLTFState, image_data: PackedByteArray, mime_type: string, ret_image: Image): GodotError
+        /* gdvirtual */ _get_image_file_extension(): string
+        /* gdvirtual */ _parse_texture_json(state: GLTFState, texture_json: Dictionary, ret_gltf_texture: GLTFTexture): GodotError
+        /* gdvirtual */ _generate_scene_node(state: GLTFState, gltf_node: GLTFNode, scene_parent: Node): Node3D
+        /* gdvirtual */ _import_post_parse(state: GLTFState): GodotError
+        /* gdvirtual */ _import_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node): GodotError
+        /* gdvirtual */ _import_post(state: GLTFState, root: Node): GodotError
+        /* gdvirtual */ _export_preflight(state: GLTFState, root: Node): GodotError
+        /* gdvirtual */ _convert_scene_node(state: GLTFState, gltf_node: GLTFNode, scene_node: Node): void
+        /* gdvirtual */ _export_preserialize(state: GLTFState): GodotError
+        /* gdvirtual */ _get_saveable_image_formats(): PackedStringArray
+        /* gdvirtual */ _serialize_image_to_bytes(state: GLTFState, image: Image, image_dict: Dictionary, image_format: string, lossy_quality: number /*f64*/): PackedByteArray
+        /* gdvirtual */ _save_image_at_path(state: GLTFState, image: Image, file_path: string, image_format: string, lossy_quality: number /*f64*/): GodotError
+        /* gdvirtual */ _serialize_texture_json(state: GLTFState, texture_json: Dictionary, gltf_texture: GLTFTexture, image_format: string): GodotError
+        /* gdvirtual */ _export_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node): GodotError
+        /* gdvirtual */ _export_post(state: GLTFState): GodotError
     }
     class GLTFDocumentExtensionConvertImporterMesh extends GLTFDocumentExtension {
     }
@@ -10776,6 +10991,10 @@ declare module "godot" {
         }
     }
     class GraphEdit extends Control {
+        /* gdvirtual */ _is_in_input_hotzone(in_node: Object, in_port: number /*i64*/, mouse_position: Vector2): boolean
+        /* gdvirtual */ _is_in_output_hotzone(in_node: Object, in_port: number /*i64*/, mouse_position: Vector2): boolean
+        /* gdvirtual */ _get_connection_line(from_position: Vector2, to_position: Vector2): PackedVector2Array
+        /* gdvirtual */ _is_node_hover_valid(from_node: StringName, from_port: number /*i64*/, to_node: StringName, to_port: number /*i64*/): boolean
         connect_node(from_node: StringName, from_port: number /*i64*/, to_node: StringName, to_port: number /*i64*/): GodotError
         is_node_connected(from_node: StringName, from_port: number /*i64*/, to_node: StringName, to_port: number /*i64*/): boolean
         disconnect_node(from_node: StringName, from_port: number /*i64*/, to_node: StringName, to_port: number /*i64*/): void
@@ -10906,6 +11125,7 @@ declare module "godot" {
         readonly position_offset_changed: Signal
     }
     class GraphNode extends GraphElement {
+        /* gdvirtual */ _draw_port(slot_index: number /*i64*/, position: Vector2i, left: boolean, color: Color): void
         set_title(title: string): void
         get_title(): string
         get_titlebar_hbox(): HBoxContainer
@@ -11435,6 +11655,8 @@ declare module "godot" {
     class ImageFormatLoader extends RefCounted {
     }
     class ImageFormatLoaderExtension extends ImageFormatLoader {
+        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
+        /* gdvirtual */ _load_image(image: Image, fileaccess: FileAccess, flags: ImageFormatLoader.LoaderFlags, scale: number /*f64*/): GodotError
         add_format_loader(): void
         remove_format_loader(): void
     }
@@ -11776,276 +11998,11 @@ declare module "godot" {
         apply_script_properties(_unnamed_arg0: Object): void
         readonly request_help: Signal
     }
+    class InstallGodotJSPresetConfirmationDialog extends ConfirmationDialog {
+    }
     class InstancePlaceholder extends Node {
         get_stored_values(with_order: boolean = false): Dictionary
         create_instance(replace: boolean = false, custom_scene: PackedScene = <any> {} /*compound.type from nil*/): Node
         get_instance_path(): string
-    }
-    class IntervalTweener extends Tweener {
-    }
-    namespace ItemList {
-        enum IconMode {
-            ICON_MODE_TOP = 0,
-            ICON_MODE_LEFT = 1,
-        }
-        enum SelectMode {
-            SELECT_SINGLE = 0,
-            SELECT_MULTI = 1,
-        }
-    }
-    class ItemList extends Control {
-        add_item(text: string, icon: Texture2D = <any> {} /*compound.type from nil*/, selectable: boolean = true): number /*i64*/
-        add_icon_item(icon: Texture2D, selectable: boolean = true): number /*i64*/
-        set_item_text(idx: number /*i64*/, text: string): void
-        get_item_text(idx: number /*i64*/): string
-        set_item_icon(idx: number /*i64*/, icon: Texture2D): void
-        get_item_icon(idx: number /*i64*/): Texture2D
-        set_item_text_direction(idx: number /*i64*/, direction: Control.TextDirection): void
-        get_item_text_direction(idx: number /*i64*/): Control.TextDirection
-        set_item_language(idx: number /*i64*/, language: string): void
-        get_item_language(idx: number /*i64*/): string
-        set_item_icon_transposed(idx: number /*i64*/, transposed: boolean): void
-        is_item_icon_transposed(idx: number /*i64*/): boolean
-        set_item_icon_region(idx: number /*i64*/, rect: Rect2): void
-        get_item_icon_region(idx: number /*i64*/): Rect2
-        set_item_icon_modulate(idx: number /*i64*/, modulate: Color): void
-        get_item_icon_modulate(idx: number /*i64*/): Color
-        set_item_selectable(idx: number /*i64*/, selectable: boolean): void
-        is_item_selectable(idx: number /*i64*/): boolean
-        set_item_disabled(idx: number /*i64*/, disabled: boolean): void
-        is_item_disabled(idx: number /*i64*/): boolean
-        set_item_metadata(idx: number /*i64*/, metadata: any): void
-        get_item_metadata(idx: number /*i64*/): any
-        set_item_custom_bg_color(idx: number /*i64*/, custom_bg_color: Color): void
-        get_item_custom_bg_color(idx: number /*i64*/): Color
-        set_item_custom_fg_color(idx: number /*i64*/, custom_fg_color: Color): void
-        get_item_custom_fg_color(idx: number /*i64*/): Color
-        get_item_rect(idx: number /*i64*/, expand: boolean = true): Rect2
-        set_item_tooltip_enabled(idx: number /*i64*/, enable: boolean): void
-        is_item_tooltip_enabled(idx: number /*i64*/): boolean
-        set_item_tooltip(idx: number /*i64*/, tooltip: string): void
-        get_item_tooltip(idx: number /*i64*/): string
-        select(idx: number /*i64*/, single: boolean = true): void
-        deselect(idx: number /*i64*/): void
-        deselect_all(): void
-        is_selected(idx: number /*i64*/): boolean
-        get_selected_items(): PackedInt32Array
-        move_item(from_idx: number /*i64*/, to_idx: number /*i64*/): void
-        set_item_count(count: number /*i64*/): void
-        get_item_count(): number /*i64*/
-        remove_item(idx: number /*i64*/): void
-        clear(): void
-        sort_items_by_text(): void
-        set_fixed_column_width(width: number /*i64*/): void
-        get_fixed_column_width(): number /*i64*/
-        set_same_column_width(enable: boolean): void
-        is_same_column_width(): boolean
-        set_max_text_lines(lines: number /*i64*/): void
-        get_max_text_lines(): number /*i64*/
-        set_max_columns(amount: number /*i64*/): void
-        get_max_columns(): number /*i64*/
-        set_select_mode(mode: ItemList.SelectMode): void
-        get_select_mode(): ItemList.SelectMode
-        set_icon_mode(mode: ItemList.IconMode): void
-        get_icon_mode(): ItemList.IconMode
-        set_fixed_icon_size(size: Vector2i): void
-        get_fixed_icon_size(): Vector2i
-        set_icon_scale(scale: number /*f64*/): void
-        get_icon_scale(): number /*f64*/
-        set_allow_rmb_select(allow: boolean): void
-        get_allow_rmb_select(): boolean
-        set_allow_reselect(allow: boolean): void
-        get_allow_reselect(): boolean
-        set_allow_search(allow: boolean): void
-        get_allow_search(): boolean
-        set_auto_height(enable: boolean): void
-        has_auto_height(): boolean
-        is_anything_selected(): boolean
-        get_item_at_position(position: Vector2, exact: boolean = false): number /*i64*/
-        ensure_current_is_visible(): void
-        get_v_scroll_bar(): VScrollBar
-        set_text_overrun_behavior(overrun_behavior: TextServer.OverrunBehavior): void
-        get_text_overrun_behavior(): TextServer.OverrunBehavior
-        force_update_list_size(): void
-        select_mode: number /*i64*/
-        allow_reselect: boolean
-        allow_rmb_select: boolean
-        allow_search: boolean
-        max_text_lines: number /*i64*/
-        auto_height: boolean
-        text_overrun_behavior: number /*i64*/
-        item_count: any /*Items,item_*/
-        max_columns: number /*i64*/
-        same_column_width: boolean
-        fixed_column_width: number /*i64*/
-        icon_mode: number /*i64*/
-        icon_scale: number /*f64*/
-        fixed_icon_size: Vector2i
-        readonly item_selected: Signal
-        readonly empty_clicked: Signal
-        readonly item_clicked: Signal
-        readonly multi_selected: Signal
-        readonly item_activated: Signal
-    }
-    class JNISingleton extends Object {
-    }
-    class JSON extends Resource {
-        static stringify(data: any, indent: string = '', sort_keys: boolean = true, full_precision: boolean = false): string
-        static parse_string(json_string: string): any
-        parse(json_text: string, keep_text: boolean = false): GodotError
-        get_data(): any
-        set_data(data: any): void
-        get_parsed_text(): string
-        get_error_line(): number /*i64*/
-        get_error_message(): string
-        data: any
-    }
-    namespace JSONRPC {
-        enum ErrorCode {
-            PARSE_ERROR = -32700,
-            INVALID_REQUEST = -32600,
-            METHOD_NOT_FOUND = -32601,
-            INVALID_PARAMS = -32602,
-            INTERNAL_ERROR = -32603,
-        }
-    }
-    class JSONRPC extends Object {
-        set_scope(scope: string, target: Object): void
-        process_action(action: any, recurse: boolean = false): any
-        process_string(action: string): string
-        make_request(method: string, params: any, id: any): Dictionary
-        make_response(result: any, id: any): Dictionary
-        make_notification(method: string, params: any): Dictionary
-        make_response_error(code: number /*i64*/, message: string, id: any = <any> {} /*compound.type from nil*/): Dictionary
-    }
-    class JavaClass extends RefCounted {
-    }
-    class JavaScriptObject extends RefCounted {
-    }
-    class Joint2D extends Node2D {
-        set_node_a(node: NodePath): void
-        get_node_a(): NodePath
-        set_node_b(node: NodePath): void
-        get_node_b(): NodePath
-        set_bias(bias: number /*f64*/): void
-        get_bias(): number /*f64*/
-        set_exclude_nodes_from_collision(enable: boolean): void
-        get_exclude_nodes_from_collision(): boolean
-        get_rid(): RID
-        node_a: NodePath
-        node_b: NodePath
-        bias: number /*f64*/
-        disable_collision: boolean
-    }
-    class Joint3D extends Node3D {
-        set_node_a(node: NodePath): void
-        get_node_a(): NodePath
-        set_node_b(node: NodePath): void
-        get_node_b(): NodePath
-        set_solver_priority(priority: number /*i64*/): void
-        get_solver_priority(): number /*i64*/
-        set_exclude_nodes_from_collision(enable: boolean): void
-        get_exclude_nodes_from_collision(): boolean
-        get_rid(): RID
-        node_a: NodePath
-        node_b: NodePath
-        solver_priority: number /*i64*/
-        exclude_nodes_from_collision: boolean
-    }
-    class Joint3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-    }
-    class KinematicCollision2D extends RefCounted {
-        get_position(): Vector2
-        get_normal(): Vector2
-        get_travel(): Vector2
-        get_remainder(): Vector2
-        get_angle(up_direction: Vector2 = new Vector2(0, -1)): number /*f64*/
-        get_depth(): number /*f64*/
-        get_local_shape(): Object
-        get_collider(): Object
-        get_collider_id(): number /*i64*/
-        get_collider_rid(): RID
-        get_collider_shape(): Object
-        get_collider_shape_index(): number /*i64*/
-        get_collider_velocity(): Vector2
-    }
-    class KinematicCollision3D extends RefCounted {
-        get_travel(): Vector3
-        get_remainder(): Vector3
-        get_depth(): number /*f64*/
-        get_collision_count(): number /*i64*/
-        get_position(collision_index: number /*i64*/ = 0): Vector3
-        get_normal(collision_index: number /*i64*/ = 0): Vector3
-        get_angle(collision_index: number /*i64*/ = 0, up_direction: Vector3 = Vector3.ZERO): number /*f64*/
-        get_local_shape(collision_index: number /*i64*/ = 0): Object
-        get_collider(collision_index: number /*i64*/ = 0): Object
-        get_collider_id(collision_index: number /*i64*/ = 0): number /*i64*/
-        get_collider_rid(collision_index: number /*i64*/ = 0): RID
-        get_collider_shape(collision_index: number /*i64*/ = 0): Object
-        get_collider_shape_index(collision_index: number /*i64*/ = 0): number /*i64*/
-        get_collider_velocity(collision_index: number /*i64*/ = 0): Vector3
-    }
-    class Label extends Control {
-        set_horizontal_alignment(alignment: HorizontalAlignment): void
-        get_horizontal_alignment(): HorizontalAlignment
-        set_vertical_alignment(alignment: VerticalAlignment): void
-        get_vertical_alignment(): VerticalAlignment
-        set_text(text: string): void
-        get_text(): string
-        set_label_settings(settings: LabelSettings): void
-        get_label_settings(): LabelSettings
-        set_text_direction(direction: Control.TextDirection): void
-        get_text_direction(): Control.TextDirection
-        set_language(language: string): void
-        get_language(): string
-        set_autowrap_mode(autowrap_mode: TextServer.AutowrapMode): void
-        get_autowrap_mode(): TextServer.AutowrapMode
-        set_justification_flags(justification_flags: TextServer.JustificationFlag): void
-        get_justification_flags(): TextServer.JustificationFlag
-        set_clip_text(enable: boolean): void
-        is_clipping_text(): boolean
-        set_tab_stops(tab_stops: PackedFloat32Array): void
-        get_tab_stops(): PackedFloat32Array
-        set_text_overrun_behavior(overrun_behavior: TextServer.OverrunBehavior): void
-        get_text_overrun_behavior(): TextServer.OverrunBehavior
-        set_uppercase(enable: boolean): void
-        is_uppercase(): boolean
-        get_line_height(line: number /*i64*/ = -1): number /*i64*/
-        get_line_count(): number /*i64*/
-        get_visible_line_count(): number /*i64*/
-        get_total_character_count(): number /*i64*/
-        set_visible_characters(amount: number /*i64*/): void
-        get_visible_characters(): number /*i64*/
-        get_visible_characters_behavior(): TextServer.VisibleCharactersBehavior
-        set_visible_characters_behavior(behavior: TextServer.VisibleCharactersBehavior): void
-        set_visible_ratio(ratio: number /*f64*/): void
-        get_visible_ratio(): number /*f64*/
-        set_lines_skipped(lines_skipped: number /*i64*/): void
-        get_lines_skipped(): number /*i64*/
-        set_max_lines_visible(lines_visible: number /*i64*/): void
-        get_max_lines_visible(): number /*i64*/
-        set_structured_text_bidi_override(parser: TextServer.StructuredTextParser): void
-        get_structured_text_bidi_override(): TextServer.StructuredTextParser
-        set_structured_text_bidi_override_options(args: Array): void
-        get_structured_text_bidi_override_options(): Array
-        text: string
-        label_settings: LabelSettings
-        horizontal_alignment: number /*i64*/
-        vertical_alignment: number /*i64*/
-        autowrap_mode: number /*i64*/
-        justification_flags: number /*i64*/
-        clip_text: boolean
-        text_overrun_behavior: number /*i64*/
-        uppercase: boolean
-        tab_stops: PackedFloat32Array
-        lines_skipped: number /*i64*/
-        max_lines_visible: number /*i64*/
-        visible_characters: number /*i64*/
-        visible_characters_behavior: number /*i64*/
-        visible_ratio: number /*f64*/
-        text_direction: number /*i64*/
-        language: string
-        structured_text_bidi_override: number /*i64*/
-        structured_text_bidi_override_options: Array
     }
 }
