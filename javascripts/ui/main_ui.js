@@ -40,7 +40,7 @@ class MainUI extends godot_1.Node2D {
         console.log("test signal emitted");
         const label = this.get_node(new godot_1.NodePath("Control/Label"));
         if (label) {
-            label.set_text(`hello ${this._pc++}`);
+            label.text = `hello ${this._pc++}`;
         }
         else {
             console.warn("Control/Label not found");

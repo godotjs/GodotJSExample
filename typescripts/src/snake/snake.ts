@@ -51,7 +51,7 @@ export default class Snake extends Node {
         this._bodies.push(body);
         body.x = x; body.y = y;
         body.update_position();
-        this._score_label.set_text(`Score ${this._bodies.length}`);
+        this._score_label.text = `Score ${this._bodies.length}`;
         return body;
     }
 
@@ -160,12 +160,12 @@ export default class Snake extends Node {
 
     private change_state(state: GameState) {
         this._state = state;
-        this._state_label.set_text(`State ${GameState[state]}`);
+        this._state_label.text = `State ${GameState[state]}`;
     }
 
     private change_speed(delta: number) {
         this._speed = Math.floor(Math.min(Math.max(this._speed + delta, 20), 300));
-        this._speed_label.set_text(`Speed ${this._speed}`);
+        this._speed_label.text = `Speed ${this._speed}`;
     }
 
     _process(dt: number) {

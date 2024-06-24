@@ -23,7 +23,7 @@ export default class JumpyBirdMain extends Node {
         this._bird = <Sprite2D>this._scene.get_node(new NodePath("bird"));
         const area = <Area2D>this._bird.get_node(new NodePath("Area2D"));
         area.area_shape_entered.connect(jsb.callable(this, this.on_area_shape_entered), 0);
-        this._bird.set_rotation_degrees(this._rotation);
+        this._bird.rotation_degrees = this._rotation;
         console.log("scene", this._scene);
     }
 
@@ -72,7 +72,7 @@ export default class JumpyBirdMain extends Node {
         this._velocity = -6 * kGScale;
         if (this._rotation > 0) {
             this._rotation = -30;
-            this._bird.set_rotation_degrees(this._rotation);
+            this._bird.rotation_degrees = this._rotation;
         }
     }
 
@@ -110,9 +110,9 @@ export default class JumpyBirdMain extends Node {
         this._pv.y += this._velocity * dt;
         if (this._velocity > 0 && this._rotation < 0) {
             this._rotation = 30;
-            this._bird.set_rotation_degrees(this._rotation);
+            this._bird.rotation_degrees = this._rotation;
         }
-        this._bird.set_position(this._pv);
+        this._bird.position = this._pv;
         if (this._pv.y > 650) {
             this.end_game();
         }

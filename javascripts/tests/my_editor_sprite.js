@@ -35,7 +35,8 @@ let MyEditorSprite = class MyEditorSprite extends godot_1.Sprite2D {
     }
     _process(delta) {
         const step = Math.PI * delta * (this._clockwise ? this._speed : -this._speed);
-        this.set_rotation(this.get_rotation() + step);
+        // this.set_rotation(this.get_rotation() + step);
+        this.rotation += step;
     }
     _get_configuration_warnings() {
         let warnings = new godot_1.PackedStringArray();

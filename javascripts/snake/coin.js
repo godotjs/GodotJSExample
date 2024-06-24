@@ -18,7 +18,7 @@ class Coin extends godot_1.Sprite2D {
     update_position() {
         this._cached_pos.x = (this._x + 1) * constants_1.kBlockSize;
         this._cached_pos.y = (this._y + 1) * constants_1.kBlockSize;
-        this.set_position(this._cached_pos);
+        this.position = this._cached_pos;
     }
 }
 exports.default = Coin;

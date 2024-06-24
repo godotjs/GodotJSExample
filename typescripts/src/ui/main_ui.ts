@@ -17,7 +17,7 @@ export default class MainUI extends Node2D {
         console.log("test signal emitted");
         const label = <Label>this.get_node(new NodePath("Control/Label"));
         if (label) {
-            label.set_text(`hello ${this._pc++}`);
+            label.text = `hello ${this._pc++}`;
         } else {
             console.warn("Control/Label not found");
         }

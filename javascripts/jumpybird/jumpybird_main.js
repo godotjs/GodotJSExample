@@ -45,7 +45,7 @@ class JumpyBirdMain extends godot_1.Node {
         this._bird = this._scene.get_node(new godot_1.NodePath("bird"));
         const area = this._bird.get_node(new godot_1.NodePath("Area2D"));
         area.area_shape_entered.connect(jsb.callable(this, this.on_area_shape_entered), 0);
-        this._bird.set_rotation_degrees(this._rotation);
+        this._bird.rotation_degrees = this._rotation;
         console.log("scene", this._scene);
     }
     add_pipe() {
@@ -88,7 +88,7 @@ class JumpyBirdMain extends godot_1.Node {
         this._velocity = -6 * kGScale;
         if (this._rotation > 0) {
             this._rotation = -30;
-            this._bird.set_rotation_degrees(this._rotation);
+            this._bird.rotation_degrees = this._rotation;
         }
     }
     _process(dt) {
@@ -124,9 +124,9 @@ class JumpyBirdMain extends godot_1.Node {
         this._pv.y += this._velocity * dt;
         if (this._velocity > 0 && this._rotation < 0) {
             this._rotation = 30;
-            this._bird.set_rotation_degrees(this._rotation);
+            this._bird.rotation_degrees = this._rotation;
         }
-        this._bird.set_position(this._pv);
+        this._bird.position = this._pv;
         if (this._pv.y > 650) {
             this.end_game();
         }

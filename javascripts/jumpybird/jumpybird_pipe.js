@@ -11,18 +11,18 @@ class JumpyBirdPipe extends godot_1.Node2D {
     }
     setup(pos, up, height) {
         if (up) {
-            this.set_scale(new godot_1.Vector2(1, 1));
+            this.scale = new godot_1.Vector2(1, 1);
         }
         else {
             this._pos.y = 480;
-            this.set_scale(new godot_1.Vector2(1, -1));
+            this.scale = new godot_1.Vector2(1, -1);
         }
         const body = this.get_node(new godot_1.NodePath("body"));
         const head = this.get_node(new godot_1.NodePath("head"));
         body.set_size(new godot_1.Vector2(64, height), false);
-        head.set_position(new godot_1.Vector2(-11, height), false);
+        head.position = new godot_1.Vector2(-11, height), false;
         this._pos.x = pos;
-        this.set_position(this._pos);
+        this.position = this._pos;
         console.log("pipe", pos, height);
     }
     move(step) {
@@ -30,7 +30,7 @@ class JumpyBirdPipe extends godot_1.Node2D {
         if (this._pos.x < -40) {
             return false;
         }
-        this.set_position(this._pos);
+        this.position = this._pos;
         return true;
     }
 }
