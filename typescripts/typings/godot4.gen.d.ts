@@ -1,5258 +1,9218 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** A container that arranges its child controls vertically. */
-    class VBoxContainer extends BoxContainer {
-    }
-    /** A container that arranges its child controls vertically and wraps them around at the borders. */
-    class VFlowContainer extends FlowContainer {
-    }
-    /** A vertical scrollbar that goes from top (min) to bottom (max). */
-    class VScrollBar extends ScrollBar {
-    }
-    /** A vertical line used for separating other controls. */
-    class VSeparator extends Separator {
-    }
-    /** A vertical slider that goes from bottom (min) to top (max). */
-    class VSlider extends Slider {
-    }
-    /** A container that splits two child controls vertically and provides a grabber for adjusting the split ratio. */
-    class VSplitContainer extends SplitContainer {
-    }
-    /** A 3D physics body that simulates the behavior of a car. */
-    class VehicleBody3D extends RigidBody3D {
-        set_engine_force(engine_force: number /*f64*/): void
-        get_engine_force(): number /*f64*/
-        set_brake(brake: number /*f64*/): void
-        get_brake(): number /*f64*/
-        set_steering(steering: number /*f64*/): void
-        get_steering(): number /*f64*/
-        /** Accelerates the vehicle by applying an engine force. The vehicle is only sped up if the wheels that have [member VehicleWheel3D.use_as_traction] set to [code]true[/code] and are in contact with a surface. The [member RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
-         *  [b]Note:[/b] The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.
-         *  A negative value will result in the vehicle reversing.
+    /** Abstract base class for 3D game objects affected by physics. */
+    class PhysicsBody3D extends CollisionObject3D {
+        /** Moves the body along the vector [param motion]. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
+         *  The body will stop if it collides. Returns a [KinematicCollision3D], which contains information about the collision when stopped, or when touching another body along the motion.  
+         *  If [param test_only] is `true`, the body does not move but the would-be collision information is given.  
+         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody3D.safe_margin] for more details).  
+         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.  
+         *  [param max_collisions] allows to retrieve more than one collision result.  
          */
-        engine_force: number /*f64*/
-        /** Slows down the vehicle by applying a braking force. The vehicle is only slowed down if the wheels are in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [member RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking. */
-        brake: number /*f64*/
-        /** The steering angle for the vehicle. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [member VehicleWheel3D.use_as_steering] set to [code]true[/code] will automatically be rotated.
-         *  [b]Note:[/b] This property is edited in the inspector in degrees. In code the property is set in radians.
+        move_and_collide(motion: Vector3, test_only: boolean = false, safe_margin: number /*f64*/ = 0.001, recovery_as_collision: boolean = false, max_collisions: number /*i64*/ = 1): KinematicCollision3D
+        
+        /** Checks for collisions without moving the body. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
+         *  Virtually sets the node's position, scale and rotation to that of the given [Transform3D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
+         *  [param collision] is an optional object of type [KinematicCollision3D], which contains additional information about the collision when stopped, or when touching another body along the motion.  
+         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody3D.safe_margin] for more details).  
+         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would [i]touch[/i] any other bodies.  
+         *  [param max_collisions] allows to retrieve more than one collision result.  
          */
-        steering: number /*f64*/
+        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = <any> {} /*compound.type from nil*/, safe_margin: number /*f64*/ = 0.001, recovery_as_collision: boolean = false, max_collisions: number /*i64*/ = 1): boolean
+        
+        /** Locks or unlocks the specified linear or rotational [param axis] depending on the value of [param lock]. */
+        set_axis_lock(axis: PhysicsServer3D.BodyAxis, lock: boolean): void
+        
+        /** Returns `true` if the specified linear or rotational [param axis] is locked. */
+        get_axis_lock(axis: PhysicsServer3D.BodyAxis): boolean
+        
+        /** Returns an array of nodes that were added as collision exceptions for this body. */
+        get_collision_exceptions(): Array
+        
+        /** Adds a body to the list of bodies that this body can't collide with. */
+        add_collision_exception_with(body: Node): void
+        
+        /** Removes a body from the list of bodies that this body can't collide with. */
+        remove_collision_exception_with(body: Node): void
     }
-    /** A 3D physics body for a [VehicleBody3D] that simulates the behavior of a wheel. */
-    class VehicleWheel3D extends Node3D {
-        set_radius(length: number /*f64*/): void
-        get_radius(): number /*f64*/
-        set_suspension_rest_length(length: number /*f64*/): void
-        get_suspension_rest_length(): number /*f64*/
-        set_suspension_travel(length: number /*f64*/): void
-        get_suspension_travel(): number /*f64*/
-        set_suspension_stiffness(length: number /*f64*/): void
-        get_suspension_stiffness(): number /*f64*/
-        set_suspension_max_force(length: number /*f64*/): void
-        get_suspension_max_force(): number /*f64*/
-        set_damping_compression(length: number /*f64*/): void
-        get_damping_compression(): number /*f64*/
-        set_damping_relaxation(length: number /*f64*/): void
-        get_damping_relaxation(): number /*f64*/
-        set_use_as_traction(enable: boolean): void
-        is_used_as_traction(): boolean
-        set_use_as_steering(enable: boolean): void
-        is_used_as_steering(): boolean
-        set_friction_slip(length: number /*f64*/): void
-        get_friction_slip(): number /*f64*/
-        /** Returns [code]true[/code] if this wheel is in contact with a surface. */
-        is_in_contact(): boolean
-        /** Returns the contacting body node if valid in the tree, as [Node3D]. At the moment, [GridMap] is not supported so the node will be always of type [PhysicsBody3D].
-         *  Returns [code]null[/code] if the wheel is not in contact with a surface, or the contact body is not a [PhysicsBody3D].
+    /** Provides direct access to a physics body in the [PhysicsServer2D]. */
+    class PhysicsDirectBodyState2D extends Object {
+        get_total_gravity(): Vector2
+        get_total_linear_damp(): number /*f64*/
+        get_total_angular_damp(): number /*f64*/
+        get_center_of_mass(): Vector2
+        get_center_of_mass_local(): Vector2
+        get_inverse_mass(): number /*f64*/
+        get_inverse_inertia(): number /*f64*/
+        set_linear_velocity(velocity: Vector2): void
+        get_linear_velocity(): Vector2
+        set_angular_velocity(velocity: number /*f64*/): void
+        get_angular_velocity(): number /*f64*/
+        set_transform(transform: Transform2D): void
+        get_transform(): Transform2D
+        
+        /** Returns the body's velocity at the given relative position, including both translation and rotation. */
+        get_velocity_at_local_position(local_position: Vector2): Vector2
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
          */
-        get_contact_body(): Node3D
-        set_roll_influence(roll_influence: number /*f64*/): void
-        get_roll_influence(): number /*f64*/
-        /** Returns a value between 0.0 and 1.0 that indicates whether this wheel is skidding. 0.0 is skidding (the wheel has lost grip, e.g. icy terrain), 1.0 means not skidding (the wheel has full grip, e.g. dry asphalt road). */
-        get_skidinfo(): number /*f64*/
-        /** Returns the rotational speed of the wheel in revolutions per minute. */
-        get_rpm(): number /*f64*/
-        set_engine_force(engine_force: number /*f64*/): void
-        get_engine_force(): number /*f64*/
-        set_brake(brake: number /*f64*/): void
-        get_brake(): number /*f64*/
-        set_steering(steering: number /*f64*/): void
-        get_steering(): number /*f64*/
-        /** Accelerates the wheel by applying an engine force. The wheel is only sped up if it is in contact with a surface. The [member RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.
-         *  [b]Note:[/b] The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.
-         *  A negative value will result in the wheel reversing.
+        apply_central_impulse(impulse: Vector2): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inverse_inertia].  
          */
-        engine_force: number /*f64*/
-        /** Slows down the wheel by applying a braking force. The wheel is only slowed down if it is in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [member RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking. */
-        brake: number /*f64*/
-        /** The steering angle for the wheel, in radians. Setting this to a non-zero value will result in the vehicle turning when it's moving. */
-        steering: number /*f64*/
-        /** If [code]true[/code], this wheel transfers engine force to the ground to propel the vehicle forward. This value is used in conjunction with [member VehicleBody3D.engine_force] and ignored if you are using the per-wheel [member engine_force] value instead. */
-        use_as_traction: boolean
-        /** If [code]true[/code], this wheel will be turned when the car steers. This value is used in conjunction with [member VehicleBody3D.steering] and ignored if you are using the per-wheel [member steering] value instead. */
-        use_as_steering: boolean
-        /** This value affects the roll of your vehicle. If set to 1.0 for all wheels, your vehicle will resist body roll, while a value of 0.0 will be prone to rolling over. */
-        wheel_roll_influence: number /*f64*/
-        /** The radius of the wheel in meters. */
-        wheel_radius: number /*f64*/
-        /** This is the distance in meters the wheel is lowered from its origin point. Don't set this to 0.0 and move the wheel into position, instead move the origin point of your wheel (the gizmo in Godot) to the position the wheel will take when bottoming out, then use the rest length to move the wheel down to the position it should be in when the car is in rest. */
-        wheel_rest_length: number /*f64*/
-        /** This determines how much grip this wheel has. It is combined with the friction setting of the surface the wheel is in contact with. 0.0 means no grip, 1.0 is normal grip. For a drift car setup, try setting the grip of the rear wheels slightly lower than the front wheels, or use a lower value to simulate tire wear.
-         *  It's best to set this to 1.0 when starting out.
+        apply_torque_impulse(impulse: number /*f64*/): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
          */
-        wheel_friction_slip: number /*f64*/
-        /** This is the distance the suspension can travel. As Godot units are equivalent to meters, keep this setting relatively low. Try a value between 0.1 and 0.3 depending on the type of car. */
-        suspension_travel: number /*f64*/
-        /** This value defines the stiffness of the suspension. Use a value lower than 50 for an off-road car, a value between 50 and 100 for a race car and try something around 200 for something like a Formula 1 car. */
-        suspension_stiffness: number /*f64*/
-        /** The maximum force the spring can resist. This value should be higher than a quarter of the [member RigidBody3D.mass] of the [VehicleBody3D] or the spring will not carry the weight of the vehicle. Good results are often obtained by a value that is about 3× to 4× this number. */
-        suspension_max_force: number /*f64*/
-        /** The damping applied to the spring when the spring is being compressed. This value should be between 0.0 (no damping) and 1.0. A value of 0.0 means the car will keep bouncing as the spring keeps its energy. A good value for this is around 0.3 for a normal car, 0.5 for a race car. */
-        damping_compression: number /*f64*/
-        /** The damping applied to the spring when relaxing. This value should be between 0.0 (no damping) and 1.0. This value should always be slightly higher than the [member damping_compression] property. For a [member damping_compression] value of 0.3, try a relaxation value of 0.5. */
-        damping_relaxation: number /*f64*/
-    }
-    class VehicleWheel3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-    }
-    class VersionControlEditorPlugin extends EditorPlugin {
-    }
-    /** Base resource for video streams. */
-    class VideoStream extends Resource {
-        /* gdvirtual */ _instantiate_playback(): VideoStreamPlayback
-        set_file(file: string): void
-        get_file(): string
-        /** The video file path or URI that this [VideoStream] resource handles.
-         *  For [VideoStreamTheora], this filename should be an Ogg Theora video file with the [code].ogv[/code] extension.
+        apply_impulse(impulse: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
          */
-        file: string
-    }
-    /** Internal class used by [VideoStream] to manage playback state when played from a [VideoStreamPlayer]. */
-    class VideoStreamPlayback extends Resource {
-        /* gdvirtual */ _stop(): void
-        /* gdvirtual */ _play(): void
-        /* gdvirtual */ _is_playing(): boolean
-        /* gdvirtual */ _set_paused(paused: boolean): void
-        /* gdvirtual */ _is_paused(): boolean
-        /* gdvirtual */ _get_length(): number /*f64*/
-        /* gdvirtual */ _get_playback_position(): number /*f64*/
-        /* gdvirtual */ _seek(time: number /*f64*/): void
-        /* gdvirtual */ _set_audio_track(idx: number /*i64*/): void
-        /* gdvirtual */ _get_texture(): Texture2D
-        /* gdvirtual */ _update(delta: number /*f64*/): void
-        /* gdvirtual */ _get_channels(): number /*i64*/
-        /* gdvirtual */ _get_mix_rate(): number /*i64*/
-        /** Render [param num_frames] audio frames (of [method _get_channels] floats each) from [param buffer], starting from index [param offset] in the array. Returns the number of audio frames rendered, or -1 on error. */
-        mix_audio(num_frames: number /*i64*/, buffer: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/, offset: number /*i64*/ = 0): number /*i64*/
-    }
-    /** A control used for video playback. */
-    class VideoStreamPlayer extends Control {
-        set_stream(stream: VideoStream): void
-        get_stream(): VideoStream
-        /** Starts the video playback from the beginning. If the video is paused, this will not unpause the video. */
-        play(): void
-        /** Stops the video playback and sets the stream position to 0.
-         *  [b]Note:[/b] Although the stream position will be set to 0, the first frame of the video stream won't become the current frame.
+        apply_central_force(force: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
          */
-        stop(): void
-        /** Returns [code]true[/code] if the video is playing.
-         *  [b]Note:[/b] The video is still considered playing if paused during playback.
+        apply_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inverse_inertia].  
          */
-        is_playing(): boolean
-        set_paused(paused: boolean): void
-        is_paused(): boolean
-        set_loop(loop: boolean): void
-        has_loop(): boolean
-        set_volume(volume: number /*f64*/): void
-        get_volume(): number /*f64*/
-        set_volume_db(db: number /*f64*/): void
-        get_volume_db(): number /*f64*/
-        set_audio_track(track: number /*i64*/): void
-        get_audio_track(): number /*i64*/
-        /** Returns the video stream's name, or [code]"<No Stream>"[/code] if no video stream is assigned. */
-        get_stream_name(): string
-        /** The length of the current stream, in seconds.
-         *  [b]Note:[/b] For [VideoStreamTheora] streams (the built-in format supported by Godot), this value will always be zero, as getting the stream length is not implemented yet. The feature may be supported by video formats implemented by a GDExtension add-on.
+        apply_torque(torque: number /*f64*/): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
          */
-        get_stream_length(): number /*f64*/
-        set_stream_position(position: number /*f64*/): void
-        get_stream_position(): number /*f64*/
-        set_autoplay(enabled: boolean): void
-        has_autoplay(): boolean
-        set_expand(enable: boolean): void
-        has_expand(): boolean
-        set_buffering_msec(msec: number /*i64*/): void
-        get_buffering_msec(): number /*i64*/
-        set_bus(bus: StringName): void
-        get_bus(): StringName
-        /** Returns the current frame as a [Texture2D]. */
-        get_video_texture(): Texture2D
-        /** The embedded audio track to play. */
-        audio_track: number /*i64*/
-        /** The assigned video stream. See description for supported formats. */
-        stream: VideoStream
-        /** Audio volume in dB. */
-        volume_db: number /*f64*/
-        /** Audio volume as a linear value. */
-        volume: number /*f64*/
-        /** If [code]true[/code], playback starts when the scene loads. */
-        autoplay: boolean
-        /** If [code]true[/code], the video is paused. */
-        paused: boolean
-        /** If [code]true[/code], the video scales to the control size. Otherwise, the control minimum size will be automatically adjusted to match the video stream's dimensions. */
-        expand: boolean
-        /** If [code]true[/code], the video restarts when it reaches its end. */
-        loop: boolean
-        /** Amount of time in milliseconds to store in buffer while playing. */
-        buffering_msec: number /*i64*/
-        /** The current position of the stream, in seconds.
-         *  [b]Note:[/b] Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDExtension add-on.
+        add_constant_central_force(force: Vector2 = Vector2.ZERO): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
          */
-        stream_position: number /*f64*/
-        /** Audio bus to use for sound playback. */
-        bus: StringName
-        readonly finished: Signal
-    }
-    /** [VideoStream] resource for Ogg Theora videos. */
-    class VideoStreamTheora extends VideoStream {
-    }
-    class ViewPanner extends RefCounted {
-    }
-    namespace Viewport {
-        enum PositionalShadowAtlasQuadrantSubdiv {
-            SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED = 0,
-            SHADOW_ATLAS_QUADRANT_SUBDIV_1 = 1,
-            SHADOW_ATLAS_QUADRANT_SUBDIV_4 = 2,
-            SHADOW_ATLAS_QUADRANT_SUBDIV_16 = 3,
-            SHADOW_ATLAS_QUADRANT_SUBDIV_64 = 4,
-            SHADOW_ATLAS_QUADRANT_SUBDIV_256 = 5,
-            SHADOW_ATLAS_QUADRANT_SUBDIV_1024 = 6,
-            SHADOW_ATLAS_QUADRANT_SUBDIV_MAX = 7,
-        }
-        enum Scaling3DMode {
-            SCALING_3D_MODE_BILINEAR = 0,
-            SCALING_3D_MODE_FSR = 1,
-            SCALING_3D_MODE_FSR2 = 2,
-            SCALING_3D_MODE_MAX = 3,
-        }
-        enum MSAA {
-            MSAA_DISABLED = 0,
-            MSAA_2X = 1,
-            MSAA_4X = 2,
-            MSAA_8X = 3,
-            MSAA_MAX = 4,
-        }
-        enum ScreenSpaceAA {
-            SCREEN_SPACE_AA_DISABLED = 0,
-            SCREEN_SPACE_AA_FXAA = 1,
-            SCREEN_SPACE_AA_MAX = 2,
-        }
-        enum RenderInfo {
-            RENDER_INFO_OBJECTS_IN_FRAME = 0,
-            RENDER_INFO_PRIMITIVES_IN_FRAME = 1,
-            RENDER_INFO_DRAW_CALLS_IN_FRAME = 2,
-            RENDER_INFO_MAX = 3,
-        }
-        enum RenderInfoType {
-            RENDER_INFO_TYPE_VISIBLE = 0,
-            RENDER_INFO_TYPE_SHADOW = 1,
-            RENDER_INFO_TYPE_MAX = 2,
-        }
-        enum DebugDraw {
-            DEBUG_DRAW_DISABLED = 0,
-            DEBUG_DRAW_UNSHADED = 1,
-            DEBUG_DRAW_LIGHTING = 2,
-            DEBUG_DRAW_OVERDRAW = 3,
-            DEBUG_DRAW_WIREFRAME = 4,
-            DEBUG_DRAW_NORMAL_BUFFER = 5,
-            DEBUG_DRAW_VOXEL_GI_ALBEDO = 6,
-            DEBUG_DRAW_VOXEL_GI_LIGHTING = 7,
-            DEBUG_DRAW_VOXEL_GI_EMISSION = 8,
-            DEBUG_DRAW_SHADOW_ATLAS = 9,
-            DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS = 10,
-            DEBUG_DRAW_SCENE_LUMINANCE = 11,
-            DEBUG_DRAW_SSAO = 12,
-            DEBUG_DRAW_SSIL = 13,
-            DEBUG_DRAW_PSSM_SPLITS = 14,
-            DEBUG_DRAW_DECAL_ATLAS = 15,
-            DEBUG_DRAW_SDFGI = 16,
-            DEBUG_DRAW_SDFGI_PROBES = 17,
-            DEBUG_DRAW_GI_BUFFER = 18,
-            DEBUG_DRAW_DISABLE_LOD = 19,
-            DEBUG_DRAW_CLUSTER_OMNI_LIGHTS = 20,
-            DEBUG_DRAW_CLUSTER_SPOT_LIGHTS = 21,
-            DEBUG_DRAW_CLUSTER_DECALS = 22,
-            DEBUG_DRAW_CLUSTER_REFLECTION_PROBES = 23,
-            DEBUG_DRAW_OCCLUDERS = 24,
-            DEBUG_DRAW_MOTION_VECTORS = 25,
-            DEBUG_DRAW_INTERNAL_BUFFER = 26,
-        }
-        enum DefaultCanvasItemTextureFilter {
-            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST = 0,
-            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR = 1,
-            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS = 2,
-            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS = 3,
-            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_MAX = 4,
-        }
-        enum DefaultCanvasItemTextureRepeat {
-            DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_DISABLED = 0,
-            DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_ENABLED = 1,
-            DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MIRROR = 2,
-            DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MAX = 3,
-        }
-        enum SDFOversize {
-            SDF_OVERSIZE_100_PERCENT = 0,
-            SDF_OVERSIZE_120_PERCENT = 1,
-            SDF_OVERSIZE_150_PERCENT = 2,
-            SDF_OVERSIZE_200_PERCENT = 3,
-            SDF_OVERSIZE_MAX = 4,
-        }
-        enum SDFScale {
-            SDF_SCALE_100_PERCENT = 0,
-            SDF_SCALE_50_PERCENT = 1,
-            SDF_SCALE_25_PERCENT = 2,
-            SDF_SCALE_MAX = 3,
-        }
-        enum VRSMode {
-            VRS_DISABLED = 0,
-            VRS_TEXTURE = 1,
-            VRS_XR = 2,
-            VRS_MAX = 3,
-        }
-    }
-    /** Abstract base class for viewports. Encapsulates drawing and interaction with a game world. */
-    class Viewport extends Node {
-        set_world_2d(world_2d: World2D): void
-        get_world_2d(): World2D
-        /** Returns the first valid [World2D] for this viewport, searching the [member world_2d] property of itself and any Viewport ancestor. */
-        find_world_2d(): World2D
-        set_canvas_transform(xform: Transform2D): void
-        get_canvas_transform(): Transform2D
-        set_global_canvas_transform(xform: Transform2D): void
-        get_global_canvas_transform(): Transform2D
-        /** Returns the transform from the viewport's coordinate system to the embedder's coordinate system. */
-        get_final_transform(): Transform2D
-        /** Returns the transform from the Viewport's coordinates to the screen coordinates of the containing window manager window. */
-        get_screen_transform(): Transform2D
-        /** Returns the visible rectangle in global screen coordinates. */
-        get_visible_rect(): Rect2
-        set_transparent_background(enable: boolean): void
-        has_transparent_background(): boolean
-        set_use_hdr_2d(enable: boolean): void
-        is_using_hdr_2d(): boolean
-        set_msaa_2d(msaa: Viewport.MSAA): void
-        get_msaa_2d(): Viewport.MSAA
-        set_msaa_3d(msaa: Viewport.MSAA): void
-        get_msaa_3d(): Viewport.MSAA
-        set_screen_space_aa(screen_space_aa: Viewport.ScreenSpaceAA): void
-        get_screen_space_aa(): Viewport.ScreenSpaceAA
-        set_use_taa(enable: boolean): void
-        is_using_taa(): boolean
-        set_use_debanding(enable: boolean): void
-        is_using_debanding(): boolean
-        set_use_occlusion_culling(enable: boolean): void
-        is_using_occlusion_culling(): boolean
-        set_debug_draw(debug_draw: Viewport.DebugDraw): void
-        get_debug_draw(): Viewport.DebugDraw
-        /** Returns rendering statistics of the given type. See [enum RenderInfoType] and [enum RenderInfo] for options. */
-        get_render_info(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): number /*i64*/
-        /** Returns the viewport's texture.
-         *  [b]Note:[/b] When trying to store the current texture (e.g. in a file), it might be completely black or outdated if used too early, especially when used in e.g. [method Node._ready]. To make sure the texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.
-         *  
+        add_constant_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = 0`. */
+        add_constant_torque(torque: number /*f64*/): void
+        
+        /** Sets the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
          */
-        get_texture(): ViewportTexture
-        set_physics_object_picking(enable: boolean): void
-        get_physics_object_picking(): boolean
-        set_physics_object_picking_sort(enable: boolean): void
-        get_physics_object_picking_sort(): boolean
-        /** Returns the viewport's RID from the [RenderingServer]. */
-        get_viewport_rid(): RID
-        /** Helper method which calls the [code]set_text()[/code] method on the currently focused [Control], provided that it is defined (e.g. if the focused Control is [Button] or [LineEdit]). */
-        push_text_input(text: string): void
-        /** Triggers the given [param event] in this [Viewport]. This can be used to pass an [InputEvent] between viewports, or to locally apply inputs that were sent over the network or saved to a file.
-         *  If [param in_local_coords] is [code]false[/code], the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [param in_local_coords] is [code]true[/code], the event's position is in viewport coordinates.
-         *  While this method serves a similar purpose as [method Input.parse_input_event], it does not remap the specified [param event] based on project settings like [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse].
-         *  Calling this method will propagate calls to child nodes for following methods in the given order:
-         *  - [method Node._input]
-         *  - [method Control._gui_input] for [Control] nodes
-         *  - [method Node._shortcut_input]
-         *  - [method Node._unhandled_key_input]
-         *  - [method Node._unhandled_input]
-         *  If an earlier method marks the input as handled via [method set_input_as_handled], any later method in this list will not be called.
-         *  If none of the methods handle the event and [member physics_object_picking] is [code]true[/code], the event is used for physics object picking.
+        set_constant_force(force: Vector2): void
+        
+        /** Returns the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
          */
-        push_input(event: InputEvent, in_local_coords: boolean = false): void
-        /** Triggers the given [InputEvent] in this [Viewport]. This can be used to pass input events between viewports, or to locally apply inputs that were sent over the network or saved to a file.
-         *  If [param in_local_coords] is [code]false[/code], the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [param in_local_coords] is [code]true[/code], the event's position is in viewport coordinates.
-         *  While this method serves a similar purpose as [method Input.parse_input_event], it does not remap the specified [param event] based on project settings like [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse].
-         *  Calling this method will propagate calls to child nodes for following methods in the given order:
-         *  - [method Node._shortcut_input]
-         *  - [method Node._unhandled_key_input]
-         *  - [method Node._unhandled_input]
-         *  If an earlier method marks the input as handled via [method set_input_as_handled], any later method in this list will not be called.
-         *  If none of the methods handle the event and [member physics_object_picking] is [code]true[/code], the event is used for physics object picking.
-         *  [b]Note:[/b] This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.
-         *  [i]Deprecated.[/i] Use [method push_input] instead.
+        get_constant_force(): Vector2
+        
+        /** Sets the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
          */
-        push_unhandled_input(event: InputEvent, in_local_coords: boolean = false): void
-        /** Returns the currently active 2D camera. Returns null if there are no active cameras. */
-        get_camera_2d(): Camera2D
-        set_as_audio_listener_2d(enable: boolean): void
-        is_audio_listener_2d(): boolean
-        /** Returns the mouse's position in this [Viewport] using the coordinate system of this [Viewport]. */
-        get_mouse_position(): Vector2
-        /** Moves the mouse pointer to the specified position in this [Viewport] using the coordinate system of this [Viewport].
-         *  [b]Note:[/b] [method warp_mouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
+        set_constant_torque(torque: number /*f64*/): void
+        
+        /** Returns the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
          */
-        warp_mouse(position: Vector2): void
-        /** Force instantly updating the display based on the current mouse cursor position. This includes updating the mouse cursor shape and sending necessary [signal Control.mouse_entered], [signal CollisionObject2D.mouse_entered], [signal CollisionObject3D.mouse_entered] and [signal Window.mouse_entered] signals and their respective [code]mouse_exited[/code] counterparts. */
-        update_mouse_cursor_state(): void
-        /** Returns the drag data from the GUI, that was previously returned by [method Control._get_drag_data]. */
-        gui_get_drag_data(): any
-        /** Returns [code]true[/code] if the viewport is currently performing a drag operation.
-         *  Alternative to [constant Node.NOTIFICATION_DRAG_BEGIN] and [constant Node.NOTIFICATION_DRAG_END] when you prefer polling the value.
+        get_constant_torque(): number /*f64*/
+        set_sleep_state(enabled: boolean): void
+        is_sleeping(): boolean
+        
+        /** Returns the number of contacts this body has with other bodies.  
+         *      
+         *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody2D.contact_monitor].  
          */
-        gui_is_dragging(): boolean
-        /** Returns [code]true[/code] if the drag operation is successful. */
-        gui_is_drag_successful(): boolean
-        /** Removes the focus from the currently focused [Control] within this viewport. If no [Control] has the focus, does nothing. */
-        gui_release_focus(): void
-        /** Returns the [Control] having the focus within this viewport. If no [Control] has the focus, returns null. */
-        gui_get_focus_owner(): Control
-        set_disable_input(disable: boolean): void
-        is_input_disabled(): boolean
-        _gui_remove_focus_for_window(_unnamed_arg0: Node): void
-        _post_gui_grab_click_focus(): void
-        set_positional_shadow_atlas_size(size: number /*i64*/): void
-        get_positional_shadow_atlas_size(): number /*i64*/
-        set_positional_shadow_atlas_16_bits(enable: boolean): void
-        get_positional_shadow_atlas_16_bits(): boolean
-        set_snap_controls_to_pixels(enabled: boolean): void
-        is_snap_controls_to_pixels_enabled(): boolean
-        set_snap_2d_transforms_to_pixel(enabled: boolean): void
-        is_snap_2d_transforms_to_pixel_enabled(): boolean
-        set_snap_2d_vertices_to_pixel(enabled: boolean): void
-        is_snap_2d_vertices_to_pixel_enabled(): boolean
-        /** Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible. */
-        set_positional_shadow_atlas_quadrant_subdiv(quadrant: number /*i64*/, subdiv: Viewport.PositionalShadowAtlasQuadrantSubdiv): void
-        /** Returns the [enum PositionalShadowAtlasQuadrantSubdiv] of the specified quadrant. */
-        get_positional_shadow_atlas_quadrant_subdiv(quadrant: number /*i64*/): Viewport.PositionalShadowAtlasQuadrantSubdiv
-        /** Stops the input from propagating further down the [SceneTree].
-         *  [b]Note:[/b] This does not affect the methods in [Input], only the way events are propagated.
-         */
-        set_input_as_handled(): void
-        /** Returns whether the current [InputEvent] has been handled. Input events are not handled until [method set_input_as_handled] has been called during the lifetime of an [InputEvent].
-         *  This is usually done as part of input handling methods like [method Node._input], [method Control._gui_input] or others, as well as in corresponding signal handlers.
-         *  If [member handle_input_locally] is set to [code]false[/code], this method will try finding the first parent viewport that is set to handle input locally, and return its value for [method is_input_handled] instead.
-         */
-        is_input_handled(): boolean
-        set_handle_input_locally(enable: boolean): void
-        is_handling_input_locally(): boolean
-        set_default_canvas_item_texture_filter(mode: Viewport.DefaultCanvasItemTextureFilter): void
-        get_default_canvas_item_texture_filter(): Viewport.DefaultCanvasItemTextureFilter
-        set_embedding_subwindows(enable: boolean): void
-        is_embedding_subwindows(): boolean
-        /** Returns a list of the visible embedded [Window]s inside the viewport.
-         *  [b]Note:[/b] [Window]s inside other viewports will not be listed.
-         */
-        get_embedded_subwindows(): Array
-        set_canvas_cull_mask(mask: number /*i64*/): void
-        get_canvas_cull_mask(): number /*i64*/
-        /** Set/clear individual bits on the rendering layer mask. This simplifies editing this [Viewport]'s layers. */
-        set_canvas_cull_mask_bit(layer: number /*i64*/, enable: boolean): void
-        /** Returns an individual bit on the rendering layer mask. */
-        get_canvas_cull_mask_bit(layer: number /*i64*/): boolean
-        set_default_canvas_item_texture_repeat(mode: Viewport.DefaultCanvasItemTextureRepeat): void
-        get_default_canvas_item_texture_repeat(): Viewport.DefaultCanvasItemTextureRepeat
-        set_sdf_oversize(oversize: Viewport.SDFOversize): void
-        get_sdf_oversize(): Viewport.SDFOversize
-        set_sdf_scale(scale: Viewport.SDFScale): void
-        get_sdf_scale(): Viewport.SDFScale
-        set_mesh_lod_threshold(pixels: number /*f64*/): void
-        get_mesh_lod_threshold(): number /*f64*/
-        _process_picking(): void
-        set_world_3d(world_3d: World3D): void
-        get_world_3d(): World3D
-        /** Returns the first valid [World3D] for this viewport, searching the [member world_3d] property of itself and any Viewport ancestor. */
-        find_world_3d(): World3D
-        set_use_own_world_3d(enable: boolean): void
-        is_using_own_world_3d(): boolean
-        /** Returns the currently active 3D camera. */
-        get_camera_3d(): Camera3D
-        set_as_audio_listener_3d(enable: boolean): void
-        is_audio_listener_3d(): boolean
-        set_disable_3d(disable: boolean): void
-        is_3d_disabled(): boolean
-        set_use_xr(use: boolean): void
-        is_using_xr(): boolean
-        set_scaling_3d_mode(scaling_3d_mode: Viewport.Scaling3DMode): void
-        get_scaling_3d_mode(): Viewport.Scaling3DMode
-        set_scaling_3d_scale(scale: number /*f64*/): void
-        get_scaling_3d_scale(): number /*f64*/
-        set_fsr_sharpness(fsr_sharpness: number /*f64*/): void
-        get_fsr_sharpness(): number /*f64*/
-        set_texture_mipmap_bias(texture_mipmap_bias: number /*f64*/): void
-        get_texture_mipmap_bias(): number /*f64*/
-        set_vrs_mode(mode: Viewport.VRSMode): void
-        get_vrs_mode(): Viewport.VRSMode
-        set_vrs_texture(texture: Texture2D): void
-        get_vrs_texture(): Texture2D
-        /** Disable 3D rendering (but keep 2D rendering). */
-        disable_3d: boolean
-        /** If [code]true[/code], the viewport will use the primary XR interface to render XR output. When applicable this can result in a stereoscopic image and the resulting render being output to a headset. */
-        use_xr: boolean
-        /** If [code]true[/code], the viewport will use a unique copy of the [World3D] defined in [member world_3d]. */
-        own_world_3d: boolean
-        /** The custom [World3D] which can be used as 3D environment source. */
-        world_3d: World3D
-        /** The custom [World2D] which can be used as 2D environment source. */
-        world_2d: World2D
-        /** If [code]true[/code], the viewport should render its background as transparent. */
-        transparent_bg: boolean
-        /** If [code]true[/code], this viewport will mark incoming input events as handled by itself. If [code]false[/code], this is instead done by the first parent viewport that is set to handle input locally.
-         *  A [SubViewportContainer] will automatically set this property to [code]false[/code] for the [Viewport] contained inside of it.
-         *  See also [method set_input_as_handled] and [method is_input_handled].
-         */
-        handle_input_locally: boolean
-        snap_2d_transforms_to_pixel: boolean
-        snap_2d_vertices_to_pixel: boolean
-        /** The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. This has no effect on shader-induced aliasing or texture aliasing. */
-        msaa_2d: number /*i64*/
-        /** The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [member scaling_3d_mode] for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing. */
-        msaa_3d: number /*i64*/
-        /** Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry. */
-        screen_space_aa: number /*i64*/
-        /** Enables Temporal Anti-Aliasing for this viewport. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion.
-         *  [b]Note:[/b] The implementation is not complete yet, some visual instances such as particles and skinned meshes may show artifacts.
-         */
-        use_taa: boolean
-        /** If [code]true[/code], uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is [i]not[/i] affected by debanding unless the [member Environment.background_mode] is [constant Environment.BG_CANVAS]. See also [member ProjectSettings.rendering/anti_aliasing/quality/use_debanding].
-         *  In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
-         */
-        use_debanding: boolean
-        /** If [code]true[/code], [OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this viewport. For the root viewport, [member ProjectSettings.rendering/occlusion_culling/use_occlusion_culling] must be set to [code]true[/code] instead.
-         *  [b]Note:[/b] Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if you actually plan to use it, and think whether your scene can actually benefit from occlusion culling. Large, open scenes with few or no objects blocking the view will generally not benefit much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility ranges ([member GeometryInstance3D.visibility_range_begin] and [member GeometryInstance3D.visibility_range_end]) compared to occlusion culling.
-         *  [b]Note:[/b] Due to memory constraints, occlusion culling is not supported by default in Web export templates. It can be enabled by compiling custom Web export templates with [code]module_raycast_enabled=yes[/code].
-         */
-        use_occlusion_culling: boolean
-        /** The automatic LOD bias to use for meshes rendered within the [Viewport] (this is analogous to [member ReflectionProbe.mesh_lod_threshold]). Higher values will use less detailed versions of meshes that have LOD variations generated. If set to [code]0.0[/code], automatic LOD is disabled. Increase [member mesh_lod_threshold] to improve performance at the cost of geometry detail.
-         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/mesh_lod/lod_change/threshold_pixels] project setting.
-         *  [b]Note:[/b] [member mesh_lod_threshold] does not affect [GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).
-         */
-        mesh_lod_threshold: number /*f64*/
-        /** The overlay mode for test rendered geometry in debug purposes. */
-        debug_draw: number /*i64*/
-        /** If [code]true[/code], 2D rendering will use an high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a [code]RGBA16[/code] framebuffer, while when using the Mobile renderer it will be a [code]RGB10_A2[/code] framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the [code]0-1[/code] range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients.
-         *  [b]Note:[/b] This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.
-         */
-        use_hdr_2d: boolean
-        /** Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.
-         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/mode] project setting.
-         */
-        scaling_3d_mode: number /*i64*/
-        /** Scales the 3D render buffer based on the viewport size uses an image filter specified in [member ProjectSettings.rendering/scaling_3d/mode] to scale the output image to the full viewport size. Values lower than [code]1.0[/code] can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than [code]1.0[/code] are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [member ProjectSettings.rendering/anti_aliasing/quality/msaa_3d] for multi-sample antialiasing, which is significantly cheaper but only smooths the edges of polygons.
-         *  When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.
-         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/scale] project setting.
-         */
-        scaling_3d_scale: number /*f64*/
-        /** Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).
-         *  Enabling temporal antialiasing ([member use_taa]) will automatically apply a [code]-0.5[/code] offset to this value, while enabling FXAA ([member screen_space_aa]) will automatically apply a [code]-0.25[/code] offset to this value. If both TAA and FXAA are enabled at the same time, an offset of [code]-0.75[/code] is applied to this value.
-         *  [b]Note:[/b] If [member scaling_3d_scale] is lower than [code]1.0[/code] (exclusive), [member texture_mipmap_bias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is [code]log2(scaling_3d_scale) + mipmap_bias[/code].
-         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/textures/default_filters/texture_mipmap_bias] project setting.
-         */
-        texture_mipmap_bias: number /*f64*/
-        /** Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference.
-         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/fsr_sharpness] project setting.
-         */
-        fsr_sharpness: number /*f64*/
-        /** The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not support VRS this property is ignored. */
-        vrs_mode: number /*i64*/
-        /** Texture to use when [member vrs_mode] is set to [constant Viewport.VRS_TEXTURE].
-         *  The texture [i]must[/i] use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:
-         *  
-         */
-        vrs_texture: Texture2D
-        /** Sets the default filter mode used by [CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options. */
-        canvas_item_default_texture_filter: number /*i64*/
-        /** Sets the default repeat mode used by [CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options. */
-        canvas_item_default_texture_repeat: number /*i64*/
-        /** If [code]true[/code], the viewport will process 2D audio streams. */
-        audio_listener_enable_2d: boolean
-        /** If [code]true[/code], the viewport will process 3D audio streams. */
-        audio_listener_enable_3d: boolean
-        /** If [code]true[/code], the objects rendered by viewport become subjects of mouse picking process.
-         *  [b]Note:[/b] The number of simultaneously pickable objects is limited to 64 and they are selected in a non-deterministic order, which can be different in each picking process.
-         */
-        physics_object_picking: boolean
-        /** If [code]true[/code], objects receive mouse picking events sorted primarily by their [member CanvasItem.z_index] and secondarily by their position in the scene tree. If [code]false[/code], the order is undetermined.
-         *  [b]Note:[/b] This setting is disabled by default because of its potential expensive computational cost.
-         *  [b]Note:[/b] Sorting happens after selecting the pickable objects. Because of the limitation of 64 simultaneously pickable objects, it is not guaranteed that the object with the highest [member CanvasItem.z_index] receives the picking event.
-         */
-        physics_object_picking_sort: boolean
-        /** If [code]true[/code], the viewport will not receive input events. */
-        gui_disable_input: boolean
-        /** If [code]true[/code], the GUI controls on the viewport will lay pixel perfectly. */
-        gui_snap_controls_to_pixels: boolean
-        /** If [code]true[/code], sub-windows (popups and dialogs) will be embedded inside application window as control-like nodes. If [code]false[/code], they will appear as separate windows handled by the operating system. */
-        gui_embed_subwindows: boolean
-        sdf_oversize: number /*i64*/
-        sdf_scale: number /*i64*/
-        /** The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the nearest power of 2.
-         *  [b]Note:[/b] If this is set to [code]0[/code], no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).
-         */
-        positional_shadow_atlas_size: number /*i64*/
-        /** Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices. */
-        positional_shadow_atlas_16_bits: boolean
-        /** The canvas transform of the viewport, useful for changing the on-screen positions of all child [CanvasItem]s. This is relative to the global canvas transform of the viewport. */
-        canvas_transform: Transform2D
-        /** The global canvas transform of the viewport. The canvas transform is relative to this. */
-        global_canvas_transform: Transform2D
-        /** The rendering layers in which this [Viewport] renders [CanvasItem] nodes. */
-        canvas_cull_mask: number /*i64*/
-        readonly size_changed: Signal
-        readonly gui_focus_changed: Signal
-    }
-    class ViewportNavigationControl extends Control {
-    }
-    class ViewportRotationControl extends Control {
-    }
-    /** Provides the content of a [Viewport] as a dynamic texture. */
-    class ViewportTexture extends Texture2D {
-        set_viewport_path_in_scene(path: NodePath): void
-        get_viewport_path_in_scene(): NodePath
-        /** The path to the [Viewport] node to display. This is relative to the scene root, not to the node that uses the texture.
-         *  [b]Note:[/b] In the editor, this path is automatically updated when the target viewport or one of its ancestors is renamed or moved. At runtime, the path may not be able to automatically update due to the inability to determine the scene root.
-         */
-        viewport_path: NodePath
-    }
-    namespace VisibleOnScreenEnabler2D {
-        enum EnableMode {
-            ENABLE_MODE_INHERIT = 0,
-            ENABLE_MODE_ALWAYS = 1,
-            ENABLE_MODE_WHEN_PAUSED = 2,
-        }
-    }
-    /** A rectangular region of 2D space that, when visible on screen, enables a target node. */
-    class VisibleOnScreenEnabler2D extends VisibleOnScreenNotifier2D {
-        set_enable_mode(mode: VisibleOnScreenEnabler2D.EnableMode): void
-        get_enable_mode(): VisibleOnScreenEnabler2D.EnableMode
-        set_enable_node_path(path: NodePath): void
-        get_enable_node_path(): NodePath
-        /** Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED]. */
-        enable_mode: number /*i64*/
-        /** The path to the target node, relative to the [VisibleOnScreenEnabler2D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler2D] is inside the scene tree) and every time the [VisibleOnScreenEnabler2D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
-        enable_node_path: NodePath
-    }
-    namespace VisibleOnScreenEnabler3D {
-        enum EnableMode {
-            ENABLE_MODE_INHERIT = 0,
-            ENABLE_MODE_ALWAYS = 1,
-            ENABLE_MODE_WHEN_PAUSED = 2,
-        }
-    }
-    /** A box-shaped region of 3D space that, when visible on screen, enables a target node. */
-    class VisibleOnScreenEnabler3D extends VisibleOnScreenNotifier3D {
-        set_enable_mode(mode: VisibleOnScreenEnabler3D.EnableMode): void
-        get_enable_mode(): VisibleOnScreenEnabler3D.EnableMode
-        set_enable_node_path(path: NodePath): void
-        get_enable_node_path(): NodePath
-        /** Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED]. */
-        enable_mode: number /*i64*/
-        /** The path to the target node, relative to the [VisibleOnScreenEnabler3D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler3D] is inside the scene tree) and every time the [VisibleOnScreenEnabler3D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
-        enable_node_path: NodePath
-    }
-    /** A rectangular region of 2D space that detects whether it is visible on screen. */
-    class VisibleOnScreenNotifier2D extends Node2D {
-        set_rect(rect: Rect2): void
-        get_rect(): Rect2
-        /** If [code]true[/code], the bounding rectangle is on the screen.
-         *  [b]Note:[/b] It takes one frame for the [VisibleOnScreenNotifier2D]'s visibility to be determined once added to the scene tree, so this method will always return [code]false[/code] right after it is instantiated, before the draw pass.
-         */
-        is_on_screen(): boolean
-        /** The VisibleOnScreenNotifier2D's bounding rectangle. */
-        rect: Rect2
-        readonly screen_entered: Signal
-        readonly screen_exited: Signal
-    }
-    /** A box-shaped region of 3D space that detects whether it is visible on screen. */
-    class VisibleOnScreenNotifier3D extends VisualInstance3D {
-        set_aabb(rect: AABB): void
-        /** Returns [code]true[/code] if the bounding box is on the screen.
-         *  [b]Note:[/b] It takes one frame for the [VisibleOnScreenNotifier3D]'s visibility to be assessed once added to the scene tree, so this method will always return [code]false[/code] right after it is instantiated.
-         */
-        is_on_screen(): boolean
-        /** The [VisibleOnScreenNotifier3D]'s bounding box. */
-        aabb: AABB
-        readonly screen_entered: Signal
-        readonly screen_exited: Signal
-    }
-    class VisibleOnScreenNotifier3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-    }
-    /** Parent of all visual 3D nodes. */
-    class VisualInstance3D extends Node3D {
-        /* gdvirtual */ _get_aabb(): AABB
-        /** Sets the resource that is instantiated by this [VisualInstance3D], which changes how the engine handles the [VisualInstance3D] under the hood. Equivalent to [method RenderingServer.instance_set_base]. */
-        set_base(base: RID): void
-        /** Returns the RID of the resource associated with this [VisualInstance3D]. For example, if the Node is a [MeshInstance3D], this will return the RID of the associated [Mesh]. */
-        get_base(): RID
-        /** Returns the RID of this instance. This RID is the same as the RID returned by [method RenderingServer.instance_create]. This RID is needed if you want to call [RenderingServer] functions directly on this [VisualInstance3D]. */
-        get_instance(): RID
-        set_layer_mask(mask: number /*i64*/): void
-        get_layer_mask(): number /*i64*/
-        /** Based on [param value], enables or disables the specified layer in the [member layers], given a [param layer_number] between 1 and 20. */
-        set_layer_mask_value(layer_number: number /*i64*/, value: boolean): void
-        /** Returns whether or not the specified layer of the [member layers] is enabled, given a [param layer_number] between 1 and 20. */
-        get_layer_mask_value(layer_number: number /*i64*/): boolean
-        set_sorting_offset(offset: number /*f64*/): void
-        get_sorting_offset(): number /*f64*/
-        set_sorting_use_aabb_center(enabled: boolean): void
-        is_sorting_use_aabb_center(): boolean
-        /** Returns the [AABB] (also known as the bounding box) for this [VisualInstance3D]. */
-        get_aabb(): AABB
-        /** The render layer(s) this [VisualInstance3D] is drawn on.
-         *  This object will only be visible for [Camera3D]s whose cull mask includes any of the render layers this [VisualInstance3D] is set to.
-         *  For [Light3D]s, this can be used to control which [VisualInstance3D]s are affected by a specific light. For [GPUParticles3D], this can be used to control which particles are effected by a specific attractor. For [Decal]s, this can be used to control which [VisualInstance3D]s are affected by a specific decal.
-         *  To adjust [member layers] more easily using a script, use [method get_layer_mask_value] and [method set_layer_mask_value].
-         *  [b]Note:[/b] [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [member GeometryInstance3D.gi_mode] to [constant GeometryInstance3D.GI_MODE_DISABLED] for meshes and [member Light3D.light_bake_mode] to [constant Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.
-         */
-        layers: number /*i64*/
-        /** The amount by which the depth of this [VisualInstance3D] will be adjusted when sorting by depth. Uses the same units as the engine (which are typically meters). Adjusting it to a higher value will make the [VisualInstance3D] reliably draw on top of other [VisualInstance3D]s that are otherwise positioned at the same spot. To ensure it always draws on top of other objects around it (not positioned at the same spot), set the value to be greater than the distance between this [VisualInstance3D] and the other nearby [VisualInstance3D]s. */
-        sorting_offset: number /*f64*/
-        /** If [code]true[/code], the object is sorted based on the [AABB] center. The object will be sorted based on the global position otherwise.
-         *  The [AABB] center based sorting is generally more accurate for 3D models. The position based sorting instead allows to better control the drawing order when working with [GPUParticles3D] and [CPUParticles3D].
-         */
-        sorting_use_aabb_center: boolean
-    }
-    namespace VisualShader {
-        enum Type {
-            TYPE_VERTEX = 0,
-            TYPE_FRAGMENT = 1,
-            TYPE_LIGHT = 2,
-            TYPE_START = 3,
-            TYPE_PROCESS = 4,
-            TYPE_COLLIDE = 5,
-            TYPE_START_CUSTOM = 6,
-            TYPE_PROCESS_CUSTOM = 7,
-            TYPE_SKY = 8,
-            TYPE_FOG = 9,
-            TYPE_MAX = 10,
-        }
-        enum VaryingMode {
-            VARYING_MODE_VERTEX_TO_FRAG_LIGHT = 0,
-            VARYING_MODE_FRAG_TO_LIGHT = 1,
-            VARYING_MODE_MAX = 2,
-        }
-        enum VaryingType {
-            VARYING_TYPE_FLOAT = 0,
-            VARYING_TYPE_INT = 1,
-            VARYING_TYPE_UINT = 2,
-            VARYING_TYPE_VECTOR_2D = 3,
-            VARYING_TYPE_VECTOR_3D = 4,
-            VARYING_TYPE_VECTOR_4D = 5,
-            VARYING_TYPE_BOOLEAN = 6,
-            VARYING_TYPE_TRANSFORM = 7,
-            VARYING_TYPE_MAX = 8,
-        }
-    }
-    /** A custom shader program with a visual editor. */
-    class VisualShader extends Shader {
-        static readonly NODE_ID_INVALID = -1
-        static readonly NODE_ID_OUTPUT = 0
-        /** Sets the mode of this shader. */
-        set_mode(mode: Shader.Mode): void
-        /** Adds the specified [param node] to the shader. */
-        add_node(type: VisualShader.Type, node: VisualShaderNode, position: Vector2, id: number /*i64*/): void
-        /** Returns the shader node instance with specified [param type] and [param id]. */
-        get_node(type: VisualShader.Type, id: number /*i64*/): VisualShaderNode
-        /** Sets the position of the specified node. */
-        set_node_position(type: VisualShader.Type, id: number /*i64*/, position: Vector2): void
-        /** Returns the position of the specified node within the shader graph. */
-        get_node_position(type: VisualShader.Type, id: number /*i64*/): Vector2
-        /** Returns the list of all nodes in the shader with the specified type. */
-        get_node_list(type: VisualShader.Type): PackedInt32Array
-        /** Returns next valid node ID that can be added to the shader graph. */
-        get_valid_node_id(type: VisualShader.Type): number /*i64*/
-        /** Removes the specified node from the shader. */
-        remove_node(type: VisualShader.Type, id: number /*i64*/): void
-        /** Replaces the specified node with a node of new class type. */
-        replace_node(type: VisualShader.Type, id: number /*i64*/, new_class: StringName): void
-        /** Returns [code]true[/code] if the specified node and port connection exist. */
-        is_node_connection(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): boolean
-        /** Returns [code]true[/code] if the specified nodes and ports can be connected together. */
-        can_connect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): boolean
-        /** Connects the specified nodes and ports. */
-        connect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): GodotError
-        /** Connects the specified nodes and ports. */
-        disconnect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): void
-        /** Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly. */
-        connect_nodes_forced(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): void
-        /** Returns the list of connected nodes with the specified type. */
-        get_node_connections(type: VisualShader.Type): Array
-        set_graph_offset(offset: Vector2): void
-        get_graph_offset(): Vector2
-        /** Adds a new varying value node to the shader. */
-        add_varying(name: string, mode: VisualShader.VaryingMode, type: VisualShader.VaryingType): void
-        /** Removes a varying value node with the given [param name]. Prints an error if a node with this name is not found. */
-        remove_varying(name: string): void
-        /** Returns [code]true[/code] if the shader has a varying with the given [param name]. */
-        has_varying(name: string): boolean
-        _update_shader(): void
-        /** The offset vector of the whole graph. */
-        graph_offset: Vector2
-    }
-    class VisualShaderConversionPlugin extends EditorResourceConversionPlugin {
-    }
-    namespace VisualShaderNode {
-        enum PortType {
-            PORT_TYPE_SCALAR = 0,
-            PORT_TYPE_SCALAR_INT = 1,
-            PORT_TYPE_SCALAR_UINT = 2,
-            PORT_TYPE_VECTOR_2D = 3,
-            PORT_TYPE_VECTOR_3D = 4,
-            PORT_TYPE_VECTOR_4D = 5,
-            PORT_TYPE_BOOLEAN = 6,
-            PORT_TYPE_TRANSFORM = 7,
-            PORT_TYPE_SAMPLER = 8,
-            PORT_TYPE_MAX = 9,
-        }
-    }
-    /** Base class for [VisualShader] nodes. Not related to scene nodes. */
-    class VisualShaderNode extends Resource {
-        /** Returns the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph. */
-        get_default_input_port(type: VisualShaderNode.PortType): number /*i64*/
-        set_output_port_for_preview(port: number /*i64*/): void
-        get_output_port_for_preview(): number /*i64*/
-        _set_output_port_expanded(port: number /*i64*/, _unnamed_arg1: boolean): void
-        _is_output_port_expanded(_unnamed_arg0: number /*i64*/): boolean
-        _set_output_ports_expanded(values: Array): void
-        _get_output_ports_expanded(): Array
-        /** Sets the default [param value] for the selected input [param port]. */
-        set_input_port_default_value(port: number /*i64*/, value: any, prev_value: any = <any> {} /*compound.type from nil*/): void
-        /** Returns the default value of the input [param port]. */
-        get_input_port_default_value(port: number /*i64*/): any
-        /** Removes the default value of the input [param port]. */
-        remove_input_port_default_value(port: number /*i64*/): void
-        /** Clears the default input ports value. */
-        clear_default_input_values(): void
-        /** Sets the default input ports values using an [Array] of the form [code][index0, value0, index1, value1, ...][/code]. For example: [code][0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0)][/code]. */
-        set_default_input_values(values: Array): void
-        /** Returns an [Array] containing default values for all of the input ports of the node in the form [code][index0, value0, index1, value1, ...][/code]. */
-        get_default_input_values(): Array
-        /** Sets the output port index which will be showed for preview. If set to [code]-1[/code] no port will be open for preview. */
-        output_port_for_preview: number /*i64*/
-        default_input_values: Array
-        expanded_output_ports: Array
-    }
-    namespace VisualShaderNodeBillboard {
-        enum BillboardType {
-            BILLBOARD_TYPE_DISABLED = 0,
-            BILLBOARD_TYPE_ENABLED = 1,
-            BILLBOARD_TYPE_FIXED_Y = 2,
-            BILLBOARD_TYPE_PARTICLES = 3,
-            BILLBOARD_TYPE_MAX = 4,
-        }
-    }
-    /** A node that controls how the object faces the camera to be used within the visual shader graph. */
-    class VisualShaderNodeBillboard extends VisualShaderNode {
-        set_billboard_type(billboard_type: VisualShaderNodeBillboard.BillboardType): void
-        get_billboard_type(): VisualShaderNodeBillboard.BillboardType
-        set_keep_scale_enabled(enabled: boolean): void
-        is_keep_scale_enabled(): boolean
-        /** Controls how the object faces the camera. See [enum BillboardType]. */
-        billboard_type: number /*i64*/
-        /** If [code]true[/code], the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. */
-        keep_scale: boolean
-    }
-    /** A boolean constant to be used within the visual shader graph. */
-    class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
-        set_constant(constant: boolean): void
-        get_constant(): boolean
-        /** A boolean constant which represents a state of this node. */
-        constant: boolean
-    }
-    /** A boolean parameter to be used within the visual shader graph. */
-    class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: boolean): void
-        get_default_value(): boolean
-        /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
-        /** A default value to be assigned within the shader. */
-        default_value: boolean
-    }
-    namespace VisualShaderNodeClamp {
-        enum OpType {
-            OP_TYPE_FLOAT = 0,
-            OP_TYPE_INT = 1,
-            OP_TYPE_UINT = 2,
-            OP_TYPE_VECTOR_2D = 3,
-            OP_TYPE_VECTOR_3D = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_MAX = 6,
-        }
-    }
-    /** Clamps a value within the visual shader graph. */
-    class VisualShaderNodeClamp extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeClamp.OpType): void
-        get_op_type(): VisualShaderNodeClamp.OpType
-        /** A type of operands and returned value. */
-        op_type: number /*i64*/
-    }
-    /** A [Color] constant to be used within the visual shader graph. */
-    class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
-        set_constant(constant: Color): void
-        get_constant(): Color
-        /** A [Color] constant which represents a state of this node. */
-        constant: Color
-    }
-    namespace VisualShaderNodeColorFunc {
-        enum Function {
-            FUNC_GRAYSCALE = 0,
-            FUNC_HSV2RGB = 1,
-            FUNC_RGB2HSV = 2,
-            FUNC_SEPIA = 3,
-            FUNC_MAX = 4,
-        }
-    }
-    /** A [Color] function to be used within the visual shader graph. */
-    class VisualShaderNodeColorFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeColorFunc.Function): void
-        get_function(): VisualShaderNodeColorFunc.Function
-        /** A function to be applied to the input color. See [enum Function] for options. */
-        function: number /*i64*/
-    }
-    namespace VisualShaderNodeColorOp {
-        enum Operator {
-            OP_SCREEN = 0,
-            OP_DIFFERENCE = 1,
-            OP_DARKEN = 2,
-            OP_LIGHTEN = 3,
-            OP_OVERLAY = 4,
-            OP_DODGE = 5,
-            OP_BURN = 6,
-            OP_SOFT_LIGHT = 7,
-            OP_HARD_LIGHT = 8,
-            OP_MAX = 9,
-        }
-    }
-    /** A [Color] operator to be used within the visual shader graph. */
-    class VisualShaderNodeColorOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeColorOp.Operator): void
-        get_operator(): VisualShaderNodeColorOp.Operator
-        /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        operator: number /*i64*/
-    }
-    /** A [Color] parameter to be used within the visual shader graph. */
-    class VisualShaderNodeColorParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Color): void
-        get_default_value(): Color
-        /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
-        /** A default value to be assigned within the shader. */
-        default_value: Color
-    }
-    /** A comment node to be placed on visual shader graph. */
-    class VisualShaderNodeComment extends VisualShaderNodeResizableBase {
-        set_title(title: string): void
-        get_title(): string
-        set_description(description: string): void
-        get_description(): string
-        /** A title of the node. */
-        title: string
-        /** An additional description which placed below the title. */
-        description: string
-    }
-    namespace VisualShaderNodeCompare {
-        enum ComparisonType {
-            CTYPE_SCALAR = 0,
-            CTYPE_SCALAR_INT = 1,
-            CTYPE_SCALAR_UINT = 2,
-            CTYPE_VECTOR_2D = 3,
-            CTYPE_VECTOR_3D = 4,
-            CTYPE_VECTOR_4D = 5,
-            CTYPE_BOOLEAN = 6,
-            CTYPE_TRANSFORM = 7,
-            CTYPE_MAX = 8,
-        }
-        enum Function {
-            FUNC_EQUAL = 0,
-            FUNC_NOT_EQUAL = 1,
-            FUNC_GREATER_THAN = 2,
-            FUNC_GREATER_THAN_EQUAL = 3,
-            FUNC_LESS_THAN = 4,
-            FUNC_LESS_THAN_EQUAL = 5,
-            FUNC_MAX = 6,
-        }
-        enum Condition {
-            COND_ALL = 0,
-            COND_ANY = 1,
-            COND_MAX = 2,
-        }
-    }
-    /** A comparison function for common types within the visual shader graph. */
-    class VisualShaderNodeCompare extends VisualShaderNode {
-        set_comparison_type(type: VisualShaderNodeCompare.ComparisonType): void
-        get_comparison_type(): VisualShaderNodeCompare.ComparisonType
-        set_function(func: VisualShaderNodeCompare.Function): void
-        get_function(): VisualShaderNodeCompare.Function
-        set_condition(condition: VisualShaderNodeCompare.Condition): void
-        get_condition(): VisualShaderNodeCompare.Condition
-        /** The type to be used in the comparison. See [enum ComparisonType] for options. */
-        type: number /*i64*/
-        /** A comparison function. See [enum Function] for options. */
-        function: number /*i64*/
-        /** Extra condition which is applied if [member type] is set to [constant CTYPE_VECTOR_3D]. */
-        condition: number /*i64*/
-    }
-    /** A base type for the constants within the visual shader graph. */
-    class VisualShaderNodeConstant extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeCubemap {
-        enum Source {
-            SOURCE_TEXTURE = 0,
-            SOURCE_PORT = 1,
-            SOURCE_MAX = 2,
-        }
-        enum TextureType {
-            TYPE_DATA = 0,
-            TYPE_COLOR = 1,
-            TYPE_NORMAL_MAP = 2,
-            TYPE_MAX = 3,
-        }
-    }
-    /** A [Cubemap] sampling node to be used within the visual shader graph. */
-    class VisualShaderNodeCubemap extends VisualShaderNode {
-        set_source(value: VisualShaderNodeCubemap.Source): void
-        get_source(): VisualShaderNodeCubemap.Source
-        set_cube_map(value: Cubemap): void
-        get_cube_map(): Cubemap
-        set_texture_type(value: VisualShaderNodeCubemap.TextureType): void
-        get_texture_type(): VisualShaderNodeCubemap.TextureType
-        /** Defines which source should be used for the sampling. See [enum Source] for options. */
-        source: number /*i64*/
-        /** The [Cubemap] texture to sample when using [constant SOURCE_TEXTURE] as [member source]. */
-        cube_map: Cubemap
-        /** Defines the type of data provided by the source texture. See [enum TextureType] for options. */
-        texture_type: number /*i64*/
-    }
-    /** A [Cubemap] parameter node to be used within the visual shader graph. */
-    class VisualShaderNodeCubemapParameter extends VisualShaderNodeTextureParameter {
-    }
-    /** Performs a [CurveTexture] lookup within the visual shader graph. */
-    class VisualShaderNodeCurveTexture extends VisualShaderNodeResizableBase {
-        set_texture(texture: CurveTexture): void
-        get_texture(): CurveTexture
-        /** The source texture. */
-        texture: CurveTexture
-    }
-    /** Performs a [CurveXYZTexture] lookup within the visual shader graph. */
-    class VisualShaderNodeCurveXYZTexture extends VisualShaderNodeResizableBase {
-        set_texture(texture: CurveXYZTexture): void
-        get_texture(): CurveXYZTexture
-        /** The source texture. */
-        texture: CurveXYZTexture
-    }
-    /** Virtual class to define custom [VisualShaderNode]s for use in the Visual Shader Editor. */
-    class VisualShaderNodeCustom extends VisualShaderNode {
-        /* gdvirtual */ _get_name(): string
-        /* gdvirtual */ _get_description(): string
-        /* gdvirtual */ _get_category(): string
-        /* gdvirtual */ _get_return_icon_type(): VisualShaderNode.PortType
-        /* gdvirtual */ _get_input_port_count(): number /*i64*/
-        /* gdvirtual */ _get_input_port_type(port: number /*i64*/): VisualShaderNode.PortType
-        /* gdvirtual */ _get_input_port_name(port: number /*i64*/): string
-        /* gdvirtual */ _get_input_port_default_value(port: number /*i64*/): void
-        /* gdvirtual */ _get_default_input_port(type: VisualShaderNode.PortType): number /*i64*/
-        /* gdvirtual */ _get_output_port_count(): number /*i64*/
-        /* gdvirtual */ _get_output_port_type(port: number /*i64*/): VisualShaderNode.PortType
-        /* gdvirtual */ _get_output_port_name(port: number /*i64*/): string
-        /* gdvirtual */ _get_property_count(): number /*i64*/
-        /* gdvirtual */ _get_property_name(index: number /*i64*/): string
-        /* gdvirtual */ _get_property_default_index(index: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _get_property_options(index: number /*i64*/): PackedStringArray
-        /* gdvirtual */ _get_code(input_vars: Array, output_vars: Array, mode: Shader.Mode, type: VisualShader.Type): string
-        /* gdvirtual */ _get_func_code(mode: Shader.Mode, type: VisualShader.Type): string
-        /* gdvirtual */ _get_global_code(mode: Shader.Mode): string
-        /* gdvirtual */ _is_highend(): boolean
-        /* gdvirtual */ _is_available(mode: Shader.Mode, type: VisualShader.Type): boolean
-        _set_initialized(enabled: boolean): void
-        _is_initialized(): boolean
-        _set_input_port_default_value(port: number /*i64*/, value: any): void
-        _set_option_index(option: number /*i64*/, value: number /*i64*/): void
-        _set_properties(properties: string): void
-        _get_properties(): string
-        /** Returns the selected index of the drop-down list option within a graph. You may use this function to define the specific behavior in the [method _get_code] or [method _get_global_code]. */
-        get_option_index(option: number /*i64*/): number /*i64*/
-        initialized: boolean
-        properties: string
-    }
-    namespace VisualShaderNodeDerivativeFunc {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_3D = 2,
-            OP_TYPE_VECTOR_4D = 3,
-            OP_TYPE_MAX = 4,
-        }
-        enum Function {
-            FUNC_SUM = 0,
-            FUNC_X = 1,
-            FUNC_Y = 2,
-            FUNC_MAX = 3,
-        }
-        enum Precision {
-            PRECISION_NONE = 0,
-            PRECISION_COARSE = 1,
-            PRECISION_FINE = 2,
-            PRECISION_MAX = 3,
-        }
-    }
-    /** Calculates a derivative within the visual shader graph. */
-    class VisualShaderNodeDerivativeFunc extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeDerivativeFunc.OpType): void
-        get_op_type(): VisualShaderNodeDerivativeFunc.OpType
-        set_function(func: VisualShaderNodeDerivativeFunc.Function): void
-        get_function(): VisualShaderNodeDerivativeFunc.Function
-        set_precision(precision: VisualShaderNodeDerivativeFunc.Precision): void
-        get_precision(): VisualShaderNodeDerivativeFunc.Precision
-        /** A type of operands and returned value. See [enum OpType] for options. */
-        op_type: number /*i64*/
-        /** A derivative function type. See [enum Function] for options. */
-        function: number /*i64*/
-        /** Sets the level of precision to use for the derivative function. See [enum Precision] for options. When using the GL Compatibility renderer, this setting has no effect. */
-        precision: number /*i64*/
-    }
-    /** Calculates the determinant of a [Transform3D] within the visual shader graph. */
-    class VisualShaderNodeDeterminant extends VisualShaderNode {
-    }
-    /** A visual shader node representing distance fade effect. */
-    class VisualShaderNodeDistanceFade extends VisualShaderNode {
-    }
-    /** Calculates a dot product of two vectors within the visual shader graph. */
-    class VisualShaderNodeDotProduct extends VisualShaderNode {
-    }
-    /** A custom visual shader graph expression written in Godot Shading Language. */
-    class VisualShaderNodeExpression extends VisualShaderNodeGroupBase {
-        set_expression(expression: string): void
-        get_expression(): string
-        /** An expression in Godot Shading Language, which will be injected at the start of the graph's matching shader function ([code]vertex[/code], [code]fragment[/code], or [code]light[/code]), and thus cannot be used to declare functions, varyings, uniforms, or global constants. */
-        expression: string
-    }
-    /** Returns the vector that points in the same direction as a reference vector within the visual shader graph. */
-    class VisualShaderNodeFaceForward extends VisualShaderNodeVectorBase {
-    }
-    /** A scalar floating-point constant to be used within the visual shader graph. */
-    class VisualShaderNodeFloatConstant extends VisualShaderNodeConstant {
-        set_constant(constant: number /*f64*/): void
-        get_constant(): number /*f64*/
-        /** A floating-point constant which represents a state of this node. */
-        constant: number /*f64*/
-    }
-    namespace VisualShaderNodeFloatFunc {
-        enum Function {
-            FUNC_SIN = 0,
-            FUNC_COS = 1,
-            FUNC_TAN = 2,
-            FUNC_ASIN = 3,
-            FUNC_ACOS = 4,
-            FUNC_ATAN = 5,
-            FUNC_SINH = 6,
-            FUNC_COSH = 7,
-            FUNC_TANH = 8,
-            FUNC_LOG = 9,
-            FUNC_EXP = 10,
-            FUNC_SQRT = 11,
-            FUNC_ABS = 12,
-            FUNC_SIGN = 13,
-            FUNC_FLOOR = 14,
-            FUNC_ROUND = 15,
-            FUNC_CEIL = 16,
-            FUNC_FRACT = 17,
-            FUNC_SATURATE = 18,
-            FUNC_NEGATE = 19,
-            FUNC_ACOSH = 20,
-            FUNC_ASINH = 21,
-            FUNC_ATANH = 22,
-            FUNC_DEGREES = 23,
-            FUNC_EXP2 = 24,
-            FUNC_INVERSE_SQRT = 25,
-            FUNC_LOG2 = 26,
-            FUNC_RADIANS = 27,
-            FUNC_RECIPROCAL = 28,
-            FUNC_ROUNDEVEN = 29,
-            FUNC_TRUNC = 30,
-            FUNC_ONEMINUS = 31,
-            FUNC_MAX = 32,
-        }
-    }
-    /** A scalar floating-point function to be used within the visual shader graph. */
-    class VisualShaderNodeFloatFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeFloatFunc.Function): void
-        get_function(): VisualShaderNodeFloatFunc.Function
-        /** A function to be applied to the scalar. See [enum Function] for options. */
-        function: number /*i64*/
-    }
-    namespace VisualShaderNodeFloatOp {
-        enum Operator {
-            OP_ADD = 0,
-            OP_SUB = 1,
-            OP_MUL = 2,
-            OP_DIV = 3,
-            OP_MOD = 4,
-            OP_POW = 5,
-            OP_MAX = 6,
-            OP_MIN = 7,
-            OP_ATAN2 = 8,
-            OP_STEP = 9,
-            OP_ENUM_SIZE = 10,
-        }
-    }
-    /** A floating-point scalar operator to be used within the visual shader graph. */
-    class VisualShaderNodeFloatOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeFloatOp.Operator): void
-        get_operator(): VisualShaderNodeFloatOp.Operator
-        /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        operator: number /*i64*/
-    }
-    namespace VisualShaderNodeFloatParameter {
-        enum Hint {
-            HINT_NONE = 0,
-            HINT_RANGE = 1,
-            HINT_RANGE_STEP = 2,
-            HINT_MAX = 3,
-        }
-    }
-    /** A scalar float parameter to be used within the visual shader graph. */
-    class VisualShaderNodeFloatParameter extends VisualShaderNodeParameter {
-        set_hint(hint: VisualShaderNodeFloatParameter.Hint): void
-        get_hint(): VisualShaderNodeFloatParameter.Hint
-        set_min(value: number /*f64*/): void
-        get_min(): number /*f64*/
-        set_max(value: number /*f64*/): void
-        get_max(): number /*f64*/
-        set_step(value: number /*f64*/): void
+        get_contact_count(): number /*i64*/
+        
+        /** Returns the position of the contact point on the body in the global coordinate system. */
+        get_contact_local_position(contact_idx: number /*i64*/): Vector2
+        
+        /** Returns the local normal at the contact point. */
+        get_contact_local_normal(contact_idx: number /*i64*/): Vector2
+        
+        /** Returns the local shape index of the collision. */
+        get_contact_local_shape(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the velocity vector at the body's contact point. */
+        get_contact_local_velocity_at_position(contact_idx: number /*i64*/): Vector2
+        
+        /** Returns the collider's [RID]. */
+        get_contact_collider(contact_idx: number /*i64*/): RID
+        
+        /** Returns the position of the contact point on the collider in the global coordinate system. */
+        get_contact_collider_position(contact_idx: number /*i64*/): Vector2
+        
+        /** Returns the collider's object id. */
+        get_contact_collider_id(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the collider object. This depends on how it was created (will return a scene node if such was used to create it). */
+        get_contact_collider_object(contact_idx: number /*i64*/): Object
+        
+        /** Returns the collider's shape index. */
+        get_contact_collider_shape(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the velocity vector at the collider's contact point. */
+        get_contact_collider_velocity_at_position(contact_idx: number /*i64*/): Vector2
+        
+        /** Returns the impulse created by the contact. */
+        get_contact_impulse(contact_idx: number /*i64*/): Vector2
         get_step(): number /*f64*/
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: number /*f64*/): void
-        get_default_value(): number /*f64*/
-        /** A hint applied to the uniform, which controls the values it can take when set through the Inspector. */
-        hint: number /*i64*/
-        /** Maximum value for range hints. Used if [member hint] is set to [constant HINT_RANGE] or [constant HINT_RANGE_STEP]. */
-        min: number /*f64*/
-        /** Minimum value for range hints. Used if [member hint] is set to [constant HINT_RANGE] or [constant HINT_RANGE_STEP]. */
-        max: number /*f64*/
-        /** Step (increment) value for the range hint with step. Used if [member hint] is set to [constant HINT_RANGE_STEP]. */
-        step: number /*f64*/
-        /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
-        /** A default value to be assigned within the shader. */
-        default_value: number /*f64*/
-    }
-    /** A Fresnel effect to be used within the visual shader graph. */
-    class VisualShaderNodeFresnel extends VisualShaderNode {
-    }
-    /** A custom global visual shader graph expression written in Godot Shading Language. */
-    class VisualShaderNodeGlobalExpression extends VisualShaderNodeExpression {
-    }
-    /** Base class for a family of nodes with variable number of input and output ports within the visual shader graph. */
-    class VisualShaderNodeGroupBase extends VisualShaderNodeResizableBase {
-        /** Defines all input ports using a [String] formatted as a colon-separated list: [code]id,type,name;[/code] (see [method add_input_port]). */
-        set_inputs(inputs: string): void
-        /** Returns a [String] description of the input ports as a colon-separated list using the format [code]id,type,name;[/code] (see [method add_input_port]). */
-        get_inputs(): string
-        /** Defines all output ports using a [String] formatted as a colon-separated list: [code]id,type,name;[/code] (see [method add_output_port]). */
-        set_outputs(outputs: string): void
-        /** Returns a [String] description of the output ports as a colon-separated list using the format [code]id,type,name;[/code] (see [method add_output_port]). */
-        get_outputs(): string
-        /** Returns [code]true[/code] if the specified port name does not override an existed port name and is valid within the shader. */
-        is_valid_port_name(name: string): boolean
-        /** Adds an input port with the specified [param type] (see [enum VisualShaderNode.PortType]) and [param name]. */
-        add_input_port(id: number /*i64*/, type: number /*i64*/, name: string): void
-        /** Removes the specified input port. */
-        remove_input_port(id: number /*i64*/): void
-        /** Returns the number of input ports in use. Alternative for [method get_free_input_port_id]. */
-        get_input_port_count(): number /*i64*/
-        /** Returns [code]true[/code] if the specified input port exists. */
-        has_input_port(id: number /*i64*/): boolean
-        /** Removes all previously specified input ports. */
-        clear_input_ports(): void
-        /** Adds an output port with the specified [param type] (see [enum VisualShaderNode.PortType]) and [param name]. */
-        add_output_port(id: number /*i64*/, type: number /*i64*/, name: string): void
-        /** Removes the specified output port. */
-        remove_output_port(id: number /*i64*/): void
-        /** Returns the number of output ports in use. Alternative for [method get_free_output_port_id]. */
-        get_output_port_count(): number /*i64*/
-        /** Returns [code]true[/code] if the specified output port exists. */
-        has_output_port(id: number /*i64*/): boolean
-        /** Removes all previously specified output ports. */
-        clear_output_ports(): void
-        /** Renames the specified input port. */
-        set_input_port_name(id: number /*i64*/, name: string): void
-        /** Sets the specified input port's type (see [enum VisualShaderNode.PortType]). */
-        set_input_port_type(id: number /*i64*/, type: number /*i64*/): void
-        /** Renames the specified output port. */
-        set_output_port_name(id: number /*i64*/, name: string): void
-        /** Sets the specified output port's type (see [enum VisualShaderNode.PortType]). */
-        set_output_port_type(id: number /*i64*/, type: number /*i64*/): void
-        /** Returns a free input port ID which can be used in [method add_input_port]. */
-        get_free_input_port_id(): number /*i64*/
-        /** Returns a free output port ID which can be used in [method add_output_port]. */
-        get_free_output_port_id(): number /*i64*/
-    }
-    /** Outputs a 3D vector based on the result of a floating point comparison within the visual shader graph. */
-    class VisualShaderNodeIf extends VisualShaderNode {
-    }
-    /** Represents the input shader parameter within the visual shader graph. */
-    class VisualShaderNodeInput extends VisualShaderNode {
-        set_input_name(name: string): void
-        get_input_name(): string
-        /** Returns a translated name of the current constant in the Godot Shader Language. E.g. [code]"ALBEDO"[/code] if the [member input_name] equal to [code]"albedo"[/code]. */
-        get_input_real_name(): string
-        /** One of the several input constants in lower-case style like: "vertex" ([code]VERTEX[/code]) or "point_size" ([code]POINT_SIZE[/code]). */
-        input_name: StringName
-        readonly input_type_changed: Signal
-    }
-    /** A scalar integer constant to be used within the visual shader graph. */
-    class VisualShaderNodeIntConstant extends VisualShaderNodeConstant {
-        set_constant(constant: number /*i64*/): void
-        get_constant(): number /*i64*/
-        /** An integer constant which represents a state of this node. */
-        constant: number /*i64*/
-    }
-    namespace VisualShaderNodeIntFunc {
-        enum Function {
-            FUNC_ABS = 0,
-            FUNC_NEGATE = 1,
-            FUNC_SIGN = 2,
-            FUNC_BITWISE_NOT = 3,
-            FUNC_MAX = 4,
-        }
-    }
-    /** A scalar integer function to be used within the visual shader graph. */
-    class VisualShaderNodeIntFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeIntFunc.Function): void
-        get_function(): VisualShaderNodeIntFunc.Function
-        /** A function to be applied to the scalar. See [enum Function] for options. */
-        function: number /*i64*/
-    }
-    namespace VisualShaderNodeIntOp {
-        enum Operator {
-            OP_ADD = 0,
-            OP_SUB = 1,
-            OP_MUL = 2,
-            OP_DIV = 3,
-            OP_MOD = 4,
-            OP_MAX = 5,
-            OP_MIN = 6,
-            OP_BITWISE_AND = 7,
-            OP_BITWISE_OR = 8,
-            OP_BITWISE_XOR = 9,
-            OP_BITWISE_LEFT_SHIFT = 10,
-            OP_BITWISE_RIGHT_SHIFT = 11,
-            OP_ENUM_SIZE = 12,
-        }
-    }
-    /** An integer scalar operator to be used within the visual shader graph. */
-    class VisualShaderNodeIntOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeIntOp.Operator): void
-        get_operator(): VisualShaderNodeIntOp.Operator
-        /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        operator: number /*i64*/
-    }
-    namespace VisualShaderNodeIntParameter {
-        enum Hint {
-            HINT_NONE = 0,
-            HINT_RANGE = 1,
-            HINT_RANGE_STEP = 2,
-            HINT_MAX = 3,
-        }
-    }
-    /** A visual shader node for shader parameter (uniform) of type [int]. */
-    class VisualShaderNodeIntParameter extends VisualShaderNodeParameter {
-        set_hint(hint: VisualShaderNodeIntParameter.Hint): void
-        get_hint(): VisualShaderNodeIntParameter.Hint
-        set_min(value: number /*i64*/): void
-        get_min(): number /*i64*/
-        set_max(value: number /*i64*/): void
-        get_max(): number /*i64*/
-        set_step(value: number /*i64*/): void
-        get_step(): number /*i64*/
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: number /*i64*/): void
-        get_default_value(): number /*i64*/
-        /** Range hint of this node. Use it to customize valid parameter range. */
-        hint: number /*i64*/
-        /** The minimum value this parameter can take. [member hint] must be either [constant HINT_RANGE] or [constant HINT_RANGE_STEP] for this to take effect. */
-        min: number /*i64*/
-        /** The maximum value this parameter can take. [member hint] must be either [constant HINT_RANGE] or [constant HINT_RANGE_STEP] for this to take effect. */
-        max: number /*i64*/
-        /** The step between parameter's values. Forces the parameter to be a multiple of the given value. [member hint] must be [constant HINT_RANGE_STEP] for this to take effect. */
-        step: number /*i64*/
-        /** If [code]true[/code], the node will have a custom default value. */
-        default_value_enabled: boolean
-        /** Default value of this parameter, which will be used if not set externally. [member default_value_enabled] must be enabled; defaults to [code]0[/code] otherwise. */
-        default_value: number /*i64*/
-    }
-    namespace VisualShaderNodeIs {
-        enum Function {
-            FUNC_IS_INF = 0,
-            FUNC_IS_NAN = 1,
-            FUNC_MAX = 2,
-        }
-    }
-    /** A boolean comparison operator to be used within the visual shader graph. */
-    class VisualShaderNodeIs extends VisualShaderNode {
-        set_function(func: VisualShaderNodeIs.Function): void
-        get_function(): VisualShaderNodeIs.Function
-        /** The comparison function. See [enum Function] for options. */
-        function: number /*i64*/
-    }
-    /** A visual shader node that returns the depth value of the DEPTH_TEXTURE node in a linear space. */
-    class VisualShaderNodeLinearSceneDepth extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeMix {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_2D_SCALAR = 2,
-            OP_TYPE_VECTOR_3D = 3,
-            OP_TYPE_VECTOR_3D_SCALAR = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_VECTOR_4D_SCALAR = 6,
-            OP_TYPE_MAX = 7,
-        }
-    }
-    /** Linearly interpolates between two values within the visual shader graph. */
-    class VisualShaderNodeMix extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeMix.OpType): void
-        get_op_type(): VisualShaderNodeMix.OpType
-        /** A type of operands and returned value. */
-        op_type: number /*i64*/
-    }
-    namespace VisualShaderNodeMultiplyAdd {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_3D = 2,
-            OP_TYPE_VECTOR_4D = 3,
-            OP_TYPE_MAX = 4,
-        }
-    }
-    /** Performs a fused multiply-add operation within the visual shader graph. */
-    class VisualShaderNodeMultiplyAdd extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeMultiplyAdd.OpType): void
-        get_op_type(): VisualShaderNodeMultiplyAdd.OpType
-        /** A type of operands and returned value. */
-        op_type: number /*i64*/
-    }
-    /** Calculates an outer product of two vectors within the visual shader graph. */
-    class VisualShaderNodeOuterProduct extends VisualShaderNode {
-    }
-    /** Represents the output shader parameters within the visual shader graph. */
-    class VisualShaderNodeOutput extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeParameter {
-        enum Qualifier {
-            QUAL_NONE = 0,
-            QUAL_GLOBAL = 1,
-            QUAL_INSTANCE = 2,
-            QUAL_MAX = 3,
-        }
-    }
-    /** A base type for the parameters within the visual shader graph. */
-    class VisualShaderNodeParameter extends VisualShaderNode {
-        set_parameter_name(name: string): void
-        get_parameter_name(): string
-        set_qualifier(qualifier: VisualShaderNodeParameter.Qualifier): void
-        get_qualifier(): VisualShaderNodeParameter.Qualifier
-        /** Name of the parameter, by which it can be accessed through the [ShaderMaterial] properties. */
-        parameter_name: StringName
-        /** Defines the scope of the parameter. */
-        qualifier: number /*i64*/
-    }
-    /** A reference to an existing [VisualShaderNodeParameter]. */
-    class VisualShaderNodeParameterRef extends VisualShaderNode {
-        set_parameter_name(name: string): void
-        get_parameter_name(): string
-        _set_parameter_type(type: number /*i64*/): void
-        _get_parameter_type(): number /*i64*/
-        /** The name of the parameter which this reference points to. */
-        parameter_name: StringName
-        param_type: number /*i64*/
-    }
-    namespace VisualShaderNodeParticleAccelerator {
-        enum Mode {
-            MODE_LINEAR = 0,
-            MODE_RADIAL = 1,
-            MODE_TANGENTIAL = 2,
-            MODE_MAX = 3,
-        }
-    }
-    /** A visual shader node that accelerates particles. */
-    class VisualShaderNodeParticleAccelerator extends VisualShaderNode {
-        set_mode(mode: VisualShaderNodeParticleAccelerator.Mode): void
-        get_mode(): VisualShaderNodeParticleAccelerator.Mode
-        /** Defines in what manner the particles will be accelerated. */
-        mode: number /*i64*/
-    }
-    /** A visual shader node that makes particles emitted in a box shape. */
-    class VisualShaderNodeParticleBoxEmitter extends VisualShaderNodeParticleEmitter {
-    }
-    /** A visual shader node that makes particles move in a cone shape. */
-    class VisualShaderNodeParticleConeVelocity extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeParticleEmit {
-        enum EmitFlags {
-            EMIT_FLAG_POSITION = 1,
-            EMIT_FLAG_ROT_SCALE = 2,
-            EMIT_FLAG_VELOCITY = 4,
-            EMIT_FLAG_COLOR = 8,
-            EMIT_FLAG_CUSTOM = 16,
-        }
-    }
-    /** A visual shader node that forces to emit a particle from a sub-emitter. */
-    class VisualShaderNodeParticleEmit extends VisualShaderNode {
-        set_flags(flags: VisualShaderNodeParticleEmit.EmitFlags): void
-        get_flags(): VisualShaderNodeParticleEmit.EmitFlags
-        /** Flags used to override the properties defined in the sub-emitter's process material. */
-        flags: number /*i64*/
-    }
-    /** A base class for particle emitters. */
-    class VisualShaderNodeParticleEmitter extends VisualShaderNode {
-        set_mode_2d(enabled: boolean): void
-        is_mode_2d(): boolean
-        /** If [code]true[/code], the result of this emitter is projected to 2D space. By default it is [code]false[/code] and meant for use in 3D space. */
-        mode_2d: boolean
-    }
-    /** A visual shader node that makes particles emitted in a shape defined by a [Mesh]. */
-    class VisualShaderNodeParticleMeshEmitter extends VisualShaderNodeParticleEmitter {
-        set_mesh(mesh: Mesh): void
-        get_mesh(): Mesh
-        set_use_all_surfaces(enabled: boolean): void
-        is_use_all_surfaces(): boolean
-        set_surface_index(surface_index: number /*i64*/): void
-        get_surface_index(): number /*i64*/
-        /** The [Mesh] that defines emission shape. */
-        mesh: Mesh
-        /** If [code]true[/code], the particles will emit from all surfaces of the mesh. */
-        use_all_surfaces: boolean
-        /** Index of the surface that emits particles. [member use_all_surfaces] must be [code]false[/code] for this to take effect. */
-        surface_index: number /*i64*/
-    }
-    /** A visual shader helper node for multiplying position and rotation of particles. */
-    class VisualShaderNodeParticleMultiplyByAxisAngle extends VisualShaderNode {
-        set_degrees_mode(enabled: boolean): void
-        is_degrees_mode(): boolean
-        /** If [code]true[/code], the angle will be interpreted in degrees instead of radians. */
-        degrees_mode: boolean
-    }
-    /** Visual shader node that defines output values for particle emitting. */
-    class VisualShaderNodeParticleOutput extends VisualShaderNodeOutput {
-    }
-    namespace VisualShaderNodeParticleRandomness {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_3D = 2,
-            OP_TYPE_VECTOR_4D = 3,
-            OP_TYPE_MAX = 4,
-        }
-    }
-    /** Visual shader node for randomizing particle values. */
-    class VisualShaderNodeParticleRandomness extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeParticleRandomness.OpType): void
-        get_op_type(): VisualShaderNodeParticleRandomness.OpType
-        /** A type of operands and returned value. */
-        op_type: number /*i64*/
-    }
-    /** A visual shader node that makes particles emitted in a ring shape. */
-    class VisualShaderNodeParticleRingEmitter extends VisualShaderNodeParticleEmitter {
-    }
-    /** A visual shader node that makes particles emitted in a sphere shape. */
-    class VisualShaderNodeParticleSphereEmitter extends VisualShaderNodeParticleEmitter {
-    }
-    /** A visual shader node representing proximity fade effect. */
-    class VisualShaderNodeProximityFade extends VisualShaderNode {
-    }
-    /** A visual shader node that generates a pseudo-random scalar. */
-    class VisualShaderNodeRandomRange extends VisualShaderNode {
-    }
-    /** A visual shader node for remap function. */
-    class VisualShaderNodeRemap extends VisualShaderNode {
-    }
-    /** Base class for resizable nodes in a visual shader graph. */
-    class VisualShaderNodeResizableBase extends VisualShaderNode {
-        set_size(size: Vector2): void
-        get_size(): Vector2
-        /** The size of the node in the visual shader graph. */
-        size: Vector2
-    }
-    /** A visual shader node that modifies the rotation of the object using a rotation matrix. */
-    class VisualShaderNodeRotationByAxis extends VisualShaderNode {
-    }
-    /** SDF raymarching algorithm to be used within the visual shader graph. */
-    class VisualShaderNodeSDFRaymarch extends VisualShaderNode {
-    }
-    /** A function to convert an SDF (signed-distance field) to screen UV, to be used within the visual shader graph. */
-    class VisualShaderNodeSDFToScreenUV extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeSample3D {
-        enum Source {
-            SOURCE_TEXTURE = 0,
-            SOURCE_PORT = 1,
-            SOURCE_MAX = 2,
-        }
-    }
-    /** A base node for nodes which samples 3D textures in the visual shader graph. */
-    class VisualShaderNodeSample3D extends VisualShaderNode {
-        set_source(value: VisualShaderNodeSample3D.Source): void
-        get_source(): VisualShaderNodeSample3D.Source
-        /** An input source type. */
-        source: number /*i64*/
-    }
-    /** A visual shader node that unpacks the screen normal texture in World Space. */
-    class VisualShaderNodeScreenNormalWorldSpace extends VisualShaderNode {
-    }
-    /** A function to convert screen UV to an SDF (signed-distance field), to be used within the visual shader graph. */
-    class VisualShaderNodeScreenUVToSDF extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeSmoothStep {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_2D_SCALAR = 2,
-            OP_TYPE_VECTOR_3D = 3,
-            OP_TYPE_VECTOR_3D_SCALAR = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_VECTOR_4D_SCALAR = 6,
-            OP_TYPE_MAX = 7,
-        }
-    }
-    /** Calculates a SmoothStep function within the visual shader graph. */
-    class VisualShaderNodeSmoothStep extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeSmoothStep.OpType): void
-        get_op_type(): VisualShaderNodeSmoothStep.OpType
-        /** A type of operands and returned value. */
-        op_type: number /*i64*/
-    }
-    namespace VisualShaderNodeStep {
-        enum OpType {
-            OP_TYPE_SCALAR = 0,
-            OP_TYPE_VECTOR_2D = 1,
-            OP_TYPE_VECTOR_2D_SCALAR = 2,
-            OP_TYPE_VECTOR_3D = 3,
-            OP_TYPE_VECTOR_3D_SCALAR = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_VECTOR_4D_SCALAR = 6,
-            OP_TYPE_MAX = 7,
-        }
-    }
-    /** Calculates a Step function within the visual shader graph. */
-    class VisualShaderNodeStep extends VisualShaderNode {
-        set_op_type(op_type: VisualShaderNodeStep.OpType): void
-        get_op_type(): VisualShaderNodeStep.OpType
-        /** A type of operands and returned value. */
-        op_type: number /*i64*/
-    }
-    namespace VisualShaderNodeSwitch {
-        enum OpType {
-            OP_TYPE_FLOAT = 0,
-            OP_TYPE_INT = 1,
-            OP_TYPE_UINT = 2,
-            OP_TYPE_VECTOR_2D = 3,
-            OP_TYPE_VECTOR_3D = 4,
-            OP_TYPE_VECTOR_4D = 5,
-            OP_TYPE_BOOLEAN = 6,
-            OP_TYPE_TRANSFORM = 7,
-            OP_TYPE_MAX = 8,
-        }
-    }
-    /** A selector function for use within the visual shader graph. */
-    class VisualShaderNodeSwitch extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeSwitch.OpType): void
-        get_op_type(): VisualShaderNodeSwitch.OpType
-        /** A type of operands and returned value. */
-        op_type: number /*i64*/
-    }
-    namespace VisualShaderNodeTexture {
-        enum Source {
-            SOURCE_TEXTURE = 0,
-            SOURCE_SCREEN = 1,
-            SOURCE_2D_TEXTURE = 2,
-            SOURCE_2D_NORMAL = 3,
-            SOURCE_DEPTH = 4,
-            SOURCE_PORT = 5,
-            SOURCE_3D_NORMAL = 6,
-            SOURCE_ROUGHNESS = 7,
-            SOURCE_MAX = 8,
-        }
-        enum TextureType {
-            TYPE_DATA = 0,
-            TYPE_COLOR = 1,
-            TYPE_NORMAL_MAP = 2,
-            TYPE_MAX = 3,
-        }
-    }
-    /** Performs a 2D texture lookup within the visual shader graph. */
-    class VisualShaderNodeTexture extends VisualShaderNode {
-        set_source(value: VisualShaderNodeTexture.Source): void
-        get_source(): VisualShaderNodeTexture.Source
-        set_texture(value: Texture2D): void
-        get_texture(): Texture2D
-        set_texture_type(value: VisualShaderNodeTexture.TextureType): void
-        get_texture_type(): VisualShaderNodeTexture.TextureType
-        /** Determines the source for the lookup. See [enum Source] for options. */
-        source: number /*i64*/
-        /** The source texture, if needed for the selected [member source]. */
-        texture: Texture2D
-        /** Specifies the type of the texture if [member source] is set to [constant SOURCE_TEXTURE]. See [enum TextureType] for options. */
-        texture_type: number /*i64*/
-    }
-    /** A 2D texture uniform array to be used within the visual shader graph. */
-    class VisualShaderNodeTexture2DArray extends VisualShaderNodeSample3D {
-        set_texture_array(value: Texture2DArray): void
-        get_texture_array(): Texture2DArray
-        /** A source texture array. Used if [member VisualShaderNodeSample3D.source] is set to [constant VisualShaderNodeSample3D.SOURCE_TEXTURE]. */
-        texture_array: Texture2DArray
-    }
-    /** A visual shader node for shader parameter (uniform) of type [Texture2DArray]. */
-    class VisualShaderNodeTexture2DArrayParameter extends VisualShaderNodeTextureParameter {
-    }
-    /** Provides a 2D texture parameter within the visual shader graph. */
-    class VisualShaderNodeTexture2DParameter extends VisualShaderNodeTextureParameter {
-    }
-    /** Performs a 3D texture lookup within the visual shader graph. */
-    class VisualShaderNodeTexture3D extends VisualShaderNodeSample3D {
-        set_texture(value: Texture3D): void
-        get_texture(): Texture3D
-        /** A source texture. Used if [member VisualShaderNodeSample3D.source] is set to [constant VisualShaderNodeSample3D.SOURCE_TEXTURE]. */
-        texture: Texture3D
-    }
-    /** Provides a 3D texture parameter within the visual shader graph. */
-    class VisualShaderNodeTexture3DParameter extends VisualShaderNodeTextureParameter {
-    }
-    namespace VisualShaderNodeTextureParameter {
-        enum TextureType {
-            TYPE_DATA = 0,
-            TYPE_COLOR = 1,
-            TYPE_NORMAL_MAP = 2,
-            TYPE_ANISOTROPY = 3,
-            TYPE_MAX = 4,
-        }
-        enum ColorDefault {
-            COLOR_DEFAULT_WHITE = 0,
-            COLOR_DEFAULT_BLACK = 1,
-            COLOR_DEFAULT_TRANSPARENT = 2,
-            COLOR_DEFAULT_MAX = 3,
-        }
-        enum TextureFilter {
-            FILTER_DEFAULT = 0,
-            FILTER_NEAREST = 1,
-            FILTER_LINEAR = 2,
-            FILTER_NEAREST_MIPMAP = 3,
-            FILTER_LINEAR_MIPMAP = 4,
-            FILTER_NEAREST_MIPMAP_ANISOTROPIC = 5,
-            FILTER_LINEAR_MIPMAP_ANISOTROPIC = 6,
-            FILTER_MAX = 7,
-        }
-        enum TextureRepeat {
-            REPEAT_DEFAULT = 0,
-            REPEAT_ENABLED = 1,
-            REPEAT_DISABLED = 2,
-            REPEAT_MAX = 3,
-        }
-        enum TextureSource {
-            SOURCE_NONE = 0,
-            SOURCE_SCREEN = 1,
-            SOURCE_DEPTH = 2,
-            SOURCE_NORMAL_ROUGHNESS = 3,
-            SOURCE_MAX = 4,
-        }
-    }
-    /** Performs a uniform texture lookup within the visual shader graph. */
-    class VisualShaderNodeTextureParameter extends VisualShaderNodeParameter {
-        set_texture_type(type: VisualShaderNodeTextureParameter.TextureType): void
-        get_texture_type(): VisualShaderNodeTextureParameter.TextureType
-        set_color_default(color: VisualShaderNodeTextureParameter.ColorDefault): void
-        get_color_default(): VisualShaderNodeTextureParameter.ColorDefault
-        set_texture_filter(filter: VisualShaderNodeTextureParameter.TextureFilter): void
-        get_texture_filter(): VisualShaderNodeTextureParameter.TextureFilter
-        set_texture_repeat(repeat: VisualShaderNodeTextureParameter.TextureRepeat): void
-        get_texture_repeat(): VisualShaderNodeTextureParameter.TextureRepeat
-        set_texture_source(source: VisualShaderNodeTextureParameter.TextureSource): void
-        get_texture_source(): VisualShaderNodeTextureParameter.TextureSource
-        /** Defines the type of data provided by the source texture. See [enum TextureType] for options. */
-        texture_type: number /*i64*/
-        /** Sets the default color if no texture is assigned to the uniform. */
-        color_default: number /*i64*/
-        /** Sets the texture filtering mode. See [enum TextureFilter] for options. */
-        texture_filter: number /*i64*/
-        /** Sets the texture repeating mode. See [enum TextureRepeat] for options. */
-        texture_repeat: number /*i64*/
-        /** Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. See [enum TextureSource] for options. */
-        texture_source: number /*i64*/
-    }
-    /** Performs a uniform texture lookup with triplanar within the visual shader graph. */
-    class VisualShaderNodeTextureParameterTriplanar extends VisualShaderNodeTextureParameter {
-    }
-    /** Performs an SDF (signed-distance field) texture lookup within the visual shader graph. */
-    class VisualShaderNodeTextureSDF extends VisualShaderNode {
-    }
-    /** Performs an SDF (signed-distance field) normal texture lookup within the visual shader graph. */
-    class VisualShaderNodeTextureSDFNormal extends VisualShaderNode {
-    }
-    /** Composes a [Transform3D] from four [Vector3]s within the visual shader graph. */
-    class VisualShaderNodeTransformCompose extends VisualShaderNode {
-    }
-    /** A [Transform3D] constant for use within the visual shader graph. */
-    class VisualShaderNodeTransformConstant extends VisualShaderNodeConstant {
-        set_constant(constant: Transform3D): void
-        get_constant(): Transform3D
-        /** A [Transform3D] constant which represents the state of this node. */
-        constant: Transform3D
-    }
-    /** Decomposes a [Transform3D] into four [Vector3]s within the visual shader graph. */
-    class VisualShaderNodeTransformDecompose extends VisualShaderNode {
-    }
-    namespace VisualShaderNodeTransformFunc {
-        enum Function {
-            FUNC_INVERSE = 0,
-            FUNC_TRANSPOSE = 1,
-            FUNC_MAX = 2,
-        }
-    }
-    /** Computes a [Transform3D] function within the visual shader graph. */
-    class VisualShaderNodeTransformFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeTransformFunc.Function): void
-        get_function(): VisualShaderNodeTransformFunc.Function
-        /** The function to be computed. See [enum Function] for options. */
-        function: number /*i64*/
-    }
-    namespace VisualShaderNodeTransformOp {
-        enum Operator {
-            OP_AxB = 0,
-            OP_BxA = 1,
-            OP_AxB_COMP = 2,
-            OP_BxA_COMP = 3,
-            OP_ADD = 4,
-            OP_A_MINUS_B = 5,
-            OP_B_MINUS_A = 6,
-            OP_A_DIV_B = 7,
-            OP_B_DIV_A = 8,
-            OP_MAX = 9,
-        }
-    }
-    /** A [Transform3D] operator to be used within the visual shader graph. */
-    class VisualShaderNodeTransformOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeTransformOp.Operator): void
-        get_operator(): VisualShaderNodeTransformOp.Operator
-        /** The type of the operation to be performed on the transforms. See [enum Operator] for options. */
-        operator: number /*i64*/
-    }
-    /** A [Transform3D] parameter for use within the visual shader graph. */
-    class VisualShaderNodeTransformParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Transform3D): void
-        get_default_value(): Transform3D
-        /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
-        /** A default value to be assigned within the shader. */
-        default_value: Transform3D
-    }
-    namespace VisualShaderNodeTransformVecMult {
-        enum Operator {
-            OP_AxB = 0,
-            OP_BxA = 1,
-            OP_3x3_AxB = 2,
-            OP_3x3_BxA = 3,
-            OP_MAX = 4,
-        }
-    }
-    /** Multiplies a [Transform3D] and a [Vector3] within the visual shader graph. */
-    class VisualShaderNodeTransformVecMult extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeTransformVecMult.Operator): void
-        get_operator(): VisualShaderNodeTransformVecMult.Operator
-        /** The multiplication type to be performed. See [enum Operator] for options. */
-        operator: number /*i64*/
-    }
-    /** An unsigned scalar integer constant to be used within the visual shader graph. */
-    class VisualShaderNodeUIntConstant extends VisualShaderNodeConstant {
-        set_constant(constant: number /*i64*/): void
-        get_constant(): number /*i64*/
-        /** An unsigned integer constant which represents a state of this node. */
-        constant: number /*i64*/
-    }
-    namespace VisualShaderNodeUIntFunc {
-        enum Function {
-            FUNC_NEGATE = 0,
-            FUNC_BITWISE_NOT = 1,
-            FUNC_MAX = 2,
-        }
-    }
-    /** An unsigned scalar integer function to be used within the visual shader graph. */
-    class VisualShaderNodeUIntFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeUIntFunc.Function): void
-        get_function(): VisualShaderNodeUIntFunc.Function
-        /** A function to be applied to the scalar. See [enum Function] for options. */
-        function: number /*i64*/
-    }
-    namespace VisualShaderNodeUIntOp {
-        enum Operator {
-            OP_ADD = 0,
-            OP_SUB = 1,
-            OP_MUL = 2,
-            OP_DIV = 3,
-            OP_MOD = 4,
-            OP_MAX = 5,
-            OP_MIN = 6,
-            OP_BITWISE_AND = 7,
-            OP_BITWISE_OR = 8,
-            OP_BITWISE_XOR = 9,
-            OP_BITWISE_LEFT_SHIFT = 10,
-            OP_BITWISE_RIGHT_SHIFT = 11,
-            OP_ENUM_SIZE = 12,
-        }
-    }
-    /** An unsigned integer scalar operator to be used within the visual shader graph. */
-    class VisualShaderNodeUIntOp extends VisualShaderNode {
-        set_operator(op: VisualShaderNodeUIntOp.Operator): void
-        get_operator(): VisualShaderNodeUIntOp.Operator
-        /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        operator: number /*i64*/
-    }
-    /** A visual shader node for shader parameter (uniform) of type unsigned [int]. */
-    class VisualShaderNodeUIntParameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: number /*i64*/): void
-        get_default_value(): number /*i64*/
-        /** If [code]true[/code], the node will have a custom default value. */
-        default_value_enabled: boolean
-        /** Default value of this parameter, which will be used if not set externally. [member default_value_enabled] must be enabled; defaults to [code]0[/code] otherwise. */
-        default_value: number /*i64*/
-    }
-    namespace VisualShaderNodeUVFunc {
-        enum Function {
-            FUNC_PANNING = 0,
-            FUNC_SCALING = 1,
-            FUNC_MAX = 2,
-        }
-    }
-    /** Contains functions to modify texture coordinates ([code]uv[/code]) to be used within the visual shader graph. */
-    class VisualShaderNodeUVFunc extends VisualShaderNode {
-        set_function(func: VisualShaderNodeUVFunc.Function): void
-        get_function(): VisualShaderNodeUVFunc.Function
-        /** A function to be applied to the texture coordinates. See [enum Function] for options. */
-        function: number /*i64*/
-    }
-    /** A visual shader node that modifies the texture UV using polar coordinates. */
-    class VisualShaderNodeUVPolarCoord extends VisualShaderNode {
-    }
-    /** A visual shader node that represents a "varying" shader value. */
-    class VisualShaderNodeVarying extends VisualShaderNode {
-        set_varying_name(name: string): void
-        get_varying_name(): string
-        set_varying_type(type: VisualShader.VaryingType): void
-        get_varying_type(): VisualShader.VaryingType
-        /** Name of the variable. Must be unique. */
-        varying_name: StringName
-        /** Type of the variable. Determines where the variable can be accessed. */
-        varying_type: number /*i64*/
-    }
-    /** A visual shader node that gets a value of a varying. */
-    class VisualShaderNodeVaryingGetter extends VisualShaderNodeVarying {
-    }
-    /** A visual shader node that sets a value of a varying. */
-    class VisualShaderNodeVaryingSetter extends VisualShaderNodeVarying {
-    }
-    /** A [Vector2] constant to be used within the visual shader graph. */
-    class VisualShaderNodeVec2Constant extends VisualShaderNodeConstant {
-        set_constant(constant: Vector2): void
-        get_constant(): Vector2
-        /** A [Vector2] constant which represents the state of this node. */
-        constant: Vector2
-    }
-    /** A [Vector2] parameter to be used within the visual shader graph. */
-    class VisualShaderNodeVec2Parameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Vector2): void
-        get_default_value(): Vector2
-        /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
-        /** A default value to be assigned within the shader. */
-        default_value: Vector2
-    }
-    /** A [Vector3] constant to be used within the visual shader graph. */
-    class VisualShaderNodeVec3Constant extends VisualShaderNodeConstant {
-        set_constant(constant: Vector3): void
-        get_constant(): Vector3
-        /** A [Vector3] constant which represents the state of this node. */
-        constant: Vector3
-    }
-    /** A [Vector3] parameter to be used within the visual shader graph. */
-    class VisualShaderNodeVec3Parameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Vector3): void
-        get_default_value(): Vector3
-        /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
-        /** A default value to be assigned within the shader. */
-        default_value: Vector3
-    }
-    /** A 4D vector constant to be used within the visual shader graph. */
-    class VisualShaderNodeVec4Constant extends VisualShaderNodeConstant {
-        set_constant(constant: Quaternion): void
-        get_constant(): Quaternion
-        /** A 4D vector (represented as a [Quaternion]) constant which represents the state of this node. */
-        constant: Quaternion
-    }
-    /** A 4D vector parameter to be used within the visual shader graph. */
-    class VisualShaderNodeVec4Parameter extends VisualShaderNodeParameter {
-        set_default_value_enabled(enabled: boolean): void
-        is_default_value_enabled(): boolean
-        set_default_value(value: Vector4): void
-        get_default_value(): Vector4
-        /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
-        /** A default value to be assigned within the shader. */
-        default_value: Vector4
-    }
-    namespace VisualShaderNodeVectorBase {
-        enum OpType {
-            OP_TYPE_VECTOR_2D = 0,
-            OP_TYPE_VECTOR_3D = 1,
-            OP_TYPE_VECTOR_4D = 2,
-            OP_TYPE_MAX = 3,
-        }
-    }
-    /** A base type for the nodes that perform vector operations within the visual shader graph. */
-    class VisualShaderNodeVectorBase extends VisualShaderNode {
-        set_op_type(type: VisualShaderNodeVectorBase.OpType): void
-        get_op_type(): VisualShaderNodeVectorBase.OpType
-        /** A vector type that this operation is performed on. */
-        op_type: number /*i64*/
-    }
-    /** Composes a [Vector2], [Vector3] or 4D vector (represented as a [Quaternion]) from scalars within the visual shader graph. */
-    class VisualShaderNodeVectorCompose extends VisualShaderNodeVectorBase {
-    }
-    /** Decomposes a [Vector2], [Vector3] or 4D vector (represented as a [Quaternion]) into scalars within the visual shader graph. */
-    class VisualShaderNodeVectorDecompose extends VisualShaderNodeVectorBase {
-    }
-    /** Returns the distance between two points. To be used within the visual shader graph. */
-    class VisualShaderNodeVectorDistance extends VisualShaderNodeVectorBase {
-    }
-    namespace VisualShaderNodeVectorFunc {
-        enum Function {
-            FUNC_NORMALIZE = 0,
-            FUNC_SATURATE = 1,
-            FUNC_NEGATE = 2,
-            FUNC_RECIPROCAL = 3,
-            FUNC_ABS = 4,
-            FUNC_ACOS = 5,
-            FUNC_ACOSH = 6,
-            FUNC_ASIN = 7,
-            FUNC_ASINH = 8,
-            FUNC_ATAN = 9,
-            FUNC_ATANH = 10,
-            FUNC_CEIL = 11,
-            FUNC_COS = 12,
-            FUNC_COSH = 13,
-            FUNC_DEGREES = 14,
-            FUNC_EXP = 15,
-            FUNC_EXP2 = 16,
-            FUNC_FLOOR = 17,
-            FUNC_FRACT = 18,
-            FUNC_INVERSE_SQRT = 19,
-            FUNC_LOG = 20,
-            FUNC_LOG2 = 21,
-            FUNC_RADIANS = 22,
-            FUNC_ROUND = 23,
-            FUNC_ROUNDEVEN = 24,
-            FUNC_SIGN = 25,
-            FUNC_SIN = 26,
-            FUNC_SINH = 27,
-            FUNC_SQRT = 28,
-            FUNC_TAN = 29,
-            FUNC_TANH = 30,
-            FUNC_TRUNC = 31,
-            FUNC_ONEMINUS = 32,
-            FUNC_MAX = 33,
-        }
-    }
-    /** A vector function to be used within the visual shader graph. */
-    class VisualShaderNodeVectorFunc extends VisualShaderNodeVectorBase {
-        set_function(func: VisualShaderNodeVectorFunc.Function): void
-        get_function(): VisualShaderNodeVectorFunc.Function
-        /** The function to be performed. See [enum Function] for options. */
-        function: number /*i64*/
-    }
-    /** Returns the length of a [Vector3] within the visual shader graph. */
-    class VisualShaderNodeVectorLen extends VisualShaderNodeVectorBase {
-    }
-    namespace VisualShaderNodeVectorOp {
-        enum Operator {
-            OP_ADD = 0,
-            OP_SUB = 1,
-            OP_MUL = 2,
-            OP_DIV = 3,
-            OP_MOD = 4,
-            OP_POW = 5,
-            OP_MAX = 6,
-            OP_MIN = 7,
-            OP_CROSS = 8,
-            OP_ATAN2 = 9,
-            OP_REFLECT = 10,
-            OP_STEP = 11,
-            OP_ENUM_SIZE = 12,
-        }
-    }
-    /** A vector operator to be used within the visual shader graph. */
-    class VisualShaderNodeVectorOp extends VisualShaderNodeVectorBase {
-        set_operator(op: VisualShaderNodeVectorOp.Operator): void
-        get_operator(): VisualShaderNodeVectorOp.Operator
-        /** The operator to be used. See [enum Operator] for options. */
-        operator: number /*i64*/
-    }
-    /** Returns the vector that points in the direction of refraction. For use within the visual shader graph. */
-    class VisualShaderNodeVectorRefract extends VisualShaderNodeVectorBase {
-    }
-    /** A visual shader node that calculates the position of the pixel in world space using the depth texture. */
-    class VisualShaderNodeWorldPositionFromDepth extends VisualShaderNode {
-    }
-    namespace VoxelGI {
-        enum Subdiv {
-            SUBDIV_64 = 0,
-            SUBDIV_128 = 1,
-            SUBDIV_256 = 2,
-            SUBDIV_512 = 3,
-            SUBDIV_MAX = 4,
-        }
-    }
-    /** Real-time global illumination (GI) probe. */
-    class VoxelGI extends VisualInstance3D {
-        set_probe_data(data: VoxelGIData): void
-        get_probe_data(): VoxelGIData
-        set_subdiv(subdiv: VoxelGI.Subdiv): void
-        get_subdiv(): VoxelGI.Subdiv
-        set_size(size: Vector3): void
-        get_size(): Vector3
-        set_camera_attributes(camera_attributes: CameraAttributes): void
-        get_camera_attributes(): CameraAttributes
-        /** Bakes the effect from all [GeometryInstance3D]s marked with [constant GeometryInstance3D.GI_MODE_STATIC] and [Light3D]s marked with either [constant Light3D.BAKE_STATIC] or [constant Light3D.BAKE_DYNAMIC]. If [param create_visual_debug] is [code]true[/code], after baking the light, this will generate a [MultiMesh] that has a cube representing each solid cell with each cube colored to the cell's albedo color. This can be used to visualize the [VoxelGI]'s data and debug any issues that may be occurring.
-         *  [b]Note:[/b] [method bake] works from the editor and in exported projects. This makes it suitable for procedurally generated or user-built levels. Baking a [VoxelGI] node generally takes from 5 to 20 seconds in most scenes. Reducing [member subdiv] can speed up baking.
-         *  [b]Note:[/b] [GeometryInstance3D]s and [Light3D]s must be fully ready before [method bake] is called. If you are procedurally creating those and some meshes or lights are missing from your baked [VoxelGI], use [code]call_deferred("bake")[/code] instead of calling [method bake] directly.
-         */
-        bake(from_node: Node = <any> {} /*compound.type from nil*/, create_visual_debug: boolean = false): void
-        /** Calls [method bake] with [code]create_visual_debug[/code] enabled. */
-        debug_bake(): void
-        /** Number of times to subdivide the grid that the [VoxelGI] operates on. A higher number results in finer detail and thus higher visual quality, while lower numbers result in better performance. */
-        subdiv: number /*i64*/
-        /** The size of the area covered by the [VoxelGI]. If you make the size larger without increasing the subdivisions with [member subdiv], the size of each cell will increase and result in lower detailed lighting.
-         *  [b]Note:[/b] Size is clamped to 1.0 unit or more on each axis.
-         */
-        size: Vector3
-        /** The [CameraAttributes] resource that specifies exposure levels to bake at. Auto-exposure and non exposure properties will be ignored. Exposure settings should be used to reduce the dynamic range present when baking. If exposure is too high, the [VoxelGI] will have banding artifacts or may have over-exposure artifacts. */
-        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
-        /** The [VoxelGIData] resource that holds the data for this [VoxelGI]. */
-        data: VoxelGIData
-    }
-    /** Contains baked voxel global illumination data for use in a [VoxelGI] node. */
-    class VoxelGIData extends Resource {
-        allocate(to_cell_xform: Transform3D, aabb: AABB, octree_size: Vector3, octree_cells: PackedByteArray, data_cells: PackedByteArray, distance_field: PackedByteArray, level_counts: PackedInt32Array): void
-        /** Returns the bounds of the baked voxel data as an [AABB], which should match [member VoxelGI.size] after being baked (which only contains the size as a [Vector3]).
-         *  [b]Note:[/b] If the size was modified without baking the VoxelGI data, then the value of [method get_bounds] and [member VoxelGI.size] will not match.
-         */
-        get_bounds(): AABB
-        get_octree_size(): Vector3
-        get_to_cell_xform(): Transform3D
-        get_octree_cells(): PackedByteArray
-        get_data_cells(): PackedByteArray
-        get_level_counts(): PackedInt32Array
-        set_dynamic_range(dynamic_range: number /*f64*/): void
-        get_dynamic_range(): number /*f64*/
-        set_energy(energy: number /*f64*/): void
-        get_energy(): number /*f64*/
-        set_bias(bias: number /*f64*/): void
-        get_bias(): number /*f64*/
-        set_normal_bias(bias: number /*f64*/): void
-        get_normal_bias(): number /*f64*/
-        set_propagation(propagation: number /*f64*/): void
-        get_propagation(): number /*f64*/
-        set_interior(interior: boolean): void
-        is_interior(): boolean
-        set_use_two_bounces(enable: boolean): void
-        is_using_two_bounces(): boolean
-        _set_data(data: Dictionary): void
-        _get_data(): Dictionary
-        _data: Dictionary
-        /** The dynamic range to use ([code]1.0[/code] represents a low dynamic range scene brightness). Higher values can be used to provide brighter indirect lighting, at the cost of more visible color banding in dark areas (both in indirect lighting and reflections). To avoid color banding, it's recommended to use the lowest value that does not result in visible light clipping. */
-        dynamic_range: number /*f64*/
-        /** The energy of the indirect lighting and reflections produced by the [VoxelGI] node. Higher values result in brighter indirect lighting. If indirect lighting looks too flat, try decreasing [member propagation] while increasing [member energy] at the same time. See also [member use_two_bounces] which influences the indirect lighting's effective brightness. */
-        energy: number /*f64*/
-        /** The normal bias to use for indirect lighting and reflections. Higher values reduce self-reflections visible in non-rough materials, at the cost of more visible light leaking and flatter-looking indirect lighting. To prioritize hiding self-reflections over lighting quality, set [member bias] to [code]0.0[/code] and [member normal_bias] to a value between [code]1.0[/code] and [code]2.0[/code]. */
-        bias: number /*f64*/
-        /** The normal bias to use for indirect lighting and reflections. Higher values reduce self-reflections visible in non-rough materials, at the cost of more visible light leaking and flatter-looking indirect lighting. See also [member bias]. To prioritize hiding self-reflections over lighting quality, set [member bias] to [code]0.0[/code] and [member normal_bias] to a value between [code]1.0[/code] and [code]2.0[/code]. */
-        normal_bias: number /*f64*/
-        /** The multiplier to use when light bounces off a surface. Higher values result in brighter indirect lighting. If indirect lighting looks too flat, try decreasing [member propagation] while increasing [member energy] at the same time. See also [member use_two_bounces] which influences the indirect lighting's effective brightness. */
-        propagation: number /*f64*/
-        /** If [code]true[/code], performs two bounces of indirect lighting instead of one. This makes indirect lighting look more natural and brighter at a small performance cost. The second bounce is also visible in reflections. If the scene appears too bright after enabling [member use_two_bounces], adjust [member propagation] and [member energy]. */
-        use_two_bounces: boolean
-        /** If [code]true[/code], [Environment] lighting is ignored by the [VoxelGI] node. If [code]false[/code], [Environment] lighting is taken into account by the [VoxelGI] node. [Environment] lighting updates in real-time, which means it can be changed without having to bake the [VoxelGI] node again. */
-        interior: boolean
-    }
-    class VoxelGIEditorPlugin extends EditorPlugin {
-    }
-    class VoxelGIGizmoPlugin extends EditorNode3DGizmoPlugin {
-    }
-    /** Holds an [Object]. If the object is [RefCounted], it doesn't update the reference count. */
-    class WeakRef extends RefCounted {
-        /** Returns the [Object] this weakref is referring to. Returns [code]null[/code] if that object no longer exists. */
-        get_ref(): any
-    }
-    namespace WebRTCDataChannel {
-        enum WriteMode {
-            WRITE_MODE_TEXT = 0,
-            WRITE_MODE_BINARY = 1,
-        }
-        enum ChannelState {
-            STATE_CONNECTING = 0,
-            STATE_OPEN = 1,
-            STATE_CLOSING = 2,
-            STATE_CLOSED = 3,
-        }
-    }
-    class WebRTCDataChannel extends PacketPeer {
-        /** Reserved, but not used for now. */
-        poll(): GodotError
-        /** Closes this data channel, notifying the other peer. */
-        close(): void
-        /** Returns [code]true[/code] if the last received packet was transferred as text. See [member write_mode]. */
-        was_string_packet(): boolean
-        set_write_mode(write_mode: WebRTCDataChannel.WriteMode): void
-        get_write_mode(): WebRTCDataChannel.WriteMode
-        /** Returns the current state of this channel, see [enum ChannelState]. */
-        get_ready_state(): WebRTCDataChannel.ChannelState
-        /** Returns the label assigned to this channel during creation. */
-        get_label(): string
-        /** Returns [code]true[/code] if this channel was created with ordering enabled (default). */
-        is_ordered(): boolean
-        /** Returns the ID assigned to this channel during creation (or auto-assigned during negotiation).
-         *  If the channel is not negotiated out-of-band the ID will only be available after the connection is established (will return [code]65535[/code] until then).
-         */
-        get_id(): number /*i64*/
-        /** Returns the [code]maxPacketLifeTime[/code] value assigned to this channel during creation.
-         *  Will be [code]65535[/code] if not specified.
-         */
-        get_max_packet_life_time(): number /*i64*/
-        /** Returns the [code]maxRetransmits[/code] value assigned to this channel during creation.
-         *  Will be [code]65535[/code] if not specified.
-         */
-        get_max_retransmits(): number /*i64*/
-        /** Returns the sub-protocol assigned to this channel during creation. An empty string if not specified. */
-        get_protocol(): string
-        /** Returns [code]true[/code] if this channel was created with out-of-band configuration. */
-        is_negotiated(): boolean
-        /** Returns the number of bytes currently queued to be sent over this channel. */
-        get_buffered_amount(): number /*i64*/
-        /** The transfer mode to use when sending outgoing packet. Either text or binary. */
-        write_mode: number /*i64*/
-    }
-    class WebRTCDataChannelExtension extends WebRTCDataChannel {
-        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): GodotError
-        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): GodotError
-        /* gdvirtual */ _get_available_packet_count(): number /*i64*/
-        /* gdvirtual */ _get_max_packet_size(): number /*i64*/
-        /* gdvirtual */ _poll(): GodotError
-        /* gdvirtual */ _close(): void
-        /* gdvirtual */ _set_write_mode(p_write_mode: WebRTCDataChannel.WriteMode): void
-        /* gdvirtual */ _get_write_mode(): WebRTCDataChannel.WriteMode
-        /* gdvirtual */ _was_string_packet(): boolean
-        /* gdvirtual */ _get_ready_state(): WebRTCDataChannel.ChannelState
-        /* gdvirtual */ _get_label(): string
-        /* gdvirtual */ _is_ordered(): boolean
-        /* gdvirtual */ _get_id(): number /*i64*/
-        /* gdvirtual */ _get_max_packet_life_time(): number /*i64*/
-        /* gdvirtual */ _get_max_retransmits(): number /*i64*/
-        /* gdvirtual */ _get_protocol(): string
-        /* gdvirtual */ _is_negotiated(): boolean
-        /* gdvirtual */ _get_buffered_amount(): number /*i64*/
-    }
-    /** A simple interface to create a peer-to-peer mesh network composed of [WebRTCPeerConnection] that is compatible with the [MultiplayerAPI]. */
-    class WebRTCMultiplayerPeer extends MultiplayerPeer {
-        /** Initialize the multiplayer peer as a server (with unique ID of [code]1[/code]). This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.
-         *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).
-         */
-        create_server(channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
-        /** Initialize the multiplayer peer as a client with the given [param peer_id] (must be between 2 and 2147483647). In this mode, you should only call [method add_peer] once and with [param peer_id] of [code]1[/code]. This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.
-         *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).
-         */
-        create_client(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
-        /** Initialize the multiplayer peer as a mesh (i.e. all peers connect to each other) with the given [param peer_id] (must be between 1 and 2147483647). */
-        create_mesh(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
-        /** Add a new peer to the mesh with the given [param peer_id]. The [WebRTCPeerConnection] must be in state [constant WebRTCPeerConnection.STATE_NEW].
-         *  Three channels will be created for reliable, unreliable, and ordered transport. The value of [param unreliable_lifetime] will be passed to the [code]"maxPacketLifetime"[/code] option when creating unreliable and ordered channels (see [method WebRTCPeerConnection.create_data_channel]).
-         */
-        add_peer(peer: WebRTCPeerConnection, peer_id: number /*i64*/, unreliable_lifetime: number /*i64*/ = 1): GodotError
-        /** Remove the peer with given [param peer_id] from the mesh. If the peer was connected, and [signal MultiplayerPeer.peer_connected] was emitted for it, then [signal MultiplayerPeer.peer_disconnected] will be emitted. */
-        remove_peer(peer_id: number /*i64*/): void
-        /** Returns [code]true[/code] if the given [param peer_id] is in the peers map (it might not be connected though). */
-        has_peer(peer_id: number /*i64*/): boolean
-        /** Returns a dictionary representation of the peer with given [param peer_id] with three keys. [code]"connection"[/code] containing the [WebRTCPeerConnection] to this peer, [code]"channels"[/code] an array of three [WebRTCDataChannel], and [code]"connected"[/code] a boolean representing if the peer connection is currently connected (all three channels are open). */
-        get_peer(peer_id: number /*i64*/): Dictionary
-        /** Returns a dictionary which keys are the peer ids and values the peer representation as in [method get_peer]. */
-        get_peers(): Dictionary
-    }
-    namespace WebRTCPeerConnection {
-        enum ConnectionState {
-            STATE_NEW = 0,
-            STATE_CONNECTING = 1,
-            STATE_CONNECTED = 2,
-            STATE_DISCONNECTED = 3,
-            STATE_FAILED = 4,
-            STATE_CLOSED = 5,
-        }
-        enum GatheringState {
-            GATHERING_STATE_NEW = 0,
-            GATHERING_STATE_GATHERING = 1,
-            GATHERING_STATE_COMPLETE = 2,
-        }
-        enum SignalingState {
-            SIGNALING_STATE_STABLE = 0,
-            SIGNALING_STATE_HAVE_LOCAL_OFFER = 1,
-            SIGNALING_STATE_HAVE_REMOTE_OFFER = 2,
-            SIGNALING_STATE_HAVE_LOCAL_PRANSWER = 3,
-            SIGNALING_STATE_HAVE_REMOTE_PRANSWER = 4,
-            SIGNALING_STATE_CLOSED = 5,
-        }
-    }
-    /** Interface to a WebRTC peer connection. */
-    class WebRTCPeerConnection extends RefCounted {
-        /** Sets the [param extension_class] as the default [WebRTCPeerConnectionExtension] returned when creating a new [WebRTCPeerConnection]. */
-        static set_default_extension(extension_class: StringName): void
-        /** Re-initialize this peer connection, closing any previously active connection, and going back to state [constant STATE_NEW]. A dictionary of [param configuration] options can be passed to configure the peer connection.
-         *  Valid [param configuration] options are:
-         *  
-         */
-        initialize(configuration: Dictionary = <any> {} /*compound.type from 27([object Object])*/): GodotError
-        /** Returns a new [WebRTCDataChannel] (or [code]null[/code] on failure) with given [param label] and optionally configured via the [param options] dictionary. This method can only be called when the connection is in state [constant STATE_NEW].
-         *  There are two ways to create a working data channel: either call [method create_data_channel] on only one of the peer and listen to [signal data_channel_received] on the other, or call [method create_data_channel] on both peers, with the same values, and the [code]"negotiated"[/code] option set to [code]true[/code].
-         *  Valid [param options] are:
-         *  
-         *  [b]Note:[/b] You must keep a reference to channels created this way, or it will be closed.
-         */
-        create_data_channel(label: string, options: Dictionary = <any> {} /*compound.type from 27([object Object])*/): WebRTCDataChannel
-        /** Creates a new SDP offer to start a WebRTC connection with a remote peer. At least one [WebRTCDataChannel] must have been created before calling this method.
-         *  If this functions returns [constant OK], [signal session_description_created] will be called when the session is ready to be sent.
-         */
-        create_offer(): GodotError
-        /** Sets the SDP description of the local peer. This should be called in response to [signal session_description_created].
-         *  After calling this function the peer will start emitting [signal ice_candidate_created] (unless an [enum Error] different from [constant OK] is returned).
-         */
-        set_local_description(type: string, sdp: string): GodotError
-        /** Sets the SDP description of the remote peer. This should be called with the values generated by a remote peer and received over the signaling server.
-         *  If [param type] is [code]"offer"[/code] the peer will emit [signal session_description_created] with the appropriate answer.
-         *  If [param type] is [code]"answer"[/code] the peer will start emitting [signal ice_candidate_created].
-         */
-        set_remote_description(type: string, sdp: string): GodotError
-        /** Add an ice candidate generated by a remote peer (and received over the signaling server). See [signal ice_candidate_created]. */
-        add_ice_candidate(media: string, index: number /*i64*/, name: string): GodotError
-        /** Call this method frequently (e.g. in [method Node._process] or [method Node._physics_process]) to properly receive signals. */
-        poll(): GodotError
-        /** Close the peer connection and all data channels associated with it.
-         *  [b]Note:[/b] You cannot reuse this object for a new connection unless you call [method initialize].
-         */
-        close(): void
-        /** Returns the connection state. See [enum ConnectionState]. */
-        get_connection_state(): WebRTCPeerConnection.ConnectionState
-        /** Returns the ICE [enum GatheringState] of the connection. This lets you detect, for example, when collection of ICE candidates has finished. */
-        get_gathering_state(): WebRTCPeerConnection.GatheringState
-        /** Returns the [enum SignalingState] on the local end of the connection while connecting or reconnecting to another peer. */
-        get_signaling_state(): WebRTCPeerConnection.SignalingState
-        readonly session_description_created: Signal
-        readonly ice_candidate_created: Signal
-        readonly data_channel_received: Signal
-    }
-    class WebRTCPeerConnectionExtension extends WebRTCPeerConnection {
-        /* gdvirtual */ _get_connection_state(): WebRTCPeerConnection.ConnectionState
-        /* gdvirtual */ _get_gathering_state(): WebRTCPeerConnection.GatheringState
-        /* gdvirtual */ _get_signaling_state(): WebRTCPeerConnection.SignalingState
-        /* gdvirtual */ _initialize(p_config: Dictionary): GodotError
-        /* gdvirtual */ _create_data_channel(p_label: string, p_config: Dictionary): WebRTCDataChannel
-        /* gdvirtual */ _create_offer(): GodotError
-        /* gdvirtual */ _set_remote_description(p_type: string, p_sdp: string): GodotError
-        /* gdvirtual */ _set_local_description(p_type: string, p_sdp: string): GodotError
-        /* gdvirtual */ _add_ice_candidate(p_sdp_mid_name: string, p_sdp_mline_index: number /*i64*/, p_sdp_name: string): GodotError
-        /* gdvirtual */ _poll(): GodotError
-        /* gdvirtual */ _close(): void
-    }
-    namespace WebXRInterface {
-        enum TargetRayMode {
-            TARGET_RAY_MODE_UNKNOWN = 0,
-            TARGET_RAY_MODE_GAZE = 1,
-            TARGET_RAY_MODE_TRACKED_POINTER = 2,
-            TARGET_RAY_MODE_SCREEN = 3,
-        }
-    }
-    /** XR interface using WebXR. */
-    class WebXRInterface extends XRInterface {
-        /** Checks if the given [param session_mode] is supported by the user's browser.
-         *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRSessionMode]WebXR's XRSessionMode[/url], including: [code]"immersive-vr"[/code], [code]"immersive-ar"[/code], and [code]"inline"[/code].
-         *  This method returns nothing, instead it emits the [signal session_supported] signal with the result.
-         */
-        is_session_supported(session_mode: string): void
-        set_session_mode(session_mode: string): void
-        get_session_mode(): string
-        set_required_features(required_features: string): void
-        get_required_features(): string
-        set_optional_features(optional_features: string): void
-        get_optional_features(): string
-        get_reference_space_type(): string
-        set_requested_reference_space_types(requested_reference_space_types: string): void
-        get_requested_reference_space_types(): string
-        /** Returns [code]true[/code] if there is an active input source with the given [param input_source_id]. */
-        is_input_source_active(input_source_id: number /*i64*/): boolean
-        /** Gets an [XRPositionalTracker] for the given [param input_source_id].
-         *  In the context of WebXR, an input source can be an advanced VR controller like the Oculus Touch or Index controllers, or even a tap on the screen, a spoken voice command or a button press on the device itself. When a non-traditional input source is used, interpret the position and orientation of the [XRPositionalTracker] as a ray pointing at the object the user wishes to interact with.
-         *  Use this method to get information about the input source that triggered one of these signals:
-         *  - [signal selectstart]
-         *  - [signal select]
-         *  - [signal selectend]
-         *  - [signal squeezestart]
-         *  - [signal squeeze]
-         *  - [signal squeezestart]
-         */
-        get_input_source_tracker(input_source_id: number /*i64*/): XRPositionalTracker
-        /** Returns the target ray mode for the given [param input_source_id].
-         *  This can help interpret the input coming from that input source. See [url=https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/targetRayMode]XRInputSource.targetRayMode[/url] for more information.
-         */
-        get_input_source_target_ray_mode(input_source_id: number /*i64*/): WebXRInterface.TargetRayMode
-        get_visibility_state(): string
-        /** Returns the display refresh rate for the current HMD. Not supported on all HMDs and browsers. It may not report an accurate value until after using [method set_display_refresh_rate]. */
-        get_display_refresh_rate(): number /*f64*/
-        /** Sets the display refresh rate for the current HMD. Not supported on all HMDs and browsers. It won't take effect right away until after [signal display_refresh_rate_changed] is emitted. */
-        set_display_refresh_rate(refresh_rate: number /*f64*/): void
-        /** Returns display refresh rates supported by the current HMD. Only returned if this feature is supported by the web browser and after the interface has been initialized. */
-        get_available_display_refresh_rates(): Array
-        /** The session mode used by [method XRInterface.initialize] when setting up the WebXR session.
-         *  This doesn't have any effect on the interface when already initialized.
-         *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRSessionMode]WebXR's XRSessionMode[/url], including: [code]"immersive-vr"[/code], [code]"immersive-ar"[/code], and [code]"inline"[/code].
-         */
-        session_mode: string
-        /** A comma-seperated list of required features used by [method XRInterface.initialize] when setting up the WebXR session.
-         *  If a user's browser or device doesn't support one of the given features, initialization will fail and [signal session_failed] will be emitted.
-         *  This doesn't have any effect on the interface when already initialized.
-         *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be listed in either [member required_features] or [member optional_features].
-         */
-        required_features: string
-        /** A comma-seperated list of optional features used by [method XRInterface.initialize] when setting up the WebXR session.
-         *  If a user's browser or device doesn't support one of the given features, initialization will continue, but you won't be able to use the requested feature.
-         *  This doesn't have any effect on the interface when already initialized.
-         *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be listed in either [member required_features] or [member optional_features].
-         */
-        optional_features: string
-        /** A comma-seperated list of reference space types used by [method XRInterface.initialize] when setting up the WebXR session.
-         *  The reference space types are requested in order, and the first one supported by the users device or browser will be used. The [member reference_space_type] property contains the reference space type that was ultimately selected.
-         *  This doesn't have any effect on the interface when already initialized.
-         *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be listed in either [member required_features] or [member optional_features].
-         */
-        requested_reference_space_types: string
-        /** The reference space type (from the list of requested types set in the [member requested_reference_space_types] property), that was ultimately used by [method XRInterface.initialize] when setting up the WebXR session.
-         *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be listed in either [member required_features] or [member optional_features].
-         */
-        readonly reference_space_type: string
-        /** Indicates if the WebXR session's imagery is visible to the user.
-         *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRVisibilityState]WebXR's XRVisibilityState[/url], including [code]"hidden"[/code], [code]"visible"[/code], and [code]"visible-blurred"[/code].
-         */
-        readonly visibility_state: string
-        readonly session_supported: Signal
-        readonly session_started: Signal
-        readonly session_ended: Signal
-        readonly session_failed: Signal
-        readonly selectstart: Signal
-        readonly select: Signal
-        readonly selectend: Signal
-        readonly squeezestart: Signal
-        readonly squeeze: Signal
-        readonly squeezeend: Signal
-        readonly visibility_state_changed: Signal
-        readonly reference_space_reset: Signal
-        readonly display_refresh_rate_changed: Signal
-    }
-    namespace Window {
-        enum Mode {
-            MODE_WINDOWED = 0,
-            MODE_MINIMIZED = 1,
-            MODE_MAXIMIZED = 2,
-            MODE_FULLSCREEN = 3,
-            MODE_EXCLUSIVE_FULLSCREEN = 4,
-        }
-        enum Flags {
-            FLAG_RESIZE_DISABLED = 0,
-            FLAG_BORDERLESS = 1,
-            FLAG_ALWAYS_ON_TOP = 2,
-            FLAG_TRANSPARENT = 3,
-            FLAG_NO_FOCUS = 4,
-            FLAG_POPUP = 5,
-            FLAG_EXTEND_TO_TITLE = 6,
-            FLAG_MOUSE_PASSTHROUGH = 7,
-            FLAG_MAX = 8,
-        }
-        enum ContentScaleMode {
-            CONTENT_SCALE_MODE_DISABLED = 0,
-            CONTENT_SCALE_MODE_CANVAS_ITEMS = 1,
-            CONTENT_SCALE_MODE_VIEWPORT = 2,
-        }
-        enum ContentScaleAspect {
-            CONTENT_SCALE_ASPECT_IGNORE = 0,
-            CONTENT_SCALE_ASPECT_KEEP = 1,
-            CONTENT_SCALE_ASPECT_KEEP_WIDTH = 2,
-            CONTENT_SCALE_ASPECT_KEEP_HEIGHT = 3,
-            CONTENT_SCALE_ASPECT_EXPAND = 4,
-        }
-        enum ContentScaleStretch {
-            CONTENT_SCALE_STRETCH_FRACTIONAL = 0,
-            CONTENT_SCALE_STRETCH_INTEGER = 1,
-        }
-        enum LayoutDirection {
-            LAYOUT_DIRECTION_INHERITED = 0,
-            LAYOUT_DIRECTION_LOCALE = 1,
-            LAYOUT_DIRECTION_LTR = 2,
-            LAYOUT_DIRECTION_RTL = 3,
-        }
-        enum WindowInitialPosition {
-            WINDOW_INITIAL_POSITION_ABSOLUTE = 0,
-            WINDOW_INITIAL_POSITION_CENTER_PRIMARY_SCREEN = 1,
-            WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN = 2,
-            WINDOW_INITIAL_POSITION_CENTER_OTHER_SCREEN = 3,
-            WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_MOUSE_FOCUS = 4,
-            WINDOW_INITIAL_POSITION_CENTER_SCREEN_WITH_KEYBOARD_FOCUS = 5,
-        }
-    }
-    /** Base class for all windows, dialogs, and popups. */
-    class Window extends Viewport {
-        static readonly NOTIFICATION_VISIBILITY_CHANGED = 30
-        static readonly NOTIFICATION_THEME_CHANGED = 32
-        /* gdvirtual */ _get_contents_minimum_size(): Vector2
-        set_title(title: string): void
-        get_title(): string
-        /** Returns the ID of the window. */
-        get_window_id(): number /*i64*/
-        set_initial_position(initial_position: Window.WindowInitialPosition): void
-        get_initial_position(): Window.WindowInitialPosition
-        set_current_screen(index: number /*i64*/): void
-        get_current_screen(): number /*i64*/
-        set_position(position: Vector2i): void
-        get_position(): Vector2i
-        /** Centers a native window on the current screen and an embedded window on its embedder [Viewport]. */
-        move_to_center(): void
-        set_size(size: Vector2i): void
-        get_size(): Vector2i
-        /** Resets the size to the minimum size, which is the max of [member min_size] and (if [member wrap_controls] is enabled) [method get_contents_minimum_size]. This is equivalent to calling [code]set_size(Vector2i())[/code] (or any size below the minimum). */
-        reset_size(): void
-        /** Returns the window's position including its border. */
-        get_position_with_decorations(): Vector2i
-        /** Returns the window's size including its border. */
-        get_size_with_decorations(): Vector2i
-        set_max_size(max_size: Vector2i): void
-        get_max_size(): Vector2i
-        set_min_size(min_size: Vector2i): void
-        get_min_size(): Vector2i
-        set_mode(mode: Window.Mode): void
-        get_mode(): Window.Mode
-        /** Sets a specified window flag. */
-        set_flag(flag: Window.Flags, enabled: boolean): void
-        /** Returns [code]true[/code] if the [param flag] is set. */
-        get_flag(flag: Window.Flags): boolean
-        /** Returns [code]true[/code] if the window can be maximized (the maximize button is enabled). */
-        is_maximize_allowed(): boolean
-        /** Tells the OS that the [Window] needs an attention. This makes the window stand out in some way depending on the system, e.g. it might blink on the task bar. */
-        request_attention(): void
-        /** Moves the [Window] on top of other windows and focuses it. */
-        move_to_foreground(): void
-        set_visible(visible: boolean): void
-        is_visible(): boolean
-        /** Hides the window. This is not the same as minimized state. Hidden window can't be interacted with and needs to be made visible with [method show]. */
-        hide(): void
-        /** Makes the [Window] appear. This enables interactions with the [Window] and doesn't change any of its property other than visibility (unlike e.g. [method popup]). */
-        show(): void
-        set_transient(transient: boolean): void
-        is_transient(): boolean
-        set_exclusive(exclusive: boolean): void
-        is_exclusive(): boolean
-        /** If [param unparent] is [code]true[/code], the window is automatically unparented when going invisible.
-         *  [b]Note:[/b] Make sure to keep a reference to the node, otherwise it will be orphaned. You also need to manually call [method Node.queue_free] to free the window if it's not parented.
-         */
-        set_unparent_when_invisible(unparent: boolean): void
-        /** Returns whether the window is being drawn to the screen. */
-        can_draw(): boolean
-        /** Returns [code]true[/code] if the window is focused. */
-        has_focus(): boolean
-        /** Causes the window to grab focus, allowing it to receive user input. */
-        grab_focus(): void
-        /** If [param active] is [code]true[/code], enables system's native IME (Input Method Editor). */
-        set_ime_active(active: boolean): void
-        /** Moves IME to the given position. */
-        set_ime_position(position: Vector2i): void
-        /** Returns [code]true[/code] if the window is currently embedded in another window. */
-        is_embedded(): boolean
-        /** Returns the combined minimum size from the child [Control] nodes of the window. Use [method child_controls_changed] to update it when child nodes have changed.
-         *  The value returned by this method can be overridden with [method _get_contents_minimum_size].
-         */
-        get_contents_minimum_size(): Vector2
-        set_content_scale_size(size: Vector2i): void
-        get_content_scale_size(): Vector2i
-        set_content_scale_mode(mode: Window.ContentScaleMode): void
-        get_content_scale_mode(): Window.ContentScaleMode
-        set_content_scale_aspect(aspect: Window.ContentScaleAspect): void
-        get_content_scale_aspect(): Window.ContentScaleAspect
-        set_content_scale_stretch(stretch: Window.ContentScaleStretch): void
-        get_content_scale_stretch(): Window.ContentScaleStretch
-        set_keep_title_visible(title_visible: boolean): void
-        get_keep_title_visible(): boolean
-        set_content_scale_factor(factor: number /*f64*/): void
-        get_content_scale_factor(): number /*f64*/
-        /** Enables font oversampling. This makes fonts look better when they are scaled up. */
-        set_use_font_oversampling(enable: boolean): void
-        /** Returns [code]true[/code] if font oversampling is enabled. See [method set_use_font_oversampling]. */
-        is_using_font_oversampling(): boolean
-        set_mouse_passthrough_polygon(polygon: PackedVector2Array): void
-        get_mouse_passthrough_polygon(): PackedVector2Array
-        set_wrap_controls(enable: boolean): void
-        is_wrapping_controls(): boolean
-        /** Requests an update of the [Window] size to fit underlying [Control] nodes. */
-        child_controls_changed(): void
-        _update_child_controls(): void
-        _update_embedded_window(): void
-        set_theme(theme: Theme): void
-        get_theme(): Theme
-        set_theme_type_variation(theme_type: StringName): void
-        get_theme_type_variation(): StringName
-        /** Prevents [code]*_theme_*_override[/code] methods from emitting [constant NOTIFICATION_THEME_CHANGED] until [method end_bulk_theme_override] is called. */
-        begin_bulk_theme_override(): void
-        /** Ends a bulk theme override update. See [method begin_bulk_theme_override]. */
-        end_bulk_theme_override(): void
-        /** Creates a local override for a theme icon with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_icon_override].
-         *  See also [method get_theme_icon].
-         */
-        add_theme_icon_override(name: StringName, texture: Texture2D): void
-        /** Creates a local override for a theme [StyleBox] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_stylebox_override].
-         *  See also [method get_theme_stylebox] and [method Control.add_theme_stylebox_override] for more details.
-         */
-        add_theme_stylebox_override(name: StringName, stylebox: StyleBox): void
-        /** Creates a local override for a theme [Font] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_override].
-         *  See also [method get_theme_font].
-         */
-        add_theme_font_override(name: StringName, font: Font): void
-        /** Creates a local override for a theme font size with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_size_override].
-         *  See also [method get_theme_font_size].
-         */
-        add_theme_font_size_override(name: StringName, font_size: number /*i64*/): void
-        /** Creates a local override for a theme [Color] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_color_override].
-         *  See also [method get_theme_color] and [method Control.add_theme_color_override] for more details.
-         */
-        add_theme_color_override(name: StringName, color: Color): void
-        /** Creates a local override for a theme constant with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_constant_override].
-         *  See also [method get_theme_constant].
-         */
-        add_theme_constant_override(name: StringName, constant: number /*i64*/): void
-        /** Removes a local override for a theme icon with the specified [param name] previously added by [method add_theme_icon_override] or via the Inspector dock. */
-        remove_theme_icon_override(name: StringName): void
-        /** Removes a local override for a theme [StyleBox] with the specified [param name] previously added by [method add_theme_stylebox_override] or via the Inspector dock. */
-        remove_theme_stylebox_override(name: StringName): void
-        /** Removes a local override for a theme [Font] with the specified [param name] previously added by [method add_theme_font_override] or via the Inspector dock. */
-        remove_theme_font_override(name: StringName): void
-        /** Removes a local override for a theme font size with the specified [param name] previously added by [method add_theme_font_size_override] or via the Inspector dock. */
-        remove_theme_font_size_override(name: StringName): void
-        /** Removes a local override for a theme [Color] with the specified [param name] previously added by [method add_theme_color_override] or via the Inspector dock. */
-        remove_theme_color_override(name: StringName): void
-        /** Removes a local override for a theme constant with the specified [param name] previously added by [method add_theme_constant_override] or via the Inspector dock. */
-        remove_theme_constant_override(name: StringName): void
-        /** Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        get_theme_icon(name: StringName, theme_type: StringName = ''): Texture2D
-        /** Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        get_theme_stylebox(name: StringName, theme_type: StringName = ''): StyleBox
-        /** Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        get_theme_font(name: StringName, theme_type: StringName = ''): Font
-        /** Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        get_theme_font_size(name: StringName, theme_type: StringName = ''): number /*i64*/
-        /** Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for more details.
-         */
-        get_theme_color(name: StringName, theme_type: StringName = ''): Color
-        /** Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for more details.
-         */
-        get_theme_constant(name: StringName, theme_type: StringName = ''): number /*i64*/
-        /** Returns [code]true[/code] if there is a local override for a theme icon with the specified [param name] in this [Control] node.
-         *  See [method add_theme_icon_override].
-         */
-        has_theme_icon_override(name: StringName): boolean
-        /** Returns [code]true[/code] if there is a local override for a theme [StyleBox] with the specified [param name] in this [Control] node.
-         *  See [method add_theme_stylebox_override].
-         */
-        has_theme_stylebox_override(name: StringName): boolean
-        /** Returns [code]true[/code] if there is a local override for a theme [Font] with the specified [param name] in this [Control] node.
-         *  See [method add_theme_font_override].
-         */
-        has_theme_font_override(name: StringName): boolean
-        /** Returns [code]true[/code] if there is a local override for a theme font size with the specified [param name] in this [Control] node.
-         *  See [method add_theme_font_size_override].
-         */
-        has_theme_font_size_override(name: StringName): boolean
-        /** Returns [code]true[/code] if there is a local override for a theme [Color] with the specified [param name] in this [Control] node.
-         *  See [method add_theme_color_override].
-         */
-        has_theme_color_override(name: StringName): boolean
-        /** Returns [code]true[/code] if there is a local override for a theme constant with the specified [param name] in this [Control] node.
-         *  See [method add_theme_constant_override].
-         */
-        has_theme_constant_override(name: StringName): boolean
-        /** Returns [code]true[/code] if there is a matching [Theme] in the tree that has an icon item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        has_theme_icon(name: StringName, theme_type: StringName = ''): boolean
-        /** Returns [code]true[/code] if there is a matching [Theme] in the tree that has a stylebox item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        has_theme_stylebox(name: StringName, theme_type: StringName = ''): boolean
-        /** Returns [code]true[/code] if there is a matching [Theme] in the tree that has a font item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        has_theme_font(name: StringName, theme_type: StringName = ''): boolean
-        /** Returns [code]true[/code] if there is a matching [Theme] in the tree that has a font size item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        has_theme_font_size(name: StringName, theme_type: StringName = ''): boolean
-        /** Returns [code]true[/code] if there is a matching [Theme] in the tree that has a color item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        has_theme_color(name: StringName, theme_type: StringName = ''): boolean
-        /** Returns [code]true[/code] if there is a matching [Theme] in the tree that has a constant item with the specified [param name] and [param theme_type].
-         *  See [method Control.get_theme_color] for details.
-         */
-        has_theme_constant(name: StringName, theme_type: StringName = ''): boolean
-        /** Returns the default base scale value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_base_scale] value.
-         *  See [method Control.get_theme_color] for details.
-         */
-        get_theme_default_base_scale(): number /*f64*/
-        /** Returns the default font from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font] value.
-         *  See [method Control.get_theme_color] for details.
-         */
-        get_theme_default_font(): Font
-        /** Returns the default font size value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font_size] value.
-         *  See [method Control.get_theme_color] for details.
-         */
-        get_theme_default_font_size(): number /*i64*/
-        /** Sets layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew). */
-        set_layout_direction(direction: Window.LayoutDirection): void
-        /** Returns layout direction and text writing direction. */
-        get_layout_direction(): Window.LayoutDirection
-        /** Returns [code]true[/code] if layout is right-to-left. */
-        is_layout_rtl(): boolean
-        set_auto_translate(enable: boolean): void
-        is_auto_translating(): boolean
-        /** Shows the [Window] and makes it transient (see [member transient]). If [param rect] is provided, it will be set as the [Window]'s size. Fails if called on the main window. */
-        popup(rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
-        /** Popups the [Window] with a position shifted by parent [Window]'s position. If the [Window] is embedded, has the same effect as [method popup]. */
-        popup_on_parent(parent_rect: Rect2i): void
-        /** Popups the [Window] at the center of the current screen, with optionally given minimum size. If the [Window] is embedded, it will be centered in the parent [Viewport] instead.
-         *  [b]Note:[/b] Calling it with the default value of [param minsize] is equivalent to calling it with [member size].
-         */
-        popup_centered(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
-        /** If [Window] is embedded, popups the [Window] centered inside its embedder and sets its size as a [param ratio] of embedder's size.
-         *  If [Window] is a native window, popups the [Window] centered inside the screen of its parent [Window] and sets its size as a [param ratio] of the screen size.
-         */
-        popup_centered_ratio(ratio: number /*f64*/ = 0.8): void
-        /** Popups the [Window] centered inside its parent [Window]. [param fallback_ratio] determines the maximum size of the [Window], in relation to its parent.
-         *  [b]Note:[/b] Calling it with the default value of [param minsize] is equivalent to calling it with [member size].
-         */
-        popup_centered_clamped(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
-        /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup] on it. The dialog must have no current parent, otherwise the method fails.
-         *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].
-         */
-        popup_exclusive(from_node: Node, rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
-        /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_on_parent] on it. The dialog must have no current parent, otherwise the method fails.
-         *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].
-         */
-        popup_exclusive_on_parent(from_node: Node, parent_rect: Rect2i): void
-        /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_centered] on it. The dialog must have no current parent, otherwise the method fails.
-         *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].
-         */
-        popup_exclusive_centered(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
-        /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_centered_ratio] on it. The dialog must have no current parent, otherwise the method fails.
-         *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].
-         */
-        popup_exclusive_centered_ratio(from_node: Node, ratio: number /*f64*/ = 0.8): void
-        /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_centered_clamped] on it. The dialog must have no current parent, otherwise the method fails.
-         *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].
-         */
-        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
-        /** Set's the window's current mode.
-         *  [b]Note:[/b] Fullscreen mode is not exclusive full screen on Windows and Linux.
-         *  [b]Note:[/b] This method only works with native windows, i.e. the main window and [Window]-derived nodes when [member Viewport.gui_embed_subwindows] is disabled in the main viewport.
-         */
-        mode: number /*i64*/
-        /** The window's title. If the [Window] is native, title styles set in [Theme] will have no effect. */
-        title: string
-        /** Specifies the initial type of position for the [Window]. See [enum WindowInitialPosition] constants. */
-        initial_position: number /*i64*/
-        /** The window's position in pixels.
-         *  If [member ProjectSettings.display/window/subwindows/embed_subwindows] is [code]false[/code], the position is in absolute screen coordinates. This typically applies to editor plugins. If the setting is [code]true[/code], the window's position is in the coordinates of its parent [Viewport].
-         *  [b]Note:[/b] This property only works if [member initial_position] is set to [constant WINDOW_INITIAL_POSITION_ABSOLUTE].
-         */
-        position: Vector2i
-        /** The window's size in pixels. */
-        size: Vector2i
-        /** The screen the window is currently on. */
-        current_screen: number /*i64*/
-        /** Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
-         *  Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
-         *  
-         *  [b]Note:[/b] This property is ignored if [member mouse_passthrough] is set to [code]true[/code].
-         *  [b]Note:[/b] On Windows, the portion of a window that lies outside the region is not drawn, while on Linux (X11) and macOS it is.
-         *  [b]Note:[/b] This property is implemented on Linux (X11), macOS and Windows.
-         */
-        mouse_passthrough_polygon: PackedVector2Array
-        /** If [code]true[/code], the window is visible. */
-        visible: boolean
-        /** If [code]true[/code], the window's size will automatically update when a child node is added or removed, ignoring [member min_size] if the new size is bigger.
-         *  If [code]false[/code], you need to call [method child_controls_changed] manually.
-         */
-        wrap_controls: boolean
-        /** If [code]true[/code], the [Window] is transient, i.e. it's considered a child of another [Window]. The transient window will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
-         *  Note that behavior might be different depending on the platform.
-         */
-        transient: boolean
-        /** If [code]true[/code], the [Window] will be in exclusive mode. Exclusive windows are always on top of their parent and will block all input going to the parent [Window].
-         *  Needs [member transient] enabled to work.
-         */
-        exclusive: boolean
-        /** If non-zero, the [Window] can't be resized to be smaller than this size.
-         *  [b]Note:[/b] This property will be ignored in favor of [method get_contents_minimum_size] if [member wrap_controls] is enabled and if its size is bigger.
-         */
-        min_size: Vector2i
-        /** If non-zero, the [Window] can't be resized to be bigger than this size.
-         *  [b]Note:[/b] This property will be ignored if the value is lower than [member min_size].
-         */
-        max_size: Vector2i
-        /** If [code]true[/code], the [Window] width is expanded to keep the title bar text fully visible. */
-        keep_title_visible: boolean
-        /** Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s content will be scaled when the window is resized to a different size. */
-        content_scale_size: Vector2i
-        /** Specifies how the content is scaled when the [Window] is resized. */
-        content_scale_mode: number /*i64*/
-        /** Specifies how the content's aspect behaves when the [Window] is resized. The base aspect is determined by [member content_scale_size]. */
-        content_scale_aspect: number /*i64*/
-        /** The policy to use to determine the final scale factor for 2D elements. This affects how [member content_scale_factor] is applied, in addition to the automatic scale factor determined by [member content_scale_size]. */
-        content_scale_stretch: number /*i64*/
-        /** Specifies the base scale of [Window]'s content when its [member size] is equal to [member content_scale_size]. */
-        content_scale_factor: number /*f64*/
-        /** Toggles if any text should automatically change to its translated version depending on the current locale. */
-        auto_translate: boolean
-        /** The [Theme] resource this node and all its [Control] and [Window] children use. If a child node has its own [Theme] resource set, theme items are merged with child's definitions having higher priority.
-         *  [b]Note:[/b] [Window] styles will have no effect unless the window is embedded.
-         */
-        theme: Theme
-        /** The name of a theme type variation used by this [Window] to look up its own theme items. See [member Control.theme_type_variation] for more details. */
-        theme_type_variation: string
-        readonly window_input: Signal
-        readonly files_dropped: Signal
-        readonly mouse_entered: Signal
-        readonly mouse_exited: Signal
-        readonly focus_entered: Signal
-        readonly focus_exited: Signal
-        readonly close_requested: Signal
-        readonly go_back_requested: Signal
-        readonly visibility_changed: Signal
-        readonly about_to_popup: Signal
-        readonly theme_changed: Signal
-        readonly dpi_changed: Signal
-        readonly titlebar_changed: Signal
-    }
-    class WindowWrapper extends MarginContainer {
-        readonly window_visibility_changed: Signal
-        readonly window_close_requested: Signal
-    }
-    /** A resource that holds all components of a 2D world, such as a canvas and a physics space. */
-    class World2D extends Resource {
-        get_canvas(): RID
-        get_space(): RID
-        get_navigation_map(): RID
-        get_direct_space_state(): PhysicsDirectSpaceState2D
-        /** The [RID] of this world's canvas resource. Used by the [RenderingServer] for 2D drawing. */
-        readonly canvas: RID
-        /** The [RID] of this world's physics space resource. Used by the [PhysicsServer2D] for 2D physics, treating it as both a space and an area. */
-        readonly space: RID
-        /** The [RID] of this world's navigation map. Used by the [NavigationServer2D]. */
-        readonly navigation_map: RID
-        /** Direct access to the world's physics 2D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [method Node._physics_process] in the main thread. */
-        readonly direct_space_state: PhysicsDirectSpaceState2D
-    }
-    /** A resource that holds all components of a 3D world, such as a visual scenario and a physics space. */
-    class World3D extends Resource {
-        get_space(): RID
-        get_navigation_map(): RID
-        get_scenario(): RID
-        set_environment(env: Environment): void
-        get_environment(): Environment
-        set_fallback_environment(env: Environment): void
-        get_fallback_environment(): Environment
-        set_camera_attributes(attributes: CameraAttributes): void
-        get_camera_attributes(): CameraAttributes
-        get_direct_space_state(): PhysicsDirectSpaceState3D
-        /** The World3D's [Environment]. */
-        environment: Environment
-        /** The World3D's fallback environment will be used if [member environment] fails or is missing. */
-        fallback_environment: Environment
-        /** The default [CameraAttributes] resource to use if none set on the [Camera3D]. */
-        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
-        /** The World3D's physics space. */
-        readonly space: RID
-        /** The [RID] of this world's navigation map. Used by the [NavigationServer3D]. */
-        readonly navigation_map: RID
-        /** The World3D's visual scenario. */
-        readonly scenario: RID
-        /** Direct access to the world's physics 3D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [method Node._physics_process] in the main thread. */
-        readonly direct_space_state: PhysicsDirectSpaceState3D
-    }
-    /** A 2D world boundary (half-plane) shape used for physics collision. */
-    class WorldBoundaryShape2D extends Shape2D {
-        set_normal(normal: Vector2): void
-        get_normal(): Vector2
-        set_distance(distance: number /*f64*/): void
-        get_distance(): number /*f64*/
-        /** The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to [constant Vector2.UP]. */
-        normal: Vector2
-        /** The distance from the origin to the line, expressed in terms of [member normal] (according to its direction and magnitude). Actual absolute distance from the origin to the line can be calculated as [code]abs(distance) / normal.length()[/code].
-         *  In the scalar equation of the line [code]ax + by = d[/code], this is [code]d[/code], while the [code](a, b)[/code] coordinates are represented by the [member normal] property.
-         */
-        distance: number /*f64*/
-    }
-    /** A 3D world boundary (half-space) shape used for physics collision. */
-    class WorldBoundaryShape3D extends Shape3D {
-        set_plane(plane: Plane): void
-        get_plane(): Plane
-        /** The [Plane] used by the [WorldBoundaryShape3D] for collision. */
-        plane: Plane
-    }
-    /** Default environment properties for the entire scene (post-processing effects, lighting and background settings). */
-    class WorldEnvironment extends Node {
-        set_environment(env: Environment): void
-        get_environment(): Environment
-        set_camera_attributes(camera_attributes: CameraAttributes): void
-        get_camera_attributes(): CameraAttributes
-        /** The [Environment] resource used by this [WorldEnvironment], defining the default properties. */
-        environment: Environment
-        /** The default [CameraAttributes] resource to use if none set on the [Camera3D]. */
-        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
-    }
-    /** An X509 certificate (e.g. for TLS). */
-    class X509Certificate extends Resource {
-        /** Saves a certificate to the given [param path] (should be a "*.crt" file). */
-        save(path: string): GodotError
-        /** Loads a certificate from [param path] ("*.crt" file). */
-        load(path: string): GodotError
-        /** Returns a string representation of the certificate, or an empty string if the certificate is invalid. */
-        save_to_string(): string
-        /** Loads a certificate from the given [param string]. */
-        load_from_string(string_: string): GodotError
-    }
-    namespace XMLParser {
-        enum NodeType {
-            NODE_NONE = 0,
-            NODE_ELEMENT = 1,
-            NODE_ELEMENT_END = 2,
-            NODE_TEXT = 3,
-            NODE_COMMENT = 4,
-            NODE_CDATA = 5,
-            NODE_UNKNOWN = 6,
-        }
-    }
-    /** Provides a low-level interface for creating parsers for XML files. */
-    class XMLParser extends RefCounted {
-        /** Parses the next node in the file. This method returns an error code. */
-        read(): GodotError
-        /** Returns the type of the current node. Compare with [enum NodeType] constants. */
-        get_node_type(): XMLParser.NodeType
-        /** Returns the name of an element node. This method will raise an error if the currently parsed node is not of [constant NODE_ELEMENT] or [constant NODE_ELEMENT_END] type. */
-        get_node_name(): string
-        /** Returns the contents of a text node. This method will raise an error if the current parsed node is of any other type. */
-        get_node_data(): string
-        /** Returns the byte offset of the currently parsed node since the beginning of the file or buffer. This is usually equivalent to the number of characters before the read position. */
-        get_node_offset(): number /*i64*/
-        /** Returns the number of attributes in the currently parsed element.
-         *  [b]Note:[/b] If this method is used while the currently parsed node is not [constant NODE_ELEMENT] or [constant NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
-         */
-        get_attribute_count(): number /*i64*/
-        /** Returns the name of an attribute of the currently parsed element, specified by the [param idx] index. */
-        get_attribute_name(idx: number /*i64*/): string
-        /** Returns the value of an attribute of the currently parsed element, specified by the [param idx] index. */
-        get_attribute_value(idx: number /*i64*/): string
-        /** Returns [code]true[/code] if the currently parsed element has an attribute with the [param name]. */
-        has_attribute(name: string): boolean
-        /** Returns the value of an attribute of the currently parsed element, specified by its [param name]. This method will raise an error if the element has no such attribute. */
-        get_named_attribute_value(name: string): string
-        /** Returns the value of an attribute of the currently parsed element, specified by its [param name]. This method will return an empty string if the element has no such attribute. */
-        get_named_attribute_value_safe(name: string): string
-        /** Returns [code]true[/code] if the currently parsed element is empty, e.g. [code]<element />[/code]. */
-        is_empty(): boolean
-        /** Returns the current line in the parsed file, counting from 0. */
-        get_current_line(): number /*i64*/
-        /** Skips the current section. If the currently parsed node contains more inner nodes, they will be ignored and the cursor will go to the closing of the current element. */
-        skip_section(): void
-        /** Moves the buffer cursor to a certain offset (since the beginning) and reads the next node there. This method returns an error code. */
-        seek(position: number /*i64*/): GodotError
-        /** Opens an XML [param file] for parsing. This method returns an error code. */
-        open(file: string): GodotError
-        /** Opens an XML raw [param buffer] for parsing. This method returns an error code. */
-        open_buffer(buffer: PackedByteArray): GodotError
-    }
-    /** An anchor point in AR space. */
-    class XRAnchor3D extends XRNode3D {
-        /** Returns the estimated size of the plane that was detected. Say when the anchor relates to a table in the real world, this is the estimated size of the surface of that table. */
-        get_size(): Vector3
-        /** Returns a plane aligned with our anchor; handy for intersection testing. */
-        get_plane(): Plane
-    }
-    /** A camera node with a few overrules for AR/VR applied, such as location tracking. */
-    class XRCamera3D extends Camera3D {
-    }
-    /** A spatial node representing a spatially-tracked controller. */
-    class XRController3D extends XRNode3D {
-        /** Returns [code]true[/code] if the button with the given [param name] is pressed. */
-        is_button_pressed(name: StringName): boolean
-        /** Returns a [Variant] for the input with the given [param name]. This works for any input type, the variant will be typed according to the actions configuration. */
-        get_input(name: StringName): any
-        /** Returns a numeric value for the input with the given [param name]. This is used for triggers and grip sensors. */
-        get_float(name: StringName): number /*f64*/
-        /** Returns a [Vector2] for the input with the given [param name]. This is used for thumbsticks and thumbpads found on many controllers. */
-        get_vector2(name: StringName): Vector2
-        /** Returns the hand holding this controller, if known. See [enum XRPositionalTracker.TrackerHand]. */
-        get_tracker_hand(): XRPositionalTracker.TrackerHand
-        readonly button_pressed: Signal
-        readonly button_released: Signal
-        readonly input_float_changed: Signal
-        readonly input_vector2_changed: Signal
-    }
-    namespace XRInterface {
-        enum Capabilities {
-            XR_NONE = 0,
-            XR_MONO = 1,
-            XR_STEREO = 2,
-            XR_QUAD = 4,
-            XR_VR = 8,
-            XR_AR = 16,
-            XR_EXTERNAL = 32,
-        }
-        enum TrackingStatus {
-            XR_NORMAL_TRACKING = 0,
-            XR_EXCESSIVE_MOTION = 1,
-            XR_INSUFFICIENT_FEATURES = 2,
-            XR_UNKNOWN_TRACKING = 3,
-            XR_NOT_TRACKING = 4,
-        }
-        enum PlayAreaMode {
-            XR_PLAY_AREA_UNKNOWN = 0,
-            XR_PLAY_AREA_3DOF = 1,
-            XR_PLAY_AREA_SITTING = 2,
-            XR_PLAY_AREA_ROOMSCALE = 3,
-            XR_PLAY_AREA_STAGE = 4,
-        }
-        enum EnvironmentBlendMode {
-            XR_ENV_BLEND_MODE_OPAQUE = 0,
-            XR_ENV_BLEND_MODE_ADDITIVE = 1,
-            XR_ENV_BLEND_MODE_ALPHA_BLEND = 2,
-        }
-    }
-    /** Base class for an XR interface implementation. */
-    class XRInterface extends RefCounted {
-        /** Returns the name of this interface (OpenXR, OpenVR, OpenHMD, ARKit, etc). */
-        get_name(): StringName
-        /** Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface. */
-        get_capabilities(): number /*i64*/
-        is_primary(): boolean
-        set_primary(primary: boolean): void
-        /** Is [code]true[/code] if this interface has been initialized. */
-        is_initialized(): boolean
-        /** Call this to initialize this interface. The first interface that is initialized is identified as the primary interface and it will be used for rendering output.
-         *  After initializing the interface you want to use you then need to enable the AR/VR mode of a viewport and rendering should commence.
-         *  [b]Note:[/b] You must enable the XR mode on the main viewport for any device that uses the main output of Godot, such as for mobile VR.
-         *  If you do this for a platform that handles its own output (such as OpenVR) Godot will show just one eye without distortion on screen. Alternatively, you can add a separate viewport node to your scene and enable AR/VR on that viewport. It will be used to output to the HMD, leaving you free to do anything you like in the main window, such as using a separate camera as a spectator camera or rendering something completely different.
-         *  While currently not used, you can activate additional interfaces. You may wish to do this if you want to track controllers from other platforms. However, at this point in time only one interface can render to an HMD.
-         */
-        initialize(): boolean
-        /** Turns the interface off. */
-        uninitialize(): void
-        /** Returns a [Dictionary] with extra system info. Interfaces are expected to return [code]XRRuntimeName[/code] and [code]XRRuntimeVersion[/code] providing info about the used XR runtime. Additional entries may be provided specific to an interface.
-         *  [b]Note:[/b]This information may only be available after [method initialize] was successfully called.
-         */
-        get_system_info(): Dictionary
-        /** If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking. */
-        get_tracking_status(): XRInterface.TrackingStatus
-        /** Returns the resolution at which we should render our intermediate results before things like lens distortion are applied by the VR platform. */
-        get_render_target_size(): Vector2
-        /** Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic. */
-        get_view_count(): number /*i64*/
-        /** Triggers a haptic pulse on a device associated with this interface.
-         *  [param action_name] is the name of the action for this pulse.
-         *  [param tracker_name] is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.
-         */
-        trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
-        /** Call this to find out if a given play area mode is supported by this interface. */
-        supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        get_play_area_mode(): XRInterface.PlayAreaMode
-        /** Sets the active play area mode, will return [code]false[/code] if the mode can't be used with this interface. */
-        set_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        /** Returns an array of vectors that denotes the physical play area mapped to the virtual space around the [XROrigin3D] point. The points form a convex polygon that can be used to react to or visualize the play area. This returns an empty array if this feature is not supported or if the information is not yet available. */
-        get_play_area(): PackedVector3Array
-        get_anchor_detection_is_enabled(): boolean
-        set_anchor_detection_is_enabled(enable: boolean): void
-        /** If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [CameraServer] for this interface. */
-        get_camera_feed_id(): number /*i64*/
-        /** Is [code]true[/code] if this interface supports passthrough. */
-        is_passthrough_supported(): boolean
-        /** Is [code]true[/code] if passthrough is enabled. */
-        is_passthrough_enabled(): boolean
-        /** Starts passthrough, will return [code]false[/code] if passthrough couldn't be started.
-         *  [b]Note:[/b] The viewport used for XR must have a transparent background, otherwise passthrough may not properly render.
-         */
-        start_passthrough(): boolean
-        /** Stops passthrough. */
-        stop_passthrough(): void
-        /** Returns the transform for a view/eye.
-         *  [param view] is the view/eye index.
-         *  [param cam_transform] is the transform that maps device coordinates to scene coordinates, typically the [member Node3D.global_transform] of the current XROrigin3D.
-         */
-        get_transform_for_view(view: number /*i64*/, cam_transform: Transform3D): Transform3D
-        /** Returns the projection matrix for a view/eye. */
-        get_projection_for_view(view: number /*i64*/, aspect: number /*f64*/, near: number /*f64*/, far: number /*f64*/): Projection
-        /** Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode]. */
-        get_supported_environment_blend_modes(): Array
-        /** Sets the active environment blend mode.
-         *  [param mode] is the [enum XRInterface.EnvironmentBlendMode] starting with the next frame.
-         *  [b]Note:[/b] Not all runtimes support all environment blend modes, so it is important to check this at startup. For example:
-         *  
-         */
-        set_environment_blend_mode(mode: XRInterface.EnvironmentBlendMode): boolean
-        get_environment_blend_mode(): XRInterface.EnvironmentBlendMode
-        /** [code]true[/code] if this is the primary interface. */
-        interface_is_primary: boolean
-        /** The play area mode for this interface. */
-        xr_play_area_mode: number /*i64*/
-        /** Specify how XR should blend in the environment. This is specific to certain AR and passthrough devices where camera images are blended in by the XR compositor. */
-        environment_blend_mode: number /*i64*/
-        /** On an AR interface, [code]true[/code] if anchor detection is enabled. */
-        ar_is_anchor_detection_enabled: boolean
-        readonly play_area_changed: Signal
-    }
-    /** Base class for XR interface extensions (plugins). */
-    class XRInterfaceExtension extends XRInterface {
-        /* gdvirtual */ _get_name(): StringName
-        /* gdvirtual */ _get_capabilities(): number /*i64*/
-        /* gdvirtual */ _is_initialized(): boolean
-        /* gdvirtual */ _initialize(): boolean
-        /* gdvirtual */ _uninitialize(): void
-        /* gdvirtual */ _get_system_info(): Dictionary
-        /* gdvirtual */ _supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        /* gdvirtual */ _get_play_area_mode(): XRInterface.PlayAreaMode
-        /* gdvirtual */ _set_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        /* gdvirtual */ _get_play_area(): PackedVector3Array
-        /* gdvirtual */ _get_render_target_size(): Vector2
-        /* gdvirtual */ _get_view_count(): number /*i64*/
-        /* gdvirtual */ _get_camera_transform(): Transform3D
-        /* gdvirtual */ _get_transform_for_view(view: number /*i64*/, cam_transform: Transform3D): Transform3D
-        /* gdvirtual */ _get_projection_for_view(view: number /*i64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): PackedFloat64Array
-        /* gdvirtual */ _get_vrs_texture(): RID
-        /* gdvirtual */ _process(): void
-        /* gdvirtual */ _pre_render(): void
-        /* gdvirtual */ _pre_draw_viewport(render_target: RID): boolean
-        /* gdvirtual */ _post_draw_viewport(render_target: RID, screen_rect: Rect2): void
-        /* gdvirtual */ _end_frame(): void
-        /* gdvirtual */ _get_suggested_tracker_names(): PackedStringArray
-        /* gdvirtual */ _get_suggested_pose_names(tracker_name: StringName): PackedStringArray
-        /* gdvirtual */ _get_tracking_status(): XRInterface.TrackingStatus
-        /* gdvirtual */ _trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
-        /* gdvirtual */ _get_anchor_detection_is_enabled(): boolean
-        /* gdvirtual */ _set_anchor_detection_is_enabled(enabled: boolean): void
-        /* gdvirtual */ _get_camera_feed_id(): number /*i64*/
-        /* gdvirtual */ _get_color_texture(): RID
-        /* gdvirtual */ _get_depth_texture(): RID
-        /* gdvirtual */ _get_velocity_texture(): RID
-        get_color_texture(): RID
-        get_depth_texture(): RID
-        get_velocity_texture(): RID
-        /** Blits our render results to screen optionally applying lens distortion. This can only be called while processing [code]_commit_views[/code]. */
-        add_blit(render_target: RID, src_rect: Rect2, dst_rect: Rect2i, use_layer: boolean, layer: number /*i64*/, apply_lens_distortion: boolean, eye_center: Vector2, k1: number /*f64*/, k2: number /*f64*/, upscale: number /*f64*/, aspect_ratio: number /*f64*/): void
-        /** Returns a valid [RID] for a texture to which we should render the current frame if supported by the interface. */
-        get_render_target_texture(render_target: RID): RID
-    }
-    /** A spatial node that has its position automatically updated by the [XRServer]. */
-    class XRNode3D extends Node3D {
-        set_tracker(tracker_name: StringName): void
-        get_tracker(): StringName
-        set_pose_name(pose: StringName): void
-        get_pose_name(): StringName
-        /** Returns [code]true[/code] if the [member tracker] has been registered and the [member pose] is being tracked. */
-        get_is_active(): boolean
-        /** Returns [code]true[/code] if the [member tracker] has current tracking data for the [member pose] being tracked. */
-        get_has_tracking_data(): boolean
-        /** Returns the [XRPose] containing the current state of the pose being tracked. This gives access to additional properties of this pose. */
-        get_pose(): XRPose
-        /** Triggers a haptic pulse on a device associated with this interface.
-         *  [param action_name] is the name of the action for this pulse.
-         */
-        trigger_haptic_pulse(action_name: string, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
-        /** The name of the tracker we're bound to. Which trackers are available is not known during design time.
-         *  Godot defines a number of standard trackers such as [code]left_hand[/code] and [code]right_hand[/code] but others may be configured within a given [XRInterface].
-         */
-        tracker: string
-        /** The name of the pose we're bound to. Which poses a tracker supports is not known during design time.
-         *  Godot defines number of standard pose names such as [code]aim[/code] and [code]grip[/code] but other may be configured within a given [XRInterface].
-         */
-        pose: string
-        readonly tracking_changed: Signal
-    }
-    /** The origin point in AR/VR. */
-    class XROrigin3D extends Node3D {
-        set_world_scale(world_scale: number /*f64*/): void
-        get_world_scale(): number /*f64*/
-        set_current(enabled: boolean): void
-        is_current(): boolean
-        /** The scale of the game world compared to the real world. This is the same as [member XRServer.world_scale]. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
-        world_scale: number /*f64*/
-        /** If [code]true[/code], this origin node is currently being used by the [XRServer]. Only one origin point can be used at a time. */
-        current: boolean
-    }
-    namespace XRPose {
-        enum TrackingConfidence {
-            XR_TRACKING_CONFIDENCE_NONE = 0,
-            XR_TRACKING_CONFIDENCE_LOW = 1,
-            XR_TRACKING_CONFIDENCE_HIGH = 2,
-        }
-    }
-    /** This object contains all data related to a pose on a tracked object. */
-    class XRPose extends RefCounted {
-        set_has_tracking_data(has_tracking_data: boolean): void
-        get_has_tracking_data(): boolean
-        set_name(name: StringName): void
-        get_name(): StringName
-        set_transform(transform: Transform3D): void
-        get_transform(): Transform3D
-        /** Returns the [member transform] with world scale and our reference frame applied. This is the transform used to position [XRNode3D] objects. */
-        get_adjusted_transform(): Transform3D
+        
+        /** Calls the built-in force integration code. */
+        integrate_forces(): void
+        
+        /** Returns the current state of the space, useful for queries. */
+        get_space_state(): PhysicsDirectSpaceState2D
+        
+        /** The timestep (delta) used for the simulation. */
+        readonly step: number /*f64*/
+        
+        /** The inverse of the mass of the body. */
+        readonly inverse_mass: number /*f64*/
+        
+        /** The inverse of the inertia of the body. */
+        readonly inverse_inertia: number /*f64*/
+        
+        /** The rate at which the body stops rotating, if there are not any other forces moving it. */
+        readonly total_angular_damp: number /*f64*/
+        
+        /** The rate at which the body stops moving, if there are not any other forces moving it. */
+        readonly total_linear_damp: number /*f64*/
+        
+        /** The total gravity vector being currently applied to this body. */
+        readonly total_gravity: Vector2
+        
+        /** The body's center of mass position relative to the body's center in the global coordinate system. */
+        readonly center_of_mass: Vector2
+        
+        /** The body's center of mass position in the body's local coordinate system. */
+        readonly center_of_mass_local: Vector2
+        
+        /** The body's rotational velocity in [i]radians[/i] per second. */
+        angular_velocity: number /*f64*/
+        
+        /** The body's linear velocity in pixels per second. */
+        linear_velocity: Vector2
+        
+        /** If `true`, this body is currently sleeping (not active). */
+        sleeping: boolean
+        
+        /** The body's transformation matrix. */
+        transform: Transform2D
+    }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState2D] implementations. */
+    class PhysicsDirectBodyState2DExtension extends PhysicsDirectBodyState2D {
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_gravity] and its respective getter. */
+        /* gdvirtual */ _get_total_gravity(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_linear_damp] and its respective getter. */
+        /* gdvirtual */ _get_total_linear_damp(): number /*f64*/
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_angular_damp] and its respective getter. */
+        /* gdvirtual */ _get_total_angular_damp(): number /*f64*/
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass] and its respective getter. */
+        /* gdvirtual */ _get_center_of_mass(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass_local] and its respective getter. */
+        /* gdvirtual */ _get_center_of_mass_local(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_mass] and its respective getter. */
+        /* gdvirtual */ _get_inverse_mass(): number /*f64*/
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_inertia] and its respective getter. */
+        /* gdvirtual */ _get_inverse_inertia(): number /*f64*/
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective setter. */
+        /* gdvirtual */ _set_linear_velocity(velocity: Vector2): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective getter. */
+        /* gdvirtual */ _get_linear_velocity(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective setter. */
+        /* gdvirtual */ _set_angular_velocity(velocity: number /*f64*/): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective getter. */
+        /* gdvirtual */ _get_angular_velocity(): number /*f64*/
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective setter. */
+        /* gdvirtual */ _set_transform(transform: Transform2D): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective getter. */
+        /* gdvirtual */ _get_transform(): Transform2D
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_velocity_at_local_position]. */
+        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector2): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_impulse]. */
+        /* gdvirtual */ _apply_central_impulse(impulse: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_impulse]. */
+        /* gdvirtual */ _apply_impulse(impulse: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque_impulse]. */
+        /* gdvirtual */ _apply_torque_impulse(impulse: number /*f64*/): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_force]. */
+        /* gdvirtual */ _apply_central_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_force]. */
+        /* gdvirtual */ _apply_force(force: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque]. */
+        /* gdvirtual */ _apply_torque(torque: number /*f64*/): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_central_force]. */
+        /* gdvirtual */ _add_constant_central_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_force]. */
+        /* gdvirtual */ _add_constant_force(force: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_torque]. */
+        /* gdvirtual */ _add_constant_torque(torque: number /*f64*/): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_force]. */
+        /* gdvirtual */ _set_constant_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_force]. */
+        /* gdvirtual */ _get_constant_force(): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_torque]. */
+        /* gdvirtual */ _set_constant_torque(torque: number /*f64*/): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_torque]. */
+        /* gdvirtual */ _get_constant_torque(): number /*f64*/
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective setter. */
+        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective getter. */
+        /* gdvirtual */ _is_sleeping(): boolean
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_count]. */
+        /* gdvirtual */ _get_contact_count(): number /*i64*/
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_position]. */
+        /* gdvirtual */ _get_contact_local_position(contact_idx: number /*i64*/): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_normal]. */
+        /* gdvirtual */ _get_contact_local_normal(contact_idx: number /*i64*/): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_shape]. */
+        /* gdvirtual */ _get_contact_local_shape(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_velocity_at_position]. */
+        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: number /*i64*/): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider]. */
+        /* gdvirtual */ _get_contact_collider(contact_idx: number /*i64*/): RID
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_position]. */
+        /* gdvirtual */ _get_contact_collider_position(contact_idx: number /*i64*/): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_id]. */
+        /* gdvirtual */ _get_contact_collider_id(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_object]. */
+        /* gdvirtual */ _get_contact_collider_object(contact_idx: number /*i64*/): Object
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_shape]. */
+        /* gdvirtual */ _get_contact_collider_shape(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_velocity_at_position]. */
+        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: number /*i64*/): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_impulse]. */
+        /* gdvirtual */ _get_contact_impulse(contact_idx: number /*i64*/): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.step] and its respective getter. */
+        /* gdvirtual */ _get_step(): number /*f64*/
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.integrate_forces]. */
+        /* gdvirtual */ _integrate_forces(): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_space_state]. */
+        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState2D
+    }
+    /** Provides direct access to a physics body in the [PhysicsServer3D]. */
+    class PhysicsDirectBodyState3D extends Object {
+        get_total_gravity(): Vector3
+        get_total_linear_damp(): number /*f64*/
+        get_total_angular_damp(): number /*f64*/
+        get_center_of_mass(): Vector3
+        get_center_of_mass_local(): Vector3
+        get_principal_inertia_axes(): Basis
+        get_inverse_mass(): number /*f64*/
+        get_inverse_inertia(): Vector3
+        get_inverse_inertia_tensor(): Basis
         set_linear_velocity(velocity: Vector3): void
         get_linear_velocity(): Vector3
         set_angular_velocity(velocity: Vector3): void
         get_angular_velocity(): Vector3
-        set_tracking_confidence(tracking_confidence: XRPose.TrackingConfidence): void
-        get_tracking_confidence(): XRPose.TrackingConfidence
-        /** If [code]true[/code] our tracking data is up to date. If [code]false[/code] we're no longer receiving new tracking data and our state is whatever that last valid state was. */
-        has_tracking_data: boolean
-        /** The transform containing the original and transform as reported by the XR runtime. */
-        transform: string
-        /** The linear velocity of this pose. */
-        linear_velocity: string
-        /** The angular velocity for this pose. */
-        angular_velocity: string
-        /** The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is. */
-        tracking_confidence: number /*i64*/
-    }
-    namespace XRPositionalTracker {
-        enum TrackerHand {
-            TRACKER_HAND_UNKNOWN = 0,
-            TRACKER_HAND_LEFT = 1,
-            TRACKER_HAND_RIGHT = 2,
-        }
-    }
-    /** A tracked object. */
-    class XRPositionalTracker extends RefCounted {
-        get_tracker_type(): XRServer.TrackerType
-        set_tracker_type(type: XRServer.TrackerType): void
-        get_tracker_name(): StringName
-        set_tracker_name(name: StringName): void
-        get_tracker_desc(): string
-        set_tracker_desc(description: string): void
-        get_tracker_profile(): string
-        set_tracker_profile(profile: string): void
-        get_tracker_hand(): XRPositionalTracker.TrackerHand
-        set_tracker_hand(hand: XRPositionalTracker.TrackerHand): void
-        /** Returns [code]true[/code] if the tracker is available and is currently tracking the bound [param name] pose. */
-        has_pose(name: StringName): boolean
-        /** Returns the current [XRPose] state object for the bound [param name] pose. */
-        get_pose(name: StringName): XRPose
-        /** Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position. */
-        invalidate_pose(name: StringName): void
-        /** Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [XRInterface] implementation and should not be used directly. */
-        set_pose(name: StringName, transform: Transform3D, linear_velocity: Vector3, angular_velocity: Vector3, tracking_confidence: XRPose.TrackingConfidence): void
-        /** Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad. */
-        get_input(name: StringName): any
-        /** Changes the value for the given input. This method is called by a [XRInterface] implementation and should not be used directly. */
-        set_input(name: StringName, value: any): void
-        /** The type of tracker. */
-        type: number /*i64*/
-        /** The description of this tracker. */
-        description: string
-        /** The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked. */
-        profile: string
-        /** Defines which hand this tracker relates to. */
-        hand: number /*i64*/
-        readonly pose_changed: Signal
-        readonly pose_lost_tracking: Signal
-        readonly button_pressed: Signal
-        readonly button_released: Signal
-        readonly input_float_changed: Signal
-        readonly input_vector2_changed: Signal
-        readonly profile_changed: Signal
-    }
-    namespace ZIPPacker {
-        enum ZipAppend {
-            APPEND_CREATE = 0,
-            APPEND_CREATEAFTER = 1,
-            APPEND_ADDINZIP = 2,
-        }
-    }
-    /** Allows the creation of zip files. */
-    class ZIPPacker extends RefCounted {
-        /** Opens a zip file for writing at the given path using the specified write mode.
-         *  This must be called before everything else.
+        set_transform(transform: Transform3D): void
+        get_transform(): Transform3D
+        
+        /** Returns the body's velocity at the given relative position, including both translation and rotation. */
+        get_velocity_at_local_position(local_position: Vector3): Vector3
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
          */
-        open(path: string, append: ZIPPacker.ZipAppend = 0): GodotError
-        /** Starts writing to a file within the archive. Only one file can be written at the same time.
-         *  Must be called after [method open].
+        apply_central_impulse(impulse: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
          */
-        start_file(path: string): GodotError
-        /** Write the given [param data] to the file.
-         *  Needs to be called after [method start_file].
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
          */
-        write_file(data: PackedByteArray): GodotError
-        /** Stops writing to a file within the archive.
-         *  It will fail if there is no open file.
+        apply_torque_impulse(impulse: Vector3): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
          */
-        close_file(): GodotError
-        /** Closes the underlying resources used by this instance. */
-        close(): GodotError
-    }
-    /** Allows reading the content of a zip file. */
-    class ZIPReader extends RefCounted {
-        /** Opens the zip archive at the given [param path] and reads its file index. */
-        open(path: string): GodotError
-        /** Closes the underlying resources used by this instance. */
-        close(): GodotError
-        /** Returns the list of names of all files in the loaded archive.
-         *  Must be called after [method open].
+        apply_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
          */
-        get_files(): PackedStringArray
-        /** Loads the whole content of a file in the loaded zip archive into memory and returns it.
-         *  Must be called after [method open].
+        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
          */
-        read_file(path: string, case_sensitive: boolean = true): PackedByteArray
-        /** Returns [code]true[/code] if the file exists in the loaded zip archive.
-         *  Must be called after [method open].
+        apply_torque(torque: Vector3): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
          */
-        file_exists(path: string, case_sensitive: boolean = true): boolean
+        add_constant_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`. */
+        add_constant_torque(torque: Vector3): void
+        
+        /** Sets the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        set_constant_force(force: Vector3): void
+        
+        /** Returns the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        get_constant_force(): Vector3
+        
+        /** Sets the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        set_constant_torque(torque: Vector3): void
+        
+        /** Returns the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        get_constant_torque(): Vector3
+        set_sleep_state(enabled: boolean): void
+        is_sleeping(): boolean
+        
+        /** Returns the number of contacts this body has with other bodies.  
+         *      
+         *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody3D.contact_monitor].  
+         */
+        get_contact_count(): number /*i64*/
+        
+        /** Returns the position of the contact point on the body in the global coordinate system. */
+        get_contact_local_position(contact_idx: number /*i64*/): Vector3
+        
+        /** Returns the local normal at the contact point. */
+        get_contact_local_normal(contact_idx: number /*i64*/): Vector3
+        
+        /** Impulse created by the contact. */
+        get_contact_impulse(contact_idx: number /*i64*/): Vector3
+        
+        /** Returns the local shape index of the collision. */
+        get_contact_local_shape(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the linear velocity vector at the body's contact point. */
+        get_contact_local_velocity_at_position(contact_idx: number /*i64*/): Vector3
+        
+        /** Returns the collider's [RID]. */
+        get_contact_collider(contact_idx: number /*i64*/): RID
+        
+        /** Returns the position of the contact point on the collider in the global coordinate system. */
+        get_contact_collider_position(contact_idx: number /*i64*/): Vector3
+        
+        /** Returns the collider's object id. */
+        get_contact_collider_id(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the collider object. */
+        get_contact_collider_object(contact_idx: number /*i64*/): Object
+        
+        /** Returns the collider's shape index. */
+        get_contact_collider_shape(contact_idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the linear velocity vector at the collider's contact point. */
+        get_contact_collider_velocity_at_position(contact_idx: number /*i64*/): Vector3
+        get_step(): number /*f64*/
+        
+        /** Calls the built-in force integration code. */
+        integrate_forces(): void
+        
+        /** Returns the current state of the space, useful for queries. */
+        get_space_state(): PhysicsDirectSpaceState3D
+        
+        /** The timestep (delta) used for the simulation. */
+        readonly step: number /*f64*/
+        
+        /** The inverse of the mass of the body. */
+        readonly inverse_mass: number /*f64*/
+        
+        /** The rate at which the body stops rotating, if there are not any other forces moving it. */
+        readonly total_angular_damp: number /*f64*/
+        
+        /** The rate at which the body stops moving, if there are not any other forces moving it. */
+        readonly total_linear_damp: number /*f64*/
+        
+        /** The inverse of the inertia of the body. */
+        readonly inverse_inertia: Vector3
+        
+        /** The inverse of the inertia tensor of the body. */
+        readonly inverse_inertia_tensor: Basis
+        
+        /** The total gravity vector being currently applied to this body. */
+        readonly total_gravity: Vector3
+        
+        /** The body's center of mass position relative to the body's center in the global coordinate system. */
+        readonly center_of_mass: Vector3
+        
+        /** The body's center of mass position in the body's local coordinate system. */
+        readonly center_of_mass_local: Vector3
+        readonly principal_inertia_axes: Basis
+        
+        /** The body's rotational velocity in [i]radians[/i] per second. */
+        angular_velocity: Vector3
+        
+        /** The body's linear velocity in units per second. */
+        linear_velocity: Vector3
+        
+        /** If `true`, this body is currently sleeping (not active). */
+        sleeping: boolean
+        
+        /** The body's transformation matrix. */
+        transform: Transform3D
     }
-    namespace Vector2 {
-        enum Axis {
-            AXIS_X = 0,
-            AXIS_Y = 1,
-        }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState3D] implementations. */
+    class PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
+        /* gdvirtual */ _get_total_gravity(): Vector3
+        /* gdvirtual */ _get_total_linear_damp(): number /*f64*/
+        /* gdvirtual */ _get_total_angular_damp(): number /*f64*/
+        /* gdvirtual */ _get_center_of_mass(): Vector3
+        /* gdvirtual */ _get_center_of_mass_local(): Vector3
+        /* gdvirtual */ _get_principal_inertia_axes(): Basis
+        /* gdvirtual */ _get_inverse_mass(): number /*f64*/
+        /* gdvirtual */ _get_inverse_inertia(): Vector3
+        /* gdvirtual */ _get_inverse_inertia_tensor(): Basis
+        /* gdvirtual */ _set_linear_velocity(velocity: Vector3): void
+        /* gdvirtual */ _get_linear_velocity(): Vector3
+        /* gdvirtual */ _set_angular_velocity(velocity: Vector3): void
+        /* gdvirtual */ _get_angular_velocity(): Vector3
+        /* gdvirtual */ _set_transform(transform: Transform3D): void
+        /* gdvirtual */ _get_transform(): Transform3D
+        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector3): Vector3
+        /* gdvirtual */ _apply_central_impulse(impulse: Vector3): void
+        /* gdvirtual */ _apply_impulse(impulse: Vector3, position: Vector3): void
+        /* gdvirtual */ _apply_torque_impulse(impulse: Vector3): void
+        /* gdvirtual */ _apply_central_force(force: Vector3): void
+        /* gdvirtual */ _apply_force(force: Vector3, position: Vector3): void
+        /* gdvirtual */ _apply_torque(torque: Vector3): void
+        /* gdvirtual */ _add_constant_central_force(force: Vector3): void
+        /* gdvirtual */ _add_constant_force(force: Vector3, position: Vector3): void
+        /* gdvirtual */ _add_constant_torque(torque: Vector3): void
+        /* gdvirtual */ _set_constant_force(force: Vector3): void
+        /* gdvirtual */ _get_constant_force(): Vector3
+        /* gdvirtual */ _set_constant_torque(torque: Vector3): void
+        /* gdvirtual */ _get_constant_torque(): Vector3
+        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
+        /* gdvirtual */ _is_sleeping(): boolean
+        /* gdvirtual */ _get_contact_count(): number /*i64*/
+        /* gdvirtual */ _get_contact_local_position(contact_idx: number /*i64*/): Vector3
+        /* gdvirtual */ _get_contact_local_normal(contact_idx: number /*i64*/): Vector3
+        /* gdvirtual */ _get_contact_impulse(contact_idx: number /*i64*/): Vector3
+        /* gdvirtual */ _get_contact_local_shape(contact_idx: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: number /*i64*/): Vector3
+        /* gdvirtual */ _get_contact_collider(contact_idx: number /*i64*/): RID
+        /* gdvirtual */ _get_contact_collider_position(contact_idx: number /*i64*/): Vector3
+        /* gdvirtual */ _get_contact_collider_id(contact_idx: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _get_contact_collider_object(contact_idx: number /*i64*/): Object
+        /* gdvirtual */ _get_contact_collider_shape(contact_idx: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: number /*i64*/): Vector3
+        /* gdvirtual */ _get_step(): number /*f64*/
+        /* gdvirtual */ _integrate_forces(): void
+        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState3D
     }
-    class Vector2 {
-        static readonly ZERO: Vector2
-        static readonly ONE: Vector2
-        static readonly INF: Vector2
-        static readonly LEFT: Vector2
-        static readonly RIGHT: Vector2
-        static readonly UP: Vector2
-        static readonly DOWN: Vector2
-        constructor()
-        constructor(from: Vector2)
-        constructor(from: Vector2i)
-        constructor(x: number /*f64*/, y: number /*f64*/)
-        angle(): number /*f64*/
-        angle_to(to: Vector2): number /*f64*/
-        angle_to_point(to: Vector2): number /*f64*/
-        direction_to(to: Vector2): Vector2
-        distance_to(to: Vector2): number /*f64*/
-        distance_squared_to(to: Vector2): number /*f64*/
-        length(): number /*f64*/
-        length_squared(): number /*f64*/
-        limit_length(length: number /*f64*/ = 1): Vector2
-        normalized(): Vector2
-        is_normalized(): boolean
-        is_equal_approx(to: Vector2): boolean
-        is_zero_approx(): boolean
-        is_finite(): boolean
-        posmod(mod: number /*f64*/): Vector2
-        posmodv(modv: Vector2): Vector2
-        project(b: Vector2): Vector2
-        lerp(to: Vector2, weight: number /*f64*/): Vector2
-        slerp(to: Vector2, weight: number /*f64*/): Vector2
-        cubic_interpolate(b: Vector2, pre_a: Vector2, post_b: Vector2, weight: number /*f64*/): Vector2
-        cubic_interpolate_in_time(b: Vector2, pre_a: Vector2, post_b: Vector2, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector2
-        bezier_interpolate(control_1: Vector2, control_2: Vector2, end: Vector2, t: number /*f64*/): Vector2
-        bezier_derivative(control_1: Vector2, control_2: Vector2, end: Vector2, t: number /*f64*/): Vector2
-        max_axis_index(): number /*i64*/
-        min_axis_index(): number /*i64*/
-        move_toward(to: Vector2, delta: number /*f64*/): Vector2
-        rotated(angle: number /*f64*/): Vector2
-        orthogonal(): Vector2
-        floor(): Vector2
-        ceil(): Vector2
-        round(): Vector2
-        aspect(): number /*f64*/
-        dot(with_: Vector2): number /*f64*/
-        slide(n: Vector2): Vector2
-        bounce(n: Vector2): Vector2
-        reflect(n: Vector2): Vector2
-        cross(with_: Vector2): number /*f64*/
-        abs(): Vector2
-        sign(): Vector2
-        clamp(min: Vector2, max: Vector2): Vector2
-        snapped(step: Vector2): Vector2
-        static from_angle(angle: number /*f64*/): Vector2
-        static ADD(left: Vector2, right: Vector2): Vector2
-        static SUBTRACT(left: Vector2, right: Vector2): Vector2
-        static MULTIPLY(left: number /*f64*/, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: number /*f64*/): Vector2
-        static DIVIDE(left: Vector2, right: Vector2): Vector2
-        static DIVIDE(left: Vector2, right: number /*f64*/): Vector2
-        static NEGATE(left: Vector2, right: any): boolean
-        static EQUAL(left: Vector2, right: Vector2): boolean
-        static NOT_EQUAL(left: Vector2, right: Vector2): boolean
-        static LESS(left: Vector2, right: Vector2): boolean
-        static LESS_EQUAL(left: Vector2, right: Vector2): boolean
-        static GREATER(left: Vector2, right: Vector2): boolean
-        static GREATER_EQUAL(left: Vector2, right: Vector2): boolean
-        x: number /*f64*/
-        y: number /*f64*/
+    /** Provides direct access to a physics space in the [PhysicsServer2D]. */
+    class PhysicsDirectSpaceState2D extends Object {
+        /** Checks whether a point is inside any solid shape. Position and other parameters are defined through [PhysicsPointQueryParameters2D]. The shapes the point is inside of are returned in an array containing dictionaries with the following fields:  
+         *  `collider`: The colliding object.  
+         *  `collider_id`: The colliding object's ID.  
+         *  `rid`: The intersecting object's [RID].  
+         *  `shape`: The shape index of the colliding shape.  
+         *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
+         *      
+         *  **Note:** [ConcavePolygonShape2D]s and [CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.  
+         */
+        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: number /*i64*/ = 32): Array
+        
+        /** Intersects a ray in a given space. Ray position and other parameters are defined through [PhysicsRayQueryParameters2D]. The returned object is a dictionary with the following fields:  
+         *  `collider`: The colliding object.  
+         *  `collider_id`: The colliding object's ID.  
+         *  `normal`: The object's surface normal at the intersection point, or `Vector2(0, 0)` if the ray starts inside the shape and [member PhysicsRayQueryParameters2D.hit_from_inside] is `true`.  
+         *  `position`: The intersection point.  
+         *  `rid`: The intersecting object's [RID].  
+         *  `shape`: The shape index of the colliding shape.  
+         *  If the ray did not intersect anything, then an empty dictionary is returned instead.  
+         */
+        intersect_ray(parameters: PhysicsRayQueryParameters2D): Dictionary
+        
+        /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. The intersected shapes are returned in an array containing dictionaries with the following fields:  
+         *  `collider`: The colliding object.  
+         *  `collider_id`: The colliding object's ID.  
+         *  `rid`: The intersecting object's [RID].  
+         *  `shape`: The shape index of the colliding shape.  
+         *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
+         */
+        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: number /*i64*/ = 32): Array
+        
+        /** Checks how far a [Shape2D] can move without colliding. All the parameters for the query, including the shape and the motion, are supplied through a [PhysicsShapeQueryParameters2D] object.  
+         *  Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.  
+         *      
+         *  **Note:** Any [Shape2D]s that the shape is already colliding with e.g. inside of, will be ignored. Use [method collide_shape] to determine the [Shape2D]s that the shape is already colliding with.  
+         */
+        cast_motion(parameters: PhysicsShapeQueryParameters2D): PackedFloat32Array
+        
+        /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. The resulting array contains a list of points where the shape intersects another. Like with [method intersect_shape], the number of returned results can be limited to save processing time.  
+         *  Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [PhysicsShapeQueryParameters2D] object, second one is in the collided shape from the physics space.  
+         */
+        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: number /*i64*/ = 32): Array
+        
+        /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. If it collides with more than one shape, the nearest one is selected. If the shape did not intersect anything, then an empty dictionary is returned instead.  
+         *      
+         *  **Note:** This method does not take into account the `motion` property of the object. The returned object is a dictionary containing the following fields:  
+         *  `collider_id`: The colliding object's ID.  
+         *  `linear_velocity`: The colliding object's velocity [Vector2]. If the object is an [Area2D], the result is `(0, 0)`.  
+         *  `normal`: The object's surface normal at the intersection point.  
+         *  `point`: The intersection point.  
+         *  `rid`: The intersecting object's [RID].  
+         *  `shape`: The shape index of the colliding shape.  
+         */
+        get_rest_info(parameters: PhysicsShapeQueryParameters2D): Dictionary
     }
-    namespace Vector2i {
-        enum Axis {
-            AXIS_X = 0,
-            AXIS_Y = 1,
-        }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectSpaceState2D] implementations. */
+    class PhysicsDirectSpaceState2DExtension extends PhysicsDirectSpaceState2D {
+        /* gdvirtual */ _intersect_ray(from: Vector2, to: Vector2, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, hit_from_inside: boolean, result: number /*i64*/): boolean
+        /* gdvirtual */ _intersect_point(position: Vector2, canvas_instance_id: number /*i64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, results: number /*i64*/, max_results: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _intersect_shape(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, result: number /*i64*/, max_results: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _cast_motion(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, closest_safe: number /*i64*/, closest_unsafe: number /*i64*/): boolean
+        /* gdvirtual */ _collide_shape(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, results: number /*i64*/, max_results: number /*i64*/, result_count: number /*i64*/): boolean
+        /* gdvirtual */ _rest_info(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, rest_info: number /*i64*/): boolean
+        is_body_excluded_from_query(body: RID): boolean
     }
-    class Vector2i {
-        static readonly ZERO: Vector2i
-        static readonly ONE: Vector2i
-        static readonly MIN: Vector2i
-        static readonly MAX: Vector2i
-        static readonly LEFT: Vector2i
-        static readonly RIGHT: Vector2i
-        static readonly UP: Vector2i
-        static readonly DOWN: Vector2i
-        constructor()
-        constructor(from: Vector2i)
-        constructor(from: Vector2)
-        constructor(x: number /*i64*/, y: number /*i64*/)
-        aspect(): number /*f64*/
-        max_axis_index(): number /*i64*/
-        min_axis_index(): number /*i64*/
-        length(): number /*f64*/
-        length_squared(): number /*i64*/
-        sign(): Vector2i
-        abs(): Vector2i
-        clamp(min: Vector2i, max: Vector2i): Vector2i
-        snapped(step: Vector2i): Vector2i
-        static ADD(left: Vector2i, right: Vector2i): Vector2i
-        static SUBTRACT(left: Vector2i, right: Vector2i): Vector2i
-        static MULTIPLY(left: number /*f64*/, right: Vector2i): Vector2i
-        static MULTIPLY(left: Vector2i, right: Vector2i): Vector2i
-        static MULTIPLY(left: Vector2i, right: number /*f64*/): Vector2i
-        static DIVIDE(left: Vector2i, right: Vector2i): Vector2i
-        static DIVIDE(left: Vector2i, right: number /*f64*/): Vector2i
-        static NEGATE(left: Vector2i, right: any): boolean
-        static EQUAL(left: Vector2i, right: Vector2i): boolean
-        static NOT_EQUAL(left: Vector2i, right: Vector2i): boolean
-        static LESS(left: Vector2i, right: Vector2i): boolean
-        static LESS_EQUAL(left: Vector2i, right: Vector2i): boolean
-        static GREATER(left: Vector2i, right: Vector2i): boolean
-        static GREATER_EQUAL(left: Vector2i, right: Vector2i): boolean
-        x: number /*i64*/
-        y: number /*i64*/
+    /** Provides direct access to a physics space in the [PhysicsServer3D]. */
+    class PhysicsDirectSpaceState3D extends Object {
+        /** Checks whether a point is inside any solid shape. Position and other parameters are defined through [PhysicsPointQueryParameters3D]. The shapes the point is inside of are returned in an array containing dictionaries with the following fields:  
+         *  `collider`: The colliding object.  
+         *  `collider_id`: The colliding object's ID.  
+         *  `rid`: The intersecting object's [RID].  
+         *  `shape`: The shape index of the colliding shape.  
+         *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
+         */
+        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: number /*i64*/ = 32): Array
+        
+        /** Intersects a ray in a given space. Ray position and other parameters are defined through [PhysicsRayQueryParameters3D]. The returned object is a dictionary with the following fields:  
+         *  `collider`: The colliding object.  
+         *  `collider_id`: The colliding object's ID.  
+         *  `normal`: The object's surface normal at the intersection point, or `Vector3(0, 0, 0)` if the ray starts inside the shape and [member PhysicsRayQueryParameters3D.hit_from_inside] is `true`.  
+         *  `position`: The intersection point.  
+         *  `face_index`: The face index at the intersection point.  
+         *      
+         *  **Note:** Returns a valid number only if the intersected shape is a [ConcavePolygonShape3D]. Otherwise, `-1` is returned.  
+         *  `rid`: The intersecting object's [RID].  
+         *  `shape`: The shape index of the colliding shape.  
+         *  If the ray did not intersect anything, then an empty dictionary is returned instead.  
+         */
+        intersect_ray(parameters: PhysicsRayQueryParameters3D): Dictionary
+        
+        /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters3D] object, against the space. The intersected shapes are returned in an array containing dictionaries with the following fields:  
+         *  `collider`: The colliding object.  
+         *  `collider_id`: The colliding object's ID.  
+         *  `rid`: The intersecting object's [RID].  
+         *  `shape`: The shape index of the colliding shape.  
+         *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
+         *      
+         *  **Note:** This method does not take into account the `motion` property of the object.  
+         */
+        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: number /*i64*/ = 32): Array
+        
+        /** Checks how far a [Shape3D] can move without colliding. All the parameters for the query, including the shape, are supplied through a [PhysicsShapeQueryParameters3D] object.  
+         *  Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.  
+         *      
+         *  **Note:** Any [Shape3D]s that the shape is already colliding with e.g. inside of, will be ignored. Use [method collide_shape] to determine the [Shape3D]s that the shape is already colliding with.  
+         */
+        cast_motion(parameters: PhysicsShapeQueryParameters3D): PackedFloat32Array
+        
+        /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters3D] object, against the space. The resulting array contains a list of points where the shape intersects another. Like with [method intersect_shape], the number of returned results can be limited to save processing time.  
+         *  Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [PhysicsShapeQueryParameters3D] object, second one is in the collided shape from the physics space.  
+         *      
+         *  **Note:** This method does not take into account the `motion` property of the object.  
+         */
+        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: number /*i64*/ = 32): Array
+        
+        /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters3D] object, against the space. If it collides with more than one shape, the nearest one is selected. The returned object is a dictionary containing the following fields:  
+         *  `collider_id`: The colliding object's ID.  
+         *  `linear_velocity`: The colliding object's velocity [Vector3]. If the object is an [Area3D], the result is `(0, 0, 0)`.  
+         *  `normal`: The object's surface normal at the intersection point.  
+         *  `point`: The intersection point.  
+         *  `rid`: The intersecting object's [RID].  
+         *  `shape`: The shape index of the colliding shape.  
+         *  If the shape did not intersect anything, then an empty dictionary is returned instead.  
+         *      
+         *  **Note:** This method does not take into account the `motion` property of the object.  
+         */
+        get_rest_info(parameters: PhysicsShapeQueryParameters3D): Dictionary
     }
-    class Rect2 {
-        constructor()
-        constructor(from: Rect2)
-        constructor(from: Rect2i)
-        constructor(position: Vector2, size: Vector2)
-        constructor(x: number /*f64*/, y: number /*f64*/, width: number /*f64*/, height: number /*f64*/)
-        get_center(): Vector2
-        get_area(): number /*f64*/
-        has_area(): boolean
-        has_point(point: Vector2): boolean
-        is_equal_approx(rect: Rect2): boolean
-        is_finite(): boolean
-        intersects(b: Rect2, include_borders: boolean = false): boolean
-        encloses(b: Rect2): boolean
-        intersection(b: Rect2): Rect2
-        merge(b: Rect2): Rect2
-        expand(to: Vector2): Rect2
-        grow(amount: number /*f64*/): Rect2
-        grow_side(side: number /*i64*/, amount: number /*f64*/): Rect2
-        grow_individual(left: number /*f64*/, top: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/): Rect2
-        abs(): Rect2
+    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectSpaceState3D] implementations. */
+    class PhysicsDirectSpaceState3DExtension extends PhysicsDirectSpaceState3D {
+        /* gdvirtual */ _intersect_ray(from: Vector3, to: Vector3, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, hit_from_inside: boolean, hit_back_faces: boolean, pick_ray: boolean, result: number /*i64*/): boolean
+        /* gdvirtual */ _intersect_point(position: Vector3, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, results: number /*i64*/, max_results: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _intersect_shape(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, result_count: number /*i64*/, max_results: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _cast_motion(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, closest_safe: number /*i64*/, closest_unsafe: number /*i64*/, info: number /*i64*/): boolean
+        /* gdvirtual */ _collide_shape(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, results: number /*i64*/, max_results: number /*i64*/, result_count: number /*i64*/): boolean
+        /* gdvirtual */ _rest_info(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, rest_info: number /*i64*/): boolean
+        /* gdvirtual */ _get_closest_point_to_object_volume(object: RID, point: Vector3): Vector3
+        is_body_excluded_from_query(body: RID): boolean
+    }
+    /** Holds physics-related properties of a surface, namely its roughness and bounciness. */
+    class PhysicsMaterial extends Resource {
+        set_friction(friction: number /*f64*/): void
+        get_friction(): number /*f64*/
+        set_rough(rough: boolean): void
+        is_rough(): boolean
+        set_bounce(bounce: number /*f64*/): void
+        get_bounce(): number /*f64*/
+        set_absorbent(absorbent: boolean): void
+        is_absorbent(): boolean
+        
+        /** The body's friction. Values range from `0` (frictionless) to `1` (maximum friction). */
+        friction: number /*f64*/
+        
+        /** If `true`, the physics engine will use the friction of the object marked as "rough" when two objects collide. If `false`, the physics engine will use the lowest friction of all colliding objects instead. If `true` for both colliding objects, the physics engine will use the highest friction. */
+        rough: boolean
+        
+        /** The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).  
+         *      
+         *  **Note:** Even with [member bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [PhysicsBody3D] that preserves all its energy over time, set [member bounce] to `1.0`, the body's linear damp mode to **Replace** (if applicable), its linear damp to `0.0`, its angular damp mode to **Replace** (if applicable), and its angular damp to `0.0`.  
+         */
+        bounce: number /*f64*/
+        
+        /** If `true`, subtracts the bounciness from the colliding object's bounciness instead of adding it. */
+        absorbent: boolean
+    }
+    /** Provides parameters for [method PhysicsDirectSpaceState2D.intersect_point]. */
+    class PhysicsPointQueryParameters2D extends RefCounted {
+        set_position(position: Vector2): void
+        get_position(): Vector2
+        set_canvas_instance_id(canvas_instance_id: number /*i64*/): void
+        get_canvas_instance_id(): number /*i64*/
+        set_collision_mask(collision_mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_exclude(exclude: Array): void
+        get_exclude(): Array
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        
+        /** The position being queried for, in global coordinates. */
         position: Vector2
-        size: Vector2
-        end: Vector2
+        
+        /** If different from `0`, restricts the query to a specific canvas layer specified by its instance ID. See [method Object.get_instance_id].  
+         *  If `0`, restricts the query to the Viewport's default canvas layer.  
+         */
+        canvas_instance_id: number /*i64*/
+        
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
+        exclude: Array
+        
+        /** If `true`, the query will take [PhysicsBody2D]s into account. */
+        collide_with_bodies: boolean
+        
+        /** If `true`, the query will take [Area2D]s into account. */
+        collide_with_areas: boolean
     }
-    class Rect2i {
-        constructor()
-        constructor(from: Rect2i)
-        constructor(from: Rect2)
-        constructor(position: Vector2i, size: Vector2i)
-        constructor(x: number /*i64*/, y: number /*i64*/, width: number /*i64*/, height: number /*i64*/)
-        get_center(): Vector2i
-        get_area(): number /*i64*/
-        has_area(): boolean
-        has_point(point: Vector2i): boolean
-        intersects(b: Rect2i): boolean
-        encloses(b: Rect2i): boolean
-        intersection(b: Rect2i): Rect2i
-        merge(b: Rect2i): Rect2i
-        expand(to: Vector2i): Rect2i
-        grow(amount: number /*i64*/): Rect2i
-        grow_side(side: number /*i64*/, amount: number /*i64*/): Rect2i
-        grow_individual(left: number /*i64*/, top: number /*i64*/, right: number /*i64*/, bottom: number /*i64*/): Rect2i
-        abs(): Rect2i
-        position: Vector2i
-        size: Vector2i
-        end: Vector2i
-    }
-    namespace Vector3 {
-        enum Axis {
-            AXIS_X = 0,
-            AXIS_Y = 1,
-            AXIS_Z = 2,
-        }
-    }
-    class Vector3 {
-        static readonly ZERO: Vector3
-        static readonly ONE: Vector3
-        static readonly INF: Vector3
-        static readonly LEFT: Vector3
-        static readonly RIGHT: Vector3
-        static readonly UP: Vector3
-        static readonly DOWN: Vector3
-        static readonly FORWARD: Vector3
-        static readonly BACK: Vector3
-        static readonly MODEL_LEFT: Vector3
-        static readonly MODEL_RIGHT: Vector3
-        static readonly MODEL_TOP: Vector3
-        static readonly MODEL_BOTTOM: Vector3
-        static readonly MODEL_FRONT: Vector3
-        static readonly MODEL_REAR: Vector3
-        constructor()
-        constructor(from: Vector3)
-        constructor(from: Vector3i)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/)
-        min_axis_index(): number /*i64*/
-        max_axis_index(): number /*i64*/
-        angle_to(to: Vector3): number /*f64*/
-        signed_angle_to(to: Vector3, axis: Vector3): number /*f64*/
-        direction_to(to: Vector3): Vector3
-        distance_to(to: Vector3): number /*f64*/
-        distance_squared_to(to: Vector3): number /*f64*/
-        length(): number /*f64*/
-        length_squared(): number /*f64*/
-        limit_length(length: number /*f64*/ = 1): Vector3
-        normalized(): Vector3
-        is_normalized(): boolean
-        is_equal_approx(to: Vector3): boolean
-        is_zero_approx(): boolean
-        is_finite(): boolean
-        inverse(): Vector3
-        clamp(min: Vector3, max: Vector3): Vector3
-        snapped(step: Vector3): Vector3
-        rotated(axis: Vector3, angle: number /*f64*/): Vector3
-        lerp(to: Vector3, weight: number /*f64*/): Vector3
-        slerp(to: Vector3, weight: number /*f64*/): Vector3
-        cubic_interpolate(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: number /*f64*/): Vector3
-        cubic_interpolate_in_time(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector3
-        bezier_interpolate(control_1: Vector3, control_2: Vector3, end: Vector3, t: number /*f64*/): Vector3
-        bezier_derivative(control_1: Vector3, control_2: Vector3, end: Vector3, t: number /*f64*/): Vector3
-        move_toward(to: Vector3, delta: number /*f64*/): Vector3
-        dot(with_: Vector3): number /*f64*/
-        cross(with_: Vector3): Vector3
-        outer(with_: Vector3): Basis
-        abs(): Vector3
-        floor(): Vector3
-        ceil(): Vector3
-        round(): Vector3
-        posmod(mod: number /*f64*/): Vector3
-        posmodv(modv: Vector3): Vector3
-        project(b: Vector3): Vector3
-        slide(n: Vector3): Vector3
-        bounce(n: Vector3): Vector3
-        reflect(n: Vector3): Vector3
-        sign(): Vector3
-        octahedron_encode(): Vector2
-        static octahedron_decode(uv: Vector2): Vector3
-        static ADD(left: Vector3, right: Vector3): Vector3
-        static SUBTRACT(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: number /*f64*/, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
-        static DIVIDE(left: Vector3, right: Vector3): Vector3
-        static DIVIDE(left: Vector3, right: number /*f64*/): Vector3
-        static NEGATE(left: Vector3, right: any): boolean
-        static EQUAL(left: Vector3, right: Vector3): boolean
-        static NOT_EQUAL(left: Vector3, right: Vector3): boolean
-        static LESS(left: Vector3, right: Vector3): boolean
-        static LESS_EQUAL(left: Vector3, right: Vector3): boolean
-        static GREATER(left: Vector3, right: Vector3): boolean
-        static GREATER_EQUAL(left: Vector3, right: Vector3): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-        z: number /*f64*/
-    }
-    namespace Vector3i {
-        enum Axis {
-            AXIS_X = 0,
-            AXIS_Y = 1,
-            AXIS_Z = 2,
-        }
-    }
-    class Vector3i {
-        static readonly ZERO: Vector3i
-        static readonly ONE: Vector3i
-        static readonly MIN: Vector3i
-        static readonly MAX: Vector3i
-        static readonly LEFT: Vector3i
-        static readonly RIGHT: Vector3i
-        static readonly UP: Vector3i
-        static readonly DOWN: Vector3i
-        static readonly FORWARD: Vector3i
-        static readonly BACK: Vector3i
-        constructor()
-        constructor(from: Vector3i)
-        constructor(from: Vector3)
-        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/)
-        min_axis_index(): number /*i64*/
-        max_axis_index(): number /*i64*/
-        length(): number /*f64*/
-        length_squared(): number /*i64*/
-        sign(): Vector3i
-        abs(): Vector3i
-        clamp(min: Vector3i, max: Vector3i): Vector3i
-        snapped(step: Vector3i): Vector3i
-        static ADD(left: Vector3i, right: Vector3i): Vector3i
-        static SUBTRACT(left: Vector3i, right: Vector3i): Vector3i
-        static MULTIPLY(left: number /*f64*/, right: Vector3i): Vector3i
-        static MULTIPLY(left: Vector3i, right: Vector3i): Vector3i
-        static MULTIPLY(left: Vector3i, right: number /*f64*/): Vector3i
-        static DIVIDE(left: Vector3i, right: Vector3i): Vector3i
-        static DIVIDE(left: Vector3i, right: number /*f64*/): Vector3i
-        static NEGATE(left: Vector3i, right: any): boolean
-        static EQUAL(left: Vector3i, right: Vector3i): boolean
-        static NOT_EQUAL(left: Vector3i, right: Vector3i): boolean
-        static LESS(left: Vector3i, right: Vector3i): boolean
-        static LESS_EQUAL(left: Vector3i, right: Vector3i): boolean
-        static GREATER(left: Vector3i, right: Vector3i): boolean
-        static GREATER_EQUAL(left: Vector3i, right: Vector3i): boolean
-        x: number /*i64*/
-        y: number /*i64*/
-        z: number /*i64*/
-    }
-    class Transform2D {
-        static readonly IDENTITY: Transform2D
-        static readonly FLIP_X: Transform2D
-        static readonly FLIP_Y: Transform2D
-        constructor()
-        constructor(from: Transform2D)
-        constructor(rotation: number /*f64*/, position: Vector2)
-        constructor(rotation: number /*f64*/, scale: Vector2, skew: number /*f64*/, position: Vector2)
-        constructor(x_axis: Vector2, y_axis: Vector2, origin: Vector2)
-        inverse(): Transform2D
-        affine_inverse(): Transform2D
-        get_rotation(): number /*f64*/
-        get_origin(): Vector2
-        get_scale(): Vector2
-        get_skew(): number /*f64*/
-        orthonormalized(): Transform2D
-        rotated(angle: number /*f64*/): Transform2D
-        rotated_local(angle: number /*f64*/): Transform2D
-        scaled(scale: Vector2): Transform2D
-        scaled_local(scale: Vector2): Transform2D
-        translated(offset: Vector2): Transform2D
-        translated_local(offset: Vector2): Transform2D
-        determinant(): number /*f64*/
-        basis_xform(v: Vector2): Vector2
-        basis_xform_inv(v: Vector2): Vector2
-        interpolate_with(xform: Transform2D, weight: number /*f64*/): Transform2D
-        is_conformal(): boolean
-        is_equal_approx(xform: Transform2D): boolean
-        is_finite(): boolean
-        looking_at(target: Vector2 = Vector2.ZERO): Transform2D
-        static MULTIPLY(left: Transform2D, right: Transform2D): Transform2D
-        static MULTIPLY(left: Transform2D, right: number /*f64*/): Transform2D
-        static MULTIPLY(left: Transform2D, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: Transform2D): Vector2
-        static MULTIPLY(left: Transform2D, right: Rect2): Rect2
-        static MULTIPLY(left: Rect2, right: Transform2D): Rect2
-        static MULTIPLY(left: Transform2D, right: PackedVector2Array): PackedVector2Array
-        static MULTIPLY(left: PackedVector2Array, right: Transform2D): PackedVector2Array
-        static EQUAL(left: Transform2D, right: Transform2D): boolean
-        static NOT_EQUAL(left: Transform2D, right: Transform2D): boolean
-        x: Vector2
-        y: Vector2
-        origin: Vector2
-    }
-    namespace Vector4 {
-        enum Axis {
-            AXIS_X = 0,
-            AXIS_Y = 1,
-            AXIS_Z = 2,
-            AXIS_W = 3,
-        }
-    }
-    class Vector4 {
-        static readonly ZERO: Vector4
-        static readonly ONE: Vector4
-        static readonly INF: Vector4
-        constructor()
-        constructor(from: Vector4)
-        constructor(from: Vector4i)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
-        min_axis_index(): number /*i64*/
-        max_axis_index(): number /*i64*/
-        length(): number /*f64*/
-        length_squared(): number /*f64*/
-        abs(): Vector4
-        sign(): Vector4
-        floor(): Vector4
-        ceil(): Vector4
-        round(): Vector4
-        lerp(to: Vector4, weight: number /*f64*/): Vector4
-        cubic_interpolate(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: number /*f64*/): Vector4
-        cubic_interpolate_in_time(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector4
-        posmod(mod: number /*f64*/): Vector4
-        posmodv(modv: Vector4): Vector4
-        snapped(step: Vector4): Vector4
-        clamp(min: Vector4, max: Vector4): Vector4
-        normalized(): Vector4
-        is_normalized(): boolean
-        direction_to(to: Vector4): Vector4
-        distance_to(to: Vector4): number /*f64*/
-        distance_squared_to(to: Vector4): number /*f64*/
-        dot(with_: Vector4): number /*f64*/
-        inverse(): Vector4
-        is_equal_approx(to: Vector4): boolean
-        is_zero_approx(): boolean
-        is_finite(): boolean
-        static ADD(left: Vector4, right: Vector4): Vector4
-        static SUBTRACT(left: Vector4, right: Vector4): Vector4
-        static MULTIPLY(left: number /*f64*/, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: number /*f64*/): Vector4
-        static DIVIDE(left: Vector4, right: Vector4): Vector4
-        static DIVIDE(left: Vector4, right: number /*f64*/): Vector4
-        static NEGATE(left: Vector4, right: any): boolean
-        static EQUAL(left: Vector4, right: Vector4): boolean
-        static NOT_EQUAL(left: Vector4, right: Vector4): boolean
-        static LESS(left: Vector4, right: Vector4): boolean
-        static LESS_EQUAL(left: Vector4, right: Vector4): boolean
-        static GREATER(left: Vector4, right: Vector4): boolean
-        static GREATER_EQUAL(left: Vector4, right: Vector4): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-        z: number /*f64*/
-        w: number /*f64*/
-    }
-    namespace Vector4i {
-        enum Axis {
-            AXIS_X = 0,
-            AXIS_Y = 1,
-            AXIS_Z = 2,
-            AXIS_W = 3,
-        }
-    }
-    class Vector4i {
-        static readonly ZERO: Vector4i
-        static readonly ONE: Vector4i
-        static readonly MIN: Vector4i
-        static readonly MAX: Vector4i
-        constructor()
-        constructor(from: Vector4i)
-        constructor(from: Vector4)
-        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/, w: number /*i64*/)
-        min_axis_index(): number /*i64*/
-        max_axis_index(): number /*i64*/
-        length(): number /*f64*/
-        length_squared(): number /*i64*/
-        sign(): Vector4i
-        abs(): Vector4i
-        clamp(min: Vector4i, max: Vector4i): Vector4i
-        snapped(step: Vector4i): Vector4i
-        static ADD(left: Vector4i, right: Vector4i): Vector4i
-        static SUBTRACT(left: Vector4i, right: Vector4i): Vector4i
-        static MULTIPLY(left: number /*f64*/, right: Vector4i): Vector4i
-        static MULTIPLY(left: Vector4i, right: Vector4i): Vector4i
-        static MULTIPLY(left: Vector4i, right: number /*f64*/): Vector4i
-        static DIVIDE(left: Vector4i, right: Vector4i): Vector4i
-        static DIVIDE(left: Vector4i, right: number /*f64*/): Vector4i
-        static NEGATE(left: Vector4i, right: any): boolean
-        static EQUAL(left: Vector4i, right: Vector4i): boolean
-        static NOT_EQUAL(left: Vector4i, right: Vector4i): boolean
-        static LESS(left: Vector4i, right: Vector4i): boolean
-        static LESS_EQUAL(left: Vector4i, right: Vector4i): boolean
-        static GREATER(left: Vector4i, right: Vector4i): boolean
-        static GREATER_EQUAL(left: Vector4i, right: Vector4i): boolean
-        x: number /*i64*/
-        y: number /*i64*/
-        z: number /*i64*/
-        w: number /*i64*/
-    }
-    class Plane {
-        static readonly PLANE_YZ: Plane
-        static readonly PLANE_XZ: Plane
-        static readonly PLANE_XY: Plane
-        constructor()
-        constructor(from: Plane)
-        constructor(normal: Vector3)
-        constructor(normal: Vector3, d: number /*f64*/)
-        constructor(normal: Vector3, point: Vector3)
-        constructor(point1: Vector3, point2: Vector3, point3: Vector3)
-        constructor(a: number /*f64*/, b: number /*f64*/, c: number /*f64*/, d: number /*f64*/)
-        normalized(): Plane
-        get_center(): Vector3
-        is_equal_approx(to_plane: Plane): boolean
-        is_finite(): boolean
-        is_point_over(point: Vector3): boolean
-        distance_to(point: Vector3): number /*f64*/
-        has_point(point: Vector3, tolerance: number /*f64*/ = 0.00001): boolean
-        project(point: Vector3): Vector3
-        intersect_3(b: Plane, c: Plane): void
-        intersects_ray(from: Vector3, dir: Vector3): void
-        intersects_segment(from: Vector3, to: Vector3): void
-        static NEGATE(left: Plane, right: any): boolean
-        static EQUAL(left: Plane, right: Plane): boolean
-        static NOT_EQUAL(left: Plane, right: Plane): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-        z: number /*f64*/
-        d: number /*f64*/
-        normal: Vector3
-    }
-    class Quaternion {
-        static readonly IDENTITY: Quaternion
-        constructor()
-        constructor(from: Quaternion)
-        constructor(from: Basis)
-        constructor(axis: Vector3, angle: number /*f64*/)
-        constructor(arc_from: Vector3, arc_to: Vector3)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
-        length(): number /*f64*/
-        length_squared(): number /*f64*/
-        normalized(): Quaternion
-        is_normalized(): boolean
-        is_equal_approx(to: Quaternion): boolean
-        is_finite(): boolean
-        inverse(): Quaternion
-        log(): Quaternion
-        exp(): Quaternion
-        angle_to(to: Quaternion): number /*f64*/
-        dot(with_: Quaternion): number /*f64*/
-        slerp(to: Quaternion, weight: number /*f64*/): Quaternion
-        slerpni(to: Quaternion, weight: number /*f64*/): Quaternion
-        spherical_cubic_interpolate(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/): Quaternion
-        spherical_cubic_interpolate_in_time(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Quaternion
-        get_euler(order: number /*i64*/ = 2): Vector3
-        static from_euler(euler: Vector3): Quaternion
-        get_axis(): Vector3
-        get_angle(): number /*f64*/
-        static ADD(left: Quaternion, right: Quaternion): Quaternion
-        static SUBTRACT(left: Quaternion, right: Quaternion): Quaternion
-        static MULTIPLY(left: Quaternion, right: Quaternion): Quaternion
-        static MULTIPLY(left: Quaternion, right: number /*f64*/): Quaternion
-        static MULTIPLY(left: number /*f64*/, right: Quaternion): Quaternion
-        static MULTIPLY(left: Vector3, right: Quaternion): Vector3
-        static MULTIPLY(left: Quaternion, right: Vector3): Vector3
-        static DIVIDE(left: Quaternion, right: number /*f64*/): Quaternion
-        static NEGATE(left: Quaternion, right: any): boolean
-        static EQUAL(left: Quaternion, right: Quaternion): boolean
-        static NOT_EQUAL(left: Quaternion, right: Quaternion): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-        z: number /*f64*/
-        w: number /*f64*/
-    }
-    class AABB {
-        constructor()
-        constructor(from: AABB)
-        constructor(position: Vector3, size: Vector3)
-        abs(): AABB
-        get_center(): Vector3
-        get_volume(): number /*f64*/
-        has_volume(): boolean
-        has_surface(): boolean
-        has_point(point: Vector3): boolean
-        is_equal_approx(aabb: AABB): boolean
-        is_finite(): boolean
-        intersects(with_: AABB): boolean
-        encloses(with_: AABB): boolean
-        intersects_plane(plane: Plane): boolean
-        intersection(with_: AABB): AABB
-        merge(with_: AABB): AABB
-        expand(to_point: Vector3): AABB
-        grow(by: number /*f64*/): AABB
-        get_support(dir: Vector3): Vector3
-        get_longest_axis(): Vector3
-        get_longest_axis_index(): number /*i64*/
-        get_longest_axis_size(): number /*f64*/
-        get_shortest_axis(): Vector3
-        get_shortest_axis_index(): number /*i64*/
-        get_shortest_axis_size(): number /*f64*/
-        get_endpoint(idx: number /*i64*/): Vector3
-        intersects_segment(from: Vector3, to: Vector3): void
-        intersects_ray(from: Vector3, dir: Vector3): void
-        static EQUAL(left: AABB, right: AABB): boolean
-        static NOT_EQUAL(left: AABB, right: AABB): boolean
+    /** Provides parameters for [method PhysicsDirectSpaceState3D.intersect_point]. */
+    class PhysicsPointQueryParameters3D extends RefCounted {
+        set_position(position: Vector3): void
+        get_position(): Vector3
+        set_collision_mask(collision_mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_exclude(exclude: Array): void
+        get_exclude(): Array
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        
+        /** The position being queried for, in global coordinates. */
         position: Vector3
+        
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
+        exclude: Array
+        
+        /** If `true`, the query will take [PhysicsBody3D]s into account. */
+        collide_with_bodies: boolean
+        
+        /** If `true`, the query will take [Area3D]s into account. */
+        collide_with_areas: boolean
+    }
+    /** Provides parameters for [method PhysicsDirectSpaceState2D.intersect_ray]. */
+    class PhysicsRayQueryParameters2D extends RefCounted {
+        /** Returns a new, pre-configured [PhysicsRayQueryParameters2D] object. Use it to quickly create query parameters using the most common options.  
+         *    
+         */
+        static create(from: Vector2, to: Vector2, collision_mask: number /*i64*/ = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters2D
+        set_from(from: Vector2): void
+        get_from(): Vector2
+        set_to(to: Vector2): void
+        get_to(): Vector2
+        set_collision_mask(collision_mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_exclude(exclude: Array): void
+        get_exclude(): Array
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        set_hit_from_inside(enable: boolean): void
+        is_hit_from_inside_enabled(): boolean
+        
+        /** The starting point of the ray being queried for, in global coordinates. */
+        from: Vector2
+        
+        /** The ending point of the ray being queried for, in global coordinates. */
+        to: Vector2
+        
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
+        exclude: Array
+        
+        /** If `true`, the query will take [PhysicsBody2D]s into account. */
+        collide_with_bodies: boolean
+        
+        /** If `true`, the query will take [Area2D]s into account. */
+        collide_with_areas: boolean
+        
+        /** If `true`, the query will detect a hit when starting inside shapes. In this case the collision normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes. */
+        hit_from_inside: boolean
+    }
+    /** Provides parameters for [method PhysicsDirectSpaceState3D.intersect_ray]. */
+    class PhysicsRayQueryParameters3D extends RefCounted {
+        /** Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create query parameters using the most common options.  
+         *    
+         */
+        static create(from: Vector3, to: Vector3, collision_mask: number /*i64*/ = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters3D
+        set_from(from: Vector3): void
+        get_from(): Vector3
+        set_to(to: Vector3): void
+        get_to(): Vector3
+        set_collision_mask(collision_mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_exclude(exclude: Array): void
+        get_exclude(): Array
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        set_hit_from_inside(enable: boolean): void
+        is_hit_from_inside_enabled(): boolean
+        set_hit_back_faces(enable: boolean): void
+        is_hit_back_faces_enabled(): boolean
+        
+        /** The starting point of the ray being queried for, in global coordinates. */
+        from: Vector3
+        
+        /** The ending point of the ray being queried for, in global coordinates. */
+        to: Vector3
+        
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
+        exclude: Array
+        
+        /** If `true`, the query will take [PhysicsBody3D]s into account. */
+        collide_with_bodies: boolean
+        
+        /** If `true`, the query will take [Area3D]s into account. */
+        collide_with_areas: boolean
+        
+        /** If `true`, the query will detect a hit when starting inside shapes. In this case the collision normal will be `Vector3(0, 0, 0)`. Does not affect concave polygon shapes or heightmap shapes. */
+        hit_from_inside: boolean
+        
+        /** If `true`, the query will hit back faces with concave polygon shapes with back face enabled or heightmap shapes. */
+        hit_back_faces: boolean
+    }
+    /** A class used to provide [method PhysicsServer3DExtension._soft_body_update_rendering_server] with a rendering handler for soft bodies. */
+    class PhysicsServer3DRenderingServerHandler extends Object {
+        /** Called by the [PhysicsServer3D] to set the position for the [SoftBody3D] vertex at the index specified by [param vertex_id].  
+         *      
+         *  **Note:** The [param vertex] parameter used to be of type `const void*` prior to Godot 4.2.  
+         */
+        /* gdvirtual */ _set_vertex(vertex_id: number /*i64*/, vertex: Vector3): void
+        
+        /** Called by the [PhysicsServer3D] to set the normal for the [SoftBody3D] vertex at the index specified by [param vertex_id].  
+         *      
+         *  **Note:** The [param normal] parameter used to be of type `const void*` prior to Godot 4.2.  
+         */
+        /* gdvirtual */ _set_normal(vertex_id: number /*i64*/, normal: Vector3): void
+        
+        /** Called by the [PhysicsServer3D] to set the bounding box for the [SoftBody3D]. */
+        /* gdvirtual */ _set_aabb(aabb: AABB): void
+        
+        /** Sets the position for the [SoftBody3D] vertex at the index specified by [param vertex_id]. */
+        set_vertex(vertex_id: number /*i64*/, vertex: Vector3): void
+        
+        /** Sets the normal for the [SoftBody3D] vertex at the index specified by [param vertex_id]. */
+        set_normal(vertex_id: number /*i64*/, normal: Vector3): void
+        
+        /** Sets the bounding box for the [SoftBody3D]. */
+        set_aabb(aabb: AABB): void
+    }
+    /** Provides parameters for [method PhysicsDirectSpaceState2D.intersect_shape]. */
+    class PhysicsShapeQueryParameters2D extends RefCounted {
+        set_shape(shape: Resource): void
+        get_shape(): Resource
+        set_shape_rid(shape: RID): void
+        get_shape_rid(): RID
+        set_transform(transform: Transform2D): void
+        get_transform(): Transform2D
+        set_motion(motion: Vector2): void
+        get_motion(): Vector2
+        set_margin(margin: number /*f64*/): void
+        get_margin(): number /*f64*/
+        set_collision_mask(collision_mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_exclude(exclude: Array): void
+        get_exclude(): Array
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
+        exclude: Array
+        
+        /** The collision margin for the shape. */
+        margin: number /*f64*/
+        
+        /** The motion of the shape being queried for. */
+        motion: Vector2
+        
+        /** The [Shape2D] that will be used for collision/intersection queries. This stores the actual reference which avoids the shape to be released while being used for queries, so always prefer using this over [member shape_rid]. */
+        shape: Shape2D
+        
+        /** The queried shape's [RID] that will be used for collision/intersection queries. Use this over [member shape] if you want to optimize for performance using the Servers API:  
+         *  	  
+         */
+        shape_rid: RID
+        
+        /** The queried shape's transform matrix. */
+        transform: Transform2D
+        
+        /** If `true`, the query will take [PhysicsBody2D]s into account. */
+        collide_with_bodies: boolean
+        
+        /** If `true`, the query will take [Area2D]s into account. */
+        collide_with_areas: boolean
+    }
+    /** Provides parameters for [method PhysicsDirectSpaceState3D.intersect_shape]. */
+    class PhysicsShapeQueryParameters3D extends RefCounted {
+        set_shape(shape: Resource): void
+        get_shape(): Resource
+        set_shape_rid(shape: RID): void
+        get_shape_rid(): RID
+        set_transform(transform: Transform3D): void
+        get_transform(): Transform3D
+        set_motion(motion: Vector3): void
+        get_motion(): Vector3
+        set_margin(margin: number /*f64*/): void
+        get_margin(): number /*f64*/
+        set_collision_mask(collision_mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_exclude(exclude: Array): void
+        get_exclude(): Array
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
+        exclude: Array
+        
+        /** The collision margin for the shape. */
+        margin: number /*f64*/
+        
+        /** The motion of the shape being queried for. */
+        motion: Vector2
+        
+        /** The [Shape3D] that will be used for collision/intersection queries. This stores the actual reference which avoids the shape to be released while being used for queries, so always prefer using this over [member shape_rid]. */
+        shape: Shape3D
+        
+        /** The queried shape's [RID] that will be used for collision/intersection queries. Use this over [member shape] if you want to optimize for performance using the Servers API:  
+         *  	  
+         */
+        shape_rid: RID
+        
+        /** The queried shape's transform matrix. */
+        transform: Transform3D
+        
+        /** If `true`, the query will take [PhysicsBody3D]s into account. */
+        collide_with_bodies: boolean
+        
+        /** If `true`, the query will take [Area3D]s into account. */
+        collide_with_areas: boolean
+    }
+    /** Provides parameters for [method PhysicsServer2D.body_test_motion]. */
+    class PhysicsTestMotionParameters2D extends RefCounted {
+        get_from(): Transform2D
+        set_from(from: Transform2D): void
+        get_motion(): Vector2
+        set_motion(motion: Vector2): void
+        get_margin(): number /*f64*/
+        set_margin(margin: number /*f64*/): void
+        is_collide_separation_ray_enabled(): boolean
+        set_collide_separation_ray_enabled(enabled: boolean): void
+        get_exclude_bodies(): Array
+        set_exclude_bodies(exclude_list: Array): void
+        get_exclude_objects(): Array
+        set_exclude_objects(exclude_list: Array): void
+        is_recovery_as_collision_enabled(): boolean
+        set_recovery_as_collision_enabled(enabled: boolean): void
+        
+        /** Transform in global space where the motion should start. Usually set to [member Node2D.global_transform] for the current body's transform. */
+        from: Transform2D
+        
+        /** Motion vector to define the length and direction of the motion to test. */
+        motion: Vector2
+        
+        /** Increases the size of the shapes involved in the collision detection. */
+        margin: number /*f64*/
+        
+        /** If set to `true`, shapes of type [constant PhysicsServer2D.SHAPE_SEPARATION_RAY] are used to detect collisions and can stop the motion. Can be useful when snapping to the ground.  
+         *  If set to `false`, shapes of type [constant PhysicsServer2D.SHAPE_SEPARATION_RAY] are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.  
+         */
+        collide_separation_ray: boolean
+        
+        /** Optional array of body [RID] to exclude from collision. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
+        exclude_bodies: Array
+        
+        /** Optional array of object unique instance ID to exclude from collision. See [method Object.get_instance_id]. */
+        exclude_objects: Array
+        
+        /** If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [CharacterBody2D] for improving floor detection during floor snapping.  
+         *  If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.  
+         */
+        recovery_as_collision: boolean
+    }
+    /** Provides parameters for [method PhysicsServer3D.body_test_motion]. */
+    class PhysicsTestMotionParameters3D extends RefCounted {
+        get_from(): Transform3D
+        set_from(from: Transform3D): void
+        get_motion(): Vector3
+        set_motion(motion: Vector3): void
+        get_margin(): number /*f64*/
+        set_margin(margin: number /*f64*/): void
+        get_max_collisions(): number /*i64*/
+        set_max_collisions(max_collisions: number /*i64*/): void
+        is_collide_separation_ray_enabled(): boolean
+        set_collide_separation_ray_enabled(enabled: boolean): void
+        get_exclude_bodies(): Array
+        set_exclude_bodies(exclude_list: Array): void
+        get_exclude_objects(): Array
+        set_exclude_objects(exclude_list: Array): void
+        is_recovery_as_collision_enabled(): boolean
+        set_recovery_as_collision_enabled(enabled: boolean): void
+        
+        /** Transform in global space where the motion should start. Usually set to [member Node3D.global_transform] for the current body's transform. */
+        from: Transform3D
+        
+        /** Motion vector to define the length and direction of the motion to test. */
+        motion: Vector3
+        
+        /** Increases the size of the shapes involved in the collision detection. */
+        margin: number /*f64*/
+        
+        /** Maximum number of returned collisions, between `1` and `32`. Always returns the deepest detected collisions. */
+        max_collisions: number /*i64*/
+        
+        /** If set to `true`, shapes of type [constant PhysicsServer3D.SHAPE_SEPARATION_RAY] are used to detect collisions and can stop the motion. Can be useful when snapping to the ground.  
+         *  If set to `false`, shapes of type [constant PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.  
+         */
+        collide_separation_ray: boolean
+        
+        /** Optional array of body [RID] to exclude from collision. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
+        exclude_bodies: Array
+        
+        /** Optional array of object unique instance ID to exclude from collision. See [method Object.get_instance_id]. */
+        exclude_objects: Array
+        
+        /** If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.  
+         *  If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.  
+         */
+        recovery_as_collision: boolean
+    }
+    /** Describes the motion and collision result from [method PhysicsServer2D.body_test_motion]. */
+    class PhysicsTestMotionResult2D extends RefCounted {
+        /** Returns the moving object's travel before collision. */
+        get_travel(): Vector2
+        
+        /** Returns the moving object's remaining movement vector. */
+        get_remainder(): Vector2
+        
+        /** Returns the point of collision in global coordinates, if a collision occurred. */
+        get_collision_point(): Vector2
+        
+        /** Returns the colliding body's shape's normal at the point of collision, if a collision occurred. */
+        get_collision_normal(): Vector2
+        
+        /** Returns the colliding body's velocity, if a collision occurred. */
+        get_collider_velocity(): Vector2
+        
+        /** Returns the unique instance ID of the colliding body's attached [Object], if a collision occurred. See [method Object.get_instance_id]. */
+        get_collider_id(): number /*i64*/
+        
+        /** Returns the colliding body's [RID] used by the [PhysicsServer2D], if a collision occurred. */
+        get_collider_rid(): RID
+        
+        /** Returns the colliding body's attached [Object], if a collision occurred. */
+        get_collider(): Object
+        
+        /** Returns the colliding body's shape index, if a collision occurred. See [CollisionObject2D]. */
+        get_collider_shape(): number /*i64*/
+        
+        /** Returns the moving object's colliding shape, if a collision occurred. */
+        get_collision_local_shape(): number /*i64*/
+        
+        /** Returns the length of overlap along the collision normal, if a collision occurred. */
+        get_collision_depth(): number /*f64*/
+        
+        /** Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`. */
+        get_collision_safe_fraction(): number /*f64*/
+        
+        /** Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`. */
+        get_collision_unsafe_fraction(): number /*f64*/
+    }
+    /** Describes the motion and collision result from [method PhysicsServer3D.body_test_motion]. */
+    class PhysicsTestMotionResult3D extends RefCounted {
+        /** Returns the moving object's travel before collision. */
+        get_travel(): Vector3
+        
+        /** Returns the moving object's remaining movement vector. */
+        get_remainder(): Vector3
+        
+        /** Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`. */
+        get_collision_safe_fraction(): number /*f64*/
+        
+        /** Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`. */
+        get_collision_unsafe_fraction(): number /*f64*/
+        
+        /** Returns the number of detected collisions. */
+        get_collision_count(): number /*i64*/
+        
+        /** Returns the point of collision in global coordinates given a collision index (the deepest collision by default), if a collision occurred. */
+        get_collision_point(collision_index: number /*i64*/ = 0): Vector3
+        
+        /** Returns the colliding body's shape's normal at the point of collision given a collision index (the deepest collision by default), if a collision occurred. */
+        get_collision_normal(collision_index: number /*i64*/ = 0): Vector3
+        
+        /** Returns the colliding body's velocity given a collision index (the deepest collision by default), if a collision occurred. */
+        get_collider_velocity(collision_index: number /*i64*/ = 0): Vector3
+        
+        /** Returns the unique instance ID of the colliding body's attached [Object] given a collision index (the deepest collision by default), if a collision occurred. See [method Object.get_instance_id]. */
+        get_collider_id(collision_index: number /*i64*/ = 0): number /*i64*/
+        
+        /** Returns the colliding body's [RID] used by the [PhysicsServer3D] given a collision index (the deepest collision by default), if a collision occurred. */
+        get_collider_rid(collision_index: number /*i64*/ = 0): RID
+        
+        /** Returns the colliding body's attached [Object] given a collision index (the deepest collision by default), if a collision occurred. */
+        get_collider(collision_index: number /*i64*/ = 0): Object
+        
+        /** Returns the colliding body's shape index given a collision index (the deepest collision by default), if a collision occurred. See [CollisionObject3D]. */
+        get_collider_shape(collision_index: number /*i64*/ = 0): number /*i64*/
+        
+        /** Returns the moving object's colliding shape given a collision index (the deepest collision by default), if a collision occurred. */
+        get_collision_local_shape(collision_index: number /*i64*/ = 0): number /*i64*/
+        
+        /** Returns the length of overlap along the collision normal given a collision index (the deepest collision by default), if a collision occurred. */
+        get_collision_depth(collision_index: number /*i64*/ = 0): number /*f64*/
+    }
+    /** A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely rotate. */
+    class PinJoint2D extends Joint2D {
+        set_softness(softness: number /*f64*/): void
+        get_softness(): number /*f64*/
+        set_angular_limit_lower(angular_limit_lower: number /*f64*/): void
+        get_angular_limit_lower(): number /*f64*/
+        set_angular_limit_upper(angular_limit_upper: number /*f64*/): void
+        get_angular_limit_upper(): number /*f64*/
+        set_motor_target_velocity(motor_target_velocity: number /*f64*/): void
+        get_motor_target_velocity(): number /*f64*/
+        set_motor_enabled(enabled: boolean): void
+        is_motor_enabled(): boolean
+        set_angular_limit_enabled(enabled: boolean): void
+        is_angular_limit_enabled(): boolean
+        
+        /** The higher this value, the more the bond to the pinned partner can flex. */
+        softness: number /*f64*/
+        
+        /** If `true`, the pin maximum and minimum rotation, defined by [member angular_limit_lower] and [member angular_limit_upper] are applied. */
+        angular_limit_enabled: boolean
+        
+        /** The minimum rotation. Only active if [member angular_limit_enabled] is `true`. */
+        angular_limit_lower: number /*f64*/
+        
+        /** The maximum rotation. Only active if [member angular_limit_enabled] is `true`. */
+        angular_limit_upper: number /*f64*/
+        
+        /** When activated, a motor turns the pin. */
+        motor_enabled: boolean
+        
+        /** Target speed for the motor. In radians per second. */
+        motor_target_velocity: number /*f64*/
+    }
+    namespace PinJoint3D {
+        enum Param {
+            /** The force with which the pinned objects stay in positional relation to each other. The higher, the stronger. */
+            PARAM_BIAS = 0,
+            
+            /** The force with which the pinned objects stay in velocity relation to each other. The higher, the stronger. */
+            PARAM_DAMPING = 1,
+            
+            /** If above 0, this value is the maximum value for an impulse that this Joint3D produces. */
+            PARAM_IMPULSE_CLAMP = 2,
+        }
+    }
+    /** A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely rotate. */
+    class PinJoint3D extends Joint3D {
+        /** Sets the value of the specified parameter. */
+        set_param(param: PinJoint3D.Param, value: number /*f64*/): void
+        
+        /** Returns the value of the specified parameter. */
+        get_param(param: PinJoint3D.Param): number /*f64*/
+    }
+    /** A [Cubemap] without image data. */
+    class PlaceholderCubemap extends PlaceholderTextureLayered {
+    }
+    /** A [CubemapArray] without image data. */
+    class PlaceholderCubemapArray extends PlaceholderTextureLayered {
+    }
+    /** Placeholder class for a material. */
+    class PlaceholderMaterial extends Material {
+    }
+    /** Placeholder class for a mesh. */
+    class PlaceholderMesh extends Mesh {
+        set_aabb(aabb: AABB): void
+        
+        /** The smallest [AABB] enclosing this mesh in local space. */
+        aabb: AABB
+    }
+    /** Placeholder class for a 2-dimensional texture. */
+    class PlaceholderTexture2D extends Texture2D {
+        set_size(size: Vector2): void
+        
+        /** The texture's size (in pixels). */
+        size: Vector2
+    }
+    /** Placeholder class for a 2-dimensional texture array. */
+    class PlaceholderTexture2DArray extends PlaceholderTextureLayered {
+    }
+    /** Placeholder class for a 3-dimensional texture. */
+    class PlaceholderTexture3D extends Texture3D {
+        set_size(size: Vector3i): void
+        get_size(): Vector3i
+        
+        /** The texture's size (in pixels). */
+        size: Vector3i
+    }
+    /** Placeholder class for a 2-dimensional texture array. */
+    class PlaceholderTextureLayered extends TextureLayered {
+        set_size(size: Vector2i): void
+        get_size(): Vector2i
+        set_layers(layers: number /*i64*/): void
+        
+        /** The size of each texture layer (in pixels). */
+        size: Vector2i
+        
+        /** The number of layers in the texture array. */
+        layers: number /*i64*/
+    }
+    namespace PlaneMesh {
+        enum Orientation {
+            /** [PlaneMesh] will face the positive X-axis. */
+            FACE_X = 0,
+            
+            /** [PlaneMesh] will face the positive Y-axis. This matches the behavior of the [PlaneMesh] in Godot 3.x. */
+            FACE_Y = 1,
+            
+            /** [PlaneMesh] will face the positive Z-axis. This matches the behavior of the QuadMesh in Godot 3.x. */
+            FACE_Z = 2,
+        }
+    }
+    /** Class representing a planar [PrimitiveMesh]. */
+    class PlaneMesh extends PrimitiveMesh {
+        set_size(size: Vector2): void
+        get_size(): Vector2
+        set_subdivide_width(subdivide: number /*i64*/): void
+        get_subdivide_width(): number /*i64*/
+        set_subdivide_depth(subdivide: number /*i64*/): void
+        get_subdivide_depth(): number /*i64*/
+        set_center_offset(offset: Vector3): void
+        get_center_offset(): Vector3
+        set_orientation(orientation: PlaneMesh.Orientation): void
+        get_orientation(): PlaneMesh.Orientation
+        
+        /** Size of the generated plane. */
+        size: Vector2
+        
+        /** Number of subdivision along the X axis. */
+        subdivide_width: number /*i64*/
+        
+        /** Number of subdivision along the Z axis. */
+        subdivide_depth: number /*i64*/
+        
+        /** Offset of the generated plane. Useful for particles. */
+        center_offset: Vector3
+        
+        /** Direction that the [PlaneMesh] is facing. See [enum Orientation] for options. */
+        orientation: number /*i64*/
+    }
+    class PluginConfigDialog extends ConfirmationDialog {
+        readonly plugin_ready: Signal // script_path: string, activate_name: string => void
+    }
+    /** Positional 2D light source. */
+    class PointLight2D extends Light2D {
+        set_texture(texture: Texture2D): void
+        get_texture(): Texture2D
+        set_texture_offset(texture_offset: Vector2): void
+        get_texture_offset(): Vector2
+        set_texture_scale(texture_scale: number /*f64*/): void
+        get_texture_scale(): number /*f64*/
+        
+        /** [Texture2D] used for the light's appearance. */
+        texture: Texture2D
+        
+        /** The offset of the light's [member texture]. */
+        offset: Vector2
+        
+        /** The [member texture]'s scale factor. */
+        texture_scale: number /*f64*/
+        
+        /** The height of the light. Used with 2D normal mapping. The units are in pixels, e.g. if the height is 100, then it will illuminate an object 100 pixels away at a 45° angle to the plane. */
+        height: number /*f64*/
+    }
+    /** Mesh with a single Point primitive. */
+    class PointMesh extends PrimitiveMesh {
+    }
+    /** A 2D polygon. */
+    class Polygon2D extends Node2D {
+        set_polygon(polygon: PackedVector2Array): void
+        get_polygon(): PackedVector2Array
+        set_uv(uv: PackedVector2Array): void
+        get_uv(): PackedVector2Array
+        set_color(color: Color): void
+        get_color(): Color
+        set_polygons(polygons: Array): void
+        get_polygons(): Array
+        set_vertex_colors(vertex_colors: PackedColorArray): void
+        get_vertex_colors(): PackedColorArray
+        set_texture(texture: Texture2D): void
+        get_texture(): Texture2D
+        set_texture_offset(texture_offset: Vector2): void
+        get_texture_offset(): Vector2
+        set_texture_rotation(texture_rotation: number /*f64*/): void
+        get_texture_rotation(): number /*f64*/
+        set_texture_scale(texture_scale: Vector2): void
+        get_texture_scale(): Vector2
+        set_invert_enabled(invert: boolean): void
+        get_invert_enabled(): boolean
+        set_antialiased(antialiased: boolean): void
+        get_antialiased(): boolean
+        set_invert_border(invert_border: number /*f64*/): void
+        get_invert_border(): number /*f64*/
+        set_offset(offset: Vector2): void
+        get_offset(): Vector2
+        
+        /** Adds a bone with the specified [param path] and [param weights]. */
+        add_bone(path: NodePath, weights: PackedFloat32Array): void
+        
+        /** Returns the number of bones in this [Polygon2D]. */
+        get_bone_count(): number /*i64*/
+        
+        /** Returns the path to the node associated with the specified bone. */
+        get_bone_path(index: number /*i64*/): NodePath
+        
+        /** Returns the weight values of the specified bone. */
+        get_bone_weights(index: number /*i64*/): PackedFloat32Array
+        
+        /** Removes the specified bone from this [Polygon2D]. */
+        erase_bone(index: number /*i64*/): void
+        
+        /** Removes all bones from this [Polygon2D]. */
+        clear_bones(): void
+        
+        /** Sets the path to the node associated with the specified bone. */
+        set_bone_path(index: number /*i64*/, path: NodePath): void
+        
+        /** Sets the weight values for the specified bone. */
+        set_bone_weights(index: number /*i64*/, weights: PackedFloat32Array): void
+        set_skeleton(skeleton: NodePath): void
+        get_skeleton(): NodePath
+        set_internal_vertex_count(internal_vertex_count: number /*i64*/): void
+        get_internal_vertex_count(): number /*i64*/
+        _set_bones(bones: Array): void
+        _get_bones(): Array
+        
+        /** The polygon's fill color. If [member texture] is set, it will be multiplied by this color. It will also be the default color for vertices not set in [member vertex_colors]. */
+        color: Color
+        
+        /** The offset applied to each vertex. */
+        offset: Vector2
+        
+        /** If `true`, polygon edges will be anti-aliased. */
+        antialiased: boolean
+        
+        /** The polygon's fill texture. Use [member uv] to set texture coordinates. */
+        texture: Texture2D
+        
+        /** Amount to offset the polygon's [member texture]. If set to `Vector2(0, 0)`, the texture's origin (its top-left corner) will be placed at the polygon's position. */
+        texture_offset: Vector2
+        
+        /** Amount to multiply the [member uv] coordinates when using [member texture]. Larger values make the texture smaller, and vice versa. */
+        texture_scale: Vector2
+        
+        /** The texture's rotation in radians. */
+        texture_rotation: number /*f64*/
+        
+        /** Path to a [Skeleton2D] node used for skeleton-based deformations of this polygon. If empty or invalid, skeletal deformations will not be used. */
+        skeleton: NodePath
+        
+        /** If `true`, the polygon will be inverted, containing the area outside the defined points and extending to the [member invert_border]. */
+        invert_enabled: boolean
+        
+        /** Added padding applied to the bounding box when [member invert_enabled] is set to `true`. Setting this value too small may result in a "Bad Polygon" error. */
+        invert_border: number /*f64*/
+        
+        /** The polygon's list of vertices. The final point will be connected to the first.  
+         *      
+         *  **Note:** This returns a copy of the [PackedVector2Array] rather than a reference.  
+         */
+        polygon: PackedVector2Array
+        
+        /** Texture coordinates for each vertex of the polygon. There should be one UV value per polygon vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`. */
+        uv: PackedVector2Array
+        
+        /** Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients. There should be one per polygon vertex. If there are fewer, undefined vertices will use [member color]. */
+        vertex_colors: PackedColorArray
+        
+        /** The list of polygons, in case more than one is being represented. Every individual polygon is stored as a [PackedInt32Array] where each [int] is an index to a point in [member polygon]. If empty, this property will be ignored, and the resulting single polygon will be composed of all points in [member polygon], using the order they are stored in. */
+        polygons: Array
+        
+        /** Internal list of [Bone2D] nodes used by the assigned [member skeleton]. Edited using the Polygon2D editor ("UV" button on the top toolbar). */
+        bones: Array
+        
+        /** Number of internal vertices, used for UV mapping. */
+        internal_vertex_count: number /*i64*/
+    }
+    class Polygon2DEditor extends AbstractPolygon2DEditor {
+        _update_bone_list(): void
+        _update_polygon_editing_state(): void
+    }
+    class Polygon2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
+    }
+    class Polygon3DEditor extends HBoxContainer {
+        _polygon_draw(): void
+    }
+    class Polygon3DEditorPlugin extends EditorPlugin {
+    }
+    /** Flat 2D polygon shape for use with occlusion culling in [OccluderInstance3D]. */
+    class PolygonOccluder3D extends Occluder3D {
+        set_polygon(polygon: PackedVector2Array): void
+        get_polygon(): PackedVector2Array
+        _has_editable_3d_polygon_no_depth(): boolean
+        
+        /** The polygon to use for occlusion culling. The polygon can be convex or concave, but it should have as few points as possible to maximize performance.  
+         *  The polygon must [i]not[/i] have intersecting lines. Otherwise, triangulation will fail (with an error message printed).  
+         */
+        polygon: PackedVector2Array
+    }
+    class PolygonPathFinder extends Resource {
+        setup(points: PackedVector2Array, connections: PackedInt32Array): void
+        find_path(from: Vector2, to: Vector2): PackedVector2Array
+        get_intersections(from: Vector2, to: Vector2): PackedVector2Array
+        get_closest_point(point: Vector2): Vector2
+        is_point_inside(point: Vector2): boolean
+        set_point_penalty(idx: number /*i64*/, penalty: number /*f64*/): void
+        get_point_penalty(idx: number /*i64*/): number /*f64*/
+        get_bounds(): Rect2
+        _set_data(data: Dictionary): void
+        _get_data(): Dictionary
+        data: Dictionary
+    }
+    /** Base class for contextual windows and panels with fixed position. */
+    class Popup extends Window {
+        /** Emitted when the popup is hidden. */
+        readonly popup_hide: Signal //  => void
+    }
+    /** A modal window used to display a list of options. */
+    class PopupMenu extends Popup {
+        /** Checks the provided [param event] against the [PopupMenu]'s shortcuts and accelerators, and activates the first item with matching events. If [param for_global_only] is `true`, only shortcuts and accelerators with `global` set to `true` will be called.  
+         *  Returns `true` if an item was successfully activated.  
+         *      
+         *  **Note:** Certain [Control]s, such as [MenuButton], will call this method automatically.  
+         */
+        activate_item_by_event(event: InputEvent, for_global_only: boolean = false): boolean
+        
+        /** Adds a new item with text [param label].  
+         *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
+         *      
+         *  **Note:** The provided [param id] is used only in [signal id_pressed] and [signal id_focused] signals. It's not related to the `index` arguments in e.g. [method set_item_checked].  
+         */
+        add_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        
+        /** Adds a new item with text [param label] and icon [param texture].  
+         *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
+         */
+        add_icon_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        
+        /** Adds a new checkable item with text [param label].  
+         *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
+         *      
+         *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
+         */
+        add_check_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        
+        /** Adds a new checkable item with text [param label] and icon [param texture].  
+         *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
+         *      
+         *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
+         */
+        add_icon_check_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        
+        /** Adds a new radio check button with text [param label].  
+         *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
+         *      
+         *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
+         */
+        add_radio_check_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        
+        /** Same as [method add_icon_check_item], but uses a radio check button. */
+        add_icon_radio_check_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        
+        /** Adds a new multistate item with text [param label].  
+         *  Contrarily to normal binary items, multistate items can have more than two states, as defined by [param max_states]. Each press or activate of the item will increase the state by one. The default value is defined by [param default_state].  
+         *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
+         */
+        add_multistate_item(label: string, max_states: number /*i64*/, default_state: number /*i64*/ = 0, id: number /*i64*/ = -1, accel: Key = 0): void
+        
+        /** Adds a [Shortcut].  
+         *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
+         *  If [param allow_echo] is `true`, the shortcut can be activated with echo events.  
+         */
+        add_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false, allow_echo: boolean = false): void
+        
+        /** Adds a new item and assigns the specified [Shortcut] and icon [param texture] to it. Sets the label of the checkbox to the [Shortcut]'s name.  
+         *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
+         *  If [param allow_echo] is `true`, the shortcut can be activated with echo events.  
+         */
+        add_icon_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false, allow_echo: boolean = false): void
+        
+        /** Adds a new checkable item and assigns the specified [Shortcut] to it. Sets the label of the checkbox to the [Shortcut]'s name.  
+         *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
+         *      
+         *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
+         */
+        add_check_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        
+        /** Adds a new checkable item and assigns the specified [Shortcut] and icon [param texture] to it. Sets the label of the checkbox to the [Shortcut]'s name.  
+         *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
+         *      
+         *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
+         */
+        add_icon_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        
+        /** Adds a new radio check button and assigns a [Shortcut] to it. Sets the label of the checkbox to the [Shortcut]'s name.  
+         *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
+         *      
+         *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
+         */
+        add_radio_check_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        
+        /** Same as [method add_icon_check_shortcut], but uses a radio check button. */
+        add_icon_radio_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        
+        /** Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. The [param submenu] argument must be the name of an existing [PopupMenu] that has been added as a child to this node. This submenu will be shown when the item is clicked, hovered for long enough, or activated using the `ui_select` or `ui_right` input actions.  
+         *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
+         */
+        add_submenu_item(label: string, submenu: string, id: number /*i64*/ = -1): void
+        
+        /** Sets the text of the item at the given [param index]. */
+        set_item_text(index: number /*i64*/, text: string): void
+        
+        /** Sets item's text base writing direction. */
+        set_item_text_direction(index: number /*i64*/, direction: Control.TextDirection): void
+        
+        /** Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+        set_item_language(index: number /*i64*/, language: string): void
+        
+        /** Replaces the [Texture2D] icon of the item at the given [param index]. */
+        set_item_icon(index: number /*i64*/, icon: Texture2D): void
+        
+        /** Sets the maximum allowed width of the icon for the item at the given [param index]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio. */
+        set_item_icon_max_width(index: number /*i64*/, width: number /*i64*/): void
+        
+        /** Sets a modulating [Color] of the item's icon at the given [param index]. */
+        set_item_icon_modulate(index: number /*i64*/, modulate: Color): void
+        
+        /** Sets the checkstate status of the item at the given [param index]. */
+        set_item_checked(index: number /*i64*/, checked: boolean): void
+        
+        /** Sets the [param id] of the item at the given [param index].  
+         *  The [param id] is used in [signal id_pressed] and [signal id_focused] signals.  
+         */
+        set_item_id(index: number /*i64*/, id: number /*i64*/): void
+        
+        /** Sets the accelerator of the item at the given [param index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. [param accel] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). */
+        set_item_accelerator(index: number /*i64*/, accel: Key): void
+        
+        /** Sets the metadata of an item, which may be of any type. You can later get it with [method get_item_metadata], which provides a simple way of assigning context data to items. */
+        set_item_metadata(index: number /*i64*/, metadata: any): void
+        
+        /** Enables/disables the item at the given [param index]. When it is disabled, it can't be selected and its action can't be invoked. */
+        set_item_disabled(index: number /*i64*/, disabled: boolean): void
+        
+        /** Sets the submenu of the item at the given [param index]. The submenu is the name of a child [PopupMenu] node that would be shown when the item is clicked. */
+        set_item_submenu(index: number /*i64*/, submenu: string): void
+        
+        /** Mark the item at the given [param index] as a separator, which means that it would be displayed as a line. If `false`, sets the type of the item to plain text. */
+        set_item_as_separator(index: number /*i64*/, enable: boolean): void
+        
+        /** Sets whether the item at the given [param index] has a checkbox. If `false`, sets the type of the item to plain text.  
+         *      
+         *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.  
+         */
+        set_item_as_checkable(index: number /*i64*/, enable: boolean): void
+        
+        /** Sets the type of the item at the given [param index] to radio button. If `false`, sets the type of the item to plain text. */
+        set_item_as_radio_checkable(index: number /*i64*/, enable: boolean): void
+        
+        /** Sets the [String] tooltip of the item at the given [param index]. */
+        set_item_tooltip(index: number /*i64*/, tooltip: string): void
+        
+        /** Sets a [Shortcut] for the item at the given [param index]. */
+        set_item_shortcut(index: number /*i64*/, shortcut: Shortcut, global: boolean = false): void
+        
+        /** Sets the horizontal offset of the item at the given [param index]. */
+        set_item_indent(index: number /*i64*/, indent: number /*i64*/): void
+        
+        /** Sets the state of a multistate item. See [method add_multistate_item] for details. */
+        set_item_multistate(index: number /*i64*/, state: number /*i64*/): void
+        
+        /** Disables the [Shortcut] of the item at the given [param index]. */
+        set_item_shortcut_disabled(index: number /*i64*/, disabled: boolean): void
+        
+        /** Toggles the check state of the item at the given [param index]. */
+        toggle_item_checked(index: number /*i64*/): void
+        
+        /** Cycle to the next state of a multistate item. See [method add_multistate_item] for details. */
+        toggle_item_multistate(index: number /*i64*/): void
+        
+        /** Returns the text of the item at the given [param index]. */
+        get_item_text(index: number /*i64*/): string
+        
+        /** Returns item's text base writing direction. */
+        get_item_text_direction(index: number /*i64*/): Control.TextDirection
+        
+        /** Returns item's text language code. */
+        get_item_language(index: number /*i64*/): string
+        
+        /** Returns the icon of the item at the given [param index]. */
+        get_item_icon(index: number /*i64*/): Texture2D
+        
+        /** Returns the maximum allowed width of the icon for the item at the given [param index]. */
+        get_item_icon_max_width(index: number /*i64*/): number /*i64*/
+        
+        /** Returns a [Color] modulating the item's icon at the given [param index]. */
+        get_item_icon_modulate(index: number /*i64*/): Color
+        
+        /** Returns `true` if the item at the given [param index] is checked. */
+        is_item_checked(index: number /*i64*/): boolean
+        
+        /** Returns the ID of the item at the given [param index]. `id` can be manually assigned, while index can not. */
+        get_item_id(index: number /*i64*/): number /*i64*/
+        
+        /** Returns the index of the item containing the specified [param id]. Index is automatically assigned to each item by the engine and can not be set manually. */
+        get_item_index(id: number /*i64*/): number /*i64*/
+        
+        /** Returns the accelerator of the item at the given [param index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The return value is an integer which is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the specified [param index], [method get_item_accelerator] returns `0` (corresponding to [constant @GlobalScope.KEY_NONE]). */
+        get_item_accelerator(index: number /*i64*/): Key
+        
+        /** Returns the metadata of the specified item, which might be of any type. You can set it with [method set_item_metadata], which provides a simple way of assigning context data to items. */
+        get_item_metadata(index: number /*i64*/): any
+        
+        /** Returns `true` if the item at the given [param index] is disabled. When it is disabled it can't be selected, or its action invoked.  
+         *  See [method set_item_disabled] for more info on how to disable an item.  
+         */
+        is_item_disabled(index: number /*i64*/): boolean
+        
+        /** Returns the submenu name of the item at the given [param index]. See [method add_submenu_item] for more info on how to add a submenu. */
+        get_item_submenu(index: number /*i64*/): string
+        
+        /** Returns `true` if the item is a separator. If it is, it will be displayed as a line. See [method add_separator] for more info on how to add a separator. */
+        is_item_separator(index: number /*i64*/): boolean
+        
+        /** Returns `true` if the item at the given [param index] is checkable in some way, i.e. if it has a checkbox or radio button.  
+         *      
+         *  **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.  
+         */
+        is_item_checkable(index: number /*i64*/): boolean
+        
+        /** Returns `true` if the item at the given [param index] has radio button-style checkability.  
+         *      
+         *  **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.  
+         */
+        is_item_radio_checkable(index: number /*i64*/): boolean
+        
+        /** Returns `true` if the specified item's shortcut is disabled. */
+        is_item_shortcut_disabled(index: number /*i64*/): boolean
+        
+        /** Returns the tooltip associated with the item at the given [param index]. */
+        get_item_tooltip(index: number /*i64*/): string
+        
+        /** Returns the [Shortcut] associated with the item at the given [param index]. */
+        get_item_shortcut(index: number /*i64*/): Shortcut
+        
+        /** Returns the horizontal offset of the item at the given [param index]. */
+        get_item_indent(index: number /*i64*/): number /*i64*/
+        
+        /** Sets the currently focused item as the given [param index].  
+         *  Passing `-1` as the index makes so that no item is focused.  
+         */
+        set_focused_item(index: number /*i64*/): void
+        
+        /** Returns the index of the currently focused item. Returns `-1` if no item is focused. */
+        get_focused_item(): number /*i64*/
+        set_item_count(count: number /*i64*/): void
+        get_item_count(): number /*i64*/
+        
+        /** Moves the scroll view to make the item at the given [param index] visible. */
+        scroll_to_item(index: number /*i64*/): void
+        
+        /** Removes the item at the given [param index] from the menu.  
+         *      
+         *  **Note:** The indices of items after the removed item will be shifted by one.  
+         */
+        remove_item(index: number /*i64*/): void
+        
+        /** Adds a separator between items. Separators also occupy an index, which you can set by using the [param id] parameter.  
+         *  A [param label] can optionally be provided, which will appear at the center of the separator.  
+         */
+        add_separator(label: string = '', id: number /*i64*/ = -1): void
+        
+        /** Removes all items from the [PopupMenu]. If [param free_submenus] is `true`, the submenu nodes are automatically freed. */
+        clear(free_submenus: boolean = false): void
+        set_hide_on_item_selection(enable: boolean): void
+        is_hide_on_item_selection(): boolean
+        set_hide_on_checkable_item_selection(enable: boolean): void
+        is_hide_on_checkable_item_selection(): boolean
+        set_hide_on_state_item_selection(enable: boolean): void
+        is_hide_on_state_item_selection(): boolean
+        set_submenu_popup_delay(seconds: number /*f64*/): void
+        get_submenu_popup_delay(): number /*f64*/
+        set_allow_search(allow: boolean): void
+        get_allow_search(): boolean
+        
+        /** If `true`, hides the [PopupMenu] when an item is selected. */
+        hide_on_item_selection: boolean
+        
+        /** If `true`, hides the [PopupMenu] when a checkbox or radio button is selected. */
+        hide_on_checkable_item_selection: boolean
+        
+        /** If `true`, hides the [PopupMenu] when a state item is selected. */
+        hide_on_state_item_selection: boolean
+        
+        /** Sets the delay time in seconds for the submenu item to popup on mouse hovering. If the popup menu is added as a child of another (acting as a submenu), it will inherit the delay time of the parent menu item. */
+        submenu_popup_delay: number /*f64*/
+        
+        /** If `true`, allows navigating [PopupMenu] with letter keys. */
+        allow_search: boolean
+        
+        /** The number of items currently in the list. */
+        item_count: any /*Items,item_*/
+        
+        /** Emitted when an item of some [param id] is pressed or its accelerator is activated.  
+         *      
+         *  **Note:** If [param id] is negative (either explicitly or due to overflow), this will return the corresponding index instead.  
+         */
+        readonly id_pressed: Signal // id: number /*i64*/ => void
+        
+        /** Emitted when the user navigated to an item of some [param id] using the [member ProjectSettings.input/ui_up] or [member ProjectSettings.input/ui_down] input action. */
+        readonly id_focused: Signal // id: number /*i64*/ => void
+        
+        /** Emitted when an item of some [param index] is pressed or its accelerator is activated. */
+        readonly index_pressed: Signal // index: number /*i64*/ => void
+        
+        /** Emitted when any item is added, modified or removed. */
+        readonly menu_changed: Signal //  => void
+    }
+    /** A popup with a panel background. */
+    class PopupPanel extends Popup {
+    }
+    namespace PortableCompressedTexture2D {
+        enum CompressionMode {
+            COMPRESSION_MODE_LOSSLESS = 0,
+            COMPRESSION_MODE_LOSSY = 1,
+            COMPRESSION_MODE_BASIS_UNIVERSAL = 2,
+            COMPRESSION_MODE_S3TC = 3,
+            COMPRESSION_MODE_ETC2 = 4,
+            COMPRESSION_MODE_BPTC = 5,
+        }
+    }
+    /** Provides a compressed texture for disk and/or VRAM in a way that is portable. */
+    class PortableCompressedTexture2D extends Texture2D {
+        /** Initializes the compressed texture from a base image. The compression mode must be provided.  
+         *  [param normal_map] is recommended to ensure optimum quality if this image will be used as a normal map.  
+         *  If lossy compression is requested, the quality setting can optionally be provided. This maps to Lossy WebP compression quality.  
+         */
+        create_from_image(image: Image, compression_mode: PortableCompressedTexture2D.CompressionMode, normal_map: boolean = false, lossy_quality: number /*f64*/ = 0.8): void
+        
+        /** Return the image format used (valid after initialized). */
+        get_format(): Image.Format
+        
+        /** Return the compression mode used (valid after initialized). */
+        get_compression_mode(): PortableCompressedTexture2D.CompressionMode
+        set_size_override(size: Vector2): void
+        get_size_override(): Vector2
+        set_keep_compressed_buffer(keep: boolean): void
+        is_keeping_compressed_buffer(): boolean
+        _set_data(data: PackedByteArray): void
+        _get_data(): PackedByteArray
+        
+        /** Overrides the flag globally for all textures of this type. This is used primarily by the editor. */
+        static set_keep_all_compressed_buffers(keep: boolean): void
+        
+        /** Return whether the flag is overridden for all textures of this type. */
+        static is_keeping_all_compressed_buffers(): boolean
+        _data: PackedByteArray
+        
+        /** Allow overriding the texture size (for 2D only). */
+        size_override: Vector2
+        
+        /** When running on the editor, this class will keep the source compressed data in memory. Otherwise, the source compressed data is lost after loading and the resource can't be re saved.  
+         *  This flag allows to keep the compressed data in memory if you intend it to persist after loading.  
+         */
+        keep_compressed_buffer: boolean
+    }
+    class PostImportPluginSkeletonRenamer extends EditorScenePostImportPlugin {
+    }
+    class PostImportPluginSkeletonRestFixer extends EditorScenePostImportPlugin {
+    }
+    class PostImportPluginSkeletonTrackOrganizer extends EditorScenePostImportPlugin {
+    }
+    /** Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh. */
+    class PrimitiveMesh extends Mesh {
+        /** Override this method to customize how this primitive mesh should be generated. Should return an [Array] where each element is another Array of values required for the mesh (see the [enum Mesh.ArrayType] constants). */
+        /* gdvirtual */ _create_mesh_array(): Array
+        _update(): void
+        set_material(material: Material): void
+        get_material(): Material
+        
+        /** Returns mesh arrays used to constitute surface of [Mesh]. The result can be passed to [method ArrayMesh.add_surface_from_arrays] to create a new surface. For example:  
+         *    
+         */
+        get_mesh_arrays(): Array
+        set_custom_aabb(aabb: AABB): void
+        get_custom_aabb(): AABB
+        set_flip_faces(flip_faces: boolean): void
+        get_flip_faces(): boolean
+        set_add_uv2(add_uv2: boolean): void
+        get_add_uv2(): boolean
+        set_uv2_padding(uv2_padding: number /*f64*/): void
+        get_uv2_padding(): number /*f64*/
+        _request_update(): void
+        
+        /** The current [Material] of the primitive mesh. */
+        material: BaseMaterial3D | ShaderMaterial
+        
+        /** Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices. */
+        custom_aabb: AABB
+        
+        /** If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn.  
+         *  This gives the same result as using [constant BaseMaterial3D.CULL_FRONT] in [member BaseMaterial3D.cull_mode].  
+         */
+        flip_faces: boolean
+        
+        /** If set, generates UV2 UV coordinates applying a padding using the [member uv2_padding] setting. UV2 is needed for lightmapping. */
+        add_uv2: boolean
+        
+        /** If [member add_uv2] is set, specifies the padding in pixels applied along seams of the mesh. Lower padding values allow making better use of the lightmap texture (resulting in higher texel density), but may introduce visible lightmap bleeding along edges.  
+         *  If the size of the lightmap texture can't be determined when generating the mesh, UV2 is calculated assuming a texture size of 1024x1024.  
+         */
+        uv2_padding: number /*f64*/
+    }
+    /** Class representing a prism-shaped [PrimitiveMesh]. */
+    class PrismMesh extends PrimitiveMesh {
+        set_left_to_right(left_to_right: number /*f64*/): void
+        get_left_to_right(): number /*f64*/
+        set_size(size: Vector3): void
+        get_size(): Vector3
+        set_subdivide_width(segments: number /*i64*/): void
+        get_subdivide_width(): number /*i64*/
+        set_subdivide_height(segments: number /*i64*/): void
+        get_subdivide_height(): number /*i64*/
+        set_subdivide_depth(segments: number /*i64*/): void
+        get_subdivide_depth(): number /*i64*/
+        
+        /** Displacement of the upper edge along the X axis. 0.0 positions edge straight above the bottom-left edge. */
+        left_to_right: number /*f64*/
+        
+        /** Size of the prism. */
         size: Vector3
-        end: Vector3
+        
+        /** Number of added edge loops along the X axis. */
+        subdivide_width: number /*i64*/
+        
+        /** Number of added edge loops along the Y axis. */
+        subdivide_height: number /*i64*/
+        
+        /** Number of added edge loops along the Z axis. */
+        subdivide_depth: number /*i64*/
     }
-    class Basis {
-        static readonly IDENTITY: Basis
-        static readonly FLIP_X: Basis
-        static readonly FLIP_Y: Basis
-        static readonly FLIP_Z: Basis
-        constructor()
-        constructor(from: Basis)
-        constructor(from: Quaternion)
-        constructor(axis: Vector3, angle: number /*f64*/)
-        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3)
-        inverse(): Basis
-        transposed(): Basis
-        orthonormalized(): Basis
-        determinant(): number /*f64*/
-        rotated(axis: Vector3, angle: number /*f64*/): Basis
-        scaled(scale: Vector3): Basis
-        get_scale(): Vector3
-        get_euler(order: number /*i64*/ = 2): Vector3
-        tdotx(with_: Vector3): number /*f64*/
-        tdoty(with_: Vector3): number /*f64*/
-        tdotz(with_: Vector3): number /*f64*/
-        slerp(to: Basis, weight: number /*f64*/): Basis
-        is_conformal(): boolean
-        is_equal_approx(b: Basis): boolean
-        is_finite(): boolean
-        get_rotation_quaternion(): Quaternion
-        static looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Basis
-        static from_scale(scale: Vector3): Basis
-        static from_euler(euler: Vector3, order: number /*i64*/ = 2): Basis
-        static MULTIPLY(left: Basis, right: Basis): Basis
-        static MULTIPLY(left: Basis, right: number /*f64*/): Basis
-        static MULTIPLY(left: Basis, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Basis): Vector3
-        static EQUAL(left: Basis, right: Basis): boolean
-        static NOT_EQUAL(left: Basis, right: Basis): boolean
-        x: Vector3
-        y: Vector3
-        z: Vector3
+    /** A material that defines a simple sky for a [Sky] resource. */
+    class ProceduralSkyMaterial extends Material {
+        set_sky_top_color(color: Color): void
+        get_sky_top_color(): Color
+        set_sky_horizon_color(color: Color): void
+        get_sky_horizon_color(): Color
+        set_sky_curve(curve: number /*f64*/): void
+        get_sky_curve(): number /*f64*/
+        set_sky_energy_multiplier(multiplier: number /*f64*/): void
+        get_sky_energy_multiplier(): number /*f64*/
+        set_sky_cover(sky_cover: Texture2D): void
+        get_sky_cover(): Texture2D
+        set_sky_cover_modulate(color: Color): void
+        get_sky_cover_modulate(): Color
+        set_ground_bottom_color(color: Color): void
+        get_ground_bottom_color(): Color
+        set_ground_horizon_color(color: Color): void
+        get_ground_horizon_color(): Color
+        set_ground_curve(curve: number /*f64*/): void
+        get_ground_curve(): number /*f64*/
+        set_ground_energy_multiplier(energy: number /*f64*/): void
+        get_ground_energy_multiplier(): number /*f64*/
+        set_sun_angle_max(degrees: number /*f64*/): void
+        get_sun_angle_max(): number /*f64*/
+        set_sun_curve(curve: number /*f64*/): void
+        get_sun_curve(): number /*f64*/
+        set_use_debanding(use_debanding: boolean): void
+        get_use_debanding(): boolean
+        
+        /** Color of the sky at the top. Blends with [member sky_horizon_color]. */
+        sky_top_color: Color
+        
+        /** Color of the sky at the horizon. Blends with [member sky_top_color]. */
+        sky_horizon_color: Color
+        
+        /** How quickly the [member sky_horizon_color] fades into the [member sky_top_color]. */
+        sky_curve: number /*f64*/
+        
+        /** Multiplier for sky color. A higher value will make the sky brighter. */
+        sky_energy_multiplier: number /*f64*/
+        
+        /** The sky cover texture to use. This texture must use an equirectangular projection (similar to [PanoramaSkyMaterial]). The texture's colors will be [i]added[/i] to the existing sky color, and will be multiplied by [member sky_energy_multiplier] and [member sky_cover_modulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look). */
+        sky_cover: Texture2D
+        
+        /** The tint to apply to the [member sky_cover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [member sky_cover]. */
+        sky_cover_modulate: Color
+        
+        /** Color of the ground at the bottom. Blends with [member ground_horizon_color]. */
+        ground_bottom_color: Color
+        
+        /** Color of the ground at the horizon. Blends with [member ground_bottom_color]. */
+        ground_horizon_color: Color
+        
+        /** How quickly the [member ground_horizon_color] fades into the [member ground_bottom_color]. */
+        ground_curve: number /*f64*/
+        
+        /** Multiplier for ground color. A higher value will make the ground brighter. */
+        ground_energy_multiplier: number /*f64*/
+        
+        /** Distance from center of sun where it fades out completely. */
+        sun_angle_max: number /*f64*/
+        
+        /** How quickly the sun fades away between the edge of the sun disk and [member sun_angle_max]. */
+        sun_curve: number /*f64*/
+        
+        /** If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky. */
+        use_debanding: boolean
     }
-    class Transform3D {
-        static readonly IDENTITY: Transform3D
-        static readonly FLIP_X: Transform3D
-        static readonly FLIP_Y: Transform3D
-        static readonly FLIP_Z: Transform3D
-        constructor()
-        constructor(from: Transform3D)
-        constructor(basis: Basis, origin: Vector3)
-        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3, origin: Vector3)
-        constructor(from: Projection)
-        inverse(): Transform3D
-        affine_inverse(): Transform3D
-        orthonormalized(): Transform3D
-        rotated(axis: Vector3, angle: number /*f64*/): Transform3D
-        rotated_local(axis: Vector3, angle: number /*f64*/): Transform3D
-        scaled(scale: Vector3): Transform3D
-        scaled_local(scale: Vector3): Transform3D
-        translated(offset: Vector3): Transform3D
-        translated_local(offset: Vector3): Transform3D
-        looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Transform3D
-        interpolate_with(xform: Transform3D, weight: number /*f64*/): Transform3D
-        is_equal_approx(xform: Transform3D): boolean
-        is_finite(): boolean
-        static MULTIPLY(left: Transform3D, right: Transform3D): Transform3D
-        static MULTIPLY(left: Transform3D, right: number /*f64*/): Transform3D
-        static MULTIPLY(left: Transform3D, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Transform3D): Vector3
-        static MULTIPLY(left: Transform3D, right: AABB): AABB
-        static MULTIPLY(left: AABB, right: Transform3D): AABB
-        static MULTIPLY(left: Transform3D, right: Plane): Plane
-        static MULTIPLY(left: Plane, right: Transform3D): Plane
-        static MULTIPLY(left: Transform3D, right: PackedVector3Array): PackedVector3Array
-        static MULTIPLY(left: PackedVector3Array, right: Transform3D): PackedVector3Array
-        static EQUAL(left: Transform3D, right: Transform3D): boolean
-        static NOT_EQUAL(left: Transform3D, right: Transform3D): boolean
-        basis: Basis
-        origin: Vector3
+    class ProceduralSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
-    namespace Projection {
-        enum Planes {
-            PLANE_NEAR = 0,
-            PLANE_FAR = 1,
-            PLANE_LEFT = 2,
-            PLANE_TOP = 3,
-            PLANE_RIGHT = 4,
-            PLANE_BOTTOM = 5,
+    namespace ProgressBar {
+        enum FillMode {
+            /** The progress bar fills from begin to end horizontally, according to the language direction. If [method Control.is_layout_rtl] returns `false`, it fills from left to right, and if it returns `true`, it fills from right to left. */
+            FILL_BEGIN_TO_END = 0,
+            
+            /** The progress bar fills from end to begin horizontally, according to the language direction. If [method Control.is_layout_rtl] returns `false`, it fills from right to left, and if it returns `true`, it fills from left to right. */
+            FILL_END_TO_BEGIN = 1,
+            
+            /** The progress fills from top to bottom. */
+            FILL_TOP_TO_BOTTOM = 2,
+            
+            /** The progress fills from bottom to top. */
+            FILL_BOTTOM_TO_TOP = 3,
         }
     }
-    class Projection {
-        static readonly IDENTITY: Projection
-        static readonly ZERO: Projection
-        constructor()
-        constructor(from: Projection)
-        constructor(from: Transform3D)
-        constructor(x_axis: Vector4, y_axis: Vector4, z_axis: Vector4, w_axis: Vector4)
-        static create_depth_correction(flip_y: boolean): Projection
-        static create_light_atlas_rect(rect: Rect2): Projection
-        static create_perspective(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
-        static create_perspective_hmd(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean, eye: number /*i64*/, intraocular_dist: number /*f64*/, convergence_dist: number /*f64*/): Projection
-        static create_for_hmd(eye: number /*i64*/, aspect: number /*f64*/, intraocular_dist: number /*f64*/, display_width: number /*f64*/, display_to_lens: number /*f64*/, oversample: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
-        static create_orthogonal(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
-        static create_orthogonal_aspect(size: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
-        static create_frustum(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
-        static create_frustum_aspect(size: number /*f64*/, aspect: number /*f64*/, offset: Vector2, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
-        static create_fit_aabb(aabb: AABB): Projection
-        determinant(): number /*f64*/
-        perspective_znear_adjusted(new_znear: number /*f64*/): Projection
-        get_projection_plane(plane: number /*i64*/): Plane
-        flipped_y(): Projection
-        jitter_offseted(offset: Vector2): Projection
-        static get_fovy(fovx: number /*f64*/, aspect: number /*f64*/): number /*f64*/
-        get_z_far(): number /*f64*/
-        get_z_near(): number /*f64*/
-        get_aspect(): number /*f64*/
-        get_fov(): number /*f64*/
-        is_orthogonal(): boolean
-        get_viewport_half_extents(): Vector2
-        get_far_plane_half_extents(): Vector2
-        inverse(): Projection
-        get_pixels_per_meter(for_pixel_width: number /*i64*/): number /*i64*/
-        get_lod_multiplier(): number /*f64*/
-        static MULTIPLY(left: Projection, right: Projection): Projection
-        static MULTIPLY(left: Projection, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: Projection): Vector4
-        static EQUAL(left: Projection, right: Projection): boolean
-        static NOT_EQUAL(left: Projection, right: Projection): boolean
-        x: Vector4
-        y: Vector4
-        z: Vector4
-        w: Vector4
+    /** A control used for visual representation of a percentage. */
+    class ProgressBar extends Range {
+        set_fill_mode(mode: number /*i64*/): void
+        get_fill_mode(): number /*i64*/
+        set_show_percentage(visible: boolean): void
+        is_percentage_shown(): boolean
+        
+        /** The fill direction. See [enum FillMode] for possible values. */
+        fill_mode: number /*i64*/
+        
+        /** If `true`, the fill percentage is displayed on the bar. */
+        show_percentage: boolean
     }
-    class Color {
-        static readonly ALICE_BLUE: Color
-        static readonly ANTIQUE_WHITE: Color
-        static readonly AQUA: Color
-        static readonly AQUAMARINE: Color
-        static readonly AZURE: Color
-        static readonly BEIGE: Color
-        static readonly BISQUE: Color
-        static readonly BLACK: Color
-        static readonly BLANCHED_ALMOND: Color
-        static readonly BLUE: Color
-        static readonly BLUE_VIOLET: Color
-        static readonly BROWN: Color
-        static readonly BURLYWOOD: Color
-        static readonly CADET_BLUE: Color
-        static readonly CHARTREUSE: Color
-        static readonly CHOCOLATE: Color
-        static readonly CORAL: Color
-        static readonly CORNFLOWER_BLUE: Color
-        static readonly CORNSILK: Color
-        static readonly CRIMSON: Color
-        static readonly CYAN: Color
-        static readonly DARK_BLUE: Color
-        static readonly DARK_CYAN: Color
-        static readonly DARK_GOLDENROD: Color
-        static readonly DARK_GRAY: Color
-        static readonly DARK_GREEN: Color
-        static readonly DARK_KHAKI: Color
-        static readonly DARK_MAGENTA: Color
-        static readonly DARK_OLIVE_GREEN: Color
-        static readonly DARK_ORANGE: Color
-        static readonly DARK_ORCHID: Color
-        static readonly DARK_RED: Color
-        static readonly DARK_SALMON: Color
-        static readonly DARK_SEA_GREEN: Color
-        static readonly DARK_SLATE_BLUE: Color
-        static readonly DARK_SLATE_GRAY: Color
-        static readonly DARK_TURQUOISE: Color
-        static readonly DARK_VIOLET: Color
-        static readonly DEEP_PINK: Color
-        static readonly DEEP_SKY_BLUE: Color
-        static readonly DIM_GRAY: Color
-        static readonly DODGER_BLUE: Color
-        static readonly FIREBRICK: Color
-        static readonly FLORAL_WHITE: Color
-        static readonly FOREST_GREEN: Color
-        static readonly FUCHSIA: Color
-        static readonly GAINSBORO: Color
-        static readonly GHOST_WHITE: Color
-        static readonly GOLD: Color
-        static readonly GOLDENROD: Color
-        static readonly GRAY: Color
-        static readonly GREEN: Color
-        static readonly GREEN_YELLOW: Color
-        static readonly HONEYDEW: Color
-        static readonly HOT_PINK: Color
-        static readonly INDIAN_RED: Color
-        static readonly INDIGO: Color
-        static readonly IVORY: Color
-        static readonly KHAKI: Color
-        static readonly LAVENDER: Color
-        static readonly LAVENDER_BLUSH: Color
-        static readonly LAWN_GREEN: Color
-        static readonly LEMON_CHIFFON: Color
-        static readonly LIGHT_BLUE: Color
-        static readonly LIGHT_CORAL: Color
-        static readonly LIGHT_CYAN: Color
-        static readonly LIGHT_GOLDENROD: Color
-        static readonly LIGHT_GRAY: Color
-        static readonly LIGHT_GREEN: Color
-        static readonly LIGHT_PINK: Color
-        static readonly LIGHT_SALMON: Color
-        static readonly LIGHT_SEA_GREEN: Color
-        static readonly LIGHT_SKY_BLUE: Color
-        static readonly LIGHT_SLATE_GRAY: Color
-        static readonly LIGHT_STEEL_BLUE: Color
-        static readonly LIGHT_YELLOW: Color
-        static readonly LIME: Color
-        static readonly LIME_GREEN: Color
-        static readonly LINEN: Color
-        static readonly MAGENTA: Color
-        static readonly MAROON: Color
-        static readonly MEDIUM_AQUAMARINE: Color
-        static readonly MEDIUM_BLUE: Color
-        static readonly MEDIUM_ORCHID: Color
-        static readonly MEDIUM_PURPLE: Color
-        static readonly MEDIUM_SEA_GREEN: Color
-        static readonly MEDIUM_SLATE_BLUE: Color
-        static readonly MEDIUM_SPRING_GREEN: Color
-        static readonly MEDIUM_TURQUOISE: Color
-        static readonly MEDIUM_VIOLET_RED: Color
-        static readonly MIDNIGHT_BLUE: Color
-        static readonly MINT_CREAM: Color
-        static readonly MISTY_ROSE: Color
-        static readonly MOCCASIN: Color
-        static readonly NAVAJO_WHITE: Color
-        static readonly NAVY_BLUE: Color
-        static readonly OLD_LACE: Color
-        static readonly OLIVE: Color
-        static readonly OLIVE_DRAB: Color
-        static readonly ORANGE: Color
-        static readonly ORANGE_RED: Color
-        static readonly ORCHID: Color
-        static readonly PALE_GOLDENROD: Color
-        static readonly PALE_GREEN: Color
-        static readonly PALE_TURQUOISE: Color
-        static readonly PALE_VIOLET_RED: Color
-        static readonly PAPAYA_WHIP: Color
-        static readonly PEACH_PUFF: Color
-        static readonly PERU: Color
-        static readonly PINK: Color
-        static readonly PLUM: Color
-        static readonly POWDER_BLUE: Color
-        static readonly PURPLE: Color
-        static readonly REBECCA_PURPLE: Color
-        static readonly RED: Color
-        static readonly ROSY_BROWN: Color
-        static readonly ROYAL_BLUE: Color
-        static readonly SADDLE_BROWN: Color
-        static readonly SALMON: Color
-        static readonly SANDY_BROWN: Color
-        static readonly SEA_GREEN: Color
-        static readonly SEASHELL: Color
-        static readonly SIENNA: Color
-        static readonly SILVER: Color
-        static readonly SKY_BLUE: Color
-        static readonly SLATE_BLUE: Color
-        static readonly SLATE_GRAY: Color
-        static readonly SNOW: Color
-        static readonly SPRING_GREEN: Color
-        static readonly STEEL_BLUE: Color
-        static readonly TAN: Color
-        static readonly TEAL: Color
-        static readonly THISTLE: Color
-        static readonly TOMATO: Color
-        static readonly TRANSPARENT: Color
-        static readonly TURQUOISE: Color
-        static readonly VIOLET: Color
-        static readonly WEB_GRAY: Color
-        static readonly WEB_GREEN: Color
-        static readonly WEB_MAROON: Color
-        static readonly WEB_PURPLE: Color
-        static readonly WHEAT: Color
-        static readonly WHITE: Color
-        static readonly WHITE_SMOKE: Color
-        static readonly YELLOW: Color
-        static readonly YELLOW_GREEN: Color
-        constructor()
-        constructor(from: Color)
-        constructor(from: Color, alpha: number /*f64*/)
-        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/)
-        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/, a: number /*f64*/)
-        constructor(code: string)
-        constructor(code: string, alpha: number /*f64*/)
-        to_argb32(): number /*i64*/
-        to_abgr32(): number /*i64*/
-        to_rgba32(): number /*i64*/
-        to_argb64(): number /*i64*/
-        to_abgr64(): number /*i64*/
-        to_rgba64(): number /*i64*/
-        to_html(with_alpha: boolean = true): string
-        clamp(min: Color = new Color(0, 0, 0, 0), max: Color = new Color(1, 1, 1, 1)): Color
-        inverted(): Color
-        lerp(to: Color, weight: number /*f64*/): Color
-        lightened(amount: number /*f64*/): Color
-        darkened(amount: number /*f64*/): Color
-        blend(over: Color): Color
-        get_luminance(): number /*f64*/
-        srgb_to_linear(): Color
-        linear_to_srgb(): Color
-        is_equal_approx(to: Color): boolean
-        static hex(hex: number /*i64*/): Color
-        static hex64(hex: number /*i64*/): Color
-        static html(rgba: string): Color
-        static html_is_valid(color: string): boolean
-        static from_string(str: string, default_: Color): Color
-        static from_hsv(h: number /*f64*/, s: number /*f64*/, v: number /*f64*/, alpha: number /*f64*/ = 1): Color
-        static from_ok_hsl(h: number /*f64*/, s: number /*f64*/, l: number /*f64*/, alpha: number /*f64*/ = 1): Color
-        static from_rgbe9995(rgbe: number /*i64*/): Color
-        static ADD(left: Color, right: Color): Color
-        static SUBTRACT(left: Color, right: Color): Color
-        static MULTIPLY(left: Color, right: Color): Color
-        static MULTIPLY(left: Color, right: number /*f64*/): Color
-        static MULTIPLY(left: number /*f64*/, right: Color): Color
-        static DIVIDE(left: Color, right: Color): Color
-        static DIVIDE(left: Color, right: number /*f64*/): Color
-        static NEGATE(left: Color, right: any): boolean
-        static EQUAL(left: Color, right: Color): boolean
-        static NOT_EQUAL(left: Color, right: Color): boolean
-        r: number /*f64*/
-        g: number /*f64*/
-        b: number /*f64*/
-        a: number /*f64*/
-        r8: number /*i64*/
-        g8: number /*i64*/
-        b8: number /*i64*/
-        a8: number /*i64*/
-        h: number /*f64*/
-        s: number /*f64*/
-        v: number /*f64*/
+    class ProgressDialog extends PopupPanel {
     }
-    class NodePath {
-        constructor()
-        constructor(from: NodePath)
-        constructor(from: string)
-        is_absolute(): boolean
-        get_name_count(): number /*i64*/
-        get_name(idx: number /*i64*/): StringName
-        get_subname_count(): number /*i64*/
-        hash(): number /*i64*/
-        get_subname(idx: number /*i64*/): StringName
-        get_concatenated_names(): StringName
-        get_concatenated_subnames(): StringName
-        get_as_property_path(): NodePath
-        is_empty(): boolean
-        static EQUAL(left: NodePath, right: NodePath): boolean
-        static NOT_EQUAL(left: NodePath, right: NodePath): boolean
+    class ProjectExportDialog extends ConfirmationDialog {
+        _export_all(_unnamed_arg0: boolean): void
+        set_export_path(_unnamed_arg0: string): void
+        get_export_path(): string
+        get_current_preset(): any /*EditorExportPreset*/
+        export_path: string
     }
-    class RID {
-        constructor()
-        constructor(from: RID)
+    class ProjectExportTextureFormatError extends HBoxContainer {
+        readonly texture_format_enabled: Signal //  => void
+    }
+    class ProjectSettingsEditor extends AcceptDialog {
+        queue_save(): void
+        _update_action_map_editor(): void
+    }
+    class PropertySelector extends ConfirmationDialog {
+        readonly selected: Signal // name: string => void
+    }
+    /** Interpolates an [Object]'s property over time. */
+    class PropertyTweener extends Tweener {
+        /** Sets a custom initial value to the [PropertyTweener].  
+         *  **Example:**  
+         *    
+         */
+        from(value: any): PropertyTweener
+        
+        /** Makes the [PropertyTweener] use the current property value (i.e. at the time of creating this [PropertyTweener]) as a starting point. This is equivalent of using [method from] with the current value. These two calls will do the same:  
+         *    
+         */
+        from_current(): PropertyTweener
+        
+        /** When called, the final value will be used as a relative value instead.  
+         *  **Example:**  
+         *    
+         */
+        as_relative(): PropertyTweener
+        
+        /** Sets the type of used transition from [enum Tween.TransitionType]. If not set, the default transition is used from the [Tween] that contains this Tweener. */
+        set_trans(trans: Tween.TransitionType): PropertyTweener
+        
+        /** Sets the type of used easing from [enum Tween.EaseType]. If not set, the default easing is used from the [Tween] that contains this Tweener. */
+        set_ease(ease: Tween.EaseType): PropertyTweener
+        
+        /** Sets the time in seconds after which the [PropertyTweener] will start interpolating. By default there's no delay. */
+        set_delay(delay: number /*f64*/): PropertyTweener
+    }
+    /** Class representing a square mesh facing the camera. */
+    class QuadMesh extends PlaneMesh {
+    }
+    /** Flat plane shape for use with occlusion culling in [OccluderInstance3D]. */
+    class QuadOccluder3D extends Occluder3D {
+        set_size(size: Vector2): void
+        get_size(): Vector2
+        
+        /** The quad's size in 3D units. */
+        size: Vector2
+    }
+    /** Attachment format (used by [RenderingDevice]). */
+    class RDAttachmentFormat extends RefCounted {
+        set_format(p_member: RenderingDevice.DataFormat): void
+        get_format(): RenderingDevice.DataFormat
+        set_samples(p_member: RenderingDevice.TextureSamples): void
+        get_samples(): RenderingDevice.TextureSamples
+        set_usage_flags(p_member: number /*i64*/): void
+        get_usage_flags(): number /*i64*/
+        
+        /** The attachment's data format. */
+        format: number /*i64*/
+        
+        /** The number of samples used when sampling the attachment. */
+        samples: number /*i64*/
+        
+        /** The attachment's usage flags, which determine what can be done with it. */
+        usage_flags: number /*i64*/
+    }
+    /** Framebuffer pass attachment description (used by [RenderingDevice]). */
+    class RDFramebufferPass extends RefCounted {
+        /** Attachment is unused. */
+        static readonly ATTACHMENT_UNUSED = -1
+        set_color_attachments(p_member: PackedInt32Array): void
+        get_color_attachments(): PackedInt32Array
+        set_input_attachments(p_member: PackedInt32Array): void
+        get_input_attachments(): PackedInt32Array
+        set_resolve_attachments(p_member: PackedInt32Array): void
+        get_resolve_attachments(): PackedInt32Array
+        set_preserve_attachments(p_member: PackedInt32Array): void
+        get_preserve_attachments(): PackedInt32Array
+        set_depth_attachment(p_member: number /*i64*/): void
+        get_depth_attachment(): number /*i64*/
+        
+        /** Color attachments in order starting from 0. If this attachment is not used by the shader, pass ATTACHMENT_UNUSED to skip. */
+        color_attachments: PackedInt32Array
+        
+        /** Used for multipass framebuffers (more than one render pass). Converts an attachment to an input. Make sure to also supply it properly in the [RDUniform] for the uniform set. */
+        input_attachments: PackedInt32Array
+        
+        /** If the color attachments are multisampled, non-multisampled resolve attachments can be provided. */
+        resolve_attachments: PackedInt32Array
+        
+        /** Attachments to preserve in this pass (otherwise they are erased). */
+        preserve_attachments: PackedInt32Array
+        
+        /** Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this pass. */
+        depth_attachment: number /*i64*/
+    }
+    /** Pipeline color blend state (used by [RenderingDevice]). */
+    class RDPipelineColorBlendState extends RefCounted {
+        set_enable_logic_op(p_member: boolean): void
+        get_enable_logic_op(): boolean
+        set_logic_op(p_member: RenderingDevice.LogicOperation): void
+        get_logic_op(): RenderingDevice.LogicOperation
+        set_blend_constant(p_member: Color): void
+        get_blend_constant(): Color
+        set_attachments(attachments: Array): void
+        get_attachments(): Array
+        
+        /** If `true`, performs the logic operation defined in [member logic_op]. */
+        enable_logic_op: boolean
+        
+        /** The logic operation to perform for blending. Only effective if [member enable_logic_op] is `true`. */
+        logic_op: number /*i64*/
+        
+        /** The constant color to blend with. See also [method RenderingDevice.draw_list_set_blend_constants]. */
+        blend_constant: Color
+        
+        /** The attachments that are blended together. */
+        attachments: Array
+    }
+    /** Pipeline color blend state attachment (used by [RenderingDevice]). */
+    class RDPipelineColorBlendStateAttachment extends RefCounted {
+        /** Convenience method to perform standard mix blending with straight (non-premultiplied) alpha. This sets [member enable_blend] to `true`, [member src_color_blend_factor] to [constant RenderingDevice.BLEND_FACTOR_SRC_ALPHA], [member dst_color_blend_factor] to [constant RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA], [member src_alpha_blend_factor] to [constant RenderingDevice.BLEND_FACTOR_SRC_ALPHA] and [member dst_alpha_blend_factor] to [constant RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA]. */
+        set_as_mix(): void
+        set_enable_blend(p_member: boolean): void
+        get_enable_blend(): boolean
+        set_src_color_blend_factor(p_member: RenderingDevice.BlendFactor): void
+        get_src_color_blend_factor(): RenderingDevice.BlendFactor
+        set_dst_color_blend_factor(p_member: RenderingDevice.BlendFactor): void
+        get_dst_color_blend_factor(): RenderingDevice.BlendFactor
+        set_color_blend_op(p_member: RenderingDevice.BlendOperation): void
+        get_color_blend_op(): RenderingDevice.BlendOperation
+        set_src_alpha_blend_factor(p_member: RenderingDevice.BlendFactor): void
+        get_src_alpha_blend_factor(): RenderingDevice.BlendFactor
+        set_dst_alpha_blend_factor(p_member: RenderingDevice.BlendFactor): void
+        get_dst_alpha_blend_factor(): RenderingDevice.BlendFactor
+        set_alpha_blend_op(p_member: RenderingDevice.BlendOperation): void
+        get_alpha_blend_op(): RenderingDevice.BlendOperation
+        set_write_r(p_member: boolean): void
+        get_write_r(): boolean
+        set_write_g(p_member: boolean): void
+        get_write_g(): boolean
+        set_write_b(p_member: boolean): void
+        get_write_b(): boolean
+        set_write_a(p_member: boolean): void
+        get_write_a(): boolean
+        
+        /** If `true`, performs blending between the source and destination according to the factors defined in [member src_color_blend_factor], [member dst_color_blend_factor], [member src_alpha_blend_factor] and [member dst_alpha_blend_factor]. The blend modes [member color_blend_op] and [member alpha_blend_op] are also taken into account, with [member write_r], [member write_g], [member write_b] and [member write_a] controlling the output. */
+        enable_blend: boolean
+        
+        /** Controls how the blend factor for the color channels is determined based on the source's fragments. */
+        src_color_blend_factor: number /*i64*/
+        
+        /** Controls how the blend factor for the color channels is determined based on the destination's fragments. */
+        dst_color_blend_factor: number /*i64*/
+        
+        /** The blend mode to use for the red/green/blue color channels. */
+        color_blend_op: number /*i64*/
+        
+        /** Controls how the blend factor for the alpha channel is determined based on the source's fragments. */
+        src_alpha_blend_factor: number /*i64*/
+        
+        /** Controls how the blend factor for the alpha channel is determined based on the destination's fragments. */
+        dst_alpha_blend_factor: number /*i64*/
+        
+        /** The blend mode to use for the alpha channel. */
+        alpha_blend_op: number /*i64*/
+        
+        /** If `true`, writes the new red color channel to the final result. */
+        write_r: boolean
+        
+        /** If `true`, writes the new green color channel to the final result. */
+        write_g: boolean
+        
+        /** If `true`, writes the new blue color channel to the final result. */
+        write_b: boolean
+        
+        /** If `true`, writes the new alpha channel to the final result. */
+        write_a: boolean
+    }
+    /** Pipeline depth/stencil state (used by [RenderingDevice]). */
+    class RDPipelineDepthStencilState extends RefCounted {
+        set_enable_depth_test(p_member: boolean): void
+        get_enable_depth_test(): boolean
+        set_enable_depth_write(p_member: boolean): void
+        get_enable_depth_write(): boolean
+        set_depth_compare_operator(p_member: RenderingDevice.CompareOperator): void
+        get_depth_compare_operator(): RenderingDevice.CompareOperator
+        set_enable_depth_range(p_member: boolean): void
+        get_enable_depth_range(): boolean
+        set_depth_range_min(p_member: number /*f64*/): void
+        get_depth_range_min(): number /*f64*/
+        set_depth_range_max(p_member: number /*f64*/): void
+        get_depth_range_max(): number /*f64*/
+        set_enable_stencil(p_member: boolean): void
+        get_enable_stencil(): boolean
+        set_front_op_fail(p_member: RenderingDevice.StencilOperation): void
+        get_front_op_fail(): RenderingDevice.StencilOperation
+        set_front_op_pass(p_member: RenderingDevice.StencilOperation): void
+        get_front_op_pass(): RenderingDevice.StencilOperation
+        set_front_op_depth_fail(p_member: RenderingDevice.StencilOperation): void
+        get_front_op_depth_fail(): RenderingDevice.StencilOperation
+        set_front_op_compare(p_member: RenderingDevice.CompareOperator): void
+        get_front_op_compare(): RenderingDevice.CompareOperator
+        set_front_op_compare_mask(p_member: number /*i64*/): void
+        get_front_op_compare_mask(): number /*i64*/
+        set_front_op_write_mask(p_member: number /*i64*/): void
+        get_front_op_write_mask(): number /*i64*/
+        set_front_op_reference(p_member: number /*i64*/): void
+        get_front_op_reference(): number /*i64*/
+        set_back_op_fail(p_member: RenderingDevice.StencilOperation): void
+        get_back_op_fail(): RenderingDevice.StencilOperation
+        set_back_op_pass(p_member: RenderingDevice.StencilOperation): void
+        get_back_op_pass(): RenderingDevice.StencilOperation
+        set_back_op_depth_fail(p_member: RenderingDevice.StencilOperation): void
+        get_back_op_depth_fail(): RenderingDevice.StencilOperation
+        set_back_op_compare(p_member: RenderingDevice.CompareOperator): void
+        get_back_op_compare(): RenderingDevice.CompareOperator
+        set_back_op_compare_mask(p_member: number /*i64*/): void
+        get_back_op_compare_mask(): number /*i64*/
+        set_back_op_write_mask(p_member: number /*i64*/): void
+        get_back_op_write_mask(): number /*i64*/
+        set_back_op_reference(p_member: number /*i64*/): void
+        get_back_op_reference(): number /*i64*/
+        
+        /** If `true`, enables depth testing which allows objects to be automatically occluded by other objects based on their depth. This also allows objects to be partially occluded by other objects. If `false`, objects will appear in the order they were drawn (like in Godot's 2D renderer). */
+        enable_depth_test: boolean
+        
+        /** If `true`, writes to the depth buffer whenever the depth test returns true. Only works when enable_depth_test is also true. */
+        enable_depth_write: boolean
+        
+        /** The method used for comparing the previous and current depth values. */
+        depth_compare_operator: number /*i64*/
+        
+        /** If `true`, each depth value will be tested to see if it is between [member depth_range_min] and [member depth_range_max]. If it is outside of these values, it is discarded. */
+        enable_depth_range: boolean
+        
+        /** The minimum depth that returns true for [member enable_depth_range]. */
+        depth_range_min: number /*f64*/
+        
+        /** The maximum depth that returns true for [member enable_depth_range]. */
+        depth_range_max: number /*f64*/
+        
+        /** If `true`, enables stencil testing. There are separate stencil buffers for front-facing triangles and back-facing triangles. See properties that begin with "front_op" and properties with "back_op" for each. */
+        enable_stencil: boolean
+        
+        /** The operation to perform on the stencil buffer for front pixels that fail the stencil test. */
+        front_op_fail: number /*i64*/
+        
+        /** The operation to perform on the stencil buffer for front pixels that pass the stencil test. */
+        front_op_pass: number /*i64*/
+        
+        /** The operation to perform on the stencil buffer for front pixels that pass the stencil test but fail the depth test. */
+        front_op_depth_fail: number /*i64*/
+        
+        /** The method used for comparing the previous front stencil value and [member front_op_reference]. */
+        front_op_compare: number /*i64*/
+        
+        /** Selects which bits from the front stencil value will be compared. */
+        front_op_compare_mask: number /*i64*/
+        
+        /** Selects which bits from the front stencil value will be changed. */
+        front_op_write_mask: number /*i64*/
+        
+        /** The value the previous front stencil value will be compared to. */
+        front_op_reference: number /*i64*/
+        
+        /** The operation to perform on the stencil buffer for back pixels that fail the stencil test */
+        back_op_fail: number /*i64*/
+        
+        /** The operation to perform on the stencil buffer for back pixels that pass the stencil test. */
+        back_op_pass: number /*i64*/
+        
+        /** The operation to perform on the stencil buffer for back pixels that pass the stencil test but fail the depth test. */
+        back_op_depth_fail: number /*i64*/
+        
+        /** The method used for comparing the previous back stencil value and [member back_op_reference]. */
+        back_op_compare: number /*i64*/
+        
+        /** Selects which bits from the back stencil value will be compared. */
+        back_op_compare_mask: number /*i64*/
+        
+        /** Selects which bits from the back stencil value will be changed. */
+        back_op_write_mask: number /*i64*/
+        
+        /** The value the previous back stencil value will be compared to. */
+        back_op_reference: number /*i64*/
+    }
+    /** Pipeline multisample state (used by [RenderingDevice]). */
+    class RDPipelineMultisampleState extends RefCounted {
+        set_sample_count(p_member: RenderingDevice.TextureSamples): void
+        get_sample_count(): RenderingDevice.TextureSamples
+        set_enable_sample_shading(p_member: boolean): void
+        get_enable_sample_shading(): boolean
+        set_min_sample_shading(p_member: number /*f64*/): void
+        get_min_sample_shading(): number /*f64*/
+        set_enable_alpha_to_coverage(p_member: boolean): void
+        get_enable_alpha_to_coverage(): boolean
+        set_enable_alpha_to_one(p_member: boolean): void
+        get_enable_alpha_to_one(): boolean
+        set_sample_masks(masks: Array): void
+        get_sample_masks(): Array
+        
+        /** The number of MSAA samples (or SSAA samples if [member enable_sample_shading] is `true`) to perform. Higher values result in better antialiasing, at the cost of performance. */
+        sample_count: number /*i64*/
+        
+        /** If `true`, enables per-sample shading which replaces MSAA by SSAA. This provides higher quality antialiasing that works with transparent (alpha scissor) edges. This has a very high performance cost. See also [member min_sample_shading]. See the [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-sampleshading]per-sample shading Vulkan documentation[/url] for more details. */
+        enable_sample_shading: boolean
+        
+        /** The multiplier of [member sample_count] that determines how many samples are performed for each fragment. Must be between `0.0` and `1.0` (inclusive). Only effective if [member enable_sample_shading] is `true`. If [member min_sample_shading] is `1.0`, fragment invocation must only read from the coverage index sample. Tile image access must not be used if [member enable_sample_shading] is [i]not[/i] `1.0`. */
+        min_sample_shading: number /*f64*/
+        
+        /** If `true`, alpha to coverage is enabled. This generates a temporary coverage value based on the alpha component of the fragment's first color output. This allows alpha transparency to make use of multisample antialiasing. */
+        enable_alpha_to_coverage: boolean
+        
+        /** If `true`, alpha is forced to either `0.0` or `1.0`. This allows hardening the edges of antialiased alpha transparencies. Only relevant if [member enable_alpha_to_coverage] is `true`. */
+        enable_alpha_to_one: boolean
+        
+        /** The sample mask array. See the [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-samplemask]sample mask Vulkan documentation[/url] for more details. */
+        sample_masks: Array
+    }
+    /** Pipeline rasterization state (used by [RenderingDevice]). */
+    class RDPipelineRasterizationState extends RefCounted {
+        set_enable_depth_clamp(p_member: boolean): void
+        get_enable_depth_clamp(): boolean
+        set_discard_primitives(p_member: boolean): void
+        get_discard_primitives(): boolean
+        set_wireframe(p_member: boolean): void
+        get_wireframe(): boolean
+        set_cull_mode(p_member: RenderingDevice.PolygonCullMode): void
+        get_cull_mode(): RenderingDevice.PolygonCullMode
+        set_front_face(p_member: RenderingDevice.PolygonFrontFace): void
+        get_front_face(): RenderingDevice.PolygonFrontFace
+        set_depth_bias_enabled(p_member: boolean): void
+        get_depth_bias_enabled(): boolean
+        set_depth_bias_constant_factor(p_member: number /*f64*/): void
+        get_depth_bias_constant_factor(): number /*f64*/
+        set_depth_bias_clamp(p_member: number /*f64*/): void
+        get_depth_bias_clamp(): number /*f64*/
+        set_depth_bias_slope_factor(p_member: number /*f64*/): void
+        get_depth_bias_slope_factor(): number /*f64*/
+        set_line_width(p_member: number /*f64*/): void
+        get_line_width(): number /*f64*/
+        set_patch_control_points(p_member: number /*i64*/): void
+        get_patch_control_points(): number /*i64*/
+        enable_depth_clamp: boolean
+        
+        /** If `true`, primitives are discarded immediately before the rasterization stage. */
+        discard_primitives: boolean
+        
+        /** If `true`, performs wireframe rendering for triangles instead of flat or textured rendering. */
+        wireframe: boolean
+        
+        /** The cull mode to use when drawing polygons, which determines whether front faces or backfaces are hidden. */
+        cull_mode: number /*i64*/
+        
+        /** The winding order to use to determine which face of a triangle is considered its front face. */
+        front_face: number /*i64*/
+        depth_bias_enabled: boolean
+        depth_bias_constant_factor: number /*f64*/
+        depth_bias_clamp: number /*f64*/
+        depth_bias_slope_factor: number /*f64*/
+        
+        /** The line width to use when drawing lines (in pixels). Thick lines may not be supported on all hardware. */
+        line_width: number /*f64*/
+        
+        /** The number of control points to use when drawing a patch with tessellation enabled. Higher values result in higher quality at the cost of performance. */
+        patch_control_points: number /*i64*/
+    }
+    /** Pipeline specialization constant (used by [RenderingDevice]). */
+    class RDPipelineSpecializationConstant extends RefCounted {
+        set_value(value: any): void
+        get_value(): any
+        set_constant_id(constant_id: number /*i64*/): void
+        get_constant_id(): number /*i64*/
+        
+        /** The specialization constant's value. Only [bool], [int] and [float] types are valid for specialization constants. */
+        value: any
+        
+        /** The identifier of the specialization constant. This is a value starting from `0` and that increments for every different specialization constant for a given shader. */
+        constant_id: number /*i64*/
+    }
+    /** Sampler state (used by [RenderingDevice]). */
+    class RDSamplerState extends RefCounted {
+        set_mag_filter(p_member: RenderingDevice.SamplerFilter): void
+        get_mag_filter(): RenderingDevice.SamplerFilter
+        set_min_filter(p_member: RenderingDevice.SamplerFilter): void
+        get_min_filter(): RenderingDevice.SamplerFilter
+        set_mip_filter(p_member: RenderingDevice.SamplerFilter): void
+        get_mip_filter(): RenderingDevice.SamplerFilter
+        set_repeat_u(p_member: RenderingDevice.SamplerRepeatMode): void
+        get_repeat_u(): RenderingDevice.SamplerRepeatMode
+        set_repeat_v(p_member: RenderingDevice.SamplerRepeatMode): void
+        get_repeat_v(): RenderingDevice.SamplerRepeatMode
+        set_repeat_w(p_member: RenderingDevice.SamplerRepeatMode): void
+        get_repeat_w(): RenderingDevice.SamplerRepeatMode
+        set_lod_bias(p_member: number /*f64*/): void
+        get_lod_bias(): number /*f64*/
+        set_use_anisotropy(p_member: boolean): void
+        get_use_anisotropy(): boolean
+        set_anisotropy_max(p_member: number /*f64*/): void
+        get_anisotropy_max(): number /*f64*/
+        set_enable_compare(p_member: boolean): void
+        get_enable_compare(): boolean
+        set_compare_op(p_member: RenderingDevice.CompareOperator): void
+        get_compare_op(): RenderingDevice.CompareOperator
+        set_min_lod(p_member: number /*f64*/): void
+        get_min_lod(): number /*f64*/
+        set_max_lod(p_member: number /*f64*/): void
+        get_max_lod(): number /*f64*/
+        set_border_color(p_member: RenderingDevice.SamplerBorderColor): void
+        get_border_color(): RenderingDevice.SamplerBorderColor
+        set_unnormalized_uvw(p_member: boolean): void
+        get_unnormalized_uvw(): boolean
+        
+        /** The sampler's magnification filter. */
+        mag_filter: number /*i64*/
+        min_filter: number /*i64*/
+        
+        /** The filtering method to use for mipmaps. */
+        mip_filter: number /*i64*/
+        
+        /** The repeat mode to use along the U axis of UV coordinates. This affects the returned values if sampling outside the UV bounds. */
+        repeat_u: number /*i64*/
+        
+        /** The repeat mode to use along the V axis of UV coordinates. This affects the returned values if sampling outside the UV bounds. */
+        repeat_v: number /*i64*/
+        
+        /** The repeat mode to use along the W axis of UV coordinates. This affects the returned values if sampling outside the UV bounds. Only effective for 3D samplers. */
+        repeat_w: number /*i64*/
+        
+        /** The mipmap LOD bias to use. Positive values will make the sampler blurrier at a given distance, while negative values will make the sampler sharper at a given distance (at the risk of looking grainy). Recommended values are between `-0.5` and `0.0`. Only effective if the sampler has mipmaps available. */
+        lod_bias: number /*f64*/
+        
+        /** If `true`, perform anisotropic sampling. See [member anisotropy_max]. */
+        use_anisotropy: boolean
+        
+        /** Maximum anisotropy that can be used when sampling. Only effective if [member use_anisotropy] is `true`. Higher values result in a sharper sampler at oblique angles, at the cost of performance (due to memory bandwidth). This value may be limited by the graphics hardware in use. Most graphics hardware only supports values up to `16.0`.  
+         *  If [member anisotropy_max] is `1.0`, forcibly disables anisotropy even if [member use_anisotropy] is `true`.  
+         */
+        anisotropy_max: number /*f64*/
+        
+        /** If `true`, returned values will be based on the comparison operation defined in [member compare_op]. This is a hardware-based approach and is therefore faster than performing this manually in a shader. For example, compare operations are used for shadow map rendering by comparing depth values from a shadow sampler. */
+        enable_compare: boolean
+        
+        /** The compare operation to use. Only effective if [member enable_compare] is `true`. */
+        compare_op: number /*i64*/
+        
+        /** The minimum mipmap LOD bias to display (highest resolution). Only effective if the sampler has mipmaps available. */
+        min_lod: number /*f64*/
+        
+        /** The maximum mipmap LOD bias to display (lowest resolution). Only effective if the sampler has mipmaps available. */
+        max_lod: number /*f64*/
+        
+        /** The border color that will be returned when sampling outside the sampler's bounds and the [member repeat_u], [member repeat_v] or [member repeat_w] modes have repeating disabled. */
+        border_color: number /*i64*/
+        unnormalized_uvw: boolean
+    }
+    /** Compiled shader file in SPIR-V form (used by [RenderingDevice]). Not to be confused with Godot's own [Shader]. */
+    class RDShaderFile extends Resource {
+        /** Sets the SPIR-V [param bytecode] that will be compiled for the specified [param version]. */
+        set_bytecode(bytecode: RDShaderSPIRV, version: StringName = ''): void
+        
+        /** Returns the SPIR-V intermediate representation for the specified shader [param version]. */
+        get_spirv(version: StringName = ''): RDShaderSPIRV
+        
+        /** Returns the list of compiled versions for this shader. */
+        get_version_list(): Array
+        set_base_error(error: string): void
+        get_base_error(): string
+        _set_versions(versions: Dictionary): void
+        _get_versions(): Dictionary
+        _versions: Dictionary
+        
+        /** The base compilation error message, which indicates errors not related to a specific shader stage if non-empty. If empty, shader compilation is not necessarily successful (check [RDShaderSPIRV]'s error message members). */
+        base_error: string
+    }
+    /** SPIR-V intermediate representation as part of a [RDShaderFile] (used by [RenderingDevice]). */
+    class RDShaderSPIRV extends Resource {
+        /** Sets the SPIR-V [param bytecode] for the given shader [param stage]. Equivalent to setting one of [member bytecode_compute], [member bytecode_fragment], [member bytecode_tesselation_control], [member bytecode_tesselation_evaluation], [member bytecode_vertex]. */
+        set_stage_bytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray): void
+        
+        /** Equivalent to getting one of [member bytecode_compute], [member bytecode_fragment], [member bytecode_tesselation_control], [member bytecode_tesselation_evaluation], [member bytecode_vertex]. */
+        get_stage_bytecode(stage: RenderingDevice.ShaderStage): PackedByteArray
+        
+        /** Sets the compilation error message for the given shader [param stage] to [param compile_error]. Equivalent to setting one of [member compile_error_compute], [member compile_error_fragment], [member compile_error_tesselation_control], [member compile_error_tesselation_evaluation], [member compile_error_vertex]. */
+        set_stage_compile_error(stage: RenderingDevice.ShaderStage, compile_error: string): void
+        
+        /** Returns the compilation error message for the given shader [param stage]. Equivalent to getting one of [member compile_error_compute], [member compile_error_fragment], [member compile_error_tesselation_control], [member compile_error_tesselation_evaluation], [member compile_error_vertex]. */
+        get_stage_compile_error(stage: RenderingDevice.ShaderStage): string
+    }
+    /** Shader source code (used by [RenderingDevice]). */
+    class RDShaderSource extends RefCounted {
+        /** Sets [param source] code for the specified shader [param stage]. Equivalent to setting one of [member source_compute], [member source_fragment], [member source_tesselation_control], [member source_tesselation_evaluation] or [member source_vertex]. */
+        set_stage_source(stage: RenderingDevice.ShaderStage, source: string): void
+        
+        /** Returns source code for the specified shader [param stage]. Equivalent to getting one of [member source_compute], [member source_fragment], [member source_tesselation_control], [member source_tesselation_evaluation] or [member source_vertex]. */
+        get_stage_source(stage: RenderingDevice.ShaderStage): string
+        set_language(language: RenderingDevice.ShaderLanguage): void
+        get_language(): RenderingDevice.ShaderLanguage
+        
+        /** The language the shader is written in. */
+        language: number /*i64*/
+    }
+    /** Texture format (used by [RenderingDevice]). */
+    class RDTextureFormat extends RefCounted {
+        set_format(p_member: RenderingDevice.DataFormat): void
+        get_format(): RenderingDevice.DataFormat
+        set_width(p_member: number /*i64*/): void
+        get_width(): number /*i64*/
+        set_height(p_member: number /*i64*/): void
+        get_height(): number /*i64*/
+        set_depth(p_member: number /*i64*/): void
+        get_depth(): number /*i64*/
+        set_array_layers(p_member: number /*i64*/): void
+        get_array_layers(): number /*i64*/
+        set_mipmaps(p_member: number /*i64*/): void
+        get_mipmaps(): number /*i64*/
+        set_texture_type(p_member: RenderingDevice.TextureType): void
+        get_texture_type(): RenderingDevice.TextureType
+        set_samples(p_member: RenderingDevice.TextureSamples): void
+        get_samples(): RenderingDevice.TextureSamples
+        set_usage_bits(p_member: RenderingDevice.TextureUsageBits): void
+        get_usage_bits(): RenderingDevice.TextureUsageBits
+        add_shareable_format(format: RenderingDevice.DataFormat): void
+        remove_shareable_format(format: RenderingDevice.DataFormat): void
+        
+        /** The texture's pixel data format. */
+        format: number /*i64*/
+        
+        /** The texture's width (in pixels). */
+        width: number /*i64*/
+        
+        /** The texture's height (in pixels). */
+        height: number /*i64*/
+        
+        /** The texture's depth (in pixels). This is always `1` for 2D textures. */
+        depth: number /*i64*/
+        
+        /** The number of layers in the texture. Only relevant for 2D texture arrays. */
+        array_layers: number /*i64*/
+        
+        /** The number of mipmaps available in the texture. */
+        mipmaps: number /*i64*/
+        
+        /** The texture type. */
+        texture_type: number /*i64*/
+        
+        /** The number of samples used when sampling the texture. */
+        samples: number /*i64*/
+        
+        /** The texture's usage bits, which determine what can be done using the texture. */
+        usage_bits: number /*i64*/
+    }
+    /** Texture view (used by [RenderingDevice]). */
+    class RDTextureView extends RefCounted {
+        set_format_override(p_member: RenderingDevice.DataFormat): void
+        get_format_override(): RenderingDevice.DataFormat
+        set_swizzle_r(p_member: RenderingDevice.TextureSwizzle): void
+        get_swizzle_r(): RenderingDevice.TextureSwizzle
+        set_swizzle_g(p_member: RenderingDevice.TextureSwizzle): void
+        get_swizzle_g(): RenderingDevice.TextureSwizzle
+        set_swizzle_b(p_member: RenderingDevice.TextureSwizzle): void
+        get_swizzle_b(): RenderingDevice.TextureSwizzle
+        set_swizzle_a(p_member: RenderingDevice.TextureSwizzle): void
+        get_swizzle_a(): RenderingDevice.TextureSwizzle
+        
+        /** Optional override for the data format to return sampled values in. The default value of [constant RenderingDevice.DATA_FORMAT_MAX] does not override the format. */
+        format_override: number /*i64*/
+        
+        /** The channel to sample when sampling the red color channel. */
+        swizzle_r: number /*i64*/
+        
+        /** The channel to sample when sampling the green color channel. */
+        swizzle_g: number /*i64*/
+        
+        /** The channel to sample when sampling the blue color channel. */
+        swizzle_b: number /*i64*/
+        
+        /** The channel to sample when sampling the alpha channel. */
+        swizzle_a: number /*i64*/
+    }
+    /** Shader uniform (used by [RenderingDevice]). */
+    class RDUniform extends RefCounted {
+        set_uniform_type(p_member: RenderingDevice.UniformType): void
+        get_uniform_type(): RenderingDevice.UniformType
+        set_binding(p_member: number /*i64*/): void
+        get_binding(): number /*i64*/
+        add_id(id: RID): void
+        clear_ids(): void
+        _set_ids(ids: Array): void
+        get_ids(): Array
+        
+        /** The uniform's data type. */
+        uniform_type: number /*i64*/
+        
+        /** The uniform's binding. */
+        binding: number /*i64*/
+        _ids: Array
+    }
+    /** Vertex attribute (used by [RenderingDevice]). */
+    class RDVertexAttribute extends RefCounted {
+        set_location(p_member: number /*i64*/): void
+        get_location(): number /*i64*/
+        set_offset(p_member: number /*i64*/): void
+        get_offset(): number /*i64*/
+        set_format(p_member: RenderingDevice.DataFormat): void
+        get_format(): RenderingDevice.DataFormat
+        set_stride(p_member: number /*i64*/): void
+        get_stride(): number /*i64*/
+        set_frequency(p_member: RenderingDevice.VertexFrequency): void
+        get_frequency(): RenderingDevice.VertexFrequency
+        location: number /*i64*/
+        offset: number /*i64*/
+        format: number /*i64*/
+        stride: number /*i64*/
+        frequency: number /*i64*/
+    }
+    /** Provides methods for generating pseudo-random numbers. */
+    class RandomNumberGenerator extends RefCounted {
+        set_seed(seed: number /*i64*/): void
+        get_seed(): number /*i64*/
+        set_state(state: number /*i64*/): void
+        get_state(): number /*i64*/
+        
+        /** Returns a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive). */
+        randi(): number /*i64*/
+        
+        /** Returns a pseudo-random float between `0.0` and `1.0` (inclusive). */
+        randf(): number /*f64*/
+        
+        /** Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url] pseudo-random number, using Box-Muller transform with the specified [param mean] and a standard [param deviation]. This is also called Gaussian distribution. */
+        randfn(mean: number /*f64*/ = 0, deviation: number /*f64*/ = 1): number /*f64*/
+        
+        /** Returns a pseudo-random float between [param from] and [param to] (inclusive). */
+        randf_range(from: number /*f64*/, to: number /*f64*/): number /*f64*/
+        
+        /** Returns a pseudo-random 32-bit signed integer between [param from] and [param to] (inclusive). */
+        randi_range(from: number /*i64*/, to: number /*i64*/): number /*i64*/
+        
+        /** Sets up a time-based seed for this [RandomNumberGenerator] instance. Unlike the [@GlobalScope] random number generation functions, different [RandomNumberGenerator] instances can use different seeds. */
+        randomize(): void
+        
+        /** Initializes the random number generator state based on the given seed value. A given seed will give a reproducible sequence of pseudo-random numbers.  
+         *      
+         *  **Note:** The RNG does not have an avalanche effect, and can output similar random streams given similar seeds. Consider using a hash function to improve your seed quality if they're sourced externally.  
+         *      
+         *  **Note:** Setting this property produces a side effect of changing the internal [member state], so make sure to initialize the seed [i]before[/i] modifying the [member state]:  
+         *      
+         *  **Note:** The default value of this property is pseudo-random, and changes when calling [method randomize]. The `0` value documented here is a placeholder, and not the actual default seed.  
+         *    
+         */
+        seed: number /*i64*/
+        
+        /** The current state of the random number generator. Save and restore this property to restore the generator to a previous state:  
+         *    
+         *      
+         *  **Note:** Do not set state to arbitrary values, since the random number generator requires the state to have certain qualities to behave properly. It should only be set to values that came from the state property itself. To initialize the random number generator with arbitrary input, use [member seed] instead.  
+         *      
+         *  **Note:** The default value of this property is pseudo-random, and changes when calling [method randomize]. The `0` value documented here is a placeholder, and not the actual default seed.  
+         */
+        state: number /*i64*/
+    }
+    /** Abstract base class for controls that represent a number within a range. */
+    class Range extends Control {
+        /** Called when the [Range]'s value is changed (following the same conditions as [signal value_changed]). */
+        /* gdvirtual */ _value_changed(new_value: number /*f64*/): void
+        get_value(): number /*f64*/
+        get_min(): number /*f64*/
+        get_max(): number /*f64*/
+        get_step(): number /*f64*/
+        get_page(): number /*f64*/
+        get_as_ratio(): number /*f64*/
+        set_value(value: number /*f64*/): void
+        
+        /** Sets the [Range]'s current value to the specified [param value], without emitting the [signal value_changed] signal. */
+        set_value_no_signal(value: number /*f64*/): void
+        set_min(minimum: number /*f64*/): void
+        set_max(maximum: number /*f64*/): void
+        set_step(step: number /*f64*/): void
+        set_page(pagesize: number /*f64*/): void
+        set_as_ratio(value: number /*f64*/): void
+        set_use_rounded_values(enabled: boolean): void
+        is_using_rounded_values(): boolean
+        set_exp_ratio(enabled: boolean): void
+        is_ratio_exp(): boolean
+        set_allow_greater(allow: boolean): void
+        is_greater_allowed(): boolean
+        set_allow_lesser(allow: boolean): void
+        is_lesser_allowed(): boolean
+        
+        /** Binds two [Range]s together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group. */
+        share(with_: Node): void
+        
+        /** Stops the [Range] from sharing its member variables with any other. */
+        unshare(): void
+        
+        /** Minimum value. Range is clamped if [member value] is less than [member min_value]. */
+        min_value: number /*f64*/
+        
+        /** Maximum value. Range is clamped if [member value] is greater than [member max_value]. */
+        max_value: number /*f64*/
+        
+        /** If greater than 0, [member value] will always be rounded to a multiple of this property's value. If [member rounded] is also `true`, [member value] will first be rounded to a multiple of this property's value, then rounded to the nearest integer. */
+        step: number /*f64*/
+        
+        /** Page size. Used mainly for [ScrollBar]. ScrollBar's length is its size multiplied by [member page] over the difference between [member min_value] and [member max_value]. */
+        page: number /*f64*/
+        
+        /** Range's current value. Changing this property (even via code) will trigger [signal value_changed] signal. Use [method set_value_no_signal] if you want to avoid it. */
+        value: number /*f64*/
+        
+        /** The value mapped between 0 and 1. */
+        ratio: number /*f64*/
+        
+        /** If `true`, and [member min_value] is greater than 0, [member value] will be represented exponentially rather than linearly. */
+        exp_edit: boolean
+        
+        /** If `true`, [member value] will always be rounded to the nearest integer. */
+        rounded: boolean
+        
+        /** If `true`, [member value] may be greater than [member max_value]. */
+        allow_greater: boolean
+        
+        /** If `true`, [member value] may be less than [member min_value]. */
+        allow_lesser: boolean
+        
+        /** Emitted when [member value] changes. When used on a [Slider], this is called continuously while dragging (potentially every frame). If you are performing an expensive operation in a function connected to [signal value_changed], consider using a [i]debouncing[/i] [Timer] to call the function less often.  
+         *      
+         *  **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also emitted when [param value] is set directly via code.  
+         */
+        readonly value_changed: Signal // value: number /*f64*/ => void
+        
+        /** Emitted when [member min_value], [member max_value], [member page], or [member step] change. */
+        readonly changed: Signal //  => void
+    }
+    /** A ray in 2D space, used to find the first [CollisionObject2D] it intersects. */
+    class RayCast2D extends Node2D {
+        set_enabled(enabled: boolean): void
+        is_enabled(): boolean
+        set_target_position(local_point: Vector2): void
+        get_target_position(): Vector2
+        
+        /** Returns whether any object is intersecting with the ray's vector (considering the vector length). */
+        is_colliding(): boolean
+        
+        /** Updates the collision information for the ray immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the ray or its parent has changed state.  
+         *      
+         *  **Note:** [member enabled] does not need to be `true` for this to work.  
+         */
+        force_raycast_update(): void
+        
+        /** Returns the first object that the ray intersects, or `null` if no object is intersecting the ray (i.e. [method is_colliding] returns `false`). */
+        get_collider(): Object
+        
+        /** Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object is intersecting the ray (i.e. [method is_colliding] returns `false`). */
+        get_collider_rid(): RID
+        
+        /** Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [method is_colliding] returns `false`).  
+         *  To get the intersected shape node, for a [CollisionObject2D] target, use:  
+         *    
+         */
+        get_collider_shape(): number /*i64*/
+        
+        /** Returns the collision point at which the ray intersects the closest object. If [member hit_from_inside] is `true` and the ray starts inside of a collision shape, this function will return the origin point of the ray.  
+         *      
+         *  **Note:** This point is in the **global** coordinate system.  
+         */
+        get_collision_point(): Vector2
+        
+        /** Returns the normal of the intersecting object's shape at the collision point, or `Vector2(0, 0)` if the ray starts inside the shape and [member hit_from_inside] is `true`. */
+        get_collision_normal(): Vector2
+        
+        /** Adds a collision exception so the ray does not report collisions with the specified [RID]. */
+        add_exception_rid(rid: RID): void
+        
+        /** Adds a collision exception so the ray does not report collisions with the specified [CollisionObject2D] node. */
+        add_exception(node: CollisionObject2D): void
+        
+        /** Removes a collision exception so the ray does report collisions with the specified [RID]. */
+        remove_exception_rid(rid: RID): void
+        
+        /** Removes a collision exception so the ray does report collisions with the specified [CollisionObject2D] node. */
+        remove_exception(node: CollisionObject2D): void
+        
+        /** Removes all collision exceptions for this ray. */
+        clear_exceptions(): void
+        set_collision_mask(mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
+        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        set_exclude_parent_body(mask: boolean): void
+        get_exclude_parent_body(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        set_hit_from_inside(enable: boolean): void
+        is_hit_from_inside_enabled(): boolean
+        
+        /** If `true`, collisions will be reported. */
+        enabled: boolean
+        
+        /** If `true`, the parent node will be excluded from collision detection. */
+        exclude_parent: boolean
+        
+        /** The ray's destination point, relative to the RayCast's `position`. */
+        target_position: Vector2
+        
+        /** The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** If `true`, the ray will detect a hit when starting inside shapes. In this case the collision normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes. */
+        hit_from_inside: boolean
+        
+        /** If `true`, collisions with [Area2D]s will be reported. */
+        collide_with_areas: boolean
+        
+        /** If `true`, collisions with [PhysicsBody2D]s will be reported. */
+        collide_with_bodies: boolean
+    }
+    /** A ray in 3D space, used to find the first [CollisionObject3D] it intersects. */
+    class RayCast3D extends Node3D {
+        set_enabled(enabled: boolean): void
+        is_enabled(): boolean
+        set_target_position(local_point: Vector3): void
+        get_target_position(): Vector3
+        
+        /** Returns whether any object is intersecting with the ray's vector (considering the vector length). */
+        is_colliding(): boolean
+        
+        /** Updates the collision information for the ray immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the ray or its parent has changed state.  
+         *      
+         *  **Note:** [member enabled] does not need to be `true` for this to work.  
+         */
+        force_raycast_update(): void
+        
+        /** Returns the first object that the ray intersects, or `null` if no object is intersecting the ray (i.e. [method is_colliding] returns `false`). */
+        get_collider(): Object
+        
+        /** Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object is intersecting the ray (i.e. [method is_colliding] returns `false`). */
+        get_collider_rid(): RID
+        
+        /** Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [method is_colliding] returns `false`).  
+         *  To get the intersected shape node, for a [CollisionObject3D] target, use:  
+         *    
+         */
+        get_collider_shape(): number /*i64*/
+        
+        /** Returns the collision point at which the ray intersects the closest object. If [member hit_from_inside] is `true` and the ray starts inside of a collision shape, this function will return the origin point of the ray.  
+         *      
+         *  **Note:** This point is in the **global** coordinate system.  
+         */
+        get_collision_point(): Vector3
+        
+        /** Returns the normal of the intersecting object's shape at the collision point, or `Vector3(0, 0, 0)` if the ray starts inside the shape and [member hit_from_inside] is `true`. */
+        get_collision_normal(): Vector3
+        
+        /** Returns the collision object's face index at the collision point, or `-1` if the shape intersecting the ray is not a [ConcavePolygonShape3D]. */
+        get_collision_face_index(): number /*i64*/
+        
+        /** Adds a collision exception so the ray does not report collisions with the specified [RID]. */
+        add_exception_rid(rid: RID): void
+        
+        /** Adds a collision exception so the ray does not report collisions with the specified [CollisionObject3D] node. */
+        add_exception(node: CollisionObject3D): void
+        
+        /** Removes a collision exception so the ray does report collisions with the specified [RID]. */
+        remove_exception_rid(rid: RID): void
+        
+        /** Removes a collision exception so the ray does report collisions with the specified [CollisionObject3D] node. */
+        remove_exception(node: CollisionObject3D): void
+        
+        /** Removes all collision exceptions for this ray. */
+        clear_exceptions(): void
+        set_collision_mask(mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
+        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        set_exclude_parent_body(mask: boolean): void
+        get_exclude_parent_body(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        set_hit_from_inside(enable: boolean): void
+        is_hit_from_inside_enabled(): boolean
+        set_hit_back_faces(enable: boolean): void
+        is_hit_back_faces_enabled(): boolean
+        set_debug_shape_custom_color(debug_shape_custom_color: Color): void
+        get_debug_shape_custom_color(): Color
+        set_debug_shape_thickness(debug_shape_thickness: number /*i64*/): void
+        get_debug_shape_thickness(): number /*i64*/
+        
+        /** If `true`, collisions will be reported. */
+        enabled: boolean
+        
+        /** If `true`, collisions will be ignored for this RayCast3D's immediate parent. */
+        exclude_parent: boolean
+        
+        /** The ray's destination point, relative to the RayCast's `position`. */
+        target_position: Vector3
+        
+        /** The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** If `true`, the ray will detect a hit when starting inside shapes. In this case the collision normal will be `Vector3(0, 0, 0)`. Does not affect shapes with no volume like concave polygon or heightmap. */
+        hit_from_inside: boolean
+        
+        /** If `true`, the ray will hit back faces with concave polygon shapes with back face enabled or heightmap shapes. */
+        hit_back_faces: boolean
+        
+        /** If `true`, collisions with [Area3D]s will be reported. */
+        collide_with_areas: boolean
+        
+        /** If `true`, collisions with [PhysicsBody3D]s will be reported. */
+        collide_with_bodies: boolean
+        
+        /** The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [RayCast3D] is colliding with something.  
+         *  If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [member ProjectSettings.debug/shapes/collision/shape_color] is used.  
+         */
+        debug_shape_custom_color: Color
+        
+        /** If set to `1`, a line is used as the debug shape. Otherwise, a truncated pyramid is drawn to represent the [RayCast3D]. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for the debug shape to be visible at run-time. */
+        debug_shape_thickness: number /*i64*/
+    }
+    class RayCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    /** A 2D rectangle shape used for physics collision. */
+    class RectangleShape2D extends Shape2D {
+        set_size(size: Vector2): void
+        get_size(): Vector2
+        
+        /** The rectangle's width and height. */
+        size: Vector2
+    }
+    /** Base class for reference-counted objects. */
+    class RefCounted extends Object {
+        /** Initializes the internal reference counter. Use this only if you really know what you are doing.  
+         *  Returns whether the initialization was successful.  
+         */
+        init_ref(): boolean
+        
+        /** Increments the internal reference counter. Use this only if you really know what you are doing.  
+         *  Returns `true` if the increment was successful, `false` otherwise.  
+         */
+        reference(): boolean
+        
+        /** Decrements the internal reference counter. Use this only if you really know what you are doing.  
+         *  Returns `true` if the object should be freed after the decrement, `false` otherwise.  
+         */
+        unreference(): boolean
+        
+        /** Returns the current reference count. */
+        get_reference_count(): number /*i64*/
+    }
+    /** A rectangle hint for designing UIs. */
+    class ReferenceRect extends Control {
+        get_border_color(): Color
+        set_border_color(color: Color): void
+        get_border_width(): number /*f64*/
+        set_border_width(width: number /*f64*/): void
+        get_editor_only(): boolean
+        set_editor_only(enabled: boolean): void
+        
+        /** Sets the border color of the [ReferenceRect]. */
+        border_color: Color
+        
+        /** Sets the border width of the [ReferenceRect]. The border grows both inwards and outwards with respect to the rectangle box. */
+        border_width: number /*f64*/
+        
+        /** If `true`, the [ReferenceRect] will only be visible while in editor. Otherwise, [ReferenceRect] will be visible in the running project. */
+        editor_only: boolean
+    }
+    namespace ReflectionProbe {
+        enum UpdateMode {
+            /** Update the probe once on the next frame (recommended for most objects). The corresponding radiance map will be generated over the following six frames. This takes more time to update than [constant UPDATE_ALWAYS], but it has a lower performance cost and can result in higher-quality reflections. The ReflectionProbe is updated when its transform changes, but not when nearby geometry changes. You can force a [ReflectionProbe] update by moving the [ReflectionProbe] slightly in any direction. */
+            UPDATE_ONCE = 0,
+            
+            /** Update the probe every frame. This provides better results for fast-moving dynamic objects (such as cars). However, it has a significant performance cost. Due to the cost, it's recommended to only use one ReflectionProbe with [constant UPDATE_ALWAYS] at most per scene. For all other use cases, use [constant UPDATE_ONCE]. */
+            UPDATE_ALWAYS = 1,
+        }
+        enum AmbientMode {
+            /** Do not apply any ambient lighting inside the [ReflectionProbe]'s box defined by its [member size]. */
+            AMBIENT_DISABLED = 0,
+            
+            /** Apply automatically-sourced environment lighting inside the [ReflectionProbe]'s box defined by its [member size]. */
+            AMBIENT_ENVIRONMENT = 1,
+            
+            /** Apply custom ambient lighting inside the [ReflectionProbe]'s box defined by its [member size]. See [member ambient_color] and [member ambient_color_energy]. */
+            AMBIENT_COLOR = 2,
+        }
+    }
+    /** Captures its surroundings to create fast, accurate reflections from a given point. */
+    class ReflectionProbe extends VisualInstance3D {
+        set_intensity(intensity: number /*f64*/): void
+        get_intensity(): number /*f64*/
+        set_ambient_mode(ambient: ReflectionProbe.AmbientMode): void
+        get_ambient_mode(): ReflectionProbe.AmbientMode
+        set_ambient_color(ambient: Color): void
+        get_ambient_color(): Color
+        set_ambient_color_energy(ambient_energy: number /*f64*/): void
+        get_ambient_color_energy(): number /*f64*/
+        set_max_distance(max_distance: number /*f64*/): void
+        get_max_distance(): number /*f64*/
+        set_mesh_lod_threshold(ratio: number /*f64*/): void
+        get_mesh_lod_threshold(): number /*f64*/
+        set_size(size: Vector3): void
+        get_size(): Vector3
+        set_origin_offset(origin_offset: Vector3): void
+        get_origin_offset(): Vector3
+        set_as_interior(enable: boolean): void
+        is_set_as_interior(): boolean
+        set_enable_box_projection(enable: boolean): void
+        is_box_projection_enabled(): boolean
+        set_enable_shadows(enable: boolean): void
+        are_shadows_enabled(): boolean
+        set_cull_mask(layers: number /*i64*/): void
+        get_cull_mask(): number /*i64*/
+        set_update_mode(mode: ReflectionProbe.UpdateMode): void
+        get_update_mode(): ReflectionProbe.UpdateMode
+        
+        /** Sets how frequently the [ReflectionProbe] is updated. Can be [constant UPDATE_ONCE] or [constant UPDATE_ALWAYS]. */
+        update_mode: number /*i64*/
+        
+        /** Defines the reflection intensity. Intensity modulates the strength of the reflection. */
+        intensity: number /*f64*/
+        
+        /** The maximum distance away from the [ReflectionProbe] an object can be before it is culled. Decrease this to improve performance, especially when using the [constant UPDATE_ALWAYS] [member update_mode].  
+         *      
+         *  **Note:** The maximum reflection distance is always at least equal to the probe's extents. This means that decreasing [member max_distance] will not always cull objects from reflections, especially if the reflection probe's box defined by its [member size] is already large.  
+         */
+        max_distance: number /*f64*/
+        
+        /** The size of the reflection probe. The larger the size, the more space covered by the probe, which will lower the perceived resolution. It is best to keep the size only as large as you need it.  
+         *      
+         *  **Note:** To better fit areas that are not aligned to the grid, you can rotate the [ReflectionProbe] node.  
+         */
+        size: Vector3
+        
+        /** Sets the origin offset to be used when this [ReflectionProbe] is in [member box_projection] mode. This can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing the number of objects that "get in the way" of the reflection. */
+        origin_offset: Vector3
+        
+        /** If `true`, enables box projection. This makes reflections look more correct in rectangle-shaped rooms by offsetting the reflection center depending on the camera's location.  
+         *      
+         *  **Note:** To better fit rectangle-shaped rooms that are not aligned to the grid, you can rotate the [ReflectionProbe] node.  
+         */
+        box_projection: boolean
+        
+        /** If `true`, reflections will ignore sky contribution. */
+        interior: boolean
+        
+        /** If `true`, computes shadows in the reflection probe. This makes the reflection probe slower to render; you may want to disable this if using the [constant UPDATE_ALWAYS] [member update_mode]. */
+        enable_shadows: boolean
+        
+        /** Sets the cull mask which determines what objects are drawn by this probe. Every [VisualInstance3D] with a layer included in this cull mask will be rendered by the probe. To improve performance, it is best to only include large objects which are likely to take up a lot of space in the reflection. */
+        cull_mask: number /*i64*/
+        
+        /** The automatic LOD bias to use for meshes rendered within the [ReflectionProbe] (this is analog to [member Viewport.mesh_lod_threshold]). Higher values will use less detailed versions of meshes that have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [member mesh_lod_threshold] to improve performance at the cost of geometry detail, especially when using the [constant UPDATE_ALWAYS] [member update_mode].  
+         *      
+         *  **Note:** [member mesh_lod_threshold] does not affect [GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).  
+         */
+        mesh_lod_threshold: number /*f64*/
+        
+        /** The ambient color to use within the [ReflectionProbe]'s box defined by its [member size]. The ambient color will smoothly blend with other [ReflectionProbe]s and the rest of the scene (outside the [ReflectionProbe]'s box defined by its [member size]). */
+        ambient_mode: number /*i64*/
+        
+        /** The custom ambient color to use within the [ReflectionProbe]'s box defined by its [member size]. Only effective if [member ambient_mode] is [constant AMBIENT_COLOR]. */
+        ambient_color: Color
+        
+        /** The custom ambient color energy to use within the [ReflectionProbe]'s box defined by its [member size]. Only effective if [member ambient_mode] is [constant AMBIENT_COLOR]. */
+        ambient_color_energy: number /*f64*/
+    }
+    class ReflectionProbeGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    /** Class for searching text for patterns using regular expressions. */
+    class RegEx extends RefCounted {
+        /** Creates and compiles a new [RegEx] object. */
+        static create_from_string(pattern: string): RegEx
+        
+        /** This method resets the state of the object, as if it was freshly created. Namely, it unassigns the regular expression of this object. */
+        clear(): void
+        
+        /** Compiles and assign the search pattern to use. Returns [constant OK] if the compilation is successful. If an error is encountered, details are printed to standard output and an error is returned. */
+        compile(pattern: string): GodotError
+        
+        /** Searches the text for the compiled pattern. Returns a [RegExMatch] container of the first matching result if found, otherwise `null`.  
+         *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
+         */
+        search(subject: string, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): RegExMatch
+        
+        /** Searches the text for the compiled pattern. Returns an array of [RegExMatch] containers for each non-overlapping result. If no results were found, an empty array is returned instead.  
+         *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
+         */
+        search_all(subject: string, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): Array
+        
+        /** Searches the text for the compiled pattern and replaces it with the specified string. Escapes and backreferences such as `$1` and `$name` are expanded and resolved. By default, only the first instance is replaced, but it can be changed for all instances (global replacement).  
+         *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
+         */
+        sub(subject: string, replacement: string, all: boolean = false, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): string
+        
+        /** Returns whether this object has a valid search pattern assigned. */
         is_valid(): boolean
-        get_id(): number /*i64*/
-        static EQUAL(left: RID, right: RID): boolean
-        static NOT_EQUAL(left: RID, right: RID): boolean
-        static LESS(left: RID, right: RID): boolean
-        static LESS_EQUAL(left: RID, right: RID): boolean
-        static GREATER(left: RID, right: RID): boolean
-        static GREATER_EQUAL(left: RID, right: RID): boolean
+        
+        /** Returns the original search pattern that was compiled. */
+        get_pattern(): string
+        
+        /** Returns the number of capturing groups in compiled pattern. */
+        get_group_count(): number /*i64*/
+        
+        /** Returns an array of names of named capturing groups in the compiled pattern. They are ordered by appearance. */
+        get_names(): PackedStringArray
     }
-    class Callable {
-        constructor()
-        constructor(from: Callable)
-        constructor(object: Object, method: StringName)
-        callv(arguments_: Array): void
-        is_null(): boolean
-        is_custom(): boolean
-        is_standard(): boolean
-        is_valid(): boolean
-        get_object(): Object
-        get_object_id(): number /*i64*/
-        get_method(): StringName
-        get_bound_arguments_count(): number /*i64*/
-        get_bound_arguments(): Array
-        hash(): number /*i64*/
-        bindv(arguments_: Array): Callable
-        unbind(argcount: number /*i64*/): Callable
-        call(...vargargs: any[]): void
-        call_deferred(...vargargs: any[]): void
-        rpc(...vargargs: any[]): void
-        rpc_id(peer_id: number /*i64*/, ...vargargs: any[]): void
-        bind(...vargargs: any[]): Callable
-        static EQUAL(left: Callable, right: Callable): boolean
-        static NOT_EQUAL(left: Callable, right: Callable): boolean
+    /** Contains the results of a [RegEx] search. */
+    class RegExMatch extends RefCounted {
+        get_subject(): string
+        
+        /** Returns the number of capturing groups. */
+        get_group_count(): number /*i64*/
+        get_names(): Dictionary
+        get_strings(): PackedStringArray
+        
+        /** Returns the substring of the match from the source string. Capturing groups can be retrieved by providing its group number as an integer or its string name (if it's a named group). The default value of 0 refers to the whole pattern.  
+         *  Returns an empty string if the group did not match or doesn't exist.  
+         */
+        get_string(name: any = <any> {} /*compound.type from nil*/): string
+        
+        /** Returns the starting position of the match within the source string. The starting position of capturing groups can be retrieved by providing its group number as an integer or its string name (if it's a named group). The default value of 0 refers to the whole pattern.  
+         *  Returns -1 if the group did not match or doesn't exist.  
+         */
+        get_start(name: any = <any> {} /*compound.type from nil*/): number /*i64*/
+        
+        /** Returns the end position of the match within the source string. The end position of capturing groups can be retrieved by providing its group number as an integer or its string name (if it's a named group). The default value of 0 refers to the whole pattern.  
+         *  Returns -1 if the group did not match or doesn't exist.  
+         */
+        get_end(name: any = <any> {} /*compound.type from nil*/): number /*i64*/
+        
+        /** The source string used with the search pattern to find this matching result. */
+        readonly subject: string
+        
+        /** A dictionary of named groups and its corresponding group number. Only groups that were matched are included. If multiple groups have the same name, that name would refer to the first matching one. */
+        readonly names: Dictionary
+        
+        /** An [Array] of the match and its capturing groups. */
+        readonly strings: Array
     }
-    class Signal {
-        constructor()
-        constructor(from: Signal)
-        constructor(object: Object, signal: StringName)
-        is_null(): boolean
-        get_object(): Object
-        get_object_id(): number /*i64*/
-        get_name(): StringName
-        connect(callable: Callable, flags: number /*i64*/ = 0): number /*i64*/
-        disconnect(callable: Callable): void
-        is_connected(callable: Callable): boolean
-        get_connections(): Array
-        emit(...vargargs: any[]): void
-        static EQUAL(left: Signal, right: Signal): boolean
-        static NOT_EQUAL(left: Signal, right: Signal): boolean
+    /** RemoteTransform2D pushes its own [Transform2D] to another [Node2D] derived node in the scene. */
+    class RemoteTransform2D extends Node2D {
+        set_remote_node(path: NodePath): void
+        get_remote_node(): NodePath
+        
+        /** [RemoteTransform2D] caches the remote node. It may not notice if the remote node disappears; [method force_update_cache] forces it to update the cache again. */
+        force_update_cache(): void
+        set_use_global_coordinates(use_global_coordinates: boolean): void
+        get_use_global_coordinates(): boolean
+        set_update_position(update_remote_position: boolean): void
+        get_update_position(): boolean
+        set_update_rotation(update_remote_rotation: boolean): void
+        get_update_rotation(): boolean
+        set_update_scale(update_remote_scale: boolean): void
+        get_update_scale(): boolean
+        
+        /** The [NodePath] to the remote node, relative to the RemoteTransform2D's position in the scene. */
+        remote_path: NodePath
+        
+        /** If `true`, global coordinates are used. If `false`, local coordinates are used. */
+        use_global_coordinates: boolean
+        
+        /** If `true`, the remote node's position is updated. */
+        update_position: boolean
+        
+        /** If `true`, the remote node's rotation is updated. */
+        update_rotation: boolean
+        
+        /** If `true`, the remote node's scale is updated. */
+        update_scale: boolean
     }
-    class Dictionary {
-        constructor()
-        constructor(from: Dictionary)
-        size(): number /*i64*/
-        is_empty(): boolean
-        clear(): void
-        merge(dictionary: Dictionary, overwrite: boolean = false): void
-        has(key: any): boolean
-        has_all(keys: Array): boolean
-        find_key(value: any): void
-        erase(key: any): boolean
-        hash(): number /*i64*/
-        keys(): Array
-        values(): Array
-        duplicate(deep: boolean = false): Dictionary
-        get(key: any, default_: any = <any> {} /*compound.type from nil*/): void
-        make_read_only(): void
-        is_read_only(): boolean
-        static EQUAL(left: Dictionary, right: Dictionary): boolean
-        static NOT_EQUAL(left: Dictionary, right: Dictionary): boolean
+    /** RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node in the scene. */
+    class RemoteTransform3D extends Node3D {
+        set_remote_node(path: NodePath): void
+        get_remote_node(): NodePath
+        
+        /** [RemoteTransform3D] caches the remote node. It may not notice if the remote node disappears; [method force_update_cache] forces it to update the cache again. */
+        force_update_cache(): void
+        set_use_global_coordinates(use_global_coordinates: boolean): void
+        get_use_global_coordinates(): boolean
+        set_update_position(update_remote_position: boolean): void
+        get_update_position(): boolean
+        set_update_rotation(update_remote_rotation: boolean): void
+        get_update_rotation(): boolean
+        set_update_scale(update_remote_scale: boolean): void
+        get_update_scale(): boolean
+        
+        /** The [NodePath] to the remote node, relative to the RemoteTransform3D's position in the scene. */
+        remote_path: NodePath
+        
+        /** If `true`, global coordinates are used. If `false`, local coordinates are used. */
+        use_global_coordinates: boolean
+        
+        /** If `true`, the remote node's position is updated. */
+        update_position: boolean
+        
+        /** If `true`, the remote node's rotation is updated. */
+        update_rotation: boolean
+        
+        /** If `true`, the remote node's scale is updated. */
+        update_scale: boolean
     }
-    class Array {
-        constructor()
-        constructor(from: Array)
-        constructor(base: Array, type: number /*i64*/, class_name: StringName, script: any)
-        constructor(from: PackedByteArray)
-        constructor(from: PackedInt32Array)
-        constructor(from: PackedInt64Array)
-        constructor(from: PackedFloat32Array)
-        constructor(from: PackedFloat64Array)
-        constructor(from: PackedStringArray)
-        constructor(from: PackedVector2Array)
-        constructor(from: PackedVector3Array)
-        constructor(from: PackedColorArray)
-        size(): number /*i64*/
-        is_empty(): boolean
-        clear(): void
-        hash(): number /*i64*/
-        assign(array: Array): void
-        push_back(value: any): void
-        push_front(value: any): void
-        append(value: any): void
-        append_array(array: Array): void
-        resize(size: number /*i64*/): number /*i64*/
-        insert(position: number /*i64*/, value: any): number /*i64*/
-        remove_at(position: number /*i64*/): void
-        fill(value: any): void
-        erase(value: any): void
-        front(): void
-        back(): void
-        pick_random(): void
-        find(what: any, from: number /*i64*/ = 0): number /*i64*/
-        rfind(what: any, from: number /*i64*/ = -1): number /*i64*/
-        count(value: any): number /*i64*/
-        has(value: any): boolean
-        pop_back(): void
-        pop_front(): void
-        pop_at(position: number /*i64*/): void
-        sort(): void
-        sort_custom(func: Callable): void
-        shuffle(): void
-        bsearch(value: any, before: boolean = true): number /*i64*/
-        bsearch_custom(value: any, func: Callable, before: boolean = true): number /*i64*/
-        reverse(): void
-        duplicate(deep: boolean = false): Array
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647, step: number /*i64*/ = 1, deep: boolean = false): Array
-        filter(method: Callable): Array
-        map(method: Callable): Array
-        reduce(method: Callable, accum: any = <any> {} /*compound.type from nil*/): void
-        any(method: Callable): boolean
-        all(method: Callable): boolean
-        max(): void
-        min(): void
-        is_typed(): boolean
-        is_same_typed(array: Array): boolean
-        get_typed_builtin(): number /*i64*/
-        get_typed_class_name(): StringName
-        get_typed_script(): void
-        make_read_only(): void
-        is_read_only(): boolean
-        static EQUAL(left: Array, right: Array): boolean
-        static NOT_EQUAL(left: Array, right: Array): boolean
-        static LESS(left: Array, right: Array): boolean
-        static LESS_EQUAL(left: Array, right: Array): boolean
-        static GREATER(left: Array, right: Array): boolean
-        static GREATER_EQUAL(left: Array, right: Array): boolean
+    class RenameDialog extends ConfirmationDialog {
+        rename(): void
     }
-    class PackedByteArray {
-        constructor()
-        constructor(from: PackedByteArray)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: number /*i64*/): void
-        push_back(value: number /*i64*/): boolean
-        append(value: number /*i64*/): boolean
-        append_array(array: PackedByteArray): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: number /*i64*/): number /*i64*/
-        fill(value: number /*i64*/): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: number /*i64*/): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedByteArray
-        sort(): void
-        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
-        duplicate(): PackedByteArray
-        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
-        count(value: number /*i64*/): number /*i64*/
-        get_string_from_ascii(): string
-        get_string_from_utf8(): string
-        get_string_from_utf16(): string
-        get_string_from_utf32(): string
-        get_string_from_wchar(): string
-        hex_encode(): string
-        compress(compression_mode: number /*i64*/ = 0): PackedByteArray
-        decompress(buffer_size: number /*i64*/, compression_mode: number /*i64*/ = 0): PackedByteArray
-        decompress_dynamic(max_output_size: number /*i64*/, compression_mode: number /*i64*/ = 0): PackedByteArray
-        decode_u8(byte_offset: number /*i64*/): number /*i64*/
-        decode_s8(byte_offset: number /*i64*/): number /*i64*/
-        decode_u16(byte_offset: number /*i64*/): number /*i64*/
-        decode_s16(byte_offset: number /*i64*/): number /*i64*/
-        decode_u32(byte_offset: number /*i64*/): number /*i64*/
-        decode_s32(byte_offset: number /*i64*/): number /*i64*/
-        decode_u64(byte_offset: number /*i64*/): number /*i64*/
-        decode_s64(byte_offset: number /*i64*/): number /*i64*/
-        decode_half(byte_offset: number /*i64*/): number /*f64*/
-        decode_float(byte_offset: number /*i64*/): number /*f64*/
-        decode_double(byte_offset: number /*i64*/): number /*f64*/
-        has_encoded_var(byte_offset: number /*i64*/, allow_objects: boolean = false): boolean
-        decode_var(byte_offset: number /*i64*/, allow_objects: boolean = false): void
-        decode_var_size(byte_offset: number /*i64*/, allow_objects: boolean = false): number /*i64*/
-        to_int32_array(): PackedInt32Array
-        to_int64_array(): PackedInt64Array
-        to_float32_array(): PackedFloat32Array
-        to_float64_array(): PackedFloat64Array
-        encode_u8(byte_offset: number /*i64*/, value: number /*i64*/): void
-        encode_s8(byte_offset: number /*i64*/, value: number /*i64*/): void
-        encode_u16(byte_offset: number /*i64*/, value: number /*i64*/): void
-        encode_s16(byte_offset: number /*i64*/, value: number /*i64*/): void
-        encode_u32(byte_offset: number /*i64*/, value: number /*i64*/): void
-        encode_s32(byte_offset: number /*i64*/, value: number /*i64*/): void
-        encode_u64(byte_offset: number /*i64*/, value: number /*i64*/): void
-        encode_s64(byte_offset: number /*i64*/, value: number /*i64*/): void
-        encode_half(byte_offset: number /*i64*/, value: number /*f64*/): void
-        encode_float(byte_offset: number /*i64*/, value: number /*f64*/): void
-        encode_double(byte_offset: number /*i64*/, value: number /*f64*/): void
-        encode_var(byte_offset: number /*i64*/, value: any, allow_objects: boolean = false): number /*i64*/
-        static EQUAL(left: PackedByteArray, right: PackedByteArray): boolean
-        static NOT_EQUAL(left: PackedByteArray, right: PackedByteArray): boolean
+    /** Abstract scene buffers object, created for each viewport for which 3D rendering is done. */
+    class RenderSceneBuffers extends RefCounted {
+        /** This method is called by the rendering server when the associated viewports configuration is changed. It will discard the old buffers and recreate the internal buffers used. */
+        configure(config: RenderSceneBuffersConfiguration): void
     }
-    class PackedInt32Array {
-        constructor()
-        constructor(from: PackedInt32Array)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: number /*i64*/): void
-        push_back(value: number /*i64*/): boolean
-        append(value: number /*i64*/): boolean
-        append_array(array: PackedInt32Array): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: number /*i64*/): number /*i64*/
-        fill(value: number /*i64*/): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: number /*i64*/): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedInt32Array
-        to_byte_array(): PackedByteArray
-        sort(): void
-        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
-        duplicate(): PackedInt32Array
-        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
-        count(value: number /*i64*/): number /*i64*/
-        static EQUAL(left: PackedInt32Array, right: PackedInt32Array): boolean
-        static NOT_EQUAL(left: PackedInt32Array, right: PackedInt32Array): boolean
+    /** Configuration object used to setup a [RenderSceneBuffers] object. */
+    class RenderSceneBuffersConfiguration extends RefCounted {
+        get_render_target(): RID
+        set_render_target(render_target: RID): void
+        get_internal_size(): Vector2i
+        set_internal_size(internal_size: Vector2i): void
+        get_target_size(): Vector2i
+        set_target_size(target_size: Vector2i): void
+        get_view_count(): number /*i64*/
+        set_view_count(view_count: number /*i64*/): void
+        get_scaling_3d_mode(): RenderingServer.ViewportScaling3DMode
+        set_scaling_3d_mode(scaling_3d_mode: RenderingServer.ViewportScaling3DMode): void
+        get_msaa_3d(): RenderingServer.ViewportMSAA
+        set_msaa_3d(msaa_3d: RenderingServer.ViewportMSAA): void
+        get_screen_space_aa(): RenderingServer.ViewportScreenSpaceAA
+        set_screen_space_aa(screen_space_aa: RenderingServer.ViewportScreenSpaceAA): void
+        get_fsr_sharpness(): number /*f64*/
+        set_fsr_sharpness(fsr_sharpness: number /*f64*/): void
+        get_texture_mipmap_bias(): number /*f64*/
+        set_texture_mipmap_bias(texture_mipmap_bias: number /*f64*/): void
+        
+        /** The render target associated with these buffer. */
+        render_target: RID
+        
+        /** The size of the 3D render buffer used for rendering. */
+        internal_size: Vector2i
+        
+        /** The target (upscale) size if scaling is used. */
+        target_size: Vector2i
+        
+        /** The number of views we're rendering. */
+        view_count: number /*i64*/
+        
+        /** The requested scaling mode with which we upscale/downscale if [member internal_size] and [member target_size] are not equal. */
+        scaling_3d_mode: number /*i64*/
+        
+        /** The MSAA mode we're using for 3D rendering. */
+        msaa_3d: number /*i64*/
+        
+        /** The requested screen space AA applied in post processing. */
+        screen_space_aa: number /*i64*/
+        
+        /** FSR Sharpness applicable if FSR upscaling is used. */
+        fsr_sharpness: boolean
+        
+        /** Bias applied to mipmaps. */
+        texture_mipmap_bias: boolean
     }
-    class PackedInt64Array {
-        constructor()
-        constructor(from: PackedInt64Array)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: number /*i64*/): void
-        push_back(value: number /*i64*/): boolean
-        append(value: number /*i64*/): boolean
-        append_array(array: PackedInt64Array): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: number /*i64*/): number /*i64*/
-        fill(value: number /*i64*/): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: number /*i64*/): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedInt64Array
-        to_byte_array(): PackedByteArray
-        sort(): void
-        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
-        duplicate(): PackedInt64Array
-        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
-        count(value: number /*i64*/): number /*i64*/
-        static EQUAL(left: PackedInt64Array, right: PackedInt64Array): boolean
-        static NOT_EQUAL(left: PackedInt64Array, right: PackedInt64Array): boolean
+    /** This class allows for a RenderSceneBuffer implementation to be made in GDExtension. */
+    class RenderSceneBuffersExtension extends RenderSceneBuffers {
+        /** Implement this in GDExtension to handle the (re)sizing of a viewport. */
+        /* gdvirtual */ _configure(config: RenderSceneBuffersConfiguration): void
+        
+        /** Implement this in GDExtension to record a new FSR sharpness value. */
+        /* gdvirtual */ _set_fsr_sharpness(fsr_sharpness: number /*f64*/): void
+        
+        /** Implement this in GDExtension to change the texture mipmap bias. */
+        /* gdvirtual */ _set_texture_mipmap_bias(texture_mipmap_bias: number /*f64*/): void
+        
+        /** Implement this in GDExtension to react to the debanding flag changing. */
+        /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
     }
-    class PackedFloat32Array {
-        constructor()
-        constructor(from: PackedFloat32Array)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: number /*f64*/): void
-        push_back(value: number /*f64*/): boolean
-        append(value: number /*f64*/): boolean
-        append_array(array: PackedFloat32Array): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: number /*f64*/): number /*i64*/
-        fill(value: number /*f64*/): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: number /*f64*/): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedFloat32Array
-        to_byte_array(): PackedByteArray
-        sort(): void
-        bsearch(value: number /*f64*/, before: boolean = true): number /*i64*/
-        duplicate(): PackedFloat32Array
-        find(value: number /*f64*/, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: number /*f64*/, from: number /*i64*/ = -1): number /*i64*/
-        count(value: number /*f64*/): number /*i64*/
-        static EQUAL(left: PackedFloat32Array, right: PackedFloat32Array): boolean
-        static NOT_EQUAL(left: PackedFloat32Array, right: PackedFloat32Array): boolean
+    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
     }
-    class PackedFloat64Array {
-        constructor()
-        constructor(from: PackedFloat64Array)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: number /*f64*/): void
-        push_back(value: number /*f64*/): boolean
-        append(value: number /*f64*/): boolean
-        append_array(array: PackedFloat64Array): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: number /*f64*/): number /*i64*/
-        fill(value: number /*f64*/): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: number /*f64*/): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedFloat64Array
-        to_byte_array(): PackedByteArray
-        sort(): void
-        bsearch(value: number /*f64*/, before: boolean = true): number /*i64*/
-        duplicate(): PackedFloat64Array
-        find(value: number /*f64*/, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: number /*f64*/, from: number /*i64*/ = -1): number /*i64*/
-        count(value: number /*f64*/): number /*i64*/
-        static EQUAL(left: PackedFloat64Array, right: PackedFloat64Array): boolean
-        static NOT_EQUAL(left: PackedFloat64Array, right: PackedFloat64Array): boolean
+    /** Abstract render scene buffer implementation for the RenderingDevice based renderers. */
+    class RenderSceneBuffersRD extends RenderSceneBuffers {
+        /** Returns `true` if a cached texture exists for this name. */
+        has_texture(context: StringName, name: StringName): boolean
+        
+        /** Create a new texture with the given definition and cache this under the given name. Will return the existing texture if it already exists. */
+        create_texture(context: StringName, name: StringName, data_format: RenderingDevice.DataFormat, usage_bits: number /*i64*/, texture_samples: RenderingDevice.TextureSamples, size: Vector2i, layers: number /*i64*/, mipmaps: number /*i64*/, unique: boolean): RID
+        
+        /** Create a new texture using the given format and view and cache this under the given name. Will return the existing texture if it already exists. */
+        create_texture_from_format(context: StringName, name: StringName, format: RDTextureFormat, view: RDTextureView, unique: boolean): RID
+        
+        /** Create a new texture view for an existing texture and cache this under the given view_name. Will return the existing teture view if it already exists. Will error if the source texture doesn't exist. */
+        create_texture_view(context: StringName, name: StringName, view_name: StringName, view: RDTextureView): RID
+        
+        /** Returns a cached texture with this name. */
+        get_texture(context: StringName, name: StringName): RID
+        
+        /** Returns the texture format information with which a cached texture was created. */
+        get_texture_format(context: StringName, name: StringName): RDTextureFormat
+        
+        /** Returns a specific slice (layer or mipmap) for a cached texture. */
+        get_texture_slice(context: StringName, name: StringName, layer: number /*i64*/, mipmap: number /*i64*/, layers: number /*i64*/, mipmaps: number /*i64*/): RID
+        
+        /** Returns a specific view of a slice (layer or mipmap) for a cached texture. */
+        get_texture_slice_view(context: StringName, name: StringName, layer: number /*i64*/, mipmap: number /*i64*/, layers: number /*i64*/, mipmaps: number /*i64*/, view: RDTextureView): RID
+        
+        /** Returns the texture size of a given slice of a cached texture. */
+        get_texture_slice_size(context: StringName, name: StringName, mipmap: number /*i64*/): Vector2i
+        
+        /** Frees all buffers related to this context. */
+        clear_context(context: StringName): void
+        
+        /** Returns the color texture we are rendering 3D content to. If multiview is used this will be a texture array with all views. */
+        get_color_texture(): RID
+        
+        /** Returns the specified layer from the color texture we are rendering 3D content to. */
+        get_color_layer(layer: number /*i64*/): RID
+        
+        /** Returns the depth texture we are rendering 3D content to. If multiview is used this will be a texture array with all views. */
+        get_depth_texture(): RID
+        
+        /** Returns the specified layer from the depth texture we are rendering 3D content to. */
+        get_depth_layer(layer: number /*i64*/): RID
+        
+        /** Returns the velocity texture we are rendering 3D content to. If multiview is used this will be a texture array with all views. */
+        get_velocity_texture(): RID
+        
+        /** Returns the specified layer from the velocity texture we are rendering 3D content to. */
+        get_velocity_layer(layer: number /*i64*/): RID
+        
+        /** Returns the render target associated with this buffers object. */
+        get_render_target(): RID
+        
+        /** Returns the view count for the associated viewport. */
+        get_view_count(): number /*i64*/
+        
+        /** Returns the internal size of the render buffer (size before upscaling) with which textures are created by default. */
+        get_internal_size(): Vector2i
+        
+        /** Returns `true` if TAA is enabled. */
+        get_use_taa(): boolean
     }
-    class PackedStringArray {
-        constructor()
-        constructor(from: PackedStringArray)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: string): void
-        push_back(value: string): boolean
-        append(value: string): boolean
-        append_array(array: PackedStringArray): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: string): number /*i64*/
-        fill(value: string): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: string): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedStringArray
-        to_byte_array(): PackedByteArray
-        sort(): void
-        bsearch(value: string, before: boolean = true): number /*i64*/
-        duplicate(): PackedStringArray
-        find(value: string, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: string, from: number /*i64*/ = -1): number /*i64*/
-        count(value: string): number /*i64*/
-        static EQUAL(left: PackedStringArray, right: PackedStringArray): boolean
-        static NOT_EQUAL(left: PackedStringArray, right: PackedStringArray): boolean
-    }
-    class PackedVector2Array {
-        constructor()
-        constructor(from: PackedVector2Array)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: Vector2): void
-        push_back(value: Vector2): boolean
-        append(value: Vector2): boolean
-        append_array(array: PackedVector2Array): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: Vector2): number /*i64*/
-        fill(value: Vector2): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: Vector2): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedVector2Array
-        to_byte_array(): PackedByteArray
-        sort(): void
-        bsearch(value: Vector2, before: boolean = true): number /*i64*/
-        duplicate(): PackedVector2Array
-        find(value: Vector2, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: Vector2, from: number /*i64*/ = -1): number /*i64*/
-        count(value: Vector2): number /*i64*/
-        static EQUAL(left: PackedVector2Array, right: PackedVector2Array): boolean
-        static NOT_EQUAL(left: PackedVector2Array, right: PackedVector2Array): boolean
-    }
-    class PackedVector3Array {
-        constructor()
-        constructor(from: PackedVector3Array)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: Vector3): void
-        push_back(value: Vector3): boolean
-        append(value: Vector3): boolean
-        append_array(array: PackedVector3Array): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: Vector3): number /*i64*/
-        fill(value: Vector3): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: Vector3): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedVector3Array
-        to_byte_array(): PackedByteArray
-        sort(): void
-        bsearch(value: Vector3, before: boolean = true): number /*i64*/
-        duplicate(): PackedVector3Array
-        find(value: Vector3, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: Vector3, from: number /*i64*/ = -1): number /*i64*/
-        count(value: Vector3): number /*i64*/
-        static EQUAL(left: PackedVector3Array, right: PackedVector3Array): boolean
-        static NOT_EQUAL(left: PackedVector3Array, right: PackedVector3Array): boolean
-    }
-    class PackedColorArray {
-        constructor()
-        constructor(from: PackedColorArray)
-        constructor(from: Array)
-        size(): number /*i64*/
-        is_empty(): boolean
-        set(index: number /*i64*/, value: Color): void
-        push_back(value: Color): boolean
-        append(value: Color): boolean
-        append_array(array: PackedColorArray): void
-        remove_at(index: number /*i64*/): void
-        insert(at_index: number /*i64*/, value: Color): number /*i64*/
-        fill(value: Color): void
-        resize(new_size: number /*i64*/): number /*i64*/
-        clear(): void
-        has(value: Color): boolean
-        reverse(): void
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedColorArray
-        to_byte_array(): PackedByteArray
-        sort(): void
-        bsearch(value: Color, before: boolean = true): number /*i64*/
-        duplicate(): PackedColorArray
-        find(value: Color, from: number /*i64*/ = 0): number /*i64*/
-        rfind(value: Color, from: number /*i64*/ = -1): number /*i64*/
-        count(value: Color): number /*i64*/
-        static EQUAL(left: PackedColorArray, right: PackedColorArray): boolean
-        static NOT_EQUAL(left: PackedColorArray, right: PackedColorArray): boolean
-    }
-    enum Side {
-        SIDE_LEFT = 0,
-        SIDE_TOP = 1,
-        SIDE_RIGHT = 2,
-        SIDE_BOTTOM = 3,
-    }
-    enum Corner {
-        CORNER_TOP_LEFT = 0,
-        CORNER_TOP_RIGHT = 1,
-        CORNER_BOTTOM_RIGHT = 2,
-        CORNER_BOTTOM_LEFT = 3,
-    }
-    enum Orientation {
-        VERTICAL = 1,
-        HORIZONTAL = 0,
-    }
-    enum ClockDirection {
-        CLOCKWISE = 0,
-        COUNTERCLOCKWISE = 1,
-    }
-    enum HorizontalAlignment {
-        HORIZONTAL_ALIGNMENT_LEFT = 0,
-        HORIZONTAL_ALIGNMENT_CENTER = 1,
-        HORIZONTAL_ALIGNMENT_RIGHT = 2,
-        HORIZONTAL_ALIGNMENT_FILL = 3,
-    }
-    enum VerticalAlignment {
-        VERTICAL_ALIGNMENT_TOP = 0,
-        VERTICAL_ALIGNMENT_CENTER = 1,
-        VERTICAL_ALIGNMENT_BOTTOM = 2,
-        VERTICAL_ALIGNMENT_FILL = 3,
-    }
-    enum InlineAlignment {
-        INLINE_ALIGNMENT_TOP_TO = 0,
-        INLINE_ALIGNMENT_CENTER_TO = 1,
-        INLINE_ALIGNMENT_BASELINE_TO = 3,
-        INLINE_ALIGNMENT_BOTTOM_TO = 2,
-        INLINE_ALIGNMENT_TO_TOP = 0,
-        INLINE_ALIGNMENT_TO_CENTER = 4,
-        INLINE_ALIGNMENT_TO_BASELINE = 8,
-        INLINE_ALIGNMENT_TO_BOTTOM = 12,
-        INLINE_ALIGNMENT_TOP = 0,
-        INLINE_ALIGNMENT_CENTER = 5,
-        INLINE_ALIGNMENT_BOTTOM = 14,
-        INLINE_ALIGNMENT_IMAGE_MASK = 3,
-        INLINE_ALIGNMENT_TEXT_MASK = 12,
-    }
-    enum EulerOrder {
-        EULER_ORDER_XYZ = 0,
-        EULER_ORDER_XZY = 1,
-        EULER_ORDER_YXZ = 2,
-        EULER_ORDER_YZX = 3,
-        EULER_ORDER_ZXY = 4,
-        EULER_ORDER_ZYX = 5,
-    }
-    enum Key {
-        KEY_NONE = 0,
-        KEY_SPECIAL = 4194304,
-        KEY_ESCAPE = 4194305,
-        KEY_TAB = 4194306,
-        KEY_BACKTAB = 4194307,
-        KEY_BACKSPACE = 4194308,
-        KEY_ENTER = 4194309,
-        KEY_KP_ENTER = 4194310,
-        KEY_INSERT = 4194311,
-        KEY_DELETE = 4194312,
-        KEY_PAUSE = 4194313,
-        KEY_PRINT = 4194314,
-        KEY_SYSREQ = 4194315,
-        KEY_CLEAR = 4194316,
-        KEY_HOME = 4194317,
-        KEY_END = 4194318,
-        KEY_LEFT = 4194319,
-        KEY_UP = 4194320,
-        KEY_RIGHT = 4194321,
-        KEY_DOWN = 4194322,
-        KEY_PAGEUP = 4194323,
-        KEY_PAGEDOWN = 4194324,
-        KEY_SHIFT = 4194325,
-        KEY_CTRL = 4194326,
-        KEY_META = 4194327,
-        KEY_ALT = 4194328,
-        KEY_CAPSLOCK = 4194329,
-        KEY_NUMLOCK = 4194330,
-        KEY_SCROLLLOCK = 4194331,
-        KEY_F1 = 4194332,
-        KEY_F2 = 4194333,
-        KEY_F3 = 4194334,
-        KEY_F4 = 4194335,
-        KEY_F5 = 4194336,
-        KEY_F6 = 4194337,
-        KEY_F7 = 4194338,
-        KEY_F8 = 4194339,
-        KEY_F9 = 4194340,
-        KEY_F10 = 4194341,
-        KEY_F11 = 4194342,
-        KEY_F12 = 4194343,
-        KEY_F13 = 4194344,
-        KEY_F14 = 4194345,
-        KEY_F15 = 4194346,
-        KEY_F16 = 4194347,
-        KEY_F17 = 4194348,
-        KEY_F18 = 4194349,
-        KEY_F19 = 4194350,
-        KEY_F20 = 4194351,
-        KEY_F21 = 4194352,
-        KEY_F22 = 4194353,
-        KEY_F23 = 4194354,
-        KEY_F24 = 4194355,
-        KEY_F25 = 4194356,
-        KEY_F26 = 4194357,
-        KEY_F27 = 4194358,
-        KEY_F28 = 4194359,
-        KEY_F29 = 4194360,
-        KEY_F30 = 4194361,
-        KEY_F31 = 4194362,
-        KEY_F32 = 4194363,
-        KEY_F33 = 4194364,
-        KEY_F34 = 4194365,
-        KEY_F35 = 4194366,
-        KEY_KP_MULTIPLY = 4194433,
-        KEY_KP_DIVIDE = 4194434,
-        KEY_KP_SUBTRACT = 4194435,
-        KEY_KP_PERIOD = 4194436,
-        KEY_KP_ADD = 4194437,
-        KEY_KP_0 = 4194438,
-        KEY_KP_1 = 4194439,
-        KEY_KP_2 = 4194440,
-        KEY_KP_3 = 4194441,
-        KEY_KP_4 = 4194442,
-        KEY_KP_5 = 4194443,
-        KEY_KP_6 = 4194444,
-        KEY_KP_7 = 4194445,
-        KEY_KP_8 = 4194446,
-        KEY_KP_9 = 4194447,
-        KEY_MENU = 4194370,
-        KEY_HYPER = 4194371,
-        KEY_HELP = 4194373,
-        KEY_BACK = 4194376,
-        KEY_FORWARD = 4194377,
-        KEY_STOP = 4194378,
-        KEY_REFRESH = 4194379,
-        KEY_VOLUMEDOWN = 4194380,
-        KEY_VOLUMEMUTE = 4194381,
-        KEY_VOLUMEUP = 4194382,
-        KEY_MEDIAPLAY = 4194388,
-        KEY_MEDIASTOP = 4194389,
-        KEY_MEDIAPREVIOUS = 4194390,
-        KEY_MEDIANEXT = 4194391,
-        KEY_MEDIARECORD = 4194392,
-        KEY_HOMEPAGE = 4194393,
-        KEY_FAVORITES = 4194394,
-        KEY_SEARCH = 4194395,
-        KEY_STANDBY = 4194396,
-        KEY_OPENURL = 4194397,
-        KEY_LAUNCHMAIL = 4194398,
-        KEY_LAUNCHMEDIA = 4194399,
-        KEY_LAUNCH0 = 4194400,
-        KEY_LAUNCH1 = 4194401,
-        KEY_LAUNCH2 = 4194402,
-        KEY_LAUNCH3 = 4194403,
-        KEY_LAUNCH4 = 4194404,
-        KEY_LAUNCH5 = 4194405,
-        KEY_LAUNCH6 = 4194406,
-        KEY_LAUNCH7 = 4194407,
-        KEY_LAUNCH8 = 4194408,
-        KEY_LAUNCH9 = 4194409,
-        KEY_LAUNCHA = 4194410,
-        KEY_LAUNCHB = 4194411,
-        KEY_LAUNCHC = 4194412,
-        KEY_LAUNCHD = 4194413,
-        KEY_LAUNCHE = 4194414,
-        KEY_LAUNCHF = 4194415,
-        KEY_GLOBE = 4194416,
-        KEY_KEYBOARD = 4194417,
-        KEY_JIS_EISU = 4194418,
-        KEY_JIS_KANA = 4194419,
-        KEY_UNKNOWN = 8388607,
-        KEY_SPACE = 32,
-        KEY_EXCLAM = 33,
-        KEY_QUOTEDBL = 34,
-        KEY_NUMBERSIGN = 35,
-        KEY_DOLLAR = 36,
-        KEY_PERCENT = 37,
-        KEY_AMPERSAND = 38,
-        KEY_APOSTROPHE = 39,
-        KEY_PARENLEFT = 40,
-        KEY_PARENRIGHT = 41,
-        KEY_ASTERISK = 42,
-        KEY_PLUS = 43,
-        KEY_COMMA = 44,
-        KEY_MINUS = 45,
-        KEY_PERIOD = 46,
-        KEY_SLASH = 47,
-        KEY_0 = 48,
-        KEY_1 = 49,
-        KEY_2 = 50,
-        KEY_3 = 51,
-        KEY_4 = 52,
-        KEY_5 = 53,
-        KEY_6 = 54,
-        KEY_7 = 55,
-        KEY_8 = 56,
-        KEY_9 = 57,
-        KEY_COLON = 58,
-        KEY_SEMICOLON = 59,
-        KEY_LESS = 60,
-        KEY_EQUAL = 61,
-        KEY_GREATER = 62,
-        KEY_QUESTION = 63,
-        KEY_AT = 64,
-        KEY_A = 65,
-        KEY_B = 66,
-        KEY_C = 67,
-        KEY_D = 68,
-        KEY_E = 69,
-        KEY_F = 70,
-        KEY_G = 71,
-        KEY_H = 72,
-        KEY_I = 73,
-        KEY_J = 74,
-        KEY_K = 75,
-        KEY_L = 76,
-        KEY_M = 77,
-        KEY_N = 78,
-        KEY_O = 79,
-        KEY_P = 80,
-        KEY_Q = 81,
-        KEY_R = 82,
-        KEY_S = 83,
-        KEY_T = 84,
-        KEY_U = 85,
-        KEY_V = 86,
-        KEY_W = 87,
-        KEY_X = 88,
-        KEY_Y = 89,
-        KEY_Z = 90,
-        KEY_BRACKETLEFT = 91,
-        KEY_BACKSLASH = 92,
-        KEY_BRACKETRIGHT = 93,
-        KEY_ASCIICIRCUM = 94,
-        KEY_UNDERSCORE = 95,
-        KEY_QUOTELEFT = 96,
-        KEY_BRACELEFT = 123,
-        KEY_BAR = 124,
-        KEY_BRACERIGHT = 125,
-        KEY_ASCIITILDE = 126,
-        KEY_YEN = 165,
-        KEY_SECTION = 167,
-    }
-    enum KeyModifierMask {
-        KEY_CODE_MASK = 8388607,
-        KEY_MODIFIER_MASK = 532676608,
-        KEY_MASK_CMD_OR_CTRL = 16777216,
-        KEY_MASK_SHIFT = 33554432,
-        KEY_MASK_ALT = 67108864,
-        KEY_MASK_META = 134217728,
-        KEY_MASK_CTRL = 268435456,
-        KEY_MASK_KPAD = 536870912,
-        KEY_MASK_GROUP_SWITCH = 1073741824,
-    }
-    enum MouseButton {
-        MOUSE_BUTTON_NONE = 0,
-        MOUSE_BUTTON_LEFT = 1,
-        MOUSE_BUTTON_RIGHT = 2,
-        MOUSE_BUTTON_MIDDLE = 3,
-        MOUSE_BUTTON_WHEEL_UP = 4,
-        MOUSE_BUTTON_WHEEL_DOWN = 5,
-        MOUSE_BUTTON_WHEEL_LEFT = 6,
-        MOUSE_BUTTON_WHEEL_RIGHT = 7,
-        MOUSE_BUTTON_XBUTTON1 = 8,
-        MOUSE_BUTTON_XBUTTON2 = 9,
-    }
-    enum MouseButtonMask {
-        MOUSE_BUTTON_MASK_LEFT = 1,
-        MOUSE_BUTTON_MASK_RIGHT = 2,
-        MOUSE_BUTTON_MASK_MIDDLE = 4,
-        MOUSE_BUTTON_MASK_MB_XBUTTON1 = 128,
-        MOUSE_BUTTON_MASK_MB_XBUTTON2 = 256,
-    }
-    enum JoyButton {
-        JOY_BUTTON_INVALID = -1,
-        JOY_BUTTON_A = 0,
-        JOY_BUTTON_B = 1,
-        JOY_BUTTON_X = 2,
-        JOY_BUTTON_Y = 3,
-        JOY_BUTTON_BACK = 4,
-        JOY_BUTTON_GUIDE = 5,
-        JOY_BUTTON_START = 6,
-        JOY_BUTTON_LEFT_STICK = 7,
-        JOY_BUTTON_RIGHT_STICK = 8,
-        JOY_BUTTON_LEFT_SHOULDER = 9,
-        JOY_BUTTON_RIGHT_SHOULDER = 10,
-        JOY_BUTTON_DPAD_UP = 11,
-        JOY_BUTTON_DPAD_DOWN = 12,
-        JOY_BUTTON_DPAD_LEFT = 13,
-        JOY_BUTTON_DPAD_RIGHT = 14,
-        JOY_BUTTON_MISC1 = 15,
-        JOY_BUTTON_PADDLE1 = 16,
-        JOY_BUTTON_PADDLE2 = 17,
-        JOY_BUTTON_PADDLE3 = 18,
-        JOY_BUTTON_PADDLE4 = 19,
-        JOY_BUTTON_TOUCHPAD = 20,
-        JOY_BUTTON_SDL_MAX = 21,
-        JOY_BUTTON_MAX = 128,
-    }
-    enum JoyAxis {
-        JOY_AXIS_INVALID = -1,
-        JOY_AXIS_LEFT_X = 0,
-        JOY_AXIS_LEFT_Y = 1,
-        JOY_AXIS_RIGHT_X = 2,
-        JOY_AXIS_RIGHT_Y = 3,
-        JOY_AXIS_TRIGGER_LEFT = 4,
-        JOY_AXIS_TRIGGER_RIGHT = 5,
-        JOY_AXIS_SDL_MAX = 6,
-        JOY_AXIS_MAX = 10,
-    }
-    enum MIDIMessage {
-        MIDI_MESSAGE_NONE = 0,
-        MIDI_MESSAGE_NOTE_OFF = 8,
-        MIDI_MESSAGE_NOTE_ON = 9,
-        MIDI_MESSAGE_AFTERTOUCH = 10,
-        MIDI_MESSAGE_CONTROL_CHANGE = 11,
-        MIDI_MESSAGE_PROGRAM_CHANGE = 12,
-        MIDI_MESSAGE_CHANNEL_PRESSURE = 13,
-        MIDI_MESSAGE_PITCH_BEND = 14,
-        MIDI_MESSAGE_SYSTEM_EXCLUSIVE = 240,
-        MIDI_MESSAGE_QUARTER_FRAME = 241,
-        MIDI_MESSAGE_SONG_POSITION_POINTER = 242,
-        MIDI_MESSAGE_SONG_SELECT = 243,
-        MIDI_MESSAGE_TUNE_REQUEST = 246,
-        MIDI_MESSAGE_TIMING_CLOCK = 248,
-        MIDI_MESSAGE_START = 250,
-        MIDI_MESSAGE_CONTINUE = 251,
-        MIDI_MESSAGE_STOP = 252,
-        MIDI_MESSAGE_ACTIVE_SENSING = 254,
-        MIDI_MESSAGE_SYSTEM_RESET = 255,
-    }
-    enum Error {
-        OK = 0,
-        FAILED = 1,
-        ERR_UNAVAILABLE = 2,
-        ERR_UNCONFIGURED = 3,
-        ERR_UNAUTHORIZED = 4,
-        ERR_PARAMETER_RANGE_ERROR = 5,
-        ERR_OUT_OF_MEMORY = 6,
-        ERR_FILE_NOT_FOUND = 7,
-        ERR_FILE_BAD_DRIVE = 8,
-        ERR_FILE_BAD_PATH = 9,
-        ERR_FILE_NO_PERMISSION = 10,
-        ERR_FILE_ALREADY_IN_USE = 11,
-        ERR_FILE_CANT_OPEN = 12,
-        ERR_FILE_CANT_WRITE = 13,
-        ERR_FILE_CANT_READ = 14,
-        ERR_FILE_UNRECOGNIZED = 15,
-        ERR_FILE_CORRUPT = 16,
-        ERR_FILE_MISSING_DEPENDENCIES = 17,
-        ERR_FILE_EOF = 18,
-        ERR_CANT_OPEN = 19,
-        ERR_CANT_CREATE = 20,
-        ERR_QUERY_FAILED = 21,
-        ERR_ALREADY_IN_USE = 22,
-        ERR_LOCKED = 23,
-        ERR_TIMEOUT = 24,
-        ERR_CANT_CONNECT = 25,
-        ERR_CANT_RESOLVE = 26,
-        ERR_CONNECTION_ERROR = 27,
-        ERR_CANT_ACQUIRE_RESOURCE = 28,
-        ERR_CANT_FORK = 29,
-        ERR_INVALID_DATA = 30,
-        ERR_INVALID_PARAMETER = 31,
-        ERR_ALREADY_EXISTS = 32,
-        ERR_DOES_NOT_EXIST = 33,
-        ERR_DATABASE_CANT_READ = 34,
-        ERR_DATABASE_CANT_WRITE = 35,
-        ERR_COMPILATION_FAILED = 36,
-        ERR_METHOD_NOT_FOUND = 37,
-        ERR_LINK_FAILED = 38,
-        ERR_SCRIPT_FAILED = 39,
-        ERR_CYCLIC_LINK = 40,
-        ERR_INVALID_DECLARATION = 41,
-        ERR_DUPLICATE_SYMBOL = 42,
-        ERR_PARSE_ERROR = 43,
-        ERR_BUSY = 44,
-        ERR_SKIP = 45,
-        ERR_HELP = 46,
-        ERR_BUG = 47,
-        ERR_PRINTER_ON_FIRE = 48,
-    }
-    enum PropertyHint {
-        PROPERTY_HINT_NONE = 0,
-        PROPERTY_HINT_RANGE = 1,
-        PROPERTY_HINT_ENUM = 2,
-        PROPERTY_HINT_ENUM_SUGGESTION = 3,
-        PROPERTY_HINT_EXP_EASING = 4,
-        PROPERTY_HINT_LINK = 5,
-        PROPERTY_HINT_FLAGS = 6,
-        PROPERTY_HINT_LAYERS_2D_RENDER = 7,
-        PROPERTY_HINT_LAYERS_2D_PHYSICS = 8,
-        PROPERTY_HINT_LAYERS_2D_NAVIGATION = 9,
-        PROPERTY_HINT_LAYERS_3D_RENDER = 10,
-        PROPERTY_HINT_LAYERS_3D_PHYSICS = 11,
-        PROPERTY_HINT_LAYERS_3D_NAVIGATION = 12,
-        PROPERTY_HINT_LAYERS_AVOIDANCE = 37,
-        PROPERTY_HINT_FILE = 13,
-        PROPERTY_HINT_DIR = 14,
-        PROPERTY_HINT_GLOBAL_FILE = 15,
-        PROPERTY_HINT_GLOBAL_DIR = 16,
-        PROPERTY_HINT_RESOURCE_TYPE = 17,
-        PROPERTY_HINT_MULTILINE_TEXT = 18,
-        PROPERTY_HINT_EXPRESSION = 19,
-        PROPERTY_HINT_PLACEHOLDER_TEXT = 20,
-        PROPERTY_HINT_COLOR_NO_ALPHA = 21,
-        PROPERTY_HINT_OBJECT_ID = 22,
-        PROPERTY_HINT_TYPE_STRING = 23,
-        PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE = 24,
-        PROPERTY_HINT_OBJECT_TOO_BIG = 25,
-        PROPERTY_HINT_NODE_PATH_VALID_TYPES = 26,
-        PROPERTY_HINT_SAVE_FILE = 27,
-        PROPERTY_HINT_GLOBAL_SAVE_FILE = 28,
-        PROPERTY_HINT_INT_IS_OBJECTID = 29,
-        PROPERTY_HINT_INT_IS_POINTER = 30,
-        PROPERTY_HINT_ARRAY_TYPE = 31,
-        PROPERTY_HINT_LOCALE_ID = 32,
-        PROPERTY_HINT_LOCALIZABLE_STRING = 33,
-        PROPERTY_HINT_NODE_TYPE = 34,
-        PROPERTY_HINT_HIDE_QUATERNION_EDIT = 35,
-        PROPERTY_HINT_PASSWORD = 36,
-        PROPERTY_HINT_MAX = 38,
-    }
-    enum PropertyUsageFlags {
-        PROPERTY_USAGE_NONE = 0,
-        PROPERTY_USAGE_STORAGE = 2,
-        PROPERTY_USAGE_EDITOR = 4,
-        PROPERTY_USAGE_INTERNAL = 8,
-        PROPERTY_USAGE_CHECKABLE = 16,
-        PROPERTY_USAGE_CHECKED = 32,
-        PROPERTY_USAGE_GROUP = 64,
-        PROPERTY_USAGE_CATEGORY = 128,
-        PROPERTY_USAGE_SUBGROUP = 256,
-        PROPERTY_USAGE_CLASS_IS_BITFIELD = 512,
-        PROPERTY_USAGE_NO_INSTANCE_STATE = 1024,
-        PROPERTY_USAGE_RESTART_IF_CHANGED = 2048,
-        PROPERTY_USAGE_SCRIPT_VARIABLE = 4096,
-        PROPERTY_USAGE_STORE_IF_NULL = 8192,
-        PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED = 16384,
-        PROPERTY_USAGE_SCRIPT_DEFAULT_VALUE = 32768,
-        PROPERTY_USAGE_CLASS_IS_ENUM = 65536,
-        PROPERTY_USAGE_NIL_IS_VARIANT = 131072,
-        PROPERTY_USAGE_ARRAY = 262144,
-        PROPERTY_USAGE_ALWAYS_DUPLICATE = 524288,
-        PROPERTY_USAGE_NEVER_DUPLICATE = 1048576,
-        PROPERTY_USAGE_HIGH_END_GFX = 2097152,
-        PROPERTY_USAGE_NODE_PATH_FROM_SCENE_ROOT = 4194304,
-        PROPERTY_USAGE_RESOURCE_NOT_PERSISTENT = 8388608,
-        PROPERTY_USAGE_KEYING_INCREMENTS = 16777216,
-        PROPERTY_USAGE_DEFERRED_SET_RESOURCE = 33554432,
-        PROPERTY_USAGE_EDITOR_INSTANTIATE_OBJECT = 67108864,
-        PROPERTY_USAGE_EDITOR_BASIC_SETTING = 134217728,
-        PROPERTY_USAGE_READ_ONLY = 268435456,
-        PROPERTY_USAGE_SECRET = 536870912,
-        PROPERTY_USAGE_DEFAULT = 6,
-        PROPERTY_USAGE_NO_EDITOR = 2,
-    }
-    enum MethodFlags {
-        METHOD_FLAG_NORMAL = 1,
-        METHOD_FLAG_EDITOR = 2,
-        METHOD_FLAG_CONST = 4,
-        METHOD_FLAG_VIRTUAL = 8,
-        METHOD_FLAG_VARARG = 16,
-        METHOD_FLAG_STATIC = 32,
-        METHOD_FLAG_OBJECT_CORE = 64,
-        METHOD_FLAGS_DEFAULT = 1,
-    }
-    namespace Variant {
-        enum Type {
-            TYPE_NIL = 0,
-            TYPE_BOOL = 1,
-            TYPE_INT = 2,
-            TYPE_FLOAT = 3,
-            TYPE_STRING = 4,
-            TYPE_VECTOR2 = 5,
-            TYPE_VECTOR2I = 6,
-            TYPE_RECT2 = 7,
-            TYPE_RECT2I = 8,
-            TYPE_VECTOR3 = 9,
-            TYPE_VECTOR3I = 10,
-            TYPE_TRANSFORM2D = 11,
-            TYPE_VECTOR4 = 12,
-            TYPE_VECTOR4I = 13,
-            TYPE_PLANE = 14,
-            TYPE_QUATERNION = 15,
-            TYPE_AABB = 16,
-            TYPE_BASIS = 17,
-            TYPE_TRANSFORM3D = 18,
-            TYPE_PROJECTION = 19,
-            TYPE_COLOR = 20,
-            TYPE_STRING_NAME = 21,
-            TYPE_NODE_PATH = 22,
-            TYPE_RID = 23,
-            TYPE_OBJECT = 24,
-            TYPE_CALLABLE = 25,
-            TYPE_SIGNAL = 26,
-            TYPE_DICTIONARY = 27,
-            TYPE_ARRAY = 28,
-            TYPE_PACKED_BYTE_ARRAY = 29,
-            TYPE_PACKED_INT32_ARRAY = 30,
-            TYPE_PACKED_INT64_ARRAY = 31,
-            TYPE_PACKED_FLOAT32_ARRAY = 32,
-            TYPE_PACKED_FLOAT64_ARRAY = 33,
-            TYPE_PACKED_STRING_ARRAY = 34,
-            TYPE_PACKED_VECTOR2_ARRAY = 35,
-            TYPE_PACKED_VECTOR3_ARRAY = 36,
-            TYPE_PACKED_COLOR_ARRAY = 37,
-            TYPE_MAX = 38,
+    namespace RenderingDevice {
+        enum DeviceType {
+            /** Rendering device type does not match any of the other enum values or is unknown. */
+            DEVICE_TYPE_OTHER = 0,
+            
+            /** Rendering device is an integrated GPU, which is typically [i](but not always)[/i] slower than dedicated GPUs ([constant DEVICE_TYPE_DISCRETE_GPU]). On Android and iOS, the rendering device type is always considered to be [constant DEVICE_TYPE_INTEGRATED_GPU]. */
+            DEVICE_TYPE_INTEGRATED_GPU = 1,
+            
+            /** Rendering device is a dedicated GPU, which is typically [i](but not always)[/i] faster than integrated GPUs ([constant DEVICE_TYPE_INTEGRATED_GPU]). */
+            DEVICE_TYPE_DISCRETE_GPU = 2,
+            
+            /** Rendering device is an emulated GPU in a virtual environment. This is typically much slower than the host GPU, which means the expected performance level on a dedicated GPU will be roughly equivalent to [constant DEVICE_TYPE_INTEGRATED_GPU]. Virtual machine GPU passthrough (such as VFIO) will not report the device type as [constant DEVICE_TYPE_VIRTUAL_GPU]. Instead, the host GPU's device type will be reported as if the GPU was not emulated. */
+            DEVICE_TYPE_VIRTUAL_GPU = 3,
+            
+            /** Rendering device is provided by software emulation (such as Lavapipe or [url=https://github.com/google/swiftshader]SwiftShader[/url]). This is the slowest kind of rendering device available; it's typically much slower than [constant DEVICE_TYPE_INTEGRATED_GPU]. */
+            DEVICE_TYPE_CPU = 4,
+            
+            /** Represents the size of the [enum DeviceType] enum. */
+            DEVICE_TYPE_MAX = 5,
+        }
+        enum DriverResource {
+            /** Vulkan device driver resource. This is a "global" resource and ignores the RID passed in */
+            DRIVER_RESOURCE_VULKAN_DEVICE = 0,
+            
+            /** Physical device (graphics card) driver resource. */
+            DRIVER_RESOURCE_VULKAN_PHYSICAL_DEVICE = 1,
+            
+            /** Vulkan instance driver resource. */
+            DRIVER_RESOURCE_VULKAN_INSTANCE = 2,
+            
+            /** Vulkan queue driver resource. */
+            DRIVER_RESOURCE_VULKAN_QUEUE = 3,
+            
+            /** Vulkan queue family index driver resource. */
+            DRIVER_RESOURCE_VULKAN_QUEUE_FAMILY_INDEX = 4,
+            
+            /** Vulkan image driver resource. */
+            DRIVER_RESOURCE_VULKAN_IMAGE = 5,
+            
+            /** Vulkan image view driver resource. */
+            DRIVER_RESOURCE_VULKAN_IMAGE_VIEW = 6,
+            
+            /** Vulkan image native texture format driver resource. */
+            DRIVER_RESOURCE_VULKAN_IMAGE_NATIVE_TEXTURE_FORMAT = 7,
+            
+            /** Vulkan sampler driver resource. */
+            DRIVER_RESOURCE_VULKAN_SAMPLER = 8,
+            
+            /** Vulkan [url=https://vkguide.dev/docs/chapter-4/descriptors/]descriptor set[/url] driver resource. */
+            DRIVER_RESOURCE_VULKAN_DESCRIPTOR_SET = 9,
+            
+            /** Vulkan buffer driver resource. */
+            DRIVER_RESOURCE_VULKAN_BUFFER = 10,
+            
+            /** Vulkan compute pipeline driver resource. */
+            DRIVER_RESOURCE_VULKAN_COMPUTE_PIPELINE = 11,
+            
+            /** Vulkan render pipeline driver resource. */
+            DRIVER_RESOURCE_VULKAN_RENDER_PIPELINE = 12,
+        }
+        enum DataFormat {
+            /** 4-bit-per-channel red/green channel data format, packed into 8 bits. Values are in the `[0.0, 1.0]` range.  
+             *      
+             *  **Note:** More information on all data formats can be found on the [url=https://registry.khronos.org/vulkan/specs/1.1/html/vkspec.html#_identification_of_formats]Identification of formats[/url] section of the Vulkan specification, as well as the [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFormat.html]VkFormat[/url] enum.  
+             */
+            DATA_FORMAT_R4G4_UNORM_PACK8 = 0,
+            
+            /** 4-bit-per-channel red/green/blue/alpha channel data format, packed into 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R4G4B4A4_UNORM_PACK16 = 1,
+            
+            /** 4-bit-per-channel blue/green/red/alpha channel data format, packed into 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_B4G4R4A4_UNORM_PACK16 = 2,
+            
+            /** Red/green/blue channel data format with 5 bits of red, 6 bits of green and 5 bits of blue, packed into 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R5G6B5_UNORM_PACK16 = 3,
+            
+            /** Blue/green/red channel data format with 5 bits of blue, 6 bits of green and 5 bits of red, packed into 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_B5G6R5_UNORM_PACK16 = 4,
+            
+            /** Red/green/blue/alpha channel data format with 5 bits of red, 6 bits of green, 5 bits of blue and 1 bit of alpha, packed into 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R5G5B5A1_UNORM_PACK16 = 5,
+            
+            /** Blue/green/red/alpha channel data format with 5 bits of blue, 6 bits of green, 5 bits of red and 1 bit of alpha, packed into 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_B5G5R5A1_UNORM_PACK16 = 6,
+            
+            /** Alpha/red/green/blue channel data format with 1 bit of alpha, 5 bits of red, 6 bits of green and 5 bits of blue, packed into 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_A1R5G5B5_UNORM_PACK16 = 7,
+            
+            /** 8-bit-per-channel unsigned floating-point red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R8_UNORM = 8,
+            
+            /** 8-bit-per-channel signed floating-point red channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_R8_SNORM = 9,
+            
+            /** 8-bit-per-channel unsigned floating-point red channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range. */
+            DATA_FORMAT_R8_USCALED = 10,
+            
+            /** 8-bit-per-channel signed floating-point red channel data format with scaled value (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range. */
+            DATA_FORMAT_R8_SSCALED = 11,
+            
+            /** 8-bit-per-channel unsigned integer red channel data format. Values are in the `[0, 255]` range. */
+            DATA_FORMAT_R8_UINT = 12,
+            
+            /** 8-bit-per-channel signed integer red channel data format. Values are in the `[-127, 127]` range. */
+            DATA_FORMAT_R8_SINT = 13,
+            
+            /** 8-bit-per-channel unsigned floating-point red channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R8_SRGB = 14,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R8G8_UNORM = 15,
+            
+            /** 8-bit-per-channel signed floating-point red/green channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_R8G8_SNORM = 16,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range. */
+            DATA_FORMAT_R8G8_USCALED = 17,
+            
+            /** 8-bit-per-channel signed floating-point red/green channel data format with scaled value (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range. */
+            DATA_FORMAT_R8G8_SSCALED = 18,
+            
+            /** 8-bit-per-channel unsigned integer red/green channel data format. Values are in the `[0, 255]` range. */
+            DATA_FORMAT_R8G8_UINT = 19,
+            
+            /** 8-bit-per-channel signed integer red/green channel data format. Values are in the `[-127, 127]` range. */
+            DATA_FORMAT_R8G8_SINT = 20,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R8G8_SRGB = 21,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green/blue channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R8G8B8_UNORM = 22,
+            
+            /** 8-bit-per-channel signed floating-point red/green/blue channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_R8G8B8_SNORM = 23,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green/blue channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range. */
+            DATA_FORMAT_R8G8B8_USCALED = 24,
+            
+            /** 8-bit-per-channel signed floating-point red/green/blue channel data format with scaled value (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range. */
+            DATA_FORMAT_R8G8B8_SSCALED = 25,
+            
+            /** 8-bit-per-channel unsigned integer red/green/blue channel data format. Values are in the `[0, 255]` range. */
+            DATA_FORMAT_R8G8B8_UINT = 26,
+            
+            /** 8-bit-per-channel signed integer red/green/blue channel data format. Values are in the `[-127, 127]` range. */
+            DATA_FORMAT_R8G8B8_SINT = 27,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green/blue/blue channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R8G8B8_SRGB = 28,
+            
+            /** 8-bit-per-channel unsigned floating-point blue/green/red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_B8G8R8_UNORM = 29,
+            
+            /** 8-bit-per-channel signed floating-point blue/green/red channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_B8G8R8_SNORM = 30,
+            
+            /** 8-bit-per-channel unsigned floating-point blue/green/red channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range. */
+            DATA_FORMAT_B8G8R8_USCALED = 31,
+            
+            /** 8-bit-per-channel signed floating-point blue/green/red channel data format with scaled value (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range. */
+            DATA_FORMAT_B8G8R8_SSCALED = 32,
+            
+            /** 8-bit-per-channel unsigned integer blue/green/red channel data format. Values are in the `[0, 255]` range. */
+            DATA_FORMAT_B8G8R8_UINT = 33,
+            
+            /** 8-bit-per-channel signed integer blue/green/red channel data format. Values are in the `[-127, 127]` range. */
+            DATA_FORMAT_B8G8R8_SINT = 34,
+            
+            /** 8-bit-per-channel unsigned floating-point blue/green/red data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_B8G8R8_SRGB = 35,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R8G8B8A8_UNORM = 36,
+            
+            /** 8-bit-per-channel signed floating-point red/green/blue/alpha channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_R8G8B8A8_SNORM = 37,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range. */
+            DATA_FORMAT_R8G8B8A8_USCALED = 38,
+            
+            /** 8-bit-per-channel signed floating-point red/green/blue/alpha channel data format with scaled value (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range. */
+            DATA_FORMAT_R8G8B8A8_SSCALED = 39,
+            
+            /** 8-bit-per-channel unsigned integer red/green/blue/alpha channel data format. Values are in the `[0, 255]` range. */
+            DATA_FORMAT_R8G8B8A8_UINT = 40,
+            
+            /** 8-bit-per-channel signed integer red/green/blue/alpha channel data format. Values are in the `[-127, 127]` range. */
+            DATA_FORMAT_R8G8B8A8_SINT = 41,
+            
+            /** 8-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R8G8B8A8_SRGB = 42,
+            
+            /** 8-bit-per-channel unsigned floating-point blue/green/red/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_B8G8R8A8_UNORM = 43,
+            
+            /** 8-bit-per-channel signed floating-point blue/green/red/alpha channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_B8G8R8A8_SNORM = 44,
+            
+            /** 8-bit-per-channel unsigned floating-point blue/green/red/alpha channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 255.0]` range. */
+            DATA_FORMAT_B8G8R8A8_USCALED = 45,
+            
+            /** 8-bit-per-channel signed floating-point blue/green/red/alpha channel data format with scaled value (value is converted from integer to float). Values are in the `[-127.0, 127.0]` range. */
+            DATA_FORMAT_B8G8R8A8_SSCALED = 46,
+            
+            /** 8-bit-per-channel unsigned integer blue/green/red/alpha channel data format. Values are in the `[0, 255]` range. */
+            DATA_FORMAT_B8G8R8A8_UINT = 47,
+            
+            /** 8-bit-per-channel signed integer blue/green/red/alpha channel data format. Values are in the `[-127, 127]` range. */
+            DATA_FORMAT_B8G8R8A8_SINT = 48,
+            
+            /** 8-bit-per-channel unsigned floating-point blue/green/red/alpha channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_B8G8R8A8_SRGB = 49,
+            
+            /** 8-bit-per-channel unsigned floating-point alpha/red/green/blue channel data format with normalized value, packed in 32 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_A8B8G8R8_UNORM_PACK32 = 50,
+            
+            /** 8-bit-per-channel signed floating-point alpha/red/green/blue channel data format with normalized value, packed in 32 bits. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_A8B8G8R8_SNORM_PACK32 = 51,
+            
+            /** 8-bit-per-channel unsigned floating-point alpha/red/green/blue channel data format with scaled value (value is converted from integer to float), packed in 32 bits. Values are in the `[0.0, 255.0]` range. */
+            DATA_FORMAT_A8B8G8R8_USCALED_PACK32 = 52,
+            
+            /** 8-bit-per-channel signed floating-point alpha/red/green/blue channel data format with scaled value (value is converted from integer to float), packed in 32 bits. Values are in the `[-127.0, 127.0]` range. */
+            DATA_FORMAT_A8B8G8R8_SSCALED_PACK32 = 53,
+            
+            /** 8-bit-per-channel unsigned integer alpha/red/green/blue channel data format, packed in 32 bits. Values are in the `[0, 255]` range. */
+            DATA_FORMAT_A8B8G8R8_UINT_PACK32 = 54,
+            
+            /** 8-bit-per-channel signed integer alpha/red/green/blue channel data format, packed in 32 bits. Values are in the `[-127, 127]` range. */
+            DATA_FORMAT_A8B8G8R8_SINT_PACK32 = 55,
+            
+            /** 8-bit-per-channel unsigned floating-point alpha/red/green/blue channel data format with normalized value and non-linear sRGB encoding, packed in 32 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_A8B8G8R8_SRGB_PACK32 = 56,
+            
+            /** Unsigned floating-point alpha/red/green/blue channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of blue. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_A2R10G10B10_UNORM_PACK32 = 57,
+            
+            /** Signed floating-point alpha/red/green/blue channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of blue. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_A2R10G10B10_SNORM_PACK32 = 58,
+            
+            /** Unsigned floating-point alpha/red/green/blue channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of blue. Values are in the `[0.0, 1023.0]` range for red/green/blue and `[0.0, 3.0]` for alpha. */
+            DATA_FORMAT_A2R10G10B10_USCALED_PACK32 = 59,
+            
+            /** Signed floating-point alpha/red/green/blue channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of blue. Values are in the `[-511.0, 511.0]` range for red/green/blue and `[-1.0, 1.0]` for alpha. */
+            DATA_FORMAT_A2R10G10B10_SSCALED_PACK32 = 60,
+            
+            /** Unsigned integer alpha/red/green/blue channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of blue. Values are in the `[0, 1023]` range for red/green/blue and `[0, 3]` for alpha. */
+            DATA_FORMAT_A2R10G10B10_UINT_PACK32 = 61,
+            
+            /** Signed integer alpha/red/green/blue channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of red, 10 bits of green and 10 bits of blue. Values are in the `[-511, 511]` range for red/green/blue and `[-1, 1]` for alpha. */
+            DATA_FORMAT_A2R10G10B10_SINT_PACK32 = 62,
+            
+            /** Unsigned floating-point alpha/blue/green/red channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of red. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_A2B10G10R10_UNORM_PACK32 = 63,
+            
+            /** Signed floating-point alpha/blue/green/red channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of red. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_A2B10G10R10_SNORM_PACK32 = 64,
+            
+            /** Unsigned floating-point alpha/blue/green/red channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of red. Values are in the `[0.0, 1023.0]` range for blue/green/red and `[0.0, 3.0]` for alpha. */
+            DATA_FORMAT_A2B10G10R10_USCALED_PACK32 = 65,
+            
+            /** Signed floating-point alpha/blue/green/red channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of red. Values are in the `[-511.0, 511.0]` range for blue/green/red and `[-1.0, 1.0]` for alpha. */
+            DATA_FORMAT_A2B10G10R10_SSCALED_PACK32 = 66,
+            
+            /** Unsigned integer alpha/blue/green/red channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of red. Values are in the `[0, 1023]` range for blue/green/red and `[0, 3]` for alpha. */
+            DATA_FORMAT_A2B10G10R10_UINT_PACK32 = 67,
+            
+            /** Signed integer alpha/blue/green/red channel data format with normalized value, packed in 32 bits. Format contains 2 bits of alpha, 10 bits of blue, 10 bits of green and 10 bits of red. Values are in the `[-511, 511]` range for blue/green/red and `[-1, 1]` for alpha. */
+            DATA_FORMAT_A2B10G10R10_SINT_PACK32 = 68,
+            
+            /** 16-bit-per-channel unsigned floating-point red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R16_UNORM = 69,
+            
+            /** 16-bit-per-channel signed floating-point red channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_R16_SNORM = 70,
+            
+            /** 16-bit-per-channel unsigned floating-point red channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 65535.0]` range. */
+            DATA_FORMAT_R16_USCALED = 71,
+            
+            /** 16-bit-per-channel signed floating-point red channel data format with scaled value (value is converted from integer to float). Values are in the `[-32767.0, 32767.0]` range. */
+            DATA_FORMAT_R16_SSCALED = 72,
+            
+            /** 16-bit-per-channel unsigned integer red channel data format. Values are in the `[0.0, 65535]` range. */
+            DATA_FORMAT_R16_UINT = 73,
+            
+            /** 16-bit-per-channel signed integer red channel data format. Values are in the `[-32767, 32767]` range. */
+            DATA_FORMAT_R16_SINT = 74,
+            
+            /** 16-bit-per-channel signed floating-point red channel data format with the value stored as-is. */
+            DATA_FORMAT_R16_SFLOAT = 75,
+            
+            /** 16-bit-per-channel unsigned floating-point red/green channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R16G16_UNORM = 76,
+            
+            /** 16-bit-per-channel signed floating-point red/green channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_R16G16_SNORM = 77,
+            
+            /** 16-bit-per-channel unsigned floating-point red/green channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 65535.0]` range. */
+            DATA_FORMAT_R16G16_USCALED = 78,
+            
+            /** 16-bit-per-channel signed floating-point red/green channel data format with scaled value (value is converted from integer to float). Values are in the `[-32767.0, 32767.0]` range. */
+            DATA_FORMAT_R16G16_SSCALED = 79,
+            
+            /** 16-bit-per-channel unsigned integer red/green channel data format. Values are in the `[0.0, 65535]` range. */
+            DATA_FORMAT_R16G16_UINT = 80,
+            
+            /** 16-bit-per-channel signed integer red/green channel data format. Values are in the `[-32767, 32767]` range. */
+            DATA_FORMAT_R16G16_SINT = 81,
+            
+            /** 16-bit-per-channel signed floating-point red/green channel data format with the value stored as-is. */
+            DATA_FORMAT_R16G16_SFLOAT = 82,
+            
+            /** 16-bit-per-channel unsigned floating-point red/green/blue channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R16G16B16_UNORM = 83,
+            
+            /** 16-bit-per-channel signed floating-point red/green/blue channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_R16G16B16_SNORM = 84,
+            
+            /** 16-bit-per-channel unsigned floating-point red/green/blue channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 65535.0]` range. */
+            DATA_FORMAT_R16G16B16_USCALED = 85,
+            
+            /** 16-bit-per-channel signed floating-point red/green/blue channel data format with scaled value (value is converted from integer to float). Values are in the `[-32767.0, 32767.0]` range. */
+            DATA_FORMAT_R16G16B16_SSCALED = 86,
+            
+            /** 16-bit-per-channel unsigned integer red/green/blue channel data format. Values are in the `[0.0, 65535]` range. */
+            DATA_FORMAT_R16G16B16_UINT = 87,
+            
+            /** 16-bit-per-channel signed integer red/green/blue channel data format. Values are in the `[-32767, 32767]` range. */
+            DATA_FORMAT_R16G16B16_SINT = 88,
+            
+            /** 16-bit-per-channel signed floating-point red/green/blue channel data format with the value stored as-is. */
+            DATA_FORMAT_R16G16B16_SFLOAT = 89,
+            
+            /** 16-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R16G16B16A16_UNORM = 90,
+            
+            /** 16-bit-per-channel signed floating-point red/green/blue/alpha channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. */
+            DATA_FORMAT_R16G16B16A16_SNORM = 91,
+            
+            /** 16-bit-per-channel unsigned floating-point red/green/blue/alpha channel data format with scaled value (value is converted from integer to float). Values are in the `[0.0, 65535.0]` range. */
+            DATA_FORMAT_R16G16B16A16_USCALED = 92,
+            
+            /** 16-bit-per-channel signed floating-point red/green/blue/alpha channel data format with scaled value (value is converted from integer to float). Values are in the `[-32767.0, 32767.0]` range. */
+            DATA_FORMAT_R16G16B16A16_SSCALED = 93,
+            
+            /** 16-bit-per-channel unsigned integer red/green/blue/alpha channel data format. Values are in the `[0.0, 65535]` range. */
+            DATA_FORMAT_R16G16B16A16_UINT = 94,
+            
+            /** 16-bit-per-channel signed integer red/green/blue/alpha channel data format. Values are in the `[-32767, 32767]` range. */
+            DATA_FORMAT_R16G16B16A16_SINT = 95,
+            
+            /** 16-bit-per-channel signed floating-point red/green/blue/alpha channel data format with the value stored as-is. */
+            DATA_FORMAT_R16G16B16A16_SFLOAT = 96,
+            
+            /** 32-bit-per-channel unsigned integer red channel data format. Values are in the `[0, 2^32 - 1]` range. */
+            DATA_FORMAT_R32_UINT = 97,
+            
+            /** 32-bit-per-channel signed integer red channel data format. Values are in the `[2^31 + 1, 2^31 - 1]` range. */
+            DATA_FORMAT_R32_SINT = 98,
+            
+            /** 32-bit-per-channel signed floating-point red channel data format with the value stored as-is. */
+            DATA_FORMAT_R32_SFLOAT = 99,
+            
+            /** 32-bit-per-channel unsigned integer red/green channel data format. Values are in the `[0, 2^32 - 1]` range. */
+            DATA_FORMAT_R32G32_UINT = 100,
+            
+            /** 32-bit-per-channel signed integer red/green channel data format. Values are in the `[2^31 + 1, 2^31 - 1]` range. */
+            DATA_FORMAT_R32G32_SINT = 101,
+            
+            /** 32-bit-per-channel signed floating-point red/green channel data format with the value stored as-is. */
+            DATA_FORMAT_R32G32_SFLOAT = 102,
+            
+            /** 32-bit-per-channel unsigned integer red/green/blue channel data format. Values are in the `[0, 2^32 - 1]` range. */
+            DATA_FORMAT_R32G32B32_UINT = 103,
+            
+            /** 32-bit-per-channel signed integer red/green/blue channel data format. Values are in the `[2^31 + 1, 2^31 - 1]` range. */
+            DATA_FORMAT_R32G32B32_SINT = 104,
+            
+            /** 32-bit-per-channel signed floating-point red/green/blue channel data format with the value stored as-is. */
+            DATA_FORMAT_R32G32B32_SFLOAT = 105,
+            
+            /** 32-bit-per-channel unsigned integer red/green/blue/alpha channel data format. Values are in the `[0, 2^32 - 1]` range. */
+            DATA_FORMAT_R32G32B32A32_UINT = 106,
+            
+            /** 32-bit-per-channel signed integer red/green/blue/alpha channel data format. Values are in the `[2^31 + 1, 2^31 - 1]` range. */
+            DATA_FORMAT_R32G32B32A32_SINT = 107,
+            
+            /** 32-bit-per-channel signed floating-point red/green/blue/alpha channel data format with the value stored as-is. */
+            DATA_FORMAT_R32G32B32A32_SFLOAT = 108,
+            
+            /** 64-bit-per-channel unsigned integer red channel data format. Values are in the `[0, 2^64 - 1]` range. */
+            DATA_FORMAT_R64_UINT = 109,
+            
+            /** 64-bit-per-channel signed integer red channel data format. Values are in the `[2^63 + 1, 2^63 - 1]` range. */
+            DATA_FORMAT_R64_SINT = 110,
+            
+            /** 64-bit-per-channel signed floating-point red channel data format with the value stored as-is. */
+            DATA_FORMAT_R64_SFLOAT = 111,
+            
+            /** 64-bit-per-channel unsigned integer red/green channel data format. Values are in the `[0, 2^64 - 1]` range. */
+            DATA_FORMAT_R64G64_UINT = 112,
+            
+            /** 64-bit-per-channel signed integer red/green channel data format. Values are in the `[2^63 + 1, 2^63 - 1]` range. */
+            DATA_FORMAT_R64G64_SINT = 113,
+            
+            /** 64-bit-per-channel signed floating-point red/green channel data format with the value stored as-is. */
+            DATA_FORMAT_R64G64_SFLOAT = 114,
+            
+            /** 64-bit-per-channel unsigned integer red/green/blue channel data format. Values are in the `[0, 2^64 - 1]` range. */
+            DATA_FORMAT_R64G64B64_UINT = 115,
+            
+            /** 64-bit-per-channel signed integer red/green/blue channel data format. Values are in the `[2^63 + 1, 2^63 - 1]` range. */
+            DATA_FORMAT_R64G64B64_SINT = 116,
+            
+            /** 64-bit-per-channel signed floating-point red/green/blue channel data format with the value stored as-is. */
+            DATA_FORMAT_R64G64B64_SFLOAT = 117,
+            
+            /** 64-bit-per-channel unsigned integer red/green/blue/alpha channel data format. Values are in the `[0, 2^64 - 1]` range. */
+            DATA_FORMAT_R64G64B64A64_UINT = 118,
+            
+            /** 64-bit-per-channel signed integer red/green/blue/alpha channel data format. Values are in the `[2^63 + 1, 2^63 - 1]` range. */
+            DATA_FORMAT_R64G64B64A64_SINT = 119,
+            
+            /** 64-bit-per-channel signed floating-point red/green/blue/alpha channel data format with the value stored as-is. */
+            DATA_FORMAT_R64G64B64A64_SFLOAT = 120,
+            
+            /** Unsigned floating-point blue/green/red data format with the value stored as-is, packed in 32 bits. The format's precision is 10 bits of blue channel, 11 bits of green channel and 11 bits of red channel. */
+            DATA_FORMAT_B10G11R11_UFLOAT_PACK32 = 121,
+            
+            /** Unsigned floating-point exposure/blue/green/red data format with the value stored as-is, packed in 32 bits. The format's precision is 5 bits of exposure, 9 bits of blue channel, 9 bits of green channel and 9 bits of red channel. */
+            DATA_FORMAT_E5B9G9R9_UFLOAT_PACK32 = 122,
+            
+            /** 16-bit unsigned floating-point depth data format with normalized value. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_D16_UNORM = 123,
+            
+            /** 24-bit unsigned floating-point depth data format with normalized value, plus 8 unused bits, packed in 32 bits. Values for depth are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_X8_D24_UNORM_PACK32 = 124,
+            
+            /** 32-bit signed floating-point depth data format with the value stored as-is. */
+            DATA_FORMAT_D32_SFLOAT = 125,
+            
+            /** 8-bit unsigned integer stencil data format. */
+            DATA_FORMAT_S8_UINT = 126,
+            
+            /** 16-bit unsigned floating-point depth data format with normalized value, plus 8 bits of stencil in unsigned integer format. Values for depth are in the `[0.0, 1.0]` range. Values for stencil are in the `[0, 255]` range. */
+            DATA_FORMAT_D16_UNORM_S8_UINT = 127,
+            
+            /** 24-bit unsigned floating-point depth data format with normalized value, plus 8 bits of stencil in unsigned integer format. Values for depth are in the `[0.0, 1.0]` range. Values for stencil are in the `[0, 255]` range. */
+            DATA_FORMAT_D24_UNORM_S8_UINT = 128,
+            
+            /** 32-bit signed floating-point depth data format with the value stored as-is, plus 8 bits of stencil in unsigned integer format. Values for stencil are in the `[0, 255]` range. */
+            DATA_FORMAT_D32_SFLOAT_S8_UINT = 129,
+            
+            /** VRAM-compressed unsigned red/green/blue channel data format with normalized value. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green channel and 5 bits of blue channel. Using BC1 texture compression (also known as S3TC DXT1). */
+            DATA_FORMAT_BC1_RGB_UNORM_BLOCK = 130,
+            
+            /** VRAM-compressed unsigned red/green/blue channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green channel and 5 bits of blue channel. Using BC1 texture compression (also known as S3TC DXT1). */
+            DATA_FORMAT_BC1_RGB_SRGB_BLOCK = 131,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green channel, 5 bits of blue channel and 1 bit of alpha channel. Using BC1 texture compression (also known as S3TC DXT1). */
+            DATA_FORMAT_BC1_RGBA_UNORM_BLOCK = 132,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green channel, 5 bits of blue channel and 1 bit of alpha channel. Using BC1 texture compression (also known as S3TC DXT1). */
+            DATA_FORMAT_BC1_RGBA_SRGB_BLOCK = 133,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green channel, 5 bits of blue channel and 4 bits of alpha channel. Using BC2 texture compression (also known as S3TC DXT3). */
+            DATA_FORMAT_BC2_UNORM_BLOCK = 134,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green channel, 5 bits of blue channel and 4 bits of alpha channel. Using BC2 texture compression (also known as S3TC DXT3). */
+            DATA_FORMAT_BC2_SRGB_BLOCK = 135,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green channel, 5 bits of blue channel and 8 bits of alpha channel. Using BC3 texture compression (also known as S3TC DXT5). */
+            DATA_FORMAT_BC3_UNORM_BLOCK = 136,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is 5 bits of red channel, 6 bits of green channel, 5 bits of blue channel and 8 bits of alpha channel. Using BC3 texture compression (also known as S3TC DXT5). */
+            DATA_FORMAT_BC3_SRGB_BLOCK = 137,
+            
+            /** VRAM-compressed unsigned red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. The format's precision is 8 bits of red channel. Using BC4 texture compression. */
+            DATA_FORMAT_BC4_UNORM_BLOCK = 138,
+            
+            /** VRAM-compressed signed red channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. The format's precision is 8 bits of red channel. Using BC4 texture compression. */
+            DATA_FORMAT_BC4_SNORM_BLOCK = 139,
+            
+            /** VRAM-compressed unsigned red/green channel data format with normalized value. Values are in the `[0.0, 1.0]` range. The format's precision is 8 bits of red channel and 8 bits of green channel. Using BC5 texture compression (also known as S3TC RGTC). */
+            DATA_FORMAT_BC5_UNORM_BLOCK = 140,
+            
+            /** VRAM-compressed signed red/green channel data format with normalized value. Values are in the `[-1.0, 1.0]` range. The format's precision is 8 bits of red channel and 8 bits of green channel. Using BC5 texture compression (also known as S3TC RGTC). */
+            DATA_FORMAT_BC5_SNORM_BLOCK = 141,
+            
+            /** VRAM-compressed unsigned red/green/blue channel data format with the floating-point value stored as-is. The format's precision is 8 bits of red channel and 8 bits of green channel. Using BC6H texture compression (also known as BPTC HDR). */
+            DATA_FORMAT_BC6H_UFLOAT_BLOCK = 142,
+            
+            /** VRAM-compressed signed red/green/blue channel data format with the floating-point value stored as-is. The format's precision is between 4 and 7 bits for the red/green/blue channels and between 0 and 8 bits for the alpha channel. Using BC7 texture compression (also known as BPTC HDR). */
+            DATA_FORMAT_BC6H_SFLOAT_BLOCK = 143,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. The format's precision is between 4 and 7 bits for the red/green/blue channels and between 0 and 8 bits for the alpha channel. Also known as BPTC LDR. */
+            DATA_FORMAT_BC7_UNORM_BLOCK = 144,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. The format's precision is between 4 and 7 bits for the red/green/blue channels and between 0 and 8 bits for the alpha channel. Also known as BPTC LDR. */
+            DATA_FORMAT_BC7_SRGB_BLOCK = 145,
+            
+            /** VRAM-compressed unsigned red/green/blue channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression. */
+            DATA_FORMAT_ETC2_R8G8B8_UNORM_BLOCK = 146,
+            
+            /** VRAM-compressed unsigned red/green/blue channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression. */
+            DATA_FORMAT_ETC2_R8G8B8_SRGB_BLOCK = 147,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bit of precision each, with alpha using 1 bit of precision. Using ETC2 texture compression. */
+            DATA_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK = 148,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bit of precision each, with alpha using 1 bit of precision. Using ETC2 texture compression. */
+            DATA_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK = 149,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bits of precision each, with alpha using 8 bits of precision. Using ETC2 texture compression. */
+            DATA_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK = 150,
+            
+            /** VRAM-compressed unsigned red/green/blue/alpha channel data format with normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range. Red/green/blue use 8 bits of precision each, with alpha using 8 bits of precision. Using ETC2 texture compression. */
+            DATA_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK = 151,
+            
+            /** 11-bit VRAM-compressed unsigned red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression. */
+            DATA_FORMAT_EAC_R11_UNORM_BLOCK = 152,
+            
+            /** 11-bit VRAM-compressed signed red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression. */
+            DATA_FORMAT_EAC_R11_SNORM_BLOCK = 153,
+            
+            /** 11-bit VRAM-compressed unsigned red/green channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression. */
+            DATA_FORMAT_EAC_R11G11_UNORM_BLOCK = 154,
+            
+            /** 11-bit VRAM-compressed signed red/green channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Using ETC2 texture compression. */
+            DATA_FORMAT_EAC_R11G11_SNORM_BLOCK = 155,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 4×4 blocks (highest quality). Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_4x4_UNORM_BLOCK = 156,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 4×4 blocks (highest quality). Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_4x4_SRGB_BLOCK = 157,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 5×4 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_5x4_UNORM_BLOCK = 158,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 5×4 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_5x4_SRGB_BLOCK = 159,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 5×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_5x5_UNORM_BLOCK = 160,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 5×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_5x5_SRGB_BLOCK = 161,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 6×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_6x5_UNORM_BLOCK = 162,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 6×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_6x5_SRGB_BLOCK = 163,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 6×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_6x6_UNORM_BLOCK = 164,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 6×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_6x6_SRGB_BLOCK = 165,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_8x5_UNORM_BLOCK = 166,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 8×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_8x5_SRGB_BLOCK = 167,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_8x6_UNORM_BLOCK = 168,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 8×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_8x6_SRGB_BLOCK = 169,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 8×8 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_8x8_UNORM_BLOCK = 170,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 8×8 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_8x8_SRGB_BLOCK = 171,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_10x5_UNORM_BLOCK = 172,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 10×5 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_10x5_SRGB_BLOCK = 173,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_10x6_UNORM_BLOCK = 174,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 10×6 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_10x6_SRGB_BLOCK = 175,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×8 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_10x8_UNORM_BLOCK = 176,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 10×8 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_10x8_SRGB_BLOCK = 177,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 10×10 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_10x10_UNORM_BLOCK = 178,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 10×10 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_10x10_SRGB_BLOCK = 179,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 12×10 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_12x10_UNORM_BLOCK = 180,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 12×10 blocks. Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_12x10_SRGB_BLOCK = 181,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value, packed in 12 blocks (lowest quality). Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_12x12_UNORM_BLOCK = 182,
+            
+            /** VRAM-compressed unsigned floating-point data format with normalized value and non-linear sRGB encoding, packed in 12 blocks (lowest quality). Values are in the `[0.0, 1.0]` range. Using ASTC compression. */
+            DATA_FORMAT_ASTC_12x12_SRGB_BLOCK = 183,
+            
+            /** 8-bit-per-channel unsigned floating-point green/blue/red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G8B8G8R8_422_UNORM = 184,
+            
+            /** 8-bit-per-channel unsigned floating-point blue/green/red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_B8G8R8G8_422_UNORM = 185,
+            
+            /** 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 3 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G8_B8_R8_3PLANE_420_UNORM = 186,
+            
+            /** 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 2 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G8_B8R8_2PLANE_420_UNORM = 187,
+            
+            /** 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 2 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G8_B8_R8_3PLANE_422_UNORM = 188,
+            
+            /** 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 2 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G8_B8R8_2PLANE_422_UNORM = 189,
+            
+            /** 8-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, stored across 3 separate planes. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_G8_B8_R8_3PLANE_444_UNORM = 190,
+            
+            /** 10-bit-per-channel unsigned floating-point red channel data with normalized value, plus 6 unused bits, packed in 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R10X6_UNORM_PACK16 = 191,
+            
+            /** 10-bit-per-channel unsigned floating-point red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 2×16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R10X6G10X6_UNORM_2PACK16 = 192,
+            
+            /** 10-bit-per-channel unsigned floating-point red/green/blue/alpha channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16 = 193,
+            
+            /** 10-bit-per-channel unsigned floating-point green/blue/green/red channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution. */
+            DATA_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16 = 194,
+            
+            /** 10-bit-per-channel unsigned floating-point blue/green/red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution. */
+            DATA_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16 = 195,
+            
+            /** 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16 = 196,
+            
+            /** 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16 = 197,
+            
+            /** 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16 = 198,
+            
+            /** 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16 = 199,
+            
+            /** 10-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16 = 200,
+            
+            /** 12-bit-per-channel unsigned floating-point red channel data with normalized value, plus 6 unused bits, packed in 16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R12X4_UNORM_PACK16 = 201,
+            
+            /** 12-bit-per-channel unsigned floating-point red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 2×16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R12X4G12X4_UNORM_2PACK16 = 202,
+            
+            /** 12-bit-per-channel unsigned floating-point red/green/blue/alpha channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16 = 203,
+            
+            /** 12-bit-per-channel unsigned floating-point green/blue/green/red channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution. */
+            DATA_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16 = 204,
+            
+            /** 12-bit-per-channel unsigned floating-point blue/green/red/green channel data with normalized value, plus 6 unused bits after each channel, packed in 4×16 bits. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). The green channel is listed twice, but contains different values to allow it to be represented at full resolution. */
+            DATA_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16 = 205,
+            
+            /** 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16 = 206,
+            
+            /** 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 2 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16 = 207,
+            
+            /** 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16 = 208,
+            
+            /** 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16 = 209,
+            
+            /** 12-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Packed in 3×16 bits and stored across 3 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16 = 210,
+            
+            /** 16-bit-per-channel unsigned floating-point green/blue/red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G16B16G16R16_422_UNORM = 211,
+            
+            /** 16-bit-per-channel unsigned floating-point blue/green/red channel data format with normalized value. Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_B16G16R16G16_422_UNORM = 212,
+            
+            /** 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 2 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G16_B16_R16_3PLANE_420_UNORM = 213,
+            
+            /** 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 2 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal and vertical resolution (i.e. 2×2 adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G16_B16R16_2PLANE_420_UNORM = 214,
+            
+            /** 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 3 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G16_B16_R16_3PLANE_422_UNORM = 215,
+            
+            /** 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 3 separate planes (green + blue/red). Values are in the `[0.0, 1.0]` range. Blue and red channel data is stored at halved horizontal resolution (i.e. 2 horizontally adjacent pixels will share the same value for the blue/red channel). */
+            DATA_FORMAT_G16_B16R16_2PLANE_422_UNORM = 216,
+            
+            /** 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 3 separate planes (green + blue + red). Values are in the `[0.0, 1.0]` range. */
+            DATA_FORMAT_G16_B16_R16_3PLANE_444_UNORM = 217,
+            
+            /** Represents the size of the [enum DataFormat] enum. */
+            DATA_FORMAT_MAX = 218,
+        }
+        enum BarrierMask {
+            /** Vertex shader barrier mask. */
+            BARRIER_MASK_VERTEX = 1,
+            
+            /** Fragment shader barrier mask. */
+            BARRIER_MASK_FRAGMENT = 8,
+            
+            /** Compute barrier mask. */
+            BARRIER_MASK_COMPUTE = 2,
+            
+            /** Transfer barrier mask. */
+            BARRIER_MASK_TRANSFER = 4,
+            
+            /** Raster barrier mask (vertex and fragment). Equivalent to `BARRIER_MASK_VERTEX | BARRIER_MASK_FRAGMENT`. */
+            BARRIER_MASK_RASTER = 9,
+            
+            /** Barrier mask for all types (vertex, fragment, compute, transfer). */
+            BARRIER_MASK_ALL_BARRIERS = 32767,
+            
+            /** No barrier for any type. */
+            BARRIER_MASK_NO_BARRIER = 32768,
+        }
+        enum TextureType {
+            /** 1-dimensional texture. */
+            TEXTURE_TYPE_1D = 0,
+            
+            /** 2-dimensional texture. */
+            TEXTURE_TYPE_2D = 1,
+            
+            /** 3-dimensional texture. */
+            TEXTURE_TYPE_3D = 2,
+            
+            /** [Cubemap] texture. */
+            TEXTURE_TYPE_CUBE = 3,
+            
+            /** Array of 1-dimensional textures. */
+            TEXTURE_TYPE_1D_ARRAY = 4,
+            
+            /** Array of 2-dimensional textures. */
+            TEXTURE_TYPE_2D_ARRAY = 5,
+            
+            /** Array of [Cubemap] textures. */
+            TEXTURE_TYPE_CUBE_ARRAY = 6,
+            
+            /** Represents the size of the [enum TextureType] enum. */
+            TEXTURE_TYPE_MAX = 7,
+        }
+        enum TextureSamples {
+            /** Perform 1 texture sample (this is the fastest but lowest-quality for antialiasing). */
+            TEXTURE_SAMPLES_1 = 0,
+            
+            /** Perform 2 texture samples. */
+            TEXTURE_SAMPLES_2 = 1,
+            
+            /** Perform 4 texture samples. */
+            TEXTURE_SAMPLES_4 = 2,
+            
+            /** Perform 8 texture samples. Not supported on mobile GPUs (including Apple Silicon). */
+            TEXTURE_SAMPLES_8 = 3,
+            
+            /** Perform 16 texture samples. Not supported on mobile GPUs and many desktop GPUs. */
+            TEXTURE_SAMPLES_16 = 4,
+            
+            /** Perform 32 texture samples. Not supported on most GPUs. */
+            TEXTURE_SAMPLES_32 = 5,
+            
+            /** Perform 64 texture samples (this is the slowest but highest-quality for antialiasing). Not supported on most GPUs. */
+            TEXTURE_SAMPLES_64 = 6,
+            
+            /** Represents the size of the [enum TextureSamples] enum. */
+            TEXTURE_SAMPLES_MAX = 7,
+        }
+        enum TextureUsageBits {
+            /** Texture can be sampled. */
+            TEXTURE_USAGE_SAMPLING_BIT = 1,
+            
+            /** Texture can be used as a color attachment in a framebuffer. */
+            TEXTURE_USAGE_COLOR_ATTACHMENT_BIT = 2,
+            
+            /** Texture can be used as a depth/stencil attachment in a framebuffer. */
+            TEXTURE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT = 4,
+            
+            /** Texture can be used as a [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage image[/url]. */
+            TEXTURE_USAGE_STORAGE_BIT = 8,
+            
+            /** Texture can be used as a [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage]storage image[/url] with support for atomic operations. */
+            TEXTURE_USAGE_STORAGE_ATOMIC_BIT = 16,
+            
+            /** Texture can be read back on the CPU using [method texture_get_data] faster than without this bit, since it is always kept in the system memory. */
+            TEXTURE_USAGE_CPU_READ_BIT = 32,
+            
+            /** Texture can be updated using [method texture_update]. */
+            TEXTURE_USAGE_CAN_UPDATE_BIT = 64,
+            
+            /** Texture can be a source for [method texture_copy]. */
+            TEXTURE_USAGE_CAN_COPY_FROM_BIT = 128,
+            
+            /** Texture can be a destination for [method texture_copy]. */
+            TEXTURE_USAGE_CAN_COPY_TO_BIT = 256,
+            
+            /** Texture can be used as a [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment]input attachment[/url] in a framebuffer. */
+            TEXTURE_USAGE_INPUT_ATTACHMENT_BIT = 512,
+        }
+        enum TextureSwizzle {
+            /** Return the sampled value as-is. */
+            TEXTURE_SWIZZLE_IDENTITY = 0,
+            
+            /** Always return `0.0` when sampling. */
+            TEXTURE_SWIZZLE_ZERO = 1,
+            
+            /** Always return `1.0` when sampling. */
+            TEXTURE_SWIZZLE_ONE = 2,
+            
+            /** Sample the red color channel. */
+            TEXTURE_SWIZZLE_R = 3,
+            
+            /** Sample the green color channel. */
+            TEXTURE_SWIZZLE_G = 4,
+            
+            /** Sample the blue color channel. */
+            TEXTURE_SWIZZLE_B = 5,
+            
+            /** Sample the alpha channel. */
+            TEXTURE_SWIZZLE_A = 6,
+            
+            /** Represents the size of the [enum TextureSwizzle] enum. */
+            TEXTURE_SWIZZLE_MAX = 7,
+        }
+        enum TextureSliceType {
+            /** 2-dimensional texture slice. */
+            TEXTURE_SLICE_2D = 0,
+            
+            /** Cubemap texture slice. */
+            TEXTURE_SLICE_CUBEMAP = 1,
+            
+            /** 3-dimensional texture slice. */
+            TEXTURE_SLICE_3D = 2,
+        }
+        enum SamplerFilter {
+            /** Nearest-neighbor sampler filtering. Sampling at higher resolutions than the source will result in a pixelated look. */
+            SAMPLER_FILTER_NEAREST = 0,
+            
+            /** Bilinear sampler filtering. Sampling at higher resolutions than the source will result in a blurry look. */
+            SAMPLER_FILTER_LINEAR = 1,
+        }
+        enum SamplerRepeatMode {
+            /** Sample with repeating enabled. */
+            SAMPLER_REPEAT_MODE_REPEAT = 0,
+            
+            /** Sample with mirrored repeating enabled. When sampling outside the `[0.0, 1.0]` range, return a mirrored version of the sampler. This mirrored version is mirrored again if sampling further away, with the pattern repeating indefinitely. */
+            SAMPLER_REPEAT_MODE_MIRRORED_REPEAT = 1,
+            
+            /** Sample with repeating disabled. When sampling outside the `[0.0, 1.0]` range, return the color of the last pixel on the edge. */
+            SAMPLER_REPEAT_MODE_CLAMP_TO_EDGE = 2,
+            
+            /** Sample with repeating disabled. When sampling outside the `[0.0, 1.0]` range, return the specified [member RDSamplerState.border_color]. */
+            SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER = 3,
+            
+            /** Sample with mirrored repeating enabled, but only once. When sampling in the `[-1.0, 0.0]` range, return a mirrored version of the sampler. When sampling outside the `[-1.0, 1.0]` range, return the color of the last pixel on the edge. */
+            SAMPLER_REPEAT_MODE_MIRROR_CLAMP_TO_EDGE = 4,
+            
+            /** Represents the size of the [enum SamplerRepeatMode] enum. */
+            SAMPLER_REPEAT_MODE_MAX = 5,
+        }
+        enum SamplerBorderColor {
+            /** Return a floating-point transparent black color when sampling outside the `[0.0, 1.0]` range. Only effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER]. */
+            SAMPLER_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK = 0,
+            
+            /** Return a integer transparent black color when sampling outside the `[0.0, 1.0]` range. Only effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER]. */
+            SAMPLER_BORDER_COLOR_INT_TRANSPARENT_BLACK = 1,
+            
+            /** Return a floating-point opaque black color when sampling outside the `[0.0, 1.0]` range. Only effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER]. */
+            SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_BLACK = 2,
+            
+            /** Return a integer opaque black color when sampling outside the `[0.0, 1.0]` range. Only effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER]. */
+            SAMPLER_BORDER_COLOR_INT_OPAQUE_BLACK = 3,
+            
+            /** Return a floating-point opaque white color when sampling outside the `[0.0, 1.0]` range. Only effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER]. */
+            SAMPLER_BORDER_COLOR_FLOAT_OPAQUE_WHITE = 4,
+            
+            /** Return a integer opaque white color when sampling outside the `[0.0, 1.0]` range. Only effective if the sampler repeat mode is [constant SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER]. */
+            SAMPLER_BORDER_COLOR_INT_OPAQUE_WHITE = 5,
+            
+            /** Represents the size of the [enum SamplerBorderColor] enum. */
+            SAMPLER_BORDER_COLOR_MAX = 6,
+        }
+        enum VertexFrequency {
+            /** Vertex attribute addressing is a function of the vertex. This is used to specify the rate at which vertex attributes are pulled from buffers. */
+            VERTEX_FREQUENCY_VERTEX = 0,
+            
+            /** Vertex attribute addressing is a function of the instance index. This is used to specify the rate at which vertex attributes are pulled from buffers. */
+            VERTEX_FREQUENCY_INSTANCE = 1,
+        }
+        enum IndexBufferFormat {
+            /** Index buffer in 16-bit unsigned integer format. This limits the maximum index that can be specified to `65535`. */
+            INDEX_BUFFER_FORMAT_UINT16 = 0,
+            
+            /** Index buffer in 32-bit unsigned integer format. This limits the maximum index that can be specified to `4294967295`. */
+            INDEX_BUFFER_FORMAT_UINT32 = 1,
+        }
+        enum StorageBufferUsage {
+            STORAGE_BUFFER_USAGE_DISPATCH_INDIRECT = 1,
+        }
+        enum UniformType {
+            /** Sampler uniform. */
+            UNIFORM_TYPE_SAMPLER = 0,
+            
+            /** Sampler uniform with a texture. */
+            UNIFORM_TYPE_SAMPLER_WITH_TEXTURE = 1,
+            
+            /** Texture uniform. */
+            UNIFORM_TYPE_TEXTURE = 2,
+            
+            /** Image uniform. */
+            UNIFORM_TYPE_IMAGE = 3,
+            
+            /** Texture buffer uniform. */
+            UNIFORM_TYPE_TEXTURE_BUFFER = 4,
+            
+            /** Sampler uniform with a texture buffer. */
+            UNIFORM_TYPE_SAMPLER_WITH_TEXTURE_BUFFER = 5,
+            
+            /** Image buffer uniform. */
+            UNIFORM_TYPE_IMAGE_BUFFER = 6,
+            
+            /** Uniform buffer uniform. */
+            UNIFORM_TYPE_UNIFORM_BUFFER = 7,
+            
+            /** [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]Storage buffer[/url] uniform. */
+            UNIFORM_TYPE_STORAGE_BUFFER = 8,
+            
+            /** Input attachment uniform. */
+            UNIFORM_TYPE_INPUT_ATTACHMENT = 9,
+            
+            /** Represents the size of the [enum UniformType] enum. */
+            UNIFORM_TYPE_MAX = 10,
+        }
+        enum RenderPrimitive {
+            /** Point rendering primitive (with constant size, regardless of distance from camera). */
+            RENDER_PRIMITIVE_POINTS = 0,
+            
+            /** Line list rendering primitive. Lines are drawn separated from each other. */
+            RENDER_PRIMITIVE_LINES = 1,
+            
+            /** [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-lists-with-adjacency]Line list rendering primitive with adjacency.[/url]  
+             *      
+             *  **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.  
+             */
+            RENDER_PRIMITIVE_LINES_WITH_ADJACENCY = 2,
+            
+            /** Line strip rendering primitive. Lines drawn are connected to the previous vertex. */
+            RENDER_PRIMITIVE_LINESTRIPS = 3,
+            
+            /** [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-strips-with-adjacency]Line strip rendering primitive with adjacency.[/url]  
+             *      
+             *  **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.  
+             */
+            RENDER_PRIMITIVE_LINESTRIPS_WITH_ADJACENCY = 4,
+            
+            /** Triangle list rendering primitive. Triangles are drawn separated from each other. */
+            RENDER_PRIMITIVE_TRIANGLES = 5,
+            
+            /** [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists-with-adjacency]Triangle list rendering primitive with adjacency.[/url]  
+             *       
+             *  **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.  
+             */
+            RENDER_PRIMITIVE_TRIANGLES_WITH_ADJACENCY = 6,
+            
+            /** Triangle strip rendering primitive. Triangles drawn are connected to the previous triangle. */
+            RENDER_PRIMITIVE_TRIANGLE_STRIPS = 7,
+            
+            /** [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-strips-with-adjacency]Triangle strip rendering primitive with adjacency.[/url]  
+             *      
+             *  **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.  
+             */
+            RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_AJACENCY = 8,
+            
+            /** Triangle strip rendering primitive with [i]primitive restart[/i] enabled. Triangles drawn are connected to the previous triangle, but a primitive restart index can be specified before drawing to create a second triangle strip after the specified index.  
+             *      
+             *  **Note:** Only compatible with indexed draws.  
+             */
+            RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_RESTART_INDEX = 9,
+            
+            /** Tessellation patch rendering primitive. Only useful with tessellation shaders, which can be used to deform these patches. */
+            RENDER_PRIMITIVE_TESSELATION_PATCH = 10,
+            
+            /** Represents the size of the [enum RenderPrimitive] enum. */
+            RENDER_PRIMITIVE_MAX = 11,
+        }
+        enum PolygonCullMode {
+            /** Do not use polygon front face or backface culling. */
+            POLYGON_CULL_DISABLED = 0,
+            
+            /** Use polygon frontface culling (faces pointing towards the camera are hidden). */
+            POLYGON_CULL_FRONT = 1,
+            
+            /** Use polygon backface culling (faces pointing away from the camera are hidden). */
+            POLYGON_CULL_BACK = 2,
+        }
+        enum PolygonFrontFace {
+            /** Clockwise winding order to determine which face of a polygon is its front face. */
+            POLYGON_FRONT_FACE_CLOCKWISE = 0,
+            
+            /** Counter-clockwise winding order to determine which face of a polygon is its front face. */
+            POLYGON_FRONT_FACE_COUNTER_CLOCKWISE = 1,
+        }
+        enum StencilOperation {
+            /** Keep the current stencil value. */
+            STENCIL_OP_KEEP = 0,
+            
+            /** Set the stencil value to `0`. */
+            STENCIL_OP_ZERO = 1,
+            
+            /** Replace the existing stencil value with the new one. */
+            STENCIL_OP_REPLACE = 2,
+            
+            /** Increment the existing stencil value and clamp to the maximum representable unsigned value if reached. Stencil bits are considered as an unsigned integer. */
+            STENCIL_OP_INCREMENT_AND_CLAMP = 3,
+            
+            /** Decrement the existing stencil value and clamp to the minimum value if reached. Stencil bits are considered as an unsigned integer. */
+            STENCIL_OP_DECREMENT_AND_CLAMP = 4,
+            
+            /** Bitwise-invert the existing stencil value. */
+            STENCIL_OP_INVERT = 5,
+            
+            /** Increment the stencil value and wrap around to `0` if reaching the maximum representable unsigned. Stencil bits are considered as an unsigned integer. */
+            STENCIL_OP_INCREMENT_AND_WRAP = 6,
+            
+            /** Decrement the stencil value and wrap around to the maximum representable unsigned if reaching the minimum. Stencil bits are considered as an unsigned integer. */
+            STENCIL_OP_DECREMENT_AND_WRAP = 7,
+            
+            /** Represents the size of the [enum StencilOperation] enum. */
+            STENCIL_OP_MAX = 8,
+        }
+        enum CompareOperator {
+            /** "Never" comparison (opposite of [constant COMPARE_OP_ALWAYS]). */
+            COMPARE_OP_NEVER = 0,
+            
+            /** "Less than" comparison. */
+            COMPARE_OP_LESS = 1,
+            
+            /** "Equal" comparison. */
+            COMPARE_OP_EQUAL = 2,
+            
+            /** "Less than or equal" comparison. */
+            COMPARE_OP_LESS_OR_EQUAL = 3,
+            
+            /** "Greater than" comparison. */
+            COMPARE_OP_GREATER = 4,
+            
+            /** "Not equal" comparison. */
+            COMPARE_OP_NOT_EQUAL = 5,
+            
+            /** "Greater than or equal" comparison. */
+            COMPARE_OP_GREATER_OR_EQUAL = 6,
+            
+            /** "Always" comparison (opposite of [constant COMPARE_OP_NEVER]). */
+            COMPARE_OP_ALWAYS = 7,
+            
+            /** Represents the size of the [enum CompareOperator] enum. */
+            COMPARE_OP_MAX = 8,
+        }
+        enum LogicOperation {
+            /** Clear logic operation (result is always `0`). See also [constant LOGIC_OP_SET]. */
+            LOGIC_OP_CLEAR = 0,
+            
+            /** AND logic operation. */
+            LOGIC_OP_AND = 1,
+            
+            /** AND logic operation with the [i]destination[/i] operand being inverted. See also [constant LOGIC_OP_AND_INVERTED]. */
+            LOGIC_OP_AND_REVERSE = 2,
+            
+            /** Copy logic operation (keeps the [i]source[/i] value as-is). See also [constant LOGIC_OP_COPY_INVERTED] and [constant LOGIC_OP_NO_OP]. */
+            LOGIC_OP_COPY = 3,
+            
+            /** AND logic operation with the [i]source[/i] operand being inverted. See also [constant LOGIC_OP_AND_REVERSE]. */
+            LOGIC_OP_AND_INVERTED = 4,
+            
+            /** No-op logic operation (keeps the [i]destination[/i] value as-is). See also [constant LOGIC_OP_COPY]. */
+            LOGIC_OP_NO_OP = 5,
+            
+            /** Exclusive or (XOR) logic operation. */
+            LOGIC_OP_XOR = 6,
+            
+            /** OR logic operation. */
+            LOGIC_OP_OR = 7,
+            
+            /** Not-OR (NOR) logic operation. */
+            LOGIC_OP_NOR = 8,
+            
+            /** Not-XOR (XNOR) logic operation. */
+            LOGIC_OP_EQUIVALENT = 9,
+            
+            /** Invert logic operation. */
+            LOGIC_OP_INVERT = 10,
+            
+            /** OR logic operation with the [i]destination[/i] operand being inverted. See also [constant LOGIC_OP_OR_REVERSE]. */
+            LOGIC_OP_OR_REVERSE = 11,
+            
+            /** NOT logic operation (inverts the value). See also [constant LOGIC_OP_COPY]. */
+            LOGIC_OP_COPY_INVERTED = 12,
+            
+            /** OR logic operation with the [i]source[/i] operand being inverted. See also [constant LOGIC_OP_OR_REVERSE]. */
+            LOGIC_OP_OR_INVERTED = 13,
+            
+            /** Not-AND (NAND) logic operation. */
+            LOGIC_OP_NAND = 14,
+            
+            /** SET logic operation (result is always `1`). See also [constant LOGIC_OP_CLEAR]. */
+            LOGIC_OP_SET = 15,
+            
+            /** Represents the size of the [enum LogicOperation] enum. */
+            LOGIC_OP_MAX = 16,
+        }
+        enum BlendFactor {
+            /** Constant `0.0` blend factor. */
+            BLEND_FACTOR_ZERO = 0,
+            
+            /** Constant `1.0` blend factor. */
+            BLEND_FACTOR_ONE = 1,
+            
+            /** Color blend factor is `source color`. Alpha blend factor is `source alpha`. */
+            BLEND_FACTOR_SRC_COLOR = 2,
+            
+            /** Color blend factor is `1.0 - source color`. Alpha blend factor is `1.0 - source alpha`. */
+            BLEND_FACTOR_ONE_MINUS_SRC_COLOR = 3,
+            
+            /** Color blend factor is `destination color`. Alpha blend factor is `destination alpha`. */
+            BLEND_FACTOR_DST_COLOR = 4,
+            
+            /** Color blend factor is `1.0 - destination color`. Alpha blend factor is `1.0 - destination alpha`. */
+            BLEND_FACTOR_ONE_MINUS_DST_COLOR = 5,
+            
+            /** Color and alpha blend factor is `source alpha`. */
+            BLEND_FACTOR_SRC_ALPHA = 6,
+            
+            /** Color and alpha blend factor is `1.0 - source alpha`. */
+            BLEND_FACTOR_ONE_MINUS_SRC_ALPHA = 7,
+            
+            /** Color and alpha blend factor is `destination alpha`. */
+            BLEND_FACTOR_DST_ALPHA = 8,
+            
+            /** Color and alpha blend factor is `1.0 - destination alpha`. */
+            BLEND_FACTOR_ONE_MINUS_DST_ALPHA = 9,
+            
+            /** Color blend factor is `blend constant color`. Alpha blend factor is `blend constant alpha` (see [method draw_list_set_blend_constants]). */
+            BLEND_FACTOR_CONSTANT_COLOR = 10,
+            
+            /** Color blend factor is `1.0 - blend constant color`. Alpha blend factor is `1.0 - blend constant alpha` (see [method draw_list_set_blend_constants]). */
+            BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR = 11,
+            
+            /** Color and alpha blend factor is `blend constant alpha` (see [method draw_list_set_blend_constants]). */
+            BLEND_FACTOR_CONSTANT_ALPHA = 12,
+            
+            /** Color and alpha blend factor is `1.0 - blend constant alpha` (see [method draw_list_set_blend_constants]). */
+            BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA = 13,
+            
+            /** Color blend factor is `min(source alpha, 1.0 - destination alpha)`. Alpha blend factor is `1.0`. */
+            BLEND_FACTOR_SRC_ALPHA_SATURATE = 14,
+            
+            /** Color blend factor is `second source color`. Alpha blend factor is `second source alpha`. Only relevant for dual-source blending. */
+            BLEND_FACTOR_SRC1_COLOR = 15,
+            
+            /** Color blend factor is `1.0 - second source color`. Alpha blend factor is `1.0 - second source alpha`. Only relevant for dual-source blending. */
+            BLEND_FACTOR_ONE_MINUS_SRC1_COLOR = 16,
+            
+            /** Color and alpha blend factor is `second source alpha`. Only relevant for dual-source blending. */
+            BLEND_FACTOR_SRC1_ALPHA = 17,
+            
+            /** Color and alpha blend factor is `1.0 - second source alpha`. Only relevant for dual-source blending. */
+            BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA = 18,
+            
+            /** Represents the size of the [enum BlendFactor] enum. */
+            BLEND_FACTOR_MAX = 19,
+        }
+        enum BlendOperation {
+            /** Additive blending operation (`source + destination`). */
+            BLEND_OP_ADD = 0,
+            
+            /** Subtractive blending operation (`source - destination`). */
+            BLEND_OP_SUBTRACT = 1,
+            
+            /** Reverse subtractive blending operation (`destination - source`). */
+            BLEND_OP_REVERSE_SUBTRACT = 2,
+            
+            /** Minimum blending operation (keep the lowest value of the two). */
+            BLEND_OP_MINIMUM = 3,
+            
+            /** Maximum blending operation (keep the highest value of the two). */
+            BLEND_OP_MAXIMUM = 4,
+            
+            /** Represents the size of the [enum BlendOperation] enum. */
+            BLEND_OP_MAX = 5,
+        }
+        enum PipelineDynamicStateFlags {
+            DYNAMIC_STATE_LINE_WIDTH = 1,
+            DYNAMIC_STATE_DEPTH_BIAS = 2,
+            DYNAMIC_STATE_BLEND_CONSTANTS = 4,
+            DYNAMIC_STATE_DEPTH_BOUNDS = 8,
+            DYNAMIC_STATE_STENCIL_COMPARE_MASK = 16,
+            DYNAMIC_STATE_STENCIL_WRITE_MASK = 32,
+            DYNAMIC_STATE_STENCIL_REFERENCE = 64,
+        }
+        enum InitialAction {
+            /** Start rendering and clear the whole framebuffer. */
+            INITIAL_ACTION_CLEAR = 0,
+            
+            /** Start rendering and clear the framebuffer in the specified region. */
+            INITIAL_ACTION_CLEAR_REGION = 1,
+            
+            /** Continue rendering and clear the framebuffer in the specified region. Framebuffer must have been left in [constant FINAL_ACTION_CONTINUE] state as the final action previously. */
+            INITIAL_ACTION_CLEAR_REGION_CONTINUE = 2,
+            
+            /** Start rendering, but keep attached color texture contents. If the framebuffer was previously used to read in a shader, this will automatically insert a layout transition. */
+            INITIAL_ACTION_KEEP = 3,
+            
+            /** Start rendering, ignore what is there; write above it. In general, this is the fastest option when you will be writing every single pixel and you don't need a clear color. */
+            INITIAL_ACTION_DROP = 4,
+            
+            /** Continue rendering. Framebuffer must have been left in [constant FINAL_ACTION_CONTINUE] state as the final action previously. */
+            INITIAL_ACTION_CONTINUE = 5,
+            
+            /** Represents the size of the [enum InitialAction] enum. */
+            INITIAL_ACTION_MAX = 6,
+        }
+        enum FinalAction {
+            /** Store the texture for reading and make it read-only if it has the [constant TEXTURE_USAGE_SAMPLING_BIT] bit (only applies to color, depth and stencil attachments). */
+            FINAL_ACTION_READ = 0,
+            
+            /** Discard the texture data and make it read-only if it has the [constant TEXTURE_USAGE_SAMPLING_BIT] bit (only applies to color, depth and stencil attachments). */
+            FINAL_ACTION_DISCARD = 1,
+            
+            /** Store the texture and continue for further processing. Similar to [constant FINAL_ACTION_READ], but does not make the texture read-only if it has the [constant TEXTURE_USAGE_SAMPLING_BIT] bit. */
+            FINAL_ACTION_CONTINUE = 2,
+            
+            /** Represents the size of the [enum FinalAction] enum. */
+            FINAL_ACTION_MAX = 3,
+        }
+        enum ShaderStage {
+            /** Vertex shader stage. This can be used to manipulate vertices from a shader (but not create new vertices). */
+            SHADER_STAGE_VERTEX = 0,
+            
+            /** Fragment shader stage (called "pixel shader" in Direct3D). This can be used to manipulate pixels from a shader. */
+            SHADER_STAGE_FRAGMENT = 1,
+            
+            /** Tessellation control shader stage. This can be used to create additional geometry from a shader. */
+            SHADER_STAGE_TESSELATION_CONTROL = 2,
+            
+            /** Tessellation evaluation shader stage. This can be used to create additional geometry from a shader. */
+            SHADER_STAGE_TESSELATION_EVALUATION = 3,
+            
+            /** Compute shader stage. This can be used to run arbitrary computing tasks in a shader, performing them on the GPU instead of the CPU. */
+            SHADER_STAGE_COMPUTE = 4,
+            
+            /** Represents the size of the [enum ShaderStage] enum. */
+            SHADER_STAGE_MAX = 5,
+            
+            /** Vertex shader stage bit (see also [constant SHADER_STAGE_VERTEX]). */
+            SHADER_STAGE_VERTEX_BIT = 1,
+            
+            /** Fragment shader stage bit (see also [constant SHADER_STAGE_FRAGMENT]). */
+            SHADER_STAGE_FRAGMENT_BIT = 2,
+            
+            /** Tessellation control shader stage bit (see also [constant SHADER_STAGE_TESSELATION_CONTROL]). */
+            SHADER_STAGE_TESSELATION_CONTROL_BIT = 4,
+            
+            /** Tessellation evaluation shader stage bit (see also [constant SHADER_STAGE_TESSELATION_EVALUATION]). */
+            SHADER_STAGE_TESSELATION_EVALUATION_BIT = 8,
+            
+            /** Compute shader stage bit (see also [constant SHADER_STAGE_COMPUTE]). */
+            SHADER_STAGE_COMPUTE_BIT = 16,
+        }
+        enum ShaderLanguage {
+            /** Khronos' GLSL shading language (used natively by OpenGL and Vulkan). This is the language used for core Godot shaders. */
+            SHADER_LANGUAGE_GLSL = 0,
+            
+            /** Microsoft's High-Level Shading Language (used natively by Direct3D, but can also be used in Vulkan). */
+            SHADER_LANGUAGE_HLSL = 1,
+        }
+        enum PipelineSpecializationConstantType {
+            /** Boolean specialization constant. */
+            PIPELINE_SPECIALIZATION_CONSTANT_TYPE_BOOL = 0,
+            
+            /** Integer specialization constant. */
+            PIPELINE_SPECIALIZATION_CONSTANT_TYPE_INT = 1,
+            
+            /** Floating-point specialization constant. */
+            PIPELINE_SPECIALIZATION_CONSTANT_TYPE_FLOAT = 2,
+        }
+        enum Limit {
+            /** Maximum number of uniform sets that can be bound at a given time. */
+            LIMIT_MAX_BOUND_UNIFORM_SETS = 0,
+            
+            /** Maximum number of color framebuffer attachments that can be used at a given time. */
+            LIMIT_MAX_FRAMEBUFFER_COLOR_ATTACHMENTS = 1,
+            
+            /** Maximum number of textures that can be used per uniform set. */
+            LIMIT_MAX_TEXTURES_PER_UNIFORM_SET = 2,
+            
+            /** Maximum number of samplers that can be used per uniform set. */
+            LIMIT_MAX_SAMPLERS_PER_UNIFORM_SET = 3,
+            
+            /** Maximum number of [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage buffers[/url] per uniform set. */
+            LIMIT_MAX_STORAGE_BUFFERS_PER_UNIFORM_SET = 4,
+            
+            /** Maximum number of storage images per uniform set. */
+            LIMIT_MAX_STORAGE_IMAGES_PER_UNIFORM_SET = 5,
+            
+            /** Maximum number of uniform buffers per uniform set. */
+            LIMIT_MAX_UNIFORM_BUFFERS_PER_UNIFORM_SET = 6,
+            
+            /** Maximum index for an indexed draw command. */
+            LIMIT_MAX_DRAW_INDEXED_INDEX = 7,
+            
+            /** Maximum height of a framebuffer (in pixels). */
+            LIMIT_MAX_FRAMEBUFFER_HEIGHT = 8,
+            
+            /** Maximum width of a framebuffer (in pixels). */
+            LIMIT_MAX_FRAMEBUFFER_WIDTH = 9,
+            
+            /** Maximum number of texture array layers. */
+            LIMIT_MAX_TEXTURE_ARRAY_LAYERS = 10,
+            
+            /** Maximum supported 1-dimensional texture size (in pixels on a single axis). */
+            LIMIT_MAX_TEXTURE_SIZE_1D = 11,
+            
+            /** Maximum supported 2-dimensional texture size (in pixels on a single axis). */
+            LIMIT_MAX_TEXTURE_SIZE_2D = 12,
+            
+            /** Maximum supported 3-dimensional texture size (in pixels on a single axis). */
+            LIMIT_MAX_TEXTURE_SIZE_3D = 13,
+            
+            /** Maximum supported cubemap texture size (in pixels on a single axis of a single face). */
+            LIMIT_MAX_TEXTURE_SIZE_CUBE = 14,
+            
+            /** Maximum number of textures per shader stage. */
+            LIMIT_MAX_TEXTURES_PER_SHADER_STAGE = 15,
+            
+            /** Maximum number of samplers per shader stage. */
+            LIMIT_MAX_SAMPLERS_PER_SHADER_STAGE = 16,
+            
+            /** Maximum number of [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage buffers[/url] per shader stage. */
+            LIMIT_MAX_STORAGE_BUFFERS_PER_SHADER_STAGE = 17,
+            
+            /** Maximum number of storage images per shader stage. */
+            LIMIT_MAX_STORAGE_IMAGES_PER_SHADER_STAGE = 18,
+            
+            /** Maximum number of uniform buffers per uniform set. */
+            LIMIT_MAX_UNIFORM_BUFFERS_PER_SHADER_STAGE = 19,
+            
+            /** Maximum size of a push constant. A lot of devices are limited to 128 bytes, so try to avoid exceeding 128 bytes in push constants to ensure compatibility even if your GPU is reporting a higher value. */
+            LIMIT_MAX_PUSH_CONSTANT_SIZE = 20,
+            
+            /** Maximum size of a uniform buffer. */
+            LIMIT_MAX_UNIFORM_BUFFER_SIZE = 21,
+            
+            /** Maximum vertex input attribute offset. */
+            LIMIT_MAX_VERTEX_INPUT_ATTRIBUTE_OFFSET = 22,
+            
+            /** Maximum number of vertex input attributes. */
+            LIMIT_MAX_VERTEX_INPUT_ATTRIBUTES = 23,
+            
+            /** Maximum number of vertex input bindings. */
+            LIMIT_MAX_VERTEX_INPUT_BINDINGS = 24,
+            
+            /** Maximum vertex input binding stride. */
+            LIMIT_MAX_VERTEX_INPUT_BINDING_STRIDE = 25,
+            
+            /** Minimum uniform buffer offset alignment. */
+            LIMIT_MIN_UNIFORM_BUFFER_OFFSET_ALIGNMENT = 26,
+            
+            /** Maximum shared memory size for compute shaders. */
+            LIMIT_MAX_COMPUTE_SHARED_MEMORY_SIZE = 27,
+            
+            /** Maximum number of workgroups for compute shaders on the X axis. */
+            LIMIT_MAX_COMPUTE_WORKGROUP_COUNT_X = 28,
+            
+            /** Maximum number of workgroups for compute shaders on the Y axis. */
+            LIMIT_MAX_COMPUTE_WORKGROUP_COUNT_Y = 29,
+            
+            /** Maximum number of workgroups for compute shaders on the Z axis. */
+            LIMIT_MAX_COMPUTE_WORKGROUP_COUNT_Z = 30,
+            
+            /** Maximum number of workgroup invocations for compute shaders. */
+            LIMIT_MAX_COMPUTE_WORKGROUP_INVOCATIONS = 31,
+            
+            /** Maximum workgroup size for compute shaders on the X axis. */
+            LIMIT_MAX_COMPUTE_WORKGROUP_SIZE_X = 32,
+            
+            /** Maximum workgroup size for compute shaders on the Y axis. */
+            LIMIT_MAX_COMPUTE_WORKGROUP_SIZE_Y = 33,
+            
+            /** Maximum workgroup size for compute shaders on the Z axis. */
+            LIMIT_MAX_COMPUTE_WORKGROUP_SIZE_Z = 34,
+            
+            /** Maximum viewport width (in pixels). */
+            LIMIT_MAX_VIEWPORT_DIMENSIONS_X = 35,
+            
+            /** Maximum viewport height (in pixels). */
+            LIMIT_MAX_VIEWPORT_DIMENSIONS_Y = 36,
+        }
+        enum MemoryType {
+            /** Memory taken by textures. */
+            MEMORY_TEXTURES = 0,
+            
+            /** Memory taken by buffers. */
+            MEMORY_BUFFERS = 1,
+            
+            /** Total memory taken. This is greater than the sum of [constant MEMORY_TEXTURES] and [constant MEMORY_BUFFERS], as it also includes miscellaneous memory usage. */
+            MEMORY_TOTAL = 2,
         }
     }
-    namespace Variant {
-        enum Operator {
-            OP_EQUAL = 0,
-            OP_NOT_EQUAL = 1,
-            OP_LESS = 2,
-            OP_LESS_EQUAL = 3,
-            OP_GREATER = 4,
-            OP_GREATER_EQUAL = 5,
-            OP_ADD = 6,
-            OP_SUBTRACT = 7,
-            OP_MULTIPLY = 8,
-            OP_DIVIDE = 9,
-            OP_NEGATE = 10,
-            OP_POSITIVE = 11,
-            OP_MODULE = 12,
-            OP_POWER = 13,
-            OP_SHIFT_LEFT = 14,
-            OP_SHIFT_RIGHT = 15,
-            OP_BIT_AND = 16,
-            OP_BIT_OR = 17,
-            OP_BIT_XOR = 18,
-            OP_BIT_NEGATE = 19,
-            OP_AND = 20,
-            OP_OR = 21,
-            OP_XOR = 22,
-            OP_NOT = 23,
-            OP_IN = 24,
-            OP_MAX = 25,
+    /** Abstraction for working with modern low-level graphics APIs. */
+    class RenderingDevice extends Object {
+        /** Returned by functions that return an ID if a value is invalid. */
+        static readonly INVALID_ID = -1
+        
+        /** Returned by functions that return a format ID if a value is invalid. */
+        static readonly INVALID_FORMAT_ID = -1
+        
+        /** Creates a new texture. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         *      
+         *  **Note:** Not to be confused with [method RenderingServer.texture_2d_create], which creates the Godot-specific [Texture2D] resource as opposed to the graphics API's own texture type.  
+         */
+        texture_create(format: RDTextureFormat, view: RDTextureView, data: Array = <any> {} /*compound.type from 28([object Object])*/): RID
+        
+        /** Creates a shared texture using the specified [param view] and the texture information from [param with_texture]. */
+        texture_create_shared(view: RDTextureView, with_texture: RID): RID
+        
+        /** Creates a shared texture using the specified [param view] and the texture information from [param with_texture]'s [param layer] and [param mipmap]. The number of included mipmaps from the original texture can be controlled using the [param mipmaps] parameter. Only relevant for textures with multiple layers, such as 3D textures, texture arrays and cubemaps. For single-layer textures, use [method texture_create_shared]  
+         *  For 2D textures (which only have one layer), [param layer] must be `0`.  
+         *      
+         *  **Note:** Layer slicing is only supported for 2D texture arrays, not 3D textures or cubemaps.  
+         */
+        texture_create_shared_from_slice(view: RDTextureView, with_texture: RID, layer: number /*i64*/, mipmap: number /*i64*/, mipmaps: number /*i64*/ = 1, slice_type: RenderingDevice.TextureSliceType = 0): RID
+        
+        /** Returns an RID for an existing [param image] (`VkImage`) with the given [param type], [param format], [param samples], [param usage_flags], [param width], [param height], [param depth], and [param layers]. This can be used to allow Godot to render onto foreign images. */
+        texture_create_from_extension(type: RenderingDevice.TextureType, format: RenderingDevice.DataFormat, samples: RenderingDevice.TextureSamples, usage_flags: RenderingDevice.TextureUsageBits, image: number /*i64*/, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, layers: number /*i64*/): RID
+        
+        /** Updates texture data with new data, replacing the previous data in place. The updated texture data must have the same dimensions and format. For 2D textures (which only have one layer), [param layer] must be `0`. Returns [constant @GlobalScope.OK] if the update was successful, [constant @GlobalScope.ERR_INVALID_PARAMETER] otherwise.  
+         *      
+         *  **Note:** Updating textures is forbidden during creation of a draw or compute list.  
+         *      
+         *  **Note:** The existing [param texture] can't be updated while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to update this texture.  
+         *      
+         *  **Note:** The existing [param texture] requires the [constant TEXTURE_USAGE_CAN_UPDATE_BIT] to be updatable.  
+         */
+        texture_update(texture: RID, layer: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        
+        /** Returns the [param texture] data for the specified [param layer] as raw binary data. For 2D textures (which only have one layer), [param layer] must be `0`.  
+         *      
+         *  **Note:** [param texture] can't be retrieved while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to retrieve this texture. Otherwise, an error is printed and a empty [PackedByteArray] is returned.  
+         *      
+         *  **Note:** [param texture] requires the [constant TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved. Otherwise, an error is printed and a empty [PackedByteArray] is returned.  
+         */
+        texture_get_data(texture: RID, layer: number /*i64*/): PackedByteArray
+        
+        /** Returns `true` if the specified [param format] is supported for the given [param usage_flags], `false` otherwise. */
+        texture_is_format_supported_for_usage(format: RenderingDevice.DataFormat, usage_flags: RenderingDevice.TextureUsageBits): boolean
+        
+        /** Returns `true` if the [param texture] is shared, `false` otherwise. See [RDTextureView]. */
+        texture_is_shared(texture: RID): boolean
+        
+        /** Returns `true` if the [param texture] is valid, `false` otherwise. */
+        texture_is_valid(texture: RID): boolean
+        
+        /** Copies the [param from_texture] to [param to_texture] with the specified [param from_pos], [param to_pos] and [param size] coordinates. The Z axis of the [param from_pos], [param to_pos] and [param size] must be `0` for 2-dimensional textures. Source and destination mipmaps/layers must also be specified, with these parameters being `0` for textures without mipmaps or single-layer textures. Returns [constant @GlobalScope.OK] if the texture copy was successful or [constant @GlobalScope.ERR_INVALID_PARAMETER] otherwise.  
+         *      
+         *  **Note:** [param from_texture] texture can't be copied while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to copy this texture.  
+         *      
+         *  **Note:** [param from_texture] texture requires the [constant TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved.  
+         *      
+         *  **Note:** [param to_texture] can't be copied while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to copy this texture.  
+         *      
+         *  **Note:** [param to_texture] requires the [constant TEXTURE_USAGE_CAN_COPY_TO_BIT] to be retrieved.  
+         *      
+         *  **Note:** [param from_texture] and [param to_texture] must be of the same type (color or depth).  
+         */
+        texture_copy(from_texture: RID, to_texture: RID, from_pos: Vector3, to_pos: Vector3, size: Vector3, src_mipmap: number /*i64*/, dst_mipmap: number /*i64*/, src_layer: number /*i64*/, dst_layer: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        
+        /** Clears the specified [param texture] by replacing all of its pixels with the specified [param color]. [param base_mipmap] and [param mipmap_count] determine which mipmaps of the texture are affected by this clear operation, while [param base_layer] and [param layer_count] determine which layers of a 3D texture (or texture array) are affected by this clear operation. For 2D textures (which only have one layer by design), [param base_layer] must be `0` and [param layer_count] must be `1`.  
+         *      
+         *  **Note:** [param texture] can't be cleared while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to clear this texture.  
+         */
+        texture_clear(texture: RID, color: Color, base_mipmap: number /*i64*/, mipmap_count: number /*i64*/, base_layer: number /*i64*/, layer_count: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        
+        /** Resolves the [param from_texture] texture onto [param to_texture] with multisample antialiasing enabled. This must be used when rendering a framebuffer for MSAA to work. Returns [constant @GlobalScope.OK] if successful, [constant @GlobalScope.ERR_INVALID_PARAMETER] otherwise.  
+         *      
+         *  **Note:** [param from_texture] and [param to_texture] textures must have the same dimension, format and type (color or depth).  
+         *      
+         *  **Note:** [param from_texture] can't be copied while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to resolve this texture.  
+         *      
+         *  **Note:** [param from_texture] requires the [constant TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved.  
+         *      
+         *  **Note:** [param from_texture] must be multisampled and must also be 2D (or a slice of a 3D/cubemap texture).  
+         *      
+         *  **Note:** [param to_texture] can't be copied while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to resolve this texture.  
+         *      
+         *  **Note:** [param to_texture] texture requires the [constant TEXTURE_USAGE_CAN_COPY_TO_BIT] to be retrieved.  
+         *      
+         *  **Note:** [param to_texture] texture must **not** be multisampled and must also be 2D (or a slice of a 3D/cubemap texture).  
+         */
+        texture_resolve_multisample(from_texture: RID, to_texture: RID, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        
+        /** Returns the data format used to create this texture. */
+        texture_get_format(texture: RID): RDTextureFormat
+        
+        /** Returns the internal graphics handle for this texture object. For use when communicating with third-party APIs mostly with GDExtension.  
+         *      
+         *  **Note:** This function returns a `uint64_t` which internally maps to a `GLuint` (OpenGL) or `VkImage` (Vulkan).  
+         */
+        texture_get_native_handle(texture: RID): number /*i64*/
+        
+        /** Creates a new framebuffer format with the specified [param attachments] and [param view_count]. Returns the new framebuffer's unique framebuffer format ID.  
+         *  If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension.  
+         */
+        framebuffer_format_create(attachments: Array, view_count: number /*i64*/ = 1): number /*i64*/
+        
+        /** Creates a multipass framebuffer format with the specified [param attachments], [param passes] and [param view_count] and returns its ID. If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension. */
+        framebuffer_format_create_multipass(attachments: Array, passes: Array, view_count: number /*i64*/ = 1): number /*i64*/
+        
+        /** Creates a new empty framebuffer format with the specified number of [param samples] and returns its ID. */
+        framebuffer_format_create_empty(samples: RenderingDevice.TextureSamples = 0): number /*i64*/
+        
+        /** Returns the number of texture samples used for the given framebuffer [param format] ID (returned by [method framebuffer_get_format]). */
+        framebuffer_format_get_texture_samples(format: number /*i64*/, render_pass: number /*i64*/ = 0): RenderingDevice.TextureSamples
+        
+        /** Creates a new framebuffer. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        framebuffer_create(textures: Array, validate_with_format: number /*i64*/ = -1, view_count: number /*i64*/ = 1): RID
+        
+        /** Creates a new multipass framebuffer. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        framebuffer_create_multipass(textures: Array, passes: Array, validate_with_format: number /*i64*/ = -1, view_count: number /*i64*/ = 1): RID
+        
+        /** Creates a new empty framebuffer. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        framebuffer_create_empty(size: Vector2i, samples: RenderingDevice.TextureSamples = 0, validate_with_format: number /*i64*/ = -1): RID
+        
+        /** Returns the format ID of the framebuffer specified by the [param framebuffer] RID. This ID is guaranteed to be unique for the same formats and does not need to be freed. */
+        framebuffer_get_format(framebuffer: RID): number /*i64*/
+        
+        /** Returns `true` if the framebuffer specified by the [param framebuffer] RID is valid, `false` otherwise. */
+        framebuffer_is_valid(framebuffer: RID): boolean
+        
+        /** Creates a new sampler. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        sampler_create(state: RDSamplerState): RID
+        
+        /** Returns `true` if implementation supports using a texture of [param format] with the given [param sampler_filter]. */
+        sampler_is_format_supported_for_filter(format: RenderingDevice.DataFormat, sampler_filter: RenderingDevice.SamplerFilter): boolean
+        
+        /** It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        vertex_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_as_storage: boolean = false): RID
+        
+        /** Creates a new vertex format with the specified [param vertex_descriptions]. Returns a unique vertex format ID corresponding to the newly created vertex format. */
+        vertex_format_create(vertex_descriptions: Array): number /*i64*/
+        
+        /** Creates a vertex array based on the specified buffers. Optionally, [param offsets] (in bytes) may be defined for each buffer. */
+        vertex_array_create(vertex_count: number /*i64*/, vertex_format: number /*i64*/, src_buffers: Array, offsets: PackedInt64Array = <any> {} /*compound.type from 31([object Object])*/): RID
+        
+        /** Creates a new index buffer. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        index_buffer_create(size_indices: number /*i64*/, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_restart_indices: boolean = false): RID
+        
+        /** Creates a new index array. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        index_array_create(index_buffer: RID, index_offset: number /*i64*/, index_count: number /*i64*/): RID
+        
+        /** Compiles a SPIR-V from the shader source code in [param shader_source] and returns the SPIR-V as a [RDShaderSPIRV]. This intermediate language shader is portable across different GPU models and driver versions, but cannot be run directly by GPUs until compiled into a binary shader using [method shader_compile_binary_from_spirv].  
+         *  If [param allow_cache] is `true`, make use of the shader cache generated by Godot. This avoids a potentially lengthy shader compilation step if the shader is already in cache. If [param allow_cache] is `false`, Godot's shader cache is ignored and the shader will always be recompiled.  
+         */
+        shader_compile_spirv_from_source(shader_source: RDShaderSource, allow_cache: boolean = true): RDShaderSPIRV
+        
+        /** Compiles a binary shader from [param spirv_data] and returns the compiled binary data as a [PackedByteArray]. This compiled shader is specific to the GPU model and driver version used; it will not work on different GPU models or even different driver versions. See also [method shader_compile_spirv_from_source].  
+         *  [param name] is an optional human-readable name that can be given to the compiled shader for organizational purposes.  
+         */
+        shader_compile_binary_from_spirv(spirv_data: RDShaderSPIRV, name: string = ''): PackedByteArray
+        
+        /** Creates a new shader instance from SPIR-V intermediate code. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method. See also [method shader_compile_spirv_from_source] and [method shader_create_from_bytecode].  
+         */
+        shader_create_from_spirv(spirv_data: RDShaderSPIRV, name: string = ''): RID
+        
+        /** Creates a new shader instance from a binary compiled shader. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method. See also [method shader_compile_binary_from_spirv] and [method shader_create_from_spirv].  
+         */
+        shader_create_from_bytecode(binary_data: PackedByteArray, placeholder_rid: RID = <any> {} /*compound.type from 23([object Object])*/): RID
+        
+        /** Create a placeholder RID by allocating an RID without initializing it for use in [method shader_create_from_bytecode]. This allows you to create an RID for a shader and pass it around, but defer compiling the shader to a later time. */
+        shader_create_placeholder(): RID
+        
+        /** Returns the internal vertex input mask. Internally, the vertex input mask is an unsigned integer consisting of the locations (specified in GLSL via. `layout(location = ...)`) of the input variables (specified in GLSL by the `in` keyword). */
+        shader_get_vertex_input_attribute_mask(shader: RID): number /*i64*/
+        
+        /** Creates a new uniform buffer. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        uniform_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
+        
+        /** Creates a [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage buffer[/url] with the specified [param data] and [param usage]. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        storage_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, usage: RenderingDevice.StorageBufferUsage = 0): RID
+        
+        /** Creates a new texture buffer. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        texture_buffer_create(size_bytes: number /*i64*/, format: RenderingDevice.DataFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
+        
+        /** Creates a new uniform set. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        uniform_set_create(uniforms: Array, shader: RID, shader_set: number /*i64*/): RID
+        
+        /** Checks if the [param uniform_set] is valid, i.e. is owned. */
+        uniform_set_is_valid(uniform_set: RID): boolean
+        
+        /** Updates a region of [param size_bytes] bytes, starting at [param offset], in the buffer, with the specified [param data]. Raises a memory barrier except when [param post_barrier] is set to [constant BARRIER_MASK_NO_BARRIER].  
+         *  Prints an error if:  
+         *  - the region specified by [param offset] + [param size_bytes] exceeds the buffer  
+         *  - a draw list is currently active (created by [method draw_list_begin])  
+         *  - a compute list is currently active (created by [method compute_list_begin])  
+         */
+        buffer_update(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        
+        /** Clears the contents of the [param buffer], clearing [param size_bytes] bytes, starting at [param offset]. Always raises a memory barrier.  
+         *  Prints an error if:  
+         *  - the size isn't a multiple of four  
+         *  - the region specified by [param offset] + [param size_bytes] exceeds the buffer  
+         *  - a draw list is currently active (created by [method draw_list_begin])  
+         *  - a compute list is currently active (created by [method compute_list_begin])  
+         */
+        buffer_clear(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        
+        /** Returns a copy of the data of the specified [param buffer], optionally [param offset_bytes] and [param size_bytes] can be set to copy only a portion of the buffer. */
+        buffer_get_data(buffer: RID, offset_bytes: number /*i64*/ = 0, size_bytes: number /*i64*/ = 0): PackedByteArray
+        
+        /** Creates a new render pipeline. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        render_pipeline_create(shader: RID, framebuffer_format: number /*i64*/, vertex_format: number /*i64*/, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: number /*i64*/ = 0, specialization_constants: Array = <any> {} /*compound.type from 28([object Object])*/): RID
+        
+        /** Returns `true` if the render pipeline specified by the [param render_pipeline] RID is valid, `false` otherwise. */
+        render_pipeline_is_valid(render_pipeline: RID): boolean
+        
+        /** Creates a new compute pipeline. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
+         */
+        compute_pipeline_create(shader: RID, specialization_constants: Array = <any> {} /*compound.type from 28([object Object])*/): RID
+        
+        /** Returns `true` if the compute pipeline specified by the [param compute_pipeline] RID is valid, `false` otherwise. */
+        compute_pipeline_is_valid(compute_pipeline: RID): boolean
+        
+        /** Returns the window width matching the graphics API context for the given window ID (in pixels). Despite the parameter being named [param screen], this returns the [i]window[/i] size. See also [method screen_get_height].  
+         *      
+         *  **Note:** Only the main [RenderingDevice] returned by [method RenderingServer.get_rendering_device] has a width. If called on a local [RenderingDevice], this method prints an error and returns [constant INVALID_ID].  
+         */
+        screen_get_width(screen: number /*i64*/ = 0): number /*i64*/
+        
+        /** Returns the window height matching the graphics API context for the given window ID (in pixels). Despite the parameter being named [param screen], this returns the [i]window[/i] size. See also [method screen_get_width].  
+         *      
+         *  **Note:** Only the main [RenderingDevice] returned by [method RenderingServer.get_rendering_device] has a height. If called on a local [RenderingDevice], this method prints an error and returns [constant INVALID_ID].  
+         */
+        screen_get_height(screen: number /*i64*/ = 0): number /*i64*/
+        
+        /** Returns the screen's framebuffer format.  
+         *      
+         *  **Note:** Only the main [RenderingDevice] returned by [method RenderingServer.get_rendering_device] has a format. If called on a local [RenderingDevice], this method prints an error and returns [constant INVALID_ID].  
+         */
+        screen_get_framebuffer_format(): number /*i64*/
+        
+        /** High-level variant of [method draw_list_begin], with the parameters automatically being adjusted for drawing onto the window specified by the [param screen] ID.  
+         *      
+         *  **Note:** Cannot be used with local RenderingDevices, as these don't have a screen. If called on a local RenderingDevice, [method draw_list_begin_for_screen] returns [constant INVALID_ID].  
+         */
+        draw_list_begin_for_screen(screen: number /*i64*/ = 0, clear_color: Color = new Color(0, 0, 0, 1)): number /*i64*/
+        
+        /** Starts a list of raster drawing commands created with the `draw_*` methods. The returned value should be passed to other `draw_list_*` functions.  
+         *  Multiple draw lists cannot be created at the same time; you must finish the previous draw list first using [method draw_list_end].  
+         *  A simple drawing operation might look like this (code is not a complete example):  
+         *    
+         */
+        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: number /*f64*/ = 1, clear_stencil: number /*i64*/ = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): number /*i64*/
+        
+        /** Variant of [method draw_list_begin] with support for multiple splits. The [param splits] parameter determines how many splits are created. */
+        draw_list_begin_split(framebuffer: RID, splits: number /*i64*/, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: number /*f64*/ = 1, clear_stencil: number /*i64*/ = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): PackedInt64Array
+        
+        /** Sets blend constants for the specified [param draw_list] to [param color]. Blend constants are used only if the graphics pipeline is created with [constant DYNAMIC_STATE_BLEND_CONSTANTS] flag set. */
+        draw_list_set_blend_constants(draw_list: number /*i64*/, color: Color): void
+        
+        /** Binds [param render_pipeline] to the specified [param draw_list]. */
+        draw_list_bind_render_pipeline(draw_list: number /*i64*/, render_pipeline: RID): void
+        
+        /** Binds [param uniform_set] to the specified [param draw_list]. A [param set_index] must also be specified, which is an identifier starting from `0` that must match the one expected by the draw list. */
+        draw_list_bind_uniform_set(draw_list: number /*i64*/, uniform_set: RID, set_index: number /*i64*/): void
+        
+        /** Binds [param vertex_array] to the specified [param draw_list]. */
+        draw_list_bind_vertex_array(draw_list: number /*i64*/, vertex_array: RID): void
+        
+        /** Binds [param index_array] to the specified [param draw_list]. */
+        draw_list_bind_index_array(draw_list: number /*i64*/, index_array: RID): void
+        
+        /** Sets the push constant data to [param buffer] for the specified [param draw_list]. The shader determines how this binary data is used. The buffer's size in bytes must also be specified in [param size_bytes] (this can be obtained by calling the [method PackedByteArray.size] method on the passed [param buffer]). */
+        draw_list_set_push_constant(draw_list: number /*i64*/, buffer: PackedByteArray, size_bytes: number /*i64*/): void
+        
+        /** Submits [param draw_list] for rendering on the GPU. This is the raster equivalent to [method compute_list_dispatch]. */
+        draw_list_draw(draw_list: number /*i64*/, use_indices: boolean, instances: number /*i64*/, procedural_vertex_count: number /*i64*/ = 0): void
+        
+        /** Creates a scissor rectangle and enables it for the specified [param draw_list]. Scissor rectangles are used for clipping by discarding fragments that fall outside a specified rectangular portion of the screen. See also [method draw_list_disable_scissor].  
+         *      
+         *  **Note:** The specified [param rect] is automatically intersected with the screen's dimensions, which means it cannot exceed the screen's dimensions.  
+         */
+        draw_list_enable_scissor(draw_list: number /*i64*/, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/): void
+        
+        /** Removes and disables the scissor rectangle for the specified [param draw_list]. See also [method draw_list_enable_scissor]. */
+        draw_list_disable_scissor(draw_list: number /*i64*/): void
+        
+        /** Switches to the next draw pass and returns the split's ID. Equivalent to [method draw_list_switch_to_next_pass_split] with `splits` set to `1`. */
+        draw_list_switch_to_next_pass(): number /*i64*/
+        
+        /** Switches to the next draw pass, with the number of splits allocated specified in [param splits]. The return value is an array containing the ID of each split. For single-split usage, see [method draw_list_switch_to_next_pass]. */
+        draw_list_switch_to_next_pass_split(splits: number /*i64*/): PackedInt64Array
+        
+        /** Finishes a list of raster drawing commands created with the `draw_*` methods. */
+        draw_list_end(post_barrier: RenderingDevice.BarrierMask = 32767): void
+        
+        /** Starts a list of compute commands created with the `compute_*` methods. The returned value should be passed to other `compute_list_*` functions.  
+         *  If [param allow_draw_overlap] is `true`, you may have one draw list running at the same time as one compute list. Multiple compute lists cannot be created at the same time; you must finish the previous compute list first using [method compute_list_end].  
+         *  A simple compute operation might look like this (code is not a complete example):  
+         *    
+         */
+        compute_list_begin(allow_draw_overlap: boolean = false): number /*i64*/
+        
+        /** Tells the GPU what compute pipeline to use when processing the compute list. If the shader has changed since the last time this function was called, Godot will unbind all descriptor sets and will re-bind them inside [method compute_list_dispatch]. */
+        compute_list_bind_compute_pipeline(compute_list: number /*i64*/, compute_pipeline: RID): void
+        
+        /** Sets the push constant data to [param buffer] for the specified [param compute_list]. The shader determines how this binary data is used. The buffer's size in bytes must also be specified in [param size_bytes] (this can be obtained by calling the [method PackedByteArray.size] method on the passed [param buffer]). */
+        compute_list_set_push_constant(compute_list: number /*i64*/, buffer: PackedByteArray, size_bytes: number /*i64*/): void
+        
+        /** Binds the [param uniform_set] to this [param compute_list]. Godot ensures that all textures in the uniform set have the correct Vulkan access masks. If Godot had to change access masks of textures, it will raise a Vulkan image memory barrier. */
+        compute_list_bind_uniform_set(compute_list: number /*i64*/, uniform_set: RID, set_index: number /*i64*/): void
+        
+        /** Submits the compute list for processing on the GPU. This is the compute equivalent to [method draw_list_draw]. */
+        compute_list_dispatch(compute_list: number /*i64*/, x_groups: number /*i64*/, y_groups: number /*i64*/, z_groups: number /*i64*/): void
+        
+        /** Raises a Vulkan compute barrier in the specified [param compute_list]. */
+        compute_list_add_barrier(compute_list: number /*i64*/): void
+        
+        /** Finishes a list of compute commands created with the `compute_*` methods. */
+        compute_list_end(post_barrier: RenderingDevice.BarrierMask = 32767): void
+        
+        /** Tries to free an object in the RenderingDevice. To avoid memory leaks, this should be called after using an object as memory management does not occur automatically when using RenderingDevice directly. */
+        free_rid(rid: RID): void
+        
+        /** Creates a timestamp marker with the specified [param name]. This is used for performance reporting with the [method get_captured_timestamp_cpu_time], [method get_captured_timestamp_gpu_time] and [method get_captured_timestamp_name] methods. */
+        capture_timestamp(name: string): void
+        
+        /** Returns the total number of timestamps (rendering steps) available for profiling. */
+        get_captured_timestamps_count(): number /*i64*/
+        
+        /** Returns the index of the last frame rendered that has rendering timestamps available for querying. */
+        get_captured_timestamps_frame(): number /*i64*/
+        
+        /** Returns the timestamp in GPU time for the rendering step specified by [param index] (in microseconds since the engine started). See also [method get_captured_timestamp_cpu_time] and [method capture_timestamp]. */
+        get_captured_timestamp_gpu_time(index: number /*i64*/): number /*i64*/
+        
+        /** Returns the timestamp in CPU time for the rendering step specified by [param index] (in microseconds since the engine started). See also [method get_captured_timestamp_gpu_time] and [method capture_timestamp]. */
+        get_captured_timestamp_cpu_time(index: number /*i64*/): number /*i64*/
+        
+        /** Returns the timestamp's name for the rendering step specified by [param index]. See also [method capture_timestamp]. */
+        get_captured_timestamp_name(index: number /*i64*/): string
+        
+        /** Returns the value of the specified [param limit]. This limit varies depending on the current graphics hardware (and sometimes the driver version). If the given limit is exceeded, rendering errors will occur.  
+         *  Limits for various graphics hardware can be found in the [url=https://vulkan.gpuinfo.org/]Vulkan Hardware Database[/url].  
+         */
+        limit_get(limit: RenderingDevice.Limit): number /*i64*/
+        
+        /** Returns the frame count kept by the graphics API. Higher values result in higher input lag, but with more consistent throughput. For the main [RenderingDevice], frames are cycled (usually 3 with triple-buffered V-Sync enabled). However, local [RenderingDevice]s only have 1 frame. */
+        get_frame_delay(): number /*i64*/
+        
+        /** Pushes the frame setup and draw command buffers then marks the local device as currently processing (which allows calling [method sync]).  
+         *      
+         *  **Note:** Only available in local RenderingDevices.  
+         */
+        submit(): void
+        
+        /** Forces a synchronization between the CPU and GPU, which may be required in certain cases. Only call this when needed, as CPU-GPU synchronization has a performance cost.  
+         *      
+         *  **Note:** Only available in local RenderingDevices.  
+         *      
+         *  **Note:** [method sync] can only be called after a [method submit].  
+         */
+        sync(): void
+        
+        /** Puts a memory barrier in place. This is used for synchronization to avoid data races. See also [method full_barrier], which may be useful for debugging. */
+        barrier(from: RenderingDevice.BarrierMask = 32767, to: RenderingDevice.BarrierMask = 32767): void
+        
+        /** Puts a [i]full[/i] memory barrier in place. This is a memory [method barrier] with all flags enabled. [method full_barrier] it should only be used for debugging as it can severely impact performance. */
+        full_barrier(): void
+        
+        /** Create a new local [RenderingDevice]. This is most useful for performing compute operations on the GPU independently from the rest of the engine. */
+        create_local_device(): RenderingDevice
+        
+        /** Sets the resource name for [param id] to [param name]. This is used for debugging with third-party tools such as [url=https://renderdoc.org/]RenderDoc[/url].  
+         *  The following types of resources can be named: texture, sampler, vertex buffer, index buffer, uniform buffer, texture buffer, storage buffer, uniform set buffer, shader, render pipeline and compute pipeline. Framebuffers cannot be named. Attempting to name an incompatible resource type will print an error.  
+         *      
+         *  **Note:** Resource names are only set when the engine runs in verbose mode ([method OS.is_stdout_verbose] = `true`), or when using an engine build compiled with the `dev_mode=yes` SCons option. The graphics driver must also support the `VK_EXT_DEBUG_UTILS_EXTENSION_NAME` Vulkan extension for named resources to work.  
+         */
+        set_resource_name(id: RID, name: string): void
+        
+        /** Create a command buffer debug label region that can be displayed in third-party tools such as [url=https://renderdoc.org/]RenderDoc[/url]. All regions must be ended with a [method draw_command_end_label] call. When viewed from the linear series of submissions to a single queue, calls to [method draw_command_begin_label] and [method draw_command_end_label] must be matched and balanced.  
+         *  The `VK_EXT_DEBUG_UTILS_EXTENSION_NAME` Vulkan extension must be available and enabled for command buffer debug label region to work. See also [method draw_command_insert_label] and [method draw_command_end_label].  
+         */
+        draw_command_begin_label(name: string, color: Color): void
+        
+        /** Inserts a command buffer debug label region in the current command buffer. Unlike [method draw_command_begin_label], this region should not be ended with a [method draw_command_end_label] call. */
+        draw_command_insert_label(name: string, color: Color): void
+        
+        /** Ends the command buffer debug label region started by a [method draw_command_begin_label] call. */
+        draw_command_end_label(): void
+        
+        /** Returns the vendor of the video adapter (e.g. "NVIDIA Corporation"). Equivalent to [method RenderingServer.get_video_adapter_vendor]. See also [method get_device_name]. */
+        get_device_vendor_name(): string
+        
+        /** Returns the name of the video adapter (e.g. "GeForce GTX 1080/PCIe/SSE2"). Equivalent to [method RenderingServer.get_video_adapter_name]. See also [method get_device_vendor_name]. */
+        get_device_name(): string
+        
+        /** Returns the universally unique identifier for the pipeline cache. This is used to cache shader files on disk, which avoids shader recompilations on subsequent engine runs. This UUID varies depending on the graphics card model, but also the driver version. Therefore, updating graphics drivers will invalidate the shader cache. */
+        get_device_pipeline_cache_uuid(): string
+        
+        /** Returns the memory usage in bytes corresponding to the given [param type]. When using Vulkan, these statistics are calculated by [url=https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator]Vulkan Memory Allocator[/url]. */
+        get_memory_usage(type: RenderingDevice.MemoryType): number /*i64*/
+        
+        /** Returns the unique identifier of the driver [param resource] for the specified [param rid]. Some driver resource types ignore the specified [param rid] (see [enum DriverResource] descriptions). [param index] is always ignored but must be specified anyway. */
+        get_driver_resource(resource: RenderingDevice.DriverResource, rid: RID, index: number /*i64*/): number /*i64*/
+    }
+    class ReparentDialog extends ConfirmationDialog {
+        _cancel(): void
+        readonly reparent: Signal // path: NodePath, keep_global_xform: boolean => void
+    }
+    class ReplicationEditor extends VBoxContainer {
+        _update_config(): void
+        _update_value(property: NodePath, column: number /*i64*/, value: number /*i64*/): void
+    }
+    /** Base class for serializable objects. */
+    class Resource extends RefCounted {
+        /** Override this method to return a custom [RID] when [method get_rid] is called. */
+        /* gdvirtual */ _get_rid(): RID
+        
+        /** Override this method to customize the newly duplicated resource created from [method PackedScene.instantiate], if the original's [member resource_local_to_scene] is set to `true`.  
+         *  **Example:** Set a random `damage` value to every local resource from an instantiated scene.  
+         *    
+         */
+        /* gdvirtual */ _setup_local_to_scene(): void
+        set_path(path: string): void
+        
+        /** Sets the [member resource_path] to [param path], potentially overriding an existing cache entry for this path. Further attempts to load an overridden resource by path will instead return this resource. */
+        take_over_path(path: string): void
+        get_path(): string
+        set_name(name: string): void
+        get_name(): string
+        
+        /** Returns the [RID] of this resource (or an empty RID). Many resources (such as [Texture2D], [Mesh], and so on) are high-level abstractions of resources stored in a specialized server ([DisplayServer], [RenderingServer], etc.), so this function will return the original [RID]. */
+        get_rid(): RID
+        set_local_to_scene(enable: boolean): void
+        is_local_to_scene(): boolean
+        
+        /** If [member resource_local_to_scene] is set to `true` and the resource has been loaded from a [PackedScene] instantiation, returns the root [Node] of the scene where this resource is used. Otherwise, returns `null`. */
+        get_local_scene(): Node
+        
+        /** Calls [method _setup_local_to_scene]. If [member resource_local_to_scene] is set to `true`, this method is automatically called from [method PackedScene.instantiate] by the newly duplicated resource within the scene instance.  
+         *  [i]Deprecated.[/i] This method should only be called internally. Override [method _setup_local_to_scene] instead.  
+         */
+        setup_local_to_scene(): void
+        
+        /** Emits the [signal changed] signal. This method is called automatically for some built-in resources.  
+         *      
+         *  **Note:** For custom resources, it's recommended to call this method whenever a meaningful change occurs, such as a modified property. This ensures that custom [Object]s depending on the resource are properly updated.  
+         *    
+         */
+        emit_changed(): void
+        
+        /** Duplicates this resource, returning a new resource with its `export`ed or [constant PROPERTY_USAGE_STORAGE] properties copied from the original.  
+         *  If [param subresources] is `false`, a shallow copy is returned; nested resources within subresources are not duplicated and are shared from the original resource. If [param subresources] is `true`, a deep copy is returned; nested subresources will be duplicated and are not shared.  
+         *  Subresource properties with the [constant PROPERTY_USAGE_ALWAYS_DUPLICATE] flag are always duplicated even with [param subresources] set to `false`, and properties with the [constant PROPERTY_USAGE_NEVER_DUPLICATE] flag are never duplicated even with [param subresources] set to `true`.  
+         *      
+         *  **Note:** For custom resources, this method will fail if [method Object._init] has been defined with required parameters.  
+         */
+        duplicate(subresources: boolean = false): Resource
+        
+        /** If `true`, the resource is duplicated for each instance of all scenes using it. At run-time, the resource can be modified in one scene without affecting other instances (see [method PackedScene.instantiate]).  
+         *      
+         *  **Note:** Changing this property at run-time has no effect on already created duplicate resources.  
+         */
+        resource_local_to_scene: boolean
+        
+        /** The unique path to this resource. If it has been saved to disk, the value will be its filepath. If the resource is exclusively contained within a scene, the value will be the [PackedScene]'s filepath, followed by a unique identifier.  
+         *      
+         *  **Note:** Setting this property manually may fail if a resource with the same path has already been previously loaded. If necessary, use [method take_over_path].  
+         */
+        resource_path: string
+        
+        /** An optional name for this resource. When defined, its value is displayed to represent the resource in the Inspector dock. For built-in scripts, the name is displayed as part of the tab name in the script editor.  
+         *      
+         *  **Note:** Some resource formats do not support resource names. You can still set the name in the editor or via code, but it will be lost when the resource is reloaded. For example, only built-in scripts can have a resource name, while scripts stored in separate files cannot.  
+         */
+        resource_name: string
+        
+        /** Emitted when the resource changes, usually when one of its properties is modified. See also [method emit_changed].  
+         *      
+         *  **Note:** This signal is not emitted automatically for properties of custom resources. If necessary, a setter needs to be created to emit the signal.  
+         */
+        readonly changed: Signal //  => void
+        
+        /** Emitted by a newly duplicated resource with [member resource_local_to_scene] set to `true`.   
+         *  [i]Deprecated.[/i] This signal is only emitted when the resource is created. Override [method _setup_local_to_scene] instead.  
+         */
+        readonly setup_local_to_scene_requested: Signal //  => void
+    }
+    class ResourceFormatImporterSaver extends ResourceFormatSaver {
+    }
+    namespace ResourceFormatLoader {
+        enum CacheMode {
+            CACHE_MODE_IGNORE = 0,
+            CACHE_MODE_REUSE = 1,
+            CACHE_MODE_REPLACE = 2,
         }
+    }
+    /** Loads a specific resource type from a file. */
+    class ResourceFormatLoader extends RefCounted {
+        /** Gets the list of extensions for files this loader is able to read. */
+        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
+        
+        /** Tells whether or not this loader should load a resource from its resource path for a given type.  
+         *  If it is not implemented, the default behavior returns whether the path's extension is within the ones provided by [method _get_recognized_extensions], and if the type is within the ones provided by [method _get_resource_type].  
+         */
+        /* gdvirtual */ _recognize_path(path: string, type: StringName): boolean
+        
+        /** Tells which resource class this loader can load.  
+         *      
+         *  **Note:** Custom resource types defined by scripts aren't known by the [ClassDB], so you might just handle `"Resource"` for them.  
+         */
+        /* gdvirtual */ _handles_type(type: StringName): boolean
+        
+        /** Gets the class name of the resource associated with the given path. If the loader cannot handle it, it should return `""`.  
+         *      
+         *  **Note:** Custom resource types defined by scripts aren't known by the [ClassDB], so you might just return `"Resource"` for them.  
+         */
+        /* gdvirtual */ _get_resource_type(path: string): string
+        
+        /** Returns the script class name associated with the [Resource] under the given [param path]. If the resource has no script or the script isn't a named class, it should return `""`. */
+        /* gdvirtual */ _get_resource_script_class(path: string): string
+        /* gdvirtual */ _get_resource_uid(path: string): number /*i64*/
+        
+        /** If implemented, gets the dependencies of a given resource. If [param add_types] is `true`, paths should be appended `::TypeName`, where `TypeName` is the class name of the dependency.  
+         *      
+         *  **Note:** Custom resource types defined by scripts aren't known by the [ClassDB], so you might just return `"Resource"` for them.  
+         */
+        /* gdvirtual */ _get_dependencies(path: string, add_types: boolean): PackedStringArray
+        
+        /** If implemented, renames dependencies within the given resource and saves it. [param renames] is a dictionary `{ String => String }` mapping old dependency paths to new paths.  
+         *  Returns [constant OK] on success, or an [enum Error] constant in case of failure.  
+         */
+        /* gdvirtual */ _rename_dependencies(path: string, renames: Dictionary): GodotError
+        /* gdvirtual */ _exists(path: string): boolean
+        /* gdvirtual */ _get_classes_used(path: string): PackedStringArray
+        
+        /** Loads a resource when the engine finds this loader to be compatible. If the loaded resource is the result of an import, [param original_path] will target the source file. Returns a [Resource] object on success, or an [enum Error] constant in case of failure.  
+         *  The [param cache_mode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.  
+         */
+        /* gdvirtual */ _load(path: string, original_path: string, use_sub_threads: boolean, cache_mode: number /*i64*/): void
+    }
+    /** Saves a specific resource type to a file. */
+    class ResourceFormatSaver extends RefCounted {
+        /** Saves the given resource object to a file at the target [param path]. [param flags] is a bitmask composed with [enum ResourceSaver.SaverFlags] constants.  
+         *  Returns [constant OK] on success, or an [enum Error] constant in case of failure.  
+         */
+        /* gdvirtual */ _save(resource: Resource, path: string, flags: number /*i64*/): GodotError
+        
+        /** Sets a new UID for the resource at the given [param path]. Returns [constant OK] on success, or an [enum Error] constant in case of failure. */
+        /* gdvirtual */ _set_uid(path: string, uid: number /*i64*/): GodotError
+        
+        /** Returns whether the given resource object can be saved by this saver. */
+        /* gdvirtual */ _recognize(resource: Resource): boolean
+        
+        /** Returns the list of extensions available for saving the resource object, provided it is recognized (see [method _recognize]). */
+        /* gdvirtual */ _get_recognized_extensions(resource: Resource): PackedStringArray
+        
+        /** Returns `true` if this saver handles a given save path and `false` otherwise.  
+         *  If this method is not implemented, the default behavior returns whether the path's extension is within the ones provided by [method _get_recognized_extensions].  
+         */
+        /* gdvirtual */ _recognize_path(resource: Resource, path: string): boolean
+    }
+    namespace ResourceImporter {
+        enum ImportOrder {
+            /** The default import order. */
+            IMPORT_ORDER_DEFAULT = 0,
+            
+            /** The import order for scenes, which ensures scenes are imported [i]after[/i] all other core resources such as textures. Custom importers should generally have an import order lower than `100` to avoid issues when importing scenes that rely on custom resources. */
+            IMPORT_ORDER_SCENE = 100,
+        }
+    }
+    /** Base class for resource importers. */
+    class ResourceImporter extends RefCounted {
+    }
+    /** Imports a bitmap font in the BMFont (`.fnt`) format. */
+    class ResourceImporterBMFont extends ResourceImporter {
+    }
+    /** Imports a [BitMap] resource (2D array of boolean values). */
+    class ResourceImporterBitMap extends ResourceImporter {
+    }
+    /** Imports comma-separated values */
+    class ResourceImporterCSVTranslation extends ResourceImporter {
+    }
+    /** Imports a TTF, TTC, OTF, OTC, WOFF or WOFF2 font file for font rendering that adapts to any size. */
+    class ResourceImporterDynamicFont extends ResourceImporter {
+    }
+    /** Imports a image for use in scripting, with no rendering capabilities. */
+    class ResourceImporterImage extends ResourceImporter {
+    }
+    /** Imports a fixed-width bitmap font where all glyphs have the same width and height. */
+    class ResourceImporterImageFont extends ResourceImporter {
+    }
+    /** Imports a 3-dimensional texture ([Texture3D]), a [Texture2DArray], a [Cubemap] or a [CubemapArray]. */
+    class ResourceImporterLayeredTexture extends ResourceImporter {
+    }
+    /** Imports a MP3 audio file for playback. */
+    class ResourceImporterMP3 extends ResourceImporter {
+    }
+    /** Imports an OBJ 3D model as an independent [Mesh] or scene. */
+    class ResourceImporterOBJ extends ResourceImporter {
+    }
+    /** Imports an Ogg Vorbis audio file for playback. */
+    class ResourceImporterOggVorbis extends ResourceImporter {
+        /** This method loads audio data from a PackedByteArray buffer into an AudioStreamOggVorbis object. */
+        static load_from_buffer(buffer: PackedByteArray): AudioStreamOggVorbis
+        
+        /** This method loads audio data from a file into an AudioStreamOggVorbis object. The file path is provided as a string. */
+        static load_from_file(path: string): AudioStreamOggVorbis
+    }
+    /** Imports a glTF, FBX, Collada or Blender 3D scene. */
+    class ResourceImporterScene extends ResourceImporter {
+    }
+    /** Imports native GLSL shaders (not Godot shaders) as a [RDShaderFile]. */
+    class ResourceImporterShaderFile extends ResourceImporter {
+    }
+    /** Imports an image for use in 2D or 3D rendering. */
+    class ResourceImporterTexture extends ResourceImporter {
+    }
+    /** Imports a collection of textures from a PNG image into an optimized [AtlasTexture] for 2D rendering. */
+    class ResourceImporterTextureAtlas extends ResourceImporter {
+    }
+    /** Imports a WAV audio file for playback. */
+    class ResourceImporterWAV extends ResourceImporter {
+    }
+    /** A node used to preload sub-resources inside a scene. */
+    class ResourcePreloader extends Node {
+        _set_resources(resources: Array): void
+        _get_resources(): Array
+        
+        /** Adds a resource to the preloader with the given [param name]. If a resource with the given [param name] already exists, the new resource will be renamed to "[param name] N" where N is an incrementing number starting from 2. */
+        add_resource(name: StringName, resource: Resource): void
+        
+        /** Removes the resource associated to [param name] from the preloader. */
+        remove_resource(name: StringName): void
+        
+        /** Renames a resource inside the preloader from [param name] to [param newname]. */
+        rename_resource(name: StringName, newname: StringName): void
+        
+        /** Returns `true` if the preloader contains a resource associated to [param name]. */
+        has_resource(name: StringName): boolean
+        
+        /** Returns the resource associated to [param name]. */
+        get_resource(name: StringName): Resource
+        
+        /** Returns the list of resources inside the preloader. */
+        get_resource_list(): PackedStringArray
+        resources: Array
+    }
+    class ResourcePreloaderEditor extends PanelContainer {
+        _update_library(): void
+        _remove_resource(to_remove: string): void
+    }
+    class ResourcePreloaderEditorPlugin extends EditorPlugin {
+    }
+    namespace RibbonTrailMesh {
+        enum Shape {
+            /** Gives the mesh a single flat face. */
+            SHAPE_FLAT = 0,
+            
+            /** Gives the mesh two perpendicular flat faces, making a cross shape. */
+            SHAPE_CROSS = 1,
+        }
+    }
+    /** Represents a straight ribbon-shaped [PrimitiveMesh] with variable width. */
+    class RibbonTrailMesh extends PrimitiveMesh {
+        set_size(size: number /*f64*/): void
+        get_size(): number /*f64*/
+        set_sections(sections: number /*i64*/): void
+        get_sections(): number /*i64*/
+        set_section_length(section_length: number /*f64*/): void
+        get_section_length(): number /*f64*/
+        set_section_segments(section_segments: number /*i64*/): void
+        get_section_segments(): number /*i64*/
+        set_curve(curve: Curve): void
+        get_curve(): Curve
+        set_shape(shape: RibbonTrailMesh.Shape): void
+        get_shape(): RibbonTrailMesh.Shape
+        
+        /** Determines the shape of the ribbon. */
+        shape: number /*i64*/
+        
+        /** The baseline size of the ribbon. The size of a particular section segment is obtained by multiplying this size by the value of the [member curve] at the given distance. */
+        size: number /*f64*/
+        
+        /** The total number of sections on the ribbon. */
+        sections: number /*i64*/
+        
+        /** The length of a section of the ribbon. */
+        section_length: number /*f64*/
+        
+        /** The number of segments in a section. The [member curve] is sampled on each segment to determine its size. Higher values result in a more detailed ribbon at the cost of performance. */
+        section_segments: number /*i64*/
+        
+        /** Determines the size of the ribbon along its length. The size of a particular section segment is obtained by multiplying the baseline [member size] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. */
+        curve: Curve
+    }
+    /** A custom effect for a [RichTextLabel]. */
+    class RichTextEffect extends Resource {
+        /** Override this method to modify properties in [param char_fx]. The method must return `true` if the character could be transformed successfully. If the method returns `false`, it will skip transformation to avoid displaying broken text. */
+        /* gdvirtual */ _process_custom_fx(char_fx: CharFXTransform): boolean
+    }
+    namespace RichTextLabel {
+        enum ListType {
+            /** Each list item has a number marker. */
+            LIST_NUMBERS = 0,
+            
+            /** Each list item has a letter marker. */
+            LIST_LETTERS = 1,
+            
+            /** Each list item has a roman number marker. */
+            LIST_ROMAN = 2,
+            
+            /** Each list item has a filled circle marker. */
+            LIST_DOTS = 3,
+        }
+        enum MenuItems {
+            /** Copies the selected text. */
+            MENU_COPY = 0,
+            
+            /** Selects the whole [RichTextLabel] text. */
+            MENU_SELECT_ALL = 1,
+            
+            /** Represents the size of the [enum MenuItems] enum. */
+            MENU_MAX = 2,
+        }
+        enum ImageUpdateMask {
+            /** If this bit is set, [method update_image] changes image texture. */
+            UPDATE_TEXTURE = 1,
+            
+            /** If this bit is set, [method update_image] changes image size. */
+            UPDATE_SIZE = 2,
+            
+            /** If this bit is set, [method update_image] changes image color. */
+            UPDATE_COLOR = 4,
+            
+            /** If this bit is set, [method update_image] changes image inline alignment. */
+            UPDATE_ALIGNMENT = 8,
+            
+            /** If this bit is set, [method update_image] changes image texture region. */
+            UPDATE_REGION = 16,
+            
+            /** If this bit is set, [method update_image] changes image padding. */
+            UPDATE_PAD = 32,
+            
+            /** If this bit is set, [method update_image] changes image tooltip. */
+            UPDATE_TOOLTIP = 64,
+            
+            /** If this bit is set, [method update_image] changes image width from/to percents. */
+            UPDATE_WIDTH_IN_PERCENT = 128,
+        }
+    }
+    /** A control for displaying text that can contain different font styles, images, and basic formatting. */
+    class RichTextLabel extends Control {
+        /** Returns the text without BBCode mark-up. */
+        get_parsed_text(): string
+        
+        /** Adds raw non-BBCode-parsed text to the tag stack. */
+        add_text(text: string): void
+        set_text(text: string): void
+        
+        /** Adds an image's opening and closing tags to the tag stack, optionally providing a [param width] and [param height] to resize the image, a [param color] to tint the image and a [param region] to only use parts of the image.  
+         *  If [param width] or [param height] is set to 0, the image size will be adjusted in order to keep the original aspect ratio.  
+         *  If [param width] and [param height] are not set, but [param region] is, the region's rect will be used.  
+         *  [param key] is an optional identifier, that can be used to modify the image via [method update_image].  
+         *  If [param pad] is set, and the image is smaller than the size specified by [param width] and [param height], the image padding is added to match the size instead of upscaling.  
+         *  If [param size_in_percent] is set, [param width] and [param height] values are percentages of the control width instead of pixels.  
+         */
+        add_image(image: Texture2D, width: number /*i64*/ = 0, height: number /*i64*/ = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, key: any = <any> {} /*compound.type from nil*/, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        
+        /** Updates the existing images with the key [param key]. Only properties specified by [param mask] bits are updated. See [method add_image]. */
+        update_image(key: any, mask: RichTextLabel.ImageUpdateMask, image: Texture2D, width: number /*i64*/ = 0, height: number /*i64*/ = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        
+        /** Adds a newline tag to the tag stack. */
+        newline(): void
+        
+        /** Removes a paragraph of content from the label. Returns `true` if the paragraph exists.  
+         *  The [param paragraph] argument is the index of the paragraph to remove, it can take values in the interval `[0, get_paragraph_count() - 1]`.  
+         */
+        remove_paragraph(paragraph: number /*i64*/): boolean
+        
+        /** Adds a [code skip-lint][font]` tag to the tag stack. Overrides default fonts for its duration.  
+         *  Passing `0` to [param font_size] will use the existing default font size.  
+         */
+        push_font(font: Font, font_size: number /*i64*/ = 0): void
+        
+        /** Adds a [code skip-lint][font_size]` tag to the tag stack. Overrides default font size for its duration. */
+        push_font_size(font_size: number /*i64*/): void
+        
+        /** Adds a [code skip-lint][font]` tag with a normal font to the tag stack. */
+        push_normal(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a bold font to the tag stack. This is the same as adding a [code skip-lint]**` tag if not currently in a [code skip-lint][i]` tag. */
+        push_bold(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a bold italics font to the tag stack. */
+        push_bold_italics(): void
+        
+        /** Adds a [code skip-lint][font]` tag with an italics font to the tag stack. This is the same as adding an [code skip-lint][i]` tag if not currently in a [code skip-lint]**` tag. */
+        push_italics(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a monospace font to the tag stack. */
+        push_mono(): void
+        
+        /** Adds a [code skip-lint][color]` tag to the tag stack. */
+        push_color(color: Color): void
+        
+        /** Adds a [code skip-lint][outline_size]` tag to the tag stack. Overrides default text outline size for its duration. */
+        push_outline_size(outline_size: number /*i64*/): void
+        
+        /** Adds a [code skip-lint][outline_color]` tag to the tag stack. Adds text outline for its duration. */
+        push_outline_color(color: Color): void
+        
+        /** Adds a [code skip-lint][p]` tag to the tag stack. */
+        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/): void
+        
+        /** Adds an [code skip-lint][indent]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
+        push_indent(level: number /*i64*/): void
+        
+        /** Adds [code skip-lint][ol]` or [code skip-lint][ul]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
+        push_list(level: number /*i64*/, type: RichTextLabel.ListType, capitalize: boolean, bullet: string = '•'): void
+        
+        /** Adds a meta tag to the tag stack. Similar to the BBCode [code skip-lint][url=something]{text}[/url]`, but supports non-[String] metadata types.  
+         *      
+         *  **Note:** Meta tags do nothing by default when clicked. To assign behavior when clicked, connect [signal meta_clicked] to a function that is called when the meta tag is clicked.  
+         */
+        push_meta(data: any): void
+        
+        /** Adds a [code skip-lint][hint]` tag to the tag stack. Same as BBCode [code skip-lint][hint=something]{text}[/hint]`. */
+        push_hint(description: string): void
+        
+        /** Adds language code used for text shaping algorithm and Open-Type font features. */
+        push_language(language: string): void
+        
+        /** Adds a [code skip-lint][u]` tag to the tag stack. */
+        push_underline(): void
+        
+        /** Adds a [code skip-lint][s]` tag to the tag stack. */
+        push_strikethrough(): void
+        
+        /** Adds a [code skip-lint][table=columns,inline_align]` tag to the tag stack. */
+        push_table(columns: number /*i64*/, inline_align: InlineAlignment = 0, align_to_row: number /*i64*/ = -1): void
+        
+        /** Adds a [code skip-lint][dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text. */
+        push_dropcap(string_: string, font: Font, size: number /*i64*/, dropcap_margins: Rect2 = <any> {} /*compound.type from 7([object Object])*/, color: Color = new Color(1, 1, 1, 1), outline_size: number /*i64*/ = 0, outline_color: Color = new Color(0, 0, 0, 0)): void
+        
+        /** Edits the selected column's expansion options. If [param expand] is `true`, the column expands in proportion to its expansion ratio versus the other columns' ratios.  
+         *  For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively.  
+         *  If [param expand] is `false`, the column will not contribute to the total ratio.  
+         */
+        set_table_column_expand(column: number /*i64*/, expand: boolean, ratio: number /*i64*/ = 1): void
+        
+        /** Sets color of a table cell. Separate colors for alternating rows can be specified. */
+        set_cell_row_background_color(odd_row_bg: Color, even_row_bg: Color): void
+        
+        /** Sets color of a table cell border. */
+        set_cell_border_color(color: Color): void
+        
+        /** Sets minimum and maximum size overrides for a table cell. */
+        set_cell_size_override(min_size: Vector2, max_size: Vector2): void
+        
+        /** Sets inner padding of a table cell. */
+        set_cell_padding(padding: Rect2): void
+        
+        /** Adds a [code skip-lint][cell]` tag to the tag stack. Must be inside a [code skip-lint][table]` tag. See [method push_table] for details. */
+        push_cell(): void
+        
+        /** Adds a [code skip-lint][fgcolor]` tag to the tag stack. */
+        push_fgcolor(fgcolor: Color): void
+        
+        /** Adds a [code skip-lint][bgcolor]` tag to the tag stack. */
+        push_bgcolor(bgcolor: Color): void
+        
+        /** Adds a custom effect tag to the tag stack. The effect does not need to be in [member custom_effects]. The environment is directly passed to the effect. */
+        push_customfx(effect: RichTextEffect, env: Dictionary): void
+        
+        /** Adds a context marker to the tag stack. See [method pop_context]. */
+        push_context(): void
+        
+        /** Terminates tags opened after the last [method push_context] call (including context marker), or all tags if there's no context marker on the stack. */
+        pop_context(): void
+        
+        /** Terminates the current tag. Use after `push_*` methods to close BBCodes manually. Does not need to follow `add_*` methods. */
+        pop(): void
+        
+        /** Terminates all tags opened by `push_*` methods. */
+        pop_all(): void
+        
+        /** Clears the tag stack.  
+         *      
+         *  **Note:** This method will not modify [member text], but setting [member text] to an empty string also clears the stack.  
+         */
+        clear(): void
+        set_structured_text_bidi_override(parser: TextServer.StructuredTextParser): void
+        get_structured_text_bidi_override(): TextServer.StructuredTextParser
+        set_structured_text_bidi_override_options(args: Array): void
+        get_structured_text_bidi_override_options(): Array
+        set_text_direction(direction: Control.TextDirection): void
+        get_text_direction(): Control.TextDirection
+        set_language(language: string): void
+        get_language(): string
+        set_autowrap_mode(autowrap_mode: TextServer.AutowrapMode): void
+        get_autowrap_mode(): TextServer.AutowrapMode
+        set_meta_underline(enable: boolean): void
+        is_meta_underlined(): boolean
+        set_hint_underline(enable: boolean): void
+        is_hint_underlined(): boolean
+        set_scroll_active(active: boolean): void
+        is_scroll_active(): boolean
+        set_scroll_follow(follow: boolean): void
+        is_scroll_following(): boolean
+        
+        /** Returns the vertical scrollbar.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
+         */
+        get_v_scroll_bar(): VScrollBar
+        
+        /** Scrolls the window's top line to match [param line]. */
+        scroll_to_line(line: number /*i64*/): void
+        
+        /** Scrolls the window's top line to match first line of the [param paragraph]. */
+        scroll_to_paragraph(paragraph: number /*i64*/): void
+        
+        /** Scrolls to the beginning of the current selection. */
+        scroll_to_selection(): void
+        set_tab_size(spaces: number /*i64*/): void
+        get_tab_size(): number /*i64*/
+        set_fit_content(enabled: boolean): void
+        is_fit_content_enabled(): boolean
+        set_selection_enabled(enabled: boolean): void
+        is_selection_enabled(): boolean
+        set_context_menu_enabled(enabled: boolean): void
+        is_context_menu_enabled(): boolean
+        set_shortcut_keys_enabled(enabled: boolean): void
+        is_shortcut_keys_enabled(): boolean
+        set_deselect_on_focus_loss_enabled(enable: boolean): void
+        is_deselect_on_focus_loss_enabled(): boolean
+        set_drag_and_drop_selection_enabled(enable: boolean): void
+        is_drag_and_drop_selection_enabled(): boolean
+        
+        /** Returns the current selection first character index if a selection is active, `-1` otherwise. Does not include BBCodes. */
+        get_selection_from(): number /*i64*/
+        
+        /** Returns the current selection last character index if a selection is active, `-1` otherwise. Does not include BBCodes. */
+        get_selection_to(): number /*i64*/
+        
+        /** Select all the text.  
+         *  If [member selection_enabled] is `false`, no selection will occur.  
+         */
+        select_all(): void
+        
+        /** Returns the current selection text. Does not include BBCodes. */
+        get_selected_text(): string
+        
+        /** Clears the current selection. */
+        deselect(): void
+        
+        /** The assignment version of [method append_text]. Clears the tag stack and inserts the new content. */
+        parse_bbcode(bbcode: string): void
+        
+        /** Parses [param bbcode] and adds tags to the tag stack as needed.  
+         *      
+         *  **Note:** Using this method, you can't close a tag that was opened in a previous [method append_text] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [member text] instead of using [method append_text].  
+         */
+        append_text(bbcode: string): void
+        get_text(): string
+        
+        /** If [member threaded] is enabled, returns `true` if the background thread has finished text processing, otherwise always return `true`. */
+        is_ready(): boolean
+        set_threaded(threaded: boolean): void
+        is_threaded(): boolean
+        set_progress_bar_delay(delay_ms: number /*i64*/): void
+        get_progress_bar_delay(): number /*i64*/
+        set_visible_characters(amount: number /*i64*/): void
+        get_visible_characters(): number /*i64*/
+        get_visible_characters_behavior(): TextServer.VisibleCharactersBehavior
+        set_visible_characters_behavior(behavior: TextServer.VisibleCharactersBehavior): void
+        set_visible_ratio(ratio: number /*f64*/): void
+        get_visible_ratio(): number /*f64*/
+        
+        /** Returns the line number of the character position provided. Line and character numbers are both zero-indexed.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_character_line(character: number /*i64*/): number /*i64*/
+        
+        /** Returns the paragraph number of the character position provided. Paragraph and character numbers are both zero-indexed.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_character_paragraph(character: number /*i64*/): number /*i64*/
+        
+        /** Returns the total number of characters from text tags. Does not include BBCodes. */
+        get_total_character_count(): number /*i64*/
+        set_use_bbcode(enable: boolean): void
+        is_using_bbcode(): boolean
+        
+        /** Returns the total number of lines in the text. Wrapped text is counted as multiple lines.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_line_count(): number /*i64*/
+        
+        /** Returns the number of visible lines.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_visible_line_count(): number /*i64*/
+        
+        /** Returns the total number of paragraphs (newlines or `p` tags in the tag stack's text tags). Considers wrapped text as one paragraph. */
+        get_paragraph_count(): number /*i64*/
+        
+        /** Returns the number of visible paragraphs. A paragraph is considered visible if at least one of its lines is visible.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_visible_paragraph_count(): number /*i64*/
+        
+        /** Returns the height of the content.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_content_height(): number /*i64*/
+        
+        /** Returns the width of the content.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_content_width(): number /*i64*/
+        
+        /** Returns the vertical offset of the line found at the provided index.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_line_offset(line: number /*i64*/): number /*f64*/
+        
+        /** Returns the vertical offset of the paragraph found at the provided index.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_paragraph_offset(paragraph: number /*i64*/): number /*f64*/
+        
+        /** Parses BBCode parameter [param expressions] into a dictionary. */
+        parse_expressions_for_values(expressions: PackedStringArray): Dictionary
+        set_effects(effects: Array): void
+        get_effects(): Array
+        
+        /** Installs a custom effect. This can also be done in the RichTextLabel inspector using the [member custom_effects] property. [param effect] should be a valid [RichTextEffect].  
+         *  Example RichTextEffect:  
+         *    
+         *  Registering the above effect in RichTextLabel from script:  
+         *    
+         */
+        install_effect(effect: any): void
+        
+        /** Returns the [PopupMenu] of this [RichTextLabel]. By default, this menu is displayed when right-clicking on the [RichTextLabel].  
+         *  You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:  
+         *    
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.  
+         */
+        get_menu(): PopupMenu
+        
+        /** Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided). */
+        is_menu_visible(): boolean
+        
+        /** Executes a given action as defined in the [enum MenuItems] enum. */
+        menu_option(option: number /*i64*/): void
+        _thread_end(): void
+        
+        /** If `true`, the label uses BBCode formatting. */
+        bbcode_enabled: boolean
+        
+        /** The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.  
+         *      
+         *  **Note:** If [member bbcode_enabled] is `true`, it is unadvised to use the `+=` operator with [member text] (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [method append_text] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.  
+         */
+        text: string
+        
+        /** If `true`, the label's minimum size will be automatically updated to fit its content, matching the behavior of [Label]. */
+        fit_content: boolean
+        
+        /** If `true`, the scrollbar is visible. Setting this to `false` does not block scrolling completely. See [method scroll_to_line]. */
+        scroll_active: boolean
+        
+        /** If `true`, the window scrolls down to display new content automatically. */
+        scroll_following: boolean
+        
+        /** If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode]. */
+        autowrap_mode: number /*i64*/
+        
+        /** The number of spaces associated with a single tab length. Does not affect `\t` in text tags, only indent tags. */
+        tab_size: number /*i64*/
+        
+        /** If `true`, a right-click displays the context menu. */
+        context_menu_enabled: boolean
+        
+        /** If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled. */
+        shortcut_keys_enabled: boolean
+        
+        /** The currently installed custom effects. This is an array of [RichTextEffect]s.  
+         *  To add a custom effect, it's more convenient to use [method install_effect].  
+         */
+        custom_effects: Array
+        
+        /** If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`. These tags can call a function when clicked if [signal meta_clicked] is connected to a function. */
+        meta_underlined: boolean
+        
+        /** If `true`, the label underlines hint tags such as [code skip-lint][hint=description]{text}[/hint]`. */
+        hint_underlined: boolean
+        
+        /** If `true`, text processing is done in a background thread. */
+        threaded: boolean
+        
+        /** The delay after which the loading progress bar is displayed, in milliseconds. Set to `-1` to disable progress bar entirely.  
+         *      
+         *  **Note:** Progress bar is displayed only if [member threaded] is enabled.  
+         */
+        progress_bar_delay: number /*i64*/
+        
+        /** If `true`, the label allows text selection. */
+        selection_enabled: boolean
+        
+        /** If `true`, the selected text will be deselected when focus is lost. */
+        deselect_on_focus_loss_enabled: boolean
+        
+        /** If `true`, allow drag and drop of selected text. */
+        drag_and_drop_selection_enabled: boolean
+        
+        /** The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.  
+         *      
+         *  **Note:** Setting this property updates [member visible_ratio] accordingly.  
+         */
+        visible_characters: number /*i64*/
+        
+        /** Sets the clipping behavior when [member visible_characters] or [member visible_ratio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info. */
+        visible_characters_behavior: number /*i64*/
+        
+        /** The fraction of characters to display, relative to the total number of characters (see [method get_total_character_count]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.  
+         *      
+         *  **Note:** Setting this property updates [member visible_characters] accordingly.  
+         */
+        visible_ratio: number /*f64*/
+        
+        /** Base text writing direction. */
+        text_direction: number /*i64*/
+        
+        /** Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+        language: string
+        
+        /** Set BiDi algorithm override for the structured text. */
+        structured_text_bidi_override: number /*i64*/
+        
+        /** Set additional options for BiDi override. */
+        structured_text_bidi_override_options: Array
+        
+        /** Triggered when the user clicks on content between meta (URL) tags. If the meta is defined in BBCode, e.g. [code skip-lint][url={"key": "value"}]Text[/url]`, then the parameter for this signal will always be a [String] type. If a particular type or an object is desired, the [method push_meta] method must be used to manually insert the data into the tag stack. Alternatively, you can convert the [String] input to the desired type based on its contents (such as calling [method JSON.parse] on it).  
+         *  For example, the following method can be connected to [signal meta_clicked] to open clicked URLs using the user's default web browser:  
+         *    
+         */
+        readonly meta_clicked: Signal // meta: any => void
+        
+        /** Triggers when the mouse enters a meta tag. */
+        readonly meta_hover_started: Signal // meta: any => void
+        
+        /** Triggers when the mouse exits a meta tag. */
+        readonly meta_hover_ended: Signal // meta: any => void
+        
+        /** Triggered when the document is fully loaded. */
+        readonly finished: Signal //  => void
+    }
+    namespace RigidBody2D {
+        enum FreezeMode {
+            /** Static body freeze mode (default). The body is not affected by gravity and forces. It can be only moved by user code and doesn't collide with other bodies along its path. */
+            FREEZE_MODE_STATIC = 0,
+            
+            /** Kinematic body freeze mode. Similar to [constant FREEZE_MODE_STATIC], but collides with other bodies along its path when moved. Useful for a frozen body that needs to be animated. */
+            FREEZE_MODE_KINEMATIC = 1,
+        }
+        enum CenterOfMassMode {
+            /** In this mode, the body's center of mass is calculated automatically based on its shapes. This assumes that the shapes' origins are also their center of mass. */
+            CENTER_OF_MASS_MODE_AUTO = 0,
+            
+            /** In this mode, the body's center of mass is set through [member center_of_mass]. Defaults to the body's origin position. */
+            CENTER_OF_MASS_MODE_CUSTOM = 1,
+        }
+        enum DampMode {
+            /** In this mode, the body's damping value is added to any value set in areas or the default value. */
+            DAMP_MODE_COMBINE = 0,
+            
+            /** In this mode, the body's damping value replaces any value set in areas or the default value. */
+            DAMP_MODE_REPLACE = 1,
+        }
+        enum CCDMode {
+            /** Continuous collision detection disabled. This is the fastest way to detect body collisions, but can miss small, fast-moving objects. */
+            CCD_MODE_DISABLED = 0,
+            
+            /** Continuous collision detection enabled using raycasting. This is faster than shapecasting but less precise. */
+            CCD_MODE_CAST_RAY = 1,
+            
+            /** Continuous collision detection enabled using shapecasting. This is the slowest CCD method and the most precise. */
+            CCD_MODE_CAST_SHAPE = 2,
+        }
+    }
+    /** A 2D physics body that is moved by a physics simulation. */
+    class RigidBody2D extends PhysicsBody2D {
+        /** Allows you to read and safely modify the simulation state for the object. Use this instead of [method Node._physics_process] if you need to directly change the body's `position` or other physics properties. By default, it works in addition to the usual physics behavior, but [member custom_integrator] allows you to disable the default behavior and write custom force integration for a body. */
+        /* gdvirtual */ _integrate_forces(state: PhysicsDirectBodyState2D): void
+        set_mass(mass: number /*f64*/): void
+        get_mass(): number /*f64*/
+        get_inertia(): number /*f64*/
+        set_inertia(inertia: number /*f64*/): void
+        set_center_of_mass_mode(mode: RigidBody2D.CenterOfMassMode): void
+        get_center_of_mass_mode(): RigidBody2D.CenterOfMassMode
+        set_center_of_mass(center_of_mass: Vector2): void
+        get_center_of_mass(): Vector2
+        set_physics_material_override(physics_material_override: PhysicsMaterial): void
+        get_physics_material_override(): PhysicsMaterial
+        set_gravity_scale(gravity_scale: number /*f64*/): void
+        get_gravity_scale(): number /*f64*/
+        set_linear_damp_mode(linear_damp_mode: RigidBody2D.DampMode): void
+        get_linear_damp_mode(): RigidBody2D.DampMode
+        set_angular_damp_mode(angular_damp_mode: RigidBody2D.DampMode): void
+        get_angular_damp_mode(): RigidBody2D.DampMode
+        set_linear_damp(linear_damp: number /*f64*/): void
+        get_linear_damp(): number /*f64*/
+        set_angular_damp(angular_damp: number /*f64*/): void
+        get_angular_damp(): number /*f64*/
+        set_linear_velocity(linear_velocity: Vector2): void
+        get_linear_velocity(): Vector2
+        set_angular_velocity(angular_velocity: number /*f64*/): void
+        get_angular_velocity(): number /*f64*/
+        set_max_contacts_reported(amount: number /*i64*/): void
+        get_max_contacts_reported(): number /*i64*/
+        
+        /** Returns the number of contacts this body has with other bodies. By default, this returns 0 unless bodies are configured to monitor contacts (see [member contact_monitor]).  
+         *      
+         *  **Note:** To retrieve the colliding bodies, use [method get_colliding_bodies].  
+         */
+        get_contact_count(): number /*i64*/
+        set_use_custom_integrator(enable: boolean): void
+        is_using_custom_integrator(): boolean
+        set_contact_monitor(enabled: boolean): void
+        is_contact_monitor_enabled(): boolean
+        set_continuous_collision_detection_mode(mode: RigidBody2D.CCDMode): void
+        get_continuous_collision_detection_mode(): RigidBody2D.CCDMode
+        
+        /** Sets the body's velocity on the given axis. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior. */
+        set_axis_velocity(axis_velocity: Vector2): void
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
+         */
+        apply_central_impulse(impulse: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_impulse(impulse: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inertia] is required for this to work. To have [member inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inertia].  
+         */
+        apply_torque_impulse(torque: number /*f64*/): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
+         */
+        apply_central_force(force: Vector2): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inertia] is required for this to work. To have [member inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inertia].  
+         */
+        apply_torque(torque: number /*f64*/): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
+         */
+        add_constant_central_force(force: Vector2): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        add_constant_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = 0`. */
+        add_constant_torque(torque: number /*f64*/): void
+        set_constant_force(force: Vector2): void
+        get_constant_force(): Vector2
+        set_constant_torque(torque: number /*f64*/): void
+        get_constant_torque(): number /*f64*/
+        set_sleeping(sleeping: boolean): void
+        is_sleeping(): boolean
+        set_can_sleep(able_to_sleep: boolean): void
+        is_able_to_sleep(): boolean
+        set_lock_rotation_enabled(lock_rotation: boolean): void
+        is_lock_rotation_enabled(): boolean
+        set_freeze_enabled(freeze_mode: boolean): void
+        is_freeze_enabled(): boolean
+        set_freeze_mode(freeze_mode: RigidBody2D.FreezeMode): void
+        get_freeze_mode(): RigidBody2D.FreezeMode
+        
+        /** Returns a list of the bodies colliding with this one. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions.  
+         *      
+         *  **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.  
+         */
+        get_colliding_bodies(): Array
+        
+        /** The body's mass. */
+        mass: number /*f64*/
+        
+        /** The physics material override for the body.  
+         *  If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.  
+         */
+        physics_material_override: PhysicsMaterial
+        
+        /** Multiplies the gravity applied to the body. The body's gravity is calculated from the **Default Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity vector applied by [Area2D]s. */
+        gravity_scale: number /*f64*/
+        
+        /** Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values. */
+        center_of_mass_mode: number /*i64*/
+        
+        /** The body's custom center of mass, relative to the body's origin position, when [member center_of_mass_mode] is set to [constant CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.  
+         *  When [member center_of_mass_mode] is set to [constant CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.  
+         */
+        center_of_mass: Vector2
+        
+        /** The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.  
+         *  If set to `0`, inertia is automatically computed (default value).  
+         *      
+         *  **Note:** This value does not change when inertia is automatically computed. Use [PhysicsServer2D] to get the computed inertia.  
+         *    
+         */
+        inertia: number /*f64*/
+        
+        /** If `true`, the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [method apply_impulse] or [method apply_force] methods. */
+        sleeping: boolean
+        
+        /** If `true`, the body can enter sleep mode when there is no movement. See [member sleeping]. */
+        can_sleep: boolean
+        
+        /** If `true`, the body cannot rotate. Gravity and forces only apply linear movement. */
+        lock_rotation: boolean
+        
+        /** If `true`, the body is frozen. Gravity and forces are not applied anymore.  
+         *  See [member freeze_mode] to set the body's behavior when frozen.  
+         *  For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.  
+         */
+        freeze: boolean
+        
+        /** The body's freeze mode. Can be used to set the body's behavior when [member freeze] is enabled. See [enum FreezeMode] for possible values.  
+         *  For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.  
+         */
+        freeze_mode: number /*i64*/
+        
+        /** If `true`, internal force integration is disabled for this body. Aside from collision response, the body will only move as determined by the [method _integrate_forces] function. */
+        custom_integrator: boolean
+        
+        /** Continuous collision detection mode.  
+         *  Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.  
+         */
+        continuous_cd: number /*i64*/
+        
+        /** The maximum number of contacts that will be recorded. Requires a value greater than 0 and [member contact_monitor] to be set to `true` to start to register contacts. Use [method get_contact_count] to retrieve the count or [method get_colliding_bodies] to retrieve bodies that have been collided with.  
+         *      
+         *  **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).  
+         */
+        max_contacts_reported: number /*i64*/
+        
+        /** If `true`, the RigidBody2D will emit signals when it collides with another body.  
+         *      
+         *  **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [member max_contacts_reported].  
+         */
+        contact_monitor: boolean
+        
+        /** The body's linear velocity in pixels per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state. */
+        linear_velocity: Vector2
+        
+        /** Defines how [member linear_damp] is applied. See [enum DampMode] for possible values. */
+        linear_damp_mode: number /*i64*/
+        
+        /** Damps the body's movement. By default, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 2d** or any value override set by an [Area2D] the body is in. Depending on [member linear_damp_mode], you can set [member linear_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/2d/default_linear_damp] for more details about damping.  
+         */
+        linear_damp: number /*f64*/
+        
+        /** The body's rotational velocity in [i]radians[/i] per second. */
+        angular_velocity: number /*f64*/
+        
+        /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
+        angular_damp_mode: number /*i64*/
+        
+        /** Damps the body's rotation. By default, the body will use the **Default Angular Damp** in **Project > Project Settings > Physics > 2d** or any value override set by an [Area2D] the body is in. Depending on [member angular_damp_mode], you can set [member angular_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/2d/default_angular_damp] for more details about damping.  
+         */
+        angular_damp: number /*f64*/
+        
+        /** The body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        constant_force: Vector2
+        
+        /** The body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        constant_torque: number /*f64*/
+        
+        /** Emitted when one of this RigidBody2D's [Shape2D]s collides with another [PhysicsBody2D] or [TileMap]'s [Shape2D]s. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
+         *  [param body_rid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the [PhysicsServer2D].  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
+         *  [param body_shape_index] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap] used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
+         *  [param local_shape_index] the index of the [Shape2D] of this RigidBody2D used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
+         */
+        readonly body_shape_entered: Signal // body_rid: RID, body: Node, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        
+        /** Emitted when the collision between one of this RigidBody2D's [Shape2D]s and another [PhysicsBody2D] or [TileMap]'s [Shape2D]s ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
+         *  [param body_rid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the [PhysicsServer2D].  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
+         *  [param body_shape_index] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap] used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
+         *  [param local_shape_index] the index of the [Shape2D] of this RigidBody2D used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
+         */
+        readonly body_shape_exited: Signal // body_rid: RID, body: Node, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        
+        /** Emitted when a collision with another [PhysicsBody2D] or [TileMap] occurs. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
+         */
+        readonly body_entered: Signal // body: Node => void
+        
+        /** Emitted when the collision with another [PhysicsBody2D] or [TileMap] ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
+         */
+        readonly body_exited: Signal // body: Node => void
+        
+        /** Emitted when the physics engine changes the body's sleeping state.  
+         *      
+         *  **Note:** Changing the value [member sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is used.  
+         */
+        readonly sleeping_state_changed: Signal //  => void
+    }
+    namespace RigidBody3D {
+        enum FreezeMode {
+            /** Static body freeze mode (default). The body is not affected by gravity and forces. It can be only moved by user code and doesn't collide with other bodies along its path. */
+            FREEZE_MODE_STATIC = 0,
+            
+            /** Kinematic body freeze mode. Similar to [constant FREEZE_MODE_STATIC], but collides with other bodies along its path when moved. Useful for a frozen body that needs to be animated. */
+            FREEZE_MODE_KINEMATIC = 1,
+        }
+        enum CenterOfMassMode {
+            /** In this mode, the body's center of mass is calculated automatically based on its shapes. This assumes that the shapes' origins are also their center of mass. */
+            CENTER_OF_MASS_MODE_AUTO = 0,
+            
+            /** In this mode, the body's center of mass is set through [member center_of_mass]. Defaults to the body's origin position. */
+            CENTER_OF_MASS_MODE_CUSTOM = 1,
+        }
+        enum DampMode {
+            /** In this mode, the body's damping value is added to any value set in areas or the default value. */
+            DAMP_MODE_COMBINE = 0,
+            
+            /** In this mode, the body's damping value replaces any value set in areas or the default value. */
+            DAMP_MODE_REPLACE = 1,
+        }
+    }
+    /** A 3D physics body that is moved by a physics simulation. */
+    class RigidBody3D extends PhysicsBody3D {
+        /** Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [member custom_integrator] property allows you to disable the default behavior and do fully custom force integration for a body. */
+        /* gdvirtual */ _integrate_forces(state: PhysicsDirectBodyState3D): void
+        set_mass(mass: number /*f64*/): void
+        get_mass(): number /*f64*/
+        set_inertia(inertia: Vector3): void
+        get_inertia(): Vector3
+        set_center_of_mass_mode(mode: RigidBody3D.CenterOfMassMode): void
+        get_center_of_mass_mode(): RigidBody3D.CenterOfMassMode
+        set_center_of_mass(center_of_mass: Vector3): void
+        get_center_of_mass(): Vector3
+        set_physics_material_override(physics_material_override: PhysicsMaterial): void
+        get_physics_material_override(): PhysicsMaterial
+        set_linear_velocity(linear_velocity: Vector3): void
+        get_linear_velocity(): Vector3
+        set_angular_velocity(angular_velocity: Vector3): void
+        get_angular_velocity(): Vector3
+        
+        /** Returns the inverse inertia tensor basis. This is used to calculate the angular acceleration resulting from a torque applied to the [RigidBody3D]. */
+        get_inverse_inertia_tensor(): Basis
+        set_gravity_scale(gravity_scale: number /*f64*/): void
+        get_gravity_scale(): number /*f64*/
+        set_linear_damp_mode(linear_damp_mode: RigidBody3D.DampMode): void
+        get_linear_damp_mode(): RigidBody3D.DampMode
+        set_angular_damp_mode(angular_damp_mode: RigidBody3D.DampMode): void
+        get_angular_damp_mode(): RigidBody3D.DampMode
+        set_linear_damp(linear_damp: number /*f64*/): void
+        get_linear_damp(): number /*f64*/
+        set_angular_damp(angular_damp: number /*f64*/): void
+        get_angular_damp(): number /*f64*/
+        set_max_contacts_reported(amount: number /*i64*/): void
+        get_max_contacts_reported(): number /*i64*/
+        
+        /** Returns the number of contacts this body has with other bodies. By default, this returns 0 unless bodies are configured to monitor contacts (see [member contact_monitor]).  
+         *      
+         *  **Note:** To retrieve the colliding bodies, use [method get_colliding_bodies].  
+         */
+        get_contact_count(): number /*i64*/
+        set_use_custom_integrator(enable: boolean): void
+        is_using_custom_integrator(): boolean
+        set_contact_monitor(enabled: boolean): void
+        is_contact_monitor_enabled(): boolean
+        set_use_continuous_collision_detection(enable: boolean): void
+        is_using_continuous_collision_detection(): boolean
+        
+        /** Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior. */
+        set_axis_velocity(axis_velocity: Vector3): void
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
+         */
+        apply_central_impulse(impulse: Vector3): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inertia] is required for this to work. To have [member inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inertia].  
+         */
+        apply_torque_impulse(impulse: Vector3): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
+         */
+        apply_central_force(force: Vector3): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inertia] is required for this to work. To have [member inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inertia].  
+         */
+        apply_torque(torque: Vector3): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
+         */
+        add_constant_central_force(force: Vector3): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`. */
+        add_constant_torque(torque: Vector3): void
+        set_constant_force(force: Vector3): void
+        get_constant_force(): Vector3
+        set_constant_torque(torque: Vector3): void
+        get_constant_torque(): Vector3
+        set_sleeping(sleeping: boolean): void
+        is_sleeping(): boolean
+        set_can_sleep(able_to_sleep: boolean): void
+        is_able_to_sleep(): boolean
+        set_lock_rotation_enabled(lock_rotation: boolean): void
+        is_lock_rotation_enabled(): boolean
+        set_freeze_enabled(freeze_mode: boolean): void
+        is_freeze_enabled(): boolean
+        set_freeze_mode(freeze_mode: RigidBody3D.FreezeMode): void
+        get_freeze_mode(): RigidBody3D.FreezeMode
+        
+        /** Returns a list of the bodies colliding with this one. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions.  
+         *      
+         *  **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.  
+         */
+        get_colliding_bodies(): Array
+        
+        /** The body's mass. */
+        mass: number /*f64*/
+        
+        /** The physics material override for the body.  
+         *  If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.  
+         */
+        physics_material_override: PhysicsMaterial
+        
+        /** This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce RigidBody3D's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object. */
+        gravity_scale: number /*f64*/
+        
+        /** Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values. */
+        center_of_mass_mode: number /*i64*/
+        
+        /** The body's custom center of mass, relative to the body's origin position, when [member center_of_mass_mode] is set to [constant CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.  
+         *  When [member center_of_mass_mode] is set to [constant CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.  
+         */
+        center_of_mass: Vector3
+        
+        /** The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body on each axis. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.  
+         *  If set to [constant Vector3.ZERO], inertia is automatically computed (default value).  
+         *      
+         *  **Note:** This value does not change when inertia is automatically computed. Use [PhysicsServer3D] to get the computed inertia.  
+         *    
+         */
+        inertia: Vector3
+        
+        /** If `true`, the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [method apply_impulse] or [method apply_force] methods. */
+        sleeping: boolean
+        
+        /** If `true`, the body can enter sleep mode when there is no movement. See [member sleeping]. */
+        can_sleep: boolean
+        
+        /** If `true`, the body cannot rotate. Gravity and forces only apply linear movement. */
+        lock_rotation: boolean
+        
+        /** If `true`, the body is frozen. Gravity and forces are not applied anymore.  
+         *  See [member freeze_mode] to set the body's behavior when frozen.  
+         *  For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.  
+         */
+        freeze: boolean
+        
+        /** The body's freeze mode. Can be used to set the body's behavior when [member freeze] is enabled. See [enum FreezeMode] for possible values.  
+         *  For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.  
+         */
+        freeze_mode: number /*i64*/
+        
+        /** If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [method _integrate_forces] function, if defined. */
+        custom_integrator: boolean
+        
+        /** If `true`, continuous collision detection is used.  
+         *  Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided. Continuous collision detection is more precise, and misses fewer impacts by small, fast-moving objects. Not using continuous collision detection is faster to compute, but can miss small, fast-moving objects.  
+         */
+        continuous_cd: boolean
+        
+        /** The maximum number of contacts that will be recorded. Requires a value greater than 0 and [member contact_monitor] to be set to `true` to start to register contacts. Use [method get_contact_count] to retrieve the count or [method get_colliding_bodies] to retrieve bodies that have been collided with.  
+         *      
+         *  **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).  
+         */
+        max_contacts_reported: number /*i64*/
+        
+        /** If `true`, the RigidBody3D will emit signals when it collides with another body.  
+         *      
+         *  **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [member max_contacts_reported].  
+         */
+        contact_monitor: boolean
+        
+        /** The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state. */
+        linear_velocity: Vector3
+        
+        /** Defines how [member linear_damp] is applied. See [enum DampMode] for possible values. */
+        linear_damp_mode: number /*i64*/
+        
+        /** Damps the body's movement. By default, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member linear_damp_mode], you can set [member linear_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/3d/default_linear_damp] for more details about damping.  
+         */
+        linear_damp: number /*f64*/
+        
+        /** The RigidBody3D's rotational velocity in [i]radians[/i] per second. */
+        angular_velocity: Vector3
+        
+        /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
+        angular_damp_mode: number /*i64*/
+        
+        /** Damps the body's rotation. By default, the body will use the **Default Angular Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member angular_damp_mode], you can set [member angular_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/3d/default_angular_damp] for more details about damping.  
+         */
+        angular_damp: number /*f64*/
+        
+        /** The body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        constant_force: Vector3
+        
+        /** The body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        constant_torque: Vector3
+        
+        /** Emitted when one of this RigidBody3D's [Shape3D]s collides with another [PhysicsBody3D] or [GridMap]'s [Shape3D]s. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
+         *  [param body_rid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by the [PhysicsServer3D].  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
+         *  [param body_shape_index] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
+         *  [param local_shape_index] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
+         */
+        readonly body_shape_entered: Signal // body_rid: RID, body: Node, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        
+        /** Emitted when the collision between one of this RigidBody3D's [Shape3D]s and another [PhysicsBody3D] or [GridMap]'s [Shape3D]s ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
+         *  [param body_rid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by the [PhysicsServer3D]. [GridMap]s are detected if the Meshes have [Shape3D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
+         *  [param body_shape_index] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
+         *  [param local_shape_index] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
+         */
+        readonly body_shape_exited: Signal // body_rid: RID, body: Node, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        
+        /** Emitted when a collision with another [PhysicsBody3D] or [GridMap] occurs. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
+         */
+        readonly body_entered: Signal // body: Node => void
+        
+        /** Emitted when the collision with another [PhysicsBody3D] or [GridMap] ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
+         */
+        readonly body_exited: Signal // body: Node => void
+        
+        /** Emitted when the physics engine changes the body's sleeping state.  
+         *      
+         *  **Note:** Changing the value [member sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is used.  
+         */
+        readonly sleeping_state_changed: Signal //  => void
+    }
+    /** Editor-only helper for setting up root motion in [AnimationMixer]. */
+    class RootMotionView extends VisualInstance3D {
+        set_animation_path(path: NodePath): void
+        get_animation_path(): NodePath
+        set_color(color: Color): void
+        get_color(): Color
+        set_cell_size(size: number /*f64*/): void
+        get_cell_size(): number /*f64*/
+        set_radius(size: number /*f64*/): void
+        get_radius(): number /*f64*/
+        set_zero_y(enable: boolean): void
+        get_zero_y(): boolean
+        
+        /** Path to an [AnimationMixer] node to use as a basis for root motion. */
+        animation_path: NodePath
+        
+        /** The grid's color. */
+        color: Color
+        
+        /** The grid's cell size in 3D units. */
+        cell_size: number /*f64*/
+        
+        /** The grid's radius in 3D units. The grid's opacity will fade gradually as the distance from the origin increases until this [member radius] is reached. */
+        radius: number /*f64*/
+        
+        /** If `true`, the grid's points will all be on the same Y coordinate ([i]local[/i] Y = 0). If `false`, the points' original Y coordinate is preserved. */
+        zero_y: boolean
+    }
+    class RsConsole extends RefCounted {
+        process_input(p_text: string): void
+        register_command(p_text: string, p_callable: Callable, p_help: string): number /*i64*/
+        unregister_command(p_id: number /*i64*/): void
+        find_objects(p_keyword: string): PackedStringArray
+        readonly on_output: Signal //  => void
+        readonly on_clear: Signal //  => void
+    }
+    class RsEditorPlugin extends EditorPlugin {
+    }
+    class RsList extends RefCounted {
+        append(p_item: any): number /*i64*/
+        index_of(p_item: any): number /*i64*/
+        last_index_of(p_item: any): number /*i64*/
+        remove_at(p_index: number /*i64*/): boolean
+        get_value(p_index: number /*i64*/): any
+        is_valid_index(p_index: number /*i64*/): boolean
+        clear(): void
+        grow_if_needed(p_extra_count: number /*i64*/): void
+        reserve(p_size: number /*i64*/): void
+    }
+    class RsNativeBridge extends Object {
+        start(): void
+        destroy(): void
+        update(delta: number /*f64*/): void
+        alloc_damage_number(p_parent: Node, p_secs: number /*f64*/): Control
+        get_position(): Vector3
+        is_possessed(): boolean
+        set_terrain(p_terrain: RsTerrain): void
+        set_root(p_root: Node): void
+        set_direction(_unnamed_arg0: Vector3): void
+        get_direction(): Vector3
+        set_is_moving(_unnamed_arg0: boolean): void
+        get_is_moving(): boolean
+        direction: Vector3
+        is_moving: boolean
+        readonly game_over: Signal //  => void
+        readonly damage_emitted: Signal // pos: Vector3, time: number /*f64*/ => void
+        readonly info_updated: Signal // hp: number /*f64*/, hp_max: number /*f64*/, exp: number /*f64*/, exp_max: number /*f64*/, level: number /*i64*/, crowd: number /*i64*/ => void
+    }
+    class RsOutputDevice extends RefCounted {
+        log(...vargargs: any[]): void
+    }
+    class RsTerrain extends GeometryInstance3D {
+        set_radius(value: number /*f64*/): void
+        get_radius(): number /*f64*/
+        set_view_position(value: Vector3): void
+        get_view_position(): Vector3
+        get_center_position(): Vector3
+        set_shader(value: Shader): void
+        get_shader(): Shader
+        set_texture(value: Texture2D): void
+        get_texture(): Texture2D
+        _im_update(): void
+        view_position: Vector3
+        shader: Shader
+        texture: Texture2D
+        readonly frame_changed: Signal //  => void
+    }
+    class RsTerrainGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class SceneCacheInterface extends RefCounted {
+    }
+    class SceneCreateDialog extends ConfirmationDialog {
+    }
+    class SceneExporterGLTFPlugin extends EditorPlugin {
+    }
+    class SceneImportSettings extends ConfirmationDialog {
+    }
+    class SceneImportSettingsData extends Object {
+    }
+    /** High-level multiplayer API implementation. */
+    class SceneMultiplayer extends MultiplayerAPI {
+        set_root_path(path: NodePath): void
+        get_root_path(): NodePath
+        
+        /** Clears the current SceneMultiplayer network state (you shouldn't call this unless you know what you are doing). */
+        clear(): void
+        
+        /** Disconnects the peer identified by [param id], removing it from the list of connected peers, and closing the underlying connection with it. */
+        disconnect_peer(id: number /*i64*/): void
+        
+        /** Returns the IDs of the peers currently trying to authenticate with this [MultiplayerAPI]. */
+        get_authenticating_peers(): PackedInt32Array
+        
+        /** Sends the specified [param data] to the remote peer identified by [param id] as part of an authentication message. This can be used to authenticate peers, and control when [signal MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected peers). */
+        send_auth(id: number /*i64*/, data: PackedByteArray): GodotError
+        
+        /** Mark the authentication step as completed for the remote peer identified by [param id]. The [signal MultiplayerAPI.peer_connected] signal will be emitted for this peer once the remote side also completes the authentication. No further authentication messages are expected to be received from this peer.  
+         *  If a peer disconnects before completing authentication, either due to a network issue, the [member auth_timeout] expiring, or manually calling [method disconnect_peer], the [signal peer_authentication_failed] signal will be emitted instead of [signal MultiplayerAPI.peer_disconnected].  
+         */
+        complete_auth(id: number /*i64*/): GodotError
+        set_auth_callback(callback: Callable): void
+        get_auth_callback(): Callable
+        set_auth_timeout(timeout: number /*f64*/): void
+        get_auth_timeout(): number /*f64*/
+        set_refuse_new_connections(refuse: boolean): void
+        is_refusing_new_connections(): boolean
+        set_allow_object_decoding(enable: boolean): void
+        is_object_decoding_allowed(): boolean
+        set_server_relay_enabled(enabled: boolean): void
+        is_server_relay_enabled(): boolean
+        
+        /** Sends the given raw [param bytes] to a specific peer identified by [param id] (see [method MultiplayerPeer.set_target_peer]). Default ID is `0`, i.e. broadcast to all peers. */
+        send_bytes(bytes: PackedByteArray, id: number /*i64*/ = 0, mode: MultiplayerPeer.TransferMode = 2, channel: number /*i64*/ = 0): GodotError
+        get_max_sync_packet_size(): number /*i64*/
+        set_max_sync_packet_size(size: number /*i64*/): void
+        get_max_delta_packet_size(): number /*i64*/
+        set_max_delta_packet_size(size: number /*i64*/): void
+        
+        /** The root path to use for RPCs and replication. Instead of an absolute path, a relative path will be used to find the node upon which the RPC should be executed.  
+         *  This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.  
+         */
+        root_path: NodePath
+        
+        /** The callback to execute when when receiving authentication data sent via [method send_auth]. If the [Callable] is empty (default), peers will be automatically accepted as soon as they connect. */
+        auth_callback: Callable
+        
+        /** If set to a value greater than `0.0`, the maximum amount of time peers can stay in the authenticating state, after which the authentication will automatically fail. See the [signal peer_authenticating] and [signal peer_authentication_failed] signals. */
+        auth_timeout: number /*f64*/
+        
+        /** If `true`, the MultiplayerAPI will allow encoding and decoding of object during RPCs.  
+         *  **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threat such as remote code execution.  
+         */
+        allow_object_decoding: boolean
+        
+        /** If `true`, the MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] refuses new incoming connections. */
+        refuse_new_connections: boolean
+        
+        /** Enable or disable the server feature that notifies clients of other peers' connection/disconnection, and relays messages between them. When this option is `false`, clients won't be automatically notified of other peers and won't be able to send them packets through the server.  
+         *      
+         *  **Note:** Changing this option while other peers are connected may lead to unexpected behaviors.  
+         *      
+         *  **Note:** Support for this feature may depend on the current [MultiplayerPeer] configuration. See [method MultiplayerPeer.is_server_relay_supported].  
+         */
+        server_relay: boolean
+        
+        /** Maximum size of each synchronization packet. Higher values increase the chance of receiving full updates in a single frame, but also the chance of packet loss. See [MultiplayerSynchronizer]. */
+        max_sync_packet_size: number /*i64*/
+        
+        /** Maximum size of each delta packet. Higher values increase the chance of receiving full updates in a single frame, but also the chance of causing networking congestion (higher latency, disconnections). See [MultiplayerSynchronizer]. */
+        max_delta_packet_size: number /*i64*/
+        
+        /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] connects to a new peer and a valid [member auth_callback] is set. In this case, the [signal MultiplayerAPI.peer_connected] will not be emitted until [method complete_auth] is called with given peer [param id]. While in this state, the peer will not be included in the list returned by [method MultiplayerAPI.get_peers] (but in the one returned by [method get_authenticating_peers]), and only authentication data will be sent or received. See [method send_auth] for sending authentication data. */
+        readonly peer_authenticating: Signal // id: number /*i64*/ => void
+        
+        /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] disconnects from a peer for which authentication had not yet completed. See [signal peer_authenticating]. */
+        readonly peer_authentication_failed: Signal // id: number /*i64*/ => void
+        
+        /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] receives a [param packet] with custom data (see [method send_bytes]). ID is the peer ID of the peer that sent the packet. */
+        readonly peer_packet: Signal // id: number /*i64*/, packet: PackedByteArray => void
+    }
+    class SceneRPCInterface extends RefCounted {
+    }
+    namespace SceneReplicationConfig {
+        enum ReplicationMode {
+            /** Do not keep the given property synchronized. */
+            REPLICATION_MODE_NEVER = 0,
+            
+            /** Replicate the given property on process by constantly sending updates using unreliable transfer mode. */
+            REPLICATION_MODE_ALWAYS = 1,
+            
+            /** Replicate the given property on process by sending updates using reliable transfer mode when its value changes. */
+            REPLICATION_MODE_ON_CHANGE = 2,
+        }
+    }
+    /** Configuration for properties to synchronize with a [MultiplayerSynchronizer]. */
+    class SceneReplicationConfig extends Resource {
+        /** Returns a list of synchronized property [NodePath]s. */
+        get_properties(): Array
+        
+        /** Adds the property identified by the given [param path] to the list of the properties being synchronized, optionally passing an [param index].  
+         *      
+         *  **Note:** For details on restrictions and limitations on property synchronization, see [MultiplayerSynchronizer].  
+         */
+        add_property(path: NodePath, index: number /*i64*/ = -1): void
+        
+        /** Returns whether the given [param path] is configured for synchronization. */
+        has_property(path: NodePath): boolean
+        
+        /** Removes the property identified by the given [param path] from the configuration. */
+        remove_property(path: NodePath): void
+        
+        /** Finds the index of the given [param path]. */
+        property_get_index(path: NodePath): number /*i64*/
+        
+        /** Returns whether the property identified by the given [param path] is configured to be synchronized on spawn. */
+        property_get_spawn(path: NodePath): boolean
+        
+        /** Sets whether the property identified by the given [param path] is configured to be synchronized on spawn. */
+        property_set_spawn(path: NodePath, enabled: boolean): void
+        
+        /** Returns the replication mode for the property identified by the given [param path]. See [enum ReplicationMode]. */
+        property_get_replication_mode(path: NodePath): SceneReplicationConfig.ReplicationMode
+        
+        /** Sets the synchronization mode for the property identified by the given [param path]. See [enum ReplicationMode]. */
+        property_set_replication_mode(path: NodePath, mode: SceneReplicationConfig.ReplicationMode): void
+        
+        /** Returns whether the property identified by the given [param path] is configured to be synchronized on process.  
+         *  [i]Deprecated.[/i] Use [method property_get_replication_mode] instead.  
+         */
+        property_get_sync(path: NodePath): boolean
+        
+        /** Sets whether the property identified by the given [param path] is configured to be synchronized on process.  
+         *  [i]Deprecated.[/i] Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ALWAYS] instead.  
+         */
+        property_set_sync(path: NodePath, enabled: boolean): void
+        
+        /** Returns whether the property identified by the given [param path] is configured to be reliably synchronized when changes are detected on process.  
+         *  [i]Deprecated.[/i] Use [method property_get_replication_mode] instead.  
+         */
+        property_get_watch(path: NodePath): boolean
+        
+        /** Sets whether the property identified by the given [param path] is configured to be reliably synchronized when changes are detected on process.  
+         *  [i]Deprecated.[/i] Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ON_CHANGE] instead.  
+         */
+        property_set_watch(path: NodePath, enabled: boolean): void
+    }
+    class SceneReplicationInterface extends RefCounted {
+    }
+    namespace SceneState {
+        enum GenEditState {
+            /** If passed to [method PackedScene.instantiate], blocks edits to the scene state. */
+            GEN_EDIT_STATE_DISABLED = 0,
+            
+            /** If passed to [method PackedScene.instantiate], provides inherited scene resources to the local scene.  
+             *      
+             *  **Note:** Only available in editor builds.  
+             */
+            GEN_EDIT_STATE_INSTANCE = 1,
+            
+            /** If passed to [method PackedScene.instantiate], provides local scene resources to the local scene. Only the main scene should receive the main edit state.  
+             *      
+             *  **Note:** Only available in editor builds.  
+             */
+            GEN_EDIT_STATE_MAIN = 2,
+            
+            /** If passed to [method PackedScene.instantiate], it's similar to [constant GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.  
+             *      
+             *  **Note:** Only available in editor builds.  
+             */
+            GEN_EDIT_STATE_MAIN_INHERITED = 3,
+        }
+    }
+    /** Provides access to a scene file's information. */
+    class SceneState extends RefCounted {
+        /** Returns the number of nodes in the scene.  
+         *  The `idx` argument used to query node data in other `get_node_*` methods in the interval `[0, get_node_count() - 1]`.  
+         */
+        get_node_count(): number /*i64*/
+        
+        /** Returns the type of the node at [param idx]. */
+        get_node_type(idx: number /*i64*/): StringName
+        
+        /** Returns the name of the node at [param idx]. */
+        get_node_name(idx: number /*i64*/): StringName
+        
+        /** Returns the path to the node at [param idx].  
+         *  If [param for_parent] is `true`, returns the path of the [param idx] node's parent instead.  
+         */
+        get_node_path(idx: number /*i64*/, for_parent: boolean = false): NodePath
+        
+        /** Returns the path to the owner of the node at [param idx], relative to the root node. */
+        get_node_owner_path(idx: number /*i64*/): NodePath
+        
+        /** Returns `true` if the node at [param idx] is an [InstancePlaceholder]. */
+        is_node_instance_placeholder(idx: number /*i64*/): boolean
+        
+        /** Returns the path to the represented scene file if the node at [param idx] is an [InstancePlaceholder]. */
+        get_node_instance_placeholder(idx: number /*i64*/): string
+        
+        /** Returns a [PackedScene] for the node at [param idx] (i.e. the whole branch starting at this node, with its child nodes and resources), or `null` if the node is not an instance. */
+        get_node_instance(idx: number /*i64*/): PackedScene
+        
+        /** Returns the list of group names associated with the node at [param idx]. */
+        get_node_groups(idx: number /*i64*/): PackedStringArray
+        
+        /** Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instantiated or inherited scene among siblings from the base scene. Despite the name, this index is not related to the [param idx] argument used here and in other methods. */
+        get_node_index(idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the number of exported or overridden properties for the node at [param idx].  
+         *  The `prop_idx` argument used to query node property data in other `get_node_property_*` methods in the interval `[0, get_node_property_count() - 1]`.  
+         */
+        get_node_property_count(idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the name of the property at [param prop_idx] for the node at [param idx]. */
+        get_node_property_name(idx: number /*i64*/, prop_idx: number /*i64*/): StringName
+        
+        /** Returns the value of the property at [param prop_idx] for the node at [param idx]. */
+        get_node_property_value(idx: number /*i64*/, prop_idx: number /*i64*/): any
+        
+        /** Returns the number of signal connections in the scene.  
+         *  The `idx` argument used to query connection metadata in other `get_connection_*` methods in the interval `[0, get_connection_count() - 1]`.  
+         */
+        get_connection_count(): number /*i64*/
+        
+        /** Returns the path to the node that owns the signal at [param idx], relative to the root node. */
+        get_connection_source(idx: number /*i64*/): NodePath
+        
+        /** Returns the name of the signal at [param idx]. */
+        get_connection_signal(idx: number /*i64*/): StringName
+        
+        /** Returns the path to the node that owns the method connected to the signal at [param idx], relative to the root node. */
+        get_connection_target(idx: number /*i64*/): NodePath
+        
+        /** Returns the method connected to the signal at [param idx]. */
+        get_connection_method(idx: number /*i64*/): StringName
+        
+        /** Returns the connection flags for the signal at [param idx]. See [enum Object.ConnectFlags] constants. */
+        get_connection_flags(idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the list of bound parameters for the signal at [param idx]. */
+        get_connection_binds(idx: number /*i64*/): Array
+        
+        /** Returns the number of unbound parameters for the signal at [param idx]. */
+        get_connection_unbinds(idx: number /*i64*/): number /*i64*/
+    }
+    class SceneTileProxyObject extends Object {
+        readonly changed: Signal // what: string => void
+    }
+    namespace SceneTree {
+        enum GroupCallFlags {
+            /** Call a group with no flags (default). */
+            GROUP_CALL_DEFAULT = 0,
+            
+            /** Call a group in reverse scene order. */
+            GROUP_CALL_REVERSE = 1,
+            
+            /** Call a group at the end of the current frame (process or physics). */
+            GROUP_CALL_DEFERRED = 2,
+            
+            /** Call a group only once even if the call is executed many times.  
+             *      
+             *  **Note:** Arguments are not taken into account when deciding whether the call is unique or not. Therefore when the same method is called with different arguments, only the first call will be performed.  
+             */
+            GROUP_CALL_UNIQUE = 4,
+        }
+    }
+    /** Manages the game loop via a hierarchy of nodes. */
+    class SceneTree extends MainLoop {
+        get_root(): Window
+        
+        /** Returns `true` if the given group exists.  
+         *  A group exists if any [Node] in the tree belongs to it (see [method Node.add_to_group]). Groups without nodes are removed automatically.  
+         */
+        has_group(name: StringName): boolean
+        is_auto_accept_quit(): boolean
+        set_auto_accept_quit(enabled: boolean): void
+        is_quit_on_go_back(): boolean
+        set_quit_on_go_back(enabled: boolean): void
+        set_debug_collisions_hint(enable: boolean): void
+        is_debugging_collisions_hint(): boolean
+        set_debug_paths_hint(enable: boolean): void
+        is_debugging_paths_hint(): boolean
+        set_debug_navigation_hint(enable: boolean): void
+        is_debugging_navigation_hint(): boolean
+        set_edited_scene_root(scene: Node): void
+        get_edited_scene_root(): Node
+        set_pause(enable: boolean): void
+        is_paused(): boolean
+        
+        /** Returns a [SceneTreeTimer] which will emit [signal SceneTreeTimer.timeout] after the given time in seconds elapsed in this [SceneTree].  
+         *  If [param process_always] is set to `false`, pausing the [SceneTree] will also pause the timer.  
+         *  If [param process_in_physics] is set to `true`, will update the [SceneTreeTimer] during the physics frame instead of the process frame (fixed framerate processing).  
+         *  If [param ignore_time_scale] is set to `true`, will ignore [member Engine.time_scale] and update the [SceneTreeTimer] with the actual frame delta.  
+         *  Commonly used to create a one-shot delay timer as in the following example:  
+         *    
+         *  The timer will be automatically freed after its time elapses.  
+         *      
+         *  **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's [method Node._process] method would be called before the timer (or [method Node._physics_process] if [param process_in_physics] is set to `true`).  
+         */
+        create_timer(time_sec: number /*f64*/, process_always: boolean = true, process_in_physics: boolean = false, ignore_time_scale: boolean = false): SceneTreeTimer
+        
+        /** Creates and returns a new [Tween]. The Tween will start automatically on the next process frame or physics frame (depending on [enum Tween.TweenProcessMode]).  
+         *      
+         *  **Note:** When creating a [Tween] using this method, the [Tween] will not be tied to the [Node] that called it. It will continue to animate even if the [Node] is freed, but it will automatically finish if there's nothing left to animate. If you want the [Tween] to be automatically killed when the [Node] is freed, use [method Node.create_tween] or [method Tween.bind_node].  
+         */
+        create_tween(): Tween
+        
+        /** Returns an array of currently existing [Tween]s in the [SceneTree] (both running and paused). */
+        get_processed_tweens(): Array
+        
+        /** Returns the number of nodes in this [SceneTree]. */
+        get_node_count(): number /*i64*/
+        
+        /** Returns the current frame number, i.e. the total frame count since the application started. */
+        get_frame(): number /*i64*/
+        
+        /** Quits the application at the end of the current iteration. Argument [param exit_code] can optionally be given (defaulting to 0) to customize the exit status code.  
+         *  By convention, an exit code of `0` indicates success whereas a non-zero exit code indicates an error.  
+         *  For portability reasons, the exit code should be set between 0 and 125 (inclusive).  
+         *      
+         *  **Note:** On iOS this method doesn't work. Instead, as recommended by the iOS Human Interface Guidelines, the user is expected to close apps via the Home button.  
+         */
+        quit(exit_code: number /*i64*/ = 0): void
+        
+        /** Queues the given object for deletion, delaying the call to [method Object.free] to the end of the current frame. */
+        queue_delete(obj: Object): void
+        
+        /** Calls [param method] on each member of the given group, respecting the given [enum GroupCallFlags]. You can pass arguments to [param method] by specifying them at the end of the method call. If a node doesn't have the given method or the argument list does not match (either in count or in types), it will be skipped.  
+         *    
+         *      
+         *  **Note:** Group call flags are used to control the method calling behavior. By default, methods will be called immediately in a way similar to [method call_group]. However, if the [constant GROUP_CALL_DEFERRED] flag is present in the [param flags] argument, methods will be called at the end of the frame in a way similar to [method Object.set_deferred].  
+         */
+        call_group_flags(flags: number /*i64*/, group: StringName, method: StringName, ...vargargs: any[]): void
+        
+        /** Sends the given notification to all members of the [param group], respecting the given [enum GroupCallFlags].  
+         *      
+         *  **Note:** Group call flags are used to control the notification sending behavior. By default, notifications will be sent immediately in a way similar to [method notify_group]. However, if the [constant GROUP_CALL_DEFERRED] flag is present in the [param call_flags] argument, notifications will be sent at the end of the current frame in a way similar to using `Object.call_deferred("notification", ...)`.  
+         */
+        notify_group_flags(call_flags: number /*i64*/, group: StringName, notification: number /*i64*/): void
+        
+        /** Sets the given [param property] to [param value] on all members of the given group, respecting the given [enum GroupCallFlags].  
+         *      
+         *  **Note:** Group call flags are used to control the property setting behavior. By default, properties will be set immediately in a way similar to [method set_group]. However, if the [constant GROUP_CALL_DEFERRED] flag is present in the [param call_flags] argument, properties will be set at the end of the frame in a way similar to [method Object.call_deferred].  
+         */
+        set_group_flags(call_flags: number /*i64*/, group: StringName, property: string, value: any): void
+        
+        /** Calls [param method] on each member of the given group. You can pass arguments to [param method] by specifying them at the end of the method call. If a node doesn't have the given method or the argument list does not match (either in count or in types), it will be skipped.  
+         *      
+         *  **Note:** [method call_group] will call methods immediately on all members at once, which can cause stuttering if an expensive method is called on lots of members.  
+         */
+        call_group(group: StringName, method: StringName, ...vargargs: any[]): void
+        
+        /** Sends the given notification to all members of the [param group].  
+         *      
+         *  **Note:** [method notify_group] will immediately notify all members at once, which can cause stuttering if an expensive method is called as a result of sending the notification to lots of members.  
+         */
+        notify_group(group: StringName, notification: number /*i64*/): void
+        
+        /** Sets the given [param property] to [param value] on all members of the given group.  
+         *      
+         *  **Note:** [method set_group] will set the property immediately on all members at once, which can cause stuttering if a property with an expensive setter is set on lots of members.  
+         */
+        set_group(group: StringName, property: string, value: any): void
+        
+        /** Returns a list of all nodes assigned to the given group. */
+        get_nodes_in_group(group: StringName): Array
+        
+        /** Returns the first node in the specified group, or `null` if the group is empty or does not exist. */
+        get_first_node_in_group(group: StringName): Node
+        set_current_scene(child_node: Node): void
+        get_current_scene(): Node
+        
+        /** Changes the running scene to the one at the given [param path], after loading it into a [PackedScene] and creating a new instance.  
+         *  Returns [constant OK] on success, [constant ERR_CANT_OPEN] if the [param path] cannot be loaded into a [PackedScene], or [constant ERR_CANT_CREATE] if that scene cannot be instantiated.  
+         *      
+         *  **Note:** See [method change_scene_to_packed] for details on the order of operations.  
+         */
+        change_scene_to_file(path: string): GodotError
+        
+        /** Changes the running scene to a new instance of the given [PackedScene] (which must be valid).  
+         *  Returns [constant OK] on success, [constant ERR_CANT_CREATE] if the scene cannot be instantiated, or [constant ERR_INVALID_PARAMETER] if the scene is invalid.  
+         *      
+         *  **Note:** Operations happen in the following order when [method change_scene_to_packed] is called:  
+         *  1. The current scene node is immediately removed from the tree. From that point, [method Node.get_tree] called on the current (outgoing) scene will return `null`. [member current_scene] will be `null`, too, because the new scene is not available yet.  
+         *  2. At the end of the frame, the formerly current scene, already removed from the tree, will be deleted (freed from memory) and then the new scene will be instantiated and added to the tree. [method Node.get_tree] and [member current_scene] will be back to working as usual.  
+         *  This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [method Node.queue_free].  
+         */
+        change_scene_to_packed(packed_scene: PackedScene): GodotError
+        
+        /** Reloads the currently active scene.  
+         *  Returns [constant OK] on success, [constant ERR_UNCONFIGURED] if no [member current_scene] was defined yet, [constant ERR_CANT_OPEN] if [member current_scene] cannot be loaded into a [PackedScene], or [constant ERR_CANT_CREATE] if the scene cannot be instantiated.  
+         */
+        reload_current_scene(): GodotError
+        
+        /** If a current scene is loaded, calling this method will unload it. */
+        unload_current_scene(): void
+        
+        /** Sets a custom [MultiplayerAPI] with the given [param root_path] (controlling also the relative subpaths), or override the default one if [param root_path] is empty.  
+         *      
+         *  **Note:** No [MultiplayerAPI] must be configured for the subpath containing [param root_path], nested custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for `"/root/Foo/Bar"` will cause an error.  
+         */
+        set_multiplayer(multiplayer: MultiplayerAPI, root_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): void
+        
+        /** Searches for the [MultiplayerAPI] configured for the given path, if one does not exist it searches the parent paths until one is found. If the path is empty, or none is found, the default one is returned. See [method set_multiplayer]. */
+        get_multiplayer(for_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): MultiplayerAPI
+        set_multiplayer_poll_enabled(enabled: boolean): void
+        is_multiplayer_poll_enabled(): boolean
+        
+        /** If `true`, the application automatically accepts quitting requests.  
+         *  For mobile platforms, see [member quit_on_go_back].  
+         */
+        auto_accept_quit: boolean
+        
+        /** If `true`, the application quits automatically when navigating back (e.g. using the system "Back" button on Android).  
+         *  To handle 'Go Back' button when this option is disabled, use [constant DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].  
+         */
+        quit_on_go_back: boolean
+        
+        /** If `true`, collision shapes will be visible when running the game from the editor for debugging purposes.  
+         *      
+         *  **Note:** This property is not designed to be changed at run-time. Changing the value of [member debug_collisions_hint] while the project is running will not have the desired effect.  
+         */
+        debug_collisions_hint: boolean
+        
+        /** If `true`, curves from [Path2D] and [Path3D] nodes will be visible when running the game from the editor for debugging purposes.  
+         *      
+         *  **Note:** This property is not designed to be changed at run-time. Changing the value of [member debug_paths_hint] while the project is running will not have the desired effect.  
+         */
+        debug_paths_hint: boolean
+        
+        /** If `true`, navigation polygons will be visible when running the game from the editor for debugging purposes.  
+         *      
+         *  **Note:** This property is not designed to be changed at run-time. Changing the value of [member debug_navigation_hint] while the project is running will not have the desired effect.  
+         */
+        debug_navigation_hint: boolean
+        
+        /** If `true`, the [SceneTree] is paused. Doing so will have the following behavior:  
+         *  - 2D and 3D physics will be stopped. This includes signals and collision detection.  
+         *  - [method Node._process], [method Node._physics_process] and [method Node._input] will not be called anymore in nodes.  
+         */
+        paused: boolean
+        
+        /** The root of the edited scene. */
+        edited_scene_root: Node
+        
+        /** Returns the root node of the currently running scene, regardless of its structure.  
+         *  **Warning:** Setting this directly might not work as expected, and will [i]not[/i] add or remove any nodes from the tree, consider using [method change_scene_to_file] or [method change_scene_to_packed] instead.  
+         */
+        current_scene: Node
+        
+        /** The [SceneTree]'s root [Window]. */
+        readonly root: Node
+        
+        /** If `true` (default value), enables automatic polling of the [MultiplayerAPI] for this SceneTree during [signal process_frame].  
+         *  If `false`, you need to manually call [method MultiplayerAPI.poll] to process network packets and deliver RPCs. This allows running RPCs in a different loop (e.g. physics, thread, specific time step) and for manual [Mutex] protection when accessing the [MultiplayerAPI] from threads.  
+         */
+        multiplayer_poll: boolean
+        
+        /** Emitted whenever the [SceneTree] hierarchy changed (children being moved or renamed, etc.). */
+        readonly tree_changed: Signal //  => void
+        
+        /** This signal is only emitted in the editor, it allows the editor to update the visibility of disabled nodes. Emitted whenever any node's [member Node.process_mode] is changed. */
+        readonly tree_process_mode_changed: Signal //  => void
+        
+        /** Emitted whenever a node is added to the [SceneTree]. */
+        readonly node_added: Signal // node: Node => void
+        
+        /** Emitted whenever a node is removed from the [SceneTree]. */
+        readonly node_removed: Signal // node: Node => void
+        
+        /** Emitted whenever a node is renamed. */
+        readonly node_renamed: Signal // node: Node => void
+        
+        /** Emitted when a node's configuration changed. Only emitted in `tool` mode. */
+        readonly node_configuration_warning_changed: Signal // node: Node => void
+        
+        /** Emitted immediately before [method Node._process] is called on every node in the [SceneTree]. */
+        readonly process_frame: Signal //  => void
+        
+        /** Emitted immediately before [method Node._physics_process] is called on every node in the [SceneTree]. */
+        readonly physics_frame: Signal //  => void
+    }
+    class SceneTreeDialog extends ConfirmationDialog {
+        _cancel(): void
+        readonly selected: Signal // path: NodePath => void
+    }
+    class SceneTreeDock extends VBoxContainer {
+        _set_owners(_unnamed_arg0: Node, _unnamed_arg1: Array): void
+        _update_script_button(): void
+        instantiate(_unnamed_arg0: string): void
+        get_tree_editor(): SceneTreeEditor
+        replace_node(_unnamed_arg0: Node, _unnamed_arg1: Node, _unnamed_arg2: boolean, _unnamed_arg3: boolean): void
+        readonly remote_tree_selected: Signal //  => void
+        readonly add_node_used: Signal //  => void
+        readonly node_created: Signal // node: Node => void
+    }
+    class SceneTreeEditor extends Control {
+        _update_tree(_unnamed_arg0: boolean = false): void
+        _rename_node(_unnamed_arg0: Node, _unnamed_arg1: string): void
+        _test_update_tree(): void
+        update_tree(): void
+        readonly node_selected: Signal //  => void
+        readonly node_renamed: Signal //  => void
+        readonly node_prerename: Signal //  => void
+        readonly node_changed: Signal //  => void
+        readonly nodes_dragged: Signal //  => void
+        readonly nodes_rearranged: Signal // paths: Array, to_path: NodePath, type: number /*i64*/ => void
+        readonly files_dropped: Signal // files: PackedStringArray, to_path: NodePath, type: number /*i64*/ => void
+        readonly script_dropped: Signal // file: string, to_path: NodePath => void
+        readonly rmb_pressed: Signal // position: Vector2 => void
+        readonly open: Signal //  => void
+        readonly open_script: Signal //  => void
+    }
+    /** One-shot timer. */
+    class SceneTreeTimer extends RefCounted {
+        set_time_left(time: number /*f64*/): void
+        get_time_left(): number /*f64*/
+        
+        /** The time remaining (in seconds). */
+        time_left: number /*f64*/
+        
+        /** Emitted when the timer reaches 0. */
+        readonly timeout: Signal //  => void
+    }
+    class ScreenSelect extends Button {
+        readonly request_open_in_screen: Signal // screen: number /*i64*/ => void
+    }
+    /** A class stored as a resource. */
+    class Script extends Resource {
+        /** Returns `true` if the script can be instantiated. */
+        can_instantiate(): boolean
+        
+        /** Returns `true` if [param base_object] is an instance of this script. */
+        instance_has(base_object: Object): boolean
+        
+        /** Returns `true` if the script contains non-empty source code. */
+        has_source_code(): boolean
+        get_source_code(): string
+        set_source_code(source: string): void
+        
+        /** Reloads the script's class implementation. Returns an error code. */
+        reload(keep_state: boolean = false): GodotError
+        
+        /** Returns the script directly inherited by this script. */
+        get_base_script(): Script
+        
+        /** Returns the script's base type. */
+        get_instance_base_type(): StringName
+        
+        /** Returns `true` if the script, or a base class, defines a signal with the given name. */
+        has_script_signal(signal_name: StringName): boolean
+        
+        /** Returns the list of properties in this [Script]. */
+        get_script_property_list(): Array
+        
+        /** Returns the list of methods in this [Script]. */
+        get_script_method_list(): Array
+        
+        /** Returns the list of user signals defined in this [Script]. */
+        get_script_signal_list(): Array
+        
+        /** Returns a dictionary containing constant names and their values. */
+        get_script_constant_map(): Dictionary
+        
+        /** Returns the default value of the specified property. */
+        get_property_default_value(property: StringName): any
+        
+        /** Returns `true` if the script is a tool script. A tool script can run in the editor. */
+        is_tool(): boolean
+        
+        /** Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated. */
+        is_abstract(): boolean
+        
+        /** The script source code or an empty string if source code is not available. When set, does not reload the class implementation automatically. */
+        source_code: string
+    }
+    /** Godot editor's popup dialog for creating new [Script] files. */
+    class ScriptCreateDialog extends ConfirmationDialog {
+        /** Prefills required fields to configure the ScriptCreateDialog for use. */
+        config(inherits: string, path: string, built_in_enabled: boolean = true, load_enabled: boolean = true): void
+        
+        /** Emitted when the user clicks the OK button. */
+        readonly script_created: Signal // script: Script => void
+    }
+    /** Godot editor's script editor. */
+    class ScriptEditor extends PanelContainer {
+        _close_docs_tab(): void
+        _close_all_tabs(): void
+        _close_other_tabs(): void
+        _goto_script_line2(_unnamed_arg0: number /*i64*/): void
+        _copy_script_path(): void
+        _help_class_open(_unnamed_arg0: string): void
+        _help_tab_goto(_unnamed_arg0: string, _unnamed_arg1: string): boolean
+        _live_auto_reload_running_scripts(): void
+        _update_members_overview(): void
+        _update_recent_scripts(): void
+        
+        /** Returns the [ScriptEditorBase] object that the user is currently editing. */
+        get_current_editor(): ScriptEditorBase
+        
+        /** Returns an array with all [ScriptEditorBase] objects which are currently open in editor. */
+        get_open_script_editors(): Array
+        
+        /** Registers the [EditorSyntaxHighlighter] to the editor, the [EditorSyntaxHighlighter] will be available on all open scripts.  
+         *      
+         *  **Note:** Does not apply to scripts that are already opened.  
+         */
+        register_syntax_highlighter(syntax_highlighter: EditorSyntaxHighlighter): void
+        
+        /** Unregisters the [EditorSyntaxHighlighter] from the editor.  
+         *      
+         *  **Note:** The [EditorSyntaxHighlighter] will still be applied to scripts that are already opened.  
+         */
+        unregister_syntax_highlighter(syntax_highlighter: EditorSyntaxHighlighter): void
+        
+        /** Goes to the specified line in the current script. */
+        goto_line(line_number: number /*i64*/): void
+        
+        /** Returns a [Script] that is currently active in editor. */
+        get_current_script(): Script
+        
+        /** Returns an array with all [Script] objects which are currently open in editor. */
+        get_open_scripts(): Array
+        
+        /** Opens the script create dialog. The script will extend [param base_name]. The file extension can be omitted from [param base_path]. It will be added based on the selected scripting language. */
+        open_script_create_dialog(base_name: string, base_path: string): void
+        
+        /** Emitted when user changed active script. Argument is a freshly activated [Script]. */
+        readonly editor_script_changed: Signal // script: Script => void
+        
+        /** Emitted when editor is about to close the active script. Argument is a [Script] that is going to be closed. */
+        readonly script_close: Signal // script: Script => void
+    }
+    /** Base editor for editing scripts in the [ScriptEditor]. */
+    class ScriptEditorBase extends VBoxContainer {
+        /** Returns the underlying [Control] used for editing scripts. For text scripts, this is a [CodeEdit]. */
+        get_base_editor(): Control
+        
+        /** Adds a [EditorSyntaxHighlighter] to the open script. */
+        add_syntax_highlighter(highlighter: EditorSyntaxHighlighter): void
+        
+        /** Emitted after script validation or when the edited resource has changed. */
+        readonly name_changed: Signal //  => void
+        
+        /** Emitted after script validation. */
+        readonly edited_script_changed: Signal //  => void
+        
+        /** Emitted when the user requests contextual help. */
+        readonly request_help: Signal // topic: string => void
+        
+        /** Emitted when the user requests to view a specific line of a script, similar to [signal go_to_method]. */
+        readonly request_open_script_at_line: Signal // script: Object, line: number /*i64*/ => void
+        
+        /** Emitted when the user contextual goto and the item is in the same script. */
+        readonly request_save_history: Signal //  => void
+        
+        /** Emitted when the user requests a specific documentation page. */
+        readonly go_to_help: Signal // what: string => void
+        
+        /** Emitted when the user request to search text in the file system. */
+        readonly search_in_files_requested: Signal // text: string => void
+        
+        /** Emitted when the user request to find and replace text in the file system. */
+        readonly replace_in_files_requested: Signal // text: string => void
+        
+        /** Emitted when the user requests to view a specific method of a script, similar to [signal request_open_script_at_line]. */
+        readonly go_to_method: Signal // script: Object, method: string => void
+    }
+    class ScriptEditorDebugger extends MarginContainer {
+        live_debug_create_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
+        live_debug_instantiate_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
+        live_debug_remove_node(_unnamed_arg0: NodePath): void
+        live_debug_remove_and_keep_node(_unnamed_arg0: NodePath, _unnamed_arg1: number /*i64*/): void
+        live_debug_restore_node(_unnamed_arg0: number /*i64*/, _unnamed_arg1: NodePath, _unnamed_arg2: number /*i64*/): void
+        live_debug_duplicate_node(_unnamed_arg0: NodePath, _unnamed_arg1: string): void
+        live_debug_reparent_node(_unnamed_arg0: NodePath, _unnamed_arg1: NodePath, _unnamed_arg2: string, _unnamed_arg3: number /*i64*/): void
+        request_remote_object(id: number /*i64*/): void
+        update_remote_object(id: number /*i64*/, property: string, value: any): void
+        readonly started: Signal //  => void
+        readonly stopped: Signal //  => void
+        readonly stop_requested: Signal //  => void
+        readonly stack_frame_selected: Signal // frame: number /*i64*/ => void
+        readonly error_selected: Signal // error: number /*i64*/ => void
+        readonly breakpoint_selected: Signal // : any /*script*/, line: number /*i64*/ => void
+        readonly set_execution: Signal // : any /*script*/, line: number /*i64*/ => void
+        readonly clear_execution: Signal // : any /*script*/ => void
+        readonly breaked: Signal // reallydid: boolean, can_debug: boolean, reason: string, has_stackdump: boolean => void
+        readonly remote_object_requested: Signal // id: number /*i64*/ => void
+        readonly remote_object_updated: Signal // id: number /*i64*/ => void
+        readonly remote_object_property_updated: Signal // id: number /*i64*/, property: string => void
+        readonly remote_tree_updated: Signal //  => void
+        readonly output: Signal //  => void
+        readonly stack_dump: Signal // stack_dump: Array => void
+        readonly stack_frame_vars: Signal // num_vars: number /*i64*/ => void
+        readonly stack_frame_var: Signal // data: Array => void
+        readonly debug_data: Signal // msg: string, data: Array => void
+        readonly set_breakpoint: Signal // : any /*script*/, line: number /*i64*/, enabled: boolean => void
+        readonly clear_breakpoints: Signal //  => void
+        readonly errors_cleared: Signal //  => void
+    }
+    class ScriptEditorPlugin extends EditorPlugin {
+    }
+    class ScriptEditorQuickOpen extends ConfirmationDialog {
+        readonly goto_line: Signal // line: number /*i64*/ => void
+    }
+    class ScriptExtension extends Script {
+        /* gdvirtual */ _editor_can_reload_from_file(): boolean
+        /* gdvirtual */ _placeholder_erased(placeholder: number /*i64*/): void
+        /* gdvirtual */ _can_instantiate(): boolean
+        /* gdvirtual */ _get_base_script(): Script
+        /* gdvirtual */ _get_global_name(): StringName
+        /* gdvirtual */ _inherits_script(script: Script): boolean
+        /* gdvirtual */ _get_instance_base_type(): StringName
+        /* gdvirtual */ _instance_create(for_object: Object): number /*i64*/
+        /* gdvirtual */ _placeholder_instance_create(for_object: Object): number /*i64*/
+        /* gdvirtual */ _instance_has(object: Object): boolean
+        /* gdvirtual */ _has_source_code(): boolean
+        /* gdvirtual */ _get_source_code(): string
+        /* gdvirtual */ _set_source_code(code: string): void
+        /* gdvirtual */ _reload(keep_state: boolean): GodotError
+        /* gdvirtual */ _get_documentation(): Array
+        /* gdvirtual */ _get_class_icon_path(): string
+        /* gdvirtual */ _has_method(method: StringName): boolean
+        /* gdvirtual */ _has_static_method(method: StringName): boolean
+        /* gdvirtual */ _get_method_info(method: StringName): Dictionary
+        /* gdvirtual */ _is_tool(): boolean
+        /* gdvirtual */ _is_valid(): boolean
+        
+        /** Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated. */
+        /* gdvirtual */ _is_abstract(): boolean
+        /* gdvirtual */ _get_language(): ScriptLanguage
+        /* gdvirtual */ _has_script_signal(signal: StringName): boolean
+        /* gdvirtual */ _get_script_signal_list(): Array
+        /* gdvirtual */ _has_property_default_value(property: StringName): boolean
+        /* gdvirtual */ _get_property_default_value(property: StringName): void
+        /* gdvirtual */ _update_exports(): void
+        /* gdvirtual */ _get_script_method_list(): Array
+        /* gdvirtual */ _get_script_property_list(): Array
+        /* gdvirtual */ _get_member_line(member: StringName): number /*i64*/
+        /* gdvirtual */ _get_constants(): Dictionary
+        /* gdvirtual */ _get_members(): Array
+        /* gdvirtual */ _is_placeholder_fallback_enabled(): boolean
+        /* gdvirtual */ _get_rpc_config(): void
+    }
+    class ScriptLanguage extends Object {
+    }
+    namespace ScriptLanguageExtension {
+        enum LookupResultType {
+            LOOKUP_RESULT_SCRIPT_LOCATION = 0,
+            LOOKUP_RESULT_CLASS = 1,
+            LOOKUP_RESULT_CLASS_CONSTANT = 2,
+            LOOKUP_RESULT_CLASS_PROPERTY = 3,
+            LOOKUP_RESULT_CLASS_METHOD = 4,
+            LOOKUP_RESULT_CLASS_SIGNAL = 5,
+            LOOKUP_RESULT_CLASS_ENUM = 6,
+            LOOKUP_RESULT_CLASS_TBD_GLOBALSCOPE = 7,
+            LOOKUP_RESULT_CLASS_ANNOTATION = 8,
+            LOOKUP_RESULT_MAX = 9,
+        }
+        enum CodeCompletionLocation {
+            /** The option is local to the location of the code completion query - e.g. a local variable. Subsequent value of location represent options from the outer class, the exact value represent how far they are (in terms of inner classes). */
+            LOCATION_LOCAL = 0,
+            
+            /** The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1 for the parent, 2 for the grandparent, etc) to store the depth of an option in the class or a parent class. */
+            LOCATION_PARENT_MASK = 256,
+            
+            /** The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons). */
+            LOCATION_OTHER_USER_CODE = 512,
+            
+            /** The option is from other engine code, not covered by the other enum constants - e.g. built-in classes. */
+            LOCATION_OTHER = 1024,
+        }
+        enum CodeCompletionKind {
+            CODE_COMPLETION_KIND_CLASS = 0,
+            CODE_COMPLETION_KIND_FUNCTION = 1,
+            CODE_COMPLETION_KIND_SIGNAL = 2,
+            CODE_COMPLETION_KIND_VARIABLE = 3,
+            CODE_COMPLETION_KIND_MEMBER = 4,
+            CODE_COMPLETION_KIND_ENUM = 5,
+            CODE_COMPLETION_KIND_CONSTANT = 6,
+            CODE_COMPLETION_KIND_NODE_PATH = 7,
+            CODE_COMPLETION_KIND_FILE_PATH = 8,
+            CODE_COMPLETION_KIND_PLAIN_TEXT = 9,
+            CODE_COMPLETION_KIND_MAX = 10,
+        }
+    }
+    class ScriptLanguageExtension extends ScriptLanguage {
+        /* gdvirtual */ _get_name(): string
+        /* gdvirtual */ _init(): void
+        /* gdvirtual */ _get_type(): string
+        /* gdvirtual */ _get_extension(): string
+        /* gdvirtual */ _finish(): void
+        /* gdvirtual */ _get_reserved_words(): PackedStringArray
+        /* gdvirtual */ _is_control_flow_keyword(keyword: string): boolean
+        /* gdvirtual */ _get_comment_delimiters(): PackedStringArray
+        /* gdvirtual */ _get_doc_comment_delimiters(): PackedStringArray
+        /* gdvirtual */ _get_string_delimiters(): PackedStringArray
+        /* gdvirtual */ _make_template(template: string, class_name: string, base_class_name: string): Script
+        /* gdvirtual */ _get_built_in_templates(object: StringName): Array
+        /* gdvirtual */ _is_using_templates(): boolean
+        /* gdvirtual */ _validate(script: string, path: string, validate_functions: boolean, validate_errors: boolean, validate_warnings: boolean, validate_safe_lines: boolean): Dictionary
+        /* gdvirtual */ _validate_path(path: string): string
+        /* gdvirtual */ _create_script(): Object
+        
+        /** [i]Deprecated.[/i] This method is not called by the engine. */
+        /* gdvirtual */ _has_named_classes(): boolean
+        /* gdvirtual */ _supports_builtin_mode(): boolean
+        /* gdvirtual */ _supports_documentation(): boolean
+        /* gdvirtual */ _can_inherit_from_file(): boolean
+        /* gdvirtual */ _find_function(class_name: string, function_name: string): number /*i64*/
+        /* gdvirtual */ _make_function(class_name: string, function_name: string, function_args: PackedStringArray): string
+        /* gdvirtual */ _open_in_external_editor(script: Script, line: number /*i64*/, column: number /*i64*/): GodotError
+        /* gdvirtual */ _overrides_external_editor(): boolean
+        /* gdvirtual */ _complete_code(code: string, path: string, owner: Object): Dictionary
+        /* gdvirtual */ _lookup_code(code: string, symbol: string, path: string, owner: Object): Dictionary
+        /* gdvirtual */ _auto_indent_code(code: string, from_line: number /*i64*/, to_line: number /*i64*/): string
+        /* gdvirtual */ _add_global_constant(name: StringName, value: any): void
+        /* gdvirtual */ _add_named_global_constant(name: StringName, value: any): void
+        /* gdvirtual */ _remove_named_global_constant(name: StringName): void
+        /* gdvirtual */ _thread_enter(): void
+        /* gdvirtual */ _thread_exit(): void
+        /* gdvirtual */ _debug_get_error(): string
+        /* gdvirtual */ _debug_get_stack_level_count(): number /*i64*/
+        /* gdvirtual */ _debug_get_stack_level_line(level: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _debug_get_stack_level_function(level: number /*i64*/): string
+        /* gdvirtual */ _debug_get_stack_level_locals(level: number /*i64*/, max_subitems: number /*i64*/, max_depth: number /*i64*/): Dictionary
+        /* gdvirtual */ _debug_get_stack_level_members(level: number /*i64*/, max_subitems: number /*i64*/, max_depth: number /*i64*/): Dictionary
+        /* gdvirtual */ _debug_get_stack_level_instance(level: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _debug_get_globals(max_subitems: number /*i64*/, max_depth: number /*i64*/): Dictionary
+        /* gdvirtual */ _debug_parse_stack_level_expression(level: number /*i64*/, expression: string, max_subitems: number /*i64*/, max_depth: number /*i64*/): string
+        /* gdvirtual */ _debug_get_current_stack_info(): Array
+        /* gdvirtual */ _reload_all_scripts(): void
+        /* gdvirtual */ _reload_tool_script(script: Script, soft_reload: boolean): void
+        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
+        /* gdvirtual */ _get_public_functions(): Array
+        /* gdvirtual */ _get_public_constants(): Dictionary
+        /* gdvirtual */ _get_public_annotations(): Array
+        /* gdvirtual */ _profiling_start(): void
+        /* gdvirtual */ _profiling_stop(): void
+        /* gdvirtual */ _profiling_get_accumulated_data(info_array: number /*i64*/, info_max: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _profiling_get_frame_data(info_array: number /*i64*/, info_max: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _frame(): void
+        /* gdvirtual */ _handles_global_class_type(type: string): boolean
+        /* gdvirtual */ _get_global_class_name(path: string): Dictionary
+    }
+    class ScriptTextEditor extends ScriptEditorBase {
+    }
+    /** Abstract base class for scrollbars. */
+    class ScrollBar extends Range {
+        set_custom_step(step: number /*f64*/): void
+        get_custom_step(): number /*f64*/
+        
+        /** Overrides the step used when clicking increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
+        custom_step: number /*f64*/
+        
+        /** Emitted when the scrollbar is being scrolled. */
+        readonly scrolling: Signal //  => void
+    }
+    namespace ScrollContainer {
+        enum ScrollMode {
+            /** Scrolling disabled, scrollbar will be invisible. */
+            SCROLL_MODE_DISABLED = 0,
+            
+            /** Scrolling enabled, scrollbar will be visible only if necessary, i.e. container's content is bigger than the container. */
+            SCROLL_MODE_AUTO = 1,
+            
+            /** Scrolling enabled, scrollbar will be always visible. */
+            SCROLL_MODE_SHOW_ALWAYS = 2,
+            
+            /** Scrolling enabled, scrollbar will be hidden. */
+            SCROLL_MODE_SHOW_NEVER = 3,
+        }
+    }
+    /** A container used to provide scrollbars to a child control when needed. */
+    class ScrollContainer extends Container {
+        _update_scrollbar_position(): void
+        set_h_scroll(value: number /*i64*/): void
+        get_h_scroll(): number /*i64*/
+        set_v_scroll(value: number /*i64*/): void
+        get_v_scroll(): number /*i64*/
+        set_horizontal_custom_step(value: number /*f64*/): void
+        get_horizontal_custom_step(): number /*f64*/
+        set_vertical_custom_step(value: number /*f64*/): void
+        get_vertical_custom_step(): number /*f64*/
+        set_horizontal_scroll_mode(enable: ScrollContainer.ScrollMode): void
+        get_horizontal_scroll_mode(): ScrollContainer.ScrollMode
+        set_vertical_scroll_mode(enable: ScrollContainer.ScrollMode): void
+        get_vertical_scroll_mode(): ScrollContainer.ScrollMode
+        set_deadzone(deadzone: number /*i64*/): void
+        get_deadzone(): number /*i64*/
+        set_follow_focus(enabled: boolean): void
+        is_following_focus(): boolean
+        
+        /** Returns the horizontal scrollbar [HScrollBar] of this [ScrollContainer].  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable or hide a scrollbar, you can use [member horizontal_scroll_mode].  
+         */
+        get_h_scroll_bar(): HScrollBar
+        
+        /** Returns the vertical scrollbar [VScrollBar] of this [ScrollContainer].  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable or hide a scrollbar, you can use [member vertical_scroll_mode].  
+         */
+        get_v_scroll_bar(): VScrollBar
+        
+        /** Ensures the given [param control] is visible (must be a direct or indirect child of the ScrollContainer). Used by [member follow_focus].  
+         *      
+         *  **Note:** This will not work on a node that was just added during the same frame. If you want to scroll to a newly added child, you must wait until the next frame using [signal SceneTree.process_frame]:  
+         *    
+         */
+        ensure_control_visible(control: Control): void
+        
+        /** If `true`, the ScrollContainer will automatically scroll to focused children (including indirect children) to make sure they are fully visible. */
+        follow_focus: boolean
+        
+        /** The current horizontal scroll value.  
+         *      
+         *  **Note:** If you are setting this value in the [method Node._ready] function or earlier, it needs to be wrapped with [method Object.set_deferred], since scroll bar's [member Range.max_value] is not initialized yet.  
+         *    
+         */
+        scroll_horizontal: number /*i64*/
+        
+        /** The current vertical scroll value.  
+         *      
+         *  **Note:** Setting it early needs to be deferred, just like in [member scroll_horizontal].  
+         *    
+         */
+        scroll_vertical: number /*i64*/
+        
+        /** Overrides the [member ScrollBar.custom_step] used when clicking the internal scroll bar's horizontal increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
+        scroll_horizontal_custom_step: number /*f64*/
+        
+        /** Overrides the [member ScrollBar.custom_step] used when clicking the internal scroll bar's vertical increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
+        scroll_vertical_custom_step: number /*f64*/
+        
+        /** Controls whether horizontal scrollbar can be used and when it should be visible. See [enum ScrollMode] for options. */
+        horizontal_scroll_mode: number /*i64*/
+        
+        /** Controls whether vertical scrollbar can be used and when it should be visible. See [enum ScrollMode] for options. */
+        vertical_scroll_mode: number /*i64*/
+        
+        /** Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive. */
+        scroll_deadzone: number /*i64*/
+        
+        /** Emitted when scrolling starts when dragging the scrollable area w[i]ith a touch event[/i]. This signal is [i]not[/i] emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+         *      
+         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
+         */
+        readonly scroll_started: Signal //  => void
+        
+        /** Emitted when scrolling stops when dragging the scrollable area [i]with a touch event[/i]. This signal is [i]not[/i] emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+         *      
+         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
+         */
+        readonly scroll_ended: Signal //  => void
+    }
+    class SectionedInspector extends HSplitContainer {
+        update_category_list(): void
+    }
+    class SectionedInspectorFilter extends Object {
+    }
+    /** A 2D line segment shape used for physics collision. */
+    class SegmentShape2D extends Shape2D {
+        set_a(a: Vector2): void
+        get_a(): Vector2
+        set_b(b: Vector2): void
+        get_b(): Vector2
+        
+        /** The segment's first point position. */
+        a: Vector2
+        
+        /** The segment's second point position. */
+        b: Vector2
+    }
+    /** A synchronization mechanism used to control access to a shared resource by [Thread]s. */
+    class Semaphore extends RefCounted {
+        /** Waits for the [Semaphore], if its value is zero, blocks until non-zero. */
+        wait(): void
+        
+        /** Like [method wait], but won't block, so if the value is zero, fails immediately and returns `false`. If non-zero, it returns `true` to report success. */
+        try_wait(): boolean
+        
+        /** Lowers the [Semaphore], allowing one more thread in. */
+        post(): void
+    }
+    /** A 2D ray shape used for physics collision that tries to separate itself from any collider. */
+    class SeparationRayShape2D extends Shape2D {
+        set_length(length: number /*f64*/): void
+        get_length(): number /*f64*/
+        set_slide_on_slope(active: boolean): void
+        get_slide_on_slope(): boolean
+        
+        /** The ray's length. */
+        length: number /*f64*/
+        
+        /** If `false` (default), the shape always separates and returns a normal along its own direction.  
+         *  If `true`, the shape can return the correct normal and separate in any direction, allowing sliding motion on slopes.  
+         */
+        slide_on_slope: boolean
+    }
+    /** A 3D ray shape used for physics collision that tries to separate itself from any collider. */
+    class SeparationRayShape3D extends Shape3D {
+        set_length(length: number /*f64*/): void
+        get_length(): number /*f64*/
+        set_slide_on_slope(active: boolean): void
+        get_slide_on_slope(): boolean
+        
+        /** The ray's length. */
+        length: number /*f64*/
+        
+        /** If `false` (default), the shape always separates and returns a normal along its own direction.  
+         *  If `true`, the shape can return the correct normal and separate in any direction, allowing sliding motion on slopes.  
+         */
+        slide_on_slope: boolean
+    }
+    /** Abstract base class for separators. */
+    class Separator extends Control {
+    }
+    namespace Shader {
+        enum Mode {
+            /** Mode used to draw all 3D objects. */
+            MODE_SPATIAL = 0,
+            
+            /** Mode used to draw all 2D objects. */
+            MODE_CANVAS_ITEM = 1,
+            
+            /** Mode used to calculate particle information on a per-particle basis. Not used for drawing. */
+            MODE_PARTICLES = 2,
+            
+            /** Mode used for drawing skies. Only works with shaders attached to [Sky] objects. */
+            MODE_SKY = 3,
+            
+            /** Mode used for setting the color and density of volumetric fog effect. */
+            MODE_FOG = 4,
+        }
+    }
+    /** A shader implemented in the Godot shading language. */
+    class Shader extends Resource {
+        /** Returns the shader mode for the shader. */
+        get_mode(): Shader.Mode
+        set_code(code: string): void
+        get_code(): string
+        
+        /** Sets the default texture to be used with a texture uniform. The default is used if a texture is not set in the [ShaderMaterial].  
+         *      
+         *  **Note:** [param name] must match the name of the uniform in the code exactly.  
+         *      
+         *  **Note:** If the sampler array is used use [param index] to access the specified texture.  
+         */
+        set_default_texture_parameter(name: StringName, texture: Texture2D, index: number /*i64*/ = 0): void
+        
+        /** Returns the texture that is set as default for the specified parameter.  
+         *      
+         *  **Note:** [param name] must match the name of the uniform in the code exactly.  
+         *      
+         *  **Note:** If the sampler array is used use [param index] to access the specified texture.  
+         */
+        get_default_texture_parameter(name: StringName, index: number /*i64*/ = 0): Texture2D
+        
+        /** Get the list of shader uniforms that can be assigned to a [ShaderMaterial], for use with [method ShaderMaterial.set_shader_parameter] and [method ShaderMaterial.get_shader_parameter]. The parameters returned are contained in dictionaries in a similar format to the ones returned by [method Object.get_property_list].  
+         *  If argument [param get_groups] is true, parameter grouping hints will be provided.  
+         */
+        get_shader_uniform_list(get_groups: boolean = false): Array
+        
+        /** Returns the shader's code as the user has written it, not the full generated code used internally. */
+        code: string
+    }
+    class ShaderCreateDialog extends ConfirmationDialog {
+        config(path: string, built_in_enabled: boolean, load_enabled: boolean, _unnamed_arg3: number /*i64*/ = 1, _unnamed_arg4: number /*i64*/ = 1): void
+        readonly shader_created: Signal // shader: Shader => void
+        readonly shader_include_created: Signal // shader_include: ShaderInclude => void
+    }
+    class ShaderEditorPlugin extends EditorPlugin {
+    }
+    class ShaderFileEditor extends PanelContainer {
+    }
+    class ShaderFileEditorPlugin extends EditorPlugin {
+    }
+    class ShaderGlobalsEditor extends VBoxContainer {
+        _changed(): void
+        readonly globals_changed: Signal //  => void
+    }
+    class ShaderGlobalsEditorInterface extends Object {
+        _set_var(_unnamed_arg0: StringName, _unnamed_arg1: any, _unnamed_arg2: any): void
+        _var_changed(): void
+        readonly var_changed: Signal //  => void
+    }
+    /** A node used to override global shader parameters' values in a scene. */
+    class ShaderGlobalsOverride extends Node {
+        _activate(): void
+    }
+    /** A snippet of shader code to be included in a [Shader] with `#include`. */
+    class ShaderInclude extends Resource {
+        set_code(code: string): void
+        get_code(): string
+        
+        /** Returns the code of the shader include file. The returned text is what the user has written, not the full generated code used internally. */
+        code: string
+    }
+    /** A material defined by a custom [Shader] program and the values of its shader parameters. */
+    class ShaderMaterial extends Material {
+        set_shader(shader: Shader): void
+        get_shader(): Shader
+        
+        /** Changes the value set for this material of a uniform in the shader.  
+         *      
+         *  **Note:** [param param] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).  
+         *      
+         *  **Note:** Changes to the shader uniform will be effective on all instances using this [ShaderMaterial]. To prevent this, use per-instance uniforms with [method GeometryInstance3D.set_instance_shader_parameter] or duplicate the [ShaderMaterial] resource using [method Resource.duplicate]. Per-instance uniforms allow for better shader reuse and are therefore faster, so they should be preferred over duplicating the [ShaderMaterial] when possible.  
+         */
+        set_shader_parameter(param: StringName, value: any): void
+        
+        /** Returns the current value set for this material of a uniform in the shader. */
+        get_shader_parameter(param: StringName): any
+        
+        /** The [Shader] program used to render this material. */
+        shader: Shader
+    }
+    /** Abstract base class for 2D shapes used for physics collision. */
+    class Shape2D extends Resource {
+        set_custom_solver_bias(bias: number /*f64*/): void
+        get_custom_solver_bias(): number /*f64*/
+        
+        /** Returns `true` if this shape is colliding with another.  
+         *  This method needs the transformation matrix for this shape ([param local_xform]), the shape to check collisions with ([param with_shape]), and the transformation matrix of that shape ([param shape_xform]).  
+         */
+        collide(local_xform: Transform2D, with_shape: Shape2D, shape_xform: Transform2D): boolean
+        
+        /** Returns whether this shape would collide with another, if a given movement was applied.  
+         *  This method needs the transformation matrix for this shape ([param local_xform]), the movement to test on this shape ([param local_motion]), the shape to check collisions with ([param with_shape]), the transformation matrix of that shape ([param shape_xform]), and the movement to test onto the other object ([param shape_motion]).  
+         */
+        collide_with_motion(local_xform: Transform2D, local_motion: Vector2, with_shape: Shape2D, shape_xform: Transform2D, shape_motion: Vector2): boolean
+        
+        /** Returns a list of contact point pairs where this shape touches another.  
+         *  If there are no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of [param with_shape].  
+         *  A collision pair A, B can be used to calculate the collision normal with `(B - A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically used to separate shapes, particularly in collision solvers.  
+         *  This method needs the transformation matrix for this shape ([param local_xform]), the shape to check collisions with ([param with_shape]), and the transformation matrix of that shape ([param shape_xform]).  
+         */
+        collide_and_get_contacts(local_xform: Transform2D, with_shape: Shape2D, shape_xform: Transform2D): PackedVector2Array
+        
+        /** Returns a list of contact point pairs where this shape would touch another, if a given movement was applied.  
+         *  If there would be no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of [param with_shape].  
+         *  A collision pair A, B can be used to calculate the collision normal with `(B - A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically used to separate shapes, particularly in collision solvers.  
+         *  This method needs the transformation matrix for this shape ([param local_xform]), the movement to test on this shape ([param local_motion]), the shape to check collisions with ([param with_shape]), the transformation matrix of that shape ([param shape_xform]), and the movement to test onto the other object ([param shape_motion]).  
+         */
+        collide_with_motion_and_get_contacts(local_xform: Transform2D, local_motion: Vector2, with_shape: Shape2D, shape_xform: Transform2D, shape_motion: Vector2): PackedVector2Array
+        
+        /** Draws a solid shape onto a [CanvasItem] with the [RenderingServer] API filled with the specified [param color]. The exact drawing method is specific for each shape and cannot be configured. */
+        draw(canvas_item: RID, color: Color): void
+        
+        /** Returns a [Rect2] representing the shapes boundary. */
+        get_rect(): Rect2
+        
+        /** The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.  
+         *  When set to `0`, the default value from [member ProjectSettings.physics/2d/solver/default_contact_bias] is used.  
+         */
+        custom_solver_bias: number /*f64*/
+    }
+    /** Abstract base class for 3D shapes used for physics collision. */
+    class Shape3D extends Resource {
+        set_custom_solver_bias(bias: number /*f64*/): void
+        get_custom_solver_bias(): number /*f64*/
+        set_margin(margin: number /*f64*/): void
+        get_margin(): number /*f64*/
+        
+        /** Returns the [ArrayMesh] used to draw the debug collision for this [Shape3D]. */
+        get_debug_mesh(): ArrayMesh
+        
+        /** The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.  
+         *  When set to `0`, the default value from [member ProjectSettings.physics/3d/solver/default_contact_bias] is used.  
+         */
+        custom_solver_bias: number /*f64*/
+        
+        /** The collision margin for the shape. This is not used in Godot Physics.  
+         *  Collision margins allow collision detection to be more efficient by adding an extra shell around shapes. Collision algorithms are more expensive when objects overlap by more than their margin, so a higher value for margins is better for performance, at the cost of accuracy around edges as it makes them less sharp.  
+         */
+        margin: number /*f64*/
+    }
+    /** A 2D shape that sweeps a region of space to detect [CollisionObject2D]s. */
+    class ShapeCast2D extends Node2D {
+        set_enabled(enabled: boolean): void
+        is_enabled(): boolean
+        set_shape(shape: Shape2D): void
+        get_shape(): Shape2D
+        set_target_position(local_point: Vector2): void
+        get_target_position(): Vector2
+        set_margin(margin: number /*f64*/): void
+        get_margin(): number /*f64*/
+        set_max_results(max_results: number /*i64*/): void
+        get_max_results(): number /*i64*/
+        
+        /** Returns whether any object is intersecting with the shape's vector (considering the vector length). */
+        is_colliding(): boolean
+        
+        /** The number of collisions detected at the point of impact. Use this to iterate over multiple collisions as provided by [method get_collider], [method get_collider_shape], [method get_collision_point], and [method get_collision_normal] methods. */
+        get_collision_count(): number /*i64*/
+        
+        /** Updates the collision information for the shape immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the shape or its parent has changed state.  
+         *      
+         *  **Note:** `enabled == true` is not required for this to work.  
+         */
+        force_shapecast_update(): void
+        
+        /** Returns the collided [Object] of one of the multiple collisions at [param index], or `null` if no object is intersecting the shape (i.e. [method is_colliding] returns `false`). */
+        get_collider(index: number /*i64*/): Object
+        
+        /** Returns the [RID] of the collided object of one of the multiple collisions at [param index]. */
+        get_collider_rid(index: number /*i64*/): RID
+        
+        /** Returns the shape ID of the colliding shape of one of the multiple collisions at [param index], or `0` if no object is intersecting the shape (i.e. [method is_colliding] returns `false`). */
+        get_collider_shape(index: number /*i64*/): number /*i64*/
+        
+        /** Returns the collision point of one of the multiple collisions at [param index] where the shape intersects the colliding object.  
+         *      
+         *  **Note:** this point is in the **global** coordinate system.  
+         */
+        get_collision_point(index: number /*i64*/): Vector2
+        
+        /** Returns the normal of one of the multiple collisions at [param index] of the intersecting object. */
+        get_collision_normal(index: number /*i64*/): Vector2
+        
+        /** The fraction from the [ShapeCast2D]'s origin to its [member target_position] (between 0 and 1) of how far the shape can move without triggering a collision. */
+        get_closest_collision_safe_fraction(): number /*f64*/
+        
+        /** The fraction from the [ShapeCast2D]'s origin to its [member target_position] (between 0 and 1) of how far the shape must move to trigger a collision. */
+        get_closest_collision_unsafe_fraction(): number /*f64*/
+        
+        /** Adds a collision exception so the shape does not report collisions with the specified [RID]. */
+        add_exception_rid(rid: RID): void
+        
+        /** Adds a collision exception so the shape does not report collisions with the specified [CollisionObject2D] node. */
+        add_exception(node: CollisionObject2D): void
+        
+        /** Removes a collision exception so the shape does report collisions with the specified [RID]. */
+        remove_exception_rid(rid: RID): void
+        
+        /** Removes a collision exception so the shape does report collisions with the specified [CollisionObject2D] node. */
+        remove_exception(node: CollisionObject2D): void
+        
+        /** Removes all collision exceptions for this shape. */
+        clear_exceptions(): void
+        set_collision_mask(mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
+        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        set_exclude_parent_body(mask: boolean): void
+        get_exclude_parent_body(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        _get_collision_result(): Array
+        
+        /** If `true`, collisions will be reported. */
+        enabled: boolean
+        
+        /** The [Shape2D]-derived shape to be used for collision queries. */
+        shape: Shape2D
+        
+        /** If `true`, the parent node will be excluded from collision detection. */
+        exclude_parent: boolean
+        
+        /** The shape's destination point, relative to this node's `position`. */
+        target_position: Vector2
+        
+        /** The collision margin for the shape. A larger margin helps detecting collisions more consistently, at the cost of precision. */
+        margin: number /*f64*/
+        
+        /** The number of intersections can be limited with this parameter, to reduce the processing time. */
+        max_results: number /*i64*/
+        
+        /** The shape's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. */
+        collision_mask: number /*i64*/
+        
+        /** Returns the complete collision information from the collision sweep. The data returned is the same as in the [method PhysicsDirectSpaceState2D.get_rest_info] method. */
+        readonly collision_result: Array
+        
+        /** If `true`, collisions with [Area2D]s will be reported. */
+        collide_with_areas: boolean
+        
+        /** If `true`, collisions with [PhysicsBody2D]s will be reported. */
+        collide_with_bodies: boolean
+    }
+    /** A 3D shape that sweeps a region of space to detect [CollisionObject3D]s. */
+    class ShapeCast3D extends Node3D {
+        /** [i]Obsoleted.[/i] Use [signal Resource.changed] instead. */
+        resource_changed(resource: Resource): void
+        set_enabled(enabled: boolean): void
+        is_enabled(): boolean
+        set_shape(shape: Shape3D): void
+        get_shape(): Shape3D
+        set_target_position(local_point: Vector3): void
+        get_target_position(): Vector3
+        set_margin(margin: number /*f64*/): void
+        get_margin(): number /*f64*/
+        set_max_results(max_results: number /*i64*/): void
+        get_max_results(): number /*i64*/
+        
+        /** Returns whether any object is intersecting with the shape's vector (considering the vector length). */
+        is_colliding(): boolean
+        
+        /** The number of collisions detected at the point of impact. Use this to iterate over multiple collisions as provided by [method get_collider], [method get_collider_shape], [method get_collision_point], and [method get_collision_normal] methods. */
+        get_collision_count(): number /*i64*/
+        
+        /** Updates the collision information for the shape immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the shape or its parent has changed state.  
+         *      
+         *  **Note:** `enabled == true` is not required for this to work.  
+         */
+        force_shapecast_update(): void
+        
+        /** Returns the collided [Object] of one of the multiple collisions at [param index], or `null` if no object is intersecting the shape (i.e. [method is_colliding] returns `false`). */
+        get_collider(index: number /*i64*/): Object
+        
+        /** Returns the [RID] of the collided object of one of the multiple collisions at [param index]. */
+        get_collider_rid(index: number /*i64*/): RID
+        
+        /** Returns the shape ID of the colliding shape of one of the multiple collisions at [param index], or `0` if no object is intersecting the shape (i.e. [method is_colliding] returns `false`). */
+        get_collider_shape(index: number /*i64*/): number /*i64*/
+        
+        /** Returns the collision point of one of the multiple collisions at [param index] where the shape intersects the colliding object.  
+         *      
+         *  **Note:** this point is in the **global** coordinate system.  
+         */
+        get_collision_point(index: number /*i64*/): Vector3
+        
+        /** Returns the normal of one of the multiple collisions at [param index] of the intersecting object. */
+        get_collision_normal(index: number /*i64*/): Vector3
+        
+        /** The fraction from the [ShapeCast3D]'s origin to its [member target_position] (between 0 and 1) of how far the shape can move without triggering a collision. */
+        get_closest_collision_safe_fraction(): number /*f64*/
+        
+        /** The fraction from the [ShapeCast3D]'s origin to its [member target_position] (between 0 and 1) of how far the shape must move to trigger a collision. */
+        get_closest_collision_unsafe_fraction(): number /*f64*/
+        
+        /** Adds a collision exception so the shape does not report collisions with the specified [RID]. */
+        add_exception_rid(rid: RID): void
+        
+        /** Adds a collision exception so the shape does not report collisions with the specified [CollisionObject3D] node. */
+        add_exception(node: CollisionObject3D): void
+        
+        /** Removes a collision exception so the shape does report collisions with the specified [RID]. */
+        remove_exception_rid(rid: RID): void
+        
+        /** Removes a collision exception so the shape does report collisions with the specified [CollisionObject3D] node. */
+        remove_exception(node: CollisionObject3D): void
+        
+        /** Removes all collision exceptions for this [ShapeCast3D]. */
+        clear_exceptions(): void
+        set_collision_mask(mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
+        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        set_exclude_parent_body(mask: boolean): void
+        get_exclude_parent_body(): boolean
+        set_collide_with_areas(enable: boolean): void
+        is_collide_with_areas_enabled(): boolean
+        set_collide_with_bodies(enable: boolean): void
+        is_collide_with_bodies_enabled(): boolean
+        _get_collision_result(): Array
+        set_debug_shape_custom_color(debug_shape_custom_color: Color): void
+        get_debug_shape_custom_color(): Color
+        
+        /** If `true`, collisions will be reported. */
+        enabled: boolean
+        
+        /** The [Shape3D]-derived shape to be used for collision queries. */
+        shape: Shape3D
+        
+        /** If `true`, the parent node will be excluded from collision detection. */
+        exclude_parent: boolean
+        
+        /** The shape's destination point, relative to this node's `position`. */
+        target_position: Vector3
+        
+        /** The collision margin for the shape. A larger margin helps detecting collisions more consistently, at the cost of precision. */
+        margin: number /*f64*/
+        
+        /** The number of intersections can be limited with this parameter, to reduce the processing time. */
+        max_results: number /*i64*/
+        
+        /** The shape's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        collision_mask: number /*i64*/
+        
+        /** Returns the complete collision information from the collision sweep. The data returned is the same as in the [method PhysicsDirectSpaceState3D.get_rest_info] method. */
+        readonly collision_result: Array
+        
+        /** If `true`, collisions with [Area3D]s will be reported. */
+        collide_with_areas: boolean
+        
+        /** If `true`, collisions with [PhysicsBody3D]s will be reported. */
+        collide_with_bodies: boolean
+        
+        /** The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [ShapeCast3D] is colliding with something.  
+         *  If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [member ProjectSettings.debug/shapes/collision/shape_color] is used.  
+         */
+        debug_shape_custom_color: Color
+    }
+    class ShapeCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    /** A shortcut for binding input. */
+    class Shortcut extends Resource {
+        set_events(events: Array): void
+        get_events(): Array
+        
+        /** Returns whether [member events] contains an [InputEvent] which is valid. */
+        has_valid_event(): boolean
+        
+        /** Returns whether any [InputEvent] in [member events] equals [param event]. */
+        matches_event(event: InputEvent): boolean
+        
+        /** Returns the shortcut's first valid [InputEvent] as a [String]. */
+        get_as_text(): string
+        
+        /** The shortcut's [InputEvent] array.  
+         *  Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent], including an [InputEventAction].  
+         */
+        events: Array
+    }
+    class ShortcutBin extends Node {
+    }
+    class SizeFlagPresetPicker extends ControlEditorPresetPicker {
+        readonly size_flags_selected: Signal // size_flags: number /*i64*/ => void
+    }
+    /** The parent of a hierarchy of [Bone2D]s, used to create a 2D skeletal animation. */
+    class Skeleton2D extends Node2D {
+        _update_bone_setup(): void
+        _update_transform(): void
+        
+        /** Returns the number of [Bone2D] nodes in the node hierarchy parented by Skeleton2D. */
+        get_bone_count(): number /*i64*/
+        
+        /** Returns a [Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is identified by the parameter [param idx]. Bones are indexed by descending the node hierarchy from top to bottom, adding the children of each branch before moving to the next sibling. */
+        get_bone(idx: number /*i64*/): Bone2D
+        
+        /** Returns the [RID] of a Skeleton2D instance. */
+        get_skeleton(): RID
+        
+        /** Sets the [SkeletonModificationStack2D] attached to this skeleton. */
+        set_modification_stack(modification_stack: SkeletonModificationStack2D): void
+        
+        /** Returns the [SkeletonModificationStack2D] attached to this skeleton, if one exists. */
+        get_modification_stack(): SkeletonModificationStack2D
+        
+        /** Executes all the modifications on the [SkeletonModificationStack2D], if the Skeleton2D has one assigned. */
+        execute_modifications(delta: number /*f64*/, execution_mode: number /*i64*/): void
+        
+        /** Sets the local pose transform, [param override_pose], for the bone at [param bone_idx].  
+         *  [param strength] is the interpolation strength that will be used when applying the pose, and [param persistent] determines if the applied pose will remain.  
+         *      
+         *  **Note:** The pose transform needs to be a local transform relative to the [Bone2D] node at [param bone_idx]!  
+         */
+        set_bone_local_pose_override(bone_idx: number /*i64*/, override_pose: Transform2D, strength: number /*f64*/, persistent: boolean): void
+        
+        /** Returns the local pose override transform for [param bone_idx]. */
+        get_bone_local_pose_override(bone_idx: number /*i64*/): Transform2D
+        
+        /** Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used internally within the skeleton. */
+        readonly bone_setup_changed: Signal //  => void
+    }
+    class Skeleton2DEditor extends Control {
+    }
+    class Skeleton2DEditorPlugin extends EditorPlugin {
+    }
+    /** A node containing a bone hierarchy, used to create a 3D skeletal animation. */
+    class Skeleton3D extends Node3D {
+        /** Notification received when this skeleton's pose needs to be updated.  
+         *  This notification is received [i]before[/i] the related [signal pose_updated] signal.  
+         */
+        static readonly NOTIFICATION_UPDATE_SKELETON = 50
+        
+        /** Adds a bone, with name [param name]. [method get_bone_count] will become the bone index. */
+        add_bone(name: string): void
+        
+        /** Returns the bone index that matches [param name] as its name. */
+        find_bone(name: string): number /*i64*/
+        
+        /** Returns the name of the bone at index [param bone_idx]. */
+        get_bone_name(bone_idx: number /*i64*/): string
+        set_bone_name(bone_idx: number /*i64*/, name: string): void
+        
+        /** Returns the bone index which is the parent of the bone at [param bone_idx]. If -1, then bone has no parent.  
+         *      
+         *  **Note:** The parent bone returned will always be less than [param bone_idx].  
+         */
+        get_bone_parent(bone_idx: number /*i64*/): number /*i64*/
+        
+        /** Sets the bone index [param parent_idx] as the parent of the bone at [param bone_idx]. If -1, then bone has no parent.  
+         *      
+         *  **Note:** [param parent_idx] must be less than [param bone_idx].  
+         */
+        set_bone_parent(bone_idx: number /*i64*/, parent_idx: number /*i64*/): void
+        
+        /** Returns the number of bones in the skeleton. */
+        get_bone_count(): number /*i64*/
+        
+        /** Returns the number of times the bone hierarchy has changed within this skeleton, including renames.  
+         *  The Skeleton version is not serialized: only use within a single instance of Skeleton3D.  
+         *  Use for invalidating caches in IK solvers and other nodes which process bones.  
+         */
+        get_version(): number /*i64*/
+        
+        /** Unparents the bone at [param bone_idx] and sets its rest position to that of its parent prior to being reset. */
+        unparent_bone_and_rest(bone_idx: number /*i64*/): void
+        
+        /** Returns an array containing the bone indexes of all the child node of the passed in bone, [param bone_idx]. */
+        get_bone_children(bone_idx: number /*i64*/): PackedInt32Array
+        
+        /** Returns an array with all of the bones that are parentless. Another way to look at this is that it returns the indexes of all the bones that are not dependent or modified by other bones in the Skeleton. */
+        get_parentless_bones(): PackedInt32Array
+        
+        /** Returns the rest transform for a bone [param bone_idx]. */
+        get_bone_rest(bone_idx: number /*i64*/): Transform3D
+        
+        /** Sets the rest transform for bone [param bone_idx]. */
+        set_bone_rest(bone_idx: number /*i64*/, rest: Transform3D): void
+        
+        /** Returns the global rest transform for [param bone_idx]. */
+        get_bone_global_rest(bone_idx: number /*i64*/): Transform3D
+        create_skin_from_rest_transforms(): Skin
+        
+        /** Binds the given Skin to the Skeleton. */
+        register_skin(skin: Skin): SkinReference
+        
+        /** Returns all bones in the skeleton to their rest poses. */
+        localize_rests(): void
+        
+        /** Clear all the bones in this skeleton. */
+        clear_bones(): void
+        
+        /** Returns the pose transform of the specified bone. */
+        get_bone_pose(bone_idx: number /*i64*/): Transform3D
+        
+        /** Sets the pose position of the bone at [param bone_idx] to [param position]. [param position] is a [Vector3] describing a position local to the [Skeleton3D] node. */
+        set_bone_pose_position(bone_idx: number /*i64*/, position: Vector3): void
+        
+        /** Sets the pose rotation of the bone at [param bone_idx] to [param rotation]. [param rotation] is a [Quaternion] describing a rotation in the bone's local coordinate space with respect to the rotation of any parent bones. */
+        set_bone_pose_rotation(bone_idx: number /*i64*/, rotation: Quaternion): void
+        
+        /** Sets the pose scale of the bone at [param bone_idx] to [param scale]. */
+        set_bone_pose_scale(bone_idx: number /*i64*/, scale: Vector3): void
+        
+        /** Returns the pose position of the bone at [param bone_idx]. The returned [Vector3] is in the local coordinate space of the [Skeleton3D] node. */
+        get_bone_pose_position(bone_idx: number /*i64*/): Vector3
+        
+        /** Returns the pose rotation of the bone at [param bone_idx]. The returned [Quaternion] is local to the bone with respect to the rotation of any parent bones. */
+        get_bone_pose_rotation(bone_idx: number /*i64*/): Quaternion
+        
+        /** Returns the pose scale of the bone at [param bone_idx]. */
+        get_bone_pose_scale(bone_idx: number /*i64*/): Vector3
+        
+        /** Sets the bone pose to rest for [param bone_idx]. */
+        reset_bone_pose(bone_idx: number /*i64*/): void
+        
+        /** Sets all bone poses to rests. */
+        reset_bone_poses(): void
+        
+        /** Returns whether the bone pose for the bone at [param bone_idx] is enabled. */
+        is_bone_enabled(bone_idx: number /*i64*/): boolean
+        
+        /** Disables the pose for the bone at [param bone_idx] if `false`, enables the bone pose if `true`. */
+        set_bone_enabled(bone_idx: number /*i64*/, enabled: boolean = true): void
+        
+        /** Removes the global pose override on all bones in the skeleton. */
+        clear_bones_global_pose_override(): void
+        
+        /** Sets the global pose transform, [param pose], for the bone at [param bone_idx].  
+         *  [param amount] is the interpolation strength that will be used when applying the pose, and [param persistent] determines if the applied pose will remain.  
+         *      
+         *  **Note:** The pose transform needs to be a global pose! To convert a world transform from a [Node3D] to a global bone pose, multiply the [method Transform3D.affine_inverse] of the node's [member Node3D.global_transform] by the desired world transform.  
+         */
+        set_bone_global_pose_override(bone_idx: number /*i64*/, pose: Transform3D, amount: number /*f64*/, persistent: boolean = false): void
+        
+        /** Returns the global pose override transform for [param bone_idx]. */
+        get_bone_global_pose_override(bone_idx: number /*i64*/): Transform3D
+        
+        /** Returns the overall transform of the specified bone, with respect to the skeleton. Being relative to the skeleton frame, this is not the actual "global" transform of the bone. */
+        get_bone_global_pose(bone_idx: number /*i64*/): Transform3D
+        
+        /** Returns the overall transform of the specified bone, with respect to the skeleton, but without any global pose overrides. Being relative to the skeleton frame, this is not the actual "global" transform of the bone. */
+        get_bone_global_pose_no_override(bone_idx: number /*i64*/): Transform3D
+        
+        /** Force updates the bone transforms/poses for all bones in the skeleton.  
+         *  [i]Deprecated.[/i] Do not use.  
+         */
+        force_update_all_bone_transforms(): void
+        
+        /** Force updates the bone transform for the bone at [param bone_idx] and all of its children. */
+        force_update_bone_child_transform(bone_idx: number /*i64*/): void
+        set_motion_scale(motion_scale: number /*f64*/): void
+        get_motion_scale(): number /*f64*/
+        set_show_rest_only(enabled: boolean): void
+        is_show_rest_only(): boolean
+        set_animate_physical_bones(enabled: boolean): void
+        get_animate_physical_bones(): boolean
+        
+        /** Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating. */
+        physical_bones_stop_simulation(): void
+        
+        /** Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the physics world.  
+         *  Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.  
+         */
+        physical_bones_start_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        
+        /** Adds a collision exception to the physical bone.  
+         *  Works just like the [RigidBody3D] node.  
+         */
+        physical_bones_add_collision_exception(exception: RID): void
+        
+        /** Removes a collision exception to the physical bone.  
+         *  Works just like the [RigidBody3D] node.  
+         */
+        physical_bones_remove_collision_exception(exception: RID): void
+        
+        /** Multiplies the 3D position track animation.  
+         *      
+         *  **Note:** Unless this value is `1.0`, the key value in animation will not match the actual position value.  
+         */
+        motion_scale: number /*f64*/
+        
+        /** If `true`, forces the bones in their default rest pose, regardless of their values. In the editor, this also prevents the bones from being edited. */
+        show_rest_only: boolean
+        animate_physical_bones: boolean
+        
+        /** Emitted when the pose is updated, after [constant NOTIFICATION_UPDATE_SKELETON] is received. */
+        readonly pose_updated: Signal //  => void
+        
+        /** This signal is emitted when one of the bones in the Skeleton3D node have changed their pose. This is used to inform nodes that rely on bone positions that one of the bones in the Skeleton3D have changed their transform/pose. */
+        readonly bone_pose_changed: Signal // bone_idx: number /*i64*/ => void
+        
+        /** Emitted when the bone at [param bone_idx] is toggled with [method set_bone_enabled]. Use [method is_bone_enabled] to check the new value. */
+        readonly bone_enabled_changed: Signal // bone_idx: number /*i64*/ => void
+        
+        /** Emitted when the value of [member show_rest_only] changes. */
+        readonly show_rest_only_changed: Signal //  => void
+    }
+    class Skeleton3DEditorPlugin extends EditorPlugin {
+    }
+    class Skeleton3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    /** A node used to rotate all bones of a [Skeleton3D] bone chain a way that places the end bone at a desired 3D position. */
+    class SkeletonIK3D extends Node {
+        set_root_bone(root_bone: StringName): void
+        get_root_bone(): StringName
+        set_tip_bone(tip_bone: StringName): void
+        get_tip_bone(): StringName
+        set_interpolation(interpolation: number /*f64*/): void
+        get_interpolation(): number /*f64*/
+        set_target_transform(target: Transform3D): void
+        get_target_transform(): Transform3D
+        set_target_node(node: NodePath): void
+        get_target_node(): NodePath
+        set_override_tip_basis(override: boolean): void
+        is_override_tip_basis(): boolean
+        set_use_magnet(use: boolean): void
+        is_using_magnet(): boolean
+        set_magnet_position(local_position: Vector3): void
+        get_magnet_position(): Vector3
+        
+        /** Returns the parent [Skeleton3D] Node that was present when SkeletonIK entered the [SceneTree]. Returns null if the parent node was not a [Skeleton3D] Node when SkeletonIK3D entered the [SceneTree]. */
+        get_parent_skeleton(): Skeleton3D
+        
+        /** Returns `true` if SkeletonIK is applying IK effects on continues frames to the [Skeleton3D] bones. Returns `false` if SkeletonIK is stopped or [method start] was used with the `one_time` parameter set to `true`. */
+        is_running(): boolean
+        set_min_distance(min_distance: number /*f64*/): void
+        get_min_distance(): number /*f64*/
+        set_max_iterations(iterations: number /*i64*/): void
+        get_max_iterations(): number /*i64*/
+        
+        /** Starts applying IK effects on each frame to the [Skeleton3D] bones but will only take effect starting on the next frame. If [param one_time] is `true`, this will take effect immediately but also reset on the next frame. */
+        start(one_time: boolean = false): void
+        
+        /** Stops applying IK effects on each frame to the [Skeleton3D] bones and also calls [method Skeleton3D.clear_bones_global_pose_override] to remove existing overrides on all bones. */
+        stop(): void
+        
+        /** The name of the current root bone, the first bone in the IK chain. */
+        root_bone: StringName
+        
+        /** The name of the current tip bone, the last bone in the IK chain placed at the [member target] transform (or [member target_node] if defined). */
+        tip_bone: StringName
+        
+        /** Interpolation value for how much the IK results are applied to the current skeleton bone chain. A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0` will visually disable the SkeletonIK. A value at or below `0.01` also calls [method Skeleton3D.clear_bones_global_pose_override]. */
+        interpolation: number /*f64*/
+        
+        /** First target of the IK chain where the tip bone is placed and, if [member override_tip_basis] is `true`, how the tip bone is rotated. If a [member target_node] path is available the nodes transform is used instead and this property is ignored. */
+        target: Transform3D
+        
+        /** If `true` overwrites the rotation of the tip bone with the rotation of the [member target] (or [member target_node] if defined). */
+        override_tip_basis: boolean
+        
+        /** If `true`, instructs the IK solver to consider the secondary magnet target (pole target) when calculating the bone chain. Use the magnet position (pole target) to control the bending of the IK chain. */
+        use_magnet: boolean
+        
+        /** Secondary target position (first is [member target] property or [member target_node]) for the IK chain. Use magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain has more than 2 bones. The middle chain bone position will be linearly interpolated with the magnet position. */
+        magnet: Vector3
+        
+        /** Target node [NodePath] for the IK chain. If available, the node's current [Transform3D] is used instead of the [member target] property. */
+        target_node: NodePath
+        
+        /** The minimum distance between bone and goal target. If the distance is below this value, the IK solver stops further iterations. */
+        min_distance: number /*f64*/
+        
+        /** Number of iteration loops used by the IK solver to produce more accurate (and elegant) bone chain results. */
+        max_iterations: number /*i64*/
+    }
+    class SkeletonIK3DEditorPlugin extends EditorPlugin {
+    }
+    /** Base class for resources that operate on [Bone2D]s in a [Skeleton2D]. */
+    class SkeletonModification2D extends Resource {
+        /** Executes the given modification. This is where the modification performs whatever function it is designed to do. */
+        /* gdvirtual */ _execute(delta: number /*f64*/): void
+        
+        /** Called when the modification is setup. This is where the modification performs initialization. */
+        /* gdvirtual */ _setup_modification(modification_stack: SkeletonModificationStack2D): void
+        
+        /** Used for drawing **editor-only** modification gizmos. This function will only be called in the Godot editor and can be overridden to draw custom gizmos.  
+         *      
+         *  **Note:** You will need to use the Skeleton2D from [method SkeletonModificationStack2D.get_skeleton] and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.  
+         */
+        /* gdvirtual */ _draw_editor_gizmo(): void
+        set_enabled(enabled: boolean): void
+        get_enabled(): boolean
+        
+        /** Returns the [SkeletonModificationStack2D] that this modification is bound to. Through the modification stack, you can access the Skeleton2D the modification is operating on. */
+        get_modification_stack(): SkeletonModificationStack2D
+        
+        /** Manually allows you to set the setup state of the modification. This function should only rarely be used, as the [SkeletonModificationStack2D] the modification is bound to should handle setting the modification up. */
+        set_is_setup(is_setup: boolean): void
+        
+        /** Returns whether this modification has been successfully setup or not. */
+        get_is_setup(): boolean
+        set_execution_mode(execution_mode: number /*i64*/): void
+        get_execution_mode(): number /*i64*/
+        
+        /** Takes an angle and clamps it so it is within the passed-in [param min] and [param max] range. [param invert] will inversely clamp the angle, clamping it to the range outside of the given bounds. */
+        clamp_angle(angle: number /*f64*/, min: number /*f64*/, max: number /*f64*/, invert: boolean): number /*f64*/
+        
+        /** Sets whether this modification will call [method _draw_editor_gizmo] in the Godot editor to draw modification-specific gizmos. */
+        set_editor_draw_gizmo(draw_gizmo: boolean): void
+        
+        /** Returns whether this modification will call [method _draw_editor_gizmo] in the Godot editor to draw modification-specific gizmos. */
+        get_editor_draw_gizmo(): boolean
+        
+        /** If `true`, the modification's [method _execute] function will be called by the [SkeletonModificationStack2D]. */
+        enabled: boolean
+        
+        /** The execution mode for the modification. This tells the modification stack when to execute the modification. Some modifications have settings that are only available in certain execution modes. */
+        execution_mode: number /*i64*/
+    }
+    /** A modification that uses CCDIK to manipulate a series of bones to reach a target in 2D. */
+    class SkeletonModification2DCCDIK extends SkeletonModification2D {
+        set_target_node(target_nodepath: NodePath): void
+        get_target_node(): NodePath
+        set_tip_node(tip_nodepath: NodePath): void
+        get_tip_node(): NodePath
+        set_ccdik_data_chain_length(length: number /*i64*/): void
+        get_ccdik_data_chain_length(): number /*i64*/
+        
+        /** Sets the [Bone2D] node assigned to the CCDIK joint at [param joint_idx]. */
+        set_ccdik_joint_bone2d_node(joint_idx: number /*i64*/, bone2d_nodepath: NodePath): void
+        
+        /** Returns the [Bone2D] node assigned to the CCDIK joint at [param joint_idx]. */
+        get_ccdik_joint_bone2d_node(joint_idx: number /*i64*/): NodePath
+        
+        /** Sets the bone index, [param bone_idx], of the CCDIK joint at [param joint_idx]. When possible, this will also update the `bone2d_node` of the CCDIK joint based on data provided by the linked skeleton. */
+        set_ccdik_joint_bone_index(joint_idx: number /*i64*/, bone_idx: number /*i64*/): void
+        
+        /** Returns the index of the [Bone2D] node assigned to the CCDIK joint at [param joint_idx]. */
+        get_ccdik_joint_bone_index(joint_idx: number /*i64*/): number /*i64*/
+        
+        /** Sets whether the joint at [param joint_idx] is set to rotate from the joint, `true`, or to rotate from the tip, `false`. */
+        set_ccdik_joint_rotate_from_joint(joint_idx: number /*i64*/, rotate_from_joint: boolean): void
+        
+        /** Returns whether the joint at [param joint_idx] is set to rotate from the joint, `true`, or to rotate from the tip, `false`. The default is to rotate from the tip. */
+        get_ccdik_joint_rotate_from_joint(joint_idx: number /*i64*/): boolean
+        
+        /** Determines whether angle constraints on the CCDIK joint at [param joint_idx] are enabled. When `true`, constraints will be enabled and taken into account when solving. */
+        set_ccdik_joint_enable_constraint(joint_idx: number /*i64*/, enable_constraint: boolean): void
+        
+        /** Returns whether angle constraints on the CCDIK joint at [param joint_idx] are enabled. */
+        get_ccdik_joint_enable_constraint(joint_idx: number /*i64*/): boolean
+        
+        /** Sets the minimum angle constraint for the joint at [param joint_idx]. */
+        set_ccdik_joint_constraint_angle_min(joint_idx: number /*i64*/, angle_min: number /*f64*/): void
+        
+        /** Returns the minimum angle constraint for the joint at [param joint_idx]. */
+        get_ccdik_joint_constraint_angle_min(joint_idx: number /*i64*/): number /*f64*/
+        
+        /** Sets the maximum angle constraint for the joint at [param joint_idx]. */
+        set_ccdik_joint_constraint_angle_max(joint_idx: number /*i64*/, angle_max: number /*f64*/): void
+        
+        /** Returns the maximum angle constraint for the joint at [param joint_idx]. */
+        get_ccdik_joint_constraint_angle_max(joint_idx: number /*i64*/): number /*f64*/
+        
+        /** Sets whether the CCDIK joint at [param joint_idx] uses an inverted joint constraint.  
+         *  An inverted joint constraint only constraints the CCDIK joint to the angles [i]outside of[/i] the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.  
+         */
+        set_ccdik_joint_constraint_angle_invert(joint_idx: number /*i64*/, invert: boolean): void
+        
+        /** Returns whether the CCDIK joint at [param joint_idx] uses an inverted joint constraint. See [method set_ccdik_joint_constraint_angle_invert] for details. */
+        get_ccdik_joint_constraint_angle_invert(joint_idx: number /*i64*/): boolean
+        
+        /** The NodePath to the node that is the target for the CCDIK modification. This node is what the CCDIK chain will attempt to rotate the bone chain to. */
+        target_nodepath: NodePath
+        
+        /** The end position of the CCDIK chain. Typically, this should be a child of a [Bone2D] node attached to the final [Bone2D] in the CCDIK chain. */
+        tip_nodepath: NodePath
+        
+        /** The number of CCDIK joints in the CCDIK modification. */
+        ccdik_data_chain_length: number /*i64*/
+    }
+    /** A modification that uses FABRIK to manipulate a series of [Bone2D] nodes to reach a target. */
+    class SkeletonModification2DFABRIK extends SkeletonModification2D {
+        set_target_node(target_nodepath: NodePath): void
+        get_target_node(): NodePath
+        set_fabrik_data_chain_length(length: number /*i64*/): void
+        get_fabrik_data_chain_length(): number /*i64*/
+        
+        /** Sets the [Bone2D] node assigned to the FABRIK joint at [param joint_idx]. */
+        set_fabrik_joint_bone2d_node(joint_idx: number /*i64*/, bone2d_nodepath: NodePath): void
+        
+        /** Returns the [Bone2D] node assigned to the FABRIK joint at [param joint_idx]. */
+        get_fabrik_joint_bone2d_node(joint_idx: number /*i64*/): NodePath
+        
+        /** Sets the bone index, [param bone_idx], of the FABRIK joint at [param joint_idx]. When possible, this will also update the `bone2d_node` of the FABRIK joint based on data provided by the linked skeleton. */
+        set_fabrik_joint_bone_index(joint_idx: number /*i64*/, bone_idx: number /*i64*/): void
+        
+        /** Returns the index of the [Bone2D] node assigned to the FABRIK joint at [param joint_idx]. */
+        get_fabrik_joint_bone_index(joint_idx: number /*i64*/): number /*i64*/
+        
+        /** Sets the magnet position vector for the joint at [param joint_idx]. */
+        set_fabrik_joint_magnet_position(joint_idx: number /*i64*/, magnet_position: Vector2): void
+        
+        /** Returns the magnet position vector for the joint at [param joint_idx]. */
+        get_fabrik_joint_magnet_position(joint_idx: number /*i64*/): Vector2
+        
+        /** Sets whether the joint at [param joint_idx] will use the target node's rotation rather than letting FABRIK rotate the node.  
+         *      
+         *  **Note:** This option only works for the tip/final joint in the chain. For all other nodes, this option will be ignored.  
+         */
+        set_fabrik_joint_use_target_rotation(joint_idx: number /*i64*/, use_target_rotation: boolean): void
+        
+        /** Returns whether the joint is using the target's rotation rather than allowing FABRIK to rotate the joint. This option only applies to the tip/final joint in the chain. */
+        get_fabrik_joint_use_target_rotation(joint_idx: number /*i64*/): boolean
+        
+        /** The NodePath to the node that is the target for the FABRIK modification. This node is what the FABRIK chain will attempt to rotate the bone chain to. */
+        target_nodepath: NodePath
+        
+        /** The number of FABRIK joints in the FABRIK modification. */
+        fabrik_data_chain_length: number /*i64*/
+    }
+    /** A modification that jiggles [Bone2D] nodes as they move towards a target. */
+    class SkeletonModification2DJiggle extends SkeletonModification2D {
+        set_target_node(target_nodepath: NodePath): void
+        get_target_node(): NodePath
+        set_jiggle_data_chain_length(length: number /*i64*/): void
+        get_jiggle_data_chain_length(): number /*i64*/
+        set_stiffness(stiffness: number /*f64*/): void
+        get_stiffness(): number /*f64*/
+        set_mass(mass: number /*f64*/): void
+        get_mass(): number /*f64*/
+        set_damping(damping: number /*f64*/): void
+        get_damping(): number /*f64*/
+        set_use_gravity(use_gravity: boolean): void
+        get_use_gravity(): boolean
+        set_gravity(gravity: Vector2): void
+        get_gravity(): Vector2
+        
+        /** If `true`, the Jiggle modifier will take colliders into account, keeping them from entering into these collision objects. */
+        set_use_colliders(use_colliders: boolean): void
+        
+        /** Returns whether the jiggle modifier is taking physics colliders into account when solving. */
+        get_use_colliders(): boolean
+        
+        /** Sets the collision mask that the Jiggle modifier will use when reacting to colliders, if the Jiggle modifier is set to take colliders into account. */
+        set_collision_mask(collision_mask: number /*i64*/): void
+        
+        /** Returns the collision mask used by the Jiggle modifier when collisions are enabled. */
+        get_collision_mask(): number /*i64*/
+        
+        /** Sets the [Bone2D] node assigned to the Jiggle joint at [param joint_idx]. */
+        set_jiggle_joint_bone2d_node(joint_idx: number /*i64*/, bone2d_node: NodePath): void
+        
+        /** Returns the [Bone2D] node assigned to the Jiggle joint at [param joint_idx]. */
+        get_jiggle_joint_bone2d_node(joint_idx: number /*i64*/): NodePath
+        
+        /** Sets the bone index, [param bone_idx], of the Jiggle joint at [param joint_idx]. When possible, this will also update the `bone2d_node` of the Jiggle joint based on data provided by the linked skeleton. */
+        set_jiggle_joint_bone_index(joint_idx: number /*i64*/, bone_idx: number /*i64*/): void
+        
+        /** Returns the index of the [Bone2D] node assigned to the Jiggle joint at [param joint_idx]. */
+        get_jiggle_joint_bone_index(joint_idx: number /*i64*/): number /*i64*/
+        
+        /** Sets whether the Jiggle joint at [param joint_idx] should override the default Jiggle joint settings. Setting this to `true` will make the joint use its own settings rather than the default ones attached to the modification. */
+        set_jiggle_joint_override(joint_idx: number /*i64*/, override: boolean): void
+        
+        /** Returns a boolean that indicates whether the joint at [param joint_idx] is overriding the default Jiggle joint data defined in the modification. */
+        get_jiggle_joint_override(joint_idx: number /*i64*/): boolean
+        
+        /** Sets the of stiffness of the Jiggle joint at [param joint_idx]. */
+        set_jiggle_joint_stiffness(joint_idx: number /*i64*/, stiffness: number /*f64*/): void
+        
+        /** Returns the stiffness of the Jiggle joint at [param joint_idx]. */
+        get_jiggle_joint_stiffness(joint_idx: number /*i64*/): number /*f64*/
+        
+        /** Sets the of mass of the Jiggle joint at [param joint_idx]. */
+        set_jiggle_joint_mass(joint_idx: number /*i64*/, mass: number /*f64*/): void
+        
+        /** Returns the amount of mass of the jiggle joint at [param joint_idx]. */
+        get_jiggle_joint_mass(joint_idx: number /*i64*/): number /*f64*/
+        
+        /** Sets the amount of damping of the Jiggle joint at [param joint_idx]. */
+        set_jiggle_joint_damping(joint_idx: number /*i64*/, damping: number /*f64*/): void
+        
+        /** Returns the amount of damping of the Jiggle joint at [param joint_idx]. */
+        get_jiggle_joint_damping(joint_idx: number /*i64*/): number /*f64*/
+        
+        /** Sets whether the Jiggle joint at [param joint_idx] should use gravity. */
+        set_jiggle_joint_use_gravity(joint_idx: number /*i64*/, use_gravity: boolean): void
+        
+        /** Returns a boolean that indicates whether the joint at [param joint_idx] is using gravity or not. */
+        get_jiggle_joint_use_gravity(joint_idx: number /*i64*/): boolean
+        
+        /** Sets the gravity vector of the Jiggle joint at [param joint_idx]. */
+        set_jiggle_joint_gravity(joint_idx: number /*i64*/, gravity: Vector2): void
+        
+        /** Returns a [Vector2] representing the amount of gravity the Jiggle joint at [param joint_idx] is influenced by. */
+        get_jiggle_joint_gravity(joint_idx: number /*i64*/): Vector2
+        
+        /** The NodePath to the node that is the target for the Jiggle modification. This node is what the Jiggle chain will attempt to rotate the bone chain to. */
+        target_nodepath: NodePath
+        
+        /** The amount of Jiggle joints in the Jiggle modification. */
+        jiggle_data_chain_length: number /*i64*/
+        
+        /** The default amount of stiffness assigned to the Jiggle joints, if they are not overridden. Higher values act more like springs, quickly moving into the correct position. */
+        stiffness: number /*f64*/
+        
+        /** The default amount of mass assigned to the Jiggle joints, if they are not overridden. Higher values lead to faster movements and more overshooting. */
+        mass: number /*f64*/
+        
+        /** The default amount of damping applied to the Jiggle joints, if they are not overridden. Higher values lead to more of the calculated velocity being applied. */
+        damping: number /*f64*/
+        
+        /** Whether the gravity vector, [member gravity], should be applied to the Jiggle joints, assuming they are not overriding the default settings. */
+        use_gravity: boolean
+        
+        /** The default amount of gravity applied to the Jiggle joints, if they are not overridden. */
+        gravity: Vector2
+    }
+    /** A modification that rotates a [Bone2D] node to look at a target. */
+    class SkeletonModification2DLookAt extends SkeletonModification2D {
+        set_bone2d_node(bone2d_nodepath: NodePath): void
+        get_bone2d_node(): NodePath
+        set_bone_index(bone_idx: number /*i64*/): void
+        get_bone_index(): number /*i64*/
+        set_target_node(target_nodepath: NodePath): void
+        get_target_node(): NodePath
+        
+        /** Sets the amount of additional rotation that is to be applied after executing the modification. This allows for offsetting the results by the inputted rotation amount. */
+        set_additional_rotation(rotation: number /*f64*/): void
+        
+        /** Returns the amount of additional rotation that is applied after the LookAt modification executes. */
+        get_additional_rotation(): number /*f64*/
+        
+        /** Sets whether this modification will use constraints or not. When `true`, constraints will be applied when solving the LookAt modification. */
+        set_enable_constraint(enable_constraint: boolean): void
+        
+        /** Returns `true` if the LookAt modification is using constraints. */
+        get_enable_constraint(): boolean
+        
+        /** Sets the constraint's minimum allowed angle. */
+        set_constraint_angle_min(angle_min: number /*f64*/): void
+        
+        /** Returns the constraint's minimum allowed angle. */
+        get_constraint_angle_min(): number /*f64*/
+        
+        /** Sets the constraint's maximum allowed angle. */
+        set_constraint_angle_max(angle_max: number /*f64*/): void
+        
+        /** Returns the constraint's maximum allowed angle. */
+        get_constraint_angle_max(): number /*f64*/
+        
+        /** When `true`, the modification will use an inverted joint constraint.  
+         *  An inverted joint constraint only constraints the [Bone2D] to the angles [i]outside of[/i] the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.  
+         */
+        set_constraint_angle_invert(invert: boolean): void
+        
+        /** Returns whether the constraints to this modification are inverted or not. */
+        get_constraint_angle_invert(): boolean
+        
+        /** The index of the [Bone2D] node that the modification will operate on. */
+        bone_index: number /*i64*/
+        
+        /** The [Bone2D] node that the modification will operate on. */
+        bone2d_node: NodePath
+        
+        /** The NodePath to the node that is the target for the LookAt modification. This node is what the modification will rotate the [Bone2D] to. */
+        target_nodepath: NodePath
+    }
+    /** A modification that applies the transforms of [PhysicalBone2D] nodes to [Bone2D] nodes. */
+    class SkeletonModification2DPhysicalBones extends SkeletonModification2D {
+        set_physical_bone_chain_length(length: number /*i64*/): void
+        get_physical_bone_chain_length(): number /*i64*/
+        
+        /** Sets the [PhysicalBone2D] node at [param joint_idx].  
+         *      
+         *  **Note:** This is just the index used for this modification, not the bone index used in the [Skeleton2D].  
+         */
+        set_physical_bone_node(joint_idx: number /*i64*/, physicalbone2d_node: NodePath): void
+        
+        /** Returns the [PhysicalBone2D] node at [param joint_idx]. */
+        get_physical_bone_node(joint_idx: number /*i64*/): NodePath
+        
+        /** Empties the list of [PhysicalBone2D] nodes and populates it with all [PhysicalBone2D] nodes that are children of the [Skeleton2D]. */
+        fetch_physical_bones(): void
+        
+        /** Tell the [PhysicalBone2D] nodes to start simulating and interacting with the physics world.  
+         *  Optionally, an array of bone names can be passed to this function, and that will cause only [PhysicalBone2D] nodes with those names to start simulating.  
+         */
+        start_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        
+        /** Tell the [PhysicalBone2D] nodes to stop simulating and interacting with the physics world.  
+         *  Optionally, an array of bone names can be passed to this function, and that will cause only [PhysicalBone2D] nodes with those names to stop simulating.  
+         */
+        stop_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        
+        /** The number of [PhysicalBone2D] nodes linked in this modification. */
+        physical_bone_chain_length: number /*i64*/
+    }
+    /** A modification that holds and executes a [SkeletonModificationStack2D]. */
+    class SkeletonModification2DStackHolder extends SkeletonModification2D {
+        /** Sets the [SkeletonModificationStack2D] that this modification is holding. This modification stack will then be executed when this modification is executed. */
+        set_held_modification_stack(held_modification_stack: SkeletonModificationStack2D): void
+        
+        /** Returns the [SkeletonModificationStack2D] that this modification is holding. */
+        get_held_modification_stack(): SkeletonModificationStack2D
+    }
+    /** A modification that rotates two bones using the law of cosines to reach the target. */
+    class SkeletonModification2DTwoBoneIK extends SkeletonModification2D {
+        set_target_node(target_nodepath: NodePath): void
+        get_target_node(): NodePath
+        set_target_minimum_distance(minimum_distance: number /*f64*/): void
+        get_target_minimum_distance(): number /*f64*/
+        set_target_maximum_distance(maximum_distance: number /*f64*/): void
+        get_target_maximum_distance(): number /*f64*/
+        set_flip_bend_direction(flip_direction: boolean): void
+        get_flip_bend_direction(): boolean
+        
+        /** Sets the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
+        set_joint_one_bone2d_node(bone2d_node: NodePath): void
+        
+        /** Returns the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
+        get_joint_one_bone2d_node(): NodePath
+        
+        /** Sets the index of the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
+        set_joint_one_bone_idx(bone_idx: number /*i64*/): void
+        
+        /** Returns the index of the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
+        get_joint_one_bone_idx(): number /*i64*/
+        
+        /** Sets the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
+        set_joint_two_bone2d_node(bone2d_node: NodePath): void
+        
+        /** Returns the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
+        get_joint_two_bone2d_node(): NodePath
+        
+        /** Sets the index of the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
+        set_joint_two_bone_idx(bone_idx: number /*i64*/): void
+        
+        /** Returns the index of the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
+        get_joint_two_bone_idx(): number /*i64*/
+        
+        /** The NodePath to the node that is the target for the TwoBoneIK modification. This node is what the modification will use when bending the [Bone2D] nodes. */
+        target_nodepath: NodePath
+        
+        /** The minimum distance the target can be at. If the target is closer than this distance, the modification will solve as if it's at this minimum distance. When set to `0`, the modification will solve without distance constraints. */
+        target_minimum_distance: number /*f64*/
+        
+        /** The maximum distance the target can be at. If the target is farther than this distance, the modification will solve as if it's at this maximum distance. When set to `0`, the modification will solve without distance constraints. */
+        target_maximum_distance: number /*f64*/
+        
+        /** If `true`, the bones in the modification will blend outward as opposed to inwards when contracting. If `false`, the bones will bend inwards when contracting. */
+        flip_bend_direction: boolean
+    }
+    /** A resource that holds a stack of [SkeletonModification2D]s. */
+    class SkeletonModificationStack2D extends Resource {
+        /** Sets up the modification stack so it can execute. This function should be called by [Skeleton2D] and shouldn't be manually called unless you know what you are doing. */
+        setup(): void
+        
+        /** Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as the passed-in [param execution_mode], starting from index `0` to [member modification_count].  
+         *      
+         *  **Note:** The order of the modifications can matter depending on the modifications. For example, modifications on a spine should operate before modifications on the arms in order to get proper results.  
+         */
+        execute(delta: number /*f64*/, execution_mode: number /*i64*/): void
+        
+        /** Enables all [SkeletonModification2D]s in the stack. */
+        enable_all_modifications(enabled: boolean): void
+        
+        /** Returns the [SkeletonModification2D] at the passed-in index, [param mod_idx]. */
+        get_modification(mod_idx: number /*i64*/): SkeletonModification2D
+        
+        /** Adds the passed-in [SkeletonModification2D] to the stack. */
+        add_modification(modification: SkeletonModification2D): void
+        
+        /** Deletes the [SkeletonModification2D] at the index position [param mod_idx], if it exists. */
+        delete_modification(mod_idx: number /*i64*/): void
+        
+        /** Sets the modification at [param mod_idx] to the passed-in modification, [param modification]. */
+        set_modification(mod_idx: number /*i64*/, modification: SkeletonModification2D): void
+        set_modification_count(count: number /*i64*/): void
+        get_modification_count(): number /*i64*/
+        
+        /** Returns a boolean that indicates whether the modification stack is setup and can execute. */
+        get_is_setup(): boolean
+        set_enabled(enabled: boolean): void
+        get_enabled(): boolean
+        set_strength(strength: number /*f64*/): void
+        get_strength(): number /*f64*/
+        
+        /** Returns the [Skeleton2D] node that the SkeletonModificationStack2D is bound to. */
+        get_skeleton(): Skeleton2D
+        
+        /** If `true`, the modification's in the stack will be called. This is handled automatically through the [Skeleton2D] node. */
+        enabled: boolean
+        
+        /** The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses. */
+        strength: number /*f64*/
+        
+        /** The number of modifications in the stack. */
+        modification_count: any /*Modifications,modifications/*/
+    }
+    namespace SkeletonProfile {
+        enum TailDirection {
+            /** Direction to the average coordinates of bone children. */
+            TAIL_DIRECTION_AVERAGE_CHILDREN = 0,
+            
+            /** Direction to the coordinates of specified bone child. */
+            TAIL_DIRECTION_SPECIFIC_CHILD = 1,
+            
+            /** Direction is not calculated. */
+            TAIL_DIRECTION_END = 2,
+        }
+    }
+    /** Base class for a profile of a virtual skeleton used as a target for retargeting. */
+    class SkeletonProfile extends Resource {
+        set_root_bone(bone_name: StringName): void
+        get_root_bone(): StringName
+        set_scale_base_bone(bone_name: StringName): void
+        get_scale_base_bone(): StringName
+        set_group_size(size: number /*i64*/): void
+        get_group_size(): number /*i64*/
+        
+        /** Returns the name of the group at [param group_idx] that will be the drawing group in the [BoneMap] editor. */
+        get_group_name(group_idx: number /*i64*/): StringName
+        
+        /** Sets the name of the group at [param group_idx] that will be the drawing group in the [BoneMap] editor. */
+        set_group_name(group_idx: number /*i64*/, group_name: StringName): void
+        
+        /** Returns the texture of the group at [param group_idx] that will be the drawing group background image in the [BoneMap] editor. */
+        get_texture(group_idx: number /*i64*/): Texture2D
+        
+        /** Sets the texture of the group at [param group_idx] that will be the drawing group background image in the [BoneMap] editor. */
+        set_texture(group_idx: number /*i64*/, texture: Texture2D): void
+        set_bone_size(size: number /*i64*/): void
+        get_bone_size(): number /*i64*/
+        
+        /** Returns the bone index that matches [param bone_name] as its name. */
+        find_bone(bone_name: StringName): number /*i64*/
+        
+        /** Returns the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].  
+         *  In the retargeting process, the returned bone name is the bone name of the target skeleton.  
+         */
+        get_bone_name(bone_idx: number /*i64*/): StringName
+        
+        /** Sets the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].  
+         *  In the retargeting process, the setting bone name is the bone name of the target skeleton.  
+         */
+        set_bone_name(bone_idx: number /*i64*/, bone_name: StringName): void
+        
+        /** Returns the name of the bone which is the parent to the bone at [param bone_idx]. The result is empty if the bone has no parent. */
+        get_bone_parent(bone_idx: number /*i64*/): StringName
+        
+        /** Sets the bone with name [param bone_parent] as the parent of the bone at [param bone_idx]. If an empty string is passed, then the bone has no parent. */
+        set_bone_parent(bone_idx: number /*i64*/, bone_parent: StringName): void
+        
+        /** Returns the tail direction of the bone at [param bone_idx]. */
+        get_tail_direction(bone_idx: number /*i64*/): SkeletonProfile.TailDirection
+        
+        /** Sets the tail direction of the bone at [param bone_idx].  
+         *      
+         *  **Note:** This only specifies the method of calculation. The actual coordinates required should be stored in an external skeleton, so the calculation itself needs to be done externally.  
+         */
+        set_tail_direction(bone_idx: number /*i64*/, tail_direction: SkeletonProfile.TailDirection): void
+        
+        /** Returns the name of the bone which is the tail of the bone at [param bone_idx]. */
+        get_bone_tail(bone_idx: number /*i64*/): StringName
+        
+        /** Sets the bone with name [param bone_tail] as the tail of the bone at [param bone_idx]. */
+        set_bone_tail(bone_idx: number /*i64*/, bone_tail: StringName): void
+        
+        /** Returns the reference pose transform for bone [param bone_idx]. */
+        get_reference_pose(bone_idx: number /*i64*/): Transform3D
+        
+        /** Sets the reference pose transform for bone [param bone_idx]. */
+        set_reference_pose(bone_idx: number /*i64*/, bone_name: Transform3D): void
+        
+        /** Returns the offset of the bone at [param bone_idx] that will be the button position in the [BoneMap] editor.  
+         *  This is the offset with origin at the top left corner of the square.  
+         */
+        get_handle_offset(bone_idx: number /*i64*/): Vector2
+        
+        /** Sets the offset of the bone at [param bone_idx] that will be the button position in the [BoneMap] editor.  
+         *  This is the offset with origin at the top left corner of the square.  
+         */
+        set_handle_offset(bone_idx: number /*i64*/, handle_offset: Vector2): void
+        
+        /** Returns the group of the bone at [param bone_idx]. */
+        get_group(bone_idx: number /*i64*/): StringName
+        
+        /** Sets the group of the bone at [param bone_idx]. */
+        set_group(bone_idx: number /*i64*/, group: StringName): void
+        
+        /** A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of the parent of hips that exists at the world origin. */
+        root_bone: StringName
+        
+        /** A bone name which will use model's height as the coefficient for normalization. For example, [SkeletonProfileHumanoid] defines it as `Hips`. */
+        scale_base_bone: StringName
+        
+        /** The amount of groups of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 4 groups.  
+         *  This property exists to separate the bone list into several sections in the editor.  
+         */
+        group_size: any /*Groups,groups/*/
+        
+        /** The amount of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 56 bones.  
+         *  The size of elements in [BoneMap] updates when changing this property in it's assigned [SkeletonProfile].  
+         */
+        bone_size: any /*Bones,bones/*/
+        
+        /** This signal is emitted when change the value in profile. This is used to update key name in the [BoneMap] and to redraw the [BoneMap] editor.  
+         *      
+         *  **Note:** This signal is not connected directly to editor to simplify the reference, instead it is passed on to editor through the [BoneMap].  
+         */
+        readonly profile_updated: Signal //  => void
+    }
+    /** A humanoid [SkeletonProfile] preset. */
+    class SkeletonProfileHumanoid extends SkeletonProfile {
+    }
+    class Skin extends Resource {
+        set_bind_count(bind_count: number /*i64*/): void
+        get_bind_count(): number /*i64*/
+        add_bind(bone: number /*i64*/, pose: Transform3D): void
+        add_named_bind(name: string, pose: Transform3D): void
+        set_bind_pose(bind_index: number /*i64*/, pose: Transform3D): void
+        get_bind_pose(bind_index: number /*i64*/): Transform3D
+        set_bind_name(bind_index: number /*i64*/, name: StringName): void
+        get_bind_name(bind_index: number /*i64*/): StringName
+        set_bind_bone(bind_index: number /*i64*/, bone: number /*i64*/): void
+        get_bind_bone(bind_index: number /*i64*/): number /*i64*/
+        clear_binds(): void
+    }
+    class SkinReference extends RefCounted {
+        get_skeleton(): RID
+        get_skin(): Skin
+    }
+    namespace Sky {
+        enum RadianceSize {
+            /** Radiance texture size is 32×32 pixels. */
+            RADIANCE_SIZE_32 = 0,
+            
+            /** Radiance texture size is 64×64 pixels. */
+            RADIANCE_SIZE_64 = 1,
+            
+            /** Radiance texture size is 128×128 pixels. */
+            RADIANCE_SIZE_128 = 2,
+            
+            /** Radiance texture size is 256×256 pixels. */
+            RADIANCE_SIZE_256 = 3,
+            
+            /** Radiance texture size is 512×512 pixels. */
+            RADIANCE_SIZE_512 = 4,
+            
+            /** Radiance texture size is 1024×1024 pixels. */
+            RADIANCE_SIZE_1024 = 5,
+            
+            /** Radiance texture size is 2048×2048 pixels. */
+            RADIANCE_SIZE_2048 = 6,
+            
+            /** Represents the size of the [enum RadianceSize] enum. */
+            RADIANCE_SIZE_MAX = 7,
+        }
+        enum ProcessMode {
+            /** Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [constant PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [constant PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [constant PROCESS_MODE_QUALITY]. */
+            PROCESS_MODE_AUTOMATIC = 0,
+            
+            /** Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [constant PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [member ProjectSettings.rendering/reflections/sky_reflections/ggx_samples]. */
+            PROCESS_MODE_QUALITY = 1,
+            
+            /** Uses the same high quality importance sampling to process the radiance map as [constant PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by [member ProjectSettings.rendering/reflections/sky_reflections/roughness_layers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly. */
+            PROCESS_MODE_INCREMENTAL = 2,
+            
+            /** Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [member ProjectSettings.rendering/reflections/sky_reflections/fast_filter_high_quality].  
+             *      
+             *  **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [member radiance_size] must be set to [constant RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size is ignored.  
+             */
+            PROCESS_MODE_REALTIME = 3,
+        }
+    }
+    /** Defines a 3D environment's background by using a [Material]. */
+    class Sky extends Resource {
+        set_radiance_size(size: Sky.RadianceSize): void
+        get_radiance_size(): Sky.RadianceSize
+        set_process_mode(mode: Sky.ProcessMode): void
+        get_process_mode(): Sky.ProcessMode
+        set_material(material: Material): void
+        get_material(): Material
+        
+        /** [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial], [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader. */
+        sky_material: ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial
+        
+        /** Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options. */
+        process_mode: number /*i64*/
+        
+        /** The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting from the [Sky] will be.  
+         *  See [enum RadianceSize] constants for values.  
+         *      
+         *  **Note:** Some hardware will have trouble with higher radiance sizes, especially [constant RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.  
+         */
+        radiance_size: number /*i64*/
+    }
+    /** Abstract base class for sliders. */
+    class Slider extends Range {
+        set_ticks(count: number /*i64*/): void
+        get_ticks(): number /*i64*/
+        get_ticks_on_borders(): boolean
+        set_ticks_on_borders(ticks_on_border: boolean): void
+        set_editable(editable: boolean): void
+        is_editable(): boolean
+        set_scrollable(scrollable: boolean): void
+        is_scrollable(): boolean
+        
+        /** If `true`, the slider can be interacted with. If `false`, the value can be changed only by code. */
+        editable: boolean
+        
+        /** If `true`, the value can be changed using the mouse wheel. */
+        scrollable: boolean
+        
+        /** Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers. */
+        tick_count: number /*i64*/
+        
+        /** If `true`, the slider will display ticks for minimum and maximum values. */
+        ticks_on_borders: boolean
+        
+        /** Emitted when dragging is started. */
+        readonly drag_started: Signal //  => void
+        
+        /** Emitted when dragging stops. If [param value_changed] is true, [member Range.value] is different from the value when you started the dragging. */
+        readonly drag_ended: Signal // value_changed: boolean => void
+    }
+    namespace SliderJoint3D {
+        enum Param {
+            /** The maximum difference between the pivot points on their X axis before damping happens. */
+            PARAM_LINEAR_LIMIT_UPPER = 0,
+            
+            /** The minimum difference between the pivot points on their X axis before damping happens. */
+            PARAM_LINEAR_LIMIT_LOWER = 1,
+            
+            /** A factor applied to the movement across the slider axis once the limits get surpassed. The lower, the slower the movement. */
+            PARAM_LINEAR_LIMIT_SOFTNESS = 2,
+            
+            /** The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost. */
+            PARAM_LINEAR_LIMIT_RESTITUTION = 3,
+            
+            /** The amount of damping once the slider limits are surpassed. */
+            PARAM_LINEAR_LIMIT_DAMPING = 4,
+            
+            /** A factor applied to the movement across the slider axis as long as the slider is in the limits. The lower, the slower the movement. */
+            PARAM_LINEAR_MOTION_SOFTNESS = 5,
+            
+            /** The amount of restitution inside the slider limits. */
+            PARAM_LINEAR_MOTION_RESTITUTION = 6,
+            
+            /** The amount of damping inside the slider limits. */
+            PARAM_LINEAR_MOTION_DAMPING = 7,
+            
+            /** A factor applied to the movement across axes orthogonal to the slider. */
+            PARAM_LINEAR_ORTHOGONAL_SOFTNESS = 8,
+            
+            /** The amount of restitution when movement is across axes orthogonal to the slider. */
+            PARAM_LINEAR_ORTHOGONAL_RESTITUTION = 9,
+            
+            /** The amount of damping when movement is across axes orthogonal to the slider. */
+            PARAM_LINEAR_ORTHOGONAL_DAMPING = 10,
+            
+            /** The upper limit of rotation in the slider. */
+            PARAM_ANGULAR_LIMIT_UPPER = 11,
+            
+            /** The lower limit of rotation in the slider. */
+            PARAM_ANGULAR_LIMIT_LOWER = 12,
+            
+            /** A factor applied to the all rotation once the limit is surpassed. */
+            PARAM_ANGULAR_LIMIT_SOFTNESS = 13,
+            
+            /** The amount of restitution of the rotation when the limit is surpassed. */
+            PARAM_ANGULAR_LIMIT_RESTITUTION = 14,
+            
+            /** The amount of damping of the rotation when the limit is surpassed. */
+            PARAM_ANGULAR_LIMIT_DAMPING = 15,
+            
+            /** A factor applied to the all rotation in the limits. */
+            PARAM_ANGULAR_MOTION_SOFTNESS = 16,
+            
+            /** The amount of restitution of the rotation in the limits. */
+            PARAM_ANGULAR_MOTION_RESTITUTION = 17,
+            
+            /** The amount of damping of the rotation in the limits. */
+            PARAM_ANGULAR_MOTION_DAMPING = 18,
+            
+            /** A factor applied to the all rotation across axes orthogonal to the slider. */
+            PARAM_ANGULAR_ORTHOGONAL_SOFTNESS = 19,
+            
+            /** The amount of restitution of the rotation across axes orthogonal to the slider. */
+            PARAM_ANGULAR_ORTHOGONAL_RESTITUTION = 20,
+            
+            /** The amount of damping of the rotation across axes orthogonal to the slider. */
+            PARAM_ANGULAR_ORTHOGONAL_DAMPING = 21,
+            
+            /** Represents the size of the [enum Param] enum. */
+            PARAM_MAX = 22,
+        }
+    }
+    /** A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body. */
+    class SliderJoint3D extends Joint3D {
+        set_param(param: SliderJoint3D.Param, value: number /*f64*/): void
+        get_param(param: SliderJoint3D.Param): number /*f64*/
+    }
+    class SnapDialog extends ConfirmationDialog {
+    }
+    namespace SoftBody3D {
+        enum DisableMode {
+            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [SoftBody3D].  
+             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
+             */
+            DISABLE_MODE_REMOVE = 0,
+            
+            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
+            DISABLE_MODE_KEEP_ACTIVE = 1,
+        }
+    }
+    /** A deformable 3D physics mesh. */
+    class SoftBody3D extends MeshInstance3D {
+        /** Returns the internal [RID] used by the [PhysicsServer3D] for this body. */
+        get_physics_rid(): RID
+        set_collision_mask(collision_mask: number /*i64*/): void
+        get_collision_mask(): number /*i64*/
+        set_collision_layer(collision_layer: number /*i64*/): void
+        get_collision_layer(): number /*i64*/
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
+        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
+        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_layer_value(layer_number: number /*i64*/): boolean
+        set_parent_collision_ignore(parent_collision_ignore: NodePath): void
+        get_parent_collision_ignore(): NodePath
+        set_disable_mode(mode: SoftBody3D.DisableMode): void
+        get_disable_mode(): SoftBody3D.DisableMode
+        
+        /** Returns an array of nodes that were added as collision exceptions for this body. */
+        get_collision_exceptions(): Array
+        
+        /** Adds a body to the list of bodies that this body can't collide with. */
+        add_collision_exception_with(body: Node): void
+        
+        /** Removes a body from the list of bodies that this body can't collide with. */
+        remove_collision_exception_with(body: Node): void
+        set_simulation_precision(simulation_precision: number /*i64*/): void
+        get_simulation_precision(): number /*i64*/
+        set_total_mass(mass: number /*f64*/): void
+        get_total_mass(): number /*f64*/
+        set_linear_stiffness(linear_stiffness: number /*f64*/): void
+        get_linear_stiffness(): number /*f64*/
+        set_pressure_coefficient(pressure_coefficient: number /*f64*/): void
+        get_pressure_coefficient(): number /*f64*/
+        set_damping_coefficient(damping_coefficient: number /*f64*/): void
+        get_damping_coefficient(): number /*f64*/
+        set_drag_coefficient(drag_coefficient: number /*f64*/): void
+        get_drag_coefficient(): number /*f64*/
+        
+        /** Returns local translation of a vertex in the surface array. */
+        get_point_transform(point_index: number /*i64*/): Vector3
+        
+        /** Sets the pinned state of a surface vertex. When set to `true`, the optional [param attachment_path] can define a [Node3D] the pinned vertex will be attached to. */
+        set_point_pinned(point_index: number /*i64*/, pinned: boolean, attachment_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): void
+        
+        /** Returns `true` if vertex is set to pinned. */
+        is_point_pinned(point_index: number /*i64*/): boolean
+        set_ray_pickable(ray_pickable: boolean): void
+        is_ray_pickable(): boolean
+        
+        /** The physics layers this SoftBody3D **is in**. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
+         *      
+         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
+         */
+        collision_layer: number /*i64*/
+        
+        /** The physics layers this SoftBody3D **scans**. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
+         *      
+         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
+         */
+        collision_mask: number /*i64*/
+        
+        /** [NodePath] to a [CollisionObject3D] this SoftBody3D should avoid clipping. */
+        parent_collision_ignore: NodePath
+        
+        /** Increasing this value will improve the resulting simulation, but can affect performance. Use with care. */
+        simulation_precision: number /*i64*/
+        
+        /** The SoftBody3D's mass. */
+        total_mass: number /*f64*/
+        
+        /** Higher values will result in a stiffer body, while lower values will increase the body's ability to bend. The value can be between `0.0` and `1.0` (inclusive). */
+        linear_stiffness: number /*f64*/
+        
+        /** The pressure coefficient of this soft body. Simulate pressure build-up from inside this body. Higher values increase the strength of this effect. */
+        pressure_coefficient: number /*f64*/
+        
+        /** The body's damping coefficient. Higher values will slow down the body more noticeably when forces are applied. */
+        damping_coefficient: number /*f64*/
+        
+        /** The body's drag coefficient. Higher values increase this body's air resistance.  
+         *      
+         *  **Note:** This value is currently unused by Godot's default physics implementation.  
+         */
+        drag_coefficient: number /*f64*/
+        
+        /** If `true`, the [SoftBody3D] will respond to [RayCast3D]s. */
+        ray_pickable: boolean
+        
+        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
+        disable_mode: number /*i64*/
     }
 }
