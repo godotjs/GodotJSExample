@@ -14,7 +14,7 @@ let MyEditorScript1 = class MyEditorScript1 extends godot_1.EditorScript {
     }
 };
 MyEditorScript1 = __decorate([
-    (0, jsb_core_1.tool_)()
+    (0, jsb_core_1.tool)()
 ], MyEditorScript1);
 exports.default = MyEditorScript1;
 //# sourceMappingURL=my_editor_script_1.js.map

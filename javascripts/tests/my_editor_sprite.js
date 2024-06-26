@@ -53,7 +53,8 @@ __decorate([
     (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_INT)
 ], MyEditorSprite.prototype, "unused_int", void 0);
 MyEditorSprite = __decorate([
-    (0, jsb_core_1.tool_)()
+    (0, jsb_core_1.icon)("res://icon/affiliate.svg"),
+    (0, jsb_core_1.tool)()
 ], MyEditorSprite);
 exports.default = MyEditorSprite;
 //# sourceMappingURL=my_editor_sprite.js.map

@@ -1,10 +1,11 @@
 import { Engine, InputEvent, PackedStringArray, Sprite2D, Variant } from "godot";
-import { export_, tool_ } from "../jsb/jsb.core";
+import { export_, icon, tool } from "../jsb/jsb.core";
 
 // see example code in GDScript/C# at:
 // https://docs.godotengine.org/en/stable/tutorials/plugins/running_code_in_the_editor.html#doc-running-code-in-the-editor
 
-@tool_()
+@icon("res://icon/affiliate.svg")
+@tool()
 export default class MyEditorSprite extends Sprite2D {
 
     /**

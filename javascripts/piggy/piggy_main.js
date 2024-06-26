@@ -75,12 +75,12 @@ class PiggyMain extends godot_1.Node {
 }
 exports.default = PiggyMain;
 __decorate([
-    (0, jsb_core_1.onready_)("scene")
+    (0, jsb_core_1.onready)("scene")
 ], PiggyMain.prototype, "scene", void 0);
 __decorate([
-    (0, jsb_core_1.onready_)("scene/shooter")
+    (0, jsb_core_1.onready)("scene/shooter")
 ], PiggyMain.prototype, "shooter", void 0);
 __decorate([
-    (0, jsb_core_1.onready_)("scene/rope")
+    (0, jsb_core_1.onready)("scene/rope")
 ], PiggyMain.prototype, "rope", void 0);
 //# sourceMappingURL=piggy_main.js.map

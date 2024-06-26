@@ -1,6 +1,6 @@
 import { Basis, Button, Input, Node, Object, Signal, Time, Variant, Vector2, Vector3 } from "godot";
 import * as jsb from "godot-jsb";
-import { $wait, export_, export_enum, export_flags, onready_, signal_ } from "./jsb/jsb.core";
+import { $wait, export_, export_enum, export_flags, onready, signal } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 
 enum MyColor {
@@ -26,7 +26,7 @@ export default class TestNode extends Button {
     get foo() { return this._v1 }
     set foo(value: number) { this._v1 = value }
 
-    @onready_("JSButtonChildNode")
+    @onready("JSButtonChildNode")
     ready_node!: Node;
 
     @export_flags(MyTags)
@@ -41,7 +41,7 @@ export default class TestNode extends Button {
     @export_(Variant.Type.TYPE_INT)
     int_value = 0;
 
-    @signal_()
+    @signal()
     test_signal!: Signal; // signal field will automatically instantiated by GodotJS
 
     constructor() {

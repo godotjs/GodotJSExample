@@ -33,7 +33,7 @@ class Arrow extends godot_1.Sprite2D {
 }
 exports.default = Arrow;
 __decorate([
-    (0, jsb_core_1.signal_)()
+    (0, jsb_core_1.signal)()
 ], Arrow.prototype, "die", void 0);
 __decorate([
     (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_FLOAT)

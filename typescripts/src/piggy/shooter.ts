@@ -1,15 +1,15 @@
 import { Input, Marker2D, Node, Node2D, NodePath, PackedScene, ResourceLoader, Signal, Sprite2D, Variant, Vector2 } from "godot";
-import { export_, signal_ } from "../jsb/jsb.core";
+import { export_, signal } from "../jsb/jsb.core";
 
 export default class Shooter extends Sprite2D {
 
     @export_(Variant.Type.TYPE_FLOAT)
     speed: number = 0;
 
-    @signal_()
+    @signal()
     shot!: Signal;
 
-    @signal_()
+    @signal()
     moved!: Signal;
 
     private _dirty = false;

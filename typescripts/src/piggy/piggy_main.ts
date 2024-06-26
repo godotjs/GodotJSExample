@@ -1,18 +1,18 @@
 import { Node, Node2D, NodePath, PackedScene, ResourceLoader, ShaderMaterial, Sprite2D, Vector2 } from "godot";
 import * as jsb from "godot-jsb";
-import { onready_ } from "../jsb/jsb.core";
+import { onready } from "../jsb/jsb.core";
 import Arrow from "./arrow";
 import Shooter from "./shooter";
 
 export default class PiggyMain extends Node {
 
-    @onready_("scene")
+    @onready("scene")
     scene!: Node2D;
 
-    @onready_("scene/shooter")
+    @onready("scene/shooter")
     shooter!: Shooter;
 
-    @onready_("scene/rope")
+    @onready("scene/rope")
     rope!: Sprite2D;
 
     private instantiate_asset(path: string) {

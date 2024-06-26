@@ -45,9 +45,9 @@ __decorate([
     (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_FLOAT)
 ], Shooter.prototype, "speed", void 0);
 __decorate([
-    (0, jsb_core_1.signal_)()
+    (0, jsb_core_1.signal)()
 ], Shooter.prototype, "shot", void 0);
 __decorate([
-    (0, jsb_core_1.signal_)()
+    (0, jsb_core_1.signal)()
 ], Shooter.prototype, "moved", void 0);
 //# sourceMappingURL=shooter.js.map

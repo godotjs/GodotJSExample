@@ -123,7 +123,7 @@ class TestNode extends godot_1.Button {
 }
 exports.default = TestNode;
 __decorate([
-    (0, jsb_core_1.onready_)("JSButtonChildNode")
+    (0, jsb_core_1.onready)("JSButtonChildNode")
 ], TestNode.prototype, "ready_node", void 0);
 __decorate([
     (0, jsb_core_1.export_flags)(MyTags)
@@ -138,6 +138,6 @@ __decorate([
     (0, jsb_core_1.export_)(godot_1.Variant.Type.TYPE_INT)
 ], TestNode.prototype, "int_value", void 0);
 __decorate([
-    (0, jsb_core_1.signal_)()
+    (0, jsb_core_1.signal)()
 ], TestNode.prototype, "test_signal", void 0);
 //# sourceMappingURL=test_button.js.map
