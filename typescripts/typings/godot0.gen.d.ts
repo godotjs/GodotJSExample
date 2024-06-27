@@ -108,7 +108,10 @@ declare module "godot" {
             MONITOR_MAX = 33,
         }
     }
-    /** Exposes performance-related data. */
+    /** Exposes performance-related data.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_performance.html  
+     */
     class Performance extends Object {
         /** Returns the value of one of the available built-in monitors. You should provide one of the [enum Monitor] constants as the argument, like this:  
          *    
@@ -139,7 +142,10 @@ declare module "godot" {
         static get_custom_monitor_names(): Array
     }
     // // Singleton Class
-    /** A singleton for managing [TextServer] implementations. */
+    /** A singleton for managing [TextServer] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_textservermanager.html  
+     */
     class TextServerManager extends Object {
         /** Registers a [TextServer] interface. */
         static add_interface(interface: TextServer): void
@@ -172,7 +178,10 @@ declare module "godot" {
         static readonly interface_removed: Signal // interface_name: StringName => void
     }
     // // Singleton Class
-    /** A singleton for managing [PhysicsServer2D] implementations. */
+    /** A singleton for managing [PhysicsServer2D] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver2dmanager.html  
+     */
     class PhysicsServer2DManager extends Object {
         /** Register a [PhysicsServer2D] implementation by passing a [param name] and a [Callable] that returns a [PhysicsServer2D] object. */
         static register_server(name: string, create_callback: Callable): void
@@ -181,7 +190,10 @@ declare module "godot" {
         static set_default_server(name: string, priority: number /*i64*/): void
     }
     // // Singleton Class
-    /** A singleton for managing [PhysicsServer3D] implementations. */
+    /** A singleton for managing [PhysicsServer3D] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver3dmanager.html  
+     */
     class PhysicsServer3DManager extends Object {
         /** Register a [PhysicsServer3D] implementation by passing a [param name] and a [Callable] that returns a [PhysicsServer3D] object. */
         static register_server(name: string, create_callback: Callable): void
@@ -190,7 +202,10 @@ declare module "godot" {
         static set_default_server(name: string, priority: number /*i64*/): void
     }
     // // Singleton Class
-    /** Helper class for creating and clearing navigation meshes. */
+    /** Helper class for creating and clearing navigation meshes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_navigationmeshgenerator.html  
+     */
     class NavigationMeshGenerator extends Object {
         /** The bake function is deprecated due to core threading changes. To upgrade existing code, first create a [NavigationMeshSourceGeometryData3D] resource. Use this resource with [method parse_source_geometry_data] to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with [method bake_from_source_geometry_data] to bake a navigation mesh. */
         static bake(navigation_mesh: NavigationMesh, root_node: Node): void
@@ -209,7 +224,10 @@ declare module "godot" {
         static bake_from_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
     }
     // // Singleton Class
-    /** Stores globally-accessible variables. */
+    /** Stores globally-accessible variables.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_projectsettings.html  
+     */
     class ProjectSettings extends Object {
         /** Returns `true` if a configuration value is present. */
         static has_setting(name: string): boolean
@@ -340,7 +358,10 @@ declare module "godot" {
             TYPE_ANY = 3,
         }
     }
-    /** Internet protocol (IP) support functions such as DNS resolution. */
+    /** Internet protocol (IP) support functions such as DNS resolution.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_ip.html  
+     */
     class IP extends Object {
         /** Maximum number of concurrent DNS resolver queries allowed, [constant RESOLVER_INVALID_ID] is returned if exceeded. */
         static readonly RESOLVER_MAX_QUERIES = 256
@@ -423,7 +444,10 @@ declare module "godot" {
             END_ROUND = 4,
         }
     }
-    /** Provides methods for some common 2D geometric operations. */
+    /** Provides methods for some common 2D geometric operations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_geometry2d.html  
+     */
     class Geometry2D extends Object {
         /** Returns `true` if [param point] is inside the circle or if it's located exactly [i]on[/i] the circle's boundary, otherwise returns `false`. */
         static is_point_in_circle(point: Vector2, circle_position: Vector2, circle_radius: number /*f64*/): boolean
@@ -516,7 +540,10 @@ declare module "godot" {
         static make_atlas(sizes: PackedVector2Array): Dictionary
     }
     // // Singleton Class
-    /** Provides methods for some common 3D geometric operations. */
+    /** Provides methods for some common 3D geometric operations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_geometry3d.html  
+     */
     class Geometry3D extends Object {
         /** Calculates and returns all the vertex points of a convex shape defined by an array of [param planes]. */
         static compute_convex_mesh_points(planes: Array): PackedVector3Array
@@ -583,7 +610,10 @@ declare module "godot" {
             CACHE_MODE_REPLACE = 2,
         }
     }
-    /** A singleton for loading resource files. */
+    /** A singleton for loading resource files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceloader.html  
+     */
     class ResourceLoader extends Object {
         /** Loads the resource using threads. If [param use_sub_threads] is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).  
          *  The [param cache_mode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.  
@@ -675,7 +705,10 @@ declare module "godot" {
             FLAG_REPLACE_SUBRESOURCE_PATHS = 64,
         }
     }
-    /** A singleton for saving [Resource]s to the filesystem. */
+    /** A singleton for saving [Resource]s to the filesystem.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourcesaver.html  
+     */
     class ResourceSaver extends Object {
         /** Saves a resource to disk to the given path, using a [ResourceFormatSaver] that recognizes the resource object. If [param path] is empty, [ResourceSaver] will try to use [member Resource.resource_path].  
          *  The [param flags] bitmask can be specified to customize the save behavior using [enum SaverFlags] flags.  
@@ -731,7 +764,10 @@ declare module "godot" {
             SYSTEM_DIR_RINGTONES = 7,
         }
     }
-    /** Provides access to common operating system functionalities. */
+    /** Provides access to common operating system functionalities.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_os.html  
+     */
     class OS extends Object {
         /** Returns an array of MIDI device names.  
          *  The returned array will be empty if the system MIDI driver has not previously been initialized with [method open_midi_inputs].  
@@ -1176,7 +1212,10 @@ declare module "godot" {
         delta_smoothing: boolean
     }
     // // Singleton Class
-    /** Provides access to engine properties. */
+    /** Provides access to engine properties.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_engine.html  
+     */
     class Engine extends Object {
         static set_physics_ticks_per_second(physics_ticks_per_second: number /*i64*/): void
         static get_physics_ticks_per_second(): number /*i64*/
@@ -1349,7 +1388,10 @@ declare module "godot" {
         physics_jitter_fix: number /*f64*/
     }
     // // Singleton Class
-    /** A class information repository. */
+    /** A class information repository.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_classdb.html  
+     */
     class ClassDB extends Object {
         /** Returns the names of all the classes available. */
         static get_class_list(): PackedStringArray
@@ -1424,7 +1466,10 @@ declare module "godot" {
         static is_class_enabled(class_: StringName): boolean
     }
     // // Singleton Class
-    /** Data transformation (marshaling) and encoding helpers. */
+    /** Data transformation (marshaling) and encoding helpers.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_marshalls.html  
+     */
     class Marshalls extends Object {
         /** Returns a Base64-encoded string of the [Variant] [param variant]. If [param full_objects] is `true`, encoding objects is allowed (and can potentially include code).  
          *  Internally, this uses the same encoding mechanism as the [method @GlobalScope.var_to_bytes] method.  
@@ -1450,7 +1495,10 @@ declare module "godot" {
         static base64_to_utf8(base64_str: string): string
     }
     // // Singleton Class
-    /** The server responsible for language translations. */
+    /** The server responsible for language translations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_translationserver.html  
+     */
     class TranslationServer extends Object {
         /** Sets the locale of the project. The [param locale] string will be standardized to match known locales (e.g. `en-US` would be matched to `en_US`).  
          *  If translations have been loaded beforehand for the new locale, they will be applied.  
@@ -1608,7 +1656,10 @@ declare module "godot" {
             CURSOR_HELP = 16,
         }
     }
-    /** A singleton for handling inputs. */
+    /** A singleton for handling inputs.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_input.html  
+     */
     class Input extends Object {
         /** Returns `true` if any action, key, joypad button, or mouse button is being pressed. This will also return `true` if any action is simulated via code by calling [method action_press]. */
         static is_anything_pressed(): boolean
@@ -1876,7 +1927,10 @@ declare module "godot" {
         static readonly joy_connection_changed: Signal // device: number /*i64*/, connected: boolean => void
     }
     // // Singleton Class
-    /** A singleton that manages all [InputEventAction]s. */
+    /** A singleton that manages all [InputEventAction]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_inputmap.html  
+     */
     class InputMap extends Object {
         /** Returns `true` if the [InputMap] has a registered action with the given name. */
         static has_action(action: StringName): boolean
@@ -1925,7 +1979,10 @@ declare module "godot" {
         static load_from_project_settings(): void
     }
     // // Singleton Class
-    /** Exposes the internal debugger. */
+    /** Exposes the internal debugger.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_enginedebugger.html  
+     */
     class EngineDebugger extends Object {
         /** Returns `true` if the debugger is active otherwise `false`. */
         static is_active(): boolean
@@ -2024,7 +2081,10 @@ declare module "godot" {
             WEEKDAY_SATURDAY = 6,
         }
     }
-    /** A singleton for working with time data. */
+    /** A singleton for working with time data.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_time.html  
+     */
     class Time extends Object {
         /** Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.  
          *  The returned Dictionary's values will be the same as the [method get_datetime_dict_from_system] if the Unix timestamp is the current time, with the exception of Daylight Savings Time as it cannot be determined from the epoch.  
@@ -2143,6 +2203,7 @@ declare module "godot" {
             LOAD_STATUS_NEEDS_RESTART = 4,
         }
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gdextensionmanager.html */
     class GDExtensionManager extends Object {
         static load_extension(path: string): GDExtensionManager.LoadStatus
         static reload_extension(path: string): GDExtensionManager.LoadStatus
@@ -2155,7 +2216,10 @@ declare module "godot" {
         static readonly extensions_reloaded: Signal //  => void
     }
     // // Singleton Class
-    /** A singleton that manages the unique identifiers of all resources within a project. */
+    /** A singleton that manages the unique identifiers of all resources within a project.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceuid.html  
+     */
     class ResourceUID extends Object {
         /** The value to use for an invalid UID, for example if the resource could not be loaded.  
          *  Its text representation is `uid://<invalid>`.  
@@ -2197,7 +2261,10 @@ declare module "godot" {
         static remove_id(id: number /*i64*/): void
     }
     // // Singleton Class
-    /** A singleton that allocates some [Thread]s on startup, used to offload tasks to these threads. */
+    /** A singleton that allocates some [Thread]s on startup, used to offload tasks to these threads.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_workerthreadpool.html  
+     */
     class WorkerThreadPool extends Object {
         /** Adds [param action] as a task to be executed by a worker thread. [param high_priority] determines if the task has a high priority or a low priority (default). You can optionally provide a [param description] to help with debugging.  
          *  Returns a task ID that can be used by other methods.  
@@ -2233,7 +2300,10 @@ declare module "godot" {
         static wait_for_group_task_completion(group_id: number /*i64*/): void
     }
     // // Singleton Class
-    /** A singleton that provides access to static information about [Theme] resources used by the engine and by your project. */
+    /** A singleton that provides access to static information about [Theme] resources used by the engine and by your project.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_themedb.html  
+     */
     class ThemeDB extends Object {
         /** Returns a reference to the default engine [Theme]. This theme resource is responsible for the out-of-the-box look of [Control] nodes and cannot be overridden. */
         static get_default_theme(): Theme
@@ -2278,7 +2348,10 @@ declare module "godot" {
         static readonly fallback_changed: Signal //  => void
     }
     // // Singleton Class
-    /** Godot editor's interface. */
+    /** Godot editor's interface.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorinterface.html  
+     */
     class EditorInterface extends Object {
         /** Restarts the editor. This closes the editor and then opens the same project. If [param save] is `true`, the project will be saved before restarting. */
         static restart_editor(save: boolean = true): void
@@ -2469,11 +2542,15 @@ declare module "godot" {
         movie_maker_enabled: boolean
     }
     // // Singleton Class
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_javaclasswrapper.html */
     class JavaClassWrapper extends Object {
         static wrap(name: string): JavaClass
     }
     // // Singleton Class
-    /** Singleton that connects the engine with the browser's JavaScript context in Web export. */
+    /** Singleton that connects the engine with the browser's JavaScript context in Web export.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_javascriptbridge.html  
+     */
     class JavaScriptBridge extends Object {
         /** Execute the string [param code] as JavaScript code within the browser window. This is a call to the actual global JavaScript function [code skip-lint]eval()`.  
          *  If [param use_global_execution_context] is `true`, the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.  
@@ -2889,7 +2966,10 @@ declare module "godot" {
             TTS_UTTERANCE_BOUNDARY = 3,
         }
     }
-    /** A server interface for low-level window management. */
+    /** A server interface for low-level window management.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_displayserver.html  
+     */
     class DisplayServer extends Object {
         /** Represents the screen containing the mouse pointer. */
         static readonly SCREEN_WITH_MOUSE_FOCUS = -4
@@ -5255,7 +5335,10 @@ declare module "godot" {
             FEATURE_MULTITHREADED = 1,
         }
     }
-    /** Server for anything visible. */
+    /** Server for anything visible.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_renderingserver.html  
+     */
     class RenderingServer extends Object {
         /** Marks an error that shows that the index array is empty. */
         static readonly NO_INDEX_ARRAY = -1
@@ -6935,7 +7018,10 @@ declare module "godot" {
             SPEAKER_SURROUND_71 = 3,
         }
     }
-    /** Server interface for low-level audio access. */
+    /** Server interface for low-level audio access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioserver.html  
+     */
     class AudioServer extends Object {
         static set_bus_count(amount: number /*i64*/): void
         static get_bus_count(): number /*i64*/
@@ -7366,7 +7452,10 @@ declare module "godot" {
             INFO_ISLAND_COUNT = 2,
         }
     }
-    /** A server interface for low-level 2D physics access. */
+    /** A server interface for low-level 2D physics access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver2d.html  
+     */
     class PhysicsServer2D extends Object {
         /** Creates a 2D world boundary shape in the physics server, and returns the [RID] that identifies it. Use [method shape_set_data] to set the shape's normal direction and distance properties. */
         static world_boundary_shape_create(): RID
@@ -8226,7 +8315,10 @@ declare module "godot" {
             BODY_AXIS_ANGULAR_Z = 32,
         }
     }
-    /** A server interface for low-level 3D physics access. */
+    /** A server interface for low-level 3D physics access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver3d.html  
+     */
     class PhysicsServer3D extends Object {
         static world_boundary_shape_create(): RID
         static separation_ray_shape_create(): RID
@@ -8629,7 +8721,10 @@ declare module "godot" {
         static get_process_info(process_info: PhysicsServer3D.ProcessInfo): number /*i64*/
     }
     // // Singleton Class
-    /** A server interface for low-level 2D navigation access. */
+    /** A server interface for low-level 2D navigation access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_navigationserver2d.html  
+     */
     class NavigationServer2D extends Object {
         /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
         static get_maps(): Array
@@ -8986,7 +9081,10 @@ declare module "godot" {
             INFO_EDGE_FREE_COUNT = 8,
         }
     }
-    /** A server interface for low-level 3D navigation access. */
+    /** A server interface for low-level 3D navigation access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_navigationserver3d.html  
+     */
     class NavigationServer3D extends Object {
         /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
         static get_maps(): Array
@@ -9400,7 +9498,10 @@ declare module "godot" {
             DONT_RESET_ROTATION = 2,
         }
     }
-    /** Server for AR and VR features. */
+    /** Server for AR and VR features.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_xrserver.html  
+     */
     class XRServer extends Object {
         static get_world_scale(): number /*f64*/
         static set_world_scale(scale: number /*f64*/): void
@@ -9497,7 +9598,10 @@ declare module "godot" {
             FEED_CBCR_IMAGE = 1,
         }
     }
-    /** Server keeping track of different cameras accessible in Godot. */
+    /** Server keeping track of different cameras accessible in Godot.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_cameraserver.html  
+     */
     class CameraServer extends Object {
         /** Returns the [CameraFeed] corresponding to the camera with the given [param index]. */
         static get_feed(index: number /*i64*/): CameraFeed

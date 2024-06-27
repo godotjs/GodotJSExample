@@ -1,15 +1,1386 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape2deditor.html */
+    class CollisionShape2DEditor extends Control {
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape2deditorplugin.html */
+    class CollisionShape2DEditorPlugin extends EditorPlugin {
+    }
+    /** A node that provides a [Shape3D] to a [CollisionObject3D] parent.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape3d.html  
+     */
+    class CollisionShape3D extends Node3D {
+        /** [i]Obsoleted.[/i] Use [signal Resource.changed] instead. */
+        resource_changed(resource: Resource): void
+        set_shape(shape: Shape3D): void
+        get_shape(): Shape3D
+        set_disabled(enable: boolean): void
+        is_disabled(): boolean
+        
+        /** Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings geometry. */
+        make_convex_from_siblings(): void
+        
+        /** The actual shape owned by this collision shape. */
+        shape: Shape3D
+        
+        /** A disabled collision shape has no effect in the world. */
+        disabled: boolean
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape3dgizmoplugin.html */
+    class CollisionShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    namespace ColorPicker {
+        enum ColorModeType {
+            /** Allows editing the color with Red/Green/Blue sliders. */
+            MODE_RGB = 0,
+            
+            /** Allows editing the color with Hue/Saturation/Value sliders. */
+            MODE_HSV = 1,
+            
+            /** Allows the color R, G, B component values to go beyond 1.0, which can be used for certain special operations that require it (like tinting without darkening or rendering sprites in HDR). */
+            MODE_RAW = 2,
+            
+            /** Allows editing the color with Hue/Saturation/Lightness sliders.  
+             *  OKHSL is a new color space similar to HSL but that better match perception by leveraging the Oklab color space which is designed to be simple to use, while doing a good job at predicting perceived lightness, chroma and hue.  
+             *  [url=https://bottosson.github.io/posts/colorpicker/]Okhsv and Okhsl color spaces[/url]  
+             */
+            MODE_OKHSL = 3,
+        }
+        enum PickerShapeType {
+            /** HSV Color Model rectangle color space. */
+            SHAPE_HSV_RECTANGLE = 0,
+            
+            /** HSV Color Model rectangle color space with a wheel. */
+            SHAPE_HSV_WHEEL = 1,
+            
+            /** HSV Color Model circle color space. Use Saturation as a radius. */
+            SHAPE_VHS_CIRCLE = 2,
+            
+            /** HSL OK Color Model circle color space. */
+            SHAPE_OKHSL_CIRCLE = 3,
+            
+            /** The color space shape and the shape select button are hidden. Can't be selected from the shapes popup. */
+            SHAPE_NONE = 4,
+        }
+    }
+    /** A widget that provides an interface for selecting or modifying a color.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_colorpicker.html  
+     */
+    class ColorPicker extends VBoxContainer {
+        set_pick_color(color: Color): void
+        get_pick_color(): Color
+        set_deferred_mode(mode: boolean): void
+        is_deferred_mode(): boolean
+        set_color_mode(color_mode: ColorPicker.ColorModeType): void
+        get_color_mode(): ColorPicker.ColorModeType
+        set_edit_alpha(show: boolean): void
+        is_editing_alpha(): boolean
+        set_can_add_swatches(enabled: boolean): void
+        are_swatches_enabled(): boolean
+        set_presets_visible(visible: boolean): void
+        are_presets_visible(): boolean
+        set_modes_visible(visible: boolean): void
+        are_modes_visible(): boolean
+        set_sampler_visible(visible: boolean): void
+        is_sampler_visible(): boolean
+        set_sliders_visible(visible: boolean): void
+        are_sliders_visible(): boolean
+        set_hex_visible(visible: boolean): void
+        is_hex_visible(): boolean
+        
+        /** Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them.  
+         *      
+         *  **Note:** The presets list is only for [i]this[/i] color picker.  
+         */
+        add_preset(color: Color): void
+        
+        /** Removes the given color from the list of color presets of this color picker. */
+        erase_preset(color: Color): void
+        
+        /** Returns the list of colors in the presets of the color picker. */
+        get_presets(): PackedColorArray
+        
+        /** Adds the given color to a list of color recent presets so that it can be picked later. Recent presets are the colors that were picked recently, a new preset is automatically created and added to recent presets when you pick a new color.  
+         *      
+         *  **Note:** The recent presets list is only for [i]this[/i] color picker.  
+         */
+        add_recent_preset(color: Color): void
+        
+        /** Removes the given color from the list of color recent presets of this color picker. */
+        erase_recent_preset(color: Color): void
+        
+        /** Returns the list of colors in the recent presets of the color picker. */
+        get_recent_presets(): PackedColorArray
+        set_picker_shape(shape: ColorPicker.PickerShapeType): void
+        get_picker_shape(): ColorPicker.PickerShapeType
+        
+        /** The currently selected color. */
+        color: Color
+        
+        /** If `true`, shows an alpha channel slider (opacity). */
+        edit_alpha: boolean
+        
+        /** The currently selected color mode. See [enum ColorModeType]. */
+        color_mode: number /*i64*/
+        
+        /** If `true`, the color will apply only after the user releases the mouse button, otherwise it will apply immediately even in mouse motion event (which can cause performance issues). */
+        deferred_mode: boolean
+        
+        /** The shape of the color space view. See [enum PickerShapeType]. */
+        picker_shape: number /*i64*/
+        
+        /** If `true`, it's possible to add presets under Swatches. If `false`, the button to add presets is disabled. */
+        can_add_swatches: boolean
+        
+        /** If `true`, the color sampler and color preview are visible. */
+        sampler_visible: boolean
+        
+        /** If `true`, the color mode buttons are visible. */
+        color_modes_visible: boolean
+        
+        /** If `true`, the color sliders are visible. */
+        sliders_visible: boolean
+        
+        /** If `true`, the hex color code input field is visible. */
+        hex_visible: boolean
+        
+        /** If `true`, the Swatches and Recent Colors presets are visible. */
+        presets_visible: boolean
+        
+        /** Emitted when the color is changed. */
+        readonly color_changed: Signal // color: Color => void
+        
+        /** Emitted when a preset is added. */
+        readonly preset_added: Signal // color: Color => void
+        
+        /** Emitted when a preset is removed. */
+        readonly preset_removed: Signal // color: Color => void
+    }
+    /** A button that brings up a [ColorPicker] when pressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_colorpickerbutton.html  
+     */
+    class ColorPickerButton extends Button {
+        set_pick_color(color: Color): void
+        get_pick_color(): Color
+        
+        /** Returns the [ColorPicker] that this node toggles.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
+         */
+        get_picker(): ColorPicker
+        
+        /** Returns the control's [PopupPanel] which allows you to connect to popup signals. This allows you to handle events when the ColorPicker is shown or hidden.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.  
+         */
+        get_popup(): PopupPanel
+        set_edit_alpha(show: boolean): void
+        is_editing_alpha(): boolean
+        _about_to_popup(): void
+        
+        /** The currently selected color. */
+        color: Color
+        
+        /** If `true`, the alpha channel in the displayed [ColorPicker] will be visible. */
+        edit_alpha: boolean
+        
+        /** Emitted when the color changes. */
+        readonly color_changed: Signal // color: Color => void
+        
+        /** Emitted when the [ColorPicker] is closed. */
+        readonly popup_closed: Signal //  => void
+        
+        /** Emitted when the [ColorPicker] is created (the button is pressed for the first time). */
+        readonly picker_created: Signal //  => void
+    }
+    /** A control that displays a solid color rectangle.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_colorrect.html  
+     */
+    class ColorRect extends Control {
+        set_color(color: Color): void
+        get_color(): Color
+        
+        /** The fill color of the rectangle. */
+        color: Color
+    }
+    /** An optionally compressed [Cubemap].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedcubemap.html  
+     */
+    class CompressedCubemap extends CompressedTextureLayered {
+    }
+    /** An optionally compressed [CubemapArray].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedcubemaparray.html  
+     */
+    class CompressedCubemapArray extends CompressedTextureLayered {
+    }
+    /** Texture with 2 dimensions, optionally compressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture2d.html  
+     */
+    class CompressedTexture2D extends Texture2D {
+        /** Loads the texture from the specified [param path]. */
+        load(path: string): GodotError
+        get_load_path(): string
+        
+        /** The [CompressedTexture2D]'s file path to a `.ctex` file. */
+        load_path: string
+    }
+    /** Array of 2-dimensional textures, optionally compressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture2darray.html  
+     */
+    class CompressedTexture2DArray extends CompressedTextureLayered {
+    }
+    /** Texture with 3 dimensions, optionally compressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture3d.html  
+     */
+    class CompressedTexture3D extends Texture3D {
+        /** Loads the texture from the specified [param path]. */
+        load(path: string): GodotError
+        get_load_path(): string
+        
+        /** The [CompressedTexture3D]'s file path to a `.ctex3d` file. */
+        load_path: string
+    }
+    /** Base class for texture arrays that can optionally be compressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexturelayered.html  
+     */
+    class CompressedTextureLayered extends TextureLayered {
+        /** Loads the texture at [param path]. */
+        load(path: string): GodotError
+        get_load_path(): string
+        
+        /** The path the texture should be loaded from. */
+        load_path: string
+    }
+    /** A 2D polyline shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_concavepolygonshape2d.html  
+     */
+    class ConcavePolygonShape2D extends Shape2D {
+        set_segments(segments: PackedVector2Array): void
+        get_segments(): PackedVector2Array
+        
+        /** The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of length divisible by two) is naturally divided into pairs (one pair for each segment); each pair consists of the starting point of a segment and the endpoint of a segment. */
+        segments: PackedVector2Array
+    }
+    /** A 3D trimesh shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_concavepolygonshape3d.html  
+     */
+    class ConcavePolygonShape3D extends Shape3D {
+        /** Sets the faces of the trimesh shape from an array of vertices. The [param faces] array should be composed of triples such that each triple of vertices defines a triangle. */
+        set_faces(faces: PackedVector3Array): void
+        
+        /** Returns the faces of the trimesh shape as an array of vertices. The array (of length divisible by three) is naturally divided into triples; each triple of vertices defines a triangle. */
+        get_faces(): PackedVector3Array
+        set_backface_collision_enabled(enabled: boolean): void
+        is_backface_collision_enabled(): boolean
+        data: PackedVector3Array
+        
+        /** If set to `true`, collisions occur on both sides of the concave shape faces. Otherwise they occur only along the face normals. */
+        backface_collision: boolean
+    }
+    namespace ConeTwistJoint3D {
+        enum Param {
+            /** Swing is rotation from side to side, around the axis perpendicular to the twist axis.  
+             *  The swing span defines, how much rotation will not get corrected along the swing axis.  
+             *  Could be defined as looseness in the [ConeTwistJoint3D].  
+             *  If below 0.05, this behavior is locked.  
+             */
+            PARAM_SWING_SPAN = 0,
+            
+            /** Twist is the rotation around the twist axis, this value defined how far the joint can twist.  
+             *  Twist is locked if below 0.05.  
+             */
+            PARAM_TWIST_SPAN = 1,
+            
+            /** The speed with which the swing or twist will take place.  
+             *  The higher, the faster.  
+             */
+            PARAM_BIAS = 2,
+            
+            /** The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint. */
+            PARAM_SOFTNESS = 3,
+            
+            /** Defines, how fast the swing- and twist-speed-difference on both sides gets synced. */
+            PARAM_RELAXATION = 4,
+            
+            /** Represents the size of the [enum Param] enum. */
+            PARAM_MAX = 5,
+        }
+    }
+    /** A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_conetwistjoint3d.html  
+     */
+    class ConeTwistJoint3D extends Joint3D {
+        /** Sets the value of the specified parameter. */
+        set_param(param: ConeTwistJoint3D.Param, value: number /*f64*/): void
+        
+        /** Returns the value of the specified parameter. */
+        get_param(param: ConeTwistJoint3D.Param): number /*f64*/
+    }
+    /** Helper class to handle INI-style files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_configfile.html  
+     */
+    class ConfigFile extends RefCounted {
+        /** Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed. */
+        set_value(section: string, key: string, value: any): void
+        
+        /** Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback [param default] value. If [param default] is not specified or set to `null`, an error is also raised. */
+        get_value(section: string, key: string, default_: any = <any> {} /*compound.type from nil*/): any
+        
+        /** Returns `true` if the specified section exists. */
+        has_section(section: string): boolean
+        
+        /** Returns `true` if the specified section-key pair exists. */
+        has_section_key(section: string, key: string): boolean
+        
+        /** Returns an array of all defined section identifiers. */
+        get_sections(): PackedStringArray
+        
+        /** Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist. */
+        get_section_keys(section: string): PackedStringArray
+        
+        /** Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist. */
+        erase_section(section: string): void
+        
+        /** Deletes the specified key in a section. Raises an error if either the section or the key do not exist. */
+        erase_section_key(section: string, key: string): void
+        
+        /** Loads the config file specified as a parameter. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        load(path: string): GodotError
+        
+        /** Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        parse(data: string): GodotError
+        
+        /** Saves the contents of the [ConfigFile] object to the file specified as a parameter. The output file uses an INI-style structure.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        save(path: string): GodotError
+        
+        /** Obtain the text version of this config file (the same text that would be written to a file). */
+        encode_to_text(): string
+        
+        /** Loads the encrypted config file specified as a parameter, using the provided [param key] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        load_encrypted(path: string, key: PackedByteArray): GodotError
+        
+        /** Loads the encrypted config file specified as a parameter, using the provided [param password] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        load_encrypted_pass(path: string, password: string): GodotError
+        
+        /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param key] to encrypt it. The output file uses an INI-style structure.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        save_encrypted(path: string, key: PackedByteArray): GodotError
+        
+        /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param password] to encrypt it. The output file uses an INI-style structure.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        save_encrypted_pass(path: string, password: string): GodotError
+        
+        /** Removes the entire contents of the config. */
+        clear(): void
+    }
+    /** A dialog used for confirmation of actions.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_confirmationdialog.html  
+     */
+    class ConfirmationDialog extends AcceptDialog {
+        /** Returns the cancel button.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
+         */
+        get_cancel_button(): Button
+        set_cancel_button_text(text: string): void
+        get_cancel_button_text(): string
+        
+        /** The text displayed by the cancel button (see [method get_cancel_button]). */
+        cancel_button_text: string
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_connectdialog.html */
+    class ConnectDialog extends ConfirmationDialog {
+        readonly connected: Signal //  => void
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_connectdialogbinds.html */
+    class ConnectDialogBinds extends Object {
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_connectioninfodialog.html */
+    class ConnectionInfoDialog extends AcceptDialog {
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_connectionsdock.html */
+    class ConnectionsDock extends VBoxContainer {
+        update_tree(): void
+    }
+    /** Base class for all GUI containers.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_container.html  
+     */
+    class Container extends Control {
+        /** Notification just before children are going to be sorted, in case there's something to process beforehand. */
+        static readonly NOTIFICATION_PRE_SORT_CHILDREN = 50
+        
+        /** Notification for when sorting the children, it must be obeyed immediately. */
+        static readonly NOTIFICATION_SORT_CHILDREN = 51
+        
+        /** Implement to return a list of allowed horizontal [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.  
+         *      
+         *  **Note:** Having no size flags is equal to having [constant Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.  
+         */
+        /* gdvirtual */ _get_allowed_size_flags_horizontal(): PackedInt32Array
+        
+        /** Implement to return a list of allowed vertical [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.  
+         *      
+         *  **Note:** Having no size flags is equal to having [constant Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.  
+         */
+        /* gdvirtual */ _get_allowed_size_flags_vertical(): PackedInt32Array
+        
+        /** Queue resort of the contained children. This is called automatically anyway, but can be called upon request. */
+        queue_sort(): void
+        
+        /** Fit a child control in a given rect. This is mainly a helper for creating custom container classes. */
+        fit_child_in_rect(child: Control, rect: Rect2): void
+        
+        /** Emitted when children are going to be sorted. */
+        readonly pre_sort_children: Signal //  => void
+        
+        /** Emitted when sorting the children is needed. */
+        readonly sort_children: Signal //  => void
+    }
+    namespace Control {
+        enum FocusMode {
+            /** The node cannot grab focus. Use with [member focus_mode]. */
+            FOCUS_NONE = 0,
+            
+            /** The node can only grab focus on mouse clicks. Use with [member focus_mode]. */
+            FOCUS_CLICK = 1,
+            
+            /** The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or using the D-pad buttons on a gamepad. Use with [member focus_mode]. */
+            FOCUS_ALL = 2,
+        }
+        enum CursorShape {
+            /** Show the system's arrow mouse cursor when the user hovers the node. Use with [member mouse_default_cursor_shape]. */
+            CURSOR_ARROW = 0,
+            
+            /** Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a shape similar to "I". It tells the user they can highlight or insert text. */
+            CURSOR_IBEAM = 1,
+            
+            /** Show the system's pointing hand mouse cursor when the user hovers the node. */
+            CURSOR_POINTING_HAND = 2,
+            
+            /** Show the system's cross mouse cursor when the user hovers the node. */
+            CURSOR_CROSS = 3,
+            
+            /** Show the system's wait mouse cursor when the user hovers the node. Often an hourglass. */
+            CURSOR_WAIT = 4,
+            
+            /** Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a small hourglass. */
+            CURSOR_BUSY = 5,
+            
+            /** Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user hovers the node. It tells the user they're currently dragging an item, like a node in the Scene dock. */
+            CURSOR_DRAG = 6,
+            
+            /** Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It tells the user they can drop an item they're currently grabbing, like a node in the Scene dock. */
+            CURSOR_CAN_DROP = 7,
+            
+            /** Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed circle. */
+            CURSOR_FORBIDDEN = 8,
+            
+            /** Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed vertical arrow. It tells the user they can resize the window or the panel vertically. */
+            CURSOR_VSIZE = 9,
+            
+            /** Show the system's horizontal resize mouse cursor when the user hovers the node. A double-headed horizontal arrow. It tells the user they can resize the window or the panel horizontally. */
+            CURSOR_HSIZE = 10,
+            
+            /** Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically. */
+            CURSOR_BDIAGSIZE = 11,
+            
+            /** Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the top left to the bottom right, the opposite of [constant CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally and vertically. */
+            CURSOR_FDIAGSIZE = 12,
+            
+            /** Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed arrows at a 90 degree angle. It tells the user they can move a UI element freely. */
+            CURSOR_MOVE = 13,
+            
+            /** Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's the same as [constant CURSOR_VSIZE]. */
+            CURSOR_VSPLIT = 14,
+            
+            /** Show the system's horizontal split mouse cursor when the user hovers the node. On Windows, it's the same as [constant CURSOR_HSIZE]. */
+            CURSOR_HSPLIT = 15,
+            
+            /** Show the system's help mouse cursor when the user hovers the node, a question mark. */
+            CURSOR_HELP = 16,
+        }
+        enum LayoutPreset {
+            /** Snap all 4 anchors to the top-left of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_TOP_LEFT = 0,
+            
+            /** Snap all 4 anchors to the top-right of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_TOP_RIGHT = 1,
+            
+            /** Snap all 4 anchors to the bottom-left of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_BOTTOM_LEFT = 2,
+            
+            /** Snap all 4 anchors to the bottom-right of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_BOTTOM_RIGHT = 3,
+            
+            /** Snap all 4 anchors to the center of the left edge of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER_LEFT = 4,
+            
+            /** Snap all 4 anchors to the center of the top edge of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER_TOP = 5,
+            
+            /** Snap all 4 anchors to the center of the right edge of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER_RIGHT = 6,
+            
+            /** Snap all 4 anchors to the center of the bottom edge of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER_BOTTOM = 7,
+            
+            /** Snap all 4 anchors to the center of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER = 8,
+            
+            /** Snap all 4 anchors to the left edge of the parent control. The left offset becomes relative to the left edge and the top offset relative to the top left corner of the node's parent. Use with [method set_anchors_preset]. */
+            PRESET_LEFT_WIDE = 9,
+            
+            /** Snap all 4 anchors to the top edge of the parent control. The left offset becomes relative to the top left corner, the top offset relative to the top edge, and the right offset relative to the top right corner of the node's parent. Use with [method set_anchors_preset]. */
+            PRESET_TOP_WIDE = 10,
+            
+            /** Snap all 4 anchors to the right edge of the parent control. The right offset becomes relative to the right edge and the top offset relative to the top right corner of the node's parent. Use with [method set_anchors_preset]. */
+            PRESET_RIGHT_WIDE = 11,
+            
+            /** Snap all 4 anchors to the bottom edge of the parent control. The left offset becomes relative to the bottom left corner, the bottom offset relative to the bottom edge, and the right offset relative to the bottom right corner of the node's parent. Use with [method set_anchors_preset]. */
+            PRESET_BOTTOM_WIDE = 12,
+            
+            /** Snap all 4 anchors to a vertical line that cuts the parent control in half. Use with [method set_anchors_preset]. */
+            PRESET_VCENTER_WIDE = 13,
+            
+            /** Snap all 4 anchors to a horizontal line that cuts the parent control in half. Use with [method set_anchors_preset]. */
+            PRESET_HCENTER_WIDE = 14,
+            
+            /** Snap all 4 anchors to the respective corners of the parent control. Set all 4 offsets to 0 after you applied this preset and the [Control] will fit its parent control. Use with [method set_anchors_preset]. */
+            PRESET_FULL_RECT = 15,
+        }
+        enum LayoutPresetMode {
+            /** The control will be resized to its minimum size. */
+            PRESET_MODE_MINSIZE = 0,
+            
+            /** The control's width will not change. */
+            PRESET_MODE_KEEP_WIDTH = 1,
+            
+            /** The control's height will not change. */
+            PRESET_MODE_KEEP_HEIGHT = 2,
+            
+            /** The control's size will not change. */
+            PRESET_MODE_KEEP_SIZE = 3,
+        }
+        enum SizeFlags {
+            /** Tells the parent [Container] to align the node with its start, either the top or the left edge. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical].  
+             *      
+             *  **Note:** Setting this flag is equal to not having any size flags.  
+             */
+            SIZE_SHRINK_BEGIN = 0,
+            
+            /** Tells the parent [Container] to expand the bounds of this node to fill all the available space without pushing any other node. It is mutually exclusive with shrink size flags. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
+            SIZE_FILL = 1,
+            
+            /** Tells the parent [Container] to let this node take all the available space on the axis you flag. If multiple neighboring nodes are set to expand, they'll share the space based on their stretch ratio. See [member size_flags_stretch_ratio]. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
+            SIZE_EXPAND = 2,
+            
+            /** Sets the node's size flags to both fill and expand. See [constant SIZE_FILL] and [constant SIZE_EXPAND] for more information. */
+            SIZE_EXPAND_FILL = 3,
+            
+            /** Tells the parent [Container] to center the node in the available space. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
+            SIZE_SHRINK_CENTER = 4,
+            
+            /** Tells the parent [Container] to align the node with its end, either the bottom or the right edge. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
+            SIZE_SHRINK_END = 8,
+        }
+        enum MouseFilter {
+            /** The control will receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. And the control will receive the [signal mouse_entered] and [signal mouse_exited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls. */
+            MOUSE_FILTER_STOP = 0,
+            
+            /** The control will receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. And the control will receive the [signal mouse_entered] and [signal mouse_exited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [method Node._shortcut_input] for further processing. */
+            MOUSE_FILTER_PASS = 1,
+            
+            /** The control will not receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. The control will also not receive the [signal mouse_entered] nor [signal mouse_exited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.  
+             *      
+             *  **Note:** If the control has received [signal mouse_entered] but not [signal mouse_exited], changing the [member mouse_filter] to [constant MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to be emitted.  
+             */
+            MOUSE_FILTER_IGNORE = 2,
+        }
+        enum GrowDirection {
+            /** The control will grow to the left or top to make up if its minimum size is changed to be greater than its current size on the respective axis. */
+            GROW_DIRECTION_BEGIN = 0,
+            
+            /** The control will grow to the right or bottom to make up if its minimum size is changed to be greater than its current size on the respective axis. */
+            GROW_DIRECTION_END = 1,
+            
+            /** The control will grow in both directions equally to make up if its minimum size is changed to be greater than its current size. */
+            GROW_DIRECTION_BOTH = 2,
+        }
+        enum Anchor {
+            /** Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it with one of the `anchor_*` member variables, like [member anchor_left]. To change all 4 anchors at once, use [method set_anchors_preset]. */
+            ANCHOR_BEGIN = 0,
+            
+            /** Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use it with one of the `anchor_*` member variables, like [member anchor_left]. To change all 4 anchors at once, use [method set_anchors_preset]. */
+            ANCHOR_END = 1,
+        }
+        enum LayoutDirection {
+            /** Automatic layout direction, determined from the parent control layout direction. */
+            LAYOUT_DIRECTION_INHERITED = 0,
+            
+            /** Automatic layout direction, determined from the current locale. */
+            LAYOUT_DIRECTION_LOCALE = 1,
+            
+            /** Left-to-right layout direction. */
+            LAYOUT_DIRECTION_LTR = 2,
+            
+            /** Right-to-left layout direction. */
+            LAYOUT_DIRECTION_RTL = 3,
+        }
+        enum TextDirection {
+            /** Text writing direction is the same as layout direction. */
+            TEXT_DIRECTION_INHERITED = 3,
+            
+            /** Automatic text writing direction, determined from the current locale and text content. */
+            TEXT_DIRECTION_AUTO = 0,
+            
+            /** Left-to-right text writing direction. */
+            TEXT_DIRECTION_LTR = 1,
+            
+            /** Right-to-left text writing direction. */
+            TEXT_DIRECTION_RTL = 2,
+        }
+    }
+    /** Base class for all GUI controls. Adapts its position and size based on its parent control.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_control.html  
+     */
+    class Control extends CanvasItem {
+        /** Sent when the node changes size. Use [member size] to get the new size. */
+        static readonly NOTIFICATION_RESIZED = 40
+        
+        /** Sent when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
+         *  See also [constant NOTIFICATION_MOUSE_ENTER_SELF].  
+         */
+        static readonly NOTIFICATION_MOUSE_ENTER = 41
+        
+        /** Sent when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
+         *  See also [constant NOTIFICATION_MOUSE_EXIT_SELF].  
+         */
+        static readonly NOTIFICATION_MOUSE_EXIT = 42
+        
+        /** Sent when the mouse cursor enters the control's visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
+         *  See also [constant NOTIFICATION_MOUSE_ENTER].  
+         */
+        static readonly NOTIFICATION_MOUSE_ENTER_SELF = 60
+        
+        /** Sent when the mouse cursor leaves the control's visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
+         *  See also [constant NOTIFICATION_MOUSE_EXIT].  
+         */
+        static readonly NOTIFICATION_MOUSE_EXIT_SELF = 61
+        
+        /** Sent when the node grabs focus. */
+        static readonly NOTIFICATION_FOCUS_ENTER = 43
+        
+        /** Sent when the node loses focus. */
+        static readonly NOTIFICATION_FOCUS_EXIT = 44
+        
+        /** Sent when the node needs to refresh its theme items. This happens in one of the following cases:  
+         *  - The [member theme] property is changed on this node or any of its ancestors.  
+         *  - The [member theme_type_variation] property is changed on this node.  
+         *  - One of the node's theme property overrides is changed.  
+         *  - The node enters the scene tree.  
+         *      
+         *  **Note:** As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.  
+         */
+        static readonly NOTIFICATION_THEME_CHANGED = 45
+        
+        /** Sent when this node is inside a [ScrollContainer] which has begun being scrolled when dragging the scrollable area [i]with a touch event[/i]. This notification is [i]not[/i] sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+         *      
+         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
+         */
+        static readonly NOTIFICATION_SCROLL_BEGIN = 47
+        
+        /** Sent when this node is inside a [ScrollContainer] which has stopped being scrolled when dragging the scrollable area [i]with a touch event[/i]. This notification is [i]not[/i] sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+         *      
+         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
+         */
+        static readonly NOTIFICATION_SCROLL_END = 48
+        
+        /** Sent when control layout direction is changed. */
+        static readonly NOTIFICATION_LAYOUT_DIRECTION_CHANGED = 49
+        
+        /** Virtual method to be implemented by the user. Returns whether the given [param point] is inside this control.  
+         *  If not overridden, default behavior is checking if the point is within control's Rect.  
+         *      
+         *  **Note:** If you want to check if a point is inside the control, you can use `Rect2(Vector2.ZERO, size).has_point(point)`.  
+         */
+        /* gdvirtual */ _has_point(point: Vector2): boolean
+        
+        /** User defined BiDi algorithm override function.  
+         *  Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right order. Ranges should cover full source [param text] without overlaps. BiDi algorithm will be used on each range separately.  
+         */
+        /* gdvirtual */ _structured_text_parser(args: Array, text: string): Array
+        
+        /** Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [member custom_minimum_size] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).  
+         *  If not overridden, defaults to [constant Vector2.ZERO].  
+         *      
+         *  **Note:** This method will not be called when the script is attached to a [Control] node that already overrides its minimum size (e.g. [Label], [Button], [PanelContainer] etc.). It can only be used with most basic GUI nodes, like [Control], [Container], [Panel] etc.  
+         */
+        /* gdvirtual */ _get_minimum_size(): Vector2
+        
+        /** Virtual method to be implemented by the user. Returns the tooltip text for the position [param at_position] in control's local coordinates, which will typically appear when the cursor is resting over this control. See [method get_tooltip].  
+         *      
+         *  **Note:** If this method returns an empty [String], no tooltip is displayed.  
+         */
+        /* gdvirtual */ _get_tooltip(at_position: Vector2): string
+        
+        /** Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data should implement [method _can_drop_data] and [method _drop_data]. [param at_position] is local to this control. Drag may be forced with [method force_drag].  
+         *  A preview that will follow the mouse that should represent the data can be set with [method set_drag_preview]. A good time to set the preview is in this method.  
+         *    
+         */
+        /* gdvirtual */ _get_drag_data(at_position: Vector2): void
+        
+        /** Godot calls this method to test if [param data] from a control's [method _get_drag_data] can be dropped at [param at_position]. [param at_position] is local to this control.  
+         *  This method should only be used to test the data. Process the data in [method _drop_data].  
+         *    
+         */
+        /* gdvirtual */ _can_drop_data(at_position: Vector2, data: any): boolean
+        
+        /** Godot calls this method to pass you the [param data] from a control's [method _get_drag_data] result. Godot first calls [method _can_drop_data] to test if [param data] is allowed to drop at [param at_position] where [param at_position] is local to this control.  
+         *    
+         */
+        /* gdvirtual */ _drop_data(at_position: Vector2, data: any): void
+        
+        /** Virtual method to be implemented by the user. Returns a [Control] node that should be used as a tooltip instead of the default one. The [param for_text] includes the contents of the [member tooltip_text] property.  
+         *  The returned node must be of type [Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance). When `null` or a non-Control node is returned, the default tooltip will be used instead.  
+         *  The returned node will be added as child to a [PopupPanel], so you should only provide the contents of that panel. That [PopupPanel] can be themed using [method Theme.set_stylebox] for the type `"TooltipPanel"` (see [member tooltip_text] for an example).  
+         *      
+         *  **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [member custom_minimum_size] to some non-zero value.  
+         *      
+         *  **Note:** The node (and any relevant children) should be [member CanvasItem.visible] when returned, otherwise, the viewport that instantiates it will not be able to calculate its minimum size reliably.  
+         *  **Example of usage with a custom-constructed node:**  
+         *    
+         *  **Example of usage with a custom scene instance:**  
+         *    
+         */
+        /* gdvirtual */ _make_custom_tooltip(for_text: string): Object
+        
+        /** Virtual method to be implemented by the user. Use this method to process and accept inputs on UI elements. See [method accept_event].  
+         *  **Example usage for clicking a control:**  
+         *    
+         *  The event won't trigger if:  
+         *  * clicking outside the control (see [method _has_point]);  
+         *  * control has [member mouse_filter] set to [constant MOUSE_FILTER_IGNORE];  
+         *  * control is obstructed by another [Control] on top of it, which doesn't have [member mouse_filter] set to [constant MOUSE_FILTER_IGNORE];  
+         *  * control's parent has [member mouse_filter] set to [constant MOUSE_FILTER_STOP] or has accepted the event;  
+         *  * it happens outside the parent's rectangle and the parent has either [member clip_contents] enabled.  
+         *      
+         *  **Note:** Event position is relative to the control origin.  
+         */
+        /* gdvirtual */ _gui_input(event: InputEvent): void
+        
+        /** Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [method Node._unhandled_input] or [method Node._unhandled_key_input].  
+         *      
+         *  **Note:** This does not affect the methods in [Input], only the way events are propagated.  
+         */
+        accept_event(): void
+        
+        /** Returns the minimum size for this control. See [member custom_minimum_size]. */
+        get_minimum_size(): Vector2
+        
+        /** Returns combined minimum size from [member custom_minimum_size] and [method get_minimum_size]. */
+        get_combined_minimum_size(): Vector2
+        _set_layout_mode(mode: any /*Control.LayoutMode*/): void
+        _get_layout_mode(): any /*Control.LayoutMode*/
+        _set_anchors_layout_preset(preset: number /*i64*/): void
+        _get_anchors_layout_preset(): number /*i64*/
+        
+        /** Sets the anchors to a [param preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.  
+         *  If [param keep_offsets] is `true`, control's position will also be updated.  
+         */
+        set_anchors_preset(preset: Control.LayoutPreset, keep_offsets: boolean = false): void
+        
+        /** Sets the offsets to a [param preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.  
+         *  Use parameter [param resize_mode] with constants from [enum Control.LayoutPresetMode] to better determine the resulting size of the [Control]. Constant size will be ignored if used with presets that change size, e.g. [constant PRESET_LEFT_WIDE].  
+         *  Use parameter [param margin] to determine the gap between the [Control] and the edges.  
+         */
+        set_offsets_preset(preset: Control.LayoutPreset, resize_mode: Control.LayoutPresetMode = 0, margin: number /*i64*/ = 0): void
+        
+        /** Sets both anchor preset and offset preset. See [method set_anchors_preset] and [method set_offsets_preset]. */
+        set_anchors_and_offsets_preset(preset: Control.LayoutPreset, resize_mode: Control.LayoutPresetMode = 0, margin: number /*i64*/ = 0): void
+        _set_anchor(side: Side, anchor: number /*f64*/): void
+        
+        /** Sets the anchor for the specified [enum Side] to [param anchor]. A setter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top].  
+         *  If [param keep_offset] is `true`, offsets aren't updated after this operation.  
+         *  If [param push_opposite_anchor] is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If [param push_opposite_anchor] was `false`, the left anchor would get value 0.5.  
+         */
+        set_anchor(side: Side, anchor: number /*f64*/, keep_offset: boolean = false, push_opposite_anchor: boolean = true): void
+        
+        /** Returns the anchor for the specified [enum Side]. A getter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top]. */
+        get_anchor(side: Side): number /*f64*/
+        
+        /** Sets the offset for the specified [enum Side] to [param offset]. A setter method for [member offset_bottom], [member offset_left], [member offset_right] and [member offset_top]. */
+        set_offset(side: Side, offset: number /*f64*/): void
+        
+        /** Returns the offset for the specified [enum Side]. A getter method for [member offset_bottom], [member offset_left], [member offset_right] and [member offset_top]. */
+        get_offset(offset: Side): number /*f64*/
+        
+        /** Works the same as [method set_anchor], but instead of `keep_offset` argument and automatic update of offset, it allows to set the offset yourself (see [method set_offset]). */
+        set_anchor_and_offset(side: Side, anchor: number /*f64*/, offset: number /*f64*/, push_opposite_anchor: boolean = false): void
+        
+        /** Sets [member offset_left] and [member offset_top] at the same time. Equivalent of changing [member position]. */
+        set_begin(position: Vector2): void
+        
+        /** Sets [member offset_right] and [member offset_bottom] at the same time. */
+        set_end(position: Vector2): void
+        
+        /** Sets the [member position] to given [param position].  
+         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
+         */
+        set_position(position: Vector2, keep_offsets: boolean = false): void
+        _set_position(position: Vector2): void
+        
+        /** Sets the size (see [member size]).  
+         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
+         */
+        set_size(size: Vector2, keep_offsets: boolean = false): void
+        
+        /** Resets the size to [method get_combined_minimum_size]. This is equivalent to calling `set_size(Vector2())` (or any size below the minimum). */
+        reset_size(): void
+        _set_size(size: Vector2): void
+        set_custom_minimum_size(size: Vector2): void
+        
+        /** Sets the [member global_position] to given [param position].  
+         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
+         */
+        set_global_position(position: Vector2, keep_offsets: boolean = false): void
+        _set_global_position(position: Vector2): void
+        set_rotation(radians: number /*f64*/): void
+        set_rotation_degrees(degrees: number /*f64*/): void
+        set_scale(scale: Vector2): void
+        set_pivot_offset(pivot_offset: Vector2): void
+        
+        /** Returns [member offset_left] and [member offset_top]. See also [member position]. */
+        get_begin(): Vector2
+        
+        /** Returns [member offset_right] and [member offset_bottom]. */
+        get_end(): Vector2
+        get_position(): Vector2
+        get_size(): Vector2
+        get_rotation(): number /*f64*/
+        get_rotation_degrees(): number /*f64*/
+        get_scale(): Vector2
+        get_pivot_offset(): Vector2
+        get_custom_minimum_size(): Vector2
+        
+        /** Returns the width/height occupied in the parent control. */
+        get_parent_area_size(): Vector2
+        get_global_position(): Vector2
+        
+        /** Returns the position of this [Control] in global screen coordinates (i.e. taking window position into account). Mostly useful for editor plugins.  
+         *  Equals to [member global_position] if the window is embedded (see [member Viewport.gui_embed_subwindows]).  
+         *  **Example usage for showing a popup:**  
+         *    
+         */
+        get_screen_position(): Vector2
+        
+        /** Returns the position and size of the control in the coordinate system of the containing node. See [member position], [member scale] and [member size].  
+         *      
+         *  **Note:** If [member rotation] is not the default rotation, the resulting size is not meaningful.  
+         *      
+         *  **Note:** Setting [member Viewport.gui_snap_controls_to_pixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [Rect2].  
+         */
+        get_rect(): Rect2
+        
+        /** Returns the position and size of the control relative to the containing canvas. See [member global_position] and [member size].  
+         *      
+         *  **Note:** If the node itself or any parent [CanvasItem] between the node and the canvas have a non default rotation or skew, the resulting size is likely not meaningful.  
+         *      
+         *  **Note:** Setting [member Viewport.gui_snap_controls_to_pixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [Rect2].  
+         */
+        get_global_rect(): Rect2
+        set_focus_mode(mode: Control.FocusMode): void
+        get_focus_mode(): Control.FocusMode
+        
+        /** Returns `true` if this is the current focused control. See [member focus_mode]. */
+        has_focus(): boolean
+        
+        /** Steal the focus from another control and become the focused control (see [member focus_mode]).  
+         *      
+         *  **Note:** Using this method together with [method Callable.call_deferred] makes it more reliable, especially when called inside [method Node._ready].  
+         */
+        grab_focus(): void
+        
+        /** Give up the focus. No other control will be able to receive input. */
+        release_focus(): void
+        
+        /** Finds the previous (above in the tree) [Control] that can receive the focus. */
+        find_prev_valid_focus(): Control
+        
+        /** Finds the next (below in the tree) [Control] that can receive the focus. */
+        find_next_valid_focus(): Control
+        
+        /** Finds the next [Control] that can receive the focus on the specified [enum Side].  
+         *      
+         *  **Note:** This is different from [method get_focus_neighbor], which returns the path of a specified focus neighbor.  
+         */
+        find_valid_focus_neighbor(side: Side): Control
+        set_h_size_flags(flags: Control.SizeFlags): void
+        get_h_size_flags(): Control.SizeFlags
+        set_stretch_ratio(ratio: number /*f64*/): void
+        get_stretch_ratio(): number /*f64*/
+        set_v_size_flags(flags: Control.SizeFlags): void
+        get_v_size_flags(): Control.SizeFlags
+        set_theme(theme: Theme): void
+        get_theme(): Theme
+        set_theme_type_variation(theme_type: StringName): void
+        get_theme_type_variation(): StringName
+        
+        /** Prevents `*_theme_*_override` methods from emitting [constant NOTIFICATION_THEME_CHANGED] until [method end_bulk_theme_override] is called. */
+        begin_bulk_theme_override(): void
+        
+        /** Ends a bulk theme override update. See [method begin_bulk_theme_override]. */
+        end_bulk_theme_override(): void
+        
+        /** Creates a local override for a theme icon with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_icon_override].  
+         *  See also [method get_theme_icon].  
+         */
+        add_theme_icon_override(name: StringName, texture: Texture2D): void
+        
+        /** Creates a local override for a theme [StyleBox] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_stylebox_override].  
+         *  See also [method get_theme_stylebox].  
+         *  **Example of modifying a property in a StyleBox by duplicating it:**  
+         *    
+         */
+        add_theme_stylebox_override(name: StringName, stylebox: StyleBox): void
+        
+        /** Creates a local override for a theme [Font] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_override].  
+         *  See also [method get_theme_font].  
+         */
+        add_theme_font_override(name: StringName, font: Font): void
+        
+        /** Creates a local override for a theme font size with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_size_override].  
+         *  See also [method get_theme_font_size].  
+         */
+        add_theme_font_size_override(name: StringName, font_size: number /*i64*/): void
+        
+        /** Creates a local override for a theme [Color] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_color_override].  
+         *  See also [method get_theme_color].  
+         *  **Example of overriding a label's color and resetting it later:**  
+         *    
+         */
+        add_theme_color_override(name: StringName, color: Color): void
+        
+        /** Creates a local override for a theme constant with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_constant_override].  
+         *  See also [method get_theme_constant].  
+         */
+        add_theme_constant_override(name: StringName, constant: number /*i64*/): void
+        
+        /** Removes a local override for a theme icon with the specified [param name] previously added by [method add_theme_icon_override] or via the Inspector dock. */
+        remove_theme_icon_override(name: StringName): void
+        
+        /** Removes a local override for a theme [StyleBox] with the specified [param name] previously added by [method add_theme_stylebox_override] or via the Inspector dock. */
+        remove_theme_stylebox_override(name: StringName): void
+        
+        /** Removes a local override for a theme [Font] with the specified [param name] previously added by [method add_theme_font_override] or via the Inspector dock. */
+        remove_theme_font_override(name: StringName): void
+        
+        /** Removes a local override for a theme font size with the specified [param name] previously added by [method add_theme_font_size_override] or via the Inspector dock. */
+        remove_theme_font_size_override(name: StringName): void
+        
+        /** Removes a local override for a theme [Color] with the specified [param name] previously added by [method add_theme_color_override] or via the Inspector dock. */
+        remove_theme_color_override(name: StringName): void
+        
+        /** Removes a local override for a theme constant with the specified [param name] previously added by [method add_theme_constant_override] or via the Inspector dock. */
+        remove_theme_constant_override(name: StringName): void
+        
+        /** Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_icon(name: StringName, theme_type: StringName = ''): Texture2D
+        
+        /** Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_stylebox(name: StringName, theme_type: StringName = ''): StyleBox
+        
+        /** Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_font(name: StringName, theme_type: StringName = ''): Font
+        
+        /** Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_font_size(name: StringName, theme_type: StringName = ''): number /*i64*/
+        
+        /** Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item with the specified [param name] and [param theme_type]. If [param theme_type] is omitted the class name of the current control is used as the type, or [member theme_type_variation] if it is defined. If the type is a class name its parent classes are also checked, in order of inheritance. If the type is a variation its base types are checked, in order of dependency, then the control's class name and its parent classes are checked.  
+         *  For the current control its local overrides are considered first (see [method add_theme_color_override]), then its assigned [member theme]. After the current control, each parent control and its assigned [member theme] are considered; controls without a [member theme] assigned are skipped. If no matching [Theme] is found in the tree, the custom project [Theme] (see [member ProjectSettings.gui/theme/custom]) and the default [Theme] are used (see [ThemeDB]).  
+         *    
+         */
+        get_theme_color(name: StringName, theme_type: StringName = ''): Color
+        
+        /** Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_constant(name: StringName, theme_type: StringName = ''): number /*i64*/
+        
+        /** Returns `true` if there is a local override for a theme icon with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_icon_override].  
+         */
+        has_theme_icon_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme [StyleBox] with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_stylebox_override].  
+         */
+        has_theme_stylebox_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme [Font] with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_font_override].  
+         */
+        has_theme_font_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme font size with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_font_size_override].  
+         */
+        has_theme_font_size_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme [Color] with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_color_override].  
+         */
+        has_theme_color_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme constant with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_constant_override].  
+         */
+        has_theme_constant_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has an icon item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_icon(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_stylebox(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a font item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_font(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a font size item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_font_size(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a color item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_color(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a constant item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_constant(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns the default base scale value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_base_scale] value.  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_default_base_scale(): number /*f64*/
+        
+        /** Returns the default font from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font] value.  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_default_font(): Font
+        
+        /** Returns the default font size value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font_size] value.  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_default_font_size(): number /*i64*/
+        
+        /** Returns the parent control node. */
+        get_parent_control(): Control
+        set_h_grow_direction(direction: Control.GrowDirection): void
+        get_h_grow_direction(): Control.GrowDirection
+        set_v_grow_direction(direction: Control.GrowDirection): void
+        get_v_grow_direction(): Control.GrowDirection
+        set_tooltip_text(hint: string): void
+        get_tooltip_text(): string
+        
+        /** Returns the tooltip text for the position [param at_position] in control's local coordinates, which will typically appear when the cursor is resting over this control. By default, it returns [member tooltip_text].  
+         *  This method can be overridden to customize its behavior. See [method _get_tooltip].  
+         *      
+         *  **Note:** If this method returns an empty [String], no tooltip is displayed.  
+         */
+        get_tooltip(at_position: Vector2 = Vector2.ZERO): string
+        set_default_cursor_shape(shape: Control.CursorShape): void
+        get_default_cursor_shape(): Control.CursorShape
+        
+        /** Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape]. */
+        get_cursor_shape(position: Vector2 = Vector2.ZERO): Control.CursorShape
+        
+        /** Sets the focus neighbor for the specified [enum Side] to the [Control] at [param neighbor] node path. A setter method for [member focus_neighbor_bottom], [member focus_neighbor_left], [member focus_neighbor_right] and [member focus_neighbor_top]. */
+        set_focus_neighbor(side: Side, neighbor: NodePath): void
+        
+        /** Returns the focus neighbor for the specified [enum Side]. A getter method for [member focus_neighbor_bottom], [member focus_neighbor_left], [member focus_neighbor_right] and [member focus_neighbor_top].  
+         *      
+         *  **Note:** To find the next [Control] on the specific [enum Side], even if a neighbor is not assigned, use [method find_valid_focus_neighbor].  
+         */
+        get_focus_neighbor(side: Side): NodePath
+        set_focus_next(next: NodePath): void
+        get_focus_next(): NodePath
+        set_focus_previous(previous: NodePath): void
+        get_focus_previous(): NodePath
+        
+        /** Forces drag and bypasses [method _get_drag_data] and [method set_drag_preview] by passing [param data] and [param preview]. Drag will start even if the mouse is neither over nor pressed on this control.  
+         *  The methods [method _can_drop_data] and [method _drop_data] must be implemented on controls that want to receive drop data.  
+         */
+        force_drag(data: any, preview: Control): void
+        set_mouse_filter(filter: Control.MouseFilter): void
+        get_mouse_filter(): Control.MouseFilter
+        set_force_pass_scroll_events(force_pass_scroll_events: boolean): void
+        is_force_pass_scroll_events(): boolean
+        set_clip_contents(enable: boolean): void
+        is_clipping_contents(): boolean
+        
+        /** Creates an [InputEventMouseButton] that attempts to click the control. If the event is received, the control acquires focus.  
+         *    
+         */
+        grab_click_focus(): void
+        
+        /** Forwards the handling of this control's [method _get_drag_data],  [method _can_drop_data] and [method _drop_data] virtual functions to delegate callables.  
+         *  For each argument, if not empty, the delegate callable is used, otherwise the local (virtual) function is used.  
+         *  The function format for each callable should be exactly the same as the virtual functions described above.  
+         */
+        set_drag_forwarding(drag_func: Callable, can_drop_func: Callable, drop_func: Callable): void
+        
+        /** Shows the given control at the mouse pointer. A good time to call this method is in [method _get_drag_data]. The control must not be in the scene tree. You should not free the control, and you should not keep a reference to the control beyond the duration of the drag. It will be deleted automatically after the drag has ended.  
+         *    
+         */
+        set_drag_preview(control: Control): void
+        
+        /** Returns `true` if a drag operation is successful. Alternative to [method Viewport.gui_is_drag_successful].  
+         *  Best used with [constant Node.NOTIFICATION_DRAG_END].  
+         */
+        is_drag_successful(): boolean
+        
+        /** Moves the mouse cursor to [param position], relative to [member position] of this [Control].  
+         *      
+         *  **Note:** [method warp_mouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.  
+         */
+        warp_mouse(position: Vector2): void
+        set_shortcut_context(node: Node): void
+        get_shortcut_context(): Node
+        
+        /** Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [method get_minimum_size] when the return value is changed. Setting [member custom_minimum_size] directly calls this method automatically. */
+        update_minimum_size(): void
+        set_layout_direction(direction: Control.LayoutDirection): void
+        get_layout_direction(): Control.LayoutDirection
+        
+        /** Returns `true` if layout is right-to-left. */
+        is_layout_rtl(): boolean
+        set_auto_translate(enable: boolean): void
+        is_auto_translating(): boolean
+        set_localize_numeral_system(enable: boolean): void
+        is_localizing_numeral_system(): boolean
+        
+        /** Enables whether rendering of [CanvasItem] based children should be clipped to this control's rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle will not be rendered and won't receive input. */
+        clip_contents: boolean
+        
+        /** The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes. */
+        custom_minimum_size: Vector2
+        
+        /** Controls layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew). */
+        layout_direction: number /*i64*/
+        layout_mode: number /*i64*/
+        anchors_preset: number /*i64*/
+        
+        /** Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size. */
+        grow_horizontal: number /*i64*/
+        
+        /** Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size. */
+        grow_vertical: number /*i64*/
+        
+        /** The size of the node's bounding rectangle, in the node's coordinate system. [Container] nodes update this property automatically. */
+        size: Vector2
+        
+        /** The node's position, relative to its containing node. It corresponds to the rectangle's top-left corner. The property is not affected by [member pivot_offset]. */
+        position: Vector2
+        
+        /** The node's global position, relative to the world (usually to the [CanvasLayer]). */
+        global_position: Vector2
+        
+        /** The node's rotation around its pivot, in radians. See [member pivot_offset] to change the pivot's position.  
+         *      
+         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
+         */
+        rotation: number /*f64*/
+        
+        /** Helper property to access [member rotation] in degrees instead of radians. */
+        rotation_degrees: number /*f64*/
+        
+        /** The node's scale, relative to its [member size]. Change this property to scale the node around its [member pivot_offset]. The Control's [member tooltip_text] will also scale according to this value.  
+         *      
+         *  **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of scaling Controls individually.  
+         *      
+         *  **Note:** [member FontFile.oversampling] does [i]not[/i] take [Control] [member scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
+         *      
+         *  **Note:** If the Control node is a child of a [Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [member scale] property.  
+         */
+        scale: Vector2
+        
+        /** By default, the node's pivot is its top-left corner. When you change its [member rotation] or [member scale], it will rotate or scale around this pivot. Set this property to [member size] / 2 to pivot around the Control's center. */
+        pivot_offset: Vector2
+        
+        /** Tells the parent [Container] nodes how they should resize and place the node on the X axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does. */
+        size_flags_horizontal: number /*i64*/
+        
+        /** Tells the parent [Container] nodes how they should resize and place the node on the Y axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does. */
+        size_flags_vertical: number /*i64*/
+        
+        /** If the node and at least one of its neighbors uses the [constant SIZE_EXPAND] size flag, the parent [Container] will let it take more or less space depending on this property. If this node has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available space. */
+        size_flags_stretch_ratio: number /*f64*/
+        
+        /** Toggles if any text should automatically change to its translated version depending on the current locale.  
+         *  Also decides if the node's strings should be parsed for POT generation.  
+         */
+        auto_translate: boolean
+        
+        /** If `true`, automatically converts code line numbers, list indices, [SpinBox] and [ProgressBar] values from the Western Arabic (0..9) to the numeral systems used in current locale.  
+         *      
+         *  **Note:** Numbers within the text are not automatically converted, it can be done manually, using [method TextServer.format_number].  
+         */
+        localize_numeral_system: boolean
+        
+        /** The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the [member mouse_filter] property is not [constant MOUSE_FILTER_IGNORE]. The time required for the tooltip to appear can be changed with the [member ProjectSettings.gui/timers/tooltip_delay_sec] option. See also [method get_tooltip].  
+         *  The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding [method _make_custom_tooltip]. The default tooltip includes a [PopupPanel] and [Label] whose theme properties can be customized using [Theme] methods with the `"TooltipPanel"` and `"TooltipLabel"` respectively. For example:  
+         *    
+         */
+        tooltip_text: string
+        
+        /** Tells Godot which node it should give focus to if the user presses [kbd]Tab[/kbd] on a keyboard by default. You can change the key by editing the [member ProjectSettings.input/ui_focus_next] input action.  
+         *  If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.  
+         */
+        focus_next: NodePath
+        
+        /** Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a keyboard by default. You can change the key by editing the [member ProjectSettings.input/ui_focus_prev] input action.  
+         *  If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.  
+         */
+        focus_previous: NodePath
+        
+        /** The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals. */
+        focus_mode: number /*i64*/
+        
+        /** Controls whether the control will be able to receive mouse button input events through [method _gui_input] and how these events should be handled. Also controls whether the control can receive the [signal mouse_entered], and [signal mouse_exited] signals. See the constants to learn what each does. */
+        mouse_filter: number /*i64*/
+        
+        /** When enabled, scroll wheel events processed by [method _gui_input] will be passed to the parent control even if [member mouse_filter] is set to [constant MOUSE_FILTER_STOP]. As it defaults to true, this allows nested scrollable containers to work out of the box.  
+         *  You should disable it on the root of your UI if you do not want scroll events to go to the [method Node._unhandled_input] processing.  
+         */
+        mouse_force_pass_scroll_events: boolean
+        
+        /** The default cursor shape for this control. Useful for Godot plugins and applications or games that use the system's mouse cursors.  
+         *      
+         *  **Note:** On Linux, shapes may vary depending on the cursor theme of the system.  
+         */
+        mouse_default_cursor_shape: number /*i64*/
+        
+        /** The [Node] which must be a parent of the focused [Control] for the shortcut to be activated. If `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused. */
+        shortcut_context: Object
+        
+        /** The [Theme] resource this node and all its [Control] and [Window] children use. If a child node has its own [Theme] resource set, theme items are merged with child's definitions having higher priority.  
+         *      
+         *  **Note:** [Window] styles will have no effect unless the window is embedded.  
+         */
+        theme: Theme
+        
+        /** The name of a theme type variation used by this [Control] to look up its own theme items. When empty, the class name of the node is used (e.g. [code skip-lint]Button` for the [Button] control), as well as the class names of all parent classes (in order of inheritance).  
+         *  When set, this property gives the highest priority to the type of the specified name. This type can in turn extend another type, forming a dependency chain. See [method Theme.set_type_variation]. If the theme item cannot be found using this type or its base types, lookup falls back on the class names.  
+         *      
+         *  **Note:** To look up [Control]'s own items use various `get_theme_*` methods without specifying `theme_type`.  
+         *      
+         *  **Note:** Theme items are looked for in the tree order, from branch to root, where each [Control] node is checked for its [member theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.  
+         */
+        theme_type_variation: string
+        
+        /** Emitted when the control changes size. */
+        readonly resized: Signal //  => void
+        
+        /** Emitted when the node receives an [InputEvent]. */
+        readonly gui_input: Signal // event: InputEvent => void
+        
+        /** Emitted when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect, which Control receives the signal.  
+         */
+        readonly mouse_entered: Signal //  => void
+        
+        /** Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect, which Control receives the signal.  
+         *      
+         *  **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:  
+         *    
+         */
+        readonly mouse_exited: Signal //  => void
+        
+        /** Emitted when the node gains focus. */
+        readonly focus_entered: Signal //  => void
+        
+        /** Emitted when the node loses focus. */
+        readonly focus_exited: Signal //  => void
+        
+        /** Emitted when one of the size flags changes. See [member size_flags_horizontal] and [member size_flags_vertical]. */
+        readonly size_flags_changed: Signal //  => void
+        
+        /** Emitted when the node's minimum size changes. */
+        readonly minimum_size_changed: Signal //  => void
+        
+        /** Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent. */
+        readonly theme_changed: Signal //  => void
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_controleditorplugin.html */
     class ControlEditorPlugin extends EditorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_controleditorpopupbutton.html */
     class ControlEditorPopupButton extends Button {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_controleditorpresetpicker.html */
     class ControlEditorPresetPicker extends MarginContainer {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_controleditortoolbar.html */
     class ControlEditorToolbar extends HBoxContainer {
     }
-    /** A 2D convex polygon shape used for physics collision. */
+    /** A 2D convex polygon shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_convexpolygonshape2d.html  
+     */
     class ConvexPolygonShape2D extends Shape2D {
         /** Based on the set of points provided, this assigns the [member points] property using the convex hull algorithm, removing all unneeded points. See [method Geometry2D.convex_hull] for details. */
         set_point_cloud(point_cloud: PackedVector2Array): void
@@ -21,7 +1392,10 @@ declare module "godot" {
          */
         points: PackedVector2Array
     }
-    /** A 3D convex polyhedron shape used for physics collision. */
+    /** A 3D convex polyhedron shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_convexpolygonshape3d.html  
+     */
     class ConvexPolygonShape3D extends Shape3D {
         set_points(points: PackedVector3Array): void
         get_points(): PackedVector3Array
@@ -29,11 +1403,15 @@ declare module "godot" {
         /** The list of 3D points forming the convex polygon shape. */
         points: Array
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_createdialog.html */
     class CreateDialog extends ConfirmationDialog {
         readonly create: Signal //  => void
         readonly favorites_updated: Signal //  => void
     }
-    /** Provides access to advanced cryptographic functionalities. */
+    /** Provides access to advanced cryptographic functionalities.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_crypto.html  
+     */
     class Crypto extends RefCounted {
         /** Generates a [PackedByteArray] of cryptographically secure random bytes with given [param size]. */
         generate_random_bytes(size: number /*i64*/): PackedByteArray
@@ -75,7 +1453,10 @@ declare module "godot" {
          */
         constant_time_compare(trusted: PackedByteArray, received: PackedByteArray): boolean
     }
-    /** A cryptographic key (RSA). */
+    /** A cryptographic key (RSA).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_cryptokey.html  
+     */
     class CryptoKey extends Resource {
         /** Saves a key to the given [param path]. If [param public_only] is `true`, only the public key will be saved.  
          *      
@@ -98,12 +1479,18 @@ declare module "godot" {
         /** Loads a key from the given [param string_key]. If [param public_only] is `true`, only the public key will be loaded. */
         load_from_string(string_key: string, public_only: boolean = false): GodotError
     }
-    /** Six square textures representing the faces of a cube. Commonly used as a skybox. */
+    /** Six square textures representing the faces of a cube. Commonly used as a skybox.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_cubemap.html  
+     */
     class Cubemap extends ImageTextureLayered {
         /** Creates a placeholder version of this resource ([PlaceholderCubemap]). */
         create_placeholder(): Resource
     }
-    /** An array of [Cubemap]s, stored together and with a single reference. */
+    /** An array of [Cubemap]s, stored together and with a single reference.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_cubemaparray.html  
+     */
     class CubemapArray extends ImageTextureLayered {
         /** Creates a placeholder version of this resource ([PlaceholderCubemapArray]). */
         create_placeholder(): Resource
@@ -120,7 +1507,10 @@ declare module "godot" {
             TANGENT_MODE_COUNT = 2,
         }
     }
-    /** A mathematical curve. */
+    /** A mathematical curve.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_curve.html  
+     */
     class Curve extends Resource {
         get_point_count(): number /*i64*/
         set_point_count(count: number /*i64*/): void
@@ -203,7 +1593,10 @@ declare module "godot" {
         /** Emitted when [member max_value] or [member min_value] is changed. */
         readonly range_changed: Signal //  => void
     }
-    /** Describes a Bézier curve in 2D space. */
+    /** Describes a Bézier curve in 2D space.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_curve2d.html  
+     */
     class Curve2D extends Resource {
         get_point_count(): number /*i64*/
         set_point_count(count: number /*i64*/): void
@@ -295,7 +1688,10 @@ declare module "godot" {
         /** The number of points describing the curve. */
         point_count: any /*Points,point_*/
     }
-    /** Describes a Bézier curve in 3D space. */
+    /** Describes a Bézier curve in 3D space.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_curve3d.html  
+     */
     class Curve3D extends Resource {
         get_point_count(): number /*i64*/
         set_point_count(count: number /*i64*/): void
@@ -410,8 +1806,10 @@ declare module "godot" {
         /** If `true`, the curve will bake up vectors used for orientation. This is used when [member PathFollow3D.rotation_mode] is set to [constant PathFollow3D.ROTATION_ORIENTED]. Changing it forces the cache to be recomputed. */
         up_vector_enabled: boolean
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_curveeditorplugin.html */
     class CurveEditorPlugin extends EditorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_curvepreviewgenerator.html */
     class CurvePreviewGenerator extends EditorResourcePreviewGenerator {
     }
     namespace CurveTexture {
@@ -423,7 +1821,10 @@ declare module "godot" {
             TEXTURE_MODE_RED = 1,
         }
     }
-    /** A 1D texture where pixel brightness corresponds to points on a curve. */
+    /** A 1D texture where pixel brightness corresponds to points on a curve.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_curvetexture.html  
+     */
     class CurveTexture extends Texture2D {
         set_width(width: number /*i64*/): void
         set_curve(curve: Curve): void
@@ -441,7 +1842,10 @@ declare module "godot" {
         /** The [Curve] that is rendered onto the texture. */
         curve: Curve
     }
-    /** A 1D texture where the red, green, and blue color channels correspond to points on 3 curves. */
+    /** A 1D texture where the red, green, and blue color channels correspond to points on 3 curves.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_curvexyztexture.html  
+     */
     class CurveXYZTexture extends Texture2D {
         set_width(width: number /*i64*/): void
         set_curve_x(curve: Curve): void
@@ -464,7 +1868,10 @@ declare module "godot" {
         /** The [Curve] that is rendered onto the texture's blue channel. */
         curve_z: Curve
     }
-    /** Class representing a cylindrical [PrimitiveMesh]. */
+    /** Class representing a cylindrical [PrimitiveMesh].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_cylindermesh.html  
+     */
     class CylinderMesh extends PrimitiveMesh {
         set_top_radius(radius: number /*f64*/): void
         get_top_radius(): number /*f64*/
@@ -508,7 +1915,10 @@ declare module "godot" {
          */
         cap_bottom: boolean
     }
-    /** A 3D cylinder shape used for physics collision. */
+    /** A 3D cylinder shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_cylindershape3d.html  
+     */
     class CylinderShape3D extends Shape3D {
         set_radius(radius: number /*f64*/): void
         get_radius(): number /*f64*/
@@ -521,7 +1931,10 @@ declare module "godot" {
         /** The cylinder's radius. */
         radius: number /*f64*/
     }
-    /** Helper class to implement a DTLS server. */
+    /** Helper class to implement a DTLS server.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_dtlsserver.html  
+     */
     class DTLSServer extends RefCounted {
         /** Setup the DTLS server to use the given [param server_options]. See [method TLSOptions.server]. */
         setup(server_options: TLSOptions): GodotError
@@ -532,7 +1945,10 @@ declare module "godot" {
          */
         take_connection(udp_peer: PacketPeerUDP): PacketPeerDTLS
     }
-    /** A physics joint that connects two 2D physics bodies with a spring-like force. */
+    /** A physics joint that connects two 2D physics bodies with a spring-like force.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_dampedspringjoint2d.html  
+     */
     class DampedSpringJoint2D extends Joint2D {
         set_length(length: number /*f64*/): void
         get_length(): number /*f64*/
@@ -555,6 +1971,7 @@ declare module "godot" {
         /** The spring joint's damping ratio. A value between `0` and `1`. When the two bodies move into different directions the system tries to align them to the spring axis again. A high [member damping] value forces the attached bodies to align faster. */
         damping: number /*f64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_debugadapterparser.html */
     class DebugAdapterParser extends Object {
         req_initialize(params: Dictionary): Dictionary
         req_disconnect(params: Dictionary): Dictionary
@@ -576,8 +1993,10 @@ declare module "godot" {
         req_evaluate(params: Dictionary): Dictionary
         ["req_godot/put_msg"]: (params: Dictionary) => Dictionary
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_debugadapterserver.html */
     class DebugAdapterServer extends EditorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_debuggereditorplugin.html */
     class DebuggerEditorPlugin extends EditorPlugin {
     }
     namespace Decal {
@@ -598,7 +2017,10 @@ declare module "godot" {
             TEXTURE_MAX = 4,
         }
     }
-    /** Node that projects a texture onto a [MeshInstance3D]. */
+    /** Node that projects a texture onto a [MeshInstance3D].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_decal.html  
+     */
     class Decal extends VisualInstance3D {
         set_size(size: Vector3): void
         get_size(): Vector3
@@ -676,22 +2098,31 @@ declare module "godot" {
         /** Specifies which [member VisualInstance3D.layers] this decal will project on. By default, Decals affect all layers. This is used so you can specify which types of objects receive the Decal and which do not. This is especially useful so you can ensure that dynamic objects don't accidentally receive a Decal intended for the terrain under them. */
         cull_mask: number /*i64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_decalgizmoplugin.html */
     class DecalGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_defaultthemeeditorpreview.html */
     class DefaultThemeEditorPreview extends ThemeEditorPreview {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_dependencyeditor.html */
     class DependencyEditor extends AcceptDialog {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_dependencyeditorowners.html */
     class DependencyEditorOwners extends AcceptDialog {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_dependencyerrordialog.html */
     class DependencyErrorDialog extends ConfirmationDialog {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_dependencyremovedialog.html */
     class DependencyRemoveDialog extends ConfirmationDialog {
         readonly resource_removed: Signal // obj: Object => void
         readonly file_removed: Signal // file: string => void
         readonly folder_removed: Signal // folder: string => void
     }
-    /** Provides methods for managing directories and their content. */
+    /** Provides methods for managing directories and their content.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_diraccess.html  
+     */
     class DirAccess extends RefCounted {
         /** Creates a new [DirAccess] object and opens an existing directory of the filesystem. The [param path] argument can be within the project tree (`res://folder`), the user directory (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or `C:\tmp\folder`).  
          *  Returns `null` if opening the directory failed. You can use [method get_open_error] to check the error that occurred.  
@@ -844,7 +2275,10 @@ declare module "godot" {
          */
         include_hidden: boolean
     }
-    /** Directional 2D light from a distance. */
+    /** Directional 2D light from a distance.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_directionallight2d.html  
+     */
     class DirectionalLight2D extends Light2D {
         set_max_distance(pixels: number /*f64*/): void
         get_max_distance(): number /*f64*/
@@ -877,7 +2311,10 @@ declare module "godot" {
             SKY_MODE_SKY_ONLY = 2,
         }
     }
-    /** Directional light from a distance, as from the Sun. */
+    /** Directional light from a distance, as from the Sun.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_directionallight3d.html  
+     */
     class DirectionalLight3D extends Light3D {
         set_shadow_mode(mode: DirectionalLight3D.ShadowMode): void
         get_shadow_mode(): DirectionalLight3D.ShadowMode
@@ -895,11 +2332,14 @@ declare module "godot" {
         /** Set whether this [DirectionalLight3D] is visible in the sky, in the scene, or both in the sky and in the scene. See [enum SkyMode] for options. */
         sky_mode: number /*i64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_directorycreatedialog.html */
     class DirectoryCreateDialog extends ConfirmationDialog {
         readonly dir_created: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_dynamicfontimportsettings.html */
     class DynamicFontImportSettings extends ConfirmationDialog {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_dynamicfontimportsettingsdata.html */
     class DynamicFontImportSettingsData extends RefCounted {
     }
     namespace ENetConnection {
@@ -949,7 +2389,10 @@ declare module "godot" {
             HOST_TOTAL_RECEIVED_PACKETS = 3,
         }
     }
-    /** A wrapper class for an [url=http://enet.bespin.org/group__host.html]ENetHost[/url]. */
+    /** A wrapper class for an [url=http://enet.bespin.org/group__host.html]ENetHost[/url].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_enetconnection.html  
+     */
     class ENetConnection extends RefCounted {
         /** Create an ENetHost like [method create_host] which is also bound to the given [param bind_address] and [param bind_port]. */
         create_host_bound(bind_address: string, bind_port: number /*i64*/, max_peers: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): GodotError
@@ -1024,7 +2467,10 @@ declare module "godot" {
          */
         socket_send(destination_address: string, destination_port: number /*i64*/, packet: PackedByteArray): void
     }
-    /** A MultiplayerPeer implementation using the [url=http://enet.bespin.org/index.html]ENet[/url] library. */
+    /** A MultiplayerPeer implementation using the [url=http://enet.bespin.org/index.html]ENet[/url] library.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_enetmultiplayerpeer.html  
+     */
     class ENetMultiplayerPeer extends MultiplayerPeer {
         /** Create server that listens to connections via [param port]. The port needs to be an available, unused port between 0 and 65535. Note that ports below 1024 are privileged and may require elevated permissions depending on the platform. To change the interface the server listens on, use [method set_bind_ip]. The default IP is the wildcard `"*"`, which listens on all available interfaces. [param max_clients] is the maximum number of clients that are allowed at once, any number up to 4095 may be used, although the achievable number of simultaneous clients may be far lower and depends on the application. For additional details on the bandwidth parameters, see [method create_client]. Returns [constant OK] if a server was created, [constant ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already has an open connection (in which case you need to call [method MultiplayerPeer.close] first) or [constant ERR_CANT_CREATE] if the server could not be created. */
         create_server(port: number /*i64*/, max_clients: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): GodotError
@@ -1127,7 +2573,10 @@ declare module "godot" {
             PEER_PACKET_THROTTLE_INTERVAL = 13,
         }
     }
-    /** A wrapper class for an [url=http://enet.bespin.org/group__peer.html]ENetPeer[/url]. */
+    /** A wrapper class for an [url=http://enet.bespin.org/group__peer.html]ENetPeer[/url].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_enetpacketpeer.html  
+     */
     class ENetPacketPeer extends PacketPeer {
         /** The reference scale for packet loss. See [method get_statistic] and [constant PEER_PACKET_LOSS]. */
         static readonly PACKET_LOSS_SCALE = 65536
@@ -1196,12 +2645,15 @@ declare module "godot" {
         /** Returns `true` if the peer is currently active (i.e. the associated [ENetConnection] is still valid). */
         is_active(): boolean
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorabout.html */
     class EditorAbout extends AcceptDialog {
         _version_button_pressed(): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorassetlibrary.html */
     class EditorAssetLibrary extends PanelContainer {
         readonly install_asset: Signal // zip_path: string, name: string => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editoraudiobus.html */
     class EditorAudioBus extends PanelContainer {
         update_bus(): void
         update_send(): void
@@ -1211,23 +2663,28 @@ declare module "godot" {
         readonly drop_end_request: Signal //  => void
         readonly dropped: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editoraudiobuses.html */
     class EditorAudioBuses extends VBoxContainer {
         _update_bus(_unnamed_arg0: number /*i64*/): void
         _update_sends(): void
         _select_layout(): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editoraudiometernotches.html */
     class EditorAudioMeterNotches extends Control {
         add_notch(_unnamed_arg0: number /*f64*/, _unnamed_arg1: number /*f64*/, _unnamed_arg2: boolean): void
         _draw_audio_notches(): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editoraudiostreampreviewplugin.html */
     class EditorAudioStreamPreviewPlugin extends EditorResourcePreviewGenerator {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorautoloadsettings.html */
     class EditorAutoloadSettings extends VBoxContainer {
         update_autoload(): void
         autoload_add(_unnamed_arg0: string, _unnamed_arg1: string): boolean
         autoload_remove(_unnamed_arg0: string): void
         readonly autoload_changed: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorbitmappreviewplugin.html */
     class EditorBitmapPreviewPlugin extends EditorResourcePreviewGenerator {
     }
     namespace EditorBuildProfile {
@@ -1254,6 +2711,7 @@ declare module "godot" {
             BUILD_OPTION_CATEGORY_MAX = 2,
         }
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorbuildprofile.html */
     class EditorBuildProfile extends RefCounted {
         set_disable_class(class_name: StringName, disable: boolean): void
         is_class_disabled(class_name: StringName): boolean
@@ -1263,10 +2721,14 @@ declare module "godot" {
         save_to_file(path: string): GodotError
         load_from_file(path: string): GodotError
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorbuildprofilemanager.html */
     class EditorBuildProfileManager extends AcceptDialog {
         _update_selected_profile(): void
     }
-    /** Godot editor's command palette. */
+    /** Godot editor's command palette.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorcommandpalette.html  
+     */
     class EditorCommandPalette extends ConfirmationDialog {
         /** Adds a custom command to EditorCommandPalette.  
          *  - [param command_name]: [String] (Name of the **Command**. This is displayed to the user.)  
@@ -1281,11 +2743,13 @@ declare module "godot" {
          */
         remove_command(key_name: string): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggerinspector.html */
     class EditorDebuggerInspector extends EditorInspector {
         readonly object_selected: Signal // id: number /*i64*/ => void
         readonly object_edited: Signal // id: number /*i64*/, property: string, : any /*value*/ => void
         readonly object_property_updated: Signal // id: number /*i64*/, property: string => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggernode.html */
     class EditorDebuggerNode extends MarginContainer {
         live_debug_create_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
         live_debug_instantiate_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
@@ -1302,7 +2766,10 @@ declare module "godot" {
         readonly breakpoint_set_in_tree: Signal // : any /*script*/, line: number /*i64*/, enabled: boolean, debugger: number /*i64*/ => void
         readonly breakpoints_cleared_in_tree: Signal // debugger: number /*i64*/ => void
     }
-    /** A base class to implement debugger plugins. */
+    /** A base class to implement debugger plugins.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggerplugin.html  
+     */
     class EditorDebuggerPlugin extends RefCounted {
         /** Override this method to be notified whenever a new [EditorDebuggerSession] is created (the session may be inactive during this stage). */
         /* gdvirtual */ _setup_session(session_id: number /*i64*/): void
@@ -1322,6 +2789,7 @@ declare module "godot" {
          */
         get_sessions(): Array
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggerremoteobject.html */
     class EditorDebuggerRemoteObject extends Object {
         get_title(): string
         get_variant(_unnamed_arg0: StringName): any
@@ -1329,7 +2797,10 @@ declare module "godot" {
         get_remote_object_id(): number /*i64*/
         readonly value_edited: Signal // object_id: number /*i64*/, property: string, : any /*value*/ => void
     }
-    /** A class to interact with the editor debugger. */
+    /** A class to interact with the editor debugger.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggersession.html  
+     */
     class EditorDebuggerSession extends RefCounted {
         /** Sends the given [param message] to the attached remote instance, optionally passing additionally [param data]. See [EngineDebugger] for how to retrieve those messages. */
         send_message(message: string, data: Array = <any> {} /*compound.type from 28([object Object])*/): void
@@ -1364,46 +2835,77 @@ declare module "godot" {
         /** Emitted when the attached remote instance exits a break state. */
         readonly continued: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggertree.html */
     class EditorDebuggerTree extends Tree {
         readonly object_selected: Signal // object_id: number /*i64*/, debugger: number /*i64*/ => void
         readonly save_node: Signal // object_id: number /*i64*/, filename: string, debugger: number /*i64*/ => void
         readonly open: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordirdialog.html */
     class EditorDirDialog extends ConfirmationDialog {
         readonly dir_selected: Signal // dir: string => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorexport.html */
     class EditorExport extends Node {
         readonly export_presets_updated: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorexportgdscript.html */
     class EditorExportGDScript extends EditorExportPlugin {
     }
-    /** Identifies a supported export platform, and internally provides the functionality of exporting to that platform. */
+    /** Identifies a supported export platform, and internally provides the functionality of exporting to that platform.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatform.html  
+     */
     class EditorExportPlatform extends RefCounted {
         /** Returns the name of the export operating system handled by this [EditorExportPlatform] class, as a friendly string. Possible return values are `Windows`, `Linux`, `macOS`, `Android`, `iOS`, and `Web`. */
         get_os_name(): string
     }
-    /** Exporter for Android. */
+    /** Exporter for Android.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformandroid.html  
+     */
     class EditorExportPlatformAndroid extends EditorExportPlatform {
     }
-    /** Exporter for iOS. */
+    /** Exporter for iOS.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformios.html  
+     */
     class EditorExportPlatformIOS extends EditorExportPlatform {
     }
-    /** Exporter for Linux/BSD. */
+    /** Exporter for Linux/BSD.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformlinuxbsd.html  
+     */
     class EditorExportPlatformLinuxBSD extends EditorExportPlatformPC {
     }
-    /** Exporter for macOS. */
+    /** Exporter for macOS.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformmacos.html  
+     */
     class EditorExportPlatformMacOS extends EditorExportPlatform {
     }
-    /** Base class for the desktop platform exporter (Windows and Linux/BSD). */
+    /** Base class for the desktop platform exporter (Windows and Linux/BSD).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformpc.html  
+     */
     class EditorExportPlatformPC extends EditorExportPlatform {
     }
-    /** Exporter for the Web. */
+    /** Exporter for the Web.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformweb.html  
+     */
     class EditorExportPlatformWeb extends EditorExportPlatform {
     }
-    /** Exporter for Windows. */
+    /** Exporter for Windows.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformwindows.html  
+     */
     class EditorExportPlatformWindows extends EditorExportPlatformPC {
     }
-    /** A script that is executed when exporting the project. */
+    /** A script that is executed when exporting the project.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplugin.html  
+     */
     class EditorExportPlugin extends RefCounted {
         /** Virtual method to be overridden by the user. Called for each exported file, providing arguments that can be used to identify the file. [param path] is the path of the file, [param type] is the [Resource] represented by the file (e.g. [PackedScene]) and [param features] is the list of features for the export.  
          *  Calling [method skip] inside this callback will make the file not included in the export.  
@@ -1596,7 +3098,10 @@ declare module "godot" {
             FEATURE_MAX = 8,
         }
     }
-    /** An editor feature profile which can be used to disable specific features. */
+    /** An editor feature profile which can be used to disable specific features.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfeatureprofile.html  
+     */
     class EditorFeatureProfile extends RefCounted {
         /** If [param disable] is `true`, disables the class specified by [param class_name]. When disabled, the class won't appear in the Create New Node dialog. */
         set_disable_class(class_name: StringName, disable: boolean): void
@@ -1637,6 +3142,7 @@ declare module "godot" {
          */
         load_from_file(path: string): GodotError
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorfeatureprofilemanager.html */
     class EditorFeatureProfileManager extends AcceptDialog {
         readonly current_feature_profile_changed: Signal //  => void
     }
@@ -1675,7 +3181,10 @@ declare module "godot" {
             DISPLAY_LIST = 1,
         }
     }
-    /** A modified version of [FileDialog] used by the editor. */
+    /** A modified version of [FileDialog] used by the editor.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfiledialog.html  
+     */
     class EditorFileDialog extends ConfirmationDialog {
         _cancel_pressed(): void
         
@@ -1760,9 +3269,13 @@ declare module "godot" {
         /** Emitted when a directory is selected. */
         readonly dir_selected: Signal // dir: string => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorfileserver.html */
     class EditorFileServer extends Object {
     }
-    /** Resource filesystem, as the editor sees it. */
+    /** Resource filesystem, as the editor sees it.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfilesystem.html  
+     */
     class EditorFileSystem extends Node {
         /** Gets the root directory object. */
         get_filesystem(): EditorFileSystemDirectory
@@ -1812,7 +3325,10 @@ declare module "godot" {
         /** Emitted if at least one resource is reloaded when the filesystem is scanned. */
         readonly resources_reload: Signal // resources: PackedStringArray => void
     }
-    /** A directory for the resource filesystem. */
+    /** A directory for the resource filesystem.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfilesystemdirectory.html  
+     */
     class EditorFileSystemDirectory extends Object {
         /** Returns the number of subdirectories in this directory. */
         get_subdir_count(): number /*i64*/
@@ -1856,7 +3372,10 @@ declare module "godot" {
         /** Returns the index of the directory with name [param name] or `-1` if not found. */
         find_dir_index(name: string): number /*i64*/
     }
-    /** Used to query and configure import format support. */
+    /** Used to query and configure import format support.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfilesystemimportformatsupportquery.html  
+     */
     class EditorFileSystemImportFormatSupportQuery extends RefCounted {
         /** Return whether this importer is active. */
         /* gdvirtual */ _is_active(): boolean
@@ -1867,24 +3386,34 @@ declare module "godot" {
         /** Query support. Return false if import must not continue. */
         /* gdvirtual */ _query(): boolean
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorfilesystemimportformatsupportqueryfbx.html */
     class EditorFileSystemImportFormatSupportQueryFBX extends EditorFileSystemImportFormatSupportQuery {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorfontpreviewplugin.html */
     class EditorFontPreviewPlugin extends EditorResourcePreviewGenerator {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorgradientpreviewplugin.html */
     class EditorGradientPreviewPlugin extends EditorResourcePreviewGenerator {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorhelpbit.html */
     class EditorHelpBit extends MarginContainer {
         set_text(text: string): void
         readonly request_hide: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorhelpsearch.html */
     class EditorHelpSearch extends ConfirmationDialog {
         readonly go_to_help: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorimagepreviewplugin.html */
     class EditorImagePreviewPlugin extends EditorResourcePreviewGenerator {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorimportblendrunner.html */
     class EditorImportBlendRunner extends Node {
     }
-    /** Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type. */
+    /** Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorimportplugin.html  
+     */
     class EditorImportPlugin extends ResourceImporter {
         /** Gets the unique name of the importer. */
         /* gdvirtual */ _get_importer_name(): string
@@ -1930,7 +3459,10 @@ declare module "godot" {
         /** This function can only be called during the [method _import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [param custom_options]. Additionally, in cases where multiple importers can handle a file, the [param custom_importer] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [param generator_parameters] defines optional extra metadata which will be stored as [code skip-lint]generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data. */
         append_import_external_resource(path: string, custom_options: Dictionary = <any> {} /*compound.type from 27([object Object])*/, custom_importer: string = '', generator_parameters: any = <any> {} /*compound.type from nil*/): GodotError
     }
-    /** A control used to edit properties of an object. */
+    /** A control used to edit properties of an object.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorinspector.html  
+     */
     class EditorInspector extends ScrollContainer {
         _edit_request_change(_unnamed_arg0: Object, _unnamed_arg1: string): void
         
@@ -1970,11 +3502,16 @@ declare module "godot" {
         /** Emitted when a property that requires a restart to be applied is edited in the inspector. This is only used in the Project Settings and Editor Settings. */
         readonly restart_requested: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorcategory.html */
     class EditorInspectorCategory extends Control {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectordefaultplugin.html */
     class EditorInspectorDefaultPlugin extends EditorInspectorPlugin {
     }
-    /** Plugin for adding custom property editors on the inspector. */
+    /** Plugin for adding custom property editors on the inspector.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugin.html  
+     */
     class EditorInspectorPlugin extends RefCounted {
         /** Returns `true` if this object can be handled by this plugin. */
         /* gdvirtual */ _can_handle(object: Object): boolean
@@ -2003,77 +3540,111 @@ declare module "godot" {
         /** Adds an editor that allows modifying multiple properties. The [param editor] control must extend [EditorProperty]. */
         add_property_editor_for_multiple_properties(label: string, properties: PackedStringArray, editor: Control): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugin3dtexture.html */
     class EditorInspectorPlugin3DTexture extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginanimationtrackkeyedit.html */
     class EditorInspectorPluginAnimationTrackKeyEdit extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginaudiostream.html */
     class EditorInspectorPluginAudioStream extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginbitmap.html */
     class EditorInspectorPluginBitMap extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginbonemap.html */
     class EditorInspectorPluginBoneMap extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugincontrol.html */
     class EditorInspectorPluginControl extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugincurve.html */
     class EditorInspectorPluginCurve extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginfontpreview.html */
     class EditorInspectorPluginFontPreview extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginfontvariation.html */
     class EditorInspectorPluginFontVariation extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugingradient.html */
     class EditorInspectorPluginGradient extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugingradienttexture2d.html */
     class EditorInspectorPluginGradientTexture2D extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugininputevent.html */
     class EditorInspectorPluginInputEvent extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginlayeredtexture.html */
     class EditorInspectorPluginLayeredTexture extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginmaterial.html */
     class EditorInspectorPluginMaterial extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginmesh.html */
     class EditorInspectorPluginMesh extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginpackedscene.html */
     class EditorInspectorPluginPackedScene extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginskeleton.html */
     class EditorInspectorPluginSkeleton extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginstylebox.html */
     class EditorInspectorPluginStyleBox extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginsubviewportpreview.html */
     class EditorInspectorPluginSubViewportPreview extends EditorInspectorPluginTexture {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginsystemfont.html */
     class EditorInspectorPluginSystemFont extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugintexture.html */
     class EditorInspectorPluginTexture extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugintextureregion.html */
     class EditorInspectorPluginTextureRegion extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugintiledata.html */
     class EditorInspectorPluginTileData extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorrootmotionplugin.html */
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorvisualshadermodeplugin.html */
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorjsonsyntaxhighlighter.html */
     class EditorJSONSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorlayoutsdialog.html */
     class EditorLayoutsDialog extends ConfirmationDialog {
         readonly name_confirmed: Signal // name: string => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorlocaledialog.html */
     class EditorLocaleDialog extends ConfirmationDialog {
         readonly locale_selected: Signal // locale: string => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorlog.html */
     class EditorLog extends HBoxContainer {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editormaterialpreviewplugin.html */
     class EditorMaterialPreviewPlugin extends EditorResourcePreviewGenerator {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editormeshpreviewplugin.html */
     class EditorMeshPreviewPlugin extends EditorResourcePreviewGenerator {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editornativeshadersourcevisualizer.html */
     class EditorNativeShaderSourceVisualizer extends AcceptDialog {
         _inspect_shader(_unnamed_arg0: RID): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editornetworkprofiler.html */
     class EditorNetworkProfiler extends VBoxContainer {
         readonly enable_profiling: Signal // enable: boolean => void
         readonly open_request: Signal // path: string => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editornode.html */
     class EditorNode extends Node {
         push_item(object: Object, property: string = '', inspector_only: boolean = false): void
         set_edited_scene(_unnamed_arg0: Node): void
@@ -2090,7 +3661,10 @@ declare module "godot" {
         readonly scene_changed: Signal //  => void
         readonly scene_closed: Signal // path: string => void
     }
-    /** Gizmo for editing [Node3D] objects. */
+    /** Gizmo for editing [Node3D] objects.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editornode3dgizmo.html  
+     */
     class EditorNode3DGizmo extends Node3DGizmo {
         /** Override this method to add all the gizmo elements whenever a gizmo update is requested. It's common to call [method clear] at the beginning of this method and then add visual elements depending on the node's properties. */
         /* gdvirtual */ _redraw(): void
@@ -2181,7 +3755,10 @@ declare module "godot" {
         /** Returns a list of the currently selected subgizmos. Can be used to highlight selected elements during [method _redraw]. */
         get_subgizmo_selection(): PackedInt32Array
     }
-    /** A class used by the editor to define Node3D gizmo types. */
+    /** A class used by the editor to define Node3D gizmo types.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editornode3dgizmoplugin.html  
+     */
     class EditorNode3DGizmoPlugin extends Resource {
         /** Override this method to define which Node3D nodes have a gizmo from this plugin. Whenever a [Node3D] node is added to a scene this method is called, if it returns `true` the node gets a generic [EditorNode3DGizmo] assigned and is added to this plugin's list of active gizmos. */
         /* gdvirtual */ _has_gizmo(for_node_3d: Node3D): boolean
@@ -2266,13 +3843,19 @@ declare module "godot" {
         /** Gets material from the internal list of materials. If an [EditorNode3DGizmo] is provided, it will try to get the corresponding variant (selected and/or editable). */
         get_material(name: string, gizmo: EditorNode3DGizmo = <any> {} /*compound.type from nil*/): StandardMaterial3D
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorobjimporter.html */
     class EditorOBJImporter extends EditorSceneFormatImporter {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorobjectselector.html */
     class EditorObjectSelector extends Button {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpackedscenepreviewplugin.html */
     class EditorPackedScenePreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** Editor-only singleton that returns paths to various OS-specific data folders and files. */
+    /** Editor-only singleton that returns paths to various OS-specific data folders and files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorpaths.html  
+     */
     class EditorPaths extends Object {
         /** Returns the absolute path to the user's data folder. This folder should be used for [i]persistent[/i] user data files such as installed export templates.  
          *  **Default paths per platform:**  
@@ -2309,8 +3892,10 @@ declare module "godot" {
         /** Returns the project-specific editor settings path. Projects all have a unique subdirectory inside the settings path where project-specific editor settings are saved. */
         get_project_settings_dir(): string
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorperformanceprofiler.html */
     class EditorPerformanceProfiler extends HSplitContainer {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorplaintextsyntaxhighlighter.html */
     class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     namespace EditorPlugin {
@@ -2390,7 +3975,10 @@ declare module "godot" {
             AFTER_GUI_INPUT_CUSTOM = 2,
         }
     }
-    /** Used by the editor to extend its functionality. */
+    /** Used by the editor to extend its functionality.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorplugin.html  
+     */
     class EditorPlugin extends Node {
         /** Called when there is a root node in the current edited scene, [method _handles] is implemented and an [InputEvent] happens in the 2D viewport. Intercepts the [InputEvent], if `return true` [EditorPlugin] consumes the [param event], otherwise forwards [param event] to other Editor classes.  
          *  **Example:**  
@@ -2717,15 +4305,21 @@ declare module "godot" {
          */
         readonly project_settings_changed: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorplugincsg.html */
     class EditorPluginCSG extends EditorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpluginsettings.html */
     class EditorPluginSettings extends VBoxContainer {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorprofiler.html */
     class EditorProfiler extends VBoxContainer {
         readonly enable_profiling: Signal // enable: boolean => void
         readonly break_request: Signal //  => void
     }
-    /** Custom control for editing properties that can be added to the [EditorInspector]. */
+    /** Custom control for editing properties that can be added to the [EditorInspector].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorproperty.html  
+     */
     class EditorProperty extends Container {
         /** When this virtual function is called, you must update your editor. */
         /* gdvirtual */ _update_property(): void
@@ -2822,32 +4416,47 @@ declare module "godot" {
         /** Emitted when selected. Used internally. */
         readonly selected: Signal // path: string, focusable_idx: number /*i64*/ => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertycheck.html */
     class EditorPropertyCheck extends EditorProperty {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertydictionaryobject.html */
     class EditorPropertyDictionaryObject extends RefCounted {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyinteger.html */
     class EditorPropertyInteger extends EditorProperty {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertylocalizablestring.html */
     class EditorPropertyLocalizableString extends EditorProperty {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertymultilinetext.html */
     class EditorPropertyMultilineText extends EditorProperty {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertynameprocessor.html */
     class EditorPropertyNameProcessor extends Node {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertypath.html */
     class EditorPropertyPath extends EditorProperty {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyresource.html */
     class EditorPropertyResource extends EditorProperty {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertytext.html */
     class EditorPropertyText extends EditorProperty {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyvector2i.html */
     class EditorPropertyVector2i extends EditorPropertyVectorN {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyvectorn.html */
     class EditorPropertyVectorN extends EditorProperty {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorquickopen.html */
     class EditorQuickOpen extends ConfirmationDialog {
         readonly quick_open: Signal //  => void
     }
-    /** Plugin for adding custom converters from one resource format to another in the editor resource picker context menu; for example, converting a [StandardMaterial3D] to a [ShaderMaterial]. */
+    /** Plugin for adding custom converters from one resource format to another in the editor resource picker context menu; for example, converting a [StandardMaterial3D] to a [ShaderMaterial].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourceconversionplugin.html  
+     */
     class EditorResourceConversionPlugin extends RefCounted {
         /** Returns the class name of the target type of [Resource] that this plugin converts source resources to. */
         /* gdvirtual */ _converts_to(): string
@@ -2858,7 +4467,10 @@ declare module "godot" {
         /** Takes an input [Resource] and converts it to the type given in [method _converts_to]. The returned [Resource] is the result of the conversion, and the input [Resource] remains unchanged. */
         /* gdvirtual */ _convert(resource: Resource): Resource
     }
-    /** Godot editor's control for selecting [Resource] type properties. */
+    /** Godot editor's control for selecting [Resource] type properties.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourcepicker.html  
+     */
     class EditorResourcePicker extends HBoxContainer {
         /** This virtual method is called when updating the context menu of [EditorResourcePicker]. Implement this method to override the "New ..." items with your own options. [param menu_node] is a reference to the [PopupMenu] node.  
          *      
@@ -2902,7 +4514,10 @@ declare module "godot" {
         /** Emitted when the value of the edited resource was changed. */
         readonly resource_changed: Signal // resource: Resource => void
     }
-    /** A node used to generate previews of resources or files. */
+    /** A node used to generate previews of resources or files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourcepreview.html  
+     */
     class EditorResourcePreview extends Node {
         /** Queue a resource file located at [param path] for preview. Once the preview is ready, the [param receiver]'s [param receiver_func] will be called. The [param receiver_func] must take the following four arguments: [String] path, [Texture2D] preview, [Texture2D] thumbnail_preview, [Variant] userdata. [param userdata] can be anything, and will be returned when [param receiver_func] is called.  
          *      
@@ -2928,7 +4543,10 @@ declare module "godot" {
         /** Emitted if a preview was invalidated (changed). [param path] corresponds to the path of the preview. */
         readonly preview_invalidated: Signal // path: string => void
     }
-    /** Custom generator of previews. */
+    /** Custom generator of previews.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourcepreviewgenerator.html  
+     */
     class EditorResourcePreviewGenerator extends RefCounted {
         /** Returns `true` if your generator supports the resource of type [param type]. */
         /* gdvirtual */ _handles(type: string): boolean
@@ -2957,7 +4575,10 @@ declare module "godot" {
          */
         /* gdvirtual */ _can_generate_small_preview(): boolean
     }
-    /** A plugin that advanced tooltip for its handled resource type. */
+    /** A plugin that advanced tooltip for its handled resource type.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourcetooltipplugin.html  
+     */
     class EditorResourceTooltipPlugin extends RefCounted {
         /** Return `true` if the plugin is going to handle the given [Resource] [param type]. */
         /* gdvirtual */ _handles(type: string): boolean
@@ -2977,14 +4598,19 @@ declare module "godot" {
         /** Requests a thumbnail for the given [TextureRect]. The thumbnail is created asynchronously by [EditorResourcePreview] and automatically set when available. */
         request_thumbnail(path: string, control: TextureRect): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorrunbar.html */
     class EditorRunBar extends MarginContainer {
         readonly play_pressed: Signal //  => void
         readonly stop_pressed: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorrunnative.html */
     class EditorRunNative extends HBoxContainer {
         readonly native_run: Signal // preset: any /*EditorExportPreset*/ => void
     }
-    /** Imports scenes from third-parties' 3D files. */
+    /** Imports scenes from third-parties' 3D files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimporter.html  
+     */
     class EditorSceneFormatImporter extends RefCounted {
         static readonly IMPORT_SCENE = 1
         static readonly IMPORT_ANIMATION = 2
@@ -2999,19 +4625,31 @@ declare module "godot" {
         /* gdvirtual */ _get_import_options(path: string): void
         /* gdvirtual */ _get_option_visibility(path: string, for_animation: boolean, option: string): void
     }
-    /** Importer for Blender's `.blend` scene file format. */
+    /** Importer for Blender's `.blend` scene file format.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimporterblend.html  
+     */
     class EditorSceneFormatImporterBlend extends EditorSceneFormatImporter {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimportercollada.html */
     class EditorSceneFormatImporterCollada extends EditorSceneFormatImporter {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimporterescn.html */
     class EditorSceneFormatImporterESCN extends EditorSceneFormatImporter {
     }
-    /** Importer for the `.fbx` scene file format. */
+    /** Importer for the `.fbx` scene file format.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimporterfbx.html  
+     */
     class EditorSceneFormatImporterFBX extends EditorSceneFormatImporter {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimportergltf.html */
     class EditorSceneFormatImporterGLTF extends EditorSceneFormatImporter {
     }
-    /** Post-processes scenes after import. */
+    /** Post-processes scenes after import.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorscenepostimport.html  
+     */
     class EditorScenePostImport extends RefCounted {
         /** Called after the scene was imported. This method must return the modified version of the scene. */
         /* gdvirtual */ _post_import(scene: Node): Object
@@ -3031,7 +4669,10 @@ declare module "godot" {
             INTERNAL_IMPORT_CATEGORY_MAX = 7,
         }
     }
-    /** Plugin to control and modifying the process of importing a scene. */
+    /** Plugin to control and modifying the process of importing a scene.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorscenepostimportplugin.html  
+     */
     class EditorScenePostImportPlugin extends RefCounted {
         /** Override to add internal import options. These will appear in the 3D scene import dialog. Add options via [method add_import_option] and [method add_import_option_advanced]. */
         /* gdvirtual */ _get_internal_import_options(category: number /*i64*/): void
@@ -3066,12 +4707,16 @@ declare module "godot" {
         /** Add a specific import option. This function can only be called from [method _get_import_options] and [method _get_internal_import_options]. */
         add_import_option_advanced(type: Variant.Type, name: string, default_value: any, hint: PropertyHint = 0, hint_string: string = '', usage_flags: number /*i64*/ = 6): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorscenetabs.html */
     class EditorSceneTabs extends MarginContainer {
         _tab_preview_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         readonly tab_changed: Signal // tab_index: number /*i64*/ => void
         readonly tab_closed: Signal // tab_index: number /*i64*/ => void
     }
-    /** Base script that can be used to add extension functions to the editor. */
+    /** Base script that can be used to add extension functions to the editor.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorscript.html  
+     */
     class EditorScript extends RefCounted {
         /** This method is executed by the Editor when **File > Run** is used. */
         /* gdvirtual */ _run(): void
@@ -3089,7 +4734,10 @@ declare module "godot" {
          */
         get_editor_interface(): EditorInterface
     }
-    /** Godot editor's control for selecting the `script` property of a [Node]. */
+    /** Godot editor's control for selecting the `script` property of a [Node].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorscriptpicker.html  
+     */
     class EditorScriptPicker extends EditorResourcePicker {
         set_script_owner(owner_node: Node): void
         get_script_owner(): Node
@@ -3097,9 +4745,13 @@ declare module "godot" {
         /** The owner [Node] of the script property that holds the edited resource. */
         script_owner: Node
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorscriptpreviewplugin.html */
     class EditorScriptPreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** Manages the SceneTree selection in the editor. */
+    /** Manages the SceneTree selection in the editor.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorselection.html  
+     */
     class EditorSelection extends Object {
         /** Clear the selection. */
         clear(): void
@@ -3123,7 +4775,10 @@ declare module "godot" {
         /** Emitted when the selection changes. */
         readonly selection_changed: Signal //  => void
     }
-    /** Object that holds the project-independent editor settings. */
+    /** Object that holds the project-independent editor settings.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorsettings.html  
+     */
     class EditorSettings extends Resource {
         /** Emitted after any editor setting has changed. It's used by various editor plugins to update their visuals on theme changes or logic on configuration changes. */
         static readonly NOTIFICATION_EDITOR_SETTINGS_CHANGED = 10000
@@ -3185,11 +4840,15 @@ declare module "godot" {
         /** Emitted after any editor setting has changed. */
         readonly settings_changed: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorsettingsdialog.html */
     class EditorSettingsDialog extends AcceptDialog {
         _update_shortcuts(): void
         _settings_changed(): void
     }
-    /** Godot editor's control for editing numeric values. */
+    /** Godot editor's control for editing numeric values.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorspinslider.html  
+     */
     class EditorSpinSlider extends Range {
         set_label(label: string): void
         get_label(): string
@@ -3229,9 +4888,13 @@ declare module "godot" {
         /** Emitted when the value form loses focus. */
         readonly value_focus_exited: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorstandardsyntaxhighlighter.html */
     class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
-    /** Base class for [SyntaxHighlighter] used by the [ScriptEditor]. */
+    /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorsyntaxhighlighter.html  
+     */
     class EditorSyntaxHighlighter extends SyntaxHighlighter {
         /** Virtual method which can be overridden to return the syntax highlighter name. */
         /* gdvirtual */ _get_name(): string
@@ -3240,18 +4903,26 @@ declare module "godot" {
         /* gdvirtual */ _get_supported_languages(): PackedStringArray
         _get_edited_resource(): RefCounted
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortexturepreviewplugin.html */
     class EditorTexturePreviewPlugin extends EditorResourcePreviewGenerator {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortexturetooltipplugin.html */
     class EditorTextureTooltipPlugin extends EditorResourceTooltipPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortheme.html */
     class EditorTheme extends Theme {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortitlebar.html */
     class EditorTitleBar extends HBoxContainer {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortoaster.html */
     class EditorToaster extends HBoxContainer {
         _popup_str(message: string, severity: any /*EditorToaster.Severity*/, tooltip: string): void
     }
-    /** Plugin for adding custom parsers to extract strings that are to be translated from custom files (.csv, .json etc.). */
+    /** Plugin for adding custom parsers to extract strings that are to be translated from custom files (.csv, .json etc.).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editortranslationparserplugin.html  
+     */
     class EditorTranslationParserPlugin extends RefCounted {
         /** Override this method to define a custom parsing logic to extract the translatable strings. */
         /* gdvirtual */ _parse_file(path: string, msgids: Array, msgids_context_plural: Array): void
@@ -3271,7 +4942,10 @@ declare module "godot" {
             INVALID_HISTORY = -99,
         }
     }
-    /** Manages undo history of scenes opened in the editor. */
+    /** Manages undo history of scenes opened in the editor.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorundoredomanager.html  
+     */
     class EditorUndoRedoManager extends Object {
         /** Create a new action. After this is called, do all your calls to [method add_do_method], [method add_undo_method], [method add_do_property], and [method add_undo_property], then commit the action with [method commit_action].  
          *  The way actions are merged is dictated by the [param merge_mode] argument. See [enum UndoRedo.MergeMode] for details.  
@@ -3358,7 +5032,10 @@ declare module "godot" {
             TREE_AREA_UNSTAGED = 2,
         }
     }
-    /** Version Control System (VCS) interface, which reads and writes to the local VCS in use. */
+    /** Version Control System (VCS) interface, which reads and writes to the local VCS in use.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorvcsinterface.html  
+     */
     class EditorVCSInterface extends Object {
         /** Initializes the VCS plugin when called from the editor. Returns whether or not the plugin was successfully initialized. A VCS project is initialized at [param project_path]. */
         /* gdvirtual */ _initialize(project_path: string): boolean
@@ -3453,11 +5130,14 @@ declare module "godot" {
         /** Pops up an error message in the editor which is shown as coming from the underlying VCS. Use this to show VCS specific error messages. */
         popup_error(msg: string): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorvalidationpanel.html */
     class EditorValidationPanel extends PanelContainer {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorvisualprofiler.html */
     class EditorVisualProfiler extends VBoxContainer {
         readonly enable_profiling: Signal // enable: boolean => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorzoomwidget.html */
     class EditorZoomWidget extends HBoxContainer {
         set_zoom(zoom: number /*f64*/): void
         get_zoom(): number /*f64*/
@@ -3465,7 +5145,10 @@ declare module "godot" {
         zoom: number /*f64*/
         readonly zoom_changed: Signal // zoom: number /*f64*/ => void
     }
-    /** Holds a reference to an [Object]'s instance ID. */
+    /** Holds a reference to an [Object]'s instance ID.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_encodedobjectasid.html  
+     */
     class EncodedObjectAsID extends RefCounted {
         set_object_id(id: number /*i64*/): void
         get_object_id(): number /*i64*/
@@ -3473,7 +5156,10 @@ declare module "godot" {
         /** The [Object] identifier stored in this [EncodedObjectAsID] instance. The object instance can be retrieved with [method @GlobalScope.instance_from_id]. */
         object_id: number /*i64*/
     }
-    /** Base class for creating custom profilers. */
+    /** Base class for creating custom profilers.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_engineprofiler.html  
+     */
     class EngineProfiler extends RefCounted {
         /** Called when the profiler is enabled/disabled, along with a set of [param options]. */
         /* gdvirtual */ _toggle(enable: boolean, options: Array): void
@@ -3573,7 +5259,10 @@ declare module "godot" {
             SDFGI_Y_SCALE_100_PERCENT = 2,
         }
     }
-    /** Resource for environment nodes (like [WorldEnvironment]) that define multiple rendering options. */
+    /** Resource for environment nodes (like [WorldEnvironment]) that define multiple rendering options.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_environment.html  
+     */
     class Environment extends Resource {
         set_background(mode: Environment.BGMode): void
         get_background(): Environment.BGMode
@@ -4079,12 +5768,17 @@ declare module "godot" {
         /** The [Texture2D] or [Texture3D] lookup table (LUT) to use for the built-in post-process color grading. Can use a [GradientTexture1D] for a 1-dimensional LUT, or a [Texture3D] for a more complex LUT. Effective only if [member adjustment_enabled] is `true`. */
         adjustment_color_correction: Texture2D | Texture3D
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_eventlistenerlineedit.html */
     class EventListenerLineEdit extends LineEdit {
         readonly event_changed: Signal // event: InputEvent => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_exporttemplatemanager.html */
     class ExportTemplateManager extends AcceptDialog {
     }
-    /** A class that stores an expression you can execute. */
+    /** A class that stores an expression you can execute.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_expression.html  
+     */
     class Expression extends RefCounted {
         /** Parses the expression and returns an [enum Error] code.  
          *  You can optionally specify names of variables that may appear in the expression with [param input_names], so that you can bind them when it gets executed.  
@@ -4102,6 +5796,7 @@ declare module "godot" {
         /** Returns the error text if [method parse] or [method execute] has failed. */
         get_error_text(): string
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_fbximportermanager.html */
     class FBXImporterManager extends ConfirmationDialog {
     }
     namespace FastNoiseLite {
@@ -4195,7 +5890,10 @@ declare module "godot" {
             DOMAIN_WARP_FRACTAL_INDEPENDENT = 2,
         }
     }
-    /** Generates noise using the FastNoiseLite library. */
+    /** Generates noise using the FastNoiseLite library.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_fastnoiselite.html  
+     */
     class FastNoiseLite extends Noise {
         set_noise_type(type: FastNoiseLite.NoiseType): void
         get_noise_type(): FastNoiseLite.NoiseType
@@ -4382,7 +6080,10 @@ declare module "godot" {
             UNIX_RESTRICTED_DELETE = 512,
         }
     }
-    /** Provides methods for file reading and writing operations. */
+    /** Provides methods for file reading and writing operations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_fileaccess.html  
+     */
     class FileAccess extends RefCounted {
         /** Creates a new [FileAccess] object and opens the file for writing or reading, depending on the flags.  
          *  Returns `null` if opening the file failed. You can use [method get_open_error] to check the error that occurred.  
@@ -4676,7 +6377,10 @@ declare module "godot" {
             ACCESS_FILESYSTEM = 2,
         }
     }
-    /** A dialog for selecting files or directories in the filesystem. */
+    /** A dialog for selecting files or directories in the filesystem.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_filedialog.html  
+     */
     class FileDialog extends ConfirmationDialog {
         _cancel_pressed(): void
         
@@ -4769,7 +6473,10 @@ declare module "godot" {
         /** Emitted when the user selects a directory. */
         readonly dir_selected: Signal // dir: string => void
     }
-    /** Godot editor's dock for managing files in the project. */
+    /** Godot editor's dock for managing files in the project.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_filesystemdock.html  
+     */
     class FileSystemDock extends VBoxContainer {
         _update_tree(_unnamed_arg0: PackedStringArray, _unnamed_arg1: boolean, _unnamed_arg2: boolean, _unnamed_arg3: boolean): void
         _file_list_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
@@ -4810,17 +6517,21 @@ declare module "godot" {
         /** Emitted when the user switches file display mode or split mode. */
         readonly display_mode_changed: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_filesystemlist.html */
     class FileSystemList extends ItemList {
         readonly item_edited: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_findinfiles.html */
     class FindInFiles extends Node {
         readonly result_found: Signal // path: string, line_number: number /*i64*/, begin: number /*i64*/, end: number /*i64*/, text: string => void
         readonly finished: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_findinfilesdialog.html */
     class FindInFilesDialog extends AcceptDialog {
         readonly find_requested: Signal //  => void
         readonly replace_requested: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_findinfilespanel.html */
     class FindInFilesPanel extends Control {
         _on_result_found(_unnamed_arg0: string, _unnamed_arg1: number /*i64*/, _unnamed_arg2: number /*i64*/, _unnamed_arg3: number /*i64*/, _unnamed_arg4: string): void
         _on_finished(): void
@@ -4828,6 +6539,7 @@ declare module "godot" {
         readonly result_selected: Signal // path: string, line_number: number /*i64*/, begin: number /*i64*/, end: number /*i64*/ => void
         readonly files_modified: Signal // paths: string => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_findreplacebar.html */
     class FindReplaceBar extends HBoxContainer {
         _search_current(): boolean
         readonly error: Signal //  => void
@@ -4844,7 +6556,10 @@ declare module "godot" {
             ALIGNMENT_END = 2,
         }
     }
-    /** A container that arranges its child controls horizontally or vertically and wraps them around at the borders. */
+    /** A container that arranges its child controls horizontally or vertically and wraps them around at the borders.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_flowcontainer.html  
+     */
     class FlowContainer extends Container {
         /** Returns the current line count. */
         get_line_count(): number /*i64*/
@@ -4861,7 +6576,10 @@ declare module "godot" {
          */
         vertical: boolean
     }
-    /** A material that controls how volumetric fog is rendered, to be assigned to a [FogVolume]. */
+    /** A material that controls how volumetric fog is rendered, to be assigned to a [FogVolume].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_fogmaterial.html  
+     */
     class FogMaterial extends Material {
         set_density(density: number /*f64*/): void
         get_density(): number /*f64*/
@@ -4897,9 +6615,13 @@ declare module "godot" {
         /** The 3D texture that is used to scale the [member density] of the [FogVolume]. This can be used to vary fog density within the [FogVolume] with any kind of static pattern. For animated effects, consider using a custom [url=$DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html]fog shader[/url]. */
         density_texture: Texture3D
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_fogmaterialconversionplugin.html */
     class FogMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
-    /** A region that contributes to the default volumetric fog from the world environment. */
+    /** A region that contributes to the default volumetric fog from the world environment.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_fogvolume.html  
+     */
     class FogVolume extends VisualInstance3D {
         set_size(size: Vector3): void
         get_size(): Vector3
@@ -4922,9 +6644,13 @@ declare module "godot" {
         /** The [Material] used by the [FogVolume]. Can be either a built-in [FogMaterial] or a custom [ShaderMaterial]. */
         material: FogMaterial | ShaderMaterial
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_fogvolumegizmoplugin.html */
     class FogVolumeGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
-    /** Abstract base class for fonts and font variations. */
+    /** Abstract base class for fonts and font variations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_font.html  
+     */
     class Font extends Resource {
         set_fallbacks(fallbacks: Array): void
         get_fallbacks(): Array
@@ -5079,9 +6805,13 @@ declare module "godot" {
          */
         fallbacks: Array
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_fonteditorplugin.html */
     class FontEditorPlugin extends EditorPlugin {
     }
-    /** Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font. */
+    /** Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_fontfile.html  
+     */
     class FontFile extends Font {
         /** Loads an AngelCode BMFont (.fnt, .font) bitmap font from file [param path].  
          *  **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.  
@@ -5395,7 +7125,10 @@ declare module "godot" {
         /** Font OpenType feature set override. */
         opentype_feature_overrides: Dictionary
     }
-    /** A variation of a font with additional settings. */
+    /** A variation of a font with additional settings.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_fontvariation.html  
+     */
     class FontVariation extends Font {
         set_base_font(font: Font): void
         get_base_font(): Font
@@ -5448,6 +7181,7 @@ declare module "godot" {
             INITIALIZATION_LEVEL_EDITOR = 3,
         }
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gdextension.html */
     class GDExtension extends Resource {
         open_library(path: string, entry_symbol: string): GodotError
         close_library(): void
@@ -5455,6 +7189,7 @@ declare module "godot" {
         get_minimum_library_initialization_level(): GDExtension.InitializationLevel
         initialize_library(level: GDExtension.InitializationLevel): void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfaccessor.html */
     class GLTFAccessor extends Resource {
         get_buffer_view(): number /*i64*/
         set_buffer_view(buffer_view: number /*i64*/): void
@@ -5499,11 +7234,13 @@ declare module "godot" {
         sparse_values_buffer_view: number /*i64*/
         sparse_values_byte_offset: number /*i64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfanimation.html */
     class GLTFAnimation extends Resource {
         get_loop(): boolean
         set_loop(loop: boolean): void
         loop: boolean
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfbufferview.html */
     class GLTFBufferView extends Resource {
         get_buffer(): number /*i64*/
         set_buffer(buffer: number /*i64*/): void
@@ -5521,7 +7258,10 @@ declare module "godot" {
         byte_stride: number /*i64*/
         indices: boolean
     }
-    /** Represents a GLTF camera. */
+    /** Represents a GLTF camera.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfcamera.html  
+     */
     class GLTFCamera extends Resource {
         /** Create a new GLTFCamera instance from the given Godot [Camera3D] node. */
         static from_node(camera_node: Camera3D): GLTFCamera
@@ -5572,7 +7312,10 @@ declare module "godot" {
             ROOT_NODE_MODE_MULTI_ROOT = 2,
         }
     }
-    /** Class for importing and exporting glTF files in and out of Godot. */
+    /** Class for importing and exporting glTF files in and out of Godot.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocument.html  
+     */
     class GLTFDocument extends Resource {
         /** Takes a path to a GLTF file and imports the data at that file path to the given [GLTFState] object through the [param state] parameter.  
          *      
@@ -5630,7 +7373,10 @@ declare module "godot" {
          */
         root_node_mode: number /*i64*/
     }
-    /** [GLTFDocument] extension class. */
+    /** [GLTFDocument] extension class.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextension.html  
+     */
     class GLTFDocumentExtension extends Resource {
         /** Part of the import process. This method is run first, before all other parts of the import process.  
          *  The return value is used to determine if this [GLTFDocumentExtension] instance should be used for importing a given GLTF file. If [constant OK], the import will use this [GLTFDocumentExtension] instance. If not overridden, [constant OK] is returned.  
@@ -5728,15 +7474,22 @@ declare module "godot" {
          */
         /* gdvirtual */ _export_post(state: GLTFState): GodotError
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensionconvertimportermesh.html */
     class GLTFDocumentExtensionConvertImporterMesh extends GLTFDocumentExtension {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensionphysics.html */
     class GLTFDocumentExtensionPhysics extends GLTFDocumentExtension {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensiontexturektx.html */
     class GLTFDocumentExtensionTextureKTX extends GLTFDocumentExtension {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensiontexturewebp.html */
     class GLTFDocumentExtensionTextureWebP extends GLTFDocumentExtension {
     }
-    /** Represents a GLTF light. */
+    /** Represents a GLTF light.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltflight.html  
+     */
     class GLTFLight extends Resource {
         /** Create a new GLTFLight instance from the given Godot [Light3D] node. */
         static from_node(light_node: Light3D): GLTFLight
@@ -5784,6 +7537,7 @@ declare module "godot" {
          */
         outer_cone_angle: number /*f64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfmesh.html */
     class GLTFMesh extends Resource {
         get_mesh(): ImporterMesh
         set_mesh(mesh: ImporterMesh): void
@@ -5795,7 +7549,10 @@ declare module "godot" {
         blend_weights: PackedFloat32Array
         instance_materials: Array
     }
-    /** GLTF node class. */
+    /** GLTF node class.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfnode.html  
+     */
     class GLTFNode extends Resource {
         get_parent(): number /*i64*/
         set_parent(parent: number /*i64*/): void
@@ -5868,7 +7625,10 @@ declare module "godot" {
         /** If this GLTF node is a light, the index of the [GLTFLight] in the [GLTFState] that describes the light's properties. If -1, this node is not a light. */
         light: number /*i64*/
     }
-    /** Represents a GLTF physics body. */
+    /** Represents a GLTF physics body.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfphysicsbody.html  
+     */
     class GLTFPhysicsBody extends Resource {
         /** Create a new GLTFPhysicsBody instance from the given Godot [CollisionObject3D] node. */
         static from_node(body_node: CollisionObject3D): GLTFPhysicsBody
@@ -5914,7 +7674,10 @@ declare module "godot" {
          */
         inertia_tensor: Basis
     }
-    /** Represents a GLTF physics shape. */
+    /** Represents a GLTF physics shape.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfphysicsshape.html  
+     */
     class GLTFPhysicsShape extends Resource {
         /** Create a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node. */
         static from_node(shape_node: CollisionShape3D): GLTFPhysicsShape
@@ -5965,6 +7728,7 @@ declare module "godot" {
         /** The [ImporterMesh] resource of the shape. This is only used when the shape type is "hull" (convex hull) or "trimesh" (concave trimesh). */
         importer_mesh: ImporterMesh
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfskeleton.html */
     class GLTFSkeleton extends Resource {
         get_joints(): PackedInt32Array
         set_joints(joints: PackedInt32Array): void
@@ -5986,6 +7750,7 @@ declare module "godot" {
         unique_names: Array
         godot_bone_node: Dictionary
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfskin.html */
     class GLTFSkin extends Resource {
         get_skin_root(): number /*i64*/
         set_skin_root(skin_root: number /*i64*/): void
@@ -6018,7 +7783,10 @@ declare module "godot" {
         joint_i_to_name: Dictionary
         godot_skin: Skin
     }
-    /** Archived GLTF extension for specular/glossy materials. */
+    /** Archived GLTF extension for specular/glossy materials.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfspecgloss.html  
+     */
     class GLTFSpecGloss extends Resource {
         get_diffuse_img(): Image
         set_diffuse_img(diffuse_img: Image): void
@@ -6046,7 +7814,10 @@ declare module "godot" {
         /** The specular-glossiness texture. */
         spec_gloss_img: Object
     }
-    /** Represents all data of a GLTF file. */
+    /** Represents all data of a GLTF file.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfstate.html  
+     */
     class GLTFState extends Resource {
         /** Discards all embedded textures and uses untextured materials. */
         static readonly HANDLE_BINARY_DISCARD_TEXTURES = 0
@@ -6229,6 +8000,7 @@ declare module "godot" {
         animations: Array
         handle_binary_image: number /*i64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltftexture.html */
     class GLTFTexture extends Resource {
         get_src_image(): number /*i64*/
         set_src_image(src_image: number /*i64*/): void
@@ -6241,7 +8013,10 @@ declare module "godot" {
         /** ID of the texture sampler to use when sampling the image. If -1, then the default texture sampler is used (linear filtering, and repeat wrapping in both axes). */
         sampler: number /*i64*/
     }
-    /** Represents a GLTF texture sampler */
+    /** Represents a GLTF texture sampler  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gltftexturesampler.html  
+     */
     class GLTFTextureSampler extends Resource {
         get_mag_filter(): number /*i64*/
         set_mag_filter(filter_mode: number /*i64*/): void
@@ -6292,7 +8067,10 @@ declare module "godot" {
             EMIT_FLAG_CUSTOM = 16,
         }
     }
-    /** A 2D particle emitter. */
+    /** A 2D particle emitter.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles2d.html  
+     */
     class GPUParticles2D extends Node2D {
         set_emitting(emitting: boolean): void
         set_amount(amount: number /*i64*/): void
@@ -6459,6 +8237,7 @@ declare module "godot" {
          */
         readonly finished: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles2deditorplugin.html */
     class GPUParticles2DEditorPlugin extends EditorPlugin {
     }
     namespace GPUParticles3D {
@@ -6498,7 +8277,10 @@ declare module "godot" {
             TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY = 3,
         }
     }
-    /** A 3D particle emitter. */
+    /** A 3D particle emitter.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3d.html  
+     */
     class GPUParticles3D extends GeometryInstance3D {
         /** Maximum number of draw passes supported. */
         static readonly MAX_DRAW_PASSES = 4
@@ -6670,15 +8452,22 @@ declare module "godot" {
          */
         readonly finished: Signal //  => void
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3deditor.html */
     class GPUParticles3DEditor extends GPUParticles3DEditorBase {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3deditorbase.html */
     class GPUParticles3DEditorBase extends Control {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3deditorplugin.html */
     class GPUParticles3DEditorPlugin extends EditorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3dgizmoplugin.html */
     class GPUParticles3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
-    /** Abstract base class for 3D particle attractors. */
+    /** Abstract base class for 3D particle attractors.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlesattractor3d.html  
+     */
     class GPUParticlesAttractor3D extends VisualInstance3D {
         set_cull_mask(mask: number /*i64*/): void
         get_cull_mask(): number /*i64*/
@@ -6707,7 +8496,10 @@ declare module "godot" {
          */
         cull_mask: number /*i64*/
     }
-    /** A box-shaped attractor that influences particles from [GPUParticles3D] nodes. */
+    /** A box-shaped attractor that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlesattractorbox3d.html  
+     */
     class GPUParticlesAttractorBox3D extends GPUParticlesAttractor3D {
         set_size(size: Vector3): void
         get_size(): Vector3
@@ -6715,7 +8507,10 @@ declare module "godot" {
         /** The attractor box's size in 3D units. */
         size: Vector3
     }
-    /** A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes. */
+    /** A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlesattractorsphere3d.html  
+     */
     class GPUParticlesAttractorSphere3D extends GPUParticlesAttractor3D {
         set_radius(radius: number /*f64*/): void
         get_radius(): number /*f64*/
@@ -6726,7 +8521,10 @@ declare module "godot" {
          */
         radius: number /*f64*/
     }
-    /** A box-shaped attractor with varying directions and strengths defined in it that influences particles from [GPUParticles3D] nodes. */
+    /** A box-shaped attractor with varying directions and strengths defined in it that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlesattractorvectorfield3d.html  
+     */
     class GPUParticlesAttractorVectorField3D extends GPUParticlesAttractor3D {
         set_size(size: Vector3): void
         get_size(): Vector3
@@ -6742,7 +8540,10 @@ declare module "godot" {
          */
         texture: Texture3D
     }
-    /** Abstract base class for 3D particle collision shapes affecting [GPUParticles3D] nodes. */
+    /** Abstract base class for 3D particle collision shapes affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollision3d.html  
+     */
     class GPUParticlesCollision3D extends VisualInstance3D {
         set_cull_mask(mask: number /*i64*/): void
         get_cull_mask(): number /*i64*/
@@ -6753,9 +8554,13 @@ declare module "godot" {
          */
         cull_mask: number /*i64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollision3dgizmoplugin.html */
     class GPUParticlesCollision3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
-    /** A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes. */
+    /** A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollisionbox3d.html  
+     */
     class GPUParticlesCollisionBox3D extends GPUParticlesCollision3D {
         set_size(size: Vector3): void
         get_size(): Vector3
@@ -6794,7 +8599,10 @@ declare module "godot" {
             UPDATE_MODE_ALWAYS = 1,
         }
     }
-    /** A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes. */
+    /** A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollisionheightfield3d.html  
+     */
     class GPUParticlesCollisionHeightField3D extends GPUParticlesCollision3D {
         set_size(size: Vector3): void
         get_size(): Vector3
@@ -6843,7 +8651,10 @@ declare module "godot" {
             RESOLUTION_MAX = 6,
         }
     }
-    /** A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes. */
+    /** A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollisionsdf3d.html  
+     */
     class GPUParticlesCollisionSDF3D extends GPUParticlesCollision3D {
         set_size(size: Vector3): void
         get_size(): Vector3
@@ -6877,9 +8688,13 @@ declare module "godot" {
         /** The 3D texture representing the signed distance field. */
         texture: Texture3D
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollisionsdf3deditorplugin.html */
     class GPUParticlesCollisionSDF3DEditorPlugin extends EditorPlugin {
     }
-    /** A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes. */
+    /** A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollisionsphere3d.html  
+     */
     class GPUParticlesCollisionSphere3D extends GPUParticlesCollision3D {
         set_radius(radius: number /*f64*/): void
         get_radius(): number /*f64*/
@@ -6965,7 +8780,10 @@ declare module "godot" {
             FLAG_MAX = 6,
         }
     }
-    /** A physics joint that allows for complex movement and rotation between two 3D physics bodies. */
+    /** A physics joint that allows for complex movement and rotation between two 3D physics bodies.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_generic6dofjoint3d.html  
+     */
     class Generic6DOFJoint3D extends Joint3D {
         set_param_x(param: Generic6DOFJoint3D.Param, value: number /*f64*/): void
         get_param_x(param: Generic6DOFJoint3D.Param): number /*f64*/
@@ -7037,7 +8855,10 @@ declare module "godot" {
             VISIBILITY_RANGE_FADE_DEPENDENCIES = 2,
         }
     }
-    /** Base node for geometry-based visual instances. */
+    /** Base node for geometry-based visual instances.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_geometryinstance3d.html  
+     */
     class GeometryInstance3D extends VisualInstance3D {
         set_material_override(material: Material): void
         get_material_override(): Material
@@ -7148,16 +8969,22 @@ declare module "godot" {
         /** Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values. */
         visibility_range_fade_mode: number /*i64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gizmo3dhelper.html */
     class Gizmo3DHelper extends RefCounted {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_godotjseditorplugin.html */
     class GodotJSEditorPlugin extends EditorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_godotjsrepl.html */
     class GodotJSREPL extends Control {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_godotjsscript.html */
     class GodotJSScript extends Script {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_godotphysicsdirectspacestate2d.html */
     class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gotolinedialog.html */
     class GotoLineDialog extends ConfirmationDialog {
     }
     namespace Gradient {
@@ -7182,7 +9009,10 @@ declare module "godot" {
             GRADIENT_COLOR_SPACE_OKLAB = 2,
         }
     }
-    /** A color transition. */
+    /** A color transition.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gradient.html  
+     */
     class Gradient extends Resource {
         /** Adds the specified color to the gradient, with the specified offset. */
         add_point(offset: number /*f64*/, color: Color): void
@@ -7243,9 +9073,13 @@ declare module "godot" {
          */
         colors: PackedColorArray
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gradienteditorplugin.html */
     class GradientEditorPlugin extends EditorPlugin {
     }
-    /** A 1D texture that uses colors obtained from a [Gradient]. */
+    /** A 1D texture that uses colors obtained from a [Gradient].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gradienttexture1d.html  
+     */
     class GradientTexture1D extends Texture2D {
         set_gradient(gradient: Gradient): void
         get_gradient(): Gradient
@@ -7284,7 +9118,10 @@ declare module "godot" {
             REPEAT_MIRROR = 2,
         }
     }
-    /** A 2D texture that creates a pattern with colors obtained from a [Gradient]. */
+    /** A 2D texture that creates a pattern with colors obtained from a [Gradient].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gradienttexture2d.html  
+     */
     class GradientTexture2D extends Texture2D {
         set_gradient(gradient: Gradient): void
         get_gradient(): Gradient
@@ -7325,6 +9162,7 @@ declare module "godot" {
         /** The gradient repeat type, one of the [enum Repeat] values. The texture is filled starting from [member fill_from] to [member fill_to] offsets by default, but the gradient fill can be repeated to cover the entire texture. */
         repeat: number /*i64*/
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gradienttexture2deditorplugin.html */
     class GradientTexture2DEditorPlugin extends EditorPlugin {
     }
     namespace GraphEdit {
@@ -7336,7 +9174,10 @@ declare module "godot" {
             SCROLL_PANS = 1,
         }
     }
-    /** An editor for graph-like structures, using [GraphNode]s. */
+    /** An editor for graph-like structures, using [GraphNode]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_graphedit.html  
+     */
     class GraphEdit extends Control {
         /** Returns whether the [param mouse_position] is in the input hot zone.  
          *  By default, a hot zone is a [Rect2] positioned such that its center is at [param in_node].[method GraphNode.get_input_port_position]([param in_port]) (For output's case, call [method GraphNode.get_output_port_position] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.  
@@ -7586,1680 +9427,5 @@ declare module "godot" {
         
         /** Emitted when the scroll offset is changed by the user. It will not be emitted when changed in code. */
         readonly scroll_offset_changed: Signal // offset: Vector2 => void
-    }
-    class GraphEditFilter extends Control {
-    }
-    class GraphEditMinimap extends Control {
-    }
-    /** A container that represents a basic element that can be placed inside a [GraphEdit] control. */
-    class GraphElement extends Container {
-        set_resizable(resizable: boolean): void
-        is_resizable(): boolean
-        set_draggable(draggable: boolean): void
-        is_draggable(): boolean
-        set_selectable(selectable: boolean): void
-        is_selectable(): boolean
-        set_selected(selected: boolean): void
-        is_selected(): boolean
-        set_position_offset(offset: Vector2): void
-        get_position_offset(): Vector2
-        
-        /** The offset of the GraphElement, relative to the scroll offset of the [GraphEdit]. */
-        position_offset: Vector2
-        
-        /** If `true`, the user can resize the GraphElement.  
-         *      
-         *  **Note:** Dragging the handle will only emit the [signal resize_request] signal, the GraphElement needs to be resized manually.  
-         */
-        resizable: boolean
-        
-        /** If `true`, the user can drag the GraphElement. */
-        draggable: boolean
-        
-        /** If `true`, the user can select the GraphElement. */
-        selectable: boolean
-        
-        /** If `true`, the GraphElement is selected. */
-        selected: boolean
-        
-        /** Emitted when the GraphElement is selected. */
-        readonly node_selected: Signal //  => void
-        
-        /** Emitted when the GraphElement is deselected. */
-        readonly node_deselected: Signal //  => void
-        
-        /** Emitted when displaying the GraphElement over other ones is requested. Happens on focusing (clicking into) the GraphElement. */
-        readonly raise_request: Signal //  => void
-        
-        /** Emitted when removing the GraphElement is requested. */
-        readonly delete_request: Signal //  => void
-        
-        /** Emitted when resizing the GraphElement is requested. Happens on dragging the resizer handle (see [member resizable]). */
-        readonly resize_request: Signal // new_minsize: Vector2 => void
-        
-        /** Emitted when the GraphElement is dragged. */
-        readonly dragged: Signal // from: Vector2, to: Vector2 => void
-        
-        /** Emitted when the GraphElement is moved. */
-        readonly position_offset_changed: Signal //  => void
-    }
-    /** A container with connection ports, representing a node in a [GraphEdit]. */
-    class GraphNode extends GraphElement {
-        /* gdvirtual */ _draw_port(slot_index: number /*i64*/, position: Vector2i, left: boolean, color: Color): void
-        set_title(title: string): void
-        get_title(): string
-        
-        /** Returns the [HBoxContainer] used for the title bar, only containing a [Label] for displaying the title by default. This can be used to add custom controls to the title bar such as option or close buttons. */
-        get_titlebar_hbox(): HBoxContainer
-        
-        /** Sets properties of the slot with the given [param slot_index].  
-         *  If [param enable_left_port]/[param enable_right_port] is `true`, a port will appear and the slot will be able to be connected from this side.  
-         *  With [param type_left]/[param type_right] an arbitrary type can be assigned to each port. Two ports can be connected if they share the same type, or if the connection between their types is allowed in the parent [GraphEdit] (see [method GraphEdit.add_valid_connection_type]). Keep in mind that the [GraphEdit] has the final say in accepting the connection. Type compatibility simply allows the [signal GraphEdit.connection_request] signal to be emitted.  
-         *  Ports can be further customized using [param color_left]/[param color_right] and [param custom_icon_left]/[param custom_icon_right]. The color parameter adds a tint to the icon. The custom icon can be used to override the default port dot.  
-         *  Additionally, [param draw_stylebox] can be used to enable or disable drawing of the background stylebox for each slot. See [theme_item slot].  
-         *  Individual properties can also be set using one of the `set_slot_*` methods.  
-         *      
-         *  **Note:** This method only sets properties of the slot. To create the slot itself, add a [Control]-derived child to the GraphNode.  
-         */
-        set_slot(slot_index: number /*i64*/, enable_left_port: boolean, type_left: number /*i64*/, color_left: Color, enable_right_port: boolean, type_right: number /*i64*/, color_right: Color, custom_icon_left: Texture2D = <any> {} /*compound.type from nil*/, custom_icon_right: Texture2D = <any> {} /*compound.type from nil*/, draw_stylebox: boolean = true): void
-        
-        /** Disables the slot with the given [param slot_index]. This will remove the corresponding input and output port from the GraphNode. */
-        clear_slot(slot_index: number /*i64*/): void
-        
-        /** Disables all slots of the GraphNode. This will remove all input/output ports from the GraphNode. */
-        clear_all_slots(): void
-        
-        /** Returns `true` if left (input) side of the slot with the given [param slot_index] is enabled. */
-        is_slot_enabled_left(slot_index: number /*i64*/): boolean
-        
-        /** Toggles the left (input) side of the slot with the given [param slot_index]. If [param enable] is `true`, a port will appear on the left side and the slot will be able to be connected from this side. */
-        set_slot_enabled_left(slot_index: number /*i64*/, enable: boolean): void
-        
-        /** Sets the left (input) type of the slot with the given [param slot_index] to [param type]. If the value is negative, all connections will be disallowed to be created via user inputs. */
-        set_slot_type_left(slot_index: number /*i64*/, type: number /*i64*/): void
-        
-        /** Returns the left (input) type of the slot with the given [param slot_index]. */
-        get_slot_type_left(slot_index: number /*i64*/): number /*i64*/
-        
-        /** Sets the [Color] of the left (input) side of the slot with the given [param slot_index] to [param color]. */
-        set_slot_color_left(slot_index: number /*i64*/, color: Color): void
-        
-        /** Returns the left (input) [Color] of the slot with the given [param slot_index]. */
-        get_slot_color_left(slot_index: number /*i64*/): Color
-        
-        /** Returns `true` if right (output) side of the slot with the given [param slot_index] is enabled. */
-        is_slot_enabled_right(slot_index: number /*i64*/): boolean
-        
-        /** Toggles the right (output) side of the slot with the given [param slot_index]. If [param enable] is `true`, a port will appear on the right side and the slot will be able to be connected from this side. */
-        set_slot_enabled_right(slot_index: number /*i64*/, enable: boolean): void
-        
-        /** Sets the right (output) type of the slot with the given [param slot_index] to [param type]. If the value is negative, all connections will be disallowed to be created via user inputs. */
-        set_slot_type_right(slot_index: number /*i64*/, type: number /*i64*/): void
-        
-        /** Returns the right (output) type of the slot with the given [param slot_index]. */
-        get_slot_type_right(slot_index: number /*i64*/): number /*i64*/
-        
-        /** Sets the [Color] of the right (output) side of the slot with the given [param slot_index] to [param color]. */
-        set_slot_color_right(slot_index: number /*i64*/, color: Color): void
-        
-        /** Returns the right (output) [Color] of the slot with the given [param slot_index]. */
-        get_slot_color_right(slot_index: number /*i64*/): Color
-        
-        /** Returns true if the background [StyleBox] of the slot with the given [param slot_index] is drawn. */
-        is_slot_draw_stylebox(slot_index: number /*i64*/): boolean
-        
-        /** Toggles the background [StyleBox] of the slot with the given [param slot_index]. */
-        set_slot_draw_stylebox(slot_index: number /*i64*/, enable: boolean): void
-        
-        /** Returns the number of slots with an enabled input port. */
-        get_input_port_count(): number /*i64*/
-        
-        /** Returns the position of the input port with the given [param port_idx]. */
-        get_input_port_position(port_idx: number /*i64*/): Vector2
-        
-        /** Returns the type of the input port with the given [param port_idx]. */
-        get_input_port_type(port_idx: number /*i64*/): number /*i64*/
-        
-        /** Returns the [Color] of the input port with the given [param port_idx]. */
-        get_input_port_color(port_idx: number /*i64*/): Color
-        
-        /** Returns the corresponding slot index of the input port with the given [param port_idx]. */
-        get_input_port_slot(port_idx: number /*i64*/): number /*i64*/
-        
-        /** Returns the number of slots with an enabled output port. */
-        get_output_port_count(): number /*i64*/
-        
-        /** Returns the position of the output port with the given [param port_idx]. */
-        get_output_port_position(port_idx: number /*i64*/): Vector2
-        
-        /** Returns the type of the output port with the given [param port_idx]. */
-        get_output_port_type(port_idx: number /*i64*/): number /*i64*/
-        
-        /** Returns the [Color] of the output port with the given [param port_idx]. */
-        get_output_port_color(port_idx: number /*i64*/): Color
-        
-        /** Returns the corresponding slot index of the output port with the given [param port_idx]. */
-        get_output_port_slot(port_idx: number /*i64*/): number /*i64*/
-        
-        /** The text displayed in the GraphNode's title bar. */
-        title: string
-        
-        /** Emitted when any GraphNode's slot is updated. */
-        readonly slot_updated: Signal // slot_index: number /*i64*/ => void
-    }
-    /** A container that arranges its child controls in a grid layout. */
-    class GridContainer extends Container {
-        set_columns(columns: number /*i64*/): void
-        get_columns(): number /*i64*/
-        
-        /** The number of columns in the [GridContainer]. If modified, [GridContainer] reorders its Control-derived children to accommodate the new layout. */
-        columns: number /*i64*/
-    }
-    /** Node for 3D tile-based maps. */
-    class GridMap extends Node3D {
-        /** Invalid cell item that can be used in [method set_cell_item] to clear cells (or represent an empty cell in [method get_cell_item]). */
-        static readonly INVALID_CELL_ITEM = -1
-        set_collision_layer(layer: number /*i64*/): void
-        get_collision_layer(): number /*i64*/
-        set_collision_mask(mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: number /*i64*/): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: number /*i64*/): boolean
-        set_collision_priority(priority: number /*f64*/): void
-        get_collision_priority(): number /*f64*/
-        set_physics_material(material: PhysicsMaterial): void
-        get_physics_material(): PhysicsMaterial
-        set_bake_navigation(bake_navigation: boolean): void
-        is_baking_navigation(): boolean
-        
-        /** Sets the [RID] of the navigation map this GridMap node should use for its cell baked navigation meshes. */
-        set_navigation_map(navigation_map: RID): void
-        
-        /** Returns the [RID] of the navigation map this GridMap node uses for its cell baked navigation meshes.  
-         *  This function returns always the map set on the GridMap node and not the map on the NavigationServer. If the map is changed directly with the NavigationServer API the GridMap node will not be aware of the map change.  
-         */
-        get_navigation_map(): RID
-        set_mesh_library(mesh_library: MeshLibrary): void
-        get_mesh_library(): MeshLibrary
-        set_cell_size(size: Vector3): void
-        get_cell_size(): Vector3
-        set_cell_scale(scale: number /*f64*/): void
-        get_cell_scale(): number /*f64*/
-        set_octant_size(size: number /*i64*/): void
-        get_octant_size(): number /*i64*/
-        
-        /** Sets the mesh index for the cell referenced by its grid coordinates.  
-         *  A negative item index such as [constant INVALID_CELL_ITEM] will clear the cell.  
-         *  Optionally, the item's orientation can be passed. For valid orientation values, see [method get_orthogonal_index_from_basis].  
-         */
-        set_cell_item(position: Vector3i, item: number /*i64*/, orientation: number /*i64*/ = 0): void
-        
-        /** The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty, [constant INVALID_CELL_ITEM] will be returned. */
-        get_cell_item(position: Vector3i): number /*i64*/
-        
-        /** The orientation of the cell at the given grid coordinates. `-1` is returned if the cell is empty. */
-        get_cell_item_orientation(position: Vector3i): number /*i64*/
-        
-        /** Returns the basis that gives the specified cell its orientation. */
-        get_cell_item_basis(position: Vector3i): Basis
-        
-        /** Returns one of 24 possible rotations that lie along the vectors (x,y,z) with each component being either -1, 0, or 1. For further details, refer to the Godot source code. */
-        get_basis_with_orthogonal_index(index: number /*i64*/): Basis
-        
-        /** This function considers a discretization of rotations into 24 points on unit sphere, lying along the vectors (x,y,z) with each component being either -1, 0, or 1, and returns the index (in the range from 0 to 23) of the point best representing the orientation of the object. For further details, refer to the Godot source code. */
-        get_orthogonal_index_from_basis(basis: Basis): number /*i64*/
-        
-        /** Returns the map coordinates of the cell containing the given [param local_position]. If [param local_position] is in global coordinates, consider using [method Node3D.to_local] before passing it to this method. See also [method map_to_local]. */
-        local_to_map(local_position: Vector3): Vector3i
-        
-        /** Returns the position of a grid cell in the GridMap's local coordinate space. To convert the returned value into global coordinates, use [method Node3D.to_global]. See also [method map_to_local]. */
-        map_to_local(map_position: Vector3i): Vector3
-        _update_octants_callback(): void
-        
-        /** [i]Obsoleted.[/i] Use [signal Resource.changed] instead. */
-        resource_changed(resource: Resource): void
-        set_center_x(enable: boolean): void
-        get_center_x(): boolean
-        set_center_y(enable: boolean): void
-        get_center_y(): boolean
-        set_center_z(enable: boolean): void
-        get_center_z(): boolean
-        
-        /** Clear all cells. */
-        clear(): void
-        
-        /** Returns an array of [Vector3] with the non-empty cell coordinates in the grid map. */
-        get_used_cells(): Array
-        
-        /** Returns an array of all cells with the given item index specified in [param item]. */
-        get_used_cells_by_item(item: number /*i64*/): Array
-        
-        /** Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in the grid. The transforms are specified in local space. */
-        get_meshes(): Array
-        
-        /** Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist within the current GridMap. */
-        get_bake_meshes(): Array
-        
-        /** Returns [RID] of a baked mesh with the given [param idx]. */
-        get_bake_mesh_instance(idx: number /*i64*/): RID
-        
-        /** Clears all baked meshes. See [method make_baked_meshes]. */
-        clear_baked_meshes(): void
-        
-        /** Bakes lightmap data for all meshes in the assigned [MeshLibrary]. */
-        make_baked_meshes(gen_lightmap_uv: boolean = false, lightmap_uv_texel_size: number /*f64*/ = 0.1): void
-        
-        /** The assigned [MeshLibrary]. */
-        mesh_library: MeshLibrary
-        
-        /** Overrides the default friction and bounce physics properties for the whole [GridMap]. */
-        physics_material: PhysicsMaterial
-        
-        /** The dimensions of the grid's cells.  
-         *  This does not affect the size of the meshes. See [member cell_scale].  
-         */
-        cell_size: Vector3
-        
-        /** The size of each octant measured in number of cells. This applies to all three axis. */
-        cell_octant_size: number /*i64*/
-        
-        /** If `true`, grid items are centered on the X axis. */
-        cell_center_x: boolean
-        
-        /** If `true`, grid items are centered on the Y axis. */
-        cell_center_y: boolean
-        
-        /** If `true`, grid items are centered on the Z axis. */
-        cell_center_z: boolean
-        
-        /** The scale of the cell items.  
-         *  This does not affect the size of the grid cells themselves, only the items in them. This can be used to make cell items overlap their neighbors.  
-         */
-        cell_scale: number /*f64*/
-        
-        /** The physics layers this GridMap is in.  
-         *  GridMaps act as static bodies, meaning they aren't affected by gravity or other forces. They only affect other physics bodies that collide with them.  
-         */
-        collision_layer: number /*i64*/
-        
-        /** The physics layers this GridMap detects collisions in. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        collision_mask: number /*i64*/
-        
-        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        collision_priority: number /*f64*/
-        
-        /** If `true`, this GridMap creates a navigation region for each cell that uses a [member mesh_library] item with a navigation mesh. The created navigation region will use the navigation layers bitmask assigned to the [MeshLibrary]'s item. */
-        bake_navigation: boolean
-        
-        /** Emitted when [member cell_size] changes. */
-        readonly cell_size_changed: Signal // cell_size: Vector3 => void
-        
-        /** Emitted when the [MeshLibrary] of this GridMap changes. */
-        readonly changed: Signal //  => void
-    }
-    class GridMapEditor extends VBoxContainer {
-        _configure(): void
-        _set_selection(_unnamed_arg0: boolean, _unnamed_arg1: Vector3, _unnamed_arg2: Vector3): void
-    }
-    class GridMapEditorPlugin extends EditorPlugin {
-    }
-    /** A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. */
-    class GrooveJoint2D extends Joint2D {
-        set_length(length: number /*f64*/): void
-        get_length(): number /*f64*/
-        set_initial_offset(offset: number /*f64*/): void
-        get_initial_offset(): number /*f64*/
-        
-        /** The groove's length. The groove is from the joint's origin towards [member length] along the joint's local Y axis. */
-        length: number /*f64*/
-        
-        /** The body B's initial anchor position defined by the joint's origin and a local offset [member initial_offset] along the joint's Y axis (along the groove). */
-        initial_offset: number /*f64*/
-    }
-    class GroupDialog extends AcceptDialog {
-        _delete_group_item(_unnamed_arg0: string): void
-        _add_group(_unnamed_arg0: string): void
-        _rename_group_item(_unnamed_arg0: string, _unnamed_arg1: string): void
-        _group_selected(): void
-        readonly group_edited: Signal //  => void
-    }
-    class GroupsEditor extends VBoxContainer {
-        update_tree(): void
-        _group_selected(): void
-    }
-    /** A container that arranges its child controls horizontally. */
-    class HBoxContainer extends BoxContainer {
-    }
-    /** A container that arranges its child controls horizontally and wraps them around at the borders. */
-    class HFlowContainer extends FlowContainer {
-    }
-    /** Used to create an HMAC for a message using a key. */
-    class HMACContext extends RefCounted {
-        /** Initializes the HMACContext. This method cannot be called again on the same HMACContext until [method finish] has been called. */
-        start(hash_type: HashingContext.HashType, key: PackedByteArray): GodotError
-        
-        /** Updates the message to be HMACed. This can be called multiple times before [method finish] is called to append [param data] to the message, but cannot be called until [method start] has been called. */
-        update(data: PackedByteArray): GodotError
-        
-        /** Returns the resulting HMAC. If the HMAC failed, an empty [PackedByteArray] is returned. */
-        finish(): PackedByteArray
-    }
-    /** A horizontal scrollbar that goes from left (min) to right (max). */
-    class HScrollBar extends ScrollBar {
-    }
-    /** A horizontal line used for separating other controls. */
-    class HSeparator extends Separator {
-    }
-    /** A horizontal slider that goes from left (min) to right (max). */
-    class HSlider extends Slider {
-    }
-    /** A container that splits two child controls horizontally and provides a grabber for adjusting the split ratio. */
-    class HSplitContainer extends SplitContainer {
-    }
-    namespace HTTPClient {
-        enum Method {
-            /** HTTP GET method. The GET method requests a representation of the specified resource. Requests using GET should only retrieve data. */
-            METHOD_GET = 0,
-            
-            /** HTTP HEAD method. The HEAD method asks for a response identical to that of a GET request, but without the response body. This is useful to request metadata like HTTP headers or to check if a resource exists. */
-            METHOD_HEAD = 1,
-            
-            /** HTTP POST method. The POST method is used to submit an entity to the specified resource, often causing a change in state or side effects on the server. This is often used for forms and submitting data or uploading files. */
-            METHOD_POST = 2,
-            
-            /** HTTP PUT method. The PUT method asks to replace all current representations of the target resource with the request payload. (You can think of POST as "create or update" and PUT as "update", although many services tend to not make a clear distinction or change their meaning). */
-            METHOD_PUT = 3,
-            
-            /** HTTP DELETE method. The DELETE method requests to delete the specified resource. */
-            METHOD_DELETE = 4,
-            
-            /** HTTP OPTIONS method. The OPTIONS method asks for a description of the communication options for the target resource. Rarely used. */
-            METHOD_OPTIONS = 5,
-            
-            /** HTTP TRACE method. The TRACE method performs a message loop-back test along the path to the target resource. Returns the entire HTTP request received in the response body. Rarely used. */
-            METHOD_TRACE = 6,
-            
-            /** HTTP CONNECT method. The CONNECT method establishes a tunnel to the server identified by the target resource. Rarely used. */
-            METHOD_CONNECT = 7,
-            
-            /** HTTP PATCH method. The PATCH method is used to apply partial modifications to a resource. */
-            METHOD_PATCH = 8,
-            
-            /** Represents the size of the [enum Method] enum. */
-            METHOD_MAX = 9,
-        }
-        enum Status {
-            /** Status: Disconnected from the server. */
-            STATUS_DISCONNECTED = 0,
-            
-            /** Status: Currently resolving the hostname for the given URL into an IP. */
-            STATUS_RESOLVING = 1,
-            
-            /** Status: DNS failure: Can't resolve the hostname for the given URL. */
-            STATUS_CANT_RESOLVE = 2,
-            
-            /** Status: Currently connecting to server. */
-            STATUS_CONNECTING = 3,
-            
-            /** Status: Can't connect to the server. */
-            STATUS_CANT_CONNECT = 4,
-            
-            /** Status: Connection established. */
-            STATUS_CONNECTED = 5,
-            
-            /** Status: Currently sending request. */
-            STATUS_REQUESTING = 6,
-            
-            /** Status: HTTP body received. */
-            STATUS_BODY = 7,
-            
-            /** Status: Error in HTTP connection. */
-            STATUS_CONNECTION_ERROR = 8,
-            
-            /** Status: Error in TLS handshake. */
-            STATUS_TLS_HANDSHAKE_ERROR = 9,
-        }
-        enum ResponseCode {
-            /** HTTP status code `100 Continue`. Interim response that indicates everything so far is OK and that the client should continue with the request (or ignore this status if already finished). */
-            RESPONSE_CONTINUE = 100,
-            
-            /** HTTP status code `101 Switching Protocol`. Sent in response to an `Upgrade` request header by the client. Indicates the protocol the server is switching to. */
-            RESPONSE_SWITCHING_PROTOCOLS = 101,
-            
-            /** HTTP status code `102 Processing` (WebDAV). Indicates that the server has received and is processing the request, but no response is available yet. */
-            RESPONSE_PROCESSING = 102,
-            
-            /** HTTP status code `200 OK`. The request has succeeded. Default response for successful requests. Meaning varies depending on the request. GET: The resource has been fetched and is transmitted in the message body. HEAD: The entity headers are in the message body. POST: The resource describing the result of the action is transmitted in the message body. TRACE: The message body contains the request message as received by the server. */
-            RESPONSE_OK = 200,
-            
-            /** HTTP status code `201 Created`. The request has succeeded and a new resource has been created as a result of it. This is typically the response sent after a PUT request. */
-            RESPONSE_CREATED = 201,
-            
-            /** HTTP status code `202 Accepted`. The request has been received but not yet acted upon. It is non-committal, meaning that there is no way in HTTP to later send an asynchronous response indicating the outcome of processing the request. It is intended for cases where another process or server handles the request, or for batch processing. */
-            RESPONSE_ACCEPTED = 202,
-            
-            /** HTTP status code `203 Non-Authoritative Information`. This response code means returned meta-information set is not exact set as available from the origin server, but collected from a local or a third party copy. Except this condition, 200 OK response should be preferred instead of this response. */
-            RESPONSE_NON_AUTHORITATIVE_INFORMATION = 203,
-            
-            /** HTTP status code `204 No Content`. There is no content to send for this request, but the headers may be useful. The user-agent may update its cached headers for this resource with the new ones. */
-            RESPONSE_NO_CONTENT = 204,
-            
-            /** HTTP status code `205 Reset Content`. The server has fulfilled the request and desires that the client resets the "document view" that caused the request to be sent to its original state as received from the origin server. */
-            RESPONSE_RESET_CONTENT = 205,
-            
-            /** HTTP status code `206 Partial Content`. This response code is used because of a range header sent by the client to separate download into multiple streams. */
-            RESPONSE_PARTIAL_CONTENT = 206,
-            
-            /** HTTP status code `207 Multi-Status` (WebDAV). A Multi-Status response conveys information about multiple resources in situations where multiple status codes might be appropriate. */
-            RESPONSE_MULTI_STATUS = 207,
-            
-            /** HTTP status code `208 Already Reported` (WebDAV). Used inside a DAV: propstat response element to avoid enumerating the internal members of multiple bindings to the same collection repeatedly. */
-            RESPONSE_ALREADY_REPORTED = 208,
-            
-            /** HTTP status code `226 IM Used` (WebDAV). The server has fulfilled a GET request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance. */
-            RESPONSE_IM_USED = 226,
-            
-            /** HTTP status code `300 Multiple Choice`. The request has more than one possible responses and there is no standardized way to choose one of the responses. User-agent or user should choose one of them. */
-            RESPONSE_MULTIPLE_CHOICES = 300,
-            
-            /** HTTP status code `301 Moved Permanently`. Redirection. This response code means the URI of requested resource has been changed. The new URI is usually included in the response. */
-            RESPONSE_MOVED_PERMANENTLY = 301,
-            
-            /** HTTP status code `302 Found`. Temporary redirection. This response code means the URI of requested resource has been changed temporarily. New changes in the URI might be made in the future. Therefore, this same URI should be used by the client in future requests. */
-            RESPONSE_FOUND = 302,
-            
-            /** HTTP status code `303 See Other`. The server is redirecting the user agent to a different resource, as indicated by a URI in the Location header field, which is intended to provide an indirect response to the original request. */
-            RESPONSE_SEE_OTHER = 303,
-            
-            /** HTTP status code `304 Not Modified`. A conditional GET or HEAD request has been received and would have resulted in a 200 OK response if it were not for the fact that the condition evaluated to `false`. */
-            RESPONSE_NOT_MODIFIED = 304,
-            
-            /** [i]Deprecated.[/i] HTTP status code `305 Use Proxy`. */
-            RESPONSE_USE_PROXY = 305,
-            
-            /** [i]Deprecated.[/i] HTTP status code `306 Switch Proxy`. */
-            RESPONSE_SWITCH_PROXY = 306,
-            
-            /** HTTP status code `307 Temporary Redirect`. The target resource resides temporarily under a different URI and the user agent MUST NOT change the request method if it performs an automatic redirection to that URI. */
-            RESPONSE_TEMPORARY_REDIRECT = 307,
-            
-            /** HTTP status code `308 Permanent Redirect`. The target resource has been assigned a new permanent URI and any future references to this resource ought to use one of the enclosed URIs. */
-            RESPONSE_PERMANENT_REDIRECT = 308,
-            
-            /** HTTP status code `400 Bad Request`. The request was invalid. The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, invalid request contents, or deceptive request routing). */
-            RESPONSE_BAD_REQUEST = 400,
-            
-            /** HTTP status code `401 Unauthorized`. Credentials required. The request has not been applied because it lacks valid authentication credentials for the target resource. */
-            RESPONSE_UNAUTHORIZED = 401,
-            
-            /** HTTP status code `402 Payment Required`. This response code is reserved for future use. Initial aim for creating this code was using it for digital payment systems, however this is not currently used. */
-            RESPONSE_PAYMENT_REQUIRED = 402,
-            
-            /** HTTP status code `403 Forbidden`. The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike `401`, the client's identity is known to the server. */
-            RESPONSE_FORBIDDEN = 403,
-            
-            /** HTTP status code `404 Not Found`. The server can not find requested resource. Either the URL is not recognized or the endpoint is valid but the resource itself does not exist. May also be sent instead of 403 to hide existence of a resource if the client is not authorized. */
-            RESPONSE_NOT_FOUND = 404,
-            
-            /** HTTP status code `405 Method Not Allowed`. The request's HTTP method is known by the server but has been disabled and cannot be used. For example, an API may forbid DELETE-ing a resource. The two mandatory methods, GET and HEAD, must never be disabled and should not return this error code. */
-            RESPONSE_METHOD_NOT_ALLOWED = 405,
-            
-            /** HTTP status code `406 Not Acceptable`. The target resource does not have a current representation that would be acceptable to the user agent, according to the proactive negotiation header fields received in the request. Used when negotiation content. */
-            RESPONSE_NOT_ACCEPTABLE = 406,
-            
-            /** HTTP status code `407 Proxy Authentication Required`. Similar to 401 Unauthorized, but it indicates that the client needs to authenticate itself in order to use a proxy. */
-            RESPONSE_PROXY_AUTHENTICATION_REQUIRED = 407,
-            
-            /** HTTP status code `408 Request Timeout`. The server did not receive a complete request message within the time that it was prepared to wait. */
-            RESPONSE_REQUEST_TIMEOUT = 408,
-            
-            /** HTTP status code `409 Conflict`. The request could not be completed due to a conflict with the current state of the target resource. This code is used in situations where the user might be able to resolve the conflict and resubmit the request. */
-            RESPONSE_CONFLICT = 409,
-            
-            /** HTTP status code `410 Gone`. The target resource is no longer available at the origin server and this condition is likely permanent. */
-            RESPONSE_GONE = 410,
-            
-            /** HTTP status code `411 Length Required`. The server refuses to accept the request without a defined Content-Length header. */
-            RESPONSE_LENGTH_REQUIRED = 411,
-            
-            /** HTTP status code `412 Precondition Failed`. One or more conditions given in the request header fields evaluated to `false` when tested on the server. */
-            RESPONSE_PRECONDITION_FAILED = 412,
-            
-            /** HTTP status code `413 Entity Too Large`. The server is refusing to process a request because the request payload is larger than the server is willing or able to process. */
-            RESPONSE_REQUEST_ENTITY_TOO_LARGE = 413,
-            
-            /** HTTP status code `414 Request-URI Too Long`. The server is refusing to service the request because the request-target is longer than the server is willing to interpret. */
-            RESPONSE_REQUEST_URI_TOO_LONG = 414,
-            
-            /** HTTP status code `415 Unsupported Media Type`. The origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource. */
-            RESPONSE_UNSUPPORTED_MEDIA_TYPE = 415,
-            
-            /** HTTP status code `416 Requested Range Not Satisfiable`. None of the ranges in the request's Range header field overlap the current extent of the selected resource or the set of ranges requested has been rejected due to invalid ranges or an excessive request of small or overlapping ranges. */
-            RESPONSE_REQUESTED_RANGE_NOT_SATISFIABLE = 416,
-            
-            /** HTTP status code `417 Expectation Failed`. The expectation given in the request's Expect header field could not be met by at least one of the inbound servers. */
-            RESPONSE_EXPECTATION_FAILED = 417,
-            
-            /** HTTP status code `418 I'm A Teapot`. Any attempt to brew coffee with a teapot should result in the error code "418 I'm a teapot". The resulting entity body MAY be short and stout. */
-            RESPONSE_IM_A_TEAPOT = 418,
-            
-            /** HTTP status code `421 Misdirected Request`. The request was directed at a server that is not able to produce a response. This can be sent by a server that is not configured to produce responses for the combination of scheme and authority that are included in the request URI. */
-            RESPONSE_MISDIRECTED_REQUEST = 421,
-            
-            /** HTTP status code `422 Unprocessable Entity` (WebDAV). The server understands the content type of the request entity (hence a 415 Unsupported Media Type status code is inappropriate), and the syntax of the request entity is correct (thus a 400 Bad Request status code is inappropriate) but was unable to process the contained instructions. */
-            RESPONSE_UNPROCESSABLE_ENTITY = 422,
-            
-            /** HTTP status code `423 Locked` (WebDAV). The source or destination resource of a method is locked. */
-            RESPONSE_LOCKED = 423,
-            
-            /** HTTP status code `424 Failed Dependency` (WebDAV). The method could not be performed on the resource because the requested action depended on another action and that action failed. */
-            RESPONSE_FAILED_DEPENDENCY = 424,
-            
-            /** HTTP status code `426 Upgrade Required`. The server refuses to perform the request using the current protocol but might be willing to do so after the client upgrades to a different protocol. */
-            RESPONSE_UPGRADE_REQUIRED = 426,
-            
-            /** HTTP status code `428 Precondition Required`. The origin server requires the request to be conditional. */
-            RESPONSE_PRECONDITION_REQUIRED = 428,
-            
-            /** HTTP status code `429 Too Many Requests`. The user has sent too many requests in a given amount of time (see "rate limiting"). Back off and increase time between requests or try again later. */
-            RESPONSE_TOO_MANY_REQUESTS = 429,
-            
-            /** HTTP status code `431 Request Header Fields Too Large`. The server is unwilling to process the request because its header fields are too large. The request MAY be resubmitted after reducing the size of the request header fields. */
-            RESPONSE_REQUEST_HEADER_FIELDS_TOO_LARGE = 431,
-            
-            /** HTTP status code `451 Response Unavailable For Legal Reasons`. The server is denying access to the resource as a consequence of a legal demand. */
-            RESPONSE_UNAVAILABLE_FOR_LEGAL_REASONS = 451,
-            
-            /** HTTP status code `500 Internal Server Error`. The server encountered an unexpected condition that prevented it from fulfilling the request. */
-            RESPONSE_INTERNAL_SERVER_ERROR = 500,
-            
-            /** HTTP status code `501 Not Implemented`. The server does not support the functionality required to fulfill the request. */
-            RESPONSE_NOT_IMPLEMENTED = 501,
-            
-            /** HTTP status code `502 Bad Gateway`. The server, while acting as a gateway or proxy, received an invalid response from an inbound server it accessed while attempting to fulfill the request. Usually returned by load balancers or proxies. */
-            RESPONSE_BAD_GATEWAY = 502,
-            
-            /** HTTP status code `503 Service Unavailable`. The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay. Try again later. */
-            RESPONSE_SERVICE_UNAVAILABLE = 503,
-            
-            /** HTTP status code `504 Gateway Timeout`. The server, while acting as a gateway or proxy, did not receive a timely response from an upstream server it needed to access in order to complete the request. Usually returned by load balancers or proxies. */
-            RESPONSE_GATEWAY_TIMEOUT = 504,
-            
-            /** HTTP status code `505 HTTP Version Not Supported`. The server does not support, or refuses to support, the major version of HTTP that was used in the request message. */
-            RESPONSE_HTTP_VERSION_NOT_SUPPORTED = 505,
-            
-            /** HTTP status code `506 Variant Also Negotiates`. The server has an internal configuration error: the chosen variant resource is configured to engage in transparent content negotiation itself, and is therefore not a proper end point in the negotiation process. */
-            RESPONSE_VARIANT_ALSO_NEGOTIATES = 506,
-            
-            /** HTTP status code `507 Insufficient Storage`. The method could not be performed on the resource because the server is unable to store the representation needed to successfully complete the request. */
-            RESPONSE_INSUFFICIENT_STORAGE = 507,
-            
-            /** HTTP status code `508 Loop Detected`. The server terminated an operation because it encountered an infinite loop while processing a request with "Depth: infinity". This status indicates that the entire operation failed. */
-            RESPONSE_LOOP_DETECTED = 508,
-            
-            /** HTTP status code `510 Not Extended`. The policy for accessing the resource has not been met in the request. The server should send back all the information necessary for the client to issue an extended request. */
-            RESPONSE_NOT_EXTENDED = 510,
-            
-            /** HTTP status code `511 Network Authentication Required`. The client needs to authenticate to gain network access. */
-            RESPONSE_NETWORK_AUTH_REQUIRED = 511,
-        }
-    }
-    /** Low-level hyper-text transfer protocol client. */
-    class HTTPClient extends RefCounted {
-        /** Connects to a host. This needs to be done before any requests are sent.  
-         *  If no [param port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS. You can pass the optional [param tls_options] parameter to customize the trusted certification authorities, or the common name verification when using HTTPS. See [method TLSOptions.client] and [method TLSOptions.client_unsafe].  
-         */
-        connect_to_host(host: string, port: number /*i64*/ = -1, tls_options: TLSOptions = <any> {} /*compound.type from nil*/): GodotError
-        set_connection(connection: StreamPeer): void
-        get_connection(): StreamPeer
-        
-        /** Sends a raw request to the connected host.  
-         *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
-         *  Headers are HTTP request headers. For available HTTP methods, see [enum Method].  
-         *  Sends the body data raw, as a byte array and does not encode it in any way.  
-         */
-        request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: PackedByteArray): GodotError
-        
-        /** Sends a request to the connected host.  
-         *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
-         *  Headers are HTTP request headers. For available HTTP methods, see [enum Method].  
-         *  To create a POST request with query strings to push to the server, do:  
-         *    
-         *      
-         *  **Note:** The [param body] parameter is ignored if [param method] is [constant HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [method String.uri_encode] for an example.  
-         */
-        request(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: string = ''): GodotError
-        
-        /** Closes the current connection, allowing reuse of this [HTTPClient]. */
-        close(): void
-        
-        /** If `true`, this [HTTPClient] has a response available. */
-        has_response(): boolean
-        
-        /** If `true`, this [HTTPClient] has a response that is chunked. */
-        is_response_chunked(): boolean
-        
-        /** Returns the response's HTTP status code. */
-        get_response_code(): number /*i64*/
-        
-        /** Returns the response headers. */
-        get_response_headers(): PackedStringArray
-        
-        /** Returns all response headers as a Dictionary of structure `{ "key": "value1; value2" }` where the case-sensitivity of the keys and values is kept like the server delivers it. A value is a simple String, this string can have more than one value where "; " is used as separator.  
-         *  **Example:**  
-         *    
-         */
-        get_response_headers_as_dictionary(): Dictionary
-        
-        /** Returns the response's body length.  
-         *      
-         *  **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.  
-         *      
-         *  **Note:** This function always returns `-1` on the Web platform due to browsers limitations.  
-         */
-        get_response_body_length(): number /*i64*/
-        
-        /** Reads one chunk from the response. */
-        read_response_body_chunk(): PackedByteArray
-        set_read_chunk_size(bytes: number /*i64*/): void
-        get_read_chunk_size(): number /*i64*/
-        set_blocking_mode(enabled: boolean): void
-        is_blocking_mode_enabled(): boolean
-        
-        /** Returns a [enum Status] constant. Need to call [method poll] in order to get status updates. */
-        get_status(): HTTPClient.Status
-        
-        /** This needs to be called in order to have any request processed. Check results with [method get_status]. */
-        poll(): GodotError
-        
-        /** Sets the proxy server for HTTP requests.  
-         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
-         */
-        set_http_proxy(host: string, port: number /*i64*/): void
-        
-        /** Sets the proxy server for HTTPS requests.  
-         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
-         */
-        set_https_proxy(host: string, port: number /*i64*/): void
-        
-        /** Generates a GET/POST application/x-www-form-urlencoded style query string from a provided dictionary, e.g.:  
-         *    
-         *  Furthermore, if a key has a `null` value, only the key itself is added, without equal sign and value. If the value is an array, for each value in it a pair with the same key is added.  
-         *    
-         */
-        query_string_from_dict(fields: Dictionary): string
-        
-        /** If `true`, execution will block until all data is read from the response. */
-        blocking_mode_enabled: boolean
-        
-        /** The connection to use for this client. */
-        connection: StreamPeer
-        
-        /** The size of the buffer used and maximum bytes to read per iteration. See [method read_response_body_chunk]. */
-        read_chunk_size: number /*i64*/
-    }
-    namespace HTTPRequest {
-        enum Result {
-            /** Request successful. */
-            RESULT_SUCCESS = 0,
-            RESULT_CHUNKED_BODY_SIZE_MISMATCH = 1,
-            
-            /** Request failed while connecting. */
-            RESULT_CANT_CONNECT = 2,
-            
-            /** Request failed while resolving. */
-            RESULT_CANT_RESOLVE = 3,
-            
-            /** Request failed due to connection (read/write) error. */
-            RESULT_CONNECTION_ERROR = 4,
-            
-            /** Request failed on TLS handshake. */
-            RESULT_TLS_HANDSHAKE_ERROR = 5,
-            
-            /** Request does not have a response (yet). */
-            RESULT_NO_RESPONSE = 6,
-            
-            /** Request exceeded its maximum size limit, see [member body_size_limit]. */
-            RESULT_BODY_SIZE_LIMIT_EXCEEDED = 7,
-            RESULT_BODY_DECOMPRESS_FAILED = 8,
-            
-            /** Request failed (currently unused). */
-            RESULT_REQUEST_FAILED = 9,
-            
-            /** HTTPRequest couldn't open the download file. */
-            RESULT_DOWNLOAD_FILE_CANT_OPEN = 10,
-            
-            /** HTTPRequest couldn't write to the download file. */
-            RESULT_DOWNLOAD_FILE_WRITE_ERROR = 11,
-            
-            /** Request reached its maximum redirect limit, see [member max_redirects]. */
-            RESULT_REDIRECT_LIMIT_REACHED = 12,
-            
-            /** Request failed due to a timeout. If you expect requests to take a long time, try increasing the value of [member timeout] or setting it to `0.0` to remove the timeout completely. */
-            RESULT_TIMEOUT = 13,
-        }
-    }
-    /** A node with the ability to send HTTP(S) requests. */
-    class HTTPRequest extends Node {
-        /** Creates request on the underlying [HTTPClient]. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
-         *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
-         *      
-         *  **Note:** When [param method] is [constant HTTPClient.METHOD_GET], the payload sent via [param request_data] might be ignored by the server or even cause the server to reject the request (check [url=https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1]RFC 7231 section 4.3.1[/url] for more details). As a workaround, you can send data as a query string in the URL (see [method String.uri_encode] for an example).  
-         *      
-         *  **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.  
-         */
-        request(url: string, custom_headers: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data: string = ''): GodotError
-        
-        /** Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
-         *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
-         */
-        request_raw(url: string, custom_headers: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data_raw: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): GodotError
-        
-        /** Cancels the current request. */
-        cancel_request(): void
-        
-        /** Sets the [TLSOptions] to be used when connecting to an HTTPS server. See [method TLSOptions.client]. */
-        set_tls_options(client_options: TLSOptions): void
-        
-        /** Returns the current status of the underlying [HTTPClient]. See [enum HTTPClient.Status]. */
-        get_http_client_status(): HTTPClient.Status
-        set_use_threads(enable: boolean): void
-        is_using_threads(): boolean
-        set_accept_gzip(enable: boolean): void
-        is_accepting_gzip(): boolean
-        set_body_size_limit(bytes: number /*i64*/): void
-        get_body_size_limit(): number /*i64*/
-        set_max_redirects(amount: number /*i64*/): void
-        get_max_redirects(): number /*i64*/
-        set_download_file(path: string): void
-        get_download_file(): string
-        
-        /** Returns the number of bytes this HTTPRequest downloaded. */
-        get_downloaded_bytes(): number /*i64*/
-        
-        /** Returns the response body length.  
-         *      
-         *  **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.  
-         */
-        get_body_size(): number /*i64*/
-        _request_done(_unnamed_arg0: number /*i64*/, _unnamed_arg1: number /*i64*/, _unnamed_arg2: PackedStringArray, _unnamed_arg3: PackedByteArray): void
-        set_timeout(timeout: number /*f64*/): void
-        get_timeout(): number /*f64*/
-        set_download_chunk_size(chunk_size: number /*i64*/): void
-        get_download_chunk_size(): number /*i64*/
-        
-        /** Sets the proxy server for HTTP requests.  
-         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
-         */
-        set_http_proxy(host: string, port: number /*i64*/): void
-        
-        /** Sets the proxy server for HTTPS requests.  
-         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
-         */
-        set_https_proxy(host: string, port: number /*i64*/): void
-        
-        /** The file to download into. Will output any received file into it. */
-        download_file: string
-        
-        /** The size of the buffer used and maximum bytes to read per iteration. See [member HTTPClient.read_chunk_size].  
-         *  Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory usage at the cost of download speeds.  
-         */
-        download_chunk_size: number /*i64*/
-        
-        /** If `true`, multithreading is used to improve performance. */
-        use_threads: boolean
-        
-        /** If `true`, this header will be added to each request: `Accept-Encoding: gzip, deflate` telling servers that it's okay to compress response bodies.  
-         *  Any Response body declaring a `Content-Encoding` of either `gzip` or `deflate` will then be automatically decompressed, and the uncompressed bytes will be delivered via [signal request_completed].  
-         *  If the user has specified their own `Accept-Encoding` header, then no header will be added regardless of [member accept_gzip].  
-         *  If `false` no header will be added, and no decompression will be performed on response bodies. The raw bytes of the response body will be returned via [signal request_completed].  
-         */
-        accept_gzip: boolean
-        
-        /** Maximum allowed size for response bodies. If the response body is compressed, this will be used as the maximum allowed size for the decompressed body. */
-        body_size_limit: number /*i64*/
-        
-        /** Maximum number of allowed redirects. */
-        max_redirects: number /*i64*/
-        
-        /** The duration to wait in seconds before a request times out. If [member timeout] is set to `0.0` then the request will never time out. For simple requests, such as communication with a REST API, it is recommended that [member timeout] is set to a value suitable for the server response time (e.g. between `1.0` and `10.0`). This will help prevent unwanted timeouts caused by variation in server response times while still allowing the application to detect when a request has timed out. For larger requests such as file downloads it is suggested the [member timeout] be set to `0.0`, disabling the timeout functionality. This will help to prevent large transfers from failing due to exceeding the timeout value. */
-        timeout: number /*f64*/
-        
-        /** Emitted when a request is completed. */
-        readonly request_completed: Signal // result: number /*i64*/, response_code: number /*i64*/, headers: PackedStringArray, body: PackedByteArray => void
-    }
-    namespace HashingContext {
-        enum HashType {
-            /** Hashing algorithm: MD5. */
-            HASH_MD5 = 0,
-            
-            /** Hashing algorithm: SHA-1. */
-            HASH_SHA1 = 1,
-            
-            /** Hashing algorithm: SHA-256. */
-            HASH_SHA256 = 2,
-        }
-    }
-    /** Provides functionality for computing cryptographic hashes chunk by chunk. */
-    class HashingContext extends RefCounted {
-        /** Starts a new hash computation of the given [param type] (e.g. [constant HASH_SHA256] to start computation of a SHA-256). */
-        start(type: HashingContext.HashType): GodotError
-        
-        /** Updates the computation with the given [param chunk] of data. */
-        update(chunk: PackedByteArray): GodotError
-        
-        /** Closes the current context, and return the computed hash. */
-        finish(): PackedByteArray
-    }
-    /** A 3D height map shape used for physics collision. */
-    class HeightMapShape3D extends Shape3D {
-        set_map_width(width: number /*i64*/): void
-        get_map_width(): number /*i64*/
-        set_map_depth(height: number /*i64*/): void
-        get_map_depth(): number /*i64*/
-        set_map_data(data: PackedFloat32Array): void
-        get_map_data(): PackedFloat32Array
-        
-        /** Number of vertices in the width of the height map. Changing this will resize the [member map_data]. */
-        map_width: number /*i64*/
-        
-        /** Number of vertices in the depth of the height map. Changing this will resize the [member map_data]. */
-        map_depth: number /*i64*/
-        
-        /** Height map data, pool array must be of [member map_width] * [member map_depth] size. */
-        map_data: PackedFloat32Array
-    }
-    namespace HingeJoint3D {
-        enum Param {
-            /** The speed with which the two bodies get pulled together when they move in different directions. */
-            PARAM_BIAS = 0,
-            
-            /** The maximum rotation. Only active if [member angular_limit/enable] is `true`. */
-            PARAM_LIMIT_UPPER = 1,
-            
-            /** The minimum rotation. Only active if [member angular_limit/enable] is `true`. */
-            PARAM_LIMIT_LOWER = 2,
-            
-            /** The speed with which the rotation across the axis perpendicular to the hinge gets corrected. */
-            PARAM_LIMIT_BIAS = 3,
-            PARAM_LIMIT_SOFTNESS = 4,
-            
-            /** The lower this value, the more the rotation gets slowed down. */
-            PARAM_LIMIT_RELAXATION = 5,
-            
-            /** Target speed for the motor. */
-            PARAM_MOTOR_TARGET_VELOCITY = 6,
-            
-            /** Maximum acceleration for the motor. */
-            PARAM_MOTOR_MAX_IMPULSE = 7,
-            
-            /** Represents the size of the [enum Param] enum. */
-            PARAM_MAX = 8,
-        }
-        enum Flag {
-            /** If `true`, the hinges maximum and minimum rotation, defined by [member angular_limit/lower] and [member angular_limit/upper] has effects. */
-            FLAG_USE_LIMIT = 0,
-            
-            /** When activated, a motor turns the hinge. */
-            FLAG_ENABLE_MOTOR = 1,
-            
-            /** Represents the size of the [enum Flag] enum. */
-            FLAG_MAX = 2,
-        }
-    }
-    /** A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body. */
-    class HingeJoint3D extends Joint3D {
-        /** Sets the value of the specified parameter. */
-        set_param(param: HingeJoint3D.Param, value: number /*f64*/): void
-        
-        /** Returns the value of the specified parameter. */
-        get_param(param: HingeJoint3D.Param): number /*f64*/
-        
-        /** If `true`, enables the specified flag. */
-        set_flag(flag: HingeJoint3D.Flag, enabled: boolean): void
-        
-        /** Returns the value of the specified flag. */
-        get_flag(flag: HingeJoint3D.Flag): boolean
-    }
-    class HistoryDock extends VBoxContainer {
-    }
-    namespace Image {
-        enum Format {
-            /** Texture format with a single 8-bit depth representing luminance. */
-            FORMAT_L8 = 0,
-            
-            /** OpenGL texture format with two values, luminance and alpha each stored with 8 bits. */
-            FORMAT_LA8 = 1,
-            
-            /** OpenGL texture format `RED` with a single component and a bitdepth of 8. */
-            FORMAT_R8 = 2,
-            
-            /** OpenGL texture format `RG` with two components and a bitdepth of 8 for each. */
-            FORMAT_RG8 = 3,
-            
-            /** OpenGL texture format `RGB` with three components, each with a bitdepth of 8.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_RGB8 = 4,
-            
-            /** OpenGL texture format `RGBA` with four components, each with a bitdepth of 8.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_RGBA8 = 5,
-            
-            /** OpenGL texture format `RGBA` with four components, each with a bitdepth of 4. */
-            FORMAT_RGBA4444 = 6,
-            
-            /** OpenGL texture format `RGB` with three components. Red and blue have a bitdepth of 5, and green has a bitdepth of 6. */
-            FORMAT_RGB565 = 7,
-            
-            /** OpenGL texture format `GL_R32F` where there's one component, a 32-bit floating-point value. */
-            FORMAT_RF = 8,
-            
-            /** OpenGL texture format `GL_RG32F` where there are two components, each a 32-bit floating-point values. */
-            FORMAT_RGF = 9,
-            
-            /** OpenGL texture format `GL_RGB32F` where there are three components, each a 32-bit floating-point values. */
-            FORMAT_RGBF = 10,
-            
-            /** OpenGL texture format `GL_RGBA32F` where there are four components, each a 32-bit floating-point values. */
-            FORMAT_RGBAF = 11,
-            
-            /** OpenGL texture format `GL_R16F` where there's one component, a 16-bit "half-precision" floating-point value. */
-            FORMAT_RH = 12,
-            
-            /** OpenGL texture format `GL_RG16F` where there are two components, each a 16-bit "half-precision" floating-point value. */
-            FORMAT_RGH = 13,
-            
-            /** OpenGL texture format `GL_RGB16F` where there are three components, each a 16-bit "half-precision" floating-point value. */
-            FORMAT_RGBH = 14,
-            
-            /** OpenGL texture format `GL_RGBA16F` where there are four components, each a 16-bit "half-precision" floating-point value. */
-            FORMAT_RGBAH = 15,
-            
-            /** A special OpenGL texture format where the three color components have 9 bits of precision and all three share a single 5-bit exponent. */
-            FORMAT_RGBE9995 = 16,
-            
-            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that uses Block Compression 1, and is the smallest variation of S3TC, only providing 1 bit of alpha and color data being premultiplied with alpha.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_DXT1 = 17,
-            
-            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that uses Block Compression 2, and color data is interpreted as not having been premultiplied by alpha. Well suited for images with sharp alpha transitions between translucent and opaque areas.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_DXT3 = 18,
-            
-            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also known as Block Compression 3 or BC3 that contains 64 bits of alpha channel data followed by 64 bits of DXT1-encoded color data. Color data is not premultiplied by alpha, same as DXT3. DXT5 generally produces superior results for transparent gradients compared to DXT3.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_DXT5 = 19,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], normalizing the red channel data using the same compression algorithm that DXT5 uses for the alpha channel. */
-            FORMAT_RGTC_R = 20,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], normalizing the red and green channel data using the same compression algorithm that DXT5 uses for the alpha channel. */
-            FORMAT_RGTC_RG = 21,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with unsigned normalized RGBA components.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_BPTC_RGBA = 22,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with signed floating-point RGB components. */
-            FORMAT_BPTC_RGBF = 23,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with unsigned floating-point RGB components. */
-            FORMAT_BPTC_RGBFU = 24,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC1]Ericsson Texture Compression format 1[/url], also referred to as "ETC1", and is part of the OpenGL ES graphics standard. This format cannot store an alpha channel. */
-            FORMAT_ETC = 25,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`R11_EAC` variant), which provides one channel of unsigned data. */
-            FORMAT_ETC2_R11 = 26,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`SIGNED_R11_EAC` variant), which provides one channel of signed data. */
-            FORMAT_ETC2_R11S = 27,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RG11_EAC` variant), which provides two channels of unsigned data. */
-            FORMAT_ETC2_RG11 = 28,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`SIGNED_RG11_EAC` variant), which provides two channels of signed data. */
-            FORMAT_ETC2_RG11S = 29,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGB8` variant), which is a follow-up of ETC1 and compresses RGB888 data.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_ETC2_RGB8 = 30,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGBA8`variant), which compresses RGBA8888 data with full alpha support.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_ETC2_RGBA8 = 31,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGB8_PUNCHTHROUGH_ALPHA1` variant), which compresses RGBA data to make alpha either fully transparent or fully opaque.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_ETC2_RGB8A1 = 32,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGBA8` variant), which compresses RA data and interprets it as two channels (red and green). See also [constant FORMAT_ETC2_RGBA8]. */
-            FORMAT_ETC2_RA_AS_RG = 33,
-            
-            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also known as Block Compression 3 or BC3, which compresses RA data and interprets it as two channels (red and green). See also [constant FORMAT_DXT5]. */
-            FORMAT_DXT5_RA_AS_RG = 34,
-            
-            /** [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable Texture Compression[/url]. This implements the 4x4 (high quality) mode. */
-            FORMAT_ASTC_4x4 = 35,
-            
-            /** Same format as [constant FORMAT_ASTC_4x4], but with the hint to let the GPU know it is used for HDR. */
-            FORMAT_ASTC_4x4_HDR = 36,
-            
-            /** [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable Texture Compression[/url]. This implements the 8x8 (low quality) mode. */
-            FORMAT_ASTC_8x8 = 37,
-            
-            /** Same format as [constant FORMAT_ASTC_8x8], but with the hint to let the GPU know it is used for HDR. */
-            FORMAT_ASTC_8x8_HDR = 38,
-            
-            /** Represents the size of the [enum Format] enum. */
-            FORMAT_MAX = 39,
-        }
-        enum Interpolation {
-            /** Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated. */
-            INTERPOLATE_NEAREST = 0,
-            
-            /** Performs bilinear interpolation. If the image is resized, it will be blurry. This mode is faster than [constant INTERPOLATE_CUBIC], but it results in lower quality. */
-            INTERPOLATE_BILINEAR = 1,
-            
-            /** Performs cubic interpolation. If the image is resized, it will be blurry. This mode often gives better results compared to [constant INTERPOLATE_BILINEAR], at the cost of being slower. */
-            INTERPOLATE_CUBIC = 2,
-            
-            /** Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates between them.  
-             *  It's slower than [constant INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer aliasing artifacts.  
-             *  If the image does not have mipmaps, they will be generated and used internally, but no mipmaps will be generated on the resulting image.  
-             *      
-             *  **Note:** If you intend to scale multiple copies of the original image, it's better to call [method generate_mipmaps]] on it in advance, to avoid wasting processing power in generating them again and again.  
-             *  On the other hand, if the image already has mipmaps, they will be used, and a new set will be generated for the resulting image.  
-             */
-            INTERPOLATE_TRILINEAR = 3,
-            
-            /** Performs Lanczos interpolation. This is the slowest image resizing mode, but it typically gives the best results, especially when downscaling images. */
-            INTERPOLATE_LANCZOS = 4,
-        }
-        enum AlphaMode {
-            /** Image does not have alpha. */
-            ALPHA_NONE = 0,
-            
-            /** Image stores alpha in a single bit. */
-            ALPHA_BIT = 1,
-            
-            /** Image uses alpha. */
-            ALPHA_BLEND = 2,
-        }
-        enum CompressMode {
-            /** Use S3TC compression. */
-            COMPRESS_S3TC = 0,
-            
-            /** Use ETC compression. */
-            COMPRESS_ETC = 1,
-            
-            /** Use ETC2 compression. */
-            COMPRESS_ETC2 = 2,
-            
-            /** Use BPTC compression. */
-            COMPRESS_BPTC = 3,
-            
-            /** Use ASTC compression. */
-            COMPRESS_ASTC = 4,
-            
-            /** Represents the size of the [enum CompressMode] enum. */
-            COMPRESS_MAX = 5,
-        }
-        enum UsedChannels {
-            /** The image only uses one channel for luminance (grayscale). */
-            USED_CHANNELS_L = 0,
-            
-            /** The image uses two channels for luminance and alpha, respectively. */
-            USED_CHANNELS_LA = 1,
-            
-            /** The image only uses the red channel. */
-            USED_CHANNELS_R = 2,
-            
-            /** The image uses two channels for red and green. */
-            USED_CHANNELS_RG = 3,
-            
-            /** The image uses three channels for red, green, and blue. */
-            USED_CHANNELS_RGB = 4,
-            
-            /** The image uses four channels for red, green, blue, and alpha. */
-            USED_CHANNELS_RGBA = 5,
-        }
-        enum CompressSource {
-            /** Source texture (before compression) is a regular texture. Default for all textures. */
-            COMPRESS_SOURCE_GENERIC = 0,
-            
-            /** Source texture (before compression) is in sRGB space. */
-            COMPRESS_SOURCE_SRGB = 1,
-            
-            /** Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels). */
-            COMPRESS_SOURCE_NORMAL = 2,
-        }
-        enum ASTCFormat {
-            /** Hint to indicate that the high quality 4x4 ASTC compression format should be used. */
-            ASTC_FORMAT_4x4 = 0,
-            
-            /** Hint to indicate that the low quality 8x8 ASTC compression format should be used. */
-            ASTC_FORMAT_8x8 = 1,
-        }
-    }
-    /** Image datatype. */
-    class Image extends Resource {
-        /** The maximal width allowed for [Image] resources. */
-        static readonly MAX_WIDTH = 16777216
-        
-        /** The maximal height allowed for [Image] resources. */
-        static readonly MAX_HEIGHT = 16777216
-        
-        /** Returns the image's width. */
-        get_width(): number /*i64*/
-        
-        /** Returns the image's height. */
-        get_height(): number /*i64*/
-        
-        /** Returns the image's size (width and height). */
-        get_size(): Vector2i
-        
-        /** Returns `true` if the image has generated mipmaps. */
-        has_mipmaps(): boolean
-        
-        /** Returns the image's format. See [enum Format] constants. */
-        get_format(): Image.Format
-        
-        /** Returns a copy of the image's raw data. */
-        get_data(): PackedByteArray
-        
-        /** Converts the image's format. See [enum Format] constants. */
-        convert(format: Image.Format): void
-        
-        /** Returns the number of mipmap levels or 0 if the image has no mipmaps. The largest main level image is not counted as a mipmap level by this method, so if you want to include it you can add 1 to this count. */
-        get_mipmap_count(): number /*i64*/
-        
-        /** Returns the offset where the image's mipmap with index [param mipmap] is stored in the [member data] dictionary. */
-        get_mipmap_offset(mipmap: number /*i64*/): number /*i64*/
-        
-        /** Resizes the image to the nearest power of 2 for the width and height. If [param square] is `true` then set width and height to be the same. New pixels are calculated using the [param interpolation] mode defined via [enum Interpolation] constants. */
-        resize_to_po2(square: boolean = false, interpolation: Image.Interpolation = 1): void
-        
-        /** Resizes the image to the given [param width] and [param height]. New pixels are calculated using the [param interpolation] mode defined via [enum Interpolation] constants. */
-        resize(width: number /*i64*/, height: number /*i64*/, interpolation: Image.Interpolation = 1): void
-        
-        /** Shrinks the image by a factor of 2 on each axis (this divides the pixel count by 4). */
-        shrink_x2(): void
-        
-        /** Crops the image to the given [param width] and [param height]. If the specified size is larger than the current size, the extra area is filled with black pixels. */
-        crop(width: number /*i64*/, height: number /*i64*/): void
-        
-        /** Flips the image horizontally. */
-        flip_x(): void
-        
-        /** Flips the image vertically. */
-        flip_y(): void
-        
-        /** Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`. Enabling [param renormalize] when generating mipmaps for normal map textures will make sure all resulting vector values are normalized.  
-         *  It is possible to check if the image has mipmaps by calling [method has_mipmaps] or [method get_mipmap_count]. Calling [method generate_mipmaps] on an image that already has mipmaps will replace existing mipmaps in the image.  
-         */
-        generate_mipmaps(renormalize: boolean = false): GodotError
-        
-        /** Removes the image's mipmaps. */
-        clear_mipmaps(): void
-        
-        /** Creates an empty image of given size and format. See [enum Format] constants. If [param use_mipmaps] is `true`, then generate mipmaps for this image. See the [method generate_mipmaps]. */
-        static create(width: number /*i64*/, height: number /*i64*/, use_mipmaps: boolean, format: Image.Format): Image
-        
-        /** Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If [param use_mipmaps] is `true` then loads mipmaps for this image from [param data]. See [method generate_mipmaps]. */
-        static create_from_data(width: number /*i64*/, height: number /*i64*/, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray): Image
-        
-        /** Overwrites data of an existing [Image]. Non-static equivalent of [method create_from_data]. */
-        set_data(width: number /*i64*/, height: number /*i64*/, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray): void
-        
-        /** Returns `true` if the image has no data. */
-        is_empty(): boolean
-        
-        /** Loads an image from file [param path]. See [url=$DOCS_URL/tutorials/assets_pipeline/importing_images.html#supported-image-formats]Supported image formats[/url] for a list of supported image formats and limitations.  
-         *  **Warning:** This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the `user://` directory, and may not work in exported projects.  
-         *  See also [ImageTexture] description for usage examples.  
-         */
-        load(path: string): GodotError
-        
-        /** Creates a new [Image] and loads data from the specified file. */
-        static load_from_file(path: string): Image
-        
-        /** Saves the image as a PNG file to the file at [param path]. */
-        save_png(path: string): GodotError
-        
-        /** Saves the image as a PNG file to a byte array. */
-        save_png_to_buffer(): PackedByteArray
-        
-        /** Saves the image as a JPEG file to [param path] with the specified [param quality] between `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the cost of larger file sizes. Recommended [param quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.  
-         *      
-         *  **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the image will still be saved, but the resulting JPEG file won't contain the alpha channel.  
-         */
-        save_jpg(path: string, quality: number /*f64*/ = 0.75): GodotError
-        
-        /** Saves the image as a JPEG file to a byte array with the specified [param quality] between `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the cost of larger byte array sizes (and therefore memory usage). Recommended [param quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.  
-         *      
-         *  **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the image will still be saved, but the resulting byte array won't contain the alpha channel.  
-         */
-        save_jpg_to_buffer(quality: number /*f64*/ = 0.75): PackedByteArray
-        
-        /** Saves the image as an EXR file to [param path]. If [param grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return [constant ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.  
-         *      
-         *  **Note:** The TinyEXR module is disabled in non-editor builds, which means [method save_exr] will return [constant ERR_UNAVAILABLE] when it is called from an exported project.  
-         */
-        save_exr(path: string, grayscale: boolean = false): GodotError
-        
-        /** Saves the image as an EXR file to a byte array. If [param grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return an empty byte array if Godot was compiled without the TinyEXR module.  
-         *      
-         *  **Note:** The TinyEXR module is disabled in non-editor builds, which means [method save_exr] will return an empty byte array when it is called from an exported project.  
-         */
-        save_exr_to_buffer(grayscale: boolean = false): PackedByteArray
-        
-        /** Saves the image as a WebP (Web Picture) file to the file at [param path]. By default it will save lossless. If [param lossy] is true, the image will be saved lossy, using the [param quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.  
-         *      
-         *  **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.  
-         */
-        save_webp(path: string, lossy: boolean = false, quality: number /*f64*/ = 0.75): GodotError
-        
-        /** Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless. If [param lossy] is true, the image will be saved lossy, using the [param quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.  
-         *      
-         *  **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.  
-         */
-        save_webp_to_buffer(lossy: boolean = false, quality: number /*f64*/ = 0.75): PackedByteArray
-        
-        /** Returns [constant ALPHA_BLEND] if the image has data for alpha values. Returns [constant ALPHA_BIT] if all the alpha values are stored in a single bit. Returns [constant ALPHA_NONE] if no data for alpha values is found. */
-        detect_alpha(): Image.AlphaMode
-        
-        /** Returns `true` if all the image's pixels have an alpha value of 0. Returns `false` if any pixel has an alpha value higher than 0. */
-        is_invisible(): boolean
-        
-        /** Returns the color channels used by this image, as one of the [enum UsedChannels] constants. If the image is compressed, the original [param source] must be specified. */
-        detect_used_channels(source: Image.CompressSource = 0): Image.UsedChannels
-        
-        /** Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.  
-         *  The [param source] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.  
-         *  For ASTC compression, the [param astc_format] parameter must be supplied.  
-         */
-        compress(mode: Image.CompressMode, source: Image.CompressSource = 0, astc_format: Image.ASTCFormat = 0): GodotError
-        
-        /** Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.  
-         *  This is an alternative to [method compress] that lets the user supply the channels used in order for the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this argument is ignored.  
-         *  For ASTC compression, the [param astc_format] parameter must be supplied.  
-         */
-        compress_from_channels(mode: Image.CompressMode, channels: Image.UsedChannels, astc_format: Image.ASTCFormat = 0): GodotError
-        
-        /** Decompresses the image if it is VRAM compressed in a supported format. Returns [constant OK] if the format is supported, otherwise [constant ERR_UNAVAILABLE].  
-         *      
-         *  **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2 are not supported.  
-         */
-        decompress(): GodotError
-        
-        /** Returns `true` if the image is compressed. */
-        is_compressed(): boolean
-        
-        /** Rotates the image in the specified [param direction] by `90` degrees. The width and height of the image must be greater than `1`. If the width and height are not equal, the image will be resized. */
-        rotate_90(direction: ClockDirection): void
-        
-        /** Rotates the image by `180` degrees. The width and height of the image must be greater than `1`. */
-        rotate_180(): void
-        
-        /** Blends low-alpha pixels with nearby pixels. */
-        fix_alpha_edges(): void
-        
-        /** Multiplies color values with alpha values. Resulting color values for a pixel are `(color * alpha)/256`. See also [member CanvasItemMaterial.blend_mode]. */
-        premultiply_alpha(): void
-        
-        /** Converts the raw data from the sRGB colorspace to a linear scale. */
-        srgb_to_linear(): void
-        
-        /** Converts the image's data to represent coordinates on a 3D plane. This is used when the image represents a normal map. A normal map can add lots of detail to a 3D surface without increasing the polygon count. */
-        normal_map_to_xy(): void
-        
-        /** Converts a standard RGBE (Red Green Blue Exponent) image to an sRGB image. */
-        rgbe_to_srgb(): Image
-        
-        /** Converts a bump map to a normal map. A bump map provides a height offset per-pixel, while a normal map provides a normal direction per pixel. */
-        bump_map_to_normal_map(bump_scale: number /*f64*/ = 1): void
-        
-        /** Compute image metrics on the current image and the compared image.  
-         *  The dictionary contains `max`, `mean`, `mean_squared`, `root_mean_squared` and `peak_snr`.  
-         */
-        compute_image_metrics(compared_image: Image, use_luma: boolean): Dictionary
-        
-        /** Copies [param src_rect] from [param src] image to this image at coordinates [param dst], clipped accordingly to both image bounds. This image and [param src] image **must** have the same format. [param src_rect] with non-positive size is treated as empty. */
-        blit_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
-        
-        /** Blits [param src_rect] area from [param src] image to this image at the coordinates given by [param dst], clipped accordingly to both image bounds. [param src] pixel is copied onto [param dst] if the corresponding [param mask] pixel's alpha value is not 0. This image and [param src] image **must** have the same format. [param src] image and [param mask] image **must** have the same size (width and height) but they can have different formats. [param src_rect] with non-positive size is treated as empty. */
-        blit_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
-        
-        /** Alpha-blends [param src_rect] from [param src] image to this image at coordinates [param dst], clipped accordingly to both image bounds. This image and [param src] image **must** have the same format. [param src_rect] with non-positive size is treated as empty. */
-        blend_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
-        
-        /** Alpha-blends [param src_rect] from [param src] image to this image using [param mask] image at coordinates [param dst], clipped accordingly to both image bounds. Alpha channels are required for both [param src] and [param mask]. [param dst] pixels and [param src] pixels will blend if the corresponding mask pixel's alpha value is not 0. This image and [param src] image **must** have the same format. [param src] image and [param mask] image **must** have the same size (width and height) but they can have different formats. [param src_rect] with non-positive size is treated as empty. */
-        blend_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
-        
-        /** Fills the image with [param color]. */
-        fill(color: Color): void
-        
-        /** Fills [param rect] with [param color]. */
-        fill_rect(rect: Rect2i, color: Color): void
-        
-        /** Returns a [Rect2i] enclosing the visible portion of the image, considering each pixel with a non-zero alpha channel as visible. */
-        get_used_rect(): Rect2i
-        
-        /** Returns a new [Image] that is a copy of this [Image]'s area specified with [param region]. */
-        get_region(region: Rect2i): Image
-        
-        /** Copies [param src] image to this image. */
-        copy_from(src: Image): void
-        _set_data(data: Dictionary): void
-        _get_data(): Dictionary
-        
-        /** Returns the color of the pixel at [param point].  
-         *  This is the same as [method get_pixel], but with a [Vector2i] argument instead of two integer arguments.  
-         */
-        get_pixelv(point: Vector2i): Color
-        
-        /** Returns the color of the pixel at `(x, y)`.  
-         *  This is the same as [method get_pixelv], but with two integer arguments instead of a [Vector2i] argument.  
-         */
-        get_pixel(x: number /*i64*/, y: number /*i64*/): Color
-        
-        /** Sets the [Color] of the pixel at [param point] to [param color].  
-         *  **Example:**  
-         *    
-         *  This is the same as [method set_pixel], but with a [Vector2i] argument instead of two integer arguments.  
-         */
-        set_pixelv(point: Vector2i, color: Color): void
-        
-        /** Sets the [Color] of the pixel at `(x, y)` to [param color].  
-         *  **Example:**  
-         *    
-         *  This is the same as [method set_pixelv], but with a two integer arguments instead of a [Vector2i] argument.  
-         */
-        set_pixel(x: number /*i64*/, y: number /*i64*/, color: Color): void
-        
-        /** Adjusts this image's [param brightness], [param contrast], and [param saturation] by the given values. Does not work if the image is compressed (see [method is_compressed]). */
-        adjust_bcs(brightness: number /*f64*/, contrast: number /*f64*/, saturation: number /*f64*/): void
-        
-        /** Loads an image from the binary contents of a PNG file. */
-        load_png_from_buffer(buffer: PackedByteArray): GodotError
-        
-        /** Loads an image from the binary contents of a JPEG file. */
-        load_jpg_from_buffer(buffer: PackedByteArray): GodotError
-        
-        /** Loads an image from the binary contents of a WebP file. */
-        load_webp_from_buffer(buffer: PackedByteArray): GodotError
-        
-        /** Loads an image from the binary contents of a TGA file.  
-         *      
-         *  **Note:** This method is only available in engine builds with the TGA module enabled. By default, the TGA module is enabled, but it can be disabled at build-time using the `module_tga_enabled=no` SCons option.  
-         */
-        load_tga_from_buffer(buffer: PackedByteArray): GodotError
-        
-        /** Loads an image from the binary contents of a BMP file.  
-         *      
-         *  **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.  
-         *      
-         *  **Note:** This method is only available in engine builds with the BMP module enabled. By default, the BMP module is enabled, but it can be disabled at build-time using the `module_bmp_enabled=no` SCons option.  
-         */
-        load_bmp_from_buffer(buffer: PackedByteArray): GodotError
-        
-        /** Loads an image from the binary contents of a [url=https://github.com/KhronosGroup/KTX-Software]KTX[/url] file. Unlike most image formats, KTX can store VRAM-compressed data and embed mipmaps.  
-         *      
-         *  **Note:** Godot's libktx implementation only supports 2D images. Cubemaps, texture arrays, and de-padding are not supported.  
-         *      
-         *  **Note:** This method is only available in engine builds with the KTX module enabled. By default, the KTX module is enabled, but it can be disabled at build-time using the `module_ktx_enabled=no` SCons option.  
-         */
-        load_ktx_from_buffer(buffer: PackedByteArray): GodotError
-        
-        /** Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).  
-         *      
-         *  **Note:** Beware when using compressed SVG files (like **.svgz**), they need to be `decompressed` before loading.  
-         *      
-         *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
-         */
-        load_svg_from_buffer(buffer: PackedByteArray, scale: number /*f64*/ = 1): GodotError
-        
-        /** Loads an image from the string contents of a SVG file (**.svg**).  
-         *      
-         *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
-         */
-        load_svg_from_string(svg_str: string, scale: number /*f64*/ = 1): GodotError
-        
-        /** Holds all the image's color data in a given format. See [enum Format] constants. */
-        data: Dictionary
-    }
-    namespace ImageFormatLoader {
-        enum LoaderFlags {
-            FLAG_NONE = 0,
-            FLAG_FORCE_LINEAR = 1,
-            FLAG_CONVERT_COLORS = 2,
-        }
-    }
-    /** Base class to add support for specific image formats. */
-    class ImageFormatLoader extends RefCounted {
-    }
-    /** Base class for creating [ImageFormatLoader] extensions (adding support for extra image formats). */
-    class ImageFormatLoaderExtension extends ImageFormatLoader {
-        /** Returns the list of file extensions for this image format. Files with the given extensions will be treated as image file and loaded using this class. */
-        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
-        
-        /** Loads the content of [param fileaccess] into the provided [param image]. */
-        /* gdvirtual */ _load_image(image: Image, fileaccess: FileAccess, flags: ImageFormatLoader.LoaderFlags, scale: number /*f64*/): GodotError
-        
-        /** Add this format loader to the engine, allowing it to recognize the file extensions returned by [method _get_recognized_extensions]. */
-        add_format_loader(): void
-        
-        /** Remove this format loader from the engine. */
-        remove_format_loader(): void
-    }
-    /** A [Texture2D] based on an [Image]. */
-    class ImageTexture extends Texture2D {
-        /** Creates a new [ImageTexture] and initializes it by allocating and setting the data from an [Image]. */
-        static create_from_image(image: Image): ImageTexture
-        
-        /** Returns the format of the texture, one of [enum Image.Format]. */
-        get_format(): Image.Format
-        
-        /** Replaces the texture's data with a new [Image]. This will re-allocate new memory for the texture.  
-         *  If you want to update the image, but don't need to change its parameters (format, size), use [method update] instead for better performance.  
-         */
-        set_image(image: Image): void
-        
-        /** Replaces the texture's data with a new [Image].  
-         *      
-         *  **Note:** The texture has to be created using [method create_from_image] or initialized first with the [method set_image] method before it can be updated. The new image dimensions, format, and mipmaps configuration should match the existing texture's image configuration.  
-         *  Use this method over [method set_image] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.  
-         */
-        update(image: Image): void
-        
-        /** Resizes the texture to the specified dimensions. */
-        set_size_override(size: Vector2i): void
-    }
-    /** Texture with 3 dimensions. */
-    class ImageTexture3D extends Texture3D {
-        /** Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth]. See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then generate mipmaps for the [ImageTexture3D]. */
-        create(format: Image.Format, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, use_mipmaps: boolean, data: Array): GodotError
-        
-        /** Replaces the texture's existing data with the layers specified in [param data]. The size of [param data] must match the parameters that were used for [method create]. In other words, the texture cannot be resized or have its format changed by calling [method update]. */
-        update(data: Array): void
-        _get_images(): Array
-        _set_images(images: Array): void
-        _images: Array
-    }
-    /** Base class for texture types which contain the data of multiple [ImageTexture]s. Each image is of the same size and format. */
-    class ImageTextureLayered extends TextureLayered {
-        /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images [i]must[/i] have the same width, height, image format and mipmapping setting.  
-         *  Each [Image] represents one `layer`.  
-         */
-        create_from_images(images: Array): GodotError
-        
-        /** Replaces the existing [Image] data at the given [param layer] with this new image.  
-         *  The given [Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.  
-         *  If the image format is unsupported, it will be decompressed and converted to a similar and supported [enum Image.Format].  
-         *  The update is immediate: it's synchronized with drawing.  
-         */
-        update_layer(image: Image, layer: number /*i64*/): void
-        _get_images(): Array
-        _set_images(images: Array): void
-        _images: Array
-    }
-    /** Mesh optimized for creating geometry manually. */
-    class ImmediateMesh extends Mesh {
-        /** Begin a new surface. */
-        surface_begin(primitive: Mesh.PrimitiveType, material: Material = <any> {} /*compound.type from nil*/): void
-        
-        /** Set the color attribute that will be pushed with the next vertex. */
-        surface_set_color(color: Color): void
-        
-        /** Set the normal attribute that will be pushed with the next vertex. */
-        surface_set_normal(normal: Vector3): void
-        
-        /** Set the tangent attribute that will be pushed with the next vertex. */
-        surface_set_tangent(tangent: Plane): void
-        
-        /** Set the UV attribute that will be pushed with the next vertex. */
-        surface_set_uv(uv: Vector2): void
-        
-        /** Set the UV2 attribute that will be pushed with the next vertex. */
-        surface_set_uv2(uv2: Vector2): void
-        
-        /** Add a 3D vertex using the current attributes previously set. */
-        surface_add_vertex(vertex: Vector3): void
-        
-        /** Add a 2D vertex using the current attributes previously set. */
-        surface_add_vertex_2d(vertex: Vector2): void
-        
-        /** End and commit current surface. Note that surface being created will not be visible until this function is called. */
-        surface_end(): void
-        
-        /** Clear all surfaces. */
-        clear_surfaces(): void
-    }
-    class ImportDefaultsEditor extends VBoxContainer {
-    }
-    class ImportDefaultsEditorSettings extends Object {
-    }
-    class ImportDock extends VBoxContainer {
-        _reimport(): void
-    }
-    class ImportDockParameters extends Object {
-    }
-    /** A [Resource] that contains vertex array-based geometry during the import process. */
-    class ImporterMesh extends Resource {
-        /** Adds name for a blend shape that will be added with [method add_surface]. Must be called before surface is added. */
-        add_blend_shape(name: string): void
-        
-        /** Returns the number of blend shapes that the mesh holds. */
-        get_blend_shape_count(): number /*i64*/
-        
-        /** Returns the name of the blend shape at this index. */
-        get_blend_shape_name(blend_shape_idx: number /*i64*/): string
-        
-        /** Sets the blend shape mode to one of [enum Mesh.BlendShapeMode]. */
-        set_blend_shape_mode(mode: Mesh.BlendShapeMode): void
-        
-        /** Returns the blend shape mode for this Mesh. */
-        get_blend_shape_mode(): Mesh.BlendShapeMode
-        
-        /** Creates a new surface. [method Mesh.get_surface_count] will become the `surf_idx` for this new surface.  
-         *  Surfaces are created to be rendered using a [param primitive], which may be any of the values defined in [enum Mesh.PrimitiveType].  
-         *  The [param arrays] argument is an array of arrays. Each of the [constant Mesh.ARRAY_MAX] elements contains an array with some of the mesh data for this surface as described by the corresponding member of [enum Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this surface into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty, except for [constant Mesh.ARRAY_INDEX] if it is used.  
-         *  The [param blend_shapes] argument is an array of vertex data for each blend shape. Each element is an array of the same structure as [param arrays], but [constant Mesh.ARRAY_VERTEX], [constant Mesh.ARRAY_NORMAL], and [constant Mesh.ARRAY_TANGENT] are set if and only if they are set in [param arrays] and all other entries are `null`.  
-         *  The [param lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry in the dictionary represents a LOD level of the surface, where the value is the [constant Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the distance at which the LOD stats being used. I.e., increasing the key of a LOD also increases the distance that the objects has to be from the camera before the LOD is used.  
-         *  The [param flags] argument is the bitwise or of, as required: One value of [enum Mesh.ArrayCustomFormat] left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use, [constant Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [constant Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [constant Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].  
-         *      
-         *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
-         */
-        add_surface(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array = <any> {} /*compound.type from 28([object Object])*/, lods: Dictionary = <any> {} /*compound.type from 27([object Object])*/, material: Material = <any> {} /*compound.type from nil*/, name: string = '', flags: number /*i64*/ = 0): void
-        
-        /** Returns the number of surfaces that the mesh holds. */
-        get_surface_count(): number /*i64*/
-        
-        /** Returns the primitive type of the requested surface (see [method add_surface]). */
-        get_surface_primitive_type(surface_idx: number /*i64*/): Mesh.PrimitiveType
-        
-        /** Gets the name assigned to this surface. */
-        get_surface_name(surface_idx: number /*i64*/): string
-        
-        /** Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface. See [method add_surface]. */
-        get_surface_arrays(surface_idx: number /*i64*/): Array
-        
-        /** Returns a single set of blend shape arrays for the requested blend shape index for a surface. */
-        get_surface_blend_shape_arrays(surface_idx: number /*i64*/, blend_shape_idx: number /*i64*/): Array
-        
-        /** Returns the number of lods that the mesh holds on a given surface. */
-        get_surface_lod_count(surface_idx: number /*i64*/): number /*i64*/
-        
-        /** Returns the screen ratio which activates a lod for a surface. */
-        get_surface_lod_size(surface_idx: number /*i64*/, lod_idx: number /*i64*/): number /*f64*/
-        
-        /** Returns the index buffer of a lod for a surface. */
-        get_surface_lod_indices(surface_idx: number /*i64*/, lod_idx: number /*i64*/): PackedInt32Array
-        
-        /** Returns a [Material] in a given surface. Surface is rendered using this material. */
-        get_surface_material(surface_idx: number /*i64*/): Material
-        
-        /** Returns the format of the surface that the mesh holds. */
-        get_surface_format(surface_idx: number /*i64*/): number /*i64*/
-        
-        /** Sets a name for a given surface. */
-        set_surface_name(surface_idx: number /*i64*/, name: string): void
-        
-        /** Sets a [Material] for a given surface. Surface will be rendered using this material. */
-        set_surface_material(surface_idx: number /*i64*/, material: Material): void
-        
-        /** Generates all lods for this ImporterMesh.  
-         *  [param normal_merge_angle] and [param normal_split_angle] are in degrees and used in the same way as the importer settings in `lods`. As a good default, use 25 and 60 respectively.  
-         *  The number of generated lods can be accessed using [method get_surface_lod_count], and each LOD is available in [method get_surface_lod_size] and [method get_surface_lod_indices].  
-         *  [param bone_transform_array] is an [Array] which can be either empty or contain [Transform3D]s which, for each of the mesh's bone IDs, will apply mesh skinning when generating the LOD mesh variations. This is usually used to account for discrepancies in scale between the mesh itself and its skinning data.  
-         */
-        generate_lods(normal_merge_angle: number /*f64*/, normal_split_angle: number /*f64*/, bone_transform_array: Array): void
-        
-        /** Returns the mesh data represented by this [ImporterMesh] as a usable [ArrayMesh].  
-         *  This method caches the returned mesh, and subsequent calls will return the cached data until [method clear] is called.  
-         *  If not yet cached and [param base_mesh] is provided, [param base_mesh] will be used and mutated.  
-         */
-        get_mesh(base_mesh: ArrayMesh = <any> {} /*compound.type from nil*/): ArrayMesh
-        
-        /** Removes all surfaces and blend shapes from this [ImporterMesh]. */
-        clear(): void
-        _set_data(data: Dictionary): void
-        _get_data(): Dictionary
-        
-        /** Sets the size hint of this mesh for lightmap-unwrapping in UV-space. */
-        set_lightmap_size_hint(size: Vector2i): void
-        
-        /** Returns the size hint of this mesh for lightmap-unwrapping in UV-space. */
-        get_lightmap_size_hint(): Vector2i
-        _data: Dictionary
     }
 }
