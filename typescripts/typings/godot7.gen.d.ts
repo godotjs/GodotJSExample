@@ -1968,4 +1968,118 @@ declare module "godot" {
             OP_MAX = 25,
         }
     }
+    static function sin(angle_rad: number /*f64*/): number /*f64*/
+    static function cos(angle_rad: number /*f64*/): number /*f64*/
+    static function tan(angle_rad: number /*f64*/): number /*f64*/
+    static function sinh(x: number /*f64*/): number /*f64*/
+    static function cosh(x: number /*f64*/): number /*f64*/
+    static function tanh(x: number /*f64*/): number /*f64*/
+    static function asin(x: number /*f64*/): number /*f64*/
+    static function acos(x: number /*f64*/): number /*f64*/
+    static function atan(x: number /*f64*/): number /*f64*/
+    static function atan2(y: number /*f64*/, x: number /*f64*/): number /*f64*/
+    static function asinh(x: number /*f64*/): number /*f64*/
+    static function acosh(x: number /*f64*/): number /*f64*/
+    static function atanh(x: number /*f64*/): number /*f64*/
+    static function sqrt(x: number /*f64*/): number /*f64*/
+    static function fmod(x: number /*f64*/, y: number /*f64*/): number /*f64*/
+    static function fposmod(x: number /*f64*/, y: number /*f64*/): number /*f64*/
+    static function posmod(x: number /*i64*/, y: number /*i64*/): number /*i64*/
+    static function floor(x: any): void
+    static function floorf(x: number /*f64*/): number /*f64*/
+    static function floori(x: number /*f64*/): number /*i64*/
+    static function ceil(x: any): void
+    static function ceilf(x: number /*f64*/): number /*f64*/
+    static function ceili(x: number /*f64*/): number /*i64*/
+    static function round(x: any): void
+    static function roundf(x: number /*f64*/): number /*f64*/
+    static function roundi(x: number /*f64*/): number /*i64*/
+    static function abs(x: any): void
+    static function absf(x: number /*f64*/): number /*f64*/
+    static function absi(x: number /*i64*/): number /*i64*/
+    static function sign(x: any): void
+    static function signf(x: number /*f64*/): number /*f64*/
+    static function signi(x: number /*i64*/): number /*i64*/
+    static function snapped(x: any, step: any): void
+    static function snappedf(x: number /*f64*/, step: number /*f64*/): number /*f64*/
+    static function snappedi(x: number /*f64*/, step: number /*i64*/): number /*i64*/
+    static function pow(base: number /*f64*/, exp: number /*f64*/): number /*f64*/
+    static function log(x: number /*f64*/): number /*f64*/
+    static function exp(x: number /*f64*/): number /*f64*/
+    static function is_nan(x: number /*f64*/): boolean
+    static function is_inf(x: number /*f64*/): boolean
+    static function is_equal_approx(a: number /*f64*/, b: number /*f64*/): boolean
+    static function is_zero_approx(x: number /*f64*/): boolean
+    static function is_finite(x: number /*f64*/): boolean
+    static function ease(x: number /*f64*/, curve: number /*f64*/): number /*f64*/
+    static function step_decimals(x: number /*f64*/): number /*i64*/
+    static function lerp(from: any, to: any, weight: any): void
+    static function lerpf(from: number /*f64*/, to: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function cubic_interpolate(from: number /*f64*/, to: number /*f64*/, pre: number /*f64*/, post: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function cubic_interpolate_angle(from: number /*f64*/, to: number /*f64*/, pre: number /*f64*/, post: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function cubic_interpolate_in_time(from: number /*f64*/, to: number /*f64*/, pre: number /*f64*/, post: number /*f64*/, weight: number /*f64*/, to_t: number /*f64*/, pre_t: number /*f64*/, post_t: number /*f64*/): number /*f64*/
+    static function cubic_interpolate_angle_in_time(from: number /*f64*/, to: number /*f64*/, pre: number /*f64*/, post: number /*f64*/, weight: number /*f64*/, to_t: number /*f64*/, pre_t: number /*f64*/, post_t: number /*f64*/): number /*f64*/
+    static function bezier_interpolate(start: number /*f64*/, control_1: number /*f64*/, control_2: number /*f64*/, end: number /*f64*/, t: number /*f64*/): number /*f64*/
+    static function bezier_derivative(start: number /*f64*/, control_1: number /*f64*/, control_2: number /*f64*/, end: number /*f64*/, t: number /*f64*/): number /*f64*/
+    static function angle_difference(from: number /*f64*/, to: number /*f64*/): number /*f64*/
+    static function lerp_angle(from: number /*f64*/, to: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function inverse_lerp(from: number /*f64*/, to: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function remap(value: number /*f64*/, istart: number /*f64*/, istop: number /*f64*/, ostart: number /*f64*/, ostop: number /*f64*/): number /*f64*/
+    static function smoothstep(from: number /*f64*/, to: number /*f64*/, x: number /*f64*/): number /*f64*/
+    static function move_toward(from: number /*f64*/, to: number /*f64*/, delta: number /*f64*/): number /*f64*/
+    static function rotate_toward(from: number /*f64*/, to: number /*f64*/, delta: number /*f64*/): number /*f64*/
+    static function deg_to_rad(deg: number /*f64*/): number /*f64*/
+    static function rad_to_deg(rad: number /*f64*/): number /*f64*/
+    static function linear_to_db(lin: number /*f64*/): number /*f64*/
+    static function db_to_linear(db: number /*f64*/): number /*f64*/
+    static function wrap(value: any, min: any, max: any): void
+    static function wrapi(value: number /*i64*/, min: number /*i64*/, max: number /*i64*/): number /*i64*/
+    static function wrapf(value: number /*f64*/, min: number /*f64*/, max: number /*f64*/): number /*f64*/
+    static function max(...vargargs: any[]): void
+    static function maxi(a: number /*i64*/, b: number /*i64*/): number /*i64*/
+    static function maxf(a: number /*f64*/, b: number /*f64*/): number /*f64*/
+    static function min(...vargargs: any[]): void
+    static function mini(a: number /*i64*/, b: number /*i64*/): number /*i64*/
+    static function minf(a: number /*f64*/, b: number /*f64*/): number /*f64*/
+    static function clamp(value: any, min: any, max: any): void
+    static function clampi(value: number /*i64*/, min: number /*i64*/, max: number /*i64*/): number /*i64*/
+    static function clampf(value: number /*f64*/, min: number /*f64*/, max: number /*f64*/): number /*f64*/
+    static function nearest_po2(value: number /*i64*/): number /*i64*/
+    static function pingpong(value: number /*f64*/, length: number /*f64*/): number /*f64*/
+    static function randomize(): void
+    static function randi(): number /*i64*/
+    static function randf(): number /*f64*/
+    static function randi_range(from: number /*i64*/, to: number /*i64*/): number /*i64*/
+    static function randf_range(from: number /*f64*/, to: number /*f64*/): number /*f64*/
+    static function randfn(mean: number /*f64*/, deviation: number /*f64*/): number /*f64*/
+    static function seed(base: number /*i64*/): void
+    static function rand_from_seed(seed: number /*i64*/): PackedInt64Array
+    static function weakref(obj: any): void
+    // [INVALID_NAME]: static function typeof(variable: any): number /*i64*/
+    static function type_convert(variant: any, type: number /*i64*/): void
+    static function str(...vargargs: any[]): string
+    static function error_string(error: number /*i64*/): string
+    static function type_string(type: number /*i64*/): string
+    static function print(...vargargs: any[]): void
+    static function print_rich(...vargargs: any[]): void
+    static function printerr(...vargargs: any[]): void
+    static function printt(...vargargs: any[]): void
+    static function prints(...vargargs: any[]): void
+    static function printraw(...vargargs: any[]): void
+    static function print_verbose(...vargargs: any[]): void
+    static function push_error(...vargargs: any[]): void
+    static function push_warning(...vargargs: any[]): void
+    static function var_to_str(variable: any): string
+    static function str_to_var(string_: string): void
+    static function var_to_bytes(variable: any): PackedByteArray
+    static function bytes_to_var(bytes: PackedByteArray): void
+    static function var_to_bytes_with_objects(variable: any): PackedByteArray
+    static function bytes_to_var_with_objects(bytes: PackedByteArray): void
+    static function hash(variable: any): number /*i64*/
+    static function instance_from_id(instance_id: number /*i64*/): Object
+    static function is_instance_id_valid(id: number /*i64*/): boolean
+    static function is_instance_valid(instance: any): boolean
+    static function rid_allocate_id(): number /*i64*/
+    static function rid_from_int64(base: number /*i64*/): RID
+    static function is_same(a: any, b: any): boolean
 }

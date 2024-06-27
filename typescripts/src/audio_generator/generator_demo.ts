@@ -22,6 +22,7 @@ export default class AudioGeneratorDemo extends Node {
     player!: AudioStreamPlayer;
 
     private playback!: AudioStreamGeneratorPlayback;
+    private cached_frame = new Vector2();
 
     _ready(): void {
         (<AudioStreamGenerator>this.player.stream).mix_rate = sample_hz;
@@ -29,15 +30,12 @@ export default class AudioGeneratorDemo extends Node {
         this.playback = <AudioStreamGeneratorPlayback> this.player.get_stream_playback();
     }
 
-    //BUG the binding of Vector2.MULTIPLY(Vector2, float) gives incorrect results
-
     _process(delta: number): void {
         let to_fill = this.playback.get_frames_available();
-        let cv = new Vector2();
         while (to_fill > 0) {
-            const v = Math.sin(phase * 6.28318);
-            cv.x = cv.y = v;
-            this.playback.push_frame(cv); // Audio frames are stereo.
+            const v = Math.sin(phase * (/*TAU*/ Math.PI * 2));
+            this.cached_frame.x = this.cached_frame.y = v;
+            this.playback.push_frame(this.cached_frame); // Audio frames are stereo.
             phase = fmod(phase + increment, 1.0);
             --to_fill;
         }

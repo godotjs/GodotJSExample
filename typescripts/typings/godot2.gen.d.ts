@@ -3612,6 +3612,13 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorrootmotionplugin.html */
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
     }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorsection.html */
+    class EditorInspectorSection extends Container {
+        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: number /*i64*/): void
+        get_vbox(): VBoxContainer
+        unfold(): void
+        fold(): void
+    }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorvisualshadermodeplugin.html */
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
     }
@@ -4421,6 +4428,9 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertydictionaryobject.html */
     class EditorPropertyDictionaryObject extends RefCounted {
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyenum.html */
+    class EditorPropertyEnum extends EditorProperty {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyinteger.html */
     class EditorPropertyInteger extends EditorProperty {
