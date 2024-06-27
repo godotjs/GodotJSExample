@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://de6cyyjnvj3lh"]
+
+[ext_resource type="Script" path="res://javascripts/audio_generator/generator_demo.js" id="1_6f8oh"]
+
+[sub_resource type="AudioStreamGenerator" id="1"]
+mix_rate = 22050.0
+
+[node name="Generator" type="Node"]
+script = ExtResource("1_6f8oh")
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+stream = SubResource("1")
