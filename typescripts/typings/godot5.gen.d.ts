@@ -1,7 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scenetileproxyobject.html */
     class SceneTileProxyObject extends Object {
         readonly changed: Signal // what: string => void
     }
@@ -206,7 +205,7 @@ declare module "godot" {
         edited_scene_root: Node
         
         /** Returns the root node of the currently running scene, regardless of its structure.  
-         *  **Warning:** Setting this directly might not work as expected, and will [i]not[/i] add or remove any nodes from the tree, consider using [method change_scene_to_file] or [method change_scene_to_packed] instead.  
+         *  **Warning:** Setting this directly might not work as expected, and will  *not*  add or remove any nodes from the tree, consider using [method change_scene_to_file] or [method change_scene_to_packed] instead.  
          */
         current_scene: Node
         
@@ -242,12 +241,10 @@ declare module "godot" {
         /** Emitted immediately before [method Node._physics_process] is called on every node in the [SceneTree]. */
         readonly physics_frame: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scenetreedialog.html */
     class SceneTreeDialog extends ConfirmationDialog {
         _cancel(): void
         readonly selected: Signal // path: NodePath => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scenetreedock.html */
     class SceneTreeDock extends VBoxContainer {
         _set_owners(_unnamed_arg0: Node, _unnamed_arg1: Array): void
         _update_script_button(): void
@@ -258,7 +255,6 @@ declare module "godot" {
         readonly add_node_used: Signal //  => void
         readonly node_created: Signal // node: Node => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scenetreeeditor.html */
     class SceneTreeEditor extends Control {
         _update_tree(_unnamed_arg0: boolean = false): void
         _rename_node(_unnamed_arg0: Node, _unnamed_arg1: string): void
@@ -290,7 +286,6 @@ declare module "godot" {
         /** Emitted when the timer reaches 0. */
         readonly timeout: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_screenselect.html */
     class ScreenSelect extends Button {
         readonly request_open_in_screen: Signal // screen: number /*i64*/ => void
     }
@@ -447,7 +442,6 @@ declare module "godot" {
         /** Emitted when the user requests to view a specific method of a script, similar to [signal request_open_script_at_line]. */
         readonly go_to_method: Signal // script: Object, method: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scripteditordebugger.html */
     class ScriptEditorDebugger extends MarginContainer {
         live_debug_create_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
         live_debug_instantiate_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
@@ -480,10 +474,8 @@ declare module "godot" {
         readonly clear_breakpoints: Signal //  => void
         readonly errors_cleared: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scripteditorplugin.html */
     class ScriptEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scripteditorquickopen.html */
     class ScriptEditorQuickOpen extends ConfirmationDialog {
         readonly goto_line: Signal // line: number /*i64*/ => void
     }
@@ -589,7 +581,7 @@ declare module "godot" {
         /* gdvirtual */ _validate_path(path: string): string
         /* gdvirtual */ _create_script(): Object
         
-        /** [i]Deprecated.[/i] This method is not called by the engine. */
+        /**  *Deprecated.*  This method is not called by the engine. */
         /* gdvirtual */ _has_named_classes(): boolean
         /* gdvirtual */ _supports_builtin_mode(): boolean
         /* gdvirtual */ _supports_documentation(): boolean
@@ -630,7 +622,6 @@ declare module "godot" {
         /* gdvirtual */ _handles_global_class_type(type: string): boolean
         /* gdvirtual */ _get_global_class_name(path: string): Dictionary
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scripttexteditor.html */
     class ScriptTextEditor extends ScriptEditorBase {
     }
     /** Abstract base class for scrollbars.  
@@ -734,23 +725,21 @@ declare module "godot" {
         /** Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive. */
         scroll_deadzone: number /*i64*/
         
-        /** Emitted when scrolling starts when dragging the scrollable area w[i]ith a touch event[/i]. This signal is [i]not[/i] emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+        /** Emitted when scrolling starts when dragging the scrollable area w *ith a touch event* . This signal is  *not*  emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
          *      
          *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
          */
         readonly scroll_started: Signal //  => void
         
-        /** Emitted when scrolling stops when dragging the scrollable area [i]with a touch event[/i]. This signal is [i]not[/i] emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+        /** Emitted when scrolling stops when dragging the scrollable area  *with a touch event* . This signal is  *not*  emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
          *      
          *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
          */
         readonly scroll_ended: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_sectionedinspector.html */
     class SectionedInspector extends HSplitContainer {
         update_category_list(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_sectionedinspectorfilter.html */
     class SectionedInspectorFilter extends Object {
     }
     /** A 2D line segment shape used for physics collision.  
@@ -877,27 +866,21 @@ declare module "godot" {
         /** Returns the shader's code as the user has written it, not the full generated code used internally. */
         code: string
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_shadercreatedialog.html */
     class ShaderCreateDialog extends ConfirmationDialog {
         config(path: string, built_in_enabled: boolean, load_enabled: boolean, _unnamed_arg3: number /*i64*/ = 1, _unnamed_arg4: number /*i64*/ = 1): void
         readonly shader_created: Signal // shader: Shader => void
         readonly shader_include_created: Signal // shader_include: ShaderInclude => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_shadereditorplugin.html */
     class ShaderEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_shaderfileeditor.html */
     class ShaderFileEditor extends PanelContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_shaderfileeditorplugin.html */
     class ShaderFileEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_shaderglobalseditor.html */
     class ShaderGlobalsEditor extends VBoxContainer {
         _changed(): void
         readonly globals_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_shaderglobalseditorinterface.html */
     class ShaderGlobalsEditorInterface extends Object {
         _set_var(_unnamed_arg0: StringName, _unnamed_arg1: any, _unnamed_arg2: any): void
         _var_changed(): void
@@ -942,6 +925,9 @@ declare module "godot" {
         
         /** The [Shader] program used to render this material. */
         shader: Shader
+    }
+    class ShaderTextEditor extends CodeTextEditor {
+        readonly script_validated: Signal // valid: boolean => void
     }
     /** Abstract base class for 2D shapes used for physics collision.  
      *  	  
@@ -1126,7 +1112,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_shapecast3d.html  
      */
     class ShapeCast3D extends Node3D {
-        /** [i]Obsoleted.[/i] Use [signal Resource.changed] instead. */
+        /**  *Obsoleted.*  Use [signal Resource.changed] instead. */
         resource_changed(resource: Resource): void
         set_enabled(enabled: boolean): void
         is_enabled(): boolean
@@ -1242,7 +1228,6 @@ declare module "godot" {
          */
         debug_shape_custom_color: Color
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_shapecast3dgizmoplugin.html */
     class ShapeCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** A shortcut for binding input.  
@@ -1267,10 +1252,8 @@ declare module "godot" {
          */
         events: Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_shortcutbin.html */
     class ShortcutBin extends Node {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_sizeflagpresetpicker.html */
     class SizeFlagPresetPicker extends ControlEditorPresetPicker {
         readonly size_flags_selected: Signal // size_flags: number /*i64*/ => void
     }
@@ -1313,10 +1296,8 @@ declare module "godot" {
         /** Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used internally within the skeleton. */
         readonly bone_setup_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skeleton2deditor.html */
     class Skeleton2DEditor extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skeleton2deditorplugin.html */
     class Skeleton2DEditorPlugin extends EditorPlugin {
     }
     /** A node containing a bone hierarchy, used to create a 3D skeletal animation.  
@@ -1325,7 +1306,7 @@ declare module "godot" {
      */
     class Skeleton3D extends Node3D {
         /** Notification received when this skeleton's pose needs to be updated.  
-         *  This notification is received [i]before[/i] the related [signal pose_updated] signal.  
+         *  This notification is received  *before*  the related [signal pose_updated] signal.  
          */
         static readonly NOTIFICATION_UPDATE_SKELETON = 50
         
@@ -1441,7 +1422,7 @@ declare module "godot" {
         get_bone_global_pose_no_override(bone_idx: number /*i64*/): Transform3D
         
         /** Force updates the bone transforms/poses for all bones in the skeleton.  
-         *  [i]Deprecated.[/i] Do not use.  
+         *   *Deprecated.*  Do not use.  
          */
         force_update_all_bone_transforms(): void
         
@@ -1494,10 +1475,8 @@ declare module "godot" {
         /** Emitted when the value of [member show_rest_only] changes. */
         readonly show_rest_only_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skeleton3deditorplugin.html */
     class Skeleton3DEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skeleton3dgizmoplugin.html */
     class Skeleton3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** A node used to rotate all bones of a [Skeleton3D] bone chain a way that places the end bone at a desired 3D position.  
@@ -1568,7 +1547,6 @@ declare module "godot" {
         /** Number of iteration loops used by the IK solver to produce more accurate (and elegant) bone chain results. */
         max_iterations: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skeletonik3deditorplugin.html */
     class SkeletonIK3DEditorPlugin extends EditorPlugin {
     }
     /** Base class for resources that operate on [Bone2D]s in a [Skeleton2D].  
@@ -1665,7 +1643,7 @@ declare module "godot" {
         get_ccdik_joint_constraint_angle_max(joint_idx: number /*i64*/): number /*f64*/
         
         /** Sets whether the CCDIK joint at [param joint_idx] uses an inverted joint constraint.  
-         *  An inverted joint constraint only constraints the CCDIK joint to the angles [i]outside of[/i] the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.  
+         *  An inverted joint constraint only constraints the CCDIK joint to the angles  *outside of*  the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.  
          */
         set_ccdik_joint_constraint_angle_invert(joint_idx: number /*i64*/, invert: boolean): void
         
@@ -1862,7 +1840,7 @@ declare module "godot" {
         get_constraint_angle_max(): number /*f64*/
         
         /** When `true`, the modification will use an inverted joint constraint.  
-         *  An inverted joint constraint only constraints the [Bone2D] to the angles [i]outside of[/i] the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.  
+         *  An inverted joint constraint only constraints the [Bone2D] to the angles  *outside of*  the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.  
          */
         set_constraint_angle_invert(invert: boolean): void
         
@@ -2343,7 +2321,6 @@ declare module "godot" {
         set_param(param: SliderJoint3D.Param, value: number /*f64*/): void
         get_param(param: SliderJoint3D.Param): number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_snapdialog.html */
     class SnapDialog extends ConfirmationDialog {
     }
     namespace SoftBody3D {
@@ -2459,7 +2436,6 @@ declare module "godot" {
         /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
         disable_mode: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_softbody3dgizmoplugin.html */
     class SoftBody3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Class representing a spherical [PrimitiveMesh].  
@@ -2552,7 +2528,7 @@ declare module "godot" {
         /** If `true`, the [SpinBox] will be editable. Otherwise, it will be read only. */
         editable: boolean
         
-        /** Sets the value of the [Range] for this [SpinBox] when the [LineEdit] text is [i]changed[/i] instead of [i]submitted[/i]. See [signal LineEdit.text_changed] and [signal LineEdit.text_submitted]. */
+        /** Sets the value of the [Range] for this [SpinBox] when the [LineEdit] text is  *changed*  instead of  *submitted* . See [signal LineEdit.text_changed] and [signal LineEdit.text_submitted]. */
         update_on_text_changed: boolean
         
         /** Adds the specified prefix string before the numerical value of the [SpinBox]. */
@@ -2613,7 +2589,6 @@ declare module "godot" {
         /** Emitted when the dragger is dragged by user. */
         readonly dragged: Signal // offset: number /*i64*/ => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_splitcontainerdragger.html */
     class SplitContainerDragger extends Control {
     }
     /** A spotlight, such as a reflector spotlight or a lantern.  
@@ -2666,7 +2641,6 @@ declare module "godot" {
          */
         margin: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_springarm3dgizmoplugin.html */
     class SpringArm3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** General-purpose sprite node.  
@@ -2753,11 +2727,9 @@ declare module "godot" {
         /** Emitted when the [member texture] changes. */
         readonly texture_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_sprite2deditor.html */
     class Sprite2DEditor extends Control {
         _add_as_sibling_or_child(_unnamed_arg0: Node, _unnamed_arg1: Node): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_sprite2deditorplugin.html */
     class Sprite2DEditorPlugin extends EditorPlugin {
     }
     /** 2D sprite node in a 3D world.  
@@ -2831,7 +2803,7 @@ declare module "godot" {
             /** This mode performs standard alpha blending. It can display translucent areas, but transparency sorting issues may be visible when multiple transparent materials are overlapping. */
             ALPHA_CUT_DISABLED = 0,
             
-            /** This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible unless some form of screen-space antialiasing is enabled (see [member ProjectSettings.rendering/anti_aliasing/quality/screen_space_aa]). On the bright side, this mode doesn't suffer from transparency sorting issues when multiple transparent materials are overlapping. This mode is also known as [i]alpha testing[/i] or [i]1-bit transparency[/i]. */
+            /** This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible unless some form of screen-space antialiasing is enabled (see [member ProjectSettings.rendering/anti_aliasing/quality/screen_space_aa]). On the bright side, this mode doesn't suffer from transparency sorting issues when multiple transparent materials are overlapping. This mode is also known as  *alpha testing*  or  *1-bit transparency* . */
             ALPHA_CUT_DISCARD = 1,
             
             /** This mode draws fully opaque pixels in the depth prepass. This is slower than [constant ALPHA_CUT_DISABLED] or [constant ALPHA_CUT_DISCARD], but it allows displaying translucent areas and smooth edges while using proper sorting. */
@@ -2901,7 +2873,7 @@ declare module "godot" {
         /** If `true`, texture is flipped vertically. */
         flip_v: boolean
         
-        /** A color value used to [i]multiply[/i] the texture's colors. Can be used for mood-coloring or to simulate the color of ambient light.  
+        /** A color value used to  *multiply*  the texture's colors. Can be used for mood-coloring or to simulate the color of ambient light.  
          *      
          *  **Note:** Unlike [member CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are not supported.  
          *      
@@ -2947,7 +2919,6 @@ declare module "godot" {
          */
         render_priority: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_spritebase3dgizmoplugin.html */
     class SpriteBase3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Sprite frame library for AnimatedSprite2D and AnimatedSprite3D.  
@@ -3012,12 +2983,10 @@ declare module "godot" {
         _get_animations(): Array
         animations: Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_spriteframeseditor.html */
     class SpriteFramesEditor extends HSplitContainer {
         _update_library(skipsel: boolean = false): void
         _select_animation(name: string, update_node: boolean = true): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_spriteframeseditorplugin.html */
     class SpriteFramesEditorPlugin extends EditorPlugin {
     }
     /** A PBR (Physically Based Rendering) material to be used on 3D objects.  
@@ -3026,7 +2995,6 @@ declare module "godot" {
      */
     class StandardMaterial3D extends BaseMaterial3D {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_standardmaterial3dconversionplugin.html */
     class StandardMaterial3DConversionPlugin extends EditorResourceConversionPlugin {
     }
     /** A 2D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.  
@@ -3205,7 +3173,7 @@ declare module "godot" {
         /** Returns the current cursor position. */
         get_position(): number /*i64*/
         
-        /** Resizes the [member data_array]. This [i]doesn't[/i] update the cursor. */
+        /** Resizes the [member data_array]. This  *doesn't*  update the cursor. */
         resize(size: number /*i64*/): void
         set_data_array(data: PackedByteArray): void
         get_data_array(): PackedByteArray
@@ -3380,7 +3348,6 @@ declare module "godot" {
         /** Test a position in a rectangle, return whether it passes the mask test. */
         test_mask(point: Vector2, rect: Rect2): boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_styleboxeditorplugin.html */
     class StyleBoxEditorPlugin extends EditorPlugin {
     }
     /** An empty [StyleBox] (does not display anything).  
@@ -3682,7 +3649,6 @@ declare module "godot" {
          */
         stretch_shrink: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_subviewportprevieweditorplugin.html */
     class SubViewportPreviewEditorPlugin extends EditorPlugin {
     }
     namespace SurfaceTool {
@@ -3755,28 +3721,28 @@ declare module "godot" {
         /** Specifies the position of current vertex. Should be called after specifying other vertex properties (e.g. Color, UV). */
         add_vertex(vertex: Vector3): void
         
-        /** Specifies a [Color] to use for the [i]next[/i] vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.  
+        /** Specifies a [Color] to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.  
          *      
          *  **Note:** The material must have [member BaseMaterial3D.vertex_color_use_as_albedo] enabled for the vertex color to be visible.  
          */
         set_color(color: Color): void
         
-        /** Specifies a normal to use for the [i]next[/i] vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+        /** Specifies a normal to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
         set_normal(normal: Vector3): void
         
-        /** Specifies a tangent to use for the [i]next[/i] vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+        /** Specifies a tangent to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
         set_tangent(tangent: Plane): void
         
-        /** Specifies a set of UV coordinates to use for the [i]next[/i] vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+        /** Specifies a set of UV coordinates to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
         set_uv(uv: Vector2): void
         
-        /** Specifies an optional second set of UV coordinates to use for the [i]next[/i] vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+        /** Specifies an optional second set of UV coordinates to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
         set_uv2(uv2: Vector2): void
         
-        /** Specifies an array of bones to use for the [i]next[/i] vertex. [param bones] must contain 4 integers. */
+        /** Specifies an array of bones to use for the  *next*  vertex. [param bones] must contain 4 integers. */
         set_bones(bones: PackedInt32Array): void
         
-        /** Specifies weight values to use for the [i]next[/i] vertex. [param weights] must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+        /** Specifies weight values to use for the  *next*  vertex. [param weights] must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
         set_weights(weights: PackedFloat32Array): void
         
         /** Sets the custom value on this vertex for [param channel_index].  
@@ -3784,7 +3750,7 @@ declare module "godot" {
          */
         set_custom(channel_index: number /*i64*/, custom_color: Color): void
         
-        /** Specifies the smooth group to use for the [i]next[/i] vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.  
+        /** Specifies the smooth group to use for the  *next*  vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.  
          *      
          *  **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue` instead of `-1` to produce a mesh with flat normals.  
          */
@@ -3804,7 +3770,7 @@ declare module "godot" {
         /** Removes the index array by expanding the vertex array. */
         deindex(): void
         
-        /** Generates normals from vertices so you do not have to do it manually. If [param flip] is `true`, the resulting normals will be inverted. [method generate_normals] should be called [i]after[/i] generating geometry and [i]before[/i] committing the mesh using [method commit] or [method commit_to_arrays]. For correct display of normal-mapped surfaces, you will also have to generate tangents using [method generate_tangents].  
+        /** Generates normals from vertices so you do not have to do it manually. If [param flip] is `true`, the resulting normals will be inverted. [method generate_normals] should be called  *after*  generating geometry and  *before*  committing the mesh using [method commit] or [method commit_to_arrays]. For correct display of normal-mapped surfaces, you will also have to generate tangents using [method generate_tangents].  
          *      
          *  **Note:** [method generate_normals] only works if the primitive type to be set to [constant Mesh.PRIMITIVE_TRIANGLES].  
          *      
@@ -3822,7 +3788,7 @@ declare module "godot" {
         get_aabb(): AABB
         
         /** Generates a LOD for a given [param nd_threshold] in linear units (square root of quadric error metric), using at most [param target_index_count] indices.  
-         *  [i]Deprecated.[/i] Unused internally and fails to preserve normals or UVs. Consider using [method ImporterMesh.generate_lods] instead.  
+         *   *Deprecated.*  Unused internally and fails to preserve normals or UVs. Consider using [method ImporterMesh.generate_lods] instead.  
          */
         generate_lod(nd_threshold: number /*f64*/, target_index_count: number /*i64*/ = 3): PackedInt32Array
         
@@ -3852,10 +3818,8 @@ declare module "godot" {
         /** Commits the data to the same format used by [method ArrayMesh.add_surface_from_arrays]. This way you can further process the mesh data using the [ArrayMesh] API. */
         commit_to_arrays(): Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_surfaceupgradedialog.html */
     class SurfaceUpgradeDialog extends ConfirmationDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_surfaceupgradetool.html */
     class SurfaceUpgradeTool extends Object {
         readonly upgrade_finished: Signal //  => void
     }
@@ -3962,7 +3926,7 @@ declare module "godot" {
         /** If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. */
         multichannel_signed_distance_field: boolean
         
-        /** The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [member msdf_pixel_range] must be set to at least [i]twice[/i] the size of the largest font outline. The default [member msdf_pixel_range] value of `16` allows outline sizes up to `8` to look correct. */
+        /** The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [member msdf_pixel_range] must be set to at least  *twice*  the size of the largest font outline. The default [member msdf_pixel_range] value of `16` allows outline sizes up to `8` to look correct. */
         msdf_pixel_range: number /*i64*/
         
         /** Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering. */
@@ -6896,6 +6860,11 @@ declare module "godot" {
         /* gdvirtual */ _parse_structured_text(parser_type: TextServer.StructuredTextParser, args: Array, text: string): Array
         /* gdvirtual */ _cleanup(): void
     }
+    class TextShaderEditor extends MarginContainer {
+        _show_warnings_panel(_unnamed_arg0: boolean): void
+        _warning_clicked(_unnamed_arg0: any): void
+        readonly validation_changed: Signal //  => void
+    }
     /** Base class for all texture types.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_texture.html  
@@ -7032,13 +7001,12 @@ declare module "godot" {
         /** Returns `true` if the [Texture3D] has generated mipmaps. */
         has_mipmaps(): boolean
         
-        /** Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a [i]slice[/i] of the [Texture3D], with different slices mapping to different depth (Z axis) levels. */
+        /** Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a  *slice*  of the [Texture3D], with different slices mapping to different depth (Z axis) levels. */
         get_data(): Array
         
         /** Creates a placeholder version of this resource ([PlaceholderTexture3D]). */
         create_placeholder(): Resource
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_texture3deditorplugin.html */
     class Texture3DEditorPlugin extends EditorPlugin {
     }
     /** Texture for 3D that is bound to a texture created on the [RenderingDevice].  
@@ -7114,7 +7082,7 @@ declare module "godot" {
         /** Texture to display when the node is disabled. See [member BaseButton.disabled]. */
         texture_disabled: Texture2D
         
-        /** Texture to display when the node has mouse or keyboard focus. [member texture_focused] is displayed [i]over[/i] the base texture, so a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons. */
+        /** Texture to display when the node has mouse or keyboard focus. [member texture_focused] is displayed  *over*  the base texture, so a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons. */
         texture_focused: Texture2D
         
         /** Pure black and white [BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes. */
@@ -7144,7 +7112,6 @@ declare module "godot" {
      */
     class TextureCubemapRD extends TextureLayeredRD {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_textureeditorplugin.html */
     class TextureEditorPlugin extends EditorPlugin {
     }
     namespace TextureLayered {
@@ -7206,7 +7173,6 @@ declare module "godot" {
         /** Returns an [Image] resource with the data from specified [param layer]. */
         get_layer_data(layer: number /*i64*/): Image
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_texturelayerededitorplugin.html */
     class TextureLayeredEditorPlugin extends EditorPlugin {
     }
     /** Abstract base class for layered texture RD types.  
@@ -7403,11 +7369,9 @@ declare module "godot" {
         /** If `true`, texture is flipped vertically. */
         flip_v: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_textureregioneditor.html */
     class TextureRegionEditor extends AcceptDialog {
         _update_rect(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_textureregioneditorplugin.html */
     class TextureRegionEditorPlugin extends EditorPlugin {
     }
     namespace Theme {
@@ -7739,34 +7703,26 @@ declare module "godot" {
          */
         default_font_size: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_themecontext.html */
     class ThemeContext extends Object {
         readonly changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_themeeditor.html */
     class ThemeEditor extends VBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_themeeditorplugin.html */
     class ThemeEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_themeeditorpreview.html */
     class ThemeEditorPreview extends VBoxContainer {
         readonly control_picked: Signal // class_name: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_themeitemeditordialog.html */
     class ThemeItemEditorDialog extends AcceptDialog {
         _update_edit_types(): void
         _update_edit_item_tree(_unnamed_arg0: string): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_themeitemimporttree.html */
     class ThemeItemImportTree extends VBoxContainer {
         readonly items_imported: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_themetypedialog.html */
     class ThemeTypeDialog extends ConfirmationDialog {
         readonly type_selected: Signal // type_name: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_themetypeeditor.html */
     class ThemeTypeEditor extends MarginContainer {
         _update_type_items(): void
         _pin_leading_stylebox(_unnamed_arg0: string, _unnamed_arg1: StyleBox): void
@@ -7827,7 +7783,6 @@ declare module "godot" {
          */
         static set_thread_safety_checks_enabled(enabled: boolean): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tileatlasview.html */
     class TileAtlasView extends Control {
         readonly transform_changed: Signal // zoom: number /*f64*/, scroll: Vector2 => void
     }
@@ -8005,7 +7960,7 @@ declare module "godot" {
         /** See [method get_layer_navigation_map]. */
         get_navigation_map(layer: number /*i64*/): RID
         
-        /** [i]Deprecated.[/i] See [method notify_runtime_tile_data_update] and [method update_internals]. */
+        /**  *Deprecated.*  See [method notify_runtime_tile_data_update] and [method update_internals]. */
         force_update(layer: number /*i64*/ = -1): void
         set_tileset(tileset: TileSet): void
         get_tileset(): TileSet
@@ -8264,16 +8219,12 @@ declare module "godot" {
         /** Emitted when the [TileSet] of this TileMap changes. */
         readonly changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilemapeditor.html */
     class TileMapEditor extends VBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilemapeditorplugin.html */
     class TileMapEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilemapeditorterrainsplugin.html */
     class TileMapEditorTerrainsPlugin extends Object {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilemapeditortilesplugin.html */
     class TileMapEditorTilesPlugin extends Object {
         _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         _set_tile_map_selection(selection: Array): void
@@ -8314,7 +8265,6 @@ declare module "godot" {
         /** Returns whether the pattern is empty or not. */
         is_empty(): boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tileproxiesmanagerdialog.html */
     class TileProxiesManagerDialog extends ConfirmationDialog {
         _update_lists(): void
         _unhandled_key_input(_unnamed_arg0: InputEvent): void
@@ -8870,23 +8820,18 @@ declare module "godot" {
          */
         use_texture_padding: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilesetatlassourceeditor.html */
     class TileSetAtlasSourceEditor extends HSplitContainer {
         _set_selection_from_array(_unnamed_arg0: Array): void
         _check_outside_tiles(): void
         readonly source_id_changed: Signal // source_id: number /*i64*/ => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilesetatlassourceproxyobject.html */
     class TileSetAtlasSourceProxyObject extends Object {
         readonly changed: Signal // what: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tileseteditor.html */
     class TileSetEditor extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tileseteditorplugin.html */
     class TileSetEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilesetscenescollectionproxyobject.html */
     class TileSetScenesCollectionProxyObject extends Object {
         set_id(id: number /*i64*/): void
         get_id(): number /*i64*/
@@ -8933,7 +8878,6 @@ declare module "godot" {
         /** Returns the scene ID a following call to [method create_scene_tile] would return. */
         get_next_scene_tile_id(): number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilesetscenescollectionsourceeditor.html */
     class TileSetScenesCollectionSourceEditor extends HBoxContainer {
         _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         readonly source_id_changed: Signal // source_id: number /*i64*/ => void
@@ -8964,10 +8908,8 @@ declare module "godot" {
         /** Returns if the base tile at coordinates [param atlas_coords] has an alternative with ID [param alternative_tile]. */
         has_alternative_tile(atlas_coords: Vector2i, alternative_tile: number /*i64*/): boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tilesourceinspectorplugin.html */
     class TileSourceInspectorPlugin extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_tileseditorutils.html */
     class TilesEditorUtils extends Object {
     }
     namespace Timer {

@@ -997,6 +997,8 @@ declare module "godot" {
         /** Called when [method undo] or [method redo] was called. */
         readonly version_changed: Signal //  => void
     }
+    class UniformSetCacheRD extends Object {
+    }
     /** A container that arranges its child controls vertically.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_vboxcontainer.html  
@@ -1157,10 +1159,8 @@ declare module "godot" {
         /** The damping applied to the spring when relaxing. This value should be between 0.0 (no damping) and 1.0. This value should always be slightly higher than the [member damping_compression] property. For a [member damping_compression] value of 0.3, try a relaxation value of 0.5. */
         damping_relaxation: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_vehiclewheel3dgizmoplugin.html */
     class VehicleWheel3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_versioncontroleditorplugin.html */
     class VersionControlEditorPlugin extends EditorPlugin {
     }
     /** Base resource for video streams.  
@@ -1325,7 +1325,6 @@ declare module "godot" {
      */
     class VideoStreamTheora extends VideoStream {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_viewpanner.html */
     class ViewPanner extends RefCounted {
     }
     namespace Viewport {
@@ -1614,7 +1613,7 @@ declare module "godot" {
          *  If none of the methods handle the event and [member physics_object_picking] is `true`, the event is used for physics object picking.  
          *      
          *  **Note:** This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.  
-         *  [i]Deprecated.[/i] Use [method push_input] instead.  
+         *   *Deprecated.*  Use [method push_input] instead.  
          */
         push_unhandled_input(event: InputEvent, in_local_coords: boolean = false): void
         
@@ -1782,7 +1781,7 @@ declare module "godot" {
          */
         use_taa: boolean
         
-        /** If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is [i]not[/i] affected by debanding unless the [member Environment.background_mode] is [constant Environment.BG_CANVAS]. See also [member ProjectSettings.rendering/anti_aliasing/quality/use_debanding].  
+        /** If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is  *not*  affected by debanding unless the [member Environment.background_mode] is [constant Environment.BG_CANVAS]. See also [member ProjectSettings.rendering/anti_aliasing/quality/use_debanding].  
          *  In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.  
          */
         use_debanding: boolean
@@ -1839,7 +1838,7 @@ declare module "godot" {
         vrs_mode: number /*i64*/
         
         /** Texture to use when [member vrs_mode] is set to [constant Viewport.VRS_TEXTURE].  
-         *  The texture [i]must[/i] use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:  
+         *  The texture  *must*  use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:  
          *    
          */
         vrs_texture: Texture2D
@@ -1905,10 +1904,8 @@ declare module "godot" {
         /** Emitted when a Control node grabs keyboard focus. */
         readonly gui_focus_changed: Signal // node: Control => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_viewportnavigationcontrol.html */
     class ViewportNavigationControl extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_viewportrotationcontrol.html */
     class ViewportRotationControl extends Control {
     }
     /** Provides the content of a [Viewport] as a dynamic texture.  
@@ -2026,7 +2023,6 @@ declare module "godot" {
         /** Emitted when the [VisibleOnScreenNotifier3D] exits the screen. */
         readonly screen_exited: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_visibleonscreennotifier3dgizmoplugin.html */
     class VisibleOnScreenNotifier3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Parent of all visual 3D nodes.  
@@ -2222,7 +2218,6 @@ declare module "godot" {
         /** The offset vector of the whole graph. */
         graph_offset: Vector2
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_visualshaderconversionplugin.html */
     class VisualShaderConversionPlugin extends EditorResourceConversionPlugin {
     }
     namespace VisualShaderNode {
@@ -4867,10 +4862,8 @@ declare module "godot" {
         /** If `true`, [Environment] lighting is ignored by the [VoxelGI] node. If `false`, [Environment] lighting is taken into account by the [VoxelGI] node. [Environment] lighting updates in real-time, which means it can be changed without having to bake the [VoxelGI] node again. */
         interior: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_voxelgieditorplugin.html */
     class VoxelGIEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_voxelgigizmoplugin.html */
     class VoxelGIGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Holds an [Object]. If the object is [RefCounted], it doesn't update the reference count.  
@@ -5946,7 +5939,6 @@ declare module "godot" {
         /** Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen mode, or extend-to-title flag is changed. */
         readonly titlebar_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_windowwrapper.html */
     class WindowWrapper extends MarginContainer {
         readonly window_visibility_changed: Signal // visible: boolean => void
         readonly window_close_requested: Signal //  => void
@@ -7059,7 +7051,7 @@ declare module "godot" {
         
         /** Returns `true` if the rectangle contains the given [param point]. By convention, points on the right and bottom edges are **not** included.  
          *      
-         *  **Note:** This method is not reliable for [Rect2] with a [i]negative[/i] [member size]. Use [method abs] first to get a valid rectangle.  
+         *  **Note:** This method is not reliable for [Rect2] with a  *negative*  [member size]. Use [method abs] first to get a valid rectangle.  
          */
         has_point(point: Vector2): boolean
         
@@ -7072,7 +7064,7 @@ declare module "godot" {
         /** Returns `true` if this rectangle overlaps with the [param b] rectangle. The edges of both rectangles are excluded, unless [param include_borders] is `true`. */
         intersects(b: Rect2, include_borders: boolean = false): boolean
         
-        /** Returns `true` if this rectangle [i]completely[/i] encloses the [param b] rectangle. */
+        /** Returns `true` if this rectangle  *completely*  encloses the [param b] rectangle. */
         encloses(b: Rect2): boolean
         
         /** Returns the intersection between this rectangle and [param b]. If the rectangles do not intersect, returns an empty [Rect2].  
@@ -7136,7 +7128,7 @@ declare module "godot" {
         
         /** Returns `true` if the rectangle contains the given [param point]. By convention, points on the right and bottom edges are **not** included.  
          *      
-         *  **Note:** This method is not reliable for [Rect2i] with a [i]negative[/i] [member size]. Use [method abs] first to get a valid rectangle.  
+         *  **Note:** This method is not reliable for [Rect2i] with a  *negative*  [member size]. Use [method abs] first to get a valid rectangle.  
          */
         has_point(point: Vector2i): boolean
         
@@ -7390,9 +7382,9 @@ declare module "godot" {
         
         /** Returns the octahedral-encoded (oct32) form of this [Vector3] as a [Vector2]. Since a [Vector2] occupies 1/3 less memory compared to [Vector3], this form of compression can be used to pass greater amounts of [method normalized] [Vector3]s without increasing storage or memory requirements. See also [method octahedron_decode].  
          *      
-         *  **Note:** [method octahedron_encode] can only be used for [method normalized] vectors. [method octahedron_encode] does [i]not[/i] check whether this [Vector3] is normalized, and will return a value that does not decompress to the original value if the [Vector3] is not normalized.  
+         *  **Note:** [method octahedron_encode] can only be used for [method normalized] vectors. [method octahedron_encode] does  *not*  check whether this [Vector3] is normalized, and will return a value that does not decompress to the original value if the [Vector3] is not normalized.  
          *      
-         *  **Note:** Octahedral compression is [i]lossy[/i], although visual differences are rarely perceptible in real world scenarios.  
+         *  **Note:** Octahedral compression is  *lossy* , although visual differences are rarely perceptible in real world scenarios.  
          */
         octahedron_encode(): Vector2
         
@@ -8048,7 +8040,7 @@ declare module "godot" {
         
         /** Returns `true` if the bounding box contains the given [param point]. By convention, points exactly on the right, top, and front sides are **not** included.  
          *      
-         *  **Note:** This method is not reliable for [AABB] with a [i]negative[/i] [member size]. Use [method abs] first to get a valid bounding box.  
+         *  **Note:** This method is not reliable for [AABB] with a  *negative*  [member size]. Use [method abs] first to get a valid bounding box.  
          */
         has_point(point: Vector3): boolean
         
@@ -8058,10 +8050,10 @@ declare module "godot" {
         /** Returns `true` if this bounding box's values are finite, by calling [method Vector2.is_finite] on the [member position] and the [member size]. */
         is_finite(): boolean
         
-        /** Returns `true` if this bounding box overlaps with the box [param with]. The edges of both boxes are [i]always[/i] excluded. */
+        /** Returns `true` if this bounding box overlaps with the box [param with]. The edges of both boxes are  *always*  excluded. */
         intersects(with_: AABB): boolean
         
-        /** Returns `true` if this bounding box [i]completely[/i] encloses the [param with] box. The edges of both boxes are included.  
+        /** Returns `true` if this bounding box  *completely*  encloses the [param with] box. The edges of both boxes are included.  
          *    
          */
         encloses(with_: AABB): boolean
@@ -8184,7 +8176,7 @@ declare module "godot" {
          */
         transposed(): Basis
         
-        /** Returns the orthonormalized version of this basis. An orthonormal basis is both [i]orthogonal[/i] (the axes are perpendicular to each other) and [i]normalized[/i] (the axes have a length of `1`), which also means it can only represent rotation.  
+        /** Returns the orthonormalized version of this basis. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation.  
          *  It is often useful to call this method to avoid rounding errors on a rotating basis:  
          *    
          */
@@ -8250,7 +8242,7 @@ declare module "godot" {
          */
         slerp(to: Basis, weight: number /*f64*/): Basis
         
-        /** Returns `true` if this basis is conformal. A conformal basis is both [i]orthogonal[/i] (the axes are perpendicular to each other) and [i]uniform[/i] (the axes share the same length). This method can be especially useful during physics calculations. */
+        /** Returns `true` if this basis is conformal. A conformal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *uniform*  (the axes share the same length). This method can be especially useful during physics calculations. */
         is_conformal(): boolean
         
         /** Returns `true` if this basis and [param b] are approximately equal, by calling [method @GlobalScope.is_equal_approx] on all vector components. */
@@ -8322,7 +8314,7 @@ declare module "godot" {
         
         /** Returns the inverted version of this transform. See also [method Basis.inverse].  
          *      
-         *  **Note:** For this method to return correctly, the transform's [member basis] needs to be [i]orthonormal[/i] (see [method Basis.orthonormalized]). That means, the basis should only represent a rotation. If it does not, use [method affine_inverse] instead.  
+         *  **Note:** For this method to return correctly, the transform's [member basis] needs to be  *orthonormal*  (see [method Basis.orthonormalized]). That means, the basis should only represent a rotation. If it does not, use [method affine_inverse] instead.  
          */
         inverse(): Transform3D
         
@@ -8332,7 +8324,7 @@ declare module "godot" {
          */
         affine_inverse(): Transform3D
         
-        /** Returns a copy of this transform with its [member basis] orthonormalized. An orthonormal basis is both [i]orthogonal[/i] (the axes are perpendicular to each other) and [i]normalized[/i] (the axes have a length of `1`), which also means it can only represent rotation. See also [method Basis.orthonormalized]. */
+        /** Returns a copy of this transform with its [member basis] orthonormalized. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation. See also [method Basis.orthonormalized]. */
         orthonormalized(): Transform3D
         
         /** Returns a copy of this transform rotated around the given [param axis] by the given [param angle] (in radians).  
@@ -8380,7 +8372,7 @@ declare module "godot" {
         looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Transform3D
         
         /** Returns the result of the linear interpolation between this transform and [param xform] by the given [param weight].  
-         *  The [param weight] should be between `0.0` and `1.0` (inclusive). Values outside this range are allowed and can be used to perform [i]extrapolation[/i] instead.  
+         *  The [param weight] should be between `0.0` and `1.0` (inclusive). Values outside this range are allowed and can be used to perform  *extrapolation*  instead.  
          */
         interpolate_with(xform: Transform3D, weight: number /*f64*/): Transform3D
         
@@ -9205,5 +9197,88 @@ declare module "godot" {
         static LESS_EQUAL(left: RID, right: RID): boolean
         static GREATER(left: RID, right: RID): boolean
         static GREATER_EQUAL(left: RID, right: RID): boolean
+    }
+    /** A built-in type representing a method or a standalone function.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_callable.html  
+     */
+    class Callable {
+        constructor()
+        constructor(from: Callable)
+        constructor(object: Object, method: StringName)
+        
+        /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
+        callv(arguments_: Array): void
+        
+        /** Returns `true` if this [Callable] has no target to call the method on. */
+        is_null(): boolean
+        
+        /** Returns `true` if this [Callable] is a custom callable. Custom callables are created from [method bind] or [method unbind]. In GDScript, lambda functions are also custom callables. */
+        is_custom(): boolean
+        
+        /** Returns `true` if this [Callable] is a standard callable. This method is the opposite of [method is_custom]. Returns `false` if this callable is a lambda function. */
+        is_standard(): boolean
+        
+        /** Returns `true` if the callable's object exists and has a valid method name assigned, or is a custom callable. */
+        is_valid(): boolean
+        
+        /** Returns the object on which this [Callable] is called. */
+        get_object(): Object
+        
+        /** Returns the ID of this [Callable]'s object (see [method Object.get_instance_id]). */
+        get_object_id(): number /*i64*/
+        
+        /** Returns the name of the method represented by this [Callable]. If the callable is a GDScript lambda function, returns the function's name or `"<anonymous lambda>"`. */
+        get_method(): StringName
+        
+        /** Returns the total amount of arguments bound (or unbound) via successive [method bind] or [method unbind] calls. If the amount of arguments unbound is greater than the ones bound, this function returns a value less than zero. */
+        get_bound_arguments_count(): number /*i64*/
+        
+        /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
+        get_bound_arguments(): Array
+        
+        /** Returns the 32-bit hash value of this [Callable]'s object.  
+         *      
+         *  **Note:** [Callable]s with equal content will always produce identical hash values. However, the reverse is not true. Returning identical hash values does  *not*  imply the callables are equal, because different callables can have identical hash values due to hash collisions. The engine uses a 32-bit hash algorithm for [method hash].  
+         */
+        hash(): number /*i64*/
+        
+        /** Returns a copy of this [Callable] with one or more arguments bound, reading them from an array. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
+         *      
+         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
+         */
+        bindv(arguments_: Array): Callable
+        
+        /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
+         *      
+         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
+         *    
+         */
+        unbind(argcount: number /*i64*/): Callable
+        
+        /** Calls the method represented by this [Callable]. Arguments can be passed and should match the method's signature. */
+        call(...vargargs: any[]): void
+        
+        /** Calls the method represented by this [Callable] in deferred mode, i.e. at the end of the current frame. Arguments can be passed and should match the method's signature.  
+         *    
+         *      
+         *  **Note:** Deferred calls are processed at idle time. Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. This means you should not call a method deferred from itself (or from a method called by it), as this causes infinite recursion the same way as if you had called the method directly.  
+         *  See also [method Object.call_deferred].  
+         */
+        call_deferred(...vargargs: any[]): void
+        
+        /** Perform an RPC (Remote Procedure Call) on all connected peers. This is used for multiplayer and is normally not available, unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc]. */
+        rpc(...vargargs: any[]): void
+        
+        /** Perform an RPC (Remote Procedure Call) on a specific peer ID (see multiplayer documentation for reference). This is used for multiplayer and is normally not available unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc_id]. */
+        rpc_id(peer_id: number /*i64*/, ...vargargs: any[]): void
+        
+        /** Returns a copy of this [Callable] with one or more arguments bound. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
+         *      
+         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
+         */
+        bind(...vargargs: any[]): Callable
+        static EQUAL(left: Callable, right: Callable): boolean
+        static NOT_EQUAL(left: Callable, right: Callable): boolean
     }
 }

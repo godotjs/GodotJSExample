@@ -5,73 +5,73 @@ declare module "godot" {
     // // Singleton Class
     namespace Performance {
         enum Monitor {
-            /** The number of frames rendered in the last second. This metric is only updated once per second, even if queried more often. [i]Higher is better.[/i] */
+            /** The number of frames rendered in the last second. This metric is only updated once per second, even if queried more often.  *Higher is better.*  */
             TIME_FPS = 0,
             
-            /** Time it took to complete one frame, in seconds. [i]Lower is better.[/i] */
+            /** Time it took to complete one frame, in seconds.  *Lower is better.*  */
             TIME_PROCESS = 1,
             
-            /** Time it took to complete one physics frame, in seconds. [i]Lower is better.[/i] */
+            /** Time it took to complete one physics frame, in seconds.  *Lower is better.*  */
             TIME_PHYSICS_PROCESS = 2,
             
-            /** Time it took to complete one navigation step, in seconds. This includes navigation map updates as well as agent avoidance calculations. [i]Lower is better.[/i] */
+            /** Time it took to complete one navigation step, in seconds. This includes navigation map updates as well as agent avoidance calculations.  *Lower is better.*  */
             TIME_NAVIGATION_PROCESS = 3,
             
-            /** Static memory currently used, in bytes. Not available in release builds. [i]Lower is better.[/i] */
+            /** Static memory currently used, in bytes. Not available in release builds.  *Lower is better.*  */
             MEMORY_STATIC = 4,
             
-            /** Available static memory. Not available in release builds. [i]Lower is better.[/i] */
+            /** Available static memory. Not available in release builds.  *Lower is better.*  */
             MEMORY_STATIC_MAX = 5,
             
-            /** Largest amount of memory the message queue buffer has used, in bytes. The message queue is used for deferred functions calls and notifications. [i]Lower is better.[/i] */
+            /** Largest amount of memory the message queue buffer has used, in bytes. The message queue is used for deferred functions calls and notifications.  *Lower is better.*  */
             MEMORY_MESSAGE_BUFFER_MAX = 6,
             
-            /** Number of objects currently instantiated (including nodes). [i]Lower is better.[/i] */
+            /** Number of objects currently instantiated (including nodes).  *Lower is better.*  */
             OBJECT_COUNT = 7,
             
-            /** Number of resources currently used. [i]Lower is better.[/i] */
+            /** Number of resources currently used.  *Lower is better.*  */
             OBJECT_RESOURCE_COUNT = 8,
             
-            /** Number of nodes currently instantiated in the scene tree. This also includes the root node. [i]Lower is better.[/i] */
+            /** Number of nodes currently instantiated in the scene tree. This also includes the root node.  *Lower is better.*  */
             OBJECT_NODE_COUNT = 9,
             
-            /** Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree. [i]Lower is better.[/i] */
+            /** Number of orphan nodes, i.e. nodes which are not parented to a node of the scene tree.  *Lower is better.*  */
             OBJECT_ORPHAN_NODE_COUNT = 10,
             
-            /** The total number of objects in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling). [i]Lower is better.[/i] */
+            /** The total number of objects in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling).  *Lower is better.*  */
             RENDER_TOTAL_OBJECTS_IN_FRAME = 11,
             
-            /** The total number of vertices or indices rendered in the last rendered frame. This metric doesn't include primitives from culled objects (either via hiding nodes, frustum culling or occlusion culling). Due to the depth prepass and shadow passes, the number of primitives is always higher than the actual number of vertices in the scene (typically double or triple the original vertex count). [i]Lower is better.[/i] */
+            /** The total number of vertices or indices rendered in the last rendered frame. This metric doesn't include primitives from culled objects (either via hiding nodes, frustum culling or occlusion culling). Due to the depth prepass and shadow passes, the number of primitives is always higher than the actual number of vertices in the scene (typically double or triple the original vertex count).  *Lower is better.*  */
             RENDER_TOTAL_PRIMITIVES_IN_FRAME = 12,
             
-            /** The total number of draw calls performed in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling), since they do not result in draw calls. [i]Lower is better.[/i] */
+            /** The total number of draw calls performed in the last rendered frame. This metric doesn't include culled objects (either via hiding nodes, frustum culling or occlusion culling), since they do not result in draw calls.  *Lower is better.*  */
             RENDER_TOTAL_DRAW_CALLS_IN_FRAME = 13,
             
-            /** The amount of video memory used (texture and vertex memory combined, in bytes). Since this metric also includes miscellaneous allocations, this value is always greater than the sum of [constant RENDER_TEXTURE_MEM_USED] and [constant RENDER_BUFFER_MEM_USED]. [i]Lower is better.[/i] */
+            /** The amount of video memory used (texture and vertex memory combined, in bytes). Since this metric also includes miscellaneous allocations, this value is always greater than the sum of [constant RENDER_TEXTURE_MEM_USED] and [constant RENDER_BUFFER_MEM_USED].  *Lower is better.*  */
             RENDER_VIDEO_MEM_USED = 14,
             
-            /** The amount of texture memory used (in bytes). [i]Lower is better.[/i] */
+            /** The amount of texture memory used (in bytes).  *Lower is better.*  */
             RENDER_TEXTURE_MEM_USED = 15,
             
-            /** The amount of render buffer memory used (in bytes). [i]Lower is better.[/i] */
+            /** The amount of render buffer memory used (in bytes).  *Lower is better.*  */
             RENDER_BUFFER_MEM_USED = 16,
             
-            /** Number of active [RigidBody2D] nodes in the game. [i]Lower is better.[/i] */
+            /** Number of active [RigidBody2D] nodes in the game.  *Lower is better.*  */
             PHYSICS_2D_ACTIVE_OBJECTS = 17,
             
-            /** Number of collision pairs in the 2D physics engine. [i]Lower is better.[/i] */
+            /** Number of collision pairs in the 2D physics engine.  *Lower is better.*  */
             PHYSICS_2D_COLLISION_PAIRS = 18,
             
-            /** Number of islands in the 2D physics engine. [i]Lower is better.[/i] */
+            /** Number of islands in the 2D physics engine.  *Lower is better.*  */
             PHYSICS_2D_ISLAND_COUNT = 19,
             
-            /** Number of active [RigidBody3D] and [VehicleBody3D] nodes in the game. [i]Lower is better.[/i] */
+            /** Number of active [RigidBody3D] and [VehicleBody3D] nodes in the game.  *Lower is better.*  */
             PHYSICS_3D_ACTIVE_OBJECTS = 20,
             
-            /** Number of collision pairs in the 3D physics engine. [i]Lower is better.[/i] */
+            /** Number of collision pairs in the 3D physics engine.  *Lower is better.*  */
             PHYSICS_3D_COLLISION_PAIRS = 21,
             
-            /** Number of islands in the 3D physics engine. [i]Lower is better.[/i] */
+            /** Number of islands in the 3D physics engine.  *Lower is better.*  */
             PHYSICS_3D_ISLAND_COUNT = 22,
             
             /** Output latency of the [AudioServer]. Equivalent to calling [method AudioServer.get_output_latency], it is not recommended to call this every frame. */
@@ -251,7 +251,7 @@ declare module "godot" {
          *  **Example:**  
          *  If the following setting override exists "application/config/name.windows", and the following code is executed:  
          *    
-         *  Then the overridden setting will be returned instead if the project is running on the [i]Windows[/i] operating system.  
+         *  Then the overridden setting will be returned instead if the project is running on the  *Windows*  operating system.  
          */
         static get_setting_with_override(name: StringName): any
         
@@ -292,7 +292,7 @@ declare module "godot" {
         
         /** Sets whether a setting requires restarting the editor to properly take effect.  
          *      
-         *  **Note:** This is just a hint to display to the user that the editor must be restarted for changes to take effect. Enabling [method set_restart_if_changed] does [i]not[/i] delay the setting being set when changed.  
+         *  **Note:** This is just a hint to display to the user that the editor must be restarted for changes to take effect. Enabling [method set_restart_if_changed] does  *not*  delay the setting being set when changed.  
          */
         static set_restart_if_changed(name: string, restart: boolean): void
         
@@ -449,7 +449,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_geometry2d.html  
      */
     class Geometry2D extends Object {
-        /** Returns `true` if [param point] is inside the circle or if it's located exactly [i]on[/i] the circle's boundary, otherwise returns `false`. */
+        /** Returns `true` if [param point] is inside the circle or if it's located exactly  *on*  the circle's boundary, otherwise returns `false`. */
         static is_point_in_circle(point: Vector2, circle_position: Vector2, circle_radius: number /*f64*/): boolean
         
         /** Given the 2D segment ([param segment_from], [param segment_to]), returns the position on the segment (as a number between 0 and 1) at which the segment hits the circle that is located at position [param circle_position] and has radius [param circle_radius]. If the segment does not intersect the circle, -1 is returned (this is also the case if the line extending the segment would intersect the circle, but the segment does not). */
@@ -479,7 +479,7 @@ declare module "godot" {
         /** Returns `true` if [param polygon]'s vertices are ordered in clockwise order, otherwise returns `false`. */
         static is_polygon_clockwise(polygon: PackedVector2Array): boolean
         
-        /** Returns `true` if [param point] is inside [param polygon] or if it's located exactly [i]on[/i] polygon's boundary, otherwise returns `false`. */
+        /** Returns `true` if [param point] is inside [param polygon] or if it's located exactly  *on*  polygon's boundary, otherwise returns `false`. */
         static is_point_in_polygon(point: Vector2, polygon: PackedVector2Array): boolean
         
         /** Triangulates the polygon specified by the points in [param polygon]. Returns a [PackedInt32Array] where each triangle consists of three consecutive point indices into [param polygon] (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). Output triangles will always be counter clockwise, and the contour will be flipped if it's clockwise. If the triangulation did not succeed, an empty [PackedInt32Array] is returned. */
@@ -791,7 +791,7 @@ declare module "godot" {
         /** Displays a modal dialog box using the host OS' facilities. Execution is blocked until the dialog is closed. */
         static alert(text: string, title: string = 'Alert!'): void
         
-        /** Crashes the engine (or the editor if called within a `@tool` script). This should [i]only[/i] be used for testing the system's crash handler, not for any other purpose. For general error reporting, use (in order of preference) [method @GDScript.assert], [method @GlobalScope.push_error] or [method alert]. See also [method kill]. */
+        /** Crashes the engine (or the editor if called within a `@tool` script). This should  *only*  be used for testing the system's crash handler, not for any other purpose. For general error reporting, use (in order of preference) [method @GDScript.assert], [method @GlobalScope.push_error] or [method alert]. See also [method kill]. */
         static crash(message: string): void
         static set_low_processor_usage_mode(enable: boolean): void
         static is_in_low_processor_usage_mode(): boolean
@@ -800,7 +800,7 @@ declare module "godot" {
         static set_delta_smoothing(delta_smoothing_enabled: boolean): void
         static is_delta_smoothing_enabled(): boolean
         
-        /** Returns the number of [i]logical[/i] CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of [i]physical[/i] CPU cores. */
+        /** Returns the number of  *logical*  CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of  *physical*  CPU cores. */
         static get_processor_count(): number /*i64*/
         
         /** Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").  
@@ -841,7 +841,7 @@ declare module "godot" {
          */
         static get_executable_path(): string
         
-        /** Reads a user input string from the standard input (usually the terminal). This operation is [i]blocking[/i], which causes the window to freeze if [method read_string_from_stdin] is called on the main thread. The thread calling [method read_string_from_stdin] will block until the program receives a line break in standard input (usually by the user pressing [kbd]Enter[/kbd]).  
+        /** Reads a user input string from the standard input (usually the terminal). This operation is  *blocking* , which causes the window to freeze if [method read_string_from_stdin] is called on the main thread. The thread calling [method read_string_from_stdin] will block until the program receives a line break in standard input (usually by the user pressing [kbd]Enter[/kbd]).  
          *      
          *  **Note:** This method is implemented on Linux, macOS and Windows.  
          */
@@ -944,13 +944,13 @@ declare module "godot" {
          */
         static get_environment(variable: string): string
         
-        /** Sets the value of the environment variable [param variable] to [param value]. The environment variable will be set for the Godot process and any process executed with [method execute] after running [method set_environment]. The environment variable will [i]not[/i] persist to processes run after the Godot process was terminated.  
+        /** Sets the value of the environment variable [param variable] to [param value]. The environment variable will be set for the Godot process and any process executed with [method execute] after running [method set_environment]. The environment variable will  *not*  persist to processes run after the Godot process was terminated.  
          *      
          *  **Note:** Environment variable names are case-sensitive on all platforms except Windows. The [param variable] name cannot be empty or include the `=` character. On Windows, there is a 32767 characters limit for the combined length of [param variable], [param value], and the `=` and null terminator characters that will be registered in the environment block.  
          */
         static set_environment(variable: string, value: string): void
         
-        /** Removes the environment [param variable] from the current environment, if it exists. The environment variable will be removed for the Godot process and any process executed with [method execute] after running [method unset_environment]. The removal of the environment variable will [i]not[/i] persist to processes run after the Godot process was terminated.  
+        /** Removes the environment [param variable] from the current environment, if it exists. The environment variable will be removed for the Godot process and any process executed with [method execute] after running [method unset_environment]. The removal of the environment variable will  *not*  persist to processes run after the Godot process was terminated.  
          *      
          *  **Note:** Environment variable names are case-sensitive on all platforms except Windows. The [param variable] name cannot be empty or include the `=` character.  
          */
@@ -1018,7 +1018,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is only effective on desktop platforms, and only when the project isn't started from the editor. It will have no effect on mobile and Web platforms, or when the project is started from the editor.  
          *      
-         *  **Note:** If the project process crashes or is [i]killed[/i] by the user (by sending `SIGKILL` instead of the usual `SIGTERM`), the project won't restart automatically.  
+         *  **Note:** If the project process crashes or is  *killed*  by the user (by sending `SIGKILL` instead of the usual `SIGTERM`), the project won't restart automatically.  
          */
         static set_restart_on_exit(restart: boolean, arguments_: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/): void
         
@@ -1030,7 +1030,7 @@ declare module "godot" {
         
         /** Delays execution of the current thread by [param usec] microseconds. [param usec] must be greater than or equal to `0`. Otherwise, [method delay_usec] will do nothing and will print an error message.  
          *      
-         *  **Note:** [method delay_usec] is a [i]blocking[/i] way to delay code execution. To delay code execution in a non-blocking way, see [method SceneTree.create_timer]. Awaiting with [method SceneTree.create_timer] will delay the execution of code placed below the `await` without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).  
+         *  **Note:** [method delay_usec] is a  *blocking*  way to delay code execution. To delay code execution in a non-blocking way, see [method SceneTree.create_timer]. Awaiting with [method SceneTree.create_timer] will delay the execution of code placed below the `await` without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).  
          *      
          *  **Note:** When [method delay_usec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [method delay_usec] as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).  
          */
@@ -1038,7 +1038,7 @@ declare module "godot" {
         
         /** Delays execution of the current thread by [param msec] milliseconds. [param msec] must be greater than or equal to `0`. Otherwise, [method delay_msec] will do nothing and will print an error message.  
          *      
-         *  **Note:** [method delay_msec] is a [i]blocking[/i] way to delay code execution. To delay code execution in a non-blocking way, see [method SceneTree.create_timer]. Awaiting with [method SceneTree.create_timer] will delay the execution of code placed below the `await` without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).  
+         *  **Note:** [method delay_msec] is a  *blocking*  way to delay code execution. To delay code execution in a non-blocking way, see [method SceneTree.create_timer]. Awaiting with [method SceneTree.create_timer] will delay the execution of code placed below the `await` without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).  
          *      
          *  **Note:** When [method delay_msec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [method delay_msec] as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).  
          */
@@ -1070,8 +1070,8 @@ declare module "godot" {
         /** Returns `true` if the engine was executed with the `--verbose` or `-v` command line argument, or if [member ProjectSettings.debug/settings/stdout/verbose_stdout] is `true`. See also [method @GlobalScope.print_verbose]. */
         static is_stdout_verbose(): boolean
         
-        /** Returns `true` if the Godot binary used to run the project is a [i]debug[/i] export template, or when running in the editor.  
-         *  Returns `false` if the Godot binary used to run the project is a [i]release[/i] export template.  
+        /** Returns `true` if the Godot binary used to run the project is a  *debug*  export template, or when running in the editor.  
+         *  Returns `false` if the Godot binary used to run the project is a  *release*  export template.  
          *  To check whether the Godot binary used to run the project is an export template (debug or release), use `OS.has_feature("template")` instead.  
          */
         static is_debug_build(): boolean
@@ -1105,7 +1105,7 @@ declare module "godot" {
          *  On Android and iOS, this is a sandboxed directory in either internal or external storage, depending on the user's configuration.  
          *  On the web, this is a virtual directory managed by the browser.  
          *  If the project name is empty, `[project_name]` falls back to `[unnamed project]`.  
-         *  Not to be confused with [method get_data_dir], which returns the [i]global[/i] (non-project-specific) user home directory.  
+         *  Not to be confused with [method get_data_dir], which returns the  *global*  (non-project-specific) user home directory.  
          */
         static get_user_data_dir(): string
         
@@ -1117,18 +1117,18 @@ declare module "godot" {
          */
         static get_system_dir(dir: OS.SystemDir, shared_storage: boolean = true): string
         
-        /** Returns the [i]global[/i] user configuration directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_data_dir].  
-         *  Not to be confused with [method get_user_data_dir], which returns the [i]project-specific[/i] user data path.  
+        /** Returns the  *global*  user configuration directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_data_dir].  
+         *  Not to be confused with [method get_user_data_dir], which returns the  *project-specific*  user data path.  
          */
         static get_config_dir(): string
         
-        /** Returns the [i]global[/i] user data directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_config_dir].  
-         *  Not to be confused with [method get_user_data_dir], which returns the [i]project-specific[/i] user data path.  
+        /** Returns the  *global*  user data directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_config_dir].  
+         *  Not to be confused with [method get_user_data_dir], which returns the  *project-specific*  user data path.  
          */
         static get_data_dir(): string
         
-        /** Returns the [i]global[/i] cache data directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_config_dir] and [method get_data_dir].  
-         *  Not to be confused with [method get_user_data_dir], which returns the [i]project-specific[/i] user data path.  
+        /** Returns the  *global*  cache data directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_config_dir] and [method get_data_dir].  
+         *  Not to be confused with [method get_user_data_dir], which returns the  *project-specific*  user data path.  
          */
         static get_cache_dir(): string
         
@@ -1297,7 +1297,7 @@ declare module "godot" {
          *  To detect whether the current CPU architecture is 64-bit, you can use the fact that all 64-bit architecture names have `64` in their name:  
          *    
          *      
-         *  **Note:** [method get_architecture_name] does [i]not[/i] return the name of the host CPU architecture. For example, if running an x86_32 Godot binary on a x86_64 system, the returned value will be `x86_32`.  
+         *  **Note:** [method get_architecture_name] does  *not*  return the name of the host CPU architecture. For example, if running an x86_32 Godot binary on a x86_64 system, the returned value will be `x86_32`.  
          */
         static get_architecture_name(): string
         
@@ -1344,7 +1344,7 @@ declare module "godot" {
          *    
          *  See [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]Running code in the editor[/url] in the documentation for more information.  
          *      
-         *  **Note:** To detect whether the script is run from an editor [i]build[/i] (e.g. when pressing [kbd]F5[/kbd]), use [method OS.has_feature] with the `"editor"` argument instead. `OS.has_feature("editor")` will evaluate to `true` both when the code is running in the editor and when running the project from the editor, but it will evaluate to `false` when the code is run from an exported project.  
+         *  **Note:** To detect whether the script is run from an editor  *build*  (e.g. when pressing [kbd]F5[/kbd]), use [method OS.has_feature] with the `"editor"` argument instead. `OS.has_feature("editor")` will evaluate to `true` both when the code is running in the editor and when running the project from the editor, but it will evaluate to `false` when the code is run from an exported project.  
          */
         static is_editor_hint(): boolean
         
@@ -1354,7 +1354,7 @@ declare module "godot" {
         static is_printing_error_messages(): boolean
         
         /** If `false`, stops printing error and warning messages to the console and editor Output log. This can be used to hide error and warning messages during unit test suite runs. This property is equivalent to the [member ProjectSettings.application/run/disable_stderr] project setting.  
-         *  **Warning:** If you set this to `false` anywhere in the project, important error messages may be hidden even if they are emitted from other scripts. If this is set to `false` in a `@tool` script, this will also impact the editor itself. Do [i]not[/i] report bugs before ensuring error messages are enabled (as they are by default).  
+         *  **Warning:** If you set this to `false` anywhere in the project, important error messages may be hidden even if they are emitted from other scripts. If this is set to `false` in a `@tool` script, this will also impact the editor itself. Do  *not*  report bugs before ensuring error messages are enabled (as they are by default).  
          *      
          *  **Note:** This property does not impact the editor's Errors tab when running a project from the editor.  
          */
@@ -1694,11 +1694,11 @@ declare module "godot" {
          */
         static is_action_pressed(action: StringName, exact_match: boolean = false): boolean
         
-        /** Returns `true` when the user has [i]started[/i] pressing the action event in the current frame or physics tick. It will only return `true` on the frame or tick that the user pressed down the button.  
+        /** Returns `true` when the user has  *started*  pressing the action event in the current frame or physics tick. It will only return `true` on the frame or tick that the user pressed down the button.  
          *  This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.  
          *  If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.  
          *      
-         *  **Note:** Returning `true` does not imply that the action is [i]still[/i] pressed. An action can be pressed and released again rapidly, and `true` will still be returned so as not to miss input.  
+         *  **Note:** Returning `true` does not imply that the action is  *still*  pressed. An action can be pressed and released again rapidly, and `true` will still be returned so as not to miss input.  
          *      
          *  **Note:** Due to keyboard ghosting, [method is_action_just_pressed] may return `false` even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
          *      
@@ -1706,9 +1706,9 @@ declare module "godot" {
          */
         static is_action_just_pressed(action: StringName, exact_match: boolean = false): boolean
         
-        /** Returns `true` when the user [i]stops[/i] pressing the action event in the current frame or physics tick. It will only return `true` on the frame or tick that the user releases the button.  
+        /** Returns `true` when the user  *stops*  pressing the action event in the current frame or physics tick. It will only return `true` on the frame or tick that the user releases the button.  
          *      
-         *  **Note:** Returning `true` does not imply that the action is [i]still[/i] not pressed. An action can be released and pressed again rapidly, and `true` will still be returned so as not to miss input.  
+         *  **Note:** Returning `true` does not imply that the action is  *still*  not pressed. An action can be released and pressed again rapidly, and `true` will still be returned so as not to miss input.  
          *  If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.  
          *      
          *  **Note:** During input handling (e.g. [method Node._input]), use [method InputEvent.is_action_released] instead to query the action state of the current event.  
@@ -1767,7 +1767,7 @@ declare module "godot" {
         
         /** Queries whether an input device should be ignored or not. Devices can be ignored by setting the environment variable `SDL_GAMECONTROLLER_IGNORE_DEVICES`. Read the [url=https://wiki.libsdl.org/SDL2]SDL documentation[/url] for more information.  
          *      
-         *  **Note:** Some 3rd party tools can contribute to the list of ignored devices. For example, [i]SteamInput[/i] creates virtual devices from physical devices for remapping purposes. To avoid handling the same input device twice, the original device is added to the ignore list.  
+         *  **Note:** Some 3rd party tools can contribute to the list of ignored devices. For example,  *SteamInput*  creates virtual devices from physical devices for remapping purposes. To avoid handling the same input device twice, the original device is added to the ignore list.  
          */
         static should_ignore_device(vendor_id: number /*i64*/, product_id: number /*i64*/): boolean
         
@@ -1919,7 +1919,7 @@ declare module "godot" {
         /** If `true`, similar input events sent by the operating system are accumulated. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.  
          *  Input accumulation can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.  
          *      
-         *  **Note:** Input accumulation is [i]enabled[/i] by default.  
+         *  **Note:** Input accumulation is  *enabled*  by default.  
          */
         use_accumulated_input: boolean
         
@@ -2638,7 +2638,7 @@ declare module "godot" {
             /** Display server supports windows can use per-pixel transparency to make windows behind them partially or fully visible. **Windows, macOS, Linux (X11)** */
             FEATURE_WINDOW_TRANSPARENCY = 11,
             
-            /** Display server supports querying the operating system's display scale factor. This allows for [i]reliable[/i] automatic hiDPI display detection, as opposed to guessing based on the screen resolution and reported display DPI (which can be unreliable due to broken monitor EDID). **Windows, macOS** */
+            /** Display server supports querying the operating system's display scale factor. This allows for  *reliable*  automatic hiDPI display detection, as opposed to guessing based on the screen resolution and reported display DPI (which can be unreliable due to broken monitor EDID). **Windows, macOS** */
             FEATURE_HIDPI = 12,
             
             /** Display server supports changing the window icon (usually displayed in the top-left corner). **Windows, macOS, Linux (X11)** */
@@ -2747,10 +2747,10 @@ declare module "godot" {
             /** Crosshair cursor. This is intended to be displayed when the user needs precise aim over an element, such as a rectangle selection tool or a color picker. */
             CURSOR_CROSS = 3,
             
-            /** Wait cursor. On most cursor themes, this displays a spinning icon [i]besides[/i] the arrow. Intended to be used for non-blocking operations (when the user can do something else at the moment). See also [constant CURSOR_BUSY]. */
+            /** Wait cursor. On most cursor themes, this displays a spinning icon  *besides*  the arrow. Intended to be used for non-blocking operations (when the user can do something else at the moment). See also [constant CURSOR_BUSY]. */
             CURSOR_WAIT = 4,
             
-            /** Wait cursor. On most cursor themes, this [i]replaces[/i] the arrow with a spinning icon. Intended to be used for blocking operations (when the user can't do anything else at the moment). See also [constant CURSOR_WAIT]. */
+            /** Wait cursor. On most cursor themes, this  *replaces*  the arrow with a spinning icon. Intended to be used for blocking operations (when the user can't do anything else at the moment). See also [constant CURSOR_WAIT]. */
             CURSOR_BUSY = 5,
             
             /** Dragging hand cursor. This is displayed during drag-and-drop operations. See also [constant CURSOR_CAN_DROP]. */
@@ -3965,7 +3965,7 @@ declare module "godot" {
          */
         static force_process_and_drop_events(): void
         
-        /** Sets the window icon (usually displayed in the top-left corner) in the operating system's [i]native[/i] format. The file at [param filename] must be in `.ico` format on Windows or `.icns` on macOS. By using specially crafted `.ico` or `.icns` icons, [method set_native_icon] allows specifying different icons depending on the size the icon is displayed at. This size is determined by the operating system and user preferences (including the display scale factor). To use icons in other formats, use [method set_icon] instead. */
+        /** Sets the window icon (usually displayed in the top-left corner) in the operating system's  *native*  format. The file at [param filename] must be in `.ico` format on Windows or `.icns` on macOS. By using specially crafted `.ico` or `.icns` icons, [method set_native_icon] allows specifying different icons depending on the size the icon is displayed at. This size is determined by the operating system and user preferences (including the display scale factor). To use icons in other formats, use [method set_icon] instead. */
         static set_native_icon(filename: string): void
         
         /** Sets the window icon (usually displayed in the top-left corner) with an [Image]. To use icons in the operating system's native format, use [method set_native_icon] instead. */
@@ -4363,7 +4363,7 @@ declare module "godot" {
         enum ShadowQuality {
             /** Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality setting, which means the [member Light3D.shadow_blur] property is ignored if [member Light3D.light_size] and [member Light3D.light_angular_distance] is `0.0`.  
              *      
-             *  **Note:** The variable shadow blur performed by [member Light3D.light_size] and [member Light3D.light_angular_distance] is still effective when using hard shadow filtering. In this case, [member Light3D.shadow_blur] [i]is[/i] taken into account. However, the results will not be blurred, instead the blur amount is treated as a maximum radius for the penumbra.  
+             *  **Note:** The variable shadow blur performed by [member Light3D.light_size] and [member Light3D.light_angular_distance] is still effective when using hard shadow filtering. In this case, [member Light3D.shadow_blur]  *is*  taken into account. However, the results will not be blurred, instead the blur amount is treated as a maximum radius for the penumbra.  
              */
             SHADOW_QUALITY_HARD = 0,
             
@@ -5355,7 +5355,7 @@ declare module "godot" {
         /** The maximum number of glow levels that can be used with the glow post-processing effect. */
         static readonly MAX_GLOW_LEVELS = 7
         
-        /** [i]Deprecated.[/i] This constant is unused internally. */
+        /**  *Deprecated.*  This constant is unused internally. */
         static readonly MAX_CURSORS = 8
         
         /** The maximum number of directional lights that can be rendered at a given time in 2D. */
@@ -5396,7 +5396,7 @@ declare module "godot" {
          */
         static texture_3d_create(format: Image.Format, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, mipmaps: boolean, data: Array): RID
         
-        /** [i]Deprecated.[/i] ProxyTexture was removed in Godot 4, so this method does nothing when called and always returns a null [RID]. */
+        /**  *Deprecated.*  ProxyTexture was removed in Godot 4, so this method does nothing when called and always returns a null [RID]. */
         static texture_proxy_create(base: RID): RID
         
         /** Updates the texture specified by the [param texture] [RID] with the data in [param image]. A [param layer] must also be specified, which should be `0` when updating a single-layer texture ([Texture2D]).  
@@ -5411,7 +5411,7 @@ declare module "godot" {
          */
         static texture_3d_update(texture: RID, data: Array): void
         
-        /** [i]Deprecated.[/i] ProxyTexture was removed in Godot 4, so this method cannot be used anymore. */
+        /**  *Deprecated.*  ProxyTexture was removed in Godot 4, so this method cannot be used anymore. */
         static texture_proxy_update(texture: RID, proxy_to: RID): void
         
         /** Creates a placeholder for a 2-dimensional layered texture and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also [method texture_2d_layered_placeholder_create]  
@@ -6216,7 +6216,7 @@ declare module "godot" {
         /** Sets the viewport's global transformation matrix. */
         static viewport_set_global_canvas_transform(viewport: RID, transform: Transform2D): void
         
-        /** Sets the viewport's 2D signed distance field [member ProjectSettings.rendering/2d/sdf/oversize] and [member ProjectSettings.rendering/2d/sdf/scale]. This is used when sampling the signed distance field in [CanvasItem] shaders as well as [GPUParticles2D] collision. This is [i]not[/i] used by SDFGI in 3D rendering. */
+        /** Sets the viewport's 2D signed distance field [member ProjectSettings.rendering/2d/sdf/oversize] and [member ProjectSettings.rendering/2d/sdf/scale]. This is used when sampling the signed distance field in [CanvasItem] shaders as well as [GPUParticles2D] collision. This is  *not*  used by SDFGI in 3D rendering. */
         static viewport_set_sdf_oversize_and_scale(viewport: RID, oversize: RenderingServer.ViewportSDFOversize, scale: RenderingServer.ViewportSDFScale): void
         
         /** Sets the [param size] of the shadow atlas's images (used for omni and spot lights) on the viewport specified by the [param viewport] RID. The value is rounded up to the nearest power of 2. If [param use_16_bits] is `true`, use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices.  
@@ -6272,7 +6272,7 @@ declare module "godot" {
         /** Sets the measurement for the given [param viewport] RID (obtained using [method Viewport.get_viewport_rid]). Once enabled, [method viewport_get_measured_render_time_cpu] and [method viewport_get_measured_render_time_gpu] will return values greater than `0.0` when queried with the given [param viewport]. */
         static viewport_set_measure_render_time(viewport: RID, enable: boolean): void
         
-        /** Returns the CPU time taken to render the last frame in milliseconds. This [i]only[/i] includes time spent in rendering-related operations; scripts' `_process` functions and other engine subsystems are not included in this readout. To get a complete readout of CPU time spent to render the scene, sum the render times of all viewports that are drawn every frame plus [method get_frame_setup_time_cpu]. Unlike [method Engine.get_frames_per_second], this method will accurately reflect CPU utilization even if framerate is capped via V-Sync or [member Engine.max_fps]. See also [method viewport_get_measured_render_time_gpu].  
+        /** Returns the CPU time taken to render the last frame in milliseconds. This  *only*  includes time spent in rendering-related operations; scripts' `_process` functions and other engine subsystems are not included in this readout. To get a complete readout of CPU time spent to render the scene, sum the render times of all viewports that are drawn every frame plus [method get_frame_setup_time_cpu]. Unlike [method Engine.get_frames_per_second], this method will accurately reflect CPU utilization even if framerate is capped via V-Sync or [member Engine.max_fps]. See also [method viewport_get_measured_render_time_gpu].  
          *      
          *  **Note:** Requires measurements to be enabled on the specified [param viewport] using [method viewport_set_measure_render_time]. Otherwise, this method returns `0.0`.  
          */
@@ -6324,7 +6324,7 @@ declare module "godot" {
         /** Sets the environment's background mode. Equivalent to [member Environment.background_mode]. */
         static environment_set_background(env: RID, bg: RenderingServer.EnvironmentBG): void
         
-        /** Sets the [Sky] to be used as the environment's background when using [i]BGMode[/i] sky. Equivalent to [member Environment.sky]. */
+        /** Sets the [Sky] to be used as the environment's background when using  *BGMode*  sky. Equivalent to [member Environment.sky]. */
         static environment_set_sky(env: RID, sky: RID): void
         
         /** Sets a custom field of view for the background [Sky]. Equivalent to [member Environment.sky_custom_fov]. */
@@ -6494,7 +6494,7 @@ declare module "godot" {
         static instance_set_visible(instance: RID, visible: boolean): void
         
         /** Sets the transparency for the given geometry instance. Equivalent to [member GeometryInstance3D.transparency].  
-         *  A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [param transparency] to a value greater than `0.0` (exclusive) will [i]not[/i] disable shadow rendering.  
+         *  A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [param transparency] to a value greater than `0.0` (exclusive) will  *not*  disable shadow rendering.  
          *  In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.  
          *      
          *  **Note:** [param transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.  
@@ -6919,13 +6919,13 @@ declare module "godot" {
          */
         static get_video_adapter_vendor(): string
         
-        /** Returns the type of the video adapter. Since dedicated graphics cards from a given generation will [i]usually[/i] be significantly faster than integrated graphics made in the same generation, the device type can be used as a basis for automatic graphics settings adjustment. However, this is not always true, so make sure to provide users with a way to manually override graphics settings.  
+        /** Returns the type of the video adapter. Since dedicated graphics cards from a given generation will  *usually*  be significantly faster than integrated graphics made in the same generation, the device type can be used as a basis for automatic graphics settings adjustment. However, this is not always true, so make sure to provide users with a way to manually override graphics settings.  
          *      
          *  **Note:** When using the OpenGL backend or when running in headless mode, this function always returns [constant RenderingDevice.DEVICE_TYPE_OTHER].  
          */
         static get_video_adapter_type(): RenderingDevice.DeviceType
         
-        /** Returns the version of the graphics video adapter [i]currently in use[/i] (e.g. "1.2.189" for Vulkan, "3.3.0 NVIDIA 510.60.02" for OpenGL). This version may be different from the actual latest version supported by the hardware, as Godot may not always request the latest version. See also [method OS.get_video_adapter_driver_info].  
+        /** Returns the version of the graphics video adapter  *currently in use*  (e.g. "1.2.189" for Vulkan, "3.3.0 NVIDIA 510.60.02" for OpenGL). This version may be different from the actual latest version supported by the hardware, as Godot may not always request the latest version. See also [method OS.get_video_adapter_driver_info].  
          *      
          *  **Note:** When running a headless or server binary, this function returns an empty string.  
          */
@@ -6969,7 +6969,7 @@ declare module "godot" {
         static is_render_loop_enabled(): boolean
         static set_render_loop_enabled(enabled: boolean): void
         
-        /** Returns the time taken to setup rendering on the CPU in milliseconds. This value is shared across all viewports and does [i]not[/i] require [method viewport_set_measure_render_time] to be enabled on a viewport to be queried. See also [method viewport_get_measured_render_time_cpu]. */
+        /** Returns the time taken to setup rendering on the CPU in milliseconds. This value is shared across all viewports and does  *not*  require [method viewport_set_measure_render_time] to be enabled on a viewport to be queried. See also [method viewport_get_measured_render_time_cpu]. */
         static get_frame_setup_time_cpu(): number /*f64*/
         
         /** Forces a synchronization between the CPU and GPU, which may be required in certain cases. Only call this when needed, as CPU-GPU synchronization has a performance cost. */
@@ -7213,13 +7213,13 @@ declare module "godot" {
             SPACE_PARAM_SOLVER_ITERATIONS = 8,
         }
         enum ShapeType {
-            /** This is the constant for creating world boundary shapes. A world boundary shape is an [i]infinite[/i] line with an origin point, and a normal. Thus, it can be used for front/behind checks. */
+            /** This is the constant for creating world boundary shapes. A world boundary shape is an  *infinite*  line with an origin point, and a normal. Thus, it can be used for front/behind checks. */
             SHAPE_WORLD_BOUNDARY = 0,
             
             /** This is the constant for creating separation ray shapes. A separation ray is defined by a length and separates itself from what is touching its far endpoint. Useful for character controllers. */
             SHAPE_SEPARATION_RAY = 1,
             
-            /** This is the constant for creating segment shapes. A segment shape is a [i]finite[/i] line from a point A to a point B. It can be checked for intersections. */
+            /** This is the constant for creating segment shapes. A segment shape is a  *finite*  line from a point A to a point B. It can be checked for intersections. */
             SHAPE_SEGMENT = 2,
             
             /** This is the constant for creating circle shapes. A circle shape only has a radius. It can be used for intersections and inside/outside checks. */
@@ -9231,7 +9231,7 @@ declare module "godot" {
         static region_set_navigation_mesh(region: RID, navigation_mesh: NavigationMesh): void
         
         /** Bakes the [param navigation_mesh] with bake source geometry collected starting from the [param root_node].  
-         *  [i]Deprecated.[/i] This function is deprecated due to core threading changes. To upgrade existing code, first create a [NavigationMeshSourceGeometryData3D] resource. Use this resource with [method parse_source_geometry_data] to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with [method bake_from_source_geometry_data] to bake a navigation mesh.  
+         *   *Deprecated.*  This function is deprecated due to core threading changes. To upgrade existing code, first create a [NavigationMeshSourceGeometryData3D] resource. Use this resource with [method parse_source_geometry_data] to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with [method bake_from_source_geometry_data] to bake a navigation mesh.  
          */
         static region_bake_navigation_mesh(navigation_mesh: NavigationMesh, root_node: Node): void
         

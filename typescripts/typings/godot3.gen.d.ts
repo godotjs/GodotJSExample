@@ -1,10 +1,8 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_grapheditfilter.html */
     class GraphEditFilter extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_grapheditminimap.html */
     class GraphEditMinimap extends Control {
     }
     /** A container that represents a basic element that can be placed inside a [GraphEdit] control.  
@@ -254,7 +252,7 @@ declare module "godot" {
         map_to_local(map_position: Vector3i): Vector3
         _update_octants_callback(): void
         
-        /** [i]Obsoleted.[/i] Use [signal Resource.changed] instead. */
+        /**  *Obsoleted.*  Use [signal Resource.changed] instead. */
         resource_changed(resource: Resource): void
         set_center_x(enable: boolean): void
         get_center_x(): boolean
@@ -335,12 +333,10 @@ declare module "godot" {
         /** Emitted when the [MeshLibrary] of this GridMap changes. */
         readonly changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gridmapeditor.html */
     class GridMapEditor extends VBoxContainer {
         _configure(): void
         _set_selection(_unnamed_arg0: boolean, _unnamed_arg1: Vector3, _unnamed_arg2: Vector3): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gridmapeditorplugin.html */
     class GridMapEditorPlugin extends EditorPlugin {
     }
     /** A physics joint that restricts the movement of two 2D physics bodies to a fixed axis.  
@@ -359,7 +355,6 @@ declare module "godot" {
         /** The body B's initial anchor position defined by the joint's origin and a local offset [member initial_offset] along the joint's Y axis (along the groove). */
         initial_offset: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_groupdialog.html */
     class GroupDialog extends AcceptDialog {
         _delete_group_item(_unnamed_arg0: string): void
         _add_group(_unnamed_arg0: string): void
@@ -367,7 +362,6 @@ declare module "godot" {
         _group_selected(): void
         readonly group_edited: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_groupseditor.html */
     class GroupsEditor extends VBoxContainer {
         update_tree(): void
         _group_selected(): void
@@ -540,10 +534,10 @@ declare module "godot" {
             /** HTTP status code `304 Not Modified`. A conditional GET or HEAD request has been received and would have resulted in a 200 OK response if it were not for the fact that the condition evaluated to `false`. */
             RESPONSE_NOT_MODIFIED = 304,
             
-            /** [i]Deprecated.[/i] HTTP status code `305 Use Proxy`. */
+            /**  *Deprecated.*  HTTP status code `305 Use Proxy`. */
             RESPONSE_USE_PROXY = 305,
             
-            /** [i]Deprecated.[/i] HTTP status code `306 Switch Proxy`. */
+            /**  *Deprecated.*  HTTP status code `306 Switch Proxy`. */
             RESPONSE_SWITCH_PROXY = 306,
             
             /** HTTP status code `307 Temporary Redirect`. The target resource resides temporarily under a different URI and the user agent MUST NOT change the request method if it performs an automatic redirection to that URI. */
@@ -1002,7 +996,6 @@ declare module "godot" {
         /** Returns the value of the specified flag. */
         get_flag(flag: HingeJoint3D.Flag): boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_historydock.html */
     class HistoryDock extends VBoxContainer {
     }
     namespace Image {
@@ -1607,7 +1600,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_imagetexturelayered.html  
      */
     class ImageTextureLayered extends TextureLayered {
-        /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images [i]must[/i] have the same width, height, image format and mipmapping setting.  
+        /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images  *must*  have the same width, height, image format and mipmapping setting.  
          *  Each [Image] represents one `layer`.  
          */
         create_from_images(images: Array): GodotError
@@ -1657,17 +1650,13 @@ declare module "godot" {
         /** Clear all surfaces. */
         clear_surfaces(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_importdefaultseditor.html */
     class ImportDefaultsEditor extends VBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_importdefaultseditorsettings.html */
     class ImportDefaultsEditorSettings extends Object {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_importdock.html */
     class ImportDock extends VBoxContainer {
         _reimport(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_importdockparameters.html */
     class ImportDockParameters extends Object {
     }
     /** A [Resource] that contains vertex array-based geometry during the import process.  
@@ -1885,10 +1874,8 @@ declare module "godot" {
         /** The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is `false`. The event strength allows faking analog joypad motion events, by specifying how strongly the joypad axis is bent or pressed. */
         strength: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_inputeventconfigurationdialog.html */
     class InputEventConfigurationDialog extends ConfirmationDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_inputeventeditorplugin.html */
     class InputEventEditorPlugin extends EditorPlugin {
     }
     /** Abstract base class for [Viewport]-based input events.  
@@ -1928,7 +1915,7 @@ declare module "godot" {
         button_index: number /*i64*/
         
         /** Represents the pressure the user puts on a pressure-sensitive button.  
-         *  [i]Deprecated.[/i] This property is never set by the engine and is always `0`.  
+         *   *Deprecated.*  This property is never set by the engine and is always `0`.  
          */
         pressure: number /*f64*/
         
@@ -2061,7 +2048,7 @@ declare module "godot" {
          */
         velocity: number /*i64*/
         
-        /** The instrument (also called [i]program[/i] or [i]preset[/i]) used on this MIDI message. This value ranges from `0` to `127`.  
+        /** The instrument (also called  *program*  or  *preset* ) used on this MIDI message. This value ranges from `0` to `127`.  
          *  To see what each value means, refer to the [url=https://en.wikipedia.org/wiki/General_MIDI#Program_change_events]General MIDI's instrument list[/url]. Keep in mind that the list is off by 1 because it does not begin from 0. A value of `0` corresponds to the acoustic grand piano.  
          */
         instrument: number /*i64*/
@@ -2311,7 +2298,6 @@ declare module "godot" {
         /** State of the [kbd]Meta[/kbd] modifier. On Windows and Linux, this represents the Windows key (sometimes called "meta" or "super" on Linux). On macOS, this represents the Command key. */
         meta_pressed: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_inspectordock.html */
     class InspectorDock extends VBoxContainer {
         _unref_resource(): void
         _paste_resource(): void
@@ -2323,7 +2309,6 @@ declare module "godot" {
         apply_script_properties(_unnamed_arg0: Object): void
         readonly request_help: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_installgodotjspresetconfirmationdialog.html */
     class InstallGodotJSPresetConfirmationDialog extends ConfirmationDialog {
     }
     /** Placeholder for the root [Node] of a [PackedScene].  
@@ -2336,7 +2321,7 @@ declare module "godot" {
          */
         get_stored_values(with_order: boolean = false): Dictionary
         
-        /** Call this method to actually load in the node. The created node will be placed as a sibling [i]above[/i] the [InstancePlaceholder] in the scene tree. The [Node]'s reference is also returned for convenience.  
+        /** Call this method to actually load in the node. The created node will be placed as a sibling  *above*  the [InstancePlaceholder] in the scene tree. The [Node]'s reference is also returned for convenience.  
          *      
          *  **Note:** [method create_instance] is not thread-safe. Use [method Object.call_deferred] if calling from a thread.  
          */
@@ -2638,7 +2623,7 @@ declare module "godot" {
     class JSON extends Resource {
         /** Converts a [Variant] var to JSON text and returns the result. Useful for serializing data to store or send over the network.  
          *      
-         *  **Note:** The JSON specification does not define integer or float types, but only a [i]number[/i] type. Therefore, converting a Variant to JSON text will convert all numerical values to [float] types.  
+         *  **Note:** The JSON specification does not define integer or float types, but only a  *number*  type. Therefore, converting a Variant to JSON text will convert all numerical values to [float] types.  
          *      
          *  **Note:** If [param full_precision] is `true`, when stringifying floats, the unreliable digits are stringified in addition to the reliable digits to guarantee exact decoding.  
          *  The [param indent] parameter controls if and how something is indented, the string used for this parameter will be used where there should be an indent in the output, even spaces like `"   "` will work. `\t` and `\n` can also be used for a tab indent, or to make a newline for each indent respectively.  
@@ -2791,7 +2776,6 @@ declare module "godot" {
         /** If `true`, the two bodies of the nodes are not able to collide with each other. */
         exclude_nodes_from_collision: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_joint3dgizmoplugin.html */
     class Joint3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Holds collision data from the movement of a [PhysicsBody2D].  
@@ -3028,7 +3012,7 @@ declare module "godot" {
             /** This mode performs standard alpha blending. It can display translucent areas, but transparency sorting issues may be visible when multiple transparent materials are overlapping. [member GeometryInstance3D.cast_shadow] has no effect when this transparency mode is used; the [Label3D] will never cast shadows. */
             ALPHA_CUT_DISABLED = 0,
             
-            /** This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible unless some form of screen-space antialiasing is enabled (see [member ProjectSettings.rendering/anti_aliasing/quality/screen_space_aa]). This mode is also known as [i]alpha testing[/i] or [i]1-bit transparency[/i].  
+            /** This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible unless some form of screen-space antialiasing is enabled (see [member ProjectSettings.rendering/anti_aliasing/quality/screen_space_aa]). This mode is also known as  *alpha testing*  or  *1-bit transparency* .  
              *      
              *  **Note:** This mode might have issues with anti-aliased fonts and outlines, try adjusting [member alpha_scissor_threshold] or using MSDF font.  
              *      
@@ -3213,7 +3197,6 @@ declare module "godot" {
         /** Set additional options for BiDi override. */
         structured_text_bidi_override_options: Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_label3dgizmoplugin.html */
     class Label3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Provides common settings to customize the text in a [Label].  
@@ -3376,7 +3359,7 @@ declare module "godot" {
         /** Smoothing value for shadows. Higher values will result in softer shadows, at the cost of visible streaks that can appear in shadow rendering. [member shadow_filter_smooth] only has an effect if [member shadow_filter] is [constant SHADOW_FILTER_PCF5] or [constant SHADOW_FILTER_PCF13]. */
         shadow_filter_smooth: number /*f64*/
         
-        /** The shadow mask. Used with [LightOccluder2D] to cast shadows. Only occluders with a matching [member CanvasItem.light_mask] will cast shadows. See also [member range_item_cull_mask], which affects which objects can [i]receive[/i] the light. */
+        /** The shadow mask. Used with [LightOccluder2D] to cast shadows. Only occluders with a matching [member CanvasItem.light_mask] will cast shadows. See also [member range_item_cull_mask], which affects which objects can  *receive*  the light. */
         shadow_item_cull_mask: number /*i64*/
     }
     namespace Light3D {
@@ -3450,7 +3433,7 @@ declare module "godot" {
         enum BakeMode {
             /** Light is ignored when baking. This is the fastest mode, but the light will be taken into account when baking global illumination. This mode should generally be used for dynamic lights that change quickly, as the effect of global illumination is less noticeable on those lights.  
              *      
-             *  **Note:** Hiding a light does [i]not[/i] affect baking [LightmapGI]. Hiding a light will still affect baking [VoxelGI] and SDFGI (see [member Environment.sdfgi_enabled).  
+             *  **Note:** Hiding a light does  *not*  affect baking [LightmapGI]. Hiding a light will still affect baking [VoxelGI] and SDFGI (see [member Environment.sdfgi_enabled).  
              */
             BAKE_DISABLED = 0,
             
@@ -3510,7 +3493,7 @@ declare module "godot" {
          */
         light_temperature: number /*f64*/
         
-        /** The light's color. An [i]overbright[/i] color can be used to achieve a result equivalent to increasing the light's [member light_energy]. */
+        /** The light's color. An  *overbright*  color can be used to achieve a result equivalent to increasing the light's [member light_energy]. */
         light_color: Color
         
         /** [Texture2D] projected by light. [member shadow_enabled] must be on for the projector to work. Light projectors make the light appear as if it is shining through a colored but transparent object, almost like light shining through stained-glass.  
@@ -3566,7 +3549,6 @@ declare module "godot" {
         /** If `true`, the light only appears in the editor and will not be visible at runtime. If `true`, the light will never be baked in [LightmapGI] regardless of its [member light_bake_mode]. */
         editor_only: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_light3dgizmoplugin.html */
     class Light3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Occludes light cast by a Light2D, casting shadows.  
@@ -3590,10 +3572,8 @@ declare module "godot" {
         /** The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s). */
         occluder_light_mask: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_lightoccluder2deditor.html */
     class LightOccluder2DEditor extends AbstractPolygon2DEditor {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_lightoccluder2deditorplugin.html */
     class LightOccluder2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
     }
     namespace LightmapGI {
@@ -3663,7 +3643,7 @@ declare module "godot" {
             
             /** Use the scene's environment lighting when baking lightmaps.  
              *      
-             *  **Note:** If baking lightmaps in a scene with no [WorldEnvironment] node, this will act like [constant ENVIRONMENT_MODE_DISABLED]. The editor's preview sky and sun is [i]not[/i] taken into account by [LightmapGI] when baking lightmaps.  
+             *  **Note:** If baking lightmaps in a scene with no [WorldEnvironment] node, this will act like [constant ENVIRONMENT_MODE_DISABLED]. The editor's preview sky and sun is  *not*  taken into account by [LightmapGI] when baking lightmaps.  
              */
             ENVIRONMENT_MODE_SCENE = 1,
             
@@ -3825,16 +3805,14 @@ declare module "godot" {
         probe_data: Dictionary
         
         /** The lightmap atlas texture generated by the lightmapper.  
-         *  [i]Deprecated.[/i] The lightmap atlas can now have multiple textures. See [member lightmap_textures].  
+         *   *Deprecated.*  The lightmap atlas can now have multiple textures. See [member lightmap_textures].  
          */
         light_texture: TextureLayered
         light_textures: Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_lightmapgieditorplugin.html */
     class LightmapGIEditorPlugin extends EditorPlugin {
         _bake(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_lightmapgigizmoplugin.html */
     class LightmapGIGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Represents a single manually placed probe for dynamic object lighting with [LightmapGI].  
@@ -3843,7 +3821,6 @@ declare module "godot" {
      */
     class LightmapProbe extends Node3D {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_lightmapprobegizmoplugin.html */
     class LightmapProbeGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Abstract class extended by lightmappers, for use in [LightmapGI].  
@@ -3994,10 +3971,8 @@ declare module "godot" {
          */
         antialiased: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_line2deditor.html */
     class Line2DEditor extends AbstractPolygon2DEditor {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_line2deditorplugin.html */
     class Line2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
     }
     namespace LineEdit {
@@ -4412,7 +4387,6 @@ declare module "godot" {
         /** Set additional options for BiDi override. */
         structured_text_bidi_override_options: Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_localizationeditor.html */
     class LocalizationEditor extends VBoxContainer {
         update_translations(): void
         readonly localization_changed: Signal //  => void
@@ -4515,7 +4489,6 @@ declare module "godot" {
         /** Size of the gizmo cross that appears in the editor. */
         gizmo_extents: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_marker3dgizmoplugin.html */
     class Marker3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Virtual base class for applying visual properties to an object, such as color and roughness.  
@@ -4567,7 +4540,6 @@ declare module "godot" {
          */
         next_pass: Material
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_materialeditorplugin.html */
     class MaterialEditorPlugin extends EditorPlugin {
     }
     /** A horizontal menu bar that creates a [MenuButton] for each [PopupMenu] child.  
@@ -4725,7 +4697,7 @@ declare module "godot" {
             /** [PackedFloat32Array] or [PackedFloat64Array] of bone weights in the range `0.0` to `1.0` (inclusive). Contains either 4 or 8 numbers per vertex depending on the presence of the [constant ARRAY_FLAG_USE_8_BONE_WEIGHTS] flag. */
             ARRAY_WEIGHTS = 11,
             
-            /** [PackedInt32Array] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the [i]i[/i]'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.  
+            /** [PackedInt32Array] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the  *i* 'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.  
              *  For triangles, the index array is interpreted as triples, referring to the vertices of each triangle. For lines, the index array is in pairs indicating the start and end of each line.  
              */
             ARRAY_INDEX = 12,
@@ -5165,7 +5137,6 @@ declare module "godot" {
         /** Returns the material assigned to the [Mesh]. */
         get_material(): Material
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_mesheditorplugin.html */
     class MeshEditorPlugin extends EditorPlugin {
     }
     /** Node used for displaying a [Mesh] in 2D.  
@@ -5255,13 +5226,10 @@ declare module "godot" {
         /** [NodePath] to the [Skeleton3D] associated with the instance. */
         skeleton: NodePath
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_meshinstance3deditor.html */
     class MeshInstance3DEditor extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_meshinstance3deditorplugin.html */
     class MeshInstance3DEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_meshinstance3dgizmoplugin.html */
     class MeshInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Library of meshes.  
@@ -5343,10 +5311,8 @@ declare module "godot" {
         /** Gets an unused ID for a new item. */
         get_last_unused_item_id(): number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_meshlibraryeditor.html */
     class MeshLibraryEditor extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_meshlibraryeditorplugin.html */
     class MeshLibraryEditorPlugin extends EditorPlugin {
     }
     /** Simple texture that uses a mesh to draw itself.  
@@ -5477,7 +5443,7 @@ declare module "godot" {
         
         /** Called when the engine finishes writing. This occurs when the engine quits by pressing the window manager's close button, or when [method SceneTree.quit] is called.  
          *      
-         *  **Note:** Pressing [kbd]Ctrl + C[/kbd] on the terminal running the editor/project does [i]not[/i] result in [method _write_end] being called.  
+         *  **Note:** Pressing [kbd]Ctrl + C[/kbd] on the terminal running the editor/project does  *not*  result in [method _write_end] being called.  
          */
         /* gdvirtual */ _write_end(): void
         
@@ -5487,10 +5453,8 @@ declare module "godot" {
          */
         static add_writer(writer: MovieWriter): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_moviewritermjpeg.html */
     class MovieWriterMJPEG extends MovieWriter {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_moviewriterpngwav.html */
     class MovieWriterPNGWAV extends MovieWriter {
     }
     namespace MultiMesh {
@@ -5532,7 +5496,7 @@ declare module "godot" {
         /** Returns the [Transform2D] of a specific instance. */
         get_instance_transform_2d(instance: number /*i64*/): Transform2D
         
-        /** Sets the color of a specific instance by [i]multiplying[/i] the mesh's existing vertex colors. This allows for different color tinting per instance.  
+        /** Sets the color of a specific instance by  *multiplying*  the mesh's existing vertex colors. This allows for different color tinting per instance.  
          *  For the color to take effect, ensure that [member use_colors] is `true` on the [MultiMesh] and [member BaseMaterial3D.vertex_color_use_as_albedo] is `true` on the material. If you intend to set an absolute color instead of tinting, make sure the material's albedo color is set to pure white (`Color(1, 1, 1)`).  
          */
         set_instance_color(instance: number /*i64*/, color: Color): void
@@ -5597,10 +5561,8 @@ declare module "godot" {
         /** See [method set_instance_custom_data]. */
         custom_data_array: PackedColorArray
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_multimesheditor.html */
     class MultiMeshEditor extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_multimesheditorplugin.html */
     class MultiMeshEditorPlugin extends EditorPlugin {
     }
     /** Node that instances a [MultiMesh] in 2D.  
@@ -5753,11 +5715,9 @@ declare module "godot" {
         /** Callback for [method MultiplayerAPI.object_configuration_remove]. */
         /* gdvirtual */ _object_configuration_remove(object: Object, configuration: any): GodotError
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_multiplayereditordebugger.html */
     class MultiplayerEditorDebugger extends EditorDebuggerPlugin {
         readonly open_request: Signal // path: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_multiplayereditorplugin.html */
     class MultiplayerEditorPlugin extends EditorPlugin {
     }
     namespace MultiplayerPeer {
@@ -6610,10 +6570,8 @@ declare module "godot" {
         /** When pathfinding moves along the link the traveled distance is multiplied with [member travel_cost] for determining the shortest path. */
         travel_cost: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationlink2deditor.html */
     class NavigationLink2DEditor extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationlink2deditorplugin.html */
     class NavigationLink2DEditorPlugin extends EditorPlugin {
     }
     /** A link between two positions on [NavigationRegion3D]s that agents can be routed through.  
@@ -6683,7 +6641,6 @@ declare module "godot" {
         /** When pathfinding moves along the link the traveled distance is multiplied with [member travel_cost] for determining the shortest path. */
         travel_cost: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationlink3dgizmoplugin.html */
     class NavigationLink3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     namespace NavigationMesh {
@@ -6907,10 +6864,8 @@ declare module "godot" {
         /** The position offset applied to the [member filter_baking_aabb] [AABB]. */
         filter_baking_aabb_offset: Vector3
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationmesheditor.html */
     class NavigationMeshEditor extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationmesheditorplugin.html */
     class NavigationMeshEditorPlugin extends EditorPlugin {
     }
     /** Container for parsed source geometry data used in navigation mesh baking.  
@@ -7027,10 +6982,8 @@ declare module "godot" {
         /** A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on the their avoidance mask will avoid this obstacle. */
         avoidance_layers: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationobstacle2deditor.html */
     class NavigationObstacle2DEditor extends AbstractPolygon2DEditor {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationobstacle2deditorplugin.html */
     class NavigationObstacle2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
     }
     /** 3D Obstacle used in navigation to constrain avoidance controlled agents outside or inside an area.  
@@ -7090,11 +7043,9 @@ declare module "godot" {
          */
         use_3d_avoidance: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationobstacle3deditor.html */
     class NavigationObstacle3DEditor extends HBoxContainer {
         _polygon_draw(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationobstacle3deditorplugin.html */
     class NavigationObstacle3DEditorPlugin extends EditorPlugin {
     }
     namespace NavigationPathQueryParameters2D {
@@ -7391,7 +7342,7 @@ declare module "godot" {
         clear_outlines(): void
         
         /** Creates polygons from the outlines added in the editor or by script.  
-         *  [i]Deprecated.[/i] This function is deprecated, and might be removed in a future release. Use [method NavigationServer2D.parse_source_geometry_data] and [method NavigationServer2D.bake_from_source_geometry_data] instead.  
+         *   *Deprecated.*  This function is deprecated, and might be removed in a future release. Use [method NavigationServer2D.parse_source_geometry_data] and [method NavigationServer2D.bake_from_source_geometry_data] instead.  
          */
         make_polygons_from_outlines(): void
         _set_polygons(polygons: Array): void
@@ -7445,10 +7396,8 @@ declare module "godot" {
         /** The distance to erode/shrink the walkable surface when baking the navigation mesh. */
         agent_radius: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationpolygoneditor.html */
     class NavigationPolygonEditor extends AbstractPolygon2DEditor {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationpolygoneditorplugin.html */
     class NavigationPolygonEditorPlugin extends AbstractPolygon2DEditorPlugin {
     }
     /** A traversable 2D region that [NavigationAgent2D]s can use for pathfinding.  
@@ -7490,7 +7439,7 @@ declare module "godot" {
         get_avoidance_layer_value(layer_number: number /*i64*/): boolean
         
         /** Returns the [RID] of this region on the [NavigationServer2D].  
-         *  [i]Deprecated.[/i] Use [method get_rid] instead.  
+         *   *Deprecated.*  Use [method get_rid] instead.  
          */
         get_region_rid(): RID
         set_enter_cost(enter_cost: number /*f64*/): void
@@ -7563,7 +7512,7 @@ declare module "godot" {
         get_navigation_layer_value(layer_number: number /*i64*/): boolean
         
         /** Returns the [RID] of this region on the [NavigationServer3D].  
-         *  [i]Deprecated.[/i] Use [method get_rid] instead.  
+         *   *Deprecated.*  Use [method get_rid] instead.  
          */
         get_region_rid(): RID
         set_enter_cost(enter_cost: number /*f64*/): void
@@ -7599,7 +7548,6 @@ declare module "godot" {
         /** Notifies when the navigation mesh bake operation is completed. */
         readonly bake_finished: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_navigationregion3dgizmoplugin.html */
     class NavigationRegion3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     namespace NinePatchRect {
@@ -7716,16 +7664,16 @@ declare module "godot" {
      */
     class Node extends Object {
         /** Notification received when the node enters a [SceneTree]. See [method _enter_tree].  
-         *  This notification is received [i]before[/i] the related [signal tree_entered] signal.  
+         *  This notification is received  *before*  the related [signal tree_entered] signal.  
          */
         static readonly NOTIFICATION_ENTER_TREE = 10
         
         /** Notification received when the node is about to exit a [SceneTree]. See [method _exit_tree].  
-         *  This notification is received [i]after[/i] the related [signal tree_exiting] signal.  
+         *  This notification is received  *after*  the related [signal tree_exiting] signal.  
          */
         static readonly NOTIFICATION_EXIT_TREE = 11
         
-        /** [i]Deprecated.[/i] This notification is no longer emitted. Use [constant NOTIFICATION_CHILD_ORDER_CHANGED] instead. */
+        /**  *Deprecated.*  This notification is no longer emitted. Use [constant NOTIFICATION_CHILD_ORDER_CHANGED] instead. */
         static readonly NOTIFICATION_MOVED_IN_PARENT = 12
         
         /** Notification received when the node is ready. See [method _ready]. */
@@ -7745,17 +7693,17 @@ declare module "godot" {
         
         /** Notification received when the node is set as a child of another node (see [method add_child] and [method add_sibling]).  
          *      
-         *  **Note:** This does [i]not[/i] mean that the node entered the [SceneTree].  
+         *  **Note:** This does  *not*  mean that the node entered the [SceneTree].  
          */
         static readonly NOTIFICATION_PARENTED = 18
         
         /** Notification received when the parent node calls [method remove_child] on this node.  
          *      
-         *  **Note:** This does [i]not[/i] mean that the node exited the [SceneTree].  
+         *  **Note:** This does  *not*  mean that the node exited the [SceneTree].  
          */
         static readonly NOTIFICATION_UNPARENTED = 19
         
-        /** Notification received [i]only[/i] by the newly instantiated scene root node, when [method PackedScene.instantiate] is completed. */
+        /** Notification received  *only*  by the newly instantiated scene root node, when [method PackedScene.instantiate] is completed. */
         static readonly NOTIFICATION_SCENE_INSTANTIATED = 20
         
         /** Notification received when a drag operation begins. All nodes receive this notification, not only the dragged one.  
@@ -7769,7 +7717,7 @@ declare module "godot" {
          */
         static readonly NOTIFICATION_DRAG_END = 22
         
-        /** Notification received when the node's [member name] or one of its ancestors' [member name] is changed. This notification is [i]not[/i] received when the node is removed from the [SceneTree]. */
+        /** Notification received when the node's [member name] or one of its ancestors' [member name] is changed. This notification is  *not*  received when the node is removed from the [SceneTree]. */
         static readonly NOTIFICATION_PATH_RENAMED = 23
         
         /** Notification received when the list of children is changed. This happens when child nodes are added, moved or removed. */
@@ -8025,7 +7973,7 @@ declare module "godot" {
         /** Returns `true` if the [param path] points to a valid node. See also [method get_node]. */
         has_node(path: NodePath): boolean
         
-        /** Fetches a node. The [NodePath] can either be a relative path (from this node), or an absolute path (from the [member SceneTree.root]) to a node. If [param path] does not point to a valid node, generates an error and returns `null`. Attempts to access methods on the return value will result in an [i]"Attempt to call <method> on a null instance."[/i] error.  
+        /** Fetches a node. The [NodePath] can either be a relative path (from this node), or an absolute path (from the [member SceneTree.root]) to a node. If [param path] does not point to a valid node, generates an error and returns `null`. Attempts to access methods on the return value will result in an  *"Attempt to call <method> on a null instance."*  error.  
          *      
          *  **Note:** Fetching by absolute path only works when the node is inside the scene tree (see [method is_inside_tree]).  
          *  **Example:** Assume this method is called from the Character node, inside the following tree:  
@@ -8041,7 +7989,7 @@ declare module "godot" {
         /** Returns this node's parent node, or `null` if the node doesn't have a parent. */
         get_parent(): Node
         
-        /** Finds the first descendant of this node whose [member name] matches [param pattern], returning `null` if no match is found. The matching is done against node names, [i]not[/i] their paths, through [method String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"` matches any single character.  
+        /** Finds the first descendant of this node whose [member name] matches [param pattern], returning `null` if no match is found. The matching is done against node names,  *not*  their paths, through [method String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"` matches any single character.  
          *  If [param recursive] is `false`, only this node's direct children are checked. Nodes are checked in tree order, so this node's first direct child is checked first, then its own direct children, etc., before moving to the second direct child, and so on. Internal children are also included in the search (see `internal` parameter in [method add_child]).  
          *  If [param owned] is `true`, only descendants with a valid [member owner] node are checked.  
          *      
@@ -8051,7 +7999,7 @@ declare module "godot" {
          */
         find_child(pattern: string, recursive: boolean = true, owned: boolean = true): Node
         
-        /** Finds all descendants of this node whose names match [param pattern], returning an empty [Array] if no match is found. The matching is done against node names, [i]not[/i] their paths, through [method String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"` matches any single character.  
+        /** Finds all descendants of this node whose names match [param pattern], returning an empty [Array] if no match is found. The matching is done against node names,  *not*  their paths, through [method String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"` matches any single character.  
          *  If [param type] is not empty, only ancestors inheriting from [param type] are included (see [method Object.is_class]).  
          *  If [param recursive] is `false`, only this node's direct children are checked. Nodes are checked in tree order, so this node's first direct child is checked first, then its own direct children, etc., before moving to the second direct child, and so on. Internal children are also included in the search (see `internal` parameter in [method add_child]).  
          *  If [param owned] is `true`, only descendants with a valid [member owner] node are checked.  
@@ -8102,9 +8050,9 @@ declare module "godot" {
         /** Adds the node to the [param group]. Groups can be helpful to organize a subset of nodes, for example `"enemies"` or `"collectables"`. See notes in the description, and the group methods in [SceneTree].  
          *  If [param persistent] is `true`, the group will be stored when saved inside a [PackedScene]. All groups created and displayed in the Node dock are persistent.  
          *      
-         *  **Note:** To improve performance, the order of group names is [i]not[/i] guaranteed and may vary between project runs. Therefore, do not rely on the group order.  
+         *  **Note:** To improve performance, the order of group names is  *not*  guaranteed and may vary between project runs. Therefore, do not rely on the group order.  
          *      
-         *  **Note:** [SceneTree]'s group methods will [i]not[/i] work on this node if not inside the tree (see [method is_inside_tree]).  
+         *  **Note:** [SceneTree]'s group methods will  *not*  work on this node if not inside the tree (see [method is_inside_tree]).  
          */
         add_to_group(group: StringName, persistent: boolean = false): void
         
@@ -8122,7 +8070,7 @@ declare module "godot" {
         
         /** Returns an [Array] of group names that the node has been added to.  
          *      
-         *  **Note:** To improve performance, the order of group names is [i]not[/i] guaranteed and may vary between project runs. Therefore, do not rely on the group order.  
+         *  **Note:** To improve performance, the order of group names is  *not*  guaranteed and may vary between project runs. Therefore, do not rely on the group order.  
          *      
          *  **Note:** This method may also return some group names starting with an underscore (`_`). These are internally used by the engine. To avoid conflicts, do not use custom groups starting with underscores. To exclude internal groups, see the following code snippet:  
          *    
@@ -8398,14 +8346,14 @@ declare module "godot" {
         /** The node's processing behavior (see [enum ProcessMode]). To check if the node is able to process, with the current mode and [member SceneTree.paused], use [method can_process]. */
         process_mode: number /*i64*/
         
-        /** The node's execution order of the process callbacks ([method _process], [method _physics_process], and internal processing). Nodes whose priority value is [i]lower[/i] call their process callbacks first, regardless of tree order. */
+        /** The node's execution order of the process callbacks ([method _process], [method _physics_process], and internal processing). Nodes whose priority value is  *lower*  call their process callbacks first, regardless of tree order. */
         process_priority: number /*i64*/
         
         /** Similar to [member process_priority] but for [constant NOTIFICATION_PHYSICS_PROCESS], [method _physics_process] or the internal version. */
         process_physics_priority: number /*i64*/
         
         /** Set the process thread group for this node (basically, whether it receives [constant NOTIFICATION_PROCESS], [constant NOTIFICATION_PHYSICS_PROCESS], [method _process] or [method _physics_process] (and the internal versions) on the main thread or in a sub-thread.  
-         *  By default, the thread group is [constant PROCESS_THREAD_GROUP_INHERIT], which means that this node belongs to the same thread group as the parent node. The thread groups means that nodes in a specific thread group will process together, separate to other thread groups (depending on [member process_thread_group_order]). If the value is set is [constant PROCESS_THREAD_GROUP_SUB_THREAD], this thread group will occur on a sub thread (not the main thread), otherwise if set to [constant PROCESS_THREAD_GROUP_MAIN_THREAD] it will process on the main thread. If there is not a parent or grandparent node set to something other than inherit, the node will belong to the [i]default thread group[/i]. This default group will process on the main thread and its group order is 0.  
+         *  By default, the thread group is [constant PROCESS_THREAD_GROUP_INHERIT], which means that this node belongs to the same thread group as the parent node. The thread groups means that nodes in a specific thread group will process together, separate to other thread groups (depending on [member process_thread_group_order]). If the value is set is [constant PROCESS_THREAD_GROUP_SUB_THREAD], this thread group will occur on a sub thread (not the main thread), otherwise if set to [constant PROCESS_THREAD_GROUP_MAIN_THREAD] it will process on the main thread. If there is not a parent or grandparent node set to something other than inherit, the node will belong to the  *default thread group* . This default group will process on the main thread and its group order is 0.  
          *  During processing in a sub-thread, accessing most functions in nodes outside the thread group is forbidden (and it will result in an error in debug mode). Use [method Object.call_deferred], [method call_thread_safe], [method call_deferred_thread_group] and the likes in order to communicate from the thread groups to the main thread (or to other thread groups).  
          *  To better understand process thread groups, the idea is that any node set to any other value than [constant PROCESS_THREAD_GROUP_INHERIT] will include any child (and grandchild) nodes set to inherit into its process thread group. This means that the processing of all the nodes in the group will happen together, at the same time as the node including them.  
          */
@@ -8427,27 +8375,27 @@ declare module "godot" {
         readonly renamed: Signal //  => void
         
         /** Emitted when the node enters the tree.  
-         *  This signal is emitted [i]after[/i] the related [constant NOTIFICATION_ENTER_TREE] notification.  
+         *  This signal is emitted  *after*  the related [constant NOTIFICATION_ENTER_TREE] notification.  
          */
         readonly tree_entered: Signal //  => void
         
         /** Emitted when the node is just about to exit the tree. The node is still valid. As such, this is the right place for de-initialization (or a "destructor", if you will).  
-         *  This signal is emitted [i]after[/i] the node's [method _exit_tree], and [i]before[/i] the related [constant NOTIFICATION_EXIT_TREE].  
+         *  This signal is emitted  *after*  the node's [method _exit_tree], and  *before*  the related [constant NOTIFICATION_EXIT_TREE].  
          */
         readonly tree_exiting: Signal //  => void
         
         /** Emitted after the node exits the tree and is no longer active.  
-         *  This signal is emitted [i]after[/i] the related [constant NOTIFICATION_EXIT_TREE] notification.  
+         *  This signal is emitted  *after*  the related [constant NOTIFICATION_EXIT_TREE] notification.  
          */
         readonly tree_exited: Signal //  => void
         
         /** Emitted when the child [param node] enters the [SceneTree], usually because this node entered the tree (see [signal tree_entered]), or [method add_child] has been called.  
-         *  This signal is emitted [i]after[/i] the child node's own [constant NOTIFICATION_ENTER_TREE] and [signal tree_entered].  
+         *  This signal is emitted  *after*  the child node's own [constant NOTIFICATION_ENTER_TREE] and [signal tree_entered].  
          */
         readonly child_entered_tree: Signal // node: Node => void
         
         /** Emitted when the child [param node] is about to exit the [SceneTree], usually because this node is exiting the tree (see [signal tree_exiting]), or because the child [param node] is being removed or freed.  
-         *  When this signal is received, the child [param node] is still accessible inside the tree. This signal is emitted [i]after[/i] the child node's own [signal tree_exiting] and [constant NOTIFICATION_EXIT_TREE].  
+         *  When this signal is received, the child [param node] is still accessible inside the tree. This signal is emitted  *after*  the child node's own [signal tree_exiting] and [constant NOTIFICATION_EXIT_TREE].  
          */
         readonly child_exiting_tree: Signal // node: Node => void
         
@@ -8455,7 +8403,7 @@ declare module "godot" {
         readonly child_order_changed: Signal //  => void
         
         /** Emitted when this node is being replaced by the [param node], see [method replace_by].  
-         *  This signal is emitted [i]after[/i] [param node] has been added as a child of the original parent node, but [i]before[/i] all original child nodes have been reparented to [param node].  
+         *  This signal is emitted  *after*  [param node] has been added as a child of the original parent node, but  *before*  all original child nodes have been reparented to [param node].  
          */
         readonly replacing_by: Signal // node: Node => void
     }
@@ -8828,7 +8776,6 @@ declare module "godot" {
         /** Emitted when node visibility changes. */
         readonly visibility_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_node3deditor.html */
     class Node3DEditor extends VBoxContainer {
         _get_editor_data(_unnamed_arg0: Object): Object
         _request_gizmo(_unnamed_arg0: Object): void
@@ -8840,16 +8787,13 @@ declare module "godot" {
         readonly item_lock_status_changed: Signal //  => void
         readonly item_group_status_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_node3deditorplugin.html */
     class Node3DEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_node3deditorviewport.html */
     class Node3DEditorViewport extends Control {
         update_transform_gizmo_view(): void
         readonly toggle_maximize_view: Signal // viewport: Object => void
         readonly clicked: Signal // viewport: Object => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_node3deditorviewportcontainer.html */
     class Node3DEditorViewportContainer extends Container {
     }
     /** Abstract class to expose editor gizmos for [Node3D].  
@@ -8858,7 +8802,6 @@ declare module "godot" {
      */
     class Node3DGizmo extends RefCounted {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_nodedock.html */
     class NodeDock extends VBoxContainer {
     }
     /** Abstract base class for noise generators.  
@@ -8905,10 +8848,8 @@ declare module "godot" {
          */
         get_seamless_image_3d(width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, invert: boolean = false, skirt: number /*f64*/ = 0.1, normalize: boolean = true): Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_noiseeditorinspectorplugin.html */
     class NoiseEditorInspectorPlugin extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_noiseeditorplugin.html */
     class NoiseEditorPlugin extends EditorPlugin {
     }
     /** A 2D texture filled with noise generated by a [Noise] object.  
@@ -9058,7 +8999,6 @@ declare module "godot" {
      */
     class ORMMaterial3D extends BaseMaterial3D {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_ormmaterial3dconversionplugin.html */
     class ORMMaterial3DConversionPlugin extends EditorResourceConversionPlugin {
     }
     namespace Object {
@@ -9100,8 +9040,8 @@ declare module "godot" {
          */
         /* gdvirtual */ _notification(what: number /*i64*/): void
         
-        /** Override this method to customize the behavior of [method set]. Should set the [param property] to [param value] and return `true`, or `false` if the [param property] should be handled normally. The [i]exact[/i] way to set the [param property] is up to this method's implementation.  
-         *  Combined with [method _get] and [method _get_property_list], this method allows defining custom properties, which is particularly useful for editor plugins. Note that a property [i]must[/i] be present in [method get_property_list], otherwise this method will not be called.  
+        /** Override this method to customize the behavior of [method set]. Should set the [param property] to [param value] and return `true`, or `false` if the [param property] should be handled normally. The  *exact*  way to set the [param property] is up to this method's implementation.  
+         *  Combined with [method _get] and [method _get_property_list], this method allows defining custom properties, which is particularly useful for editor plugins. Note that a property  *must*  be present in [method get_property_list], otherwise this method will not be called.  
          *    
          */
         /* gdvirtual */ _set(property: StringName, value: any): boolean
@@ -9142,7 +9082,7 @@ declare module "godot" {
         
         /** Called when the object's script is instantiated, oftentimes after the object is initialized in memory (through `Object.new()` in GDScript, or `new GodotObject` in C#). It can be also defined to take in parameters. This method is similar to a constructor in most programming languages.  
          *      
-         *  **Note:** If [method _init] is defined with [i]required[/i] parameters, the Object with script may only be created directly. If any other means (such as [method PackedScene.instantiate] or [method Node.duplicate]) are used, the script's initialization will fail.  
+         *  **Note:** If [method _init] is defined with  *required*  parameters, the Object with script may only be created directly. If any other means (such as [method PackedScene.instantiate] or [method Node.duplicate]) are used, the script's initialization will fail.  
          */
         /* gdvirtual */ _init(): void
         
@@ -9199,7 +9139,7 @@ declare module "godot" {
          *  - `name` is the property's name, as a [String];  
          *  - `class_name` is an empty [StringName], unless the property is [constant TYPE_OBJECT] and it inherits from a class;  
          *  - `type` is the property's type, as an [int] (see [enum Variant.Type]);  
-         *  - `hint` is [i]how[/i] the property is meant to be edited (see [enum PropertyHint]);  
+         *  - `hint` is  *how*  the property is meant to be edited (see [enum PropertyHint]);  
          *  - `hint_string` depends on the hint (see [enum PropertyHint]);  
          *  - `usage` is a combination of [enum PropertyUsageFlags].  
          *      

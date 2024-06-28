@@ -391,7 +391,7 @@ declare module "godot" {
         region: Rect2i
         
         /** The size of the grid (number of cells of size [member cell_size] on each axis). If changed, [method update] needs to be called before finding the next path.  
-         *  [i]Deprecated.[/i] Use [member region] instead.  
+         *   *Deprecated.*  Use [member region] instead.  
          */
         size: Vector2i
         
@@ -416,10 +416,8 @@ declare module "godot" {
         /** A specific [enum DiagonalMode] mode which will force the path to avoid or accept the specified diagonals. */
         diagonal_mode: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_abstractpolygon2deditor.html */
     class AbstractPolygon2DEditor extends HBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_abstractpolygon2deditorplugin.html */
     class AbstractPolygon2DEditorPlugin extends EditorPlugin {
     }
     /** A base dialog used for user notification.  
@@ -491,7 +489,6 @@ declare module "godot" {
         /** Emitted when a custom button is pressed. See [method add_button]. */
         readonly custom_action: Signal // action: StringName => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_actionmapeditor.html */
     class ActionMapEditor extends Control {
         readonly action_added: Signal // name: string => void
         readonly action_edited: Signal // name: string, new_action: Dictionary => void
@@ -501,7 +498,6 @@ declare module "godot" {
         readonly filter_focused: Signal //  => void
         readonly filter_unfocused: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_anchorpresetpicker.html */
     class AnchorPresetPicker extends ControlEditorPresetPicker {
         readonly anchors_preset_selected: Signal // preset: number /*i64*/ => void
     }
@@ -1096,7 +1092,6 @@ declare module "godot" {
         /** The animation step value. */
         step: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationbeziertrackedit.html */
     class AnimationBezierTrackEdit extends Control {
         _clear_selection(): void
         _clear_selection_for_anim(_unnamed_arg0: Animation): void
@@ -1155,7 +1150,6 @@ declare module "godot" {
          */
         readonly animation_changed: Signal // name: StringName => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationlibraryeditor.html */
     class AnimationLibraryEditor extends AcceptDialog {
         _update_editor(mixer: Object): void
         readonly update_editor: Signal //  => void
@@ -1579,7 +1573,6 @@ declare module "godot" {
          */
         sync: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeblendspace1deditor.html */
     class AnimationNodeBlendSpace1DEditor extends AnimationTreeNodeEditorPlugin {
         _update_space(): void
         _update_tool_erase(): void
@@ -1685,7 +1678,6 @@ declare module "godot" {
         /** Emitted every time the blend space's triangles are created, removed, or when one of their vertices changes position. */
         readonly triangles_updated: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeblendspace2deditor.html */
     class AnimationNodeBlendSpace2DEditor extends AnimationTreeNodeEditorPlugin {
         _update_space(): void
         _update_tool_erase(): void
@@ -1749,7 +1741,6 @@ declare module "godot" {
         /** Emitted when the input port information is changed. */
         readonly node_changed: Signal // node_name: StringName => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeblendtreeeditor.html */
     class AnimationNodeBlendTreeEditor extends AnimationTreeNodeEditorPlugin {
         update_graph(): void
         _update_filters(_unnamed_arg0: AnimationNode): boolean
@@ -1919,7 +1910,6 @@ declare module "godot" {
          */
         reset_ends: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationnodestatemachineeditor.html */
     class AnimationNodeStateMachineEditor extends AnimationTreeNodeEditorPlugin {
         _update_graph(): void
         _open_editor(_unnamed_arg0: string): void
@@ -2277,14 +2267,12 @@ declare module "godot" {
          */
         readonly animation_changed: Signal // old_name: StringName, new_name: StringName => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationplayereditor.html */
     class AnimationPlayerEditor extends VBoxContainer {
         _animation_player_changed(_unnamed_arg0: Object): void
         _start_onion_skinning(): void
         _stop_onion_skinning(): void
         readonly animation_selected: Signal // name: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationplayereditorplugin.html */
     class AnimationPlayerEditorPlugin extends EditorPlugin {
     }
     /** Base class for [AnimationNode]s that hold one or multiple composite animations. Usually used for [member AnimationTree.tree_root].  
@@ -2293,7 +2281,6 @@ declare module "godot" {
      */
     class AnimationRootNode extends AnimationNode {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationtimelineedit.html */
     class AnimationTimelineEdit extends Range {
         update_values(): void
         readonly zoom_changed: Signal //  => void
@@ -2302,13 +2289,10 @@ declare module "godot" {
         readonly track_added: Signal // track: number /*i64*/ => void
         readonly length_changed: Signal // size: number /*f64*/ => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationtrackeditdefaultplugin.html */
     class AnimationTrackEditDefaultPlugin extends AnimationTrackEditPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationtrackeditplugin.html */
     class AnimationTrackEditPlugin extends RefCounted {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationtrackeditor.html */
     class AnimationTrackEditor extends VBoxContainer {
         _animation_update(): void
         _track_grab_focus(_unnamed_arg0: number /*i64*/): void
@@ -2322,7 +2306,6 @@ declare module "godot" {
         readonly animation_len_changed: Signal // len: number /*f64*/ => void
         readonly animation_step_changed: Signal // step: number /*f64*/ => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationtrackkeyediteditorplugin.html */
     class AnimationTrackKeyEditEditorPlugin extends EditorPlugin {
     }
     namespace AnimationTree {
@@ -2368,13 +2351,10 @@ declare module "godot" {
         /** Emitted when the [member anim_player] is changed. */
         readonly animation_player_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationtreeeditor.html */
     class AnimationTreeEditor extends VBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationtreeeditorplugin.html */
     class AnimationTreeEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_animationtreenodeeditorplugin.html */
     class AnimationTreeNodeEditorPlugin extends VBoxContainer {
     }
     namespace Area2D {
@@ -2920,10 +2900,8 @@ declare module "godot" {
         /** Specifies the vertical relative position of child controls. */
         alignment_vertical: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_assetlibraryeditorplugin.html */
     class AssetLibraryEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_atlasmergingdialog.html */
     class AtlasMergingDialog extends ConfirmationDialog {
     }
     /** A texture that crops out part of another Texture2D.  
@@ -2952,7 +2930,6 @@ declare module "godot" {
         /** If `true`, the area outside of the [member region] is clipped to avoid bleeding of the surrounding texture pixels. */
         filter_clip: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_atlastileproxyobject.html */
     class AtlasTileProxyObject extends Object {
         readonly changed: Signal // what: string => void
     }
@@ -2962,7 +2939,6 @@ declare module "godot" {
      */
     class AudioBusLayout extends Resource {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiobuseseditorplugin.html */
     class AudioBusesEditorPlugin extends EditorPlugin {
     }
     /** Audio effect for audio.  
@@ -3607,7 +3583,6 @@ declare module "godot" {
         /** Returns the listener's global orthonormalized [Transform3D]. */
         get_listener_transform(): Transform3D
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiolistener3dgizmoplugin.html */
     class AudioListener3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Base class for audio streams.  
@@ -3640,13 +3615,12 @@ declare module "godot" {
         /** Returns the length of the audio stream in seconds. */
         get_length(): number /*f64*/
         
-        /** Returns `true` if this audio stream only supports one channel ([i]monophony[/i]), or `false` if the audio stream supports two or more channels ([i]polyphony[/i]). */
+        /** Returns `true` if this audio stream only supports one channel ( *monophony* ), or `false` if the audio stream supports two or more channels ( *polyphony* ). */
         is_monophonic(): boolean
         
         /** Returns a newly created [AudioStreamPlayback] intended to play this audio stream. Useful for when you want to extend [method _instantiate_playback] but call [method instantiate_playback] from an internally held AudioStream subresource. An example of this can be found in the source code for `AudioStreamRandomPitch::instantiate_playback`. */
         instantiate_playback(): AudioStreamPlayback
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiostreameditorplugin.html */
     class AudioStreamEditorPlugin extends EditorPlugin {
     }
     /** An audio stream with utilities for procedural sound generation.  
@@ -3673,13 +3647,13 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamgeneratorplayback.html  
      */
     class AudioStreamGeneratorPlayback extends AudioStreamPlaybackResampled {
-        /** Pushes a single audio data frame to the buffer. This is usually less efficient than [method push_buffer] in C# and compiled languages via GDExtension, but [method push_frame] may be [i]more[/i] efficient in GDScript. */
+        /** Pushes a single audio data frame to the buffer. This is usually less efficient than [method push_buffer] in C# and compiled languages via GDExtension, but [method push_frame] may be  *more*  efficient in GDScript. */
         push_frame(frame: Vector2): boolean
         
         /** Returns `true` if a buffer of the size [param amount] can be pushed to the audio sample data buffer without overflowing it, `false` otherwise. */
         can_push_buffer(amount: number /*i64*/): boolean
         
-        /** Pushes several audio data frames to the buffer. This is usually more efficient than [method push_frame] in C# and compiled languages via GDExtension, but [method push_buffer] may be [i]less[/i] efficient in GDScript. */
+        /** Pushes several audio data frames to the buffer. This is usually more efficient than [method push_frame] in C# and compiled languages via GDExtension, but [method push_buffer] may be  *less*  efficient in GDScript. */
         push_buffer(frames: PackedVector2Array): boolean
         
         /** Returns the number of frames that can be pushed to the audio sample data buffer without overflowing it. If the result is `0`, the buffer is full. */
@@ -3691,7 +3665,6 @@ declare module "godot" {
         /** Clears the audio sample data buffer. */
         clear_buffer(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamimportsettings.html */
     class AudioStreamImportSettings extends ConfirmationDialog {
     }
     /** MP3 audio stream driver.  
@@ -4171,7 +4144,6 @@ declare module "godot" {
         /** Emitted when the audio stops playing. */
         readonly finished: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplayer3dgizmoplugin.html */
     class AudioStreamPlayer3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** AudioStream that lets the user play custom streams at any time from code, simultaneously using a single player.  
@@ -4185,7 +4157,6 @@ declare module "godot" {
         /** Maximum amount of simultaneous streams that can be played. */
         polyphony: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiostreampreviewgenerator.html */
     class AudioStreamPreviewGenerator extends Node {
         _update_emit(_unnamed_arg0: number /*i64*/): void
         generate_preview(stream: AudioStream): any /*AudioStreamPreview*/
@@ -4249,7 +4220,6 @@ declare module "godot" {
         /** The number of streams in the stream pool. */
         streams_count: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamrandomizereditorplugin.html */
     class AudioStreamRandomizerEditorPlugin extends EditorPlugin {
     }
     namespace AudioStreamWAV {
@@ -4358,7 +4328,6 @@ declare module "godot" {
         /** The area covered by the [BackBufferCopy]. Only used if [member copy_mode] is [constant COPY_MODE_RECT]. */
         rect: Rect2
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_backgroundprogress.html */
     class BackgroundProgress extends HBoxContainer {
         _add_task(_unnamed_arg0: string, _unnamed_arg1: string, _unnamed_arg2: number /*i64*/): void
         _task_step(_unnamed_arg0: string, _unnamed_arg1: number /*i64*/): void
@@ -5040,7 +5009,7 @@ declare module "godot" {
         
         /** The material's base color.  
          *      
-         *  **Note:** If [member detail_enabled] is `true` and a [member detail_albedo] texture is specified, [member albedo_color] will [i]not[/i] modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [member detail_albedo] texture instead.  
+         *  **Note:** If [member detail_enabled] is `true` and a [member detail_albedo] texture is specified, [member albedo_color] will  *not*  modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [member detail_albedo] texture instead.  
          */
         albedo_color: Color
         
@@ -5287,7 +5256,6 @@ declare module "godot" {
         opaque_to_polygons(rect: Rect2i, epsilon: number /*f64*/ = 2): Array
         data: Dictionary
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_bitmapeditorplugin.html */
     class BitMapEditorPlugin extends EditorPlugin {
     }
     /** A joint used with [Skeleton2D] to control and animate other nodes.  
@@ -5344,7 +5312,7 @@ declare module "godot" {
         set_bone_idx(bone_idx: number /*i64*/): void
         get_bone_idx(): number /*i64*/
         
-        /** A function that is called automatically when the [Skeleton3D] the BoneAttachment3D node is using has a bone that has changed its pose. This function is where the BoneAttachment3D node updates its position so it is correctly bound when it is [i]not[/i] set to override the bone pose. */
+        /** A function that is called automatically when the [Skeleton3D] the BoneAttachment3D node is using has a bone that has changed its pose. This function is where the BoneAttachment3D node updates its position so it is correctly bound when it is  *not*  set to override the bone pose. */
         on_bone_pose_update(bone_index: number /*i64*/): void
         set_override_pose(override_pose: boolean): void
         get_override_pose(): boolean
@@ -5402,7 +5370,6 @@ declare module "godot" {
         /** This signal is emitted when change the value in profile or change the reference of profile. This is used to update key names in the [BoneMap] and to redraw the [BoneMap] editor. */
         readonly profile_updated: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_bonemapeditorplugin.html */
     class BoneMapEditorPlugin extends EditorPlugin {
     }
     namespace BoxContainer {
@@ -5839,7 +5806,6 @@ declare module "godot" {
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted. */
         readonly finished: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_cpuparticles2deditorplugin.html */
     class CPUParticles2DEditorPlugin extends EditorPlugin {
     }
     namespace CPUParticles3D {
@@ -6097,7 +6063,7 @@ declare module "godot" {
         
         /** Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS].  
          *      
-         *  **Note:** [member emission_colors] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] [i]must[/i] be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member emission_colors] will have no visible effect.  
+         *  **Note:** [member emission_colors] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member emission_colors] will have no visible effect.  
          */
         emission_colors: PackedColorArray
         
@@ -6139,32 +6105,29 @@ declare module "godot" {
         
         /** Each particle's initial color.  
          *      
-         *  **Note:** [member color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] [i]must[/i] be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color] will have no visible effect.  
+         *  **Note:** [member color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color] will have no visible effect.  
          */
         color: Color
         
         /** Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied with [member color]).  
          *      
-         *  **Note:** [member color_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] [i]must[/i] be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_ramp] will have no visible effect.  
+         *  **Note:** [member color_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_ramp] will have no visible effect.  
          */
         color_ramp: Gradient
         
         /** Each particle's initial color will vary along this [GradientTexture1D] (multiplied with [member color]).  
          *      
-         *  **Note:** [member color_initial_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] [i]must[/i] be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_initial_ramp] will have no visible effect.  
+         *  **Note:** [member color_initial_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_initial_ramp] will have no visible effect.  
          */
         color_initial_ramp: Gradient
         
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted. */
         readonly finished: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_cpuparticles3deditor.html */
     class CPUParticles3DEditor extends GPUParticles3DEditorBase {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_cpuparticles3deditorplugin.html */
     class CPUParticles3DEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_cpuparticles3dgizmoplugin.html */
     class CPUParticles3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** A CSG Box shape.  
@@ -6320,7 +6283,7 @@ declare module "godot" {
         _is_editable_3d_polygon(): boolean
         _has_editable_3d_polygon_no_depth(): boolean
         
-        /** The point array that defines the 2D polygon that is extruded. This can be a convex or concave polygon with 3 or more points. The polygon must [i]not[/i] have any intersecting edges. Otherwise, triangulation will fail and no mesh will be generated.  
+        /** The point array that defines the 2D polygon that is extruded. This can be a convex or concave polygon with 3 or more points. The polygon must  *not*  have any intersecting edges. Otherwise, triangulation will fail and no mesh will be generated.  
          *      
          *  **Note:** If only 1 or 2 points are defined in [member polygon], no mesh will be generated.  
          */
@@ -6457,7 +6420,6 @@ declare module "godot" {
         /** The priority used to solve colliding when occurring penetration. Only effective if [member use_collision] is `true`. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
         collision_priority: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_csgshape3dgizmoplugin.html */
     class CSGShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** A CSG Sphere shape.  
@@ -6658,7 +6620,7 @@ declare module "godot" {
         
         /** The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of `Vector(0.5, 0.5)` halves the size seen in the viewport.  
          *      
-         *  **Note:** [member FontFile.oversampling] does [i]not[/i] take [Camera2D] zoom into account. This means that zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
+         *  **Note:** [member FontFile.oversampling] does  *not*  take [Camera2D] zoom into account. This means that zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
          */
         zoom: Vector2
         
@@ -6896,16 +6858,14 @@ declare module "godot" {
          */
         frustum_offset: Vector2
         
-        /** The distance to the near culling boundary for this camera relative to its local Z axis. Lower values allow the camera to see objects more up close to its origin, at the cost of lower precision across the [i]entire[/i] range. Values lower than the default can lead to increased Z-fighting. */
+        /** The distance to the near culling boundary for this camera relative to its local Z axis. Lower values allow the camera to see objects more up close to its origin, at the cost of lower precision across the  *entire*  range. Values lower than the default can lead to increased Z-fighting. */
         near: number /*f64*/
         
         /** The distance to the far culling boundary for this camera relative to its local Z axis. Higher values allow the camera to see further away, while decreasing [member far] can improve performance if it results in objects being partially or fully culled. */
         far: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_camera3deditorplugin.html */
     class Camera3DEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_camera3dgizmoplugin.html */
     class Camera3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Parent class for camera settings.  
@@ -7330,7 +7290,7 @@ declare module "godot" {
          */
         draw_multiline(points: PackedVector2Array, color: Color, width: number /*f64*/ = -1): void
         
-        /** Draws multiple disconnected lines with a uniform [param width] and segment-by-segment coloring. Each segment is defined by two consecutive points from [param points] array and a corresponding color from [param colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and has `colors[i]` color. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw interconnected lines, use [method draw_polyline_colors] instead.  
+        /** Draws multiple disconnected lines with a uniform [param width] and segment-by-segment coloring. Each segment is defined by two consecutive points from [param points] array and a corresponding color from [param colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and has `colors *` color. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw interconnected lines, use [method draw_polyline_colors] instead.  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
         draw_multiline_colors(points: PackedVector2Array, colors: PackedColorArray, width: number /*f64*/ = -1): void
@@ -7410,7 +7370,7 @@ declare module "godot" {
         
         /** Sets a custom transform for drawing via components. Anything drawn afterwards will be transformed by this.  
          *      
-         *  **Note:** [member FontFile.oversampling] does [i]not[/i] take [param scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
+         *  **Note:** [member FontFile.oversampling] does  *not*  take [param scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
          */
         draw_set_transform(position: Vector2, rotation: number /*f64*/ = 0, scale: Vector2 = Vector2.ONE): void
         
@@ -7518,7 +7478,7 @@ declare module "godot" {
         /** If `true`, the object draws behind its parent. */
         show_behind_parent: boolean
         
-        /** If `true`, this [CanvasItem] will [i]not[/i] inherit its transform from parent [CanvasItem]s. Its draw order will also be changed to make it draw on top of other [CanvasItem]s that do not have [member top_level] set to `true`. The [CanvasItem] will effectively act as if it was placed as a child of a bare [Node]. */
+        /** If `true`, this [CanvasItem] will  *not*  inherit its transform from parent [CanvasItem]s. Its draw order will also be changed to make it draw on top of other [CanvasItem]s that do not have [member top_level] set to `true`. The [CanvasItem] will effectively act as if it was placed as a child of a bare [Node]. */
         top_level: boolean
         
         /** Allows the current node to clip child nodes, essentially acting as a mask. */
@@ -7556,7 +7516,7 @@ declare module "godot" {
         /** If `true`, the parent [CanvasItem]'s [member material] property is used as this one's material. */
         use_parent_material: boolean
         
-        /** Emitted when the [CanvasItem] must redraw, [i]after[/i] the related [constant NOTIFICATION_DRAW] notification, and [i]before[/i] [method _draw] is called.  
+        /** Emitted when the [CanvasItem] must redraw,  *after*  the related [constant NOTIFICATION_DRAW] notification, and  *before*  [method _draw] is called.  
          *      
          *  **Note:** Deferred connections do not allow drawing through the `draw_*` methods.  
          */
@@ -7571,7 +7531,6 @@ declare module "godot" {
         /** Emitted when the item's [Rect2] boundaries (position or size) have changed, or when an action is taking place that may have impacted these boundaries (e.g. changing [member Sprite2D.texture]). */
         readonly item_rect_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_canvasitemeditor.html */
     class CanvasItemEditor extends VBoxContainer {
         _get_editor_data(_unnamed_arg0: Object): Object
         update_viewport(): void
@@ -7580,10 +7539,8 @@ declare module "godot" {
         readonly item_lock_status_changed: Signal //  => void
         readonly item_group_status_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_canvasitemeditorplugin.html */
     class CanvasItemEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_canvasitemeditorviewport.html */
     class CanvasItemEditorViewport extends Control {
     }
     namespace CanvasItemMaterial {
@@ -7661,7 +7618,6 @@ declare module "godot" {
          */
         particles_anim_loop: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_canvasitemmaterialconversionplugin.html */
     class CanvasItemMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
     /** A node used for independent rendering of objects within a 2D scene.  
@@ -7850,10 +7806,8 @@ declare module "godot" {
         /** The capsule's height. */
         height: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_cast2deditor.html */
     class Cast2DEditor extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_cast2deditorplugin.html */
     class Cast2DEditorPlugin extends EditorPlugin {
     }
     /** A container that keeps child controls in its center.  
@@ -8792,7 +8746,6 @@ declare module "godot" {
         /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
         color_regions: Dictionary
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_codetexteditor.html */
     class CodeTextEditor extends VBoxContainer {
         readonly validate_script: Signal //  => void
         readonly load_theme_settings: Signal //  => void
@@ -9106,7 +9059,6 @@ declare module "godot" {
          */
         readonly mouse_exited: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionobject3dgizmoplugin.html */
     class CollisionObject3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     namespace CollisionPolygon2D {
@@ -9156,10 +9108,8 @@ declare module "godot" {
         /** The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the polygon at a high velocity. */
         one_way_collision_margin: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon2deditor.html */
     class CollisionPolygon2DEditor extends AbstractPolygon2DEditor {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon2deditorplugin.html */
     class CollisionPolygon2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
     }
     /** A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent.  
@@ -9192,7 +9142,6 @@ declare module "godot" {
         /** The collision margin for the generated [Shape3D]. See [member Shape3D.margin] for more details. */
         margin: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon3dgizmoplugin.html */
     class CollisionPolygon3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** A node that provides a [Shape2D] to a [CollisionObject2D] parent.  
@@ -9231,5 +9180,30 @@ declare module "godot" {
          *  **Note:** The default value is [member ProjectSettings.debug/shapes/collision/shape_color]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.  
          */
         debug_color: Color
+    }
+    class CollisionShape2DEditor extends Control {
+    }
+    class CollisionShape2DEditorPlugin extends EditorPlugin {
+    }
+    /** A node that provides a [Shape3D] to a [CollisionObject3D] parent.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape3d.html  
+     */
+    class CollisionShape3D extends Node3D {
+        /**  *Obsoleted.*  Use [signal Resource.changed] instead. */
+        resource_changed(resource: Resource): void
+        set_shape(shape: Shape3D): void
+        get_shape(): Shape3D
+        set_disabled(enable: boolean): void
+        is_disabled(): boolean
+        
+        /** Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings geometry. */
+        make_convex_from_siblings(): void
+        
+        /** The actual shape owned by this collision shape. */
+        shape: Shape3D
+        
+        /** A disabled collision shape has no effect in the world. */
+        disabled: boolean
     }
 }

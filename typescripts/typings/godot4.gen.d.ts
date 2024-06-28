@@ -38,24 +38,22 @@ declare module "godot" {
          */
         occluder: Occluder3D
         
-        /** The visual layers to account for when baking for occluders. Only [MeshInstance3D]s whose [member VisualInstance3D.layers] match with this [member bake_mask] will be included in the generated occluder mesh. By default, all objects with [i]opaque[/i] materials are taken into account for the occluder baking.  
+        /** The visual layers to account for when baking for occluders. Only [MeshInstance3D]s whose [member VisualInstance3D.layers] match with this [member bake_mask] will be included in the generated occluder mesh. By default, all objects with  *opaque*  materials are taken into account for the occluder baking.  
          *  To improve performance and avoid artifacts, it is recommended to exclude dynamic objects, small objects and fixtures from the baking process by moving them to a separate visual layer and excluding this layer in [member bake_mask].  
          */
         bake_mask: number /*i64*/
         
         /** The simplification distance to use for simplifying the generated occluder polygon (in 3D units). Higher values result in a less detailed occluder mesh, which improves performance but reduces culling accuracy.  
-         *  The occluder geometry is rendered on the CPU, so it is important to keep its geometry as simple as possible. Since the buffer is rendered at a low resolution, less detailed occluder meshes generally still work well. The default value is fairly aggressive, so you may have to decrease it if you run into false negatives (objects being occluded even though they are visible by the camera). A value of `0.01` will act conservatively, and will keep geometry [i]perceptually[/i] unaffected in the occlusion culling buffer. Depending on the scene, a value of `0.01` may still simplify the mesh noticeably compared to disabling simplification entirely.  
+         *  The occluder geometry is rendered on the CPU, so it is important to keep its geometry as simple as possible. Since the buffer is rendered at a low resolution, less detailed occluder meshes generally still work well. The default value is fairly aggressive, so you may have to decrease it if you run into false negatives (objects being occluded even though they are visible by the camera). A value of `0.01` will act conservatively, and will keep geometry  *perceptually*  unaffected in the occlusion culling buffer. Depending on the scene, a value of `0.01` may still simplify the mesh noticeably compared to disabling simplification entirely.  
          *  Setting this to `0.0` disables simplification entirely, but vertices in the exact same position will still be merged. The mesh will also be re-indexed to reduce both the number of vertices and indices.  
          *      
          *  **Note:** This uses the [url=https://meshoptimizer.org/]meshoptimizer[/url] library under the hood, similar to LOD generation.  
          */
         bake_simplification_distance: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_occluderinstance3deditorplugin.html */
     class OccluderInstance3DEditorPlugin extends EditorPlugin {
         _bake(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_occluderinstance3dgizmoplugin.html */
     class OccluderInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     namespace OccluderPolygon2D {
@@ -856,7 +854,6 @@ declare module "godot" {
         /** Emitted when the user navigates to an item using the [member ProjectSettings.input/ui_up] or [member ProjectSettings.input/ui_down] input actions. The index of the item selected is passed as argument. */
         readonly item_focused: Signal // index: number /*i64*/ => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_orphanresourcesdialog.html */
     class OrphanResourcesDialog extends ConfirmationDialog {
     }
     /** Creates packages that can be loaded into a running project.  
@@ -953,10 +950,8 @@ declare module "godot" {
          */
         _bundled: Dictionary
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_packedsceneeditorplugin.html */
     class PackedSceneEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_packedsceneeditortranslationparserplugin.html */
     class PackedSceneEditorTranslationParserPlugin extends EditorTranslationParserPlugin {
     }
     /** Abstraction and base class for packet-based protocols.  
@@ -1146,7 +1141,6 @@ declare module "godot" {
         /** A boolean value to determine if the background texture should be filtered or not. */
         filter: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_panoramaskymaterialconversionplugin.html */
     class PanoramaSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
     /** A node used to create a parallax scrolling background.  
@@ -1473,7 +1467,7 @@ declare module "godot" {
         
         /** Particle color will be modulated by color determined by sampling this texture at the same point as the [member emission_point_texture].  
          *      
-         *  **Note:** [member emission_color_texture] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] [i]must[/i] be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member emission_color_texture] will have no visible effect.  
+         *  **Note:** [member emission_color_texture] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member emission_color_texture] will have no visible effect.  
          */
         emission_color_texture: Texture2D
         
@@ -1518,19 +1512,19 @@ declare module "godot" {
         
         /** Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.  
          *      
-         *  **Note:** [member color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] [i]must[/i] be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color] will have no visible effect.  
+         *  **Note:** [member color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color] will have no visible effect.  
          */
         color: Color
         
         /** Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied with [member color]).  
          *      
-         *  **Note:** [member color_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] [i]must[/i] be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_ramp] will have no visible effect.  
+         *  **Note:** [member color_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_ramp] will have no visible effect.  
          */
         color_ramp: GradientTexture1D
         
         /** Each particle's initial color will vary along this [GradientTexture1D] (multiplied with [member color]).  
          *      
-         *  **Note:** [member color_initial_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] [i]must[/i] be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_initial_ramp] will have no visible effect.  
+         *  **Note:** [member color_initial_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_initial_ramp] will have no visible effect.  
          */
         color_initial_ramp: GradientTexture1D
         
@@ -1589,26 +1583,25 @@ declare module "godot" {
         
         /** The frequency at which particles should be emitted from the subemitter node. One particle will be spawned every [member sub_emitter_frequency] seconds.  
          *      
-         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the [i]subemitter node[/i] (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
+         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
          */
         sub_emitter_frequency: number /*f64*/
         
         /** The amount of particles to spawn from the subemitter node when the particle expires.  
          *      
-         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the [i]subemitter node[/i] (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
+         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
          */
         sub_emitter_amount_at_end: number /*i64*/
         
         /** The amount of particles to spawn from the subemitter node when a collision occurs. When combined with [constant COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to achieve effects such as raindrops hitting the ground.  
          *      
-         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the [i]subemitter node[/i] (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
+         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
          */
         sub_emitter_amount_at_collision: number /*i64*/
         
         /** If `true`, the subemitter inherits the parent particle's velocity when it spawns. */
         sub_emitter_keep_velocity: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_particleprocessmaterialconversionplugin.html */
     class ParticleProcessMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
     /** Contains a [Curve2D] path for [PathFollow2D] nodes to follow.  
@@ -1622,10 +1615,8 @@ declare module "godot" {
         /** A [Curve2D] describing the path. */
         curve: Curve2D
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_path2deditor.html */
     class Path2DEditor extends HBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_path2deditorplugin.html */
     class Path2DEditorPlugin extends EditorPlugin {
     }
     /** Contains a [Curve3D] path for [PathFollow3D] nodes to follow.  
@@ -1642,10 +1633,8 @@ declare module "godot" {
         /** Emitted when the [member curve] changes. */
         readonly curve_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_path3deditorplugin.html */
     class Path3DEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_path3dgizmoplugin.html */
     class Path3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Point sampler for a [Path2D].  
@@ -1917,16 +1906,14 @@ declare module "godot" {
         /** The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state. */
         linear_velocity: Vector3
         
-        /** The PhysicalBone3D's rotational velocity in [i]radians[/i] per second. */
+        /** The PhysicalBone3D's rotational velocity in  *radians*  per second. */
         angular_velocity: Vector3
         
         /** If `true`, the body is deactivated when there is no movement, so it will not take part in the simulation until it is awakened by an external force. */
         can_sleep: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_physicalbone3deditorplugin.html */
     class PhysicalBone3DEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_physicalbone3dgizmoplugin.html */
     class PhysicalBone3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** A material that defines a sky for a [Sky] resource by a set of physical properties.  
@@ -1990,7 +1977,6 @@ declare module "godot" {
         /** [Texture2D] for the night sky. This is added to the sky, so if it is bright enough, it may be visible during the day. */
         night_sky: Texture2D
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_physicalskymaterialconversionplugin.html */
     class PhysicalSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
     /** Abstract base class for 2D game objects affected by physics.  
@@ -2010,7 +1996,7 @@ declare module "godot" {
          *  Virtually sets the node's position, scale and rotation to that of the given [Transform2D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
          *  [param collision] is an optional object of type [KinematicCollision2D], which contains additional information about the collision when stopped, or when touching another body along the motion.  
          *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody2D.safe_margin] for more details).  
-         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would [i]touch[/i] any other bodies.  
+         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
          */
         test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = <any> {} /*compound.type from nil*/, safe_margin: number /*f64*/ = 0.08, recovery_as_collision: boolean = false): boolean
         
@@ -2041,7 +2027,7 @@ declare module "godot" {
          *  Virtually sets the node's position, scale and rotation to that of the given [Transform3D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
          *  [param collision] is an optional object of type [KinematicCollision3D], which contains additional information about the collision when stopped, or when touching another body along the motion.  
          *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody3D.safe_margin] for more details).  
-         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would [i]touch[/i] any other bodies.  
+         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
          *  [param max_collisions] allows to retrieve more than one collision result.  
          */
         test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = <any> {} /*compound.type from nil*/, safe_margin: number /*f64*/ = 0.001, recovery_as_collision: boolean = false, max_collisions: number /*i64*/ = 1): boolean
@@ -2223,7 +2209,7 @@ declare module "godot" {
         /** The body's center of mass position in the body's local coordinate system. */
         readonly center_of_mass_local: Vector2
         
-        /** The body's rotational velocity in [i]radians[/i] per second. */
+        /** The body's rotational velocity in  *radians*  per second. */
         angular_velocity: number /*f64*/
         
         /** The body's linear velocity in pixels per second. */
@@ -2540,7 +2526,7 @@ declare module "godot" {
         readonly center_of_mass_local: Vector3
         readonly principal_inertia_axes: Basis
         
-        /** The body's rotational velocity in [i]radians[/i] per second. */
+        /** The body's rotational velocity in  *radians*  per second. */
         angular_velocity: Vector3
         
         /** The body's linear velocity in units per second. */
@@ -3443,7 +3429,6 @@ declare module "godot" {
         /** Direction that the [PlaneMesh] is facing. See [enum Orientation] for options. */
         orientation: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_pluginconfigdialog.html */
     class PluginConfigDialog extends ConfirmationDialog {
         readonly plugin_ready: Signal // script_path: string, activate_name: string => void
     }
@@ -3590,19 +3575,15 @@ declare module "godot" {
         /** Number of internal vertices, used for UV mapping. */
         internal_vertex_count: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_polygon2deditor.html */
     class Polygon2DEditor extends AbstractPolygon2DEditor {
         _update_bone_list(): void
         _update_polygon_editing_state(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_polygon2deditorplugin.html */
     class Polygon2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_polygon3deditor.html */
     class Polygon3DEditor extends HBoxContainer {
         _polygon_draw(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_polygon3deditorplugin.html */
     class Polygon3DEditorPlugin extends EditorPlugin {
     }
     /** Flat 2D polygon shape for use with occlusion culling in [OccluderInstance3D].  
@@ -3615,7 +3596,7 @@ declare module "godot" {
         _has_editable_3d_polygon_no_depth(): boolean
         
         /** The polygon to use for occlusion culling. The polygon can be convex or concave, but it should have as few points as possible to maximize performance.  
-         *  The polygon must [i]not[/i] have intersecting lines. Otherwise, triangulation will fail (with an error message printed).  
+         *  The polygon must  *not*  have intersecting lines. Otherwise, triangulation will fail (with an error message printed).  
          */
         polygon: PackedVector2Array
     }
@@ -3999,13 +3980,10 @@ declare module "godot" {
          */
         keep_compressed_buffer: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_postimportpluginskeletonrenamer.html */
     class PostImportPluginSkeletonRenamer extends EditorScenePostImportPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_postimportpluginskeletonrestfixer.html */
     class PostImportPluginSkeletonRestFixer extends EditorScenePostImportPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_postimportpluginskeletontrackorganizer.html */
     class PostImportPluginSkeletonTrackOrganizer extends EditorScenePostImportPlugin {
     }
     /** Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh.  
@@ -4127,7 +4105,7 @@ declare module "godot" {
         /** Multiplier for sky color. A higher value will make the sky brighter. */
         sky_energy_multiplier: number /*f64*/
         
-        /** The sky cover texture to use. This texture must use an equirectangular projection (similar to [PanoramaSkyMaterial]). The texture's colors will be [i]added[/i] to the existing sky color, and will be multiplied by [member sky_energy_multiplier] and [member sky_cover_modulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look). */
+        /** The sky cover texture to use. This texture must use an equirectangular projection (similar to [PanoramaSkyMaterial]). The texture's colors will be  *added*  to the existing sky color, and will be multiplied by [member sky_energy_multiplier] and [member sky_cover_modulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look). */
         sky_cover: Texture2D
         
         /** The tint to apply to the [member sky_cover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [member sky_cover]. */
@@ -4154,7 +4132,6 @@ declare module "godot" {
         /** If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky. */
         use_debanding: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_proceduralskymaterialconversionplugin.html */
     class ProceduralSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
     namespace ProgressBar {
@@ -4188,10 +4165,8 @@ declare module "godot" {
         /** If `true`, the fill percentage is displayed on the bar. */
         show_percentage: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_progressdialog.html */
     class ProgressDialog extends PopupPanel {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_projectexportdialog.html */
     class ProjectExportDialog extends ConfirmationDialog {
         _export_all(_unnamed_arg0: boolean): void
         set_export_path(_unnamed_arg0: string): void
@@ -4199,16 +4174,13 @@ declare module "godot" {
         get_current_preset(): any /*EditorExportPreset*/
         export_path: string
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_projectexporttextureformaterror.html */
     class ProjectExportTextureFormatError extends HBoxContainer {
         readonly texture_format_enabled: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_projectsettingseditor.html */
     class ProjectSettingsEditor extends AcceptDialog {
         queue_save(): void
         _update_action_map_editor(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_propertyselector.html */
     class PropertySelector extends ConfirmationDialog {
         readonly selected: Signal // name: string => void
     }
@@ -4538,7 +4510,7 @@ declare module "godot" {
         /** If `true`, enables per-sample shading which replaces MSAA by SSAA. This provides higher quality antialiasing that works with transparent (alpha scissor) edges. This has a very high performance cost. See also [member min_sample_shading]. See the [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-sampleshading]per-sample shading Vulkan documentation[/url] for more details. */
         enable_sample_shading: boolean
         
-        /** The multiplier of [member sample_count] that determines how many samples are performed for each fragment. Must be between `0.0` and `1.0` (inclusive). Only effective if [member enable_sample_shading] is `true`. If [member min_sample_shading] is `1.0`, fragment invocation must only read from the coverage index sample. Tile image access must not be used if [member enable_sample_shading] is [i]not[/i] `1.0`. */
+        /** The multiplier of [member sample_count] that determines how many samples are performed for each fragment. Must be between `0.0` and `1.0` (inclusive). Only effective if [member enable_sample_shading] is `true`. If [member min_sample_shading] is `1.0`, fragment invocation must only read from the coverage index sample. Tile image access must not be used if [member enable_sample_shading] is  *not*  `1.0`. */
         min_sample_shading: number /*f64*/
         
         /** If `true`, alpha to coverage is enabled. This generates a temporary coverage value based on the alpha component of the fragment's first color output. This allows alpha transparency to make use of multisample antialiasing. */
@@ -4909,7 +4881,7 @@ declare module "godot" {
          *      
          *  **Note:** The RNG does not have an avalanche effect, and can output similar random streams given similar seeds. Consider using a hash function to improve your seed quality if they're sourced externally.  
          *      
-         *  **Note:** Setting this property produces a side effect of changing the internal [member state], so make sure to initialize the seed [i]before[/i] modifying the [member state]:  
+         *  **Note:** Setting this property produces a side effect of changing the internal [member state], so make sure to initialize the seed  *before*  modifying the [member state]:  
          *      
          *  **Note:** The default value of this property is pseudo-random, and changes when calling [method randomize]. The `0` value documented here is a placeholder, and not the actual default seed.  
          *    
@@ -4992,7 +4964,7 @@ declare module "godot" {
         /** If `true`, [member value] may be less than [member min_value]. */
         allow_lesser: boolean
         
-        /** Emitted when [member value] changes. When used on a [Slider], this is called continuously while dragging (potentially every frame). If you are performing an expensive operation in a function connected to [signal value_changed], consider using a [i]debouncing[/i] [Timer] to call the function less often.  
+        /** Emitted when [member value] changes. When used on a [Slider], this is called continuously while dragging (potentially every frame). If you are performing an expensive operation in a function connected to [signal value_changed], consider using a  *debouncing*  [Timer] to call the function less often.  
          *      
          *  **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also emitted when [param value] is set directly via code.  
          */
@@ -5205,7 +5177,6 @@ declare module "godot" {
         /** If set to `1`, a line is used as the debug shape. Otherwise, a truncated pyramid is drawn to represent the [RayCast3D]. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for the debug shape to be visible at run-time. */
         debug_shape_thickness: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_raycast3dgizmoplugin.html */
     class RayCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** A 2D rectangle shape used for physics collision.  
@@ -5365,7 +5336,6 @@ declare module "godot" {
         /** The custom ambient color energy to use within the [ReflectionProbe]'s box defined by its [member size]. Only effective if [member ambient_mode] is [constant AMBIENT_COLOR]. */
         ambient_color_energy: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_reflectionprobegizmoplugin.html */
     class ReflectionProbeGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Class for searching text for patterns using regular expressions.  
@@ -5513,9 +5483,14 @@ declare module "godot" {
         /** If `true`, the remote node's scale is updated. */
         update_scale: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_renamedialog.html */
     class RenameDialog extends ConfirmationDialog {
         rename(): void
+    }
+    class RenderBufferCustomDataRD extends RefCounted {
+    }
+    class RenderBufferDataForwardClustered extends RenderBufferCustomDataRD {
+    }
+    class RenderBuffersGI extends RenderBufferCustomDataRD {
     }
     /** Abstract scene buffers object, created for each viewport for which 3D rendering is done.  
      *  	  
@@ -5593,9 +5568,6 @@ declare module "godot" {
         /** Implement this in GDExtension to react to the debanding flag changing. */
         /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_renderscenebuffersgles3.html */
-    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
-    }
     /** Abstract render scene buffer implementation for the RenderingDevice based renderers.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_renderscenebuffersrd.html  
@@ -5666,10 +5638,10 @@ declare module "godot" {
             /** Rendering device type does not match any of the other enum values or is unknown. */
             DEVICE_TYPE_OTHER = 0,
             
-            /** Rendering device is an integrated GPU, which is typically [i](but not always)[/i] slower than dedicated GPUs ([constant DEVICE_TYPE_DISCRETE_GPU]). On Android and iOS, the rendering device type is always considered to be [constant DEVICE_TYPE_INTEGRATED_GPU]. */
+            /** Rendering device is an integrated GPU, which is typically  *(but not always)*  slower than dedicated GPUs ([constant DEVICE_TYPE_DISCRETE_GPU]). On Android and iOS, the rendering device type is always considered to be [constant DEVICE_TYPE_INTEGRATED_GPU]. */
             DEVICE_TYPE_INTEGRATED_GPU = 1,
             
-            /** Rendering device is a dedicated GPU, which is typically [i](but not always)[/i] faster than integrated GPUs ([constant DEVICE_TYPE_INTEGRATED_GPU]). */
+            /** Rendering device is a dedicated GPU, which is typically  *(but not always)*  faster than integrated GPUs ([constant DEVICE_TYPE_INTEGRATED_GPU]). */
             DEVICE_TYPE_DISCRETE_GPU = 2,
             
             /** Rendering device is an emulated GPU in a virtual environment. This is typically much slower than the host GPU, which means the expected performance level on a dedicated GPU will be roughly equivalent to [constant DEVICE_TYPE_INTEGRATED_GPU]. Virtual machine GPU passthrough (such as VFIO) will not report the device type as [constant DEVICE_TYPE_VIRTUAL_GPU]. Instead, the host GPU's device type will be reported as if the GPU was not emulated. */
@@ -6659,7 +6631,7 @@ declare module "godot" {
              */
             RENDER_PRIMITIVE_TRIANGLE_STRIPS_WITH_AJACENCY = 8,
             
-            /** Triangle strip rendering primitive with [i]primitive restart[/i] enabled. Triangles drawn are connected to the previous triangle, but a primitive restart index can be specified before drawing to create a second triangle strip after the specified index.  
+            /** Triangle strip rendering primitive with  *primitive restart*  enabled. Triangles drawn are connected to the previous triangle, but a primitive restart index can be specified before drawing to create a second triangle strip after the specified index.  
              *      
              *  **Note:** Only compatible with indexed draws.  
              */
@@ -6751,16 +6723,16 @@ declare module "godot" {
             /** AND logic operation. */
             LOGIC_OP_AND = 1,
             
-            /** AND logic operation with the [i]destination[/i] operand being inverted. See also [constant LOGIC_OP_AND_INVERTED]. */
+            /** AND logic operation with the  *destination*  operand being inverted. See also [constant LOGIC_OP_AND_INVERTED]. */
             LOGIC_OP_AND_REVERSE = 2,
             
-            /** Copy logic operation (keeps the [i]source[/i] value as-is). See also [constant LOGIC_OP_COPY_INVERTED] and [constant LOGIC_OP_NO_OP]. */
+            /** Copy logic operation (keeps the  *source*  value as-is). See also [constant LOGIC_OP_COPY_INVERTED] and [constant LOGIC_OP_NO_OP]. */
             LOGIC_OP_COPY = 3,
             
-            /** AND logic operation with the [i]source[/i] operand being inverted. See also [constant LOGIC_OP_AND_REVERSE]. */
+            /** AND logic operation with the  *source*  operand being inverted. See also [constant LOGIC_OP_AND_REVERSE]. */
             LOGIC_OP_AND_INVERTED = 4,
             
-            /** No-op logic operation (keeps the [i]destination[/i] value as-is). See also [constant LOGIC_OP_COPY]. */
+            /** No-op logic operation (keeps the  *destination*  value as-is). See also [constant LOGIC_OP_COPY]. */
             LOGIC_OP_NO_OP = 5,
             
             /** Exclusive or (XOR) logic operation. */
@@ -6778,13 +6750,13 @@ declare module "godot" {
             /** Invert logic operation. */
             LOGIC_OP_INVERT = 10,
             
-            /** OR logic operation with the [i]destination[/i] operand being inverted. See also [constant LOGIC_OP_OR_REVERSE]. */
+            /** OR logic operation with the  *destination*  operand being inverted. See also [constant LOGIC_OP_OR_REVERSE]. */
             LOGIC_OP_OR_REVERSE = 11,
             
             /** NOT logic operation (inverts the value). See also [constant LOGIC_OP_COPY]. */
             LOGIC_OP_COPY_INVERTED = 12,
             
-            /** OR logic operation with the [i]source[/i] operand being inverted. See also [constant LOGIC_OP_OR_REVERSE]. */
+            /** OR logic operation with the  *source*  operand being inverted. See also [constant LOGIC_OP_OR_REVERSE]. */
             LOGIC_OP_OR_INVERTED = 13,
             
             /** Not-AND (NAND) logic operation. */
@@ -7348,13 +7320,13 @@ declare module "godot" {
         /** Returns `true` if the compute pipeline specified by the [param compute_pipeline] RID is valid, `false` otherwise. */
         compute_pipeline_is_valid(compute_pipeline: RID): boolean
         
-        /** Returns the window width matching the graphics API context for the given window ID (in pixels). Despite the parameter being named [param screen], this returns the [i]window[/i] size. See also [method screen_get_height].  
+        /** Returns the window width matching the graphics API context for the given window ID (in pixels). Despite the parameter being named [param screen], this returns the  *window*  size. See also [method screen_get_height].  
          *      
          *  **Note:** Only the main [RenderingDevice] returned by [method RenderingServer.get_rendering_device] has a width. If called on a local [RenderingDevice], this method prints an error and returns [constant INVALID_ID].  
          */
         screen_get_width(screen: number /*i64*/ = 0): number /*i64*/
         
-        /** Returns the window height matching the graphics API context for the given window ID (in pixels). Despite the parameter being named [param screen], this returns the [i]window[/i] size. See also [method screen_get_width].  
+        /** Returns the window height matching the graphics API context for the given window ID (in pixels). Despite the parameter being named [param screen], this returns the  *window*  size. See also [method screen_get_width].  
          *      
          *  **Note:** Only the main [RenderingDevice] returned by [method RenderingServer.get_rendering_device] has a height. If called on a local [RenderingDevice], this method prints an error and returns [constant INVALID_ID].  
          */
@@ -7492,7 +7464,7 @@ declare module "godot" {
         /** Puts a memory barrier in place. This is used for synchronization to avoid data races. See also [method full_barrier], which may be useful for debugging. */
         barrier(from: RenderingDevice.BarrierMask = 32767, to: RenderingDevice.BarrierMask = 32767): void
         
-        /** Puts a [i]full[/i] memory barrier in place. This is a memory [method barrier] with all flags enabled. [method full_barrier] it should only be used for debugging as it can severely impact performance. */
+        /** Puts a  *full*  memory barrier in place. This is a memory [method barrier] with all flags enabled. [method full_barrier] it should only be used for debugging as it can severely impact performance. */
         full_barrier(): void
         
         /** Create a new local [RenderingDevice]. This is most useful for performing compute operations on the GPU independently from the rest of the engine. */
@@ -7531,12 +7503,10 @@ declare module "godot" {
         /** Returns the unique identifier of the driver [param resource] for the specified [param rid]. Some driver resource types ignore the specified [param rid] (see [enum DriverResource] descriptions). [param index] is always ignored but must be specified anyway. */
         get_driver_resource(resource: RenderingDevice.DriverResource, rid: RID, index: number /*i64*/): number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_reparentdialog.html */
     class ReparentDialog extends ConfirmationDialog {
         _cancel(): void
         readonly reparent: Signal // path: NodePath, keep_global_xform: boolean => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_replicationeditor.html */
     class ReplicationEditor extends VBoxContainer {
         _update_config(): void
         _update_value(property: NodePath, column: number /*i64*/, value: number /*i64*/): void
@@ -7571,7 +7541,7 @@ declare module "godot" {
         get_local_scene(): Node
         
         /** Calls [method _setup_local_to_scene]. If [member resource_local_to_scene] is set to `true`, this method is automatically called from [method PackedScene.instantiate] by the newly duplicated resource within the scene instance.  
-         *  [i]Deprecated.[/i] This method should only be called internally. Override [method _setup_local_to_scene] instead.  
+         *   *Deprecated.*  This method should only be called internally. Override [method _setup_local_to_scene] instead.  
          */
         setup_local_to_scene(): void
         
@@ -7615,11 +7585,10 @@ declare module "godot" {
         readonly changed: Signal //  => void
         
         /** Emitted by a newly duplicated resource with [member resource_local_to_scene] set to `true`.   
-         *  [i]Deprecated.[/i] This signal is only emitted when the resource is created. Override [method _setup_local_to_scene] instead.  
+         *   *Deprecated.*  This signal is only emitted when the resource is created. Override [method _setup_local_to_scene] instead.  
          */
         readonly setup_local_to_scene_requested: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_resourceformatimportersaver.html */
     class ResourceFormatImporterSaver extends ResourceFormatSaver {
     }
     namespace ResourceFormatLoader {
@@ -7705,7 +7674,7 @@ declare module "godot" {
             /** The default import order. */
             IMPORT_ORDER_DEFAULT = 0,
             
-            /** The import order for scenes, which ensures scenes are imported [i]after[/i] all other core resources such as textures. Custom importers should generally have an import order lower than `100` to avoid issues when importing scenes that rely on custom resources. */
+            /** The import order for scenes, which ensures scenes are imported  *after*  all other core resources such as textures. Custom importers should generally have an import order lower than `100` to avoid issues when importing scenes that rely on custom resources. */
             IMPORT_ORDER_SCENE = 100,
         }
     }
@@ -7837,12 +7806,10 @@ declare module "godot" {
         get_resource_list(): PackedStringArray
         resources: Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_resourcepreloadereditor.html */
     class ResourcePreloaderEditor extends PanelContainer {
         _update_library(): void
         _remove_resource(to_remove: string): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_resourcepreloadereditorplugin.html */
     class ResourcePreloaderEditorPlugin extends EditorPlugin {
     }
     namespace RibbonTrailMesh {
@@ -7991,13 +7958,13 @@ declare module "godot" {
         /** Adds a [code skip-lint][font]` tag with a normal font to the tag stack. */
         push_normal(): void
         
-        /** Adds a [code skip-lint][font]` tag with a bold font to the tag stack. This is the same as adding a [code skip-lint]**` tag if not currently in a [code skip-lint][i]` tag. */
+        /** Adds a [code skip-lint][font]` tag with a bold font to the tag stack. This is the same as adding a [code skip-lint]**` tag if not currently in a [code skip-lint] *` tag. */
         push_bold(): void
         
         /** Adds a [code skip-lint][font]` tag with a bold italics font to the tag stack. */
         push_bold_italics(): void
         
-        /** Adds a [code skip-lint][font]` tag with an italics font to the tag stack. This is the same as adding an [code skip-lint][i]` tag if not currently in a [code skip-lint]**` tag. */
+        /** Adds a [code skip-lint][font]` tag with an italics font to the tag stack. This is the same as adding an [code skip-lint] *` tag if not currently in a [code skip-lint]**` tag. */
         push_italics(): void
         
         /** Adds a [code skip-lint][font]` tag with a monospace font to the tag stack. */
@@ -8597,7 +8564,7 @@ declare module "godot" {
          */
         linear_damp: number /*f64*/
         
-        /** The body's rotational velocity in [i]radians[/i] per second. */
+        /** The body's rotational velocity in  *radians*  per second. */
         angular_velocity: number /*f64*/
         
         /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
@@ -8871,7 +8838,7 @@ declare module "godot" {
          */
         linear_damp: number /*f64*/
         
-        /** The RigidBody3D's rotational velocity in [i]radians[/i] per second. */
+        /** The RigidBody3D's rotational velocity in  *radians*  per second. */
         angular_velocity: Vector3
         
         /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
@@ -8952,7 +8919,7 @@ declare module "godot" {
         /** The grid's radius in 3D units. The grid's opacity will fade gradually as the distance from the origin increases until this [member radius] is reached. */
         radius: number /*f64*/
         
-        /** If `true`, the grid's points will all be on the same Y coordinate ([i]local[/i] Y = 0). If `false`, the points' original Y coordinate is preserved. */
+        /** If `true`, the grid's points will all be on the same Y coordinate ( *local*  Y = 0). If `false`, the points' original Y coordinate is preserved. */
         zero_y: boolean
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_rsconsole.html */
@@ -8964,7 +8931,6 @@ declare module "godot" {
         readonly on_output: Signal //  => void
         readonly on_clear: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_rseditorplugin.html */
     class RsEditorPlugin extends EditorPlugin {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_rslist.html */
@@ -9020,22 +8986,16 @@ declare module "godot" {
         texture: Texture2D
         readonly frame_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_rsterraingizmoplugin.html */
     class RsTerrainGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scenecacheinterface.html */
     class SceneCacheInterface extends RefCounted {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scenecreatedialog.html */
     class SceneCreateDialog extends ConfirmationDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_sceneexportergltfplugin.html */
     class SceneExporterGLTFPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_sceneimportsettings.html */
     class SceneImportSettings extends ConfirmationDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_sceneimportsettingsdata.html */
     class SceneImportSettingsData extends Object {
     }
     /** High-level multiplayer API implementation.  
@@ -9122,7 +9082,6 @@ declare module "godot" {
         /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] receives a [param packet] with custom data (see [method send_bytes]). ID is the peer ID of the peer that sent the packet. */
         readonly peer_packet: Signal // id: number /*i64*/, packet: PackedByteArray => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scenerpcinterface.html */
     class SceneRPCInterface extends RefCounted {
     }
     namespace SceneReplicationConfig {
@@ -9173,26 +9132,25 @@ declare module "godot" {
         property_set_replication_mode(path: NodePath, mode: SceneReplicationConfig.ReplicationMode): void
         
         /** Returns whether the property identified by the given [param path] is configured to be synchronized on process.  
-         *  [i]Deprecated.[/i] Use [method property_get_replication_mode] instead.  
+         *   *Deprecated.*  Use [method property_get_replication_mode] instead.  
          */
         property_get_sync(path: NodePath): boolean
         
         /** Sets whether the property identified by the given [param path] is configured to be synchronized on process.  
-         *  [i]Deprecated.[/i] Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ALWAYS] instead.  
+         *   *Deprecated.*  Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ALWAYS] instead.  
          */
         property_set_sync(path: NodePath, enabled: boolean): void
         
         /** Returns whether the property identified by the given [param path] is configured to be reliably synchronized when changes are detected on process.  
-         *  [i]Deprecated.[/i] Use [method property_get_replication_mode] instead.  
+         *   *Deprecated.*  Use [method property_get_replication_mode] instead.  
          */
         property_get_watch(path: NodePath): boolean
         
         /** Sets whether the property identified by the given [param path] is configured to be reliably synchronized when changes are detected on process.  
-         *  [i]Deprecated.[/i] Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ON_CHANGE] instead.  
+         *   *Deprecated.*  Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ON_CHANGE] instead.  
          */
         property_set_watch(path: NodePath, enabled: boolean): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scenereplicationinterface.html */
     class SceneReplicationInterface extends RefCounted {
     }
     namespace SceneState {

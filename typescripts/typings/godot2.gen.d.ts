@@ -1,34 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape2deditor.html */
-    class CollisionShape2DEditor extends Control {
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape2deditorplugin.html */
-    class CollisionShape2DEditorPlugin extends EditorPlugin {
-    }
-    /** A node that provides a [Shape3D] to a [CollisionObject3D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape3d.html  
-     */
-    class CollisionShape3D extends Node3D {
-        /** [i]Obsoleted.[/i] Use [signal Resource.changed] instead. */
-        resource_changed(resource: Resource): void
-        set_shape(shape: Shape3D): void
-        get_shape(): Shape3D
-        set_disabled(enable: boolean): void
-        is_disabled(): boolean
-        
-        /** Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings geometry. */
-        make_convex_from_siblings(): void
-        
-        /** The actual shape owned by this collision shape. */
-        shape: Shape3D
-        
-        /** A disabled collision shape has no effect in the world. */
-        disabled: boolean
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape3dgizmoplugin.html */
     class CollisionShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     namespace ColorPicker {
@@ -93,7 +65,7 @@ declare module "godot" {
         
         /** Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them.  
          *      
-         *  **Note:** The presets list is only for [i]this[/i] color picker.  
+         *  **Note:** The presets list is only for  *this*  color picker.  
          */
         add_preset(color: Color): void
         
@@ -105,7 +77,7 @@ declare module "godot" {
         
         /** Adds the given color to a list of color recent presets so that it can be picked later. Recent presets are the colors that were picked recently, a new preset is automatically created and added to recent presets when you pick a new color.  
          *      
-         *  **Note:** The recent presets list is only for [i]this[/i] color picker.  
+         *  **Note:** The recent presets list is only for  *this*  color picker.  
          */
         add_recent_preset(color: Color): void
         
@@ -413,17 +385,13 @@ declare module "godot" {
         /** The text displayed by the cancel button (see [method get_cancel_button]). */
         cancel_button_text: string
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_connectdialog.html */
     class ConnectDialog extends ConfirmationDialog {
         readonly connected: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_connectdialogbinds.html */
     class ConnectDialogBinds extends Object {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_connectioninfodialog.html */
     class ConnectionInfoDialog extends AcceptDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_connectionsdock.html */
     class ConnectionsDock extends VBoxContainer {
         update_tree(): void
     }
@@ -718,13 +686,13 @@ declare module "godot" {
          */
         static readonly NOTIFICATION_THEME_CHANGED = 45
         
-        /** Sent when this node is inside a [ScrollContainer] which has begun being scrolled when dragging the scrollable area [i]with a touch event[/i]. This notification is [i]not[/i] sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+        /** Sent when this node is inside a [ScrollContainer] which has begun being scrolled when dragging the scrollable area  *with a touch event* . This notification is  *not*  sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
          *      
          *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
          */
         static readonly NOTIFICATION_SCROLL_BEGIN = 47
         
-        /** Sent when this node is inside a [ScrollContainer] which has stopped being scrolled when dragging the scrollable area [i]with a touch event[/i]. This notification is [i]not[/i] sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+        /** Sent when this node is inside a [ScrollContainer] which has stopped being scrolled when dragging the scrollable area  *with a touch event* . This notification is  *not*  sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
          *      
          *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
          */
@@ -1249,7 +1217,7 @@ declare module "godot" {
          *      
          *  **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of scaling Controls individually.  
          *      
-         *  **Note:** [member FontFile.oversampling] does [i]not[/i] take [Control] [member scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
+         *  **Note:** [member FontFile.oversampling] does  *not*  take [Control] [member scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
          *      
          *  **Note:** If the Control node is a child of a [Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [member scale] property.  
          */
@@ -1365,16 +1333,12 @@ declare module "godot" {
         /** Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent. */
         readonly theme_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_controleditorplugin.html */
     class ControlEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_controleditorpopupbutton.html */
     class ControlEditorPopupButton extends Button {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_controleditorpresetpicker.html */
     class ControlEditorPresetPicker extends MarginContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_controleditortoolbar.html */
     class ControlEditorToolbar extends HBoxContainer {
     }
     /** A 2D convex polygon shape used for physics collision.  
@@ -1403,7 +1367,6 @@ declare module "godot" {
         /** The list of 3D points forming the convex polygon shape. */
         points: Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_createdialog.html */
     class CreateDialog extends ConfirmationDialog {
         readonly create: Signal //  => void
         readonly favorites_updated: Signal //  => void
@@ -1806,10 +1769,8 @@ declare module "godot" {
         /** If `true`, the curve will bake up vectors used for orientation. This is used when [member PathFollow3D.rotation_mode] is set to [constant PathFollow3D.ROTATION_ORIENTED]. Changing it forces the cache to be recomputed. */
         up_vector_enabled: boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_curveeditorplugin.html */
     class CurveEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_curvepreviewgenerator.html */
     class CurvePreviewGenerator extends EditorResourcePreviewGenerator {
     }
     namespace CurveTexture {
@@ -1971,7 +1932,6 @@ declare module "godot" {
         /** The spring joint's damping ratio. A value between `0` and `1`. When the two bodies move into different directions the system tries to align them to the spring axis again. A high [member damping] value forces the attached bodies to align faster. */
         damping: number /*f64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_debugadapterparser.html */
     class DebugAdapterParser extends Object {
         req_initialize(params: Dictionary): Dictionary
         req_disconnect(params: Dictionary): Dictionary
@@ -1993,10 +1953,8 @@ declare module "godot" {
         req_evaluate(params: Dictionary): Dictionary
         ["req_godot/put_msg"]: (params: Dictionary) => Dictionary
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_debugadapterserver.html */
     class DebugAdapterServer extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_debuggereditorplugin.html */
     class DebuggerEditorPlugin extends EditorPlugin {
     }
     namespace Decal {
@@ -2098,22 +2056,16 @@ declare module "godot" {
         /** Specifies which [member VisualInstance3D.layers] this decal will project on. By default, Decals affect all layers. This is used so you can specify which types of objects receive the Decal and which do not. This is especially useful so you can ensure that dynamic objects don't accidentally receive a Decal intended for the terrain under them. */
         cull_mask: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_decalgizmoplugin.html */
     class DecalGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_defaultthemeeditorpreview.html */
     class DefaultThemeEditorPreview extends ThemeEditorPreview {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_dependencyeditor.html */
     class DependencyEditor extends AcceptDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_dependencyeditorowners.html */
     class DependencyEditorOwners extends AcceptDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_dependencyerrordialog.html */
     class DependencyErrorDialog extends ConfirmationDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_dependencyremovedialog.html */
     class DependencyRemoveDialog extends ConfirmationDialog {
         readonly resource_removed: Signal // obj: Object => void
         readonly file_removed: Signal // file: string => void
@@ -2332,14 +2284,11 @@ declare module "godot" {
         /** Set whether this [DirectionalLight3D] is visible in the sky, in the scene, or both in the sky and in the scene. See [enum SkyMode] for options. */
         sky_mode: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_directorycreatedialog.html */
     class DirectoryCreateDialog extends ConfirmationDialog {
         readonly dir_created: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_dynamicfontimportsettings.html */
     class DynamicFontImportSettings extends ConfirmationDialog {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_dynamicfontimportsettingsdata.html */
     class DynamicFontImportSettingsData extends RefCounted {
     }
     namespace ENetConnection {
@@ -2563,10 +2512,10 @@ declare module "godot" {
             /** The time at which throttle statistics were last updated (in milliseconds since the connection started). The interval for throttle statistics updates is [constant PEER_PACKET_THROTTLE_INTERVAL]. */
             PEER_PACKET_THROTTLE_EPOCH = 10,
             
-            /** The throttle's acceleration factor. Higher values will make ENet adapt to fluctuating network conditions faster, causing unrelaible packets to be sent [i]more[/i] often. The default value is `2`. */
+            /** The throttle's acceleration factor. Higher values will make ENet adapt to fluctuating network conditions faster, causing unrelaible packets to be sent  *more*  often. The default value is `2`. */
             PEER_PACKET_THROTTLE_ACCELERATION = 11,
             
-            /** The throttle's deceleration factor. Higher values will make ENet adapt to fluctuating network conditions faster, causing unrelaible packets to be sent [i]less[/i] often. The default value is `2`. */
+            /** The throttle's deceleration factor. Higher values will make ENet adapt to fluctuating network conditions faster, causing unrelaible packets to be sent  *less*  often. The default value is `2`. */
             PEER_PACKET_THROTTLE_DECELERATION = 12,
             
             /** The interval over which the lowest mean round trip time should be measured for use by the throttle mechanism (in milliseconds). The default value is `5000`. */
@@ -2645,15 +2594,12 @@ declare module "godot" {
         /** Returns `true` if the peer is currently active (i.e. the associated [ENetConnection] is still valid). */
         is_active(): boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorabout.html */
     class EditorAbout extends AcceptDialog {
         _version_button_pressed(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorassetlibrary.html */
     class EditorAssetLibrary extends PanelContainer {
         readonly install_asset: Signal // zip_path: string, name: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editoraudiobus.html */
     class EditorAudioBus extends PanelContainer {
         update_bus(): void
         update_send(): void
@@ -2663,28 +2609,23 @@ declare module "godot" {
         readonly drop_end_request: Signal //  => void
         readonly dropped: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editoraudiobuses.html */
     class EditorAudioBuses extends VBoxContainer {
         _update_bus(_unnamed_arg0: number /*i64*/): void
         _update_sends(): void
         _select_layout(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editoraudiometernotches.html */
     class EditorAudioMeterNotches extends Control {
         add_notch(_unnamed_arg0: number /*f64*/, _unnamed_arg1: number /*f64*/, _unnamed_arg2: boolean): void
         _draw_audio_notches(): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editoraudiostreampreviewplugin.html */
     class EditorAudioStreamPreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorautoloadsettings.html */
     class EditorAutoloadSettings extends VBoxContainer {
         update_autoload(): void
         autoload_add(_unnamed_arg0: string, _unnamed_arg1: string): boolean
         autoload_remove(_unnamed_arg0: string): void
         readonly autoload_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorbitmappreviewplugin.html */
     class EditorBitmapPreviewPlugin extends EditorResourcePreviewGenerator {
     }
     namespace EditorBuildProfile {
@@ -2711,7 +2652,6 @@ declare module "godot" {
             BUILD_OPTION_CATEGORY_MAX = 2,
         }
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorbuildprofile.html */
     class EditorBuildProfile extends RefCounted {
         set_disable_class(class_name: StringName, disable: boolean): void
         is_class_disabled(class_name: StringName): boolean
@@ -2721,7 +2661,6 @@ declare module "godot" {
         save_to_file(path: string): GodotError
         load_from_file(path: string): GodotError
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorbuildprofilemanager.html */
     class EditorBuildProfileManager extends AcceptDialog {
         _update_selected_profile(): void
     }
@@ -2743,13 +2682,11 @@ declare module "godot" {
          */
         remove_command(key_name: string): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggerinspector.html */
     class EditorDebuggerInspector extends EditorInspector {
         readonly object_selected: Signal // id: number /*i64*/ => void
         readonly object_edited: Signal // id: number /*i64*/, property: string, : any /*value*/ => void
         readonly object_property_updated: Signal // id: number /*i64*/, property: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggernode.html */
     class EditorDebuggerNode extends MarginContainer {
         live_debug_create_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
         live_debug_instantiate_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
@@ -2789,7 +2726,6 @@ declare module "godot" {
          */
         get_sessions(): Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggerremoteobject.html */
     class EditorDebuggerRemoteObject extends Object {
         get_title(): string
         get_variant(_unnamed_arg0: StringName): any
@@ -2835,21 +2771,17 @@ declare module "godot" {
         /** Emitted when the attached remote instance exits a break state. */
         readonly continued: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggertree.html */
     class EditorDebuggerTree extends Tree {
         readonly object_selected: Signal // object_id: number /*i64*/, debugger: number /*i64*/ => void
         readonly save_node: Signal // object_id: number /*i64*/, filename: string, debugger: number /*i64*/ => void
         readonly open: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editordirdialog.html */
     class EditorDirDialog extends ConfirmationDialog {
         readonly dir_selected: Signal // dir: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorexport.html */
     class EditorExport extends Node {
         readonly export_presets_updated: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorexportgdscript.html */
     class EditorExportGDScript extends EditorExportPlugin {
     }
     /** Identifies a supported export platform, and internally provides the functionality of exporting to that platform.  
@@ -2924,7 +2856,7 @@ declare module "godot" {
         /* gdvirtual */ _begin_customize_resources(platform: EditorExportPlatform, features: PackedStringArray): boolean
         
         /** Customize a resource. If changes are made to it, return the same or a new resource. Otherwise, return `null`.  
-         *  The [i]path[/i] argument is only used when customizing an actual file, otherwise this means that this resource is part of another one and it will be empty.  
+         *  The  *path*  argument is only used when customizing an actual file, otherwise this means that this resource is part of another one and it will be empty.  
          *  Implementing this method is required if [method _begin_customize_resources] returns `true`.  
          */
         /* gdvirtual */ _customize_resource(resource: Resource, path: string): Resource
@@ -3142,7 +3074,6 @@ declare module "godot" {
          */
         load_from_file(path: string): GodotError
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorfeatureprofilemanager.html */
     class EditorFeatureProfileManager extends AcceptDialog {
         readonly current_feature_profile_changed: Signal //  => void
     }
@@ -3269,7 +3200,6 @@ declare module "godot" {
         /** Emitted when a directory is selected. */
         readonly dir_selected: Signal // dir: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorfileserver.html */
     class EditorFileServer extends Object {
     }
     /** Resource filesystem, as the editor sees it.  
@@ -3300,7 +3230,7 @@ declare module "godot" {
         /** Returns a view into the filesystem at [param path]. */
         get_filesystem_path(path: string): EditorFileSystemDirectory
         
-        /** Returns the resource type of the file, given the full path. This returns a string such as `"Resource"` or `"GDScript"`, [i]not[/i] a file extension such as `".gd"`. */
+        /** Returns the resource type of the file, given the full path. This returns a string such as `"Resource"` or `"GDScript"`,  *not*  a file extension such as `".gd"`. */
         get_file_type(path: string): string
         
         /** Reimports a set of files. Call this if these files or their `.import` files were directly edited by script or an external program.  
@@ -3345,7 +3275,7 @@ declare module "godot" {
         /** Returns the path to the file at index [param idx]. */
         get_file_path(idx: number /*i64*/): string
         
-        /** Returns the resource type of the file at index [param idx]. This returns a string such as `"Resource"` or `"GDScript"`, [i]not[/i] a file extension such as `".gd"`. */
+        /** Returns the resource type of the file at index [param idx]. This returns a string such as `"Resource"` or `"GDScript"`,  *not*  a file extension such as `".gd"`. */
         get_file_type(idx: number /*i64*/): StringName
         
         /** Returns the name of the script class defined in the file at index [param idx]. If the file doesn't define a script class using the `class_name` syntax, this will return an empty string. */
@@ -3386,28 +3316,21 @@ declare module "godot" {
         /** Query support. Return false if import must not continue. */
         /* gdvirtual */ _query(): boolean
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorfilesystemimportformatsupportqueryfbx.html */
     class EditorFileSystemImportFormatSupportQueryFBX extends EditorFileSystemImportFormatSupportQuery {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorfontpreviewplugin.html */
     class EditorFontPreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorgradientpreviewplugin.html */
     class EditorGradientPreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorhelpbit.html */
     class EditorHelpBit extends MarginContainer {
         set_text(text: string): void
         readonly request_hide: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorhelpsearch.html */
     class EditorHelpSearch extends ConfirmationDialog {
         readonly go_to_help: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorimagepreviewplugin.html */
     class EditorImagePreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorimportblendrunner.html */
     class EditorImportBlendRunner extends Node {
     }
     /** Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.  
@@ -3442,7 +3365,7 @@ declare module "godot" {
         /** Gets the priority of this plugin for the recognized extension. Higher priority plugins will be preferred. The default priority is `1.0`. */
         /* gdvirtual */ _get_priority(): number /*f64*/
         
-        /** Gets the order of this importer to be run when importing resources. Importers with [i]lower[/i] import orders will be called first, and higher values will be called later. Use this to ensure the importer runs after the dependencies are already imported. The default import order is `0` unless overridden by a specific importer. See [enum ResourceImporter.ImportOrder] for some predefined values. */
+        /** Gets the order of this importer to be run when importing resources. Importers with  *lower*  import orders will be called first, and higher values will be called later. Use this to ensure the importer runs after the dependencies are already imported. The default import order is `0` unless overridden by a specific importer. See [enum ResourceImporter.ImportOrder] for some predefined values. */
         /* gdvirtual */ _get_import_order(): number /*i64*/
         
         /** This method can be overridden to hide specific import options if conditions are met. This is mainly useful for hiding options that depend on others if one of them is disabled. For example:  
@@ -3502,10 +3425,8 @@ declare module "godot" {
         /** Emitted when a property that requires a restart to be applied is edited in the inspector. This is only used in the Project Settings and Editor Settings. */
         readonly restart_requested: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorcategory.html */
     class EditorInspectorCategory extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectordefaultplugin.html */
     class EditorInspectorDefaultPlugin extends EditorInspectorPlugin {
     }
     /** Plugin for adding custom property editors on the inspector.  
@@ -3540,118 +3461,77 @@ declare module "godot" {
         /** Adds an editor that allows modifying multiple properties. The [param editor] control must extend [EditorProperty]. */
         add_property_editor_for_multiple_properties(label: string, properties: PackedStringArray, editor: Control): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugin3dtexture.html */
     class EditorInspectorPlugin3DTexture extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginanimationtrackkeyedit.html */
     class EditorInspectorPluginAnimationTrackKeyEdit extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginaudiostream.html */
     class EditorInspectorPluginAudioStream extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginbitmap.html */
     class EditorInspectorPluginBitMap extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginbonemap.html */
     class EditorInspectorPluginBoneMap extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugincontrol.html */
     class EditorInspectorPluginControl extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugincurve.html */
     class EditorInspectorPluginCurve extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginfontpreview.html */
     class EditorInspectorPluginFontPreview extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginfontvariation.html */
     class EditorInspectorPluginFontVariation extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugingradient.html */
     class EditorInspectorPluginGradient extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugingradienttexture2d.html */
     class EditorInspectorPluginGradientTexture2D extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugininputevent.html */
     class EditorInspectorPluginInputEvent extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginlayeredtexture.html */
     class EditorInspectorPluginLayeredTexture extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginmaterial.html */
     class EditorInspectorPluginMaterial extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginmesh.html */
     class EditorInspectorPluginMesh extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginpackedscene.html */
     class EditorInspectorPluginPackedScene extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginskeleton.html */
     class EditorInspectorPluginSkeleton extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginstylebox.html */
     class EditorInspectorPluginStyleBox extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginsubviewportpreview.html */
     class EditorInspectorPluginSubViewportPreview extends EditorInspectorPluginTexture {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorpluginsystemfont.html */
     class EditorInspectorPluginSystemFont extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugintexture.html */
     class EditorInspectorPluginTexture extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugintextureregion.html */
     class EditorInspectorPluginTextureRegion extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugintiledata.html */
     class EditorInspectorPluginTileData extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorrootmotionplugin.html */
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorsection.html */
-    class EditorInspectorSection extends Container {
-        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: number /*i64*/): void
-        get_vbox(): VBoxContainer
-        unfold(): void
-        fold(): void
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorvisualshadermodeplugin.html */
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorjsonsyntaxhighlighter.html */
     class EditorJSONSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorlayoutsdialog.html */
     class EditorLayoutsDialog extends ConfirmationDialog {
         readonly name_confirmed: Signal // name: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorlocaledialog.html */
     class EditorLocaleDialog extends ConfirmationDialog {
         readonly locale_selected: Signal // locale: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorlog.html */
     class EditorLog extends HBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editormaterialpreviewplugin.html */
     class EditorMaterialPreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editormeshpreviewplugin.html */
     class EditorMeshPreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editornativeshadersourcevisualizer.html */
     class EditorNativeShaderSourceVisualizer extends AcceptDialog {
         _inspect_shader(_unnamed_arg0: RID): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editornetworkprofiler.html */
     class EditorNetworkProfiler extends VBoxContainer {
         readonly enable_profiling: Signal // enable: boolean => void
         readonly open_request: Signal // path: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editornode.html */
     class EditorNode extends Node {
         push_item(object: Object, property: string = '', inspector_only: boolean = false): void
         set_edited_scene(_unnamed_arg0: Node): void
@@ -3850,13 +3730,10 @@ declare module "godot" {
         /** Gets material from the internal list of materials. If an [EditorNode3DGizmo] is provided, it will try to get the corresponding variant (selected and/or editable). */
         get_material(name: string, gizmo: EditorNode3DGizmo = <any> {} /*compound.type from nil*/): StandardMaterial3D
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorobjimporter.html */
     class EditorOBJImporter extends EditorSceneFormatImporter {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorobjectselector.html */
     class EditorObjectSelector extends Button {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpackedscenepreviewplugin.html */
     class EditorPackedScenePreviewPlugin extends EditorResourcePreviewGenerator {
     }
     /** Editor-only singleton that returns paths to various OS-specific data folders and files.  
@@ -3864,13 +3741,13 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorpaths.html  
      */
     class EditorPaths extends Object {
-        /** Returns the absolute path to the user's data folder. This folder should be used for [i]persistent[/i] user data files such as installed export templates.  
+        /** Returns the absolute path to the user's data folder. This folder should be used for  *persistent*  user data files such as installed export templates.  
          *  **Default paths per platform:**  
          *    
          */
         get_data_dir(): string
         
-        /** Returns the absolute path to the user's configuration folder. This folder should be used for [i]persistent[/i] user configuration files.  
+        /** Returns the absolute path to the user's configuration folder. This folder should be used for  *persistent*  user configuration files.  
          *  **Default paths per platform:**  
          *    
          */
@@ -3899,10 +3776,8 @@ declare module "godot" {
         /** Returns the project-specific editor settings path. Projects all have a unique subdirectory inside the settings path where project-specific editor settings are saved. */
         get_project_settings_dir(): string
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorperformanceprofiler.html */
     class EditorPerformanceProfiler extends HSplitContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorplaintextsyntaxhighlighter.html */
     class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     namespace EditorPlugin {
@@ -4275,7 +4150,7 @@ declare module "godot" {
         set_force_draw_over_forwarding_enabled(): void
         
         /** Returns the [EditorInterface] singleton instance.  
-         *  [i]Deprecated.[/i] [EditorInterface] is a global singleton and can be accessed directly by its name.  
+         *   *Deprecated.*  [EditorInterface] is a global singleton and can be accessed directly by its name.  
          */
         get_editor_interface(): EditorInterface
         
@@ -4308,17 +4183,14 @@ declare module "godot" {
         readonly resource_saved: Signal // resource: Resource => void
         
         /** Emitted when any project setting has changed.  
-         *  [i]Deprecated.[/i] Use [signal ProjectSettings.settings_changed] instead.  
+         *   *Deprecated.*  Use [signal ProjectSettings.settings_changed] instead.  
          */
         readonly project_settings_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorplugincsg.html */
     class EditorPluginCSG extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpluginsettings.html */
     class EditorPluginSettings extends VBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorprofiler.html */
     class EditorProfiler extends VBoxContainer {
         readonly enable_profiling: Signal // enable: boolean => void
         readonly break_request: Signal //  => void
@@ -4423,43 +4295,28 @@ declare module "godot" {
         /** Emitted when selected. Used internally. */
         readonly selected: Signal // path: string, focusable_idx: number /*i64*/ => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertycheck.html */
     class EditorPropertyCheck extends EditorProperty {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertydictionaryobject.html */
     class EditorPropertyDictionaryObject extends RefCounted {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyenum.html */
-    class EditorPropertyEnum extends EditorProperty {
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyinteger.html */
     class EditorPropertyInteger extends EditorProperty {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertylocalizablestring.html */
     class EditorPropertyLocalizableString extends EditorProperty {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertymultilinetext.html */
     class EditorPropertyMultilineText extends EditorProperty {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertynameprocessor.html */
     class EditorPropertyNameProcessor extends Node {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertypath.html */
     class EditorPropertyPath extends EditorProperty {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyresource.html */
     class EditorPropertyResource extends EditorProperty {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertytext.html */
     class EditorPropertyText extends EditorProperty {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyvector2i.html */
     class EditorPropertyVector2i extends EditorPropertyVectorN {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorpropertyvectorn.html */
     class EditorPropertyVectorN extends EditorProperty {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorquickopen.html */
     class EditorQuickOpen extends ConfirmationDialog {
         readonly quick_open: Signal //  => void
     }
@@ -4608,12 +4465,10 @@ declare module "godot" {
         /** Requests a thumbnail for the given [TextureRect]. The thumbnail is created asynchronously by [EditorResourcePreview] and automatically set when available. */
         request_thumbnail(path: string, control: TextureRect): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorrunbar.html */
     class EditorRunBar extends MarginContainer {
         readonly play_pressed: Signal //  => void
         readonly stop_pressed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorrunnative.html */
     class EditorRunNative extends HBoxContainer {
         readonly native_run: Signal // preset: any /*EditorExportPreset*/ => void
     }
@@ -4641,10 +4496,8 @@ declare module "godot" {
      */
     class EditorSceneFormatImporterBlend extends EditorSceneFormatImporter {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimportercollada.html */
     class EditorSceneFormatImporterCollada extends EditorSceneFormatImporter {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimporterescn.html */
     class EditorSceneFormatImporterESCN extends EditorSceneFormatImporter {
     }
     /** Importer for the `.fbx` scene file format.  
@@ -4717,7 +4570,6 @@ declare module "godot" {
         /** Add a specific import option. This function can only be called from [method _get_import_options] and [method _get_internal_import_options]. */
         add_import_option_advanced(type: Variant.Type, name: string, default_value: any, hint: PropertyHint = 0, hint_string: string = '', usage_flags: number /*i64*/ = 6): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorscenetabs.html */
     class EditorSceneTabs extends MarginContainer {
         _tab_preview_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         readonly tab_changed: Signal // tab_index: number /*i64*/ => void
@@ -4740,7 +4592,7 @@ declare module "godot" {
         get_scene(): Node
         
         /** Returns the [EditorInterface] singleton instance.  
-         *  [i]Deprecated.[/i] [EditorInterface] is a global singleton and can be accessed directly by its name.  
+         *   *Deprecated.*  [EditorInterface] is a global singleton and can be accessed directly by its name.  
          */
         get_editor_interface(): EditorInterface
     }
@@ -4755,7 +4607,6 @@ declare module "godot" {
         /** The owner [Node] of the script property that holds the edited resource. */
         script_owner: Node
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorscriptpreviewplugin.html */
     class EditorScriptPreviewPlugin extends EditorResourcePreviewGenerator {
     }
     /** Manages the SceneTree selection in the editor.  
@@ -4850,7 +4701,6 @@ declare module "godot" {
         /** Emitted after any editor setting has changed. */
         readonly settings_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorsettingsdialog.html */
     class EditorSettingsDialog extends AcceptDialog {
         _update_shortcuts(): void
         _settings_changed(): void
@@ -4898,7 +4748,6 @@ declare module "godot" {
         /** Emitted when the value form loses focus. */
         readonly value_focus_exited: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorstandardsyntaxhighlighter.html */
     class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
@@ -4913,19 +4762,14 @@ declare module "godot" {
         /* gdvirtual */ _get_supported_languages(): PackedStringArray
         _get_edited_resource(): RefCounted
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortexturepreviewplugin.html */
     class EditorTexturePreviewPlugin extends EditorResourcePreviewGenerator {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortexturetooltipplugin.html */
     class EditorTextureTooltipPlugin extends EditorResourceTooltipPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortheme.html */
     class EditorTheme extends Theme {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortitlebar.html */
     class EditorTitleBar extends HBoxContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editortoaster.html */
     class EditorToaster extends HBoxContainer {
         _popup_str(message: string, severity: any /*EditorToaster.Severity*/, tooltip: string): void
     }
@@ -5140,14 +4984,11 @@ declare module "godot" {
         /** Pops up an error message in the editor which is shown as coming from the underlying VCS. Use this to show VCS specific error messages. */
         popup_error(msg: string): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorvalidationpanel.html */
     class EditorValidationPanel extends PanelContainer {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorvisualprofiler.html */
     class EditorVisualProfiler extends VBoxContainer {
         readonly enable_profiling: Signal // enable: boolean => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_editorzoomwidget.html */
     class EditorZoomWidget extends HBoxContainer {
         set_zoom(zoom: number /*f64*/): void
         get_zoom(): number /*f64*/
@@ -5488,7 +5329,7 @@ declare module "godot" {
         /** The ambient light's [Color]. Only effective if [member ambient_light_sky_contribution] is lower than `1.0` (exclusive). */
         ambient_light_color: Color
         
-        /** Defines the amount of light that the sky brings on the scene. A value of `0.0` means that the sky's light emission has no effect on the scene illumination, thus all ambient illumination is provided by the ambient light. On the contrary, a value of `1.0` means that [i]all[/i] the light that affects the scene is provided by the sky, thus the ambient light parameter has no effect on the scene.  
+        /** Defines the amount of light that the sky brings on the scene. A value of `0.0` means that the sky's light emission has no effect on the scene illumination, thus all ambient illumination is provided by the ambient light. On the contrary, a value of `1.0` means that  *all*  the light that affects the scene is provided by the sky, thus the ambient light parameter has no effect on the scene.  
          *      
          *  **Note:** [member ambient_light_sky_contribution] is internally clamped between `0.0` and `1.0` (inclusive).  
          */
@@ -5666,7 +5507,7 @@ declare module "godot" {
         /** How strong of an impact the [member glow_map] should have on the overall glow effect. A strength of `0.0` means the glow map has no effect on the overall glow effect. A strength of `1.0` means the glow has a full effect on the overall glow effect (and can turn off glow entirely in specific areas of the screen if the glow map has black areas). */
         glow_map_strength: number /*f64*/
         
-        /** The texture that should be used as a glow map to [i]multiply[/i] the resulting glow color according to [member glow_map_strength]. This can be used to create a "lens dirt" effect. The texture's RGB color channels are used for modulation, but the alpha channel is ignored.  
+        /** The texture that should be used as a glow map to  *multiply*  the resulting glow color according to [member glow_map_strength]. This can be used to create a "lens dirt" effect. The texture's RGB color channels are used for modulation, but the alpha channel is ignored.  
          *      
          *  **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).  
          */
@@ -5684,7 +5525,7 @@ declare module "godot" {
         /** If set above `0.0`, renders the scene's directional light(s) in the fog color depending on the view angle. This can be used to give the impression that the sun is "piercing" through the fog. */
         fog_sun_scatter: number /*f64*/
         
-        /** The [i]exponential[/i] fog density to use. Higher values result in a more dense fog. Fog rendering is exponential as in real life. */
+        /** The  *exponential*  fog density to use. Higher values result in a more dense fog. Fog rendering is exponential as in real life. */
         fog_density: number /*f64*/
         
         /** If set above `0.0` (exclusive), blends between the fog's color and the color of the background [Sky]. This has a small performance cost when set above `0.0`. Must have [member background_mode] set to [constant BG_SKY].  
@@ -5710,9 +5551,9 @@ declare module "godot" {
          */
         volumetric_fog_enabled: boolean
         
-        /** The base [i]exponential[/i] density of the volumetric fog. Set this to the lowest density you want to have globally. [FogVolume]s can be used to add to or subtract from this density in specific areas. Fog rendering is exponential as in real life.  
+        /** The base  *exponential*  density of the volumetric fog. Set this to the lowest density you want to have globally. [FogVolume]s can be used to add to or subtract from this density in specific areas. Fog rendering is exponential as in real life.  
          *  A value of `0.0` disables global volumetric fog while allowing [FogVolume]s to display volumetric fog in specific areas.  
-         *  To make volumetric fog work as a volumetric [i]lighting[/i] solution, set [member volumetric_fog_density] to the lowest non-zero value (`0.0001`) then increase lights' [member Light3D.light_volumetric_fog_energy] to values between `10000` and `100000` to compensate for the very low density.  
+         *  To make volumetric fog work as a volumetric  *lighting*  solution, set [member volumetric_fog_density] to the lowest non-zero value (`0.0001`) then increase lights' [member Light3D.light_volumetric_fog_energy] to values between `10000` and `100000` to compensate for the very low density.  
          */
         volumetric_fog_density: number /*f64*/
         
@@ -5778,11 +5619,9 @@ declare module "godot" {
         /** The [Texture2D] or [Texture3D] lookup table (LUT) to use for the built-in post-process color grading. Can use a [GradientTexture1D] for a 1-dimensional LUT, or a [Texture3D] for a more complex LUT. Effective only if [member adjustment_enabled] is `true`. */
         adjustment_color_correction: Texture2D | Texture3D
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_eventlistenerlineedit.html */
     class EventListenerLineEdit extends LineEdit {
         readonly event_changed: Signal // event: InputEvent => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_exporttemplatemanager.html */
     class ExportTemplateManager extends AcceptDialog {
     }
     /** A class that stores an expression you can execute.  
@@ -5806,7 +5645,6 @@ declare module "godot" {
         /** Returns the error text if [method parse] or [method execute] has failed. */
         get_error_text(): string
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_fbximportermanager.html */
     class FBXImporterManager extends ConfirmationDialog {
     }
     namespace FastNoiseLite {
@@ -6202,7 +6040,7 @@ declare module "godot" {
          *  Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if they include the delimiter character. Double quotes within a text value can be escaped by doubling their occurrence.  
          *  For example, the following CSV lines are valid and will be properly parsed as two strings each:  
          *    
-         *  Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it [i]could[/i] very well use quotes, it was only written without for demonstration purposes. The third line must use `""` for each quotation mark that needs to be interpreted as such instead of the end of a text value.  
+         *  Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it  *could*  very well use quotes, it was only written without for demonstration purposes. The third line must use `""` for each quotation mark that needs to be interpreted as such instead of the end of a text value.  
          */
         get_csv_line(delim: string = ','): PackedStringArray
         
@@ -6355,7 +6193,7 @@ declare module "godot" {
          *      
          *  **Note:** [member big_endian] is only about the file format, not the CPU type. The CPU endianness doesn't affect the default endianness for files written.  
          *      
-         *  **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set [member big_endian] [i]after[/i] opening the file, not before.  
+         *  **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set [member big_endian]  *after*  opening the file, not before.  
          */
         big_endian: boolean
     }
@@ -6527,21 +6365,17 @@ declare module "godot" {
         /** Emitted when the user switches file display mode or split mode. */
         readonly display_mode_changed: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_filesystemlist.html */
     class FileSystemList extends ItemList {
         readonly item_edited: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_findinfiles.html */
     class FindInFiles extends Node {
         readonly result_found: Signal // path: string, line_number: number /*i64*/, begin: number /*i64*/, end: number /*i64*/, text: string => void
         readonly finished: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_findinfilesdialog.html */
     class FindInFilesDialog extends AcceptDialog {
         readonly find_requested: Signal //  => void
         readonly replace_requested: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_findinfilespanel.html */
     class FindInFilesPanel extends Control {
         _on_result_found(_unnamed_arg0: string, _unnamed_arg1: number /*i64*/, _unnamed_arg2: number /*i64*/, _unnamed_arg3: number /*i64*/, _unnamed_arg4: string): void
         _on_finished(): void
@@ -6549,7 +6383,6 @@ declare module "godot" {
         readonly result_selected: Signal // path: string, line_number: number /*i64*/, begin: number /*i64*/, end: number /*i64*/ => void
         readonly files_modified: Signal // paths: string => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_findreplacebar.html */
     class FindReplaceBar extends HBoxContainer {
         _search_current(): boolean
         readonly error: Signal //  => void
@@ -6625,7 +6458,6 @@ declare module "godot" {
         /** The 3D texture that is used to scale the [member density] of the [FogVolume]. This can be used to vary fog density within the [FogVolume] with any kind of static pattern. For animated effects, consider using a custom [url=$DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html]fog shader[/url]. */
         density_texture: Texture3D
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_fogmaterialconversionplugin.html */
     class FogMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
     /** A region that contributes to the default volumetric fog from the world environment.  
@@ -6654,7 +6486,6 @@ declare module "godot" {
         /** The [Material] used by the [FogVolume]. Can be either a built-in [FogMaterial] or a custom [ShaderMaterial]. */
         material: FogMaterial | ShaderMaterial
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_fogvolumegizmoplugin.html */
     class FogVolumeGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Abstract base class for fonts and font variations.  
@@ -6743,22 +6574,22 @@ declare module "godot" {
          */
         get_multiline_string_size(text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, max_lines: number /*i64*/ = -1, brk_flags: TextServer.LineBreakFlag = 3, justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): Vector2
         
-        /** Draw [param text] into a canvas item using the font, at a given position, with [param modulate] color, optionally clipping the width and aligning horizontally. [param pos] specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.  
+        /** Draw [param text] into a canvas item using the font, at a given position, with [param modulate] color, optionally clipping the width and aligning horizontally. [param pos] specifies the baseline, not the top. To draw from the top,  *ascent*  must be added to the Y axis.  
          *  See also [method CanvasItem.draw_string].  
          */
         draw_string(canvas_item: RID, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, modulate: Color = new Color(1, 1, 1, 1), justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
         
-        /** Breaks [param text] into lines using rules specified by [param brk_flags] and draws it into a canvas item using the font, at a given position, with [param modulate] color, optionally clipping the width and aligning horizontally. [param pos] specifies the baseline of the first line, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.  
+        /** Breaks [param text] into lines using rules specified by [param brk_flags] and draws it into a canvas item using the font, at a given position, with [param modulate] color, optionally clipping the width and aligning horizontally. [param pos] specifies the baseline of the first line, not the top. To draw from the top,  *ascent*  must be added to the Y axis.  
          *  See also [method CanvasItem.draw_multiline_string].  
          */
         draw_multiline_string(canvas_item: RID, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, max_lines: number /*i64*/ = -1, modulate: Color = new Color(1, 1, 1, 1), brk_flags: TextServer.LineBreakFlag = 3, justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
         
-        /** Draw [param text] outline into a canvas item using the font, at a given position, with [param modulate] color and [param size] outline size, optionally clipping the width and aligning horizontally. [param pos] specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.  
+        /** Draw [param text] outline into a canvas item using the font, at a given position, with [param modulate] color and [param size] outline size, optionally clipping the width and aligning horizontally. [param pos] specifies the baseline, not the top. To draw from the top,  *ascent*  must be added to the Y axis.  
          *  See also [method CanvasItem.draw_string_outline].  
          */
         draw_string_outline(canvas_item: RID, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, size: number /*i64*/ = 1, modulate: Color = new Color(1, 1, 1, 1), justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
         
-        /** Breaks [param text] to the lines using rules specified by [param brk_flags] and draws text outline into a canvas item using the font, at a given position, with [param modulate] color and [param size] outline size, optionally clipping the width and aligning horizontally. [param pos] specifies the baseline of the first line, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.  
+        /** Breaks [param text] to the lines using rules specified by [param brk_flags] and draws text outline into a canvas item using the font, at a given position, with [param modulate] color and [param size] outline size, optionally clipping the width and aligning horizontally. [param pos] specifies the baseline of the first line, not the top. To draw from the top,  *ascent*  must be added to the Y axis.  
          *  See also [method CanvasItem.draw_multiline_string_outline].  
          */
         draw_multiline_string_outline(canvas_item: RID, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, max_lines: number /*i64*/ = -1, size: number /*i64*/ = 1, modulate: Color = new Color(1, 1, 1, 1), brk_flags: TextServer.LineBreakFlag = 3, justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
@@ -6769,13 +6600,13 @@ declare module "godot" {
          */
         get_char_size(char: number /*i64*/, font_size: number /*i64*/): Vector2
         
-        /** Draw a single Unicode character [param char] into a canvas item using the font, at a given position, with [param modulate] color. [param pos] specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.  
+        /** Draw a single Unicode character [param char] into a canvas item using the font, at a given position, with [param modulate] color. [param pos] specifies the baseline, not the top. To draw from the top,  *ascent*  must be added to the Y axis.  
          *      
          *  **Note:** Do not use this function to draw strings character by character, use [method draw_string] or [TextLine] instead.  
          */
         draw_char(canvas_item: RID, pos: Vector2, char: number /*i64*/, font_size: number /*i64*/, modulate: Color = new Color(1, 1, 1, 1)): number /*f64*/
         
-        /** Draw a single Unicode character [param char] outline into a canvas item using the font, at a given position, with [param modulate] color and [param size] outline size. [param pos] specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.  
+        /** Draw a single Unicode character [param char] outline into a canvas item using the font, at a given position, with [param modulate] color and [param size] outline size. [param pos] specifies the baseline, not the top. To draw from the top,  *ascent*  must be added to the Y axis.  
          *      
          *  **Note:** Do not use this function to draw strings character by character, use [method draw_string] or [TextLine] instead.  
          */
@@ -6815,7 +6646,6 @@ declare module "godot" {
          */
         fallbacks: Array
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_fonteditorplugin.html */
     class FontEditorPlugin extends EditorPlugin {
     }
     /** Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font.  
@@ -7102,13 +6932,13 @@ declare module "godot" {
         
         /** If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field (MSDF) generated from the dynamic font vector data. Since this approach does not rely on rasterizing the font every time its size changes, this allows for resizing the font in real-time without any performance penalty. Text will also not look grainy for [Control]s that are scaled down (or for [Label3D]s viewed from a long distance). As a downside, font hinting is not available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small sizes.  
          *      
-         *  **Note:** If using font outlines, [member msdf_pixel_range] must be set to at least [i]twice[/i] the size of the largest font outline.  
+         *  **Note:** If using font outlines, [member msdf_pixel_range] must be set to at least  *twice*  the size of the largest font outline.  
          *      
          *  **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly. Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs, consider downloading the font file directly from the type foundry instead of relying on Google Fonts.  
          */
         multichannel_signed_distance_field: boolean
         
-        /** The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [member msdf_pixel_range] must be set to at least [i]twice[/i] the size of the largest font outline. The default [member msdf_pixel_range] value of `16` allows outline sizes up to `8` to look correct. */
+        /** The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [member msdf_pixel_range] must be set to at least  *twice*  the size of the largest font outline. The default [member msdf_pixel_range] value of `16` allows outline sizes up to `8` to look correct. */
         msdf_pixel_range: number /*i64*/
         
         /** Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering. */
@@ -7183,6 +7013,8 @@ declare module "godot" {
         /** A set of OpenType feature tags. More info: [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature tags[/url]. */
         opentype_features: Dictionary
     }
+    class FramebufferCacheRD extends Object {
+    }
     namespace GDExtension {
         enum InitializationLevel {
             INITIALIZATION_LEVEL_CORE = 0,
@@ -7198,6 +7030,8 @@ declare module "godot" {
         is_library_open(): boolean
         get_minimum_library_initialization_level(): GDExtension.InitializationLevel
         initialize_library(level: GDExtension.InitializationLevel): void
+    }
+    class GDShaderSyntaxHighlighter extends CodeHighlighter {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfaccessor.html */
     class GLTFAccessor extends Resource {
@@ -7487,13 +7321,10 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensionconvertimportermesh.html */
     class GLTFDocumentExtensionConvertImporterMesh extends GLTFDocumentExtension {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensionphysics.html */
     class GLTFDocumentExtensionPhysics extends GLTFDocumentExtension {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensiontexturektx.html */
     class GLTFDocumentExtensionTextureKTX extends GLTFDocumentExtension {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensiontexturewebp.html */
     class GLTFDocumentExtensionTextureWebP extends GLTFDocumentExtension {
     }
     /** Represents a GLTF light.  
@@ -8247,7 +8078,6 @@ declare module "godot" {
          */
         readonly finished: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles2deditorplugin.html */
     class GPUParticles2DEditorPlugin extends EditorPlugin {
     }
     namespace GPUParticles3D {
@@ -8462,16 +8292,12 @@ declare module "godot" {
          */
         readonly finished: Signal //  => void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3deditor.html */
     class GPUParticles3DEditor extends GPUParticles3DEditorBase {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3deditorbase.html */
     class GPUParticles3DEditorBase extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3deditorplugin.html */
     class GPUParticles3DEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3dgizmoplugin.html */
     class GPUParticles3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** Abstract base class for 3D particle attractors.  
@@ -8488,7 +8314,7 @@ declare module "godot" {
         set_directionality(amount: number /*f64*/): void
         get_directionality(): number /*f64*/
         
-        /** Adjusts the strength of the attractor. If [member strength] is negative, particles will be pushed in the opposite direction. Particles will be pushed [i]away[/i] from the attractor's origin if [member directionality] is `0.0`, or towards local +Z if [member directionality] is greater than `0.0`. */
+        /** Adjusts the strength of the attractor. If [member strength] is negative, particles will be pushed in the opposite direction. Particles will be pushed  *away*  from the attractor's origin if [member directionality] is `0.0`, or towards local +Z if [member directionality] is greater than `0.0`. */
         strength: number /*f64*/
         
         /** The particle attractor's attenuation. Higher values result in more gradual pushing of particles as they come closer to the attractor's origin. Zero or negative values will cause particles to be pushed very fast as soon as the touch the attractor's edges. */
@@ -8564,7 +8390,6 @@ declare module "godot" {
          */
         cull_mask: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollision3dgizmoplugin.html */
     class GPUParticlesCollision3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
     /** A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
@@ -8698,7 +8523,6 @@ declare module "godot" {
         /** The 3D texture representing the signed distance field. */
         texture: Texture3D
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticlescollisionsdf3deditorplugin.html */
     class GPUParticlesCollisionSDF3DEditorPlugin extends EditorPlugin {
     }
     /** A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
@@ -8829,7 +8653,7 @@ declare module "godot" {
             SHADOW_CASTING_SETTING_SHADOWS_ONLY = 3,
         }
         enum GIMode {
-            /** Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will [i]receive[/i] indirect lighting and reflections but the geometry will not be considered in GI baking. */
+            /** Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will  *receive*  indirect lighting and reflections but the geometry will not be considered in GI baking. */
             GI_MODE_DISABLED = 0,
             
             /** Baked global illumination mode. Use for static objects that contribute to global illumination (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and [LightmapGI]. */
@@ -8893,7 +8717,7 @@ declare module "godot" {
         
         /** Set the value of a shader uniform for this instance only ([url=$DOCS_URL/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance uniform[/url]). See also [method ShaderMaterial.set_shader_parameter] to assign a uniform on all instances using the same [ShaderMaterial].  
          *      
-         *  **Note:** For a shader uniform to be assignable on a per-instance basis, it [i]must[/i] be defined with `instance uniform ...` rather than `uniform ...` in the shader code.  
+         *  **Note:** For a shader uniform to be assignable on a per-instance basis, it  *must*  be defined with `instance uniform ...` rather than `uniform ...` in the shader code.  
          *      
          *  **Note:** [param name] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).  
          *      
@@ -8924,7 +8748,7 @@ declare module "godot" {
          */
         material_overlay: BaseMaterial3D | ShaderMaterial
         
-        /** The transparency applied to the whole geometry (as a multiplier of the materials' existing transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [member transparency] to a value greater than `0.0` (exclusive) will [i]not[/i] disable shadow rendering.  
+        /** The transparency applied to the whole geometry (as a multiplier of the materials' existing transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [member transparency] to a value greater than `0.0` (exclusive) will  *not*  disable shadow rendering.  
          *  In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.  
          *      
          *  **Note:** [member transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.  
@@ -8979,22 +8803,16 @@ declare module "godot" {
         /** Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values. */
         visibility_range_fade_mode: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gizmo3dhelper.html */
     class Gizmo3DHelper extends RefCounted {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_godotjseditorplugin.html */
     class GodotJSEditorPlugin extends EditorPlugin {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_godotjsrepl.html */
     class GodotJSREPL extends Control {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_godotjsscript.html */
     class GodotJSScript extends Script {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_godotphysicsdirectspacestate2d.html */
     class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gotolinedialog.html */
     class GotoLineDialog extends ConfirmationDialog {
     }
     namespace Gradient {
@@ -9083,7 +8901,6 @@ declare module "godot" {
          */
         colors: PackedColorArray
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gradienteditorplugin.html */
     class GradientEditorPlugin extends EditorPlugin {
     }
     /** A 1D texture that uses colors obtained from a [Gradient].  
@@ -9172,7 +8989,6 @@ declare module "godot" {
         /** The gradient repeat type, one of the [enum Repeat] values. The texture is filled starting from [member fill_from] to [member fill_to] offsets by default, but the gradient fill can be repeated to cover the entire texture. */
         repeat: number /*i64*/
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gradienttexture2deditorplugin.html */
     class GradientTexture2DEditorPlugin extends EditorPlugin {
     }
     namespace GraphEdit {
