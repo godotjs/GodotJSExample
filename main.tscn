@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvykv0u5duqyj"]
+[gd_scene load_steps=5 format=3 uid="uid://bvykv0u5duqyj"]
 
 [ext_resource type="Script" path="res://javascripts/test_button.js" id="1_ewk4v"]
 [ext_resource type="Script" path="res://javascripts/ui/main_ui.js" id="1_j74ag"]
-[ext_resource type="Script" path="res://gdscripts/gds_button.gd" id="2_415o4"]
 [ext_resource type="Texture2D" uid="uid://dx3san3aa6mwy" path="res://icon.svg" id="4_2050k"]
 [ext_resource type="Script" path="res://javascripts/tests/my_editor_sprite.js" id="5_l2t80"]
 
@@ -34,19 +33,6 @@ hello = "hello111"
 
 [node name="JSButtonChildNode" type="Node" parent="Control/Button"]
 
-[node name="Button2" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 69.0
-offset_right = 155.0
-offset_bottom = 94.0
-text = "GDScript Button
-"
-script = ExtResource("2_415o4")
-hello = "hello 4"
-
-[node name="GDButtonChildNode" type="Node" parent="Control/Button2"]
-
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 36.0
@@ -65,7 +51,7 @@ placeholder_text = "Input text"
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 position = Vector2(386, 134)
-rotation = 208.48
+rotation = 233.083
 texture = ExtResource("4_2050k")
 script = ExtResource("5_l2t80")
 speed = 0.25
