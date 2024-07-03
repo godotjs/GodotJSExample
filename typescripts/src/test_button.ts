@@ -72,6 +72,17 @@ export default class TestNode extends Button {
         // access object properties with getset
         this.editor_description = "editor_description.1";
         console.log(this.editor_description);
+
+        // gc stress test
+        let sum = 0;
+        setInterval(function () {
+            for (let i = 0; i < 1000; ++i) {
+                let v2 = new Vector2();
+                v2.x = sum;
+                v2.y += v2.x + 1;
+                sum = v2.y - 1;
+            }
+        }, 20);
     }
 
     private async test_wait_for_signal() {
