@@ -27,9 +27,17 @@ const godot_1 = require("godot");
 const jsb = __importStar(require("godot-jsb"));
 class Wolf extends godot_1.Node2D {
     _ready() {
-        let balloon = this.get_node(new godot_1.NodePath("balloon/CollisionShape2D"));
-        balloon.area_shape_entered.connect(jsb.callable(this, this.on_balloon_collision));
-        console.log("ballon", balloon);
+        console.log("wolf.ready");
+        try {
+            let balloon = this.get_node(new godot_1.NodePath("Area2D"));
+            console.log(typeof balloon.area_shape_entered);
+            balloon.area_shape_entered.connect(jsb.callable(this, this.on_balloon_collision));
+            console.log("wolf.ready area");
+            // console.log(balloon);
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
     on_balloon_collision() {
         console.log("die");

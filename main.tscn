@@ -51,7 +51,7 @@ placeholder_text = "Input text"
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 position = Vector2(386, 134)
-rotation = 233.083
+rotation = 255.25
 texture = ExtResource("4_2050k")
 script = ExtResource("5_l2t80")
 speed = 0.25

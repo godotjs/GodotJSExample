@@ -1,4 +1,4 @@
-import { Signal, Sprite2D, Variant, Vector2 } from "godot";
+import { Area2D, NodePath, Signal, Sprite2D, Variant, Vector2 } from "godot";
 import { export_, signal } from "../jsb/jsb.core";
 
 export default class Arrow extends Sprite2D {
@@ -13,8 +13,9 @@ export default class Arrow extends Sprite2D {
     _ready() {
         // for the arrows placed in editor
         this._pos = this.get_position();
+        
     }
-    
+
     init_position(pos: Vector2) {
         this._pos = pos;
         this.set_position(this._pos);

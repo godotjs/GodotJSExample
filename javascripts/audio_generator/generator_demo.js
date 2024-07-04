@@ -1,9 +1,9 @@
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const godot_1 = require("godot");
@@ -19,33 +19,33 @@ const song = zzfxm.default(...[[[1.8, 0, 72, , , .2, , 4, -2, 6, 50, .15, , 6], 
  * @link https://godotengine.org/asset-library/asset/526
  */
 class AudioGeneratorDemo extends godot_1.Node {
-    constructor() {
-        super(...arguments);
-        this.cached_frame = new godot_1.Vector2();
-        this.frame_index = 0;
-    }
-    //BUG dont know why this crashs v8
-    // private xxx = zzfx.generate();
-    _ready() {
-        console.log("song samples", song[0].length);
-        // this.buffer = zzfx.generate(1.74,.05,598,.09,.26,.41,0,.24,0,0,-46,.07,.17,0,0,0,.09,.42,.28,.06);
-        this.player.stream.mix_rate = zzfxm.zzfxR;
-        this.player.play();
-        this.playback = this.player.get_stream_playback();
-    }
-    _process(delta) {
-        let to_fill = this.playback.get_frames_available();
-        while (to_fill > 0) {
-            this.frame_index = (this.frame_index + 1) % song[0].length;
-            this.cached_frame.x = song[0][this.frame_index];
-            this.cached_frame.y = song[1][this.frame_index];
-            this.playback.push_frame(this.cached_frame); // Audio frames are stereo.
-            --to_fill;
-        }
-    }
+	constructor() {
+		super(...arguments);
+		this.cached_frame = new godot_1.Vector2();
+		this.frame_index = 0;
+	}
+	//BUG dont know why this crashs v8
+	// private xxx = zzfx.generate();
+	_ready() {
+		console.log("song samples", song[0].length);
+		// this.buffer = zzfx.generate(1.74,.05,598,.09,.26,.41,0,.24,0,0,-46,.07,.17,0,0,0,.09,.42,.28,.06);
+		this.player.stream.mix_rate = zzfxm.zzfxR;
+		this.player.play();
+		this.playback = this.player.get_stream_playback();
+	}
+	_process(delta) {
+		let to_fill = this.playback.get_frames_available();
+		while (to_fill > 0) {
+			this.frame_index = (this.frame_index + 1) % song[0].length;
+			this.cached_frame.x = song[0][this.frame_index];
+			this.cached_frame.y = song[1][this.frame_index];
+			this.playback.push_frame(this.cached_frame); // Audio frames are stereo.
+			--to_fill;
+		}
+	}
 }
 exports.default = AudioGeneratorDemo;
 __decorate([
-    (0, jsb_core_1.onready)("Player")
+	(0, jsb_core_1.onready)("Player")
 ], AudioGeneratorDemo.prototype, "player", void 0);
 //# sourceMappingURL=generator_demo.js.map

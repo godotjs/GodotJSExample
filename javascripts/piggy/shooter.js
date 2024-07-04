@@ -19,11 +19,11 @@ class Shooter extends godot_1.Sprite2D {
     }
     _process(dt) {
         if (godot_1.Input.is_action_pressed("up")) {
-            this._pos.y -= dt * this.speed;
+            this._pos.y = Math.max(120, this._pos.y - dt * this.speed);
             this._dirty = true;
         }
         else if (godot_1.Input.is_action_pressed("down")) {
-            this._pos.y += dt * this.speed;
+            this._pos.y = Math.min(386, this._pos.y + dt * this.speed);
             this._dirty = true;
         }
         if (godot_1.Input.is_action_just_pressed("confirm")) {
@@ -33,6 +33,8 @@ class Shooter extends godot_1.Sprite2D {
             this._dirty = false;
             this.set_position(this._pos);
             this.moved.emit(this._pos.y);
+            let ui = this.get_tree().current_scene.get_node(new godot_1.NodePath("ui"));
+            ui.set_debug_position(Math.floor(this.position.x), Math.floor(this.position.y));
         }
     }
     _shot() {

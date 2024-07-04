@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://oskesmgkv1ri"]
+[gd_scene load_steps=4 format=3 uid="uid://oskesmgkv1ri"]
 
 [ext_resource type="Texture2D" uid="uid://8fwfwrajpke" path="res://piggy/wolf.png" id="1_pivfj"]
+[ext_resource type="Script" path="res://javascripts/piggy/wolf.js" id="2_p2d7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r4d5"]
 size = Vector2(27.25, 28.5)
@@ -9,8 +10,12 @@ size = Vector2(27.25, 28.5)
 position = Vector2(190, 72)
 texture = ExtResource("1_pivfj")
 offset = Vector2(0, -32)
+script = ExtResource("2_p2d7p")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 32
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(8.625, -48.25)

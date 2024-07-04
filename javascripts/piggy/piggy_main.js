@@ -45,9 +45,9 @@ class PiggyMain extends godot_1.Node {
         console.error("no such scene", path);
     }
     _ready() {
-        console.log(this.scene);
-        console.log(this.shooter);
-        console.log(this.rope);
+        console.log("scene:", this.scene);
+        console.log("shooter:", this.shooter);
+        console.log("rope:", this.rope);
         this.shooter.shot.connect(jsb.callable(this, this.on_shooter_shot));
         this.shooter.moved.connect(jsb.callable(this, this.on_shooter_moved));
     }

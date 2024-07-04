@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnuilxxli0m6v"]
+[gd_scene load_steps=13 format=3 uid="uid://bnuilxxli0m6v"]
 
 [ext_resource type="Script" path="res://javascripts/piggy/piggy_main.js" id="1_1dv0u"]
 [ext_resource type="Texture2D" uid="uid://g0qty25cpn1n" path="res://piggy/background.png" id="1_hqhfv"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://by1jniyvgjfc3" path="res://piggy/arrow.tscn" id="5_8prco"]
 [ext_resource type="Shader" path="res://piggy/tiling.gdshader" id="6_4xp07"]
 [ext_resource type="Texture2D" uid="uid://dcvhddha42lvu" path="res://piggy/rope.png" id="6_gsfnd"]
+[ext_resource type="Script" path="res://javascripts/piggy/piggy_ui.js" id="9_c1kg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ksn7"]
 size = Vector2(36, 29)
@@ -37,6 +38,7 @@ speed = 85.0
 
 [node name="body" type="Area2D" parent="scene/shooter"]
 position = Vector2(9, 31)
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scene/shooter/body"]
 position = Vector2(0, 0.5)
@@ -44,6 +46,8 @@ shape = SubResource("RectangleShape2D_5ksn7")
 
 [node name="roof" type="Area2D" parent="scene/shooter"]
 position = Vector2(10, -1)
+collision_layer = 2
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scene/shooter/roof"]
 position = Vector2(-12.1866, 8.05215)
@@ -66,7 +70,7 @@ offset = Vector2(0, 32)
 [node name="wolf1" parent="scene" instance=ExtResource("2_5kqmb")]
 
 [node name="wolf2" parent="scene" instance=ExtResource("2_5kqmb")]
-position = Vector2(275, 466)
+position = Vector2(276, 423)
 
 [node name="wolf3" parent="scene" instance=ExtResource("2_5kqmb")]
 position = Vector2(588, 442)
@@ -78,6 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("9_c1kg2")
 
 [node name="debug_info" type="VBoxContainer" parent="ui"]
 layout_mode = 0

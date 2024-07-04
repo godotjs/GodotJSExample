@@ -4,9 +4,16 @@ import { onready } from "../jsb/jsb.core";
 
 export default class Wolf extends Node2D {
     _ready() {
-        let balloon = <Area2D> this.get_node(new NodePath("balloon/CollisionShape2D"));
-        balloon.area_shape_entered.connect(jsb.callable(this, this.on_balloon_collision));
-        console.log("ballon", balloon);
+        console.log("wolf.ready");
+        try {
+            let balloon = <Area2D>this.get_node(new NodePath("Area2D"));
+            console.log(typeof balloon.area_shape_entered);
+            balloon.area_shape_entered.connect(jsb.callable(this, this.on_balloon_collision));
+            console.log("wolf.ready area");
+            // console.log(balloon);
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     private on_balloon_collision() {
