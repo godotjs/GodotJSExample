@@ -1,8 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    class CollisionShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-    }
     namespace ColorPicker {
         enum ColorModeType {
             /** Allows editing the color with Red/Green/Blue sliders. */
@@ -389,8 +387,6 @@ declare module "godot" {
         readonly connected: Signal //  => void
     }
     class ConnectDialogBinds extends Object {
-    }
-    class ConnectionInfoDialog extends AcceptDialog {
     }
     class ConnectionsDock extends VBoxContainer {
         update_tree(): void
@@ -3509,6 +3505,12 @@ declare module "godot" {
     }
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
     }
+    class EditorInspectorSection extends Container {
+        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: number /*i64*/): void
+        get_vbox(): VBoxContainer
+        unfold(): void
+        fold(): void
+    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
     }
     class EditorJSONSyntaxHighlighter extends EditorSyntaxHighlighter {
@@ -3777,8 +3779,6 @@ declare module "godot" {
         get_project_settings_dir(): string
     }
     class EditorPerformanceProfiler extends HSplitContainer {
-    }
-    class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     namespace EditorPlugin {
         enum CustomControlContainer {
@@ -4299,6 +4299,8 @@ declare module "godot" {
     }
     class EditorPropertyDictionaryObject extends RefCounted {
     }
+    class EditorPropertyEnum extends EditorProperty {
+    }
     class EditorPropertyInteger extends EditorProperty {
     }
     class EditorPropertyLocalizableString extends EditorProperty {
@@ -4747,8 +4749,6 @@ declare module "godot" {
         
         /** Emitted when the value form loses focus. */
         readonly value_focus_exited: Signal //  => void
-    }
-    class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
      *  	  
@@ -7013,8 +7013,6 @@ declare module "godot" {
         /** A set of OpenType feature tags. More info: [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature tags[/url]. */
         opentype_features: Dictionary
     }
-    class FramebufferCacheRD extends Object {
-    }
     namespace GDExtension {
         enum InitializationLevel {
             INITIALIZATION_LEVEL_CORE = 0,
@@ -7030,8 +7028,6 @@ declare module "godot" {
         is_library_open(): boolean
         get_minimum_library_initialization_level(): GDExtension.InitializationLevel
         initialize_library(level: GDExtension.InitializationLevel): void
-    }
-    class GDShaderSyntaxHighlighter extends CodeHighlighter {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfaccessor.html */
     class GLTFAccessor extends Resource {
@@ -8812,8 +8808,6 @@ declare module "godot" {
     class GodotJSScript extends Script {
     }
     class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
-    }
-    class GotoLineDialog extends ConfirmationDialog {
     }
     namespace Gradient {
         enum InterpolationMode {

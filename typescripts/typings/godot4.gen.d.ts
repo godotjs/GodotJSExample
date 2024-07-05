@@ -5486,12 +5486,6 @@ declare module "godot" {
     class RenameDialog extends ConfirmationDialog {
         rename(): void
     }
-    class RenderBufferCustomDataRD extends RefCounted {
-    }
-    class RenderBufferDataForwardClustered extends RenderBufferCustomDataRD {
-    }
-    class RenderBuffersGI extends RenderBufferCustomDataRD {
-    }
     /** Abstract scene buffers object, created for each viewport for which 3D rendering is done.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_renderscenebuffers.html  
@@ -5567,6 +5561,8 @@ declare module "godot" {
         
         /** Implement this in GDExtension to react to the debanding flag changing. */
         /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
+    }
+    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
     }
     /** Abstract render scene buffer implementation for the RenderingDevice based renderers.  
      *  	  

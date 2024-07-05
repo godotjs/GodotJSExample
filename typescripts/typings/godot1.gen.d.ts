@@ -8746,12 +8746,6 @@ declare module "godot" {
         /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
         color_regions: Dictionary
     }
-    class CodeTextEditor extends VBoxContainer {
-        readonly validate_script: Signal //  => void
-        readonly load_theme_settings: Signal //  => void
-        readonly show_errors_panel: Signal //  => void
-        readonly show_warnings_panel: Signal //  => void
-    }
     namespace CollisionObject2D {
         enum DisableMode {
             /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
@@ -9205,5 +9199,7 @@ declare module "godot" {
         
         /** A disabled collision shape has no effect in the world. */
         disabled: boolean
+    }
+    class CollisionShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
 }

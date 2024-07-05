@@ -1,6 +1,89 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A built-in type representing a method or a standalone function.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_callable.html  
+     */
+    class Callable {
+        constructor()
+        constructor(from: Callable)
+        constructor(object: Object, method: StringName)
+        
+        /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
+        callv(arguments_: Array): void
+        
+        /** Returns `true` if this [Callable] has no target to call the method on. */
+        is_null(): boolean
+        
+        /** Returns `true` if this [Callable] is a custom callable. Custom callables are created from [method bind] or [method unbind]. In GDScript, lambda functions are also custom callables. */
+        is_custom(): boolean
+        
+        /** Returns `true` if this [Callable] is a standard callable. This method is the opposite of [method is_custom]. Returns `false` if this callable is a lambda function. */
+        is_standard(): boolean
+        
+        /** Returns `true` if the callable's object exists and has a valid method name assigned, or is a custom callable. */
+        is_valid(): boolean
+        
+        /** Returns the object on which this [Callable] is called. */
+        get_object(): Object
+        
+        /** Returns the ID of this [Callable]'s object (see [method Object.get_instance_id]). */
+        get_object_id(): number /*i64*/
+        
+        /** Returns the name of the method represented by this [Callable]. If the callable is a GDScript lambda function, returns the function's name or `"<anonymous lambda>"`. */
+        get_method(): StringName
+        
+        /** Returns the total amount of arguments bound (or unbound) via successive [method bind] or [method unbind] calls. If the amount of arguments unbound is greater than the ones bound, this function returns a value less than zero. */
+        get_bound_arguments_count(): number /*i64*/
+        
+        /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
+        get_bound_arguments(): Array
+        
+        /** Returns the 32-bit hash value of this [Callable]'s object.  
+         *      
+         *  **Note:** [Callable]s with equal content will always produce identical hash values. However, the reverse is not true. Returning identical hash values does  *not*  imply the callables are equal, because different callables can have identical hash values due to hash collisions. The engine uses a 32-bit hash algorithm for [method hash].  
+         */
+        hash(): number /*i64*/
+        
+        /** Returns a copy of this [Callable] with one or more arguments bound, reading them from an array. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
+         *      
+         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
+         */
+        bindv(arguments_: Array): Callable
+        
+        /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
+         *      
+         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
+         *    
+         */
+        unbind(argcount: number /*i64*/): Callable
+        
+        /** Calls the method represented by this [Callable]. Arguments can be passed and should match the method's signature. */
+        call(...vargargs: any[]): void
+        
+        /** Calls the method represented by this [Callable] in deferred mode, i.e. at the end of the current frame. Arguments can be passed and should match the method's signature.  
+         *    
+         *      
+         *  **Note:** Deferred calls are processed at idle time. Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. This means you should not call a method deferred from itself (or from a method called by it), as this causes infinite recursion the same way as if you had called the method directly.  
+         *  See also [method Object.call_deferred].  
+         */
+        call_deferred(...vargargs: any[]): void
+        
+        /** Perform an RPC (Remote Procedure Call) on all connected peers. This is used for multiplayer and is normally not available, unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc]. */
+        rpc(...vargargs: any[]): void
+        
+        /** Perform an RPC (Remote Procedure Call) on a specific peer ID (see multiplayer documentation for reference). This is used for multiplayer and is normally not available unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc_id]. */
+        rpc_id(peer_id: number /*i64*/, ...vargargs: any[]): void
+        
+        /** Returns a copy of this [Callable] with one or more arguments bound. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
+         *      
+         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
+         */
+        bind(...vargargs: any[]): Callable
+        static EQUAL(left: Callable, right: Callable): boolean
+        static NOT_EQUAL(left: Callable, right: Callable): boolean
+    }
     /** A built-in type representing a signal of an [Object].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_signal.html  
@@ -53,6 +136,8 @@ declare module "godot" {
     class Dictionary {
         constructor()
         constructor(from: Dictionary)
+        set_indexed(index: number, value: any)
+        get_indexed(index: number): any
         
         /** Returns the number of entries in the dictionary. Empty dictionaries (`{ }`) always return `0`. See also [method is_empty]. */
         size(): number /*i64*/
@@ -142,6 +227,8 @@ declare module "godot" {
         constructor(from: PackedVector2Array)
         constructor(from: PackedVector3Array)
         constructor(from: PackedColorArray)
+        set_indexed(index: number, value: any)
+        get_indexed(index: number): any
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -414,6 +501,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedByteArray)
         constructor(from: Array)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -630,6 +719,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedInt32Array)
         constructor(from: Array)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -712,6 +803,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedInt64Array)
         constructor(from: Array)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -794,6 +887,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedFloat32Array)
         constructor(from: Array)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -893,6 +988,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedFloat64Array)
         constructor(from: Array)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -992,6 +1089,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedStringArray)
         constructor(from: Array)
+        set_indexed(index: number, value: string)
+        get_indexed(index: number): string
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -1072,6 +1171,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedVector2Array)
         constructor(from: Array)
+        set_indexed(index: number, value: Vector2)
+        get_indexed(index: number): Vector2
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -1169,6 +1270,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedVector3Array)
         constructor(from: Array)
+        set_indexed(index: number, value: Vector3)
+        get_indexed(index: number): Vector3
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/
@@ -1266,6 +1369,8 @@ declare module "godot" {
         constructor()
         constructor(from: PackedColorArray)
         constructor(from: Array)
+        set_indexed(index: number, value: Color)
+        get_indexed(index: number): Color
         
         /** Returns the number of elements in the array. */
         size(): number /*i64*/

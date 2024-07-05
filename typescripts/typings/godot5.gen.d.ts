@@ -476,9 +476,6 @@ declare module "godot" {
     }
     class ScriptEditorPlugin extends EditorPlugin {
     }
-    class ScriptEditorQuickOpen extends ConfirmationDialog {
-        readonly goto_line: Signal // line: number /*i64*/ => void
-    }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptextension.html */
     class ScriptExtension extends Script {
         /* gdvirtual */ _editor_can_reload_from_file(): boolean
@@ -621,8 +618,6 @@ declare module "godot" {
         /* gdvirtual */ _frame(): void
         /* gdvirtual */ _handles_global_class_type(type: string): boolean
         /* gdvirtual */ _get_global_class_name(path: string): Dictionary
-    }
-    class ScriptTextEditor extends ScriptEditorBase {
     }
     /** Abstract base class for scrollbars.  
      *  	  
@@ -925,9 +920,6 @@ declare module "godot" {
         
         /** The [Shader] program used to render this material. */
         shader: Shader
-    }
-    class ShaderTextEditor extends CodeTextEditor {
-        readonly script_validated: Signal // valid: boolean => void
     }
     /** Abstract base class for 2D shapes used for physics collision.  
      *  	  
@@ -6859,11 +6851,6 @@ declare module "godot" {
         /* gdvirtual */ _string_to_lower(string_: string, language: string): string
         /* gdvirtual */ _parse_structured_text(parser_type: TextServer.StructuredTextParser, args: Array, text: string): Array
         /* gdvirtual */ _cleanup(): void
-    }
-    class TextShaderEditor extends MarginContainer {
-        _show_warnings_panel(_unnamed_arg0: boolean): void
-        _warning_clicked(_unnamed_arg0: any): void
-        readonly validation_changed: Signal //  => void
     }
     /** Base class for all texture types.  
      *  	  

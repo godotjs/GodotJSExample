@@ -997,8 +997,6 @@ declare module "godot" {
         /** Called when [method undo] or [method redo] was called. */
         readonly version_changed: Signal //  => void
     }
-    class UniformSetCacheRD extends Object {
-    }
     /** A container that arranges its child controls vertically.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_vboxcontainer.html  
@@ -6766,6 +6764,8 @@ declare module "godot" {
         constructor(from: Vector2)
         constructor(from: Vector2i)
         constructor(x: number /*f64*/, y: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
         
         /** Returns this vector's angle with respect to the positive X axis, or `(1, 0)` vector, in radians.  
          *  For example, `Vector2.RIGHT.angle()` will return zero, `Vector2.DOWN.angle()` will return `PI / 2` (a quarter turn, or 90 degrees), and `Vector2(1, -1).angle()` will return `-PI / 4` (a negative eighth turn, or -45 degrees).  
@@ -6983,6 +6983,8 @@ declare module "godot" {
         constructor(from: Vector2i)
         constructor(from: Vector2)
         constructor(x: number /*i64*/, y: number /*i64*/)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
         
         /** Returns the aspect ratio of this vector, the ratio of [member x] to [member y]. */
         aspect(): number /*f64*/
@@ -7239,6 +7241,8 @@ declare module "godot" {
         constructor(from: Vector3)
         constructor(from: Vector3i)
         constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
         min_axis_index(): number /*i64*/
@@ -7458,6 +7462,8 @@ declare module "godot" {
         constructor(from: Vector3i)
         constructor(from: Vector3)
         constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
         min_axis_index(): number /*i64*/
@@ -7520,6 +7526,8 @@ declare module "godot" {
         constructor(rotation: number /*f64*/, position: Vector2)
         constructor(rotation: number /*f64*/, scale: Vector2, skew: number /*f64*/, position: Vector2)
         constructor(x_axis: Vector2, y_axis: Vector2, origin: Vector2)
+        set_indexed(index: number, value: Vector2)
+        get_indexed(index: number): Vector2
         
         /** Returns the inverse of the transform, under the assumption that the transformation basis is orthonormal (i.e. rotation/reflection is fine, scaling/skew is not). Use [method affine_inverse] for non-orthonormal transforms (e.g. with scaling). */
         inverse(): Transform2D
@@ -7657,6 +7665,8 @@ declare module "godot" {
         constructor(from: Vector4)
         constructor(from: Vector4i)
         constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
         min_axis_index(): number /*i64*/
@@ -7800,6 +7810,8 @@ declare module "godot" {
         constructor(from: Vector4i)
         constructor(from: Vector4)
         constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/, w: number /*i64*/)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
         min_axis_index(): number /*i64*/
@@ -7922,6 +7934,8 @@ declare module "godot" {
         constructor(axis: Vector3, angle: number /*f64*/)
         constructor(arc_from: Vector3, arc_to: Vector3)
         constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
         
         /** Returns this quaternion's length, also called magnitude. */
         length(): number /*f64*/
@@ -8167,6 +8181,8 @@ declare module "godot" {
         constructor(from: Quaternion)
         constructor(axis: Vector3, angle: number /*f64*/)
         constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3)
+        set_indexed(index: number, value: Vector3)
+        get_indexed(index: number): Vector3
         
         /** Returns the [url=https://en.wikipedia.org/wiki/Invertible_matrix]inverse of this basis's matrix[/url]. */
         inverse(): Basis
@@ -8431,6 +8447,8 @@ declare module "godot" {
         constructor(from: Projection)
         constructor(from: Transform3D)
         constructor(x_axis: Vector4, y_axis: Vector4, z_axis: Vector4, w_axis: Vector4)
+        set_indexed(index: number, value: Vector4)
+        get_indexed(index: number): Vector4
         
         /** Creates a new [Projection] that projects positions from a depth range of `-1` to `1` to one that ranges from `0` to `1`, and flips the projected positions vertically, according to [param flip_y]. */
         static create_depth_correction(flip_y: boolean): Projection
@@ -8986,6 +9004,8 @@ declare module "godot" {
         constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/, a: number /*f64*/)
         constructor(code: string)
         constructor(code: string, alpha: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
         
         /** Returns the color converted to a 32-bit integer in ARGB format (each component is 8 bits). ARGB is more compatible with DirectX.  
          *    
@@ -9197,88 +9217,5 @@ declare module "godot" {
         static LESS_EQUAL(left: RID, right: RID): boolean
         static GREATER(left: RID, right: RID): boolean
         static GREATER_EQUAL(left: RID, right: RID): boolean
-    }
-    /** A built-in type representing a method or a standalone function.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_callable.html  
-     */
-    class Callable {
-        constructor()
-        constructor(from: Callable)
-        constructor(object: Object, method: StringName)
-        
-        /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
-        callv(arguments_: Array): void
-        
-        /** Returns `true` if this [Callable] has no target to call the method on. */
-        is_null(): boolean
-        
-        /** Returns `true` if this [Callable] is a custom callable. Custom callables are created from [method bind] or [method unbind]. In GDScript, lambda functions are also custom callables. */
-        is_custom(): boolean
-        
-        /** Returns `true` if this [Callable] is a standard callable. This method is the opposite of [method is_custom]. Returns `false` if this callable is a lambda function. */
-        is_standard(): boolean
-        
-        /** Returns `true` if the callable's object exists and has a valid method name assigned, or is a custom callable. */
-        is_valid(): boolean
-        
-        /** Returns the object on which this [Callable] is called. */
-        get_object(): Object
-        
-        /** Returns the ID of this [Callable]'s object (see [method Object.get_instance_id]). */
-        get_object_id(): number /*i64*/
-        
-        /** Returns the name of the method represented by this [Callable]. If the callable is a GDScript lambda function, returns the function's name or `"<anonymous lambda>"`. */
-        get_method(): StringName
-        
-        /** Returns the total amount of arguments bound (or unbound) via successive [method bind] or [method unbind] calls. If the amount of arguments unbound is greater than the ones bound, this function returns a value less than zero. */
-        get_bound_arguments_count(): number /*i64*/
-        
-        /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
-        get_bound_arguments(): Array
-        
-        /** Returns the 32-bit hash value of this [Callable]'s object.  
-         *      
-         *  **Note:** [Callable]s with equal content will always produce identical hash values. However, the reverse is not true. Returning identical hash values does  *not*  imply the callables are equal, because different callables can have identical hash values due to hash collisions. The engine uses a 32-bit hash algorithm for [method hash].  
-         */
-        hash(): number /*i64*/
-        
-        /** Returns a copy of this [Callable] with one or more arguments bound, reading them from an array. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         */
-        bindv(arguments_: Array): Callable
-        
-        /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         *    
-         */
-        unbind(argcount: number /*i64*/): Callable
-        
-        /** Calls the method represented by this [Callable]. Arguments can be passed and should match the method's signature. */
-        call(...vargargs: any[]): void
-        
-        /** Calls the method represented by this [Callable] in deferred mode, i.e. at the end of the current frame. Arguments can be passed and should match the method's signature.  
-         *    
-         *      
-         *  **Note:** Deferred calls are processed at idle time. Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. This means you should not call a method deferred from itself (or from a method called by it), as this causes infinite recursion the same way as if you had called the method directly.  
-         *  See also [method Object.call_deferred].  
-         */
-        call_deferred(...vargargs: any[]): void
-        
-        /** Perform an RPC (Remote Procedure Call) on all connected peers. This is used for multiplayer and is normally not available, unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc]. */
-        rpc(...vargargs: any[]): void
-        
-        /** Perform an RPC (Remote Procedure Call) on a specific peer ID (see multiplayer documentation for reference). This is used for multiplayer and is normally not available unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc_id]. */
-        rpc_id(peer_id: number /*i64*/, ...vargargs: any[]): void
-        
-        /** Returns a copy of this [Callable] with one or more arguments bound. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         */
-        bind(...vargargs: any[]): Callable
-        static EQUAL(left: Callable, right: Callable): boolean
-        static NOT_EQUAL(left: Callable, right: Callable): boolean
     }
 }
