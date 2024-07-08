@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvykv0u5duqyj"]
 
-[ext_resource type="Script" path="res://javascripts/test_button.js" id="1_ewk4v"]
-[ext_resource type="Script" path="res://javascripts/ui/main_ui.js" id="1_j74ag"]
+[ext_resource type="Script" path="res://test_button.ts" id="1_ewk4v"]
+[ext_resource type="Script" path="res://ui/main_ui.ts" id="1_j74ag"]
 [ext_resource type="Texture2D" uid="uid://dx3san3aa6mwy" path="res://icon.svg" id="4_2050k"]
-[ext_resource type="Script" path="res://javascripts/tests/my_editor_sprite.js" id="5_l2t80"]
+[ext_resource type="Script" path="res://tests/my_editor_sprite.ts" id="5_l2t80"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_j74ag")

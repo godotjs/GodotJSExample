@@ -476,6 +476,9 @@ declare module "godot" {
     }
     class ScriptEditorPlugin extends EditorPlugin {
     }
+    class ScriptEditorQuickOpen extends ConfirmationDialog {
+        readonly goto_line: Signal // line: number /*i64*/ => void
+    }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptextension.html */
     class ScriptExtension extends Script {
         /* gdvirtual */ _editor_can_reload_from_file(): boolean
@@ -618,6 +621,8 @@ declare module "godot" {
         /* gdvirtual */ _frame(): void
         /* gdvirtual */ _handles_global_class_type(type: string): boolean
         /* gdvirtual */ _get_global_class_name(path: string): Dictionary
+    }
+    class ScriptTextEditor extends ScriptEditorBase {
     }
     /** Abstract base class for scrollbars.  
      *  	  

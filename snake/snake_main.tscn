@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl03a0k5wwo6k"]
 
-[ext_resource type="Script" path="res://javascripts/snake/snake.js" id="1_m12bw"]
+[ext_resource type="Script" path="res://snake/snake.ts" id="1_m12bw"]
 [ext_resource type="Texture2D" uid="uid://cnjdpt0kv5met" path="res://snake/block.png" id="2_jaf55"]
 
 [node name="SnakeMain" type="Node"]

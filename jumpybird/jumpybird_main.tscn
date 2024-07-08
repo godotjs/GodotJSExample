@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dbhmowwswy0h1"]
 
-[ext_resource type="Script" path="res://javascripts/jumpybird/jumpybird_main.js" id="1_g32yg"]
+[ext_resource type="Script" path="res://jumpybird/jumpybird_main.ts" id="1_g32yg"]
 [ext_resource type="Texture2D" uid="uid://cyaeul2yrvsg1" path="res://jumpybird/sky.png" id="1_ldqsc"]
 [ext_resource type="Shader" path="res://jumpybird/offset.gdshader" id="2_c4h7u"]
 [ext_resource type="Texture2D" uid="uid://dc0hacnvedgyi" path="res://jumpybird/skyline.png" id="2_oel3y"]

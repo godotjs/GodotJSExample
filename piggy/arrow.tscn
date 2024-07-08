@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://by1jniyvgjfc3"]
 
 [ext_resource type="Texture2D" uid="uid://dembwi6nwxpa7" path="res://piggy/arrow.png" id="1_3stg5"]
-[ext_resource type="Script" path="res://javascripts/piggy/arrow.js" id="2_qlr78"]
+[ext_resource type="Script" path="res://piggy/arrow.ts" id="2_qlr78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1ai7"]
 size = Vector2(50, 8)

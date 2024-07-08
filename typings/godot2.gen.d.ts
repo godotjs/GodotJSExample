@@ -1,6 +1,8 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    class CollisionShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
     namespace ColorPicker {
         enum ColorModeType {
             /** Allows editing the color with Red/Green/Blue sliders. */
@@ -387,6 +389,8 @@ declare module "godot" {
         readonly connected: Signal //  => void
     }
     class ConnectDialogBinds extends Object {
+    }
+    class ConnectionInfoDialog extends AcceptDialog {
     }
     class ConnectionsDock extends VBoxContainer {
         update_tree(): void
@@ -3780,6 +3784,8 @@ declare module "godot" {
     }
     class EditorPerformanceProfiler extends HSplitContainer {
     }
+    class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
+    }
     namespace EditorPlugin {
         enum CustomControlContainer {
             /** Main editor toolbar, next to play buttons. */
@@ -4301,6 +4307,8 @@ declare module "godot" {
     }
     class EditorPropertyEnum extends EditorProperty {
     }
+    class EditorPropertyFloat extends EditorProperty {
+    }
     class EditorPropertyInteger extends EditorProperty {
     }
     class EditorPropertyLocalizableString extends EditorProperty {
@@ -4749,6 +4757,8 @@ declare module "godot" {
         
         /** Emitted when the value form loses focus. */
         readonly value_focus_exited: Signal //  => void
+    }
+    class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
     }
     /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
      *  	  
@@ -8803,11 +8813,15 @@ declare module "godot" {
     }
     class GodotJSEditorPlugin extends EditorPlugin {
     }
+    class GodotJSExportPlugin extends EditorExportPlugin {
+    }
     class GodotJSREPL extends Control {
     }
     class GodotJSScript extends Script {
     }
     class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
+    }
+    class GotoLineDialog extends ConfirmationDialog {
     }
     namespace Gradient {
         enum InterpolationMode {

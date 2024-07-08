@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://oskesmgkv1ri"]
 
 [ext_resource type="Texture2D" uid="uid://8fwfwrajpke" path="res://piggy/wolf.png" id="1_pivfj"]
-[ext_resource type="Script" path="res://javascripts/piggy/wolf.js" id="2_p2d7p"]
+[ext_resource type="Script" path="res://piggy/wolf.ts" id="2_p2d7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r4d5"]
 size = Vector2(27.25, 28.5)

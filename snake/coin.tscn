@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://24wxoyx3tup0"]
 
 [ext_resource type="Texture2D" uid="uid://cg5erk8a56k0d" path="res://snake/coin.png" id="1_haolp"]
-[ext_resource type="Script" path="res://javascripts/snake/coin.js" id="2_rogjs"]
+[ext_resource type="Script" path="res://snake/coin.ts" id="2_rogjs"]
 
 [node name="Coin" type="Sprite2D"]
 position = Vector2(128, 0)
