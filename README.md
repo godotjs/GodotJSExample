@@ -16,7 +16,7 @@ In this example, only a limited subset of Godot's features is utilized:
 * using primitive types (float, bool, string, StringName)
 * export variables
 
-[![Snake](./raw/screenshots/snake_01.gif)](./typescripts/src/snake/snake.ts)
+[![Snake](./raw/screenshots/snake_01.gif)](./snake/snake.ts)
 
 
 ## JumpyBird
@@ -24,7 +24,7 @@ In this example, only a limited subset of Godot's features is utilized:
 Additional features used:
 * Signals (connect `area_shape_entered` signal with js class member function)
 
-[![JumpyBird](./raw/screenshots/jumpybird.gif)](./typescripts/src/jumpybird/jumpybird_main.ts)
+[![JumpyBird](./raw/screenshots/jumpybird.gif)](./jumpybird/jumpybird_main.ts)
 
 ## Piggy
 
@@ -33,7 +33,7 @@ Additional features used:
 * `onready_` annotation
 * `export_` annotation
 
-[![Piggy](./raw/screenshots/piggy.gif)](./typescripts/src/piggy/piggy_main.ts)
+[![Piggy](./raw/screenshots/piggy.gif)](./piggy/piggy_main.ts)
 
 ## Audio Generator
 
