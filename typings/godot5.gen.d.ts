@@ -1,6 +1,1628 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** Imports a MP3 audio file for playback.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceimportermp3.html  
+     */
+    class ResourceImporterMP3 extends ResourceImporter {
+    }
+    /** Imports an OBJ 3D model as an independent [Mesh] or scene.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceimporterobj.html  
+     */
+    class ResourceImporterOBJ extends ResourceImporter {
+    }
+    /** Imports an Ogg Vorbis audio file for playback.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceimporteroggvorbis.html  
+     */
+    class ResourceImporterOggVorbis extends ResourceImporter {
+        /** This method loads audio data from a PackedByteArray buffer into an AudioStreamOggVorbis object. */
+        static load_from_buffer(buffer: PackedByteArray): AudioStreamOggVorbis
+        
+        /** This method loads audio data from a file into an AudioStreamOggVorbis object. The file path is provided as a string. */
+        static load_from_file(path: string): AudioStreamOggVorbis
+    }
+    /** Imports a glTF, FBX, Collada or Blender 3D scene.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceimporterscene.html  
+     */
+    class ResourceImporterScene extends ResourceImporter {
+    }
+    /** Imports native GLSL shaders (not Godot shaders) as a [RDShaderFile].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceimportershaderfile.html  
+     */
+    class ResourceImporterShaderFile extends ResourceImporter {
+    }
+    /** Imports an image for use in 2D or 3D rendering.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceimportertexture.html  
+     */
+    class ResourceImporterTexture extends ResourceImporter {
+    }
+    /** Imports a collection of textures from a PNG image into an optimized [AtlasTexture] for 2D rendering.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceimportertextureatlas.html  
+     */
+    class ResourceImporterTextureAtlas extends ResourceImporter {
+    }
+    /** Imports a WAV audio file for playback.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceimporterwav.html  
+     */
+    class ResourceImporterWAV extends ResourceImporter {
+    }
+    /** A node used to preload sub-resources inside a scene.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourcepreloader.html  
+     */
+    class ResourcePreloader extends Node {
+        _set_resources(resources: Array): void
+        _get_resources(): Array
+        
+        /** Adds a resource to the preloader with the given [param name]. If a resource with the given [param name] already exists, the new resource will be renamed to "[param name] N" where N is an incrementing number starting from 2. */
+        add_resource(name: StringName, resource: Resource): void
+        
+        /** Removes the resource associated to [param name] from the preloader. */
+        remove_resource(name: StringName): void
+        
+        /** Renames a resource inside the preloader from [param name] to [param newname]. */
+        rename_resource(name: StringName, newname: StringName): void
+        
+        /** Returns `true` if the preloader contains a resource associated to [param name]. */
+        has_resource(name: StringName): boolean
+        
+        /** Returns the resource associated to [param name]. */
+        get_resource(name: StringName): Resource
+        
+        /** Returns the list of resources inside the preloader. */
+        get_resource_list(): PackedStringArray
+        get resources(): Array
+        set resources(value: Array)
+    }
+    class ResourcePreloaderEditor extends PanelContainer {
+        _update_library(): void
+        _remove_resource(to_remove: string): void
+    }
+    class ResourcePreloaderEditorPlugin extends EditorPlugin {
+    }
+    namespace RibbonTrailMesh {
+        enum Shape {
+            /** Gives the mesh a single flat face. */
+            SHAPE_FLAT = 0,
+            
+            /** Gives the mesh two perpendicular flat faces, making a cross shape. */
+            SHAPE_CROSS = 1,
+        }
+    }
+    /** Represents a straight ribbon-shaped [PrimitiveMesh] with variable width.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_ribbontrailmesh.html  
+     */
+    class RibbonTrailMesh extends PrimitiveMesh {
+        set_size(size: number /*f64*/): void
+        get_size(): number /*f64*/
+        set_sections(sections: number /*i64*/): void
+        get_sections(): number /*i64*/
+        set_section_length(section_length: number /*f64*/): void
+        get_section_length(): number /*f64*/
+        set_section_segments(section_segments: number /*i64*/): void
+        get_section_segments(): number /*i64*/
+        set_curve(curve: Curve): void
+        get_curve(): Curve
+        set_shape(shape: RibbonTrailMesh.Shape): void
+        get_shape(): RibbonTrailMesh.Shape
+        
+        /** Determines the shape of the ribbon. */
+        get shape(): number /*i64*/
+        set shape(value: number /*i64*/)
+        
+        /** The baseline size of the ribbon. The size of a particular section segment is obtained by multiplying this size by the value of the [member curve] at the given distance. */
+        get size(): number /*f64*/
+        set size(value: number /*f64*/)
+        
+        /** The total number of sections on the ribbon. */
+        get sections(): number /*i64*/
+        set sections(value: number /*i64*/)
+        
+        /** The length of a section of the ribbon. */
+        get section_length(): number /*f64*/
+        set section_length(value: number /*f64*/)
+        
+        /** The number of segments in a section. The [member curve] is sampled on each segment to determine its size. Higher values result in a more detailed ribbon at the cost of performance. */
+        get section_segments(): number /*i64*/
+        set section_segments(value: number /*i64*/)
+        
+        /** Determines the size of the ribbon along its length. The size of a particular section segment is obtained by multiplying the baseline [member size] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. */
+        get curve(): Curve
+        set curve(value: Curve)
+    }
+    /** A custom effect for a [RichTextLabel].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_richtexteffect.html  
+     */
+    class RichTextEffect extends Resource {
+        /** Override this method to modify properties in [param char_fx]. The method must return `true` if the character could be transformed successfully. If the method returns `false`, it will skip transformation to avoid displaying broken text. */
+        /* gdvirtual */ _process_custom_fx(char_fx: CharFXTransform): boolean
+    }
+    namespace RichTextLabel {
+        enum ListType {
+            /** Each list item has a number marker. */
+            LIST_NUMBERS = 0,
+            
+            /** Each list item has a letter marker. */
+            LIST_LETTERS = 1,
+            
+            /** Each list item has a roman number marker. */
+            LIST_ROMAN = 2,
+            
+            /** Each list item has a filled circle marker. */
+            LIST_DOTS = 3,
+        }
+        enum MenuItems {
+            /** Copies the selected text. */
+            MENU_COPY = 0,
+            
+            /** Selects the whole [RichTextLabel] text. */
+            MENU_SELECT_ALL = 1,
+            
+            /** Represents the size of the [enum MenuItems] enum. */
+            MENU_MAX = 2,
+        }
+        enum ImageUpdateMask {
+            /** If this bit is set, [method update_image] changes image texture. */
+            UPDATE_TEXTURE = 1,
+            
+            /** If this bit is set, [method update_image] changes image size. */
+            UPDATE_SIZE = 2,
+            
+            /** If this bit is set, [method update_image] changes image color. */
+            UPDATE_COLOR = 4,
+            
+            /** If this bit is set, [method update_image] changes image inline alignment. */
+            UPDATE_ALIGNMENT = 8,
+            
+            /** If this bit is set, [method update_image] changes image texture region. */
+            UPDATE_REGION = 16,
+            
+            /** If this bit is set, [method update_image] changes image padding. */
+            UPDATE_PAD = 32,
+            
+            /** If this bit is set, [method update_image] changes image tooltip. */
+            UPDATE_TOOLTIP = 64,
+            
+            /** If this bit is set, [method update_image] changes image width from/to percents. */
+            UPDATE_WIDTH_IN_PERCENT = 128,
+        }
+    }
+    /** A control for displaying text that can contain different font styles, images, and basic formatting.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_richtextlabel.html  
+     */
+    class RichTextLabel extends Control {
+        /** Returns the text without BBCode mark-up. */
+        get_parsed_text(): string
+        
+        /** Adds raw non-BBCode-parsed text to the tag stack. */
+        add_text(text: string): void
+        set_text(text: string): void
+        
+        /** Adds an image's opening and closing tags to the tag stack, optionally providing a [param width] and [param height] to resize the image, a [param color] to tint the image and a [param region] to only use parts of the image.  
+         *  If [param width] or [param height] is set to 0, the image size will be adjusted in order to keep the original aspect ratio.  
+         *  If [param width] and [param height] are not set, but [param region] is, the region's rect will be used.  
+         *  [param key] is an optional identifier, that can be used to modify the image via [method update_image].  
+         *  If [param pad] is set, and the image is smaller than the size specified by [param width] and [param height], the image padding is added to match the size instead of upscaling.  
+         *  If [param size_in_percent] is set, [param width] and [param height] values are percentages of the control width instead of pixels.  
+         */
+        add_image(image: Texture2D, width: number /*i64*/ = 0, height: number /*i64*/ = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, key: any = <any> {} /*compound.type from nil*/, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        
+        /** Updates the existing images with the key [param key]. Only properties specified by [param mask] bits are updated. See [method add_image]. */
+        update_image(key: any, mask: RichTextLabel.ImageUpdateMask, image: Texture2D, width: number /*i64*/ = 0, height: number /*i64*/ = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        
+        /** Adds a newline tag to the tag stack. */
+        newline(): void
+        
+        /** Removes a paragraph of content from the label. Returns `true` if the paragraph exists.  
+         *  The [param paragraph] argument is the index of the paragraph to remove, it can take values in the interval `[0, get_paragraph_count() - 1]`.  
+         */
+        remove_paragraph(paragraph: number /*i64*/): boolean
+        
+        /** Adds a [code skip-lint][font]` tag to the tag stack. Overrides default fonts for its duration.  
+         *  Passing `0` to [param font_size] will use the existing default font size.  
+         */
+        push_font(font: Font, font_size: number /*i64*/ = 0): void
+        
+        /** Adds a [code skip-lint][font_size]` tag to the tag stack. Overrides default font size for its duration. */
+        push_font_size(font_size: number /*i64*/): void
+        
+        /** Adds a [code skip-lint][font]` tag with a normal font to the tag stack. */
+        push_normal(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a bold font to the tag stack. This is the same as adding a [code skip-lint]**` tag if not currently in a [code skip-lint] *` tag. */
+        push_bold(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a bold italics font to the tag stack. */
+        push_bold_italics(): void
+        
+        /** Adds a [code skip-lint][font]` tag with an italics font to the tag stack. This is the same as adding an [code skip-lint] *` tag if not currently in a [code skip-lint]**` tag. */
+        push_italics(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a monospace font to the tag stack. */
+        push_mono(): void
+        
+        /** Adds a [code skip-lint][color]` tag to the tag stack. */
+        push_color(color: Color): void
+        
+        /** Adds a [code skip-lint][outline_size]` tag to the tag stack. Overrides default text outline size for its duration. */
+        push_outline_size(outline_size: number /*i64*/): void
+        
+        /** Adds a [code skip-lint][outline_color]` tag to the tag stack. Adds text outline for its duration. */
+        push_outline_color(color: Color): void
+        
+        /** Adds a [code skip-lint][p]` tag to the tag stack. */
+        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/): void
+        
+        /** Adds an [code skip-lint][indent]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
+        push_indent(level: number /*i64*/): void
+        
+        /** Adds [code skip-lint][ol]` or [code skip-lint][ul]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
+        push_list(level: number /*i64*/, type: RichTextLabel.ListType, capitalize: boolean, bullet: string = '•'): void
+        
+        /** Adds a meta tag to the tag stack. Similar to the BBCode [code skip-lint][url=something]{text}[/url]`, but supports non-[String] metadata types.  
+         *      
+         *  **Note:** Meta tags do nothing by default when clicked. To assign behavior when clicked, connect [signal meta_clicked] to a function that is called when the meta tag is clicked.  
+         */
+        push_meta(data: any): void
+        
+        /** Adds a [code skip-lint][hint]` tag to the tag stack. Same as BBCode [code skip-lint][hint=something]{text}[/hint]`. */
+        push_hint(description: string): void
+        
+        /** Adds language code used for text shaping algorithm and Open-Type font features. */
+        push_language(language: string): void
+        
+        /** Adds a [code skip-lint][u]` tag to the tag stack. */
+        push_underline(): void
+        
+        /** Adds a [code skip-lint][s]` tag to the tag stack. */
+        push_strikethrough(): void
+        
+        /** Adds a [code skip-lint][table=columns,inline_align]` tag to the tag stack. */
+        push_table(columns: number /*i64*/, inline_align: InlineAlignment = 0, align_to_row: number /*i64*/ = -1): void
+        
+        /** Adds a [code skip-lint][dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text. */
+        push_dropcap(string_: string, font: Font, size: number /*i64*/, dropcap_margins: Rect2 = <any> {} /*compound.type from 7([object Object])*/, color: Color = new Color(1, 1, 1, 1), outline_size: number /*i64*/ = 0, outline_color: Color = new Color(0, 0, 0, 0)): void
+        
+        /** Edits the selected column's expansion options. If [param expand] is `true`, the column expands in proportion to its expansion ratio versus the other columns' ratios.  
+         *  For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively.  
+         *  If [param expand] is `false`, the column will not contribute to the total ratio.  
+         */
+        set_table_column_expand(column: number /*i64*/, expand: boolean, ratio: number /*i64*/ = 1): void
+        
+        /** Sets color of a table cell. Separate colors for alternating rows can be specified. */
+        set_cell_row_background_color(odd_row_bg: Color, even_row_bg: Color): void
+        
+        /** Sets color of a table cell border. */
+        set_cell_border_color(color: Color): void
+        
+        /** Sets minimum and maximum size overrides for a table cell. */
+        set_cell_size_override(min_size: Vector2, max_size: Vector2): void
+        
+        /** Sets inner padding of a table cell. */
+        set_cell_padding(padding: Rect2): void
+        
+        /** Adds a [code skip-lint][cell]` tag to the tag stack. Must be inside a [code skip-lint][table]` tag. See [method push_table] for details. */
+        push_cell(): void
+        
+        /** Adds a [code skip-lint][fgcolor]` tag to the tag stack. */
+        push_fgcolor(fgcolor: Color): void
+        
+        /** Adds a [code skip-lint][bgcolor]` tag to the tag stack. */
+        push_bgcolor(bgcolor: Color): void
+        
+        /** Adds a custom effect tag to the tag stack. The effect does not need to be in [member custom_effects]. The environment is directly passed to the effect. */
+        push_customfx(effect: RichTextEffect, env: Dictionary): void
+        
+        /** Adds a context marker to the tag stack. See [method pop_context]. */
+        push_context(): void
+        
+        /** Terminates tags opened after the last [method push_context] call (including context marker), or all tags if there's no context marker on the stack. */
+        pop_context(): void
+        
+        /** Terminates the current tag. Use after `push_*` methods to close BBCodes manually. Does not need to follow `add_*` methods. */
+        pop(): void
+        
+        /** Terminates all tags opened by `push_*` methods. */
+        pop_all(): void
+        
+        /** Clears the tag stack.  
+         *      
+         *  **Note:** This method will not modify [member text], but setting [member text] to an empty string also clears the stack.  
+         */
+        clear(): void
+        set_structured_text_bidi_override(parser: TextServer.StructuredTextParser): void
+        get_structured_text_bidi_override(): TextServer.StructuredTextParser
+        set_structured_text_bidi_override_options(args: Array): void
+        get_structured_text_bidi_override_options(): Array
+        set_text_direction(direction: Control.TextDirection): void
+        get_text_direction(): Control.TextDirection
+        set_language(language: string): void
+        get_language(): string
+        set_autowrap_mode(autowrap_mode: TextServer.AutowrapMode): void
+        get_autowrap_mode(): TextServer.AutowrapMode
+        set_meta_underline(enable: boolean): void
+        is_meta_underlined(): boolean
+        set_hint_underline(enable: boolean): void
+        is_hint_underlined(): boolean
+        set_scroll_active(active: boolean): void
+        is_scroll_active(): boolean
+        set_scroll_follow(follow: boolean): void
+        is_scroll_following(): boolean
+        
+        /** Returns the vertical scrollbar.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
+         */
+        get_v_scroll_bar(): VScrollBar
+        
+        /** Scrolls the window's top line to match [param line]. */
+        scroll_to_line(line: number /*i64*/): void
+        
+        /** Scrolls the window's top line to match first line of the [param paragraph]. */
+        scroll_to_paragraph(paragraph: number /*i64*/): void
+        
+        /** Scrolls to the beginning of the current selection. */
+        scroll_to_selection(): void
+        set_tab_size(spaces: number /*i64*/): void
+        get_tab_size(): number /*i64*/
+        set_fit_content(enabled: boolean): void
+        is_fit_content_enabled(): boolean
+        set_selection_enabled(enabled: boolean): void
+        is_selection_enabled(): boolean
+        set_context_menu_enabled(enabled: boolean): void
+        is_context_menu_enabled(): boolean
+        set_shortcut_keys_enabled(enabled: boolean): void
+        is_shortcut_keys_enabled(): boolean
+        set_deselect_on_focus_loss_enabled(enable: boolean): void
+        is_deselect_on_focus_loss_enabled(): boolean
+        set_drag_and_drop_selection_enabled(enable: boolean): void
+        is_drag_and_drop_selection_enabled(): boolean
+        
+        /** Returns the current selection first character index if a selection is active, `-1` otherwise. Does not include BBCodes. */
+        get_selection_from(): number /*i64*/
+        
+        /** Returns the current selection last character index if a selection is active, `-1` otherwise. Does not include BBCodes. */
+        get_selection_to(): number /*i64*/
+        
+        /** Select all the text.  
+         *  If [member selection_enabled] is `false`, no selection will occur.  
+         */
+        select_all(): void
+        
+        /** Returns the current selection text. Does not include BBCodes. */
+        get_selected_text(): string
+        
+        /** Clears the current selection. */
+        deselect(): void
+        
+        /** The assignment version of [method append_text]. Clears the tag stack and inserts the new content. */
+        parse_bbcode(bbcode: string): void
+        
+        /** Parses [param bbcode] and adds tags to the tag stack as needed.  
+         *      
+         *  **Note:** Using this method, you can't close a tag that was opened in a previous [method append_text] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [member text] instead of using [method append_text].  
+         */
+        append_text(bbcode: string): void
+        get_text(): string
+        
+        /** If [member threaded] is enabled, returns `true` if the background thread has finished text processing, otherwise always return `true`. */
+        is_ready(): boolean
+        set_threaded(threaded: boolean): void
+        is_threaded(): boolean
+        set_progress_bar_delay(delay_ms: number /*i64*/): void
+        get_progress_bar_delay(): number /*i64*/
+        set_visible_characters(amount: number /*i64*/): void
+        get_visible_characters(): number /*i64*/
+        get_visible_characters_behavior(): TextServer.VisibleCharactersBehavior
+        set_visible_characters_behavior(behavior: TextServer.VisibleCharactersBehavior): void
+        set_visible_ratio(ratio: number /*f64*/): void
+        get_visible_ratio(): number /*f64*/
+        
+        /** Returns the line number of the character position provided. Line and character numbers are both zero-indexed.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_character_line(character: number /*i64*/): number /*i64*/
+        
+        /** Returns the paragraph number of the character position provided. Paragraph and character numbers are both zero-indexed.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_character_paragraph(character: number /*i64*/): number /*i64*/
+        
+        /** Returns the total number of characters from text tags. Does not include BBCodes. */
+        get_total_character_count(): number /*i64*/
+        set_use_bbcode(enable: boolean): void
+        is_using_bbcode(): boolean
+        
+        /** Returns the total number of lines in the text. Wrapped text is counted as multiple lines.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_line_count(): number /*i64*/
+        
+        /** Returns the number of visible lines.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_visible_line_count(): number /*i64*/
+        
+        /** Returns the total number of paragraphs (newlines or `p` tags in the tag stack's text tags). Considers wrapped text as one paragraph. */
+        get_paragraph_count(): number /*i64*/
+        
+        /** Returns the number of visible paragraphs. A paragraph is considered visible if at least one of its lines is visible.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_visible_paragraph_count(): number /*i64*/
+        
+        /** Returns the height of the content.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_content_height(): number /*i64*/
+        
+        /** Returns the width of the content.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_content_width(): number /*i64*/
+        
+        /** Returns the vertical offset of the line found at the provided index.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_line_offset(line: number /*i64*/): number /*f64*/
+        
+        /** Returns the vertical offset of the paragraph found at the provided index.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_paragraph_offset(paragraph: number /*i64*/): number /*f64*/
+        
+        /** Parses BBCode parameter [param expressions] into a dictionary. */
+        parse_expressions_for_values(expressions: PackedStringArray): Dictionary
+        set_effects(effects: Array): void
+        get_effects(): Array
+        
+        /** Installs a custom effect. This can also be done in the RichTextLabel inspector using the [member custom_effects] property. [param effect] should be a valid [RichTextEffect].  
+         *  Example RichTextEffect:  
+         *    
+         *  Registering the above effect in RichTextLabel from script:  
+         *    
+         */
+        install_effect(effect: any): void
+        
+        /** Returns the [PopupMenu] of this [RichTextLabel]. By default, this menu is displayed when right-clicking on the [RichTextLabel].  
+         *  You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:  
+         *    
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.  
+         */
+        get_menu(): PopupMenu
+        
+        /** Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided). */
+        is_menu_visible(): boolean
+        
+        /** Executes a given action as defined in the [enum MenuItems] enum. */
+        menu_option(option: number /*i64*/): void
+        _thread_end(): void
+        
+        /** If `true`, the label uses BBCode formatting. */
+        get bbcode_enabled(): boolean
+        set bbcode_enabled(value: boolean)
+        
+        /** The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.  
+         *      
+         *  **Note:** If [member bbcode_enabled] is `true`, it is unadvised to use the `+=` operator with [member text] (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [method append_text] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.  
+         */
+        get text(): string
+        set text(value: string)
+        
+        /** If `true`, the label's minimum size will be automatically updated to fit its content, matching the behavior of [Label]. */
+        get fit_content(): boolean
+        set fit_content(value: boolean)
+        
+        /** If `true`, the scrollbar is visible. Setting this to `false` does not block scrolling completely. See [method scroll_to_line]. */
+        get scroll_active(): boolean
+        set scroll_active(value: boolean)
+        
+        /** If `true`, the window scrolls down to display new content automatically. */
+        get scroll_following(): boolean
+        set scroll_following(value: boolean)
+        
+        /** If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode]. */
+        get autowrap_mode(): number /*i64*/
+        set autowrap_mode(value: number /*i64*/)
+        
+        /** The number of spaces associated with a single tab length. Does not affect `\t` in text tags, only indent tags. */
+        get tab_size(): number /*i64*/
+        set tab_size(value: number /*i64*/)
+        
+        /** If `true`, a right-click displays the context menu. */
+        get context_menu_enabled(): boolean
+        set context_menu_enabled(value: boolean)
+        
+        /** If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled. */
+        get shortcut_keys_enabled(): boolean
+        set shortcut_keys_enabled(value: boolean)
+        
+        /** The currently installed custom effects. This is an array of [RichTextEffect]s.  
+         *  To add a custom effect, it's more convenient to use [method install_effect].  
+         */
+        get custom_effects(): Array
+        set custom_effects(value: Array)
+        
+        /** If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`. These tags can call a function when clicked if [signal meta_clicked] is connected to a function. */
+        get meta_underlined(): boolean
+        set meta_underlined(value: boolean)
+        
+        /** If `true`, the label underlines hint tags such as [code skip-lint][hint=description]{text}[/hint]`. */
+        get hint_underlined(): boolean
+        set hint_underlined(value: boolean)
+        
+        /** If `true`, text processing is done in a background thread. */
+        get threaded(): boolean
+        set threaded(value: boolean)
+        
+        /** The delay after which the loading progress bar is displayed, in milliseconds. Set to `-1` to disable progress bar entirely.  
+         *      
+         *  **Note:** Progress bar is displayed only if [member threaded] is enabled.  
+         */
+        get progress_bar_delay(): number /*i64*/
+        set progress_bar_delay(value: number /*i64*/)
+        
+        /** If `true`, the label allows text selection. */
+        get selection_enabled(): boolean
+        set selection_enabled(value: boolean)
+        
+        /** If `true`, the selected text will be deselected when focus is lost. */
+        get deselect_on_focus_loss_enabled(): boolean
+        set deselect_on_focus_loss_enabled(value: boolean)
+        
+        /** If `true`, allow drag and drop of selected text. */
+        get drag_and_drop_selection_enabled(): boolean
+        set drag_and_drop_selection_enabled(value: boolean)
+        
+        /** The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.  
+         *      
+         *  **Note:** Setting this property updates [member visible_ratio] accordingly.  
+         */
+        get visible_characters(): number /*i64*/
+        set visible_characters(value: number /*i64*/)
+        
+        /** Sets the clipping behavior when [member visible_characters] or [member visible_ratio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info. */
+        get visible_characters_behavior(): number /*i64*/
+        set visible_characters_behavior(value: number /*i64*/)
+        
+        /** The fraction of characters to display, relative to the total number of characters (see [method get_total_character_count]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.  
+         *      
+         *  **Note:** Setting this property updates [member visible_characters] accordingly.  
+         */
+        get visible_ratio(): number /*f64*/
+        set visible_ratio(value: number /*f64*/)
+        
+        /** Base text writing direction. */
+        get text_direction(): number /*i64*/
+        set text_direction(value: number /*i64*/)
+        
+        /** Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+        get language(): string
+        set language(value: string)
+        
+        /** Set BiDi algorithm override for the structured text. */
+        get structured_text_bidi_override(): number /*i64*/
+        set structured_text_bidi_override(value: number /*i64*/)
+        
+        /** Set additional options for BiDi override. */
+        get structured_text_bidi_override_options(): Array
+        set structured_text_bidi_override_options(value: Array)
+        
+        /** Triggered when the user clicks on content between meta (URL) tags. If the meta is defined in BBCode, e.g. [code skip-lint][url={"key": "value"}]Text[/url]`, then the parameter for this signal will always be a [String] type. If a particular type or an object is desired, the [method push_meta] method must be used to manually insert the data into the tag stack. Alternatively, you can convert the [String] input to the desired type based on its contents (such as calling [method JSON.parse] on it).  
+         *  For example, the following method can be connected to [signal meta_clicked] to open clicked URLs using the user's default web browser:  
+         *    
+         */
+        readonly meta_clicked: Signal // meta: any => void
+        
+        /** Triggers when the mouse enters a meta tag. */
+        readonly meta_hover_started: Signal // meta: any => void
+        
+        /** Triggers when the mouse exits a meta tag. */
+        readonly meta_hover_ended: Signal // meta: any => void
+        
+        /** Triggered when the document is fully loaded. */
+        readonly finished: Signal //  => void
+    }
+    namespace RigidBody2D {
+        enum FreezeMode {
+            /** Static body freeze mode (default). The body is not affected by gravity and forces. It can be only moved by user code and doesn't collide with other bodies along its path. */
+            FREEZE_MODE_STATIC = 0,
+            
+            /** Kinematic body freeze mode. Similar to [constant FREEZE_MODE_STATIC], but collides with other bodies along its path when moved. Useful for a frozen body that needs to be animated. */
+            FREEZE_MODE_KINEMATIC = 1,
+        }
+        enum CenterOfMassMode {
+            /** In this mode, the body's center of mass is calculated automatically based on its shapes. This assumes that the shapes' origins are also their center of mass. */
+            CENTER_OF_MASS_MODE_AUTO = 0,
+            
+            /** In this mode, the body's center of mass is set through [member center_of_mass]. Defaults to the body's origin position. */
+            CENTER_OF_MASS_MODE_CUSTOM = 1,
+        }
+        enum DampMode {
+            /** In this mode, the body's damping value is added to any value set in areas or the default value. */
+            DAMP_MODE_COMBINE = 0,
+            
+            /** In this mode, the body's damping value replaces any value set in areas or the default value. */
+            DAMP_MODE_REPLACE = 1,
+        }
+        enum CCDMode {
+            /** Continuous collision detection disabled. This is the fastest way to detect body collisions, but can miss small, fast-moving objects. */
+            CCD_MODE_DISABLED = 0,
+            
+            /** Continuous collision detection enabled using raycasting. This is faster than shapecasting but less precise. */
+            CCD_MODE_CAST_RAY = 1,
+            
+            /** Continuous collision detection enabled using shapecasting. This is the slowest CCD method and the most precise. */
+            CCD_MODE_CAST_SHAPE = 2,
+        }
+    }
+    /** A 2D physics body that is moved by a physics simulation.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_rigidbody2d.html  
+     */
+    class RigidBody2D extends PhysicsBody2D {
+        /** Allows you to read and safely modify the simulation state for the object. Use this instead of [method Node._physics_process] if you need to directly change the body's `position` or other physics properties. By default, it works in addition to the usual physics behavior, but [member custom_integrator] allows you to disable the default behavior and write custom force integration for a body. */
+        /* gdvirtual */ _integrate_forces(state: PhysicsDirectBodyState2D): void
+        set_mass(mass: number /*f64*/): void
+        get_mass(): number /*f64*/
+        get_inertia(): number /*f64*/
+        set_inertia(inertia: number /*f64*/): void
+        set_center_of_mass_mode(mode: RigidBody2D.CenterOfMassMode): void
+        get_center_of_mass_mode(): RigidBody2D.CenterOfMassMode
+        set_center_of_mass(center_of_mass: Vector2): void
+        get_center_of_mass(): Vector2
+        set_physics_material_override(physics_material_override: PhysicsMaterial): void
+        get_physics_material_override(): PhysicsMaterial
+        set_gravity_scale(gravity_scale: number /*f64*/): void
+        get_gravity_scale(): number /*f64*/
+        set_linear_damp_mode(linear_damp_mode: RigidBody2D.DampMode): void
+        get_linear_damp_mode(): RigidBody2D.DampMode
+        set_angular_damp_mode(angular_damp_mode: RigidBody2D.DampMode): void
+        get_angular_damp_mode(): RigidBody2D.DampMode
+        set_linear_damp(linear_damp: number /*f64*/): void
+        get_linear_damp(): number /*f64*/
+        set_angular_damp(angular_damp: number /*f64*/): void
+        get_angular_damp(): number /*f64*/
+        set_linear_velocity(linear_velocity: Vector2): void
+        get_linear_velocity(): Vector2
+        set_angular_velocity(angular_velocity: number /*f64*/): void
+        get_angular_velocity(): number /*f64*/
+        set_max_contacts_reported(amount: number /*i64*/): void
+        get_max_contacts_reported(): number /*i64*/
+        
+        /** Returns the number of contacts this body has with other bodies. By default, this returns 0 unless bodies are configured to monitor contacts (see [member contact_monitor]).  
+         *      
+         *  **Note:** To retrieve the colliding bodies, use [method get_colliding_bodies].  
+         */
+        get_contact_count(): number /*i64*/
+        set_use_custom_integrator(enable: boolean): void
+        is_using_custom_integrator(): boolean
+        set_contact_monitor(enabled: boolean): void
+        is_contact_monitor_enabled(): boolean
+        set_continuous_collision_detection_mode(mode: RigidBody2D.CCDMode): void
+        get_continuous_collision_detection_mode(): RigidBody2D.CCDMode
+        
+        /** Sets the body's velocity on the given axis. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior. */
+        set_axis_velocity(axis_velocity: Vector2): void
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
+         */
+        apply_central_impulse(impulse: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_impulse(impulse: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inertia] is required for this to work. To have [member inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inertia].  
+         */
+        apply_torque_impulse(torque: number /*f64*/): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
+         */
+        apply_central_force(force: Vector2): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inertia] is required for this to work. To have [member inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inertia].  
+         */
+        apply_torque(torque: number /*f64*/): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
+         */
+        add_constant_central_force(force: Vector2): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        add_constant_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = 0`. */
+        add_constant_torque(torque: number /*f64*/): void
+        set_constant_force(force: Vector2): void
+        get_constant_force(): Vector2
+        set_constant_torque(torque: number /*f64*/): void
+        get_constant_torque(): number /*f64*/
+        set_sleeping(sleeping: boolean): void
+        is_sleeping(): boolean
+        set_can_sleep(able_to_sleep: boolean): void
+        is_able_to_sleep(): boolean
+        set_lock_rotation_enabled(lock_rotation: boolean): void
+        is_lock_rotation_enabled(): boolean
+        set_freeze_enabled(freeze_mode: boolean): void
+        is_freeze_enabled(): boolean
+        set_freeze_mode(freeze_mode: RigidBody2D.FreezeMode): void
+        get_freeze_mode(): RigidBody2D.FreezeMode
+        
+        /** Returns a list of the bodies colliding with this one. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions.  
+         *      
+         *  **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.  
+         */
+        get_colliding_bodies(): Array
+        
+        /** The body's mass. */
+        get mass(): number /*f64*/
+        set mass(value: number /*f64*/)
+        
+        /** The physics material override for the body.  
+         *  If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.  
+         */
+        get physics_material_override(): PhysicsMaterial
+        set physics_material_override(value: PhysicsMaterial)
+        
+        /** Multiplies the gravity applied to the body. The body's gravity is calculated from the **Default Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity vector applied by [Area2D]s. */
+        get gravity_scale(): number /*f64*/
+        set gravity_scale(value: number /*f64*/)
+        
+        /** Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values. */
+        get center_of_mass_mode(): number /*i64*/
+        set center_of_mass_mode(value: number /*i64*/)
+        
+        /** The body's custom center of mass, relative to the body's origin position, when [member center_of_mass_mode] is set to [constant CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.  
+         *  When [member center_of_mass_mode] is set to [constant CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.  
+         */
+        get center_of_mass(): Vector2
+        set center_of_mass(value: Vector2)
+        
+        /** The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.  
+         *  If set to `0`, inertia is automatically computed (default value).  
+         *      
+         *  **Note:** This value does not change when inertia is automatically computed. Use [PhysicsServer2D] to get the computed inertia.  
+         *    
+         */
+        get inertia(): number /*f64*/
+        set inertia(value: number /*f64*/)
+        
+        /** If `true`, the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [method apply_impulse] or [method apply_force] methods. */
+        get sleeping(): boolean
+        set sleeping(value: boolean)
+        
+        /** If `true`, the body can enter sleep mode when there is no movement. See [member sleeping]. */
+        get can_sleep(): boolean
+        set can_sleep(value: boolean)
+        
+        /** If `true`, the body cannot rotate. Gravity and forces only apply linear movement. */
+        get lock_rotation(): boolean
+        set lock_rotation(value: boolean)
+        
+        /** If `true`, the body is frozen. Gravity and forces are not applied anymore.  
+         *  See [member freeze_mode] to set the body's behavior when frozen.  
+         *  For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.  
+         */
+        get freeze(): boolean
+        set freeze(value: boolean)
+        
+        /** The body's freeze mode. Can be used to set the body's behavior when [member freeze] is enabled. See [enum FreezeMode] for possible values.  
+         *  For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.  
+         */
+        get freeze_mode(): number /*i64*/
+        set freeze_mode(value: number /*i64*/)
+        
+        /** If `true`, internal force integration is disabled for this body. Aside from collision response, the body will only move as determined by the [method _integrate_forces] function. */
+        get custom_integrator(): boolean
+        set custom_integrator(value: boolean)
+        
+        /** Continuous collision detection mode.  
+         *  Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.  
+         */
+        get continuous_cd(): number /*i64*/
+        set continuous_cd(value: number /*i64*/)
+        
+        /** The maximum number of contacts that will be recorded. Requires a value greater than 0 and [member contact_monitor] to be set to `true` to start to register contacts. Use [method get_contact_count] to retrieve the count or [method get_colliding_bodies] to retrieve bodies that have been collided with.  
+         *      
+         *  **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).  
+         */
+        get max_contacts_reported(): number /*i64*/
+        set max_contacts_reported(value: number /*i64*/)
+        
+        /** If `true`, the RigidBody2D will emit signals when it collides with another body.  
+         *      
+         *  **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [member max_contacts_reported].  
+         */
+        get contact_monitor(): boolean
+        set contact_monitor(value: boolean)
+        
+        /** The body's linear velocity in pixels per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state. */
+        get linear_velocity(): Vector2
+        set linear_velocity(value: Vector2)
+        
+        /** Defines how [member linear_damp] is applied. See [enum DampMode] for possible values. */
+        get linear_damp_mode(): number /*i64*/
+        set linear_damp_mode(value: number /*i64*/)
+        
+        /** Damps the body's movement. By default, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 2d** or any value override set by an [Area2D] the body is in. Depending on [member linear_damp_mode], you can set [member linear_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/2d/default_linear_damp] for more details about damping.  
+         */
+        get linear_damp(): number /*f64*/
+        set linear_damp(value: number /*f64*/)
+        
+        /** The body's rotational velocity in  *radians*  per second. */
+        get angular_velocity(): number /*f64*/
+        set angular_velocity(value: number /*f64*/)
+        
+        /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
+        get angular_damp_mode(): number /*i64*/
+        set angular_damp_mode(value: number /*i64*/)
+        
+        /** Damps the body's rotation. By default, the body will use the **Default Angular Damp** in **Project > Project Settings > Physics > 2d** or any value override set by an [Area2D] the body is in. Depending on [member angular_damp_mode], you can set [member angular_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/2d/default_angular_damp] for more details about damping.  
+         */
+        get angular_damp(): number /*f64*/
+        set angular_damp(value: number /*f64*/)
+        
+        /** The body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        get constant_force(): Vector2
+        set constant_force(value: Vector2)
+        
+        /** The body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        get constant_torque(): number /*f64*/
+        set constant_torque(value: number /*f64*/)
+        
+        /** Emitted when one of this RigidBody2D's [Shape2D]s collides with another [PhysicsBody2D] or [TileMap]'s [Shape2D]s. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
+         *  [param body_rid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the [PhysicsServer2D].  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
+         *  [param body_shape_index] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap] used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
+         *  [param local_shape_index] the index of the [Shape2D] of this RigidBody2D used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
+         */
+        readonly body_shape_entered: Signal // body_rid: RID, body: Node, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        
+        /** Emitted when the collision between one of this RigidBody2D's [Shape2D]s and another [PhysicsBody2D] or [TileMap]'s [Shape2D]s ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
+         *  [param body_rid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the [PhysicsServer2D].  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
+         *  [param body_shape_index] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap] used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
+         *  [param local_shape_index] the index of the [Shape2D] of this RigidBody2D used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
+         */
+        readonly body_shape_exited: Signal // body_rid: RID, body: Node, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        
+        /** Emitted when a collision with another [PhysicsBody2D] or [TileMap] occurs. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
+         */
+        readonly body_entered: Signal // body: Node => void
+        
+        /** Emitted when the collision with another [PhysicsBody2D] or [TileMap] ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
+         */
+        readonly body_exited: Signal // body: Node => void
+        
+        /** Emitted when the physics engine changes the body's sleeping state.  
+         *      
+         *  **Note:** Changing the value [member sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is used.  
+         */
+        readonly sleeping_state_changed: Signal //  => void
+    }
+    namespace RigidBody3D {
+        enum FreezeMode {
+            /** Static body freeze mode (default). The body is not affected by gravity and forces. It can be only moved by user code and doesn't collide with other bodies along its path. */
+            FREEZE_MODE_STATIC = 0,
+            
+            /** Kinematic body freeze mode. Similar to [constant FREEZE_MODE_STATIC], but collides with other bodies along its path when moved. Useful for a frozen body that needs to be animated. */
+            FREEZE_MODE_KINEMATIC = 1,
+        }
+        enum CenterOfMassMode {
+            /** In this mode, the body's center of mass is calculated automatically based on its shapes. This assumes that the shapes' origins are also their center of mass. */
+            CENTER_OF_MASS_MODE_AUTO = 0,
+            
+            /** In this mode, the body's center of mass is set through [member center_of_mass]. Defaults to the body's origin position. */
+            CENTER_OF_MASS_MODE_CUSTOM = 1,
+        }
+        enum DampMode {
+            /** In this mode, the body's damping value is added to any value set in areas or the default value. */
+            DAMP_MODE_COMBINE = 0,
+            
+            /** In this mode, the body's damping value replaces any value set in areas or the default value. */
+            DAMP_MODE_REPLACE = 1,
+        }
+    }
+    /** A 3D physics body that is moved by a physics simulation.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_rigidbody3d.html  
+     */
+    class RigidBody3D extends PhysicsBody3D {
+        /** Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [member custom_integrator] property allows you to disable the default behavior and do fully custom force integration for a body. */
+        /* gdvirtual */ _integrate_forces(state: PhysicsDirectBodyState3D): void
+        set_mass(mass: number /*f64*/): void
+        get_mass(): number /*f64*/
+        set_inertia(inertia: Vector3): void
+        get_inertia(): Vector3
+        set_center_of_mass_mode(mode: RigidBody3D.CenterOfMassMode): void
+        get_center_of_mass_mode(): RigidBody3D.CenterOfMassMode
+        set_center_of_mass(center_of_mass: Vector3): void
+        get_center_of_mass(): Vector3
+        set_physics_material_override(physics_material_override: PhysicsMaterial): void
+        get_physics_material_override(): PhysicsMaterial
+        set_linear_velocity(linear_velocity: Vector3): void
+        get_linear_velocity(): Vector3
+        set_angular_velocity(angular_velocity: Vector3): void
+        get_angular_velocity(): Vector3
+        
+        /** Returns the inverse inertia tensor basis. This is used to calculate the angular acceleration resulting from a torque applied to the [RigidBody3D]. */
+        get_inverse_inertia_tensor(): Basis
+        set_gravity_scale(gravity_scale: number /*f64*/): void
+        get_gravity_scale(): number /*f64*/
+        set_linear_damp_mode(linear_damp_mode: RigidBody3D.DampMode): void
+        get_linear_damp_mode(): RigidBody3D.DampMode
+        set_angular_damp_mode(angular_damp_mode: RigidBody3D.DampMode): void
+        get_angular_damp_mode(): RigidBody3D.DampMode
+        set_linear_damp(linear_damp: number /*f64*/): void
+        get_linear_damp(): number /*f64*/
+        set_angular_damp(angular_damp: number /*f64*/): void
+        get_angular_damp(): number /*f64*/
+        set_max_contacts_reported(amount: number /*i64*/): void
+        get_max_contacts_reported(): number /*i64*/
+        
+        /** Returns the number of contacts this body has with other bodies. By default, this returns 0 unless bodies are configured to monitor contacts (see [member contact_monitor]).  
+         *      
+         *  **Note:** To retrieve the colliding bodies, use [method get_colliding_bodies].  
+         */
+        get_contact_count(): number /*i64*/
+        set_use_custom_integrator(enable: boolean): void
+        is_using_custom_integrator(): boolean
+        set_contact_monitor(enabled: boolean): void
+        is_contact_monitor_enabled(): boolean
+        set_use_continuous_collision_detection(enable: boolean): void
+        is_using_continuous_collision_detection(): boolean
+        
+        /** Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior. */
+        set_axis_velocity(axis_velocity: Vector3): void
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
+         */
+        apply_central_impulse(impulse: Vector3): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inertia] is required for this to work. To have [member inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inertia].  
+         */
+        apply_torque_impulse(impulse: Vector3): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
+         */
+        apply_central_force(force: Vector3): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inertia] is required for this to work. To have [member inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inertia].  
+         */
+        apply_torque(torque: Vector3): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
+         */
+        add_constant_central_force(force: Vector3): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`. */
+        add_constant_torque(torque: Vector3): void
+        set_constant_force(force: Vector3): void
+        get_constant_force(): Vector3
+        set_constant_torque(torque: Vector3): void
+        get_constant_torque(): Vector3
+        set_sleeping(sleeping: boolean): void
+        is_sleeping(): boolean
+        set_can_sleep(able_to_sleep: boolean): void
+        is_able_to_sleep(): boolean
+        set_lock_rotation_enabled(lock_rotation: boolean): void
+        is_lock_rotation_enabled(): boolean
+        set_freeze_enabled(freeze_mode: boolean): void
+        is_freeze_enabled(): boolean
+        set_freeze_mode(freeze_mode: RigidBody3D.FreezeMode): void
+        get_freeze_mode(): RigidBody3D.FreezeMode
+        
+        /** Returns a list of the bodies colliding with this one. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions.  
+         *      
+         *  **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.  
+         */
+        get_colliding_bodies(): Array
+        
+        /** The body's mass. */
+        get mass(): number /*f64*/
+        set mass(value: number /*f64*/)
+        
+        /** The physics material override for the body.  
+         *  If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.  
+         */
+        get physics_material_override(): PhysicsMaterial
+        set physics_material_override(value: PhysicsMaterial)
+        
+        /** This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce RigidBody3D's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object. */
+        get gravity_scale(): number /*f64*/
+        set gravity_scale(value: number /*f64*/)
+        
+        /** Defines the way the body's center of mass is set. See [enum CenterOfMassMode] for possible values. */
+        get center_of_mass_mode(): number /*i64*/
+        set center_of_mass_mode(value: number /*i64*/)
+        
+        /** The body's custom center of mass, relative to the body's origin position, when [member center_of_mass_mode] is set to [constant CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.  
+         *  When [member center_of_mass_mode] is set to [constant CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.  
+         */
+        get center_of_mass(): Vector3
+        set center_of_mass(value: Vector3)
+        
+        /** The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body on each axis. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.  
+         *  If set to [constant Vector3.ZERO], inertia is automatically computed (default value).  
+         *      
+         *  **Note:** This value does not change when inertia is automatically computed. Use [PhysicsServer3D] to get the computed inertia.  
+         *    
+         */
+        get inertia(): Vector3
+        set inertia(value: Vector3)
+        
+        /** If `true`, the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [method apply_impulse] or [method apply_force] methods. */
+        get sleeping(): boolean
+        set sleeping(value: boolean)
+        
+        /** If `true`, the body can enter sleep mode when there is no movement. See [member sleeping]. */
+        get can_sleep(): boolean
+        set can_sleep(value: boolean)
+        
+        /** If `true`, the body cannot rotate. Gravity and forces only apply linear movement. */
+        get lock_rotation(): boolean
+        set lock_rotation(value: boolean)
+        
+        /** If `true`, the body is frozen. Gravity and forces are not applied anymore.  
+         *  See [member freeze_mode] to set the body's behavior when frozen.  
+         *  For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.  
+         */
+        get freeze(): boolean
+        set freeze(value: boolean)
+        
+        /** The body's freeze mode. Can be used to set the body's behavior when [member freeze] is enabled. See [enum FreezeMode] for possible values.  
+         *  For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.  
+         */
+        get freeze_mode(): number /*i64*/
+        set freeze_mode(value: number /*i64*/)
+        
+        /** If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [method _integrate_forces] function, if defined. */
+        get custom_integrator(): boolean
+        set custom_integrator(value: boolean)
+        
+        /** If `true`, continuous collision detection is used.  
+         *  Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided. Continuous collision detection is more precise, and misses fewer impacts by small, fast-moving objects. Not using continuous collision detection is faster to compute, but can miss small, fast-moving objects.  
+         */
+        get continuous_cd(): boolean
+        set continuous_cd(value: boolean)
+        
+        /** The maximum number of contacts that will be recorded. Requires a value greater than 0 and [member contact_monitor] to be set to `true` to start to register contacts. Use [method get_contact_count] to retrieve the count or [method get_colliding_bodies] to retrieve bodies that have been collided with.  
+         *      
+         *  **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).  
+         */
+        get max_contacts_reported(): number /*i64*/
+        set max_contacts_reported(value: number /*i64*/)
+        
+        /** If `true`, the RigidBody3D will emit signals when it collides with another body.  
+         *      
+         *  **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [member max_contacts_reported].  
+         */
+        get contact_monitor(): boolean
+        set contact_monitor(value: boolean)
+        
+        /** The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state. */
+        get linear_velocity(): Vector3
+        set linear_velocity(value: Vector3)
+        
+        /** Defines how [member linear_damp] is applied. See [enum DampMode] for possible values. */
+        get linear_damp_mode(): number /*i64*/
+        set linear_damp_mode(value: number /*i64*/)
+        
+        /** Damps the body's movement. By default, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member linear_damp_mode], you can set [member linear_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/3d/default_linear_damp] for more details about damping.  
+         */
+        get linear_damp(): number /*f64*/
+        set linear_damp(value: number /*f64*/)
+        
+        /** The RigidBody3D's rotational velocity in  *radians*  per second. */
+        get angular_velocity(): Vector3
+        set angular_velocity(value: Vector3)
+        
+        /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
+        get angular_damp_mode(): number /*i64*/
+        set angular_damp_mode(value: number /*i64*/)
+        
+        /** Damps the body's rotation. By default, the body will use the **Default Angular Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member angular_damp_mode], you can set [member angular_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/3d/default_angular_damp] for more details about damping.  
+         */
+        get angular_damp(): number /*f64*/
+        set angular_damp(value: number /*f64*/)
+        
+        /** The body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        get constant_force(): Vector3
+        set constant_force(value: Vector3)
+        
+        /** The body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        get constant_torque(): Vector3
+        set constant_torque(value: Vector3)
+        
+        /** Emitted when one of this RigidBody3D's [Shape3D]s collides with another [PhysicsBody3D] or [GridMap]'s [Shape3D]s. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
+         *  [param body_rid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by the [PhysicsServer3D].  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
+         *  [param body_shape_index] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
+         *  [param local_shape_index] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
+         */
+        readonly body_shape_entered: Signal // body_rid: RID, body: Node, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        
+        /** Emitted when the collision between one of this RigidBody3D's [Shape3D]s and another [PhysicsBody3D] or [GridMap]'s [Shape3D]s ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
+         *  [param body_rid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by the [PhysicsServer3D]. [GridMap]s are detected if the Meshes have [Shape3D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
+         *  [param body_shape_index] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
+         *  [param local_shape_index] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
+         */
+        readonly body_shape_exited: Signal // body_rid: RID, body: Node, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        
+        /** Emitted when a collision with another [PhysicsBody3D] or [GridMap] occurs. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
+         */
+        readonly body_entered: Signal // body: Node => void
+        
+        /** Emitted when the collision with another [PhysicsBody3D] or [GridMap] ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
+         *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
+         */
+        readonly body_exited: Signal // body: Node => void
+        
+        /** Emitted when the physics engine changes the body's sleeping state.  
+         *      
+         *  **Note:** Changing the value [member sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is used.  
+         */
+        readonly sleeping_state_changed: Signal //  => void
+    }
+    /** Editor-only helper for setting up root motion in [AnimationMixer].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_rootmotionview.html  
+     */
+    class RootMotionView extends VisualInstance3D {
+        set_animation_path(path: NodePath): void
+        get_animation_path(): NodePath
+        set_color(color: Color): void
+        get_color(): Color
+        set_cell_size(size: number /*f64*/): void
+        get_cell_size(): number /*f64*/
+        set_radius(size: number /*f64*/): void
+        get_radius(): number /*f64*/
+        set_zero_y(enable: boolean): void
+        get_zero_y(): boolean
+        
+        /** Path to an [AnimationMixer] node to use as a basis for root motion. */
+        get animation_path(): NodePath
+        set animation_path(value: NodePath)
+        
+        /** The grid's color. */
+        get color(): Color
+        set color(value: Color)
+        
+        /** The grid's cell size in 3D units. */
+        get cell_size(): number /*f64*/
+        set cell_size(value: number /*f64*/)
+        
+        /** The grid's radius in 3D units. The grid's opacity will fade gradually as the distance from the origin increases until this [member radius] is reached. */
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
+        
+        /** If `true`, the grid's points will all be on the same Y coordinate ( *local*  Y = 0). If `false`, the points' original Y coordinate is preserved. */
+        get zero_y(): boolean
+        set zero_y(value: boolean)
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_rsconsole.html */
+    class RsConsole extends RefCounted {
+        process_input(p_text: string): void
+        register_command(p_text: string, p_callable: Callable, p_help: string): number /*i64*/
+        unregister_command(p_id: number /*i64*/): void
+        find_objects(p_keyword: string): PackedStringArray
+        readonly on_output: Signal //  => void
+        readonly on_clear: Signal //  => void
+    }
+    class RsEditorPlugin extends EditorPlugin {
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_rslist.html */
+    class RsList extends RefCounted {
+        append(p_item: any): number /*i64*/
+        index_of(p_item: any): number /*i64*/
+        last_index_of(p_item: any): number /*i64*/
+        remove_at(p_index: number /*i64*/): boolean
+        get_value(p_index: number /*i64*/): any
+        is_valid_index(p_index: number /*i64*/): boolean
+        clear(): void
+        grow_if_needed(p_extra_count: number /*i64*/): void
+        reserve(p_size: number /*i64*/): void
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_rsnativebridge.html */
+    class RsNativeBridge extends Object {
+        start(): void
+        destroy(): void
+        update(delta: number /*f64*/): void
+        alloc_damage_number(p_parent: Node, p_secs: number /*f64*/): Control
+        get_position(): Vector3
+        is_possessed(): boolean
+        set_terrain(p_terrain: RsTerrain): void
+        set_root(p_root: Node): void
+        set_direction(_unnamed_arg0: Vector3): void
+        get_direction(): Vector3
+        set_is_moving(_unnamed_arg0: boolean): void
+        get_is_moving(): boolean
+        get direction(): Vector3
+        set direction(value: Vector3)
+        get is_moving(): boolean
+        set is_moving(value: boolean)
+        readonly game_over: Signal //  => void
+        readonly damage_emitted: Signal // pos: Vector3, time: number /*f64*/ => void
+        readonly info_updated: Signal // hp: number /*f64*/, hp_max: number /*f64*/, exp: number /*f64*/, exp_max: number /*f64*/, level: number /*i64*/, crowd: number /*i64*/ => void
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_rsoutputdevice.html */
+    class RsOutputDevice extends RefCounted {
+        log(...vargargs: any[]): void
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_rsterrain.html */
+    class RsTerrain extends GeometryInstance3D {
+        set_radius(value: number /*f64*/): void
+        get_radius(): number /*f64*/
+        set_view_position(value: Vector3): void
+        get_view_position(): Vector3
+        get_center_position(): Vector3
+        set_shader(value: Shader): void
+        get_shader(): Shader
+        set_texture(value: Texture2D): void
+        get_texture(): Texture2D
+        _im_update(): void
+        get view_position(): Vector3
+        set view_position(value: Vector3)
+        get shader(): Shader
+        set shader(value: Shader)
+        get texture(): Texture2D
+        set texture(value: Texture2D)
+        readonly frame_changed: Signal //  => void
+    }
+    class RsTerrainGizmoPlugin extends EditorNode3DGizmoPlugin {
+    }
+    class SceneCacheInterface extends RefCounted {
+    }
+    class SceneCreateDialog extends ConfirmationDialog {
+    }
+    class SceneExporterGLTFPlugin extends EditorPlugin {
+    }
+    class SceneImportSettings extends ConfirmationDialog {
+    }
+    class SceneImportSettingsData extends Object {
+    }
+    /** High-level multiplayer API implementation.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_scenemultiplayer.html  
+     */
+    class SceneMultiplayer extends MultiplayerAPI {
+        set_root_path(path: NodePath): void
+        get_root_path(): NodePath
+        
+        /** Clears the current SceneMultiplayer network state (you shouldn't call this unless you know what you are doing). */
+        clear(): void
+        
+        /** Disconnects the peer identified by [param id], removing it from the list of connected peers, and closing the underlying connection with it. */
+        disconnect_peer(id: number /*i64*/): void
+        
+        /** Returns the IDs of the peers currently trying to authenticate with this [MultiplayerAPI]. */
+        get_authenticating_peers(): PackedInt32Array
+        
+        /** Sends the specified [param data] to the remote peer identified by [param id] as part of an authentication message. This can be used to authenticate peers, and control when [signal MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected peers). */
+        send_auth(id: number /*i64*/, data: PackedByteArray): GodotError
+        
+        /** Mark the authentication step as completed for the remote peer identified by [param id]. The [signal MultiplayerAPI.peer_connected] signal will be emitted for this peer once the remote side also completes the authentication. No further authentication messages are expected to be received from this peer.  
+         *  If a peer disconnects before completing authentication, either due to a network issue, the [member auth_timeout] expiring, or manually calling [method disconnect_peer], the [signal peer_authentication_failed] signal will be emitted instead of [signal MultiplayerAPI.peer_disconnected].  
+         */
+        complete_auth(id: number /*i64*/): GodotError
+        set_auth_callback(callback: Callable): void
+        get_auth_callback(): Callable
+        set_auth_timeout(timeout: number /*f64*/): void
+        get_auth_timeout(): number /*f64*/
+        set_refuse_new_connections(refuse: boolean): void
+        is_refusing_new_connections(): boolean
+        set_allow_object_decoding(enable: boolean): void
+        is_object_decoding_allowed(): boolean
+        set_server_relay_enabled(enabled: boolean): void
+        is_server_relay_enabled(): boolean
+        
+        /** Sends the given raw [param bytes] to a specific peer identified by [param id] (see [method MultiplayerPeer.set_target_peer]). Default ID is `0`, i.e. broadcast to all peers. */
+        send_bytes(bytes: PackedByteArray, id: number /*i64*/ = 0, mode: MultiplayerPeer.TransferMode = 2, channel: number /*i64*/ = 0): GodotError
+        get_max_sync_packet_size(): number /*i64*/
+        set_max_sync_packet_size(size: number /*i64*/): void
+        get_max_delta_packet_size(): number /*i64*/
+        set_max_delta_packet_size(size: number /*i64*/): void
+        
+        /** The root path to use for RPCs and replication. Instead of an absolute path, a relative path will be used to find the node upon which the RPC should be executed.  
+         *  This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.  
+         */
+        get root_path(): NodePath
+        set root_path(value: NodePath)
+        
+        /** The callback to execute when when receiving authentication data sent via [method send_auth]. If the [Callable] is empty (default), peers will be automatically accepted as soon as they connect. */
+        get auth_callback(): Callable
+        set auth_callback(value: Callable)
+        
+        /** If set to a value greater than `0.0`, the maximum amount of time peers can stay in the authenticating state, after which the authentication will automatically fail. See the [signal peer_authenticating] and [signal peer_authentication_failed] signals. */
+        get auth_timeout(): number /*f64*/
+        set auth_timeout(value: number /*f64*/)
+        
+        /** If `true`, the MultiplayerAPI will allow encoding and decoding of object during RPCs.  
+         *  **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threat such as remote code execution.  
+         */
+        get allow_object_decoding(): boolean
+        set allow_object_decoding(value: boolean)
+        
+        /** If `true`, the MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] refuses new incoming connections. */
+        get refuse_new_connections(): boolean
+        set refuse_new_connections(value: boolean)
+        
+        /** Enable or disable the server feature that notifies clients of other peers' connection/disconnection, and relays messages between them. When this option is `false`, clients won't be automatically notified of other peers and won't be able to send them packets through the server.  
+         *      
+         *  **Note:** Changing this option while other peers are connected may lead to unexpected behaviors.  
+         *      
+         *  **Note:** Support for this feature may depend on the current [MultiplayerPeer] configuration. See [method MultiplayerPeer.is_server_relay_supported].  
+         */
+        get server_relay(): boolean
+        set server_relay(value: boolean)
+        
+        /** Maximum size of each synchronization packet. Higher values increase the chance of receiving full updates in a single frame, but also the chance of packet loss. See [MultiplayerSynchronizer]. */
+        get max_sync_packet_size(): number /*i64*/
+        set max_sync_packet_size(value: number /*i64*/)
+        
+        /** Maximum size of each delta packet. Higher values increase the chance of receiving full updates in a single frame, but also the chance of causing networking congestion (higher latency, disconnections). See [MultiplayerSynchronizer]. */
+        get max_delta_packet_size(): number /*i64*/
+        set max_delta_packet_size(value: number /*i64*/)
+        
+        /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] connects to a new peer and a valid [member auth_callback] is set. In this case, the [signal MultiplayerAPI.peer_connected] will not be emitted until [method complete_auth] is called with given peer [param id]. While in this state, the peer will not be included in the list returned by [method MultiplayerAPI.get_peers] (but in the one returned by [method get_authenticating_peers]), and only authentication data will be sent or received. See [method send_auth] for sending authentication data. */
+        readonly peer_authenticating: Signal // id: number /*i64*/ => void
+        
+        /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] disconnects from a peer for which authentication had not yet completed. See [signal peer_authenticating]. */
+        readonly peer_authentication_failed: Signal // id: number /*i64*/ => void
+        
+        /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] receives a [param packet] with custom data (see [method send_bytes]). ID is the peer ID of the peer that sent the packet. */
+        readonly peer_packet: Signal // id: number /*i64*/, packet: PackedByteArray => void
+    }
+    class SceneRPCInterface extends RefCounted {
+    }
+    namespace SceneReplicationConfig {
+        enum ReplicationMode {
+            /** Do not keep the given property synchronized. */
+            REPLICATION_MODE_NEVER = 0,
+            
+            /** Replicate the given property on process by constantly sending updates using unreliable transfer mode. */
+            REPLICATION_MODE_ALWAYS = 1,
+            
+            /** Replicate the given property on process by sending updates using reliable transfer mode when its value changes. */
+            REPLICATION_MODE_ON_CHANGE = 2,
+        }
+    }
+    /** Configuration for properties to synchronize with a [MultiplayerSynchronizer].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_scenereplicationconfig.html  
+     */
+    class SceneReplicationConfig extends Resource {
+        /** Returns a list of synchronized property [NodePath]s. */
+        get_properties(): Array
+        
+        /** Adds the property identified by the given [param path] to the list of the properties being synchronized, optionally passing an [param index].  
+         *      
+         *  **Note:** For details on restrictions and limitations on property synchronization, see [MultiplayerSynchronizer].  
+         */
+        add_property(path: NodePath, index: number /*i64*/ = -1): void
+        
+        /** Returns whether the given [param path] is configured for synchronization. */
+        has_property(path: NodePath): boolean
+        
+        /** Removes the property identified by the given [param path] from the configuration. */
+        remove_property(path: NodePath): void
+        
+        /** Finds the index of the given [param path]. */
+        property_get_index(path: NodePath): number /*i64*/
+        
+        /** Returns whether the property identified by the given [param path] is configured to be synchronized on spawn. */
+        property_get_spawn(path: NodePath): boolean
+        
+        /** Sets whether the property identified by the given [param path] is configured to be synchronized on spawn. */
+        property_set_spawn(path: NodePath, enabled: boolean): void
+        
+        /** Returns the replication mode for the property identified by the given [param path]. See [enum ReplicationMode]. */
+        property_get_replication_mode(path: NodePath): SceneReplicationConfig.ReplicationMode
+        
+        /** Sets the synchronization mode for the property identified by the given [param path]. See [enum ReplicationMode]. */
+        property_set_replication_mode(path: NodePath, mode: SceneReplicationConfig.ReplicationMode): void
+        
+        /** Returns whether the property identified by the given [param path] is configured to be synchronized on process.  
+         *   *Deprecated.*  Use [method property_get_replication_mode] instead.  
+         */
+        property_get_sync(path: NodePath): boolean
+        
+        /** Sets whether the property identified by the given [param path] is configured to be synchronized on process.  
+         *   *Deprecated.*  Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ALWAYS] instead.  
+         */
+        property_set_sync(path: NodePath, enabled: boolean): void
+        
+        /** Returns whether the property identified by the given [param path] is configured to be reliably synchronized when changes are detected on process.  
+         *   *Deprecated.*  Use [method property_get_replication_mode] instead.  
+         */
+        property_get_watch(path: NodePath): boolean
+        
+        /** Sets whether the property identified by the given [param path] is configured to be reliably synchronized when changes are detected on process.  
+         *   *Deprecated.*  Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ON_CHANGE] instead.  
+         */
+        property_set_watch(path: NodePath, enabled: boolean): void
+    }
+    class SceneReplicationInterface extends RefCounted {
+    }
+    namespace SceneState {
+        enum GenEditState {
+            /** If passed to [method PackedScene.instantiate], blocks edits to the scene state. */
+            GEN_EDIT_STATE_DISABLED = 0,
+            
+            /** If passed to [method PackedScene.instantiate], provides inherited scene resources to the local scene.  
+             *      
+             *  **Note:** Only available in editor builds.  
+             */
+            GEN_EDIT_STATE_INSTANCE = 1,
+            
+            /** If passed to [method PackedScene.instantiate], provides local scene resources to the local scene. Only the main scene should receive the main edit state.  
+             *      
+             *  **Note:** Only available in editor builds.  
+             */
+            GEN_EDIT_STATE_MAIN = 2,
+            
+            /** If passed to [method PackedScene.instantiate], it's similar to [constant GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.  
+             *      
+             *  **Note:** Only available in editor builds.  
+             */
+            GEN_EDIT_STATE_MAIN_INHERITED = 3,
+        }
+    }
+    /** Provides access to a scene file's information.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_scenestate.html  
+     */
+    class SceneState extends RefCounted {
+        /** Returns the number of nodes in the scene.  
+         *  The `idx` argument used to query node data in other `get_node_*` methods in the interval `[0, get_node_count() - 1]`.  
+         */
+        get_node_count(): number /*i64*/
+        
+        /** Returns the type of the node at [param idx]. */
+        get_node_type(idx: number /*i64*/): StringName
+        
+        /** Returns the name of the node at [param idx]. */
+        get_node_name(idx: number /*i64*/): StringName
+        
+        /** Returns the path to the node at [param idx].  
+         *  If [param for_parent] is `true`, returns the path of the [param idx] node's parent instead.  
+         */
+        get_node_path(idx: number /*i64*/, for_parent: boolean = false): NodePath
+        
+        /** Returns the path to the owner of the node at [param idx], relative to the root node. */
+        get_node_owner_path(idx: number /*i64*/): NodePath
+        
+        /** Returns `true` if the node at [param idx] is an [InstancePlaceholder]. */
+        is_node_instance_placeholder(idx: number /*i64*/): boolean
+        
+        /** Returns the path to the represented scene file if the node at [param idx] is an [InstancePlaceholder]. */
+        get_node_instance_placeholder(idx: number /*i64*/): string
+        
+        /** Returns a [PackedScene] for the node at [param idx] (i.e. the whole branch starting at this node, with its child nodes and resources), or `null` if the node is not an instance. */
+        get_node_instance(idx: number /*i64*/): PackedScene
+        
+        /** Returns the list of group names associated with the node at [param idx]. */
+        get_node_groups(idx: number /*i64*/): PackedStringArray
+        
+        /** Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instantiated or inherited scene among siblings from the base scene. Despite the name, this index is not related to the [param idx] argument used here and in other methods. */
+        get_node_index(idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the number of exported or overridden properties for the node at [param idx].  
+         *  The `prop_idx` argument used to query node property data in other `get_node_property_*` methods in the interval `[0, get_node_property_count() - 1]`.  
+         */
+        get_node_property_count(idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the name of the property at [param prop_idx] for the node at [param idx]. */
+        get_node_property_name(idx: number /*i64*/, prop_idx: number /*i64*/): StringName
+        
+        /** Returns the value of the property at [param prop_idx] for the node at [param idx]. */
+        get_node_property_value(idx: number /*i64*/, prop_idx: number /*i64*/): any
+        
+        /** Returns the number of signal connections in the scene.  
+         *  The `idx` argument used to query connection metadata in other `get_connection_*` methods in the interval `[0, get_connection_count() - 1]`.  
+         */
+        get_connection_count(): number /*i64*/
+        
+        /** Returns the path to the node that owns the signal at [param idx], relative to the root node. */
+        get_connection_source(idx: number /*i64*/): NodePath
+        
+        /** Returns the name of the signal at [param idx]. */
+        get_connection_signal(idx: number /*i64*/): StringName
+        
+        /** Returns the path to the node that owns the method connected to the signal at [param idx], relative to the root node. */
+        get_connection_target(idx: number /*i64*/): NodePath
+        
+        /** Returns the method connected to the signal at [param idx]. */
+        get_connection_method(idx: number /*i64*/): StringName
+        
+        /** Returns the connection flags for the signal at [param idx]. See [enum Object.ConnectFlags] constants. */
+        get_connection_flags(idx: number /*i64*/): number /*i64*/
+        
+        /** Returns the list of bound parameters for the signal at [param idx]. */
+        get_connection_binds(idx: number /*i64*/): Array
+        
+        /** Returns the number of unbound parameters for the signal at [param idx]. */
+        get_connection_unbinds(idx: number /*i64*/): number /*i64*/
+    }
     class SceneTileProxyObject extends Object {
         readonly changed: Signal // what: string => void
     }
@@ -170,52 +1792,61 @@ declare module "godot" {
         /** If `true`, the application automatically accepts quitting requests.  
          *  For mobile platforms, see [member quit_on_go_back].  
          */
-        auto_accept_quit: boolean
+        get auto_accept_quit(): boolean
+        set auto_accept_quit(value: boolean)
         
         /** If `true`, the application quits automatically when navigating back (e.g. using the system "Back" button on Android).  
          *  To handle 'Go Back' button when this option is disabled, use [constant DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].  
          */
-        quit_on_go_back: boolean
+        get quit_on_go_back(): boolean
+        set quit_on_go_back(value: boolean)
         
         /** If `true`, collision shapes will be visible when running the game from the editor for debugging purposes.  
          *      
          *  **Note:** This property is not designed to be changed at run-time. Changing the value of [member debug_collisions_hint] while the project is running will not have the desired effect.  
          */
-        debug_collisions_hint: boolean
+        get debug_collisions_hint(): boolean
+        set debug_collisions_hint(value: boolean)
         
         /** If `true`, curves from [Path2D] and [Path3D] nodes will be visible when running the game from the editor for debugging purposes.  
          *      
          *  **Note:** This property is not designed to be changed at run-time. Changing the value of [member debug_paths_hint] while the project is running will not have the desired effect.  
          */
-        debug_paths_hint: boolean
+        get debug_paths_hint(): boolean
+        set debug_paths_hint(value: boolean)
         
         /** If `true`, navigation polygons will be visible when running the game from the editor for debugging purposes.  
          *      
          *  **Note:** This property is not designed to be changed at run-time. Changing the value of [member debug_navigation_hint] while the project is running will not have the desired effect.  
          */
-        debug_navigation_hint: boolean
+        get debug_navigation_hint(): boolean
+        set debug_navigation_hint(value: boolean)
         
         /** If `true`, the [SceneTree] is paused. Doing so will have the following behavior:  
          *  - 2D and 3D physics will be stopped. This includes signals and collision detection.  
          *  - [method Node._process], [method Node._physics_process] and [method Node._input] will not be called anymore in nodes.  
          */
-        paused: boolean
+        get paused(): boolean
+        set paused(value: boolean)
         
         /** The root of the edited scene. */
-        edited_scene_root: Node
+        get edited_scene_root(): Node
+        set edited_scene_root(value: Node)
         
         /** Returns the root node of the currently running scene, regardless of its structure.  
          *  **Warning:** Setting this directly might not work as expected, and will  *not*  add or remove any nodes from the tree, consider using [method change_scene_to_file] or [method change_scene_to_packed] instead.  
          */
-        current_scene: Node
+        get current_scene(): Node
+        set current_scene(value: Node)
         
         /** The [SceneTree]'s root [Window]. */
-        readonly root: Node
+        get root(): Node
         
         /** If `true` (default value), enables automatic polling of the [MultiplayerAPI] for this SceneTree during [signal process_frame].  
          *  If `false`, you need to manually call [method MultiplayerAPI.poll] to process network packets and deliver RPCs. This allows running RPCs in a different loop (e.g. physics, thread, specific time step) and for manual [Mutex] protection when accessing the [MultiplayerAPI] from threads.  
          */
-        multiplayer_poll: boolean
+        get multiplayer_poll(): boolean
+        set multiplayer_poll(value: boolean)
         
         /** Emitted whenever the [SceneTree] hierarchy changed (children being moved or renamed, etc.). */
         readonly tree_changed: Signal //  => void
@@ -281,7 +1912,8 @@ declare module "godot" {
         get_time_left(): number /*f64*/
         
         /** The time remaining (in seconds). */
-        time_left: number /*f64*/
+        get time_left(): number /*f64*/
+        set time_left(value: number /*f64*/)
         
         /** Emitted when the timer reaches 0. */
         readonly timeout: Signal //  => void
@@ -339,7 +1971,8 @@ declare module "godot" {
         is_abstract(): boolean
         
         /** The script source code or an empty string if source code is not available. When set, does not reload the class implementation automatically. */
-        source_code: string
+        get source_code(): string
+        set source_code(value: string)
     }
     /** Godot editor's popup dialog for creating new [Script] files.  
      *  	  
@@ -475,9 +2108,6 @@ declare module "godot" {
         readonly errors_cleared: Signal //  => void
     }
     class ScriptEditorPlugin extends EditorPlugin {
-    }
-    class ScriptEditorQuickOpen extends ConfirmationDialog {
-        readonly goto_line: Signal // line: number /*i64*/ => void
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptextension.html */
     class ScriptExtension extends Script {
@@ -622,8 +2252,6 @@ declare module "godot" {
         /* gdvirtual */ _handles_global_class_type(type: string): boolean
         /* gdvirtual */ _get_global_class_name(path: string): Dictionary
     }
-    class ScriptTextEditor extends ScriptEditorBase {
-    }
     /** Abstract base class for scrollbars.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_scrollbar.html  
@@ -633,7 +2261,8 @@ declare module "godot" {
         get_custom_step(): number /*f64*/
         
         /** Overrides the step used when clicking increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
-        custom_step: number /*f64*/
+        get custom_step(): number /*f64*/
+        set custom_step(value: number /*f64*/)
         
         /** Emitted when the scrollbar is being scrolled. */
         readonly scrolling: Signal //  => void
@@ -694,36 +2323,44 @@ declare module "godot" {
         ensure_control_visible(control: Control): void
         
         /** If `true`, the ScrollContainer will automatically scroll to focused children (including indirect children) to make sure they are fully visible. */
-        follow_focus: boolean
+        get follow_focus(): boolean
+        set follow_focus(value: boolean)
         
         /** The current horizontal scroll value.  
          *      
          *  **Note:** If you are setting this value in the [method Node._ready] function or earlier, it needs to be wrapped with [method Object.set_deferred], since scroll bar's [member Range.max_value] is not initialized yet.  
          *    
          */
-        scroll_horizontal: number /*i64*/
+        get scroll_horizontal(): number /*i64*/
+        set scroll_horizontal(value: number /*i64*/)
         
         /** The current vertical scroll value.  
          *      
          *  **Note:** Setting it early needs to be deferred, just like in [member scroll_horizontal].  
          *    
          */
-        scroll_vertical: number /*i64*/
+        get scroll_vertical(): number /*i64*/
+        set scroll_vertical(value: number /*i64*/)
         
         /** Overrides the [member ScrollBar.custom_step] used when clicking the internal scroll bar's horizontal increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
-        scroll_horizontal_custom_step: number /*f64*/
+        get scroll_horizontal_custom_step(): number /*f64*/
+        set scroll_horizontal_custom_step(value: number /*f64*/)
         
         /** Overrides the [member ScrollBar.custom_step] used when clicking the internal scroll bar's vertical increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
-        scroll_vertical_custom_step: number /*f64*/
+        get scroll_vertical_custom_step(): number /*f64*/
+        set scroll_vertical_custom_step(value: number /*f64*/)
         
         /** Controls whether horizontal scrollbar can be used and when it should be visible. See [enum ScrollMode] for options. */
-        horizontal_scroll_mode: number /*i64*/
+        get horizontal_scroll_mode(): number /*i64*/
+        set horizontal_scroll_mode(value: number /*i64*/)
         
         /** Controls whether vertical scrollbar can be used and when it should be visible. See [enum ScrollMode] for options. */
-        vertical_scroll_mode: number /*i64*/
+        get vertical_scroll_mode(): number /*i64*/
+        set vertical_scroll_mode(value: number /*i64*/)
         
         /** Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive. */
-        scroll_deadzone: number /*i64*/
+        get scroll_deadzone(): number /*i64*/
+        set scroll_deadzone(value: number /*i64*/)
         
         /** Emitted when scrolling starts when dragging the scrollable area w *ith a touch event* . This signal is  *not*  emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
          *      
@@ -753,10 +2390,12 @@ declare module "godot" {
         get_b(): Vector2
         
         /** The segment's first point position. */
-        a: Vector2
+        get a(): Vector2
+        set a(value: Vector2)
         
         /** The segment's second point position. */
-        b: Vector2
+        get b(): Vector2
+        set b(value: Vector2)
     }
     /** A synchronization mechanism used to control access to a shared resource by [Thread]s.  
      *  	  
@@ -783,12 +2422,14 @@ declare module "godot" {
         get_slide_on_slope(): boolean
         
         /** The ray's length. */
-        length: number /*f64*/
+        get length(): number /*f64*/
+        set length(value: number /*f64*/)
         
         /** If `false` (default), the shape always separates and returns a normal along its own direction.  
          *  If `true`, the shape can return the correct normal and separate in any direction, allowing sliding motion on slopes.  
          */
-        slide_on_slope: boolean
+        get slide_on_slope(): boolean
+        set slide_on_slope(value: boolean)
     }
     /** A 3D ray shape used for physics collision that tries to separate itself from any collider.  
      *  	  
@@ -801,12 +2442,14 @@ declare module "godot" {
         get_slide_on_slope(): boolean
         
         /** The ray's length. */
-        length: number /*f64*/
+        get length(): number /*f64*/
+        set length(value: number /*f64*/)
         
         /** If `false` (default), the shape always separates and returns a normal along its own direction.  
          *  If `true`, the shape can return the correct normal and separate in any direction, allowing sliding motion on slopes.  
          */
-        slide_on_slope: boolean
+        get slide_on_slope(): boolean
+        set slide_on_slope(value: boolean)
     }
     /** Abstract base class for separators.  
      *  	  
@@ -864,7 +2507,8 @@ declare module "godot" {
         get_shader_uniform_list(get_groups: boolean = false): Array
         
         /** Returns the shader's code as the user has written it, not the full generated code used internally. */
-        code: string
+        get code(): string
+        set code(value: string)
     }
     class ShaderCreateDialog extends ConfirmationDialog {
         config(path: string, built_in_enabled: boolean, load_enabled: boolean, _unnamed_arg3: number /*i64*/ = 1, _unnamed_arg4: number /*i64*/ = 1): void
@@ -902,7 +2546,8 @@ declare module "godot" {
         get_code(): string
         
         /** Returns the code of the shader include file. The returned text is what the user has written, not the full generated code used internally. */
-        code: string
+        get code(): string
+        set code(value: string)
     }
     /** A material defined by a custom [Shader] program and the values of its shader parameters.  
      *  	  
@@ -924,7 +2569,8 @@ declare module "godot" {
         get_shader_parameter(param: StringName): any
         
         /** The [Shader] program used to render this material. */
-        shader: Shader
+        get shader(): Shader
+        set shader(value: Shader)
     }
     /** Abstract base class for 2D shapes used for physics collision.  
      *  	  
@@ -967,7 +2613,8 @@ declare module "godot" {
         /** The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.  
          *  When set to `0`, the default value from [member ProjectSettings.physics/2d/solver/default_contact_bias] is used.  
          */
-        custom_solver_bias: number /*f64*/
+        get custom_solver_bias(): number /*f64*/
+        set custom_solver_bias(value: number /*f64*/)
     }
     /** Abstract base class for 3D shapes used for physics collision.  
      *  	  
@@ -985,12 +2632,14 @@ declare module "godot" {
         /** The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.  
          *  When set to `0`, the default value from [member ProjectSettings.physics/3d/solver/default_contact_bias] is used.  
          */
-        custom_solver_bias: number /*f64*/
+        get custom_solver_bias(): number /*f64*/
+        set custom_solver_bias(value: number /*f64*/)
         
         /** The collision margin for the shape. This is not used in Godot Physics.  
          *  Collision margins allow collision detection to be more efficient by adding an extra shell around shapes. Collision algorithms are more expensive when objects overlap by more than their margin, so a higher value for margins is better for performance, at the cost of accuracy around edges as it makes them less sharp.  
          */
-        margin: number /*f64*/
+        get margin(): number /*f64*/
+        set margin(value: number /*f64*/)
     }
     /** A 2D shape that sweeps a region of space to detect [CollisionObject2D]s.  
      *  	  
@@ -1075,34 +2724,43 @@ declare module "godot" {
         _get_collision_result(): Array
         
         /** If `true`, collisions will be reported. */
-        enabled: boolean
+        get enabled(): boolean
+        set enabled(value: boolean)
         
         /** The [Shape2D]-derived shape to be used for collision queries. */
-        shape: Shape2D
+        get shape(): Shape2D
+        set shape(value: Shape2D)
         
         /** If `true`, the parent node will be excluded from collision detection. */
-        exclude_parent: boolean
+        get exclude_parent(): boolean
+        set exclude_parent(value: boolean)
         
         /** The shape's destination point, relative to this node's `position`. */
-        target_position: Vector2
+        get target_position(): Vector2
+        set target_position(value: Vector2)
         
         /** The collision margin for the shape. A larger margin helps detecting collisions more consistently, at the cost of precision. */
-        margin: number /*f64*/
+        get margin(): number /*f64*/
+        set margin(value: number /*f64*/)
         
         /** The number of intersections can be limited with this parameter, to reduce the processing time. */
-        max_results: number /*i64*/
+        get max_results(): number /*i64*/
+        set max_results(value: number /*i64*/)
         
         /** The shape's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. */
-        collision_mask: number /*i64*/
+        get collision_mask(): number /*i64*/
+        set collision_mask(value: number /*i64*/)
         
         /** Returns the complete collision information from the collision sweep. The data returned is the same as in the [method PhysicsDirectSpaceState2D.get_rest_info] method. */
-        readonly collision_result: Array
+        get collision_result(): Array
         
         /** If `true`, collisions with [Area2D]s will be reported. */
-        collide_with_areas: boolean
+        get collide_with_areas(): boolean
+        set collide_with_areas(value: boolean)
         
         /** If `true`, collisions with [PhysicsBody2D]s will be reported. */
-        collide_with_bodies: boolean
+        get collide_with_bodies(): boolean
+        set collide_with_bodies(value: boolean)
     }
     /** A 3D shape that sweeps a region of space to detect [CollisionObject3D]s.  
      *  	  
@@ -1191,39 +2849,49 @@ declare module "godot" {
         get_debug_shape_custom_color(): Color
         
         /** If `true`, collisions will be reported. */
-        enabled: boolean
+        get enabled(): boolean
+        set enabled(value: boolean)
         
         /** The [Shape3D]-derived shape to be used for collision queries. */
-        shape: Shape3D
+        get shape(): Shape3D
+        set shape(value: Shape3D)
         
         /** If `true`, the parent node will be excluded from collision detection. */
-        exclude_parent: boolean
+        get exclude_parent(): boolean
+        set exclude_parent(value: boolean)
         
         /** The shape's destination point, relative to this node's `position`. */
-        target_position: Vector3
+        get target_position(): Vector3
+        set target_position(value: Vector3)
         
         /** The collision margin for the shape. A larger margin helps detecting collisions more consistently, at the cost of precision. */
-        margin: number /*f64*/
+        get margin(): number /*f64*/
+        set margin(value: number /*f64*/)
         
         /** The number of intersections can be limited with this parameter, to reduce the processing time. */
-        max_results: number /*i64*/
+        get max_results(): number /*i64*/
+        set max_results(value: number /*i64*/)
         
         /** The shape's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        collision_mask: number /*i64*/
+        get collision_mask(): number /*i64*/
+        set collision_mask(value: number /*i64*/)
         
         /** Returns the complete collision information from the collision sweep. The data returned is the same as in the [method PhysicsDirectSpaceState3D.get_rest_info] method. */
-        readonly collision_result: Array
+        get collision_result(): Array
         
         /** If `true`, collisions with [Area3D]s will be reported. */
-        collide_with_areas: boolean
+        get collide_with_areas(): boolean
+        set collide_with_areas(value: boolean)
         
         /** If `true`, collisions with [PhysicsBody3D]s will be reported. */
-        collide_with_bodies: boolean
+        get collide_with_bodies(): boolean
+        set collide_with_bodies(value: boolean)
         
         /** The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [ShapeCast3D] is colliding with something.  
          *  If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [member ProjectSettings.debug/shapes/collision/shape_color] is used.  
          */
-        debug_shape_custom_color: Color
+        get debug_shape_custom_color(): Color
+        set debug_shape_custom_color(value: Color)
     }
     class ShapeCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -1247,7 +2915,8 @@ declare module "godot" {
         /** The shortcut's [InputEvent] array.  
          *  Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent], including an [InputEventAction].  
          */
-        events: Array
+        get events(): Array
+        set events(value: Array)
     }
     class ShortcutBin extends Node {
     }
@@ -1454,11 +3123,14 @@ declare module "godot" {
          *      
          *  **Note:** Unless this value is `1.0`, the key value in animation will not match the actual position value.  
          */
-        motion_scale: number /*f64*/
+        get motion_scale(): number /*f64*/
+        set motion_scale(value: number /*f64*/)
         
         /** If `true`, forces the bones in their default rest pose, regardless of their values. In the editor, this also prevents the bones from being edited. */
-        show_rest_only: boolean
-        animate_physical_bones: boolean
+        get show_rest_only(): boolean
+        set show_rest_only(value: boolean)
+        get animate_physical_bones(): boolean
+        set animate_physical_bones(value: boolean)
         
         /** Emitted when the pose is updated, after [constant NOTIFICATION_UPDATE_SKELETON] is received. */
         readonly pose_updated: Signal //  => void
@@ -1515,34 +3187,44 @@ declare module "godot" {
         stop(): void
         
         /** The name of the current root bone, the first bone in the IK chain. */
-        root_bone: StringName
+        get root_bone(): StringName
+        set root_bone(value: StringName)
         
         /** The name of the current tip bone, the last bone in the IK chain placed at the [member target] transform (or [member target_node] if defined). */
-        tip_bone: StringName
+        get tip_bone(): StringName
+        set tip_bone(value: StringName)
         
         /** Interpolation value for how much the IK results are applied to the current skeleton bone chain. A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0` will visually disable the SkeletonIK. A value at or below `0.01` also calls [method Skeleton3D.clear_bones_global_pose_override]. */
-        interpolation: number /*f64*/
+        get interpolation(): number /*f64*/
+        set interpolation(value: number /*f64*/)
         
         /** First target of the IK chain where the tip bone is placed and, if [member override_tip_basis] is `true`, how the tip bone is rotated. If a [member target_node] path is available the nodes transform is used instead and this property is ignored. */
-        target: Transform3D
+        get target(): Transform3D
+        set target(value: Transform3D)
         
         /** If `true` overwrites the rotation of the tip bone with the rotation of the [member target] (or [member target_node] if defined). */
-        override_tip_basis: boolean
+        get override_tip_basis(): boolean
+        set override_tip_basis(value: boolean)
         
         /** If `true`, instructs the IK solver to consider the secondary magnet target (pole target) when calculating the bone chain. Use the magnet position (pole target) to control the bending of the IK chain. */
-        use_magnet: boolean
+        get use_magnet(): boolean
+        set use_magnet(value: boolean)
         
         /** Secondary target position (first is [member target] property or [member target_node]) for the IK chain. Use magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain has more than 2 bones. The middle chain bone position will be linearly interpolated with the magnet position. */
-        magnet: Vector3
+        get magnet(): Vector3
+        set magnet(value: Vector3)
         
         /** Target node [NodePath] for the IK chain. If available, the node's current [Transform3D] is used instead of the [member target] property. */
-        target_node: NodePath
+        get target_node(): NodePath
+        set target_node(value: NodePath)
         
         /** The minimum distance between bone and goal target. If the distance is below this value, the IK solver stops further iterations. */
-        min_distance: number /*f64*/
+        get min_distance(): number /*f64*/
+        set min_distance(value: number /*f64*/)
         
         /** Number of iteration loops used by the IK solver to produce more accurate (and elegant) bone chain results. */
-        max_iterations: number /*i64*/
+        get max_iterations(): number /*i64*/
+        set max_iterations(value: number /*i64*/)
     }
     class SkeletonIK3DEditorPlugin extends EditorPlugin {
     }
@@ -1586,10 +3268,12 @@ declare module "godot" {
         get_editor_draw_gizmo(): boolean
         
         /** If `true`, the modification's [method _execute] function will be called by the [SkeletonModificationStack2D]. */
-        enabled: boolean
+        get enabled(): boolean
+        set enabled(value: boolean)
         
         /** The execution mode for the modification. This tells the modification stack when to execute the modification. Some modifications have settings that are only available in certain execution modes. */
-        execution_mode: number /*i64*/
+        get execution_mode(): number /*i64*/
+        set execution_mode(value: number /*i64*/)
     }
     /** A modification that uses CCDIK to manipulate a series of bones to reach a target in 2D.  
      *  	  
@@ -1648,13 +3332,16 @@ declare module "godot" {
         get_ccdik_joint_constraint_angle_invert(joint_idx: number /*i64*/): boolean
         
         /** The NodePath to the node that is the target for the CCDIK modification. This node is what the CCDIK chain will attempt to rotate the bone chain to. */
-        target_nodepath: NodePath
+        get target_nodepath(): NodePath
+        set target_nodepath(value: NodePath)
         
         /** The end position of the CCDIK chain. Typically, this should be a child of a [Bone2D] node attached to the final [Bone2D] in the CCDIK chain. */
-        tip_nodepath: NodePath
+        get tip_nodepath(): NodePath
+        set tip_nodepath(value: NodePath)
         
         /** The number of CCDIK joints in the CCDIK modification. */
-        ccdik_data_chain_length: number /*i64*/
+        get ccdik_data_chain_length(): number /*i64*/
+        set ccdik_data_chain_length(value: number /*i64*/)
     }
     /** A modification that uses FABRIK to manipulate a series of [Bone2D] nodes to reach a target.  
      *  	  
@@ -1694,10 +3381,12 @@ declare module "godot" {
         get_fabrik_joint_use_target_rotation(joint_idx: number /*i64*/): boolean
         
         /** The NodePath to the node that is the target for the FABRIK modification. This node is what the FABRIK chain will attempt to rotate the bone chain to. */
-        target_nodepath: NodePath
+        get target_nodepath(): NodePath
+        set target_nodepath(value: NodePath)
         
         /** The number of FABRIK joints in the FABRIK modification. */
-        fabrik_data_chain_length: number /*i64*/
+        get fabrik_data_chain_length(): number /*i64*/
+        set fabrik_data_chain_length(value: number /*i64*/)
     }
     /** A modification that jiggles [Bone2D] nodes as they move towards a target.  
      *  	  
@@ -1780,25 +3469,32 @@ declare module "godot" {
         get_jiggle_joint_gravity(joint_idx: number /*i64*/): Vector2
         
         /** The NodePath to the node that is the target for the Jiggle modification. This node is what the Jiggle chain will attempt to rotate the bone chain to. */
-        target_nodepath: NodePath
+        get target_nodepath(): NodePath
+        set target_nodepath(value: NodePath)
         
         /** The amount of Jiggle joints in the Jiggle modification. */
-        jiggle_data_chain_length: number /*i64*/
+        get jiggle_data_chain_length(): number /*i64*/
+        set jiggle_data_chain_length(value: number /*i64*/)
         
         /** The default amount of stiffness assigned to the Jiggle joints, if they are not overridden. Higher values act more like springs, quickly moving into the correct position. */
-        stiffness: number /*f64*/
+        get stiffness(): number /*f64*/
+        set stiffness(value: number /*f64*/)
         
         /** The default amount of mass assigned to the Jiggle joints, if they are not overridden. Higher values lead to faster movements and more overshooting. */
-        mass: number /*f64*/
+        get mass(): number /*f64*/
+        set mass(value: number /*f64*/)
         
         /** The default amount of damping applied to the Jiggle joints, if they are not overridden. Higher values lead to more of the calculated velocity being applied. */
-        damping: number /*f64*/
+        get damping(): number /*f64*/
+        set damping(value: number /*f64*/)
         
         /** Whether the gravity vector, [member gravity], should be applied to the Jiggle joints, assuming they are not overriding the default settings. */
-        use_gravity: boolean
+        get use_gravity(): boolean
+        set use_gravity(value: boolean)
         
         /** The default amount of gravity applied to the Jiggle joints, if they are not overridden. */
-        gravity: Vector2
+        get gravity(): Vector2
+        set gravity(value: Vector2)
     }
     /** A modification that rotates a [Bone2D] node to look at a target.  
      *  	  
@@ -1845,13 +3541,16 @@ declare module "godot" {
         get_constraint_angle_invert(): boolean
         
         /** The index of the [Bone2D] node that the modification will operate on. */
-        bone_index: number /*i64*/
+        get bone_index(): number /*i64*/
+        set bone_index(value: number /*i64*/)
         
         /** The [Bone2D] node that the modification will operate on. */
-        bone2d_node: NodePath
+        get bone2d_node(): NodePath
+        set bone2d_node(value: NodePath)
         
         /** The NodePath to the node that is the target for the LookAt modification. This node is what the modification will rotate the [Bone2D] to. */
-        target_nodepath: NodePath
+        get target_nodepath(): NodePath
+        set target_nodepath(value: NodePath)
     }
     /** A modification that applies the transforms of [PhysicalBone2D] nodes to [Bone2D] nodes.  
      *  	  
@@ -1884,7 +3583,8 @@ declare module "godot" {
         stop_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
         
         /** The number of [PhysicalBone2D] nodes linked in this modification. */
-        physical_bone_chain_length: number /*i64*/
+        get physical_bone_chain_length(): number /*i64*/
+        set physical_bone_chain_length(value: number /*i64*/)
     }
     /** A modification that holds and executes a [SkeletonModificationStack2D].  
      *  	  
@@ -1936,16 +3636,20 @@ declare module "godot" {
         get_joint_two_bone_idx(): number /*i64*/
         
         /** The NodePath to the node that is the target for the TwoBoneIK modification. This node is what the modification will use when bending the [Bone2D] nodes. */
-        target_nodepath: NodePath
+        get target_nodepath(): NodePath
+        set target_nodepath(value: NodePath)
         
         /** The minimum distance the target can be at. If the target is closer than this distance, the modification will solve as if it's at this minimum distance. When set to `0`, the modification will solve without distance constraints. */
-        target_minimum_distance: number /*f64*/
+        get target_minimum_distance(): number /*f64*/
+        set target_minimum_distance(value: number /*f64*/)
         
         /** The maximum distance the target can be at. If the target is farther than this distance, the modification will solve as if it's at this maximum distance. When set to `0`, the modification will solve without distance constraints. */
-        target_maximum_distance: number /*f64*/
+        get target_maximum_distance(): number /*f64*/
+        set target_maximum_distance(value: number /*f64*/)
         
         /** If `true`, the bones in the modification will blend outward as opposed to inwards when contracting. If `false`, the bones will bend inwards when contracting. */
-        flip_bend_direction: boolean
+        get flip_bend_direction(): boolean
+        set flip_bend_direction(value: boolean)
     }
     /** A resource that holds a stack of [SkeletonModification2D]s.  
      *  	  
@@ -1989,13 +3693,16 @@ declare module "godot" {
         get_skeleton(): Skeleton2D
         
         /** If `true`, the modification's in the stack will be called. This is handled automatically through the [Skeleton2D] node. */
-        enabled: boolean
+        get enabled(): boolean
+        set enabled(value: boolean)
         
         /** The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses. */
-        strength: number /*f64*/
+        get strength(): number /*f64*/
+        set strength(value: number /*f64*/)
         
         /** The number of modifications in the stack. */
-        modification_count: any /*Modifications,modifications/*/
+        get modification_count(): any /*Modifications,modifications/*/
+        set modification_count(value: any /*Modifications,modifications/*/)
     }
     namespace SkeletonProfile {
         enum TailDirection {
@@ -2092,20 +3799,24 @@ declare module "godot" {
         set_group(bone_idx: number /*i64*/, group: StringName): void
         
         /** A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of the parent of hips that exists at the world origin. */
-        root_bone: StringName
+        get root_bone(): StringName
+        set root_bone(value: StringName)
         
         /** A bone name which will use model's height as the coefficient for normalization. For example, [SkeletonProfileHumanoid] defines it as `Hips`. */
-        scale_base_bone: StringName
+        get scale_base_bone(): StringName
+        set scale_base_bone(value: StringName)
         
         /** The amount of groups of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 4 groups.  
          *  This property exists to separate the bone list into several sections in the editor.  
          */
-        group_size: any /*Groups,groups/*/
+        get group_size(): any /*Groups,groups/*/
+        set group_size(value: any /*Groups,groups/*/)
         
         /** The amount of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 56 bones.  
          *  The size of elements in [BoneMap] updates when changing this property in it's assigned [SkeletonProfile].  
          */
-        bone_size: any /*Bones,bones/*/
+        get bone_size(): any /*Bones,bones/*/
+        set bone_size(value: any /*Bones,bones/*/)
         
         /** This signal is emitted when change the value in profile. This is used to update key name in the [BoneMap] and to redraw the [BoneMap] editor.  
          *      
@@ -2194,17 +3905,20 @@ declare module "godot" {
         get_material(): Material
         
         /** [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial], [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader. */
-        sky_material: ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial
+        get sky_material(): ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial
+        set sky_material(value: ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial)
         
         /** Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options. */
-        process_mode: number /*i64*/
+        get process_mode(): number /*i64*/
+        set process_mode(value: number /*i64*/)
         
         /** The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting from the [Sky] will be.  
          *  See [enum RadianceSize] constants for values.  
          *      
          *  **Note:** Some hardware will have trouble with higher radiance sizes, especially [constant RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.  
          */
-        radiance_size: number /*i64*/
+        get radiance_size(): number /*i64*/
+        set radiance_size(value: number /*i64*/)
     }
     /** Abstract base class for sliders.  
      *  	  
@@ -2221,16 +3935,20 @@ declare module "godot" {
         is_scrollable(): boolean
         
         /** If `true`, the slider can be interacted with. If `false`, the value can be changed only by code. */
-        editable: boolean
+        get editable(): boolean
+        set editable(value: boolean)
         
         /** If `true`, the value can be changed using the mouse wheel. */
-        scrollable: boolean
+        get scrollable(): boolean
+        set scrollable(value: boolean)
         
         /** Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers. */
-        tick_count: number /*i64*/
+        get tick_count(): number /*i64*/
+        set tick_count(value: number /*i64*/)
         
         /** If `true`, the slider will display ticks for minimum and maximum values. */
-        ticks_on_borders: boolean
+        get ticks_on_borders(): boolean
+        set ticks_on_borders(value: boolean)
         
         /** Emitted when dragging is started. */
         readonly drag_started: Signal //  => void
@@ -2395,43 +4113,54 @@ declare module "godot" {
          *      
          *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
          */
-        collision_layer: number /*i64*/
+        get collision_layer(): number /*i64*/
+        set collision_layer(value: number /*i64*/)
         
         /** The physics layers this SoftBody3D **scans**. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
          *      
          *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
          */
-        collision_mask: number /*i64*/
+        get collision_mask(): number /*i64*/
+        set collision_mask(value: number /*i64*/)
         
         /** [NodePath] to a [CollisionObject3D] this SoftBody3D should avoid clipping. */
-        parent_collision_ignore: NodePath
+        get parent_collision_ignore(): NodePath
+        set parent_collision_ignore(value: NodePath)
         
         /** Increasing this value will improve the resulting simulation, but can affect performance. Use with care. */
-        simulation_precision: number /*i64*/
+        get simulation_precision(): number /*i64*/
+        set simulation_precision(value: number /*i64*/)
         
         /** The SoftBody3D's mass. */
-        total_mass: number /*f64*/
+        get total_mass(): number /*f64*/
+        set total_mass(value: number /*f64*/)
         
         /** Higher values will result in a stiffer body, while lower values will increase the body's ability to bend. The value can be between `0.0` and `1.0` (inclusive). */
-        linear_stiffness: number /*f64*/
+        get linear_stiffness(): number /*f64*/
+        set linear_stiffness(value: number /*f64*/)
         
         /** The pressure coefficient of this soft body. Simulate pressure build-up from inside this body. Higher values increase the strength of this effect. */
-        pressure_coefficient: number /*f64*/
+        get pressure_coefficient(): number /*f64*/
+        set pressure_coefficient(value: number /*f64*/)
         
         /** The body's damping coefficient. Higher values will slow down the body more noticeably when forces are applied. */
-        damping_coefficient: number /*f64*/
+        get damping_coefficient(): number /*f64*/
+        set damping_coefficient(value: number /*f64*/)
         
         /** The body's drag coefficient. Higher values increase this body's air resistance.  
          *      
          *  **Note:** This value is currently unused by Godot's default physics implementation.  
          */
-        drag_coefficient: number /*f64*/
+        get drag_coefficient(): number /*f64*/
+        set drag_coefficient(value: number /*f64*/)
         
         /** If `true`, the [SoftBody3D] will respond to [RayCast3D]s. */
-        ray_pickable: boolean
+        get ray_pickable(): boolean
+        set ray_pickable(value: boolean)
         
         /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
-        disable_mode: number /*i64*/
+        get disable_mode(): number /*i64*/
+        set disable_mode(value: number /*i64*/)
     }
     class SoftBody3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -2452,22 +4181,27 @@ declare module "godot" {
         get_is_hemisphere(): boolean
         
         /** Radius of sphere. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
         
         /** Full height of the sphere. */
-        height: number /*f64*/
+        get height(): number /*f64*/
+        set height(value: number /*f64*/)
         
         /** Number of radial segments on the sphere. */
-        radial_segments: number /*i64*/
+        get radial_segments(): number /*i64*/
+        set radial_segments(value: number /*i64*/)
         
         /** Number of segments along the height of the sphere. */
-        rings: number /*i64*/
+        get rings(): number /*i64*/
+        set rings(value: number /*i64*/)
         
         /** If `true`, a hemisphere is created rather than a full sphere.  
          *      
          *  **Note:** To get a regular hemisphere, the height and radius of the sphere must be equal.  
          */
-        is_hemisphere: boolean
+        get is_hemisphere(): boolean
+        set is_hemisphere(value: boolean)
     }
     /** Spherical shape for use with occlusion culling in [OccluderInstance3D].  
      *  	  
@@ -2478,7 +4212,8 @@ declare module "godot" {
         get_radius(): number /*f64*/
         
         /** The sphere's radius in 3D units. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
     }
     /** A 3D sphere shape used for physics collision.  
      *  	  
@@ -2489,7 +4224,8 @@ declare module "godot" {
         get_radius(): number /*f64*/
         
         /** The sphere's radius. The shape's diameter is double the radius. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
     }
     /** An input field for numbers.  
      *  	  
@@ -2520,25 +4256,32 @@ declare module "godot" {
         get_line_edit(): LineEdit
         
         /** Changes the alignment of the underlying [LineEdit]. */
-        alignment: number /*i64*/
+        get alignment(): number /*i64*/
+        set alignment(value: number /*i64*/)
         
         /** If `true`, the [SpinBox] will be editable. Otherwise, it will be read only. */
-        editable: boolean
+        get editable(): boolean
+        set editable(value: boolean)
         
         /** Sets the value of the [Range] for this [SpinBox] when the [LineEdit] text is  *changed*  instead of  *submitted* . See [signal LineEdit.text_changed] and [signal LineEdit.text_submitted]. */
-        update_on_text_changed: boolean
+        get update_on_text_changed(): boolean
+        set update_on_text_changed(value: boolean)
         
         /** Adds the specified prefix string before the numerical value of the [SpinBox]. */
-        prefix: string
+        get prefix(): string
+        set prefix(value: string)
         
         /** Adds the specified suffix string after the numerical value of the [SpinBox]. */
-        suffix: string
+        get suffix(): string
+        set suffix(value: string)
         
         /** If not `0`, [member Range.value] will always be rounded to a multiple of [member custom_arrow_step] when interacting with the arrow buttons of the [SpinBox]. */
-        custom_arrow_step: number /*f64*/
+        get custom_arrow_step(): number /*f64*/
+        set custom_arrow_step(value: number /*f64*/)
         
         /** If `true`, the [SpinBox] will select the whole text when the [LineEdit] gains focus. Clicking the up and down arrows won't trigger this behavior. */
-        select_all_on_focus: boolean
+        get select_all_on_focus(): boolean
+        set select_all_on_focus(value: boolean)
     }
     namespace SplitContainer {
         enum DraggerVisibility {
@@ -2570,18 +4313,22 @@ declare module "godot" {
         is_vertical(): boolean
         
         /** The initial offset of the splitting between the two [Control]s, with `0` being at the end of the first [Control]. */
-        split_offset: number /*i64*/
+        get split_offset(): number /*i64*/
+        set split_offset(value: number /*i64*/)
         
         /** If `true`, the area of the first [Control] will be collapsed and the dragger will be disabled. */
-        collapsed: boolean
+        get collapsed(): boolean
+        set collapsed(value: boolean)
         
         /** Determines the dragger's visibility. See [enum DraggerVisibility] for details. */
-        dragger_visibility: number /*i64*/
+        get dragger_visibility(): number /*i64*/
+        set dragger_visibility(value: number /*i64*/)
         
         /** If `true`, the [SplitContainer] will arrange its children vertically, rather than horizontally.  
          *  Can't be changed when using [HSplitContainer] and [VSplitContainer].  
          */
-        vertical: boolean
+        get vertical(): boolean
+        set vertical(value: boolean)
         
         /** Emitted when the dragger is dragged by user. */
         readonly dragged: Signal // offset: number /*i64*/ => void
@@ -2620,23 +4367,27 @@ declare module "godot" {
         get_margin(): number /*f64*/
         
         /** The layers against which the collision check shall be done. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        collision_mask: number /*i64*/
+        get collision_mask(): number /*i64*/
+        set collision_mask(value: number /*i64*/)
         
         /** The [Shape3D] to use for the SpringArm3D.  
          *  When the shape is set, the SpringArm3D will cast the [Shape3D] on its z axis instead of performing a ray cast.  
          */
-        shape: Shape3D
+        get shape(): Shape3D
+        set shape(value: Shape3D)
         
         /** The maximum extent of the SpringArm3D. This is used as a length for both the ray and the shape cast used internally to calculate the desired position of the SpringArm3D's child nodes.  
          *  To know more about how to perform a shape cast or a ray cast, please consult the [PhysicsDirectSpaceState3D] documentation.  
          */
-        spring_length: number /*f64*/
+        get spring_length(): number /*f64*/
+        set spring_length(value: number /*f64*/)
         
         /** When the collision check is made, a candidate length for the SpringArm3D is given.  
          *  The margin is then subtracted to this length and the translation is applied to the child objects of the SpringArm3D.  
          *  This margin is useful for when the SpringArm3D has a [Camera3D] as a child node: without the margin, the [Camera3D] would be placed on the exact point of collision, while with the margin the [Camera3D] would be placed close to the point of collision.  
          */
-        margin: number /*f64*/
+        get margin(): number /*f64*/
+        set margin(value: number /*f64*/)
     }
     class SpringArm3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -2683,40 +4434,52 @@ declare module "godot" {
         get_rect(): Rect2
         
         /** [Texture2D] object to draw. */
-        texture: Texture2D
+        get texture(): Texture2D
+        set texture(value: Texture2D)
         
         /** If `true`, texture is centered. */
-        centered: boolean
+        get centered(): boolean
+        set centered(value: boolean)
         
         /** The texture's drawing offset. */
-        offset: Vector2
+        get offset(): Vector2
+        set offset(value: Vector2)
         
         /** If `true`, texture is flipped horizontally. */
-        flip_h: boolean
+        get flip_h(): boolean
+        set flip_h(value: boolean)
         
         /** If `true`, texture is flipped vertically. */
-        flip_v: boolean
+        get flip_v(): boolean
+        set flip_v(value: boolean)
         
         /** The number of columns in the sprite sheet. When this property is changed, [member frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [member frame] is reset to `0`. */
-        hframes: number /*i64*/
+        get hframes(): number /*i64*/
+        set hframes(value: number /*i64*/)
         
         /** The number of rows in the sprite sheet. When this property is changed, [member frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [member frame] is reset to `0`. */
-        vframes: number /*i64*/
+        get vframes(): number /*i64*/
+        set vframes(value: number /*i64*/)
         
         /** Current frame to display from sprite sheet. [member hframes] or [member vframes] must be greater than 1. This property is automatically adjusted when [member hframes] or [member vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`. */
-        frame: number /*i64*/
+        get frame(): number /*i64*/
+        set frame(value: number /*i64*/)
         
         /** Coordinates of the frame to display from sprite sheet. This is as an alias for the [member frame] property. [member hframes] or [member vframes] must be greater than 1. */
-        frame_coords: Vector2i
+        get frame_coords(): Vector2i
+        set frame_coords(value: Vector2i)
         
         /** If `true`, texture is cut from a larger atlas texture. See [member region_rect]. */
-        region_enabled: boolean
+        get region_enabled(): boolean
+        set region_enabled(value: boolean)
         
         /** The region of the atlas texture to display. [member region_enabled] must be `true`. */
-        region_rect: Rect2
+        get region_rect(): Rect2
+        set region_rect(value: Rect2)
         
         /** If `true`, the outermost pixels get blurred out. [member region_enabled] must be `true`. */
-        region_filter_clip_enabled: boolean
+        get region_filter_clip_enabled(): boolean
+        set region_filter_clip_enabled(value: boolean)
         
         /** Emitted when the [member frame] changes. */
         readonly frame_changed: Signal //  => void
@@ -2750,25 +4513,32 @@ declare module "godot" {
         get_hframes(): number /*i64*/
         
         /** [Texture2D] object to draw. If [member GeometryInstance3D.material_override] is used, this will be overridden. The size information is still used. */
-        texture: Texture2D
+        get texture(): Texture2D
+        set texture(value: Texture2D)
         
         /** The number of columns in the sprite sheet. When this property is changed, [member frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [member frame] is reset to `0`. */
-        hframes: number /*i64*/
+        get hframes(): number /*i64*/
+        set hframes(value: number /*i64*/)
         
         /** The number of rows in the sprite sheet. When this property is changed, [member frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [member frame] is reset to `0`. */
-        vframes: number /*i64*/
+        get vframes(): number /*i64*/
+        set vframes(value: number /*i64*/)
         
         /** Current frame to display from sprite sheet. [member hframes] or [member vframes] must be greater than 1. This property is automatically adjusted when [member hframes] or [member vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`. */
-        frame: number /*i64*/
+        get frame(): number /*i64*/
+        set frame(value: number /*i64*/)
         
         /** Coordinates of the frame to display from sprite sheet. This is as an alias for the [member frame] property. [member hframes] or [member vframes] must be greater than 1. */
-        frame_coords: Vector2
+        get frame_coords(): Vector2
+        set frame_coords(value: Vector2)
         
         /** If `true`, the sprite will use [member region_rect] and display only the specified part of its texture. */
-        region_enabled: boolean
+        get region_enabled(): boolean
+        set region_enabled(value: boolean)
         
         /** The region of the atlas texture to display. [member region_enabled] must be `true`. */
-        region_rect: Rect2
+        get region_rect(): Rect2
+        set region_rect(value: Rect2)
         
         /** Emitted when the [member frame] changes. */
         readonly frame_changed: Signal //  => void
@@ -2859,16 +4629,20 @@ declare module "godot" {
         generate_triangle_mesh(): TriangleMesh
         
         /** If `true`, texture will be centered. */
-        centered: boolean
+        get centered(): boolean
+        set centered(value: boolean)
         
         /** The texture's drawing offset. */
-        offset: Vector2
+        get offset(): Vector2
+        set offset(value: Vector2)
         
         /** If `true`, texture is flipped horizontally. */
-        flip_h: boolean
+        get flip_h(): boolean
+        set flip_h(value: boolean)
         
         /** If `true`, texture is flipped vertically. */
-        flip_v: boolean
+        get flip_v(): boolean
+        set flip_v(value: boolean)
         
         /** A color value used to  *multiply*  the texture's colors. Can be used for mood-coloring or to simulate the color of ambient light.  
          *      
@@ -2876,37 +4650,47 @@ declare module "godot" {
          *      
          *  **Note:** If a [member GeometryInstance3D.material_override] is defined on the [SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [member modulate] will be ignored. For a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] must be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.  
          */
-        modulate: Color
+        get modulate(): Color
+        set modulate(value: Color)
         
         /** The size of one pixel's width on the sprite to scale it in 3D. */
-        pixel_size: number /*f64*/
+        get pixel_size(): number /*f64*/
+        set pixel_size(value: number /*f64*/)
         
         /** The direction in which the front of the texture faces. */
-        axis: number /*i64*/
+        get axis(): number /*i64*/
+        set axis(value: number /*i64*/)
         
         /** The billboard mode to use for the sprite. See [enum BaseMaterial3D.BillboardMode] for possible values. */
-        billboard: number /*i64*/
+        get billboard(): number /*i64*/
+        set billboard(value: number /*i64*/)
         
         /** The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values. */
-        alpha_cut: number /*i64*/
+        get alpha_cut(): number /*i64*/
+        set alpha_cut(value: number /*i64*/)
         
         /** Threshold at which the alpha scissor will discard values. */
-        alpha_scissor_threshold: number /*f64*/
+        get alpha_scissor_threshold(): number /*f64*/
+        set alpha_scissor_threshold(value: number /*f64*/)
         
         /** The hashing scale for Alpha Hash. Recommended values between `0` and `2`. */
-        alpha_hash_scale: number /*f64*/
+        get alpha_hash_scale(): number /*f64*/
+        set alpha_hash_scale(value: number /*f64*/)
         
         /** The type of alpha antialiasing to apply. See [enum BaseMaterial3D.AlphaAntiAliasing]. */
-        alpha_antialiasing_mode: number /*i64*/
+        get alpha_antialiasing_mode(): number /*i64*/
+        set alpha_antialiasing_mode(value: number /*i64*/)
         
         /** Threshold at which antialiasing will be applied on the alpha channel. */
-        alpha_antialiasing_edge: number /*f64*/
+        get alpha_antialiasing_edge(): number /*f64*/
+        set alpha_antialiasing_edge(value: number /*f64*/)
         
         /** Filter flags for the texture. See [enum BaseMaterial3D.TextureFilter] for options.  
          *      
          *  **Note:** Linear filtering may cause artifacts around the edges, which are especially noticeable on opaque textures. To prevent this, use textures with transparent or identical colors around the edges.  
          */
-        texture_filter: number /*i64*/
+        get texture_filter(): number /*i64*/
+        set texture_filter(value: number /*i64*/)
         
         /** Sets the render priority for the sprite. Higher priority objects will be sorted in front of lower priority objects.  
          *      
@@ -2914,7 +4698,8 @@ declare module "godot" {
          *      
          *  **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).  
          */
-        render_priority: number /*i64*/
+        get render_priority(): number /*i64*/
+        set render_priority(value: number /*i64*/)
     }
     class SpriteBase3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -2978,7 +4763,8 @@ declare module "godot" {
         clear_all(): void
         _set_animations(animations: Array): void
         _get_animations(): Array
-        animations: Array
+        get animations(): Array
+        set animations(value: Array)
     }
     class SpriteFramesEditor extends HSplitContainer {
         _update_library(skipsel: boolean = false): void
@@ -3009,13 +4795,16 @@ declare module "godot" {
         /** The physics material override for the body.  
          *  If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.  
          */
-        physics_material_override: PhysicsMaterial
+        get physics_material_override(): PhysicsMaterial
+        set physics_material_override(value: PhysicsMaterial)
         
         /** The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving. */
-        constant_linear_velocity: Vector2
+        get constant_linear_velocity(): Vector2
+        set constant_linear_velocity(value: Vector2)
         
         /** The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating. */
-        constant_angular_velocity: number /*f64*/
+        get constant_angular_velocity(): number /*f64*/
+        set constant_angular_velocity(value: number /*f64*/)
     }
     /** A 3D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.  
      *  	  
@@ -3032,13 +4821,16 @@ declare module "godot" {
         /** The physics material override for the body.  
          *  If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.  
          */
-        physics_material_override: PhysicsMaterial
+        get physics_material_override(): PhysicsMaterial
+        set physics_material_override(value: PhysicsMaterial)
         
         /** The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving. */
-        constant_linear_velocity: Vector3
+        get constant_linear_velocity(): Vector3
+        set constant_linear_velocity(value: Vector3)
         
         /** The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating. */
-        constant_angular_velocity: Vector3
+        get constant_angular_velocity(): Vector3
+        set constant_angular_velocity(value: Vector3)
     }
     /** Abstract base class for interacting with streams.  
      *  	  
@@ -3154,7 +4946,8 @@ declare module "godot" {
         get_var(allow_objects: boolean = false): any
         
         /** If `true`, this [StreamPeer] will using big-endian format for encoding and decoding. */
-        big_endian: boolean
+        get big_endian(): boolean
+        set big_endian(value: boolean)
     }
     /** A stream peer used to handle binary data streams.  
      *  	  
@@ -3182,7 +4975,8 @@ declare module "godot" {
         duplicate(): StreamPeerBuffer
         
         /** The underlying data buffer. Setting this value resets the cursor. */
-        data_array: PackedByteArray
+        get data_array(): PackedByteArray
+        set data_array(value: PackedByteArray)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_streampeerextension.html */
     class StreamPeerExtension extends StreamPeer {
@@ -3412,49 +5206,60 @@ declare module "godot" {
         get_corner_detail(): number /*i64*/
         
         /** The background color of the stylebox. */
-        bg_color: Color
+        get bg_color(): Color
+        set bg_color(value: Color)
         
         /** Toggles drawing of the inner part of the stylebox. */
-        draw_center: boolean
+        get draw_center(): boolean
+        set draw_center(value: boolean)
         
         /** If set to a non-zero value on either axis, [member skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).  
          *      
          *  **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [StyleBox]'s content margin (see [member StyleBox.content_margin_bottom]). It is preferable to increase the content margin instead of the expand margin (see [member expand_margin_bottom]), as increasing the expand margin does not increase the size of the clickable area for [Control]s.  
          */
-        skew: Vector2
+        get skew(): Vector2
+        set skew(value: Vector2)
         
         /** Sets the color of the border. */
-        border_color: Color
+        get border_color(): Color
+        set border_color(value: Color)
         
         /** If `true`, the border will fade into the background color. */
-        border_blend: boolean
+        get border_blend(): boolean
+        set border_blend(value: boolean)
         
         /** This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius ([method set_corner_radius_all]) into account.  
          *  For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30, values between `8` and `12` should be enough.  
          *  A corner detail of `1` will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.  
          */
-        corner_detail: number /*i64*/
+        get corner_detail(): number /*i64*/
+        set corner_detail(value: number /*i64*/)
         
         /** The color of the shadow. This has no effect if [member shadow_size] is lower than 1. */
-        shadow_color: Color
+        get shadow_color(): Color
+        set shadow_color(value: Color)
         
         /** The shadow size in pixels. */
-        shadow_size: number /*i64*/
+        get shadow_size(): number /*i64*/
+        set shadow_size(value: number /*i64*/)
         
         /** The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox. */
-        shadow_offset: Vector2
+        get shadow_offset(): Vector2
+        set shadow_offset(value: Vector2)
         
         /** Antialiasing draws a small ring around the edges, which fades to transparency. As a result, edges look much smoother. This is only noticeable when using rounded corners or [member skew].  
          *      
          *  **Note:** When using beveled corners with 45-degree angles ([member corner_detail] = 1), it is recommended to set [member anti_aliasing] to `false` to ensure crisp visuals and avoid possible visual glitches.  
          */
-        anti_aliasing: boolean
+        get anti_aliasing(): boolean
+        set anti_aliasing(value: boolean)
         
         /** This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at 100% scale, identical to how rounded rectangles are rendered in web browsers and most vector drawing software.  
          *      
          *  **Note:** Higher values may produce a blur effect but can also create undesired artifacts on small boxes with large-radius corners.  
          */
-        anti_aliasing_size: number /*f64*/
+        get anti_aliasing_size(): number /*f64*/
+        set anti_aliasing_size(value: number /*f64*/)
     }
     /** A [StyleBox] that displays a single line of a given color and thickness.  
      *  	  
@@ -3473,19 +5278,24 @@ declare module "godot" {
         is_vertical(): boolean
         
         /** The line's color. */
-        color: Color
+        get color(): Color
+        set color(value: Color)
         
         /** The number of pixels the line will extend before the [StyleBoxLine]'s bounds. If set to a negative value, the line will begin inside the [StyleBoxLine]'s bounds. */
-        grow_begin: number /*f64*/
+        get grow_begin(): number /*f64*/
+        set grow_begin(value: number /*f64*/)
         
         /** The number of pixels the line will extend past the [StyleBoxLine]'s bounds. If set to a negative value, the line will end inside the [StyleBoxLine]'s bounds. */
-        grow_end: number /*f64*/
+        get grow_end(): number /*f64*/
+        set grow_end(value: number /*f64*/)
         
         /** The line's thickness in pixels. */
-        thickness: number /*i64*/
+        get thickness(): number /*i64*/
+        set thickness(value: number /*i64*/)
         
         /** If `true`, the line will be vertical. If `false`, the line will be horizontal. */
-        vertical: boolean
+        get vertical(): boolean
+        set vertical(value: boolean)
     }
     namespace StyleBoxTexture {
         enum AxisStretchMode {
@@ -3536,25 +5346,31 @@ declare module "godot" {
         get_v_axis_stretch_mode(): StyleBoxTexture.AxisStretchMode
         
         /** The texture to use when drawing this style box. */
-        texture: Texture2D
+        get texture(): Texture2D
+        set texture(value: Texture2D)
         
         /** Controls how the stylebox's texture will be stretched or tiled horizontally. See [enum AxisStretchMode] for possible values. */
-        axis_stretch_horizontal: number /*i64*/
+        get axis_stretch_horizontal(): number /*i64*/
+        set axis_stretch_horizontal(value: number /*i64*/)
         
         /** Controls how the stylebox's texture will be stretched or tiled vertically. See [enum AxisStretchMode] for possible values. */
-        axis_stretch_vertical: number /*i64*/
+        get axis_stretch_vertical(): number /*i64*/
+        set axis_stretch_vertical(value: number /*i64*/)
         
         /** Species a sub-region of the texture to use.  
          *  This is equivalent to first wrapping the texture in an [AtlasTexture] with the same region.  
          *  If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.  
          */
-        region_rect: Rect2
+        get region_rect(): Rect2
+        set region_rect(value: Rect2)
         
         /** Modulates the color of the texture when this style box is drawn. */
-        modulate_color: Color
+        get modulate_color(): Color
+        set modulate_color(value: Color)
         
         /** If `true`, the nine-patch texture's center tile will be drawn. */
-        draw_center: boolean
+        get draw_center(): boolean
+        set draw_center(value: boolean)
     }
     namespace SubViewport {
         enum ClearMode {
@@ -3604,22 +5420,27 @@ declare module "godot" {
          *      
          *  **Note:** If the parent node is a [SubViewportContainer] and its [member SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.  
          */
-        size: Vector2i
+        get size(): Vector2i
+        set size(value: Vector2i)
         
         /** The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled. */
-        size_2d_override: Vector2i
+        get size_2d_override(): Vector2i
+        set size_2d_override(value: Vector2i)
         
         /** If `true`, the 2D size override affects stretch as well. */
-        size_2d_override_stretch: boolean
+        get size_2d_override_stretch(): boolean
+        set size_2d_override_stretch(value: boolean)
         
         /** The clear mode when the sub-viewport is used as a render target.  
          *      
          *  **Note:** This property is intended for 2D usage.  
          */
-        render_target_clear_mode: number /*i64*/
+        get render_target_clear_mode(): number /*i64*/
+        set render_target_clear_mode(value: number /*i64*/)
         
         /** The update mode when the sub-viewport is used as a render target. */
-        render_target_update_mode: number /*i64*/
+        get render_target_update_mode(): number /*i64*/
+        set render_target_update_mode(value: number /*i64*/)
     }
     /** A container used for displaying the contents of a [SubViewport].  
      *  	  
@@ -3637,14 +5458,16 @@ declare module "godot" {
          *      
          *  **Note:** If `true`, this will prohibit changing [member SubViewport.size] of its children manually.  
          */
-        stretch: boolean
+        get stretch(): boolean
+        set stretch(value: boolean)
         
         /** Divides the sub-viewport's effective resolution by this value while preserving its scale. This can be used to speed up rendering.  
          *  For example, a 1280×720 sub-viewport with [member stretch_shrink] set to `2` will be rendered at 640×360 while occupying the same size in the container.  
          *      
          *  **Note:** [member stretch] must be `true` for this property to work.  
          */
-        stretch_shrink: number /*i64*/
+        get stretch_shrink(): number /*i64*/
+        set stretch_shrink(value: number /*i64*/)
     }
     class SubViewportPreviewEditorPlugin extends EditorPlugin {
     }
@@ -3891,46 +5714,60 @@ declare module "godot" {
         set_font_stretch(stretch: number /*i64*/): void
         
         /** Array of font family names to search, first matching font found is used. */
-        font_names: PackedStringArray
+        get font_names(): PackedStringArray
+        set font_names(value: PackedStringArray)
         
         /** If set to `true`, italic or oblique font is preferred. */
-        font_italic: boolean
+        get font_italic(): boolean
+        set font_italic(value: boolean)
         
         /** Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`. */
-        font_weight: number /*i64*/
+        get font_weight(): number /*i64*/
+        set font_weight(value: number /*i64*/)
         
         /** Preferred font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`. */
-        font_stretch: number /*i64*/
+        get font_stretch(): number /*i64*/
+        set font_stretch(value: number /*i64*/)
         
         /** Font anti-aliasing mode. */
-        antialiasing: number /*i64*/
+        get antialiasing(): number /*i64*/
+        set antialiasing(value: number /*i64*/)
         
         /** If set to `true`, generate mipmaps for the font textures. */
-        generate_mipmaps: boolean
+        get generate_mipmaps(): boolean
+        set generate_mipmaps(value: boolean)
         
         /** If set to `true`, system fonts can be automatically used as fallbacks. */
-        allow_system_fallback: boolean
+        get allow_system_fallback(): boolean
+        set allow_system_fallback(value: boolean)
         
         /** If set to `true`, auto-hinting is supported and preferred over font built-in hinting. */
-        force_autohinter: boolean
+        get force_autohinter(): boolean
+        set force_autohinter(value: boolean)
         
         /** Font hinting mode. */
-        hinting: number /*i64*/
+        get hinting(): number /*i64*/
+        set hinting(value: number /*i64*/)
         
         /** Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use [constant TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size. */
-        subpixel_positioning: number /*i64*/
+        get subpixel_positioning(): number /*i64*/
+        set subpixel_positioning(value: number /*i64*/)
         
         /** If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. */
-        multichannel_signed_distance_field: boolean
+        get multichannel_signed_distance_field(): boolean
+        set multichannel_signed_distance_field(value: boolean)
         
         /** The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [member msdf_pixel_range] must be set to at least  *twice*  the size of the largest font outline. The default [member msdf_pixel_range] value of `16` allows outline sizes up to `8` to look correct. */
-        msdf_pixel_range: number /*i64*/
+        get msdf_pixel_range(): number /*i64*/
+        set msdf_pixel_range(value: number /*i64*/)
         
         /** Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering. */
-        msdf_size: number /*i64*/
+        get msdf_size(): number /*i64*/
+        set msdf_size(value: number /*i64*/)
         
         /** Font oversampling factor, if set to `0.0` global oversampling factor is used instead. */
-        oversampling: number /*f64*/
+        get oversampling(): number /*f64*/
+        set oversampling(value: number /*f64*/)
     }
     /** A TCP server.  
      *  	  
@@ -4130,39 +5967,50 @@ declare module "godot" {
         clear_tabs(): void
         
         /** The number of tabs currently in the bar. */
-        tab_count: any /*Tabs,tab_*/
+        get tab_count(): any /*Tabs,tab_*/
+        set tab_count(value: any /*Tabs,tab_*/)
         
         /** Select tab at index `tab_idx`. */
-        current_tab: number /*i64*/
+        get current_tab(): number /*i64*/
+        set current_tab(value: number /*i64*/)
         
         /** Sets the position at which tabs will be placed. See [enum AlignmentMode] for details. */
-        tab_alignment: number /*i64*/
+        get tab_alignment(): number /*i64*/
+        set tab_alignment(value: number /*i64*/)
         
         /** If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons instead. Otherwise, this node's minimum size is updated so that all tabs are visible. */
-        clip_tabs: boolean
+        get clip_tabs(): boolean
+        set clip_tabs(value: boolean)
         
         /** Sets when the close button will appear on the tabs. See [enum CloseButtonDisplayPolicy] for details. */
-        tab_close_display_policy: number /*i64*/
+        get tab_close_display_policy(): number /*i64*/
+        set tab_close_display_policy(value: number /*i64*/)
         
         /** Sets the maximum width which all tabs should be limited to. Unlimited if set to `0`. */
-        max_tab_width: number /*i64*/
+        get max_tab_width(): number /*i64*/
+        set max_tab_width(value: number /*i64*/)
         
         /** if `true`, the mouse's scroll wheel can be used to navigate the scroll view. */
-        scrolling_enabled: boolean
+        get scrolling_enabled(): boolean
+        set scrolling_enabled(value: boolean)
         
         /** If `true`, tabs can be rearranged with mouse drag. */
-        drag_to_rearrange_enabled: boolean
+        get drag_to_rearrange_enabled(): boolean
+        set drag_to_rearrange_enabled(value: boolean)
         
         /** [TabBar]s with the same rearrange group ID will allow dragging the tabs between them. Enable drag with [member drag_to_rearrange_enabled].  
          *  Setting this to `-1` will disable rearranging between [TabBar]s.  
          */
-        tabs_rearrange_group: number /*i64*/
+        get tabs_rearrange_group(): number /*i64*/
+        set tabs_rearrange_group(value: number /*i64*/)
         
         /** If `true`, the tab offset will be changed to keep the currently selected tab visible. */
-        scroll_to_selected: boolean
+        get scroll_to_selected(): boolean
+        set scroll_to_selected(value: boolean)
         
         /** If `true`, enables selecting a tab with the right mouse button. */
-        select_with_rmb: boolean
+        get select_with_rmb(): boolean
+        set select_with_rmb(value: boolean)
         
         /** Emitted when a tab is selected via click, directional input, or script, even if it is the current tab. */
         readonly tab_selected: Signal // tab: number /*i64*/ => void
@@ -4289,33 +6137,42 @@ declare module "godot" {
         get_tab_focus_mode(): Control.FocusMode
         
         /** Sets the position at which tabs will be placed. See [enum TabBar.AlignmentMode] for details. */
-        tab_alignment: number /*i64*/
+        get tab_alignment(): number /*i64*/
+        set tab_alignment(value: number /*i64*/)
         
         /** The current tab index. When set, this index's [Control] node's `visible` property is set to `true` and all others are set to `false`. */
-        current_tab: number /*i64*/
+        get current_tab(): number /*i64*/
+        set current_tab(value: number /*i64*/)
         
         /** If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons instead. Otherwise, this node's minimum size is updated so that all tabs are visible. */
-        clip_tabs: boolean
+        get clip_tabs(): boolean
+        set clip_tabs(value: boolean)
         
         /** If `true`, tabs are visible. If `false`, tabs' content and titles are hidden. */
-        tabs_visible: boolean
+        get tabs_visible(): boolean
+        set tabs_visible(value: boolean)
         
         /** If `true`, all tabs are drawn in front of the panel. If `false`, inactive tabs are drawn behind the panel. */
-        all_tabs_in_front: boolean
+        get all_tabs_in_front(): boolean
+        set all_tabs_in_front(value: boolean)
         
         /** If `true`, tabs can be rearranged with mouse drag. */
-        drag_to_rearrange_enabled: boolean
+        get drag_to_rearrange_enabled(): boolean
+        set drag_to_rearrange_enabled(value: boolean)
         
         /** [TabContainer]s with the same rearrange group ID will allow dragging the tabs between them. Enable drag with [member drag_to_rearrange_enabled].  
          *  Setting this to `-1` will disable rearranging between [TabContainer]s.  
          */
-        tabs_rearrange_group: number /*i64*/
+        get tabs_rearrange_group(): number /*i64*/
+        set tabs_rearrange_group(value: number /*i64*/)
         
         /** If `true`, child [Control] nodes that are hidden have their minimum size take into account in the total, instead of only the currently visible one. */
-        use_hidden_tabs_for_min_size: boolean
+        get use_hidden_tabs_for_min_size(): boolean
+        set use_hidden_tabs_for_min_size(value: boolean)
         
         /** The focus access mode for the internal [TabBar] node. */
-        tab_focus_mode: number /*i64*/
+        get tab_focus_mode(): number /*i64*/
+        set tab_focus_mode(value: number /*i64*/)
         
         /** Emitted when the active tab is rearranged via mouse drag. See [member drag_to_rearrange_enabled]. */
         readonly active_tab_rearranged: Signal // idx_to: number /*i64*/ => void
@@ -5040,125 +6897,162 @@ declare module "godot" {
         menu_option(option: number /*i64*/): void
         
         /** String value of the [TextEdit]. */
-        text: string
+        get text(): string
+        set text(value: string)
         
         /** Text shown when the [TextEdit] is empty. It is **not** the [TextEdit]'s default value (see [member text]). */
-        placeholder_text: string
+        get placeholder_text(): string
+        set placeholder_text(value: string)
         
         /** If `false`, existing text cannot be modified and new text cannot be added. */
-        editable: boolean
+        get editable(): boolean
+        set editable(value: boolean)
         
         /** If `true`, a right-click displays the context menu. */
-        context_menu_enabled: boolean
+        get context_menu_enabled(): boolean
+        set context_menu_enabled(value: boolean)
         
         /** If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled. */
-        shortcut_keys_enabled: boolean
+        get shortcut_keys_enabled(): boolean
+        set shortcut_keys_enabled(value: boolean)
         
         /** If `true`, text can be selected.  
          *  If `false`, text can not be selected by the user or by the [method select] or [method select_all] methods.  
          */
-        selecting_enabled: boolean
+        get selecting_enabled(): boolean
+        set selecting_enabled(value: boolean)
         
         /** If `true`, the selected text will be deselected when focus is lost. */
-        deselect_on_focus_loss_enabled: boolean
+        get deselect_on_focus_loss_enabled(): boolean
+        set deselect_on_focus_loss_enabled(value: boolean)
         
         /** If `true`, allow drag and drop of selected text. */
-        drag_and_drop_selection_enabled: boolean
+        get drag_and_drop_selection_enabled(): boolean
+        set drag_and_drop_selection_enabled(value: boolean)
         
         /** If `true`, the native virtual keyboard is shown when focused on platforms that support it. */
-        virtual_keyboard_enabled: boolean
+        get virtual_keyboard_enabled(): boolean
+        set virtual_keyboard_enabled(value: boolean)
         
         /** If `false`, using middle mouse button to paste clipboard will be disabled.  
          *      
          *  **Note:** This method is only implemented on Linux.  
          */
-        middle_mouse_paste_enabled: boolean
+        get middle_mouse_paste_enabled(): boolean
+        set middle_mouse_paste_enabled(value: boolean)
         
         /** Sets the line wrapping mode to use. */
-        wrap_mode: number /*i64*/
+        get wrap_mode(): number /*i64*/
+        set wrap_mode(value: number /*i64*/)
         
         /** If [member wrap_mode] is set to [constant LINE_WRAPPING_BOUNDARY], sets text wrapping mode. To see how each mode behaves, see [enum TextServer.AutowrapMode]. */
-        autowrap_mode: number /*i64*/
+        get autowrap_mode(): number /*i64*/
+        set autowrap_mode(value: number /*i64*/)
         
         /** Scroll smoothly over the text rather than jumping to the next location. */
-        scroll_smooth: boolean
+        get scroll_smooth(): boolean
+        set scroll_smooth(value: boolean)
         
         /** Sets the scroll speed with the minimap or when [member scroll_smooth] is enabled. */
-        scroll_v_scroll_speed: number /*f64*/
+        get scroll_v_scroll_speed(): number /*f64*/
+        set scroll_v_scroll_speed(value: number /*f64*/)
         
         /** Allow scrolling past the last line into "virtual" space. */
-        scroll_past_end_of_file: boolean
+        get scroll_past_end_of_file(): boolean
+        set scroll_past_end_of_file(value: boolean)
         
         /** If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line. */
-        scroll_vertical: number /*f64*/
+        get scroll_vertical(): number /*f64*/
+        set scroll_vertical(value: number /*f64*/)
         
         /** If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels. */
-        scroll_horizontal: number /*i64*/
+        get scroll_horizontal(): number /*i64*/
+        set scroll_horizontal(value: number /*i64*/)
         
         /** If `true`, [TextEdit] will disable vertical scroll and fit minimum height to the number of visible lines. */
-        scroll_fit_content_height: boolean
+        get scroll_fit_content_height(): boolean
+        set scroll_fit_content_height(value: boolean)
         
         /** If `true`, a minimap is shown, providing an outline of your source code. */
-        minimap_draw: boolean
+        get minimap_draw(): boolean
+        set minimap_draw(value: boolean)
         
         /** The width, in pixels, of the minimap. */
-        minimap_width: number /*i64*/
+        get minimap_width(): number /*i64*/
+        set minimap_width(value: number /*i64*/)
         
         /** Set the type of caret to draw. */
-        caret_type: number /*i64*/
+        get caret_type(): number /*i64*/
+        set caret_type(value: number /*i64*/)
         
         /** If `true`, makes the caret blink. */
-        caret_blink: boolean
+        get caret_blink(): boolean
+        set caret_blink(value: boolean)
         
         /** The interval at which the caret blinks (in seconds). */
-        caret_blink_interval: number /*f64*/
+        get caret_blink_interval(): number /*f64*/
+        set caret_blink_interval(value: number /*f64*/)
         
         /** If `true`, caret will be visible when [member editable] is disabled. */
-        caret_draw_when_editable_disabled: boolean
+        get caret_draw_when_editable_disabled(): boolean
+        set caret_draw_when_editable_disabled(value: boolean)
         
         /** If `true`, a right-click moves the caret at the mouse position before displaying the context menu.  
          *  If `false`, the context menu ignores mouse location.  
          */
-        caret_move_on_right_click: boolean
+        get caret_move_on_right_click(): boolean
+        set caret_move_on_right_click(value: boolean)
         
         /** Allow moving caret, selecting and removing the individual composite character components.  
          *      
          *  **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.  
          */
-        caret_mid_grapheme: boolean
+        get caret_mid_grapheme(): boolean
+        set caret_mid_grapheme(value: boolean)
         
         /** Sets if multiple carets are allowed. */
-        caret_multiple: boolean
+        get caret_multiple(): boolean
+        set caret_multiple(value: boolean)
         
         /** Sets the [SyntaxHighlighter] to use. */
-        syntax_highlighter: SyntaxHighlighter
+        get syntax_highlighter(): SyntaxHighlighter
+        set syntax_highlighter(value: SyntaxHighlighter)
         
         /** If `true`, all occurrences of the selected text will be highlighted. */
-        highlight_all_occurrences: boolean
+        get highlight_all_occurrences(): boolean
+        set highlight_all_occurrences(value: boolean)
         
         /** If `true`, the line containing the cursor is highlighted. */
-        highlight_current_line: boolean
+        get highlight_current_line(): boolean
+        set highlight_current_line(value: boolean)
         
         /** If `true`, control characters are displayed. */
-        draw_control_chars: boolean
+        get draw_control_chars(): boolean
+        set draw_control_chars(value: boolean)
         
         /** If `true`, the "tab" character will have a visible representation. */
-        draw_tabs: boolean
+        get draw_tabs(): boolean
+        set draw_tabs(value: boolean)
         
         /** If `true`, the "space" character will have a visible representation. */
-        draw_spaces: boolean
+        get draw_spaces(): boolean
+        set draw_spaces(value: boolean)
         
         /** Base text writing direction. */
-        text_direction: number /*i64*/
+        get text_direction(): number /*i64*/
+        set text_direction(value: number /*i64*/)
         
         /** Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
-        language: string
+        get language(): string
+        set language(value: string)
         
         /** Set BiDi algorithm override for the structured text. */
-        structured_text_bidi_override: number /*i64*/
+        get structured_text_bidi_override(): number /*i64*/
+        set structured_text_bidi_override(value: number /*i64*/)
         
         /** Set additional options for BiDi override. */
-        structured_text_bidi_override_options: Array
+        get structured_text_bidi_override_options(): Array
+        set structured_text_bidi_override_options(value: Array)
         
         /** Emitted when [method clear] is called or [member text] is set. */
         readonly text_set: Signal //  => void
@@ -5261,28 +7155,36 @@ declare module "godot" {
         hit_test(coords: number /*f64*/): number /*i64*/
         
         /** Text writing direction. */
-        direction: number /*i64*/
+        get direction(): number /*i64*/
+        set direction(value: number /*i64*/)
         
         /** Text orientation. */
-        orientation: number /*i64*/
+        get orientation(): number /*i64*/
+        set orientation(value: number /*i64*/)
         
         /** If set to `true` text will display invalid characters. */
-        preserve_invalid: boolean
+        get preserve_invalid(): boolean
+        set preserve_invalid(value: boolean)
         
         /** If set to `true` text will display control characters. */
-        preserve_control: boolean
+        get preserve_control(): boolean
+        set preserve_control(value: boolean)
         
         /** Text line width. */
-        width: number /*f64*/
+        get width(): number /*f64*/
+        set width(value: number /*f64*/)
         
         /** Sets text alignment within the line as if the line was horizontal. */
-        alignment: number /*i64*/
+        get alignment(): number /*i64*/
+        set alignment(value: number /*i64*/)
         
         /** Line alignment rules. For more info see [TextServer]. */
-        flags: number /*i64*/
+        get flags(): number /*i64*/
+        set flags(value: number /*i64*/)
         
         /** Sets the clipping behavior when the text exceeds the text line's set width. See [enum TextServer.OverrunBehavior] for a description of all modes. */
-        text_overrun_behavior: number /*i64*/
+        get text_overrun_behavior(): number /*i64*/
+        set text_overrun_behavior(value: number /*i64*/)
     }
     /** Generate an [PrimitiveMesh] from the text.  
      *  	  
@@ -5328,58 +7230,76 @@ declare module "godot" {
         _font_changed(): void
         
         /** The text to generate mesh from. */
-        text: string
+        get text(): string
+        set text(value: string)
         
         /** Font configuration used to display text. */
-        font: Font
+        get font(): Font
+        set font(value: Font)
         
         /** Font size of the [TextMesh]'s text. */
-        font_size: number /*i64*/
+        get font_size(): number /*i64*/
+        set font_size(value: number /*i64*/)
         
         /** Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. Set it to one of the [enum HorizontalAlignment] constants. */
-        horizontal_alignment: number /*i64*/
+        get horizontal_alignment(): number /*i64*/
+        set horizontal_alignment(value: number /*i64*/)
         
         /** Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the [enum VerticalAlignment] constants. */
-        vertical_alignment: number /*i64*/
+        get vertical_alignment(): number /*i64*/
+        set vertical_alignment(value: number /*i64*/)
         
         /** If `true`, all the text displays as UPPERCASE. */
-        uppercase: boolean
+        get uppercase(): boolean
+        set uppercase(value: boolean)
         
         /** Vertical space between lines in multiline [TextMesh]. */
-        line_spacing: number /*f64*/
+        get line_spacing(): number /*f64*/
+        set line_spacing(value: number /*f64*/)
         
         /** If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [enum TextServer.AutowrapMode]. */
-        autowrap_mode: number /*i64*/
+        get autowrap_mode(): number /*i64*/
+        set autowrap_mode(value: number /*i64*/)
         
         /** Line fill alignment rules. For more info see [enum TextServer.JustificationFlag]. */
-        justification_flags: number /*i64*/
+        get justification_flags(): number /*i64*/
+        set justification_flags(value: number /*i64*/)
         
         /** The size of one pixel's width on the text to scale it in 3D. */
-        pixel_size: number /*f64*/
+        get pixel_size(): number /*f64*/
+        set pixel_size(value: number /*f64*/)
         
         /** Step (in pixels) used to approximate Bézier curves. */
-        curve_step: number /*f64*/
+        get curve_step(): number /*f64*/
+        set curve_step(value: number /*f64*/)
         
         /** Depths of the mesh, if set to `0.0` only front surface, is generated, and UV layout is changed to use full texture for the front face only. */
-        depth: number /*f64*/
+        get depth(): number /*f64*/
+        set depth(value: number /*f64*/)
         
         /** Text width (in pixels), used for fill alignment. */
-        width: number /*f64*/
+        get width(): number /*f64*/
+        set width(value: number /*f64*/)
         
         /** The text drawing offset (in pixels). */
-        offset: Vector2
+        get offset(): Vector2
+        set offset(value: Vector2)
         
         /** Base text writing direction. */
-        text_direction: number /*i64*/
+        get text_direction(): number /*i64*/
+        set text_direction(value: number /*i64*/)
         
         /** Language code used for text shaping algorithms, if left empty current locale is used instead. */
-        language: string
+        get language(): string
+        set language(value: string)
         
         /** Set BiDi algorithm override for the structured text. */
-        structured_text_bidi_override: number /*i64*/
+        get structured_text_bidi_override(): number /*i64*/
+        set structured_text_bidi_override(value: number /*i64*/)
         
         /** Set additional options for BiDi override. */
-        structured_text_bidi_override_options: Array
+        get structured_text_bidi_override_options(): Array
+        set structured_text_bidi_override_options(value: Array)
     }
     /** Holds a paragraph of text.  
      *  	  
@@ -5507,37 +7427,48 @@ declare module "godot" {
         hit_test(coords: Vector2): number /*i64*/
         
         /** Text writing direction. */
-        direction: number /*i64*/
+        get direction(): number /*i64*/
+        set direction(value: number /*i64*/)
         
         /** Custom punctuation character list, used for word breaking. If set to empty string, server defaults are used. */
-        custom_punctuation: string
+        get custom_punctuation(): string
+        set custom_punctuation(value: string)
         
         /** Text orientation. */
-        orientation: number /*i64*/
+        get orientation(): number /*i64*/
+        set orientation(value: number /*i64*/)
         
         /** If set to `true` text will display invalid characters. */
-        preserve_invalid: boolean
+        get preserve_invalid(): boolean
+        set preserve_invalid(value: boolean)
         
         /** If set to `true` text will display control characters. */
-        preserve_control: boolean
+        get preserve_control(): boolean
+        set preserve_control(value: boolean)
         
         /** Paragraph horizontal alignment. */
-        alignment: number /*i64*/
+        get alignment(): number /*i64*/
+        set alignment(value: number /*i64*/)
         
         /** Line breaking rules. For more info see [TextServer]. */
-        break_flags: number /*i64*/
+        get break_flags(): number /*i64*/
+        set break_flags(value: number /*i64*/)
         
         /** Line fill alignment rules. For more info see [enum TextServer.JustificationFlag]. */
-        justification_flags: number /*i64*/
+        get justification_flags(): number /*i64*/
+        set justification_flags(value: number /*i64*/)
         
         /** Sets the clipping behavior when the text exceeds the paragraph's set width. See [enum TextServer.OverrunBehavior] for a description of all modes. */
-        text_overrun_behavior: number /*i64*/
+        get text_overrun_behavior(): number /*i64*/
+        set text_overrun_behavior(value: number /*i64*/)
         
         /** Paragraph width. */
-        width: number /*f64*/
+        get width(): number /*f64*/
+        set width(value: number /*f64*/)
         
         /** Limits the lines of text shown. */
-        max_lines_visible: number /*i64*/
+        get max_lines_visible(): number /*i64*/
+        set max_lines_visible(value: number /*i64*/)
     }
     namespace TextServer {
         enum FontAntialiasing {
@@ -6953,7 +8884,8 @@ declare module "godot" {
         get_texture_rd_rid(): RID
         
         /** The RID of the texture object created on the [RenderingDevice]. */
-        texture_rd_rid: RID
+        get texture_rd_rid(): RID
+        set texture_rd_rid(value: RID)
     }
     /** Base class for 3-dimensional textures.  
      *  	  
@@ -7010,7 +8942,8 @@ declare module "godot" {
         get_texture_rd_rid(): RID
         
         /** The RID of the texture object created on the [RenderingDevice]. */
-        texture_rd_rid: RID
+        get texture_rd_rid(): RID
+        set texture_rd_rid(value: RID)
     }
     namespace TextureButton {
         enum StretchMode {
@@ -7063,34 +8996,44 @@ declare module "godot" {
         get_stretch_mode(): TextureButton.StretchMode
         
         /** Texture to display by default, when the node is **not** in the disabled, hover or pressed state. This texture is still displayed in the focused state, with [member texture_focused] drawn on top. */
-        texture_normal: Texture2D
+        get texture_normal(): Texture2D
+        set texture_normal(value: Texture2D)
         
         /** Texture to display on mouse down over the node, if the node has keyboard focus and the player presses the Enter key or if the player presses the [member BaseButton.shortcut] key. */
-        texture_pressed: Texture2D
+        get texture_pressed(): Texture2D
+        set texture_pressed(value: Texture2D)
         
         /** Texture to display when the mouse hovers the node. */
-        texture_hover: Texture2D
+        get texture_hover(): Texture2D
+        set texture_hover(value: Texture2D)
         
         /** Texture to display when the node is disabled. See [member BaseButton.disabled]. */
-        texture_disabled: Texture2D
+        get texture_disabled(): Texture2D
+        set texture_disabled(value: Texture2D)
         
         /** Texture to display when the node has mouse or keyboard focus. [member texture_focused] is displayed  *over*  the base texture, so a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons. */
-        texture_focused: Texture2D
+        get texture_focused(): Texture2D
+        set texture_focused(value: Texture2D)
         
         /** Pure black and white [BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes. */
-        texture_click_mask: BitMap
+        get texture_click_mask(): BitMap
+        set texture_click_mask(value: BitMap)
         
         /** If `true`, the size of the texture won't be considered for minimum size calculation, so the [TextureButton] can be shrunk down past the texture size. */
-        ignore_texture_size: bool
+        get ignore_texture_size(): bool
+        set ignore_texture_size(value: bool)
         
         /** Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options. */
-        stretch_mode: number /*i64*/
+        get stretch_mode(): number /*i64*/
+        set stretch_mode(value: number /*i64*/)
         
         /** If `true`, texture is flipped horizontally. */
-        flip_h: bool
+        get flip_h(): bool
+        set flip_h(value: bool)
         
         /** If `true`, texture is flipped vertically. */
-        flip_v: bool
+        get flip_v(): bool
+        set flip_v(value: bool)
     }
     /** Texture Array for Cubemaps that is bound to a texture created on the [RenderingDevice].  
      *  	  
@@ -7176,7 +9119,8 @@ declare module "godot" {
         get_texture_rd_rid(): RID
         
         /** The RID of the texture object created on the [RenderingDevice]. */
-        texture_rd_rid: RID
+        get texture_rd_rid(): RID
+        set texture_rd_rid(value: RID)
     }
     namespace TextureProgressBar {
         enum FillMode {
@@ -7245,2159 +9189,55 @@ declare module "godot" {
         get_nine_patch_stretch(): boolean
         
         /** The fill direction. See [enum FillMode] for possible values. */
-        fill_mode: number /*i64*/
+        get fill_mode(): number /*i64*/
+        set fill_mode(value: number /*i64*/)
         
         /** If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*` properties like [member stretch_margin_bottom] to set up the nine patch's 3×3 grid. When using a radial [member fill_mode], this setting will enable stretching. */
-        nine_patch_stretch: boolean
+        get nine_patch_stretch(): boolean
+        set nine_patch_stretch(value: boolean)
         
         /** [Texture2D] that draws under the progress bar. The bar's background. */
-        texture_under: Texture2D
+        get texture_under(): Texture2D
+        set texture_under(value: Texture2D)
         
         /** [Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that hides part of [member texture_progress]. */
-        texture_over: Texture2D
+        get texture_over(): Texture2D
+        set texture_over(value: Texture2D)
         
         /** [Texture2D] that clips based on the node's `value` and [member fill_mode]. As `value` increased, the texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if `value` is equal to `min_value`.  
          *  The `value` property comes from [Range]. See [member Range.value], [member Range.min_value], [member Range.max_value].  
          */
-        texture_progress: Texture2D
+        get texture_progress(): Texture2D
+        set texture_progress(value: Texture2D)
         
         /** The offset of [member texture_progress]. Useful for [member texture_over] and [member texture_under] with fancy borders, to avoid transparent margins in your progress texture. */
-        texture_progress_offset: Vector2
+        get texture_progress_offset(): Vector2
+        set texture_progress_offset(value: Vector2)
         
         /** Multiplies the color of the bar's [member texture_under] texture. */
-        tint_under: Color
+        get tint_under(): Color
+        set tint_under(value: Color)
         
         /** Multiplies the color of the bar's [member texture_over] texture. The effect is similar to [member CanvasItem.modulate], except it only affects this specific texture instead of the entire node. */
-        tint_over: Color
+        get tint_over(): Color
+        set tint_over(value: Color)
         
         /** Multiplies the color of the bar's [member texture_progress] texture. */
-        tint_progress: Color
+        get tint_progress(): Color
+        set tint_progress(value: Color)
         
         /** Starting angle for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE] or [constant FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the texture fills and tends towards [member radial_fill_degrees]. */
-        radial_initial_angle: number /*f64*/
+        get radial_initial_angle(): number /*f64*/
+        set radial_initial_angle(value: number /*f64*/)
         
         /** Upper limit for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE] or [constant FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up to this angle.  
          *  See [member Range.value], [member Range.max_value].  
          */
-        radial_fill_degrees: number /*f64*/
+        get radial_fill_degrees(): number /*f64*/
+        set radial_fill_degrees(value: number /*f64*/)
         
         /** Offsets [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE] or [constant FILL_COUNTER_CLOCKWISE]. */
-        radial_center_offset: Vector2
-    }
-    namespace TextureRect {
-        enum ExpandMode {
-            /** The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the texture. */
-            EXPAND_KEEP_SIZE = 0,
-            
-            /** The size of the texture won't be considered for minimum size calculation, so the [TextureRect] can be shrunk down past the texture size. */
-            EXPAND_IGNORE_SIZE = 1,
-            
-            /** The height of the texture will be ignored. Minimum width will be equal to the current height. Useful for horizontal layouts, e.g. inside [HBoxContainer]. */
-            EXPAND_FIT_WIDTH = 2,
-            
-            /** Same as [constant EXPAND_FIT_WIDTH], but keeps texture's aspect ratio. */
-            EXPAND_FIT_WIDTH_PROPORTIONAL = 3,
-            
-            /** The width of the texture will be ignored. Minimum height will be equal to the current width. Useful for vertical layouts, e.g. inside [VBoxContainer]. */
-            EXPAND_FIT_HEIGHT = 4,
-            
-            /** Same as [constant EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio. */
-            EXPAND_FIT_HEIGHT_PROPORTIONAL = 5,
-        }
-        enum StretchMode {
-            /** Scale to fit the node's bounding rectangle. */
-            STRETCH_SCALE = 0,
-            
-            /** Tile inside the node's bounding rectangle. */
-            STRETCH_TILE = 1,
-            
-            /** The texture keeps its original size and stays in the bounding rectangle's top-left corner. */
-            STRETCH_KEEP = 2,
-            
-            /** The texture keeps its original size and stays centered in the node's bounding rectangle. */
-            STRETCH_KEEP_CENTERED = 3,
-            
-            /** Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio. */
-            STRETCH_KEEP_ASPECT = 4,
-            
-            /** Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect ratio. */
-            STRETCH_KEEP_ASPECT_CENTERED = 5,
-            
-            /** Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits. */
-            STRETCH_KEEP_ASPECT_COVERED = 6,
-        }
-    }
-    /** A control that displays a texture.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_texturerect.html  
-     */
-    class TextureRect extends Control {
-        set_texture(texture: Texture2D): void
-        get_texture(): Texture2D
-        set_expand_mode(expand_mode: TextureRect.ExpandMode): void
-        get_expand_mode(): TextureRect.ExpandMode
-        set_flip_h(enable: boolean): void
-        is_flipped_h(): boolean
-        set_flip_v(enable: boolean): void
-        is_flipped_v(): boolean
-        set_stretch_mode(stretch_mode: TextureRect.StretchMode): void
-        get_stretch_mode(): TextureRect.StretchMode
-        
-        /** The node's [Texture2D] resource. */
-        texture: Texture2D
-        
-        /** Defines how minimum size is determined based on the texture's size. See [enum ExpandMode] for options.  
-         *      
-         *  **Note:** Using [constant EXPAND_FIT_WIDTH], [constant EXPAND_FIT_WIDTH_PROPORTIONAL], [constant EXPAND_FIT_HEIGHT] or [constant EXPAND_FIT_HEIGHT_PROPORTIONAL] may result in unstable behavior in some containers. This functionality is being re-evaluated and will change in the future.  
-         */
-        expand_mode: number /*i64*/
-        
-        /** Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode]. */
-        stretch_mode: number /*i64*/
-        
-        /** If `true`, texture is flipped horizontally. */
-        flip_h: boolean
-        
-        /** If `true`, texture is flipped vertically. */
-        flip_v: boolean
-    }
-    class TextureRegionEditor extends AcceptDialog {
-        _update_rect(): void
-    }
-    class TextureRegionEditorPlugin extends EditorPlugin {
-    }
-    namespace Theme {
-        enum DataType {
-            /** Theme's [Color] item type. */
-            DATA_TYPE_COLOR = 0,
-            
-            /** Theme's constant item type. */
-            DATA_TYPE_CONSTANT = 1,
-            
-            /** Theme's [Font] item type. */
-            DATA_TYPE_FONT = 2,
-            
-            /** Theme's font size item type. */
-            DATA_TYPE_FONT_SIZE = 3,
-            
-            /** Theme's icon [Texture2D] item type. */
-            DATA_TYPE_ICON = 4,
-            
-            /** Theme's [StyleBox] item type. */
-            DATA_TYPE_STYLEBOX = 5,
-            
-            /** Maximum value for the DataType enum. */
-            DATA_TYPE_MAX = 6,
-        }
-    }
-    /** A resource used for styling/skinning [Control]s and [Window]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_theme.html  
-     */
-    class Theme extends Resource {
-        /** Creates or changes the value of the icon property defined by [param name] and [param theme_type]. Use [method clear_icon] to remove the property. */
-        set_icon(name: StringName, theme_type: StringName, texture: Texture2D): void
-        
-        /** Returns the icon property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the engine fallback icon value if the property doesn't exist (see [member ThemeDB.fallback_icon]). Use [method has_icon] to check for existence.  
-         */
-        get_icon(name: StringName, theme_type: StringName): Texture2D
-        
-        /** Returns `true` if the icon property defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_icon] to define it.  
-         */
-        has_icon(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the icon property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_icon] to check for existence, and [method clear_icon] to remove the existing property.  
-         */
-        rename_icon(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the icon property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_icon] to check for existence.  
-         */
-        clear_icon(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for icon properties defined with [param theme_type]. Use [method get_icon_type_list] to get a list of possible theme type names. */
-        get_icon_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for icon properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_icon_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the [StyleBox] property defined by [param name] and [param theme_type]. Use [method clear_stylebox] to remove the property. */
-        set_stylebox(name: StringName, theme_type: StringName, texture: StyleBox): void
-        
-        /** Returns the [StyleBox] property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the engine fallback stylebox value if the property doesn't exist (see [member ThemeDB.fallback_stylebox]). Use [method has_stylebox] to check for existence.  
-         */
-        get_stylebox(name: StringName, theme_type: StringName): StyleBox
-        
-        /** Returns `true` if the [StyleBox] property defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_stylebox] to define it.  
-         */
-        has_stylebox(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the [StyleBox] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_stylebox] to check for existence, and [method clear_stylebox] to remove the existing property.  
-         */
-        rename_stylebox(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the [StyleBox] property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_stylebox] to check for existence.  
-         */
-        clear_stylebox(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for [StyleBox] properties defined with [param theme_type]. Use [method get_stylebox_type_list] to get a list of possible theme type names. */
-        get_stylebox_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for [StyleBox] properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_stylebox_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the [Font] property defined by [param name] and [param theme_type]. Use [method clear_font] to remove the property. */
-        set_font(name: StringName, theme_type: StringName, font: Font): void
-        
-        /** Returns the [Font] property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the default theme font if the property doesn't exist and the default theme font is set up (see [member default_font]). Use [method has_font] to check for existence of the property and [method has_default_font] to check for existence of the default theme font.  
-         *  Returns the engine fallback font value, if neither exist (see [member ThemeDB.fallback_font]).  
-         */
-        get_font(name: StringName, theme_type: StringName): Font
-        
-        /** Returns `true` if the [Font] property defined by [param name] and [param theme_type] exists, or if the default theme font is set up (see [method has_default_font]).  
-         *  Returns `false` if neither exist. Use [method set_font] to define the property.  
-         */
-        has_font(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the [Font] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font] to check for existence, and [method clear_font] to remove the existing property.  
-         */
-        rename_font(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the [Font] property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_font] to check for existence.  
-         */
-        clear_font(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for [Font] properties defined with [param theme_type]. Use [method get_font_type_list] to get a list of possible theme type names. */
-        get_font_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for [Font] properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_font_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the font size property defined by [param name] and [param theme_type]. Use [method clear_font_size] to remove the property. */
-        set_font_size(name: StringName, theme_type: StringName, font_size: number /*i64*/): void
-        
-        /** Returns the font size property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the default theme font size if the property doesn't exist and the default theme font size is set up (see [member default_font_size]). Use [method has_font_size] to check for existence of the property and [method has_default_font_size] to check for existence of the default theme font.  
-         *  Returns the engine fallback font size value, if neither exist (see [member ThemeDB.fallback_font_size]).  
-         */
-        get_font_size(name: StringName, theme_type: StringName): number /*i64*/
-        
-        /** Returns `true` if the font size property defined by [param name] and [param theme_type] exists, or if the default theme font size is set up (see [method has_default_font_size]).  
-         *  Returns `false` if neither exist. Use [method set_font_size] to define the property.  
-         */
-        has_font_size(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the font size property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font_size] to check for existence, and [method clear_font_size] to remove the existing property.  
-         */
-        rename_font_size(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the font size property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_font_size] to check for existence.  
-         */
-        clear_font_size(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for font size properties defined with [param theme_type]. Use [method get_font_size_type_list] to get a list of possible theme type names. */
-        get_font_size_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for font size properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_font_size_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the [Color] property defined by [param name] and [param theme_type]. Use [method clear_color] to remove the property. */
-        set_color(name: StringName, theme_type: StringName, color: Color): void
-        
-        /** Returns the [Color] property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the default color value if the property doesn't exist. Use [method has_color] to check for existence.  
-         */
-        get_color(name: StringName, theme_type: StringName): Color
-        
-        /** Returns `true` if the [Color] property defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_color] to define it.  
-         */
-        has_color(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the [Color] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_color] to check for existence, and [method clear_color] to remove the existing property.  
-         */
-        rename_color(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the [Color] property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_color] to check for existence.  
-         */
-        clear_color(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for [Color] properties defined with [param theme_type]. Use [method get_color_type_list] to get a list of possible theme type names. */
-        get_color_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for [Color] properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_color_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the constant property defined by [param name] and [param theme_type]. Use [method clear_constant] to remove the property. */
-        set_constant(name: StringName, theme_type: StringName, constant: number /*i64*/): void
-        
-        /** Returns the constant property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns `0` if the property doesn't exist. Use [method has_constant] to check for existence.  
-         */
-        get_constant(name: StringName, theme_type: StringName): number /*i64*/
-        
-        /** Returns `true` if the constant property defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_constant] to define it.  
-         */
-        has_constant(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the constant property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_constant] to check for existence, and [method clear_constant] to remove the existing property.  
-         */
-        rename_constant(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the constant property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_constant] to check for existence.  
-         */
-        clear_constant(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for constant properties defined with [param theme_type]. Use [method get_constant_type_list] to get a list of possible theme type names. */
-        get_constant_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for constant properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_constant_type_list(): PackedStringArray
-        set_default_base_scale(base_scale: number /*f64*/): void
-        get_default_base_scale(): number /*f64*/
-        
-        /** Returns `true` if [member default_base_scale] has a valid value.  
-         *  Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.  
-         */
-        has_default_base_scale(): boolean
-        set_default_font(font: Font): void
-        get_default_font(): Font
-        
-        /** Returns `true` if [member default_font] has a valid value.  
-         *  Returns `false` if it doesn't.  
-         */
-        has_default_font(): boolean
-        set_default_font_size(font_size: number /*i64*/): void
-        get_default_font_size(): number /*i64*/
-        
-        /** Returns `true` if [member default_font_size] has a valid value.  
-         *  Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.  
-         */
-        has_default_font_size(): boolean
-        
-        /** Creates or changes the value of the theme property of [param data_type] defined by [param name] and [param theme_type]. Use [method clear_theme_item] to remove the property.  
-         *  Fails if the [param value] type is not accepted by [param data_type].  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        set_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName, value: any): void
-        
-        /** Returns the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the engine fallback value if the property doesn't exist (see [ThemeDB]). Use [method has_theme_item] to check for existence.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        get_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): any
-        
-        /** Returns `true` if the theme property of [param data_type] defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_theme_item] to define it.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        has_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the theme property of [param data_type] defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_theme_item] to check for existence, and [method clear_theme_item] to remove the existing property.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        rename_theme_item(data_type: Theme.DataType, old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_theme_item] to check for existence.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        clear_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for properties of [param data_type] defined with [param theme_type]. Use [method get_theme_item_type_list] to get a list of possible theme type names.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        get_theme_item_list(data_type: Theme.DataType, theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for [param data_type] properties. Use [method get_type_list] to get a list of all unique theme types.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        get_theme_item_type_list(data_type: Theme.DataType): PackedStringArray
-        
-        /** Marks [param theme_type] as a variation of [param base_type].  
-         *  This adds [param theme_type] as a suggested option for [member Control.theme_type_variation] on a [Control] that is of the [param base_type] class.  
-         *  Variations can also be nested, i.e. [param base_type] can be another variation. If a chain of variations ends with a [param base_type] matching the class of the [Control], the whole chain is going to be suggested as options.  
-         *      
-         *  **Note:** Suggestions only show up if this theme resource is set as the project default theme. See [member ProjectSettings.gui/theme/custom].  
-         */
-        set_type_variation(theme_type: StringName, base_type: StringName): void
-        
-        /** Returns `true` if [param theme_type] is marked as a variation of [param base_type]. */
-        is_type_variation(theme_type: StringName, base_type: StringName): boolean
-        
-        /** Unmarks [param theme_type] as being a variation of another theme type. See [method set_type_variation]. */
-        clear_type_variation(theme_type: StringName): void
-        
-        /** Returns the name of the base theme type if [param theme_type] is a valid variation type. Returns an empty string otherwise. */
-        get_type_variation_base(theme_type: StringName): StringName
-        
-        /** Returns a list of all type variations for the given [param base_type]. */
-        get_type_variation_list(base_type: StringName): PackedStringArray
-        
-        /** Adds an empty theme type for every valid data type.  
-         *      
-         *  **Note:** Empty types are not saved with the theme. This method only exists to perform in-memory changes to the resource. Use available `set_*` methods to add theme items.  
-         */
-        add_type(theme_type: StringName): void
-        
-        /** Removes the theme type, gracefully discarding defined theme items. If the type is a variation, this information is also erased. If the type is a base for type variations, those variations lose their base. */
-        remove_type(theme_type: StringName): void
-        
-        /** Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to get a list of unique theme types for a single data type. */
-        get_type_list(): PackedStringArray
-        
-        /** Adds missing and overrides existing definitions with values from the [param other] theme resource.  
-         *      
-         *  **Note:** This modifies the current theme. If you want to merge two themes together without modifying either one, create a new empty theme and merge the other two into it one after another.  
-         */
-        merge_with(other: Theme): void
-        
-        /** Removes all the theme properties defined on the theme resource. */
-        clear(): void
-        
-        /** The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used (see [member ThemeDB.fallback_base_scale]).  
-         *  Use [method has_default_base_scale] to check if this value is valid.  
-         */
-        default_base_scale: number /*f64*/
-        
-        /** The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font]).  
-         *  Use [method has_default_font] to check if this value is valid.  
-         */
-        default_font: Font
-        
-        /** The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font_size]).  
-         *  Values below `0` are invalid and can be used to unset the property. Use [method has_default_font_size] to check if this value is valid.  
-         */
-        default_font_size: number /*i64*/
-    }
-    class ThemeContext extends Object {
-        readonly changed: Signal //  => void
-    }
-    class ThemeEditor extends VBoxContainer {
-    }
-    class ThemeEditorPlugin extends EditorPlugin {
-    }
-    class ThemeEditorPreview extends VBoxContainer {
-        readonly control_picked: Signal // class_name: string => void
-    }
-    class ThemeItemEditorDialog extends AcceptDialog {
-        _update_edit_types(): void
-        _update_edit_item_tree(_unnamed_arg0: string): void
-    }
-    class ThemeItemImportTree extends VBoxContainer {
-        readonly items_imported: Signal //  => void
-    }
-    class ThemeTypeDialog extends ConfirmationDialog {
-        readonly type_selected: Signal // type_name: string => void
-    }
-    class ThemeTypeEditor extends MarginContainer {
-        _update_type_items(): void
-        _pin_leading_stylebox(_unnamed_arg0: string, _unnamed_arg1: StyleBox): void
-        _unpin_leading_stylebox(): void
-        _change_pinned_stylebox(): void
-    }
-    namespace Thread {
-        enum Priority {
-            /** A thread running with lower priority than normally. */
-            PRIORITY_LOW = 0,
-            
-            /** A thread with a standard priority. */
-            PRIORITY_NORMAL = 1,
-            
-            /** A thread running with higher priority than normally. */
-            PRIORITY_HIGH = 2,
-        }
-    }
-    /** A unit of execution in a process.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_thread.html  
-     */
-    class Thread extends RefCounted {
-        /** Starts a new [Thread] that calls [param callable].  
-         *  If the method takes some arguments, you can pass them using [method Callable.bind].  
-         *  The [param priority] of the [Thread] can be changed by passing a value from the [enum Priority] enum.  
-         *  Returns [constant OK] on success, or [constant ERR_CANT_CREATE] on failure.  
-         */
-        start(callable: Callable, priority: Thread.Priority = 1): GodotError
-        
-        /** Returns the current [Thread]'s ID, uniquely identifying it among all threads. If the [Thread] has not started running or if [method wait_to_finish] has been called, this returns an empty string. */
-        get_id(): string
-        
-        /** Returns `true` if this [Thread] has been started. Once started, this will return `true` until it is joined using [method wait_to_finish]. For checking if a [Thread] is still executing its task, use [method is_alive]. */
-        is_started(): boolean
-        
-        /** Returns `true` if this [Thread] is currently running the provided function. This is useful for determining if [method wait_to_finish] can be called without blocking the calling thread.  
-         *  To check if a [Thread] is joinable, use [method is_started].  
-         */
-        is_alive(): boolean
-        
-        /** Joins the [Thread] and waits for it to finish. Returns the output of the [Callable] passed to [method start].  
-         *  Should either be used when you want to retrieve the value returned from the method called by the [Thread] or before freeing the instance that contains the [Thread].  
-         *  To determine if this can be called without blocking the calling thread, check if [method is_alive] is `false`.  
-         */
-        wait_to_finish(): any
-        
-        /** Sets whether the thread safety checks the engine normally performs in methods of certain classes (e.g., [Node]) should happen **on the current thread**.  
-         *  The default, for every thread, is that they are enabled (as if called with [param enabled] being `true`).  
-         *  Those checks are conservative. That means that they will only succeed in considering a call thread-safe (and therefore allow it to happen) if the engine can guarantee such safety.  
-         *  Because of that, there may be cases where the user may want to disable them ([param enabled] being `false`) to make certain operations allowed again. By doing so, it becomes the user's responsibility to ensure thread safety (e.g., by using [Mutex]) for those objects that are otherwise protected by the engine.  
-         *      
-         *  **Note:** This is an advanced usage of the engine. You are advised to use it only if you know what you are doing and there is no safer way.  
-         *      
-         *  **Note:** This is useful for scripts running on either arbitrary [Thread] objects or tasks submitted to the [WorkerThreadPool]. It doesn't apply to code running during [Node] group processing, where the checks will be always performed.  
-         *      
-         *  **Note:** Even in the case of having disabled the checks in a [WorkerThreadPool] task, there's no need to re-enable them at the end. The engine will do so.  
-         */
-        static set_thread_safety_checks_enabled(enabled: boolean): void
-    }
-    class TileAtlasView extends Control {
-        readonly transform_changed: Signal // zoom: number /*f64*/, scroll: Vector2 => void
-    }
-    /** Settings for a single tile in a [TileSet].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tiledata.html  
-     */
-    class TileData extends Object {
-        set_flip_h(flip_h: boolean): void
-        get_flip_h(): boolean
-        set_flip_v(flip_v: boolean): void
-        get_flip_v(): boolean
-        set_transpose(transpose: boolean): void
-        get_transpose(): boolean
-        set_material(material: Material): void
-        get_material(): Material
-        set_texture_origin(texture_origin: Vector2i): void
-        get_texture_origin(): Vector2i
-        set_modulate(modulate: Color): void
-        get_modulate(): Color
-        set_z_index(z_index: number /*i64*/): void
-        get_z_index(): number /*i64*/
-        set_y_sort_origin(y_sort_origin: number /*i64*/): void
-        get_y_sort_origin(): number /*i64*/
-        
-        /** Sets the occluder for the TileSet occlusion layer with index [param layer_id]. */
-        set_occluder(layer_id: number /*i64*/, occluder_polygon: OccluderPolygon2D): void
-        
-        /** Returns the occluder polygon of the tile for the TileSet occlusion layer with index [param layer_id]. */
-        get_occluder(layer_id: number /*i64*/): OccluderPolygon2D
-        
-        /** Sets the constant linear velocity. This does not move the tile. This linear velocity is applied to objects colliding with this tile. This is useful to create conveyor belts. */
-        set_constant_linear_velocity(layer_id: number /*i64*/, velocity: Vector2): void
-        
-        /** Returns the constant linear velocity applied to objects colliding with this tile. */
-        get_constant_linear_velocity(layer_id: number /*i64*/): Vector2
-        
-        /** Sets the constant angular velocity. This does not rotate the tile. This angular velocity is applied to objects colliding with this tile. */
-        set_constant_angular_velocity(layer_id: number /*i64*/, velocity: number /*f64*/): void
-        
-        /** Returns the constant angular velocity applied to objects colliding with this tile. */
-        get_constant_angular_velocity(layer_id: number /*i64*/): number /*f64*/
-        
-        /** Sets the polygons count for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygons_count(layer_id: number /*i64*/, polygons_count: number /*i64*/): void
-        
-        /** Returns how many polygons the tile has for TileSet physics layer with index [param layer_id]. */
-        get_collision_polygons_count(layer_id: number /*i64*/): number /*i64*/
-        
-        /** Adds a collision polygon to the tile on the given TileSet physics layer. */
-        add_collision_polygon(layer_id: number /*i64*/): void
-        
-        /** Removes the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        remove_collision_polygon(layer_id: number /*i64*/, polygon_index: number /*i64*/): void
-        
-        /** Sets the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygon_points(layer_id: number /*i64*/, polygon_index: number /*i64*/, polygon: PackedVector2Array): void
-        
-        /** Returns the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        get_collision_polygon_points(layer_id: number /*i64*/, polygon_index: number /*i64*/): PackedVector2Array
-        
-        /** Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygon_one_way(layer_id: number /*i64*/, polygon_index: number /*i64*/, one_way: boolean): void
-        
-        /** Returns whether one-way collisions are enabled for the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        is_collision_polygon_one_way(layer_id: number /*i64*/, polygon_index: number /*i64*/): boolean
-        
-        /** Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygon_one_way_margin(layer_id: number /*i64*/, polygon_index: number /*i64*/, one_way_margin: number /*f64*/): void
-        
-        /** Returns the one-way margin (for one-way platforms) of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        get_collision_polygon_one_way_margin(layer_id: number /*i64*/, polygon_index: number /*i64*/): number /*f64*/
-        set_terrain_set(terrain_set: number /*i64*/): void
-        get_terrain_set(): number /*i64*/
-        set_terrain(terrain: number /*i64*/): void
-        get_terrain(): number /*i64*/
-        
-        /** Sets the tile's terrain bit for the given [param peering_bit] direction. */
-        set_terrain_peering_bit(peering_bit: TileSet.CellNeighbor, terrain: number /*i64*/): void
-        
-        /** Returns the tile's terrain bit for the given [param peering_bit] direction. */
-        get_terrain_peering_bit(peering_bit: TileSet.CellNeighbor): number /*i64*/
-        
-        /** Sets the navigation polygon for the TileSet navigation layer with index [param layer_id]. */
-        set_navigation_polygon(layer_id: number /*i64*/, navigation_polygon: NavigationPolygon): void
-        
-        /** Returns the navigation polygon of the tile for the TileSet navigation layer with index [param layer_id]. */
-        get_navigation_polygon(layer_id: number /*i64*/): NavigationPolygon
-        set_probability(probability: number /*f64*/): void
-        get_probability(): number /*f64*/
-        
-        /** Sets the tile's custom data value for the TileSet custom data layer with name [param layer_name]. */
-        set_custom_data(layer_name: string, value: any): void
-        
-        /** Returns the custom data value for custom data layer named [param layer_name]. */
-        get_custom_data(layer_name: string): any
-        
-        /** Sets the tile's custom data value for the TileSet custom data layer with index [param layer_id]. */
-        set_custom_data_by_layer_id(layer_id: number /*i64*/, value: any): void
-        
-        /** Returns the custom data value for custom data layer with index [param layer_id]. */
-        get_custom_data_by_layer_id(layer_id: number /*i64*/): any
-        
-        /** If `true`, the tile will have its texture flipped horizontally. */
-        flip_h: boolean
-        
-        /** If `true`, the tile will have its texture flipped vertically. */
-        flip_v: boolean
-        
-        /** If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs swapped. */
-        transpose: boolean
-        
-        /** Offsets the position of where the tile is drawn. */
-        texture_origin: Vector2i
-        
-        /** Color modulation of the tile. */
-        modulate: Color
-        
-        /** The [Material] to use for this [TileData]. This can be a [CanvasItemMaterial] to use the default shader, or a [ShaderMaterial] to use a custom shader. */
-        material: CanvasItemMaterial | ShaderMaterial
-        
-        /** Ordering index of this tile, relative to [TileMap]. */
-        z_index: number /*i64*/
-        
-        /** Vertical point of the tile used for determining y-sorted order. */
-        y_sort_origin: number /*i64*/
-        
-        /** ID of the terrain set that the tile uses. */
-        terrain_set: number /*i64*/
-        
-        /** ID of the terrain from the terrain set that the tile uses. */
-        terrain: number /*i64*/
-        
-        /** Relative probability of this tile being selected when drawing a pattern of random tiles. */
-        probability: number /*f64*/
-        
-        /** Emitted when any of the properties are changed. */
-        readonly changed: Signal //  => void
-    }
-    namespace TileMap {
-        enum VisibilityMode {
-            /** Use the debug settings to determine visibility. */
-            VISIBILITY_MODE_DEFAULT = 0,
-            
-            /** Always hide. */
-            VISIBILITY_MODE_FORCE_HIDE = 2,
-            
-            /** Always show. */
-            VISIBILITY_MODE_FORCE_SHOW = 1,
-        }
-    }
-    /** Node for 2D tile-based maps.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilemap.html  
-     */
-    class TileMap extends Node2D {
-        /** Should return `true` if the tile at coordinates [param coords] on layer [param layer] requires a runtime update.  
-         *  **Warning:** Make sure this function only return `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.  
-         *      
-         *  **Note:** If the result of this function should changed, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.  
-         */
-        /* gdvirtual */ _use_tile_data_runtime_update(layer: number /*i64*/, coords: Vector2i): boolean
-        
-        /** Called with a TileData object about to be used internally by the TileMap, allowing its modification at runtime.  
-         *  This method is only called if [method _use_tile_data_runtime_update] is implemented and returns `true` for the given tile [param coords] and [param layer].  
-         *  **Warning:** The [param tile_data] object's sub-resources are the same as the one in the TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.  
-         *      
-         *  **Note:** If the properties of [param tile_data] object should change over time, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.  
-         */
-        /* gdvirtual */ _tile_data_runtime_update(layer: number /*i64*/, coords: Vector2i, tile_data: TileData): void
-        
-        /** See [method set_layer_navigation_map]. */
-        set_navigation_map(layer: number /*i64*/, map: RID): void
-        
-        /** See [method get_layer_navigation_map]. */
-        get_navigation_map(layer: number /*i64*/): RID
-        
-        /**  *Deprecated.*  See [method notify_runtime_tile_data_update] and [method update_internals]. */
-        force_update(layer: number /*i64*/ = -1): void
-        set_tileset(tileset: TileSet): void
-        get_tileset(): TileSet
-        set_rendering_quadrant_size(size: number /*i64*/): void
-        get_rendering_quadrant_size(): number /*i64*/
-        
-        /** Returns the number of layers in the TileMap. */
-        get_layers_count(): number /*i64*/
-        
-        /** Adds a layer at the given position [param to_position] in the array. If [param to_position] is negative, the position is counted from the end, with `-1` adding the layer at the end of the array. */
-        add_layer(to_position: number /*i64*/): void
-        
-        /** Moves the layer at index [param layer] to the given position [param to_position] in the array. */
-        move_layer(layer: number /*i64*/, to_position: number /*i64*/): void
-        
-        /** Removes the layer at index [param layer]. */
-        remove_layer(layer: number /*i64*/): void
-        
-        /** Sets a layer's name. This is mostly useful in the editor.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_layer_name(layer: number /*i64*/, name: string): void
-        
-        /** Returns a TileMap layer's name.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_layer_name(layer: number /*i64*/): string
-        
-        /** Enables or disables the layer [param layer]. A disabled layer is not processed at all (no rendering, no physics, etc...).  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_layer_enabled(layer: number /*i64*/, enabled: boolean): void
-        
-        /** Returns if a layer is enabled.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        is_layer_enabled(layer: number /*i64*/): boolean
-        
-        /** Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_layer_modulate(layer: number /*i64*/, modulate: Color): void
-        
-        /** Returns a TileMap layer's modulate.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_layer_modulate(layer: number /*i64*/): Color
-        
-        /** Enables or disables a layer's Y-sorting. If a layer is Y-sorted, the layer will behave as a CanvasItem node where each of its tile gets Y-sorted.  
-         *  Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behavior.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_layer_y_sort_enabled(layer: number /*i64*/, y_sort_enabled: boolean): void
-        
-        /** Returns if a layer Y-sorts its tiles.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        is_layer_y_sort_enabled(layer: number /*i64*/): boolean
-        
-        /** Sets a layer's Y-sort origin value. This Y-sort origin value is added to each tile's Y-sort origin value.  
-         *  This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_layer_y_sort_origin(layer: number /*i64*/, y_sort_origin: number /*i64*/): void
-        
-        /** Returns a TileMap layer's Y sort origin.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_layer_y_sort_origin(layer: number /*i64*/): number /*i64*/
-        
-        /** Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_layer_z_index(layer: number /*i64*/, z_index: number /*i64*/): void
-        
-        /** Returns a TileMap layer's Z-index value.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_layer_z_index(layer: number /*i64*/): number /*i64*/
-        
-        /** Enables or disables a layer's built-in navigation regions generation. Disable this if you need to bake navigation regions from a TileMap using a [NavigationRegion2D] node. */
-        set_layer_navigation_enabled(layer: number /*i64*/, enabled: boolean): void
-        
-        /** Returns if a layer's built-in navigation regions generation is enabled. */
-        is_layer_navigation_enabled(layer: number /*i64*/): boolean
-        
-        /** Assigns a [NavigationServer2D] navigation map [RID] to the specified TileMap [param layer].  
-         *  By default the TileMap uses the default [World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.  
-         *  In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use [method NavigationAgent2D.set_navigation_map] with the navigation map received from [method get_layer_navigation_map].  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_layer_navigation_map(layer: number /*i64*/, map: RID): void
-        
-        /** Returns the [NavigationServer2D] navigation map [RID] currently assigned to the specified TileMap [param layer].  
-         *  By default the TileMap uses the default [World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.  
-         *  In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use [method NavigationAgent2D.set_navigation_map] with the navigation map received from [method get_layer_navigation_map].  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_layer_navigation_map(layer: number /*i64*/): RID
-        set_collision_animatable(enabled: boolean): void
-        is_collision_animatable(): boolean
-        set_collision_visibility_mode(collision_visibility_mode: TileMap.VisibilityMode): void
-        get_collision_visibility_mode(): TileMap.VisibilityMode
-        set_navigation_visibility_mode(navigation_visibility_mode: TileMap.VisibilityMode): void
-        get_navigation_visibility_mode(): TileMap.VisibilityMode
-        
-        /** Sets the tile identifiers for the cell on layer [param layer] at coordinates [param coords]. Each tile of the [TileSet] is identified using three parts:  
-         *  - The source identifier [param source_id] identifies a [TileSetSource] identifier. See [method TileSet.set_source_id],  
-         *  - The atlas coordinates identifier [param atlas_coords] identifies a tile coordinates in the atlas (if the source is a [TileSetAtlasSource]). For [TileSetScenesCollectionSource] it should always be `Vector2i(0, 0)`),  
-         *  - The alternative tile identifier [param alternative_tile] identifies a tile alternative in the atlas (if the source is a [TileSetAtlasSource]), and the scene for a [TileSetScenesCollectionSource].  
-         *  If [param source_id] is set to `-1`, [param atlas_coords] to `Vector2i(-1, -1)` or [param alternative_tile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_cell(layer: number /*i64*/, coords: Vector2i, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = 0): void
-        
-        /** Erases the cell on layer [param layer] at coordinates [param coords].  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        erase_cell(layer: number /*i64*/, coords: Vector2i): void
-        
-        /** Returns the tile source ID of the cell on layer [param layer] at coordinates [param coords]. Returns `-1` if the cell does not exist.  
-         *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_cell_source_id(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): number /*i64*/
-        
-        /** Returns the tile atlas coordinates ID of the cell on layer [param layer] at coordinates [param coords]. If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_cell_atlas_coords(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): Vector2i
-        
-        /** Returns the tile alternative ID of the cell on layer [param layer] at [param coords]. If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_cell_alternative_tile(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): number /*i64*/
-        
-        /** Returns the [TileData] object associated with the given cell, or `null` if the cell does not exist or is not a [TileSetAtlasSource].  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
-         *    
-         */
-        get_cell_tile_data(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): TileData
-        
-        /** Returns the coordinates of the tile for given physics body RID. Such RID can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
-        get_coords_for_body_rid(body: RID): Vector2i
-        
-        /** Returns the tilemap layer of the tile for given physics body RID. Such RID can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
-        get_layer_for_body_rid(body: RID): number /*i64*/
-        
-        /** Creates a new [TileMapPattern] from the given layer and set of cells.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_pattern(layer: number /*i64*/, coords_array: Array): TileMapPattern
-        
-        /** Returns for the given coordinate [param coords_in_pattern] in a [TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [param position_in_tilemap] coordinates (see [method set_pattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`. */
-        map_pattern(position_in_tilemap: Vector2i, coords_in_pattern: Vector2i, pattern: TileMapPattern): Vector2i
-        
-        /** Paste the given [TileMapPattern] at the given [param position] and [param layer] in the tile map.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        set_pattern(layer: number /*i64*/, position: Vector2i, pattern: TileMapPattern): void
-        
-        /** Update all the cells in the [param cells] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. If an updated cell has the same terrain as one of its neighboring cells, this function tries to join the two. This function might update neighboring tiles if needed to create correct terrain transitions.  
-         *  If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         *      
-         *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
-         */
-        set_cells_terrain_connect(layer: number /*i64*/, cells: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean = true): void
-        
-        /** Update all the cells in the [param path] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.  
-         *  If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         *      
-         *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
-         */
-        set_cells_terrain_path(layer: number /*i64*/, path: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean = true): void
-        
-        /** Clears cells that do not exist in the tileset. */
-        fix_invalid_tiles(): void
-        
-        /** Clears all cells on the given layer.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        clear_layer(layer: number /*i64*/): void
-        
-        /** Clears all cells. */
-        clear(): void
-        
-        /** Triggers a direct update of the TileMap. Usually, calling this function is not needed, as TileMap node updates automatically when one of its properties or cells is modified.  
-         *  However, for performance reasons, those updates are batched and delayed to the end of the frame. Calling this function will force the TileMap to update right away instead.  
-         *  **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and how many tiles they impact.  
-         */
-        update_internals(): void
-        
-        /** Notifies the TileMap node that calls to [method _use_tile_data_runtime_update] or [method _tile_data_runtime_update] will lead to different results. This will thus trigger a TileMap update.  
-         *  If [param layer] is provided, only notifies changes for the given layer. Providing the [param layer] argument (when applicable) is usually preferred for performance reasons.  
-         *  **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of calls to this function to avoid unnecessary update.  
-         *      
-         *  **Note:** This does not trigger a direct update of the TileMap, the update will be done at the end of the frame as usual (unless you call [method update_internals]).  
-         */
-        notify_runtime_tile_data_update(layer: number /*i64*/ = -1): void
-        
-        /** Returns the list of all neighbourings cells to the one at [param coords]. */
-        get_surrounding_cells(coords: Vector2i): Array
-        
-        /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_used_cells(layer: number /*i64*/): Array
-        
-        /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. Tiles may be filtered according to their source ([param source_id]), their atlas coordinates ([param atlas_coords]) or alternative id ([param alternative_tile]).  
-         *  If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [method get_used_cells].  
-         *  A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
-         *  If [param layer] is negative, the layers are accessed from the last one.  
-         */
-        get_used_cells_by_id(layer: number /*i64*/, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = -1): Array
-        
-        /** Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers. */
-        get_used_rect(): Rect2i
-        
-        /** Returns the centered position of a cell in the TileMap's local coordinate space. To convert the returned value into global coordinates, use [method Node2D.to_global]. See also [method local_to_map].  
-         *      
-         *  **Note:** This may not correspond to the visual position of the tile, i.e. it ignores the [member TileData.texture_origin] property of individual tiles.  
-         */
-        map_to_local(map_position: Vector2i): Vector2
-        
-        /** Returns the map coordinates of the cell containing the given [param local_position]. If [param local_position] is in global coordinates, consider using [method Node2D.to_local] before passing it to this method. See also [method map_to_local]. */
-        local_to_map(local_position: Vector2): Vector2i
-        
-        /** Returns the neighboring cell to the one at coordinates [param coords], identified by the [param neighbor] direction. This method takes into account the different layouts a TileMap can take. */
-        get_neighbor_cell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i
-        
-        /** The assigned [TileSet]. */
-        tile_set: TileSet
-        
-        /** The TileMap's quadrant size. A quadrant is a group of tiles to be drawn together on a single canvas item, for optimization purposes. [member rendering_quadrant_size] defines the length of a square's side, in the map's coordinate system, that forms the quadrant. Thus, the default quandrant size groups together `16 * 16 = 256` tiles.  
-         *  The quadrant size does not apply on Y-sorted layers, as tiles are be grouped by Y position instead in that case.  
-         *      
-         *  **Note:** As quadrants are created according to the map's coordinate system, the quadrant's "square shape" might not look like square in the TileMap's local coordinate system.  
-         */
-        rendering_quadrant_size: number /*i64*/
-        
-        /** If enabled, the TileMap will see its collisions synced to the physics tick and change its collision type from static to kinematic. This is required to create TileMap-based moving platform.  
-         *      
-         *  **Note:** Enabling [member collision_animatable] may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.  
-         */
-        collision_animatable: boolean
-        
-        /** Show or hide the TileMap's collision shapes. If set to [constant VISIBILITY_MODE_DEFAULT], this depends on the show collision debug settings. */
-        collision_visibility_mode: number /*i64*/
-        
-        /** Show or hide the TileMap's navigation meshes. If set to [constant VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings. */
-        navigation_visibility_mode: number /*i64*/
-        
-        /** Emitted when the [TileSet] of this TileMap changes. */
-        readonly changed: Signal //  => void
-    }
-    class TileMapEditor extends VBoxContainer {
-    }
-    class TileMapEditorPlugin extends EditorPlugin {
-    }
-    class TileMapEditorTerrainsPlugin extends Object {
-    }
-    class TileMapEditorTilesPlugin extends Object {
-        _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
-        _set_tile_map_selection(selection: Array): void
-        _get_tile_map_selection(): Array
-    }
-    /** Holds a pattern to be copied from or pasted into [TileMap]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilemappattern.html  
-     */
-    class TileMapPattern extends Resource {
-        /** Sets the tile identifiers for the cell at coordinates [param coords]. See [method TileMap.set_cell]. */
-        set_cell(coords: Vector2i, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = -1): void
-        
-        /** Returns whether the pattern has a tile at the given coordinates. */
-        has_cell(coords: Vector2i): boolean
-        
-        /** Remove the cell at the given coordinates. */
-        remove_cell(coords: Vector2i, update_size: boolean): void
-        
-        /** Returns the tile source ID of the cell at [param coords]. */
-        get_cell_source_id(coords: Vector2i): number /*i64*/
-        
-        /** Returns the tile atlas coordinates ID of the cell at [param coords]. */
-        get_cell_atlas_coords(coords: Vector2i): Vector2i
-        
-        /** Returns the tile alternative ID of the cell at [param coords]. */
-        get_cell_alternative_tile(coords: Vector2i): number /*i64*/
-        
-        /** Returns the list of used cell coordinates in the pattern. */
-        get_used_cells(): Array
-        
-        /** Returns the size, in cells, of the pattern. */
-        get_size(): Vector2i
-        
-        /** Sets the size of the pattern. */
-        set_size(size: Vector2i): void
-        
-        /** Returns whether the pattern is empty or not. */
-        is_empty(): boolean
-    }
-    class TileProxiesManagerDialog extends ConfirmationDialog {
-        _update_lists(): void
-        _unhandled_key_input(_unnamed_arg0: InputEvent): void
-    }
-    namespace TileSet {
-        enum TileShape {
-            /** Rectangular tile shape. */
-            TILE_SHAPE_SQUARE = 0,
-            
-            /** Diamond tile shape (for isometric look).  
-             *      
-             *  **Note:** Isometric [TileSet] works best if [TileMap] and all its layers have Y-sort enabled.  
-             */
-            TILE_SHAPE_ISOMETRIC = 1,
-            
-            /** Rectangular tile shape with one row/column out of two offset by half a tile. */
-            TILE_SHAPE_HALF_OFFSET_SQUARE = 2,
-            
-            /** Hexagonal tile shape. */
-            TILE_SHAPE_HEXAGON = 3,
-        }
-        enum TileLayout {
-            /** Tile coordinates layout where both axis stay consistent with their respective local horizontal and vertical axis. */
-            TILE_LAYOUT_STACKED = 0,
-            
-            /** Same as [constant TILE_LAYOUT_STACKED], but the first half-offset is negative instead of positive. */
-            TILE_LAYOUT_STACKED_OFFSET = 1,
-            
-            /** Tile coordinates layout where the horizontal axis stay horizontal, and the vertical one goes down-right. */
-            TILE_LAYOUT_STAIRS_RIGHT = 2,
-            
-            /** Tile coordinates layout where the vertical axis stay vertical, and the horizontal one goes down-right. */
-            TILE_LAYOUT_STAIRS_DOWN = 3,
-            
-            /** Tile coordinates layout where the horizontal axis goes up-right, and the vertical one goes down-right. */
-            TILE_LAYOUT_DIAMOND_RIGHT = 4,
-            
-            /** Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes down-left. */
-            TILE_LAYOUT_DIAMOND_DOWN = 5,
-        }
-        enum TileOffsetAxis {
-            /** Horizontal half-offset. */
-            TILE_OFFSET_AXIS_HORIZONTAL = 0,
-            
-            /** Vertical half-offset. */
-            TILE_OFFSET_AXIS_VERTICAL = 1,
-        }
-        enum CellNeighbor {
-            /** Neighbor on the right side. */
-            CELL_NEIGHBOR_RIGHT_SIDE = 0,
-            
-            /** Neighbor in the right corner. */
-            CELL_NEIGHBOR_RIGHT_CORNER = 1,
-            
-            /** Neighbor on the bottom right side. */
-            CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE = 2,
-            
-            /** Neighbor in the bottom right corner. */
-            CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER = 3,
-            
-            /** Neighbor on the bottom side. */
-            CELL_NEIGHBOR_BOTTOM_SIDE = 4,
-            
-            /** Neighbor in the bottom corner. */
-            CELL_NEIGHBOR_BOTTOM_CORNER = 5,
-            
-            /** Neighbor on the bottom left side. */
-            CELL_NEIGHBOR_BOTTOM_LEFT_SIDE = 6,
-            
-            /** Neighbor in the bottom left corner. */
-            CELL_NEIGHBOR_BOTTOM_LEFT_CORNER = 7,
-            
-            /** Neighbor on the left side. */
-            CELL_NEIGHBOR_LEFT_SIDE = 8,
-            
-            /** Neighbor in the left corner. */
-            CELL_NEIGHBOR_LEFT_CORNER = 9,
-            
-            /** Neighbor on the top left side. */
-            CELL_NEIGHBOR_TOP_LEFT_SIDE = 10,
-            
-            /** Neighbor in the top left corner. */
-            CELL_NEIGHBOR_TOP_LEFT_CORNER = 11,
-            
-            /** Neighbor on the top side. */
-            CELL_NEIGHBOR_TOP_SIDE = 12,
-            
-            /** Neighbor in the top corner. */
-            CELL_NEIGHBOR_TOP_CORNER = 13,
-            
-            /** Neighbor on the top right side. */
-            CELL_NEIGHBOR_TOP_RIGHT_SIDE = 14,
-            
-            /** Neighbor in the top right corner. */
-            CELL_NEIGHBOR_TOP_RIGHT_CORNER = 15,
-        }
-        enum TerrainMode {
-            /** Requires both corners and side to match with neighboring tiles' terrains. */
-            TERRAIN_MODE_MATCH_CORNERS_AND_SIDES = 0,
-            
-            /** Requires corners to match with neighboring tiles' terrains. */
-            TERRAIN_MODE_MATCH_CORNERS = 1,
-            
-            /** Requires sides to match with neighboring tiles' terrains. */
-            TERRAIN_MODE_MATCH_SIDES = 2,
-        }
-    }
-    /** Tile library for tilemaps.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tileset.html  
-     */
-    class TileSet extends Resource {
-        /** Returns a new unused source ID. This generated ID is the same that a call to [method add_source] would return. */
-        get_next_source_id(): number /*i64*/
-        
-        /** Adds a [TileSetSource] to the TileSet. If [param atlas_source_id_override] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.  
-         *  The function returns the added source ID or -1 if the source could not be added.  
-         *  **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [TileSet], it will be removed from that one.  
-         */
-        add_source(source: TileSetSource, atlas_source_id_override: number /*i64*/ = -1): number /*i64*/
-        
-        /** Removes the source with the given source ID. */
-        remove_source(source_id: number /*i64*/): void
-        
-        /** Changes a source's ID. */
-        set_source_id(source_id: number /*i64*/, new_source_id: number /*i64*/): void
-        
-        /** Returns the number of [TileSetSource] in this TileSet. */
-        get_source_count(): number /*i64*/
-        
-        /** Returns the source ID for source with index [param index]. */
-        get_source_id(index: number /*i64*/): number /*i64*/
-        
-        /** Returns if this TileSet has a source for the given source ID. */
-        has_source(source_id: number /*i64*/): boolean
-        
-        /** Returns the [TileSetSource] with ID [param source_id]. */
-        get_source(source_id: number /*i64*/): TileSetSource
-        set_tile_shape(shape: TileSet.TileShape): void
-        get_tile_shape(): TileSet.TileShape
-        set_tile_layout(layout: TileSet.TileLayout): void
-        get_tile_layout(): TileSet.TileLayout
-        set_tile_offset_axis(alignment: TileSet.TileOffsetAxis): void
-        get_tile_offset_axis(): TileSet.TileOffsetAxis
-        set_tile_size(size: Vector2i): void
-        get_tile_size(): Vector2i
-        set_uv_clipping(uv_clipping: boolean): void
-        is_uv_clipping(): boolean
-        
-        /** Returns the occlusion layers count. */
-        get_occlusion_layers_count(): number /*i64*/
-        
-        /** Adds an occlusion layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
-         *  Occlusion layers allow assigning occlusion polygons to atlas tiles.  
-         */
-        add_occlusion_layer(to_position: number /*i64*/ = -1): void
-        
-        /** Moves the occlusion layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_occlusion_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
-        
-        /** Removes the occlusion layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
-        remove_occlusion_layer(layer_index: number /*i64*/): void
-        
-        /** Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet occlusion layer. */
-        set_occlusion_layer_light_mask(layer_index: number /*i64*/, light_mask: number /*i64*/): void
-        
-        /** Returns the light mask of the occlusion layer. */
-        get_occlusion_layer_light_mask(layer_index: number /*i64*/): number /*i64*/
-        
-        /** Enables or disables SDF collision for occluders in the given TileSet occlusion layer. */
-        set_occlusion_layer_sdf_collision(layer_index: number /*i64*/, sdf_collision: boolean): void
-        
-        /** Returns if the occluders from this layer use `sdf_collision`. */
-        get_occlusion_layer_sdf_collision(layer_index: number /*i64*/): boolean
-        
-        /** Returns the physics layers count. */
-        get_physics_layers_count(): number /*i64*/
-        
-        /** Adds a physics layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
-         *  Physics layers allow assigning collision polygons to atlas tiles.  
-         */
-        add_physics_layer(to_position: number /*i64*/ = -1): void
-        
-        /** Moves the physics layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_physics_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
-        
-        /** Removes the physics layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
-        remove_physics_layer(layer_index: number /*i64*/): void
-        
-        /** Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer. */
-        set_physics_layer_collision_layer(layer_index: number /*i64*/, layer: number /*i64*/): void
-        
-        /** Returns the collision layer (as in the physics server) bodies on the given TileSet's physics layer are in. */
-        get_physics_layer_collision_layer(layer_index: number /*i64*/): number /*i64*/
-        
-        /** Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer. */
-        set_physics_layer_collision_mask(layer_index: number /*i64*/, mask: number /*i64*/): void
-        
-        /** Returns the collision mask of bodies on the given TileSet's physics layer. */
-        get_physics_layer_collision_mask(layer_index: number /*i64*/): number /*i64*/
-        
-        /** Sets the physics material for bodies in the given TileSet physics layer. */
-        set_physics_layer_physics_material(layer_index: number /*i64*/, physics_material: PhysicsMaterial): void
-        
-        /** Returns the physics material of bodies on the given TileSet's physics layer. */
-        get_physics_layer_physics_material(layer_index: number /*i64*/): PhysicsMaterial
-        
-        /** Returns the terrain sets count. */
-        get_terrain_sets_count(): number /*i64*/
-        
-        /** Adds a new terrain set at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array. */
-        add_terrain_set(to_position: number /*i64*/ = -1): void
-        
-        /** Moves the terrain set at index [param terrain_set] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_terrain_set(terrain_set: number /*i64*/, to_position: number /*i64*/): void
-        
-        /** Removes the terrain set at index [param terrain_set]. Also updates the atlas tiles accordingly. */
-        remove_terrain_set(terrain_set: number /*i64*/): void
-        
-        /** Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighboring tiles' terrains. */
-        set_terrain_set_mode(terrain_set: number /*i64*/, mode: TileSet.TerrainMode): void
-        
-        /** Returns a terrain set mode. */
-        get_terrain_set_mode(terrain_set: number /*i64*/): TileSet.TerrainMode
-        
-        /** Returns the number of terrains in the given terrain set. */
-        get_terrains_count(terrain_set: number /*i64*/): number /*i64*/
-        
-        /** Adds a new terrain to the given terrain set [param terrain_set] at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array. */
-        add_terrain(terrain_set: number /*i64*/, to_position: number /*i64*/ = -1): void
-        
-        /** Moves the terrain at index [param terrain_index] for terrain set [param terrain_set] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_terrain(terrain_set: number /*i64*/, terrain_index: number /*i64*/, to_position: number /*i64*/): void
-        
-        /** Removes the terrain at index [param terrain_index] in the given terrain set [param terrain_set]. Also updates the atlas tiles accordingly. */
-        remove_terrain(terrain_set: number /*i64*/, terrain_index: number /*i64*/): void
-        
-        /** Sets a terrain's name. */
-        set_terrain_name(terrain_set: number /*i64*/, terrain_index: number /*i64*/, name: string): void
-        
-        /** Returns a terrain's name. */
-        get_terrain_name(terrain_set: number /*i64*/, terrain_index: number /*i64*/): string
-        
-        /** Sets a terrain's color. This color is used for identifying the different terrains in the TileSet editor. */
-        set_terrain_color(terrain_set: number /*i64*/, terrain_index: number /*i64*/, color: Color): void
-        
-        /** Returns a terrain's color. */
-        get_terrain_color(terrain_set: number /*i64*/, terrain_index: number /*i64*/): Color
-        
-        /** Returns the navigation layers count. */
-        get_navigation_layers_count(): number /*i64*/
-        
-        /** Adds a navigation layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
-         *  Navigation layers allow assigning a navigable area to atlas tiles.  
-         */
-        add_navigation_layer(to_position: number /*i64*/ = -1): void
-        
-        /** Moves the navigation layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_navigation_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
-        
-        /** Removes the navigation layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
-        remove_navigation_layer(layer_index: number /*i64*/): void
-        
-        /** Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer. */
-        set_navigation_layer_layers(layer_index: number /*i64*/, layers: number /*i64*/): void
-        
-        /** Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer. */
-        get_navigation_layer_layers(layer_index: number /*i64*/): number /*i64*/
-        
-        /** Based on [param value], enables or disables the specified navigation layer of the TileSet navigation data layer identified by the given [param layer_index], given a navigation_layers [param layer_number] between 1 and 32. */
-        set_navigation_layer_layer_value(layer_index: number /*i64*/, layer_number: number /*i64*/, value: boolean): void
-        
-        /** Returns whether or not the specified navigation layer of the TileSet navigation data layer identified by the given [param layer_index] is enabled, given a navigation_layers [param layer_number] between 1 and 32. */
-        get_navigation_layer_layer_value(layer_index: number /*i64*/, layer_number: number /*i64*/): boolean
-        
-        /** Returns the custom data layers count. */
-        get_custom_data_layers_count(): number /*i64*/
-        
-        /** Adds a custom data layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
-         *  Custom data layers allow assigning custom properties to atlas tiles.  
-         */
-        add_custom_data_layer(to_position: number /*i64*/ = -1): void
-        
-        /** Moves the custom data layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_custom_data_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
-        
-        /** Removes the custom data layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
-        remove_custom_data_layer(layer_index: number /*i64*/): void
-        
-        /** Returns the index of the custom data layer identified by the given name. */
-        get_custom_data_layer_by_name(layer_name: string): number /*i64*/
-        
-        /** Sets the name of the custom data layer identified by the given index. Names are identifiers of the layer therefore if the name is already taken it will fail and raise an error. */
-        set_custom_data_layer_name(layer_index: number /*i64*/, layer_name: string): void
-        
-        /** Returns the name of the custom data layer identified by the given index. */
-        get_custom_data_layer_name(layer_index: number /*i64*/): string
-        
-        /** Sets the type of the custom data layer identified by the given index. */
-        set_custom_data_layer_type(layer_index: number /*i64*/, layer_type: Variant.Type): void
-        
-        /** Returns the type of the custom data layer identified by the given index. */
-        get_custom_data_layer_type(layer_index: number /*i64*/): Variant.Type
-        
-        /** Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.  
-         *  This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target source when one is available.  
-         *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
-         */
-        set_source_level_tile_proxy(source_from: number /*i64*/, source_to: number /*i64*/): void
-        
-        /** Returns the source-level proxy for the given source identifier.  
-         *  If the TileSet has no proxy for the given identifier, returns -1.  
-         */
-        get_source_level_tile_proxy(source_from: number /*i64*/): number /*i64*/
-        
-        /** Returns if there is a source-level proxy for the given source ID. */
-        has_source_level_tile_proxy(source_from: number /*i64*/): boolean
-        
-        /** Removes a source-level tile proxy. */
-        remove_source_level_tile_proxy(source_from: number /*i64*/): void
-        
-        /** Creates a coordinates-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers. The alternative tile ID is kept the same when using coordinates-level proxies.  
-         *  This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.  
-         *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
-         */
-        set_coords_level_tile_proxy(p_source_from: number /*i64*/, coords_from: Vector2i, source_to: number /*i64*/, coords_to: Vector2i): void
-        
-        /** Returns the coordinate-level proxy for the given identifiers. The returned array contains the two target identifiers of the proxy (source ID and atlas coordinates ID).  
-         *  If the TileSet has no proxy for the given identifiers, returns an empty Array.  
-         */
-        get_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): Array
-        
-        /** Returns if there is a coodinates-level proxy for the given identifiers. */
-        has_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): boolean
-        
-        /** Removes a coordinates-level proxy for the given identifiers. */
-        remove_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): void
-        
-        /** Create an alternative-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers.  
-         *  This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.  
-         *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
-         */
-        set_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/, source_to: number /*i64*/, coords_to: Vector2i, alternative_to: number /*i64*/): void
-        
-        /** Returns the alternative-level proxy for the given identifiers. The returned array contains the three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).  
-         *  If the TileSet has no proxy for the given identifiers, returns an empty Array.  
-         */
-        get_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): Array
-        
-        /** Returns if there is an alternative-level proxy for the given identifiers. */
-        has_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): boolean
-        
-        /** Removes an alternative-level proxy for the given identifiers. */
-        remove_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): void
-        
-        /** According to the configured proxies, maps the provided identifiers to a new set of identifiers. The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.  
-         *  This function first look for matching alternative-level proxies, then coordinates-level proxies, then source-level proxies.  
-         *  If no proxy corresponding to provided identifiers are found, returns the same values the ones used as arguments.  
-         */
-        map_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): Array
-        
-        /** Clears tile proxies pointing to invalid tiles. */
-        cleanup_invalid_tile_proxies(): void
-        
-        /** Clears all tile proxies. */
-        clear_tile_proxies(): void
-        
-        /** Adds a [TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [param index]. */
-        add_pattern(pattern: TileMapPattern, index: number /*i64*/ = -1): number /*i64*/
-        
-        /** Returns the [TileMapPattern] at the given [param index]. */
-        get_pattern(index: number /*i64*/ = -1): TileMapPattern
-        
-        /** Remove the [TileMapPattern] at the given index. */
-        remove_pattern(index: number /*i64*/): void
-        
-        /** Returns the number of [TileMapPattern] this tile set handles. */
-        get_patterns_count(): number /*i64*/
-        
-        /** The tile shape. */
-        tile_shape: number /*i64*/
-        
-        /** For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles are indexed in the TileMap grid. */
-        tile_layout: number /*i64*/
-        
-        /** For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset axis. */
-        tile_offset_axis: number /*i64*/
-        
-        /** The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas. */
-        tile_size: Vector2i
-        
-        /** Enables/Disable uv clipping when rendering the tiles. */
-        uv_clipping: boolean
-    }
-    namespace TileSetAtlasSource {
-        enum TileAnimationMode {
-            /** Tile animations start at same time, looking identical. */
-            TILE_ANIMATION_MODE_DEFAULT = 0,
-            
-            /** Tile animations start at random times, looking varied. */
-            TILE_ANIMATION_MODE_RANDOM_START_TIMES = 1,
-            
-            /** Represents the size of the [enum TileAnimationMode] enum. */
-            TILE_ANIMATION_MODE_MAX = 2,
-        }
-    }
-    /** Exposes a 2D atlas texture as a set of tiles for a [TileSet] resource.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilesetatlassource.html  
-     */
-    class TileSetAtlasSource extends TileSetSource {
-        /** Represents cell's horizontal flip flag. Should be used directly with [TileMap] to flip placed tiles by altering their alternative IDs.  
-         *    
-         */
-        static readonly TRANSFORM_FLIP_H = 4096
-        
-        /** Represents cell's vertical flip flag. See [constant TRANSFORM_FLIP_H] for usage. */
-        static readonly TRANSFORM_FLIP_V = 8192
-        
-        /** Represents cell's transposed flag. See [constant TRANSFORM_FLIP_H] for usage. */
-        static readonly TRANSFORM_TRANSPOSE = 16384
-        set_texture(texture: Texture2D): void
-        get_texture(): Texture2D
-        set_margins(margins: Vector2i): void
-        get_margins(): Vector2i
-        set_separation(separation: Vector2i): void
-        get_separation(): Vector2i
-        set_texture_region_size(texture_region_size: Vector2i): void
-        get_texture_region_size(): Vector2i
-        set_use_texture_padding(use_texture_padding: boolean): void
-        get_use_texture_padding(): boolean
-        
-        /** Creates a new tile at coordinates [param atlas_coords] with the given [param size]. */
-        create_tile(atlas_coords: Vector2i, size: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
-        
-        /** Remove a tile and its alternative at coordinates [param atlas_coords]. */
-        remove_tile(atlas_coords: Vector2i): void
-        
-        /** Move the tile and its alternatives at the [param atlas_coords] coordinates to the [param new_atlas_coords] coordinates with the [param new_size] size. This functions will fail if a tile is already present in the given area.  
-         *  If [param new_atlas_coords] is `Vector2i(-1, -1)`, keeps the tile's coordinates. If [param new_size] is `Vector2i(-1, -1)`, keeps the tile's size.  
-         *  To avoid an error, first check if a move is possible using [method has_room_for_tile].  
-         */
-        move_tile_in_atlas(atlas_coords: Vector2i, new_atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, new_size: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
-        
-        /** Returns the size of the tile (in the grid coordinates system) at coordinates [param atlas_coords]. */
-        get_tile_size_in_atlas(atlas_coords: Vector2i): Vector2i
-        
-        /** Returns whether there is enough room in an atlas to create/modify a tile with the given properties. If [param ignored_tile] is provided, act as is the given tile was not present in the atlas. This may be used when you want to modify a tile's properties. */
-        has_room_for_tile(atlas_coords: Vector2i, size: Vector2i, animation_columns: number /*i64*/, animation_separation: Vector2i, frames_count: number /*i64*/, ignored_tile: Vector2i = <any> {} /*compound.type from 6([object Object])*/): boolean
-        
-        /** Returns an array of tiles coordinates ID that will be automatically removed when modifying one or several of those properties: [param texture], [param margins], [param separation] or [param texture_region_size]. This can be used to undo changes that would have caused tiles data loss. */
-        get_tiles_to_be_removed_on_change(texture: Texture2D, margins: Vector2i, separation: Vector2i, texture_region_size: Vector2i): PackedVector2Array
-        
-        /** If there is a tile covering the [param atlas_coords] coordinates, returns the top-left coordinates of the tile (thus its coordinate ID). Returns `Vector2i(-1, -1)` otherwise. */
-        get_tile_at_coords(atlas_coords: Vector2i): Vector2i
-        
-        /** Checks if the source has any tiles that don't fit the texture area (either partially or completely). */
-        has_tiles_outside_texture(): boolean
-        
-        /** Removes all tiles that don't fit the available texture area. This method iterates over all the source's tiles, so it's advised to use [method has_tiles_outside_texture] beforehand. */
-        clear_tiles_outside_texture(): void
-        
-        /** Sets the number of columns in the animation layout of the tile at coordinates [param atlas_coords]. If set to 0, then the different frames of the animation are laid out as a single horizontal line in the atlas. */
-        set_tile_animation_columns(atlas_coords: Vector2i, frame_columns: number /*i64*/): void
-        
-        /** Returns how many columns the tile at [param atlas_coords] has in its animation layout. */
-        get_tile_animation_columns(atlas_coords: Vector2i): number /*i64*/
-        
-        /** Sets the margin (in grid tiles) between each tile in the animation layout of the tile at coordinates [param atlas_coords] has. */
-        set_tile_animation_separation(atlas_coords: Vector2i, separation: Vector2i): void
-        
-        /** Returns the separation (as in the atlas grid) between each frame of an animated tile at coordinates [param atlas_coords]. */
-        get_tile_animation_separation(atlas_coords: Vector2i): Vector2i
-        
-        /** Sets the animation speed of the tile at coordinates [param atlas_coords] has. */
-        set_tile_animation_speed(atlas_coords: Vector2i, speed: number /*f64*/): void
-        
-        /** Returns the animation speed of the tile at coordinates [param atlas_coords]. */
-        get_tile_animation_speed(atlas_coords: Vector2i): number /*f64*/
-        
-        /** Sets the [enum TileAnimationMode] of the tile at [param atlas_coords] to [param mode]. See also [method get_tile_animation_mode]. */
-        set_tile_animation_mode(atlas_coords: Vector2i, mode: TileSetAtlasSource.TileAnimationMode): void
-        
-        /** Returns the [enum TileAnimationMode] of the tile at [param atlas_coords]. See also [method set_tile_animation_mode]. */
-        get_tile_animation_mode(atlas_coords: Vector2i): TileSetAtlasSource.TileAnimationMode
-        
-        /** Sets how many animation frames the tile at coordinates [param atlas_coords] has. */
-        set_tile_animation_frames_count(atlas_coords: Vector2i, frames_count: number /*i64*/): void
-        
-        /** Returns how many animation frames has the tile at coordinates [param atlas_coords]. */
-        get_tile_animation_frames_count(atlas_coords: Vector2i): number /*i64*/
-        
-        /** Sets the animation frame [param duration] of frame [param frame_index] for the tile at coordinates [param atlas_coords]. */
-        set_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: number /*i64*/, duration: number /*f64*/): void
-        
-        /** Returns the animation frame duration of frame [param frame_index] for the tile at coordinates [param atlas_coords]. */
-        get_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: number /*i64*/): number /*f64*/
-        
-        /** Returns the sum of the sum of the frame durations of the tile at coordinates [param atlas_coords]. This value needs to be divided by the animation speed to get the actual animation loop duration. */
-        get_tile_animation_total_duration(atlas_coords: Vector2i): number /*f64*/
-        
-        /** Creates an alternative tile for the tile at coordinates [param atlas_coords]. If [param alternative_id_override] is -1, give it an automatically generated unique ID, or assigns it the given ID otherwise.  
-         *  Returns the new alternative identifier, or -1 if the alternative could not be created with a provided [param alternative_id_override].  
-         */
-        create_alternative_tile(atlas_coords: Vector2i, alternative_id_override: number /*i64*/ = -1): number /*i64*/
-        
-        /** Remove a tile's alternative with alternative ID [param alternative_tile].  
-         *  Calling this function with [param alternative_tile] equals to 0 will fail, as the base tile alternative cannot be removed.  
-         */
-        remove_alternative_tile(atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
-        
-        /** Change a tile's alternative ID from [param alternative_tile] to [param new_id].  
-         *  Calling this function with [param new_id] of 0 will fail, as the base tile alternative cannot be moved.  
-         */
-        set_alternative_tile_id(atlas_coords: Vector2i, alternative_tile: number /*i64*/, new_id: number /*i64*/): void
-        
-        /** Returns the alternative ID a following call to [method create_alternative_tile] would return. */
-        get_next_alternative_tile_id(atlas_coords: Vector2i): number /*i64*/
-        
-        /** Returns the [TileData] object for the given atlas coordinates and alternative ID. */
-        get_tile_data(atlas_coords: Vector2i, alternative_tile: number /*i64*/): TileData
-        
-        /** Returns the atlas grid size, which depends on how many tiles can fit in the texture. It thus depends on the [member texture]'s size, the atlas [member margins], and the tiles' [member texture_region_size]. */
-        get_atlas_grid_size(): Vector2i
-        
-        /** Returns a tile's texture region in the atlas texture. For animated tiles, a [param frame] argument might be provided for the different frames of the animation. */
-        get_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/ = 0): Rect2i
-        _update_padded_texture(): void
-        
-        /** If [member use_texture_padding] is `false`, returns [member texture]. Otherwise, returns and internal [ImageTexture] created that includes the padding. */
-        get_runtime_texture(): Texture2D
-        
-        /** Returns the region of the tile at coordinates [param atlas_coords] for the given [param frame] inside the texture returned by [method get_runtime_texture].  
-         *      
-         *  **Note:** If [member use_texture_padding] is `false`, returns the same as [method get_tile_texture_region].  
-         */
-        get_runtime_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/): Rect2i
-        
-        /** The atlas texture. */
-        texture: Texture2D
-        
-        /** Margins, in pixels, to offset the origin of the grid in the texture. */
-        margins: Vector2i
-        
-        /** Separation, in pixels, between each tile texture region of the grid. */
-        separation: Vector2i
-        
-        /** The base tile size in the texture (in pixel). This size must be bigger than the TileSet's `tile_size` value. */
-        texture_region_size: Vector2i
-        
-        /** If `true`, generates an internal texture with an additional one pixel padding around each tile. Texture padding avoids a common artifact where lines appear between tiles.  
-         *  Disabling this setting might lead a small performance improvement, as generating the internal texture requires both memory and processing time when the TileSetAtlasSource resource is modified.  
-         */
-        use_texture_padding: boolean
-    }
-    class TileSetAtlasSourceEditor extends HSplitContainer {
-        _set_selection_from_array(_unnamed_arg0: Array): void
-        _check_outside_tiles(): void
-        readonly source_id_changed: Signal // source_id: number /*i64*/ => void
-    }
-    class TileSetAtlasSourceProxyObject extends Object {
-        readonly changed: Signal // what: string => void
-    }
-    class TileSetEditor extends Control {
-    }
-    class TileSetEditorPlugin extends EditorPlugin {
-    }
-    class TileSetScenesCollectionProxyObject extends Object {
-        set_id(id: number /*i64*/): void
-        get_id(): number /*i64*/
-        id: number /*i64*/
-        readonly changed: Signal // what: string => void
-    }
-    /** Exposes a set of scenes as tiles for a [TileSet] resource.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilesetscenescollectionsource.html  
-     */
-    class TileSetScenesCollectionSource extends TileSetSource {
-        /** Returns the number or scene tiles this TileSet source has. */
-        get_scene_tiles_count(): number /*i64*/
-        
-        /** Returns the scene tile ID of the scene tile at [param index]. */
-        get_scene_tile_id(index: number /*i64*/): number /*i64*/
-        
-        /** Returns whether this TileSet source has a scene tile with [param id]. */
-        has_scene_tile_id(id: number /*i64*/): boolean
-        
-        /** Creates a scene-based tile out of the given scene.  
-         *  Returns a newly generated unique ID.  
-         */
-        create_scene_tile(packed_scene: PackedScene, id_override: number /*i64*/ = -1): number /*i64*/
-        
-        /** Changes a scene tile's ID from [param id] to [param new_id]. This will fail if there is already a tile with an ID equal to [param new_id]. */
-        set_scene_tile_id(id: number /*i64*/, new_id: number /*i64*/): void
-        
-        /** Assigns a [PackedScene] resource to the scene tile with [param id]. This will fail if the scene does not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap. */
-        set_scene_tile_scene(id: number /*i64*/, packed_scene: PackedScene): void
-        
-        /** Returns the [PackedScene] resource of scene tile with [param id]. */
-        get_scene_tile_scene(id: number /*i64*/): PackedScene
-        
-        /** Sets whether or not the scene tile with [param id] should display a placeholder in the editor. This might be useful for scenes that are not visible. */
-        set_scene_tile_display_placeholder(id: number /*i64*/, display_placeholder: boolean): void
-        
-        /** Returns whether the scene tile with [param id] displays a placeholder in the editor. */
-        get_scene_tile_display_placeholder(id: number /*i64*/): boolean
-        
-        /** Remove the scene tile with [param id]. */
-        remove_scene_tile(id: number /*i64*/): void
-        
-        /** Returns the scene ID a following call to [method create_scene_tile] would return. */
-        get_next_scene_tile_id(): number /*i64*/
-    }
-    class TileSetScenesCollectionSourceEditor extends HBoxContainer {
-        _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
-        readonly source_id_changed: Signal // source_id: number /*i64*/ => void
-    }
-    /** Exposes a set of tiles for a [TileSet] resource.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilesetsource.html  
-     */
-    class TileSetSource extends Resource {
-        /** Returns how many tiles this atlas source defines (not including alternative tiles). */
-        get_tiles_count(): number /*i64*/
-        
-        /** Returns the tile coordinates ID of the tile with index [param index]. */
-        get_tile_id(index: number /*i64*/): Vector2i
-        
-        /** Returns if this atlas has a tile with coordinates ID [param atlas_coords]. */
-        has_tile(atlas_coords: Vector2i): boolean
-        
-        /** Returns the number of alternatives tiles for the coordinates ID [param atlas_coords].  
-         *  For [TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always part of the alternatives list.  
-         *  Returns -1 if there is not tile at the given coords.  
-         */
-        get_alternative_tiles_count(atlas_coords: Vector2i): number /*i64*/
-        
-        /** Returns the alternative ID for the tile with coordinates ID [param atlas_coords] at index [param index]. */
-        get_alternative_tile_id(atlas_coords: Vector2i, index: number /*i64*/): number /*i64*/
-        
-        /** Returns if the base tile at coordinates [param atlas_coords] has an alternative with ID [param alternative_tile]. */
-        has_alternative_tile(atlas_coords: Vector2i, alternative_tile: number /*i64*/): boolean
-    }
-    class TileSourceInspectorPlugin extends EditorInspectorPlugin {
-    }
-    class TilesEditorUtils extends Object {
-    }
-    namespace Timer {
-        enum TimerProcessCallback {
-            /** Update the timer during physics frames (see [constant Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). */
-            TIMER_PROCESS_PHYSICS = 0,
-            
-            /** Update the timer during process frames (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]). */
-            TIMER_PROCESS_IDLE = 1,
-        }
-    }
-    /** A countdown timer.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_timer.html  
-     */
-    class Timer extends Node {
-        set_wait_time(time_sec: number /*f64*/): void
-        get_wait_time(): number /*f64*/
-        set_one_shot(enable: boolean): void
-        is_one_shot(): boolean
-        set_autostart(enable: boolean): void
-        has_autostart(): boolean
-        
-        /** Starts the timer. Sets [member wait_time] to [param time_sec] if `time_sec > 0`. This also resets the remaining time to [member wait_time].  
-         *      
-         *  **Note:** This method will not resume a paused timer. See [member paused].  
-         */
-        start(time_sec: number /*f64*/ = -1): void
-        
-        /** Stops the timer. */
-        stop(): void
-        set_paused(paused: boolean): void
-        is_paused(): boolean
-        
-        /** Returns `true` if the timer is stopped. */
-        is_stopped(): boolean
-        get_time_left(): number /*f64*/
-        set_timer_process_callback(callback: Timer.TimerProcessCallback): void
-        get_timer_process_callback(): Timer.TimerProcessCallback
-        
-        /** Processing callback. See [enum TimerProcessCallback]. */
-        process_callback: number /*i64*/
-        
-        /** The wait time in seconds.  
-         *      
-         *  **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if [member process_callback] is [constant TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For very low wait times, it is recommended to use a process loop in a script instead of using a Timer node. Timers are affected by [member Engine.time_scale], a higher scale means quicker timeouts, and vice versa.  
-         */
-        wait_time: number /*f64*/
-        
-        /** If `true`, the timer will stop when reaching 0. If `false`, it will restart. */
-        one_shot: boolean
-        
-        /** If `true`, the timer will automatically start when entering the scene tree.  
-         *      
-         *  **Note:** This property is automatically set to `false` after the timer enters the scene tree and starts.  
-         */
-        autostart: boolean
-        
-        /** If `true`, the timer is paused and will not process until it is unpaused again, even if [method start] is called. */
-        paused: boolean
-        
-        /** The timer's remaining time in seconds. Returns 0 if the timer is inactive.  
-         *      
-         *  **Note:** This value is read-only and cannot be set. It is based on [member wait_time], which can be set using [method start].  
-         */
-        readonly time_left: number /*f64*/
-        
-        /** Emitted when the timer reaches 0. */
-        readonly timeout: Signal //  => void
-    }
-    /** Class representing a torus [PrimitiveMesh].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_torusmesh.html  
-     */
-    class TorusMesh extends PrimitiveMesh {
-        set_inner_radius(radius: number /*f64*/): void
-        get_inner_radius(): number /*f64*/
-        set_outer_radius(radius: number /*f64*/): void
-        get_outer_radius(): number /*f64*/
-        set_rings(rings: number /*i64*/): void
-        get_rings(): number /*i64*/
-        set_ring_segments(rings: number /*i64*/): void
-        get_ring_segments(): number /*i64*/
-        
-        /** The inner radius of the torus. */
-        inner_radius: number /*f64*/
-        
-        /** The outer radius of the torus. */
-        outer_radius: number /*f64*/
-        
-        /** The number of slices the torus is constructed of. */
-        rings: number /*i64*/
-        
-        /** The number of edges each ring of the torus is constructed of. */
-        ring_segments: number /*i64*/
-    }
-    namespace TouchScreenButton {
-        enum VisibilityMode {
-            /** Always visible. */
-            VISIBILITY_ALWAYS = 0,
-            
-            /** Visible on touch screens only. */
-            VISIBILITY_TOUCHSCREEN_ONLY = 1,
-        }
-    }
-    /** Button for touch screen devices for gameplay use.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_touchscreenbutton.html  
-     */
-    class TouchScreenButton extends Node2D {
-        set_texture_normal(texture: Texture2D): void
-        get_texture_normal(): Texture2D
-        set_texture_pressed(texture: Texture2D): void
-        get_texture_pressed(): Texture2D
-        set_bitmask(bitmask: BitMap): void
-        get_bitmask(): BitMap
-        set_shape(shape: Shape2D): void
-        get_shape(): Shape2D
-        set_shape_centered(bool: boolean): void
-        is_shape_centered(): boolean
-        set_shape_visible(bool: boolean): void
-        is_shape_visible(): boolean
-        set_action(action: string): void
-        get_action(): string
-        set_visibility_mode(mode: TouchScreenButton.VisibilityMode): void
-        get_visibility_mode(): TouchScreenButton.VisibilityMode
-        set_passby_press(enabled: boolean): void
-        is_passby_press_enabled(): boolean
-        
-        /** Returns `true` if this button is currently pressed. */
-        is_pressed(): boolean
-        
-        /** The button's texture for the normal state. */
-        texture_normal: Texture2D
-        
-        /** The button's texture for the pressed state. */
-        texture_pressed: Texture2D
-        
-        /** The button's bitmask. */
-        bitmask: BitMap
-        
-        /** The button's shape. */
-        shape: Shape2D
-        
-        /** If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect. */
-        shape_centered: boolean
-        
-        /** If `true`, the button's shape is visible in the editor. */
-        shape_visible: boolean
-        
-        /** If `true`, the [signal pressed] and [signal released] signals are emitted whenever a pressed finger goes in and out of the button, even if the pressure started outside the active area of the button.  
-         *      
-         *  **Note:** This is a "pass-by" (not "bypass") press mode.  
-         */
-        passby_press: boolean
-        
-        /** The button's action. Actions can be handled with [InputEventAction]. */
-        action: StringName
-        
-        /** The button's visibility mode. See [enum VisibilityMode] for possible values. */
-        visibility_mode: number /*i64*/
-        
-        /** Emitted when the button is pressed (down). */
-        readonly pressed: Signal //  => void
-        
-        /** Emitted when the button is released (up). */
-        readonly released: Signal //  => void
-    }
-    /** A language translation that maps a collection of strings to their individual translations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_translation.html  
-     */
-    class Translation extends Resource {
-        /** Virtual method to override [method get_plural_message]. */
-        /* gdvirtual */ _get_plural_message(src_message: StringName, src_plural_message: StringName, n: number /*i64*/, context: StringName): StringName
-        
-        /** Virtual method to override [method get_message]. */
-        /* gdvirtual */ _get_message(src_message: StringName, context: StringName): StringName
-        set_locale(locale: string): void
-        get_locale(): string
-        
-        /** Adds a message if nonexistent, followed by its translation.  
-         *  An additional context could be used to specify the translation context or differentiate polysemic words.  
-         */
-        add_message(src_message: StringName, xlated_message: StringName, context: StringName = ''): void
-        
-        /** Adds a message involving plural translation if nonexistent, followed by its translation.  
-         *  An additional context could be used to specify the translation context or differentiate polysemic words.  
-         */
-        add_plural_message(src_message: StringName, xlated_messages: PackedStringArray, context: StringName = ''): void
-        
-        /** Returns a message's translation. */
-        get_message(src_message: StringName, context: StringName = ''): StringName
-        
-        /** Returns a message's translation involving plurals.  
-         *  The number [param n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.  
-         */
-        get_plural_message(src_message: StringName, src_plural_message: StringName, n: number /*i64*/, context: StringName = ''): StringName
-        
-        /** Erases a message. */
-        erase_message(src_message: StringName, context: StringName = ''): void
-        
-        /** Returns all the messages (keys). */
-        get_message_list(): PackedStringArray
-        
-        /** Returns all the messages (translated text). */
-        get_translated_message_list(): PackedStringArray
-        
-        /** Returns the number of existing messages. */
-        get_message_count(): number /*i64*/
-        _set_messages(messages: Dictionary): void
-        _get_messages(): Dictionary
-        messages: Dictionary
-        
-        /** The locale of the translation. */
-        locale: string
-    }
-    namespace Tree {
-        enum SelectMode {
-            /** Allows selection of a single cell at a time. From the perspective of items, only a single item is allowed to be selected. And there is only one column selected in the selected item.  
-             *  The focus cursor is always hidden in this mode, but it is positioned at the current selection, making the currently selected item the currently focused item.  
-             */
-            SELECT_SINGLE = 0,
-            
-            /** Allows selection of a single row at a time. From the perspective of items, only a single items is allowed to be selected. And all the columns are selected in the selected item.  
-             *  The focus cursor is always hidden in this mode, but it is positioned at the first column of the current selection, making the currently selected item the currently focused item.  
-             */
-            SELECT_ROW = 1,
-            
-            /** Allows selection of multiple cells at the same time. From the perspective of items, multiple items are allowed to be selected. And there can be multiple columns selected in each selected item.  
-             *  The focus cursor is visible in this mode, the item or column under the cursor is not necessarily selected.  
-             */
-            SELECT_MULTI = 2,
-        }
-        enum DropModeFlags {
-            /** Disables all drop sections, but still allows to detect the "on item" drop section by [method get_drop_section_at_position].  
-             *      
-             *  **Note:** This is the default flag, it has no effect when combined with other flags.  
-             */
-            DROP_MODE_DISABLED = 0,
-            
-            /** Enables the "on item" drop section. This drop section covers the entire item.  
-             *  When combined with [constant DROP_MODE_INBETWEEN], this drop section halves the height and stays centered vertically.  
-             */
-            DROP_MODE_ON_ITEM = 1,
-            
-            /** Enables "above item" and "below item" drop sections. The "above item" drop section covers the top half of the item, and the "below item" drop section covers the bottom half.  
-             *  When combined with [constant DROP_MODE_ON_ITEM], these drop sections halves the height and stays on top / bottom accordingly.  
-             */
-            DROP_MODE_INBETWEEN = 2,
-        }
-    }
-    /** A control used to show a set of internal [TreeItem]s in a hierarchical structure.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tree.html  
-     */
-    class Tree extends Control {
-        /** Clears the tree. This removes all items. */
-        clear(): void
-        
-        /** Creates an item in the tree and adds it as a child of [param parent], which can be either a valid [TreeItem] or `null`.  
-         *  If [param parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.  
-         *  The new item will be the [param index]-th child of parent, or it will be the last child if there are not enough siblings.  
-         */
-        create_item(parent: TreeItem = <any> {} /*compound.type from nil*/, index: number /*i64*/ = -1): TreeItem
-        
-        /** Returns the tree's root item, or `null` if the tree is empty. */
-        get_root(): TreeItem
-        
-        /** Overrides the calculated minimum width of a column. It can be set to `0` to restore the default behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [member Control.size_flags_stretch_ratio]. */
-        set_column_custom_minimum_width(column: number /*i64*/, min_width: number /*i64*/): void
-        
-        /** If `true`, the column will have the "Expand" flag of [Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [member Control.size_flags_stretch_ratio] (see [method set_column_expand_ratio]). */
-        set_column_expand(column: number /*i64*/, expand: boolean): void
-        
-        /** Sets the relative expand ratio for a column. See [method set_column_expand]. */
-        set_column_expand_ratio(column: number /*i64*/, ratio: number /*i64*/): void
-        
-        /** Allows to enable clipping for column's content, making the content size ignored. */
-        set_column_clip_content(column: number /*i64*/, enable: boolean): void
-        
-        /** Returns `true` if the column has enabled expanding (see [method set_column_expand]). */
-        is_column_expanding(column: number /*i64*/): boolean
-        
-        /** Returns `true` if the column has enabled clipping (see [method set_column_clip_content]). */
-        is_column_clipping_content(column: number /*i64*/): boolean
-        
-        /** Returns the expand ratio assigned to the column. */
-        get_column_expand_ratio(column: number /*i64*/): number /*i64*/
-        
-        /** Returns the column's width in pixels. */
-        get_column_width(column: number /*i64*/): number /*i64*/
-        set_hide_root(enable: boolean): void
-        is_root_hidden(): boolean
-        
-        /** Returns the next selected [TreeItem] after the given one, or `null` if the end is reached.  
-         *  If [param from] is `null`, this returns the first selected item.  
-         */
-        get_next_selected(from: TreeItem): TreeItem
-        
-        /** Returns the currently focused item, or `null` if no item is focused.  
-         *  In [constant SELECT_ROW] and [constant SELECT_SINGLE] modes, the focused item is same as the selected item. In [constant SELECT_MULTI] mode, the focused item is the item under the focus cursor, not necessarily selected.  
-         *  To get the currently selected item(s), use [method get_next_selected].  
-         */
-        get_selected(): TreeItem
-        
-        /** Selects the specified [TreeItem] and column. */
-        set_selected(item: TreeItem, column: number /*i64*/): void
-        
-        /** Returns the currently focused column, or -1 if no column is focused.  
-         *  In [constant SELECT_SINGLE] mode, the focused column is the selected column. In [constant SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [constant SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not necessarily any column selected.  
-         *  To tell whether a column of an item is selected, use [method TreeItem.is_selected].  
-         */
-        get_selected_column(): number /*i64*/
-        
-        /** Returns the last pressed button's index. */
-        get_pressed_button(): number /*i64*/
-        set_select_mode(mode: Tree.SelectMode): void
-        get_select_mode(): Tree.SelectMode
-        
-        /** Deselects all tree items (rows and columns). In [constant SELECT_MULTI] mode also removes selection cursor. */
-        deselect_all(): void
-        set_columns(amount: number /*i64*/): void
-        get_columns(): number /*i64*/
-        
-        /** Returns the currently edited item. Can be used with [signal item_edited] to get the item that was modified.  
-         *    
-         */
-        get_edited(): TreeItem
-        
-        /** Returns the column for the currently edited item. */
-        get_edited_column(): number /*i64*/
-        
-        /** Edits the selected tree item as if it was clicked.  
-         *  Either the item must be set editable with [method TreeItem.set_editable] or [param force_edit] must be `true`.  
-         *  Returns `true` if the item could be edited. Fails if no item is selected.  
-         */
-        edit_selected(force_edit: boolean = false): boolean
-        
-        /** Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [method TreeItem.set_cell_mode]. */
-        get_custom_popup_rect(): Rect2
-        
-        /** Returns the rectangle area for the specified [TreeItem]. If [param column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned. */
-        get_item_area_rect(item: TreeItem, column: number /*i64*/ = -1, button_index: number /*i64*/ = -1): Rect2
-        
-        /** Returns the tree item at the specified position (relative to the tree origin position). */
-        get_item_at_position(position: Vector2): TreeItem
-        
-        /** Returns the column index at [param position], or -1 if no item is there. */
-        get_column_at_position(position: Vector2): number /*i64*/
-        
-        /** Returns the drop section at [param position], or -100 if no item is there.  
-         *  Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop sections, respectively. See [enum DropModeFlags] for a description of each drop section.  
-         *  To get the item which the returned drop section is relative to, use [method get_item_at_position].  
-         */
-        get_drop_section_at_position(position: Vector2): number /*i64*/
-        
-        /** Returns the button ID at [param position], or -1 if no button is there. */
-        get_button_id_at_position(position: Vector2): number /*i64*/
-        
-        /** Makes the currently focused cell visible.  
-         *  This will scroll the tree if necessary. In [constant SELECT_ROW] mode, this will not do horizontal scrolling, as all the cells in the selected row is focused logically.  
-         *      
-         *  **Note:** Despite the name of this method, the focus cursor itself is only visible in [constant SELECT_MULTI] mode.  
-         */
-        ensure_cursor_is_visible(): void
-        set_column_titles_visible(visible: boolean): void
-        are_column_titles_visible(): boolean
-        
-        /** Sets the title of a column. */
-        set_column_title(column: number /*i64*/, title: string): void
-        
-        /** Returns the column's title. */
-        get_column_title(column: number /*i64*/): string
-        
-        /** Sets the column title alignment. Note that [constant @GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not supported for column titles. */
-        set_column_title_alignment(column: number /*i64*/, title_alignment: HorizontalAlignment): void
-        
-        /** Returns the column title alignment. */
-        get_column_title_alignment(column: number /*i64*/): HorizontalAlignment
-        
-        /** Sets column title base writing direction. */
-        set_column_title_direction(column: number /*i64*/, direction: Control.TextDirection): void
-        
-        /** Returns column title base writing direction. */
-        get_column_title_direction(column: number /*i64*/): Control.TextDirection
-        
-        /** Sets language code of column title used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
-        set_column_title_language(column: number /*i64*/, language: string): void
-        
-        /** Returns column title language code. */
-        get_column_title_language(column: number /*i64*/): string
-        
-        /** Returns the current scrolling position. */
-        get_scroll(): Vector2
-        
-        /** Causes the [Tree] to jump to the specified [TreeItem]. */
-        scroll_to_item(item: TreeItem, center_on_item: boolean = false): void
-        set_h_scroll_enabled(h_scroll: boolean): void
-        is_h_scroll_enabled(): boolean
-        set_v_scroll_enabled(h_scroll: boolean): void
-        is_v_scroll_enabled(): boolean
-        set_hide_folding(hide: boolean): void
-        is_folding_hidden(): boolean
-        set_enable_recursive_folding(enable: boolean): void
-        is_recursive_folding_enabled(): boolean
-        set_drop_mode_flags(flags: number /*i64*/): void
-        get_drop_mode_flags(): number /*i64*/
-        set_allow_rmb_select(allow: boolean): void
-        get_allow_rmb_select(): boolean
-        set_allow_reselect(allow: boolean): void
-        get_allow_reselect(): boolean
-        set_allow_search(allow: boolean): void
-        get_allow_search(): boolean
-        
-        /** The number of columns. */
-        columns: number /*i64*/
-        
-        /** If `true`, column titles are visible. */
-        column_titles_visible: boolean
-        
-        /** If `true`, the currently selected cell may be selected again. */
-        allow_reselect: boolean
-        
-        /** If `true`, a right mouse button click can select items. */
-        allow_rmb_select: boolean
-        
-        /** If `true`, allows navigating the [Tree] with letter keys through incremental search. */
-        allow_search: boolean
-        
-        /** If `true`, the folding arrow is hidden. */
-        hide_folding: boolean
-        
-        /** If `true`, recursive folding is enabled for this [Tree]. Holding down Shift while clicking the fold arrow collapses or uncollapses the [TreeItem] and all its descendants. */
-        enable_recursive_folding: boolean
-        
-        /** If `true`, the tree's root is hidden. */
-        hide_root: boolean
-        
-        /** The drop mode as an OR combination of flags. See [enum DropModeFlags] constants. Once dropping is done, reverts to [constant DROP_MODE_DISABLED]. Setting this during [method Control._can_drop_data] is recommended.  
-         *  This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.  
-         */
-        drop_mode_flags: number /*i64*/
-        
-        /** Allows single or multiple selection. See the [enum SelectMode] constants. */
-        select_mode: number /*i64*/
-        
-        /** If `true`, enables horizontal scrolling. */
-        scroll_horizontal_enabled: boolean
-        
-        /** If `true`, enables vertical scrolling. */
-        scroll_vertical_enabled: boolean
-        
-        /** Emitted when an item is selected. */
-        readonly item_selected: Signal //  => void
-        
-        /** Emitted when a cell is selected. */
-        readonly cell_selected: Signal //  => void
-        
-        /** Emitted instead of [signal item_selected] if [member select_mode] is set to [constant SELECT_MULTI]. */
-        readonly multi_selected: Signal // item: TreeItem, column: number /*i64*/, selected: boolean => void
-        
-        /** Emitted when an item is selected with a mouse button. */
-        readonly item_mouse_selected: Signal // position: Vector2, mouse_button_index: number /*i64*/ => void
-        
-        /** Emitted when a mouse button is clicked in the empty space of the tree. */
-        readonly empty_clicked: Signal // position: Vector2, mouse_button_index: number /*i64*/ => void
-        
-        /** Emitted when an item is edited. */
-        readonly item_edited: Signal //  => void
-        
-        /** Emitted when an item with [constant TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button. */
-        readonly custom_item_clicked: Signal // mouse_button_index: number /*i64*/ => void
-        
-        /** Emitted when an item's icon is double-clicked. For a signal that emits when any part of the item is double-clicked, see [signal item_activated]. */
-        readonly item_icon_double_clicked: Signal //  => void
-        
-        /** Emitted when an item is collapsed by a click on the folding arrow. */
-        readonly item_collapsed: Signal // item: TreeItem => void
-        
-        /** Emitted when [method TreeItem.propagate_check] is called. Connect to this signal to process the items that are affected when [method TreeItem.propagate_check] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item. */
-        readonly check_propagated_to_item: Signal // item: TreeItem, column: number /*i64*/ => void
-        
-        /** Emitted when a button on the tree was pressed (see [method TreeItem.add_button]). */
-        readonly button_clicked: Signal // item: TreeItem, column: number /*i64*/, id: number /*i64*/, mouse_button_index: number /*i64*/ => void
-        
-        /** Emitted when a cell with the [constant TreeItem.CELL_MODE_CUSTOM] is clicked to be edited. */
-        readonly custom_popup_edited: Signal // arrow_clicked: boolean => void
-        
-        /** Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard). */
-        readonly item_activated: Signal //  => void
-        
-        /** Emitted when a column's title is clicked with either [constant MOUSE_BUTTON_LEFT] or [constant MOUSE_BUTTON_RIGHT]. */
-        readonly column_title_clicked: Signal // column: number /*i64*/, mouse_button_index: number /*i64*/ => void
-        
-        /** Emitted when a left mouse button click does not select any item. */
-        readonly nothing_selected: Signal //  => void
+        get radial_center_offset(): Vector2
+        set radial_center_offset(value: Vector2)
     }
 }

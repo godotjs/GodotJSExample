@@ -1,6 +1,2339 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    namespace Vector2i {
+        enum Axis {
+            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_X = 0,
+            
+            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Y = 1,
+        }
+    }
+    /** A 2D vector using integer coordinates.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector2i.html  
+     */
+    class Vector2i {
+        /** Zero vector, a vector with all components set to `0`. */
+        static readonly ZERO: Vector2i
+        
+        /** One vector, a vector with all components set to `1`. */
+        static readonly ONE: Vector2i
+        
+        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector2.INF]. */
+        static readonly MIN: Vector2i
+        
+        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector2.INF]. */
+        static readonly MAX: Vector2i
+        
+        /** Left unit vector. Represents the direction of left. */
+        static readonly LEFT: Vector2i
+        
+        /** Right unit vector. Represents the direction of right. */
+        static readonly RIGHT: Vector2i
+        
+        /** Up unit vector. Y is down in 2D, so this vector points -Y. */
+        static readonly UP: Vector2i
+        
+        /** Down unit vector. Y is down in 2D, so this vector points +Y. */
+        static readonly DOWN: Vector2i
+        constructor()
+        constructor(from: Vector2i)
+        constructor(from: Vector2)
+        constructor(x: number /*i64*/, y: number /*i64*/)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
+        
+        /** Returns the aspect ratio of this vector, the ratio of [member x] to [member y]. */
+        aspect(): number /*f64*/
+        
+        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
+        max_axis_index(): number /*i64*/
+        
+        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Y]. */
+        min_axis_index(): number /*i64*/
+        
+        /** Returns the length (magnitude) of this vector. */
+        length(): number /*f64*/
+        
+        /** Returns the squared length (squared magnitude) of this vector.  
+         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
+         */
+        length_squared(): number /*i64*/
+        
+        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
+        sign(): Vector2i
+        
+        /** Returns a new vector with all components in absolute values (i.e. positive). */
+        abs(): Vector2i
+        
+        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
+        clamp(min: Vector2i, max: Vector2i): Vector2i
+        
+        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
+        snapped(step: Vector2i): Vector2i
+        static ADD(left: Vector2i, right: Vector2i): Vector2i
+        static SUBTRACT(left: Vector2i, right: Vector2i): Vector2i
+        static MULTIPLY(left: number /*f64*/, right: Vector2i): Vector2i
+        static MULTIPLY(left: Vector2i, right: Vector2i): Vector2i
+        static MULTIPLY(left: Vector2i, right: number /*f64*/): Vector2i
+        static DIVIDE(left: Vector2i, right: Vector2i): Vector2i
+        static DIVIDE(left: Vector2i, right: number /*f64*/): Vector2i
+        static NEGATE(left: Vector2i, right: any): boolean
+        static EQUAL(left: Vector2i, right: Vector2i): boolean
+        static NOT_EQUAL(left: Vector2i, right: Vector2i): boolean
+        static LESS(left: Vector2i, right: Vector2i): boolean
+        static LESS_EQUAL(left: Vector2i, right: Vector2i): boolean
+        static GREATER(left: Vector2i, right: Vector2i): boolean
+        static GREATER_EQUAL(left: Vector2i, right: Vector2i): boolean
+        get x(): number /*i64*/
+        set x(value: number /*i64*/)
+        get y(): number /*i64*/
+        set y(value: number /*i64*/)
+    }
+    /** A 2D axis-aligned bounding box using floating-point coordinates.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_rect2.html  
+     */
+    class Rect2 {
+        constructor()
+        constructor(from: Rect2)
+        constructor(from: Rect2i)
+        constructor(position: Vector2, size: Vector2)
+        constructor(x: number /*f64*/, y: number /*f64*/, width: number /*f64*/, height: number /*f64*/)
+        
+        /** Returns the center point of the rectangle. This is the same as `position + (size / 2.0)`. */
+        get_center(): Vector2
+        
+        /** Returns the rectangle's area. This is equivalent to `size.x * size.y`. See also [method has_area]. */
+        get_area(): number /*f64*/
+        
+        /** Returns `true` if this rectangle has positive width and height. See also [method get_area]. */
+        has_area(): boolean
+        
+        /** Returns `true` if the rectangle contains the given [param point]. By convention, points on the right and bottom edges are **not** included.  
+         *      
+         *  **Note:** This method is not reliable for [Rect2] with a  *negative*  [member size]. Use [method abs] first to get a valid rectangle.  
+         */
+        has_point(point: Vector2): boolean
+        
+        /** Returns `true` if this rectangle and [param rect] are approximately equal, by calling [method Vector2.is_equal_approx] on the [member position] and the [member size]. */
+        is_equal_approx(rect: Rect2): boolean
+        
+        /** Returns `true` if this rectangle's values are finite, by calling [method Vector2.is_finite] on the [member position] and the [member size]. */
+        is_finite(): boolean
+        
+        /** Returns `true` if this rectangle overlaps with the [param b] rectangle. The edges of both rectangles are excluded, unless [param include_borders] is `true`. */
+        intersects(b: Rect2, include_borders: boolean = false): boolean
+        
+        /** Returns `true` if this rectangle  *completely*  encloses the [param b] rectangle. */
+        encloses(b: Rect2): boolean
+        
+        /** Returns the intersection between this rectangle and [param b]. If the rectangles do not intersect, returns an empty [Rect2].  
+         *    
+         *      
+         *  **Note:** If you only need to know whether two rectangles are overlapping, use [method intersects], instead.  
+         */
+        intersection(b: Rect2): Rect2
+        
+        /** Returns a [Rect2] that encloses both this rectangle and [param b] around the edges. See also [method encloses]. */
+        merge(b: Rect2): Rect2
+        
+        /** Returns a copy of this rectangle expanded to align the edges with the given [param to] point, if necessary.  
+         *    
+         */
+        expand(to: Vector2): Rect2
+        
+        /** Returns a copy of this rectangle extended on all sides by the given [param amount]. A negative [param amount] shrinks the rectangle instead. See also [method grow_individual] and [method grow_side].  
+         *    
+         */
+        grow(amount: number /*f64*/): Rect2
+        
+        /** Returns a copy of this rectangle with its [param side] extended by the given [param amount] (see [enum Side] constants). A negative [param amount] shrinks the rectangle, instead. See also [method grow] and [method grow_individual]. */
+        grow_side(side: number /*i64*/, amount: number /*f64*/): Rect2
+        
+        /** Returns a copy of this rectangle with its [param left], [param top], [param right], and [param bottom] sides extended by the given amounts. Negative values shrink the sides, instead. See also [method grow] and [method grow_side]. */
+        grow_individual(left: number /*f64*/, top: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/): Rect2
+        
+        /** Returns a [Rect2] equivalent to this rectangle, with its width and height modified to be non-negative values, and with its [member position] being the top-left corner of the rectangle.  
+         *    
+         *      
+         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member position] is the top-left corner, and the [member end] is the bottom-right corner.  
+         */
+        abs(): Rect2
+        get position(): Vector2
+        set position(value: Vector2)
+        get size(): Vector2
+        set size(value: Vector2)
+        get end(): Vector2
+        set end(value: Vector2)
+    }
+    /** A 2D axis-aligned bounding box using integer coordinates.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_rect2i.html  
+     */
+    class Rect2i {
+        constructor()
+        constructor(from: Rect2i)
+        constructor(from: Rect2)
+        constructor(position: Vector2i, size: Vector2i)
+        constructor(x: number /*i64*/, y: number /*i64*/, width: number /*i64*/, height: number /*i64*/)
+        
+        /** Returns the center point of the rectangle. This is the same as `position + (size / 2)`.  
+         *      
+         *  **Note:** If the [member size] is odd, the result will be rounded towards [member position].  
+         */
+        get_center(): Vector2i
+        
+        /** Returns the rectangle's area. This is equivalent to `size.x * size.y`. See also [method has_area]. */
+        get_area(): number /*i64*/
+        
+        /** Returns `true` if this rectangle has positive width and height. See also [method get_area]. */
+        has_area(): boolean
+        
+        /** Returns `true` if the rectangle contains the given [param point]. By convention, points on the right and bottom edges are **not** included.  
+         *      
+         *  **Note:** This method is not reliable for [Rect2i] with a  *negative*  [member size]. Use [method abs] first to get a valid rectangle.  
+         */
+        has_point(point: Vector2i): boolean
+        
+        /** Returns `true` if this rectangle overlaps with the [param b] rectangle. The edges of both rectangles are excluded. */
+        intersects(b: Rect2i): boolean
+        
+        /** Returns `true` if this [Rect2i] completely encloses another one. */
+        encloses(b: Rect2i): boolean
+        
+        /** Returns the intersection between this rectangle and [param b]. If the rectangles do not intersect, returns an empty [Rect2i].  
+         *    
+         *      
+         *  **Note:** If you only need to know whether two rectangles are overlapping, use [method intersects], instead.  
+         */
+        intersection(b: Rect2i): Rect2i
+        
+        /** Returns a [Rect2i] that encloses both this rectangle and [param b] around the edges. See also [method encloses]. */
+        merge(b: Rect2i): Rect2i
+        
+        /** Returns a copy of this rectangle expanded to align the edges with the given [param to] point, if necessary.  
+         *    
+         */
+        expand(to: Vector2i): Rect2i
+        
+        /** Returns a copy of this rectangle extended on all sides by the given [param amount]. A negative [param amount] shrinks the rectangle instead. See also [method grow_individual] and [method grow_side].  
+         *    
+         */
+        grow(amount: number /*i64*/): Rect2i
+        
+        /** Returns a copy of this rectangle with its [param side] extended by the given [param amount] (see [enum Side] constants). A negative [param amount] shrinks the rectangle, instead. See also [method grow] and [method grow_individual]. */
+        grow_side(side: number /*i64*/, amount: number /*i64*/): Rect2i
+        
+        /** Returns a copy of this rectangle with its [param left], [param top], [param right], and [param bottom] sides extended by the given amounts. Negative values shrink the sides, instead. See also [method grow] and [method grow_side]. */
+        grow_individual(left: number /*i64*/, top: number /*i64*/, right: number /*i64*/, bottom: number /*i64*/): Rect2i
+        
+        /** Returns a [Rect2i] equivalent to this rectangle, with its width and height modified to be non-negative values, and with its [member position] being the top-left corner of the rectangle.  
+         *    
+         *      
+         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member position] is the top-left corner, and the [member end] is the bottom-right corner.  
+         */
+        abs(): Rect2i
+        get position(): Vector2i
+        set position(value: Vector2i)
+        get size(): Vector2i
+        set size(value: Vector2i)
+        get end(): Vector2i
+        set end(value: Vector2i)
+    }
+    namespace Vector3 {
+        enum Axis {
+            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_X = 0,
+            
+            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Y = 1,
+            
+            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Z = 2,
+        }
+    }
+    /** A 3D vector using floating point coordinates.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector3.html  
+     */
+    class Vector3 {
+        /** Zero vector, a vector with all components set to `0`. */
+        static readonly ZERO: Vector3
+        
+        /** One vector, a vector with all components set to `1`. */
+        static readonly ONE: Vector3
+        
+        /** Infinity vector, a vector with all components set to [constant @GDScript.INF]. */
+        static readonly INF: Vector3
+        
+        /** Left unit vector. Represents the local direction of left, and the global direction of west. */
+        static readonly LEFT: Vector3
+        
+        /** Right unit vector. Represents the local direction of right, and the global direction of east. */
+        static readonly RIGHT: Vector3
+        
+        /** Up unit vector. */
+        static readonly UP: Vector3
+        
+        /** Down unit vector. */
+        static readonly DOWN: Vector3
+        
+        /** Forward unit vector. Represents the local direction of forward, and the global direction of north. Keep in mind that the forward direction for lights, cameras, etc is different from 3D assets like characters, which face towards the camera by convention. Use [constant Vector3.MODEL_FRONT] and similar constants when working in 3D asset space. */
+        static readonly FORWARD: Vector3
+        
+        /** Back unit vector. Represents the local direction of back, and the global direction of south. */
+        static readonly BACK: Vector3
+        
+        /** Unit vector pointing towards the left side of imported 3D assets. */
+        static readonly MODEL_LEFT: Vector3
+        
+        /** Unit vector pointing towards the right side of imported 3D assets. */
+        static readonly MODEL_RIGHT: Vector3
+        
+        /** Unit vector pointing towards the top side (up) of imported 3D assets. */
+        static readonly MODEL_TOP: Vector3
+        
+        /** Unit vector pointing towards the bottom side (down) of imported 3D assets. */
+        static readonly MODEL_BOTTOM: Vector3
+        
+        /** Unit vector pointing towards the front side (facing forward) of imported 3D assets. */
+        static readonly MODEL_FRONT: Vector3
+        
+        /** Unit vector pointing towards the rear side (back) of imported 3D assets. */
+        static readonly MODEL_REAR: Vector3
+        constructor()
+        constructor(from: Vector3)
+        constructor(from: Vector3i)
+        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
+        
+        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
+        min_axis_index(): number /*i64*/
+        
+        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
+        max_axis_index(): number /*i64*/
+        
+        /** Returns the unsigned minimum angle to the given vector, in radians. */
+        angle_to(to: Vector3): number /*f64*/
+        
+        /** Returns the signed angle to the given vector, in radians. The sign of the angle is positive in a counter-clockwise direction and negative in a clockwise direction when viewed from the side specified by the [param axis]. */
+        signed_angle_to(to: Vector3, axis: Vector3): number /*f64*/
+        
+        /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
+        direction_to(to: Vector3): Vector3
+        
+        /** Returns the distance between this vector and [param to]. */
+        distance_to(to: Vector3): number /*f64*/
+        
+        /** Returns the squared distance between this vector and [param to].  
+         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
+         */
+        distance_squared_to(to: Vector3): number /*f64*/
+        
+        /** Returns the length (magnitude) of this vector. */
+        length(): number /*f64*/
+        
+        /** Returns the squared length (squared magnitude) of this vector.  
+         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
+         */
+        length_squared(): number /*f64*/
+        
+        /** Returns the vector with a maximum length by limiting its length to [param length]. */
+        limit_length(length: number /*f64*/ = 1): Vector3
+        
+        /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. See also [method is_normalized].  
+         *      
+         *  **Note:** This function may return incorrect values if the input vector length is near zero.  
+         */
+        normalized(): Vector3
+        
+        /** Returns `true` if the vector is normalized, i.e. its length is approximately equal to 1. */
+        is_normalized(): boolean
+        
+        /** Returns `true` if this vector and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
+        is_equal_approx(to: Vector3): boolean
+        
+        /** Returns `true` if this vector's values are approximately zero, by running [method @GlobalScope.is_zero_approx] on each component.  
+         *  This method is faster than using [method is_equal_approx] with one value as a zero vector.  
+         */
+        is_zero_approx(): boolean
+        
+        /** Returns `true` if this vector is finite, by calling [method @GlobalScope.is_finite] on each component. */
+        is_finite(): boolean
+        
+        /** Returns the inverse of the vector. This is the same as `Vector3(1.0 / v.x, 1.0 / v.y, 1.0 / v.z)`. */
+        inverse(): Vector3
+        
+        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
+        clamp(min: Vector3, max: Vector3): Vector3
+        
+        /** Returns a new vector with each component snapped to the nearest multiple of the corresponding component in [param step]. This can also be used to round the components to an arbitrary number of decimals. */
+        snapped(step: Vector3): Vector3
+        
+        /** Returns the result of rotating this vector around a given axis by [param angle] (in radians). The axis must be a normalized vector. See also [method @GlobalScope.deg_to_rad]. */
+        rotated(axis: Vector3, angle: number /*f64*/): Vector3
+        
+        /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
+        lerp(to: Vector3, weight: number /*f64*/): Vector3
+        
+        /** Returns the result of spherical linear interpolation between this vector and [param to], by amount [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
+         *  This method also handles interpolating the lengths if the input vectors have different lengths. For the special case of one or both input vectors having zero length, this method behaves like [method lerp].  
+         */
+        slerp(to: Vector3, weight: number /*f64*/): Vector3
+        
+        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
+        cubic_interpolate(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: number /*f64*/): Vector3
+        
+        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
+         *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
+         */
+        cubic_interpolate_in_time(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector3
+        
+        /** Returns the point at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
+        bezier_interpolate(control_1: Vector3, control_2: Vector3, end: Vector3, t: number /*f64*/): Vector3
+        
+        /** Returns the derivative at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
+        bezier_derivative(control_1: Vector3, control_2: Vector3, end: Vector3, t: number /*f64*/): Vector3
+        
+        /** Returns a new vector moved toward [param to] by the fixed [param delta] amount. Will not go past the final value. */
+        move_toward(to: Vector3, delta: number /*f64*/): Vector3
+        
+        /** Returns the dot product of this vector and [param with]. This can be used to compare the angle between two vectors. For example, this can be used to determine whether an enemy is facing the player.  
+         *  The dot product will be `0` for a straight angle (90 degrees), greater than 0 for angles narrower than 90 degrees and lower than 0 for angles wider than 90 degrees.  
+         *  When using unit (normalized) vectors, the result will always be between `-1.0` (180 degree angle) when the vectors are facing opposite directions, and `1.0` (0 degree angle) when the vectors are aligned.  
+         *      
+         *  **Note:** `a.dot(b)` is equivalent to `b.dot(a)`.  
+         */
+        dot(with_: Vector3): number /*f64*/
+        
+        /** Returns the cross product of this vector and [param with].  
+         *  This returns a vector perpendicular to both this and [param with], which would be the normal vector of the plane defined by the two vectors. As there are two such vectors, in opposite directions, this method returns the vector defined by a right-handed coordinate system. If the two vectors are parallel this returns an empty vector, making it useful for testing if two vectors are parallel.  
+         */
+        cross(with_: Vector3): Vector3
+        
+        /** Returns the outer product with [param with]. */
+        outer(with_: Vector3): Basis
+        
+        /** Returns a new vector with all components in absolute values (i.e. positive). */
+        abs(): Vector3
+        
+        /** Returns a new vector with all components rounded down (towards negative infinity). */
+        floor(): Vector3
+        
+        /** Returns a new vector with all components rounded up (towards positive infinity). */
+        ceil(): Vector3
+        
+        /** Returns a new vector with all components rounded to the nearest integer, with halfway cases rounded away from zero. */
+        round(): Vector3
+        
+        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
+        posmod(mod: number /*f64*/): Vector3
+        
+        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
+        posmodv(modv: Vector3): Vector3
+        
+        /** Returns the result of projecting the vector onto the given vector [param b]. */
+        project(b: Vector3): Vector3
+        
+        /** Returns a new vector slid along a plane defined by the given normal. */
+        slide(n: Vector3): Vector3
+        
+        /** Returns the vector "bounced off" from a plane defined by the given normal. */
+        bounce(n: Vector3): Vector3
+        
+        /** Returns the result of reflecting the vector from a plane defined by the given normal [param n]. */
+        reflect(n: Vector3): Vector3
+        
+        /** Returns a new vector with each component set to `1.0` if it's positive, `-1.0` if it's negative, and `0.0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
+        sign(): Vector3
+        
+        /** Returns the octahedral-encoded (oct32) form of this [Vector3] as a [Vector2]. Since a [Vector2] occupies 1/3 less memory compared to [Vector3], this form of compression can be used to pass greater amounts of [method normalized] [Vector3]s without increasing storage or memory requirements. See also [method octahedron_decode].  
+         *      
+         *  **Note:** [method octahedron_encode] can only be used for [method normalized] vectors. [method octahedron_encode] does  *not*  check whether this [Vector3] is normalized, and will return a value that does not decompress to the original value if the [Vector3] is not normalized.  
+         *      
+         *  **Note:** Octahedral compression is  *lossy* , although visual differences are rarely perceptible in real world scenarios.  
+         */
+        octahedron_encode(): Vector2
+        
+        /** Returns the [Vector3] from an octahedral-compressed form created using [method octahedron_encode] (stored as a [Vector2]). */
+        static octahedron_decode(uv: Vector2): Vector3
+        static ADD(left: Vector3, right: Vector3): Vector3
+        static SUBTRACT(left: Vector3, right: Vector3): Vector3
+        static MULTIPLY(left: number /*f64*/, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
+        static DIVIDE(left: Vector3, right: Vector3): Vector3
+        static DIVIDE(left: Vector3, right: number /*f64*/): Vector3
+        static NEGATE(left: Vector3, right: any): boolean
+        static EQUAL(left: Vector3, right: Vector3): boolean
+        static NOT_EQUAL(left: Vector3, right: Vector3): boolean
+        static LESS(left: Vector3, right: Vector3): boolean
+        static LESS_EQUAL(left: Vector3, right: Vector3): boolean
+        static GREATER(left: Vector3, right: Vector3): boolean
+        static GREATER_EQUAL(left: Vector3, right: Vector3): boolean
+        get x(): number /*f64*/
+        set x(value: number /*f64*/)
+        get y(): number /*f64*/
+        set y(value: number /*f64*/)
+        get z(): number /*f64*/
+        set z(value: number /*f64*/)
+    }
+    namespace Vector3i {
+        enum Axis {
+            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_X = 0,
+            
+            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Y = 1,
+            
+            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Z = 2,
+        }
+    }
+    /** A 3D vector using integer coordinates.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector3i.html  
+     */
+    class Vector3i {
+        /** Zero vector, a vector with all components set to `0`. */
+        static readonly ZERO: Vector3i
+        
+        /** One vector, a vector with all components set to `1`. */
+        static readonly ONE: Vector3i
+        
+        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector3.INF]. */
+        static readonly MIN: Vector3i
+        
+        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector3.INF]. */
+        static readonly MAX: Vector3i
+        
+        /** Left unit vector. Represents the local direction of left, and the global direction of west. */
+        static readonly LEFT: Vector3i
+        
+        /** Right unit vector. Represents the local direction of right, and the global direction of east. */
+        static readonly RIGHT: Vector3i
+        
+        /** Up unit vector. */
+        static readonly UP: Vector3i
+        
+        /** Down unit vector. */
+        static readonly DOWN: Vector3i
+        
+        /** Forward unit vector. Represents the local direction of forward, and the global direction of north. */
+        static readonly FORWARD: Vector3i
+        
+        /** Back unit vector. Represents the local direction of back, and the global direction of south. */
+        static readonly BACK: Vector3i
+        constructor()
+        constructor(from: Vector3i)
+        constructor(from: Vector3)
+        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
+        
+        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
+        min_axis_index(): number /*i64*/
+        
+        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
+        max_axis_index(): number /*i64*/
+        
+        /** Returns the length (magnitude) of this vector. */
+        length(): number /*f64*/
+        
+        /** Returns the squared length (squared magnitude) of this vector.  
+         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
+         */
+        length_squared(): number /*i64*/
+        
+        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
+        sign(): Vector3i
+        
+        /** Returns a new vector with all components in absolute values (i.e. positive). */
+        abs(): Vector3i
+        
+        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
+        clamp(min: Vector3i, max: Vector3i): Vector3i
+        
+        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
+        snapped(step: Vector3i): Vector3i
+        static ADD(left: Vector3i, right: Vector3i): Vector3i
+        static SUBTRACT(left: Vector3i, right: Vector3i): Vector3i
+        static MULTIPLY(left: number /*f64*/, right: Vector3i): Vector3i
+        static MULTIPLY(left: Vector3i, right: Vector3i): Vector3i
+        static MULTIPLY(left: Vector3i, right: number /*f64*/): Vector3i
+        static DIVIDE(left: Vector3i, right: Vector3i): Vector3i
+        static DIVIDE(left: Vector3i, right: number /*f64*/): Vector3i
+        static NEGATE(left: Vector3i, right: any): boolean
+        static EQUAL(left: Vector3i, right: Vector3i): boolean
+        static NOT_EQUAL(left: Vector3i, right: Vector3i): boolean
+        static LESS(left: Vector3i, right: Vector3i): boolean
+        static LESS_EQUAL(left: Vector3i, right: Vector3i): boolean
+        static GREATER(left: Vector3i, right: Vector3i): boolean
+        static GREATER_EQUAL(left: Vector3i, right: Vector3i): boolean
+        get x(): number /*i64*/
+        set x(value: number /*i64*/)
+        get y(): number /*i64*/
+        set y(value: number /*i64*/)
+        get z(): number /*i64*/
+        set z(value: number /*i64*/)
+    }
+    /** A 2×3 matrix representing a 2D transformation.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_transform2d.html  
+     */
+    class Transform2D {
+        /** The identity [Transform2D] with no translation, rotation or scaling applied. When applied to other data structures, [constant IDENTITY] performs no transformation. */
+        static readonly IDENTITY: Transform2D
+        
+        /** The [Transform2D] that will flip something along the X axis. */
+        static readonly FLIP_X: Transform2D
+        
+        /** The [Transform2D] that will flip something along the Y axis. */
+        static readonly FLIP_Y: Transform2D
+        constructor()
+        constructor(from: Transform2D)
+        constructor(rotation: number /*f64*/, position: Vector2)
+        constructor(rotation: number /*f64*/, scale: Vector2, skew: number /*f64*/, position: Vector2)
+        constructor(x_axis: Vector2, y_axis: Vector2, origin: Vector2)
+        set_indexed(index: number, value: Vector2)
+        get_indexed(index: number): Vector2
+        
+        /** Returns the inverse of the transform, under the assumption that the transformation basis is orthonormal (i.e. rotation/reflection is fine, scaling/skew is not). Use [method affine_inverse] for non-orthonormal transforms (e.g. with scaling). */
+        inverse(): Transform2D
+        
+        /** Returns the inverse of the transform, under the assumption that the basis is invertible (must have non-zero determinant). */
+        affine_inverse(): Transform2D
+        
+        /** Returns the transform's rotation (in radians). */
+        get_rotation(): number /*f64*/
+        
+        /** Returns the transform's origin (translation). */
+        get_origin(): Vector2
+        
+        /** Returns the scale. */
+        get_scale(): Vector2
+        
+        /** Returns the transform's skew (in radians). */
+        get_skew(): number /*f64*/
+        
+        /** Returns the transform with the basis orthogonal (90 degrees), and normalized axis vectors (scale of 1 or -1). */
+        orthonormalized(): Transform2D
+        
+        /** Returns a copy of the transform rotated by the given [param angle] (in radians).  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the left, i.e., `R * X`.  
+         *  This can be seen as transforming with respect to the global/parent frame.  
+         */
+        rotated(angle: number /*f64*/): Transform2D
+        
+        /** Returns a copy of the transform rotated by the given [param angle] (in radians).  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the right, i.e., `X * R`.  
+         *  This can be seen as transforming with respect to the local frame.  
+         */
+        rotated_local(angle: number /*f64*/): Transform2D
+        
+        /** Returns a copy of the transform scaled by the given [param scale] factor.  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the left, i.e., `S * X`.  
+         *  This can be seen as transforming with respect to the global/parent frame.  
+         */
+        scaled(scale: Vector2): Transform2D
+        
+        /** Returns a copy of the transform scaled by the given [param scale] factor.  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the right, i.e., `X * S`.  
+         *  This can be seen as transforming with respect to the local frame.  
+         */
+        scaled_local(scale: Vector2): Transform2D
+        
+        /** Returns a copy of the transform translated by the given [param offset].  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the left, i.e., `T * X`.  
+         *  This can be seen as transforming with respect to the global/parent frame.  
+         */
+        translated(offset: Vector2): Transform2D
+        
+        /** Returns a copy of the transform translated by the given [param offset].  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the right, i.e., `X * T`.  
+         *  This can be seen as transforming with respect to the local frame.  
+         */
+        translated_local(offset: Vector2): Transform2D
+        
+        /** Returns the determinant of the basis matrix. If the basis is uniformly scaled, then its determinant equals the square of the scale factor.  
+         *  A negative determinant means the basis was flipped, so one part of the scale is negative. A zero determinant means the basis isn't invertible, and is usually considered invalid.  
+         */
+        determinant(): number /*f64*/
+        
+        /** Returns a vector transformed (multiplied) by the basis matrix.  
+         *  This method does not account for translation (the [member origin] vector).  
+         */
+        basis_xform(v: Vector2): Vector2
+        
+        /** Returns a vector transformed (multiplied) by the inverse basis matrix, under the assumption that the basis is orthonormal (i.e. rotation/reflection is fine, scaling/skew is not).  
+         *  This method does not account for translation (the [member origin] vector).  
+         *  `transform.basis_xform_inv(vector)` is equivalent to `transform.inverse().basis_xform(vector)`. See [method inverse].  
+         *  For non-orthonormal transforms (e.g. with scaling) `transform.affine_inverse().basis_xform(vector)` can be used instead. See [method affine_inverse].  
+         */
+        basis_xform_inv(v: Vector2): Vector2
+        
+        /** Returns a transform interpolated between this transform and another by a given [param weight] (on the range of 0.0 to 1.0). */
+        interpolate_with(xform: Transform2D, weight: number /*f64*/): Transform2D
+        
+        /** Returns `true` if the transform's basis is conformal, meaning it preserves angles and distance ratios, and may only be composed of rotation and uniform scale. Returns `false` if the transform's basis has non-uniform scale or shear/skew. This can be used to validate if the transform is non-distorted, which is important for physics and other use cases. */
+        is_conformal(): boolean
+        
+        /** Returns `true` if this transform and [param xform] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
+        is_equal_approx(xform: Transform2D): boolean
+        
+        /** Returns `true` if this transform is finite, by calling [method @GlobalScope.is_finite] on each component. */
+        is_finite(): boolean
+        
+        /** Returns a copy of the transform rotated such that the rotated X-axis points towards the [param target] position.  
+         *  Operations take place in global space.  
+         */
+        looking_at(target: Vector2 = Vector2.ZERO): Transform2D
+        static MULTIPLY(left: Transform2D, right: Transform2D): Transform2D
+        static MULTIPLY(left: Transform2D, right: number /*f64*/): Transform2D
+        static MULTIPLY(left: Transform2D, right: Vector2): Vector2
+        static MULTIPLY(left: Vector2, right: Transform2D): Vector2
+        static MULTIPLY(left: Transform2D, right: Rect2): Rect2
+        static MULTIPLY(left: Rect2, right: Transform2D): Rect2
+        static MULTIPLY(left: Transform2D, right: PackedVector2Array): PackedVector2Array
+        static MULTIPLY(left: PackedVector2Array, right: Transform2D): PackedVector2Array
+        static EQUAL(left: Transform2D, right: Transform2D): boolean
+        static NOT_EQUAL(left: Transform2D, right: Transform2D): boolean
+        get x(): Vector2
+        set x(value: Vector2)
+        get y(): Vector2
+        set y(value: Vector2)
+        get origin(): Vector2
+        set origin(value: Vector2)
+    }
+    namespace Vector4 {
+        enum Axis {
+            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_X = 0,
+            
+            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Y = 1,
+            
+            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Z = 2,
+            
+            /** Enumerated value for the W axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_W = 3,
+        }
+    }
+    /** A 4D vector using floating point coordinates.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector4.html  
+     */
+    class Vector4 {
+        /** Zero vector, a vector with all components set to `0`. */
+        static readonly ZERO: Vector4
+        
+        /** One vector, a vector with all components set to `1`. */
+        static readonly ONE: Vector4
+        
+        /** Infinity vector, a vector with all components set to [constant @GDScript.INF]. */
+        static readonly INF: Vector4
+        constructor()
+        constructor(from: Vector4)
+        constructor(from: Vector4i)
+        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
+        
+        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
+        min_axis_index(): number /*i64*/
+        
+        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
+        max_axis_index(): number /*i64*/
+        
+        /** Returns the length (magnitude) of this vector. */
+        length(): number /*f64*/
+        
+        /** Returns the squared length (squared magnitude) of this vector.  
+         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
+         */
+        length_squared(): number /*f64*/
+        
+        /** Returns a new vector with all components in absolute values (i.e. positive). */
+        abs(): Vector4
+        
+        /** Returns a new vector with each component set to `1.0` if it's positive, `-1.0` if it's negative, and `0.0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
+        sign(): Vector4
+        
+        /** Returns a new vector with all components rounded down (towards negative infinity). */
+        floor(): Vector4
+        
+        /** Returns a new vector with all components rounded up (towards positive infinity). */
+        ceil(): Vector4
+        
+        /** Returns a new vector with all components rounded to the nearest integer, with halfway cases rounded away from zero. */
+        round(): Vector4
+        
+        /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
+        lerp(to: Vector4, weight: number /*f64*/): Vector4
+        
+        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
+        cubic_interpolate(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: number /*f64*/): Vector4
+        
+        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
+         *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
+         */
+        cubic_interpolate_in_time(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector4
+        
+        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
+        posmod(mod: number /*f64*/): Vector4
+        
+        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
+        posmodv(modv: Vector4): Vector4
+        
+        /** Returns a new vector with each component snapped to the nearest multiple of the corresponding component in [param step]. This can also be used to round the components to an arbitrary number of decimals. */
+        snapped(step: Vector4): Vector4
+        
+        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
+        clamp(min: Vector4, max: Vector4): Vector4
+        
+        /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. See also [method is_normalized].  
+         *      
+         *  **Note:** This function may return incorrect values if the input vector length is near zero.  
+         */
+        normalized(): Vector4
+        
+        /** Returns `true` if the vector is normalized, i.e. its length is approximately equal to 1. */
+        is_normalized(): boolean
+        
+        /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
+        direction_to(to: Vector4): Vector4
+        
+        /** Returns the distance between this vector and [param to]. */
+        distance_to(to: Vector4): number /*f64*/
+        
+        /** Returns the squared distance between this vector and [param to].  
+         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
+         */
+        distance_squared_to(to: Vector4): number /*f64*/
+        
+        /** Returns the dot product of this vector and [param with]. */
+        dot(with_: Vector4): number /*f64*/
+        
+        /** Returns the inverse of the vector. This is the same as `Vector4(1.0 / v.x, 1.0 / v.y, 1.0 / v.z, 1.0 / v.w)`. */
+        inverse(): Vector4
+        
+        /** Returns `true` if this vector and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
+        is_equal_approx(to: Vector4): boolean
+        
+        /** Returns `true` if this vector's values are approximately zero, by running [method @GlobalScope.is_zero_approx] on each component.  
+         *  This method is faster than using [method is_equal_approx] with one value as a zero vector.  
+         */
+        is_zero_approx(): boolean
+        
+        /** Returns `true` if this vector is finite, by calling [method @GlobalScope.is_finite] on each component. */
+        is_finite(): boolean
+        static ADD(left: Vector4, right: Vector4): Vector4
+        static SUBTRACT(left: Vector4, right: Vector4): Vector4
+        static MULTIPLY(left: number /*f64*/, right: Vector4): Vector4
+        static MULTIPLY(left: Vector4, right: Vector4): Vector4
+        static MULTIPLY(left: Vector4, right: number /*f64*/): Vector4
+        static DIVIDE(left: Vector4, right: Vector4): Vector4
+        static DIVIDE(left: Vector4, right: number /*f64*/): Vector4
+        static NEGATE(left: Vector4, right: any): boolean
+        static EQUAL(left: Vector4, right: Vector4): boolean
+        static NOT_EQUAL(left: Vector4, right: Vector4): boolean
+        static LESS(left: Vector4, right: Vector4): boolean
+        static LESS_EQUAL(left: Vector4, right: Vector4): boolean
+        static GREATER(left: Vector4, right: Vector4): boolean
+        static GREATER_EQUAL(left: Vector4, right: Vector4): boolean
+        get x(): number /*f64*/
+        set x(value: number /*f64*/)
+        get y(): number /*f64*/
+        set y(value: number /*f64*/)
+        get z(): number /*f64*/
+        set z(value: number /*f64*/)
+        get w(): number /*f64*/
+        set w(value: number /*f64*/)
+    }
+    namespace Vector4i {
+        enum Axis {
+            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_X = 0,
+            
+            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Y = 1,
+            
+            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_Z = 2,
+            
+            /** Enumerated value for the W axis. Returned by [method max_axis_index] and [method min_axis_index]. */
+            AXIS_W = 3,
+        }
+    }
+    /** A 4D vector using integer coordinates.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector4i.html  
+     */
+    class Vector4i {
+        /** Zero vector, a vector with all components set to `0`. */
+        static readonly ZERO: Vector4i
+        
+        /** One vector, a vector with all components set to `1`. */
+        static readonly ONE: Vector4i
+        
+        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector4.INF]. */
+        static readonly MIN: Vector4i
+        
+        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector4.INF]. */
+        static readonly MAX: Vector4i
+        constructor()
+        constructor(from: Vector4i)
+        constructor(from: Vector4)
+        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/, w: number /*i64*/)
+        set_indexed(index: number, value: number /*i64*/)
+        get_indexed(index: number): number /*i64*/
+        
+        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
+        min_axis_index(): number /*i64*/
+        
+        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
+        max_axis_index(): number /*i64*/
+        
+        /** Returns the length (magnitude) of this vector. */
+        length(): number /*f64*/
+        
+        /** Returns the squared length (squared magnitude) of this vector.  
+         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
+         */
+        length_squared(): number /*i64*/
+        
+        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
+        sign(): Vector4i
+        
+        /** Returns a new vector with all components in absolute values (i.e. positive). */
+        abs(): Vector4i
+        
+        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
+        clamp(min: Vector4i, max: Vector4i): Vector4i
+        
+        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
+        snapped(step: Vector4i): Vector4i
+        static ADD(left: Vector4i, right: Vector4i): Vector4i
+        static SUBTRACT(left: Vector4i, right: Vector4i): Vector4i
+        static MULTIPLY(left: number /*f64*/, right: Vector4i): Vector4i
+        static MULTIPLY(left: Vector4i, right: Vector4i): Vector4i
+        static MULTIPLY(left: Vector4i, right: number /*f64*/): Vector4i
+        static DIVIDE(left: Vector4i, right: Vector4i): Vector4i
+        static DIVIDE(left: Vector4i, right: number /*f64*/): Vector4i
+        static NEGATE(left: Vector4i, right: any): boolean
+        static EQUAL(left: Vector4i, right: Vector4i): boolean
+        static NOT_EQUAL(left: Vector4i, right: Vector4i): boolean
+        static LESS(left: Vector4i, right: Vector4i): boolean
+        static LESS_EQUAL(left: Vector4i, right: Vector4i): boolean
+        static GREATER(left: Vector4i, right: Vector4i): boolean
+        static GREATER_EQUAL(left: Vector4i, right: Vector4i): boolean
+        get x(): number /*i64*/
+        set x(value: number /*i64*/)
+        get y(): number /*i64*/
+        set y(value: number /*i64*/)
+        get z(): number /*i64*/
+        set z(value: number /*i64*/)
+        get w(): number /*i64*/
+        set w(value: number /*i64*/)
+    }
+    /** A plane in Hessian normal form.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_plane.html  
+     */
+    class Plane {
+        /** A plane that extends in the Y and Z axes (normal vector points +X). */
+        static readonly PLANE_YZ: Plane
+        
+        /** A plane that extends in the X and Z axes (normal vector points +Y). */
+        static readonly PLANE_XZ: Plane
+        
+        /** A plane that extends in the X and Y axes (normal vector points +Z). */
+        static readonly PLANE_XY: Plane
+        constructor()
+        constructor(from: Plane)
+        constructor(normal: Vector3)
+        constructor(normal: Vector3, d: number /*f64*/)
+        constructor(normal: Vector3, point: Vector3)
+        constructor(point1: Vector3, point2: Vector3, point3: Vector3)
+        constructor(a: number /*f64*/, b: number /*f64*/, c: number /*f64*/, d: number /*f64*/)
+        
+        /** Returns a copy of the plane, with normalized [member normal] (so it's a unit vector). Returns `Plane(0, 0, 0, 0)` if [member normal] can't be normalized (it has zero length). */
+        normalized(): Plane
+        
+        /** Returns the center of the plane. */
+        get_center(): Vector3
+        
+        /** Returns `true` if this plane and [param to_plane] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
+        is_equal_approx(to_plane: Plane): boolean
+        
+        /** Returns `true` if this plane is finite, by calling [method @GlobalScope.is_finite] on each component. */
+        is_finite(): boolean
+        
+        /** Returns `true` if [param point] is located above the plane. */
+        is_point_over(point: Vector3): boolean
+        
+        /** Returns the shortest distance from the plane to the position [param point]. If the point is above the plane, the distance will be positive. If below, the distance will be negative. */
+        distance_to(point: Vector3): number /*f64*/
+        
+        /** Returns `true` if [param point] is inside the plane. Comparison uses a custom minimum [param tolerance] threshold. */
+        has_point(point: Vector3, tolerance: number /*f64*/ = 0.00001): boolean
+        
+        /** Returns the orthogonal projection of [param point] into a point in the plane. */
+        project(point: Vector3): Vector3
+        
+        /** Returns the intersection point of the three planes [param b], [param c] and this plane. If no intersection is found, `null` is returned. */
+        intersect_3(b: Plane, c: Plane): void
+        
+        /** Returns the intersection point of a ray consisting of the position [param from] and the direction normal [param dir] with this plane. If no intersection is found, `null` is returned. */
+        intersects_ray(from: Vector3, dir: Vector3): void
+        
+        /** Returns the intersection point of a segment from position [param from] to position [param to] with this plane. If no intersection is found, `null` is returned. */
+        intersects_segment(from: Vector3, to: Vector3): void
+        static NEGATE(left: Plane, right: any): boolean
+        static EQUAL(left: Plane, right: Plane): boolean
+        static NOT_EQUAL(left: Plane, right: Plane): boolean
+        get x(): number /*f64*/
+        set x(value: number /*f64*/)
+        get y(): number /*f64*/
+        set y(value: number /*f64*/)
+        get z(): number /*f64*/
+        set z(value: number /*f64*/)
+        get d(): number /*f64*/
+        set d(value: number /*f64*/)
+        get normal(): Vector3
+        set normal(value: Vector3)
+    }
+    /** A unit quaternion used for representing 3D rotations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_quaternion.html  
+     */
+    class Quaternion {
+        /** The identity quaternion, representing no rotation. This has the same rotation as [constant Basis.IDENTITY].  
+         *  If a [Vector3] is rotated (multiplied) by this quaternion, it does not change.  
+         */
+        static readonly IDENTITY: Quaternion
+        constructor()
+        constructor(from: Quaternion)
+        constructor(from: Basis)
+        constructor(axis: Vector3, angle: number /*f64*/)
+        constructor(arc_from: Vector3, arc_to: Vector3)
+        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
+        
+        /** Returns this quaternion's length, also called magnitude. */
+        length(): number /*f64*/
+        
+        /** Returns this quaternion's length, squared.  
+         *      
+         *  **Note:** This method is faster than [method length], so prefer it if you only need to compare quaternion lengths.  
+         */
+        length_squared(): number /*f64*/
+        
+        /** Returns a copy of this quaternion, normalized so that its length is `1.0`. See also [method is_normalized]. */
+        normalized(): Quaternion
+        
+        /** Returns `true` if this quaternion is normalized. See also [method normalized]. */
+        is_normalized(): boolean
+        
+        /** Returns `true` if this quaternion and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
+        is_equal_approx(to: Quaternion): boolean
+        
+        /** Returns `true` if this quaternion is finite, by calling [method @GlobalScope.is_finite] on each component. */
+        is_finite(): boolean
+        
+        /** Returns the inverse version of this quaternion, inverting the sign of every component except [member w]. */
+        inverse(): Quaternion
+        
+        /** Returns the logarithm of this quaternion. Multiplies this quaternion's rotation axis by its rotation angle, and stores the result in the returned quaternion's vector part ([member x], [member y], and [member z]). The returned quaternion's real part ([member w]) is always `0.0`. */
+        log(): Quaternion
+        
+        /** Returns the exponential of this quaternion. The rotation axis of the result is the normalized rotation axis of this quaternion, the angle of the result is the length of the vector part of this quaternion. */
+        exp(): Quaternion
+        
+        /** Returns the angle between this quaternion and [param to]. This is the magnitude of the angle you would need to rotate by to get from one to the other.  
+         *      
+         *  **Note:** The magnitude of the floating-point error for this method is abnormally high, so methods such as `is_zero_approx` will not work reliably.  
+         */
+        angle_to(to: Quaternion): number /*f64*/
+        
+        /** Returns the dot product between this quaternion and [param with].  
+         *  This is equivalent to `(quat.x * with.x) + (quat.y * with.y) + (quat.z * with.z) + (quat.w * with.w)`.  
+         */
+        dot(with_: Quaternion): number /*f64*/
+        
+        /** Performs a spherical-linear interpolation with the [param to] quaternion, given a [param weight] and returns the result. Both this quaternion and [param to] must be normalized. */
+        slerp(to: Quaternion, weight: number /*f64*/): Quaternion
+        
+        /** Performs a spherical-linear interpolation with the [param to] quaternion, given a [param weight] and returns the result. Unlike [method slerp], this method does not check if the rotation path is smaller than 90 degrees. Both this quaternion and [param to] must be normalized. */
+        slerpni(to: Quaternion, weight: number /*f64*/): Quaternion
+        
+        /** Performs a spherical cubic interpolation between quaternions [param pre_a], this vector, [param b], and [param post_b], by the given amount [param weight]. */
+        spherical_cubic_interpolate(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/): Quaternion
+        
+        /** Performs a spherical cubic interpolation between quaternions [param pre_a], this vector, [param b], and [param post_b], by the given amount [param weight].  
+         *  It can perform smoother interpolation than [method spherical_cubic_interpolate] by the time values.  
+         */
+        spherical_cubic_interpolate_in_time(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Quaternion
+        
+        /** Returns this quaternion's rotation as a [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
+         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): Z (roll) is calculated first, then X (pitch), and lastly Y (yaw). When using the opposite method [method from_euler], this order is reversed.  
+         */
+        get_euler(order: number /*i64*/ = 2): Vector3
+        
+        /** Constructs a new [Quaternion] from the given [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians. This method always uses the YXZ convention ([constant EULER_ORDER_YXZ]). */
+        static from_euler(euler: Vector3): Quaternion
+        
+        /** Returns the rotation axis of the rotation represented by this quaternion. */
+        get_axis(): Vector3
+        
+        /** Returns the angle of the rotation represented by this quaternion.  
+         *      
+         *  **Note:** The quaternion must be normalized.  
+         */
+        get_angle(): number /*f64*/
+        static ADD(left: Quaternion, right: Quaternion): Quaternion
+        static SUBTRACT(left: Quaternion, right: Quaternion): Quaternion
+        static MULTIPLY(left: Quaternion, right: Quaternion): Quaternion
+        static MULTIPLY(left: Quaternion, right: number /*f64*/): Quaternion
+        static MULTIPLY(left: number /*f64*/, right: Quaternion): Quaternion
+        static MULTIPLY(left: Vector3, right: Quaternion): Vector3
+        static MULTIPLY(left: Quaternion, right: Vector3): Vector3
+        static DIVIDE(left: Quaternion, right: number /*f64*/): Quaternion
+        static NEGATE(left: Quaternion, right: any): boolean
+        static EQUAL(left: Quaternion, right: Quaternion): boolean
+        static NOT_EQUAL(left: Quaternion, right: Quaternion): boolean
+        get x(): number /*f64*/
+        set x(value: number /*f64*/)
+        get y(): number /*f64*/
+        set y(value: number /*f64*/)
+        get z(): number /*f64*/
+        set z(value: number /*f64*/)
+        get w(): number /*f64*/
+        set w(value: number /*f64*/)
+    }
+    /** A 3D axis-aligned bounding box.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_aabb.html  
+     */
+    class AABB {
+        constructor()
+        constructor(from: AABB)
+        constructor(position: Vector3, size: Vector3)
+        
+        /** Returns an [AABB] equivalent to this bounding box, with its width, height, and depth modified to be non-negative values.  
+         *    
+         *      
+         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member size]'s components are greater than `0`.  
+         */
+        abs(): AABB
+        
+        /** Returns the center point of the bounding box. This is the same as `position + (size / 2.0)`. */
+        get_center(): Vector3
+        
+        /** Returns the bounding box's volume. This is equivalent to `size.x * size.y * size.z`. See also [method has_volume]. */
+        get_volume(): number /*f64*/
+        
+        /** Returns `true` if this bounding box's width, height, and depth are all positive. See also [method get_volume]. */
+        has_volume(): boolean
+        
+        /** Returns `true` if this bounding box has a surface or a length, that is, at least one component of [member size] is greater than `0`. Otherwise, returns `false`. */
+        has_surface(): boolean
+        
+        /** Returns `true` if the bounding box contains the given [param point]. By convention, points exactly on the right, top, and front sides are **not** included.  
+         *      
+         *  **Note:** This method is not reliable for [AABB] with a  *negative*  [member size]. Use [method abs] first to get a valid bounding box.  
+         */
+        has_point(point: Vector3): boolean
+        
+        /** Returns `true` if this bounding box and [param aabb] are approximately equal, by calling [method Vector2.is_equal_approx] on the [member position] and the [member size]. */
+        is_equal_approx(aabb: AABB): boolean
+        
+        /** Returns `true` if this bounding box's values are finite, by calling [method Vector2.is_finite] on the [member position] and the [member size]. */
+        is_finite(): boolean
+        
+        /** Returns `true` if this bounding box overlaps with the box [param with]. The edges of both boxes are  *always*  excluded. */
+        intersects(with_: AABB): boolean
+        
+        /** Returns `true` if this bounding box  *completely*  encloses the [param with] box. The edges of both boxes are included.  
+         *    
+         */
+        encloses(with_: AABB): boolean
+        
+        /** Returns `true` if this bounding box is on both sides of the given [param plane]. */
+        intersects_plane(plane: Plane): boolean
+        
+        /** Returns the intersection between this bounding box and [param with]. If the boxes do not intersect, returns an empty [AABB]. If the boxes intersect at the edge, returns a flat [AABB] with no volume (see [method has_surface] and [method has_volume]).  
+         *    
+         *      
+         *  **Note:** If you only need to know whether two bounding boxes are intersecting, use [method intersects], instead.  
+         */
+        intersection(with_: AABB): AABB
+        
+        /** Returns an [AABB] that encloses both this bounding box and [param with] around the edges. See also [method encloses]. */
+        merge(with_: AABB): AABB
+        
+        /** Returns a copy of this bounding box expanded to align the edges with the given [param to_point], if necessary.  
+         *    
+         */
+        expand(to_point: Vector3): AABB
+        
+        /** Returns a copy of this bounding box extended on all sides by the given amount [param by]. A negative amount shrinks the box instead.  
+         *    
+         */
+        grow(by: number /*f64*/): AABB
+        
+        /** Returns the vertex's position of this bounding box that's the farthest in the given direction. This point is commonly known as the support point in collision detection algorithms. */
+        get_support(dir: Vector3): Vector3
+        
+        /** Returns the longest normalized axis of this bounding box's [member size], as a [Vector3] ([constant Vector3.RIGHT], [constant Vector3.UP], or [constant Vector3.BACK]).  
+         *    
+         *  See also [method get_longest_axis_index] and [method get_longest_axis_size].  
+         */
+        get_longest_axis(): Vector3
+        
+        /** Returns the index to the longest axis of this bounding box's [member size] (see [constant Vector3.AXIS_X], [constant Vector3.AXIS_Y], and [constant Vector3.AXIS_Z]).  
+         *  For an example, see [method get_longest_axis].  
+         */
+        get_longest_axis_index(): number /*i64*/
+        
+        /** Returns the longest dimension of this bounding box's [member size].  
+         *  For an example, see [method get_longest_axis].  
+         */
+        get_longest_axis_size(): number /*f64*/
+        
+        /** Returns the shortest normaalized axis of this bounding box's [member size], as a [Vector3] ([constant Vector3.RIGHT], [constant Vector3.UP], or [constant Vector3.BACK]).  
+         *    
+         *  See also [method get_shortest_axis_index] and [method get_shortest_axis_size].  
+         */
+        get_shortest_axis(): Vector3
+        
+        /** Returns the index to the shortest axis of this bounding box's [member size] (see [constant Vector3.AXIS_X], [constant Vector3.AXIS_Y], and [constant Vector3.AXIS_Z]).  
+         *  For an example, see [method get_shortest_axis].  
+         */
+        get_shortest_axis_index(): number /*i64*/
+        
+        /** Returns the shortest dimension of this bounding box's [member size].  
+         *  For an example, see [method get_shortest_axis].  
+         */
+        get_shortest_axis_size(): number /*f64*/
+        
+        /** Returns the position of one of the 8 vertices that compose this bounding box. With a [param idx] of `0` this is the same as [member position], and a [param idx] of `7` is the same as [member end]. */
+        get_endpoint(idx: number /*i64*/): Vector3
+        
+        /** Returns the first point where this bounding box and the given segment intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
+         *  The segment begins at [param from] and ends at [param to].  
+         */
+        intersects_segment(from: Vector3, to: Vector3): void
+        
+        /** Returns the first point where this bounding box and the given ray intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
+         *  The ray begin at [param from], faces [param dir] and extends towards infinity.  
+         */
+        intersects_ray(from: Vector3, dir: Vector3): void
+        static EQUAL(left: AABB, right: AABB): boolean
+        static NOT_EQUAL(left: AABB, right: AABB): boolean
+        get position(): Vector3
+        set position(value: Vector3)
+        get size(): Vector3
+        set size(value: Vector3)
+        get end(): Vector3
+        set end(value: Vector3)
+    }
+    /** A 3×3 matrix for representing 3D rotation and scale.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_basis.html  
+     */
+    class Basis {
+        /** The identity basis. This is a basis with no rotation, no shear, and its scale being `1`. This means that:  
+         *  - The [member x] points right ([constant Vector3.RIGHT]);  
+         *  - The [member y] points up ([constant Vector3.UP]);  
+         *  - The [member z] points back ([constant Vector3.BACK]).  
+         *    
+         *  This is identical to creating [constructor Basis] without any parameters. This constant can be used to make your code clearer, and for consistency with C#.  
+         */
+        static readonly IDENTITY: Basis
+        
+        /** When any basis is multiplied by [constant FLIP_X], it negates all components of the [member x] axis (the X column).  
+         *  When [constant FLIP_X] is multiplied by any basis, it negates the [member Vector3.x] component of all axes (the X row).  
+         */
+        static readonly FLIP_X: Basis
+        
+        /** When any basis is multiplied by [constant FLIP_Y], it negates all components of the [member y] axis (the Y column).  
+         *  When [constant FLIP_Y] is multiplied by any basis, it negates the [member Vector3.y] component of all axes (the Y row).  
+         */
+        static readonly FLIP_Y: Basis
+        
+        /** When any basis is multiplied by [constant FLIP_Z], it negates all components of the [member z] axis (the Z column).  
+         *  When [constant FLIP_Z] is multiplied by any basis, it negates the [member Vector3.z] component of all axes (the Z row).  
+         */
+        static readonly FLIP_Z: Basis
+        constructor()
+        constructor(from: Basis)
+        constructor(from: Quaternion)
+        constructor(axis: Vector3, angle: number /*f64*/)
+        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3)
+        set_indexed(index: number, value: Vector3)
+        get_indexed(index: number): Vector3
+        
+        /** Returns the [url=https://en.wikipedia.org/wiki/Invertible_matrix]inverse of this basis's matrix[/url]. */
+        inverse(): Basis
+        
+        /** Returns the transposed version of this basis. This turns the basis matrix's columns into rows, and its rows into columns.  
+         *    
+         */
+        transposed(): Basis
+        
+        /** Returns the orthonormalized version of this basis. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation.  
+         *  It is often useful to call this method to avoid rounding errors on a rotating basis:  
+         *    
+         */
+        orthonormalized(): Basis
+        
+        /** Returns the [url=https://en.wikipedia.org/wiki/Determinant]determinant[/url] of this basis's matrix. For advanced math, this number can be used to determine a few attributes:  
+         *  - If the determinant is exactly `0`, the basis is not invertible (see [method inverse]).  
+         *  - If the determinant is a negative number, the basis represents a negative scale.  
+         *      
+         *  **Note:** If the basis's scale is the same for every axis, its determinant is always that scale by the power of 2.  
+         */
+        determinant(): number /*f64*/
+        
+        /** Returns this basis rotated around the given [param axis] by [param angle] (in radians). The [param axis] must be a normalized vector (see [method Vector3.normalized]).  
+         *  Positive values rotate this basis clockwise around the axis, while negative values rotate it counterclockwise.  
+         *    
+         */
+        rotated(axis: Vector3, angle: number /*f64*/): Basis
+        
+        /** Returns this basis with each axis's components scaled by the given [param scale]'s components.  
+         *  The basis matrix's rows are multiplied by [param scale]'s components. This operation is a global scale (relative to the parent).  
+         *    
+         */
+        scaled(scale: Vector3): Basis
+        
+        /** Returns the length of each axis of this basis, as a [Vector3]. If the basis is not sheared, this is the scaling factor. It is not affected by rotation.  
+         *    
+         *      
+         *  **Note:** If the value returned by [method determinant] is negative, the scale is also negative.  
+         */
+        get_scale(): Vector3
+        
+        /** Returns this basis's rotation as a [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
+         *  - The [member Vector3.x] contains the angle around the [member x] axis (pitch);  
+         *  - The [member Vector3.y] contains the angle around the [member y] axis (yaw);  
+         *  - The [member Vector3.z] contains the angle around the [member z] axis (roll).  
+         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): Z (roll) is calculated first, then X (pitch), and lastly Y (yaw). When using the opposite method [method from_euler], this order is reversed.  
+         *      
+         *  **Note:** Euler angles are much more intuitive but are not suitable for 3D math. Because of this, consider using the [method get_rotation_quaternion] method instead, which returns a [Quaternion].  
+         *      
+         *  **Note:** In the Inspector dock, a basis's rotation is often displayed in Euler angles (in degrees), as is the case with the [member Node3D.rotation] property.  
+         */
+        get_euler(order: number /*i64*/ = 2): Vector3
+        
+        /** Returns the transposed dot product between [param with] and the [member x] axis (see [method transposed]).  
+         *  This is equivalent to `basis.x.dot(vector)`.  
+         */
+        tdotx(with_: Vector3): number /*f64*/
+        
+        /** Returns the transposed dot product between [param with] and the [member y] axis (see [method transposed]).  
+         *  This is equivalent to `basis.y.dot(vector)`.  
+         */
+        tdoty(with_: Vector3): number /*f64*/
+        
+        /** Returns the transposed dot product between [param with] and the [member z] axis (see [method transposed]).  
+         *  This is equivalent to `basis.z.dot(vector)`.  
+         */
+        tdotz(with_: Vector3): number /*f64*/
+        
+        /** Performs a spherical-linear interpolation with the [param to] basis, given a [param weight]. Both this basis and [param to] should represent a rotation.  
+         *  **Example:** Smoothly rotate a [Node3D] to the target basis over time, with a [Tween].  
+         *    
+         */
+        slerp(to: Basis, weight: number /*f64*/): Basis
+        
+        /** Returns `true` if this basis is conformal. A conformal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *uniform*  (the axes share the same length). This method can be especially useful during physics calculations. */
+        is_conformal(): boolean
+        
+        /** Returns `true` if this basis and [param b] are approximately equal, by calling [method @GlobalScope.is_equal_approx] on all vector components. */
+        is_equal_approx(b: Basis): boolean
+        
+        /** Returns `true` if this basis is finite, by calling [method @GlobalScope.is_finite] on all vector components. */
+        is_finite(): boolean
+        
+        /** Returns this basis's rotation as a [Quaternion].  
+         *      
+         *  **Note:** Quatenions are much more suitable for 3D math but are less intuitive. For user interfaces, consider using the [method get_euler] method, which returns Euler angles.  
+         */
+        get_rotation_quaternion(): Quaternion
+        
+        /** Creates a new [Basis] with a rotation such that the forward axis (-Z) points towards the [param target] position.  
+         *  By default, the -Z axis (camera forward) is treated as forward (implies +X is right). If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position.  
+         *  The up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the forward axis. The returned basis is orthonormalized (see [method orthonormalized]). The [param target] and [param up] vectors cannot be [constant Vector3.ZERO], and cannot be parallel to each other.  
+         */
+        static looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Basis
+        
+        /** Constructs a new [Basis] that only represents scale, with no rotation or shear, from the given [param scale] vector.  
+         *    
+         *      
+         *  **Note:** In linear algebra, the matrix of this basis is also known as a [url=https://en.wikipedia.org/wiki/Diagonal_matrix]diagonal matrix[/url].  
+         */
+        static from_scale(scale: Vector3): Basis
+        
+        /** Constructs a new [Basis] that only represents rotation from the given [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
+         *  - The [member Vector3.x] should contain the angle around the [member x] axis (pitch).  
+         *  - The [member Vector3.y] should contain the angle around the [member y] axis (yaw).  
+         *  - The [member Vector3.z] should contain the angle around the [member z] axis (roll).  
+         *    
+         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): the basis rotates first around the Y axis (yaw), then X (pitch), and lastly Z (roll). When using the opposite method [method get_euler], this order is reversed.  
+         */
+        static from_euler(euler: Vector3, order: number /*i64*/ = 2): Basis
+        static MULTIPLY(left: Basis, right: Basis): Basis
+        static MULTIPLY(left: Basis, right: number /*f64*/): Basis
+        static MULTIPLY(left: Basis, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: Basis): Vector3
+        static EQUAL(left: Basis, right: Basis): boolean
+        static NOT_EQUAL(left: Basis, right: Basis): boolean
+        get x(): Vector3
+        set x(value: Vector3)
+        get y(): Vector3
+        set y(value: Vector3)
+        get z(): Vector3
+        set z(value: Vector3)
+    }
+    /** A 3×4 matrix representing a 3D transformation.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_transform3d.html  
+     */
+    class Transform3D {
+        /** A transform with no translation, no rotation, and its scale being `1`. Its [member basis] is equal to [constant Basis.IDENTITY].  
+         *  When multiplied by another [Variant] such as [AABB] or another [Transform3D], no transformation occurs.  
+         */
+        static readonly IDENTITY: Transform3D
+        
+        /** [Transform3D] with mirroring applied perpendicular to the YZ plane. Its [member basis] is equal to [constant Basis.FLIP_X]. */
+        static readonly FLIP_X: Transform3D
+        
+        /** [Transform3D] with mirroring applied perpendicular to the XZ plane. Its [member basis] is equal to [constant Basis.FLIP_Y]. */
+        static readonly FLIP_Y: Transform3D
+        
+        /** [Transform3D] with mirroring applied perpendicular to the XY plane. Its [member basis] is equal to [constant Basis.FLIP_Z]. */
+        static readonly FLIP_Z: Transform3D
+        constructor()
+        constructor(from: Transform3D)
+        constructor(basis: Basis, origin: Vector3)
+        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3, origin: Vector3)
+        constructor(from: Projection)
+        
+        /** Returns the inverted version of this transform. See also [method Basis.inverse].  
+         *      
+         *  **Note:** For this method to return correctly, the transform's [member basis] needs to be  *orthonormal*  (see [method Basis.orthonormalized]). That means, the basis should only represent a rotation. If it does not, use [method affine_inverse] instead.  
+         */
+        inverse(): Transform3D
+        
+        /** Returns the inverted version of this transform. Unlike [method inverse], this method works with almost any [member basis], including non-uniform ones, but is slower. See also [method Basis.inverse].  
+         *      
+         *  **Note:** For this method to return correctly, the transform's [member basis] needs to have a determinant that is not exactly `0` (see [method Basis.determinant]).  
+         */
+        affine_inverse(): Transform3D
+        
+        /** Returns a copy of this transform with its [member basis] orthonormalized. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation. See also [method Basis.orthonormalized]. */
+        orthonormalized(): Transform3D
+        
+        /** Returns a copy of this transform rotated around the given [param axis] by the given [param angle] (in radians).  
+         *  The [param axis] must be a normalized vector.  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the left, i.e., `R * X`.  
+         *  This can be seen as transforming with respect to the global/parent frame.  
+         */
+        rotated(axis: Vector3, angle: number /*f64*/): Transform3D
+        
+        /** Returns a copy of this transform rotated around the given [param axis] by the given [param angle] (in radians).  
+         *  The [param axis] must be a normalized vector.  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the right, i.e., `X * R`.  
+         *  This can be seen as transforming with respect to the local frame.  
+         */
+        rotated_local(axis: Vector3, angle: number /*f64*/): Transform3D
+        
+        /** Returns a copy of this transform scaled by the given [param scale] factor.  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the left, i.e., `S * X`.  
+         *  This can be seen as transforming with respect to the global/parent frame.  
+         */
+        scaled(scale: Vector3): Transform3D
+        
+        /** Returns a copy of this transform scaled by the given [param scale] factor.  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the right, i.e., `X * S`.  
+         *  This can be seen as transforming with respect to the local frame.  
+         */
+        scaled_local(scale: Vector3): Transform3D
+        
+        /** Returns a copy of this transform translated by the given [param offset].  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the left, i.e., `T * X`.  
+         *  This can be seen as transforming with respect to the global/parent frame.  
+         */
+        translated(offset: Vector3): Transform3D
+        
+        /** Returns a copy of this transform translated by the given [param offset].  
+         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the right, i.e., `X * T`.  
+         *  This can be seen as transforming with respect to the local frame.  
+         */
+        translated_local(offset: Vector3): Transform3D
+        
+        /** Returns a copy of this transform rotated so that the forward axis (-Z) points towards the [param target] position.  
+         *  The up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the forward axis. The resulting transform is orthonormalized. The existing rotation, scale, and skew information from the original transform is discarded. The [param target] and [param up] vectors cannot be zero, cannot be parallel to each other, and are defined in global/parent space.  
+         *  If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).  
+         */
+        looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Transform3D
+        
+        /** Returns the result of the linear interpolation between this transform and [param xform] by the given [param weight].  
+         *  The [param weight] should be between `0.0` and `1.0` (inclusive). Values outside this range are allowed and can be used to perform  *extrapolation*  instead.  
+         */
+        interpolate_with(xform: Transform3D, weight: number /*f64*/): Transform3D
+        
+        /** Returns `true` if this transform and [param xform] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
+        is_equal_approx(xform: Transform3D): boolean
+        
+        /** Returns `true` if this transform is finite, by calling [method @GlobalScope.is_finite] on each component. */
+        is_finite(): boolean
+        static MULTIPLY(left: Transform3D, right: Transform3D): Transform3D
+        static MULTIPLY(left: Transform3D, right: number /*f64*/): Transform3D
+        static MULTIPLY(left: Transform3D, right: Vector3): Vector3
+        static MULTIPLY(left: Vector3, right: Transform3D): Vector3
+        static MULTIPLY(left: Transform3D, right: AABB): AABB
+        static MULTIPLY(left: AABB, right: Transform3D): AABB
+        static MULTIPLY(left: Transform3D, right: Plane): Plane
+        static MULTIPLY(left: Plane, right: Transform3D): Plane
+        static MULTIPLY(left: Transform3D, right: PackedVector3Array): PackedVector3Array
+        static MULTIPLY(left: PackedVector3Array, right: Transform3D): PackedVector3Array
+        static EQUAL(left: Transform3D, right: Transform3D): boolean
+        static NOT_EQUAL(left: Transform3D, right: Transform3D): boolean
+        get basis(): Basis
+        set basis(value: Basis)
+        get origin(): Vector3
+        set origin(value: Vector3)
+    }
+    namespace Projection {
+        enum Planes {
+            /** The index value of the projection's near clipping plane. */
+            PLANE_NEAR = 0,
+            
+            /** The index value of the projection's far clipping plane. */
+            PLANE_FAR = 1,
+            
+            /** The index value of the projection's left clipping plane. */
+            PLANE_LEFT = 2,
+            
+            /** The index value of the projection's top clipping plane. */
+            PLANE_TOP = 3,
+            
+            /** The index value of the projection's right clipping plane. */
+            PLANE_RIGHT = 4,
+            
+            /** The index value of the projection bottom clipping plane. */
+            PLANE_BOTTOM = 5,
+        }
+    }
+    /** A 4×4 matrix for 3D projective transformations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_projection.html  
+     */
+    class Projection {
+        /** A [Projection] with no transformation defined. When applied to other data structures, no transformation is performed. */
+        static readonly IDENTITY: Projection
+        
+        /** A [Projection] with all values initialized to 0. When applied to other data structures, they will be zeroed. */
+        static readonly ZERO: Projection
+        constructor()
+        constructor(from: Projection)
+        constructor(from: Transform3D)
+        constructor(x_axis: Vector4, y_axis: Vector4, z_axis: Vector4, w_axis: Vector4)
+        set_indexed(index: number, value: Vector4)
+        get_indexed(index: number): Vector4
+        
+        /** Creates a new [Projection] that projects positions from a depth range of `-1` to `1` to one that ranges from `0` to `1`, and flips the projected positions vertically, according to [param flip_y]. */
+        static create_depth_correction(flip_y: boolean): Projection
+        
+        /** Creates a new [Projection] that projects positions into the given [Rect2]. */
+        static create_light_atlas_rect(rect: Rect2): Projection
+        
+        /** Creates a new [Projection] that projects positions using a perspective projection with the given Y-axis field of view (in degrees), X:Y aspect ratio, and clipping planes.  
+         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
+         */
+        static create_perspective(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
+        
+        /** Creates a new [Projection] that projects positions using a perspective projection with the given Y-axis field of view (in degrees), X:Y aspect ratio, and clipping distances. The projection is adjusted for a head-mounted display with the given distance between eyes and distance to a point that can be focused on.  
+         *  [param eye] creates the projection for the left eye when set to 1, or the right eye when set to 2.  
+         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
+         */
+        static create_perspective_hmd(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean, eye: number /*i64*/, intraocular_dist: number /*f64*/, convergence_dist: number /*f64*/): Projection
+        
+        /** Creates a new [Projection] for projecting positions onto a head-mounted display with the given X:Y aspect ratio, distance between eyes, display width, distance to lens, oversampling factor, and depth clipping planes.  
+         *  [param eye] creates the projection for the left eye when set to 1, or the right eye when set to 2.  
+         */
+        static create_for_hmd(eye: number /*i64*/, aspect: number /*f64*/, intraocular_dist: number /*f64*/, display_width: number /*f64*/, display_to_lens: number /*f64*/, oversample: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
+        
+        /** Creates a new [Projection] that projects positions using an orthogonal projection with the given clipping planes. */
+        static create_orthogonal(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
+        
+        /** Creates a new [Projection] that projects positions using an orthogonal projection with the given size, X:Y aspect ratio, and clipping planes.  
+         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
+         */
+        static create_orthogonal_aspect(size: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
+        
+        /** Creates a new [Projection] that projects positions in a frustum with the given clipping planes. */
+        static create_frustum(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
+        
+        /** Creates a new [Projection] that projects positions in a frustum with the given size, X:Y aspect ratio, offset, and clipping planes.  
+         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
+         */
+        static create_frustum_aspect(size: number /*f64*/, aspect: number /*f64*/, offset: Vector2, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
+        
+        /** Creates a new [Projection] that scales a given projection to fit around a given [AABB] in projection space. */
+        static create_fit_aabb(aabb: AABB): Projection
+        
+        /** Returns a scalar value that is the signed factor by which areas are scaled by this matrix. If the sign is negative, the matrix flips the orientation of the area.  
+         *  The determinant can be used to calculate the invertibility of a matrix or solve linear systems of equations involving the matrix, among other applications.  
+         */
+        determinant(): number /*f64*/
+        
+        /** Returns a [Projection] with the near clipping distance adjusted to be [param new_znear].  
+         *      
+         *  **Note:** The original [Projection] must be a perspective projection.  
+         */
+        perspective_znear_adjusted(new_znear: number /*f64*/): Projection
+        
+        /** Returns the clipping plane of this [Projection] whose index is given by [param plane].  
+         *  [param plane] should be equal to one of [constant PLANE_NEAR], [constant PLANE_FAR], [constant PLANE_LEFT], [constant PLANE_TOP], [constant PLANE_RIGHT], or [constant PLANE_BOTTOM].  
+         */
+        get_projection_plane(plane: number /*i64*/): Plane
+        
+        /** Returns a copy of this [Projection] with the signs of the values of the Y column flipped. */
+        flipped_y(): Projection
+        
+        /** Returns a [Projection] with the X and Y values from the given [Vector2] added to the first and second values of the final column respectively. */
+        jitter_offseted(offset: Vector2): Projection
+        
+        /** Returns the vertical field of view of the projection (in degrees) associated with the given horizontal field of view (in degrees) and aspect ratio. */
+        static get_fovy(fovx: number /*f64*/, aspect: number /*f64*/): number /*f64*/
+        
+        /** Returns the distance for this [Projection] beyond which positions are clipped. */
+        get_z_far(): number /*f64*/
+        
+        /** Returns the distance for this [Projection] before which positions are clipped. */
+        get_z_near(): number /*f64*/
+        
+        /** Returns the X:Y aspect ratio of this [Projection]'s viewport. */
+        get_aspect(): number /*f64*/
+        
+        /** Returns the horizontal field of view of the projection (in degrees). */
+        get_fov(): number /*f64*/
+        
+        /** Returns `true` if this [Projection] performs an orthogonal projection. */
+        is_orthogonal(): boolean
+        
+        /** Returns the dimensions of the viewport plane that this [Projection] projects positions onto, divided by two. */
+        get_viewport_half_extents(): Vector2
+        
+        /** Returns the dimensions of the far clipping plane of the projection, divided by two. */
+        get_far_plane_half_extents(): Vector2
+        
+        /** Returns a [Projection] that performs the inverse of this [Projection]'s projective transformation. */
+        inverse(): Projection
+        
+        /** Returns the number of pixels with the given pixel width displayed per meter, after this [Projection] is applied. */
+        get_pixels_per_meter(for_pixel_width: number /*i64*/): number /*i64*/
+        
+        /** Returns the factor by which the visible level of detail is scaled by this [Projection]. */
+        get_lod_multiplier(): number /*f64*/
+        static MULTIPLY(left: Projection, right: Projection): Projection
+        static MULTIPLY(left: Projection, right: Vector4): Vector4
+        static MULTIPLY(left: Vector4, right: Projection): Vector4
+        static EQUAL(left: Projection, right: Projection): boolean
+        static NOT_EQUAL(left: Projection, right: Projection): boolean
+        get x(): Vector4
+        set x(value: Vector4)
+        get y(): Vector4
+        set y(value: Vector4)
+        get z(): Vector4
+        set z(value: Vector4)
+        get w(): Vector4
+        set w(value: Vector4)
+    }
+    /** A color represented in RGBA format.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_color.html  
+     */
+    class Color {
+        /** Alice blue color. */
+        static readonly ALICE_BLUE: Color
+        
+        /** Antique white color. */
+        static readonly ANTIQUE_WHITE: Color
+        
+        /** Aqua color. */
+        static readonly AQUA: Color
+        
+        /** Aquamarine color. */
+        static readonly AQUAMARINE: Color
+        
+        /** Azure color. */
+        static readonly AZURE: Color
+        
+        /** Beige color. */
+        static readonly BEIGE: Color
+        
+        /** Bisque color. */
+        static readonly BISQUE: Color
+        
+        /** Black color. In GDScript, this is the default value of any color. */
+        static readonly BLACK: Color
+        
+        /** Blanched almond color. */
+        static readonly BLANCHED_ALMOND: Color
+        
+        /** Blue color. */
+        static readonly BLUE: Color
+        
+        /** Blue violet color. */
+        static readonly BLUE_VIOLET: Color
+        
+        /** Brown color. */
+        static readonly BROWN: Color
+        
+        /** Burlywood color. */
+        static readonly BURLYWOOD: Color
+        
+        /** Cadet blue color. */
+        static readonly CADET_BLUE: Color
+        
+        /** Chartreuse color. */
+        static readonly CHARTREUSE: Color
+        
+        /** Chocolate color. */
+        static readonly CHOCOLATE: Color
+        
+        /** Coral color. */
+        static readonly CORAL: Color
+        
+        /** Cornflower blue color. */
+        static readonly CORNFLOWER_BLUE: Color
+        
+        /** Cornsilk color. */
+        static readonly CORNSILK: Color
+        
+        /** Crimson color. */
+        static readonly CRIMSON: Color
+        
+        /** Cyan color. */
+        static readonly CYAN: Color
+        
+        /** Dark blue color. */
+        static readonly DARK_BLUE: Color
+        
+        /** Dark cyan color. */
+        static readonly DARK_CYAN: Color
+        
+        /** Dark goldenrod color. */
+        static readonly DARK_GOLDENROD: Color
+        
+        /** Dark gray color. */
+        static readonly DARK_GRAY: Color
+        
+        /** Dark green color. */
+        static readonly DARK_GREEN: Color
+        
+        /** Dark khaki color. */
+        static readonly DARK_KHAKI: Color
+        
+        /** Dark magenta color. */
+        static readonly DARK_MAGENTA: Color
+        
+        /** Dark olive green color. */
+        static readonly DARK_OLIVE_GREEN: Color
+        
+        /** Dark orange color. */
+        static readonly DARK_ORANGE: Color
+        
+        /** Dark orchid color. */
+        static readonly DARK_ORCHID: Color
+        
+        /** Dark red color. */
+        static readonly DARK_RED: Color
+        
+        /** Dark salmon color. */
+        static readonly DARK_SALMON: Color
+        
+        /** Dark sea green color. */
+        static readonly DARK_SEA_GREEN: Color
+        
+        /** Dark slate blue color. */
+        static readonly DARK_SLATE_BLUE: Color
+        
+        /** Dark slate gray color. */
+        static readonly DARK_SLATE_GRAY: Color
+        
+        /** Dark turquoise color. */
+        static readonly DARK_TURQUOISE: Color
+        
+        /** Dark violet color. */
+        static readonly DARK_VIOLET: Color
+        
+        /** Deep pink color. */
+        static readonly DEEP_PINK: Color
+        
+        /** Deep sky blue color. */
+        static readonly DEEP_SKY_BLUE: Color
+        
+        /** Dim gray color. */
+        static readonly DIM_GRAY: Color
+        
+        /** Dodger blue color. */
+        static readonly DODGER_BLUE: Color
+        
+        /** Firebrick color. */
+        static readonly FIREBRICK: Color
+        
+        /** Floral white color. */
+        static readonly FLORAL_WHITE: Color
+        
+        /** Forest green color. */
+        static readonly FOREST_GREEN: Color
+        
+        /** Fuchsia color. */
+        static readonly FUCHSIA: Color
+        
+        /** Gainsboro color. */
+        static readonly GAINSBORO: Color
+        
+        /** Ghost white color. */
+        static readonly GHOST_WHITE: Color
+        
+        /** Gold color. */
+        static readonly GOLD: Color
+        
+        /** Goldenrod color. */
+        static readonly GOLDENROD: Color
+        
+        /** Gray color. */
+        static readonly GRAY: Color
+        
+        /** Green color. */
+        static readonly GREEN: Color
+        
+        /** Green yellow color. */
+        static readonly GREEN_YELLOW: Color
+        
+        /** Honeydew color. */
+        static readonly HONEYDEW: Color
+        
+        /** Hot pink color. */
+        static readonly HOT_PINK: Color
+        
+        /** Indian red color. */
+        static readonly INDIAN_RED: Color
+        
+        /** Indigo color. */
+        static readonly INDIGO: Color
+        
+        /** Ivory color. */
+        static readonly IVORY: Color
+        
+        /** Khaki color. */
+        static readonly KHAKI: Color
+        
+        /** Lavender color. */
+        static readonly LAVENDER: Color
+        
+        /** Lavender blush color. */
+        static readonly LAVENDER_BLUSH: Color
+        
+        /** Lawn green color. */
+        static readonly LAWN_GREEN: Color
+        
+        /** Lemon chiffon color. */
+        static readonly LEMON_CHIFFON: Color
+        
+        /** Light blue color. */
+        static readonly LIGHT_BLUE: Color
+        
+        /** Light coral color. */
+        static readonly LIGHT_CORAL: Color
+        
+        /** Light cyan color. */
+        static readonly LIGHT_CYAN: Color
+        
+        /** Light goldenrod color. */
+        static readonly LIGHT_GOLDENROD: Color
+        
+        /** Light gray color. */
+        static readonly LIGHT_GRAY: Color
+        
+        /** Light green color. */
+        static readonly LIGHT_GREEN: Color
+        
+        /** Light pink color. */
+        static readonly LIGHT_PINK: Color
+        
+        /** Light salmon color. */
+        static readonly LIGHT_SALMON: Color
+        
+        /** Light sea green color. */
+        static readonly LIGHT_SEA_GREEN: Color
+        
+        /** Light sky blue color. */
+        static readonly LIGHT_SKY_BLUE: Color
+        
+        /** Light slate gray color. */
+        static readonly LIGHT_SLATE_GRAY: Color
+        
+        /** Light steel blue color. */
+        static readonly LIGHT_STEEL_BLUE: Color
+        
+        /** Light yellow color. */
+        static readonly LIGHT_YELLOW: Color
+        
+        /** Lime color. */
+        static readonly LIME: Color
+        
+        /** Lime green color. */
+        static readonly LIME_GREEN: Color
+        
+        /** Linen color. */
+        static readonly LINEN: Color
+        
+        /** Magenta color. */
+        static readonly MAGENTA: Color
+        
+        /** Maroon color. */
+        static readonly MAROON: Color
+        
+        /** Medium aquamarine color. */
+        static readonly MEDIUM_AQUAMARINE: Color
+        
+        /** Medium blue color. */
+        static readonly MEDIUM_BLUE: Color
+        
+        /** Medium orchid color. */
+        static readonly MEDIUM_ORCHID: Color
+        
+        /** Medium purple color. */
+        static readonly MEDIUM_PURPLE: Color
+        
+        /** Medium sea green color. */
+        static readonly MEDIUM_SEA_GREEN: Color
+        
+        /** Medium slate blue color. */
+        static readonly MEDIUM_SLATE_BLUE: Color
+        
+        /** Medium spring green color. */
+        static readonly MEDIUM_SPRING_GREEN: Color
+        
+        /** Medium turquoise color. */
+        static readonly MEDIUM_TURQUOISE: Color
+        
+        /** Medium violet red color. */
+        static readonly MEDIUM_VIOLET_RED: Color
+        
+        /** Midnight blue color. */
+        static readonly MIDNIGHT_BLUE: Color
+        
+        /** Mint cream color. */
+        static readonly MINT_CREAM: Color
+        
+        /** Misty rose color. */
+        static readonly MISTY_ROSE: Color
+        
+        /** Moccasin color. */
+        static readonly MOCCASIN: Color
+        
+        /** Navajo white color. */
+        static readonly NAVAJO_WHITE: Color
+        
+        /** Navy blue color. */
+        static readonly NAVY_BLUE: Color
+        
+        /** Old lace color. */
+        static readonly OLD_LACE: Color
+        
+        /** Olive color. */
+        static readonly OLIVE: Color
+        
+        /** Olive drab color. */
+        static readonly OLIVE_DRAB: Color
+        
+        /** Orange color. */
+        static readonly ORANGE: Color
+        
+        /** Orange red color. */
+        static readonly ORANGE_RED: Color
+        
+        /** Orchid color. */
+        static readonly ORCHID: Color
+        
+        /** Pale goldenrod color. */
+        static readonly PALE_GOLDENROD: Color
+        
+        /** Pale green color. */
+        static readonly PALE_GREEN: Color
+        
+        /** Pale turquoise color. */
+        static readonly PALE_TURQUOISE: Color
+        
+        /** Pale violet red color. */
+        static readonly PALE_VIOLET_RED: Color
+        
+        /** Papaya whip color. */
+        static readonly PAPAYA_WHIP: Color
+        
+        /** Peach puff color. */
+        static readonly PEACH_PUFF: Color
+        
+        /** Peru color. */
+        static readonly PERU: Color
+        
+        /** Pink color. */
+        static readonly PINK: Color
+        
+        /** Plum color. */
+        static readonly PLUM: Color
+        
+        /** Powder blue color. */
+        static readonly POWDER_BLUE: Color
+        
+        /** Purple color. */
+        static readonly PURPLE: Color
+        
+        /** Rebecca purple color. */
+        static readonly REBECCA_PURPLE: Color
+        
+        /** Red color. */
+        static readonly RED: Color
+        
+        /** Rosy brown color. */
+        static readonly ROSY_BROWN: Color
+        
+        /** Royal blue color. */
+        static readonly ROYAL_BLUE: Color
+        
+        /** Saddle brown color. */
+        static readonly SADDLE_BROWN: Color
+        
+        /** Salmon color. */
+        static readonly SALMON: Color
+        
+        /** Sandy brown color. */
+        static readonly SANDY_BROWN: Color
+        
+        /** Sea green color. */
+        static readonly SEA_GREEN: Color
+        
+        /** Seashell color. */
+        static readonly SEASHELL: Color
+        
+        /** Sienna color. */
+        static readonly SIENNA: Color
+        
+        /** Silver color. */
+        static readonly SILVER: Color
+        
+        /** Sky blue color. */
+        static readonly SKY_BLUE: Color
+        
+        /** Slate blue color. */
+        static readonly SLATE_BLUE: Color
+        
+        /** Slate gray color. */
+        static readonly SLATE_GRAY: Color
+        
+        /** Snow color. */
+        static readonly SNOW: Color
+        
+        /** Spring green color. */
+        static readonly SPRING_GREEN: Color
+        
+        /** Steel blue color. */
+        static readonly STEEL_BLUE: Color
+        
+        /** Tan color. */
+        static readonly TAN: Color
+        
+        /** Teal color. */
+        static readonly TEAL: Color
+        
+        /** Thistle color. */
+        static readonly THISTLE: Color
+        
+        /** Tomato color. */
+        static readonly TOMATO: Color
+        
+        /** Transparent color (white with zero alpha). */
+        static readonly TRANSPARENT: Color
+        
+        /** Turquoise color. */
+        static readonly TURQUOISE: Color
+        
+        /** Violet color. */
+        static readonly VIOLET: Color
+        
+        /** Web gray color. */
+        static readonly WEB_GRAY: Color
+        
+        /** Web green color. */
+        static readonly WEB_GREEN: Color
+        
+        /** Web maroon color. */
+        static readonly WEB_MAROON: Color
+        
+        /** Web purple color. */
+        static readonly WEB_PURPLE: Color
+        
+        /** Wheat color. */
+        static readonly WHEAT: Color
+        
+        /** White color. */
+        static readonly WHITE: Color
+        
+        /** White smoke color. */
+        static readonly WHITE_SMOKE: Color
+        
+        /** Yellow color. */
+        static readonly YELLOW: Color
+        
+        /** Yellow green color. */
+        static readonly YELLOW_GREEN: Color
+        constructor()
+        constructor(from: Color)
+        constructor(from: Color, alpha: number /*f64*/)
+        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/)
+        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/, a: number /*f64*/)
+        constructor(code: string)
+        constructor(code: string, alpha: number /*f64*/)
+        set_indexed(index: number, value: number /*f64*/)
+        get_indexed(index: number): number /*f64*/
+        
+        /** Returns the color converted to a 32-bit integer in ARGB format (each component is 8 bits). ARGB is more compatible with DirectX.  
+         *    
+         */
+        to_argb32(): number /*i64*/
+        
+        /** Returns the color converted to a 32-bit integer in ABGR format (each component is 8 bits). ABGR is the reversed version of the default RGBA format.  
+         *    
+         */
+        to_abgr32(): number /*i64*/
+        
+        /** Returns the color converted to a 32-bit integer in RGBA format (each component is 8 bits). RGBA is Godot's default format.  
+         *    
+         */
+        to_rgba32(): number /*i64*/
+        
+        /** Returns the color converted to a 64-bit integer in ARGB format (each component is 16 bits). ARGB is more compatible with DirectX.  
+         *    
+         */
+        to_argb64(): number /*i64*/
+        
+        /** Returns the color converted to a 64-bit integer in ABGR format (each component is 16 bits). ABGR is the reversed version of the default RGBA format.  
+         *    
+         */
+        to_abgr64(): number /*i64*/
+        
+        /** Returns the color converted to a 64-bit integer in RGBA format (each component is 16 bits). RGBA is Godot's default format.  
+         *    
+         */
+        to_rgba64(): number /*i64*/
+        
+        /** Returns the color converted to an HTML hexadecimal color [String] in RGBA format, without the hash (`#`) prefix.  
+         *  Setting [param with_alpha] to `false`, excludes alpha from the hexadecimal string, using RGB format instead of RGBA format.  
+         *    
+         */
+        to_html(with_alpha: boolean = true): string
+        
+        /** Returns a new color with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
+        clamp(min: Color = new Color(0, 0, 0, 0), max: Color = new Color(1, 1, 1, 1)): Color
+        
+        /** Returns the color with its [member r], [member g], and [member b] components inverted (`(1 - r, 1 - g, 1 - b, a)`).  
+         *    
+         */
+        inverted(): Color
+        
+        /** Returns the linear interpolation between this color's components and [param to]'s components. The interpolation factor [param weight] should be between 0.0 and 1.0 (inclusive). See also [method @GlobalScope.lerp].  
+         *    
+         */
+        lerp(to: Color, weight: number /*f64*/): Color
+        
+        /** Returns a new color resulting from making this color lighter by the specified [param amount], which should be a ratio from 0.0 to 1.0. See also [method darkened].  
+         *    
+         */
+        lightened(amount: number /*f64*/): Color
+        
+        /** Returns a new color resulting from making this color darker by the specified [param amount] (ratio from 0.0 to 1.0). See also [method lightened].  
+         *    
+         */
+        darkened(amount: number /*f64*/): Color
+        
+        /** Returns a new color resulting from overlaying this color over the given color. In a painting program, you can imagine it as the [param over] color painted over this color (including alpha).  
+         *    
+         */
+        blend(over: Color): Color
+        
+        /** Returns the light intensity of the color, as a value between 0.0 and 1.0 (inclusive). This is useful when determining light or dark color. Colors with a luminance smaller than 0.5 can be generally considered dark.  
+         *      
+         *  **Note:** [method get_luminance] relies on the color being in the linear color space to return an accurate relative luminance value. If the color is in the sRGB color space, use [method srgb_to_linear] to convert it to the linear color space first.  
+         */
+        get_luminance(): number /*f64*/
+        
+        /** Returns the color converted to the linear color space. This method assumes the original color already is in the sRGB color space. See also [method linear_to_srgb] which performs the opposite operation. */
+        srgb_to_linear(): Color
+        
+        /** Returns the color converted to the [url=https://en.wikipedia.org/wiki/SRGB]sRGB[/url] color space. This method assumes the original color is in the linear color space. See also [method srgb_to_linear] which performs the opposite operation. */
+        linear_to_srgb(): Color
+        
+        /** Returns `true` if this color and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
+        is_equal_approx(to: Color): boolean
+        
+        /** Returns the [Color] associated with the provided [param hex] integer in 32-bit RGBA format (8 bits per channel).  
+         *  In GDScript and C#, the [int] is best visualized with hexadecimal notation (`"0x"` prefix, making it `"0xRRGGBBAA"`).  
+         *    
+         */
+        static hex(hex: number /*i64*/): Color
+        
+        /** Returns the [Color] associated with the provided [param hex] integer in 64-bit RGBA format (16 bits per channel).  
+         *  In GDScript and C#, the [int] is best visualized with hexadecimal notation (`"0x"` prefix, making it `"0xRRRRGGGGBBBBAAAA"`).  
+         */
+        static hex64(hex: number /*i64*/): Color
+        
+        /** Returns a new color from [param rgba], an HTML hexadecimal color string. [param rgba] is not case-sensitive, and may be prefixed by a hash sign (`#`).  
+         *  [param rgba] must be a valid three-digit or six-digit hexadecimal color string, and may contain an alpha channel value. If [param rgba] does not contain an alpha channel value, an alpha channel value of 1.0 is applied. If [param rgba] is invalid, returns an empty color.  
+         *    
+         */
+        static html(rgba: string): Color
+        
+        /** Returns `true` if [param color] is a valid HTML hexadecimal color string. The string must be a hexadecimal value (case-insensitive) of either 3, 4, 6 or 8 digits, and may be prefixed by a hash sign (`#`). This method is identical to [method String.is_valid_html_color].  
+         *    
+         */
+        static html_is_valid(color: string): boolean
+        
+        /** Creates a [Color] from the given string, which can be either an HTML color code or a named color (case-insensitive). Returns [param default] if the color cannot be inferred from the string. */
+        static from_string(str: string, default_: Color): Color
+        
+        /** Constructs a color from an [url=https://en.wikipedia.org/wiki/HSL_and_HSV]HSV profile[/url]. The hue ([param h]), saturation ([param s]), and value ([param v]) are typically between 0.0 and 1.0.  
+         *    
+         */
+        static from_hsv(h: number /*f64*/, s: number /*f64*/, v: number /*f64*/, alpha: number /*f64*/ = 1): Color
+        
+        /** Constructs a color from an [url=https://bottosson.github.io/posts/colorpicker/]OK HSL profile[/url]. The hue ([param h]), saturation ([param s]), and lightness ([param l]) are typically between 0.0 and 1.0.  
+         *    
+         */
+        static from_ok_hsl(h: number /*f64*/, s: number /*f64*/, l: number /*f64*/, alpha: number /*f64*/ = 1): Color
+        
+        /** Decodes a [Color] from a RGBE9995 format integer. See [constant Image.FORMAT_RGBE9995]. */
+        static from_rgbe9995(rgbe: number /*i64*/): Color
+        static ADD(left: Color, right: Color): Color
+        static SUBTRACT(left: Color, right: Color): Color
+        static MULTIPLY(left: Color, right: Color): Color
+        static MULTIPLY(left: Color, right: number /*f64*/): Color
+        static MULTIPLY(left: number /*f64*/, right: Color): Color
+        static DIVIDE(left: Color, right: Color): Color
+        static DIVIDE(left: Color, right: number /*f64*/): Color
+        static NEGATE(left: Color, right: any): boolean
+        static EQUAL(left: Color, right: Color): boolean
+        static NOT_EQUAL(left: Color, right: Color): boolean
+        get r(): number /*f64*/
+        set r(value: number /*f64*/)
+        get g(): number /*f64*/
+        set g(value: number /*f64*/)
+        get b(): number /*f64*/
+        set b(value: number /*f64*/)
+        get a(): number /*f64*/
+        set a(value: number /*f64*/)
+        get r8(): number /*i64*/
+        set r8(value: number /*i64*/)
+        get g8(): number /*i64*/
+        set g8(value: number /*i64*/)
+        get b8(): number /*i64*/
+        set b8(value: number /*i64*/)
+        get a8(): number /*i64*/
+        set a8(value: number /*i64*/)
+        get h(): number /*f64*/
+        set h(value: number /*f64*/)
+        get s(): number /*f64*/
+        set s(value: number /*f64*/)
+        get v(): number /*f64*/
+        set v(value: number /*f64*/)
+    }
+    /** A pre-parsed scene tree path.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_nodepath.html  
+     */
+    class NodePath {
+        constructor()
+        constructor(from: NodePath)
+        constructor(from: string)
+        
+        /** Returns `true` if the node path is absolute (as opposed to relative), which means that it starts with a slash character (`/`). Absolute node paths can be used to access the root node (`"/root"`) or autoloads (e.g. `"/global"` if a "global" autoload was registered). */
+        is_absolute(): boolean
+        
+        /** Gets the number of node names which make up the path. Subnames (see [method get_subname_count]) are not included.  
+         *  For example, `"Path2D/PathFollow2D/Sprite2D"` has 3 names.  
+         */
+        get_name_count(): number /*i64*/
+        
+        /** Gets the node name indicated by [param idx] (0 to [method get_name_count] - 1).  
+         *    
+         */
+        get_name(idx: number /*i64*/): StringName
+        
+        /** Gets the number of resource or property names ("subnames") in the path. Each subname is listed after a colon character (`:`) in the node path.  
+         *  For example, `"Path2D/PathFollow2D/Sprite2D:texture:load_path"` has 2 subnames.  
+         */
+        get_subname_count(): number /*i64*/
+        
+        /** Returns the 32-bit hash value representing the [NodePath]'s contents. */
+        hash(): number /*i64*/
+        
+        /** Gets the resource or property name indicated by [param idx] (0 to [method get_subname_count] - 1).  
+         *    
+         */
+        get_subname(idx: number /*i64*/): StringName
+        
+        /** Returns all paths concatenated with a slash character (`/`) as separator without subnames. */
+        get_concatenated_names(): StringName
+        
+        /** Returns all subnames concatenated with a colon character (`:`) as separator, i.e. the right side of the first colon in a node path.  
+         *    
+         */
+        get_concatenated_subnames(): StringName
+        
+        /** Returns a node path with a colon character (`:`) prepended, transforming it to a pure property path with no node name (defaults to resolving from the current node).  
+         *    
+         */
+        get_as_property_path(): NodePath
+        
+        /** Returns `true` if the node path is empty. */
+        is_empty(): boolean
+        static EQUAL(left: NodePath, right: NodePath): boolean
+        static NOT_EQUAL(left: NodePath, right: NodePath): boolean
+    }
+    /** A handle for a [Resource]'s unique identifier.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_rid.html  
+     */
+    class RID {
+        constructor()
+        constructor(from: RID)
+        
+        /** Returns `true` if the [RID] is not `0`. */
+        is_valid(): boolean
+        
+        /** Returns the ID of the referenced low-level resource. */
+        get_id(): number /*i64*/
+        static EQUAL(left: RID, right: RID): boolean
+        static NOT_EQUAL(left: RID, right: RID): boolean
+        static LESS(left: RID, right: RID): boolean
+        static LESS_EQUAL(left: RID, right: RID): boolean
+        static GREATER(left: RID, right: RID): boolean
+        static GREATER_EQUAL(left: RID, right: RID): boolean
+    }
     /** A built-in type representing a method or a standalone function.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_callable.html  

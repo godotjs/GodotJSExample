@@ -1203,13 +1203,16 @@ declare module "godot" {
         static revoke_granted_permissions(): void
         
         /** If `true`, the engine optimizes for low processor usage by only refreshing the screen if needed. Can improve battery consumption on mobile. */
-        low_processor_usage_mode: boolean
+        get low_processor_usage_mode(): boolean
+        set low_processor_usage_mode(value: boolean)
         
         /** The amount of sleeping between frames when the low-processor usage mode is enabled (in microseconds). Higher values will result in lower CPU usage. */
-        low_processor_usage_mode_sleep_usec: number /*i64*/
+        get low_processor_usage_mode_sleep_usec(): number /*i64*/
+        set low_processor_usage_mode_sleep_usec(value: number /*i64*/)
         
         /** If `true`, the engine filters the time delta measured between each frame, and attempts to compensate for random variation. This will only operate on systems where V-Sync is active. */
-        delta_smoothing: boolean
+        get delta_smoothing(): boolean
+        set delta_smoothing(value: boolean)
     }
     // // Singleton Class
     /** Provides access to engine properties.  
@@ -1358,16 +1361,19 @@ declare module "godot" {
          *      
          *  **Note:** This property does not impact the editor's Errors tab when running a project from the editor.  
          */
-        print_error_messages: boolean
+        get print_error_messages(): boolean
+        set print_error_messages(value: boolean)
         
         /** The number of fixed iterations per second. This controls how often physics simulation and [method Node._physics_process] methods are run. This value should generally always be set to `60` or above, as Godot doesn't interpolate the physics step. As a result, values lower than `60` will look stuttery. This value can be increased to make input more reactive or work around collision tunneling issues, but keep in mind doing so will increase CPU usage. See also [member max_fps] and [member ProjectSettings.physics/common/physics_ticks_per_second].  
          *      
          *  **Note:** Only [member max_physics_steps_per_frame] physics ticks may be simulated per rendered frame at most. If more physics ticks have to be simulated per rendered frame to keep up with rendering, the project will appear to slow down (even if `delta` is used consistently in physics calculations). Therefore, it is recommended to also increase [member max_physics_steps_per_frame] if increasing [member physics_ticks_per_second] significantly above its default value.  
          */
-        physics_ticks_per_second: number /*i64*/
+        get physics_ticks_per_second(): number /*i64*/
+        set physics_ticks_per_second(value: number /*i64*/)
         
         /** Controls the maximum number of physics steps that can be simulated each rendered frame. The default value is tuned to avoid "spiral of death" situations where expensive physics simulations trigger more expensive simulations indefinitely. However, the game will appear to slow down if the rendering FPS is less than `1 / max_physics_steps_per_frame` of [member physics_ticks_per_second]. This occurs even if `delta` is consistently used in physics calculations. To avoid this, increase [member max_physics_steps_per_frame] if you have increased [member physics_ticks_per_second] significantly above its default value. */
-        max_physics_steps_per_frame: number /*i64*/
+        get max_physics_steps_per_frame(): number /*i64*/
+        set max_physics_steps_per_frame(value: number /*i64*/)
         
         /** The maximum number of frames per second that can be rendered. A value of `0` means "no limit". The actual number of frames per second may still be below this value if the CPU or GPU cannot keep up with the project logic and rendering.  
          *  Limiting the FPS can be useful to reduce system power consumption, which reduces heat and noise emissions (and improves battery life on mobile devices).  
@@ -1376,16 +1382,19 @@ declare module "godot" {
          *  If [member ProjectSettings.display/window/vsync/vsync_mode] is `Disabled`, limiting the FPS to a high value that can be consistently reached on the system can reduce input lag compared to an uncapped framerate. Since this works by ensuring the GPU load is lower than 100%, this latency reduction is only effective in GPU-bottlenecked scenarios, not CPU-bottlenecked scenarios.  
          *  See also [member physics_ticks_per_second] and [member ProjectSettings.application/run/max_fps].  
          */
-        max_fps: number /*i64*/
+        get max_fps(): number /*i64*/
+        set max_fps(value: number /*i64*/)
         
         /** Controls how fast or slow the in-game clock ticks versus the real life one. It defaults to 1.0. A value of 2.0 means the game moves twice as fast as real life, whilst a value of 0.5 means the game moves at half the regular speed. This also affects [Timer] and [SceneTreeTimer] (see [method SceneTree.create_timer] for how to control this). */
-        time_scale: number /*f64*/
+        get time_scale(): number /*f64*/
+        set time_scale(value: number /*f64*/)
         
         /** Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be good enough for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.  
          *      
          *  **Note:** For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting [member physics_jitter_fix] to `0`.  
          */
-        physics_jitter_fix: number /*f64*/
+        get physics_jitter_fix(): number /*f64*/
+        set physics_jitter_fix(value: number /*f64*/)
     }
     // // Singleton Class
     /** A class information repository.  
@@ -1577,7 +1586,8 @@ declare module "godot" {
         static pseudolocalize(message: StringName): StringName
         
         /** If `true`, enables the use of pseudolocalization. See [member ProjectSettings.internationalization/pseudolocalization/use_pseudolocalization] for details. */
-        pseudolocalization_enabled: boolean
+        get pseudolocalization_enabled(): boolean
+        set pseudolocalization_enabled(value: boolean)
     }
     // // Singleton Class
     namespace Input {
@@ -1914,14 +1924,16 @@ declare module "godot" {
         static flush_buffered_events(): void
         
         /** Controls the mouse mode. See [enum MouseMode] for more information. */
-        mouse_mode: number /*i64*/
+        get mouse_mode(): number /*i64*/
+        set mouse_mode(value: number /*i64*/)
         
         /** If `true`, similar input events sent by the operating system are accumulated. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.  
          *  Input accumulation can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.  
          *      
          *  **Note:** Input accumulation is  *enabled*  by default.  
          */
-        use_accumulated_input: boolean
+        get use_accumulated_input(): boolean
+        set use_accumulated_input(value: boolean)
         
         /** Emitted when a joypad device has been connected or disconnected. */
         static readonly joy_connection_changed: Signal // device: number /*i64*/, connected: boolean => void
@@ -2326,23 +2338,28 @@ declare module "godot" {
         /** The fallback base scale factor of every [Control] node and [Theme] resource. Used when no other value is available to the control.  
          *  See also [member Theme.default_base_scale].  
          */
-        fallback_base_scale: number /*f64*/
+        get fallback_base_scale(): number /*f64*/
+        set fallback_base_scale(value: number /*f64*/)
         
         /** The fallback font of every [Control] node and [Theme] resource. Used when no other value is available to the control.  
          *  See also [member Theme.default_font].  
          */
-        fallback_font: Font
+        get fallback_font(): Font
+        set fallback_font(value: Font)
         
         /** The fallback font size of every [Control] node and [Theme] resource. Used when no other value is available to the control.  
          *  See also [member Theme.default_font_size].  
          */
-        fallback_font_size: number /*i64*/
+        get fallback_font_size(): number /*i64*/
+        set fallback_font_size(value: number /*i64*/)
         
         /** The fallback icon of every [Control] node and [Theme] resource. Used when no other value is available to the control. */
-        fallback_icon: Texture2D
+        get fallback_icon(): Texture2D
+        set fallback_icon(value: Texture2D)
         
         /** The fallback stylebox of every [Control] node and [Theme] resource. Used when no other value is available to the control. */
-        fallback_stylebox: StyleBox
+        get fallback_stylebox(): StyleBox
+        set fallback_stylebox(value: StyleBox)
         
         /** Emitted when one of the fallback values had been changed. Use it to refresh the look of controls that may rely on the fallback theme items. */
         static readonly fallback_changed: Signal //  => void
@@ -2536,10 +2553,12 @@ declare module "godot" {
         static is_movie_maker_enabled(): boolean
         
         /** If `true`, enables distraction-free mode which hides side docks to increase the space available for the main view. */
-        distraction_free_mode: boolean
+        get distraction_free_mode(): boolean
+        set distraction_free_mode(value: boolean)
         
         /** If `true`, the Movie Maker mode is enabled in the editor. See [MovieWriter] for more information. */
-        movie_maker_enabled: boolean
+        get movie_maker_enabled(): boolean
+        set movie_maker_enabled(value: boolean)
     }
     // // Singleton Class
     /** @link https://docs.godotengine.org/en/4.2/classes/class_javaclasswrapper.html */
@@ -6994,7 +7013,8 @@ declare module "godot" {
         static call_on_render_thread(callable: Callable): void
         
         /** If `false`, disables rendering completely, but the engine logic is still being processed. You can call [method force_draw] to draw a frame even with rendering disabled. */
-        render_loop_enabled: boolean
+        get render_loop_enabled(): boolean
+        set render_loop_enabled(value: boolean)
         
         /** Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports. */
         static readonly frame_pre_draw: Signal //  => void
@@ -7162,19 +7182,23 @@ declare module "godot" {
         static set_enable_tagging_used_audio_streams(enable: boolean): void
         
         /** Number of available audio buses. */
-        bus_count: number /*i64*/
+        get bus_count(): number /*i64*/
+        set bus_count(value: number /*i64*/)
         
         /** Name of the current device for audio output (see [method get_output_device_list]). On systems with multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio output device. The value `"Default"` will play audio on the system-wide default audio output. If an invalid device name is set, the value will be reverted back to `"Default"`. */
-        output_device: string
+        get output_device(): string
+        set output_device(value: string)
         
         /** Name of the current device for audio input (see [method get_input_device_list]). On systems with multiple audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input device. The value `"Default"` will record audio on the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.  
          *      
          *  **Note:** [member ProjectSettings.audio/driver/enable_input] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.  
          */
-        input_device: string
+        get input_device(): string
+        set input_device(value: string)
         
         /** Scales the rate at which audio is played (i.e. setting it to `0.5` will make the audio be played at half its speed). */
-        playback_speed_scale: number /*f64*/
+        get playback_speed_scale(): number /*f64*/
+        set playback_speed_scale(value: number /*f64*/)
         
         /** Emitted when an audio bus is added, deleted, or moved. */
         static readonly bus_layout_changed: Signal //  => void
@@ -9556,16 +9580,19 @@ declare module "godot" {
         static set_primary_interface(interface: XRInterface): void
         
         /** The scale of the game world compared to the real world. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
-        world_scale: number /*f64*/
+        get world_scale(): number /*f64*/
+        set world_scale(value: number /*f64*/)
         
         /** The current origin of our tracking space in the virtual world. This is used by the renderer to properly position the camera with new tracking data.  
          *      
          *  **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access from GDExtensions.  
          */
-        world_origin: Vector3
+        get world_origin(): Vector3
+        set world_origin(value: Vector3)
         
         /** The primary [XRInterface] currently bound to the [XRServer]. */
-        primary_interface: Object
+        get primary_interface(): Object
+        set primary_interface(value: Object)
         
         /** Emitted when a new interface has been added. */
         static readonly interface_added: Signal // interface_name: StringName => void

@@ -1,6 +1,2189 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    namespace TextureRect {
+        enum ExpandMode {
+            /** The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the texture. */
+            EXPAND_KEEP_SIZE = 0,
+            
+            /** The size of the texture won't be considered for minimum size calculation, so the [TextureRect] can be shrunk down past the texture size. */
+            EXPAND_IGNORE_SIZE = 1,
+            
+            /** The height of the texture will be ignored. Minimum width will be equal to the current height. Useful for horizontal layouts, e.g. inside [HBoxContainer]. */
+            EXPAND_FIT_WIDTH = 2,
+            
+            /** Same as [constant EXPAND_FIT_WIDTH], but keeps texture's aspect ratio. */
+            EXPAND_FIT_WIDTH_PROPORTIONAL = 3,
+            
+            /** The width of the texture will be ignored. Minimum height will be equal to the current width. Useful for vertical layouts, e.g. inside [VBoxContainer]. */
+            EXPAND_FIT_HEIGHT = 4,
+            
+            /** Same as [constant EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio. */
+            EXPAND_FIT_HEIGHT_PROPORTIONAL = 5,
+        }
+        enum StretchMode {
+            /** Scale to fit the node's bounding rectangle. */
+            STRETCH_SCALE = 0,
+            
+            /** Tile inside the node's bounding rectangle. */
+            STRETCH_TILE = 1,
+            
+            /** The texture keeps its original size and stays in the bounding rectangle's top-left corner. */
+            STRETCH_KEEP = 2,
+            
+            /** The texture keeps its original size and stays centered in the node's bounding rectangle. */
+            STRETCH_KEEP_CENTERED = 3,
+            
+            /** Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio. */
+            STRETCH_KEEP_ASPECT = 4,
+            
+            /** Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect ratio. */
+            STRETCH_KEEP_ASPECT_CENTERED = 5,
+            
+            /** Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits. */
+            STRETCH_KEEP_ASPECT_COVERED = 6,
+        }
+    }
+    /** A control that displays a texture.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_texturerect.html  
+     */
+    class TextureRect extends Control {
+        set_texture(texture: Texture2D): void
+        get_texture(): Texture2D
+        set_expand_mode(expand_mode: TextureRect.ExpandMode): void
+        get_expand_mode(): TextureRect.ExpandMode
+        set_flip_h(enable: boolean): void
+        is_flipped_h(): boolean
+        set_flip_v(enable: boolean): void
+        is_flipped_v(): boolean
+        set_stretch_mode(stretch_mode: TextureRect.StretchMode): void
+        get_stretch_mode(): TextureRect.StretchMode
+        
+        /** The node's [Texture2D] resource. */
+        get texture(): Texture2D
+        set texture(value: Texture2D)
+        
+        /** Defines how minimum size is determined based on the texture's size. See [enum ExpandMode] for options.  
+         *      
+         *  **Note:** Using [constant EXPAND_FIT_WIDTH], [constant EXPAND_FIT_WIDTH_PROPORTIONAL], [constant EXPAND_FIT_HEIGHT] or [constant EXPAND_FIT_HEIGHT_PROPORTIONAL] may result in unstable behavior in some containers. This functionality is being re-evaluated and will change in the future.  
+         */
+        get expand_mode(): number /*i64*/
+        set expand_mode(value: number /*i64*/)
+        
+        /** Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode]. */
+        get stretch_mode(): number /*i64*/
+        set stretch_mode(value: number /*i64*/)
+        
+        /** If `true`, texture is flipped horizontally. */
+        get flip_h(): boolean
+        set flip_h(value: boolean)
+        
+        /** If `true`, texture is flipped vertically. */
+        get flip_v(): boolean
+        set flip_v(value: boolean)
+    }
+    class TextureRegionEditor extends AcceptDialog {
+        _update_rect(): void
+    }
+    class TextureRegionEditorPlugin extends EditorPlugin {
+    }
+    namespace Theme {
+        enum DataType {
+            /** Theme's [Color] item type. */
+            DATA_TYPE_COLOR = 0,
+            
+            /** Theme's constant item type. */
+            DATA_TYPE_CONSTANT = 1,
+            
+            /** Theme's [Font] item type. */
+            DATA_TYPE_FONT = 2,
+            
+            /** Theme's font size item type. */
+            DATA_TYPE_FONT_SIZE = 3,
+            
+            /** Theme's icon [Texture2D] item type. */
+            DATA_TYPE_ICON = 4,
+            
+            /** Theme's [StyleBox] item type. */
+            DATA_TYPE_STYLEBOX = 5,
+            
+            /** Maximum value for the DataType enum. */
+            DATA_TYPE_MAX = 6,
+        }
+    }
+    /** A resource used for styling/skinning [Control]s and [Window]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_theme.html  
+     */
+    class Theme extends Resource {
+        /** Creates or changes the value of the icon property defined by [param name] and [param theme_type]. Use [method clear_icon] to remove the property. */
+        set_icon(name: StringName, theme_type: StringName, texture: Texture2D): void
+        
+        /** Returns the icon property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the engine fallback icon value if the property doesn't exist (see [member ThemeDB.fallback_icon]). Use [method has_icon] to check for existence.  
+         */
+        get_icon(name: StringName, theme_type: StringName): Texture2D
+        
+        /** Returns `true` if the icon property defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_icon] to define it.  
+         */
+        has_icon(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the icon property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_icon] to check for existence, and [method clear_icon] to remove the existing property.  
+         */
+        rename_icon(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the icon property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_icon] to check for existence.  
+         */
+        clear_icon(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for icon properties defined with [param theme_type]. Use [method get_icon_type_list] to get a list of possible theme type names. */
+        get_icon_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for icon properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_icon_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the [StyleBox] property defined by [param name] and [param theme_type]. Use [method clear_stylebox] to remove the property. */
+        set_stylebox(name: StringName, theme_type: StringName, texture: StyleBox): void
+        
+        /** Returns the [StyleBox] property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the engine fallback stylebox value if the property doesn't exist (see [member ThemeDB.fallback_stylebox]). Use [method has_stylebox] to check for existence.  
+         */
+        get_stylebox(name: StringName, theme_type: StringName): StyleBox
+        
+        /** Returns `true` if the [StyleBox] property defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_stylebox] to define it.  
+         */
+        has_stylebox(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the [StyleBox] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_stylebox] to check for existence, and [method clear_stylebox] to remove the existing property.  
+         */
+        rename_stylebox(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the [StyleBox] property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_stylebox] to check for existence.  
+         */
+        clear_stylebox(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for [StyleBox] properties defined with [param theme_type]. Use [method get_stylebox_type_list] to get a list of possible theme type names. */
+        get_stylebox_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for [StyleBox] properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_stylebox_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the [Font] property defined by [param name] and [param theme_type]. Use [method clear_font] to remove the property. */
+        set_font(name: StringName, theme_type: StringName, font: Font): void
+        
+        /** Returns the [Font] property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the default theme font if the property doesn't exist and the default theme font is set up (see [member default_font]). Use [method has_font] to check for existence of the property and [method has_default_font] to check for existence of the default theme font.  
+         *  Returns the engine fallback font value, if neither exist (see [member ThemeDB.fallback_font]).  
+         */
+        get_font(name: StringName, theme_type: StringName): Font
+        
+        /** Returns `true` if the [Font] property defined by [param name] and [param theme_type] exists, or if the default theme font is set up (see [method has_default_font]).  
+         *  Returns `false` if neither exist. Use [method set_font] to define the property.  
+         */
+        has_font(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the [Font] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font] to check for existence, and [method clear_font] to remove the existing property.  
+         */
+        rename_font(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the [Font] property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_font] to check for existence.  
+         */
+        clear_font(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for [Font] properties defined with [param theme_type]. Use [method get_font_type_list] to get a list of possible theme type names. */
+        get_font_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for [Font] properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_font_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the font size property defined by [param name] and [param theme_type]. Use [method clear_font_size] to remove the property. */
+        set_font_size(name: StringName, theme_type: StringName, font_size: number /*i64*/): void
+        
+        /** Returns the font size property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the default theme font size if the property doesn't exist and the default theme font size is set up (see [member default_font_size]). Use [method has_font_size] to check for existence of the property and [method has_default_font_size] to check for existence of the default theme font.  
+         *  Returns the engine fallback font size value, if neither exist (see [member ThemeDB.fallback_font_size]).  
+         */
+        get_font_size(name: StringName, theme_type: StringName): number /*i64*/
+        
+        /** Returns `true` if the font size property defined by [param name] and [param theme_type] exists, or if the default theme font size is set up (see [method has_default_font_size]).  
+         *  Returns `false` if neither exist. Use [method set_font_size] to define the property.  
+         */
+        has_font_size(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the font size property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font_size] to check for existence, and [method clear_font_size] to remove the existing property.  
+         */
+        rename_font_size(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the font size property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_font_size] to check for existence.  
+         */
+        clear_font_size(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for font size properties defined with [param theme_type]. Use [method get_font_size_type_list] to get a list of possible theme type names. */
+        get_font_size_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for font size properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_font_size_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the [Color] property defined by [param name] and [param theme_type]. Use [method clear_color] to remove the property. */
+        set_color(name: StringName, theme_type: StringName, color: Color): void
+        
+        /** Returns the [Color] property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the default color value if the property doesn't exist. Use [method has_color] to check for existence.  
+         */
+        get_color(name: StringName, theme_type: StringName): Color
+        
+        /** Returns `true` if the [Color] property defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_color] to define it.  
+         */
+        has_color(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the [Color] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_color] to check for existence, and [method clear_color] to remove the existing property.  
+         */
+        rename_color(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the [Color] property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_color] to check for existence.  
+         */
+        clear_color(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for [Color] properties defined with [param theme_type]. Use [method get_color_type_list] to get a list of possible theme type names. */
+        get_color_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for [Color] properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_color_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the constant property defined by [param name] and [param theme_type]. Use [method clear_constant] to remove the property. */
+        set_constant(name: StringName, theme_type: StringName, constant: number /*i64*/): void
+        
+        /** Returns the constant property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns `0` if the property doesn't exist. Use [method has_constant] to check for existence.  
+         */
+        get_constant(name: StringName, theme_type: StringName): number /*i64*/
+        
+        /** Returns `true` if the constant property defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_constant] to define it.  
+         */
+        has_constant(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the constant property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_constant] to check for existence, and [method clear_constant] to remove the existing property.  
+         */
+        rename_constant(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the constant property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_constant] to check for existence.  
+         */
+        clear_constant(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for constant properties defined with [param theme_type]. Use [method get_constant_type_list] to get a list of possible theme type names. */
+        get_constant_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for constant properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_constant_type_list(): PackedStringArray
+        set_default_base_scale(base_scale: number /*f64*/): void
+        get_default_base_scale(): number /*f64*/
+        
+        /** Returns `true` if [member default_base_scale] has a valid value.  
+         *  Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.  
+         */
+        has_default_base_scale(): boolean
+        set_default_font(font: Font): void
+        get_default_font(): Font
+        
+        /** Returns `true` if [member default_font] has a valid value.  
+         *  Returns `false` if it doesn't.  
+         */
+        has_default_font(): boolean
+        set_default_font_size(font_size: number /*i64*/): void
+        get_default_font_size(): number /*i64*/
+        
+        /** Returns `true` if [member default_font_size] has a valid value.  
+         *  Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.  
+         */
+        has_default_font_size(): boolean
+        
+        /** Creates or changes the value of the theme property of [param data_type] defined by [param name] and [param theme_type]. Use [method clear_theme_item] to remove the property.  
+         *  Fails if the [param value] type is not accepted by [param data_type].  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        set_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName, value: any): void
+        
+        /** Returns the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the engine fallback value if the property doesn't exist (see [ThemeDB]). Use [method has_theme_item] to check for existence.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        get_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): any
+        
+        /** Returns `true` if the theme property of [param data_type] defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_theme_item] to define it.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        has_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the theme property of [param data_type] defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_theme_item] to check for existence, and [method clear_theme_item] to remove the existing property.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        rename_theme_item(data_type: Theme.DataType, old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_theme_item] to check for existence.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        clear_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for properties of [param data_type] defined with [param theme_type]. Use [method get_theme_item_type_list] to get a list of possible theme type names.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        get_theme_item_list(data_type: Theme.DataType, theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for [param data_type] properties. Use [method get_type_list] to get a list of all unique theme types.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        get_theme_item_type_list(data_type: Theme.DataType): PackedStringArray
+        
+        /** Marks [param theme_type] as a variation of [param base_type].  
+         *  This adds [param theme_type] as a suggested option for [member Control.theme_type_variation] on a [Control] that is of the [param base_type] class.  
+         *  Variations can also be nested, i.e. [param base_type] can be another variation. If a chain of variations ends with a [param base_type] matching the class of the [Control], the whole chain is going to be suggested as options.  
+         *      
+         *  **Note:** Suggestions only show up if this theme resource is set as the project default theme. See [member ProjectSettings.gui/theme/custom].  
+         */
+        set_type_variation(theme_type: StringName, base_type: StringName): void
+        
+        /** Returns `true` if [param theme_type] is marked as a variation of [param base_type]. */
+        is_type_variation(theme_type: StringName, base_type: StringName): boolean
+        
+        /** Unmarks [param theme_type] as being a variation of another theme type. See [method set_type_variation]. */
+        clear_type_variation(theme_type: StringName): void
+        
+        /** Returns the name of the base theme type if [param theme_type] is a valid variation type. Returns an empty string otherwise. */
+        get_type_variation_base(theme_type: StringName): StringName
+        
+        /** Returns a list of all type variations for the given [param base_type]. */
+        get_type_variation_list(base_type: StringName): PackedStringArray
+        
+        /** Adds an empty theme type for every valid data type.  
+         *      
+         *  **Note:** Empty types are not saved with the theme. This method only exists to perform in-memory changes to the resource. Use available `set_*` methods to add theme items.  
+         */
+        add_type(theme_type: StringName): void
+        
+        /** Removes the theme type, gracefully discarding defined theme items. If the type is a variation, this information is also erased. If the type is a base for type variations, those variations lose their base. */
+        remove_type(theme_type: StringName): void
+        
+        /** Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to get a list of unique theme types for a single data type. */
+        get_type_list(): PackedStringArray
+        
+        /** Adds missing and overrides existing definitions with values from the [param other] theme resource.  
+         *      
+         *  **Note:** This modifies the current theme. If you want to merge two themes together without modifying either one, create a new empty theme and merge the other two into it one after another.  
+         */
+        merge_with(other: Theme): void
+        
+        /** Removes all the theme properties defined on the theme resource. */
+        clear(): void
+        
+        /** The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used (see [member ThemeDB.fallback_base_scale]).  
+         *  Use [method has_default_base_scale] to check if this value is valid.  
+         */
+        get default_base_scale(): number /*f64*/
+        set default_base_scale(value: number /*f64*/)
+        
+        /** The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font]).  
+         *  Use [method has_default_font] to check if this value is valid.  
+         */
+        get default_font(): Font
+        set default_font(value: Font)
+        
+        /** The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font_size]).  
+         *  Values below `0` are invalid and can be used to unset the property. Use [method has_default_font_size] to check if this value is valid.  
+         */
+        get default_font_size(): number /*i64*/
+        set default_font_size(value: number /*i64*/)
+    }
+    class ThemeContext extends Object {
+        readonly changed: Signal //  => void
+    }
+    class ThemeEditor extends VBoxContainer {
+    }
+    class ThemeEditorPlugin extends EditorPlugin {
+    }
+    class ThemeEditorPreview extends VBoxContainer {
+        readonly control_picked: Signal // class_name: string => void
+    }
+    class ThemeItemEditorDialog extends AcceptDialog {
+        _update_edit_types(): void
+        _update_edit_item_tree(_unnamed_arg0: string): void
+    }
+    class ThemeItemImportTree extends VBoxContainer {
+        readonly items_imported: Signal //  => void
+    }
+    class ThemeTypeDialog extends ConfirmationDialog {
+        readonly type_selected: Signal // type_name: string => void
+    }
+    class ThemeTypeEditor extends MarginContainer {
+        _update_type_items(): void
+        _pin_leading_stylebox(_unnamed_arg0: string, _unnamed_arg1: StyleBox): void
+        _unpin_leading_stylebox(): void
+        _change_pinned_stylebox(): void
+    }
+    namespace Thread {
+        enum Priority {
+            /** A thread running with lower priority than normally. */
+            PRIORITY_LOW = 0,
+            
+            /** A thread with a standard priority. */
+            PRIORITY_NORMAL = 1,
+            
+            /** A thread running with higher priority than normally. */
+            PRIORITY_HIGH = 2,
+        }
+    }
+    /** A unit of execution in a process.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_thread.html  
+     */
+    class Thread extends RefCounted {
+        /** Starts a new [Thread] that calls [param callable].  
+         *  If the method takes some arguments, you can pass them using [method Callable.bind].  
+         *  The [param priority] of the [Thread] can be changed by passing a value from the [enum Priority] enum.  
+         *  Returns [constant OK] on success, or [constant ERR_CANT_CREATE] on failure.  
+         */
+        start(callable: Callable, priority: Thread.Priority = 1): GodotError
+        
+        /** Returns the current [Thread]'s ID, uniquely identifying it among all threads. If the [Thread] has not started running or if [method wait_to_finish] has been called, this returns an empty string. */
+        get_id(): string
+        
+        /** Returns `true` if this [Thread] has been started. Once started, this will return `true` until it is joined using [method wait_to_finish]. For checking if a [Thread] is still executing its task, use [method is_alive]. */
+        is_started(): boolean
+        
+        /** Returns `true` if this [Thread] is currently running the provided function. This is useful for determining if [method wait_to_finish] can be called without blocking the calling thread.  
+         *  To check if a [Thread] is joinable, use [method is_started].  
+         */
+        is_alive(): boolean
+        
+        /** Joins the [Thread] and waits for it to finish. Returns the output of the [Callable] passed to [method start].  
+         *  Should either be used when you want to retrieve the value returned from the method called by the [Thread] or before freeing the instance that contains the [Thread].  
+         *  To determine if this can be called without blocking the calling thread, check if [method is_alive] is `false`.  
+         */
+        wait_to_finish(): any
+        
+        /** Sets whether the thread safety checks the engine normally performs in methods of certain classes (e.g., [Node]) should happen **on the current thread**.  
+         *  The default, for every thread, is that they are enabled (as if called with [param enabled] being `true`).  
+         *  Those checks are conservative. That means that they will only succeed in considering a call thread-safe (and therefore allow it to happen) if the engine can guarantee such safety.  
+         *  Because of that, there may be cases where the user may want to disable them ([param enabled] being `false`) to make certain operations allowed again. By doing so, it becomes the user's responsibility to ensure thread safety (e.g., by using [Mutex]) for those objects that are otherwise protected by the engine.  
+         *      
+         *  **Note:** This is an advanced usage of the engine. You are advised to use it only if you know what you are doing and there is no safer way.  
+         *      
+         *  **Note:** This is useful for scripts running on either arbitrary [Thread] objects or tasks submitted to the [WorkerThreadPool]. It doesn't apply to code running during [Node] group processing, where the checks will be always performed.  
+         *      
+         *  **Note:** Even in the case of having disabled the checks in a [WorkerThreadPool] task, there's no need to re-enable them at the end. The engine will do so.  
+         */
+        static set_thread_safety_checks_enabled(enabled: boolean): void
+    }
+    class TileAtlasView extends Control {
+        readonly transform_changed: Signal // zoom: number /*f64*/, scroll: Vector2 => void
+    }
+    /** Settings for a single tile in a [TileSet].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tiledata.html  
+     */
+    class TileData extends Object {
+        set_flip_h(flip_h: boolean): void
+        get_flip_h(): boolean
+        set_flip_v(flip_v: boolean): void
+        get_flip_v(): boolean
+        set_transpose(transpose: boolean): void
+        get_transpose(): boolean
+        set_material(material: Material): void
+        get_material(): Material
+        set_texture_origin(texture_origin: Vector2i): void
+        get_texture_origin(): Vector2i
+        set_modulate(modulate: Color): void
+        get_modulate(): Color
+        set_z_index(z_index: number /*i64*/): void
+        get_z_index(): number /*i64*/
+        set_y_sort_origin(y_sort_origin: number /*i64*/): void
+        get_y_sort_origin(): number /*i64*/
+        
+        /** Sets the occluder for the TileSet occlusion layer with index [param layer_id]. */
+        set_occluder(layer_id: number /*i64*/, occluder_polygon: OccluderPolygon2D): void
+        
+        /** Returns the occluder polygon of the tile for the TileSet occlusion layer with index [param layer_id]. */
+        get_occluder(layer_id: number /*i64*/): OccluderPolygon2D
+        
+        /** Sets the constant linear velocity. This does not move the tile. This linear velocity is applied to objects colliding with this tile. This is useful to create conveyor belts. */
+        set_constant_linear_velocity(layer_id: number /*i64*/, velocity: Vector2): void
+        
+        /** Returns the constant linear velocity applied to objects colliding with this tile. */
+        get_constant_linear_velocity(layer_id: number /*i64*/): Vector2
+        
+        /** Sets the constant angular velocity. This does not rotate the tile. This angular velocity is applied to objects colliding with this tile. */
+        set_constant_angular_velocity(layer_id: number /*i64*/, velocity: number /*f64*/): void
+        
+        /** Returns the constant angular velocity applied to objects colliding with this tile. */
+        get_constant_angular_velocity(layer_id: number /*i64*/): number /*f64*/
+        
+        /** Sets the polygons count for TileSet physics layer with index [param layer_id]. */
+        set_collision_polygons_count(layer_id: number /*i64*/, polygons_count: number /*i64*/): void
+        
+        /** Returns how many polygons the tile has for TileSet physics layer with index [param layer_id]. */
+        get_collision_polygons_count(layer_id: number /*i64*/): number /*i64*/
+        
+        /** Adds a collision polygon to the tile on the given TileSet physics layer. */
+        add_collision_polygon(layer_id: number /*i64*/): void
+        
+        /** Removes the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+        remove_collision_polygon(layer_id: number /*i64*/, polygon_index: number /*i64*/): void
+        
+        /** Sets the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+        set_collision_polygon_points(layer_id: number /*i64*/, polygon_index: number /*i64*/, polygon: PackedVector2Array): void
+        
+        /** Returns the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+        get_collision_polygon_points(layer_id: number /*i64*/, polygon_index: number /*i64*/): PackedVector2Array
+        
+        /** Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+        set_collision_polygon_one_way(layer_id: number /*i64*/, polygon_index: number /*i64*/, one_way: boolean): void
+        
+        /** Returns whether one-way collisions are enabled for the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+        is_collision_polygon_one_way(layer_id: number /*i64*/, polygon_index: number /*i64*/): boolean
+        
+        /** Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+        set_collision_polygon_one_way_margin(layer_id: number /*i64*/, polygon_index: number /*i64*/, one_way_margin: number /*f64*/): void
+        
+        /** Returns the one-way margin (for one-way platforms) of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+        get_collision_polygon_one_way_margin(layer_id: number /*i64*/, polygon_index: number /*i64*/): number /*f64*/
+        set_terrain_set(terrain_set: number /*i64*/): void
+        get_terrain_set(): number /*i64*/
+        set_terrain(terrain: number /*i64*/): void
+        get_terrain(): number /*i64*/
+        
+        /** Sets the tile's terrain bit for the given [param peering_bit] direction. */
+        set_terrain_peering_bit(peering_bit: TileSet.CellNeighbor, terrain: number /*i64*/): void
+        
+        /** Returns the tile's terrain bit for the given [param peering_bit] direction. */
+        get_terrain_peering_bit(peering_bit: TileSet.CellNeighbor): number /*i64*/
+        
+        /** Sets the navigation polygon for the TileSet navigation layer with index [param layer_id]. */
+        set_navigation_polygon(layer_id: number /*i64*/, navigation_polygon: NavigationPolygon): void
+        
+        /** Returns the navigation polygon of the tile for the TileSet navigation layer with index [param layer_id]. */
+        get_navigation_polygon(layer_id: number /*i64*/): NavigationPolygon
+        set_probability(probability: number /*f64*/): void
+        get_probability(): number /*f64*/
+        
+        /** Sets the tile's custom data value for the TileSet custom data layer with name [param layer_name]. */
+        set_custom_data(layer_name: string, value: any): void
+        
+        /** Returns the custom data value for custom data layer named [param layer_name]. */
+        get_custom_data(layer_name: string): any
+        
+        /** Sets the tile's custom data value for the TileSet custom data layer with index [param layer_id]. */
+        set_custom_data_by_layer_id(layer_id: number /*i64*/, value: any): void
+        
+        /** Returns the custom data value for custom data layer with index [param layer_id]. */
+        get_custom_data_by_layer_id(layer_id: number /*i64*/): any
+        
+        /** If `true`, the tile will have its texture flipped horizontally. */
+        get flip_h(): boolean
+        set flip_h(value: boolean)
+        
+        /** If `true`, the tile will have its texture flipped vertically. */
+        get flip_v(): boolean
+        set flip_v(value: boolean)
+        
+        /** If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs swapped. */
+        get transpose(): boolean
+        set transpose(value: boolean)
+        
+        /** Offsets the position of where the tile is drawn. */
+        get texture_origin(): Vector2i
+        set texture_origin(value: Vector2i)
+        
+        /** Color modulation of the tile. */
+        get modulate(): Color
+        set modulate(value: Color)
+        
+        /** The [Material] to use for this [TileData]. This can be a [CanvasItemMaterial] to use the default shader, or a [ShaderMaterial] to use a custom shader. */
+        get material(): CanvasItemMaterial | ShaderMaterial
+        set material(value: CanvasItemMaterial | ShaderMaterial)
+        
+        /** Ordering index of this tile, relative to [TileMap]. */
+        get z_index(): number /*i64*/
+        set z_index(value: number /*i64*/)
+        
+        /** Vertical point of the tile used for determining y-sorted order. */
+        get y_sort_origin(): number /*i64*/
+        set y_sort_origin(value: number /*i64*/)
+        
+        /** ID of the terrain set that the tile uses. */
+        get terrain_set(): number /*i64*/
+        set terrain_set(value: number /*i64*/)
+        
+        /** ID of the terrain from the terrain set that the tile uses. */
+        get terrain(): number /*i64*/
+        set terrain(value: number /*i64*/)
+        
+        /** Relative probability of this tile being selected when drawing a pattern of random tiles. */
+        get probability(): number /*f64*/
+        set probability(value: number /*f64*/)
+        
+        /** Emitted when any of the properties are changed. */
+        readonly changed: Signal //  => void
+    }
+    namespace TileMap {
+        enum VisibilityMode {
+            /** Use the debug settings to determine visibility. */
+            VISIBILITY_MODE_DEFAULT = 0,
+            
+            /** Always hide. */
+            VISIBILITY_MODE_FORCE_HIDE = 2,
+            
+            /** Always show. */
+            VISIBILITY_MODE_FORCE_SHOW = 1,
+        }
+    }
+    /** Node for 2D tile-based maps.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilemap.html  
+     */
+    class TileMap extends Node2D {
+        /** Should return `true` if the tile at coordinates [param coords] on layer [param layer] requires a runtime update.  
+         *  **Warning:** Make sure this function only return `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.  
+         *      
+         *  **Note:** If the result of this function should changed, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.  
+         */
+        /* gdvirtual */ _use_tile_data_runtime_update(layer: number /*i64*/, coords: Vector2i): boolean
+        
+        /** Called with a TileData object about to be used internally by the TileMap, allowing its modification at runtime.  
+         *  This method is only called if [method _use_tile_data_runtime_update] is implemented and returns `true` for the given tile [param coords] and [param layer].  
+         *  **Warning:** The [param tile_data] object's sub-resources are the same as the one in the TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.  
+         *      
+         *  **Note:** If the properties of [param tile_data] object should change over time, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.  
+         */
+        /* gdvirtual */ _tile_data_runtime_update(layer: number /*i64*/, coords: Vector2i, tile_data: TileData): void
+        
+        /** See [method set_layer_navigation_map]. */
+        set_navigation_map(layer: number /*i64*/, map: RID): void
+        
+        /** See [method get_layer_navigation_map]. */
+        get_navigation_map(layer: number /*i64*/): RID
+        
+        /**  *Deprecated.*  See [method notify_runtime_tile_data_update] and [method update_internals]. */
+        force_update(layer: number /*i64*/ = -1): void
+        set_tileset(tileset: TileSet): void
+        get_tileset(): TileSet
+        set_rendering_quadrant_size(size: number /*i64*/): void
+        get_rendering_quadrant_size(): number /*i64*/
+        
+        /** Returns the number of layers in the TileMap. */
+        get_layers_count(): number /*i64*/
+        
+        /** Adds a layer at the given position [param to_position] in the array. If [param to_position] is negative, the position is counted from the end, with `-1` adding the layer at the end of the array. */
+        add_layer(to_position: number /*i64*/): void
+        
+        /** Moves the layer at index [param layer] to the given position [param to_position] in the array. */
+        move_layer(layer: number /*i64*/, to_position: number /*i64*/): void
+        
+        /** Removes the layer at index [param layer]. */
+        remove_layer(layer: number /*i64*/): void
+        
+        /** Sets a layer's name. This is mostly useful in the editor.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_layer_name(layer: number /*i64*/, name: string): void
+        
+        /** Returns a TileMap layer's name.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_layer_name(layer: number /*i64*/): string
+        
+        /** Enables or disables the layer [param layer]. A disabled layer is not processed at all (no rendering, no physics, etc...).  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_layer_enabled(layer: number /*i64*/, enabled: boolean): void
+        
+        /** Returns if a layer is enabled.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        is_layer_enabled(layer: number /*i64*/): boolean
+        
+        /** Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_layer_modulate(layer: number /*i64*/, modulate: Color): void
+        
+        /** Returns a TileMap layer's modulate.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_layer_modulate(layer: number /*i64*/): Color
+        
+        /** Enables or disables a layer's Y-sorting. If a layer is Y-sorted, the layer will behave as a CanvasItem node where each of its tile gets Y-sorted.  
+         *  Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behavior.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_layer_y_sort_enabled(layer: number /*i64*/, y_sort_enabled: boolean): void
+        
+        /** Returns if a layer Y-sorts its tiles.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        is_layer_y_sort_enabled(layer: number /*i64*/): boolean
+        
+        /** Sets a layer's Y-sort origin value. This Y-sort origin value is added to each tile's Y-sort origin value.  
+         *  This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_layer_y_sort_origin(layer: number /*i64*/, y_sort_origin: number /*i64*/): void
+        
+        /** Returns a TileMap layer's Y sort origin.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_layer_y_sort_origin(layer: number /*i64*/): number /*i64*/
+        
+        /** Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_layer_z_index(layer: number /*i64*/, z_index: number /*i64*/): void
+        
+        /** Returns a TileMap layer's Z-index value.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_layer_z_index(layer: number /*i64*/): number /*i64*/
+        
+        /** Enables or disables a layer's built-in navigation regions generation. Disable this if you need to bake navigation regions from a TileMap using a [NavigationRegion2D] node. */
+        set_layer_navigation_enabled(layer: number /*i64*/, enabled: boolean): void
+        
+        /** Returns if a layer's built-in navigation regions generation is enabled. */
+        is_layer_navigation_enabled(layer: number /*i64*/): boolean
+        
+        /** Assigns a [NavigationServer2D] navigation map [RID] to the specified TileMap [param layer].  
+         *  By default the TileMap uses the default [World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.  
+         *  In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use [method NavigationAgent2D.set_navigation_map] with the navigation map received from [method get_layer_navigation_map].  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_layer_navigation_map(layer: number /*i64*/, map: RID): void
+        
+        /** Returns the [NavigationServer2D] navigation map [RID] currently assigned to the specified TileMap [param layer].  
+         *  By default the TileMap uses the default [World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.  
+         *  In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use [method NavigationAgent2D.set_navigation_map] with the navigation map received from [method get_layer_navigation_map].  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_layer_navigation_map(layer: number /*i64*/): RID
+        set_collision_animatable(enabled: boolean): void
+        is_collision_animatable(): boolean
+        set_collision_visibility_mode(collision_visibility_mode: TileMap.VisibilityMode): void
+        get_collision_visibility_mode(): TileMap.VisibilityMode
+        set_navigation_visibility_mode(navigation_visibility_mode: TileMap.VisibilityMode): void
+        get_navigation_visibility_mode(): TileMap.VisibilityMode
+        
+        /** Sets the tile identifiers for the cell on layer [param layer] at coordinates [param coords]. Each tile of the [TileSet] is identified using three parts:  
+         *  - The source identifier [param source_id] identifies a [TileSetSource] identifier. See [method TileSet.set_source_id],  
+         *  - The atlas coordinates identifier [param atlas_coords] identifies a tile coordinates in the atlas (if the source is a [TileSetAtlasSource]). For [TileSetScenesCollectionSource] it should always be `Vector2i(0, 0)`),  
+         *  - The alternative tile identifier [param alternative_tile] identifies a tile alternative in the atlas (if the source is a [TileSetAtlasSource]), and the scene for a [TileSetScenesCollectionSource].  
+         *  If [param source_id] is set to `-1`, [param atlas_coords] to `Vector2i(-1, -1)` or [param alternative_tile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_cell(layer: number /*i64*/, coords: Vector2i, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = 0): void
+        
+        /** Erases the cell on layer [param layer] at coordinates [param coords].  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        erase_cell(layer: number /*i64*/, coords: Vector2i): void
+        
+        /** Returns the tile source ID of the cell on layer [param layer] at coordinates [param coords]. Returns `-1` if the cell does not exist.  
+         *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_cell_source_id(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): number /*i64*/
+        
+        /** Returns the tile atlas coordinates ID of the cell on layer [param layer] at coordinates [param coords]. If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_cell_atlas_coords(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): Vector2i
+        
+        /** Returns the tile alternative ID of the cell on layer [param layer] at [param coords]. If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_cell_alternative_tile(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): number /*i64*/
+        
+        /** Returns the [TileData] object associated with the given cell, or `null` if the cell does not exist or is not a [TileSetAtlasSource].  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
+         *    
+         */
+        get_cell_tile_data(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): TileData
+        
+        /** Returns the coordinates of the tile for given physics body RID. Such RID can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
+        get_coords_for_body_rid(body: RID): Vector2i
+        
+        /** Returns the tilemap layer of the tile for given physics body RID. Such RID can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
+        get_layer_for_body_rid(body: RID): number /*i64*/
+        
+        /** Creates a new [TileMapPattern] from the given layer and set of cells.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_pattern(layer: number /*i64*/, coords_array: Array): TileMapPattern
+        
+        /** Returns for the given coordinate [param coords_in_pattern] in a [TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [param position_in_tilemap] coordinates (see [method set_pattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`. */
+        map_pattern(position_in_tilemap: Vector2i, coords_in_pattern: Vector2i, pattern: TileMapPattern): Vector2i
+        
+        /** Paste the given [TileMapPattern] at the given [param position] and [param layer] in the tile map.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        set_pattern(layer: number /*i64*/, position: Vector2i, pattern: TileMapPattern): void
+        
+        /** Update all the cells in the [param cells] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. If an updated cell has the same terrain as one of its neighboring cells, this function tries to join the two. This function might update neighboring tiles if needed to create correct terrain transitions.  
+         *  If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         *      
+         *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
+         */
+        set_cells_terrain_connect(layer: number /*i64*/, cells: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean = true): void
+        
+        /** Update all the cells in the [param path] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.  
+         *  If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         *      
+         *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
+         */
+        set_cells_terrain_path(layer: number /*i64*/, path: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean = true): void
+        
+        /** Clears cells that do not exist in the tileset. */
+        fix_invalid_tiles(): void
+        
+        /** Clears all cells on the given layer.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        clear_layer(layer: number /*i64*/): void
+        
+        /** Clears all cells. */
+        clear(): void
+        
+        /** Triggers a direct update of the TileMap. Usually, calling this function is not needed, as TileMap node updates automatically when one of its properties or cells is modified.  
+         *  However, for performance reasons, those updates are batched and delayed to the end of the frame. Calling this function will force the TileMap to update right away instead.  
+         *  **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and how many tiles they impact.  
+         */
+        update_internals(): void
+        
+        /** Notifies the TileMap node that calls to [method _use_tile_data_runtime_update] or [method _tile_data_runtime_update] will lead to different results. This will thus trigger a TileMap update.  
+         *  If [param layer] is provided, only notifies changes for the given layer. Providing the [param layer] argument (when applicable) is usually preferred for performance reasons.  
+         *  **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of calls to this function to avoid unnecessary update.  
+         *      
+         *  **Note:** This does not trigger a direct update of the TileMap, the update will be done at the end of the frame as usual (unless you call [method update_internals]).  
+         */
+        notify_runtime_tile_data_update(layer: number /*i64*/ = -1): void
+        
+        /** Returns the list of all neighbourings cells to the one at [param coords]. */
+        get_surrounding_cells(coords: Vector2i): Array
+        
+        /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_used_cells(layer: number /*i64*/): Array
+        
+        /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. Tiles may be filtered according to their source ([param source_id]), their atlas coordinates ([param atlas_coords]) or alternative id ([param alternative_tile]).  
+         *  If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [method get_used_cells].  
+         *  A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
+         *  If [param layer] is negative, the layers are accessed from the last one.  
+         */
+        get_used_cells_by_id(layer: number /*i64*/, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = -1): Array
+        
+        /** Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers. */
+        get_used_rect(): Rect2i
+        
+        /** Returns the centered position of a cell in the TileMap's local coordinate space. To convert the returned value into global coordinates, use [method Node2D.to_global]. See also [method local_to_map].  
+         *      
+         *  **Note:** This may not correspond to the visual position of the tile, i.e. it ignores the [member TileData.texture_origin] property of individual tiles.  
+         */
+        map_to_local(map_position: Vector2i): Vector2
+        
+        /** Returns the map coordinates of the cell containing the given [param local_position]. If [param local_position] is in global coordinates, consider using [method Node2D.to_local] before passing it to this method. See also [method map_to_local]. */
+        local_to_map(local_position: Vector2): Vector2i
+        
+        /** Returns the neighboring cell to the one at coordinates [param coords], identified by the [param neighbor] direction. This method takes into account the different layouts a TileMap can take. */
+        get_neighbor_cell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i
+        
+        /** The assigned [TileSet]. */
+        get tile_set(): TileSet
+        set tile_set(value: TileSet)
+        
+        /** The TileMap's quadrant size. A quadrant is a group of tiles to be drawn together on a single canvas item, for optimization purposes. [member rendering_quadrant_size] defines the length of a square's side, in the map's coordinate system, that forms the quadrant. Thus, the default quandrant size groups together `16 * 16 = 256` tiles.  
+         *  The quadrant size does not apply on Y-sorted layers, as tiles are be grouped by Y position instead in that case.  
+         *      
+         *  **Note:** As quadrants are created according to the map's coordinate system, the quadrant's "square shape" might not look like square in the TileMap's local coordinate system.  
+         */
+        get rendering_quadrant_size(): number /*i64*/
+        set rendering_quadrant_size(value: number /*i64*/)
+        
+        /** If enabled, the TileMap will see its collisions synced to the physics tick and change its collision type from static to kinematic. This is required to create TileMap-based moving platform.  
+         *      
+         *  **Note:** Enabling [member collision_animatable] may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.  
+         */
+        get collision_animatable(): boolean
+        set collision_animatable(value: boolean)
+        
+        /** Show or hide the TileMap's collision shapes. If set to [constant VISIBILITY_MODE_DEFAULT], this depends on the show collision debug settings. */
+        get collision_visibility_mode(): number /*i64*/
+        set collision_visibility_mode(value: number /*i64*/)
+        
+        /** Show or hide the TileMap's navigation meshes. If set to [constant VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings. */
+        get navigation_visibility_mode(): number /*i64*/
+        set navigation_visibility_mode(value: number /*i64*/)
+        
+        /** Emitted when the [TileSet] of this TileMap changes. */
+        readonly changed: Signal //  => void
+    }
+    class TileMapEditor extends VBoxContainer {
+    }
+    class TileMapEditorPlugin extends EditorPlugin {
+    }
+    class TileMapEditorTerrainsPlugin extends Object {
+    }
+    class TileMapEditorTilesPlugin extends Object {
+        _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
+        _set_tile_map_selection(selection: Array): void
+        _get_tile_map_selection(): Array
+    }
+    /** Holds a pattern to be copied from or pasted into [TileMap]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilemappattern.html  
+     */
+    class TileMapPattern extends Resource {
+        /** Sets the tile identifiers for the cell at coordinates [param coords]. See [method TileMap.set_cell]. */
+        set_cell(coords: Vector2i, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = -1): void
+        
+        /** Returns whether the pattern has a tile at the given coordinates. */
+        has_cell(coords: Vector2i): boolean
+        
+        /** Remove the cell at the given coordinates. */
+        remove_cell(coords: Vector2i, update_size: boolean): void
+        
+        /** Returns the tile source ID of the cell at [param coords]. */
+        get_cell_source_id(coords: Vector2i): number /*i64*/
+        
+        /** Returns the tile atlas coordinates ID of the cell at [param coords]. */
+        get_cell_atlas_coords(coords: Vector2i): Vector2i
+        
+        /** Returns the tile alternative ID of the cell at [param coords]. */
+        get_cell_alternative_tile(coords: Vector2i): number /*i64*/
+        
+        /** Returns the list of used cell coordinates in the pattern. */
+        get_used_cells(): Array
+        
+        /** Returns the size, in cells, of the pattern. */
+        get_size(): Vector2i
+        
+        /** Sets the size of the pattern. */
+        set_size(size: Vector2i): void
+        
+        /** Returns whether the pattern is empty or not. */
+        is_empty(): boolean
+    }
+    class TileProxiesManagerDialog extends ConfirmationDialog {
+        _update_lists(): void
+        _unhandled_key_input(_unnamed_arg0: InputEvent): void
+    }
+    namespace TileSet {
+        enum TileShape {
+            /** Rectangular tile shape. */
+            TILE_SHAPE_SQUARE = 0,
+            
+            /** Diamond tile shape (for isometric look).  
+             *      
+             *  **Note:** Isometric [TileSet] works best if [TileMap] and all its layers have Y-sort enabled.  
+             */
+            TILE_SHAPE_ISOMETRIC = 1,
+            
+            /** Rectangular tile shape with one row/column out of two offset by half a tile. */
+            TILE_SHAPE_HALF_OFFSET_SQUARE = 2,
+            
+            /** Hexagonal tile shape. */
+            TILE_SHAPE_HEXAGON = 3,
+        }
+        enum TileLayout {
+            /** Tile coordinates layout where both axis stay consistent with their respective local horizontal and vertical axis. */
+            TILE_LAYOUT_STACKED = 0,
+            
+            /** Same as [constant TILE_LAYOUT_STACKED], but the first half-offset is negative instead of positive. */
+            TILE_LAYOUT_STACKED_OFFSET = 1,
+            
+            /** Tile coordinates layout where the horizontal axis stay horizontal, and the vertical one goes down-right. */
+            TILE_LAYOUT_STAIRS_RIGHT = 2,
+            
+            /** Tile coordinates layout where the vertical axis stay vertical, and the horizontal one goes down-right. */
+            TILE_LAYOUT_STAIRS_DOWN = 3,
+            
+            /** Tile coordinates layout where the horizontal axis goes up-right, and the vertical one goes down-right. */
+            TILE_LAYOUT_DIAMOND_RIGHT = 4,
+            
+            /** Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes down-left. */
+            TILE_LAYOUT_DIAMOND_DOWN = 5,
+        }
+        enum TileOffsetAxis {
+            /** Horizontal half-offset. */
+            TILE_OFFSET_AXIS_HORIZONTAL = 0,
+            
+            /** Vertical half-offset. */
+            TILE_OFFSET_AXIS_VERTICAL = 1,
+        }
+        enum CellNeighbor {
+            /** Neighbor on the right side. */
+            CELL_NEIGHBOR_RIGHT_SIDE = 0,
+            
+            /** Neighbor in the right corner. */
+            CELL_NEIGHBOR_RIGHT_CORNER = 1,
+            
+            /** Neighbor on the bottom right side. */
+            CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE = 2,
+            
+            /** Neighbor in the bottom right corner. */
+            CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER = 3,
+            
+            /** Neighbor on the bottom side. */
+            CELL_NEIGHBOR_BOTTOM_SIDE = 4,
+            
+            /** Neighbor in the bottom corner. */
+            CELL_NEIGHBOR_BOTTOM_CORNER = 5,
+            
+            /** Neighbor on the bottom left side. */
+            CELL_NEIGHBOR_BOTTOM_LEFT_SIDE = 6,
+            
+            /** Neighbor in the bottom left corner. */
+            CELL_NEIGHBOR_BOTTOM_LEFT_CORNER = 7,
+            
+            /** Neighbor on the left side. */
+            CELL_NEIGHBOR_LEFT_SIDE = 8,
+            
+            /** Neighbor in the left corner. */
+            CELL_NEIGHBOR_LEFT_CORNER = 9,
+            
+            /** Neighbor on the top left side. */
+            CELL_NEIGHBOR_TOP_LEFT_SIDE = 10,
+            
+            /** Neighbor in the top left corner. */
+            CELL_NEIGHBOR_TOP_LEFT_CORNER = 11,
+            
+            /** Neighbor on the top side. */
+            CELL_NEIGHBOR_TOP_SIDE = 12,
+            
+            /** Neighbor in the top corner. */
+            CELL_NEIGHBOR_TOP_CORNER = 13,
+            
+            /** Neighbor on the top right side. */
+            CELL_NEIGHBOR_TOP_RIGHT_SIDE = 14,
+            
+            /** Neighbor in the top right corner. */
+            CELL_NEIGHBOR_TOP_RIGHT_CORNER = 15,
+        }
+        enum TerrainMode {
+            /** Requires both corners and side to match with neighboring tiles' terrains. */
+            TERRAIN_MODE_MATCH_CORNERS_AND_SIDES = 0,
+            
+            /** Requires corners to match with neighboring tiles' terrains. */
+            TERRAIN_MODE_MATCH_CORNERS = 1,
+            
+            /** Requires sides to match with neighboring tiles' terrains. */
+            TERRAIN_MODE_MATCH_SIDES = 2,
+        }
+    }
+    /** Tile library for tilemaps.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tileset.html  
+     */
+    class TileSet extends Resource {
+        /** Returns a new unused source ID. This generated ID is the same that a call to [method add_source] would return. */
+        get_next_source_id(): number /*i64*/
+        
+        /** Adds a [TileSetSource] to the TileSet. If [param atlas_source_id_override] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.  
+         *  The function returns the added source ID or -1 if the source could not be added.  
+         *  **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [TileSet], it will be removed from that one.  
+         */
+        add_source(source: TileSetSource, atlas_source_id_override: number /*i64*/ = -1): number /*i64*/
+        
+        /** Removes the source with the given source ID. */
+        remove_source(source_id: number /*i64*/): void
+        
+        /** Changes a source's ID. */
+        set_source_id(source_id: number /*i64*/, new_source_id: number /*i64*/): void
+        
+        /** Returns the number of [TileSetSource] in this TileSet. */
+        get_source_count(): number /*i64*/
+        
+        /** Returns the source ID for source with index [param index]. */
+        get_source_id(index: number /*i64*/): number /*i64*/
+        
+        /** Returns if this TileSet has a source for the given source ID. */
+        has_source(source_id: number /*i64*/): boolean
+        
+        /** Returns the [TileSetSource] with ID [param source_id]. */
+        get_source(source_id: number /*i64*/): TileSetSource
+        set_tile_shape(shape: TileSet.TileShape): void
+        get_tile_shape(): TileSet.TileShape
+        set_tile_layout(layout: TileSet.TileLayout): void
+        get_tile_layout(): TileSet.TileLayout
+        set_tile_offset_axis(alignment: TileSet.TileOffsetAxis): void
+        get_tile_offset_axis(): TileSet.TileOffsetAxis
+        set_tile_size(size: Vector2i): void
+        get_tile_size(): Vector2i
+        set_uv_clipping(uv_clipping: boolean): void
+        is_uv_clipping(): boolean
+        
+        /** Returns the occlusion layers count. */
+        get_occlusion_layers_count(): number /*i64*/
+        
+        /** Adds an occlusion layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
+         *  Occlusion layers allow assigning occlusion polygons to atlas tiles.  
+         */
+        add_occlusion_layer(to_position: number /*i64*/ = -1): void
+        
+        /** Moves the occlusion layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+        move_occlusion_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
+        
+        /** Removes the occlusion layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
+        remove_occlusion_layer(layer_index: number /*i64*/): void
+        
+        /** Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet occlusion layer. */
+        set_occlusion_layer_light_mask(layer_index: number /*i64*/, light_mask: number /*i64*/): void
+        
+        /** Returns the light mask of the occlusion layer. */
+        get_occlusion_layer_light_mask(layer_index: number /*i64*/): number /*i64*/
+        
+        /** Enables or disables SDF collision for occluders in the given TileSet occlusion layer. */
+        set_occlusion_layer_sdf_collision(layer_index: number /*i64*/, sdf_collision: boolean): void
+        
+        /** Returns if the occluders from this layer use `sdf_collision`. */
+        get_occlusion_layer_sdf_collision(layer_index: number /*i64*/): boolean
+        
+        /** Returns the physics layers count. */
+        get_physics_layers_count(): number /*i64*/
+        
+        /** Adds a physics layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
+         *  Physics layers allow assigning collision polygons to atlas tiles.  
+         */
+        add_physics_layer(to_position: number /*i64*/ = -1): void
+        
+        /** Moves the physics layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+        move_physics_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
+        
+        /** Removes the physics layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
+        remove_physics_layer(layer_index: number /*i64*/): void
+        
+        /** Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer. */
+        set_physics_layer_collision_layer(layer_index: number /*i64*/, layer: number /*i64*/): void
+        
+        /** Returns the collision layer (as in the physics server) bodies on the given TileSet's physics layer are in. */
+        get_physics_layer_collision_layer(layer_index: number /*i64*/): number /*i64*/
+        
+        /** Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer. */
+        set_physics_layer_collision_mask(layer_index: number /*i64*/, mask: number /*i64*/): void
+        
+        /** Returns the collision mask of bodies on the given TileSet's physics layer. */
+        get_physics_layer_collision_mask(layer_index: number /*i64*/): number /*i64*/
+        
+        /** Sets the physics material for bodies in the given TileSet physics layer. */
+        set_physics_layer_physics_material(layer_index: number /*i64*/, physics_material: PhysicsMaterial): void
+        
+        /** Returns the physics material of bodies on the given TileSet's physics layer. */
+        get_physics_layer_physics_material(layer_index: number /*i64*/): PhysicsMaterial
+        
+        /** Returns the terrain sets count. */
+        get_terrain_sets_count(): number /*i64*/
+        
+        /** Adds a new terrain set at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array. */
+        add_terrain_set(to_position: number /*i64*/ = -1): void
+        
+        /** Moves the terrain set at index [param terrain_set] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+        move_terrain_set(terrain_set: number /*i64*/, to_position: number /*i64*/): void
+        
+        /** Removes the terrain set at index [param terrain_set]. Also updates the atlas tiles accordingly. */
+        remove_terrain_set(terrain_set: number /*i64*/): void
+        
+        /** Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighboring tiles' terrains. */
+        set_terrain_set_mode(terrain_set: number /*i64*/, mode: TileSet.TerrainMode): void
+        
+        /** Returns a terrain set mode. */
+        get_terrain_set_mode(terrain_set: number /*i64*/): TileSet.TerrainMode
+        
+        /** Returns the number of terrains in the given terrain set. */
+        get_terrains_count(terrain_set: number /*i64*/): number /*i64*/
+        
+        /** Adds a new terrain to the given terrain set [param terrain_set] at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array. */
+        add_terrain(terrain_set: number /*i64*/, to_position: number /*i64*/ = -1): void
+        
+        /** Moves the terrain at index [param terrain_index] for terrain set [param terrain_set] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+        move_terrain(terrain_set: number /*i64*/, terrain_index: number /*i64*/, to_position: number /*i64*/): void
+        
+        /** Removes the terrain at index [param terrain_index] in the given terrain set [param terrain_set]. Also updates the atlas tiles accordingly. */
+        remove_terrain(terrain_set: number /*i64*/, terrain_index: number /*i64*/): void
+        
+        /** Sets a terrain's name. */
+        set_terrain_name(terrain_set: number /*i64*/, terrain_index: number /*i64*/, name: string): void
+        
+        /** Returns a terrain's name. */
+        get_terrain_name(terrain_set: number /*i64*/, terrain_index: number /*i64*/): string
+        
+        /** Sets a terrain's color. This color is used for identifying the different terrains in the TileSet editor. */
+        set_terrain_color(terrain_set: number /*i64*/, terrain_index: number /*i64*/, color: Color): void
+        
+        /** Returns a terrain's color. */
+        get_terrain_color(terrain_set: number /*i64*/, terrain_index: number /*i64*/): Color
+        
+        /** Returns the navigation layers count. */
+        get_navigation_layers_count(): number /*i64*/
+        
+        /** Adds a navigation layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
+         *  Navigation layers allow assigning a navigable area to atlas tiles.  
+         */
+        add_navigation_layer(to_position: number /*i64*/ = -1): void
+        
+        /** Moves the navigation layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+        move_navigation_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
+        
+        /** Removes the navigation layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
+        remove_navigation_layer(layer_index: number /*i64*/): void
+        
+        /** Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer. */
+        set_navigation_layer_layers(layer_index: number /*i64*/, layers: number /*i64*/): void
+        
+        /** Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer. */
+        get_navigation_layer_layers(layer_index: number /*i64*/): number /*i64*/
+        
+        /** Based on [param value], enables or disables the specified navigation layer of the TileSet navigation data layer identified by the given [param layer_index], given a navigation_layers [param layer_number] between 1 and 32. */
+        set_navigation_layer_layer_value(layer_index: number /*i64*/, layer_number: number /*i64*/, value: boolean): void
+        
+        /** Returns whether or not the specified navigation layer of the TileSet navigation data layer identified by the given [param layer_index] is enabled, given a navigation_layers [param layer_number] between 1 and 32. */
+        get_navigation_layer_layer_value(layer_index: number /*i64*/, layer_number: number /*i64*/): boolean
+        
+        /** Returns the custom data layers count. */
+        get_custom_data_layers_count(): number /*i64*/
+        
+        /** Adds a custom data layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
+         *  Custom data layers allow assigning custom properties to atlas tiles.  
+         */
+        add_custom_data_layer(to_position: number /*i64*/ = -1): void
+        
+        /** Moves the custom data layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+        move_custom_data_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
+        
+        /** Removes the custom data layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
+        remove_custom_data_layer(layer_index: number /*i64*/): void
+        
+        /** Returns the index of the custom data layer identified by the given name. */
+        get_custom_data_layer_by_name(layer_name: string): number /*i64*/
+        
+        /** Sets the name of the custom data layer identified by the given index. Names are identifiers of the layer therefore if the name is already taken it will fail and raise an error. */
+        set_custom_data_layer_name(layer_index: number /*i64*/, layer_name: string): void
+        
+        /** Returns the name of the custom data layer identified by the given index. */
+        get_custom_data_layer_name(layer_index: number /*i64*/): string
+        
+        /** Sets the type of the custom data layer identified by the given index. */
+        set_custom_data_layer_type(layer_index: number /*i64*/, layer_type: Variant.Type): void
+        
+        /** Returns the type of the custom data layer identified by the given index. */
+        get_custom_data_layer_type(layer_index: number /*i64*/): Variant.Type
+        
+        /** Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.  
+         *  This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target source when one is available.  
+         *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
+         */
+        set_source_level_tile_proxy(source_from: number /*i64*/, source_to: number /*i64*/): void
+        
+        /** Returns the source-level proxy for the given source identifier.  
+         *  If the TileSet has no proxy for the given identifier, returns -1.  
+         */
+        get_source_level_tile_proxy(source_from: number /*i64*/): number /*i64*/
+        
+        /** Returns if there is a source-level proxy for the given source ID. */
+        has_source_level_tile_proxy(source_from: number /*i64*/): boolean
+        
+        /** Removes a source-level tile proxy. */
+        remove_source_level_tile_proxy(source_from: number /*i64*/): void
+        
+        /** Creates a coordinates-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers. The alternative tile ID is kept the same when using coordinates-level proxies.  
+         *  This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.  
+         *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
+         */
+        set_coords_level_tile_proxy(p_source_from: number /*i64*/, coords_from: Vector2i, source_to: number /*i64*/, coords_to: Vector2i): void
+        
+        /** Returns the coordinate-level proxy for the given identifiers. The returned array contains the two target identifiers of the proxy (source ID and atlas coordinates ID).  
+         *  If the TileSet has no proxy for the given identifiers, returns an empty Array.  
+         */
+        get_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): Array
+        
+        /** Returns if there is a coodinates-level proxy for the given identifiers. */
+        has_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): boolean
+        
+        /** Removes a coordinates-level proxy for the given identifiers. */
+        remove_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): void
+        
+        /** Create an alternative-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers.  
+         *  This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.  
+         *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
+         */
+        set_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/, source_to: number /*i64*/, coords_to: Vector2i, alternative_to: number /*i64*/): void
+        
+        /** Returns the alternative-level proxy for the given identifiers. The returned array contains the three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).  
+         *  If the TileSet has no proxy for the given identifiers, returns an empty Array.  
+         */
+        get_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): Array
+        
+        /** Returns if there is an alternative-level proxy for the given identifiers. */
+        has_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): boolean
+        
+        /** Removes an alternative-level proxy for the given identifiers. */
+        remove_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): void
+        
+        /** According to the configured proxies, maps the provided identifiers to a new set of identifiers. The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.  
+         *  This function first look for matching alternative-level proxies, then coordinates-level proxies, then source-level proxies.  
+         *  If no proxy corresponding to provided identifiers are found, returns the same values the ones used as arguments.  
+         */
+        map_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): Array
+        
+        /** Clears tile proxies pointing to invalid tiles. */
+        cleanup_invalid_tile_proxies(): void
+        
+        /** Clears all tile proxies. */
+        clear_tile_proxies(): void
+        
+        /** Adds a [TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [param index]. */
+        add_pattern(pattern: TileMapPattern, index: number /*i64*/ = -1): number /*i64*/
+        
+        /** Returns the [TileMapPattern] at the given [param index]. */
+        get_pattern(index: number /*i64*/ = -1): TileMapPattern
+        
+        /** Remove the [TileMapPattern] at the given index. */
+        remove_pattern(index: number /*i64*/): void
+        
+        /** Returns the number of [TileMapPattern] this tile set handles. */
+        get_patterns_count(): number /*i64*/
+        
+        /** The tile shape. */
+        get tile_shape(): number /*i64*/
+        set tile_shape(value: number /*i64*/)
+        
+        /** For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles are indexed in the TileMap grid. */
+        get tile_layout(): number /*i64*/
+        set tile_layout(value: number /*i64*/)
+        
+        /** For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset axis. */
+        get tile_offset_axis(): number /*i64*/
+        set tile_offset_axis(value: number /*i64*/)
+        
+        /** The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas. */
+        get tile_size(): Vector2i
+        set tile_size(value: Vector2i)
+        
+        /** Enables/Disable uv clipping when rendering the tiles. */
+        get uv_clipping(): boolean
+        set uv_clipping(value: boolean)
+    }
+    namespace TileSetAtlasSource {
+        enum TileAnimationMode {
+            /** Tile animations start at same time, looking identical. */
+            TILE_ANIMATION_MODE_DEFAULT = 0,
+            
+            /** Tile animations start at random times, looking varied. */
+            TILE_ANIMATION_MODE_RANDOM_START_TIMES = 1,
+            
+            /** Represents the size of the [enum TileAnimationMode] enum. */
+            TILE_ANIMATION_MODE_MAX = 2,
+        }
+    }
+    /** Exposes a 2D atlas texture as a set of tiles for a [TileSet] resource.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilesetatlassource.html  
+     */
+    class TileSetAtlasSource extends TileSetSource {
+        /** Represents cell's horizontal flip flag. Should be used directly with [TileMap] to flip placed tiles by altering their alternative IDs.  
+         *    
+         */
+        static readonly TRANSFORM_FLIP_H = 4096
+        
+        /** Represents cell's vertical flip flag. See [constant TRANSFORM_FLIP_H] for usage. */
+        static readonly TRANSFORM_FLIP_V = 8192
+        
+        /** Represents cell's transposed flag. See [constant TRANSFORM_FLIP_H] for usage. */
+        static readonly TRANSFORM_TRANSPOSE = 16384
+        set_texture(texture: Texture2D): void
+        get_texture(): Texture2D
+        set_margins(margins: Vector2i): void
+        get_margins(): Vector2i
+        set_separation(separation: Vector2i): void
+        get_separation(): Vector2i
+        set_texture_region_size(texture_region_size: Vector2i): void
+        get_texture_region_size(): Vector2i
+        set_use_texture_padding(use_texture_padding: boolean): void
+        get_use_texture_padding(): boolean
+        
+        /** Creates a new tile at coordinates [param atlas_coords] with the given [param size]. */
+        create_tile(atlas_coords: Vector2i, size: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        
+        /** Remove a tile and its alternative at coordinates [param atlas_coords]. */
+        remove_tile(atlas_coords: Vector2i): void
+        
+        /** Move the tile and its alternatives at the [param atlas_coords] coordinates to the [param new_atlas_coords] coordinates with the [param new_size] size. This functions will fail if a tile is already present in the given area.  
+         *  If [param new_atlas_coords] is `Vector2i(-1, -1)`, keeps the tile's coordinates. If [param new_size] is `Vector2i(-1, -1)`, keeps the tile's size.  
+         *  To avoid an error, first check if a move is possible using [method has_room_for_tile].  
+         */
+        move_tile_in_atlas(atlas_coords: Vector2i, new_atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, new_size: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        
+        /** Returns the size of the tile (in the grid coordinates system) at coordinates [param atlas_coords]. */
+        get_tile_size_in_atlas(atlas_coords: Vector2i): Vector2i
+        
+        /** Returns whether there is enough room in an atlas to create/modify a tile with the given properties. If [param ignored_tile] is provided, act as is the given tile was not present in the atlas. This may be used when you want to modify a tile's properties. */
+        has_room_for_tile(atlas_coords: Vector2i, size: Vector2i, animation_columns: number /*i64*/, animation_separation: Vector2i, frames_count: number /*i64*/, ignored_tile: Vector2i = <any> {} /*compound.type from 6([object Object])*/): boolean
+        
+        /** Returns an array of tiles coordinates ID that will be automatically removed when modifying one or several of those properties: [param texture], [param margins], [param separation] or [param texture_region_size]. This can be used to undo changes that would have caused tiles data loss. */
+        get_tiles_to_be_removed_on_change(texture: Texture2D, margins: Vector2i, separation: Vector2i, texture_region_size: Vector2i): PackedVector2Array
+        
+        /** If there is a tile covering the [param atlas_coords] coordinates, returns the top-left coordinates of the tile (thus its coordinate ID). Returns `Vector2i(-1, -1)` otherwise. */
+        get_tile_at_coords(atlas_coords: Vector2i): Vector2i
+        
+        /** Checks if the source has any tiles that don't fit the texture area (either partially or completely). */
+        has_tiles_outside_texture(): boolean
+        
+        /** Removes all tiles that don't fit the available texture area. This method iterates over all the source's tiles, so it's advised to use [method has_tiles_outside_texture] beforehand. */
+        clear_tiles_outside_texture(): void
+        
+        /** Sets the number of columns in the animation layout of the tile at coordinates [param atlas_coords]. If set to 0, then the different frames of the animation are laid out as a single horizontal line in the atlas. */
+        set_tile_animation_columns(atlas_coords: Vector2i, frame_columns: number /*i64*/): void
+        
+        /** Returns how many columns the tile at [param atlas_coords] has in its animation layout. */
+        get_tile_animation_columns(atlas_coords: Vector2i): number /*i64*/
+        
+        /** Sets the margin (in grid tiles) between each tile in the animation layout of the tile at coordinates [param atlas_coords] has. */
+        set_tile_animation_separation(atlas_coords: Vector2i, separation: Vector2i): void
+        
+        /** Returns the separation (as in the atlas grid) between each frame of an animated tile at coordinates [param atlas_coords]. */
+        get_tile_animation_separation(atlas_coords: Vector2i): Vector2i
+        
+        /** Sets the animation speed of the tile at coordinates [param atlas_coords] has. */
+        set_tile_animation_speed(atlas_coords: Vector2i, speed: number /*f64*/): void
+        
+        /** Returns the animation speed of the tile at coordinates [param atlas_coords]. */
+        get_tile_animation_speed(atlas_coords: Vector2i): number /*f64*/
+        
+        /** Sets the [enum TileAnimationMode] of the tile at [param atlas_coords] to [param mode]. See also [method get_tile_animation_mode]. */
+        set_tile_animation_mode(atlas_coords: Vector2i, mode: TileSetAtlasSource.TileAnimationMode): void
+        
+        /** Returns the [enum TileAnimationMode] of the tile at [param atlas_coords]. See also [method set_tile_animation_mode]. */
+        get_tile_animation_mode(atlas_coords: Vector2i): TileSetAtlasSource.TileAnimationMode
+        
+        /** Sets how many animation frames the tile at coordinates [param atlas_coords] has. */
+        set_tile_animation_frames_count(atlas_coords: Vector2i, frames_count: number /*i64*/): void
+        
+        /** Returns how many animation frames has the tile at coordinates [param atlas_coords]. */
+        get_tile_animation_frames_count(atlas_coords: Vector2i): number /*i64*/
+        
+        /** Sets the animation frame [param duration] of frame [param frame_index] for the tile at coordinates [param atlas_coords]. */
+        set_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: number /*i64*/, duration: number /*f64*/): void
+        
+        /** Returns the animation frame duration of frame [param frame_index] for the tile at coordinates [param atlas_coords]. */
+        get_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: number /*i64*/): number /*f64*/
+        
+        /** Returns the sum of the sum of the frame durations of the tile at coordinates [param atlas_coords]. This value needs to be divided by the animation speed to get the actual animation loop duration. */
+        get_tile_animation_total_duration(atlas_coords: Vector2i): number /*f64*/
+        
+        /** Creates an alternative tile for the tile at coordinates [param atlas_coords]. If [param alternative_id_override] is -1, give it an automatically generated unique ID, or assigns it the given ID otherwise.  
+         *  Returns the new alternative identifier, or -1 if the alternative could not be created with a provided [param alternative_id_override].  
+         */
+        create_alternative_tile(atlas_coords: Vector2i, alternative_id_override: number /*i64*/ = -1): number /*i64*/
+        
+        /** Remove a tile's alternative with alternative ID [param alternative_tile].  
+         *  Calling this function with [param alternative_tile] equals to 0 will fail, as the base tile alternative cannot be removed.  
+         */
+        remove_alternative_tile(atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
+        
+        /** Change a tile's alternative ID from [param alternative_tile] to [param new_id].  
+         *  Calling this function with [param new_id] of 0 will fail, as the base tile alternative cannot be moved.  
+         */
+        set_alternative_tile_id(atlas_coords: Vector2i, alternative_tile: number /*i64*/, new_id: number /*i64*/): void
+        
+        /** Returns the alternative ID a following call to [method create_alternative_tile] would return. */
+        get_next_alternative_tile_id(atlas_coords: Vector2i): number /*i64*/
+        
+        /** Returns the [TileData] object for the given atlas coordinates and alternative ID. */
+        get_tile_data(atlas_coords: Vector2i, alternative_tile: number /*i64*/): TileData
+        
+        /** Returns the atlas grid size, which depends on how many tiles can fit in the texture. It thus depends on the [member texture]'s size, the atlas [member margins], and the tiles' [member texture_region_size]. */
+        get_atlas_grid_size(): Vector2i
+        
+        /** Returns a tile's texture region in the atlas texture. For animated tiles, a [param frame] argument might be provided for the different frames of the animation. */
+        get_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/ = 0): Rect2i
+        _update_padded_texture(): void
+        
+        /** If [member use_texture_padding] is `false`, returns [member texture]. Otherwise, returns and internal [ImageTexture] created that includes the padding. */
+        get_runtime_texture(): Texture2D
+        
+        /** Returns the region of the tile at coordinates [param atlas_coords] for the given [param frame] inside the texture returned by [method get_runtime_texture].  
+         *      
+         *  **Note:** If [member use_texture_padding] is `false`, returns the same as [method get_tile_texture_region].  
+         */
+        get_runtime_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/): Rect2i
+        
+        /** The atlas texture. */
+        get texture(): Texture2D
+        set texture(value: Texture2D)
+        
+        /** Margins, in pixels, to offset the origin of the grid in the texture. */
+        get margins(): Vector2i
+        set margins(value: Vector2i)
+        
+        /** Separation, in pixels, between each tile texture region of the grid. */
+        get separation(): Vector2i
+        set separation(value: Vector2i)
+        
+        /** The base tile size in the texture (in pixel). This size must be bigger than the TileSet's `tile_size` value. */
+        get texture_region_size(): Vector2i
+        set texture_region_size(value: Vector2i)
+        
+        /** If `true`, generates an internal texture with an additional one pixel padding around each tile. Texture padding avoids a common artifact where lines appear between tiles.  
+         *  Disabling this setting might lead a small performance improvement, as generating the internal texture requires both memory and processing time when the TileSetAtlasSource resource is modified.  
+         */
+        get use_texture_padding(): boolean
+        set use_texture_padding(value: boolean)
+    }
+    class TileSetAtlasSourceEditor extends HSplitContainer {
+        _set_selection_from_array(_unnamed_arg0: Array): void
+        _check_outside_tiles(): void
+        readonly source_id_changed: Signal // source_id: number /*i64*/ => void
+    }
+    class TileSetAtlasSourceProxyObject extends Object {
+        readonly changed: Signal // what: string => void
+    }
+    class TileSetEditor extends Control {
+    }
+    class TileSetEditorPlugin extends EditorPlugin {
+    }
+    class TileSetScenesCollectionProxyObject extends Object {
+        set_id(id: number /*i64*/): void
+        get_id(): number /*i64*/
+        get id(): number /*i64*/
+        set id(value: number /*i64*/)
+        readonly changed: Signal // what: string => void
+    }
+    /** Exposes a set of scenes as tiles for a [TileSet] resource.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilesetscenescollectionsource.html  
+     */
+    class TileSetScenesCollectionSource extends TileSetSource {
+        /** Returns the number or scene tiles this TileSet source has. */
+        get_scene_tiles_count(): number /*i64*/
+        
+        /** Returns the scene tile ID of the scene tile at [param index]. */
+        get_scene_tile_id(index: number /*i64*/): number /*i64*/
+        
+        /** Returns whether this TileSet source has a scene tile with [param id]. */
+        has_scene_tile_id(id: number /*i64*/): boolean
+        
+        /** Creates a scene-based tile out of the given scene.  
+         *  Returns a newly generated unique ID.  
+         */
+        create_scene_tile(packed_scene: PackedScene, id_override: number /*i64*/ = -1): number /*i64*/
+        
+        /** Changes a scene tile's ID from [param id] to [param new_id]. This will fail if there is already a tile with an ID equal to [param new_id]. */
+        set_scene_tile_id(id: number /*i64*/, new_id: number /*i64*/): void
+        
+        /** Assigns a [PackedScene] resource to the scene tile with [param id]. This will fail if the scene does not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap. */
+        set_scene_tile_scene(id: number /*i64*/, packed_scene: PackedScene): void
+        
+        /** Returns the [PackedScene] resource of scene tile with [param id]. */
+        get_scene_tile_scene(id: number /*i64*/): PackedScene
+        
+        /** Sets whether or not the scene tile with [param id] should display a placeholder in the editor. This might be useful for scenes that are not visible. */
+        set_scene_tile_display_placeholder(id: number /*i64*/, display_placeholder: boolean): void
+        
+        /** Returns whether the scene tile with [param id] displays a placeholder in the editor. */
+        get_scene_tile_display_placeholder(id: number /*i64*/): boolean
+        
+        /** Remove the scene tile with [param id]. */
+        remove_scene_tile(id: number /*i64*/): void
+        
+        /** Returns the scene ID a following call to [method create_scene_tile] would return. */
+        get_next_scene_tile_id(): number /*i64*/
+    }
+    class TileSetScenesCollectionSourceEditor extends HBoxContainer {
+        _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
+        readonly source_id_changed: Signal // source_id: number /*i64*/ => void
+    }
+    /** Exposes a set of tiles for a [TileSet] resource.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tilesetsource.html  
+     */
+    class TileSetSource extends Resource {
+        /** Returns how many tiles this atlas source defines (not including alternative tiles). */
+        get_tiles_count(): number /*i64*/
+        
+        /** Returns the tile coordinates ID of the tile with index [param index]. */
+        get_tile_id(index: number /*i64*/): Vector2i
+        
+        /** Returns if this atlas has a tile with coordinates ID [param atlas_coords]. */
+        has_tile(atlas_coords: Vector2i): boolean
+        
+        /** Returns the number of alternatives tiles for the coordinates ID [param atlas_coords].  
+         *  For [TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always part of the alternatives list.  
+         *  Returns -1 if there is not tile at the given coords.  
+         */
+        get_alternative_tiles_count(atlas_coords: Vector2i): number /*i64*/
+        
+        /** Returns the alternative ID for the tile with coordinates ID [param atlas_coords] at index [param index]. */
+        get_alternative_tile_id(atlas_coords: Vector2i, index: number /*i64*/): number /*i64*/
+        
+        /** Returns if the base tile at coordinates [param atlas_coords] has an alternative with ID [param alternative_tile]. */
+        has_alternative_tile(atlas_coords: Vector2i, alternative_tile: number /*i64*/): boolean
+    }
+    class TileSourceInspectorPlugin extends EditorInspectorPlugin {
+    }
+    class TilesEditorUtils extends Object {
+    }
+    namespace Timer {
+        enum TimerProcessCallback {
+            /** Update the timer during physics frames (see [constant Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). */
+            TIMER_PROCESS_PHYSICS = 0,
+            
+            /** Update the timer during process frames (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]). */
+            TIMER_PROCESS_IDLE = 1,
+        }
+    }
+    /** A countdown timer.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_timer.html  
+     */
+    class Timer extends Node {
+        set_wait_time(time_sec: number /*f64*/): void
+        get_wait_time(): number /*f64*/
+        set_one_shot(enable: boolean): void
+        is_one_shot(): boolean
+        set_autostart(enable: boolean): void
+        has_autostart(): boolean
+        
+        /** Starts the timer. Sets [member wait_time] to [param time_sec] if `time_sec > 0`. This also resets the remaining time to [member wait_time].  
+         *      
+         *  **Note:** This method will not resume a paused timer. See [member paused].  
+         */
+        start(time_sec: number /*f64*/ = -1): void
+        
+        /** Stops the timer. */
+        stop(): void
+        set_paused(paused: boolean): void
+        is_paused(): boolean
+        
+        /** Returns `true` if the timer is stopped. */
+        is_stopped(): boolean
+        get_time_left(): number /*f64*/
+        set_timer_process_callback(callback: Timer.TimerProcessCallback): void
+        get_timer_process_callback(): Timer.TimerProcessCallback
+        
+        /** Processing callback. See [enum TimerProcessCallback]. */
+        get process_callback(): number /*i64*/
+        set process_callback(value: number /*i64*/)
+        
+        /** The wait time in seconds.  
+         *      
+         *  **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if [member process_callback] is [constant TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For very low wait times, it is recommended to use a process loop in a script instead of using a Timer node. Timers are affected by [member Engine.time_scale], a higher scale means quicker timeouts, and vice versa.  
+         */
+        get wait_time(): number /*f64*/
+        set wait_time(value: number /*f64*/)
+        
+        /** If `true`, the timer will stop when reaching 0. If `false`, it will restart. */
+        get one_shot(): boolean
+        set one_shot(value: boolean)
+        
+        /** If `true`, the timer will automatically start when entering the scene tree.  
+         *      
+         *  **Note:** This property is automatically set to `false` after the timer enters the scene tree and starts.  
+         */
+        get autostart(): boolean
+        set autostart(value: boolean)
+        
+        /** If `true`, the timer is paused and will not process until it is unpaused again, even if [method start] is called. */
+        get paused(): boolean
+        set paused(value: boolean)
+        
+        /** The timer's remaining time in seconds. Returns 0 if the timer is inactive.  
+         *      
+         *  **Note:** This value is read-only and cannot be set. It is based on [member wait_time], which can be set using [method start].  
+         */
+        get time_left(): number /*f64*/
+        
+        /** Emitted when the timer reaches 0. */
+        readonly timeout: Signal //  => void
+    }
+    /** Class representing a torus [PrimitiveMesh].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_torusmesh.html  
+     */
+    class TorusMesh extends PrimitiveMesh {
+        set_inner_radius(radius: number /*f64*/): void
+        get_inner_radius(): number /*f64*/
+        set_outer_radius(radius: number /*f64*/): void
+        get_outer_radius(): number /*f64*/
+        set_rings(rings: number /*i64*/): void
+        get_rings(): number /*i64*/
+        set_ring_segments(rings: number /*i64*/): void
+        get_ring_segments(): number /*i64*/
+        
+        /** The inner radius of the torus. */
+        get inner_radius(): number /*f64*/
+        set inner_radius(value: number /*f64*/)
+        
+        /** The outer radius of the torus. */
+        get outer_radius(): number /*f64*/
+        set outer_radius(value: number /*f64*/)
+        
+        /** The number of slices the torus is constructed of. */
+        get rings(): number /*i64*/
+        set rings(value: number /*i64*/)
+        
+        /** The number of edges each ring of the torus is constructed of. */
+        get ring_segments(): number /*i64*/
+        set ring_segments(value: number /*i64*/)
+    }
+    namespace TouchScreenButton {
+        enum VisibilityMode {
+            /** Always visible. */
+            VISIBILITY_ALWAYS = 0,
+            
+            /** Visible on touch screens only. */
+            VISIBILITY_TOUCHSCREEN_ONLY = 1,
+        }
+    }
+    /** Button for touch screen devices for gameplay use.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_touchscreenbutton.html  
+     */
+    class TouchScreenButton extends Node2D {
+        set_texture_normal(texture: Texture2D): void
+        get_texture_normal(): Texture2D
+        set_texture_pressed(texture: Texture2D): void
+        get_texture_pressed(): Texture2D
+        set_bitmask(bitmask: BitMap): void
+        get_bitmask(): BitMap
+        set_shape(shape: Shape2D): void
+        get_shape(): Shape2D
+        set_shape_centered(bool: boolean): void
+        is_shape_centered(): boolean
+        set_shape_visible(bool: boolean): void
+        is_shape_visible(): boolean
+        set_action(action: string): void
+        get_action(): string
+        set_visibility_mode(mode: TouchScreenButton.VisibilityMode): void
+        get_visibility_mode(): TouchScreenButton.VisibilityMode
+        set_passby_press(enabled: boolean): void
+        is_passby_press_enabled(): boolean
+        
+        /** Returns `true` if this button is currently pressed. */
+        is_pressed(): boolean
+        
+        /** The button's texture for the normal state. */
+        get texture_normal(): Texture2D
+        set texture_normal(value: Texture2D)
+        
+        /** The button's texture for the pressed state. */
+        get texture_pressed(): Texture2D
+        set texture_pressed(value: Texture2D)
+        
+        /** The button's bitmask. */
+        get bitmask(): BitMap
+        set bitmask(value: BitMap)
+        
+        /** The button's shape. */
+        get shape(): Shape2D
+        set shape(value: Shape2D)
+        
+        /** If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect. */
+        get shape_centered(): boolean
+        set shape_centered(value: boolean)
+        
+        /** If `true`, the button's shape is visible in the editor. */
+        get shape_visible(): boolean
+        set shape_visible(value: boolean)
+        
+        /** If `true`, the [signal pressed] and [signal released] signals are emitted whenever a pressed finger goes in and out of the button, even if the pressure started outside the active area of the button.  
+         *      
+         *  **Note:** This is a "pass-by" (not "bypass") press mode.  
+         */
+        get passby_press(): boolean
+        set passby_press(value: boolean)
+        
+        /** The button's action. Actions can be handled with [InputEventAction]. */
+        get action(): StringName
+        set action(value: StringName)
+        
+        /** The button's visibility mode. See [enum VisibilityMode] for possible values. */
+        get visibility_mode(): number /*i64*/
+        set visibility_mode(value: number /*i64*/)
+        
+        /** Emitted when the button is pressed (down). */
+        readonly pressed: Signal //  => void
+        
+        /** Emitted when the button is released (up). */
+        readonly released: Signal //  => void
+    }
+    /** A language translation that maps a collection of strings to their individual translations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_translation.html  
+     */
+    class Translation extends Resource {
+        /** Virtual method to override [method get_plural_message]. */
+        /* gdvirtual */ _get_plural_message(src_message: StringName, src_plural_message: StringName, n: number /*i64*/, context: StringName): StringName
+        
+        /** Virtual method to override [method get_message]. */
+        /* gdvirtual */ _get_message(src_message: StringName, context: StringName): StringName
+        set_locale(locale: string): void
+        get_locale(): string
+        
+        /** Adds a message if nonexistent, followed by its translation.  
+         *  An additional context could be used to specify the translation context or differentiate polysemic words.  
+         */
+        add_message(src_message: StringName, xlated_message: StringName, context: StringName = ''): void
+        
+        /** Adds a message involving plural translation if nonexistent, followed by its translation.  
+         *  An additional context could be used to specify the translation context or differentiate polysemic words.  
+         */
+        add_plural_message(src_message: StringName, xlated_messages: PackedStringArray, context: StringName = ''): void
+        
+        /** Returns a message's translation. */
+        get_message(src_message: StringName, context: StringName = ''): StringName
+        
+        /** Returns a message's translation involving plurals.  
+         *  The number [param n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.  
+         */
+        get_plural_message(src_message: StringName, src_plural_message: StringName, n: number /*i64*/, context: StringName = ''): StringName
+        
+        /** Erases a message. */
+        erase_message(src_message: StringName, context: StringName = ''): void
+        
+        /** Returns all the messages (keys). */
+        get_message_list(): PackedStringArray
+        
+        /** Returns all the messages (translated text). */
+        get_translated_message_list(): PackedStringArray
+        
+        /** Returns the number of existing messages. */
+        get_message_count(): number /*i64*/
+        _set_messages(messages: Dictionary): void
+        _get_messages(): Dictionary
+        get messages(): Dictionary
+        set messages(value: Dictionary)
+        
+        /** The locale of the translation. */
+        get locale(): string
+        set locale(value: string)
+    }
+    namespace Tree {
+        enum SelectMode {
+            /** Allows selection of a single cell at a time. From the perspective of items, only a single item is allowed to be selected. And there is only one column selected in the selected item.  
+             *  The focus cursor is always hidden in this mode, but it is positioned at the current selection, making the currently selected item the currently focused item.  
+             */
+            SELECT_SINGLE = 0,
+            
+            /** Allows selection of a single row at a time. From the perspective of items, only a single items is allowed to be selected. And all the columns are selected in the selected item.  
+             *  The focus cursor is always hidden in this mode, but it is positioned at the first column of the current selection, making the currently selected item the currently focused item.  
+             */
+            SELECT_ROW = 1,
+            
+            /** Allows selection of multiple cells at the same time. From the perspective of items, multiple items are allowed to be selected. And there can be multiple columns selected in each selected item.  
+             *  The focus cursor is visible in this mode, the item or column under the cursor is not necessarily selected.  
+             */
+            SELECT_MULTI = 2,
+        }
+        enum DropModeFlags {
+            /** Disables all drop sections, but still allows to detect the "on item" drop section by [method get_drop_section_at_position].  
+             *      
+             *  **Note:** This is the default flag, it has no effect when combined with other flags.  
+             */
+            DROP_MODE_DISABLED = 0,
+            
+            /** Enables the "on item" drop section. This drop section covers the entire item.  
+             *  When combined with [constant DROP_MODE_INBETWEEN], this drop section halves the height and stays centered vertically.  
+             */
+            DROP_MODE_ON_ITEM = 1,
+            
+            /** Enables "above item" and "below item" drop sections. The "above item" drop section covers the top half of the item, and the "below item" drop section covers the bottom half.  
+             *  When combined with [constant DROP_MODE_ON_ITEM], these drop sections halves the height and stays on top / bottom accordingly.  
+             */
+            DROP_MODE_INBETWEEN = 2,
+        }
+    }
+    /** A control used to show a set of internal [TreeItem]s in a hierarchical structure.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tree.html  
+     */
+    class Tree extends Control {
+        /** Clears the tree. This removes all items. */
+        clear(): void
+        
+        /** Creates an item in the tree and adds it as a child of [param parent], which can be either a valid [TreeItem] or `null`.  
+         *  If [param parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.  
+         *  The new item will be the [param index]-th child of parent, or it will be the last child if there are not enough siblings.  
+         */
+        create_item(parent: TreeItem = <any> {} /*compound.type from nil*/, index: number /*i64*/ = -1): TreeItem
+        
+        /** Returns the tree's root item, or `null` if the tree is empty. */
+        get_root(): TreeItem
+        
+        /** Overrides the calculated minimum width of a column. It can be set to `0` to restore the default behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [member Control.size_flags_stretch_ratio]. */
+        set_column_custom_minimum_width(column: number /*i64*/, min_width: number /*i64*/): void
+        
+        /** If `true`, the column will have the "Expand" flag of [Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [member Control.size_flags_stretch_ratio] (see [method set_column_expand_ratio]). */
+        set_column_expand(column: number /*i64*/, expand: boolean): void
+        
+        /** Sets the relative expand ratio for a column. See [method set_column_expand]. */
+        set_column_expand_ratio(column: number /*i64*/, ratio: number /*i64*/): void
+        
+        /** Allows to enable clipping for column's content, making the content size ignored. */
+        set_column_clip_content(column: number /*i64*/, enable: boolean): void
+        
+        /** Returns `true` if the column has enabled expanding (see [method set_column_expand]). */
+        is_column_expanding(column: number /*i64*/): boolean
+        
+        /** Returns `true` if the column has enabled clipping (see [method set_column_clip_content]). */
+        is_column_clipping_content(column: number /*i64*/): boolean
+        
+        /** Returns the expand ratio assigned to the column. */
+        get_column_expand_ratio(column: number /*i64*/): number /*i64*/
+        
+        /** Returns the column's width in pixels. */
+        get_column_width(column: number /*i64*/): number /*i64*/
+        set_hide_root(enable: boolean): void
+        is_root_hidden(): boolean
+        
+        /** Returns the next selected [TreeItem] after the given one, or `null` if the end is reached.  
+         *  If [param from] is `null`, this returns the first selected item.  
+         */
+        get_next_selected(from: TreeItem): TreeItem
+        
+        /** Returns the currently focused item, or `null` if no item is focused.  
+         *  In [constant SELECT_ROW] and [constant SELECT_SINGLE] modes, the focused item is same as the selected item. In [constant SELECT_MULTI] mode, the focused item is the item under the focus cursor, not necessarily selected.  
+         *  To get the currently selected item(s), use [method get_next_selected].  
+         */
+        get_selected(): TreeItem
+        
+        /** Selects the specified [TreeItem] and column. */
+        set_selected(item: TreeItem, column: number /*i64*/): void
+        
+        /** Returns the currently focused column, or -1 if no column is focused.  
+         *  In [constant SELECT_SINGLE] mode, the focused column is the selected column. In [constant SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [constant SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not necessarily any column selected.  
+         *  To tell whether a column of an item is selected, use [method TreeItem.is_selected].  
+         */
+        get_selected_column(): number /*i64*/
+        
+        /** Returns the last pressed button's index. */
+        get_pressed_button(): number /*i64*/
+        set_select_mode(mode: Tree.SelectMode): void
+        get_select_mode(): Tree.SelectMode
+        
+        /** Deselects all tree items (rows and columns). In [constant SELECT_MULTI] mode also removes selection cursor. */
+        deselect_all(): void
+        set_columns(amount: number /*i64*/): void
+        get_columns(): number /*i64*/
+        
+        /** Returns the currently edited item. Can be used with [signal item_edited] to get the item that was modified.  
+         *    
+         */
+        get_edited(): TreeItem
+        
+        /** Returns the column for the currently edited item. */
+        get_edited_column(): number /*i64*/
+        
+        /** Edits the selected tree item as if it was clicked.  
+         *  Either the item must be set editable with [method TreeItem.set_editable] or [param force_edit] must be `true`.  
+         *  Returns `true` if the item could be edited. Fails if no item is selected.  
+         */
+        edit_selected(force_edit: boolean = false): boolean
+        
+        /** Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [method TreeItem.set_cell_mode]. */
+        get_custom_popup_rect(): Rect2
+        
+        /** Returns the rectangle area for the specified [TreeItem]. If [param column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned. */
+        get_item_area_rect(item: TreeItem, column: number /*i64*/ = -1, button_index: number /*i64*/ = -1): Rect2
+        
+        /** Returns the tree item at the specified position (relative to the tree origin position). */
+        get_item_at_position(position: Vector2): TreeItem
+        
+        /** Returns the column index at [param position], or -1 if no item is there. */
+        get_column_at_position(position: Vector2): number /*i64*/
+        
+        /** Returns the drop section at [param position], or -100 if no item is there.  
+         *  Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop sections, respectively. See [enum DropModeFlags] for a description of each drop section.  
+         *  To get the item which the returned drop section is relative to, use [method get_item_at_position].  
+         */
+        get_drop_section_at_position(position: Vector2): number /*i64*/
+        
+        /** Returns the button ID at [param position], or -1 if no button is there. */
+        get_button_id_at_position(position: Vector2): number /*i64*/
+        
+        /** Makes the currently focused cell visible.  
+         *  This will scroll the tree if necessary. In [constant SELECT_ROW] mode, this will not do horizontal scrolling, as all the cells in the selected row is focused logically.  
+         *      
+         *  **Note:** Despite the name of this method, the focus cursor itself is only visible in [constant SELECT_MULTI] mode.  
+         */
+        ensure_cursor_is_visible(): void
+        set_column_titles_visible(visible: boolean): void
+        are_column_titles_visible(): boolean
+        
+        /** Sets the title of a column. */
+        set_column_title(column: number /*i64*/, title: string): void
+        
+        /** Returns the column's title. */
+        get_column_title(column: number /*i64*/): string
+        
+        /** Sets the column title alignment. Note that [constant @GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not supported for column titles. */
+        set_column_title_alignment(column: number /*i64*/, title_alignment: HorizontalAlignment): void
+        
+        /** Returns the column title alignment. */
+        get_column_title_alignment(column: number /*i64*/): HorizontalAlignment
+        
+        /** Sets column title base writing direction. */
+        set_column_title_direction(column: number /*i64*/, direction: Control.TextDirection): void
+        
+        /** Returns column title base writing direction. */
+        get_column_title_direction(column: number /*i64*/): Control.TextDirection
+        
+        /** Sets language code of column title used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+        set_column_title_language(column: number /*i64*/, language: string): void
+        
+        /** Returns column title language code. */
+        get_column_title_language(column: number /*i64*/): string
+        
+        /** Returns the current scrolling position. */
+        get_scroll(): Vector2
+        
+        /** Causes the [Tree] to jump to the specified [TreeItem]. */
+        scroll_to_item(item: TreeItem, center_on_item: boolean = false): void
+        set_h_scroll_enabled(h_scroll: boolean): void
+        is_h_scroll_enabled(): boolean
+        set_v_scroll_enabled(h_scroll: boolean): void
+        is_v_scroll_enabled(): boolean
+        set_hide_folding(hide: boolean): void
+        is_folding_hidden(): boolean
+        set_enable_recursive_folding(enable: boolean): void
+        is_recursive_folding_enabled(): boolean
+        set_drop_mode_flags(flags: number /*i64*/): void
+        get_drop_mode_flags(): number /*i64*/
+        set_allow_rmb_select(allow: boolean): void
+        get_allow_rmb_select(): boolean
+        set_allow_reselect(allow: boolean): void
+        get_allow_reselect(): boolean
+        set_allow_search(allow: boolean): void
+        get_allow_search(): boolean
+        
+        /** The number of columns. */
+        get columns(): number /*i64*/
+        set columns(value: number /*i64*/)
+        
+        /** If `true`, column titles are visible. */
+        get column_titles_visible(): boolean
+        set column_titles_visible(value: boolean)
+        
+        /** If `true`, the currently selected cell may be selected again. */
+        get allow_reselect(): boolean
+        set allow_reselect(value: boolean)
+        
+        /** If `true`, a right mouse button click can select items. */
+        get allow_rmb_select(): boolean
+        set allow_rmb_select(value: boolean)
+        
+        /** If `true`, allows navigating the [Tree] with letter keys through incremental search. */
+        get allow_search(): boolean
+        set allow_search(value: boolean)
+        
+        /** If `true`, the folding arrow is hidden. */
+        get hide_folding(): boolean
+        set hide_folding(value: boolean)
+        
+        /** If `true`, recursive folding is enabled for this [Tree]. Holding down Shift while clicking the fold arrow collapses or uncollapses the [TreeItem] and all its descendants. */
+        get enable_recursive_folding(): boolean
+        set enable_recursive_folding(value: boolean)
+        
+        /** If `true`, the tree's root is hidden. */
+        get hide_root(): boolean
+        set hide_root(value: boolean)
+        
+        /** The drop mode as an OR combination of flags. See [enum DropModeFlags] constants. Once dropping is done, reverts to [constant DROP_MODE_DISABLED]. Setting this during [method Control._can_drop_data] is recommended.  
+         *  This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.  
+         */
+        get drop_mode_flags(): number /*i64*/
+        set drop_mode_flags(value: number /*i64*/)
+        
+        /** Allows single or multiple selection. See the [enum SelectMode] constants. */
+        get select_mode(): number /*i64*/
+        set select_mode(value: number /*i64*/)
+        
+        /** If `true`, enables horizontal scrolling. */
+        get scroll_horizontal_enabled(): boolean
+        set scroll_horizontal_enabled(value: boolean)
+        
+        /** If `true`, enables vertical scrolling. */
+        get scroll_vertical_enabled(): boolean
+        set scroll_vertical_enabled(value: boolean)
+        
+        /** Emitted when an item is selected. */
+        readonly item_selected: Signal //  => void
+        
+        /** Emitted when a cell is selected. */
+        readonly cell_selected: Signal //  => void
+        
+        /** Emitted instead of [signal item_selected] if [member select_mode] is set to [constant SELECT_MULTI]. */
+        readonly multi_selected: Signal // item: TreeItem, column: number /*i64*/, selected: boolean => void
+        
+        /** Emitted when an item is selected with a mouse button. */
+        readonly item_mouse_selected: Signal // position: Vector2, mouse_button_index: number /*i64*/ => void
+        
+        /** Emitted when a mouse button is clicked in the empty space of the tree. */
+        readonly empty_clicked: Signal // position: Vector2, mouse_button_index: number /*i64*/ => void
+        
+        /** Emitted when an item is edited. */
+        readonly item_edited: Signal //  => void
+        
+        /** Emitted when an item with [constant TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button. */
+        readonly custom_item_clicked: Signal // mouse_button_index: number /*i64*/ => void
+        
+        /** Emitted when an item's icon is double-clicked. For a signal that emits when any part of the item is double-clicked, see [signal item_activated]. */
+        readonly item_icon_double_clicked: Signal //  => void
+        
+        /** Emitted when an item is collapsed by a click on the folding arrow. */
+        readonly item_collapsed: Signal // item: TreeItem => void
+        
+        /** Emitted when [method TreeItem.propagate_check] is called. Connect to this signal to process the items that are affected when [method TreeItem.propagate_check] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item. */
+        readonly check_propagated_to_item: Signal // item: TreeItem, column: number /*i64*/ => void
+        
+        /** Emitted when a button on the tree was pressed (see [method TreeItem.add_button]). */
+        readonly button_clicked: Signal // item: TreeItem, column: number /*i64*/, id: number /*i64*/, mouse_button_index: number /*i64*/ => void
+        
+        /** Emitted when a cell with the [constant TreeItem.CELL_MODE_CUSTOM] is clicked to be edited. */
+        readonly custom_popup_edited: Signal // arrow_clicked: boolean => void
+        
+        /** Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard). */
+        readonly item_activated: Signal //  => void
+        
+        /** Emitted when a column's title is clicked with either [constant MOUSE_BUTTON_LEFT] or [constant MOUSE_BUTTON_RIGHT]. */
+        readonly column_title_clicked: Signal // column: number /*i64*/, mouse_button_index: number /*i64*/ => void
+        
+        /** Emitted when a left mouse button click does not select any item. */
+        readonly nothing_selected: Signal //  => void
+    }
     namespace TreeItem {
         enum TreeCellMode {
             /** Cell contains a string. */
@@ -347,18 +2530,22 @@ declare module "godot" {
         call_recursive(method: StringName, ...vargargs: any[]): void
         
         /** If `true`, the TreeItem is collapsed. */
-        collapsed: boolean
+        get collapsed(): boolean
+        set collapsed(value: boolean)
         
         /** If `true`, the [TreeItem] is visible (default).  
          *  Note that if a [TreeItem] is set to not be visible, none of its children will be visible either.  
          */
-        visible: boolean
+        get visible(): boolean
+        set visible(value: boolean)
         
         /** If `true`, folding is disabled for this TreeItem. */
-        disable_folding: boolean
+        get disable_folding(): boolean
+        set disable_folding(value: boolean)
         
         /** The custom minimum height. */
-        custom_minimum_height: number /*i64*/
+        get custom_minimum_height(): number /*i64*/
+        set custom_minimum_height(value: number /*i64*/)
     }
     /** Internal mesh type.  
      *  	  
@@ -389,28 +2576,36 @@ declare module "godot" {
         get_curve(): Curve
         
         /** The baseline radius of the tube. The radius of a particular section ring is obtained by multiplying this radius by the value of the [member curve] at the given distance. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
         
         /** The number of sides on the tube. For example, a value of `5` means the tube will be pentagonal. Higher values result in a more detailed tube at the cost of performance. */
-        radial_steps: number /*i64*/
+        get radial_steps(): number /*i64*/
+        set radial_steps(value: number /*i64*/)
         
         /** The total number of sections on the tube. */
-        sections: number /*i64*/
+        get sections(): number /*i64*/
+        set sections(value: number /*i64*/)
         
         /** The length of a section of the tube. */
-        section_length: number /*f64*/
+        get section_length(): number /*f64*/
+        set section_length(value: number /*f64*/)
         
         /** The number of rings in a section. The [member curve] is sampled on each ring to determine its radius. Higher values result in a more detailed tube at the cost of performance. */
-        section_rings: number /*i64*/
+        get section_rings(): number /*i64*/
+        set section_rings(value: number /*i64*/)
         
         /** If `true`, generates a cap at the top of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
-        cap_top: boolean
+        get cap_top(): boolean
+        set cap_top(value: boolean)
         
         /** If `true`, generates a cap at the bottom of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
-        cap_bottom: boolean
+        get cap_bottom(): boolean
+        set cap_bottom(value: boolean)
         
         /** Determines the radius of the tube along its length. The radius of a particular section ring is obtained by multiplying the baseline [member radius] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. */
-        curve: Curve
+        get curve(): Curve
+        set curve(value: Curve)
     }
     namespace Tween {
         enum TweenProcessMode {
@@ -669,7 +2864,8 @@ declare module "godot" {
         get_max_pending_connections(): number /*i64*/
         
         /** Define the maximum number of pending connections, during [method poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected). */
-        max_pending_connections: number /*i64*/
+        get max_pending_connections(): number /*i64*/
+        set max_pending_connections(value: number /*i64*/)
     }
     namespace UPNP {
         enum UPNPResult {
@@ -815,13 +3011,16 @@ declare module "godot" {
         is_discover_ipv6(): boolean
         
         /** Multicast interface to use for discovery. Uses the default multicast interface if empty. */
-        discover_multicast_if: string
+        get discover_multicast_if(): string
+        set discover_multicast_if(value: string)
         
         /** If `0`, the local port to use for discovery is chosen automatically by the system. If `1`, discovery will be done from the source port 1900 (same as destination port). Otherwise, the value will be used as the port. */
-        discover_local_port: number /*i64*/
+        get discover_local_port(): number /*i64*/
+        set discover_local_port(value: number /*i64*/)
         
         /** If `true`, IPv6 is used for [UPNPDevice] discovery. */
-        discover_ipv6: boolean
+        get discover_ipv6(): boolean
+        set discover_ipv6(value: boolean)
     }
     namespace UPNPDevice {
         enum IGDStatus {
@@ -886,22 +3085,28 @@ declare module "godot" {
         get_igd_status(): UPNPDevice.IGDStatus
         
         /** URL to the device description. */
-        description_url: string
+        get description_url(): string
+        set description_url(value: string)
         
         /** Service type. */
-        service_type: string
+        get service_type(): string
+        set service_type(value: string)
         
         /** IDG control URL. */
-        igd_control_url: string
+        get igd_control_url(): string
+        set igd_control_url(value: string)
         
         /** IGD service type. */
-        igd_service_type: string
+        get igd_service_type(): string
+        set igd_service_type(value: string)
         
         /** Address of the local machine in the network connecting it to this [UPNPDevice]. */
-        igd_our_addr: string
+        get igd_our_addr(): string
+        set igd_our_addr(value: string)
         
         /** IGD status. See [enum IGDStatus]. */
-        igd_status: number /*i64*/
+        get igd_status(): number /*i64*/
+        set igd_status(value: number /*i64*/)
     }
     namespace UndoRedo {
         enum MergeMode {
@@ -1050,16 +3255,19 @@ declare module "godot" {
          *  **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.  
          *  A negative value will result in the vehicle reversing.  
          */
-        engine_force: number /*f64*/
+        get engine_force(): number /*f64*/
+        set engine_force(value: number /*f64*/)
         
         /** Slows down the vehicle by applying a braking force. The vehicle is only slowed down if the wheels are in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [member RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking. */
-        brake: number /*f64*/
+        get brake(): number /*f64*/
+        set brake(value: number /*f64*/)
         
         /** The steering angle for the vehicle. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [member VehicleWheel3D.use_as_steering] set to `true` will automatically be rotated.  
          *      
          *  **Note:** This property is edited in the inspector in degrees. In code the property is set in radians.  
          */
-        steering: number /*f64*/
+        get steering(): number /*f64*/
+        set steering(value: number /*f64*/)
     }
     /** A 3D physics body for a [VehicleBody3D] that simulates the behavior of a wheel.  
      *  	  
@@ -1114,48 +3322,62 @@ declare module "godot" {
          *  **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.  
          *  A negative value will result in the wheel reversing.  
          */
-        engine_force: number /*f64*/
+        get engine_force(): number /*f64*/
+        set engine_force(value: number /*f64*/)
         
         /** Slows down the wheel by applying a braking force. The wheel is only slowed down if it is in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [member RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking. */
-        brake: number /*f64*/
+        get brake(): number /*f64*/
+        set brake(value: number /*f64*/)
         
         /** The steering angle for the wheel, in radians. Setting this to a non-zero value will result in the vehicle turning when it's moving. */
-        steering: number /*f64*/
+        get steering(): number /*f64*/
+        set steering(value: number /*f64*/)
         
         /** If `true`, this wheel transfers engine force to the ground to propel the vehicle forward. This value is used in conjunction with [member VehicleBody3D.engine_force] and ignored if you are using the per-wheel [member engine_force] value instead. */
-        use_as_traction: boolean
+        get use_as_traction(): boolean
+        set use_as_traction(value: boolean)
         
         /** If `true`, this wheel will be turned when the car steers. This value is used in conjunction with [member VehicleBody3D.steering] and ignored if you are using the per-wheel [member steering] value instead. */
-        use_as_steering: boolean
+        get use_as_steering(): boolean
+        set use_as_steering(value: boolean)
         
         /** This value affects the roll of your vehicle. If set to 1.0 for all wheels, your vehicle will resist body roll, while a value of 0.0 will be prone to rolling over. */
-        wheel_roll_influence: number /*f64*/
+        get wheel_roll_influence(): number /*f64*/
+        set wheel_roll_influence(value: number /*f64*/)
         
         /** The radius of the wheel in meters. */
-        wheel_radius: number /*f64*/
+        get wheel_radius(): number /*f64*/
+        set wheel_radius(value: number /*f64*/)
         
         /** This is the distance in meters the wheel is lowered from its origin point. Don't set this to 0.0 and move the wheel into position, instead move the origin point of your wheel (the gizmo in Godot) to the position the wheel will take when bottoming out, then use the rest length to move the wheel down to the position it should be in when the car is in rest. */
-        wheel_rest_length: number /*f64*/
+        get wheel_rest_length(): number /*f64*/
+        set wheel_rest_length(value: number /*f64*/)
         
         /** This determines how much grip this wheel has. It is combined with the friction setting of the surface the wheel is in contact with. 0.0 means no grip, 1.0 is normal grip. For a drift car setup, try setting the grip of the rear wheels slightly lower than the front wheels, or use a lower value to simulate tire wear.  
          *  It's best to set this to 1.0 when starting out.  
          */
-        wheel_friction_slip: number /*f64*/
+        get wheel_friction_slip(): number /*f64*/
+        set wheel_friction_slip(value: number /*f64*/)
         
         /** This is the distance the suspension can travel. As Godot units are equivalent to meters, keep this setting relatively low. Try a value between 0.1 and 0.3 depending on the type of car. */
-        suspension_travel: number /*f64*/
+        get suspension_travel(): number /*f64*/
+        set suspension_travel(value: number /*f64*/)
         
         /** This value defines the stiffness of the suspension. Use a value lower than 50 for an off-road car, a value between 50 and 100 for a race car and try something around 200 for something like a Formula 1 car. */
-        suspension_stiffness: number /*f64*/
+        get suspension_stiffness(): number /*f64*/
+        set suspension_stiffness(value: number /*f64*/)
         
         /** The maximum force the spring can resist. This value should be higher than a quarter of the [member RigidBody3D.mass] of the [VehicleBody3D] or the spring will not carry the weight of the vehicle. Good results are often obtained by a value that is about 3× to 4× this number. */
-        suspension_max_force: number /*f64*/
+        get suspension_max_force(): number /*f64*/
+        set suspension_max_force(value: number /*f64*/)
         
         /** The damping applied to the spring when the spring is being compressed. This value should be between 0.0 (no damping) and 1.0. A value of 0.0 means the car will keep bouncing as the spring keeps its energy. A good value for this is around 0.3 for a normal car, 0.5 for a race car. */
-        damping_compression: number /*f64*/
+        get damping_compression(): number /*f64*/
+        set damping_compression(value: number /*f64*/)
         
         /** The damping applied to the spring when relaxing. This value should be between 0.0 (no damping) and 1.0. This value should always be slightly higher than the [member damping_compression] property. For a [member damping_compression] value of 0.3, try a relaxation value of 0.5. */
-        damping_relaxation: number /*f64*/
+        get damping_relaxation(): number /*f64*/
+        set damping_relaxation(value: number /*f64*/)
     }
     class VehicleWheel3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -1174,7 +3396,8 @@ declare module "godot" {
         /** The video file path or URI that this [VideoStream] resource handles.  
          *  For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv` extension.  
          */
-        file: string
+        get file(): string
+        set file(value: string)
     }
     /** Internal class used by [VideoStream] to manage playback state when played from a [VideoStreamPlayer].  
      *  	  
@@ -1279,40 +3502,51 @@ declare module "godot" {
         get_video_texture(): Texture2D
         
         /** The embedded audio track to play. */
-        audio_track: number /*i64*/
+        get audio_track(): number /*i64*/
+        set audio_track(value: number /*i64*/)
         
         /** The assigned video stream. See description for supported formats. */
-        stream: VideoStream
+        get stream(): VideoStream
+        set stream(value: VideoStream)
         
         /** Audio volume in dB. */
-        volume_db: number /*f64*/
+        get volume_db(): number /*f64*/
+        set volume_db(value: number /*f64*/)
         
         /** Audio volume as a linear value. */
-        volume: number /*f64*/
+        get volume(): number /*f64*/
+        set volume(value: number /*f64*/)
         
         /** If `true`, playback starts when the scene loads. */
-        autoplay: boolean
+        get autoplay(): boolean
+        set autoplay(value: boolean)
         
         /** If `true`, the video is paused. */
-        paused: boolean
+        get paused(): boolean
+        set paused(value: boolean)
         
         /** If `true`, the video scales to the control size. Otherwise, the control minimum size will be automatically adjusted to match the video stream's dimensions. */
-        expand: boolean
+        get expand(): boolean
+        set expand(value: boolean)
         
         /** If `true`, the video restarts when it reaches its end. */
-        loop: boolean
+        get loop(): boolean
+        set loop(value: boolean)
         
         /** Amount of time in milliseconds to store in buffer while playing. */
-        buffering_msec: number /*i64*/
+        get buffering_msec(): number /*i64*/
+        set buffering_msec(value: number /*i64*/)
         
         /** The current position of the stream, in seconds.  
          *      
          *  **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDExtension add-on.  
          */
-        stream_position: number /*f64*/
+        get stream_position(): number /*f64*/
+        set stream_position(value: number /*f64*/)
         
         /** Audio bus to use for sound playback. */
-        bus: StringName
+        get bus(): StringName
+        set bus(value: StringName)
         
         /** Emitted when playback is finished. */
         readonly finished: Signal //  => void
@@ -1739,50 +3973,64 @@ declare module "godot" {
         get_vrs_texture(): Texture2D
         
         /** Disable 3D rendering (but keep 2D rendering). */
-        disable_3d: boolean
+        get disable_3d(): boolean
+        set disable_3d(value: boolean)
         
         /** If `true`, the viewport will use the primary XR interface to render XR output. When applicable this can result in a stereoscopic image and the resulting render being output to a headset. */
-        use_xr: boolean
+        get use_xr(): boolean
+        set use_xr(value: boolean)
         
         /** If `true`, the viewport will use a unique copy of the [World3D] defined in [member world_3d]. */
-        own_world_3d: boolean
+        get own_world_3d(): boolean
+        set own_world_3d(value: boolean)
         
         /** The custom [World3D] which can be used as 3D environment source. */
-        world_3d: World3D
+        get world_3d(): World3D
+        set world_3d(value: World3D)
         
         /** The custom [World2D] which can be used as 2D environment source. */
-        world_2d: World2D
+        get world_2d(): World2D
+        set world_2d(value: World2D)
         
         /** If `true`, the viewport should render its background as transparent. */
-        transparent_bg: boolean
+        get transparent_bg(): boolean
+        set transparent_bg(value: boolean)
         
         /** If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this is instead done by the first parent viewport that is set to handle input locally.  
          *  A [SubViewportContainer] will automatically set this property to `false` for the [Viewport] contained inside of it.  
          *  See also [method set_input_as_handled] and [method is_input_handled].  
          */
-        handle_input_locally: boolean
-        snap_2d_transforms_to_pixel: boolean
-        snap_2d_vertices_to_pixel: boolean
+        get handle_input_locally(): boolean
+        set handle_input_locally(value: boolean)
+        get snap_2d_transforms_to_pixel(): boolean
+        set snap_2d_transforms_to_pixel(value: boolean)
+        get snap_2d_vertices_to_pixel(): boolean
+        set snap_2d_vertices_to_pixel(value: boolean)
         
         /** The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. This has no effect on shader-induced aliasing or texture aliasing. */
-        msaa_2d: number /*i64*/
+        get msaa_2d(): number /*i64*/
+        set msaa_2d(value: number /*i64*/)
         
         /** The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [member scaling_3d_mode] for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing. */
-        msaa_3d: number /*i64*/
+        get msaa_3d(): number /*i64*/
+        set msaa_3d(value: number /*i64*/)
         
         /** Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry. */
-        screen_space_aa: number /*i64*/
+        get screen_space_aa(): number /*i64*/
+        set screen_space_aa(value: number /*i64*/)
         
         /** Enables Temporal Anti-Aliasing for this viewport. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion.  
          *      
          *  **Note:** The implementation is not complete yet, some visual instances such as particles and skinned meshes may show artifacts.  
          */
-        use_taa: boolean
+        get use_taa(): boolean
+        set use_taa(value: boolean)
         
         /** If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is  *not*  affected by debanding unless the [member Environment.background_mode] is [constant Environment.BG_CANVAS]. See also [member ProjectSettings.rendering/anti_aliasing/quality/use_debanding].  
          *  In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.  
          */
-        use_debanding: boolean
+        get use_debanding(): boolean
+        set use_debanding(value: boolean)
         
         /** If `true`, [OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this viewport. For the root viewport, [member ProjectSettings.rendering/occlusion_culling/use_occlusion_culling] must be set to `true` instead.  
          *      
@@ -1790,34 +4038,40 @@ declare module "godot" {
          *      
          *  **Note:** Due to memory constraints, occlusion culling is not supported by default in Web export templates. It can be enabled by compiling custom Web export templates with `module_raycast_enabled=yes`.  
          */
-        use_occlusion_culling: boolean
+        get use_occlusion_culling(): boolean
+        set use_occlusion_culling(value: boolean)
         
         /** The automatic LOD bias to use for meshes rendered within the [Viewport] (this is analogous to [member ReflectionProbe.mesh_lod_threshold]). Higher values will use less detailed versions of meshes that have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [member mesh_lod_threshold] to improve performance at the cost of geometry detail.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/mesh_lod/lod_change/threshold_pixels] project setting.  
          *      
          *  **Note:** [member mesh_lod_threshold] does not affect [GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).  
          */
-        mesh_lod_threshold: number /*f64*/
+        get mesh_lod_threshold(): number /*f64*/
+        set mesh_lod_threshold(value: number /*f64*/)
         
         /** The overlay mode for test rendered geometry in debug purposes. */
-        debug_draw: number /*i64*/
+        get debug_draw(): number /*i64*/
+        set debug_draw(value: number /*i64*/)
         
         /** If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients.  
          *      
          *  **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.  
          */
-        use_hdr_2d: boolean
+        get use_hdr_2d(): boolean
+        set use_hdr_2d(value: boolean)
         
         /** Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/mode] project setting.  
          */
-        scaling_3d_mode: number /*i64*/
+        get scaling_3d_mode(): number /*i64*/
+        set scaling_3d_mode(value: number /*i64*/)
         
         /** Scales the 3D render buffer based on the viewport size uses an image filter specified in [member ProjectSettings.rendering/scaling_3d/mode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [member ProjectSettings.rendering/anti_aliasing/quality/msaa_3d] for multi-sample antialiasing, which is significantly cheaper but only smooths the edges of polygons.  
          *  When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/scale] project setting.  
          */
-        scaling_3d_scale: number /*f64*/
+        get scaling_3d_scale(): number /*f64*/
+        set scaling_3d_scale(value: number /*f64*/)
         
         /** Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).  
          *  Enabling temporal antialiasing ([member use_taa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([member screen_space_aa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this value.  
@@ -1825,39 +4079,48 @@ declare module "godot" {
          *  **Note:** If [member scaling_3d_scale] is lower than `1.0` (exclusive), [member texture_mipmap_bias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `log2(scaling_3d_scale) + mipmap_bias`.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/textures/default_filters/texture_mipmap_bias] project setting.  
          */
-        texture_mipmap_bias: number /*f64*/
+        get texture_mipmap_bias(): number /*f64*/
+        set texture_mipmap_bias(value: number /*f64*/)
         
         /** Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/fsr_sharpness] project setting.  
          */
-        fsr_sharpness: number /*f64*/
+        get fsr_sharpness(): number /*f64*/
+        set fsr_sharpness(value: number /*f64*/)
         
         /** The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not support VRS this property is ignored. */
-        vrs_mode: number /*i64*/
+        get vrs_mode(): number /*i64*/
+        set vrs_mode(value: number /*i64*/)
         
         /** Texture to use when [member vrs_mode] is set to [constant Viewport.VRS_TEXTURE].  
          *  The texture  *must*  use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:  
          *    
          */
-        vrs_texture: Texture2D
+        get vrs_texture(): Texture2D
+        set vrs_texture(value: Texture2D)
         
         /** Sets the default filter mode used by [CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options. */
-        canvas_item_default_texture_filter: number /*i64*/
+        get canvas_item_default_texture_filter(): number /*i64*/
+        set canvas_item_default_texture_filter(value: number /*i64*/)
         
         /** Sets the default repeat mode used by [CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options. */
-        canvas_item_default_texture_repeat: number /*i64*/
+        get canvas_item_default_texture_repeat(): number /*i64*/
+        set canvas_item_default_texture_repeat(value: number /*i64*/)
         
         /** If `true`, the viewport will process 2D audio streams. */
-        audio_listener_enable_2d: boolean
+        get audio_listener_enable_2d(): boolean
+        set audio_listener_enable_2d(value: boolean)
         
         /** If `true`, the viewport will process 3D audio streams. */
-        audio_listener_enable_3d: boolean
+        get audio_listener_enable_3d(): boolean
+        set audio_listener_enable_3d(value: boolean)
         
         /** If `true`, the objects rendered by viewport become subjects of mouse picking process.  
          *      
          *  **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected in a non-deterministic order, which can be different in each picking process.  
          */
-        physics_object_picking: boolean
+        get physics_object_picking(): boolean
+        set physics_object_picking(value: boolean)
         
         /** If `true`, objects receive mouse picking events sorted primarily by their [member CanvasItem.z_index] and secondarily by their position in the scene tree. If `false`, the order is undetermined.  
          *      
@@ -1865,36 +4128,47 @@ declare module "godot" {
          *      
          *  **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64 simultaneously pickable objects, it is not guaranteed that the object with the highest [member CanvasItem.z_index] receives the picking event.  
          */
-        physics_object_picking_sort: boolean
+        get physics_object_picking_sort(): boolean
+        set physics_object_picking_sort(value: boolean)
         
         /** If `true`, the viewport will not receive input events. */
-        gui_disable_input: boolean
+        get gui_disable_input(): boolean
+        set gui_disable_input(value: boolean)
         
         /** If `true`, the GUI controls on the viewport will lay pixel perfectly. */
-        gui_snap_controls_to_pixels: boolean
+        get gui_snap_controls_to_pixels(): boolean
+        set gui_snap_controls_to_pixels(value: boolean)
         
         /** If `true`, sub-windows (popups and dialogs) will be embedded inside application window as control-like nodes. If `false`, they will appear as separate windows handled by the operating system. */
-        gui_embed_subwindows: boolean
-        sdf_oversize: number /*i64*/
-        sdf_scale: number /*i64*/
+        get gui_embed_subwindows(): boolean
+        set gui_embed_subwindows(value: boolean)
+        get sdf_oversize(): number /*i64*/
+        set sdf_oversize(value: number /*i64*/)
+        get sdf_scale(): number /*i64*/
+        set sdf_scale(value: number /*i64*/)
         
         /** The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the nearest power of 2.  
          *      
          *  **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).  
          */
-        positional_shadow_atlas_size: number /*i64*/
+        get positional_shadow_atlas_size(): number /*i64*/
+        set positional_shadow_atlas_size(value: number /*i64*/)
         
         /** Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices. */
-        positional_shadow_atlas_16_bits: boolean
+        get positional_shadow_atlas_16_bits(): boolean
+        set positional_shadow_atlas_16_bits(value: boolean)
         
         /** The canvas transform of the viewport, useful for changing the on-screen positions of all child [CanvasItem]s. This is relative to the global canvas transform of the viewport. */
-        canvas_transform: Transform2D
+        get canvas_transform(): Transform2D
+        set canvas_transform(value: Transform2D)
         
         /** The global canvas transform of the viewport. The canvas transform is relative to this. */
-        global_canvas_transform: Transform2D
+        get global_canvas_transform(): Transform2D
+        set global_canvas_transform(value: Transform2D)
         
         /** The rendering layers in which this [Viewport] renders [CanvasItem] nodes. */
-        canvas_cull_mask: number /*i64*/
+        get canvas_cull_mask(): number /*i64*/
+        set canvas_cull_mask(value: number /*i64*/)
         
         /** Emitted when the size of the viewport is changed, whether by resizing of window, or some other means. */
         readonly size_changed: Signal //  => void
@@ -1918,7 +4192,8 @@ declare module "godot" {
          *      
          *  **Note:** In the editor, this path is automatically updated when the target viewport or one of its ancestors is renamed or moved. At runtime, the path may not be able to automatically update due to the inability to determine the scene root.  
          */
-        viewport_path: NodePath
+        get viewport_path(): NodePath
+        set viewport_path(value: NodePath)
     }
     namespace VisibleOnScreenEnabler2D {
         enum EnableMode {
@@ -1943,10 +4218,12 @@ declare module "godot" {
         get_enable_node_path(): NodePath
         
         /** Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED]. */
-        enable_mode: number /*i64*/
+        get enable_mode(): number /*i64*/
+        set enable_mode(value: number /*i64*/)
         
         /** The path to the target node, relative to the [VisibleOnScreenEnabler2D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler2D] is inside the scene tree) and every time the [VisibleOnScreenEnabler2D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
-        enable_node_path: NodePath
+        get enable_node_path(): NodePath
+        set enable_node_path(value: NodePath)
     }
     namespace VisibleOnScreenEnabler3D {
         enum EnableMode {
@@ -1971,10 +4248,12 @@ declare module "godot" {
         get_enable_node_path(): NodePath
         
         /** Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED]. */
-        enable_mode: number /*i64*/
+        get enable_mode(): number /*i64*/
+        set enable_mode(value: number /*i64*/)
         
         /** The path to the target node, relative to the [VisibleOnScreenEnabler3D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler3D] is inside the scene tree) and every time the [VisibleOnScreenEnabler3D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
-        enable_node_path: NodePath
+        get enable_node_path(): NodePath
+        set enable_node_path(value: NodePath)
     }
     /** A rectangular region of 2D space that detects whether it is visible on screen.  
      *  	  
@@ -1991,7 +4270,8 @@ declare module "godot" {
         is_on_screen(): boolean
         
         /** The VisibleOnScreenNotifier2D's bounding rectangle. */
-        rect: Rect2
+        get rect(): Rect2
+        set rect(value: Rect2)
         
         /** Emitted when the VisibleOnScreenNotifier2D enters the screen. */
         readonly screen_entered: Signal //  => void
@@ -2013,7 +4293,8 @@ declare module "godot" {
         is_on_screen(): boolean
         
         /** The [VisibleOnScreenNotifier3D]'s bounding box. */
-        aabb: AABB
+        get aabb(): AABB
+        set aabb(value: AABB)
         
         /** Emitted when the [VisibleOnScreenNotifier3D] enters the screen. */
         readonly screen_entered: Signal //  => void
@@ -2061,15 +4342,18 @@ declare module "godot" {
          *      
          *  **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [member GeometryInstance3D.gi_mode] to [constant GeometryInstance3D.GI_MODE_DISABLED] for meshes and [member Light3D.light_bake_mode] to [constant Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.  
          */
-        layers: number /*i64*/
+        get layers(): number /*i64*/
+        set layers(value: number /*i64*/)
         
         /** The amount by which the depth of this [VisualInstance3D] will be adjusted when sorting by depth. Uses the same units as the engine (which are typically meters). Adjusting it to a higher value will make the [VisualInstance3D] reliably draw on top of other [VisualInstance3D]s that are otherwise positioned at the same spot. To ensure it always draws on top of other objects around it (not positioned at the same spot), set the value to be greater than the distance between this [VisualInstance3D] and the other nearby [VisualInstance3D]s. */
-        sorting_offset: number /*f64*/
+        get sorting_offset(): number /*f64*/
+        set sorting_offset(value: number /*f64*/)
         
         /** If `true`, the object is sorted based on the [AABB] center. The object will be sorted based on the global position otherwise.  
          *  The [AABB] center based sorting is generally more accurate for 3D models. The position based sorting instead allows to better control the drawing order when working with [GPUParticles3D] and [CPUParticles3D].  
          */
-        sorting_use_aabb_center: boolean
+        get sorting_use_aabb_center(): boolean
+        set sorting_use_aabb_center(value: boolean)
     }
     namespace VisualShader {
         enum Type {
@@ -2214,7 +4498,8 @@ declare module "godot" {
         _update_shader(): void
         
         /** The offset vector of the whole graph. */
-        graph_offset: Vector2
+        get graph_offset(): Vector2
+        set graph_offset(value: Vector2)
     }
     class VisualShaderConversionPlugin extends EditorResourceConversionPlugin {
     }
@@ -2284,9 +4569,12 @@ declare module "godot" {
         get_default_input_values(): Array
         
         /** Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview. */
-        output_port_for_preview: number /*i64*/
-        default_input_values: Array
-        expanded_output_ports: Array
+        get output_port_for_preview(): number /*i64*/
+        set output_port_for_preview(value: number /*i64*/)
+        get default_input_values(): Array
+        set default_input_values(value: Array)
+        get expanded_output_ports(): Array
+        set expanded_output_ports(value: Array)
     }
     namespace VisualShaderNodeBillboard {
         enum BillboardType {
@@ -2317,10 +4605,12 @@ declare module "godot" {
         is_keep_scale_enabled(): boolean
         
         /** Controls how the object faces the camera. See [enum BillboardType]. */
-        billboard_type: number /*i64*/
+        get billboard_type(): number /*i64*/
+        set billboard_type(value: number /*i64*/)
         
         /** If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. */
-        keep_scale: boolean
+        get keep_scale(): boolean
+        set keep_scale(value: boolean)
     }
     /** A boolean constant to be used within the visual shader graph.  
      *  	  
@@ -2331,7 +4621,8 @@ declare module "godot" {
         get_constant(): boolean
         
         /** A boolean constant which represents a state of this node. */
-        constant: boolean
+        get constant(): boolean
+        set constant(value: boolean)
     }
     /** A boolean parameter to be used within the visual shader graph.  
      *  	  
@@ -2344,10 +4635,12 @@ declare module "godot" {
         get_default_value(): boolean
         
         /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** A default value to be assigned within the shader. */
-        default_value: boolean
+        get default_value(): boolean
+        set default_value(value: boolean)
     }
     namespace VisualShaderNodeClamp {
         enum OpType {
@@ -2382,7 +4675,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeClamp.OpType
         
         /** A type of operands and returned value. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
     }
     /** A [Color] constant to be used within the visual shader graph.  
      *  	  
@@ -2393,7 +4687,8 @@ declare module "godot" {
         get_constant(): Color
         
         /** A [Color] constant which represents a state of this node. */
-        constant: Color
+        get constant(): Color
+        set constant(value: Color)
     }
     namespace VisualShaderNodeColorFunc {
         enum Function {
@@ -2426,7 +4721,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeColorFunc.Function
         
         /** A function to be applied to the input color. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
     }
     namespace VisualShaderNodeColorOp {
         enum Operator {
@@ -2488,7 +4784,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeColorOp.Operator
         
         /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        operator: number /*i64*/
+        get operator(): number /*i64*/
+        set operator(value: number /*i64*/)
     }
     /** A [Color] parameter to be used within the visual shader graph.  
      *  	  
@@ -2501,10 +4798,12 @@ declare module "godot" {
         get_default_value(): Color
         
         /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** A default value to be assigned within the shader. */
-        default_value: Color
+        get default_value(): Color
+        set default_value(value: Color)
     }
     /** A comment node to be placed on visual shader graph.  
      *  	  
@@ -2517,10 +4816,12 @@ declare module "godot" {
         get_description(): string
         
         /** A title of the node. */
-        title: string
+        get title(): string
+        set title(value: string)
         
         /** An additional description which placed below the title. */
-        description: string
+        get description(): string
+        set description(value: string)
     }
     namespace VisualShaderNodeCompare {
         enum ComparisonType {
@@ -2597,13 +4898,16 @@ declare module "godot" {
         get_condition(): VisualShaderNodeCompare.Condition
         
         /** The type to be used in the comparison. See [enum ComparisonType] for options. */
-        type: number /*i64*/
+        get type(): number /*i64*/
+        set type(value: number /*i64*/)
         
         /** A comparison function. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
         
         /** Extra condition which is applied if [member type] is set to [constant CTYPE_VECTOR_3D]. */
-        condition: number /*i64*/
+        get condition(): number /*i64*/
+        set condition(value: number /*i64*/)
     }
     /** A base type for the constants within the visual shader graph.  
      *  	  
@@ -2649,13 +4953,16 @@ declare module "godot" {
         get_texture_type(): VisualShaderNodeCubemap.TextureType
         
         /** Defines which source should be used for the sampling. See [enum Source] for options. */
-        source: number /*i64*/
+        get source(): number /*i64*/
+        set source(value: number /*i64*/)
         
         /** The [Cubemap] texture to sample when using [constant SOURCE_TEXTURE] as [member source]. */
-        cube_map: Cubemap
+        get cube_map(): Cubemap
+        set cube_map(value: Cubemap)
         
         /** Defines the type of data provided by the source texture. See [enum TextureType] for options. */
-        texture_type: number /*i64*/
+        get texture_type(): number /*i64*/
+        set texture_type(value: number /*i64*/)
     }
     /** A [Cubemap] parameter node to be used within the visual shader graph.  
      *  	  
@@ -2672,7 +4979,8 @@ declare module "godot" {
         get_texture(): CurveTexture
         
         /** The source texture. */
-        texture: CurveTexture
+        get texture(): CurveTexture
+        set texture(value: CurveTexture)
     }
     /** Performs a [CurveXYZTexture] lookup within the visual shader graph.  
      *  	  
@@ -2683,7 +4991,8 @@ declare module "godot" {
         get_texture(): CurveXYZTexture
         
         /** The source texture. */
-        texture: CurveXYZTexture
+        get texture(): CurveXYZTexture
+        set texture(value: CurveXYZTexture)
     }
     /** Virtual class to define custom [VisualShaderNode]s for use in the Visual Shader Editor.  
      *  	  
@@ -2810,8 +5119,10 @@ declare module "godot" {
         
         /** Returns the selected index of the drop-down list option within a graph. You may use this function to define the specific behavior in the [method _get_code] or [method _get_global_code]. */
         get_option_index(option: number /*i64*/): number /*i64*/
-        initialized: boolean
-        properties: string
+        get initialized(): boolean
+        set initialized(value: boolean)
+        get properties(): string
+        set properties(value: string)
     }
     namespace VisualShaderNodeDerivativeFunc {
         enum OpType {
@@ -2870,13 +5181,16 @@ declare module "godot" {
         get_precision(): VisualShaderNodeDerivativeFunc.Precision
         
         /** A type of operands and returned value. See [enum OpType] for options. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
         
         /** A derivative function type. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
         
         /** Sets the level of precision to use for the derivative function. See [enum Precision] for options. When using the GL Compatibility renderer, this setting has no effect. */
-        precision: number /*i64*/
+        get precision(): number /*i64*/
+        set precision(value: number /*i64*/)
     }
     /** Calculates the determinant of a [Transform3D] within the visual shader graph.  
      *  	  
@@ -2905,7 +5219,8 @@ declare module "godot" {
         get_expression(): string
         
         /** An expression in Godot Shading Language, which will be injected at the start of the graph's matching shader function (`vertex`, `fragment`, or `light`), and thus cannot be used to declare functions, varyings, uniforms, or global constants. */
-        expression: string
+        get expression(): string
+        set expression(value: string)
     }
     /** Returns the vector that points in the same direction as a reference vector within the visual shader graph.  
      *  	  
@@ -2922,7 +5237,8 @@ declare module "godot" {
         get_constant(): number /*f64*/
         
         /** A floating-point constant which represents a state of this node. */
-        constant: number /*f64*/
+        get constant(): number /*f64*/
+        set constant(value: number /*f64*/)
     }
     namespace VisualShaderNodeFloatFunc {
         enum Function {
@@ -3035,7 +5351,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeFloatFunc.Function
         
         /** A function to be applied to the scalar. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
     }
     namespace VisualShaderNodeFloatOp {
         enum Operator {
@@ -3082,7 +5399,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeFloatOp.Operator
         
         /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        operator: number /*i64*/
+        get operator(): number /*i64*/
+        set operator(value: number /*i64*/)
     }
     namespace VisualShaderNodeFloatParameter {
         enum Hint {
@@ -3118,22 +5436,28 @@ declare module "godot" {
         get_default_value(): number /*f64*/
         
         /** A hint applied to the uniform, which controls the values it can take when set through the Inspector. */
-        hint: number /*i64*/
+        get hint(): number /*i64*/
+        set hint(value: number /*i64*/)
         
         /** Maximum value for range hints. Used if [member hint] is set to [constant HINT_RANGE] or [constant HINT_RANGE_STEP]. */
-        min: number /*f64*/
+        get min(): number /*f64*/
+        set min(value: number /*f64*/)
         
         /** Minimum value for range hints. Used if [member hint] is set to [constant HINT_RANGE] or [constant HINT_RANGE_STEP]. */
-        max: number /*f64*/
+        get max(): number /*f64*/
+        set max(value: number /*f64*/)
         
         /** Step (increment) value for the range hint with step. Used if [member hint] is set to [constant HINT_RANGE_STEP]. */
-        step: number /*f64*/
+        get step(): number /*f64*/
+        set step(value: number /*f64*/)
         
         /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** A default value to be assigned within the shader. */
-        default_value: number /*f64*/
+        get default_value(): number /*f64*/
+        set default_value(value: number /*f64*/)
     }
     /** A Fresnel effect to be used within the visual shader graph.  
      *  	  
@@ -3233,7 +5557,8 @@ declare module "godot" {
         get_input_real_name(): string
         
         /** One of the several input constants in lower-case style like: "vertex" (`VERTEX`) or "point_size" (`POINT_SIZE`). */
-        input_name: StringName
+        get input_name(): StringName
+        set input_name(value: StringName)
         
         /** Emitted when input is changed via [member input_name]. */
         readonly input_type_changed: Signal //  => void
@@ -3247,7 +5572,8 @@ declare module "godot" {
         get_constant(): number /*i64*/
         
         /** An integer constant which represents a state of this node. */
-        constant: number /*i64*/
+        get constant(): number /*i64*/
+        set constant(value: number /*i64*/)
     }
     namespace VisualShaderNodeIntFunc {
         enum Function {
@@ -3276,7 +5602,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeIntFunc.Function
         
         /** A function to be applied to the scalar. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
     }
     namespace VisualShaderNodeIntOp {
         enum Operator {
@@ -3329,7 +5656,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeIntOp.Operator
         
         /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        operator: number /*i64*/
+        get operator(): number /*i64*/
+        set operator(value: number /*i64*/)
     }
     namespace VisualShaderNodeIntParameter {
         enum Hint {
@@ -3365,22 +5693,28 @@ declare module "godot" {
         get_default_value(): number /*i64*/
         
         /** Range hint of this node. Use it to customize valid parameter range. */
-        hint: number /*i64*/
+        get hint(): number /*i64*/
+        set hint(value: number /*i64*/)
         
         /** The minimum value this parameter can take. [member hint] must be either [constant HINT_RANGE] or [constant HINT_RANGE_STEP] for this to take effect. */
-        min: number /*i64*/
+        get min(): number /*i64*/
+        set min(value: number /*i64*/)
         
         /** The maximum value this parameter can take. [member hint] must be either [constant HINT_RANGE] or [constant HINT_RANGE_STEP] for this to take effect. */
-        max: number /*i64*/
+        get max(): number /*i64*/
+        set max(value: number /*i64*/)
         
         /** The step between parameter's values. Forces the parameter to be a multiple of the given value. [member hint] must be [constant HINT_RANGE_STEP] for this to take effect. */
-        step: number /*i64*/
+        get step(): number /*i64*/
+        set step(value: number /*i64*/)
         
         /** If `true`, the node will have a custom default value. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** Default value of this parameter, which will be used if not set externally. [member default_value_enabled] must be enabled; defaults to `0` otherwise. */
-        default_value: number /*i64*/
+        get default_value(): number /*i64*/
+        set default_value(value: number /*i64*/)
     }
     namespace VisualShaderNodeIs {
         enum Function {
@@ -3403,7 +5737,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeIs.Function
         
         /** The comparison function. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
     }
     /** A visual shader node that returns the depth value of the DEPTH_TEXTURE node in a linear space.  
      *  	  
@@ -3447,7 +5782,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeMix.OpType
         
         /** A type of operands and returned value. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
     }
     namespace VisualShaderNodeMultiplyAdd {
         enum OpType {
@@ -3476,7 +5812,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeMultiplyAdd.OpType
         
         /** A type of operands and returned value. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
     }
     /** Calculates an outer product of two vectors within the visual shader graph.  
      *  	  
@@ -3516,10 +5853,12 @@ declare module "godot" {
         get_qualifier(): VisualShaderNodeParameter.Qualifier
         
         /** Name of the parameter, by which it can be accessed through the [ShaderMaterial] properties. */
-        parameter_name: StringName
+        get parameter_name(): StringName
+        set parameter_name(value: StringName)
         
         /** Defines the scope of the parameter. */
-        qualifier: number /*i64*/
+        get qualifier(): number /*i64*/
+        set qualifier(value: number /*i64*/)
     }
     /** A reference to an existing [VisualShaderNodeParameter].  
      *  	  
@@ -3532,8 +5871,10 @@ declare module "godot" {
         _get_parameter_type(): number /*i64*/
         
         /** The name of the parameter which this reference points to. */
-        parameter_name: StringName
-        param_type: number /*i64*/
+        get parameter_name(): StringName
+        set parameter_name(value: StringName)
+        get param_type(): number /*i64*/
+        set param_type(value: number /*i64*/)
     }
     namespace VisualShaderNodeParticleAccelerator {
         enum Mode {
@@ -3559,7 +5900,8 @@ declare module "godot" {
         get_mode(): VisualShaderNodeParticleAccelerator.Mode
         
         /** Defines in what manner the particles will be accelerated. */
-        mode: number /*i64*/
+        get mode(): number /*i64*/
+        set mode(value: number /*i64*/)
     }
     /** A visual shader node that makes particles emitted in a box shape.  
      *  	  
@@ -3600,7 +5942,8 @@ declare module "godot" {
         get_flags(): VisualShaderNodeParticleEmit.EmitFlags
         
         /** Flags used to override the properties defined in the sub-emitter's process material. */
-        flags: number /*i64*/
+        get flags(): number /*i64*/
+        set flags(value: number /*i64*/)
     }
     /** A base class for particle emitters.  
      *  	  
@@ -3611,7 +5954,8 @@ declare module "godot" {
         is_mode_2d(): boolean
         
         /** If `true`, the result of this emitter is projected to 2D space. By default it is `false` and meant for use in 3D space. */
-        mode_2d: boolean
+        get mode_2d(): boolean
+        set mode_2d(value: boolean)
     }
     /** A visual shader node that makes particles emitted in a shape defined by a [Mesh].  
      *  	  
@@ -3626,13 +5970,16 @@ declare module "godot" {
         get_surface_index(): number /*i64*/
         
         /** The [Mesh] that defines emission shape. */
-        mesh: Mesh
+        get mesh(): Mesh
+        set mesh(value: Mesh)
         
         /** If `true`, the particles will emit from all surfaces of the mesh. */
-        use_all_surfaces: boolean
+        get use_all_surfaces(): boolean
+        set use_all_surfaces(value: boolean)
         
         /** Index of the surface that emits particles. [member use_all_surfaces] must be `false` for this to take effect. */
-        surface_index: number /*i64*/
+        get surface_index(): number /*i64*/
+        set surface_index(value: number /*i64*/)
     }
     /** A visual shader helper node for multiplying position and rotation of particles.  
      *  	  
@@ -3643,7 +5990,8 @@ declare module "godot" {
         is_degrees_mode(): boolean
         
         /** If `true`, the angle will be interpreted in degrees instead of radians. */
-        degrees_mode: boolean
+        get degrees_mode(): boolean
+        set degrees_mode(value: boolean)
     }
     /** Visual shader node that defines output values for particle emitting.  
      *  	  
@@ -3678,7 +6026,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeParticleRandomness.OpType
         
         /** A type of operands and returned value. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
     }
     /** A visual shader node that makes particles emitted in a ring shape.  
      *  	  
@@ -3719,7 +6068,8 @@ declare module "godot" {
         get_size(): Vector2
         
         /** The size of the node in the visual shader graph. */
-        size: Vector2
+        get size(): Vector2
+        set size(value: Vector2)
     }
     /** A visual shader node that modifies the rotation of the object using a rotation matrix.  
      *  	  
@@ -3760,7 +6110,8 @@ declare module "godot" {
         get_source(): VisualShaderNodeSample3D.Source
         
         /** An input source type. */
-        source: number /*i64*/
+        get source(): number /*i64*/
+        set source(value: number /*i64*/)
     }
     /** A visual shader node that unpacks the screen normal texture in World Space.  
      *  	  
@@ -3810,7 +6161,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeSmoothStep.OpType
         
         /** A type of operands and returned value. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
     }
     namespace VisualShaderNodeStep {
         enum OpType {
@@ -3848,7 +6200,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeStep.OpType
         
         /** A type of operands and returned value. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
     }
     namespace VisualShaderNodeSwitch {
         enum OpType {
@@ -3889,7 +6242,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeSwitch.OpType
         
         /** A type of operands and returned value. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
     }
     namespace VisualShaderNodeTexture {
         enum Source {
@@ -3947,13 +6301,16 @@ declare module "godot" {
         get_texture_type(): VisualShaderNodeTexture.TextureType
         
         /** Determines the source for the lookup. See [enum Source] for options. */
-        source: number /*i64*/
+        get source(): number /*i64*/
+        set source(value: number /*i64*/)
         
         /** The source texture, if needed for the selected [member source]. */
-        texture: Texture2D
+        get texture(): Texture2D
+        set texture(value: Texture2D)
         
         /** Specifies the type of the texture if [member source] is set to [constant SOURCE_TEXTURE]. See [enum TextureType] for options. */
-        texture_type: number /*i64*/
+        get texture_type(): number /*i64*/
+        set texture_type(value: number /*i64*/)
     }
     /** A 2D texture uniform array to be used within the visual shader graph.  
      *  	  
@@ -3964,7 +6321,8 @@ declare module "godot" {
         get_texture_array(): Texture2DArray
         
         /** A source texture array. Used if [member VisualShaderNodeSample3D.source] is set to [constant VisualShaderNodeSample3D.SOURCE_TEXTURE]. */
-        texture_array: Texture2DArray
+        get texture_array(): Texture2DArray
+        set texture_array(value: Texture2DArray)
     }
     /** A visual shader node for shader parameter (uniform) of type [Texture2DArray].  
      *  	  
@@ -3987,7 +6345,8 @@ declare module "godot" {
         get_texture(): Texture3D
         
         /** A source texture. Used if [member VisualShaderNodeSample3D.source] is set to [constant VisualShaderNodeSample3D.SOURCE_TEXTURE]. */
-        texture: Texture3D
+        get texture(): Texture3D
+        set texture(value: Texture3D)
     }
     /** Provides a 3D texture parameter within the visual shader graph.  
      *  	  
@@ -4107,19 +6466,24 @@ declare module "godot" {
         get_texture_source(): VisualShaderNodeTextureParameter.TextureSource
         
         /** Defines the type of data provided by the source texture. See [enum TextureType] for options. */
-        texture_type: number /*i64*/
+        get texture_type(): number /*i64*/
+        set texture_type(value: number /*i64*/)
         
         /** Sets the default color if no texture is assigned to the uniform. */
-        color_default: number /*i64*/
+        get color_default(): number /*i64*/
+        set color_default(value: number /*i64*/)
         
         /** Sets the texture filtering mode. See [enum TextureFilter] for options. */
-        texture_filter: number /*i64*/
+        get texture_filter(): number /*i64*/
+        set texture_filter(value: number /*i64*/)
         
         /** Sets the texture repeating mode. See [enum TextureRepeat] for options. */
-        texture_repeat: number /*i64*/
+        get texture_repeat(): number /*i64*/
+        set texture_repeat(value: number /*i64*/)
         
         /** Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. See [enum TextureSource] for options. */
-        texture_source: number /*i64*/
+        get texture_source(): number /*i64*/
+        set texture_source(value: number /*i64*/)
     }
     /** Performs a uniform texture lookup with triplanar within the visual shader graph.  
      *  	  
@@ -4154,7 +6518,8 @@ declare module "godot" {
         get_constant(): Transform3D
         
         /** A [Transform3D] constant which represents the state of this node. */
-        constant: Transform3D
+        get constant(): Transform3D
+        set constant(value: Transform3D)
     }
     /** Decomposes a [Transform3D] into four [Vector3]s within the visual shader graph.  
      *  	  
@@ -4183,7 +6548,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeTransformFunc.Function
         
         /** The function to be computed. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
     }
     namespace VisualShaderNodeTransformOp {
         enum Operator {
@@ -4227,7 +6593,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeTransformOp.Operator
         
         /** The type of the operation to be performed on the transforms. See [enum Operator] for options. */
-        operator: number /*i64*/
+        get operator(): number /*i64*/
+        set operator(value: number /*i64*/)
     }
     /** A [Transform3D] parameter for use within the visual shader graph.  
      *  	  
@@ -4240,10 +6607,12 @@ declare module "godot" {
         get_default_value(): Transform3D
         
         /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** A default value to be assigned within the shader. */
-        default_value: Transform3D
+        get default_value(): Transform3D
+        set default_value(value: Transform3D)
     }
     namespace VisualShaderNodeTransformVecMult {
         enum Operator {
@@ -4272,7 +6641,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeTransformVecMult.Operator
         
         /** The multiplication type to be performed. See [enum Operator] for options. */
-        operator: number /*i64*/
+        get operator(): number /*i64*/
+        set operator(value: number /*i64*/)
     }
     /** An unsigned scalar integer constant to be used within the visual shader graph.  
      *  	  
@@ -4283,7 +6653,8 @@ declare module "godot" {
         get_constant(): number /*i64*/
         
         /** An unsigned integer constant which represents a state of this node. */
-        constant: number /*i64*/
+        get constant(): number /*i64*/
+        set constant(value: number /*i64*/)
     }
     namespace VisualShaderNodeUIntFunc {
         enum Function {
@@ -4306,7 +6677,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeUIntFunc.Function
         
         /** A function to be applied to the scalar. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
     }
     namespace VisualShaderNodeUIntOp {
         enum Operator {
@@ -4359,7 +6731,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeUIntOp.Operator
         
         /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        operator: number /*i64*/
+        get operator(): number /*i64*/
+        set operator(value: number /*i64*/)
     }
     /** A visual shader node for shader parameter (uniform) of type unsigned [int].  
      *  	  
@@ -4372,10 +6745,12 @@ declare module "godot" {
         get_default_value(): number /*i64*/
         
         /** If `true`, the node will have a custom default value. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** Default value of this parameter, which will be used if not set externally. [member default_value_enabled] must be enabled; defaults to `0` otherwise. */
-        default_value: number /*i64*/
+        get default_value(): number /*i64*/
+        set default_value(value: number /*i64*/)
     }
     namespace VisualShaderNodeUVFunc {
         enum Function {
@@ -4398,7 +6773,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeUVFunc.Function
         
         /** A function to be applied to the texture coordinates. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
     }
     /** A visual shader node that modifies the texture UV using polar coordinates.  
      *  	  
@@ -4417,10 +6793,12 @@ declare module "godot" {
         get_varying_type(): VisualShader.VaryingType
         
         /** Name of the variable. Must be unique. */
-        varying_name: StringName
+        get varying_name(): StringName
+        set varying_name(value: StringName)
         
         /** Type of the variable. Determines where the variable can be accessed. */
-        varying_type: number /*i64*/
+        get varying_type(): number /*i64*/
+        set varying_type(value: number /*i64*/)
     }
     /** A visual shader node that gets a value of a varying.  
      *  	  
@@ -4443,7 +6821,8 @@ declare module "godot" {
         get_constant(): Vector2
         
         /** A [Vector2] constant which represents the state of this node. */
-        constant: Vector2
+        get constant(): Vector2
+        set constant(value: Vector2)
     }
     /** A [Vector2] parameter to be used within the visual shader graph.  
      *  	  
@@ -4456,10 +6835,12 @@ declare module "godot" {
         get_default_value(): Vector2
         
         /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** A default value to be assigned within the shader. */
-        default_value: Vector2
+        get default_value(): Vector2
+        set default_value(value: Vector2)
     }
     /** A [Vector3] constant to be used within the visual shader graph.  
      *  	  
@@ -4470,7 +6851,8 @@ declare module "godot" {
         get_constant(): Vector3
         
         /** A [Vector3] constant which represents the state of this node. */
-        constant: Vector3
+        get constant(): Vector3
+        set constant(value: Vector3)
     }
     /** A [Vector3] parameter to be used within the visual shader graph.  
      *  	  
@@ -4483,10 +6865,12 @@ declare module "godot" {
         get_default_value(): Vector3
         
         /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** A default value to be assigned within the shader. */
-        default_value: Vector3
+        get default_value(): Vector3
+        set default_value(value: Vector3)
     }
     /** A 4D vector constant to be used within the visual shader graph.  
      *  	  
@@ -4497,7 +6881,8 @@ declare module "godot" {
         get_constant(): Quaternion
         
         /** A 4D vector (represented as a [Quaternion]) constant which represents the state of this node. */
-        constant: Quaternion
+        get constant(): Quaternion
+        set constant(value: Quaternion)
     }
     /** A 4D vector parameter to be used within the visual shader graph.  
      *  	  
@@ -4510,10 +6895,12 @@ declare module "godot" {
         get_default_value(): Vector4
         
         /** Enables usage of the [member default_value]. */
-        default_value_enabled: boolean
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
         
         /** A default value to be assigned within the shader. */
-        default_value: Vector4
+        get default_value(): Vector4
+        set default_value(value: Vector4)
     }
     namespace VisualShaderNodeVectorBase {
         enum OpType {
@@ -4539,7 +6926,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeVectorBase.OpType
         
         /** A vector type that this operation is performed on. */
-        op_type: number /*i64*/
+        get op_type(): number /*i64*/
+        set op_type(value: number /*i64*/)
     }
     /** Composes a [Vector2], [Vector3] or 4D vector (represented as a [Quaternion]) from scalars within the visual shader graph.  
      *  	  
@@ -4673,7 +7061,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeVectorFunc.Function
         
         /** The function to be performed. See [enum Function] for options. */
-        function: number /*i64*/
+        get function(): number /*i64*/
+        set function(value: number /*i64*/)
     }
     /** Returns the length of a [Vector3] within the visual shader graph.  
      *  	  
@@ -4732,7 +7121,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeVectorOp.Operator
         
         /** The operator to be used. See [enum Operator] for options. */
-        operator: number /*i64*/
+        get operator(): number /*i64*/
+        set operator(value: number /*i64*/)
     }
     /** Returns the vector that points in the direction of refraction. For use within the visual shader graph.  
      *  	  
@@ -4790,19 +7180,23 @@ declare module "godot" {
         debug_bake(): void
         
         /** Number of times to subdivide the grid that the [VoxelGI] operates on. A higher number results in finer detail and thus higher visual quality, while lower numbers result in better performance. */
-        subdiv: number /*i64*/
+        get subdiv(): number /*i64*/
+        set subdiv(value: number /*i64*/)
         
         /** The size of the area covered by the [VoxelGI]. If you make the size larger without increasing the subdivisions with [member subdiv], the size of each cell will increase and result in lower detailed lighting.  
          *      
          *  **Note:** Size is clamped to 1.0 unit or more on each axis.  
          */
-        size: Vector3
+        get size(): Vector3
+        set size(value: Vector3)
         
         /** The [CameraAttributes] resource that specifies exposure levels to bake at. Auto-exposure and non exposure properties will be ignored. Exposure settings should be used to reduce the dynamic range present when baking. If exposure is too high, the [VoxelGI] will have banding artifacts or may have over-exposure artifacts. */
-        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
+        get camera_attributes(): CameraAttributesPractical | CameraAttributesPhysical
+        set camera_attributes(value: CameraAttributesPractical | CameraAttributesPhysical)
         
         /** The [VoxelGIData] resource that holds the data for this [VoxelGI]. */
-        data: VoxelGIData
+        get data(): VoxelGIData
+        set data(value: VoxelGIData)
     }
     /** Contains baked voxel global illumination data for use in a [VoxelGI] node.  
      *  	  
@@ -4837,28 +7231,36 @@ declare module "godot" {
         is_using_two_bounces(): boolean
         _set_data(data: Dictionary): void
         _get_data(): Dictionary
-        _data: Dictionary
+        get _data(): Dictionary
+        set _data(value: Dictionary)
         
         /** The dynamic range to use (`1.0` represents a low dynamic range scene brightness). Higher values can be used to provide brighter indirect lighting, at the cost of more visible color banding in dark areas (both in indirect lighting and reflections). To avoid color banding, it's recommended to use the lowest value that does not result in visible light clipping. */
-        dynamic_range: number /*f64*/
+        get dynamic_range(): number /*f64*/
+        set dynamic_range(value: number /*f64*/)
         
         /** The energy of the indirect lighting and reflections produced by the [VoxelGI] node. Higher values result in brighter indirect lighting. If indirect lighting looks too flat, try decreasing [member propagation] while increasing [member energy] at the same time. See also [member use_two_bounces] which influences the indirect lighting's effective brightness. */
-        energy: number /*f64*/
+        get energy(): number /*f64*/
+        set energy(value: number /*f64*/)
         
         /** The normal bias to use for indirect lighting and reflections. Higher values reduce self-reflections visible in non-rough materials, at the cost of more visible light leaking and flatter-looking indirect lighting. To prioritize hiding self-reflections over lighting quality, set [member bias] to `0.0` and [member normal_bias] to a value between `1.0` and `2.0`. */
-        bias: number /*f64*/
+        get bias(): number /*f64*/
+        set bias(value: number /*f64*/)
         
         /** The normal bias to use for indirect lighting and reflections. Higher values reduce self-reflections visible in non-rough materials, at the cost of more visible light leaking and flatter-looking indirect lighting. See also [member bias]. To prioritize hiding self-reflections over lighting quality, set [member bias] to `0.0` and [member normal_bias] to a value between `1.0` and `2.0`. */
-        normal_bias: number /*f64*/
+        get normal_bias(): number /*f64*/
+        set normal_bias(value: number /*f64*/)
         
         /** The multiplier to use when light bounces off a surface. Higher values result in brighter indirect lighting. If indirect lighting looks too flat, try decreasing [member propagation] while increasing [member energy] at the same time. See also [member use_two_bounces] which influences the indirect lighting's effective brightness. */
-        propagation: number /*f64*/
+        get propagation(): number /*f64*/
+        set propagation(value: number /*f64*/)
         
         /** If `true`, performs two bounces of indirect lighting instead of one. This makes indirect lighting look more natural and brighter at a small performance cost. The second bounce is also visible in reflections. If the scene appears too bright after enabling [member use_two_bounces], adjust [member propagation] and [member energy]. */
-        use_two_bounces: boolean
+        get use_two_bounces(): boolean
+        set use_two_bounces(value: boolean)
         
         /** If `true`, [Environment] lighting is ignored by the [VoxelGI] node. If `false`, [Environment] lighting is taken into account by the [VoxelGI] node. [Environment] lighting updates in real-time, which means it can be changed without having to bake the [VoxelGI] node again. */
-        interior: boolean
+        get interior(): boolean
+        set interior(value: boolean)
     }
     class VoxelGIEditorPlugin extends EditorPlugin {
     }
@@ -4941,7 +7343,8 @@ declare module "godot" {
         get_buffered_amount(): number /*i64*/
         
         /** The transfer mode to use when sending outgoing packet. Either text or binary. */
-        write_mode: number /*i64*/
+        get write_mode(): number /*i64*/
+        set write_mode(value: number /*i64*/)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_webrtcdatachannelextension.html */
     class WebRTCDataChannelExtension extends WebRTCDataChannel {
@@ -5203,38 +7606,42 @@ declare module "godot" {
          *  This doesn't have any effect on the interface when already initialized.  
          *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRSessionMode]WebXR's XRSessionMode[/url], including: `"immersive-vr"`, `"immersive-ar"`, and `"inline"`.  
          */
-        session_mode: string
+        get session_mode(): string
+        set session_mode(value: string)
         
         /** A comma-seperated list of required features used by [method XRInterface.initialize] when setting up the WebXR session.  
          *  If a user's browser or device doesn't support one of the given features, initialization will fail and [signal session_failed] will be emitted.  
          *  This doesn't have any effect on the interface when already initialized.  
          *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be listed in either [member required_features] or [member optional_features].  
          */
-        required_features: string
+        get required_features(): string
+        set required_features(value: string)
         
         /** A comma-seperated list of optional features used by [method XRInterface.initialize] when setting up the WebXR session.  
          *  If a user's browser or device doesn't support one of the given features, initialization will continue, but you won't be able to use the requested feature.  
          *  This doesn't have any effect on the interface when already initialized.  
          *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be listed in either [member required_features] or [member optional_features].  
          */
-        optional_features: string
+        get optional_features(): string
+        set optional_features(value: string)
         
         /** A comma-seperated list of reference space types used by [method XRInterface.initialize] when setting up the WebXR session.  
          *  The reference space types are requested in order, and the first one supported by the users device or browser will be used. The [member reference_space_type] property contains the reference space type that was ultimately selected.  
          *  This doesn't have any effect on the interface when already initialized.  
          *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be listed in either [member required_features] or [member optional_features].  
          */
-        requested_reference_space_types: string
+        get requested_reference_space_types(): string
+        set requested_reference_space_types(value: string)
         
         /** The reference space type (from the list of requested types set in the [member requested_reference_space_types] property), that was ultimately used by [method XRInterface.initialize] when setting up the WebXR session.  
          *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpaceType]WebXR's XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be listed in either [member required_features] or [member optional_features].  
          */
-        readonly reference_space_type: string
+        get reference_space_type(): string
         
         /** Indicates if the WebXR session's imagery is visible to the user.  
          *  Possible values come from [url=https://developer.mozilla.org/en-US/docs/Web/API/XRVisibilityState]WebXR's XRVisibilityState[/url], including `"hidden"`, `"visible"`, and `"visible-blurred"`.  
          */
-        readonly visibility_state: string
+        get visibility_state(): string
         
         /** Emitted by [method is_session_supported] to indicate if the given [param session_mode] is supported or not. */
         readonly session_supported: Signal // session_mode: string, supported: boolean => void
@@ -5796,26 +8203,32 @@ declare module "godot" {
          *      
          *  **Note:** This method only works with native windows, i.e. the main window and [Window]-derived nodes when [member Viewport.gui_embed_subwindows] is disabled in the main viewport.  
          */
-        mode: number /*i64*/
+        get mode(): number /*i64*/
+        set mode(value: number /*i64*/)
         
         /** The window's title. If the [Window] is native, title styles set in [Theme] will have no effect. */
-        title: string
+        get title(): string
+        set title(value: string)
         
         /** Specifies the initial type of position for the [Window]. See [enum WindowInitialPosition] constants. */
-        initial_position: number /*i64*/
+        get initial_position(): number /*i64*/
+        set initial_position(value: number /*i64*/)
         
         /** The window's position in pixels.  
          *  If [member ProjectSettings.display/window/subwindows/embed_subwindows] is `false`, the position is in absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`, the window's position is in the coordinates of its parent [Viewport].  
          *      
          *  **Note:** This property only works if [member initial_position] is set to [constant WINDOW_INITIAL_POSITION_ABSOLUTE].  
          */
-        position: Vector2i
+        get position(): Vector2i
+        set position(value: Vector2i)
         
         /** The window's size in pixels. */
-        size: Vector2i
+        get size(): Vector2i
+        set size(value: Vector2i)
         
         /** The screen the window is currently on. */
-        current_screen: number /*i64*/
+        get current_screen(): number /*i64*/
+        set current_screen(value: number /*i64*/)
         
         /** Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.  
          *  Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).  
@@ -5827,67 +8240,83 @@ declare module "godot" {
          *      
          *  **Note:** This property is implemented on Linux (X11), macOS and Windows.  
          */
-        mouse_passthrough_polygon: PackedVector2Array
+        get mouse_passthrough_polygon(): PackedVector2Array
+        set mouse_passthrough_polygon(value: PackedVector2Array)
         
         /** If `true`, the window is visible. */
-        visible: boolean
+        get visible(): boolean
+        set visible(value: boolean)
         
         /** If `true`, the window's size will automatically update when a child node is added or removed, ignoring [member min_size] if the new size is bigger.  
          *  If `false`, you need to call [method child_controls_changed] manually.  
          */
-        wrap_controls: boolean
+        get wrap_controls(): boolean
+        set wrap_controls(value: boolean)
         
         /** If `true`, the [Window] is transient, i.e. it's considered a child of another [Window]. The transient window will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.  
          *  Note that behavior might be different depending on the platform.  
          */
-        transient: boolean
+        get transient(): boolean
+        set transient(value: boolean)
         
         /** If `true`, the [Window] will be in exclusive mode. Exclusive windows are always on top of their parent and will block all input going to the parent [Window].  
          *  Needs [member transient] enabled to work.  
          */
-        exclusive: boolean
+        get exclusive(): boolean
+        set exclusive(value: boolean)
         
         /** If non-zero, the [Window] can't be resized to be smaller than this size.  
          *      
          *  **Note:** This property will be ignored in favor of [method get_contents_minimum_size] if [member wrap_controls] is enabled and if its size is bigger.  
          */
-        min_size: Vector2i
+        get min_size(): Vector2i
+        set min_size(value: Vector2i)
         
         /** If non-zero, the [Window] can't be resized to be bigger than this size.  
          *      
          *  **Note:** This property will be ignored if the value is lower than [member min_size].  
          */
-        max_size: Vector2i
+        get max_size(): Vector2i
+        set max_size(value: Vector2i)
         
         /** If `true`, the [Window] width is expanded to keep the title bar text fully visible. */
-        keep_title_visible: boolean
+        get keep_title_visible(): boolean
+        set keep_title_visible(value: boolean)
         
         /** Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s content will be scaled when the window is resized to a different size. */
-        content_scale_size: Vector2i
+        get content_scale_size(): Vector2i
+        set content_scale_size(value: Vector2i)
         
         /** Specifies how the content is scaled when the [Window] is resized. */
-        content_scale_mode: number /*i64*/
+        get content_scale_mode(): number /*i64*/
+        set content_scale_mode(value: number /*i64*/)
         
         /** Specifies how the content's aspect behaves when the [Window] is resized. The base aspect is determined by [member content_scale_size]. */
-        content_scale_aspect: number /*i64*/
+        get content_scale_aspect(): number /*i64*/
+        set content_scale_aspect(value: number /*i64*/)
         
         /** The policy to use to determine the final scale factor for 2D elements. This affects how [member content_scale_factor] is applied, in addition to the automatic scale factor determined by [member content_scale_size]. */
-        content_scale_stretch: number /*i64*/
+        get content_scale_stretch(): number /*i64*/
+        set content_scale_stretch(value: number /*i64*/)
         
         /** Specifies the base scale of [Window]'s content when its [member size] is equal to [member content_scale_size]. */
-        content_scale_factor: number /*f64*/
+        get content_scale_factor(): number /*f64*/
+        set content_scale_factor(value: number /*f64*/)
         
         /** Toggles if any text should automatically change to its translated version depending on the current locale. */
-        auto_translate: boolean
+        get auto_translate(): boolean
+        set auto_translate(value: boolean)
         
         /** The [Theme] resource this node and all its [Control] and [Window] children use. If a child node has its own [Theme] resource set, theme items are merged with child's definitions having higher priority.  
          *      
          *  **Note:** [Window] styles will have no effect unless the window is embedded.  
          */
-        theme: Theme
+        get theme(): Theme
+        set theme(value: Theme)
         
         /** The name of a theme type variation used by this [Window] to look up its own theme items. See [member Control.theme_type_variation] for more details. */
-        theme_type_variation: string
+        get theme_type_variation(): string
+        set theme_type_variation(value: string)
         
         /** Emitted when the [Window] is currently focused and receives any input, passing the received event as an argument. The event's position, if present, is in the embedder's coordinate system. */
         readonly window_input: Signal // event: InputEvent => void
@@ -5952,16 +8381,16 @@ declare module "godot" {
         get_direct_space_state(): PhysicsDirectSpaceState2D
         
         /** The [RID] of this world's canvas resource. Used by the [RenderingServer] for 2D drawing. */
-        readonly canvas: RID
+        get canvas(): RID
         
         /** The [RID] of this world's physics space resource. Used by the [PhysicsServer2D] for 2D physics, treating it as both a space and an area. */
-        readonly space: RID
+        get space(): RID
         
         /** The [RID] of this world's navigation map. Used by the [NavigationServer2D]. */
-        readonly navigation_map: RID
+        get navigation_map(): RID
         
         /** Direct access to the world's physics 2D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [method Node._physics_process] in the main thread. */
-        readonly direct_space_state: PhysicsDirectSpaceState2D
+        get direct_space_state(): PhysicsDirectSpaceState2D
     }
     /** A resource that holds all components of a 3D world, such as a visual scenario and a physics space.  
      *  	  
@@ -5980,25 +8409,28 @@ declare module "godot" {
         get_direct_space_state(): PhysicsDirectSpaceState3D
         
         /** The World3D's [Environment]. */
-        environment: Environment
+        get environment(): Environment
+        set environment(value: Environment)
         
         /** The World3D's fallback environment will be used if [member environment] fails or is missing. */
-        fallback_environment: Environment
+        get fallback_environment(): Environment
+        set fallback_environment(value: Environment)
         
         /** The default [CameraAttributes] resource to use if none set on the [Camera3D]. */
-        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
+        get camera_attributes(): CameraAttributesPractical | CameraAttributesPhysical
+        set camera_attributes(value: CameraAttributesPractical | CameraAttributesPhysical)
         
         /** The World3D's physics space. */
-        readonly space: RID
+        get space(): RID
         
         /** The [RID] of this world's navigation map. Used by the [NavigationServer3D]. */
-        readonly navigation_map: RID
+        get navigation_map(): RID
         
         /** The World3D's visual scenario. */
-        readonly scenario: RID
+        get scenario(): RID
         
         /** Direct access to the world's physics 3D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [method Node._physics_process] in the main thread. */
-        readonly direct_space_state: PhysicsDirectSpaceState3D
+        get direct_space_state(): PhysicsDirectSpaceState3D
     }
     /** A 2D world boundary (half-plane) shape used for physics collision.  
      *  	  
@@ -6011,12 +8443,14 @@ declare module "godot" {
         get_distance(): number /*f64*/
         
         /** The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to [constant Vector2.UP]. */
-        normal: Vector2
+        get normal(): Vector2
+        set normal(value: Vector2)
         
         /** The distance from the origin to the line, expressed in terms of [member normal] (according to its direction and magnitude). Actual absolute distance from the origin to the line can be calculated as `abs(distance) / normal.length()`.  
          *  In the scalar equation of the line `ax + by = d`, this is `d`, while the `(a, b)` coordinates are represented by the [member normal] property.  
          */
-        distance: number /*f64*/
+        get distance(): number /*f64*/
+        set distance(value: number /*f64*/)
     }
     /** A 3D world boundary (half-space) shape used for physics collision.  
      *  	  
@@ -6027,7 +8461,8 @@ declare module "godot" {
         get_plane(): Plane
         
         /** The [Plane] used by the [WorldBoundaryShape3D] for collision. */
-        plane: Plane
+        get plane(): Plane
+        set plane(value: Plane)
     }
     /** Default environment properties for the entire scene (post-processing effects, lighting and background settings).  
      *  	  
@@ -6040,10 +8475,12 @@ declare module "godot" {
         get_camera_attributes(): CameraAttributes
         
         /** The [Environment] resource used by this [WorldEnvironment], defining the default properties. */
-        environment: Environment
+        get environment(): Environment
+        set environment(value: Environment)
         
         /** The default [CameraAttributes] resource to use if none set on the [Camera3D]. */
-        camera_attributes: CameraAttributesPractical | CameraAttributesPhysical
+        get camera_attributes(): CameraAttributesPractical | CameraAttributesPhysical
+        set camera_attributes(value: CameraAttributesPractical | CameraAttributesPhysical)
     }
     /** An X509 certificate (e.g. for TLS).  
      *  	  
@@ -6361,16 +8798,20 @@ declare module "godot" {
         get_environment_blend_mode(): XRInterface.EnvironmentBlendMode
         
         /** `true` if this is the primary interface. */
-        interface_is_primary: boolean
+        get interface_is_primary(): boolean
+        set interface_is_primary(value: boolean)
         
         /** The play area mode for this interface. */
-        xr_play_area_mode: number /*i64*/
+        get xr_play_area_mode(): number /*i64*/
+        set xr_play_area_mode(value: number /*i64*/)
         
         /** Specify how XR should blend in the environment. This is specific to certain AR and passthrough devices where camera images are blended in by the XR compositor. */
-        environment_blend_mode: number /*i64*/
+        get environment_blend_mode(): number /*i64*/
+        set environment_blend_mode(value: number /*i64*/)
         
         /** On an AR interface, `true` if anchor detection is enabled. */
-        ar_is_anchor_detection_enabled: boolean
+        get ar_is_anchor_detection_enabled(): boolean
+        set ar_is_anchor_detection_enabled(value: boolean)
         
         /** Emitted when the play area is changed. This can be a result of the player resetting the boundary or entering a new play area, the player changing the play area mode, the world scale changing or the player resetting their headset orientation. */
         readonly play_area_changed: Signal // mode: number /*i64*/ => void
@@ -6507,12 +8948,14 @@ declare module "godot" {
         /** The name of the tracker we're bound to. Which trackers are available is not known during design time.  
          *  Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [XRInterface].  
          */
-        tracker: string
+        get tracker(): string
+        set tracker(value: string)
         
         /** The name of the pose we're bound to. Which poses a tracker supports is not known during design time.  
          *  Godot defines number of standard pose names such as `aim` and `grip` but other may be configured within a given [XRInterface].  
          */
-        pose: string
+        get pose(): string
+        set pose(value: string)
         
         /** Emitted when the [member tracker] starts or stops receiving updated tracking data for the [member pose] being tracked. The [param tracking] argument indicates whether the tracker is getting updated tracking data. */
         readonly tracking_changed: Signal // tracking: boolean => void
@@ -6528,10 +8971,12 @@ declare module "godot" {
         is_current(): boolean
         
         /** The scale of the game world compared to the real world. This is the same as [member XRServer.world_scale]. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
-        world_scale: number /*f64*/
+        get world_scale(): number /*f64*/
+        set world_scale(value: number /*f64*/)
         
         /** If `true`, this origin node is currently being used by the [XRServer]. Only one origin point can be used at a time. */
-        current: boolean
+        get current(): boolean
+        set current(value: boolean)
     }
     namespace XRPose {
         enum TrackingConfidence {
@@ -6567,19 +9012,24 @@ declare module "godot" {
         get_tracking_confidence(): XRPose.TrackingConfidence
         
         /** If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking data and our state is whatever that last valid state was. */
-        has_tracking_data: boolean
+        get has_tracking_data(): boolean
+        set has_tracking_data(value: boolean)
         
         /** The transform containing the original and transform as reported by the XR runtime. */
-        transform: string
+        get transform(): string
+        set transform(value: string)
         
         /** The linear velocity of this pose. */
-        linear_velocity: string
+        get linear_velocity(): string
+        set linear_velocity(value: string)
         
         /** The angular velocity for this pose. */
-        angular_velocity: string
+        get angular_velocity(): string
+        set angular_velocity(value: string)
         
         /** The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is. */
-        tracking_confidence: number /*i64*/
+        get tracking_confidence(): number /*i64*/
+        set tracking_confidence(value: number /*i64*/)
     }
     namespace XRPositionalTracker {
         enum TrackerHand {
@@ -6628,16 +9078,20 @@ declare module "godot" {
         set_input(name: StringName, value: any): void
         
         /** The type of tracker. */
-        type: number /*i64*/
+        get type(): number /*i64*/
+        set type(value: number /*i64*/)
         
         /** The description of this tracker. */
-        description: string
+        get description(): string
+        set description(value: string)
         
         /** The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked. */
-        profile: string
+        get profile(): string
+        set profile(value: string)
         
         /** Defines which hand this tracker relates to. */
-        hand: number /*i64*/
+        get hand(): number /*i64*/
+        set hand(value: number /*i64*/)
         
         /** Emitted when the state of a pose tracked by this tracker changes. */
         readonly pose_changed: Signal // pose: XRPose => void
@@ -6939,2283 +9393,9 @@ declare module "godot" {
         static LESS_EQUAL(left: Vector2, right: Vector2): boolean
         static GREATER(left: Vector2, right: Vector2): boolean
         static GREATER_EQUAL(left: Vector2, right: Vector2): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-    }
-    namespace Vector2i {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-        }
-    }
-    /** A 2D vector using integer coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector2i.html  
-     */
-    class Vector2i {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector2i
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector2i
-        
-        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector2.INF]. */
-        static readonly MIN: Vector2i
-        
-        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector2.INF]. */
-        static readonly MAX: Vector2i
-        
-        /** Left unit vector. Represents the direction of left. */
-        static readonly LEFT: Vector2i
-        
-        /** Right unit vector. Represents the direction of right. */
-        static readonly RIGHT: Vector2i
-        
-        /** Up unit vector. Y is down in 2D, so this vector points -Y. */
-        static readonly UP: Vector2i
-        
-        /** Down unit vector. Y is down in 2D, so this vector points +Y. */
-        static readonly DOWN: Vector2i
-        constructor()
-        constructor(from: Vector2i)
-        constructor(from: Vector2)
-        constructor(x: number /*i64*/, y: number /*i64*/)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
-        
-        /** Returns the aspect ratio of this vector, the ratio of [member x] to [member y]. */
-        aspect(): number /*f64*/
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Y]. */
-        min_axis_index(): number /*i64*/
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): number /*i64*/
-        
-        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector2i
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector2i
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector2i, max: Vector2i): Vector2i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
-        snapped(step: Vector2i): Vector2i
-        static ADD(left: Vector2i, right: Vector2i): Vector2i
-        static SUBTRACT(left: Vector2i, right: Vector2i): Vector2i
-        static MULTIPLY(left: number /*f64*/, right: Vector2i): Vector2i
-        static MULTIPLY(left: Vector2i, right: Vector2i): Vector2i
-        static MULTIPLY(left: Vector2i, right: number /*f64*/): Vector2i
-        static DIVIDE(left: Vector2i, right: Vector2i): Vector2i
-        static DIVIDE(left: Vector2i, right: number /*f64*/): Vector2i
-        static NEGATE(left: Vector2i, right: any): boolean
-        static EQUAL(left: Vector2i, right: Vector2i): boolean
-        static NOT_EQUAL(left: Vector2i, right: Vector2i): boolean
-        static LESS(left: Vector2i, right: Vector2i): boolean
-        static LESS_EQUAL(left: Vector2i, right: Vector2i): boolean
-        static GREATER(left: Vector2i, right: Vector2i): boolean
-        static GREATER_EQUAL(left: Vector2i, right: Vector2i): boolean
-        x: number /*i64*/
-        y: number /*i64*/
-    }
-    /** A 2D axis-aligned bounding box using floating-point coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_rect2.html  
-     */
-    class Rect2 {
-        constructor()
-        constructor(from: Rect2)
-        constructor(from: Rect2i)
-        constructor(position: Vector2, size: Vector2)
-        constructor(x: number /*f64*/, y: number /*f64*/, width: number /*f64*/, height: number /*f64*/)
-        
-        /** Returns the center point of the rectangle. This is the same as `position + (size / 2.0)`. */
-        get_center(): Vector2
-        
-        /** Returns the rectangle's area. This is equivalent to `size.x * size.y`. See also [method has_area]. */
-        get_area(): number /*f64*/
-        
-        /** Returns `true` if this rectangle has positive width and height. See also [method get_area]. */
-        has_area(): boolean
-        
-        /** Returns `true` if the rectangle contains the given [param point]. By convention, points on the right and bottom edges are **not** included.  
-         *      
-         *  **Note:** This method is not reliable for [Rect2] with a  *negative*  [member size]. Use [method abs] first to get a valid rectangle.  
-         */
-        has_point(point: Vector2): boolean
-        
-        /** Returns `true` if this rectangle and [param rect] are approximately equal, by calling [method Vector2.is_equal_approx] on the [member position] and the [member size]. */
-        is_equal_approx(rect: Rect2): boolean
-        
-        /** Returns `true` if this rectangle's values are finite, by calling [method Vector2.is_finite] on the [member position] and the [member size]. */
-        is_finite(): boolean
-        
-        /** Returns `true` if this rectangle overlaps with the [param b] rectangle. The edges of both rectangles are excluded, unless [param include_borders] is `true`. */
-        intersects(b: Rect2, include_borders: boolean = false): boolean
-        
-        /** Returns `true` if this rectangle  *completely*  encloses the [param b] rectangle. */
-        encloses(b: Rect2): boolean
-        
-        /** Returns the intersection between this rectangle and [param b]. If the rectangles do not intersect, returns an empty [Rect2].  
-         *    
-         *      
-         *  **Note:** If you only need to know whether two rectangles are overlapping, use [method intersects], instead.  
-         */
-        intersection(b: Rect2): Rect2
-        
-        /** Returns a [Rect2] that encloses both this rectangle and [param b] around the edges. See also [method encloses]. */
-        merge(b: Rect2): Rect2
-        
-        /** Returns a copy of this rectangle expanded to align the edges with the given [param to] point, if necessary.  
-         *    
-         */
-        expand(to: Vector2): Rect2
-        
-        /** Returns a copy of this rectangle extended on all sides by the given [param amount]. A negative [param amount] shrinks the rectangle instead. See also [method grow_individual] and [method grow_side].  
-         *    
-         */
-        grow(amount: number /*f64*/): Rect2
-        
-        /** Returns a copy of this rectangle with its [param side] extended by the given [param amount] (see [enum Side] constants). A negative [param amount] shrinks the rectangle, instead. See also [method grow] and [method grow_individual]. */
-        grow_side(side: number /*i64*/, amount: number /*f64*/): Rect2
-        
-        /** Returns a copy of this rectangle with its [param left], [param top], [param right], and [param bottom] sides extended by the given amounts. Negative values shrink the sides, instead. See also [method grow] and [method grow_side]. */
-        grow_individual(left: number /*f64*/, top: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/): Rect2
-        
-        /** Returns a [Rect2] equivalent to this rectangle, with its width and height modified to be non-negative values, and with its [member position] being the top-left corner of the rectangle.  
-         *    
-         *      
-         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member position] is the top-left corner, and the [member end] is the bottom-right corner.  
-         */
-        abs(): Rect2
-        position: Vector2
-        size: Vector2
-        end: Vector2
-    }
-    /** A 2D axis-aligned bounding box using integer coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_rect2i.html  
-     */
-    class Rect2i {
-        constructor()
-        constructor(from: Rect2i)
-        constructor(from: Rect2)
-        constructor(position: Vector2i, size: Vector2i)
-        constructor(x: number /*i64*/, y: number /*i64*/, width: number /*i64*/, height: number /*i64*/)
-        
-        /** Returns the center point of the rectangle. This is the same as `position + (size / 2)`.  
-         *      
-         *  **Note:** If the [member size] is odd, the result will be rounded towards [member position].  
-         */
-        get_center(): Vector2i
-        
-        /** Returns the rectangle's area. This is equivalent to `size.x * size.y`. See also [method has_area]. */
-        get_area(): number /*i64*/
-        
-        /** Returns `true` if this rectangle has positive width and height. See also [method get_area]. */
-        has_area(): boolean
-        
-        /** Returns `true` if the rectangle contains the given [param point]. By convention, points on the right and bottom edges are **not** included.  
-         *      
-         *  **Note:** This method is not reliable for [Rect2i] with a  *negative*  [member size]. Use [method abs] first to get a valid rectangle.  
-         */
-        has_point(point: Vector2i): boolean
-        
-        /** Returns `true` if this rectangle overlaps with the [param b] rectangle. The edges of both rectangles are excluded. */
-        intersects(b: Rect2i): boolean
-        
-        /** Returns `true` if this [Rect2i] completely encloses another one. */
-        encloses(b: Rect2i): boolean
-        
-        /** Returns the intersection between this rectangle and [param b]. If the rectangles do not intersect, returns an empty [Rect2i].  
-         *    
-         *      
-         *  **Note:** If you only need to know whether two rectangles are overlapping, use [method intersects], instead.  
-         */
-        intersection(b: Rect2i): Rect2i
-        
-        /** Returns a [Rect2i] that encloses both this rectangle and [param b] around the edges. See also [method encloses]. */
-        merge(b: Rect2i): Rect2i
-        
-        /** Returns a copy of this rectangle expanded to align the edges with the given [param to] point, if necessary.  
-         *    
-         */
-        expand(to: Vector2i): Rect2i
-        
-        /** Returns a copy of this rectangle extended on all sides by the given [param amount]. A negative [param amount] shrinks the rectangle instead. See also [method grow_individual] and [method grow_side].  
-         *    
-         */
-        grow(amount: number /*i64*/): Rect2i
-        
-        /** Returns a copy of this rectangle with its [param side] extended by the given [param amount] (see [enum Side] constants). A negative [param amount] shrinks the rectangle, instead. See also [method grow] and [method grow_individual]. */
-        grow_side(side: number /*i64*/, amount: number /*i64*/): Rect2i
-        
-        /** Returns a copy of this rectangle with its [param left], [param top], [param right], and [param bottom] sides extended by the given amounts. Negative values shrink the sides, instead. See also [method grow] and [method grow_side]. */
-        grow_individual(left: number /*i64*/, top: number /*i64*/, right: number /*i64*/, bottom: number /*i64*/): Rect2i
-        
-        /** Returns a [Rect2i] equivalent to this rectangle, with its width and height modified to be non-negative values, and with its [member position] being the top-left corner of the rectangle.  
-         *    
-         *      
-         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member position] is the top-left corner, and the [member end] is the bottom-right corner.  
-         */
-        abs(): Rect2i
-        position: Vector2i
-        size: Vector2i
-        end: Vector2i
-    }
-    namespace Vector3 {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-            
-            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Z = 2,
-        }
-    }
-    /** A 3D vector using floating point coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector3.html  
-     */
-    class Vector3 {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector3
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector3
-        
-        /** Infinity vector, a vector with all components set to [constant @GDScript.INF]. */
-        static readonly INF: Vector3
-        
-        /** Left unit vector. Represents the local direction of left, and the global direction of west. */
-        static readonly LEFT: Vector3
-        
-        /** Right unit vector. Represents the local direction of right, and the global direction of east. */
-        static readonly RIGHT: Vector3
-        
-        /** Up unit vector. */
-        static readonly UP: Vector3
-        
-        /** Down unit vector. */
-        static readonly DOWN: Vector3
-        
-        /** Forward unit vector. Represents the local direction of forward, and the global direction of north. Keep in mind that the forward direction for lights, cameras, etc is different from 3D assets like characters, which face towards the camera by convention. Use [constant Vector3.MODEL_FRONT] and similar constants when working in 3D asset space. */
-        static readonly FORWARD: Vector3
-        
-        /** Back unit vector. Represents the local direction of back, and the global direction of south. */
-        static readonly BACK: Vector3
-        
-        /** Unit vector pointing towards the left side of imported 3D assets. */
-        static readonly MODEL_LEFT: Vector3
-        
-        /** Unit vector pointing towards the right side of imported 3D assets. */
-        static readonly MODEL_RIGHT: Vector3
-        
-        /** Unit vector pointing towards the top side (up) of imported 3D assets. */
-        static readonly MODEL_TOP: Vector3
-        
-        /** Unit vector pointing towards the bottom side (down) of imported 3D assets. */
-        static readonly MODEL_BOTTOM: Vector3
-        
-        /** Unit vector pointing towards the front side (facing forward) of imported 3D assets. */
-        static readonly MODEL_FRONT: Vector3
-        
-        /** Unit vector pointing towards the rear side (back) of imported 3D assets. */
-        static readonly MODEL_REAR: Vector3
-        constructor()
-        constructor(from: Vector3)
-        constructor(from: Vector3i)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
-        min_axis_index(): number /*i64*/
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
-        
-        /** Returns the unsigned minimum angle to the given vector, in radians. */
-        angle_to(to: Vector3): number /*f64*/
-        
-        /** Returns the signed angle to the given vector, in radians. The sign of the angle is positive in a counter-clockwise direction and negative in a clockwise direction when viewed from the side specified by the [param axis]. */
-        signed_angle_to(to: Vector3, axis: Vector3): number /*f64*/
-        
-        /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
-        direction_to(to: Vector3): Vector3
-        
-        /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector3): number /*f64*/
-        
-        /** Returns the squared distance between this vector and [param to].  
-         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        distance_squared_to(to: Vector3): number /*f64*/
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): number /*f64*/
-        
-        /** Returns the vector with a maximum length by limiting its length to [param length]. */
-        limit_length(length: number /*f64*/ = 1): Vector3
-        
-        /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. See also [method is_normalized].  
-         *      
-         *  **Note:** This function may return incorrect values if the input vector length is near zero.  
-         */
-        normalized(): Vector3
-        
-        /** Returns `true` if the vector is normalized, i.e. its length is approximately equal to 1. */
-        is_normalized(): boolean
-        
-        /** Returns `true` if this vector and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Vector3): boolean
-        
-        /** Returns `true` if this vector's values are approximately zero, by running [method @GlobalScope.is_zero_approx] on each component.  
-         *  This method is faster than using [method is_equal_approx] with one value as a zero vector.  
-         */
-        is_zero_approx(): boolean
-        
-        /** Returns `true` if this vector is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns the inverse of the vector. This is the same as `Vector3(1.0 / v.x, 1.0 / v.y, 1.0 / v.z)`. */
-        inverse(): Vector3
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector3, max: Vector3): Vector3
-        
-        /** Returns a new vector with each component snapped to the nearest multiple of the corresponding component in [param step]. This can also be used to round the components to an arbitrary number of decimals. */
-        snapped(step: Vector3): Vector3
-        
-        /** Returns the result of rotating this vector around a given axis by [param angle] (in radians). The axis must be a normalized vector. See also [method @GlobalScope.deg_to_rad]. */
-        rotated(axis: Vector3, angle: number /*f64*/): Vector3
-        
-        /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
-        lerp(to: Vector3, weight: number /*f64*/): Vector3
-        
-        /** Returns the result of spherical linear interpolation between this vector and [param to], by amount [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
-         *  This method also handles interpolating the lengths if the input vectors have different lengths. For the special case of one or both input vectors having zero length, this method behaves like [method lerp].  
-         */
-        slerp(to: Vector3, weight: number /*f64*/): Vector3
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
-        cubic_interpolate(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: number /*f64*/): Vector3
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
-         *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
-         */
-        cubic_interpolate_in_time(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector3
-        
-        /** Returns the point at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_interpolate(control_1: Vector3, control_2: Vector3, end: Vector3, t: number /*f64*/): Vector3
-        
-        /** Returns the derivative at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_derivative(control_1: Vector3, control_2: Vector3, end: Vector3, t: number /*f64*/): Vector3
-        
-        /** Returns a new vector moved toward [param to] by the fixed [param delta] amount. Will not go past the final value. */
-        move_toward(to: Vector3, delta: number /*f64*/): Vector3
-        
-        /** Returns the dot product of this vector and [param with]. This can be used to compare the angle between two vectors. For example, this can be used to determine whether an enemy is facing the player.  
-         *  The dot product will be `0` for a straight angle (90 degrees), greater than 0 for angles narrower than 90 degrees and lower than 0 for angles wider than 90 degrees.  
-         *  When using unit (normalized) vectors, the result will always be between `-1.0` (180 degree angle) when the vectors are facing opposite directions, and `1.0` (0 degree angle) when the vectors are aligned.  
-         *      
-         *  **Note:** `a.dot(b)` is equivalent to `b.dot(a)`.  
-         */
-        dot(with_: Vector3): number /*f64*/
-        
-        /** Returns the cross product of this vector and [param with].  
-         *  This returns a vector perpendicular to both this and [param with], which would be the normal vector of the plane defined by the two vectors. As there are two such vectors, in opposite directions, this method returns the vector defined by a right-handed coordinate system. If the two vectors are parallel this returns an empty vector, making it useful for testing if two vectors are parallel.  
-         */
-        cross(with_: Vector3): Vector3
-        
-        /** Returns the outer product with [param with]. */
-        outer(with_: Vector3): Basis
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector3
-        
-        /** Returns a new vector with all components rounded down (towards negative infinity). */
-        floor(): Vector3
-        
-        /** Returns a new vector with all components rounded up (towards positive infinity). */
-        ceil(): Vector3
-        
-        /** Returns a new vector with all components rounded to the nearest integer, with halfway cases rounded away from zero. */
-        round(): Vector3
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
-        posmod(mod: number /*f64*/): Vector3
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
-        posmodv(modv: Vector3): Vector3
-        
-        /** Returns the result of projecting the vector onto the given vector [param b]. */
-        project(b: Vector3): Vector3
-        
-        /** Returns a new vector slid along a plane defined by the given normal. */
-        slide(n: Vector3): Vector3
-        
-        /** Returns the vector "bounced off" from a plane defined by the given normal. */
-        bounce(n: Vector3): Vector3
-        
-        /** Returns the result of reflecting the vector from a plane defined by the given normal [param n]. */
-        reflect(n: Vector3): Vector3
-        
-        /** Returns a new vector with each component set to `1.0` if it's positive, `-1.0` if it's negative, and `0.0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector3
-        
-        /** Returns the octahedral-encoded (oct32) form of this [Vector3] as a [Vector2]. Since a [Vector2] occupies 1/3 less memory compared to [Vector3], this form of compression can be used to pass greater amounts of [method normalized] [Vector3]s without increasing storage or memory requirements. See also [method octahedron_decode].  
-         *      
-         *  **Note:** [method octahedron_encode] can only be used for [method normalized] vectors. [method octahedron_encode] does  *not*  check whether this [Vector3] is normalized, and will return a value that does not decompress to the original value if the [Vector3] is not normalized.  
-         *      
-         *  **Note:** Octahedral compression is  *lossy* , although visual differences are rarely perceptible in real world scenarios.  
-         */
-        octahedron_encode(): Vector2
-        
-        /** Returns the [Vector3] from an octahedral-compressed form created using [method octahedron_encode] (stored as a [Vector2]). */
-        static octahedron_decode(uv: Vector2): Vector3
-        static ADD(left: Vector3, right: Vector3): Vector3
-        static SUBTRACT(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: number /*f64*/, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
-        static DIVIDE(left: Vector3, right: Vector3): Vector3
-        static DIVIDE(left: Vector3, right: number /*f64*/): Vector3
-        static NEGATE(left: Vector3, right: any): boolean
-        static EQUAL(left: Vector3, right: Vector3): boolean
-        static NOT_EQUAL(left: Vector3, right: Vector3): boolean
-        static LESS(left: Vector3, right: Vector3): boolean
-        static LESS_EQUAL(left: Vector3, right: Vector3): boolean
-        static GREATER(left: Vector3, right: Vector3): boolean
-        static GREATER_EQUAL(left: Vector3, right: Vector3): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-        z: number /*f64*/
-    }
-    namespace Vector3i {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-            
-            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Z = 2,
-        }
-    }
-    /** A 3D vector using integer coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector3i.html  
-     */
-    class Vector3i {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector3i
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector3i
-        
-        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector3.INF]. */
-        static readonly MIN: Vector3i
-        
-        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector3.INF]. */
-        static readonly MAX: Vector3i
-        
-        /** Left unit vector. Represents the local direction of left, and the global direction of west. */
-        static readonly LEFT: Vector3i
-        
-        /** Right unit vector. Represents the local direction of right, and the global direction of east. */
-        static readonly RIGHT: Vector3i
-        
-        /** Up unit vector. */
-        static readonly UP: Vector3i
-        
-        /** Down unit vector. */
-        static readonly DOWN: Vector3i
-        
-        /** Forward unit vector. Represents the local direction of forward, and the global direction of north. */
-        static readonly FORWARD: Vector3i
-        
-        /** Back unit vector. Represents the local direction of back, and the global direction of south. */
-        static readonly BACK: Vector3i
-        constructor()
-        constructor(from: Vector3i)
-        constructor(from: Vector3)
-        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
-        min_axis_index(): number /*i64*/
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): number /*i64*/
-        
-        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector3i
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector3i
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector3i, max: Vector3i): Vector3i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
-        snapped(step: Vector3i): Vector3i
-        static ADD(left: Vector3i, right: Vector3i): Vector3i
-        static SUBTRACT(left: Vector3i, right: Vector3i): Vector3i
-        static MULTIPLY(left: number /*f64*/, right: Vector3i): Vector3i
-        static MULTIPLY(left: Vector3i, right: Vector3i): Vector3i
-        static MULTIPLY(left: Vector3i, right: number /*f64*/): Vector3i
-        static DIVIDE(left: Vector3i, right: Vector3i): Vector3i
-        static DIVIDE(left: Vector3i, right: number /*f64*/): Vector3i
-        static NEGATE(left: Vector3i, right: any): boolean
-        static EQUAL(left: Vector3i, right: Vector3i): boolean
-        static NOT_EQUAL(left: Vector3i, right: Vector3i): boolean
-        static LESS(left: Vector3i, right: Vector3i): boolean
-        static LESS_EQUAL(left: Vector3i, right: Vector3i): boolean
-        static GREATER(left: Vector3i, right: Vector3i): boolean
-        static GREATER_EQUAL(left: Vector3i, right: Vector3i): boolean
-        x: number /*i64*/
-        y: number /*i64*/
-        z: number /*i64*/
-    }
-    /** A 2×3 matrix representing a 2D transformation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_transform2d.html  
-     */
-    class Transform2D {
-        /** The identity [Transform2D] with no translation, rotation or scaling applied. When applied to other data structures, [constant IDENTITY] performs no transformation. */
-        static readonly IDENTITY: Transform2D
-        
-        /** The [Transform2D] that will flip something along the X axis. */
-        static readonly FLIP_X: Transform2D
-        
-        /** The [Transform2D] that will flip something along the Y axis. */
-        static readonly FLIP_Y: Transform2D
-        constructor()
-        constructor(from: Transform2D)
-        constructor(rotation: number /*f64*/, position: Vector2)
-        constructor(rotation: number /*f64*/, scale: Vector2, skew: number /*f64*/, position: Vector2)
-        constructor(x_axis: Vector2, y_axis: Vector2, origin: Vector2)
-        set_indexed(index: number, value: Vector2)
-        get_indexed(index: number): Vector2
-        
-        /** Returns the inverse of the transform, under the assumption that the transformation basis is orthonormal (i.e. rotation/reflection is fine, scaling/skew is not). Use [method affine_inverse] for non-orthonormal transforms (e.g. with scaling). */
-        inverse(): Transform2D
-        
-        /** Returns the inverse of the transform, under the assumption that the basis is invertible (must have non-zero determinant). */
-        affine_inverse(): Transform2D
-        
-        /** Returns the transform's rotation (in radians). */
-        get_rotation(): number /*f64*/
-        
-        /** Returns the transform's origin (translation). */
-        get_origin(): Vector2
-        
-        /** Returns the scale. */
-        get_scale(): Vector2
-        
-        /** Returns the transform's skew (in radians). */
-        get_skew(): number /*f64*/
-        
-        /** Returns the transform with the basis orthogonal (90 degrees), and normalized axis vectors (scale of 1 or -1). */
-        orthonormalized(): Transform2D
-        
-        /** Returns a copy of the transform rotated by the given [param angle] (in radians).  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the left, i.e., `R * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        rotated(angle: number /*f64*/): Transform2D
-        
-        /** Returns a copy of the transform rotated by the given [param angle] (in radians).  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the right, i.e., `X * R`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        rotated_local(angle: number /*f64*/): Transform2D
-        
-        /** Returns a copy of the transform scaled by the given [param scale] factor.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the left, i.e., `S * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        scaled(scale: Vector2): Transform2D
-        
-        /** Returns a copy of the transform scaled by the given [param scale] factor.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the right, i.e., `X * S`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        scaled_local(scale: Vector2): Transform2D
-        
-        /** Returns a copy of the transform translated by the given [param offset].  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the left, i.e., `T * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        translated(offset: Vector2): Transform2D
-        
-        /** Returns a copy of the transform translated by the given [param offset].  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the right, i.e., `X * T`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        translated_local(offset: Vector2): Transform2D
-        
-        /** Returns the determinant of the basis matrix. If the basis is uniformly scaled, then its determinant equals the square of the scale factor.  
-         *  A negative determinant means the basis was flipped, so one part of the scale is negative. A zero determinant means the basis isn't invertible, and is usually considered invalid.  
-         */
-        determinant(): number /*f64*/
-        
-        /** Returns a vector transformed (multiplied) by the basis matrix.  
-         *  This method does not account for translation (the [member origin] vector).  
-         */
-        basis_xform(v: Vector2): Vector2
-        
-        /** Returns a vector transformed (multiplied) by the inverse basis matrix, under the assumption that the basis is orthonormal (i.e. rotation/reflection is fine, scaling/skew is not).  
-         *  This method does not account for translation (the [member origin] vector).  
-         *  `transform.basis_xform_inv(vector)` is equivalent to `transform.inverse().basis_xform(vector)`. See [method inverse].  
-         *  For non-orthonormal transforms (e.g. with scaling) `transform.affine_inverse().basis_xform(vector)` can be used instead. See [method affine_inverse].  
-         */
-        basis_xform_inv(v: Vector2): Vector2
-        
-        /** Returns a transform interpolated between this transform and another by a given [param weight] (on the range of 0.0 to 1.0). */
-        interpolate_with(xform: Transform2D, weight: number /*f64*/): Transform2D
-        
-        /** Returns `true` if the transform's basis is conformal, meaning it preserves angles and distance ratios, and may only be composed of rotation and uniform scale. Returns `false` if the transform's basis has non-uniform scale or shear/skew. This can be used to validate if the transform is non-distorted, which is important for physics and other use cases. */
-        is_conformal(): boolean
-        
-        /** Returns `true` if this transform and [param xform] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(xform: Transform2D): boolean
-        
-        /** Returns `true` if this transform is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns a copy of the transform rotated such that the rotated X-axis points towards the [param target] position.  
-         *  Operations take place in global space.  
-         */
-        looking_at(target: Vector2 = Vector2.ZERO): Transform2D
-        static MULTIPLY(left: Transform2D, right: Transform2D): Transform2D
-        static MULTIPLY(left: Transform2D, right: number /*f64*/): Transform2D
-        static MULTIPLY(left: Transform2D, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: Transform2D): Vector2
-        static MULTIPLY(left: Transform2D, right: Rect2): Rect2
-        static MULTIPLY(left: Rect2, right: Transform2D): Rect2
-        static MULTIPLY(left: Transform2D, right: PackedVector2Array): PackedVector2Array
-        static MULTIPLY(left: PackedVector2Array, right: Transform2D): PackedVector2Array
-        static EQUAL(left: Transform2D, right: Transform2D): boolean
-        static NOT_EQUAL(left: Transform2D, right: Transform2D): boolean
-        x: Vector2
-        y: Vector2
-        origin: Vector2
-    }
-    namespace Vector4 {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-            
-            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Z = 2,
-            
-            /** Enumerated value for the W axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_W = 3,
-        }
-    }
-    /** A 4D vector using floating point coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector4.html  
-     */
-    class Vector4 {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector4
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector4
-        
-        /** Infinity vector, a vector with all components set to [constant @GDScript.INF]. */
-        static readonly INF: Vector4
-        constructor()
-        constructor(from: Vector4)
-        constructor(from: Vector4i)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
-        min_axis_index(): number /*i64*/
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): number /*f64*/
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector4
-        
-        /** Returns a new vector with each component set to `1.0` if it's positive, `-1.0` if it's negative, and `0.0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector4
-        
-        /** Returns a new vector with all components rounded down (towards negative infinity). */
-        floor(): Vector4
-        
-        /** Returns a new vector with all components rounded up (towards positive infinity). */
-        ceil(): Vector4
-        
-        /** Returns a new vector with all components rounded to the nearest integer, with halfway cases rounded away from zero. */
-        round(): Vector4
-        
-        /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
-        lerp(to: Vector4, weight: number /*f64*/): Vector4
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
-        cubic_interpolate(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: number /*f64*/): Vector4
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
-         *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
-         */
-        cubic_interpolate_in_time(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector4
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
-        posmod(mod: number /*f64*/): Vector4
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
-        posmodv(modv: Vector4): Vector4
-        
-        /** Returns a new vector with each component snapped to the nearest multiple of the corresponding component in [param step]. This can also be used to round the components to an arbitrary number of decimals. */
-        snapped(step: Vector4): Vector4
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector4, max: Vector4): Vector4
-        
-        /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. See also [method is_normalized].  
-         *      
-         *  **Note:** This function may return incorrect values if the input vector length is near zero.  
-         */
-        normalized(): Vector4
-        
-        /** Returns `true` if the vector is normalized, i.e. its length is approximately equal to 1. */
-        is_normalized(): boolean
-        
-        /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
-        direction_to(to: Vector4): Vector4
-        
-        /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector4): number /*f64*/
-        
-        /** Returns the squared distance between this vector and [param to].  
-         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        distance_squared_to(to: Vector4): number /*f64*/
-        
-        /** Returns the dot product of this vector and [param with]. */
-        dot(with_: Vector4): number /*f64*/
-        
-        /** Returns the inverse of the vector. This is the same as `Vector4(1.0 / v.x, 1.0 / v.y, 1.0 / v.z, 1.0 / v.w)`. */
-        inverse(): Vector4
-        
-        /** Returns `true` if this vector and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Vector4): boolean
-        
-        /** Returns `true` if this vector's values are approximately zero, by running [method @GlobalScope.is_zero_approx] on each component.  
-         *  This method is faster than using [method is_equal_approx] with one value as a zero vector.  
-         */
-        is_zero_approx(): boolean
-        
-        /** Returns `true` if this vector is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        static ADD(left: Vector4, right: Vector4): Vector4
-        static SUBTRACT(left: Vector4, right: Vector4): Vector4
-        static MULTIPLY(left: number /*f64*/, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: number /*f64*/): Vector4
-        static DIVIDE(left: Vector4, right: Vector4): Vector4
-        static DIVIDE(left: Vector4, right: number /*f64*/): Vector4
-        static NEGATE(left: Vector4, right: any): boolean
-        static EQUAL(left: Vector4, right: Vector4): boolean
-        static NOT_EQUAL(left: Vector4, right: Vector4): boolean
-        static LESS(left: Vector4, right: Vector4): boolean
-        static LESS_EQUAL(left: Vector4, right: Vector4): boolean
-        static GREATER(left: Vector4, right: Vector4): boolean
-        static GREATER_EQUAL(left: Vector4, right: Vector4): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-        z: number /*f64*/
-        w: number /*f64*/
-    }
-    namespace Vector4i {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-            
-            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Z = 2,
-            
-            /** Enumerated value for the W axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_W = 3,
-        }
-    }
-    /** A 4D vector using integer coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_vector4i.html  
-     */
-    class Vector4i {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector4i
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector4i
-        
-        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector4.INF]. */
-        static readonly MIN: Vector4i
-        
-        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector4.INF]. */
-        static readonly MAX: Vector4i
-        constructor()
-        constructor(from: Vector4i)
-        constructor(from: Vector4)
-        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/, w: number /*i64*/)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
-        min_axis_index(): number /*i64*/
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): number /*i64*/
-        
-        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector4i
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector4i
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector4i, max: Vector4i): Vector4i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
-        snapped(step: Vector4i): Vector4i
-        static ADD(left: Vector4i, right: Vector4i): Vector4i
-        static SUBTRACT(left: Vector4i, right: Vector4i): Vector4i
-        static MULTIPLY(left: number /*f64*/, right: Vector4i): Vector4i
-        static MULTIPLY(left: Vector4i, right: Vector4i): Vector4i
-        static MULTIPLY(left: Vector4i, right: number /*f64*/): Vector4i
-        static DIVIDE(left: Vector4i, right: Vector4i): Vector4i
-        static DIVIDE(left: Vector4i, right: number /*f64*/): Vector4i
-        static NEGATE(left: Vector4i, right: any): boolean
-        static EQUAL(left: Vector4i, right: Vector4i): boolean
-        static NOT_EQUAL(left: Vector4i, right: Vector4i): boolean
-        static LESS(left: Vector4i, right: Vector4i): boolean
-        static LESS_EQUAL(left: Vector4i, right: Vector4i): boolean
-        static GREATER(left: Vector4i, right: Vector4i): boolean
-        static GREATER_EQUAL(left: Vector4i, right: Vector4i): boolean
-        x: number /*i64*/
-        y: number /*i64*/
-        z: number /*i64*/
-        w: number /*i64*/
-    }
-    /** A plane in Hessian normal form.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_plane.html  
-     */
-    class Plane {
-        /** A plane that extends in the Y and Z axes (normal vector points +X). */
-        static readonly PLANE_YZ: Plane
-        
-        /** A plane that extends in the X and Z axes (normal vector points +Y). */
-        static readonly PLANE_XZ: Plane
-        
-        /** A plane that extends in the X and Y axes (normal vector points +Z). */
-        static readonly PLANE_XY: Plane
-        constructor()
-        constructor(from: Plane)
-        constructor(normal: Vector3)
-        constructor(normal: Vector3, d: number /*f64*/)
-        constructor(normal: Vector3, point: Vector3)
-        constructor(point1: Vector3, point2: Vector3, point3: Vector3)
-        constructor(a: number /*f64*/, b: number /*f64*/, c: number /*f64*/, d: number /*f64*/)
-        
-        /** Returns a copy of the plane, with normalized [member normal] (so it's a unit vector). Returns `Plane(0, 0, 0, 0)` if [member normal] can't be normalized (it has zero length). */
-        normalized(): Plane
-        
-        /** Returns the center of the plane. */
-        get_center(): Vector3
-        
-        /** Returns `true` if this plane and [param to_plane] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to_plane: Plane): boolean
-        
-        /** Returns `true` if this plane is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns `true` if [param point] is located above the plane. */
-        is_point_over(point: Vector3): boolean
-        
-        /** Returns the shortest distance from the plane to the position [param point]. If the point is above the plane, the distance will be positive. If below, the distance will be negative. */
-        distance_to(point: Vector3): number /*f64*/
-        
-        /** Returns `true` if [param point] is inside the plane. Comparison uses a custom minimum [param tolerance] threshold. */
-        has_point(point: Vector3, tolerance: number /*f64*/ = 0.00001): boolean
-        
-        /** Returns the orthogonal projection of [param point] into a point in the plane. */
-        project(point: Vector3): Vector3
-        
-        /** Returns the intersection point of the three planes [param b], [param c] and this plane. If no intersection is found, `null` is returned. */
-        intersect_3(b: Plane, c: Plane): void
-        
-        /** Returns the intersection point of a ray consisting of the position [param from] and the direction normal [param dir] with this plane. If no intersection is found, `null` is returned. */
-        intersects_ray(from: Vector3, dir: Vector3): void
-        
-        /** Returns the intersection point of a segment from position [param from] to position [param to] with this plane. If no intersection is found, `null` is returned. */
-        intersects_segment(from: Vector3, to: Vector3): void
-        static NEGATE(left: Plane, right: any): boolean
-        static EQUAL(left: Plane, right: Plane): boolean
-        static NOT_EQUAL(left: Plane, right: Plane): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-        z: number /*f64*/
-        d: number /*f64*/
-        normal: Vector3
-    }
-    /** A unit quaternion used for representing 3D rotations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_quaternion.html  
-     */
-    class Quaternion {
-        /** The identity quaternion, representing no rotation. This has the same rotation as [constant Basis.IDENTITY].  
-         *  If a [Vector3] is rotated (multiplied) by this quaternion, it does not change.  
-         */
-        static readonly IDENTITY: Quaternion
-        constructor()
-        constructor(from: Quaternion)
-        constructor(from: Basis)
-        constructor(axis: Vector3, angle: number /*f64*/)
-        constructor(arc_from: Vector3, arc_to: Vector3)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
-        
-        /** Returns this quaternion's length, also called magnitude. */
-        length(): number /*f64*/
-        
-        /** Returns this quaternion's length, squared.  
-         *      
-         *  **Note:** This method is faster than [method length], so prefer it if you only need to compare quaternion lengths.  
-         */
-        length_squared(): number /*f64*/
-        
-        /** Returns a copy of this quaternion, normalized so that its length is `1.0`. See also [method is_normalized]. */
-        normalized(): Quaternion
-        
-        /** Returns `true` if this quaternion is normalized. See also [method normalized]. */
-        is_normalized(): boolean
-        
-        /** Returns `true` if this quaternion and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Quaternion): boolean
-        
-        /** Returns `true` if this quaternion is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns the inverse version of this quaternion, inverting the sign of every component except [member w]. */
-        inverse(): Quaternion
-        
-        /** Returns the logarithm of this quaternion. Multiplies this quaternion's rotation axis by its rotation angle, and stores the result in the returned quaternion's vector part ([member x], [member y], and [member z]). The returned quaternion's real part ([member w]) is always `0.0`. */
-        log(): Quaternion
-        
-        /** Returns the exponential of this quaternion. The rotation axis of the result is the normalized rotation axis of this quaternion, the angle of the result is the length of the vector part of this quaternion. */
-        exp(): Quaternion
-        
-        /** Returns the angle between this quaternion and [param to]. This is the magnitude of the angle you would need to rotate by to get from one to the other.  
-         *      
-         *  **Note:** The magnitude of the floating-point error for this method is abnormally high, so methods such as `is_zero_approx` will not work reliably.  
-         */
-        angle_to(to: Quaternion): number /*f64*/
-        
-        /** Returns the dot product between this quaternion and [param with].  
-         *  This is equivalent to `(quat.x * with.x) + (quat.y * with.y) + (quat.z * with.z) + (quat.w * with.w)`.  
-         */
-        dot(with_: Quaternion): number /*f64*/
-        
-        /** Performs a spherical-linear interpolation with the [param to] quaternion, given a [param weight] and returns the result. Both this quaternion and [param to] must be normalized. */
-        slerp(to: Quaternion, weight: number /*f64*/): Quaternion
-        
-        /** Performs a spherical-linear interpolation with the [param to] quaternion, given a [param weight] and returns the result. Unlike [method slerp], this method does not check if the rotation path is smaller than 90 degrees. Both this quaternion and [param to] must be normalized. */
-        slerpni(to: Quaternion, weight: number /*f64*/): Quaternion
-        
-        /** Performs a spherical cubic interpolation between quaternions [param pre_a], this vector, [param b], and [param post_b], by the given amount [param weight]. */
-        spherical_cubic_interpolate(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/): Quaternion
-        
-        /** Performs a spherical cubic interpolation between quaternions [param pre_a], this vector, [param b], and [param post_b], by the given amount [param weight].  
-         *  It can perform smoother interpolation than [method spherical_cubic_interpolate] by the time values.  
-         */
-        spherical_cubic_interpolate_in_time(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Quaternion
-        
-        /** Returns this quaternion's rotation as a [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
-         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): Z (roll) is calculated first, then X (pitch), and lastly Y (yaw). When using the opposite method [method from_euler], this order is reversed.  
-         */
-        get_euler(order: number /*i64*/ = 2): Vector3
-        
-        /** Constructs a new [Quaternion] from the given [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians. This method always uses the YXZ convention ([constant EULER_ORDER_YXZ]). */
-        static from_euler(euler: Vector3): Quaternion
-        
-        /** Returns the rotation axis of the rotation represented by this quaternion. */
-        get_axis(): Vector3
-        
-        /** Returns the angle of the rotation represented by this quaternion.  
-         *      
-         *  **Note:** The quaternion must be normalized.  
-         */
-        get_angle(): number /*f64*/
-        static ADD(left: Quaternion, right: Quaternion): Quaternion
-        static SUBTRACT(left: Quaternion, right: Quaternion): Quaternion
-        static MULTIPLY(left: Quaternion, right: Quaternion): Quaternion
-        static MULTIPLY(left: Quaternion, right: number /*f64*/): Quaternion
-        static MULTIPLY(left: number /*f64*/, right: Quaternion): Quaternion
-        static MULTIPLY(left: Vector3, right: Quaternion): Vector3
-        static MULTIPLY(left: Quaternion, right: Vector3): Vector3
-        static DIVIDE(left: Quaternion, right: number /*f64*/): Quaternion
-        static NEGATE(left: Quaternion, right: any): boolean
-        static EQUAL(left: Quaternion, right: Quaternion): boolean
-        static NOT_EQUAL(left: Quaternion, right: Quaternion): boolean
-        x: number /*f64*/
-        y: number /*f64*/
-        z: number /*f64*/
-        w: number /*f64*/
-    }
-    /** A 3D axis-aligned bounding box.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_aabb.html  
-     */
-    class AABB {
-        constructor()
-        constructor(from: AABB)
-        constructor(position: Vector3, size: Vector3)
-        
-        /** Returns an [AABB] equivalent to this bounding box, with its width, height, and depth modified to be non-negative values.  
-         *    
-         *      
-         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member size]'s components are greater than `0`.  
-         */
-        abs(): AABB
-        
-        /** Returns the center point of the bounding box. This is the same as `position + (size / 2.0)`. */
-        get_center(): Vector3
-        
-        /** Returns the bounding box's volume. This is equivalent to `size.x * size.y * size.z`. See also [method has_volume]. */
-        get_volume(): number /*f64*/
-        
-        /** Returns `true` if this bounding box's width, height, and depth are all positive. See also [method get_volume]. */
-        has_volume(): boolean
-        
-        /** Returns `true` if this bounding box has a surface or a length, that is, at least one component of [member size] is greater than `0`. Otherwise, returns `false`. */
-        has_surface(): boolean
-        
-        /** Returns `true` if the bounding box contains the given [param point]. By convention, points exactly on the right, top, and front sides are **not** included.  
-         *      
-         *  **Note:** This method is not reliable for [AABB] with a  *negative*  [member size]. Use [method abs] first to get a valid bounding box.  
-         */
-        has_point(point: Vector3): boolean
-        
-        /** Returns `true` if this bounding box and [param aabb] are approximately equal, by calling [method Vector2.is_equal_approx] on the [member position] and the [member size]. */
-        is_equal_approx(aabb: AABB): boolean
-        
-        /** Returns `true` if this bounding box's values are finite, by calling [method Vector2.is_finite] on the [member position] and the [member size]. */
-        is_finite(): boolean
-        
-        /** Returns `true` if this bounding box overlaps with the box [param with]. The edges of both boxes are  *always*  excluded. */
-        intersects(with_: AABB): boolean
-        
-        /** Returns `true` if this bounding box  *completely*  encloses the [param with] box. The edges of both boxes are included.  
-         *    
-         */
-        encloses(with_: AABB): boolean
-        
-        /** Returns `true` if this bounding box is on both sides of the given [param plane]. */
-        intersects_plane(plane: Plane): boolean
-        
-        /** Returns the intersection between this bounding box and [param with]. If the boxes do not intersect, returns an empty [AABB]. If the boxes intersect at the edge, returns a flat [AABB] with no volume (see [method has_surface] and [method has_volume]).  
-         *    
-         *      
-         *  **Note:** If you only need to know whether two bounding boxes are intersecting, use [method intersects], instead.  
-         */
-        intersection(with_: AABB): AABB
-        
-        /** Returns an [AABB] that encloses both this bounding box and [param with] around the edges. See also [method encloses]. */
-        merge(with_: AABB): AABB
-        
-        /** Returns a copy of this bounding box expanded to align the edges with the given [param to_point], if necessary.  
-         *    
-         */
-        expand(to_point: Vector3): AABB
-        
-        /** Returns a copy of this bounding box extended on all sides by the given amount [param by]. A negative amount shrinks the box instead.  
-         *    
-         */
-        grow(by: number /*f64*/): AABB
-        
-        /** Returns the vertex's position of this bounding box that's the farthest in the given direction. This point is commonly known as the support point in collision detection algorithms. */
-        get_support(dir: Vector3): Vector3
-        
-        /** Returns the longest normalized axis of this bounding box's [member size], as a [Vector3] ([constant Vector3.RIGHT], [constant Vector3.UP], or [constant Vector3.BACK]).  
-         *    
-         *  See also [method get_longest_axis_index] and [method get_longest_axis_size].  
-         */
-        get_longest_axis(): Vector3
-        
-        /** Returns the index to the longest axis of this bounding box's [member size] (see [constant Vector3.AXIS_X], [constant Vector3.AXIS_Y], and [constant Vector3.AXIS_Z]).  
-         *  For an example, see [method get_longest_axis].  
-         */
-        get_longest_axis_index(): number /*i64*/
-        
-        /** Returns the longest dimension of this bounding box's [member size].  
-         *  For an example, see [method get_longest_axis].  
-         */
-        get_longest_axis_size(): number /*f64*/
-        
-        /** Returns the shortest normaalized axis of this bounding box's [member size], as a [Vector3] ([constant Vector3.RIGHT], [constant Vector3.UP], or [constant Vector3.BACK]).  
-         *    
-         *  See also [method get_shortest_axis_index] and [method get_shortest_axis_size].  
-         */
-        get_shortest_axis(): Vector3
-        
-        /** Returns the index to the shortest axis of this bounding box's [member size] (see [constant Vector3.AXIS_X], [constant Vector3.AXIS_Y], and [constant Vector3.AXIS_Z]).  
-         *  For an example, see [method get_shortest_axis].  
-         */
-        get_shortest_axis_index(): number /*i64*/
-        
-        /** Returns the shortest dimension of this bounding box's [member size].  
-         *  For an example, see [method get_shortest_axis].  
-         */
-        get_shortest_axis_size(): number /*f64*/
-        
-        /** Returns the position of one of the 8 vertices that compose this bounding box. With a [param idx] of `0` this is the same as [member position], and a [param idx] of `7` is the same as [member end]. */
-        get_endpoint(idx: number /*i64*/): Vector3
-        
-        /** Returns the first point where this bounding box and the given segment intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
-         *  The segment begins at [param from] and ends at [param to].  
-         */
-        intersects_segment(from: Vector3, to: Vector3): void
-        
-        /** Returns the first point where this bounding box and the given ray intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
-         *  The ray begin at [param from], faces [param dir] and extends towards infinity.  
-         */
-        intersects_ray(from: Vector3, dir: Vector3): void
-        static EQUAL(left: AABB, right: AABB): boolean
-        static NOT_EQUAL(left: AABB, right: AABB): boolean
-        position: Vector3
-        size: Vector3
-        end: Vector3
-    }
-    /** A 3×3 matrix for representing 3D rotation and scale.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_basis.html  
-     */
-    class Basis {
-        /** The identity basis. This is a basis with no rotation, no shear, and its scale being `1`. This means that:  
-         *  - The [member x] points right ([constant Vector3.RIGHT]);  
-         *  - The [member y] points up ([constant Vector3.UP]);  
-         *  - The [member z] points back ([constant Vector3.BACK]).  
-         *    
-         *  This is identical to creating [constructor Basis] without any parameters. This constant can be used to make your code clearer, and for consistency with C#.  
-         */
-        static readonly IDENTITY: Basis
-        
-        /** When any basis is multiplied by [constant FLIP_X], it negates all components of the [member x] axis (the X column).  
-         *  When [constant FLIP_X] is multiplied by any basis, it negates the [member Vector3.x] component of all axes (the X row).  
-         */
-        static readonly FLIP_X: Basis
-        
-        /** When any basis is multiplied by [constant FLIP_Y], it negates all components of the [member y] axis (the Y column).  
-         *  When [constant FLIP_Y] is multiplied by any basis, it negates the [member Vector3.y] component of all axes (the Y row).  
-         */
-        static readonly FLIP_Y: Basis
-        
-        /** When any basis is multiplied by [constant FLIP_Z], it negates all components of the [member z] axis (the Z column).  
-         *  When [constant FLIP_Z] is multiplied by any basis, it negates the [member Vector3.z] component of all axes (the Z row).  
-         */
-        static readonly FLIP_Z: Basis
-        constructor()
-        constructor(from: Basis)
-        constructor(from: Quaternion)
-        constructor(axis: Vector3, angle: number /*f64*/)
-        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3)
-        set_indexed(index: number, value: Vector3)
-        get_indexed(index: number): Vector3
-        
-        /** Returns the [url=https://en.wikipedia.org/wiki/Invertible_matrix]inverse of this basis's matrix[/url]. */
-        inverse(): Basis
-        
-        /** Returns the transposed version of this basis. This turns the basis matrix's columns into rows, and its rows into columns.  
-         *    
-         */
-        transposed(): Basis
-        
-        /** Returns the orthonormalized version of this basis. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation.  
-         *  It is often useful to call this method to avoid rounding errors on a rotating basis:  
-         *    
-         */
-        orthonormalized(): Basis
-        
-        /** Returns the [url=https://en.wikipedia.org/wiki/Determinant]determinant[/url] of this basis's matrix. For advanced math, this number can be used to determine a few attributes:  
-         *  - If the determinant is exactly `0`, the basis is not invertible (see [method inverse]).  
-         *  - If the determinant is a negative number, the basis represents a negative scale.  
-         *      
-         *  **Note:** If the basis's scale is the same for every axis, its determinant is always that scale by the power of 2.  
-         */
-        determinant(): number /*f64*/
-        
-        /** Returns this basis rotated around the given [param axis] by [param angle] (in radians). The [param axis] must be a normalized vector (see [method Vector3.normalized]).  
-         *  Positive values rotate this basis clockwise around the axis, while negative values rotate it counterclockwise.  
-         *    
-         */
-        rotated(axis: Vector3, angle: number /*f64*/): Basis
-        
-        /** Returns this basis with each axis's components scaled by the given [param scale]'s components.  
-         *  The basis matrix's rows are multiplied by [param scale]'s components. This operation is a global scale (relative to the parent).  
-         *    
-         */
-        scaled(scale: Vector3): Basis
-        
-        /** Returns the length of each axis of this basis, as a [Vector3]. If the basis is not sheared, this is the scaling factor. It is not affected by rotation.  
-         *    
-         *      
-         *  **Note:** If the value returned by [method determinant] is negative, the scale is also negative.  
-         */
-        get_scale(): Vector3
-        
-        /** Returns this basis's rotation as a [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
-         *  - The [member Vector3.x] contains the angle around the [member x] axis (pitch);  
-         *  - The [member Vector3.y] contains the angle around the [member y] axis (yaw);  
-         *  - The [member Vector3.z] contains the angle around the [member z] axis (roll).  
-         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): Z (roll) is calculated first, then X (pitch), and lastly Y (yaw). When using the opposite method [method from_euler], this order is reversed.  
-         *      
-         *  **Note:** Euler angles are much more intuitive but are not suitable for 3D math. Because of this, consider using the [method get_rotation_quaternion] method instead, which returns a [Quaternion].  
-         *      
-         *  **Note:** In the Inspector dock, a basis's rotation is often displayed in Euler angles (in degrees), as is the case with the [member Node3D.rotation] property.  
-         */
-        get_euler(order: number /*i64*/ = 2): Vector3
-        
-        /** Returns the transposed dot product between [param with] and the [member x] axis (see [method transposed]).  
-         *  This is equivalent to `basis.x.dot(vector)`.  
-         */
-        tdotx(with_: Vector3): number /*f64*/
-        
-        /** Returns the transposed dot product between [param with] and the [member y] axis (see [method transposed]).  
-         *  This is equivalent to `basis.y.dot(vector)`.  
-         */
-        tdoty(with_: Vector3): number /*f64*/
-        
-        /** Returns the transposed dot product between [param with] and the [member z] axis (see [method transposed]).  
-         *  This is equivalent to `basis.z.dot(vector)`.  
-         */
-        tdotz(with_: Vector3): number /*f64*/
-        
-        /** Performs a spherical-linear interpolation with the [param to] basis, given a [param weight]. Both this basis and [param to] should represent a rotation.  
-         *  **Example:** Smoothly rotate a [Node3D] to the target basis over time, with a [Tween].  
-         *    
-         */
-        slerp(to: Basis, weight: number /*f64*/): Basis
-        
-        /** Returns `true` if this basis is conformal. A conformal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *uniform*  (the axes share the same length). This method can be especially useful during physics calculations. */
-        is_conformal(): boolean
-        
-        /** Returns `true` if this basis and [param b] are approximately equal, by calling [method @GlobalScope.is_equal_approx] on all vector components. */
-        is_equal_approx(b: Basis): boolean
-        
-        /** Returns `true` if this basis is finite, by calling [method @GlobalScope.is_finite] on all vector components. */
-        is_finite(): boolean
-        
-        /** Returns this basis's rotation as a [Quaternion].  
-         *      
-         *  **Note:** Quatenions are much more suitable for 3D math but are less intuitive. For user interfaces, consider using the [method get_euler] method, which returns Euler angles.  
-         */
-        get_rotation_quaternion(): Quaternion
-        
-        /** Creates a new [Basis] with a rotation such that the forward axis (-Z) points towards the [param target] position.  
-         *  By default, the -Z axis (camera forward) is treated as forward (implies +X is right). If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position.  
-         *  The up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the forward axis. The returned basis is orthonormalized (see [method orthonormalized]). The [param target] and [param up] vectors cannot be [constant Vector3.ZERO], and cannot be parallel to each other.  
-         */
-        static looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Basis
-        
-        /** Constructs a new [Basis] that only represents scale, with no rotation or shear, from the given [param scale] vector.  
-         *    
-         *      
-         *  **Note:** In linear algebra, the matrix of this basis is also known as a [url=https://en.wikipedia.org/wiki/Diagonal_matrix]diagonal matrix[/url].  
-         */
-        static from_scale(scale: Vector3): Basis
-        
-        /** Constructs a new [Basis] that only represents rotation from the given [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
-         *  - The [member Vector3.x] should contain the angle around the [member x] axis (pitch).  
-         *  - The [member Vector3.y] should contain the angle around the [member y] axis (yaw).  
-         *  - The [member Vector3.z] should contain the angle around the [member z] axis (roll).  
-         *    
-         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): the basis rotates first around the Y axis (yaw), then X (pitch), and lastly Z (roll). When using the opposite method [method get_euler], this order is reversed.  
-         */
-        static from_euler(euler: Vector3, order: number /*i64*/ = 2): Basis
-        static MULTIPLY(left: Basis, right: Basis): Basis
-        static MULTIPLY(left: Basis, right: number /*f64*/): Basis
-        static MULTIPLY(left: Basis, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Basis): Vector3
-        static EQUAL(left: Basis, right: Basis): boolean
-        static NOT_EQUAL(left: Basis, right: Basis): boolean
-        x: Vector3
-        y: Vector3
-        z: Vector3
-    }
-    /** A 3×4 matrix representing a 3D transformation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_transform3d.html  
-     */
-    class Transform3D {
-        /** A transform with no translation, no rotation, and its scale being `1`. Its [member basis] is equal to [constant Basis.IDENTITY].  
-         *  When multiplied by another [Variant] such as [AABB] or another [Transform3D], no transformation occurs.  
-         */
-        static readonly IDENTITY: Transform3D
-        
-        /** [Transform3D] with mirroring applied perpendicular to the YZ plane. Its [member basis] is equal to [constant Basis.FLIP_X]. */
-        static readonly FLIP_X: Transform3D
-        
-        /** [Transform3D] with mirroring applied perpendicular to the XZ plane. Its [member basis] is equal to [constant Basis.FLIP_Y]. */
-        static readonly FLIP_Y: Transform3D
-        
-        /** [Transform3D] with mirroring applied perpendicular to the XY plane. Its [member basis] is equal to [constant Basis.FLIP_Z]. */
-        static readonly FLIP_Z: Transform3D
-        constructor()
-        constructor(from: Transform3D)
-        constructor(basis: Basis, origin: Vector3)
-        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3, origin: Vector3)
-        constructor(from: Projection)
-        
-        /** Returns the inverted version of this transform. See also [method Basis.inverse].  
-         *      
-         *  **Note:** For this method to return correctly, the transform's [member basis] needs to be  *orthonormal*  (see [method Basis.orthonormalized]). That means, the basis should only represent a rotation. If it does not, use [method affine_inverse] instead.  
-         */
-        inverse(): Transform3D
-        
-        /** Returns the inverted version of this transform. Unlike [method inverse], this method works with almost any [member basis], including non-uniform ones, but is slower. See also [method Basis.inverse].  
-         *      
-         *  **Note:** For this method to return correctly, the transform's [member basis] needs to have a determinant that is not exactly `0` (see [method Basis.determinant]).  
-         */
-        affine_inverse(): Transform3D
-        
-        /** Returns a copy of this transform with its [member basis] orthonormalized. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation. See also [method Basis.orthonormalized]. */
-        orthonormalized(): Transform3D
-        
-        /** Returns a copy of this transform rotated around the given [param axis] by the given [param angle] (in radians).  
-         *  The [param axis] must be a normalized vector.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the left, i.e., `R * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        rotated(axis: Vector3, angle: number /*f64*/): Transform3D
-        
-        /** Returns a copy of this transform rotated around the given [param axis] by the given [param angle] (in radians).  
-         *  The [param axis] must be a normalized vector.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the right, i.e., `X * R`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        rotated_local(axis: Vector3, angle: number /*f64*/): Transform3D
-        
-        /** Returns a copy of this transform scaled by the given [param scale] factor.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the left, i.e., `S * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        scaled(scale: Vector3): Transform3D
-        
-        /** Returns a copy of this transform scaled by the given [param scale] factor.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the right, i.e., `X * S`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        scaled_local(scale: Vector3): Transform3D
-        
-        /** Returns a copy of this transform translated by the given [param offset].  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the left, i.e., `T * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        translated(offset: Vector3): Transform3D
-        
-        /** Returns a copy of this transform translated by the given [param offset].  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the right, i.e., `X * T`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        translated_local(offset: Vector3): Transform3D
-        
-        /** Returns a copy of this transform rotated so that the forward axis (-Z) points towards the [param target] position.  
-         *  The up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the forward axis. The resulting transform is orthonormalized. The existing rotation, scale, and skew information from the original transform is discarded. The [param target] and [param up] vectors cannot be zero, cannot be parallel to each other, and are defined in global/parent space.  
-         *  If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).  
-         */
-        looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Transform3D
-        
-        /** Returns the result of the linear interpolation between this transform and [param xform] by the given [param weight].  
-         *  The [param weight] should be between `0.0` and `1.0` (inclusive). Values outside this range are allowed and can be used to perform  *extrapolation*  instead.  
-         */
-        interpolate_with(xform: Transform3D, weight: number /*f64*/): Transform3D
-        
-        /** Returns `true` if this transform and [param xform] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(xform: Transform3D): boolean
-        
-        /** Returns `true` if this transform is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        static MULTIPLY(left: Transform3D, right: Transform3D): Transform3D
-        static MULTIPLY(left: Transform3D, right: number /*f64*/): Transform3D
-        static MULTIPLY(left: Transform3D, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Transform3D): Vector3
-        static MULTIPLY(left: Transform3D, right: AABB): AABB
-        static MULTIPLY(left: AABB, right: Transform3D): AABB
-        static MULTIPLY(left: Transform3D, right: Plane): Plane
-        static MULTIPLY(left: Plane, right: Transform3D): Plane
-        static MULTIPLY(left: Transform3D, right: PackedVector3Array): PackedVector3Array
-        static MULTIPLY(left: PackedVector3Array, right: Transform3D): PackedVector3Array
-        static EQUAL(left: Transform3D, right: Transform3D): boolean
-        static NOT_EQUAL(left: Transform3D, right: Transform3D): boolean
-        basis: Basis
-        origin: Vector3
-    }
-    namespace Projection {
-        enum Planes {
-            /** The index value of the projection's near clipping plane. */
-            PLANE_NEAR = 0,
-            
-            /** The index value of the projection's far clipping plane. */
-            PLANE_FAR = 1,
-            
-            /** The index value of the projection's left clipping plane. */
-            PLANE_LEFT = 2,
-            
-            /** The index value of the projection's top clipping plane. */
-            PLANE_TOP = 3,
-            
-            /** The index value of the projection's right clipping plane. */
-            PLANE_RIGHT = 4,
-            
-            /** The index value of the projection bottom clipping plane. */
-            PLANE_BOTTOM = 5,
-        }
-    }
-    /** A 4×4 matrix for 3D projective transformations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_projection.html  
-     */
-    class Projection {
-        /** A [Projection] with no transformation defined. When applied to other data structures, no transformation is performed. */
-        static readonly IDENTITY: Projection
-        
-        /** A [Projection] with all values initialized to 0. When applied to other data structures, they will be zeroed. */
-        static readonly ZERO: Projection
-        constructor()
-        constructor(from: Projection)
-        constructor(from: Transform3D)
-        constructor(x_axis: Vector4, y_axis: Vector4, z_axis: Vector4, w_axis: Vector4)
-        set_indexed(index: number, value: Vector4)
-        get_indexed(index: number): Vector4
-        
-        /** Creates a new [Projection] that projects positions from a depth range of `-1` to `1` to one that ranges from `0` to `1`, and flips the projected positions vertically, according to [param flip_y]. */
-        static create_depth_correction(flip_y: boolean): Projection
-        
-        /** Creates a new [Projection] that projects positions into the given [Rect2]. */
-        static create_light_atlas_rect(rect: Rect2): Projection
-        
-        /** Creates a new [Projection] that projects positions using a perspective projection with the given Y-axis field of view (in degrees), X:Y aspect ratio, and clipping planes.  
-         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
-         */
-        static create_perspective(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
-        
-        /** Creates a new [Projection] that projects positions using a perspective projection with the given Y-axis field of view (in degrees), X:Y aspect ratio, and clipping distances. The projection is adjusted for a head-mounted display with the given distance between eyes and distance to a point that can be focused on.  
-         *  [param eye] creates the projection for the left eye when set to 1, or the right eye when set to 2.  
-         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
-         */
-        static create_perspective_hmd(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean, eye: number /*i64*/, intraocular_dist: number /*f64*/, convergence_dist: number /*f64*/): Projection
-        
-        /** Creates a new [Projection] for projecting positions onto a head-mounted display with the given X:Y aspect ratio, distance between eyes, display width, distance to lens, oversampling factor, and depth clipping planes.  
-         *  [param eye] creates the projection for the left eye when set to 1, or the right eye when set to 2.  
-         */
-        static create_for_hmd(eye: number /*i64*/, aspect: number /*f64*/, intraocular_dist: number /*f64*/, display_width: number /*f64*/, display_to_lens: number /*f64*/, oversample: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
-        
-        /** Creates a new [Projection] that projects positions using an orthogonal projection with the given clipping planes. */
-        static create_orthogonal(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
-        
-        /** Creates a new [Projection] that projects positions using an orthogonal projection with the given size, X:Y aspect ratio, and clipping planes.  
-         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
-         */
-        static create_orthogonal_aspect(size: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
-        
-        /** Creates a new [Projection] that projects positions in a frustum with the given clipping planes. */
-        static create_frustum(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
-        
-        /** Creates a new [Projection] that projects positions in a frustum with the given size, X:Y aspect ratio, offset, and clipping planes.  
-         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
-         */
-        static create_frustum_aspect(size: number /*f64*/, aspect: number /*f64*/, offset: Vector2, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
-        
-        /** Creates a new [Projection] that scales a given projection to fit around a given [AABB] in projection space. */
-        static create_fit_aabb(aabb: AABB): Projection
-        
-        /** Returns a scalar value that is the signed factor by which areas are scaled by this matrix. If the sign is negative, the matrix flips the orientation of the area.  
-         *  The determinant can be used to calculate the invertibility of a matrix or solve linear systems of equations involving the matrix, among other applications.  
-         */
-        determinant(): number /*f64*/
-        
-        /** Returns a [Projection] with the near clipping distance adjusted to be [param new_znear].  
-         *      
-         *  **Note:** The original [Projection] must be a perspective projection.  
-         */
-        perspective_znear_adjusted(new_znear: number /*f64*/): Projection
-        
-        /** Returns the clipping plane of this [Projection] whose index is given by [param plane].  
-         *  [param plane] should be equal to one of [constant PLANE_NEAR], [constant PLANE_FAR], [constant PLANE_LEFT], [constant PLANE_TOP], [constant PLANE_RIGHT], or [constant PLANE_BOTTOM].  
-         */
-        get_projection_plane(plane: number /*i64*/): Plane
-        
-        /** Returns a copy of this [Projection] with the signs of the values of the Y column flipped. */
-        flipped_y(): Projection
-        
-        /** Returns a [Projection] with the X and Y values from the given [Vector2] added to the first and second values of the final column respectively. */
-        jitter_offseted(offset: Vector2): Projection
-        
-        /** Returns the vertical field of view of the projection (in degrees) associated with the given horizontal field of view (in degrees) and aspect ratio. */
-        static get_fovy(fovx: number /*f64*/, aspect: number /*f64*/): number /*f64*/
-        
-        /** Returns the distance for this [Projection] beyond which positions are clipped. */
-        get_z_far(): number /*f64*/
-        
-        /** Returns the distance for this [Projection] before which positions are clipped. */
-        get_z_near(): number /*f64*/
-        
-        /** Returns the X:Y aspect ratio of this [Projection]'s viewport. */
-        get_aspect(): number /*f64*/
-        
-        /** Returns the horizontal field of view of the projection (in degrees). */
-        get_fov(): number /*f64*/
-        
-        /** Returns `true` if this [Projection] performs an orthogonal projection. */
-        is_orthogonal(): boolean
-        
-        /** Returns the dimensions of the viewport plane that this [Projection] projects positions onto, divided by two. */
-        get_viewport_half_extents(): Vector2
-        
-        /** Returns the dimensions of the far clipping plane of the projection, divided by two. */
-        get_far_plane_half_extents(): Vector2
-        
-        /** Returns a [Projection] that performs the inverse of this [Projection]'s projective transformation. */
-        inverse(): Projection
-        
-        /** Returns the number of pixels with the given pixel width displayed per meter, after this [Projection] is applied. */
-        get_pixels_per_meter(for_pixel_width: number /*i64*/): number /*i64*/
-        
-        /** Returns the factor by which the visible level of detail is scaled by this [Projection]. */
-        get_lod_multiplier(): number /*f64*/
-        static MULTIPLY(left: Projection, right: Projection): Projection
-        static MULTIPLY(left: Projection, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: Projection): Vector4
-        static EQUAL(left: Projection, right: Projection): boolean
-        static NOT_EQUAL(left: Projection, right: Projection): boolean
-        x: Vector4
-        y: Vector4
-        z: Vector4
-        w: Vector4
-    }
-    /** A color represented in RGBA format.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_color.html  
-     */
-    class Color {
-        /** Alice blue color. */
-        static readonly ALICE_BLUE: Color
-        
-        /** Antique white color. */
-        static readonly ANTIQUE_WHITE: Color
-        
-        /** Aqua color. */
-        static readonly AQUA: Color
-        
-        /** Aquamarine color. */
-        static readonly AQUAMARINE: Color
-        
-        /** Azure color. */
-        static readonly AZURE: Color
-        
-        /** Beige color. */
-        static readonly BEIGE: Color
-        
-        /** Bisque color. */
-        static readonly BISQUE: Color
-        
-        /** Black color. In GDScript, this is the default value of any color. */
-        static readonly BLACK: Color
-        
-        /** Blanched almond color. */
-        static readonly BLANCHED_ALMOND: Color
-        
-        /** Blue color. */
-        static readonly BLUE: Color
-        
-        /** Blue violet color. */
-        static readonly BLUE_VIOLET: Color
-        
-        /** Brown color. */
-        static readonly BROWN: Color
-        
-        /** Burlywood color. */
-        static readonly BURLYWOOD: Color
-        
-        /** Cadet blue color. */
-        static readonly CADET_BLUE: Color
-        
-        /** Chartreuse color. */
-        static readonly CHARTREUSE: Color
-        
-        /** Chocolate color. */
-        static readonly CHOCOLATE: Color
-        
-        /** Coral color. */
-        static readonly CORAL: Color
-        
-        /** Cornflower blue color. */
-        static readonly CORNFLOWER_BLUE: Color
-        
-        /** Cornsilk color. */
-        static readonly CORNSILK: Color
-        
-        /** Crimson color. */
-        static readonly CRIMSON: Color
-        
-        /** Cyan color. */
-        static readonly CYAN: Color
-        
-        /** Dark blue color. */
-        static readonly DARK_BLUE: Color
-        
-        /** Dark cyan color. */
-        static readonly DARK_CYAN: Color
-        
-        /** Dark goldenrod color. */
-        static readonly DARK_GOLDENROD: Color
-        
-        /** Dark gray color. */
-        static readonly DARK_GRAY: Color
-        
-        /** Dark green color. */
-        static readonly DARK_GREEN: Color
-        
-        /** Dark khaki color. */
-        static readonly DARK_KHAKI: Color
-        
-        /** Dark magenta color. */
-        static readonly DARK_MAGENTA: Color
-        
-        /** Dark olive green color. */
-        static readonly DARK_OLIVE_GREEN: Color
-        
-        /** Dark orange color. */
-        static readonly DARK_ORANGE: Color
-        
-        /** Dark orchid color. */
-        static readonly DARK_ORCHID: Color
-        
-        /** Dark red color. */
-        static readonly DARK_RED: Color
-        
-        /** Dark salmon color. */
-        static readonly DARK_SALMON: Color
-        
-        /** Dark sea green color. */
-        static readonly DARK_SEA_GREEN: Color
-        
-        /** Dark slate blue color. */
-        static readonly DARK_SLATE_BLUE: Color
-        
-        /** Dark slate gray color. */
-        static readonly DARK_SLATE_GRAY: Color
-        
-        /** Dark turquoise color. */
-        static readonly DARK_TURQUOISE: Color
-        
-        /** Dark violet color. */
-        static readonly DARK_VIOLET: Color
-        
-        /** Deep pink color. */
-        static readonly DEEP_PINK: Color
-        
-        /** Deep sky blue color. */
-        static readonly DEEP_SKY_BLUE: Color
-        
-        /** Dim gray color. */
-        static readonly DIM_GRAY: Color
-        
-        /** Dodger blue color. */
-        static readonly DODGER_BLUE: Color
-        
-        /** Firebrick color. */
-        static readonly FIREBRICK: Color
-        
-        /** Floral white color. */
-        static readonly FLORAL_WHITE: Color
-        
-        /** Forest green color. */
-        static readonly FOREST_GREEN: Color
-        
-        /** Fuchsia color. */
-        static readonly FUCHSIA: Color
-        
-        /** Gainsboro color. */
-        static readonly GAINSBORO: Color
-        
-        /** Ghost white color. */
-        static readonly GHOST_WHITE: Color
-        
-        /** Gold color. */
-        static readonly GOLD: Color
-        
-        /** Goldenrod color. */
-        static readonly GOLDENROD: Color
-        
-        /** Gray color. */
-        static readonly GRAY: Color
-        
-        /** Green color. */
-        static readonly GREEN: Color
-        
-        /** Green yellow color. */
-        static readonly GREEN_YELLOW: Color
-        
-        /** Honeydew color. */
-        static readonly HONEYDEW: Color
-        
-        /** Hot pink color. */
-        static readonly HOT_PINK: Color
-        
-        /** Indian red color. */
-        static readonly INDIAN_RED: Color
-        
-        /** Indigo color. */
-        static readonly INDIGO: Color
-        
-        /** Ivory color. */
-        static readonly IVORY: Color
-        
-        /** Khaki color. */
-        static readonly KHAKI: Color
-        
-        /** Lavender color. */
-        static readonly LAVENDER: Color
-        
-        /** Lavender blush color. */
-        static readonly LAVENDER_BLUSH: Color
-        
-        /** Lawn green color. */
-        static readonly LAWN_GREEN: Color
-        
-        /** Lemon chiffon color. */
-        static readonly LEMON_CHIFFON: Color
-        
-        /** Light blue color. */
-        static readonly LIGHT_BLUE: Color
-        
-        /** Light coral color. */
-        static readonly LIGHT_CORAL: Color
-        
-        /** Light cyan color. */
-        static readonly LIGHT_CYAN: Color
-        
-        /** Light goldenrod color. */
-        static readonly LIGHT_GOLDENROD: Color
-        
-        /** Light gray color. */
-        static readonly LIGHT_GRAY: Color
-        
-        /** Light green color. */
-        static readonly LIGHT_GREEN: Color
-        
-        /** Light pink color. */
-        static readonly LIGHT_PINK: Color
-        
-        /** Light salmon color. */
-        static readonly LIGHT_SALMON: Color
-        
-        /** Light sea green color. */
-        static readonly LIGHT_SEA_GREEN: Color
-        
-        /** Light sky blue color. */
-        static readonly LIGHT_SKY_BLUE: Color
-        
-        /** Light slate gray color. */
-        static readonly LIGHT_SLATE_GRAY: Color
-        
-        /** Light steel blue color. */
-        static readonly LIGHT_STEEL_BLUE: Color
-        
-        /** Light yellow color. */
-        static readonly LIGHT_YELLOW: Color
-        
-        /** Lime color. */
-        static readonly LIME: Color
-        
-        /** Lime green color. */
-        static readonly LIME_GREEN: Color
-        
-        /** Linen color. */
-        static readonly LINEN: Color
-        
-        /** Magenta color. */
-        static readonly MAGENTA: Color
-        
-        /** Maroon color. */
-        static readonly MAROON: Color
-        
-        /** Medium aquamarine color. */
-        static readonly MEDIUM_AQUAMARINE: Color
-        
-        /** Medium blue color. */
-        static readonly MEDIUM_BLUE: Color
-        
-        /** Medium orchid color. */
-        static readonly MEDIUM_ORCHID: Color
-        
-        /** Medium purple color. */
-        static readonly MEDIUM_PURPLE: Color
-        
-        /** Medium sea green color. */
-        static readonly MEDIUM_SEA_GREEN: Color
-        
-        /** Medium slate blue color. */
-        static readonly MEDIUM_SLATE_BLUE: Color
-        
-        /** Medium spring green color. */
-        static readonly MEDIUM_SPRING_GREEN: Color
-        
-        /** Medium turquoise color. */
-        static readonly MEDIUM_TURQUOISE: Color
-        
-        /** Medium violet red color. */
-        static readonly MEDIUM_VIOLET_RED: Color
-        
-        /** Midnight blue color. */
-        static readonly MIDNIGHT_BLUE: Color
-        
-        /** Mint cream color. */
-        static readonly MINT_CREAM: Color
-        
-        /** Misty rose color. */
-        static readonly MISTY_ROSE: Color
-        
-        /** Moccasin color. */
-        static readonly MOCCASIN: Color
-        
-        /** Navajo white color. */
-        static readonly NAVAJO_WHITE: Color
-        
-        /** Navy blue color. */
-        static readonly NAVY_BLUE: Color
-        
-        /** Old lace color. */
-        static readonly OLD_LACE: Color
-        
-        /** Olive color. */
-        static readonly OLIVE: Color
-        
-        /** Olive drab color. */
-        static readonly OLIVE_DRAB: Color
-        
-        /** Orange color. */
-        static readonly ORANGE: Color
-        
-        /** Orange red color. */
-        static readonly ORANGE_RED: Color
-        
-        /** Orchid color. */
-        static readonly ORCHID: Color
-        
-        /** Pale goldenrod color. */
-        static readonly PALE_GOLDENROD: Color
-        
-        /** Pale green color. */
-        static readonly PALE_GREEN: Color
-        
-        /** Pale turquoise color. */
-        static readonly PALE_TURQUOISE: Color
-        
-        /** Pale violet red color. */
-        static readonly PALE_VIOLET_RED: Color
-        
-        /** Papaya whip color. */
-        static readonly PAPAYA_WHIP: Color
-        
-        /** Peach puff color. */
-        static readonly PEACH_PUFF: Color
-        
-        /** Peru color. */
-        static readonly PERU: Color
-        
-        /** Pink color. */
-        static readonly PINK: Color
-        
-        /** Plum color. */
-        static readonly PLUM: Color
-        
-        /** Powder blue color. */
-        static readonly POWDER_BLUE: Color
-        
-        /** Purple color. */
-        static readonly PURPLE: Color
-        
-        /** Rebecca purple color. */
-        static readonly REBECCA_PURPLE: Color
-        
-        /** Red color. */
-        static readonly RED: Color
-        
-        /** Rosy brown color. */
-        static readonly ROSY_BROWN: Color
-        
-        /** Royal blue color. */
-        static readonly ROYAL_BLUE: Color
-        
-        /** Saddle brown color. */
-        static readonly SADDLE_BROWN: Color
-        
-        /** Salmon color. */
-        static readonly SALMON: Color
-        
-        /** Sandy brown color. */
-        static readonly SANDY_BROWN: Color
-        
-        /** Sea green color. */
-        static readonly SEA_GREEN: Color
-        
-        /** Seashell color. */
-        static readonly SEASHELL: Color
-        
-        /** Sienna color. */
-        static readonly SIENNA: Color
-        
-        /** Silver color. */
-        static readonly SILVER: Color
-        
-        /** Sky blue color. */
-        static readonly SKY_BLUE: Color
-        
-        /** Slate blue color. */
-        static readonly SLATE_BLUE: Color
-        
-        /** Slate gray color. */
-        static readonly SLATE_GRAY: Color
-        
-        /** Snow color. */
-        static readonly SNOW: Color
-        
-        /** Spring green color. */
-        static readonly SPRING_GREEN: Color
-        
-        /** Steel blue color. */
-        static readonly STEEL_BLUE: Color
-        
-        /** Tan color. */
-        static readonly TAN: Color
-        
-        /** Teal color. */
-        static readonly TEAL: Color
-        
-        /** Thistle color. */
-        static readonly THISTLE: Color
-        
-        /** Tomato color. */
-        static readonly TOMATO: Color
-        
-        /** Transparent color (white with zero alpha). */
-        static readonly TRANSPARENT: Color
-        
-        /** Turquoise color. */
-        static readonly TURQUOISE: Color
-        
-        /** Violet color. */
-        static readonly VIOLET: Color
-        
-        /** Web gray color. */
-        static readonly WEB_GRAY: Color
-        
-        /** Web green color. */
-        static readonly WEB_GREEN: Color
-        
-        /** Web maroon color. */
-        static readonly WEB_MAROON: Color
-        
-        /** Web purple color. */
-        static readonly WEB_PURPLE: Color
-        
-        /** Wheat color. */
-        static readonly WHEAT: Color
-        
-        /** White color. */
-        static readonly WHITE: Color
-        
-        /** White smoke color. */
-        static readonly WHITE_SMOKE: Color
-        
-        /** Yellow color. */
-        static readonly YELLOW: Color
-        
-        /** Yellow green color. */
-        static readonly YELLOW_GREEN: Color
-        constructor()
-        constructor(from: Color)
-        constructor(from: Color, alpha: number /*f64*/)
-        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/)
-        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/, a: number /*f64*/)
-        constructor(code: string)
-        constructor(code: string, alpha: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
-        
-        /** Returns the color converted to a 32-bit integer in ARGB format (each component is 8 bits). ARGB is more compatible with DirectX.  
-         *    
-         */
-        to_argb32(): number /*i64*/
-        
-        /** Returns the color converted to a 32-bit integer in ABGR format (each component is 8 bits). ABGR is the reversed version of the default RGBA format.  
-         *    
-         */
-        to_abgr32(): number /*i64*/
-        
-        /** Returns the color converted to a 32-bit integer in RGBA format (each component is 8 bits). RGBA is Godot's default format.  
-         *    
-         */
-        to_rgba32(): number /*i64*/
-        
-        /** Returns the color converted to a 64-bit integer in ARGB format (each component is 16 bits). ARGB is more compatible with DirectX.  
-         *    
-         */
-        to_argb64(): number /*i64*/
-        
-        /** Returns the color converted to a 64-bit integer in ABGR format (each component is 16 bits). ABGR is the reversed version of the default RGBA format.  
-         *    
-         */
-        to_abgr64(): number /*i64*/
-        
-        /** Returns the color converted to a 64-bit integer in RGBA format (each component is 16 bits). RGBA is Godot's default format.  
-         *    
-         */
-        to_rgba64(): number /*i64*/
-        
-        /** Returns the color converted to an HTML hexadecimal color [String] in RGBA format, without the hash (`#`) prefix.  
-         *  Setting [param with_alpha] to `false`, excludes alpha from the hexadecimal string, using RGB format instead of RGBA format.  
-         *    
-         */
-        to_html(with_alpha: boolean = true): string
-        
-        /** Returns a new color with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Color = new Color(0, 0, 0, 0), max: Color = new Color(1, 1, 1, 1)): Color
-        
-        /** Returns the color with its [member r], [member g], and [member b] components inverted (`(1 - r, 1 - g, 1 - b, a)`).  
-         *    
-         */
-        inverted(): Color
-        
-        /** Returns the linear interpolation between this color's components and [param to]'s components. The interpolation factor [param weight] should be between 0.0 and 1.0 (inclusive). See also [method @GlobalScope.lerp].  
-         *    
-         */
-        lerp(to: Color, weight: number /*f64*/): Color
-        
-        /** Returns a new color resulting from making this color lighter by the specified [param amount], which should be a ratio from 0.0 to 1.0. See also [method darkened].  
-         *    
-         */
-        lightened(amount: number /*f64*/): Color
-        
-        /** Returns a new color resulting from making this color darker by the specified [param amount] (ratio from 0.0 to 1.0). See also [method lightened].  
-         *    
-         */
-        darkened(amount: number /*f64*/): Color
-        
-        /** Returns a new color resulting from overlaying this color over the given color. In a painting program, you can imagine it as the [param over] color painted over this color (including alpha).  
-         *    
-         */
-        blend(over: Color): Color
-        
-        /** Returns the light intensity of the color, as a value between 0.0 and 1.0 (inclusive). This is useful when determining light or dark color. Colors with a luminance smaller than 0.5 can be generally considered dark.  
-         *      
-         *  **Note:** [method get_luminance] relies on the color being in the linear color space to return an accurate relative luminance value. If the color is in the sRGB color space, use [method srgb_to_linear] to convert it to the linear color space first.  
-         */
-        get_luminance(): number /*f64*/
-        
-        /** Returns the color converted to the linear color space. This method assumes the original color already is in the sRGB color space. See also [method linear_to_srgb] which performs the opposite operation. */
-        srgb_to_linear(): Color
-        
-        /** Returns the color converted to the [url=https://en.wikipedia.org/wiki/SRGB]sRGB[/url] color space. This method assumes the original color is in the linear color space. See also [method srgb_to_linear] which performs the opposite operation. */
-        linear_to_srgb(): Color
-        
-        /** Returns `true` if this color and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Color): boolean
-        
-        /** Returns the [Color] associated with the provided [param hex] integer in 32-bit RGBA format (8 bits per channel).  
-         *  In GDScript and C#, the [int] is best visualized with hexadecimal notation (`"0x"` prefix, making it `"0xRRGGBBAA"`).  
-         *    
-         */
-        static hex(hex: number /*i64*/): Color
-        
-        /** Returns the [Color] associated with the provided [param hex] integer in 64-bit RGBA format (16 bits per channel).  
-         *  In GDScript and C#, the [int] is best visualized with hexadecimal notation (`"0x"` prefix, making it `"0xRRRRGGGGBBBBAAAA"`).  
-         */
-        static hex64(hex: number /*i64*/): Color
-        
-        /** Returns a new color from [param rgba], an HTML hexadecimal color string. [param rgba] is not case-sensitive, and may be prefixed by a hash sign (`#`).  
-         *  [param rgba] must be a valid three-digit or six-digit hexadecimal color string, and may contain an alpha channel value. If [param rgba] does not contain an alpha channel value, an alpha channel value of 1.0 is applied. If [param rgba] is invalid, returns an empty color.  
-         *    
-         */
-        static html(rgba: string): Color
-        
-        /** Returns `true` if [param color] is a valid HTML hexadecimal color string. The string must be a hexadecimal value (case-insensitive) of either 3, 4, 6 or 8 digits, and may be prefixed by a hash sign (`#`). This method is identical to [method String.is_valid_html_color].  
-         *    
-         */
-        static html_is_valid(color: string): boolean
-        
-        /** Creates a [Color] from the given string, which can be either an HTML color code or a named color (case-insensitive). Returns [param default] if the color cannot be inferred from the string. */
-        static from_string(str: string, default_: Color): Color
-        
-        /** Constructs a color from an [url=https://en.wikipedia.org/wiki/HSL_and_HSV]HSV profile[/url]. The hue ([param h]), saturation ([param s]), and value ([param v]) are typically between 0.0 and 1.0.  
-         *    
-         */
-        static from_hsv(h: number /*f64*/, s: number /*f64*/, v: number /*f64*/, alpha: number /*f64*/ = 1): Color
-        
-        /** Constructs a color from an [url=https://bottosson.github.io/posts/colorpicker/]OK HSL profile[/url]. The hue ([param h]), saturation ([param s]), and lightness ([param l]) are typically between 0.0 and 1.0.  
-         *    
-         */
-        static from_ok_hsl(h: number /*f64*/, s: number /*f64*/, l: number /*f64*/, alpha: number /*f64*/ = 1): Color
-        
-        /** Decodes a [Color] from a RGBE9995 format integer. See [constant Image.FORMAT_RGBE9995]. */
-        static from_rgbe9995(rgbe: number /*i64*/): Color
-        static ADD(left: Color, right: Color): Color
-        static SUBTRACT(left: Color, right: Color): Color
-        static MULTIPLY(left: Color, right: Color): Color
-        static MULTIPLY(left: Color, right: number /*f64*/): Color
-        static MULTIPLY(left: number /*f64*/, right: Color): Color
-        static DIVIDE(left: Color, right: Color): Color
-        static DIVIDE(left: Color, right: number /*f64*/): Color
-        static NEGATE(left: Color, right: any): boolean
-        static EQUAL(left: Color, right: Color): boolean
-        static NOT_EQUAL(left: Color, right: Color): boolean
-        r: number /*f64*/
-        g: number /*f64*/
-        b: number /*f64*/
-        a: number /*f64*/
-        r8: number /*i64*/
-        g8: number /*i64*/
-        b8: number /*i64*/
-        a8: number /*i64*/
-        h: number /*f64*/
-        s: number /*f64*/
-        v: number /*f64*/
-    }
-    /** A pre-parsed scene tree path.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_nodepath.html  
-     */
-    class NodePath {
-        constructor()
-        constructor(from: NodePath)
-        constructor(from: string)
-        
-        /** Returns `true` if the node path is absolute (as opposed to relative), which means that it starts with a slash character (`/`). Absolute node paths can be used to access the root node (`"/root"`) or autoloads (e.g. `"/global"` if a "global" autoload was registered). */
-        is_absolute(): boolean
-        
-        /** Gets the number of node names which make up the path. Subnames (see [method get_subname_count]) are not included.  
-         *  For example, `"Path2D/PathFollow2D/Sprite2D"` has 3 names.  
-         */
-        get_name_count(): number /*i64*/
-        
-        /** Gets the node name indicated by [param idx] (0 to [method get_name_count] - 1).  
-         *    
-         */
-        get_name(idx: number /*i64*/): StringName
-        
-        /** Gets the number of resource or property names ("subnames") in the path. Each subname is listed after a colon character (`:`) in the node path.  
-         *  For example, `"Path2D/PathFollow2D/Sprite2D:texture:load_path"` has 2 subnames.  
-         */
-        get_subname_count(): number /*i64*/
-        
-        /** Returns the 32-bit hash value representing the [NodePath]'s contents. */
-        hash(): number /*i64*/
-        
-        /** Gets the resource or property name indicated by [param idx] (0 to [method get_subname_count] - 1).  
-         *    
-         */
-        get_subname(idx: number /*i64*/): StringName
-        
-        /** Returns all paths concatenated with a slash character (`/`) as separator without subnames. */
-        get_concatenated_names(): StringName
-        
-        /** Returns all subnames concatenated with a colon character (`:`) as separator, i.e. the right side of the first colon in a node path.  
-         *    
-         */
-        get_concatenated_subnames(): StringName
-        
-        /** Returns a node path with a colon character (`:`) prepended, transforming it to a pure property path with no node name (defaults to resolving from the current node).  
-         *    
-         */
-        get_as_property_path(): NodePath
-        
-        /** Returns `true` if the node path is empty. */
-        is_empty(): boolean
-        static EQUAL(left: NodePath, right: NodePath): boolean
-        static NOT_EQUAL(left: NodePath, right: NodePath): boolean
-    }
-    /** A handle for a [Resource]'s unique identifier.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_rid.html  
-     */
-    class RID {
-        constructor()
-        constructor(from: RID)
-        
-        /** Returns `true` if the [RID] is not `0`. */
-        is_valid(): boolean
-        
-        /** Returns the ID of the referenced low-level resource. */
-        get_id(): number /*i64*/
-        static EQUAL(left: RID, right: RID): boolean
-        static NOT_EQUAL(left: RID, right: RID): boolean
-        static LESS(left: RID, right: RID): boolean
-        static LESS_EQUAL(left: RID, right: RID): boolean
-        static GREATER(left: RID, right: RID): boolean
-        static GREATER_EQUAL(left: RID, right: RID): boolean
+        get x(): number /*f64*/
+        set x(value: number /*f64*/)
+        get y(): number /*f64*/
+        set y(value: number /*f64*/)
     }
 }

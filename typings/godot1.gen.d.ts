@@ -388,33 +388,41 @@ declare module "godot" {
         get_id_path(from_id: Vector2i, to_id: Vector2i): Array
         
         /** The region of grid cells available for pathfinding. If changed, [method update] needs to be called before finding the next path. */
-        region: Rect2i
+        get region(): Rect2i
+        set region(value: Rect2i)
         
         /** The size of the grid (number of cells of size [member cell_size] on each axis). If changed, [method update] needs to be called before finding the next path.  
          *   *Deprecated.*  Use [member region] instead.  
          */
-        size: Vector2i
+        get size(): Vector2i
+        set size(value: Vector2i)
         
         /** The offset of the grid which will be applied to calculate the resulting point position returned by [method get_point_path]. If changed, [method update] needs to be called before finding the next path. */
-        offset: Vector2
+        get offset(): Vector2
+        set offset(value: Vector2)
         
         /** The size of the point cell which will be applied to calculate the resulting point position returned by [method get_point_path]. If changed, [method update] needs to be called before finding the next path. */
-        cell_size: Vector2
+        get cell_size(): Vector2
+        set cell_size(value: Vector2)
         
         /** Enables or disables jumping to skip up the intermediate points and speeds up the searching algorithm.  
          *      
          *  **Note:** Currently, toggling it on disables the consideration of weight scaling in pathfinding.  
          */
-        jumping_enabled: boolean
+        get jumping_enabled(): boolean
+        set jumping_enabled(value: boolean)
         
         /** The default [enum Heuristic] which will be used to calculate the cost between two points if [method _compute_cost] was not overridden. */
-        default_compute_heuristic: number /*i64*/
+        get default_compute_heuristic(): number /*i64*/
+        set default_compute_heuristic(value: number /*i64*/)
         
         /** The default [enum Heuristic] which will be used to calculate the cost between the point and the end point if [method _estimate_cost] was not overridden. */
-        default_estimate_heuristic: number /*i64*/
+        get default_estimate_heuristic(): number /*i64*/
+        set default_estimate_heuristic(value: number /*i64*/)
         
         /** A specific [enum DiagonalMode] mode which will force the path to avoid or accept the specified diagonals. */
-        diagonal_mode: number /*i64*/
+        get diagonal_mode(): number /*i64*/
+        set diagonal_mode(value: number /*i64*/)
     }
     class AbstractPolygon2DEditor extends HBoxContainer {
     }
@@ -463,22 +471,27 @@ declare module "godot" {
         get_ok_button_text(): string
         
         /** The text displayed by the OK button (see [method get_ok_button]). */
-        ok_button_text: string
+        get ok_button_text(): string
+        set ok_button_text(value: string)
         
         /** The text displayed by the dialog. */
-        dialog_text: string
+        get dialog_text(): string
+        set dialog_text(value: string)
         
         /** If `true`, the dialog is hidden when the OK button is pressed. You can set it to `false` if you want to do e.g. input validation when receiving the [signal confirmed] signal, and handle hiding the dialog in your own logic.  
          *      
          *  **Note:** Some nodes derived from this class can have a different default value, and potentially their own built-in logic overriding this setting. For example [FileDialog] defaults to `false`, and has its own input validation code that is called when you press OK, which eventually hides the dialog if the input is valid. As such, this property can't be used in [FileDialog] to disable hiding the dialog when pressing OK.  
          */
-        dialog_hide_on_ok: boolean
+        get dialog_hide_on_ok(): boolean
+        set dialog_hide_on_ok(value: boolean)
         
         /** If `true`, the dialog will be hidden when the escape key ([constant KEY_ESCAPE]) is pressed. */
-        dialog_close_on_escape: boolean
+        get dialog_close_on_escape(): boolean
+        set dialog_close_on_escape(value: boolean)
         
         /** Sets autowrapping for the text in the dialog. */
-        dialog_autowrap: boolean
+        get dialog_autowrap(): boolean
+        set dialog_autowrap(value: boolean)
         
         /** Emitted when the dialog is accepted, i.e. the OK button is pressed. */
         readonly confirmed: Signal //  => void
@@ -510,7 +523,8 @@ declare module "godot" {
         is_sync_to_physics_enabled(): boolean
         
         /** If `true`, the body's movement will be synchronized to the physics frame. This is useful when animating movement via [AnimationPlayer], for example on moving platforms. Do **not** use together with [method PhysicsBody2D.move_and_collide]. */
-        sync_to_physics: boolean
+        get sync_to_physics(): boolean
+        set sync_to_physics(value: boolean)
     }
     /** A 3D physics body that can't be moved by external forces. When moved manually, it affects other bodies in its path.  
      *  	  
@@ -521,7 +535,8 @@ declare module "godot" {
         is_sync_to_physics_enabled(): boolean
         
         /** If `true`, the body's movement will be synchronized to the physics frame. This is useful when animating movement via [AnimationPlayer], for example on moving platforms. Do **not** use together with [method PhysicsBody3D.move_and_collide]. */
-        sync_to_physics: boolean
+        get sync_to_physics(): boolean
+        set sync_to_physics(value: boolean)
     }
     /** Sprite node that contains multiple textures as frames to play for animation.  
      *  	  
@@ -583,36 +598,46 @@ declare module "godot" {
         get_playing_speed(): number /*f64*/
         
         /** The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit, clear, make unique and save the states of the [SpriteFrames] resource. */
-        sprite_frames: SpriteFrames
+        get sprite_frames(): SpriteFrames
+        set sprite_frames(value: SpriteFrames)
         
         /** The current animation from the [member sprite_frames] resource. If this value is changed, the [member frame] counter and the [member frame_progress] are reset. */
-        animation: StringName
+        get animation(): StringName
+        set animation(value: StringName)
         
         /** The key of the animation to play when the scene loads. */
-        autoplay: StringName
+        get autoplay(): StringName
+        set autoplay(value: StringName)
         
         /** The displayed animation frame's index. Setting this property also resets [member frame_progress]. If this is not desired, use [method set_frame_and_progress]. */
-        frame: number /*i64*/
+        get frame(): number /*i64*/
+        set frame(value: number /*i64*/)
         
         /** The progress value between `0.0` and `1.0` until the current frame transitions to the next frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`. */
-        frame_progress: number /*f64*/
+        get frame_progress(): number /*f64*/
+        set frame_progress(value: number /*f64*/)
         
         /** The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.  
          *  If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.  
          */
-        speed_scale: number /*f64*/
+        get speed_scale(): number /*f64*/
+        set speed_scale(value: number /*f64*/)
         
         /** If `true`, texture will be centered. */
-        centered: boolean
+        get centered(): boolean
+        set centered(value: boolean)
         
         /** The texture's drawing offset. */
-        offset: Vector2
+        get offset(): Vector2
+        set offset(value: Vector2)
         
         /** If `true`, texture is flipped horizontally. */
-        flip_h: boolean
+        get flip_h(): boolean
+        set flip_h(value: boolean)
         
         /** If `true`, texture is flipped vertically. */
-        flip_v: boolean
+        get flip_v(): boolean
+        set flip_v(value: boolean)
         
         /** Emitted when [member sprite_frames] changes. */
         readonly sprite_frames_changed: Signal //  => void
@@ -682,24 +707,30 @@ declare module "godot" {
         _res_changed(): void
         
         /** The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit, clear, make unique and save the states of the [SpriteFrames] resource. */
-        sprite_frames: SpriteFrames
+        get sprite_frames(): SpriteFrames
+        set sprite_frames(value: SpriteFrames)
         
         /** The current animation from the [member sprite_frames] resource. If this value is changed, the [member frame] counter and the [member frame_progress] are reset. */
-        animation: StringName
+        get animation(): StringName
+        set animation(value: StringName)
         
         /** The key of the animation to play when the scene loads. */
-        autoplay: StringName
+        get autoplay(): StringName
+        set autoplay(value: StringName)
         
         /** The displayed animation frame's index. Setting this property also resets [member frame_progress]. If this is not desired, use [method set_frame_and_progress]. */
-        frame: number /*i64*/
+        get frame(): number /*i64*/
+        set frame(value: number /*i64*/)
         
         /** The progress value between `0.0` and `1.0` until the current frame transitions to the next frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`. */
-        frame_progress: number /*f64*/
+        get frame_progress(): number /*f64*/
+        set frame_progress(value: number /*f64*/)
         
         /** The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.  
          *  If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.  
          */
-        speed_scale: number /*f64*/
+        get speed_scale(): number /*f64*/
+        set speed_scale(value: number /*f64*/)
         
         /** Emitted when [member sprite_frames] changes. */
         readonly sprite_frames_changed: Signal //  => void
@@ -749,19 +780,24 @@ declare module "godot" {
         get_frame_duration(frame: number /*i64*/): number /*f64*/
         
         /** Number of frames to use in the animation. While you can create the frames independently with [method set_frame_texture], you need to set this value for the animation to take new frames into account. The maximum number of frames is [constant MAX_FRAMES]. */
-        frames: number /*i64*/
+        get frames(): number /*i64*/
+        set frames(value: number /*i64*/)
         
         /** Sets the currently visible frame of the texture. Setting this frame while playing resets the current frame time, so the newly selected frame plays for its whole configured frame duration. */
-        current_frame: number /*i64*/
+        get current_frame(): number /*i64*/
+        set current_frame(value: number /*i64*/)
         
         /** If `true`, the animation will pause where it currently is (i.e. at [member current_frame]). The animation will continue from where it was paused when changing this property to `false`. */
-        pause: boolean
+        get pause(): boolean
+        set pause(value: boolean)
         
         /** If `true`, the animation will only play once and will not loop back to the first frame after reaching the end. Note that reaching the end will not set [member pause] to `true`. */
-        one_shot: boolean
+        get one_shot(): boolean
+        set one_shot(value: boolean)
         
         /** The animation speed is multiplied by this value. If set to a negative value, the animation is played in reverse. */
-        speed_scale: number /*f64*/
+        get speed_scale(): number /*f64*/
+        set speed_scale(value: number /*f64*/)
     }
     namespace Animation {
         enum TrackType {
@@ -1084,13 +1120,16 @@ declare module "godot" {
          *      
          *  **Note:** Length is not delimited by the last key, as this one may be before or after the end to ensure correct interpolation and looping.  
          */
-        length: number /*f64*/
+        get length(): number /*f64*/
+        set length(value: number /*f64*/)
         
         /** Determines the behavior of both ends of the animation timeline during animation playback. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation. */
-        loop_mode: number /*i64*/
+        get loop_mode(): number /*i64*/
+        set loop_mode(value: number /*i64*/)
         
         /** The animation step value. */
-        step: number /*f64*/
+        get step(): number /*f64*/
+        set step(value: number /*f64*/)
     }
     class AnimationBezierTrackEdit extends Control {
         _clear_selection(): void
@@ -1134,7 +1173,8 @@ declare module "godot" {
         get_animation_list(): Array
         _set_data(data: Dictionary): void
         _get_data(): Dictionary
-        _data: Dictionary
+        get _data(): Dictionary
+        set _data(value: Dictionary)
         
         /** Emitted when an [Animation] is added, under the key [param name]. */
         readonly animation_added: Signal // name: StringName => void
@@ -1291,7 +1331,8 @@ declare module "godot" {
         find_animation_library(animation: Animation): StringName
         
         /** If `true`, the [AnimationMixer] will be processing. */
-        active: boolean
+        get active(): boolean
+        set active(value: boolean)
         
         /** If `true`, the blending uses the deterministic algorithm. The total weight is not normalized and the result is accumulated with an initial value (`0` or a `"RESET"` animation if present).  
          *  This means that if the total amount of blending is `0.0`, the result is equal to the `"RESET"` animation.  
@@ -1301,31 +1342,38 @@ declare module "godot" {
          *  **Note:** In [AnimationTree], the blending with [AnimationNodeAdd2], [AnimationNodeAdd3], [AnimationNodeSub2] or the weight greater than `1.0` may produce unexpected results.  
          *  For example, if [AnimationNodeAdd2] blends two nodes with the amount `1.0`, then total weight is `2.0` but it will be normalized to make the total amount `1.0` and the result will be equal to [AnimationNodeBlend2] with the amount `0.5`.  
          */
-        deterministic: boolean
+        get deterministic(): boolean
+        set deterministic(value: boolean)
         
         /** This is used by the editor. If set to `true`, the scene will be saved with the effects of the reset animation (the animation with the key `"RESET"`) applied as if it had been seeked to time 0, with the editor keeping the values that the scene had before saving.  
          *  This makes it more convenient to preview and edit animations in the editor, as changes to the scene will not be saved as long as they are set in the reset animation.  
          */
-        reset_on_save: boolean
+        get reset_on_save(): boolean
+        set reset_on_save(value: boolean)
         
         /** The node from which node path references will travel. */
-        root_node: NodePath
+        get root_node(): NodePath
+        set root_node(value: NodePath)
         
         /** The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. To specify a track that controls properties or bones, append its name after the path, separated by `":"`. For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.  
          *  If the track has type [constant Animation.TYPE_POSITION_3D], [constant Animation.TYPE_ROTATION_3D] or [constant Animation.TYPE_SCALE_3D] the transformation will be canceled visually, and the animation will appear to stay in place. See also [method get_root_motion_position], [method get_root_motion_rotation], [method get_root_motion_scale] and [RootMotionView].  
          */
-        root_motion_track: NodePath
+        get root_motion_track(): NodePath
+        set root_motion_track(value: NodePath)
         
         /** The number of possible simultaneous sounds for each of the assigned AudioStreamPlayers.  
          *  For example, if this value is `32` and the animation has two audio tracks, the two [AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.  
          */
-        audio_max_polyphony: number /*i64*/
+        get audio_max_polyphony(): number /*i64*/
+        set audio_max_polyphony(value: number /*i64*/)
         
         /** The process notification in which to update animations. */
-        callback_mode_process: number /*i64*/
+        get callback_mode_process(): number /*i64*/
+        set callback_mode_process(value: number /*i64*/)
         
         /** The call mode to use for Call Method tracks. */
-        callback_mode_method: number /*i64*/
+        get callback_mode_method(): number /*i64*/
+        set callback_mode_method(value: number /*i64*/)
         
         /** Editor only. Notifies when the property have been updated to update dummy [AnimationPlayer] in animation player editor. */
         readonly mixer_updated: Signal //  => void
@@ -1441,8 +1489,10 @@ declare module "godot" {
         get_parameter(name: StringName): any
         
         /** If `true`, filtering is enabled. */
-        filter_enabled: boolean
-        filters: Array
+        get filter_enabled(): boolean
+        set filter_enabled(value: boolean)
+        get filters(): Array
+        set filters(value: Array)
         
         /** Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes changes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], [AnimationNodeBlendTree] and [AnimationNodeTransition]. */
         readonly tree_changed: Signal //  => void
@@ -1485,10 +1535,12 @@ declare module "godot" {
         get_play_mode(): AnimationNodeAnimation.PlayMode
         
         /** Animation to use as an output. It is one of the animations provided by [member AnimationTree.anim_player]. */
-        animation: StringName
+        get animation(): StringName
+        set animation(value: StringName)
         
         /** Determines the playback direction of the animation. */
-        play_mode: number /*i64*/
+        get play_mode(): number /*i64*/
+        set play_mode(value: number /*i64*/)
     }
     /** Blends two animations linearly inside of an [AnimationNodeBlendTree].  
      *  	  
@@ -1554,24 +1606,30 @@ declare module "godot" {
         _add_blend_point(index: number /*i64*/, node: AnimationRootNode): void
         
         /** The blend space's axis's lower limit for the points' position. See [method add_blend_point]. */
-        min_space: number /*f64*/
+        get min_space(): number /*f64*/
+        set min_space(value: number /*f64*/)
         
         /** The blend space's axis's upper limit for the points' position. See [method add_blend_point]. */
-        max_space: number /*f64*/
+        get max_space(): number /*f64*/
+        set max_space(value: number /*f64*/)
         
         /** Position increment to snap to when moving a point on the axis. */
-        snap: number /*f64*/
+        get snap(): number /*f64*/
+        set snap(value: number /*f64*/)
         
         /** Label of the virtual axis of the blend space. */
-        value_label: string
+        get value_label(): string
+        set value_label(value: string)
         
         /** Controls the interpolation between animations. See [enum BlendMode] constants. */
-        blend_mode: number /*i64*/
+        get blend_mode(): number /*i64*/
+        set blend_mode(value: number /*i64*/)
         
         /** If `false`, the blended animations' frame are stopped when the blend value is `0`.  
          *  If `true`, forcing the blended animations to advance frame.  
          */
-        sync: boolean
+        get sync(): boolean
+        set sync(value: boolean)
     }
     class AnimationNodeBlendSpace1DEditor extends AnimationTreeNodeEditorPlugin {
         _update_space(): void
@@ -1649,31 +1707,40 @@ declare module "godot" {
         _update_triangles(): void
         
         /** If `true`, the blend space is triangulated automatically. The mesh updates every time you add or remove points with [method add_blend_point] and [method remove_blend_point]. */
-        auto_triangles: boolean
-        triangles: PackedInt32Array
+        get auto_triangles(): boolean
+        set auto_triangles(value: boolean)
+        get triangles(): PackedInt32Array
+        set triangles(value: PackedInt32Array)
         
         /** The blend space's X and Y axes' lower limit for the points' position. See [method add_blend_point]. */
-        min_space: Vector2
+        get min_space(): Vector2
+        set min_space(value: Vector2)
         
         /** The blend space's X and Y axes' upper limit for the points' position. See [method add_blend_point]. */
-        max_space: Vector2
+        get max_space(): Vector2
+        set max_space(value: Vector2)
         
         /** Position increment to snap to when moving a point. */
-        snap: Vector2
+        get snap(): Vector2
+        set snap(value: Vector2)
         
         /** Name of the blend space's X axis. */
-        x_label: string
+        get x_label(): string
+        set x_label(value: string)
         
         /** Name of the blend space's Y axis. */
-        y_label: string
+        get y_label(): string
+        set y_label(value: string)
         
         /** Controls the interpolation between animations. See [enum BlendMode] constants. */
-        blend_mode: number /*i64*/
+        get blend_mode(): number /*i64*/
+        set blend_mode(value: number /*i64*/)
         
         /** If `false`, the blended animations' frame are stopped when the blend value is `0`.  
          *  If `true`, forcing the blended animations to advance frame.  
          */
-        sync: boolean
+        get sync(): boolean
+        set sync(value: boolean)
         
         /** Emitted every time the blend space's triangles are created, removed, or when one of their vertices changes position. */
         readonly triangles_updated: Signal //  => void
@@ -1736,7 +1803,8 @@ declare module "godot" {
         get_graph_offset(): Vector2
         
         /** The global offset of all sub animation nodes. */
-        graph_offset: Vector2
+        get graph_offset(): Vector2
+        set graph_offset(value: Vector2)
         
         /** Emitted when the input port information is changed. */
         readonly node_changed: Signal // node_name: StringName => void
@@ -1790,30 +1858,38 @@ declare module "godot" {
         get_mix_mode(): AnimationNodeOneShot.MixMode
         
         /** The blend type. */
-        mix_mode: number /*i64*/
+        get mix_mode(): number /*i64*/
+        set mix_mode(value: number /*i64*/)
         
         /** The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 0 second and ends at 1 second during the animation. */
-        fadein_time: number /*f64*/
+        get fadein_time(): number /*f64*/
+        set fadein_time(value: number /*f64*/)
         
         /** Determines how cross-fading between animations is eased. If empty, the transition will be linear. */
-        fadein_curve: Curve
+        get fadein_curve(): Curve
+        set fadein_curve(value: Curve)
         
         /** The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 4 second and ends at 5 second during the animation. */
-        fadeout_time: number /*f64*/
+        get fadeout_time(): number /*f64*/
+        set fadeout_time(value: number /*f64*/)
         
         /** Determines how cross-fading between animations is eased. If empty, the transition will be linear. */
-        fadeout_curve: Curve
+        get fadeout_curve(): Curve
+        set fadeout_curve(value: Curve)
         
         /** If `true`, the sub-animation will restart automatically after finishing.  
          *  In other words, to start auto restarting, the animation must be played once with the [constant ONE_SHOT_REQUEST_FIRE] request. The [constant ONE_SHOT_REQUEST_ABORT] request stops the auto restarting, but it does not disable the [member autorestart] itself. So, the [constant ONE_SHOT_REQUEST_FIRE] request will start auto restarting again.  
          */
-        autorestart: boolean
+        get autorestart(): boolean
+        set autorestart(value: boolean)
         
         /** The delay after which the automatic restart is triggered, in seconds. */
-        autorestart_delay: number /*f64*/
+        get autorestart_delay(): number /*f64*/
+        set autorestart_delay(value: number /*f64*/)
         
         /** If [member autorestart] is `true`, a random additional delay (in seconds) between 0 and this value will be added to [member autorestart_delay]. */
-        autorestart_random_delay: number /*f64*/
+        get autorestart_random_delay(): number /*f64*/
+        set autorestart_random_delay(value: number /*f64*/)
     }
     /** The animation output node of an [AnimationNodeBlendTree].  
      *  	  
@@ -1900,15 +1976,18 @@ declare module "godot" {
         are_ends_reset(): boolean
         
         /** This property can define the process of transitions for different use cases. See also [enum AnimationNodeStateMachine.StateMachineType]. */
-        state_machine_type: number /*i64*/
+        get state_machine_type(): number /*i64*/
+        set state_machine_type(value: number /*i64*/)
         
         /** If `true`, allows teleport to the self state with [method AnimationNodeStateMachinePlayback.travel]. When the reset option is enabled in [method AnimationNodeStateMachinePlayback.travel], the animation is restarted. If `false`, nothing happens on the teleportation to the self state. */
-        allow_transition_to_self: boolean
+        get allow_transition_to_self(): boolean
+        set allow_transition_to_self(value: boolean)
         
         /** If `true`, treat the cross-fade to the start and end nodes as a blend with the RESET animation.  
          *  In most cases, when additional cross-fades are performed in the parent [AnimationNode] of the state machine, setting this property to `false` and matching the cross-fade time of the parent [AnimationNode] and the state machine's start node and end node gives good results.  
          */
-        reset_ends: boolean
+        get reset_ends(): boolean
+        set reset_ends(value: boolean)
     }
     class AnimationNodeStateMachineEditor extends AnimationTreeNodeEditorPlugin {
         _update_graph(): void
@@ -2010,30 +2089,38 @@ declare module "godot" {
         get_advance_expression(): string
         
         /** The time to cross-fade between this state and the next. */
-        xfade_time: number /*f64*/
+        get xfade_time(): number /*f64*/
+        set xfade_time(value: number /*f64*/)
         
         /** Ease curve for better control over cross-fade between this state and the next. */
-        xfade_curve: Curve
+        get xfade_curve(): Curve
+        set xfade_curve(value: Curve)
         
         /** If `true`, the destination animation is played back from the beginning when switched. */
-        reset: boolean
+        get reset(): boolean
+        set reset(value: boolean)
         
         /** Lower priority transitions are preferred when travelling through the tree via [method AnimationNodeStateMachinePlayback.travel] or [member advance_mode] is set to [constant ADVANCE_MODE_AUTO]. */
-        priority: number /*i64*/
+        get priority(): number /*i64*/
+        set priority(value: number /*i64*/)
         
         /** The transition type. */
-        switch_mode: number /*i64*/
+        get switch_mode(): number /*i64*/
+        set switch_mode(value: number /*i64*/)
         
         /** Determines whether the transition should disabled, enabled when using [method AnimationNodeStateMachinePlayback.travel], or traversed automatically if the [member advance_condition] and [member advance_expression] checks are true (if assigned). */
-        advance_mode: number /*i64*/
+        get advance_mode(): number /*i64*/
+        set advance_mode(value: number /*i64*/)
         
         /** Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the [AnimationTree] that can be controlled from code (see [url=$DOCS_URL/tutorials/animation/animation_tree.html#controlling-from-code]Using AnimationTree[/url]). For example, if [member AnimationTree.tree_root] is an [AnimationNodeStateMachine] and [member advance_condition] is set to `"idle"`:  
          *    
          */
-        advance_condition: StringName
+        get advance_condition(): StringName
+        set advance_condition(value: StringName)
         
         /** Use an expression as a condition for state machine transitions. It is possible to create complex animation advance conditions for switching between states and gives much greater flexibility for creating complex state machines by directly interfacing with the script code. */
-        advance_expression: string
+        get advance_expression(): string
+        set advance_expression(value: string)
         
         /** Emitted when [member advance_condition] is changed. */
         readonly advance_condition_changed: Signal //  => void
@@ -2055,7 +2142,8 @@ declare module "godot" {
         /** If `false`, the blended animations' frame are stopped when the blend value is `0`.  
          *  If `true`, forcing the blended animations to advance frame.  
          */
-        sync: boolean
+        get sync(): boolean
+        set sync(value: boolean)
     }
     /** A time-scaling animation node used in [AnimationTree].  
      *  	  
@@ -2095,16 +2183,20 @@ declare module "godot" {
         is_allow_transition_to_self(): boolean
         
         /** Cross-fading time (in seconds) between each animation connected to the inputs. */
-        xfade_time: number /*f64*/
+        get xfade_time(): number /*f64*/
+        set xfade_time(value: number /*f64*/)
         
         /** Determines how cross-fading between animations is eased. If empty, the transition will be linear. */
-        xfade_curve: Curve
+        get xfade_curve(): Curve
+        set xfade_curve(value: Curve)
         
         /** If `true`, allows transition to the self state. When the reset option is enabled in input, the animation is restarted. If `false`, nothing happens on the transition to the self state. */
-        allow_transition_to_self: boolean
+        get allow_transition_to_self(): boolean
+        set allow_transition_to_self(value: boolean)
         
         /** The number of enabled input ports for this animation node. */
-        input_count: any /*Inputs,input_*/
+        get input_count(): any /*Inputs,input_*/
+        set input_count(value: any /*Inputs,input_*/)
     }
     namespace AnimationPlayer {
         enum AnimationProcessCallback {
@@ -2230,33 +2322,39 @@ declare module "godot" {
          *      
          *  **Note:** While this property appears in the Inspector, it's not meant to be edited, and it's not saved in the scene. This property is mainly used to get the currently playing animation, and internally for animation playback tracks. For more information, see [Animation].  
          */
-        current_animation: StringName
+        get current_animation(): StringName
+        set current_animation(value: StringName)
         
         /** If playing, the current animation's key, otherwise, the animation last played. When set, this changes the animation, but will not play it unless already playing. See also [member current_animation]. */
-        assigned_animation: StringName
+        get assigned_animation(): StringName
+        set assigned_animation(value: StringName)
         
         /** The key of the animation to play when the scene loads. */
-        autoplay: StringName
+        get autoplay(): StringName
+        set autoplay(value: StringName)
         
         /** The length (in seconds) of the currently playing animation. */
-        readonly current_animation_length: number /*f64*/
+        get current_animation_length(): number /*f64*/
         
         /** The position (in seconds) of the currently playing animation. */
-        readonly current_animation_position: number /*f64*/
+        get current_animation_position(): number /*f64*/
         
         /** The default time in which to blend animations. Ranges from 0 to 4096 with 0.01 precision. */
-        playback_default_blend_time: number /*f64*/
+        get playback_default_blend_time(): number /*f64*/
+        set playback_default_blend_time(value: number /*f64*/)
         
         /** The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.  
          *  If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.  
          */
-        speed_scale: number /*f64*/
+        get speed_scale(): number /*f64*/
+        set speed_scale(value: number /*f64*/)
         
         /** If `true` and the engine is running in Movie Maker mode (see [MovieWriter]), exits the engine with [method SceneTree.quit] as soon as an animation is done playing in this [AnimationPlayer]. A message is printed when the engine quits for this reason.  
          *      
          *  **Note:** This obeys the same logic as the [signal AnimationMixer.animation_finished] signal, so it will not quit the engine if the animation is set to be looping.  
          */
-        movie_quit_on_finish: boolean
+        get movie_quit_on_finish(): boolean
+        set movie_quit_on_finish(value: boolean)
         
         /** Emitted when [member current_animation] changes. */
         readonly current_animation_changed: Signal // name: string => void
@@ -2340,13 +2438,16 @@ declare module "godot" {
         get_process_callback(): AnimationTree.AnimationProcessCallback
         
         /** The root animation node of this [AnimationTree]. See [AnimationRootNode]. */
-        tree_root: AnimationRootNode
+        get tree_root(): AnimationRootNode
+        set tree_root(value: AnimationRootNode)
         
         /** The path to the [Node] used to evaluate the [AnimationNode] [Expression] if one is not explicitly specified internally. */
-        advance_expression_base_node: NodePath
+        get advance_expression_base_node(): NodePath
+        set advance_expression_base_node(value: NodePath)
         
         /** The path to the [AnimationPlayer] used for animating. */
-        anim_player: NodePath
+        get anim_player(): NodePath
+        set anim_player(value: NodePath)
         
         /** Emitted when the [member anim_player] is changed. */
         readonly animation_player_changed: Signal //  => void
@@ -2445,55 +2546,70 @@ declare module "godot" {
         is_overriding_audio_bus(): boolean
         
         /** If `true`, the area detects bodies or areas entering and exiting it. */
-        monitoring: boolean
+        get monitoring(): boolean
+        set monitoring(value: boolean)
         
         /** If `true`, other monitoring areas can detect this area. */
-        monitorable: boolean
+        get monitorable(): boolean
+        set monitorable(value: boolean)
         
         /** The area's priority. Higher priority areas are processed first. The [World2D]'s physics is always processed last, after all areas. */
-        priority: number /*i64*/
+        get priority(): number /*i64*/
+        set priority(value: number /*i64*/)
         
         /** Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values. */
-        gravity_space_override: number /*i64*/
+        get gravity_space_override(): number /*i64*/
+        set gravity_space_override(value: number /*i64*/)
         
         /** If `true`, gravity is calculated from a point (set via [member gravity_point_center]). See also [member gravity_space_override]. */
-        gravity_point: boolean
+        get gravity_point(): boolean
+        set gravity_point(value: boolean)
         
         /** The distance at which the gravity strength is equal to [member gravity]. For example, on a planet 100 pixels in radius with a surface gravity of 4.0 px/s², set the [member gravity] to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 pixels from the center the gravity will be 1.0 px/s² (twice the distance, 1/4th the gravity), at 50 pixels it will be 16.0 px/s² (half the distance, 4x the gravity), and so on.  
          *  The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.  
          */
-        gravity_point_unit_distance: number /*f64*/
+        get gravity_point_unit_distance(): number /*f64*/
+        set gravity_point_unit_distance(value: number /*f64*/)
         
         /** If gravity is a point (see [member gravity_point]), this will be the point of attraction. */
-        gravity_point_center: Vector2
+        get gravity_point_center(): Vector2
+        set gravity_point_center(value: Vector2)
         
         /** The area's gravity vector (not normalized). */
-        gravity_direction: Vector2
+        get gravity_direction(): Vector2
+        set gravity_direction(value: Vector2)
         
         /** The area's gravity intensity (in pixels per second squared). This value multiplies the gravity direction. This is useful to alter the force of gravity without altering its direction. */
-        gravity: number /*f64*/
+        get gravity(): number /*f64*/
+        set gravity(value: number /*f64*/)
         
         /** Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values. */
-        linear_damp_space_override: number /*i64*/
+        get linear_damp_space_override(): number /*i64*/
+        set linear_damp_space_override(value: number /*i64*/)
         
         /** The rate at which objects stop moving in this area. Represents the linear velocity lost per second.  
          *  See [member ProjectSettings.physics/2d/default_linear_damp] for more details about damping.  
          */
-        linear_damp: number /*f64*/
+        get linear_damp(): number /*f64*/
+        set linear_damp(value: number /*f64*/)
         
         /** Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values. */
-        angular_damp_space_override: number /*i64*/
+        get angular_damp_space_override(): number /*i64*/
+        set angular_damp_space_override(value: number /*i64*/)
         
         /** The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.  
          *  See [member ProjectSettings.physics/2d/default_angular_damp] for more details about damping.  
          */
-        angular_damp: number /*f64*/
+        get angular_damp(): number /*f64*/
+        set angular_damp(value: number /*f64*/)
         
         /** If `true`, the area's audio bus overrides the default audio bus. */
-        audio_bus_override: boolean
+        get audio_bus_override(): boolean
+        set audio_bus_override(value: boolean)
         
         /** The name of the area's audio bus. */
-        audio_bus_name: StringName
+        get audio_bus_name(): StringName
+        set audio_bus_name(value: StringName)
         
         /** Emitted when a [Shape2D] of the received [param body] enters a shape of this area. [param body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [member monitoring] to be set to `true`.  
          *  [param local_shape_index] and [param body_shape_index] contain indices of the interacting shapes from this area and the interacting body, respectively. [param body_rid] contains the [RID] of the body. These values can be used with the [PhysicsServer2D].  
@@ -2633,76 +2749,98 @@ declare module "godot" {
         get_reverb_uniformity(): number /*f64*/
         
         /** If `true`, the area detects bodies or areas entering and exiting it. */
-        monitoring: boolean
+        get monitoring(): boolean
+        set monitoring(value: boolean)
         
         /** If `true`, other monitoring areas can detect this area. */
-        monitorable: boolean
+        get monitorable(): boolean
+        set monitorable(value: boolean)
         
         /** The area's priority. Higher priority areas are processed first. The [World3D]'s physics is always processed last, after all areas. */
-        priority: number /*i64*/
+        get priority(): number /*i64*/
+        set priority(value: number /*i64*/)
         
         /** Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values. */
-        gravity_space_override: number /*i64*/
+        get gravity_space_override(): number /*i64*/
+        set gravity_space_override(value: number /*i64*/)
         
         /** If `true`, gravity is calculated from a point (set via [member gravity_point_center]). See also [member gravity_space_override]. */
-        gravity_point: boolean
+        get gravity_point(): boolean
+        set gravity_point(value: boolean)
         
         /** The distance at which the gravity strength is equal to [member gravity]. For example, on a planet 100 meters in radius with a surface gravity of 4.0 m/s², set the [member gravity] to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 meters from the center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it will be 16.0 m/s² (half the distance, 4x the gravity), and so on.  
          *  The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.  
          */
-        gravity_point_unit_distance: number /*f64*/
+        get gravity_point_unit_distance(): number /*f64*/
+        set gravity_point_unit_distance(value: number /*f64*/)
         
         /** If gravity is a point (see [member gravity_point]), this will be the point of attraction. */
-        gravity_point_center: Vector3
+        get gravity_point_center(): Vector3
+        set gravity_point_center(value: Vector3)
         
         /** The area's gravity vector (not normalized). */
-        gravity_direction: Vector3
+        get gravity_direction(): Vector3
+        set gravity_direction(value: Vector3)
         
         /** The area's gravity intensity (in meters per second squared). This value multiplies the gravity direction. This is useful to alter the force of gravity without altering its direction. */
-        gravity: number /*f64*/
+        get gravity(): number /*f64*/
+        set gravity(value: number /*f64*/)
         
         /** Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values. */
-        linear_damp_space_override: number /*i64*/
+        get linear_damp_space_override(): number /*i64*/
+        set linear_damp_space_override(value: number /*i64*/)
         
         /** The rate at which objects stop moving in this area. Represents the linear velocity lost per second.  
          *  See [member ProjectSettings.physics/3d/default_linear_damp] for more details about damping.  
          */
-        linear_damp: number /*f64*/
+        get linear_damp(): number /*f64*/
+        set linear_damp(value: number /*f64*/)
         
         /** Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values. */
-        angular_damp_space_override: number /*i64*/
+        get angular_damp_space_override(): number /*i64*/
+        set angular_damp_space_override(value: number /*i64*/)
         
         /** The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.  
          *  See [member ProjectSettings.physics/3d/default_angular_damp] for more details about damping.  
          */
-        angular_damp: number /*f64*/
+        get angular_damp(): number /*f64*/
+        set angular_damp(value: number /*f64*/)
         
         /** The magnitude of area-specific wind force. */
-        wind_force_magnitude: number /*f64*/
+        get wind_force_magnitude(): number /*f64*/
+        set wind_force_magnitude(value: number /*f64*/)
         
         /** The exponential rate at which wind force decreases with distance from its origin. */
-        wind_attenuation_factor: number /*f64*/
+        get wind_attenuation_factor(): number /*f64*/
+        set wind_attenuation_factor(value: number /*f64*/)
         
         /** The [Node3D] which is used to specify the direction and origin of an area-specific wind force. The direction is opposite to the z-axis of the [Node3D]'s local transform, and its origin is the origin of the [Node3D]'s local transform. */
-        wind_source_path: NodePath
+        get wind_source_path(): NodePath
+        set wind_source_path(value: NodePath)
         
         /** If `true`, the area's audio bus overrides the default audio bus. */
-        audio_bus_override: boolean
+        get audio_bus_override(): boolean
+        set audio_bus_override(value: boolean)
         
         /** The name of the area's audio bus. */
-        audio_bus_name: StringName
+        get audio_bus_name(): StringName
+        set audio_bus_name(value: StringName)
         
         /** If `true`, the area applies reverb to its associated audio. */
-        reverb_bus_enabled: boolean
+        get reverb_bus_enabled(): boolean
+        set reverb_bus_enabled(value: boolean)
         
         /** The name of the reverb bus to use for this area's associated audio. */
-        reverb_bus_name: StringName
+        get reverb_bus_name(): StringName
+        set reverb_bus_name(value: StringName)
         
         /** The degree to which this area applies reverb to its associated audio. Ranges from `0` to `1` with `0.1` precision. */
-        reverb_bus_amount: number /*f64*/
+        get reverb_bus_amount(): number /*f64*/
+        set reverb_bus_amount(value: number /*f64*/)
         
         /** The degree to which this area's reverb is a uniform effect. Ranges from `0` to `1` with `0.1` precision. */
-        reverb_bus_uniformity: number /*f64*/
+        get reverb_bus_uniformity(): number /*f64*/
+        set reverb_bus_uniformity(value: number /*f64*/)
         
         /** Emitted when a [Shape3D] of the received [param body] enters a shape of this area. [param body] can be a [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured. Requires [member monitoring] to be set to `true`.  
          *  [param local_shape_index] and [param body_shape_index] contain indices of the interacting shapes from this area and the interacting body, respectively. [param body_rid] contains the [RID] of the body. These values can be used with the [PhysicsServer3D].  
@@ -2813,17 +2951,22 @@ declare module "godot" {
         _get_blend_shape_names(): PackedStringArray
         _set_surfaces(surfaces: Array): void
         _get_surfaces(): Array
-        _blend_shape_names: PackedStringArray
-        _surfaces: Array
+        get _blend_shape_names(): PackedStringArray
+        set _blend_shape_names(value: PackedStringArray)
+        get _surfaces(): Array
+        set _surfaces(value: Array)
         
         /** Sets the blend shape mode to one of [enum Mesh.BlendShapeMode]. */
-        blend_shape_mode: number /*i64*/
+        get blend_shape_mode(): number /*i64*/
+        set blend_shape_mode(value: number /*i64*/)
         
         /** Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices. */
-        custom_aabb: AABB
+        get custom_aabb(): AABB
+        set custom_aabb(value: AABB)
         
         /** An optional mesh which is used for rendering shadows and can be used for the depth prepass. Can be used to increase performance of shadow rendering by using a mesh that only contains vertex position data (without normals, UVs, colors, etc.). */
-        shadow_mesh: ArrayMesh
+        get shadow_mesh(): ArrayMesh
+        set shadow_mesh(value: ArrayMesh)
     }
     /** 3D polygon shape for use with occlusion culling in [OccluderInstance3D].  
      *  	  
@@ -2839,13 +2982,15 @@ declare module "godot" {
          *      
          *  **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [method set_arrays] instead to avoid updating the occluder twice when it's created.  
          */
-        vertices: PackedVector3Array
+        get vertices(): PackedVector3Array
+        set vertices(value: PackedVector3Array)
         
         /** The occluder's index position. Indices determine which points from the [member vertices] array should be drawn, and in which order.  
          *      
          *  **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [method set_arrays] instead to avoid updating the occluder twice when it's created.  
          */
-        indices: PackedInt32Array
+        get indices(): PackedInt32Array
+        set indices(value: PackedInt32Array)
     }
     namespace AspectRatioContainer {
         enum StretchMode {
@@ -2889,16 +3034,20 @@ declare module "godot" {
         get_alignment_vertical(): AspectRatioContainer.AlignmentMode
         
         /** The aspect ratio to enforce on child controls. This is the width divided by the height. The ratio depends on the [member stretch_mode]. */
-        ratio: number /*f64*/
+        get ratio(): number /*f64*/
+        set ratio(value: number /*f64*/)
         
         /** The stretch mode used to align child controls. */
-        stretch_mode: number /*i64*/
+        get stretch_mode(): number /*i64*/
+        set stretch_mode(value: number /*i64*/)
         
         /** Specifies the horizontal relative position of child controls. */
-        alignment_horizontal: number /*i64*/
+        get alignment_horizontal(): number /*i64*/
+        set alignment_horizontal(value: number /*i64*/)
         
         /** Specifies the vertical relative position of child controls. */
-        alignment_vertical: number /*i64*/
+        get alignment_vertical(): number /*i64*/
+        set alignment_vertical(value: number /*i64*/)
     }
     class AssetLibraryEditorPlugin extends EditorPlugin {
     }
@@ -2919,16 +3068,20 @@ declare module "godot" {
         has_filter_clip(): boolean
         
         /** The texture that contains the atlas. Can be any type inheriting from [Texture2D], including another [AtlasTexture]. */
-        atlas: Texture2D
+        get atlas(): Texture2D
+        set atlas(value: Texture2D)
         
         /** The region used to draw the [member atlas]. */
-        region: Rect2
+        get region(): Rect2
+        set region(value: Rect2)
         
         /** The margin around the [member region]. Useful for small adjustments. If the [member Rect2.size] of this property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the margin. */
-        margin: Rect2
+        get margin(): Rect2
+        set margin(value: Rect2)
         
         /** If `true`, the area outside of the [member region] is clipped to avoid bleeding of the surrounding texture pixels. */
-        filter_clip: boolean
+        get filter_clip(): boolean
+        set filter_clip(value: boolean)
     }
     class AtlasTileProxyObject extends Object {
         readonly changed: Signal // what: string => void
@@ -2957,7 +3110,8 @@ declare module "godot" {
         get_volume_db(): number /*f64*/
         
         /** Amount of amplification in decibels. Positive values make the sound louder, negative values make it quieter. Value can range from -80 to 24. */
-        volume_db: number /*f64*/
+        get volume_db(): number /*f64*/
+        set volume_db(value: number /*f64*/)
     }
     /** Adds a band limit filter to the audio bus.  
      *  	  
@@ -3002,7 +3156,8 @@ declare module "godot" {
         get_pushed_frames(): number /*i64*/
         
         /** Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect if already initialized. */
-        buffer_length: number /*f64*/
+        get buffer_length(): number /*f64*/
+        set buffer_length(value: number /*f64*/)
     }
     /** Adds a chorus audio effect.  
      *  	  
@@ -3029,13 +3184,16 @@ declare module "godot" {
         get_dry(): number /*f64*/
         
         /** The number of voices in the effect. */
-        voice_count: number /*i64*/
+        get voice_count(): number /*i64*/
+        set voice_count(value: number /*i64*/)
         
         /** The effect's raw signal. */
-        dry: number /*f64*/
+        get dry(): number /*f64*/
+        set dry(value: number /*f64*/)
         
         /** The effect's processed signal. */
-        wet: number /*f64*/
+        get wet(): number /*f64*/
+        set wet(value: number /*f64*/)
     }
     /** Adds a compressor audio effect to an audio bus.  
      *  Reduces sounds that exceed a certain threshold level, smooths out the dynamics and increases the overall volume.  
@@ -3059,25 +3217,32 @@ declare module "godot" {
         get_sidechain(): StringName
         
         /** The level above which compression is applied to the audio. Value can range from -60 to 0. */
-        threshold: number /*f64*/
+        get threshold(): number /*f64*/
+        set threshold(value: number /*f64*/)
         
         /** Amount of compression applied to the audio once it passes the threshold level. The higher the ratio, the more the loud parts of the audio will be compressed. Value can range from 1 to 48. */
-        ratio: number /*f64*/
+        get ratio(): number /*f64*/
+        set ratio(value: number /*f64*/)
         
         /** Gain applied to the output signal. */
-        gain: number /*f64*/
+        get gain(): number /*f64*/
+        set gain(value: number /*f64*/)
         
         /** Compressor's reaction time when the signal exceeds the threshold, in microseconds. Value can range from 20 to 2000. */
-        attack_us: number /*f64*/
+        get attack_us(): number /*f64*/
+        set attack_us(value: number /*f64*/)
         
         /** Compressor's delay time to stop reducing the signal after the signal level falls below the threshold, in milliseconds. Value can range from 20 to 2000. */
-        release_ms: number /*f64*/
+        get release_ms(): number /*f64*/
+        set release_ms(value: number /*f64*/)
         
         /** Balance between original signal and effect signal. Value can range from 0 (totally dry) to 1 (totally wet). */
-        mix: number /*f64*/
+        get mix(): number /*f64*/
+        set mix(value: number /*f64*/)
         
         /** Reduce the sound level using another audio bus for threshold detection. */
-        sidechain: StringName
+        get sidechain(): StringName
+        set sidechain(value: StringName)
     }
     /** Adds a delay audio effect to an audio bus. Plays input signal back after a period of time.  
      *  Two tap delay and feedback options.  
@@ -3113,43 +3278,56 @@ declare module "godot" {
         get_feedback_lowpass(): number /*f64*/
         
         /** Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0 to 1. */
-        dry: number /*f64*/
+        get dry(): number /*f64*/
+        set dry(value: number /*f64*/)
         
         /** If `true`, the first tap will be enabled. */
-        tap1_active: boolean
+        get tap1_active(): boolean
+        set tap1_active(value: boolean)
         
         /** First tap delay time in milliseconds. */
-        tap1_delay_ms: number /*f64*/
+        get tap1_delay_ms(): number /*f64*/
+        set tap1_delay_ms(value: number /*f64*/)
         
         /** Sound level for the first tap. */
-        tap1_level_db: number /*f64*/
+        get tap1_level_db(): number /*f64*/
+        set tap1_level_db(value: number /*f64*/)
         
         /** Pan position for the first tap. Value can range from -1 (fully left) to 1 (fully right). */
-        tap1_pan: number /*f64*/
+        get tap1_pan(): number /*f64*/
+        set tap1_pan(value: number /*f64*/)
         
         /** If `true`, the second tap will be enabled. */
-        tap2_active: boolean
+        get tap2_active(): boolean
+        set tap2_active(value: boolean)
         
         /** Second tap delay time in milliseconds. */
-        tap2_delay_ms: number /*f64*/
+        get tap2_delay_ms(): number /*f64*/
+        set tap2_delay_ms(value: number /*f64*/)
         
         /** Sound level for the second tap. */
-        tap2_level_db: number /*f64*/
+        get tap2_level_db(): number /*f64*/
+        set tap2_level_db(value: number /*f64*/)
         
         /** Pan position for the second tap. Value can range from -1 (fully left) to 1 (fully right). */
-        tap2_pan: number /*f64*/
+        get tap2_pan(): number /*f64*/
+        set tap2_pan(value: number /*f64*/)
         
         /** If `true`, feedback is enabled. */
-        feedback_active: boolean
+        get feedback_active(): boolean
+        set feedback_active(value: boolean)
         
         /** Feedback delay time in milliseconds. */
-        feedback_delay_ms: number /*f64*/
+        get feedback_delay_ms(): number /*f64*/
+        set feedback_delay_ms(value: number /*f64*/)
         
         /** Sound level for feedback. */
-        feedback_level_db: number /*f64*/
+        get feedback_level_db(): number /*f64*/
+        set feedback_level_db(value: number /*f64*/)
         
         /** Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the source signal. */
-        feedback_lowpass: number /*f64*/
+        get feedback_lowpass(): number /*f64*/
+        set feedback_lowpass(value: number /*f64*/)
     }
     namespace AudioEffectDistortion {
         enum Mode {
@@ -3185,19 +3363,24 @@ declare module "godot" {
         get_post_gain(): number /*f64*/
         
         /** Distortion type. */
-        mode: number /*i64*/
+        get mode(): number /*i64*/
+        set mode(value: number /*i64*/)
         
         /** Increases or decreases the volume before the effect, in decibels. Value can range from -60 to 60. */
-        pre_gain: number /*f64*/
+        get pre_gain(): number /*f64*/
+        set pre_gain(value: number /*f64*/)
         
         /** High-pass filter, in Hz. Frequencies higher than this value will not be affected by the distortion. Value can range from 1 to 20000. */
-        keep_hf_hz: number /*f64*/
+        get keep_hf_hz(): number /*f64*/
+        set keep_hf_hz(value: number /*f64*/)
         
         /** Distortion power. Value can range from 0 to 1. */
-        drive: number /*f64*/
+        get drive(): number /*f64*/
+        set drive(value: number /*f64*/)
         
         /** Increases or decreases the volume after the effect, in decibels. Value can range from -80 to 24. */
-        post_gain: number /*f64*/
+        get post_gain(): number /*f64*/
+        set post_gain(value: number /*f64*/)
     }
     /** Base class for audio equalizers. Gives you control over frequencies.  
      *  Use it to create a custom equalizer if [AudioEffectEQ6], [AudioEffectEQ10] or [AudioEffectEQ21] don't fit your needs.  
@@ -3258,14 +3441,18 @@ declare module "godot" {
         get_db(): AudioEffectFilter.FilterDB
         
         /** Threshold frequency for the filter, in Hz. */
-        cutoff_hz: number /*f64*/
+        get cutoff_hz(): number /*f64*/
+        set cutoff_hz(value: number /*f64*/)
         
         /** Amount of boost in the frequency range near the cutoff frequency. */
-        resonance: number /*f64*/
+        get resonance(): number /*f64*/
+        set resonance(value: number /*f64*/)
         
         /** Gain amount of the frequencies after the filter. */
-        gain: number /*f64*/
-        db: number /*i64*/
+        get gain(): number /*f64*/
+        set gain(value: number /*f64*/)
+        get db(): number /*i64*/
+        set db(value: number /*i64*/)
     }
     /** Adds a high-pass filter to the audio bus.  
      *  	  
@@ -3299,14 +3486,18 @@ declare module "godot" {
         get_soft_clip_ratio(): number /*f64*/
         
         /** The waveform's maximum allowed value, in decibels. Value can range from -20 to -0.1. */
-        ceiling_db: number /*f64*/
+        get ceiling_db(): number /*f64*/
+        set ceiling_db(value: number /*f64*/)
         
         /** Threshold from which the limiter begins to be active, in decibels. Value can range from -30 to 0. */
-        threshold_db: number /*f64*/
+        get threshold_db(): number /*f64*/
+        set threshold_db(value: number /*f64*/)
         
         /** Applies a gain to the limited waves, in decibels. Value can range from 0 to 6. */
-        soft_clip_db: number /*f64*/
-        soft_clip_ratio: number /*f64*/
+        get soft_clip_db(): number /*f64*/
+        set soft_clip_db(value: number /*f64*/)
+        get soft_clip_ratio(): number /*f64*/
+        set soft_clip_ratio(value: number /*f64*/)
     }
     /** Adds a low-pass filter to the audio bus.  
      *  	  
@@ -3335,7 +3526,8 @@ declare module "godot" {
         get_pan(): number /*f64*/
         
         /** Pan position. Value can range from -1 (fully left) to 1 (fully right). */
-        pan: number /*f64*/
+        get pan(): number /*f64*/
+        set pan(value: number /*f64*/)
     }
     /** Adds a phaser audio effect to an audio bus.  
      *  Combines the original signal with a copy that is slightly out of phase with the original.  
@@ -3355,19 +3547,24 @@ declare module "godot" {
         get_depth(): number /*f64*/
         
         /** Determines the minimum frequency affected by the LFO modulations, in Hz. Value can range from 10 to 10000. */
-        range_min_hz: number /*f64*/
+        get range_min_hz(): number /*f64*/
+        set range_min_hz(value: number /*f64*/)
         
         /** Determines the maximum frequency affected by the LFO modulations, in Hz. Value can range from 10 to 10000. */
-        range_max_hz: number /*f64*/
+        get range_max_hz(): number /*f64*/
+        set range_max_hz(value: number /*f64*/)
         
         /** Adjusts the rate in Hz at which the effect sweeps up and down across the frequency range. */
-        rate_hz: number /*f64*/
+        get rate_hz(): number /*f64*/
+        set rate_hz(value: number /*f64*/)
         
         /** Output percent of modified sound. Value can range from 0.1 to 0.9. */
-        feedback: number /*f64*/
+        get feedback(): number /*f64*/
+        set feedback(value: number /*f64*/)
         
         /** Governs how high the filter frequencies sweep. Low value will primarily affect bass frequencies. High value can sweep high into the treble. Value can range from 0.1 to 4. */
-        depth: number /*f64*/
+        get depth(): number /*f64*/
+        set depth(value: number /*f64*/)
     }
     namespace AudioEffectPitchShift {
         enum FFTSize {
@@ -3404,13 +3601,16 @@ declare module "godot" {
         get_fft_size(): AudioEffectPitchShift.FFTSize
         
         /** The pitch scale to use. `1.0` is the default pitch and plays sounds unaffected. [member pitch_scale] can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial pitch). */
-        pitch_scale: number /*f64*/
+        get pitch_scale(): number /*f64*/
+        set pitch_scale(value: number /*f64*/)
         
         /** The oversampling factor to use. Higher values result in better quality, but are more demanding on the CPU and may cause audio cracking if the CPU can't keep up. */
-        oversampling: number /*f64*/
+        get oversampling(): number /*f64*/
+        set oversampling(value: number /*f64*/)
         
         /** The size of the [url=https://en.wikipedia.org/wiki/Fast_Fourier_transform]Fast Fourier transform[/url] buffer. Higher values smooth out the effect over time, but have greater latency. The effects of this higher latency are especially noticeable on sounds that have sudden amplitude changes. */
-        fft_size: number /*i64*/
+        get fft_size(): number /*i64*/
+        set fft_size(value: number /*i64*/)
     }
     /** Audio effect used for recording the sound from an audio bus.  
      *  	  
@@ -3429,7 +3629,8 @@ declare module "godot" {
         get_recording(): AudioStreamWAV
         
         /** Specifies the format in which the sample will be recorded. See [enum AudioStreamWAV.Format] for available formats. */
-        format: number /*i64*/
+        get format(): number /*i64*/
+        set format(value: number /*i64*/)
     }
     /** Adds a reverberation audio effect to an Audio bus.  
      *  	  
@@ -3454,28 +3655,36 @@ declare module "godot" {
         get_hpf(): number /*f64*/
         
         /** Time between the original signal and the early reflections of the reverb signal, in milliseconds. */
-        predelay_msec: number /*f64*/
+        get predelay_msec(): number /*f64*/
+        set predelay_msec(value: number /*f64*/)
         
         /** Output percent of predelay. Value can range from 0 to 1. */
-        predelay_feedback: number /*f64*/
+        get predelay_feedback(): number /*f64*/
+        set predelay_feedback(value: number /*f64*/)
         
         /** Dimensions of simulated room. Bigger means more echoes. Value can range from 0 to 1. */
-        room_size: number /*f64*/
+        get room_size(): number /*f64*/
+        set room_size(value: number /*f64*/)
         
         /** Defines how reflective the imaginary room's walls are. Value can range from 0 to 1. */
-        damping: number /*f64*/
+        get damping(): number /*f64*/
+        set damping(value: number /*f64*/)
         
         /** Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range from 0 to 1. */
-        spread: number /*f64*/
+        get spread(): number /*f64*/
+        set spread(value: number /*f64*/)
         
         /** High-pass filter passes signals with a frequency higher than a certain cutoff frequency and attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1. */
-        hipass: number /*f64*/
+        get hipass(): number /*f64*/
+        set hipass(value: number /*f64*/)
         
         /** Output percent of original sound. At 0, only modified sound is outputted. Value can range from 0 to 1. */
-        dry: number /*f64*/
+        get dry(): number /*f64*/
+        set dry(value: number /*f64*/)
         
         /** Output percent of modified sound. At 0, only original sound is outputted. Value can range from 0 to 1. */
-        wet: number /*f64*/
+        get wet(): number /*f64*/
+        set wet(value: number /*f64*/)
     }
     namespace AudioEffectSpectrumAnalyzer {
         enum FFTSize {
@@ -3511,11 +3720,14 @@ declare module "godot" {
         get_fft_size(): AudioEffectSpectrumAnalyzer.FFTSize
         
         /** The length of the buffer to keep (in seconds). Higher values keep data around for longer, but require more memory. */
-        buffer_length: number /*f64*/
-        tap_back_pos: number /*f64*/
+        get buffer_length(): number /*f64*/
+        set buffer_length(value: number /*f64*/)
+        get tap_back_pos(): number /*f64*/
+        set tap_back_pos(value: number /*f64*/)
         
         /** The size of the [url=https://en.wikipedia.org/wiki/Fast_Fourier_transform]Fast Fourier transform[/url] buffer. Higher values smooth out the spectrum analysis over time, but have greater latency. The effects of this higher latency are especially noticeable with sudden amplitude changes. */
-        fft_size: number /*i64*/
+        get fft_size(): number /*i64*/
+        set fft_size(value: number /*i64*/)
     }
     namespace AudioEffectSpectrumAnalyzerInstance {
         enum MagnitudeMode {
@@ -3543,9 +3755,12 @@ declare module "godot" {
         get_surround(): number /*f64*/
         
         /** Values greater than 1.0 increase intensity of any panning on audio passing through this effect, whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix audio to mono. */
-        pan_pullout: number /*f64*/
-        time_pullout_ms: number /*f64*/
-        surround: number /*f64*/
+        get pan_pullout(): number /*f64*/
+        set pan_pullout(value: number /*f64*/)
+        get time_pullout_ms(): number /*f64*/
+        set time_pullout_ms(value: number /*f64*/)
+        get surround(): number /*f64*/
+        set surround(value: number /*f64*/)
     }
     /** Overrides the location sounds are heard from.  
      *  	  
@@ -3637,10 +3852,12 @@ declare module "godot" {
          *  In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and `48000`.  
          *  According to the [url=https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem]Nyquist-Shannon sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are generating lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.  
          */
-        mix_rate: number /*f64*/
+        get mix_rate(): number /*f64*/
+        set mix_rate(value: number /*f64*/)
         
         /** The length of the buffer to generate (in seconds). Lower values result in less latency, but require the script to generate audio data faster, resulting in increased CPU usage and more risk for audio cracking if the CPU can't keep up. */
-        buffer_length: number /*f64*/
+        get buffer_length(): number /*f64*/
+        set buffer_length(value: number /*f64*/)
     }
     /** Plays back audio generated using [AudioStreamGenerator].  
      *  	  
@@ -3689,16 +3906,22 @@ declare module "godot" {
          *  You can load a file without having to import it beforehand using the code snippet below. Keep in mind that this snippet loads the whole file into memory and may not be ideal for huge files (hundreds of megabytes or more).  
          *    
          */
-        data: PackedByteArray
-        bpm: number /*f64*/
-        beat_count: number /*i64*/
-        bar_beats: number /*i64*/
+        get data(): PackedByteArray
+        set data(value: PackedByteArray)
+        get bpm(): number /*f64*/
+        set bpm(value: number /*f64*/)
+        get beat_count(): number /*i64*/
+        set beat_count(value: number /*i64*/)
+        get bar_beats(): number /*i64*/
+        set bar_beats(value: number /*i64*/)
         
         /** If `true`, the stream will automatically loop when it reaches the end. */
-        loop: boolean
+        get loop(): boolean
+        set loop(value: boolean)
         
         /** Time in seconds at which the stream starts after being looped. */
-        loop_offset: number /*f64*/
+        get loop_offset(): number /*f64*/
+        set loop_offset(value: number /*f64*/)
     }
     /** Plays real-time audio input data.  
      *  	  
@@ -3730,16 +3953,22 @@ declare module "godot" {
         get_bar_beats(): number /*i64*/
         
         /** Contains the raw Ogg data for this stream. */
-        packet_sequence: Object
-        bpm: number /*f64*/
-        beat_count: number /*i64*/
-        bar_beats: number /*i64*/
+        get packet_sequence(): Object
+        set packet_sequence(value: Object)
+        get bpm(): number /*f64*/
+        set bpm(value: number /*f64*/)
+        get beat_count(): number /*i64*/
+        set beat_count(value: number /*i64*/)
+        get bar_beats(): number /*i64*/
+        set bar_beats(value: number /*i64*/)
         
         /** If `true`, the audio will play again from the specified [member loop_offset] once it is done playing. Useful for ambient sounds and background music. */
-        loop: boolean
+        get loop(): boolean
+        set loop(value: boolean)
         
         /** Time in seconds at which the stream starts after being looped. */
-        loop_offset: number /*f64*/
+        get loop_offset(): number /*f64*/
+        set loop_offset(value: number /*f64*/)
     }
     /** Meta class for playing back audio.  
      *  	  
@@ -3865,34 +4094,43 @@ declare module "godot" {
         get_stream_playback(): AudioStreamPlayback
         
         /** The [AudioStream] object to be played. */
-        stream: AudioStream
+        get stream(): AudioStream
+        set stream(value: AudioStream)
         
         /** Volume of sound, in dB. */
-        volume_db: number /*f64*/
+        get volume_db(): number /*f64*/
+        set volume_db(value: number /*f64*/)
         
         /** The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate. */
-        pitch_scale: number /*f64*/
+        get pitch_scale(): number /*f64*/
+        set pitch_scale(value: number /*f64*/)
         
         /** If `true`, audio is playing. */
-        playing: boolean
+        get playing(): boolean
+        set playing(value: boolean)
         
         /** If `true`, audio plays when added to scene tree. */
-        autoplay: boolean
+        get autoplay(): boolean
+        set autoplay(value: boolean)
         
         /** If `true`, the playback is paused. You can resume it by setting [member stream_paused] to `false`. */
-        stream_paused: boolean
+        get stream_paused(): boolean
+        set stream_paused(value: boolean)
         
         /** If the audio configuration has more than two speakers, this sets the target channels. See [enum MixTarget] constants. */
-        mix_target: number /*i64*/
+        get mix_target(): number /*i64*/
+        set mix_target(value: number /*i64*/)
         
         /** The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds. */
-        max_polyphony: number /*i64*/
+        get max_polyphony(): number /*i64*/
+        set max_polyphony(value: number /*i64*/)
         
         /** Bus on which this audio is playing.  
          *      
          *  **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.  
          */
-        bus: StringName
+        get bus(): StringName
+        set bus(value: StringName)
         
         /** Emitted when the audio stops playing. */
         readonly finished: Signal //  => void
@@ -3947,43 +4185,55 @@ declare module "godot" {
         get_stream_playback(): AudioStreamPlayback
         
         /** The [AudioStream] object to be played. */
-        stream: AudioStream
+        get stream(): AudioStream
+        set stream(value: AudioStream)
         
         /** Base volume before attenuation. */
-        volume_db: number /*f64*/
+        get volume_db(): number /*f64*/
+        set volume_db(value: number /*f64*/)
         
         /** The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate. */
-        pitch_scale: number /*f64*/
+        get pitch_scale(): number /*f64*/
+        set pitch_scale(value: number /*f64*/)
         
         /** If `true`, audio is playing or is queued to be played (see [method play]). */
-        playing: boolean
+        get playing(): boolean
+        set playing(value: boolean)
         
         /** If `true`, audio plays when added to scene tree. */
-        autoplay: boolean
+        get autoplay(): boolean
+        set autoplay(value: boolean)
         
         /** If `true`, the playback is paused. You can resume it by setting [member stream_paused] to `false`. */
-        stream_paused: boolean
+        get stream_paused(): boolean
+        set stream_paused(value: boolean)
         
         /** Maximum distance from which audio is still hearable. */
-        max_distance: number /*f64*/
+        get max_distance(): number /*f64*/
+        set max_distance(value: number /*f64*/)
         
         /** The volume is attenuated over distance with this as an exponent. */
-        attenuation: number /*f64*/
+        get attenuation(): number /*f64*/
+        set attenuation(value: number /*f64*/)
         
         /** The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds. */
-        max_polyphony: number /*i64*/
+        get max_polyphony(): number /*i64*/
+        set max_polyphony(value: number /*i64*/)
         
         /** Scales the panning strength for this node by multiplying the base [member ProjectSettings.audio/general/2d_panning_strength] with this factor. Higher values will pan audio from left to right more dramatically than lower values. */
-        panning_strength: number /*f64*/
+        get panning_strength(): number /*f64*/
+        set panning_strength(value: number /*f64*/)
         
         /** Bus on which this audio is playing.  
          *      
          *  **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.  
          */
-        bus: StringName
+        get bus(): StringName
+        set bus(value: StringName)
         
         /** Determines which [Area2D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater. */
-        area_mask: number /*i64*/
+        get area_mask(): number /*i64*/
+        set area_mask(value: number /*i64*/)
         
         /** Emitted when the audio stops playing. */
         readonly finished: Signal //  => void
@@ -4079,67 +4329,87 @@ declare module "godot" {
         get_stream_playback(): AudioStreamPlayback
         
         /** The [AudioStream] resource to be played. */
-        stream: AudioStream
+        get stream(): AudioStream
+        set stream(value: AudioStream)
         
         /** Decides if audio should get quieter with distance linearly, quadratically, logarithmically, or not be affected by distance, effectively disabling attenuation. */
-        attenuation_model: number /*i64*/
+        get attenuation_model(): number /*i64*/
+        set attenuation_model(value: number /*i64*/)
         
         /** The base sound level before attenuation, in decibels. */
-        volume_db: number /*f64*/
+        get volume_db(): number /*f64*/
+        set volume_db(value: number /*f64*/)
         
         /** The factor for the attenuation effect. Higher values make the sound audible over a larger distance. */
-        unit_size: number /*f64*/
+        get unit_size(): number /*f64*/
+        set unit_size(value: number /*f64*/)
         
         /** Sets the absolute maximum of the sound level, in decibels. */
-        max_db: number /*f64*/
+        get max_db(): number /*f64*/
+        set max_db(value: number /*f64*/)
         
         /** The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate. */
-        pitch_scale: number /*f64*/
+        get pitch_scale(): number /*f64*/
+        set pitch_scale(value: number /*f64*/)
         
         /** If `true`, audio is playing or is queued to be played (see [method play]). */
-        playing: boolean
+        get playing(): boolean
+        set playing(value: boolean)
         
         /** If `true`, audio plays when the AudioStreamPlayer3D node is added to scene tree. */
-        autoplay: boolean
+        get autoplay(): boolean
+        set autoplay(value: boolean)
         
         /** If `true`, the playback is paused. You can resume it by setting [member stream_paused] to `false`. */
-        stream_paused: boolean
+        get stream_paused(): boolean
+        set stream_paused(value: boolean)
         
         /** The distance past which the sound can no longer be heard at all. Only has an effect if set to a value greater than `0.0`. [member max_distance] works in tandem with [member unit_size]. However, unlike [member unit_size] whose behavior depends on the [member attenuation_model], [member max_distance] always works in a linear fashion. This can be used to prevent the [AudioStreamPlayer3D] from requiring audio mixing when the listener is far away, which saves CPU resources. */
-        max_distance: number /*f64*/
+        get max_distance(): number /*f64*/
+        set max_distance(value: number /*f64*/)
         
         /** The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds. */
-        max_polyphony: number /*i64*/
+        get max_polyphony(): number /*i64*/
+        set max_polyphony(value: number /*i64*/)
         
         /** Scales the panning strength for this node by multiplying the base [member ProjectSettings.audio/general/3d_panning_strength] with this factor. Higher values will pan audio from left to right more dramatically than lower values. */
-        panning_strength: number /*f64*/
+        get panning_strength(): number /*f64*/
+        set panning_strength(value: number /*f64*/)
         
         /** The bus on which this audio is playing.  
          *      
          *  **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.  
          */
-        bus: StringName
+        get bus(): StringName
+        set bus(value: StringName)
         
         /** Determines which [Area3D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater. */
-        area_mask: number /*i64*/
+        get area_mask(): number /*i64*/
+        set area_mask(value: number /*i64*/)
         
         /** If `true`, the audio should be attenuated according to the direction of the sound. */
-        emission_angle_enabled: boolean
+        get emission_angle_enabled(): boolean
+        set emission_angle_enabled(value: boolean)
         
         /** The angle in which the audio reaches a listener unattenuated. */
-        emission_angle_degrees: number /*f64*/
+        get emission_angle_degrees(): number /*f64*/
+        set emission_angle_degrees(value: number /*f64*/)
         
         /** Attenuation factor used if listener is outside of [member emission_angle_degrees] and [member emission_angle_enabled] is set, in decibels. */
-        emission_angle_filter_attenuation_db: number /*f64*/
+        get emission_angle_filter_attenuation_db(): number /*f64*/
+        set emission_angle_filter_attenuation_db(value: number /*f64*/)
         
         /** The cutoff frequency of the attenuation low-pass filter, in Hz. A sound above this frequency is attenuated more than a sound below this frequency. To disable this effect, set this to `20500` as this frequency is above the human hearing limit. */
-        attenuation_filter_cutoff_hz: number /*f64*/
+        get attenuation_filter_cutoff_hz(): number /*f64*/
+        set attenuation_filter_cutoff_hz(value: number /*f64*/)
         
         /** Amount how much the filter affects the loudness, in decibels. */
-        attenuation_filter_db: number /*f64*/
+        get attenuation_filter_db(): number /*f64*/
+        set attenuation_filter_db(value: number /*f64*/)
         
         /** Decides in which step the Doppler effect should be calculated. */
-        doppler_tracking: number /*i64*/
+        get doppler_tracking(): number /*i64*/
+        set doppler_tracking(value: number /*i64*/)
         
         /** Emitted when the audio stops playing. */
         readonly finished: Signal //  => void
@@ -4155,7 +4425,8 @@ declare module "godot" {
         get_polyphony(): number /*i64*/
         
         /** Maximum amount of simultaneous streams that can be played. */
-        polyphony: number /*i64*/
+        get polyphony(): number /*i64*/
+        set polyphony(value: number /*i64*/)
     }
     class AudioStreamPreviewGenerator extends Node {
         _update_emit(_unnamed_arg0: number /*i64*/): void
@@ -4209,16 +4480,20 @@ declare module "godot" {
         get_playback_mode(): AudioStreamRandomizer.PlaybackMode
         
         /** Controls how this AudioStreamRandomizer picks which AudioStream to play next. */
-        playback_mode: number /*i64*/
+        get playback_mode(): number /*i64*/
+        set playback_mode(value: number /*i64*/)
         
         /** The intensity of random pitch variation. A value of 1 means no variation. */
-        random_pitch: number /*f64*/
+        get random_pitch(): number /*f64*/
+        set random_pitch(value: number /*f64*/)
         
         /** The intensity of random volume variation. A value of 0 means no variation. */
-        random_volume_offset_db: number /*f64*/
+        get random_volume_offset_db(): number /*f64*/
+        set random_volume_offset_db(value: number /*f64*/)
         
         /** The number of streams in the stream pool. */
-        streams_count: number /*i64*/
+        get streams_count(): number /*i64*/
+        set streams_count(value: number /*i64*/)
     }
     class AudioStreamRandomizerEditorPlugin extends EditorPlugin {
     }
@@ -4277,28 +4552,35 @@ declare module "godot" {
          *      
          *  **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8, subtract 128 from each byte.  
          */
-        data: PackedByteArray
+        get data(): PackedByteArray
+        set data(value: PackedByteArray)
         
         /** Audio format. See [enum Format] constants for values. */
-        format: number /*i64*/
+        get format(): number /*i64*/
+        set format(value: number /*i64*/)
         
         /** The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values. */
-        loop_mode: number /*i64*/
+        get loop_mode(): number /*i64*/
+        set loop_mode(value: number /*i64*/)
         
         /** The loop start point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present. */
-        loop_begin: number /*i64*/
+        get loop_begin(): number /*i64*/
+        set loop_begin(value: number /*i64*/)
         
         /** The loop end point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present. */
-        loop_end: number /*i64*/
+        get loop_end(): number /*i64*/
+        set loop_end(value: number /*i64*/)
         
         /** The sample rate for mixing this audio. Higher values require more storage space, but result in better quality.  
          *  In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and `48000`.  
          *  According to the [url=https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem]Nyquist-Shannon sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are using lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.  
          */
-        mix_rate: number /*i64*/
+        get mix_rate(): number /*i64*/
+        set mix_rate(value: number /*i64*/)
         
         /** If `true`, audio is stereo. */
-        stereo: boolean
+        get stereo(): boolean
+        set stereo(value: boolean)
     }
     namespace BackBufferCopy {
         enum CopyMode {
@@ -4323,10 +4605,12 @@ declare module "godot" {
         get_copy_mode(): BackBufferCopy.CopyMode
         
         /** Buffer mode. See [enum CopyMode] constants. */
-        copy_mode: number /*i64*/
+        get copy_mode(): number /*i64*/
+        set copy_mode(value: number /*i64*/)
         
         /** The area covered by the [BackBufferCopy]. Only used if [member copy_mode] is [constant COPY_MODE_RECT]. */
-        rect: Rect2
+        get rect(): Rect2
+        set rect(value: Rect2)
     }
     class BackgroundProgress extends HBoxContainer {
         _add_task(_unnamed_arg0: string, _unnamed_arg1: string, _unnamed_arg2: number /*i64*/): void
@@ -4403,45 +4687,55 @@ declare module "godot" {
         get_button_group(): ButtonGroup
         
         /** If `true`, the button is in disabled state and can't be clicked or toggled. */
-        disabled: boolean
+        get disabled(): boolean
+        set disabled(value: boolean)
         
         /** If `true`, the button is in toggle mode. Makes the button flip state between pressed and unpressed each time its area is clicked. */
-        toggle_mode: boolean
+        get toggle_mode(): boolean
+        set toggle_mode(value: boolean)
         
         /** If `true`, the button's state is pressed. Means the button is pressed down or toggled (if [member toggle_mode] is active). Only works if [member toggle_mode] is `true`.  
          *      
          *  **Note:** Setting [member button_pressed] will result in [signal toggled] to be emitted. If you want to change the pressed state without emitting that signal, use [method set_pressed_no_signal].  
          */
-        button_pressed: boolean
+        get button_pressed(): boolean
+        set button_pressed(value: boolean)
         
         /** Determines when the button is considered clicked, one of the [enum ActionMode] constants. */
-        action_mode: number /*i64*/
+        get action_mode(): number /*i64*/
+        set action_mode(value: number /*i64*/)
         
         /** Binary mask to choose which mouse buttons this button will respond to.  
          *  To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT`.  
          */
-        button_mask: number /*i64*/
+        get button_mask(): number /*i64*/
+        set button_mask(value: number /*i64*/)
         
         /** If `true`, the button stays pressed when moving the cursor outside the button while pressing it.  
          *      
          *  **Note:** This property only affects the button's visual appearance. Signals will be emitted at the same moment regardless of this property's value.  
          */
-        keep_pressed_outside: boolean
+        get keep_pressed_outside(): boolean
+        set keep_pressed_outside(value: boolean)
         
         /** The [ButtonGroup] associated with the button. Not to be confused with node groups.  
          *      
          *  **Note:** The button will be configured as a radio button if a [ButtonGroup] is assigned to it.  
          */
-        button_group: ButtonGroup
+        get button_group(): ButtonGroup
+        set button_group(value: ButtonGroup)
         
         /** [Shortcut] associated to the button. */
-        shortcut: Shortcut
+        get shortcut(): Shortcut
+        set shortcut(value: Shortcut)
         
         /** If `true`, the button will highlight for a short amount of time when its shortcut is activated. If `false` and [member toggle_mode] is `false`, the shortcut will activate without any visual feedback. */
-        shortcut_feedback: boolean
+        get shortcut_feedback(): boolean
+        set shortcut_feedback(value: boolean)
         
         /** If `true`, the button will add information about its shortcut in the tooltip. */
-        shortcut_in_tooltip: boolean
+        get shortcut_in_tooltip(): boolean
+        set shortcut_in_tooltip(value: boolean)
         
         /** Emitted when the button is toggled or pressed. This is on [signal button_down] if [member action_mode] is [constant ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.  
          *  If you need to know the button's pressed state (and [member toggle_mode] is active), use [signal toggled] instead.  
@@ -4966,244 +5260,309 @@ declare module "godot" {
         get_distance_fade_min_distance(): number /*f64*/
         
         /** The material's transparency mode. Some transparency modes will disable shadow casting. Any transparency mode other than [constant TRANSPARENCY_DISABLED] has a greater performance impact compared to opaque rendering. See also [member blend_mode]. */
-        transparency: number /*i64*/
+        get transparency(): number /*i64*/
+        set transparency(value: number /*i64*/)
         
         /** Threshold at which the alpha scissor will discard values. Higher values will result in more pixels being discarded. If the material becomes too opaque at a distance, try increasing [member alpha_scissor_threshold]. If the material disappears at a distance, try decreasing [member alpha_scissor_threshold]. */
-        alpha_scissor_threshold: number /*f64*/
+        get alpha_scissor_threshold(): number /*f64*/
+        set alpha_scissor_threshold(value: number /*f64*/)
         
         /** The hashing scale for Alpha Hash. Recommended values between `0` and `2`. */
-        alpha_hash_scale: number /*f64*/
+        get alpha_hash_scale(): number /*f64*/
+        set alpha_hash_scale(value: number /*f64*/)
         
         /** The type of alpha antialiasing to apply. See [enum AlphaAntiAliasing]. */
-        alpha_antialiasing_mode: number /*i64*/
+        get alpha_antialiasing_mode(): number /*i64*/
+        set alpha_antialiasing_mode(value: number /*i64*/)
         
         /** Threshold at which antialiasing will be applied on the alpha channel. */
-        alpha_antialiasing_edge: number /*f64*/
+        get alpha_antialiasing_edge(): number /*f64*/
+        set alpha_antialiasing_edge(value: number /*f64*/)
         
         /** The material's blend mode.  
          *      
          *  **Note:** Values other than `Mix` force the object into the transparent pipeline. See [enum BlendMode].  
          */
-        blend_mode: number /*i64*/
+        get blend_mode(): number /*i64*/
+        set blend_mode(value: number /*i64*/)
         
         /** Determines which side of the triangle to cull depending on whether the triangle faces towards or away from the camera. See [enum CullMode]. */
-        cull_mode: number /*i64*/
+        get cull_mode(): number /*i64*/
+        set cull_mode(value: number /*i64*/)
         
         /** Determines when depth rendering takes place. See [enum DepthDrawMode]. See also [member transparency]. */
-        depth_draw_mode: number /*i64*/
+        get depth_draw_mode(): number /*i64*/
+        set depth_draw_mode(value: number /*i64*/)
         
         /** Sets whether the shading takes place, per-pixel, per-vertex or unshaded. Per-vertex lighting is faster, making it the best choice for mobile applications, however it looks considerably worse than per-pixel. Unshaded rendering is the fastest, but disables all interactions with lights.  
          *      
          *  **Note:** Setting the shading mode vertex shading currently has no effect, as vertex shading is not implemented yet.  
          */
-        shading_mode: number /*i64*/
+        get shading_mode(): number /*i64*/
+        set shading_mode(value: number /*i64*/)
         
         /** The algorithm used for diffuse light scattering. See [enum DiffuseMode]. */
-        diffuse_mode: number /*i64*/
+        get diffuse_mode(): number /*i64*/
+        set diffuse_mode(value: number /*i64*/)
         
         /** The method for rendering the specular blob. See [enum SpecularMode].  
          *      
          *  **Note:** [member specular_mode] only applies to the specular blob. It does not affect specular reflections from the sky, screen-space reflections, [VoxelGI], SDFGI or [ReflectionProbe]s. To disable reflections from these sources as well, set [member metallic_specular] to `0.0` instead.  
          */
-        specular_mode: number /*i64*/
+        get specular_mode(): number /*i64*/
+        set specular_mode(value: number /*i64*/)
         
         /** The material's base color.  
          *      
          *  **Note:** If [member detail_enabled] is `true` and a [member detail_albedo] texture is specified, [member albedo_color] will  *not*  modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [member detail_albedo] texture instead.  
          */
-        albedo_color: Color
+        get albedo_color(): Color
+        set albedo_color(value: Color)
         
         /** A high value makes the material appear more like a metal. Non-metals use their albedo as the diffuse color and add diffuse to the specular reflection. With non-metals, the reflection appears on top of the albedo color. Metals use their albedo as a multiplier to the specular reflection and set the diffuse color to black resulting in a tinted reflection. Materials work better when fully metal or fully non-metal, values between `0` and `1` should only be used for blending between metal and non-metal sections. To alter the amount of reflection use [member roughness]. */
-        metallic: number /*f64*/
+        get metallic(): number /*f64*/
+        set metallic(value: number /*f64*/)
         
         /** Adjusts the strength of specular reflections. Specular reflections are composed of scene reflections and the specular lobe which is the bright spot that is reflected from light sources. When set to `0.0`, no specular reflections will be visible. This differs from the [constant SPECULAR_DISABLED] [enum SpecularMode] as [constant SPECULAR_DISABLED] only applies to the specular lobe from the light source.  
          *      
          *  **Note:** Unlike [member metallic], this is not energy-conserving, so it should be left at `0.5` in most cases. See also [member roughness].  
          */
-        metallic_specular: number /*f64*/
+        get metallic_specular(): number /*f64*/
+        set metallic_specular(value: number /*f64*/)
         
         /** Specifies the channel of the [member metallic_texture] in which the metallic information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
-        metallic_texture_channel: number /*i64*/
+        get metallic_texture_channel(): number /*i64*/
+        set metallic_texture_channel(value: number /*i64*/)
         
         /** Surface reflection. A value of `0` represents a perfect mirror while a value of `1` completely blurs the reflection. See also [member metallic]. */
-        roughness: number /*f64*/
+        get roughness(): number /*f64*/
+        set roughness(value: number /*f64*/)
         
         /** Specifies the channel of the [member roughness_texture] in which the roughness information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
-        roughness_texture_channel: number /*i64*/
+        get roughness_texture_channel(): number /*i64*/
+        set roughness_texture_channel(value: number /*i64*/)
         
         /** The emitted light's color. See [member emission_enabled]. */
-        emission: Color
+        get emission(): Color
+        set emission(value: Color)
         
         /** Multiplier for emitted light. See [member emission_enabled]. */
-        emission_energy_multiplier: number /*f64*/
+        get emission_energy_multiplier(): number /*f64*/
+        set emission_energy_multiplier(value: number /*f64*/)
         
         /** Luminance of emitted light, measured in nits (candela per square meter). Only available when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is enabled. The default is roughly equivalent to an indoor lightbulb. */
-        emission_intensity: number /*f64*/
+        get emission_intensity(): number /*f64*/
+        set emission_intensity(value: number /*f64*/)
         
         /** Sets how [member emission] interacts with [member emission_texture]. Can either add or multiply. See [enum EmissionOperator] for options. */
-        emission_operator: number /*i64*/
+        get emission_operator(): number /*i64*/
+        set emission_operator(value: number /*i64*/)
         
         /** The strength of the normal map's effect. */
-        normal_scale: number /*f64*/
+        get normal_scale(): number /*f64*/
+        set normal_scale(value: number /*f64*/)
         
         /** Sets the strength of the rim lighting effect. */
-        rim: number /*f64*/
+        get rim(): number /*f64*/
+        set rim(value: number /*f64*/)
         
         /** The amount of to blend light and albedo color when rendering rim effect. If `0` the light color is used, while `1` means albedo color is used. An intermediate value generally works best. */
-        rim_tint: number /*f64*/
+        get rim_tint(): number /*f64*/
+        set rim_tint(value: number /*f64*/)
         
         /** Sets the strength of the clearcoat effect. Setting to `0` looks the same as disabling the clearcoat effect. */
-        clearcoat: number /*f64*/
+        get clearcoat(): number /*f64*/
+        set clearcoat(value: number /*f64*/)
         
         /** Sets the roughness of the clearcoat pass. A higher value results in a rougher clearcoat while a lower value results in a smoother clearcoat. */
-        clearcoat_roughness: number /*f64*/
+        get clearcoat_roughness(): number /*f64*/
+        set clearcoat_roughness(value: number /*f64*/)
         
         /** The strength of the anisotropy effect. This is multiplied by [member anisotropy_flowmap]'s alpha channel if a texture is defined there and the texture contains an alpha channel. */
-        anisotropy: number /*f64*/
+        get anisotropy(): number /*f64*/
+        set anisotropy(value: number /*f64*/)
         
         /** Amount that ambient occlusion affects lighting from lights. If `0`, ambient occlusion only affects ambient light. If `1`, ambient occlusion affects lights just as much as it affects ambient light. This can be used to impact the strength of the ambient occlusion effect, but typically looks unrealistic. */
-        ao_light_affect: number /*f64*/
+        get ao_light_affect(): number /*f64*/
+        set ao_light_affect(value: number /*f64*/)
         
         /** Specifies the channel of the [member ao_texture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
-        ao_texture_channel: number /*i64*/
+        get ao_texture_channel(): number /*i64*/
+        set ao_texture_channel(value: number /*i64*/)
         
         /** The heightmap scale to use for the parallax effect (see [member heightmap_enabled]). The default value is tuned so that the highest point (value = 255) appears to be 5 cm higher than the lowest point (value = 0). Higher values result in a deeper appearance, but may result in artifacts appearing when looking at the material from oblique angles, especially when the camera moves. Negative values can be used to invert the parallax effect, but this is different from inverting the texture using [member heightmap_flip_texture] as the material will also appear to be "closer" to the camera. In most cases, [member heightmap_scale] should be kept to a positive value.  
          *      
          *  **Note:** If the height map effect looks strange regardless of this value, try adjusting [member heightmap_flip_binormal] and [member heightmap_flip_tangent]. See also [member heightmap_texture] for recommendations on authoring heightmap textures, as the way the heightmap texture is authored affects how [member heightmap_scale] behaves.  
          */
-        heightmap_scale: number /*f64*/
+        get heightmap_scale(): number /*f64*/
+        set heightmap_scale(value: number /*f64*/)
         
         /** If `true`, uses parallax occlusion mapping to represent depth in the material instead of simple offset mapping (see [member heightmap_enabled]). This results in a more convincing depth effect, but is much more expensive on the GPU. Only enable this on materials where it makes a significant visual difference. */
-        heightmap_deep_parallax: boolean
+        get heightmap_deep_parallax(): boolean
+        set heightmap_deep_parallax(value: boolean)
         
         /** The number of layers to use for parallax occlusion mapping when the camera is far away from the material. Higher values result in a more convincing depth effect, especially in materials that have steep height changes. Higher values have a significant cost on the GPU, so it should only be increased on materials where it makes a significant visual difference.  
          *      
          *  **Note:** Only effective if [member heightmap_deep_parallax] is `true`.  
          */
-        heightmap_min_layers: number /*i64*/
+        get heightmap_min_layers(): number /*i64*/
+        set heightmap_min_layers(value: number /*i64*/)
         
         /** The number of layers to use for parallax occlusion mapping when the camera is up close to the material. Higher values result in a more convincing depth effect, especially in materials that have steep height changes. Higher values have a significant cost on the GPU, so it should only be increased on materials where it makes a significant visual difference.  
          *      
          *  **Note:** Only effective if [member heightmap_deep_parallax] is `true`.  
          */
-        heightmap_max_layers: number /*i64*/
+        get heightmap_max_layers(): number /*i64*/
+        set heightmap_max_layers(value: number /*i64*/)
         
         /** If `true`, flips the mesh's tangent vectors when interpreting the height map. If the heightmap effect looks strange when the camera moves (even with a reasonable [member heightmap_scale]), try setting this to `true`. */
-        heightmap_flip_tangent: boolean
+        get heightmap_flip_tangent(): boolean
+        set heightmap_flip_tangent(value: boolean)
         
         /** If `true`, flips the mesh's binormal vectors when interpreting the height map. If the heightmap effect looks strange when the camera moves (even with a reasonable [member heightmap_scale]), try setting this to `true`. */
-        heightmap_flip_binormal: boolean
+        get heightmap_flip_binormal(): boolean
+        set heightmap_flip_binormal(value: boolean)
         
         /** The strength of the subsurface scattering effect. The depth of the effect is also controlled by [member ProjectSettings.rendering/environment/subsurface_scattering/subsurface_scattering_scale], which is set globally. */
-        subsurf_scatter_strength: number /*f64*/
+        get subsurf_scatter_strength(): number /*f64*/
+        set subsurf_scatter_strength(value: number /*f64*/)
         
         /** The color to multiply the subsurface scattering transmittance effect with. Ignored if [member subsurf_scatter_skin_mode] is `true`. */
-        subsurf_scatter_transmittance_color: Color
+        get subsurf_scatter_transmittance_color(): Color
+        set subsurf_scatter_transmittance_color(value: Color)
         
         /** The depth of the subsurface scattering transmittance effect. */
-        subsurf_scatter_transmittance_depth: number /*f64*/
+        get subsurf_scatter_transmittance_depth(): number /*f64*/
+        set subsurf_scatter_transmittance_depth(value: number /*f64*/)
         
         /** The intensity of the subsurface scattering transmittance effect. */
-        subsurf_scatter_transmittance_boost: number /*f64*/
+        get subsurf_scatter_transmittance_boost(): number /*f64*/
+        set subsurf_scatter_transmittance_boost(value: number /*f64*/)
         
         /** The color used by the backlight effect. Represents the light passing through an object. */
-        backlight: Color
+        get backlight(): Color
+        set backlight(value: Color)
         
         /** The strength of the refraction effect. */
-        refraction_scale: number /*f64*/
+        get refraction_scale(): number /*f64*/
+        set refraction_scale(value: number /*f64*/)
         
         /** Specifies the channel of the [member refraction_texture] in which the refraction information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored refraction in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
-        refraction_texture_channel: number /*i64*/
+        get refraction_texture_channel(): number /*i64*/
+        set refraction_texture_channel(value: number /*i64*/)
         
         /** Specifies how the [member detail_albedo] should blend with the current `ALBEDO`. See [enum BlendMode] for options. */
-        detail_blend_mode: number /*i64*/
+        get detail_blend_mode(): number /*i64*/
+        set detail_blend_mode(value: number /*i64*/)
         
         /** Specifies whether to use `UV` or `UV2` for the detail layer. See [enum DetailUV] for options. */
-        detail_uv_layer: number /*i64*/
+        get detail_uv_layer(): number /*i64*/
+        set detail_uv_layer(value: number /*i64*/)
         
         /** How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [member uv1_triplanar] is enabled, but it is not used anywhere else. */
-        uv1_scale: Vector3
+        get uv1_scale(): Vector3
+        set uv1_scale(value: Vector3)
         
         /** How much to offset the `UV` coordinates. This amount will be added to `UV` in the vertex function. This can be used to offset a texture. The Z component is used when [member uv1_triplanar] is enabled, but it is not used anywhere else. */
-        uv1_offset: Vector3
+        get uv1_offset(): Vector3
+        set uv1_offset(value: Vector3)
         
         /** A lower number blends the texture more softly while a higher number blends the texture more sharply.  
          *      
          *  **Note:** [member uv1_triplanar_sharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.  
          */
-        uv1_triplanar_sharpness: number /*f64*/
+        get uv1_triplanar_sharpness(): number /*f64*/
+        set uv1_triplanar_sharpness(value: number /*f64*/)
         
         /** How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [member uv2_triplanar] is enabled, but it is not used anywhere else. */
-        uv2_scale: Vector3
+        get uv2_scale(): Vector3
+        set uv2_scale(value: Vector3)
         
         /** How much to offset the `UV2` coordinates. This amount will be added to `UV2` in the vertex function. This can be used to offset a texture. The Z component is used when [member uv2_triplanar] is enabled, but it is not used anywhere else. */
-        uv2_offset: Vector3
+        get uv2_offset(): Vector3
+        set uv2_offset(value: Vector3)
         
         /** A lower number blends the texture more softly while a higher number blends the texture more sharply.  
          *      
          *  **Note:** [member uv2_triplanar_sharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.  
          */
-        uv2_triplanar_sharpness: number /*f64*/
+        get uv2_triplanar_sharpness(): number /*f64*/
+        set uv2_triplanar_sharpness(value: number /*f64*/)
         
         /** Filter flags for the texture. See [enum TextureFilter] for options.  
          *      
          *  **Note:** [member heightmap_texture] is always sampled with linear filtering, even if nearest-neighbor filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need sharper height transitions between pixels, resize the heightmap texture in an image editor with nearest-neighbor filtering.  
          */
-        texture_filter: number /*i64*/
+        get texture_filter(): number /*i64*/
+        set texture_filter(value: number /*i64*/)
         
         /** Controls how the object faces the camera. See [enum BillboardMode].  
          *      
          *  **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.  
          */
-        billboard_mode: number /*i64*/
+        get billboard_mode(): number /*i64*/
+        set billboard_mode(value: number /*i64*/)
         
         /** The number of horizontal frames in the particle sprite sheet. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member billboard_mode]. */
-        particles_anim_h_frames: number /*i64*/
+        get particles_anim_h_frames(): number /*i64*/
+        set particles_anim_h_frames(value: number /*i64*/)
         
         /** The number of vertical frames in the particle sprite sheet. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member billboard_mode]. */
-        particles_anim_v_frames: number /*i64*/
+        get particles_anim_v_frames(): number /*i64*/
+        set particles_anim_v_frames(value: number /*i64*/)
         
         /** If `true`, particle animations are looped. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member billboard_mode]. */
-        particles_anim_loop: boolean
+        get particles_anim_loop(): boolean
+        set particles_anim_loop(value: boolean)
         
         /** If `true`, enables the vertex grow setting. This can be used to create mesh-based outlines using a second material pass and its [member cull_mode] set to [constant CULL_FRONT]. See also [member grow_amount].  
          *      
          *  **Note:** Vertex growth cannot create new vertices, which means that visible gaps may occur in sharp corners. This can be alleviated by designing the mesh to use smooth normals exclusively using [url=https://wiki.polycount.com/wiki/Face_weighted_normals]face weighted normals[/url] in the 3D authoring software. In this case, grow will be able to join every outline together, just like in the original mesh.  
          */
-        grow: boolean
+        get grow(): boolean
+        set grow(value: boolean)
         
         /** Grows object vertices in the direction of their normals. Only effective if [member grow] is `true`. */
-        grow_amount: number /*f64*/
+        get grow_amount(): number /*f64*/
+        set grow_amount(value: number /*f64*/)
         
         /** The point size in pixels. See [member use_point_size]. */
-        point_size: number /*f64*/
+        get point_size(): number /*f64*/
+        set point_size(value: number /*f64*/)
         
         /** If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel based on its distance to another object. */
-        proximity_fade_enabled: boolean
+        get proximity_fade_enabled(): boolean
+        set proximity_fade_enabled(value: boolean)
         
         /** Distance over which the fade effect takes place. The larger the distance the longer it takes for an object to fade. */
-        proximity_fade_distance: number /*f64*/
+        get proximity_fade_distance(): number /*f64*/
+        set proximity_fade_distance(value: number /*f64*/)
         
         /** The width of the range around the shape between the minimum and maximum representable signed distance. */
-        msdf_pixel_range: number /*f64*/
+        get msdf_pixel_range(): number /*f64*/
+        set msdf_pixel_range(value: number /*f64*/)
         
         /** The width of the shape outline. */
-        msdf_outline_size: number /*f64*/
+        get msdf_outline_size(): number /*f64*/
+        set msdf_outline_size(value: number /*f64*/)
         
         /** Specifies which type of fade to use. Can be any of the [enum DistanceFadeMode]s. */
-        distance_fade_mode: number /*i64*/
+        get distance_fade_mode(): number /*i64*/
+        set distance_fade_mode(value: number /*i64*/)
         
         /** Distance at which the object starts to become visible. If the object is less than this distance away, it will be invisible.  
          *      
          *  **Note:** If [member distance_fade_min_distance] is greater than [member distance_fade_max_distance], the behavior will be reversed. The object will start to fade away at [member distance_fade_max_distance] and will fully disappear once it reaches [member distance_fade_min_distance].  
          */
-        distance_fade_min_distance: number /*f64*/
+        get distance_fade_min_distance(): number /*f64*/
+        set distance_fade_min_distance(value: number /*f64*/)
         
         /** Distance at which the object appears fully opaque.  
          *      
          *  **Note:** If [member distance_fade_max_distance] is less than [member distance_fade_min_distance], the behavior will be reversed. The object will start to fade away at [member distance_fade_max_distance] and will fully disappear once it reaches [member distance_fade_min_distance].  
          */
-        distance_fade_max_distance: number /*f64*/
+        get distance_fade_max_distance(): number /*f64*/
+        set distance_fade_max_distance(value: number /*f64*/)
     }
     /** Boolean matrix.  
      *  	  
@@ -5254,7 +5613,8 @@ declare module "godot" {
          *  [param epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [param epsilon] corresponds to more points in the polygons.  
          */
         opaque_to_polygons(rect: Rect2i, epsilon: number /*f64*/ = 2): Array
-        data: Dictionary
+        get data(): Dictionary
+        set data(value: Dictionary)
     }
     class BitMapEditorPlugin extends EditorPlugin {
     }
@@ -5300,7 +5660,8 @@ declare module "godot" {
         get_bone_angle(): number /*f64*/
         
         /** Rest transform of the bone. You can reset the node's transforms to this value using [method apply_rest]. */
-        rest: Transform2D
+        get rest(): Transform2D
+        set rest(value: Transform2D)
     }
     /** А node that dynamically copies or overrides the 3D transform of a bone in its parent [Skeleton3D].  
      *  	  
@@ -5330,13 +5691,16 @@ declare module "godot" {
         get_external_skeleton(): NodePath
         
         /** The name of the attached bone. */
-        bone_name: StringName
+        get bone_name(): StringName
+        set bone_name(value: StringName)
         
         /** The index of the attached bone. */
-        bone_idx: number /*i64*/
+        get bone_idx(): number /*i64*/
+        set bone_idx(value: number /*i64*/)
         
         /** Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to. When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to `false`, the BoneAttachment3D will always be set to the bone's transform. */
-        override_pose: boolean
+        get override_pose(): boolean
+        set override_pose(value: boolean)
     }
     /** Describes a mapping of bone names for retargeting [Skeleton3D] into common names defined by a [SkeletonProfile].  
      *  	  
@@ -5362,7 +5726,8 @@ declare module "godot" {
         find_profile_bone_name(skeleton_bone_name: StringName): StringName
         
         /** A [SkeletonProfile] of the mapping target. Key names in the [BoneMap] are synchronized with it. */
-        profile: SkeletonProfile
+        get profile(): SkeletonProfile
+        set profile(value: SkeletonProfile)
         
         /** This signal is emitted when change the key value in the [BoneMap]. This is used to validate mapping and to update [BoneMap] editor. */
         readonly bone_map_updated: Signal //  => void
@@ -5397,12 +5762,14 @@ declare module "godot" {
         is_vertical(): boolean
         
         /** The alignment of the container's children (must be one of [constant ALIGNMENT_BEGIN], [constant ALIGNMENT_CENTER], or [constant ALIGNMENT_END]). */
-        alignment: number /*i64*/
+        get alignment(): number /*i64*/
+        set alignment(value: number /*i64*/)
         
         /** If `true`, the [BoxContainer] will arrange its children vertically, rather than horizontally.  
          *  Can't be changed when using [HBoxContainer] and [VBoxContainer].  
          */
-        vertical: boolean
+        get vertical(): boolean
+        set vertical(value: boolean)
     }
     /** Generate an axis-aligned box [PrimitiveMesh].  
      *  	  
@@ -5419,16 +5786,20 @@ declare module "godot" {
         get_subdivide_depth(): number /*i64*/
         
         /** The box's width, height and depth. */
-        size: Vector3
+        get size(): Vector3
+        set size(value: Vector3)
         
         /** Number of extra edge loops inserted along the X axis. */
-        subdivide_width: number /*i64*/
+        get subdivide_width(): number /*i64*/
+        set subdivide_width(value: number /*i64*/)
         
         /** Number of extra edge loops inserted along the Y axis. */
-        subdivide_height: number /*i64*/
+        get subdivide_height(): number /*i64*/
+        set subdivide_height(value: number /*i64*/)
         
         /** Number of extra edge loops inserted along the Z axis. */
-        subdivide_depth: number /*i64*/
+        get subdivide_depth(): number /*i64*/
+        set subdivide_depth(value: number /*i64*/)
     }
     /** Cuboid shape for use with occlusion culling in [OccluderInstance3D].  
      *  	  
@@ -5439,7 +5810,8 @@ declare module "godot" {
         get_size(): Vector3
         
         /** The box's size in 3D units. */
-        size: Vector3
+        get size(): Vector3
+        set size(value: Vector3)
     }
     /** A 3D box shape used for physics collision.  
      *  	  
@@ -5450,7 +5822,8 @@ declare module "godot" {
         get_size(): Vector3
         
         /** The box's width, height and depth. */
-        size: Vector3
+        get size(): Vector3
+        set size(value: Vector3)
     }
     /** A themed button that can contain text and an icon.  
      *  	  
@@ -5481,39 +5854,50 @@ declare module "godot" {
         is_expand_icon(): boolean
         
         /** The button's text that will be displayed inside the button's area. */
-        text: string
+        get text(): string
+        set text(value: string)
         
         /** Button's icon, if text is present the icon will be placed before the text.  
          *  To edit margin and spacing of the icon, use [theme_item h_separation] theme property and `content_margin_*` properties of the used [StyleBox]es.  
          */
-        icon: Texture2D
+        get icon(): Texture2D
+        set icon(value: Texture2D)
         
         /** Flat buttons don't display decoration. */
-        flat: boolean
+        get flat(): boolean
+        set flat(value: boolean)
         
         /** Text alignment policy for the button's text, use one of the [enum HorizontalAlignment] constants. */
-        alignment: number /*i64*/
+        get alignment(): number /*i64*/
+        set alignment(value: number /*i64*/)
         
         /** Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes. */
-        text_overrun_behavior: number /*i64*/
+        get text_overrun_behavior(): number /*i64*/
+        set text_overrun_behavior(value: number /*i64*/)
         
         /** When this property is enabled, text that is too large to fit the button is clipped, when disabled the Button will always be wide enough to hold the text. */
-        clip_text: boolean
+        get clip_text(): boolean
+        set clip_text(value: boolean)
         
         /** Specifies if the icon should be aligned horizontally to the left, right, or center of a button. Uses the same [enum HorizontalAlignment] constants as the text alignment. If centered horizontally and vertically, text will draw on top of the icon. */
-        icon_alignment: number /*i64*/
+        get icon_alignment(): number /*i64*/
+        set icon_alignment(value: number /*i64*/)
         
         /** Specifies if the icon should be aligned vertically to the top, bottom, or center of a button. Uses the same [enum VerticalAlignment] constants as the text alignment. If centered horizontally and vertically, text will draw on top of the icon. */
-        vertical_icon_alignment: number /*i64*/
+        get vertical_icon_alignment(): number /*i64*/
+        set vertical_icon_alignment(value: number /*i64*/)
         
         /** When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect. See also [theme_item icon_max_width]. */
-        expand_icon: boolean
+        get expand_icon(): boolean
+        set expand_icon(value: boolean)
         
         /** Base text writing direction. */
-        text_direction: number /*i64*/
+        get text_direction(): number /*i64*/
+        set text_direction(value: number /*i64*/)
         
         /** Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
-        language: string
+        get language(): string
+        set language(value: string)
     }
     /** A group of buttons that doesn't allow more than one button to be pressed at a time.  
      *  	  
@@ -5529,7 +5913,8 @@ declare module "godot" {
         is_allow_unpress(): boolean
         
         /** If `true`, it is possible to unpress all buttons in this [ButtonGroup]. */
-        allow_unpress: boolean
+        get allow_unpress(): boolean
+        set allow_unpress(value: boolean)
         
         /** Emitted when one of the buttons of the group is pressed. */
         readonly pressed: Signal // button: BaseButton => void
@@ -5713,95 +6098,124 @@ declare module "godot" {
         convert_from_particles(particles: Node): void
         
         /** If `true`, particles are being emitted. [member emitting] can be used to start and stop particles from emitting. However, if [member one_shot] is `true` setting [member emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [signal finished] signal to be notified once all active particles finish processing. */
-        emitting: boolean
+        get emitting(): boolean
+        set emitting(value: boolean)
         
         /** Number of particles emitted in one emission cycle. */
-        amount: number /*i64*/
+        get amount(): number /*i64*/
+        set amount(value: number /*i64*/)
         
         /** Amount of time each particle will exist. */
-        lifetime: number /*f64*/
+        get lifetime(): number /*f64*/
+        set lifetime(value: number /*f64*/)
         
         /** If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end. */
-        one_shot: boolean
+        get one_shot(): boolean
+        set one_shot(value: boolean)
         
         /** Particle system starts as if it had already run for this many seconds. */
-        preprocess: number /*f64*/
+        get preprocess(): number /*f64*/
+        set preprocess(value: number /*f64*/)
         
         /** Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles. */
-        speed_scale: number /*f64*/
+        get speed_scale(): number /*f64*/
+        set speed_scale(value: number /*f64*/)
         
         /** How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins. */
-        explosiveness: number /*f64*/
+        get explosiveness(): number /*f64*/
+        set explosiveness(value: number /*f64*/)
         
         /** Emission lifetime randomness ratio. */
-        randomness: number /*f64*/
+        get randomness(): number /*f64*/
+        set randomness(value: number /*f64*/)
         
         /** Particle lifetime randomness ratio. */
-        lifetime_randomness: number /*f64*/
+        get lifetime_randomness(): number /*f64*/
+        set lifetime_randomness(value: number /*f64*/)
         
         /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself. */
-        fixed_fps: number /*i64*/
+        get fixed_fps(): number /*i64*/
+        set fixed_fps(value: number /*i64*/)
         
         /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
-        fract_delta: boolean
+        get fract_delta(): boolean
+        set fract_delta(value: boolean)
         
         /** If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [CPUParticles2D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [CPUParticles2D] node (and its parents) when it is moved or rotated. */
-        local_coords: boolean
+        get local_coords(): boolean
+        set local_coords(value: boolean)
         
         /** Particle draw order. Uses [enum DrawOrder] values. */
-        draw_order: number /*i64*/
+        get draw_order(): number /*i64*/
+        set draw_order(value: number /*i64*/)
         
         /** Particle texture. If `null`, particles will be squares. */
-        texture: Texture2D
+        get texture(): Texture2D
+        set texture(value: Texture2D)
         
         /** Particles will be emitted inside this region. See [enum EmissionShape] for possible values. */
-        emission_shape: number /*i64*/
+        get emission_shape(): number /*i64*/
+        set emission_shape(value: number /*i64*/)
         
         /** The sphere's radius if [member emission_shape] is set to [constant EMISSION_SHAPE_SPHERE]. */
-        emission_sphere_radius: number /*f64*/
+        get emission_sphere_radius(): number /*f64*/
+        set emission_sphere_radius(value: number /*f64*/)
         
         /** The rectangle's extents if [member emission_shape] is set to [constant EMISSION_SHAPE_RECTANGLE]. */
-        emission_rect_extents: Vector2
+        get emission_rect_extents(): Vector2
+        set emission_rect_extents(value: Vector2)
         
         /** Sets the initial positions to spawn particles when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
-        emission_points: PackedVector2Array
+        get emission_points(): PackedVector2Array
+        set emission_points(value: PackedVector2Array)
         
         /** Sets the direction the particles will be emitted in when using [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
-        emission_normals: PackedVector2Array
+        get emission_normals(): PackedVector2Array
+        set emission_normals(value: PackedVector2Array)
         
         /** Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
-        emission_colors: PackedColorArray
+        get emission_colors(): PackedColorArray
+        set emission_colors(value: PackedColorArray)
         
         /** Unit vector specifying the particles' emission direction. */
-        direction: Vector2
+        get direction(): Vector2
+        set direction(value: Vector2)
         
         /** Each particle's initial direction range from `+spread` to `-spread` degrees. */
-        spread: number /*f64*/
+        get spread(): number /*f64*/
+        set spread(value: number /*f64*/)
         
         /** Gravity applied to every particle. */
-        gravity: Vector2
+        get gravity(): Vector2
+        set gravity(value: Vector2)
         
         /** If `true`, the scale curve will be split into x and y components. See [member scale_curve_x] and [member scale_curve_y]. */
-        split_scale: boolean
+        get split_scale(): boolean
+        set split_scale(value: boolean)
         
         /** Each particle's horizontal scale will vary along this [Curve].  
          *  [member split_scale] must be enabled.  
          */
-        scale_curve_x: Curve
+        get scale_curve_x(): Curve
+        set scale_curve_x(value: Curve)
         
         /** Each particle's vertical scale will vary along this [Curve].  
          *  [member split_scale] must be enabled.  
          */
-        scale_curve_y: Curve
+        get scale_curve_y(): Curve
+        set scale_curve_y(value: Curve)
         
         /** Each particle's initial color. If [member texture] is defined, it will be multiplied by this color. */
-        color: Color
+        get color(): Color
+        set color(value: Color)
         
         /** Each particle's color will vary along this [Gradient] (multiplied with [member color]). */
-        color_ramp: Gradient
+        get color_ramp(): Gradient
+        set color_ramp(value: Gradient)
         
         /** Each particle's initial color will vary along this [GradientTexture1D] (multiplied with [member color]). */
-        color_initial_ramp: Gradient
+        get color_initial_ramp(): Gradient
+        set color_initial_ramp(value: Gradient)
         
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted. */
         readonly finished: Signal //  => void
@@ -6005,121 +6419,156 @@ declare module "godot" {
         convert_from_particles(particles: Node): void
         
         /** If `true`, particles are being emitted. [member emitting] can be used to start and stop particles from emitting. However, if [member one_shot] is `true` setting [member emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [signal finished] signal to be notified once all active particles finish processing. */
-        emitting: boolean
+        get emitting(): boolean
+        set emitting(value: boolean)
         
         /** Number of particles emitted in one emission cycle. */
-        amount: number /*i64*/
+        get amount(): number /*i64*/
+        set amount(value: number /*i64*/)
         
         /** Amount of time each particle will exist. */
-        lifetime: number /*f64*/
+        get lifetime(): number /*f64*/
+        set lifetime(value: number /*f64*/)
         
         /** If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end. */
-        one_shot: boolean
+        get one_shot(): boolean
+        set one_shot(value: boolean)
         
         /** Particle system starts as if it had already run for this many seconds. */
-        preprocess: number /*f64*/
+        get preprocess(): number /*f64*/
+        set preprocess(value: number /*f64*/)
         
         /** Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles. */
-        speed_scale: number /*f64*/
+        get speed_scale(): number /*f64*/
+        set speed_scale(value: number /*f64*/)
         
         /** How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins. */
-        explosiveness: number /*f64*/
+        get explosiveness(): number /*f64*/
+        set explosiveness(value: number /*f64*/)
         
         /** Emission lifetime randomness ratio. */
-        randomness: number /*f64*/
+        get randomness(): number /*f64*/
+        set randomness(value: number /*f64*/)
         
         /** Particle lifetime randomness ratio. */
-        lifetime_randomness: number /*f64*/
+        get lifetime_randomness(): number /*f64*/
+        set lifetime_randomness(value: number /*f64*/)
         
         /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the particle system itself. */
-        fixed_fps: number /*i64*/
+        get fixed_fps(): number /*i64*/
+        set fixed_fps(value: number /*i64*/)
         
         /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
-        fract_delta: boolean
+        get fract_delta(): boolean
+        set fract_delta(value: boolean)
         
         /** If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [CPUParticles3D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [CPUParticles3D] node (and its parents) when it is moved or rotated. */
-        local_coords: boolean
+        get local_coords(): boolean
+        set local_coords(value: boolean)
         
         /** Particle draw order. Uses [enum DrawOrder] values. */
-        draw_order: number /*i64*/
+        get draw_order(): number /*i64*/
+        set draw_order(value: number /*i64*/)
         
         /** The [Mesh] used for each particle. If `null`, particles will be spheres. */
-        mesh: Mesh
+        get mesh(): Mesh
+        set mesh(value: Mesh)
         
         /** Particles will be emitted inside this region. See [enum EmissionShape] for possible values. */
-        emission_shape: number /*i64*/
+        get emission_shape(): number /*i64*/
+        set emission_shape(value: number /*i64*/)
         
         /** The sphere's radius if [enum EmissionShape] is set to [constant EMISSION_SHAPE_SPHERE]. */
-        emission_sphere_radius: number /*f64*/
+        get emission_sphere_radius(): number /*f64*/
+        set emission_sphere_radius(value: number /*f64*/)
         
         /** The rectangle's extents if [member emission_shape] is set to [constant EMISSION_SHAPE_BOX]. */
-        emission_box_extents: Vector3
+        get emission_box_extents(): Vector3
+        set emission_box_extents(value: Vector3)
         
         /** Sets the initial positions to spawn particles when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
-        emission_points: PackedVector3Array
+        get emission_points(): PackedVector3Array
+        set emission_points(value: PackedVector3Array)
         
         /** Sets the direction the particles will be emitted in when using [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
-        emission_normals: PackedVector3Array
+        get emission_normals(): PackedVector3Array
+        set emission_normals(value: PackedVector3Array)
         
         /** Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS].  
          *      
          *  **Note:** [member emission_colors] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member emission_colors] will have no visible effect.  
          */
-        emission_colors: PackedColorArray
+        get emission_colors(): PackedColorArray
+        set emission_colors(value: PackedColorArray)
         
         /** The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        emission_ring_axis: Vector3
+        get emission_ring_axis(): Vector3
+        set emission_ring_axis(value: Vector3)
         
         /** The height of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        emission_ring_height: number /*f64*/
+        get emission_ring_height(): number /*f64*/
+        set emission_ring_height(value: number /*f64*/)
         
         /** The radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        emission_ring_radius: number /*f64*/
+        get emission_ring_radius(): number /*f64*/
+        set emission_ring_radius(value: number /*f64*/)
         
         /** The inner radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        emission_ring_inner_radius: number /*f64*/
+        get emission_ring_inner_radius(): number /*f64*/
+        set emission_ring_inner_radius(value: number /*f64*/)
         
         /** Unit vector specifying the particles' emission direction. */
-        direction: Vector3
+        get direction(): Vector3
+        set direction(value: Vector3)
         
         /** Each particle's initial direction range from `+spread` to `-spread` degrees. Applied to X/Z plane and Y/Z planes. */
-        spread: number /*f64*/
+        get spread(): number /*f64*/
+        set spread(value: number /*f64*/)
         
         /** Amount of [member spread] in Y/Z plane. A value of `1` restricts particles to X/Z plane. */
-        flatness: number /*f64*/
+        get flatness(): number /*f64*/
+        set flatness(value: number /*f64*/)
         
         /** Gravity applied to every particle. */
-        gravity: Vector3
+        get gravity(): Vector3
+        set gravity(value: Vector3)
         
         /** If set to `true`, three different scale curves can be specified, one per scale axis. */
-        split_scale: boolean
+        get split_scale(): boolean
+        set split_scale(value: boolean)
         
         /** Curve for the scale over life, along the x axis. */
-        scale_curve_x: Curve
+        get scale_curve_x(): Curve
+        set scale_curve_x(value: Curve)
         
         /** Curve for the scale over life, along the y axis. */
-        scale_curve_y: Curve
+        get scale_curve_y(): Curve
+        set scale_curve_y(value: Curve)
         
         /** Curve for the scale over life, along the z axis. */
-        scale_curve_z: Curve
+        get scale_curve_z(): Curve
+        set scale_curve_z(value: Curve)
         
         /** Each particle's initial color.  
          *      
          *  **Note:** [member color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color] will have no visible effect.  
          */
-        color: Color
+        get color(): Color
+        set color(value: Color)
         
         /** Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied with [member color]).  
          *      
          *  **Note:** [member color_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_ramp] will have no visible effect.  
          */
-        color_ramp: Gradient
+        get color_ramp(): Gradient
+        set color_ramp(value: Gradient)
         
         /** Each particle's initial color will vary along this [GradientTexture1D] (multiplied with [member color]).  
          *      
          *  **Note:** [member color_initial_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_initial_ramp] will have no visible effect.  
          */
-        color_initial_ramp: Gradient
+        get color_initial_ramp(): Gradient
+        set color_initial_ramp(value: Gradient)
         
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted. */
         readonly finished: Signal //  => void
@@ -6141,10 +6590,12 @@ declare module "godot" {
         get_material(): Material
         
         /** The box's width, height and depth. */
-        size: Vector3
+        get size(): Vector3
+        set size(value: Vector3)
         
         /** The material used to render the box. */
-        material: BaseMaterial3D | ShaderMaterial
+        get material(): BaseMaterial3D | ShaderMaterial
+        set material(value: BaseMaterial3D | ShaderMaterial)
     }
     /** A CSG node that allows you to combine other CSG modifiers.  
      *  	  
@@ -6171,22 +6622,28 @@ declare module "godot" {
         get_smooth_faces(): boolean
         
         /** The radius of the cylinder. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
         
         /** The height of the cylinder. */
-        height: number /*f64*/
+        get height(): number /*f64*/
+        set height(value: number /*f64*/)
         
         /** The number of sides of the cylinder, the higher this number the more detail there will be in the cylinder. */
-        sides: number /*i64*/
+        get sides(): number /*i64*/
+        set sides(value: number /*i64*/)
         
         /** If `true` a cone is created, the [member radius] will only apply to one side. */
-        cone: boolean
+        get cone(): boolean
+        set cone(value: boolean)
         
         /** If `true` the normals of the cylinder are set to give a smooth effect making the cylinder seem rounded. If `false` the cylinder will have a flat shaded look. */
-        smooth_faces: boolean
+        get smooth_faces(): boolean
+        set smooth_faces(value: boolean)
         
         /** The material used to render the cylinder. */
-        material: BaseMaterial3D | ShaderMaterial
+        get material(): BaseMaterial3D | ShaderMaterial
+        set material(value: BaseMaterial3D | ShaderMaterial)
     }
     /** A CSG Mesh shape that uses a mesh resource.  
      *  	  
@@ -6203,10 +6660,12 @@ declare module "godot" {
          *  **Note:** When using an [ArrayMesh], all vertex attributes except [constant Mesh.ARRAY_VERTEX], [constant Mesh.ARRAY_NORMAL] and [constant Mesh.ARRAY_TEX_UV] are left unused. Only [constant Mesh.ARRAY_VERTEX] and [constant Mesh.ARRAY_TEX_UV] will be passed to the GPU.  
          *  [constant Mesh.ARRAY_NORMAL] is only used to determine which faces require the use of flat shading. By default, CSGMesh will ignore the mesh's vertex normals, recalculate them for each vertex and use a smooth shader. If a flat shader is required for a face, ensure that all vertex normals of the face are approximately equal.  
          */
-        mesh: Mesh
+        get mesh(): Mesh
+        set mesh(value: Mesh)
         
         /** The [Material] used in drawing the CSG shape. */
-        material: BaseMaterial3D | ShaderMaterial
+        get material(): BaseMaterial3D | ShaderMaterial
+        set material(value: BaseMaterial3D | ShaderMaterial)
     }
     namespace CSGPolygon3D {
         enum Mode {
@@ -6287,52 +6746,68 @@ declare module "godot" {
          *      
          *  **Note:** If only 1 or 2 points are defined in [member polygon], no mesh will be generated.  
          */
-        polygon: PackedVector2Array
+        get polygon(): PackedVector2Array
+        set polygon(value: PackedVector2Array)
         
         /** The [member mode] used to extrude the [member polygon]. */
-        mode: number /*i64*/
+        get mode(): number /*i64*/
+        set mode(value: number /*i64*/)
         
         /** When [member mode] is [constant MODE_DEPTH], the depth of the extrusion. */
-        depth: number /*f64*/
+        get depth(): number /*f64*/
+        set depth(value: number /*f64*/)
         
         /** When [member mode] is [constant MODE_SPIN], the total number of degrees the [member polygon] is rotated when extruding. */
-        spin_degrees: number /*f64*/
+        get spin_degrees(): number /*f64*/
+        set spin_degrees(value: number /*f64*/)
         
         /** When [member mode] is [constant MODE_SPIN], the number of extrusions made. */
-        spin_sides: number /*i64*/
+        get spin_sides(): number /*i64*/
+        set spin_sides(value: number /*i64*/)
         
         /** When [member mode] is [constant MODE_PATH], the location of the [Path3D] object used to extrude the [member polygon]. */
-        path_node: NodePath
+        get path_node(): NodePath
+        set path_node(value: NodePath)
         
         /** When [member mode] is [constant MODE_PATH], this will determine if the interval should be by distance ([constant PATH_INTERVAL_DISTANCE]) or subdivision fractions ([constant PATH_INTERVAL_SUBDIVIDE]). */
-        path_interval_type: number /*i64*/
+        get path_interval_type(): number /*i64*/
+        set path_interval_type(value: number /*i64*/)
         
         /** When [member mode] is [constant MODE_PATH], the path interval or ratio of path points to extrusions. */
-        path_interval: number /*f64*/
+        get path_interval(): number /*f64*/
+        set path_interval(value: number /*f64*/)
         
         /** When [member mode] is [constant MODE_PATH], extrusions that are less than this angle, will be merged together to reduce polygon count. */
-        path_simplify_angle: number /*f64*/
+        get path_simplify_angle(): number /*f64*/
+        set path_simplify_angle(value: number /*f64*/)
         
         /** When [member mode] is [constant MODE_PATH], the [enum PathRotation] method used to rotate the [member polygon] as it is extruded. */
-        path_rotation: number /*i64*/
+        get path_rotation(): number /*i64*/
+        set path_rotation(value: number /*i64*/)
         
         /** When [member mode] is [constant MODE_PATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the starting point for the extrusions, not the [Transform3D] of the [member path_node]. */
-        path_local: boolean
+        get path_local(): boolean
+        set path_local(value: boolean)
         
         /** When [member mode] is [constant MODE_PATH], by default, the top half of the [member material] is stretched along the entire length of the extruded shape. If `false` the top half of the material is repeated every step of the extrusion. */
-        path_continuous_u: boolean
+        get path_continuous_u(): boolean
+        set path_continuous_u(value: boolean)
         
         /** When [member mode] is [constant MODE_PATH], this is the distance along the path, in meters, the texture coordinates will tile. When set to 0, texture coordinates will match geometry exactly with no tiling. */
-        path_u_distance: number /*f64*/
+        get path_u_distance(): number /*f64*/
+        set path_u_distance(value: number /*f64*/)
         
         /** When [member mode] is [constant MODE_PATH], if `true` the ends of the path are joined, by adding an extrusion between the last and first points of the path. */
-        path_joined: boolean
+        get path_joined(): boolean
+        set path_joined(value: boolean)
         
         /** If `true`, applies smooth shading to the extrusions. */
-        smooth_faces: boolean
+        get smooth_faces(): boolean
+        set smooth_faces(value: boolean)
         
         /** Material to use for the resulting mesh. The UV maps the top half of the material to the extruded shape (U along the length of the extrusions and V around the outline of the [member polygon]), the bottom-left quarter to the front end face, and the bottom-right quarter to the back end face. */
-        material: BaseMaterial3D | ShaderMaterial
+        get material(): BaseMaterial3D | ShaderMaterial
+        set material(value: BaseMaterial3D | ShaderMaterial)
     }
     /** Base class for CSG primitives.  
      *  	  
@@ -6343,7 +6818,8 @@ declare module "godot" {
         get_flip_faces(): boolean
         
         /** If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn. */
-        flip_faces: boolean
+        get flip_faces(): boolean
+        set flip_faces(value: boolean)
     }
     namespace CSGShape3D {
         enum Operation {
@@ -6397,28 +6873,35 @@ declare module "godot" {
         get_meshes(): Array
         
         /** The operation that is performed on this shape. This is ignored for the first CSG child node as the operation is between this node and the previous child of this nodes parent. */
-        operation: number /*i64*/
+        get operation(): number /*i64*/
+        set operation(value: number /*i64*/)
         
         /** Snap makes the mesh vertices snap to a given distance so that the faces of two meshes can be perfectly aligned. A lower value results in greater precision but may be harder to adjust. */
-        snap: number /*f64*/
+        get snap(): number /*f64*/
+        set snap(value: number /*f64*/)
         
         /** Calculate tangents for the CSG shape which allows the use of normal maps. This is only applied on the root shape, this setting is ignored on any child. */
-        calculate_tangents: boolean
+        get calculate_tangents(): boolean
+        set calculate_tangents(value: boolean)
         
         /** Adds a collision shape to the physics engine for our CSG shape. This will always act like a static body. Note that the collision shape is still active even if the CSG shape itself is hidden. See also [member collision_mask] and [member collision_priority]. */
-        use_collision: boolean
+        get use_collision(): boolean
+        set use_collision(value: boolean)
         
         /** The physics layers this area is in.  
          *  Collidable objects can exist in any of 32 different layers. These layers work like a tagging system, and are not visual. A collidable can use these layers to select with which objects it can collide, using the collision_mask property.  
          *  A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
          */
-        collision_layer: number /*i64*/
+        get collision_layer(): number /*i64*/
+        set collision_layer(value: number /*i64*/)
         
         /** The physics layers this CSG shape scans for collisions. Only effective if [member use_collision] is `true`. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        collision_mask: number /*i64*/
+        get collision_mask(): number /*i64*/
+        set collision_mask(value: number /*i64*/)
         
         /** The priority used to solve colliding when occurring penetration. Only effective if [member use_collision] is `true`. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        collision_priority: number /*f64*/
+        get collision_priority(): number /*f64*/
+        set collision_priority(value: number /*f64*/)
     }
     class CSGShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
     }
@@ -6439,19 +6922,24 @@ declare module "godot" {
         get_material(): Material
         
         /** Radius of the sphere. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
         
         /** Number of vertical slices for the sphere. */
-        radial_segments: number /*i64*/
+        get radial_segments(): number /*i64*/
+        set radial_segments(value: number /*i64*/)
         
         /** Number of horizontal slices for the sphere. */
-        rings: number /*i64*/
+        get rings(): number /*i64*/
+        set rings(value: number /*i64*/)
         
         /** If `true` the normals of the sphere are set to give a smooth effect making the sphere seem rounded. If `false` the sphere will have a flat shaded look. */
-        smooth_faces: boolean
+        get smooth_faces(): boolean
+        set smooth_faces(value: boolean)
         
         /** The material used to render the sphere. */
-        material: BaseMaterial3D | ShaderMaterial
+        get material(): BaseMaterial3D | ShaderMaterial
+        set material(value: BaseMaterial3D | ShaderMaterial)
     }
     /** A CSG Torus shape.  
      *  	  
@@ -6472,22 +6960,28 @@ declare module "godot" {
         get_smooth_faces(): boolean
         
         /** The inner radius of the torus. */
-        inner_radius: number /*f64*/
+        get inner_radius(): number /*f64*/
+        set inner_radius(value: number /*f64*/)
         
         /** The outer radius of the torus. */
-        outer_radius: number /*f64*/
+        get outer_radius(): number /*f64*/
+        set outer_radius(value: number /*f64*/)
         
         /** The number of slices the torus is constructed of. */
-        sides: number /*i64*/
+        get sides(): number /*i64*/
+        set sides(value: number /*i64*/)
         
         /** The number of edges each ring of the torus is constructed of. */
-        ring_sides: number /*i64*/
+        get ring_sides(): number /*i64*/
+        set ring_sides(value: number /*i64*/)
         
         /** If `true` the normals of the torus are set to give a smooth effect making the torus seem rounded. If `false` the torus will have a flat shaded look. */
-        smooth_faces: boolean
+        get smooth_faces(): boolean
+        set smooth_faces(value: boolean)
         
         /** The material used to render the torus. */
-        material: BaseMaterial3D | ShaderMaterial
+        get material(): BaseMaterial3D | ShaderMaterial
+        set material(value: BaseMaterial3D | ShaderMaterial)
     }
     /** Calls the specified method after optional delay.  
      *  	  
@@ -6605,79 +7099,98 @@ declare module "godot" {
         is_margin_drawing_enabled(): boolean
         
         /** The camera's relative offset. Useful for looking around or camera shake animations. The offsetted camera can go past the limits defined in [member limit_top], [member limit_bottom], [member limit_left] and [member limit_right]. */
-        offset: Vector2
+        get offset(): Vector2
+        set offset(value: Vector2)
         
         /** The Camera2D's anchor point. See [enum AnchorMode] constants. */
-        anchor_mode: number /*i64*/
+        get anchor_mode(): number /*i64*/
+        set anchor_mode(value: number /*i64*/)
         
         /** If `true`, the camera's rendered view is not affected by its [member Node2D.rotation] and [member Node2D.global_rotation]. */
-        ignore_rotation: boolean
+        get ignore_rotation(): boolean
+        set ignore_rotation(value: boolean)
         
         /** Controls whether the camera can be active or not. If `true`, the [Camera2D] will become the main camera when it enters the scene tree and there is no active camera currently (see [method Viewport.get_camera_2d]).  
          *  When the camera is currently active and [member enabled] is set to `false`, the next enabled [Camera2D] in the scene tree will become active.  
          */
-        enabled: boolean
+        get enabled(): boolean
+        set enabled(value: boolean)
         
         /** The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of `Vector(0.5, 0.5)` halves the size seen in the viewport.  
          *      
          *  **Note:** [member FontFile.oversampling] does  *not*  take [Camera2D] zoom into account. This means that zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
          */
-        zoom: Vector2
+        get zoom(): Vector2
+        set zoom(value: Vector2)
         
         /** The custom [Viewport] node attached to the [Camera2D]. If `null` or not a [Viewport], uses the default viewport instead. */
-        custom_viewport: Viewport
+        get custom_viewport(): Viewport
+        set custom_viewport(value: Viewport)
         
         /** The camera's process callback. See [enum Camera2DProcessCallback]. */
-        process_callback: number /*i64*/
+        get process_callback(): number /*i64*/
+        set process_callback(value: number /*i64*/)
         
         /** If `true`, the camera smoothly stops when reaches its limits.  
          *  This property has no effect if [member position_smoothing_enabled] is `false`.  
          *      
          *  **Note:** To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke [method reset_smoothing].  
          */
-        limit_smoothed: boolean
+        get limit_smoothed(): boolean
+        set limit_smoothed(value: boolean)
         
         /** If `true`, the camera's view smoothly moves towards its target position at [member position_smoothing_speed]. */
-        position_smoothing_enabled: boolean
+        get position_smoothing_enabled(): boolean
+        set position_smoothing_enabled(value: boolean)
         
         /** Speed in pixels per second of the camera's smoothing effect when [member position_smoothing_enabled] is `true`. */
-        position_smoothing_speed: number /*f64*/
+        get position_smoothing_speed(): number /*f64*/
+        set position_smoothing_speed(value: number /*f64*/)
         
         /** If `true`, the camera's view smoothly rotates, via asymptotic smoothing, to align with its target rotation at [member rotation_smoothing_speed].  
          *      
          *  **Note:** This property has no effect if [member ignore_rotation] is `true`.  
          */
-        rotation_smoothing_enabled: boolean
+        get rotation_smoothing_enabled(): boolean
+        set rotation_smoothing_enabled(value: boolean)
         
         /** The angular, asymptotic speed of the camera's rotation smoothing effect when [member rotation_smoothing_enabled] is `true`. */
-        rotation_smoothing_speed: number /*f64*/
+        get rotation_smoothing_speed(): number /*f64*/
+        set rotation_smoothing_speed(value: number /*f64*/)
         
         /** If `true`, the camera only moves when reaching the horizontal (left and right) drag margins. If `false`, the camera moves horizontally regardless of margins. */
-        drag_horizontal_enabled: boolean
+        get drag_horizontal_enabled(): boolean
+        set drag_horizontal_enabled(value: boolean)
         
         /** If `true`, the camera only moves when reaching the vertical (top and bottom) drag margins. If `false`, the camera moves vertically regardless of the drag margins. */
-        drag_vertical_enabled: boolean
+        get drag_vertical_enabled(): boolean
+        set drag_vertical_enabled(value: boolean)
         
         /** The relative horizontal drag offset of the camera between the right (`-1`) and left (`1`) drag margins.  
          *      
          *  **Note:** Used to set the initial horizontal drag offset; determine the current offset; or force the current offset. It's not automatically updated when [member drag_horizontal_enabled] is `true` or the drag margins are changed.  
          */
-        drag_horizontal_offset: number /*f64*/
+        get drag_horizontal_offset(): number /*f64*/
+        set drag_horizontal_offset(value: number /*f64*/)
         
         /** The relative vertical drag offset of the camera between the bottom (`-1`) and top (`1`) drag margins.  
          *      
          *  **Note:** Used to set the initial vertical drag offset; determine the current offset; or force the current offset. It's not automatically updated when [member drag_vertical_enabled] is `true` or the drag margins are changed.  
          */
-        drag_vertical_offset: number /*f64*/
+        get drag_vertical_offset(): number /*f64*/
+        set drag_vertical_offset(value: number /*f64*/)
         
         /** If `true`, draws the camera's screen rectangle in the editor. */
-        editor_draw_screen: boolean
+        get editor_draw_screen(): boolean
+        set editor_draw_screen(value: boolean)
         
         /** If `true`, draws the camera's limits rectangle in the editor. */
-        editor_draw_limits: boolean
+        get editor_draw_limits(): boolean
+        set editor_draw_limits(value: boolean)
         
         /** If `true`, draws the camera's drag margin rectangle in the editor. */
-        editor_draw_drag_margin: boolean
+        get editor_draw_drag_margin(): boolean
+        set editor_draw_drag_margin(value: boolean)
     }
     namespace Camera3D {
         enum ProjectionType {
@@ -6806,7 +7319,8 @@ declare module "godot" {
         get_cull_mask_value(layer_number: number /*i64*/): boolean
         
         /** The axis to lock during [member fov]/[member size] adjustments. Can be either [constant KEEP_WIDTH] or [constant KEEP_HEIGHT]. */
-        keep_aspect: number /*i64*/
+        get keep_aspect(): number /*i64*/
+        set keep_aspect(value: number /*i64*/)
         
         /** The culling mask that describes which [member VisualInstance3D.layers] are rendered by this camera. By default, all 20 user-visible layers are rendered.  
          *      
@@ -6815,30 +7329,38 @@ declare module "godot" {
          *      
          *  **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [member GeometryInstance3D.gi_mode] to [constant GeometryInstance3D.GI_MODE_DISABLED] for meshes and [member Light3D.light_bake_mode] to [constant Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.  
          */
-        cull_mask: number /*i64*/
+        get cull_mask(): number /*i64*/
+        set cull_mask(value: number /*i64*/)
         
         /** The [Environment] to use for this camera. */
-        environment: Environment
+        get environment(): Environment
+        set environment(value: Environment)
         
         /** The [CameraAttributes] to use for this camera. */
-        attributes: CameraAttributesPractical | CameraAttributesPhysical
+        get attributes(): CameraAttributesPractical | CameraAttributesPhysical
+        set attributes(value: CameraAttributesPractical | CameraAttributesPhysical)
         
         /** The horizontal (X) offset of the camera viewport. */
-        h_offset: number /*f64*/
+        get h_offset(): number /*f64*/
+        set h_offset(value: number /*f64*/)
         
         /** The vertical (Y) offset of the camera viewport. */
-        v_offset: number /*f64*/
+        get v_offset(): number /*f64*/
+        set v_offset(value: number /*f64*/)
         
         /** If not [constant DOPPLER_TRACKING_DISABLED], this camera will simulate the [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] for objects changed in particular `_process` methods. See [enum DopplerTracking] for possible values. */
-        doppler_tracking: number /*i64*/
+        get doppler_tracking(): number /*i64*/
+        set doppler_tracking(value: number /*i64*/)
         
         /** The camera's projection mode. In [constant PROJECTION_PERSPECTIVE] mode, objects' Z distance from the camera's local space scales their perceived size. */
-        projection: number /*i64*/
+        get projection(): number /*i64*/
+        set projection(value: number /*i64*/)
         
         /** If `true`, the ancestor [Viewport] is currently using this camera.  
          *  If multiple cameras are in the scene, one will always be made current. For example, if two [Camera3D] nodes are present in the scene and only one is current, setting one camera's [member current] to `false` will cause the other camera to be made current.  
          */
-        current: boolean
+        get current(): boolean
+        set current(value: boolean)
         
         /** The camera's field of view angle (in degrees). Only applicable in perspective mode. Since [member keep_aspect] locks one axis, [member fov] sets the other axis' field of view angle.  
          *  For reference, the default vertical field of view value (`75.0`) is equivalent to a horizontal FOV of:  
@@ -6847,22 +7369,27 @@ declare module "godot" {
          *  - ~107.51 degrees in a 16:9 viewport  
          *  - ~121.63 degrees in a 21:9 viewport  
          */
-        fov: number /*f64*/
+        get fov(): number /*f64*/
+        set fov(value: number /*f64*/)
         
         /** The camera's size in meters measured as the diameter of the width or height, depending on [member keep_aspect]. Only applicable in orthogonal and frustum modes. */
-        size: number /*f64*/
+        get size(): number /*f64*/
+        set size(value: number /*f64*/)
         
         /** The camera's frustum offset. This can be changed from the default to create "tilted frustum" effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].  
          *      
          *  **Note:** Only effective if [member projection] is [constant PROJECTION_FRUSTUM].  
          */
-        frustum_offset: Vector2
+        get frustum_offset(): Vector2
+        set frustum_offset(value: Vector2)
         
         /** The distance to the near culling boundary for this camera relative to its local Z axis. Lower values allow the camera to see objects more up close to its origin, at the cost of lower precision across the  *entire*  range. Values lower than the default can lead to increased Z-fighting. */
-        near: number /*f64*/
+        get near(): number /*f64*/
+        set near(value: number /*f64*/)
         
         /** The distance to the far culling boundary for this camera relative to its local Z axis. Higher values allow the camera to see further away, while decreasing [member far] can improve performance if it results in objects being partially or fully culled. */
-        far: number /*f64*/
+        get far(): number /*f64*/
+        set far(value: number /*f64*/)
     }
     class Camera3DEditorPlugin extends EditorPlugin {
     }
@@ -6885,19 +7412,24 @@ declare module "godot" {
         get_auto_exposure_scale(): number /*f64*/
         
         /** Sensitivity of camera sensors, measured in ISO. A higher sensitivity results in a brighter image. Only available when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is enabled. When [member auto_exposure_enabled] this can be used as a method of exposure compensation, doubling the value will increase the exposure value (measured in EV100) by 1 stop. */
-        exposure_sensitivity: number /*f64*/
+        get exposure_sensitivity(): number /*f64*/
+        set exposure_sensitivity(value: number /*f64*/)
         
         /** Multiplier for the exposure amount. A higher value results in a brighter image. */
-        exposure_multiplier: number /*f64*/
+        get exposure_multiplier(): number /*f64*/
+        set exposure_multiplier(value: number /*f64*/)
         
         /** If `true`, enables the tonemapping auto exposure mode of the scene renderer. If `true`, the renderer will automatically determine the exposure setting to adapt to the scene's illumination and the observed light. */
-        auto_exposure_enabled: boolean
+        get auto_exposure_enabled(): boolean
+        set auto_exposure_enabled(value: boolean)
         
         /** The scale of the auto exposure effect. Affects the intensity of auto exposure. */
-        auto_exposure_scale: number /*f64*/
+        get auto_exposure_scale(): number /*f64*/
+        set auto_exposure_scale(value: number /*f64*/)
         
         /** The speed of the auto exposure effect. Affects the time needed for the camera to perform auto exposure. */
-        auto_exposure_speed: number /*f64*/
+        get auto_exposure_speed(): number /*f64*/
+        set auto_exposure_speed(value: number /*f64*/)
     }
     /** Physically-based camera settings.  
      *  	  
@@ -6925,32 +7457,40 @@ declare module "godot" {
         get_auto_exposure_min_exposure_value(): number /*f64*/
         
         /** Distance from camera of object that will be in focus, measured in meters. Internally this will be clamped to be at least 1 millimeter larger than [member frustum_focal_length]. */
-        frustum_focus_distance: number /*f64*/
+        get frustum_focus_distance(): number /*f64*/
+        set frustum_focus_distance(value: number /*f64*/)
         
         /** Distance between camera lens and camera aperture, measured in millimeters. Controls field of view and depth of field. A larger focal length will result in a smaller field of view and a narrower depth of field meaning fewer objects will be in focus. A smaller focal length will result in a wider field of view and a larger depth of field meaning more objects will be in focus. When attached to a [Camera3D] as its [member Camera3D.attributes], it will override the [member Camera3D.fov] property and the [member Camera3D.keep_aspect] property. */
-        frustum_focal_length: number /*f64*/
+        get frustum_focal_length(): number /*f64*/
+        set frustum_focal_length(value: number /*f64*/)
         
         /** Override value for [member Camera3D.near]. Used internally when calculating depth of field. When attached to a [Camera3D] as its [member Camera3D.attributes], it will override the [member Camera3D.near] property. */
-        frustum_near: number /*f64*/
+        get frustum_near(): number /*f64*/
+        set frustum_near(value: number /*f64*/)
         
         /** Override value for [member Camera3D.far]. Used internally when calculating depth of field. When attached to a [Camera3D] as its [member Camera3D.attributes], it will override the [member Camera3D.far] property. */
-        frustum_far: number /*f64*/
+        get frustum_far(): number /*f64*/
+        set frustum_far(value: number /*f64*/)
         
         /** Size of the aperture of the camera, measured in f-stops. An f-stop is a unitless ratio between the focal length of the camera and the diameter of the aperture. A high aperture setting will result in a smaller aperture which leads to a dimmer image and sharper focus. A low aperture results in a wide aperture which lets in more light resulting in a brighter, less-focused image. Default is appropriate for outdoors at daytime (i.e. for use with a default [DirectionalLight3D]), for indoor lighting, a value between 2 and 4 is more appropriate.  
          *  Only available when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is enabled.  
          */
-        exposure_aperture: number /*f64*/
+        get exposure_aperture(): number /*f64*/
+        set exposure_aperture(value: number /*f64*/)
         
         /** Time for shutter to open and close, evaluated as `1 / shutter_speed` seconds. A higher value will allow less light (leading to a darker image), while a lower value will allow more light (leading to a brighter image).  
          *  Only available when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is enabled.  
          */
-        exposure_shutter_speed: number /*f64*/
+        get exposure_shutter_speed(): number /*f64*/
+        set exposure_shutter_speed(value: number /*f64*/)
         
         /** The minimum luminance luminance (in EV100) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing above a certain brightness, resulting in a cut off point where the scene will remain dark. */
-        auto_exposure_min_exposure_value: number /*f64*/
+        get auto_exposure_min_exposure_value(): number /*f64*/
+        set auto_exposure_min_exposure_value(value: number /*f64*/)
         
         /** The maximum luminance (in EV100) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing below a certain brightness, resulting in a cut off point where the scene will remain bright. */
-        auto_exposure_max_exposure_value: number /*f64*/
+        get auto_exposure_max_exposure_value(): number /*f64*/
+        set auto_exposure_max_exposure_value(value: number /*f64*/)
     }
     /** Camera settings in an easy to use format.  
      *  	  
@@ -6980,34 +7520,43 @@ declare module "godot" {
          *      
          *  **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not Compatibility.  
          */
-        dof_blur_far_enabled: boolean
+        get dof_blur_far_enabled(): boolean
+        set dof_blur_far_enabled(value: boolean)
         
         /** Objects further from the [Camera3D] by this amount will be blurred by the depth of field effect. Measured in meters. */
-        dof_blur_far_distance: number /*f64*/
+        get dof_blur_far_distance(): number /*f64*/
+        set dof_blur_far_distance(value: number /*f64*/)
         
         /** When positive, distance over which (starting from [member dof_blur_far_distance]) blur effect will scale from 0 to [member dof_blur_amount]. When negative, uses physically-based scaling so depth of field effect will scale from 0 at [member dof_blur_far_distance] and will increase in a physically accurate way as objects get further from the [Camera3D]. */
-        dof_blur_far_transition: number /*f64*/
+        get dof_blur_far_transition(): number /*f64*/
+        set dof_blur_far_transition(value: number /*f64*/)
         
         /** Enables depth of field blur for objects closer than [member dof_blur_near_distance]. Strength of blur is controlled by [member dof_blur_amount] and modulated by [member dof_blur_near_transition].  
          *      
          *  **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods, not Compatibility.  
          */
-        dof_blur_near_enabled: boolean
+        get dof_blur_near_enabled(): boolean
+        set dof_blur_near_enabled(value: boolean)
         
         /** Objects closer from the [Camera3D] by this amount will be blurred by the depth of field effect. Measured in meters. */
-        dof_blur_near_distance: number /*f64*/
+        get dof_blur_near_distance(): number /*f64*/
+        set dof_blur_near_distance(value: number /*f64*/)
         
         /** When positive, distance over which blur effect will scale from 0 to [member dof_blur_amount], ending at [member dof_blur_near_distance]. When negative, uses physically-based scaling so depth of field effect will scale from 0 at [member dof_blur_near_distance] and will increase in a physically accurate way as objects get closer to the [Camera3D]. */
-        dof_blur_near_transition: number /*f64*/
+        get dof_blur_near_transition(): number /*f64*/
+        set dof_blur_near_transition(value: number /*f64*/)
         
         /** Sets the maximum amount of blur. When using physically-based blur amounts, will instead act as a multiplier. High values lead to an increased amount of blurriness, but can be much more expensive to calculate. It is best to keep this as low as possible for a given art style. */
-        dof_blur_amount: number /*f64*/
+        get dof_blur_amount(): number /*f64*/
+        set dof_blur_amount(value: number /*f64*/)
         
         /** The minimum sensitivity (in ISO) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing above a certain brightness, resulting in a cut off point where the scene will remain dark. */
-        auto_exposure_min_sensitivity: number /*f64*/
+        get auto_exposure_min_sensitivity(): number /*f64*/
+        set auto_exposure_min_sensitivity(value: number /*f64*/)
         
         /** The maximum sensitivity (in ISO) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing below a certain brightness, resulting in a cut off point where the scene will remain bright. */
-        auto_exposure_max_sensitivity: number /*f64*/
+        get auto_exposure_max_sensitivity(): number /*f64*/
+        set auto_exposure_max_sensitivity(value: number /*f64*/)
     }
     namespace CameraFeed {
         enum FeedDataType {
@@ -7060,10 +7609,12 @@ declare module "godot" {
         get_datatype(): CameraFeed.FeedDataType
         
         /** If `true`, the feed is active. */
-        feed_is_active: boolean
+        get feed_is_active(): boolean
+        set feed_is_active(value: boolean)
         
         /** The transform applied to the camera's image. */
-        feed_transform: Transform2D
+        get feed_transform(): Transform2D
+        set feed_transform(value: Transform2D)
     }
     /** Texture provided by a [CameraFeed].  
      *  	  
@@ -7078,13 +7629,16 @@ declare module "godot" {
         get_camera_active(): boolean
         
         /** The ID of the [CameraFeed] for which we want to display the image. */
-        camera_feed_id: number /*i64*/
+        get camera_feed_id(): number /*i64*/
+        set camera_feed_id(value: number /*i64*/)
         
         /** Which image within the [CameraFeed] we want access to, important if the camera image is split in a Y and CbCr component. */
-        which_feed: number /*i64*/
+        get which_feed(): number /*i64*/
+        set which_feed(value: number /*i64*/)
         
         /** Convenience property that gives access to the active property of the [CameraFeed]. */
-        camera_is_active: boolean
+        get camera_is_active(): boolean
+        set camera_is_active(value: boolean)
     }
     /** Merges several 2D nodes into a single draw operation.  
      *  	  
@@ -7099,13 +7653,16 @@ declare module "godot" {
         is_using_mipmaps(): boolean
         
         /** Sets the size of a margin used to expand the drawable rect of this [CanvasGroup]. The size of the [CanvasGroup] is determined by fitting a rect around its children then expanding that rect by [member fit_margin]. This increases both the backbuffer area used and the area covered by the [CanvasGroup] both of which can reduce performance. This should be kept as small as possible and should only be expanded when an increased size is needed (e.g. for custom shader effects). */
-        fit_margin: number /*f64*/
+        get fit_margin(): number /*f64*/
+        set fit_margin(value: number /*f64*/)
         
         /** Sets the size of the margin used to expand the clearing rect of this [CanvasGroup]. This expands the area of the backbuffer that will be used by the [CanvasGroup]. A smaller margin will reduce the area of the backbuffer used which can increase performance, however if [member use_mipmaps] is enabled, a small margin may result in mipmap errors at the edge of the [CanvasGroup]. Accordingly, this should be left as small as possible, but should be increased if artifacts appear along the edges of the canvas group. */
-        clear_margin: number /*f64*/
+        get clear_margin(): number /*f64*/
+        set clear_margin(value: number /*f64*/)
         
         /** If `true`, calculates mipmaps for the backbuffer before drawing the [CanvasGroup] so that mipmaps can be used in a custom [ShaderMaterial] attached to the [CanvasGroup]. Generating mipmaps has a performance cost so this should not be enabled unless required. */
-        use_mipmaps: boolean
+        get use_mipmaps(): boolean
+        set use_mipmaps(value: boolean)
     }
     namespace CanvasItem {
         enum TextureFilter {
@@ -7464,57 +8021,72 @@ declare module "godot" {
          *      
          *  **Note:** For controls that inherit [Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.  
          */
-        visible: boolean
+        get visible(): boolean
+        set visible(value: boolean)
         
         /** The color applied to this [CanvasItem]. This property does affect child [CanvasItem]s, unlike [member self_modulate] which only affects the node itself. */
-        modulate: Color
+        get modulate(): Color
+        set modulate(value: Color)
         
         /** The color applied to this [CanvasItem]. This property does **not** affect child [CanvasItem]s, unlike [member modulate] which affects both the node itself and its children.  
          *      
          *  **Note:** Internal children (e.g. sliders in [ColorPicker] or tab bar in [TabContainer]) are also not affected by this property (see `include_internal` parameter of [method Node.get_child] and other similar methods).  
          */
-        self_modulate: Color
+        get self_modulate(): Color
+        set self_modulate(value: Color)
         
         /** If `true`, the object draws behind its parent. */
-        show_behind_parent: boolean
+        get show_behind_parent(): boolean
+        set show_behind_parent(value: boolean)
         
         /** If `true`, this [CanvasItem] will  *not*  inherit its transform from parent [CanvasItem]s. Its draw order will also be changed to make it draw on top of other [CanvasItem]s that do not have [member top_level] set to `true`. The [CanvasItem] will effectively act as if it was placed as a child of a bare [Node]. */
-        top_level: boolean
+        get top_level(): boolean
+        set top_level(value: boolean)
         
         /** Allows the current node to clip child nodes, essentially acting as a mask. */
-        clip_children: number /*i64*/
+        get clip_children(): number /*i64*/
+        set clip_children(value: number /*i64*/)
         
         /** The rendering layers in which this [CanvasItem] responds to [Light2D] nodes. */
-        light_mask: number /*i64*/
+        get light_mask(): number /*i64*/
+        set light_mask(value: number /*i64*/)
         
         /** The rendering layer in which this [CanvasItem] is rendered by [Viewport] nodes. A [Viewport] will render a [CanvasItem] if it and all its parents share a layer with the [Viewport]'s canvas cull mask. */
-        visibility_layer: number /*i64*/
+        get visibility_layer(): number /*i64*/
+        set visibility_layer(value: number /*i64*/)
         
         /** Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [constant RenderingServer.CANVAS_ITEM_Z_MIN] and [constant RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).  
          *      
          *  **Note:** Changing the Z index of a [Control] only affects the drawing order, not the order in which input events are handled. This can be useful to implement certain UI animations, e.g. a menu where hovered items are scaled and should overlap others.  
          */
-        z_index: number /*i64*/
+        get z_index(): number /*i64*/
+        set z_index(value: number /*i64*/)
         
         /** If `true`, the node's Z index is relative to its parent's Z index. If this node's Z index is 2 and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5. */
-        z_as_relative: boolean
+        get z_as_relative(): boolean
+        set z_as_relative(value: boolean)
         
         /** If `true`, child nodes with the lowest Y position are drawn before those with a higher Y position. If `false`, Y-sorting is disabled. Y-sorting only affects children that inherit from [CanvasItem].  
          *  You can nest nodes with Y-sorting. Child Y-sorted nodes are sorted in the same space as the parent Y-sort. This feature allows you to organize a scene better or divide it into multiple ones without changing your scene tree.  
          */
-        y_sort_enabled: boolean
+        get y_sort_enabled(): boolean
+        set y_sort_enabled(value: boolean)
         
         /** The texture filtering mode to use on this [CanvasItem]. */
-        texture_filter: number /*i64*/
+        get texture_filter(): number /*i64*/
+        set texture_filter(value: number /*i64*/)
         
         /** The texture repeating mode to use on this [CanvasItem]. */
-        texture_repeat: number /*i64*/
+        get texture_repeat(): number /*i64*/
+        set texture_repeat(value: number /*i64*/)
         
         /** The material applied to this [CanvasItem]. */
-        material: CanvasItemMaterial | ShaderMaterial
+        get material(): CanvasItemMaterial | ShaderMaterial
+        set material(value: CanvasItemMaterial | ShaderMaterial)
         
         /** If `true`, the parent [CanvasItem]'s [member material] property is used as this one's material. */
-        use_parent_material: boolean
+        get use_parent_material(): boolean
+        set use_parent_material(value: boolean)
         
         /** Emitted when the [CanvasItem] must redraw,  *after*  the related [constant NOTIFICATION_DRAW] notification, and  *before*  [method _draw] is called.  
          *      
@@ -7590,33 +8162,39 @@ declare module "godot" {
         get_particles_anim_loop(): boolean
         
         /** The manner in which a material's rendering is applied to underlying textures. */
-        blend_mode: number /*i64*/
+        get blend_mode(): number /*i64*/
+        set blend_mode(value: number /*i64*/)
         
         /** The manner in which material reacts to lighting. */
-        light_mode: number /*i64*/
+        get light_mode(): number /*i64*/
+        set light_mode(value: number /*i64*/)
         
         /** If `true`, enable spritesheet-based animation features when assigned to [GPUParticles2D] and [CPUParticles2D] nodes. The [member ParticleProcessMaterial.anim_speed_max] or [member CPUParticles2D.anim_speed_max] should also be set to a positive value for the animation to play.  
          *  This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.  
          */
-        particles_animation: boolean
+        get particles_animation(): boolean
+        set particles_animation(value: boolean)
         
         /** The number of columns in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or [CPUParticles2D].  
          *      
          *  **Note:** This property is only used and visible in the editor if [member particles_animation] is `true`.  
          */
-        particles_anim_h_frames: number /*i64*/
+        get particles_anim_h_frames(): number /*i64*/
+        set particles_anim_h_frames(value: number /*i64*/)
         
         /** The number of rows in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or [CPUParticles2D].  
          *      
          *  **Note:** This property is only used and visible in the editor if [member particles_animation] is `true`.  
          */
-        particles_anim_v_frames: number /*i64*/
+        get particles_anim_v_frames(): number /*i64*/
+        set particles_anim_v_frames(value: number /*i64*/)
         
         /** If `true`, the particles animation will loop.  
          *      
          *  **Note:** This property is only used and visible in the editor if [member particles_animation] is `true`.  
          */
-        particles_anim_loop: boolean
+        get particles_anim_loop(): boolean
+        set particles_anim_loop(value: boolean)
     }
     class CanvasItemMaterialConversionPlugin extends EditorResourceConversionPlugin {
     }
@@ -7660,35 +8238,44 @@ declare module "godot" {
          *      
          *  **Note:** If multiple CanvasLayers have the same layer index, [CanvasItem] children of one CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer is drawn in front is non-deterministic.  
          */
-        layer: number /*i64*/
+        get layer(): number /*i64*/
+        set layer(value: number /*i64*/)
         
         /** If `false`, any [CanvasItem] under this [CanvasLayer] will be hidden.  
          *  Unlike [member CanvasItem.visible], visibility of a [CanvasLayer] isn't propagated to underlying layers.  
          */
-        visible: boolean
+        get visible(): boolean
+        set visible(value: boolean)
         
         /** The layer's base offset. */
-        offset: Vector2
+        get offset(): Vector2
+        set offset(value: Vector2)
         
         /** The layer's rotation in radians. */
-        rotation: number /*f64*/
+        get rotation(): number /*f64*/
+        set rotation(value: number /*f64*/)
         
         /** The layer's scale. */
-        scale: Vector2
+        get scale(): Vector2
+        set scale(value: Vector2)
         
         /** The layer's transform. */
-        transform: Transform2D
+        get transform(): Transform2D
+        set transform(value: Transform2D)
         
         /** The custom [Viewport] node assigned to the [CanvasLayer]. If `null`, uses the default viewport instead. */
-        custom_viewport: Viewport
+        get custom_viewport(): Viewport
+        set custom_viewport(value: Viewport)
         
         /** If enabled, the [CanvasLayer] will use the viewport's transform, so it will move when camera moves instead of being anchored in a fixed position on the screen.  
          *  Together with [member follow_viewport_scale] it can be used for a pseudo 3D effect.  
          */
-        follow_viewport_enabled: boolean
+        get follow_viewport_enabled(): boolean
+        set follow_viewport_enabled(value: boolean)
         
         /** Scales the layer when using [member follow_viewport_enabled]. Layers moving into the foreground should have increasing scales, while layers moving into the background should have decreasing scales. */
-        follow_viewport_scale: number /*f64*/
+        get follow_viewport_scale(): number /*f64*/
+        set follow_viewport_scale(value: number /*f64*/)
         
         /** Emitted when visibility of the layer is changed. See [member visible]. */
         readonly visibility_changed: Signal //  => void
@@ -7702,7 +8289,8 @@ declare module "godot" {
         get_color(): Color
         
         /** The tint color to apply. */
-        color: Color
+        get color(): Color
+        set color(value: Color)
     }
     /** Texture with optional normal and specular maps for use in 2D rendering.  
      *  	  
@@ -7725,28 +8313,35 @@ declare module "godot" {
         get_texture_repeat(): CanvasItem.TextureRepeat
         
         /** The diffuse (color) texture to use. This is the main texture you want to set in most cases. */
-        diffuse_texture: Texture2D
+        get diffuse_texture(): Texture2D
+        set diffuse_texture(value: Texture2D)
         
         /** The normal map texture to use. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture].  
          *      
          *  **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.  
          */
-        normal_texture: Texture2D
+        get normal_texture(): Texture2D
+        set normal_texture(value: Texture2D)
         
         /** The specular map to use for [Light2D] specular reflections. This should be a grayscale or colored texture, with brighter areas resulting in a higher [member specular_shininess] value. Using a colored [member specular_texture] allows controlling specular shininess on a per-channel basis. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
-        specular_texture: Texture2D
+        get specular_texture(): Texture2D
+        set specular_texture(value: Texture2D)
         
         /** The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
-        specular_color: Color
+        get specular_color(): Color
+        set specular_color(value: Color)
         
         /** The specular exponent for [Light2D] specular reflections. Higher values result in a more glossy/"wet" look, with reflections becoming more localized and less visible overall. The default value of `1.0` disables specular reflections entirely. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
-        specular_shininess: number /*f64*/
+        get specular_shininess(): number /*f64*/
+        set specular_shininess(value: number /*f64*/)
         
         /** The texture filtering mode to use when drawing this [CanvasTexture]. */
-        texture_filter: number /*i64*/
+        get texture_filter(): number /*i64*/
+        set texture_filter(value: number /*i64*/)
         
         /** The texture repeat mode to use when drawing this [CanvasTexture]. */
-        texture_repeat: number /*i64*/
+        get texture_repeat(): number /*i64*/
+        set texture_repeat(value: number /*i64*/)
     }
     /** Class representing a capsule-shaped [PrimitiveMesh].  
      *  	  
@@ -7763,16 +8358,20 @@ declare module "godot" {
         get_rings(): number /*i64*/
         
         /** Radius of the capsule mesh. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
         
         /** Total height of the capsule mesh (including the hemispherical ends). */
-        height: number /*f64*/
+        get height(): number /*f64*/
+        set height(value: number /*f64*/)
         
         /** Number of radial segments on the capsule mesh. */
-        radial_segments: number /*i64*/
+        get radial_segments(): number /*i64*/
+        set radial_segments(value: number /*i64*/)
         
         /** Number of rings along the height of the capsule. */
-        rings: number /*i64*/
+        get rings(): number /*i64*/
+        set rings(value: number /*i64*/)
     }
     /** A 2D capsule shape used for physics collision.  
      *  	  
@@ -7785,10 +8384,12 @@ declare module "godot" {
         get_height(): number /*f64*/
         
         /** The capsule's radius. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
         
         /** The capsule's height. */
-        height: number /*f64*/
+        get height(): number /*f64*/
+        set height(value: number /*f64*/)
     }
     /** A 3D capsule shape used for physics collision.  
      *  	  
@@ -7801,10 +8402,12 @@ declare module "godot" {
         get_height(): number /*f64*/
         
         /** The capsule's radius. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
         
         /** The capsule's height. */
-        height: number /*f64*/
+        get height(): number /*f64*/
+        set height(value: number /*f64*/)
     }
     class Cast2DEditor extends Control {
     }
@@ -7819,7 +8422,8 @@ declare module "godot" {
         is_using_top_left(): boolean
         
         /** If `true`, centers children relative to the [CenterContainer]'s top left corner. */
-        use_top_left: boolean
+        get use_top_left(): boolean
+        set use_top_left(value: boolean)
     }
     /** Controls how an individual character will be displayed in a [RichTextEffect].  
      *  	  
@@ -7854,49 +8458,62 @@ declare module "godot" {
         set_font(font: RID): void
         
         /** The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects. */
-        transform: Transform2D
+        get transform(): Transform2D
+        set transform(value: Transform2D)
         
         /** Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing. */
-        range: Vector2i
+        get range(): Vector2i
+        set range(value: Vector2i)
         
         /** The time elapsed since the [RichTextLabel] was added to the scene tree (in seconds). Time stops when the [RichTextLabel] is paused (see [member Node.process_mode]). Resets when the text in the [RichTextLabel] is changed.  
          *      
          *  **Note:** Time still passes while the [RichTextLabel] is hidden.  
          */
-        elapsed_time: number /*f64*/
+        get elapsed_time(): number /*f64*/
+        set elapsed_time(value: number /*f64*/)
         
         /** If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [member color] to `Color(1, 1, 1, 0)` instead. */
-        visible: boolean
+        get visible(): boolean
+        set visible(value: boolean)
         
         /** If `true`, FX transform is called for outline drawing. Setting this property won't affect drawing. */
-        outline: boolean
+        get outline(): boolean
+        set outline(value: boolean)
         
         /** The position offset the character will be drawn with (in pixels). */
-        offset: Vector2
+        get offset(): Vector2
+        set offset(value: Vector2)
         
         /** The color the character will be drawn with. */
-        color: Color
+        get color(): Color
+        set color(value: Color)
         
         /** Contains the arguments passed in the opening BBCode tag. By default, arguments are strings; if their contents match a type such as [bool], [int] or [float], they will be converted automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [Color]. String arguments may not contain spaces, even if they're quoted. If present, quotes will also be present in the final string.  
          *  For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will map to the following [Dictionary]:  
          *    
          */
-        env: Dictionary
+        get env(): Dictionary
+        set env(value: Dictionary)
         
         /** Font specific glyph index. */
-        glyph_index: number /*i64*/
+        get glyph_index(): number /*i64*/
+        set glyph_index(value: number /*i64*/)
         
         /** Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster. Setting this property won't affect drawing. */
-        glyph_count: number /*i64*/
+        get glyph_count(): number /*i64*/
+        set glyph_count(value: number /*i64*/)
         
         /** Glyph flags. See [enum TextServer.GraphemeFlag] for more info. Setting this property won't affect drawing. */
-        glyph_flags: number /*i64*/
+        get glyph_flags(): number /*i64*/
+        set glyph_flags(value: number /*i64*/)
         
         /** The character offset of the glyph, relative to the current [RichTextEffect] custom block. Setting this property won't affect drawing. */
-        relative_index: number /*i64*/
+        get relative_index(): number /*i64*/
+        set relative_index(value: number /*i64*/)
         
         /** Font resource used to render glyph. */
-        font: RID
+        get font(): RID
+        set font(value: RID)
     }
     namespace CharacterBody2D {
         enum MotionMode {
@@ -8015,59 +8632,74 @@ declare module "godot" {
         get_last_slide_collision(): KinematicCollision2D
         
         /** Sets the motion mode which defines the behavior of [method move_and_slide]. See [enum MotionMode] constants for available modes. */
-        motion_mode: number /*i64*/
+        get motion_mode(): number /*i64*/
+        set motion_mode(value: number /*i64*/)
         
         /** Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [method move_and_slide]. Defaults to [constant Vector2.UP]. As the vector will be normalized it can't be equal to [constant Vector2.ZERO], if you want all collisions to be reported as walls, consider using [constant MOTION_MODE_FLOATING] as [member motion_mode]. */
-        up_direction: Vector2
+        get up_direction(): Vector2
+        set up_direction(value: Vector2)
         
         /** Current velocity vector in pixels per second, used and modified during calls to [method move_and_slide]. */
-        velocity: Vector2
+        get velocity(): Vector2
+        set velocity(value: Vector2)
         
         /** If `true`, during a jump against the ceiling, the body will slide, if `false` it will be stopped and will fall vertically. */
-        slide_on_ceiling: boolean
+        get slide_on_ceiling(): boolean
+        set slide_on_ceiling(value: boolean)
         
         /** Maximum number of times the body can change direction before it stops when calling [method move_and_slide]. */
-        max_slides: number /*i64*/
+        get max_slides(): number /*i64*/
+        set max_slides(value: number /*i64*/)
         
         /** Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. This property only affects movement when [member motion_mode] is [constant MOTION_MODE_FLOATING]. */
-        wall_min_slide_angle: number /*f64*/
+        get wall_min_slide_angle(): number /*f64*/
+        set wall_min_slide_angle(value: number /*f64*/)
         
         /** If `true`, the body will not slide on slopes when calling [method move_and_slide] when the body is standing still.  
          *  If `false`, the body will slide on floor's slopes when [member velocity] applies a downward force.  
          */
-        floor_stop_on_slope: boolean
+        get floor_stop_on_slope(): boolean
+        set floor_stop_on_slope(value: boolean)
         
         /** If `false` (by default), the body will move faster on downward slopes and slower on upward slopes.  
          *  If `true`, the body will always move at the same speed on the ground no matter the slope. Note that you need to use [member floor_snap_length] to stick along a downward slope at constant speed.  
          */
-        floor_constant_speed: boolean
+        get floor_constant_speed(): boolean
+        set floor_constant_speed(value: boolean)
         
         /** If `true`, the body will be able to move on the floor only. This option avoids to be able to walk on walls, it will however allow to slide down along them. */
-        floor_block_on_wall: boolean
+        get floor_block_on_wall(): boolean
+        set floor_block_on_wall(value: boolean)
         
         /** Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [method move_and_slide]. The default value equals 45 degrees. */
-        floor_max_angle: number /*f64*/
+        get floor_max_angle(): number /*f64*/
+        set floor_max_angle(value: number /*f64*/)
         
         /** Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [method move_and_slide]. The snapping vector is determined by the given distance along the opposite direction of the [member up_direction].  
          *  As long as the snapping vector is in contact with the ground and the body moves against [member up_direction], the body will remain attached to the surface. Snapping is not applied if the body moves along [member up_direction], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [method apply_floor_snap].  
          */
-        floor_snap_length: number /*f64*/
+        get floor_snap_length(): number /*f64*/
+        set floor_snap_length(value: number /*f64*/)
         
         /** Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior. */
-        platform_on_leave: number /*i64*/
+        get platform_on_leave(): number /*i64*/
+        set platform_on_leave(value: number /*i64*/)
         
         /** Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all floor bodies are detected and propagate their velocity. */
-        platform_floor_layers: number /*i64*/
+        get platform_floor_layers(): number /*i64*/
+        set platform_floor_layers(value: number /*i64*/)
         
         /** Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all wall bodies are ignored. */
-        platform_wall_layers: number /*i64*/
+        get platform_wall_layers(): number /*i64*/
+        set platform_wall_layers(value: number /*i64*/)
         
         /** Extra margin used for collision recovery when calling [method move_and_slide].  
          *  If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.  
          *  A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.  
          *  A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.  
          */
-        safe_margin: number /*f64*/
+        get safe_margin(): number /*f64*/
+        set safe_margin(value: number /*f64*/)
     }
     namespace CharacterBody3D {
         enum MotionMode {
@@ -8185,59 +8817,74 @@ declare module "godot" {
         get_last_slide_collision(): KinematicCollision3D
         
         /** Sets the motion mode which defines the behavior of [method move_and_slide]. See [enum MotionMode] constants for available modes. */
-        motion_mode: number /*i64*/
+        get motion_mode(): number /*i64*/
+        set motion_mode(value: number /*i64*/)
         
         /** Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [method move_and_slide]. Defaults to [constant Vector3.UP]. As the vector will be normalized it can't be equal to [constant Vector3.ZERO], if you want all collisions to be reported as walls, consider using [constant MOTION_MODE_FLOATING] as [member motion_mode]. */
-        up_direction: Vector3
+        get up_direction(): Vector3
+        set up_direction(value: Vector3)
         
         /** If `true`, during a jump against the ceiling, the body will slide, if `false` it will be stopped and will fall vertically. */
-        slide_on_ceiling: boolean
+        get slide_on_ceiling(): boolean
+        set slide_on_ceiling(value: boolean)
         
         /** Current velocity vector (typically meters per second), used and modified during calls to [method move_and_slide]. */
-        velocity: Vector3
+        get velocity(): Vector3
+        set velocity(value: Vector3)
         
         /** Maximum number of times the body can change direction before it stops when calling [method move_and_slide]. */
-        max_slides: number /*i64*/
+        get max_slides(): number /*i64*/
+        set max_slides(value: number /*i64*/)
         
         /** Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. When [member motion_mode] is [constant MOTION_MODE_GROUNDED], it only affects movement if [member floor_block_on_wall] is `true`. */
-        wall_min_slide_angle: number /*f64*/
+        get wall_min_slide_angle(): number /*f64*/
+        set wall_min_slide_angle(value: number /*f64*/)
         
         /** If `true`, the body will not slide on slopes when calling [method move_and_slide] when the body is standing still.  
          *  If `false`, the body will slide on floor's slopes when [member velocity] applies a downward force.  
          */
-        floor_stop_on_slope: boolean
+        get floor_stop_on_slope(): boolean
+        set floor_stop_on_slope(value: boolean)
         
         /** If `false` (by default), the body will move faster on downward slopes and slower on upward slopes.  
          *  If `true`, the body will always move at the same speed on the ground no matter the slope. Note that you need to use [member floor_snap_length] to stick along a downward slope at constant speed.  
          */
-        floor_constant_speed: boolean
+        get floor_constant_speed(): boolean
+        set floor_constant_speed(value: boolean)
         
         /** If `true`, the body will be able to move on the floor only. This option avoids to be able to walk on walls, it will however allow to slide down along them. */
-        floor_block_on_wall: boolean
+        get floor_block_on_wall(): boolean
+        set floor_block_on_wall(value: boolean)
         
         /** Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [method move_and_slide]. The default value equals 45 degrees. */
-        floor_max_angle: number /*f64*/
+        get floor_max_angle(): number /*f64*/
+        set floor_max_angle(value: number /*f64*/)
         
         /** Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [method move_and_slide]. The snapping vector is determined by the given distance along the opposite direction of the [member up_direction].  
          *  As long as the snapping vector is in contact with the ground and the body moves against [member up_direction], the body will remain attached to the surface. Snapping is not applied if the body moves along [member up_direction], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [method apply_floor_snap].  
          */
-        floor_snap_length: number /*f64*/
+        get floor_snap_length(): number /*f64*/
+        set floor_snap_length(value: number /*f64*/)
         
         /** Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior. */
-        platform_on_leave: number /*i64*/
+        get platform_on_leave(): number /*i64*/
+        set platform_on_leave(value: number /*i64*/)
         
         /** Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody3D]. By default, all floor bodies are detected and propagate their velocity. */
-        platform_floor_layers: number /*i64*/
+        get platform_floor_layers(): number /*i64*/
+        set platform_floor_layers(value: number /*i64*/)
         
         /** Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody3D]. By default, all wall bodies are ignored. */
-        platform_wall_layers: number /*i64*/
+        get platform_wall_layers(): number /*i64*/
+        set platform_wall_layers(value: number /*i64*/)
         
         /** Extra margin used for collision recovery when calling [method move_and_slide].  
          *  If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.  
          *  A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.  
          *  A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.  
          */
-        safe_margin: number /*f64*/
+        get safe_margin(): number /*f64*/
+        set safe_margin(value: number /*f64*/)
     }
     /** A button that represents a binary choice.  
      *  	  
@@ -8260,7 +8907,8 @@ declare module "godot" {
         get_radius(): number /*f64*/
         
         /** The circle's radius. */
-        radius: number /*f64*/
+        get radius(): number /*f64*/
+        set radius(value: number /*f64*/)
     }
     namespace CodeEdit {
         enum CodeCompletionKind {
@@ -8585,64 +9233,84 @@ declare module "godot" {
         duplicate_lines(): void
         
         /** Set when a validated word from [signal symbol_validate] is clicked, the [signal symbol_lookup] should be emitted. */
-        symbol_lookup_on_click: boolean
+        get symbol_lookup_on_click(): boolean
+        set symbol_lookup_on_click(value: boolean)
         
         /** Sets whether line folding is allowed. */
-        line_folding: boolean
+        get line_folding(): boolean
+        set line_folding(value: boolean)
         
         /** Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently. */
-        line_length_guidelines: PackedInt32Array
+        get line_length_guidelines(): PackedInt32Array
+        set line_length_guidelines(value: PackedInt32Array)
         
         /** Sets if breakpoints should be drawn in the gutter. This gutter is shared with bookmarks and executing lines. */
-        gutters_draw_breakpoints_gutter: boolean
+        get gutters_draw_breakpoints_gutter(): boolean
+        set gutters_draw_breakpoints_gutter(value: boolean)
         
         /** Sets if bookmarked should be drawn in the gutter. This gutter is shared with breakpoints and executing lines. */
-        gutters_draw_bookmarks: boolean
+        get gutters_draw_bookmarks(): boolean
+        set gutters_draw_bookmarks(value: boolean)
         
         /** Sets if executing lines should be marked in the gutter. This gutter is shared with breakpoints and bookmarks lines. */
-        gutters_draw_executing_lines: boolean
+        get gutters_draw_executing_lines(): boolean
+        set gutters_draw_executing_lines(value: boolean)
         
         /** Sets if line numbers should be drawn in the gutter. */
-        gutters_draw_line_numbers: boolean
+        get gutters_draw_line_numbers(): boolean
+        set gutters_draw_line_numbers(value: boolean)
         
         /** Sets if line numbers drawn in the gutter are zero padded. */
-        gutters_zero_pad_line_numbers: boolean
+        get gutters_zero_pad_line_numbers(): boolean
+        set gutters_zero_pad_line_numbers(value: boolean)
         
         /** Sets if foldable lines icons should be drawn in the gutter. */
-        gutters_draw_fold_gutter: boolean
+        get gutters_draw_fold_gutter(): boolean
+        set gutters_draw_fold_gutter(value: boolean)
         
         /** Sets the string delimiters. All existing string delimiters will be removed. */
-        delimiter_strings: PackedStringArray
+        get delimiter_strings(): PackedStringArray
+        set delimiter_strings(value: PackedStringArray)
         
         /** Sets the comment delimiters. All existing comment delimiters will be removed. */
-        delimiter_comments: PackedStringArray
+        get delimiter_comments(): PackedStringArray
+        set delimiter_comments(value: PackedStringArray)
         
         /** Sets whether code completion is allowed. */
-        code_completion_enabled: boolean
+        get code_completion_enabled(): boolean
+        set code_completion_enabled(value: boolean)
         
         /** Sets prefixes that will trigger code completion. */
-        code_completion_prefixes: PackedStringArray
+        get code_completion_prefixes(): PackedStringArray
+        set code_completion_prefixes(value: PackedStringArray)
         
         /** Size of the tabulation indent (one [kbd]Tab[/kbd] press) in characters. If [member indent_use_spaces] is enabled the number of spaces to use. */
-        indent_size: number /*i64*/
+        get indent_size(): number /*i64*/
+        set indent_size(value: number /*i64*/)
         
         /** Use spaces instead of tabs for indentation. */
-        indent_use_spaces: boolean
+        get indent_use_spaces(): boolean
+        set indent_use_spaces(value: boolean)
         
         /** Sets whether automatic indent are enabled, this will add an extra indent if a prefix or brace is found. */
-        indent_automatic: boolean
+        get indent_automatic(): boolean
+        set indent_automatic(value: boolean)
         
         /** Prefixes to trigger an automatic indent. */
-        indent_automatic_prefixes: PackedStringArray
+        get indent_automatic_prefixes(): PackedStringArray
+        set indent_automatic_prefixes(value: PackedStringArray)
         
         /** Sets whether brace pairs should be autocompleted. */
-        auto_brace_completion_enabled: boolean
+        get auto_brace_completion_enabled(): boolean
+        set auto_brace_completion_enabled(value: boolean)
         
         /** Highlight mismatching brace pairs. */
-        auto_brace_completion_highlight_matching: boolean
+        get auto_brace_completion_highlight_matching(): boolean
+        set auto_brace_completion_highlight_matching(value: boolean)
         
         /** Sets the brace pairs to be autocompleted. */
-        auto_brace_completion_pairs: Dictionary
+        get auto_brace_completion_pairs(): Dictionary
+        set auto_brace_completion_pairs(value: Dictionary)
         
         /** Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a removed is emitted at the old line. */
         readonly breakpoint_toggled: Signal // line: number /*i64*/ => void
@@ -8655,555 +9323,5 @@ declare module "godot" {
         
         /** Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [method set_symbol_lookup_word_as_valid]. */
         readonly symbol_validate: Signal // symbol: string => void
-    }
-    /** A syntax highlighter intended for code.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_codehighlighter.html  
-     */
-    class CodeHighlighter extends SyntaxHighlighter {
-        /** Sets the color for a keyword.  
-         *  The keyword cannot contain any symbols except '_'.  
-         */
-        add_keyword_color(keyword: string, color: Color): void
-        
-        /** Removes the keyword. */
-        remove_keyword_color(keyword: string): void
-        
-        /** Returns `true` if the keyword exists, else `false`. */
-        has_keyword_color(keyword: string): boolean
-        
-        /** Returns the color for a keyword. */
-        get_keyword_color(keyword: string): Color
-        set_keyword_colors(keywords: Dictionary): void
-        
-        /** Removes all keywords. */
-        clear_keyword_colors(): void
-        get_keyword_colors(): Dictionary
-        
-        /** Sets the color for a member keyword.  
-         *  The member keyword cannot contain any symbols except '_'.  
-         *  It will not be highlighted if preceded by a '.'.  
-         */
-        add_member_keyword_color(member_keyword: string, color: Color): void
-        
-        /** Removes the member keyword. */
-        remove_member_keyword_color(member_keyword: string): void
-        
-        /** Returns `true` if the member keyword exists, else `false`. */
-        has_member_keyword_color(member_keyword: string): boolean
-        
-        /** Returns the color for a member keyword. */
-        get_member_keyword_color(member_keyword: string): Color
-        set_member_keyword_colors(member_keyword: Dictionary): void
-        
-        /** Removes all member keywords. */
-        clear_member_keyword_colors(): void
-        get_member_keyword_colors(): Dictionary
-        
-        /** Adds a color region such as comments or strings.  
-         *  Both the start and end keys must be symbols. Only the start key has to be unique.  
-         *  [param line_only] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.  
-         */
-        add_color_region(start_key: string, end_key: string, color: Color, line_only: boolean = false): void
-        
-        /** Removes the color region that uses that start key. */
-        remove_color_region(start_key: string): void
-        
-        /** Returns `true` if the start key exists, else `false`. */
-        has_color_region(start_key: string): boolean
-        set_color_regions(color_regions: Dictionary): void
-        
-        /** Removes all color regions. */
-        clear_color_regions(): void
-        get_color_regions(): Dictionary
-        set_function_color(color: Color): void
-        get_function_color(): Color
-        set_number_color(color: Color): void
-        get_number_color(): Color
-        set_symbol_color(color: Color): void
-        get_symbol_color(): Color
-        set_member_variable_color(color: Color): void
-        get_member_variable_color(): Color
-        
-        /** Sets the color for numbers. */
-        number_color: Color
-        
-        /** Sets the color for symbols. */
-        symbol_color: Color
-        
-        /** Sets color for functions. A function is a non-keyword string followed by a '('. */
-        function_color: Color
-        
-        /** Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'. */
-        member_variable_color: Color
-        
-        /** Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the keyword. The value is the keyword color. */
-        keyword_colors: Dictionary
-        
-        /** Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary] key is the member keyword. The value is the member keyword color. */
-        member_keyword_colors: Dictionary
-        
-        /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
-        color_regions: Dictionary
-    }
-    class CodeTextEditor extends VBoxContainer {
-        readonly validate_script: Signal //  => void
-        readonly load_theme_settings: Signal //  => void
-        readonly show_errors_panel: Signal //  => void
-        readonly show_warnings_panel: Signal //  => void
-    }
-    namespace CollisionObject2D {
-        enum DisableMode {
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
-             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
-             */
-            DISABLE_MODE_REMOVE = 0,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.  
-             *  Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed again.  
-             */
-            DISABLE_MODE_MAKE_STATIC = 1,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
-            DISABLE_MODE_KEEP_ACTIVE = 2,
-        }
-    }
-    /** Abstract base class for 2D physics objects.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionobject2d.html  
-     */
-    class CollisionObject2D extends Node2D {
-        /** Accepts unhandled [InputEvent]s. [param shape_idx] is the child index of the clicked [Shape2D]. Connect to [signal input_event] to easily pick up these events.  
-         *      
-         *  **Note:** [method _input_event] requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         */
-        /* gdvirtual */ _input_event(viewport: Viewport, event: InputEvent, shape_idx: number /*i64*/): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_enter(): void
-        
-        /** Called when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_exit(): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
-        /* gdvirtual */ _mouse_shape_enter(shape_idx: number /*i64*/): void
-        
-        /** Called when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
-        /* gdvirtual */ _mouse_shape_exit(shape_idx: number /*i64*/): void
-        
-        /** Returns the object's [RID]. */
-        get_rid(): RID
-        set_collision_layer(layer: number /*i64*/): void
-        get_collision_layer(): number /*i64*/
-        set_collision_mask(mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: number /*i64*/): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: number /*i64*/): boolean
-        set_collision_priority(priority: number /*f64*/): void
-        get_collision_priority(): number /*f64*/
-        set_disable_mode(mode: CollisionObject2D.DisableMode): void
-        get_disable_mode(): CollisionObject2D.DisableMode
-        set_pickable(enabled: boolean): void
-        is_pickable(): boolean
-        
-        /** Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference. */
-        create_shape_owner(owner: Object): number /*i64*/
-        
-        /** Removes the given shape owner. */
-        remove_shape_owner(owner_id: number /*i64*/): void
-        
-        /** Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument. */
-        get_shape_owners(): PackedInt32Array
-        
-        /** Sets the [Transform2D] of the given shape owner. */
-        shape_owner_set_transform(owner_id: number /*i64*/, transform: Transform2D): void
-        
-        /** Returns the shape owner's [Transform2D]. */
-        shape_owner_get_transform(owner_id: number /*i64*/): Transform2D
-        
-        /** Returns the parent object of the given shape owner. */
-        shape_owner_get_owner(owner_id: number /*i64*/): Object
-        
-        /** If `true`, disables the given shape owner. */
-        shape_owner_set_disabled(owner_id: number /*i64*/, disabled: boolean): void
-        
-        /** If `true`, the shape owner and its shapes are disabled. */
-        is_shape_owner_disabled(owner_id: number /*i64*/): boolean
-        
-        /** If [param enable] is `true`, collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
-        shape_owner_set_one_way_collision(owner_id: number /*i64*/, enable: boolean): void
-        
-        /** Returns `true` if collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
-        is_shape_owner_one_way_collision_enabled(owner_id: number /*i64*/): boolean
-        
-        /** Sets the `one_way_collision_margin` of the shape owner identified by given [param owner_id] to [param margin] pixels. */
-        shape_owner_set_one_way_collision_margin(owner_id: number /*i64*/, margin: number /*f64*/): void
-        
-        /** Returns the `one_way_collision_margin` of the shape owner identified by given [param owner_id]. */
-        get_shape_owner_one_way_collision_margin(owner_id: number /*i64*/): number /*f64*/
-        
-        /** Adds a [Shape2D] to the shape owner. */
-        shape_owner_add_shape(owner_id: number /*i64*/, shape: Shape2D): void
-        
-        /** Returns the number of shapes the given shape owner contains. */
-        shape_owner_get_shape_count(owner_id: number /*i64*/): number /*i64*/
-        
-        /** Returns the [Shape2D] with the given ID from the given shape owner. */
-        shape_owner_get_shape(owner_id: number /*i64*/, shape_id: number /*i64*/): Shape2D
-        
-        /** Returns the child index of the [Shape2D] with the given ID from the given shape owner. */
-        shape_owner_get_shape_index(owner_id: number /*i64*/, shape_id: number /*i64*/): number /*i64*/
-        
-        /** Removes a shape from the given shape owner. */
-        shape_owner_remove_shape(owner_id: number /*i64*/, shape_id: number /*i64*/): void
-        
-        /** Removes all shapes from the shape owner. */
-        shape_owner_clear_shapes(owner_id: number /*i64*/): void
-        
-        /** Returns the `owner_id` of the given shape. */
-        shape_find_owner(shape_index: number /*i64*/): number /*i64*/
-        
-        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
-        disable_mode: number /*i64*/
-        
-        /** The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        collision_layer: number /*i64*/
-        
-        /** The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        collision_mask: number /*i64*/
-        
-        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        collision_priority: number /*f64*/
-        
-        /** If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set. */
-        input_pickable: boolean
-        
-        /** Emitted when an input event occurs. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. See [method _input_event] for details. */
-        readonly input_event: Signal // viewport: Node, event: InputEvent, shape_idx: number /*i64*/ => void
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
-         */
-        readonly mouse_entered: Signal //  => void
-        
-        /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
-         */
-        readonly mouse_exited: Signal //  => void
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_entered: Signal // shape_idx: number /*i64*/ => void
-        
-        /** Emitted when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_exited: Signal // shape_idx: number /*i64*/ => void
-    }
-    namespace CollisionObject3D {
-        enum DisableMode {
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject3D].  
-             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
-             */
-            DISABLE_MODE_REMOVE = 0,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.  
-             *  Automatically set [PhysicsBody3D] back to its original mode when the [Node] is processed again.  
-             */
-            DISABLE_MODE_MAKE_STATIC = 1,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
-            DISABLE_MODE_KEEP_ACTIVE = 2,
-        }
-    }
-    /** Abstract base class for 3D physics objects.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionobject3d.html  
-     */
-    class CollisionObject3D extends Node3D {
-        /** Receives unhandled [InputEvent]s. [param position] is the location in world space of the mouse pointer on the surface of the shape with index [param shape_idx] and [param normal] is the normal vector of the surface at that point. Connect to the [signal input_event] signal to easily pick up these events.  
-         *      
-         *  **Note:** [method _input_event] requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         */
-        /* gdvirtual */ _input_event(camera: Camera3D, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: number /*i64*/): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject3D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_enter(): void
-        
-        /** Called when the mouse pointer exits all this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject3D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_exit(): void
-        set_collision_layer(layer: number /*i64*/): void
-        get_collision_layer(): number /*i64*/
-        set_collision_mask(mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: number /*i64*/): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: number /*i64*/): boolean
-        set_collision_priority(priority: number /*f64*/): void
-        get_collision_priority(): number /*f64*/
-        set_disable_mode(mode: CollisionObject3D.DisableMode): void
-        get_disable_mode(): CollisionObject3D.DisableMode
-        set_ray_pickable(ray_pickable: boolean): void
-        is_ray_pickable(): boolean
-        set_capture_input_on_drag(enable: boolean): void
-        get_capture_input_on_drag(): boolean
-        
-        /** Returns the object's [RID]. */
-        get_rid(): RID
-        
-        /** Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference. */
-        create_shape_owner(owner: Object): number /*i64*/
-        
-        /** Removes the given shape owner. */
-        remove_shape_owner(owner_id: number /*i64*/): void
-        
-        /** Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument. */
-        get_shape_owners(): PackedInt32Array
-        
-        /** Sets the [Transform3D] of the given shape owner. */
-        shape_owner_set_transform(owner_id: number /*i64*/, transform: Transform3D): void
-        
-        /** Returns the shape owner's [Transform3D]. */
-        shape_owner_get_transform(owner_id: number /*i64*/): Transform3D
-        
-        /** Returns the parent object of the given shape owner. */
-        shape_owner_get_owner(owner_id: number /*i64*/): Object
-        
-        /** If `true`, disables the given shape owner. */
-        shape_owner_set_disabled(owner_id: number /*i64*/, disabled: boolean): void
-        
-        /** If `true`, the shape owner and its shapes are disabled. */
-        is_shape_owner_disabled(owner_id: number /*i64*/): boolean
-        
-        /** Adds a [Shape3D] to the shape owner. */
-        shape_owner_add_shape(owner_id: number /*i64*/, shape: Shape3D): void
-        
-        /** Returns the number of shapes the given shape owner contains. */
-        shape_owner_get_shape_count(owner_id: number /*i64*/): number /*i64*/
-        
-        /** Returns the [Shape3D] with the given ID from the given shape owner. */
-        shape_owner_get_shape(owner_id: number /*i64*/, shape_id: number /*i64*/): Shape3D
-        
-        /** Returns the child index of the [Shape3D] with the given ID from the given shape owner. */
-        shape_owner_get_shape_index(owner_id: number /*i64*/, shape_id: number /*i64*/): number /*i64*/
-        
-        /** Removes a shape from the given shape owner. */
-        shape_owner_remove_shape(owner_id: number /*i64*/, shape_id: number /*i64*/): void
-        
-        /** Removes all shapes from the shape owner. */
-        shape_owner_clear_shapes(owner_id: number /*i64*/): void
-        
-        /** Returns the `owner_id` of the given shape. */
-        shape_find_owner(shape_index: number /*i64*/): number /*i64*/
-        
-        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
-        disable_mode: number /*i64*/
-        
-        /** The physics layers this CollisionObject3D **is in**. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        collision_layer: number /*i64*/
-        
-        /** The physics layers this CollisionObject3D **scans**. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        collision_mask: number /*i64*/
-        
-        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        collision_priority: number /*f64*/
-        
-        /** If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set. */
-        input_ray_pickable: boolean
-        
-        /** If `true`, the [CollisionObject3D] will continue to receive input events as the mouse is dragged across its shapes. */
-        input_capture_on_drag: boolean
-        
-        /** Emitted when the object receives an unhandled [InputEvent]. [param position] is the location in world space of the mouse pointer on the surface of the shape with index [param shape_idx] and [param normal] is the normal vector of the surface at that point. */
-        readonly input_event: Signal // camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: number /*i64*/ => void
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small. This signal may also not be emitted if another [CollisionObject3D] is overlapping the [CollisionObject3D] in question.  
-         */
-        readonly mouse_entered: Signal //  => void
-        
-        /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small. This signal may also not be emitted if another [CollisionObject3D] is overlapping the [CollisionObject3D] in question.  
-         */
-        readonly mouse_exited: Signal //  => void
-    }
-    class CollisionObject3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-    }
-    namespace CollisionPolygon2D {
-        enum BuildMode {
-            /** Collisions will include the polygon and its contained area. In this mode the node has the same effect as several [ConvexPolygonShape2D] nodes, one for each convex shape in the convex decomposition of the polygon (but without the overhead of multiple nodes). */
-            BUILD_SOLIDS = 0,
-            
-            /** Collisions will only include the polygon edges. In this mode the node has the same effect as a single [ConcavePolygonShape2D] made of segments, with the restriction that each segment (after the first one) starts where the previous one ends, and the last one ends where the first one starts (forming a closed but hollow polygon). */
-            BUILD_SEGMENTS = 1,
-        }
-    }
-    /** A node that provides a polygon shape to a [CollisionObject2D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon2d.html  
-     */
-    class CollisionPolygon2D extends Node2D {
-        set_polygon(polygon: PackedVector2Array): void
-        get_polygon(): PackedVector2Array
-        set_build_mode(build_mode: CollisionPolygon2D.BuildMode): void
-        get_build_mode(): CollisionPolygon2D.BuildMode
-        set_disabled(disabled: boolean): void
-        is_disabled(): boolean
-        set_one_way_collision(enabled: boolean): void
-        is_one_way_collision_enabled(): boolean
-        set_one_way_collision_margin(margin: number /*f64*/): void
-        get_one_way_collision_margin(): number /*f64*/
-        
-        /** Collision build mode. Use one of the [enum BuildMode] constants. */
-        build_mode: number /*i64*/
-        
-        /** The polygon's list of vertices. Each point will be connected to the next, and the final point will be connected to the first.  
-         *      
-         *  **Note:** The returned vertices are in the local coordinate space of the given [CollisionPolygon2D].  
-         *  **Warning:** The returned value is a clone of the [PackedVector2Array], not a reference.  
-         */
-        polygon: PackedVector2Array
-        
-        /** If `true`, no collisions will be detected. */
-        disabled: boolean
-        
-        /** If `true`, only edges that face up, relative to [CollisionPolygon2D]'s rotation, will collide with other objects.  
-         *      
-         *  **Note:** This property has no effect if this [CollisionPolygon2D] is a child of an [Area2D] node.  
-         */
-        one_way_collision: boolean
-        
-        /** The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the polygon at a high velocity. */
-        one_way_collision_margin: number /*f64*/
-    }
-    class CollisionPolygon2DEditor extends AbstractPolygon2DEditor {
-    }
-    class CollisionPolygon2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
-    }
-    /** A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon3d.html  
-     */
-    class CollisionPolygon3D extends Node3D {
-        set_depth(depth: number /*f64*/): void
-        get_depth(): number /*f64*/
-        set_polygon(polygon: PackedVector2Array): void
-        get_polygon(): PackedVector2Array
-        set_disabled(disabled: boolean): void
-        is_disabled(): boolean
-        set_margin(margin: number /*f64*/): void
-        get_margin(): number /*f64*/
-        _is_editable_3d_polygon(): boolean
-        
-        /** Length that the resulting collision extends in either direction perpendicular to its 2D polygon. */
-        depth: number /*f64*/
-        
-        /** If `true`, no collision will be produced. */
-        disabled: boolean
-        
-        /** Array of vertices which define the 2D polygon in the local XY plane.  
-         *      
-         *  **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the class property.  
-         */
-        polygon: PackedVector2Array
-        
-        /** The collision margin for the generated [Shape3D]. See [member Shape3D.margin] for more details. */
-        margin: number /*f64*/
-    }
-    class CollisionPolygon3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-    }
-    /** A node that provides a [Shape2D] to a [CollisionObject2D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape2d.html  
-     */
-    class CollisionShape2D extends Node2D {
-        set_shape(shape: Shape2D): void
-        get_shape(): Shape2D
-        set_disabled(disabled: boolean): void
-        is_disabled(): boolean
-        set_one_way_collision(enabled: boolean): void
-        is_one_way_collision_enabled(): boolean
-        set_one_way_collision_margin(margin: number /*f64*/): void
-        get_one_way_collision_margin(): number /*f64*/
-        set_debug_color(color: Color): void
-        get_debug_color(): Color
-        
-        /** The actual shape owned by this collision shape. */
-        shape: Shape2D
-        
-        /** A disabled collision shape has no effect in the world. This property should be changed with [method Object.set_deferred]. */
-        disabled: boolean
-        
-        /** Sets whether this collision shape should only detect collision on one side (top or bottom).  
-         *      
-         *  **Note:** This property has no effect if this [CollisionShape2D] is a child of an [Area2D] node.  
-         */
-        one_way_collision: boolean
-        
-        /** The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the shape at a high velocity. */
-        one_way_collision_margin: number /*f64*/
-        
-        /** The collision shape debug color.  
-         *      
-         *  **Note:** The default value is [member ProjectSettings.debug/shapes/collision/shape_color]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.  
-         */
-        debug_color: Color
-    }
-    class CollisionShape2DEditor extends Control {
-    }
-    class CollisionShape2DEditorPlugin extends EditorPlugin {
-    }
-    /** A node that provides a [Shape3D] to a [CollisionObject3D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape3d.html  
-     */
-    class CollisionShape3D extends Node3D {
-        /**  *Obsoleted.*  Use [signal Resource.changed] instead. */
-        resource_changed(resource: Resource): void
-        set_shape(shape: Shape3D): void
-        get_shape(): Shape3D
-        set_disabled(enable: boolean): void
-        is_disabled(): boolean
-        
-        /** Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings geometry. */
-        make_convex_from_siblings(): void
-        
-        /** The actual shape owned by this collision shape. */
-        shape: Shape3D
-        
-        /** A disabled collision shape has no effect in the world. */
-        disabled: boolean
     }
 }
