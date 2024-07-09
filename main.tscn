@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvykv0u5duqyj"]
+[gd_scene load_steps=6 format=3 uid="uid://bvykv0u5duqyj"]
 
 [ext_resource type="Script" path="res://test_button.ts" id="1_ewk4v"]
 [ext_resource type="Script" path="res://ui/main_ui.ts" id="1_j74ag"]
+[ext_resource type="Script" path="res://tests/test_error.gd" id="3_4cmhs"]
 [ext_resource type="Texture2D" uid="uid://dx3san3aa6mwy" path="res://icon.svg" id="4_2050k"]
 [ext_resource type="Script" path="res://tests/my_editor_sprite.ts" id="5_l2t80"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_j74ag")
+speed = 123.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -48,10 +50,12 @@ offset_top = 172.0
 offset_right = 239.0
 offset_bottom = 263.0
 placeholder_text = "Input text"
+script = ExtResource("3_4cmhs")
+speed = 123
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 position = Vector2(386, 134)
-rotation = 255.25
+rotation = 287.626
 texture = ExtResource("4_2050k")
 script = ExtResource("5_l2t80")
 speed = 0.25
