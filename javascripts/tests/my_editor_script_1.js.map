@@ -1,1 +1,0 @@
-{"version":3,"file":"my_editor_script_1.js","sourceRoot":"./src/","sources":["tests/my_editor_script_1.ts"],"names":[],"mappings":";;;;;;;;AAAA,iCAAqC;AACrC,8CAAuC;AAGxB,IAAM,eAAe,GAArB,MAAM,eAAgB,SAAQ,oBAAY;IACrD,IAAI;QACA,OAAO,CAAC,GAAG,CAAC,sBAAsB,CAAC,CAAC;IACxC,CAAC;CACJ,CAAA;AAJoB,eAAe;IADnC,IAAA,eAAI,GAAE;GACc,eAAe,CAInC;kBAJoB,eAAe"}
