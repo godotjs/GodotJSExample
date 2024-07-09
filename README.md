@@ -3,6 +3,11 @@ This project includes examples at different complexity levels, incrementally int
 
 A prebuilt version of `Godot Editor` can be downloaded from [GodotJS-Build](https://github.com/ialex32x/GodotJS-Build/releases).
 
+> [!NOTE]
+> Run `npm i` in the project folder before opening it in godot editor.  
+>   
+> And, so far, `npx tsc` (or `npx tsc -w`) must be run on your side to make the changes to the scripts take effect, since all `.js` files are not included in this git repository.
+
 ## Snake 
 A simple snake game. 
 In this example, only a limited subset of Godot's features is utilized: 
@@ -29,3 +34,11 @@ Additional features used:
 * `export_` annotation
 
 [![Piggy](./raw/screenshots/piggy.gif)](./typescripts/src/piggy/piggy_main.ts)
+
+## Audio Generator
+
+This is an example originally from https://godotengine.org/asset-library/asset/526  
+
+It utilizes [ZzFXM](https://keithclark.github.io/ZzFXM/) which is written in pure javascript to play a 8bit-ish sound without audio media files.
+
+*No graphics available for this example.*
