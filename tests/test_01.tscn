@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf6j47ylw5trv"]
+
+[ext_resource type="Script" path="res://tests/test_01.ts" id="1_8pmsv"]
+
+[node name="Test01_tscn" type="Node2D"]
+script = ExtResource("1_8pmsv")
+num = 1.0
