@@ -1,7 +1,7 @@
 import * as jsb from "godot-jsb";
 import { FileAccess } from "godot";
 
-console.log("please run 'npm install' in the './typescripts' directory at first if 'xlsx' module can not be resolved");
+console.log("please run 'npm install' in the directory './' at first if 'xlsx' module can not be resolved");
 
 //NOTE xlsx requires 'stream' module if 'require' exists
 //     but, actually, this module is not utilized by xlsx in practice, 
