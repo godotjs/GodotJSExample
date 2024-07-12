@@ -47,10 +47,10 @@ declare module "godot" {
         add_polygon(polygon: PackedInt32Array): void
         
         /** Returns the count of all polygons. */
-        get_polygon_count(): number /*i64*/
+        get_polygon_count(): int64
         
         /** Returns a [PackedInt32Array] containing the indices of the vertices of a created polygon. */
-        get_polygon(idx: number /*i64*/): PackedInt32Array
+        get_polygon(idx: int64): PackedInt32Array
         
         /** Clears the array of polygons, but it doesn't clear the array of outlines and vertices. */
         clear_polygons(): void
@@ -62,19 +62,19 @@ declare module "godot" {
         add_outline(outline: PackedVector2Array): void
         
         /** Adds a [PackedVector2Array] that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position. */
-        add_outline_at_index(outline: PackedVector2Array, index: number /*i64*/): void
+        add_outline_at_index(outline: PackedVector2Array, index: int64): void
         
         /** Returns the number of outlines that were created in the editor or by script. */
-        get_outline_count(): number /*i64*/
+        get_outline_count(): int64
         
         /** Changes an outline created in the editor or by script. You have to call [method make_polygons_from_outlines] for the polygons to update. */
-        set_outline(idx: number /*i64*/, outline: PackedVector2Array): void
+        set_outline(idx: int64, outline: PackedVector2Array): void
         
         /** Returns a [PackedVector2Array] containing the vertices of an outline that was created in the editor or by script. */
-        get_outline(idx: number /*i64*/): PackedVector2Array
+        get_outline(idx: int64): PackedVector2Array
         
         /** Removes an outline created in the editor or by script. You have to call [method make_polygons_from_outlines] for the polygons to update. */
-        remove_outline(idx: number /*i64*/): void
+        remove_outline(idx: int64): void
         
         /** Clears the array of the outlines, but it doesn't clear the vertices and the polygons that were created by them. */
         clear_outlines(): void
@@ -87,24 +87,24 @@ declare module "godot" {
         _get_polygons(): Array
         _set_outlines(outlines: Array): void
         _get_outlines(): Array
-        set_cell_size(cell_size: number /*f64*/): void
-        get_cell_size(): number /*f64*/
+        set_cell_size(cell_size: float64): void
+        get_cell_size(): float64
         set_parsed_geometry_type(geometry_type: NavigationPolygon.ParsedGeometryType): void
         get_parsed_geometry_type(): NavigationPolygon.ParsedGeometryType
-        set_parsed_collision_mask(mask: number /*i64*/): void
-        get_parsed_collision_mask(): number /*i64*/
+        set_parsed_collision_mask(mask: int64): void
+        get_parsed_collision_mask(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member parsed_collision_mask], given a [param layer_number] between 1 and 32. */
-        set_parsed_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        set_parsed_collision_mask_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member parsed_collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_parsed_collision_mask_value(layer_number: number /*i64*/): boolean
+        get_parsed_collision_mask_value(layer_number: int64): boolean
         set_source_geometry_mode(geometry_mode: NavigationPolygon.SourceGeometryMode): void
         get_source_geometry_mode(): NavigationPolygon.SourceGeometryMode
         set_source_geometry_group_name(group_name: StringName): void
         get_source_geometry_group_name(): StringName
-        set_agent_radius(agent_radius: number /*f64*/): void
-        get_agent_radius(): number /*f64*/
+        set_agent_radius(agent_radius: float64): void
+        get_agent_radius(): float64
         
         /** Clears the internal arrays for vertices and polygon indices. */
         clear(): void
@@ -116,18 +116,18 @@ declare module "godot" {
         set outlines(value: Array)
         
         /** Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for possible values. */
-        get parsed_geometry_type(): number /*i64*/
-        set parsed_geometry_type(value: number /*i64*/)
+        get parsed_geometry_type(): int64
+        set parsed_geometry_type(value: int64)
         
         /** The physics layers to scan for static colliders.  
          *  Only used when [member parsed_geometry_type] is [constant PARSED_GEOMETRY_STATIC_COLLIDERS] or [constant PARSED_GEOMETRY_BOTH].  
          */
-        get parsed_collision_mask(): number /*i64*/
-        set parsed_collision_mask(value: number /*i64*/)
+        get parsed_collision_mask(): int64
+        set parsed_collision_mask(value: int64)
         
         /** The source of the geometry used when baking. See [enum SourceGeometryMode] for possible values. */
-        get source_geometry_mode(): number /*i64*/
-        set source_geometry_mode(value: number /*i64*/)
+        get source_geometry_mode(): int64
+        set source_geometry_mode(value: int64)
         
         /** The group name of nodes that should be parsed for baking source geometry.  
          *  Only used when [member source_geometry_mode] is [constant SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or [constant SOURCE_GEOMETRY_GROUPS_EXPLICIT].  
@@ -136,12 +136,12 @@ declare module "godot" {
         set source_geometry_group_name(value: string)
         
         /** The cell size used to rasterize the navigation mesh vertices. Must match with the cell size on the navigation map. */
-        get cell_size(): number /*f64*/
-        set cell_size(value: number /*f64*/)
+        get cell_size(): float64
+        set cell_size(value: float64)
         
         /** The distance to erode/shrink the walkable surface when baking the navigation mesh. */
-        get agent_radius(): number /*f64*/
-        set agent_radius(value: number /*f64*/)
+        get agent_radius(): float64
+        set agent_radius(value: float64)
     }
     class NavigationPolygonEditor extends AbstractPolygon2DEditor {
         constructor(identifier?: any)
@@ -169,33 +169,33 @@ declare module "godot" {
         get_navigation_map(): RID
         set_use_edge_connections(enabled: boolean): void
         get_use_edge_connections(): boolean
-        set_navigation_layers(navigation_layers: number /*i64*/): void
-        get_navigation_layers(): number /*i64*/
+        set_navigation_layers(navigation_layers: int64): void
+        get_navigation_layers(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member navigation_layers] bitmask, given a [param layer_number] between 1 and 32. */
-        set_navigation_layer_value(layer_number: number /*i64*/, value: boolean): void
+        set_navigation_layer_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member navigation_layers] bitmask is enabled, given a [param layer_number] between 1 and 32. */
-        get_navigation_layer_value(layer_number: number /*i64*/): boolean
+        get_navigation_layer_value(layer_number: int64): boolean
         set_constrain_avoidance(enabled: boolean): void
         get_constrain_avoidance(): boolean
-        set_avoidance_layers(layers: number /*i64*/): void
-        get_avoidance_layers(): number /*i64*/
+        set_avoidance_layers(layers: int64): void
+        get_avoidance_layers(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member avoidance_layers] bitmask, given a [param layer_number] between 1 and 32. */
-        set_avoidance_layer_value(layer_number: number /*i64*/, value: boolean): void
+        set_avoidance_layer_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member avoidance_layers] bitmask is enabled, given a [param layer_number] between 1 and 32. */
-        get_avoidance_layer_value(layer_number: number /*i64*/): boolean
+        get_avoidance_layer_value(layer_number: int64): boolean
         
         /** Returns the [RID] of this region on the [NavigationServer2D].  
          *   *Deprecated.*  Use [method get_rid] instead.  
          */
         get_region_rid(): RID
-        set_enter_cost(enter_cost: number /*f64*/): void
-        get_enter_cost(): number /*f64*/
-        set_travel_cost(travel_cost: number /*f64*/): void
-        get_travel_cost(): number /*f64*/
+        set_enter_cost(enter_cost: float64): void
+        get_enter_cost(): float64
+        set_travel_cost(travel_cost: float64): void
+        get_travel_cost(): float64
         
         /** Bakes the [NavigationPolygon]. If [param on_thread] is set to `true` (default), the baking is done on a separate thread. */
         bake_navigation_polygon(on_thread: boolean = true): void
@@ -214,16 +214,16 @@ declare module "godot" {
         set use_edge_connections(value: boolean)
         
         /** A bitfield determining all navigation layers the region belongs to. These navigation layers can be checked upon when requesting a path with [method NavigationServer2D.map_get_path]. */
-        get navigation_layers(): number /*i64*/
-        set navigation_layers(value: number /*i64*/)
+        get navigation_layers(): int64
+        set navigation_layers(value: int64)
         
         /** When pathfinding enters this region's navigation mesh from another regions navigation mesh the [member enter_cost] value is added to the path distance for determining the shortest path. */
-        get enter_cost(): number /*f64*/
-        set enter_cost(value: number /*f64*/)
+        get enter_cost(): float64
+        set enter_cost(value: float64)
         
         /** When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with [member travel_cost] for determining the shortest path. */
-        get travel_cost(): number /*f64*/
-        set travel_cost(value: number /*f64*/)
+        get travel_cost(): float64
+        set travel_cost(value: float64)
         
         /** If `true` constraints avoidance agent's with an avoidance mask bit that matches with a bit of the [member avoidance_layers] to the navigation polygon. Due to each navigation polygon outline creating an obstacle and each polygon edge creating an avoidance line constrain keep the navigation polygon shape as simple as possible for performance.  
          *  **Experimental:** This is an experimental feature and should not be used in production as agent's can get stuck on the navigation polygon corners and edges especially at high frame rate.  
@@ -232,8 +232,8 @@ declare module "godot" {
         set constrain_avoidance(value: boolean)
         
         /** A bitfield determining all avoidance layers for the avoidance constrain. */
-        get avoidance_layers(): number /*i64*/
-        set avoidance_layers(value: number /*i64*/)
+        get avoidance_layers(): int64
+        set avoidance_layers(value: int64)
         
         /** Emitted when the used navigation polygon is replaced or changes to the internals of the current navigation polygon are committed. */
         readonly navigation_polygon_changed: Signal //  => void
@@ -261,23 +261,23 @@ declare module "godot" {
         get_navigation_map(): RID
         set_use_edge_connections(enabled: boolean): void
         get_use_edge_connections(): boolean
-        set_navigation_layers(navigation_layers: number /*i64*/): void
-        get_navigation_layers(): number /*i64*/
+        set_navigation_layers(navigation_layers: int64): void
+        get_navigation_layers(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member navigation_layers] bitmask, given a [param layer_number] between 1 and 32. */
-        set_navigation_layer_value(layer_number: number /*i64*/, value: boolean): void
+        set_navigation_layer_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member navigation_layers] bitmask is enabled, given a [param layer_number] between 1 and 32. */
-        get_navigation_layer_value(layer_number: number /*i64*/): boolean
+        get_navigation_layer_value(layer_number: int64): boolean
         
         /** Returns the [RID] of this region on the [NavigationServer3D].  
          *   *Deprecated.*  Use [method get_rid] instead.  
          */
         get_region_rid(): RID
-        set_enter_cost(enter_cost: number /*f64*/): void
-        get_enter_cost(): number /*f64*/
-        set_travel_cost(travel_cost: number /*f64*/): void
-        get_travel_cost(): number /*f64*/
+        set_enter_cost(enter_cost: float64): void
+        get_enter_cost(): float64
+        set_travel_cost(travel_cost: float64): void
+        get_travel_cost(): float64
         
         /** Bakes the [NavigationMesh]. If [param on_thread] is set to `true` (default), the baking is done on a separate thread. Baking on separate thread is useful because navigation baking is not a cheap operation. When it is completed, it automatically sets the new [NavigationMesh]. Please note that baking on separate thread may be very slow if geometry is parsed from meshes as async access to each mesh involves heavy synchronization. Also, please note that baking on a separate thread is automatically disabled on operating systems that cannot use threads (such as Web with threads disabled). */
         bake_navigation_mesh(on_thread: boolean = true): void
@@ -296,16 +296,16 @@ declare module "godot" {
         set use_edge_connections(value: boolean)
         
         /** A bitfield determining all navigation layers the region belongs to. These navigation layers can be checked upon when requesting a path with [method NavigationServer3D.map_get_path]. */
-        get navigation_layers(): number /*i64*/
-        set navigation_layers(value: number /*i64*/)
+        get navigation_layers(): int64
+        set navigation_layers(value: int64)
         
         /** When pathfinding enters this region's navigation mesh from another regions navigation mesh the [member enter_cost] value is added to the path distance for determining the shortest path. */
-        get enter_cost(): number /*f64*/
-        set enter_cost(value: number /*f64*/)
+        get enter_cost(): float64
+        set enter_cost(value: float64)
         
         /** When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with [member travel_cost] for determining the shortest path. */
-        get travel_cost(): number /*f64*/
-        set travel_cost(value: number /*f64*/)
+        get travel_cost(): float64
+        set travel_cost(value: float64)
         
         /** Notifies when the [NavigationMesh] has changed. */
         readonly navigation_mesh_changed: Signal //  => void
@@ -338,10 +338,10 @@ declare module "godot" {
         get_texture(): Texture2D
         
         /** Sets the size of the margin on the specified [enum Side] to [param value] pixels. */
-        set_patch_margin(margin: Side, value: number /*i64*/): void
+        set_patch_margin(margin: Side, value: int64): void
         
         /** Returns the size of the margin on the specified [enum Side]. */
-        get_patch_margin(margin: Side): number /*i64*/
+        get_patch_margin(margin: Side): int64
         set_region_rect(rect: Rect2): void
         get_region_rect(): Rect2
         set_draw_center(draw_center: boolean): void
@@ -364,12 +364,12 @@ declare module "godot" {
         set region_rect(value: Rect2)
         
         /** The stretch mode to use for horizontal stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values. */
-        get axis_stretch_horizontal(): number /*i64*/
-        set axis_stretch_horizontal(value: number /*i64*/)
+        get axis_stretch_horizontal(): int64
+        set axis_stretch_horizontal(value: int64)
         
         /** The stretch mode to use for vertical stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values. */
-        get axis_stretch_vertical(): number /*i64*/
-        set axis_stretch_vertical(value: number /*i64*/)
+        get axis_stretch_vertical(): int64
+        set axis_stretch_vertical(value: int64)
         
         /** Emitted when the node's texture changes. */
         readonly texture_changed: Signal //  => void
@@ -614,7 +614,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).  
          */
-        /* gdvirtual */ _process(delta: number /*f64*/): void
+        /* gdvirtual */ _process(delta: float64): void
         
         /** Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the [param delta] variable should be constant. [param delta] is in seconds.  
          *  It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_physics_process].  
@@ -622,7 +622,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).  
          */
-        /* gdvirtual */ _physics_process(delta: number /*f64*/): void
+        /* gdvirtual */ _physics_process(delta: float64): void
         
         /** Called when the node enters the [SceneTree] (e.g. upon instantiating, scene changing, or after calling [method add_child] in a script). If the node has children, its [method _enter_tree] callback will be called first, and then that of the children.  
          *  Corresponds to the [constant NOTIFICATION_ENTER_TREE] notification in [method Object._notification].  
@@ -728,7 +728,7 @@ declare module "godot" {
         /** Returns the number of children of this node.  
          *  If [param include_internal] is `false`, internal children are not counted (see [method add_child]'s `internal` parameter).  
          */
-        get_child_count(include_internal: boolean = false): number /*i64*/
+        get_child_count(include_internal: boolean = false): int64
         
         /** Returns all children of this node inside an [Array].  
          *  If [param include_internal] is `false`, excludes internal children from the returned array (see [method add_child]'s `internal` parameter).  
@@ -741,7 +741,7 @@ declare module "godot" {
          *      
          *  **Note:** To fetch a node by [NodePath], use [method get_node].  
          */
-        get_child(idx: number /*i64*/, include_internal: boolean = false): Node
+        get_child(idx: int64, include_internal: boolean = false): Node
         
         /** Returns `true` if the [param path] points to a valid node. See also [method get_node]. */
         has_node(path: NodePath): boolean
@@ -839,7 +839,7 @@ declare module "godot" {
          *      
          *  **Note:** The processing order of several engine callbacks ([method _ready], [method _process], etc.) and notifications sent through [method propagate_notification] is affected by tree order. [CanvasItem] nodes are also rendered in tree order. See also [member process_priority].  
          */
-        move_child(child_node: Node, to_index: number /*i64*/): void
+        move_child(child_node: Node, to_index: int64): void
         
         /** Returns an [Array] of group names that the node has been added to.  
          *      
@@ -855,7 +855,7 @@ declare module "godot" {
         /** Returns this node's order among its siblings. The first node's index is `0`. See also [method get_child].  
          *  If [param include_internal] is `false`, returns the index ignoring internal children. The first, non-internal child will have an index of `0` (see [method add_child]'s `internal` parameter).  
          */
-        get_index(include_internal: boolean = false): number /*i64*/
+        get_index(include_internal: boolean = false): int64
         
         /** Prints the node and its children to the console, recursively. The node does not have to be inside the tree. This method outputs [NodePath]s relative to this node, and is good for copy/pasting into [method get_node]. See also [method print_tree_pretty].  
          *  **Example output:**  
@@ -884,7 +884,7 @@ declare module "godot" {
         get_scene_file_path(): string
         
         /** Calls [method Object.notification] with [param what] on this node and all of its children, recursively. */
-        propagate_notification(what: number /*i64*/): void
+        propagate_notification(what: int64): void
         
         /** Calls the given [param method] name, passing [param args] as arguments, on this node and all of its children, recursively.  
          *  If [param parent_first] is `true`, the method is called on this node first, then on all of its children. If `false`, the children's methods are called first.  
@@ -895,20 +895,20 @@ declare module "godot" {
         set_physics_process(enable: boolean): void
         
         /** Returns the time elapsed (in seconds) since the last physics callback. This value is identical to [method _physics_process]'s `delta` parameter, and is often consistent at run-time, unless [member Engine.physics_ticks_per_second] is changed. See also [constant NOTIFICATION_PHYSICS_PROCESS]. */
-        get_physics_process_delta_time(): number /*f64*/
+        get_physics_process_delta_time(): float64
         
         /** Returns `true` if physics processing is enabled (see [method set_physics_process]). */
         is_physics_processing(): boolean
         
         /** Returns the time elapsed (in seconds) since the last process callback. This value is identical to [method _process]'s `delta` parameter, and may vary from frame to frame. See also [constant NOTIFICATION_PROCESS]. */
-        get_process_delta_time(): number /*f64*/
+        get_process_delta_time(): float64
         
         /** If set to `true`, enables processing. When a node is being processed, it will receive a [constant NOTIFICATION_PROCESS] on every drawn frame (and the [method _process] callback will be called if exists). Enabled automatically if [method _process] is overridden. */
         set_process(enable: boolean): void
-        set_process_priority(priority: number /*i64*/): void
-        get_process_priority(): number /*i64*/
-        set_physics_process_priority(priority: number /*i64*/): void
-        get_physics_process_priority(): number /*i64*/
+        set_process_priority(priority: int64): void
+        get_process_priority(): int64
+        set_physics_process_priority(priority: int64): void
+        get_physics_process_priority(): int64
         
         /** Returns `true` if processing is enabled (see [method set_process]). */
         is_processing(): boolean
@@ -945,8 +945,8 @@ declare module "godot" {
         get_process_thread_group(): Node.ProcessThreadGroup
         set_process_thread_messages(flags: Node.ProcessThreadMessages): void
         get_process_thread_messages(): Node.ProcessThreadMessages
-        set_process_thread_group_order(order: number /*i64*/): void
-        get_process_thread_group_order(): number /*i64*/
+        set_process_thread_group_order(order: int64): void
+        get_process_thread_group_order(): int64
         
         /** If set to `true`, the node appears folded in the Scene dock. As a result, all of its children are hidden. This method is intended to be used in editor plugins and tools, but it also works in release builds. See also [method is_displayed_folded]. */
         set_display_folded(fold: boolean): void
@@ -990,7 +990,7 @@ declare module "godot" {
          *      
          *  **Note:** For nodes with a [Script] attached, if [method Object._init] has been defined with required parameters, the duplicated node will not have a [Script].  
          */
-        duplicate(flags: number /*i64*/ = 15): Node
+        duplicate(flags: int64 = 15): Node
         
         /** Replaces this node by the given [param node]. All children of this node are moved to [param node].  
          *  If [param keep_groups] is `true`, the [param node] is added to the same groups that the replaced node is in (see [method add_to_group]).  
@@ -1035,10 +1035,10 @@ declare module "godot" {
          *  If [param recursive] is `true`, the given peer is recursively set as the authority for all children of this node.  
          *  **Warning:** This does **not** automatically replicate the new authority to other peers. It is the developer's responsibility to do so. You may replicate the new authority's information using [member MultiplayerSpawner.spawn_function], an RPC, or a [MultiplayerSynchronizer]. Furthermore, the parent's authority does **not** propagate to newly added children.  
          */
-        set_multiplayer_authority(id: number /*i64*/, recursive: boolean = true): void
+        set_multiplayer_authority(id: int64, recursive: boolean = true): void
         
         /** Returns the peer ID of the multiplayer authority for this node. See [method set_multiplayer_authority]. */
-        get_multiplayer_authority(): number /*i64*/
+        get_multiplayer_authority(): int64
         
         /** Returns `true` if the local system is the multiplayer authority of this node. */
         is_multiplayer_authority(): boolean
@@ -1071,7 +1071,7 @@ declare module "godot" {
         /** Sends a [method rpc] to a specific peer identified by [param peer_id] (see [method MultiplayerPeer.set_target_peer]).  
          *  May return [constant OK] if the call is successful, [constant ERR_INVALID_PARAMETER] if the arguments passed in the [param method] do not match, [constant ERR_UNCONFIGURED] if the node's [member multiplayer] cannot be fetched (such as when the node is not inside the tree), [constant ERR_CONNECTION_ERROR] if [member multiplayer]'s connection is not available.  
          */
-        rpc_id(peer_id: number /*i64*/, method: StringName, ...vargargs: any[]): Error
+        rpc_id(peer_id: int64, method: StringName, ...vargargs: any[]): Error
         
         /** Refreshes the warnings displayed for this node in the Scene dock. Use [method _get_configuration_warnings] to customize the warning messages to display. */
         update_configuration_warnings(): void
@@ -1083,7 +1083,7 @@ declare module "godot" {
         set_deferred_thread_group(property: StringName, value: any): void
         
         /** Similar to [method call_deferred_thread_group], but for notifications. */
-        notify_deferred_thread_group(what: number /*i64*/): void
+        notify_deferred_thread_group(what: int64): void
         
         /** This function ensures that the calling of this function will succeed, no matter whether it's being done from a thread or not. If called from a thread that is not allowed to call the function, the call will become deferred. Otherwise, the call will go through directly. */
         call_thread_safe(method: StringName, ...vargargs: any[]): any
@@ -1092,7 +1092,7 @@ declare module "godot" {
         set_thread_safe(property: StringName, value: any): void
         
         /** Similar to [method call_thread_safe], but for notifications. */
-        notify_thread_safe(what: number /*i64*/): void
+        notify_thread_safe(what: int64): void
         get _import_path(): NodePath
         set _import_path(value: NodePath)
         
@@ -1121,32 +1121,32 @@ declare module "godot" {
         get multiplayer(): MultiplayerAPI
         
         /** The node's processing behavior (see [enum ProcessMode]). To check if the node is able to process, with the current mode and [member SceneTree.paused], use [method can_process]. */
-        get process_mode(): number /*i64*/
-        set process_mode(value: number /*i64*/)
+        get process_mode(): int64
+        set process_mode(value: int64)
         
         /** The node's execution order of the process callbacks ([method _process], [method _physics_process], and internal processing). Nodes whose priority value is  *lower*  call their process callbacks first, regardless of tree order. */
-        get process_priority(): number /*i64*/
-        set process_priority(value: number /*i64*/)
+        get process_priority(): int64
+        set process_priority(value: int64)
         
         /** Similar to [member process_priority] but for [constant NOTIFICATION_PHYSICS_PROCESS], [method _physics_process] or the internal version. */
-        get process_physics_priority(): number /*i64*/
-        set process_physics_priority(value: number /*i64*/)
+        get process_physics_priority(): int64
+        set process_physics_priority(value: int64)
         
         /** Set the process thread group for this node (basically, whether it receives [constant NOTIFICATION_PROCESS], [constant NOTIFICATION_PHYSICS_PROCESS], [method _process] or [method _physics_process] (and the internal versions) on the main thread or in a sub-thread.  
          *  By default, the thread group is [constant PROCESS_THREAD_GROUP_INHERIT], which means that this node belongs to the same thread group as the parent node. The thread groups means that nodes in a specific thread group will process together, separate to other thread groups (depending on [member process_thread_group_order]). If the value is set is [constant PROCESS_THREAD_GROUP_SUB_THREAD], this thread group will occur on a sub thread (not the main thread), otherwise if set to [constant PROCESS_THREAD_GROUP_MAIN_THREAD] it will process on the main thread. If there is not a parent or grandparent node set to something other than inherit, the node will belong to the  *default thread group* . This default group will process on the main thread and its group order is 0.  
          *  During processing in a sub-thread, accessing most functions in nodes outside the thread group is forbidden (and it will result in an error in debug mode). Use [method Object.call_deferred], [method call_thread_safe], [method call_deferred_thread_group] and the likes in order to communicate from the thread groups to the main thread (or to other thread groups).  
          *  To better understand process thread groups, the idea is that any node set to any other value than [constant PROCESS_THREAD_GROUP_INHERIT] will include any child (and grandchild) nodes set to inherit into its process thread group. This means that the processing of all the nodes in the group will happen together, at the same time as the node including them.  
          */
-        get process_thread_group(): number /*i64*/
-        set process_thread_group(value: number /*i64*/)
+        get process_thread_group(): int64
+        set process_thread_group(value: int64)
         
         /** Change the process thread group order. Groups with a lesser order will process before groups with a greater order. This is useful when a large amount of nodes process in sub thread and, afterwards, another group wants to collect their result in the main thread, as an example. */
-        get process_thread_group_order(): number /*i64*/
-        set process_thread_group_order(value: number /*i64*/)
+        get process_thread_group_order(): int64
+        set process_thread_group_order(value: int64)
         
         /** Set whether the current thread group will process messages (calls to [method call_deferred_thread_group] on threads, and whether it wants to receive them during regular process or physics process callbacks. */
-        get process_thread_messages(): number /*i64*/
-        set process_thread_messages(value: number /*i64*/)
+        get process_thread_messages(): int64
+        set process_thread_messages(value: int64)
         
         /** An optional description to the node. It will be displayed as a tooltip when hovering over the node in the editor's Scene dock. */
         get editor_description(): string
@@ -1198,24 +1198,24 @@ declare module "godot" {
     class Node2D extends CanvasItem {
         constructor(identifier?: any)
         set_position(position: Vector2): void
-        set_rotation(radians: number /*f64*/): void
-        set_rotation_degrees(degrees: number /*f64*/): void
-        set_skew(radians: number /*f64*/): void
+        set_rotation(radians: float64): void
+        set_rotation_degrees(degrees: float64): void
+        set_skew(radians: float64): void
         set_scale(scale: Vector2): void
         get_position(): Vector2
-        get_rotation(): number /*f64*/
-        get_rotation_degrees(): number /*f64*/
-        get_skew(): number /*f64*/
+        get_rotation(): float64
+        get_rotation_degrees(): float64
+        get_skew(): float64
         get_scale(): Vector2
         
         /** Applies a rotation to the node, in radians, starting from its current rotation. */
-        rotate(radians: number /*f64*/): void
+        rotate(radians: float64): void
         
         /** Applies a local translation on the node's X axis based on the [method Node._process]'s [param delta]. If [param scaled] is `false`, normalizes the movement. */
-        move_local_x(delta: number /*f64*/, scaled: boolean = false): void
+        move_local_x(delta: float64, scaled: boolean = false): void
         
         /** Applies a local translation on the node's Y axis based on the [method Node._process]'s [param delta]. If [param scaled] is `false`, normalizes the movement. */
-        move_local_y(delta: number /*f64*/, scaled: boolean = false): void
+        move_local_y(delta: float64, scaled: boolean = false): void
         
         /** Translates the node by the given [param offset] in local coordinates. */
         translate(offset: Vector2): void
@@ -1227,12 +1227,12 @@ declare module "godot" {
         apply_scale(ratio: Vector2): void
         set_global_position(position: Vector2): void
         get_global_position(): Vector2
-        set_global_rotation(radians: number /*f64*/): void
-        set_global_rotation_degrees(degrees: number /*f64*/): void
-        get_global_rotation(): number /*f64*/
-        get_global_rotation_degrees(): number /*f64*/
-        set_global_skew(radians: number /*f64*/): void
-        get_global_skew(): number /*f64*/
+        set_global_rotation(radians: float64): void
+        set_global_rotation_degrees(degrees: float64): void
+        get_global_rotation(): float64
+        get_global_rotation_degrees(): float64
+        set_global_skew(radians: float64): void
+        get_global_skew(): float64
         set_global_scale(scale: Vector2): void
         get_global_scale(): Vector2
         set_transform(xform: Transform2D): void
@@ -1244,7 +1244,7 @@ declare module "godot" {
         /** Returns the angle between the node and the [param point] in radians.  
          *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/node2d_get_angle_to.png]Illustration of the returned angle.[/url]  
          */
-        get_angle_to(point: Vector2): number /*f64*/
+        get_angle_to(point: Vector2): float64
         
         /** Transforms the provided global position into a position in local coordinate space. The output will be local relative to the [Node2D] it is called on. e.g. It is appropriate for determining the positions of child nodes, but it is not appropriate for determining its own position relative to its parent. */
         to_local(global_point: Vector2): Vector2
@@ -1263,12 +1263,12 @@ declare module "godot" {
          *      
          *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
          */
-        get rotation(): number /*f64*/
-        set rotation(value: number /*f64*/)
+        get rotation(): float64
+        set rotation(value: float64)
         
         /** Helper property to access [member rotation] in degrees instead of radians. */
-        get rotation_degrees(): number /*f64*/
-        set rotation_degrees(value: number /*f64*/)
+        get rotation_degrees(): float64
+        set rotation_degrees(value: float64)
         
         /** The node's scale. Unscaled value: `(1, 1)`.  
          *      
@@ -1281,8 +1281,8 @@ declare module "godot" {
          *      
          *  **Note:** Skew is X axis only.  
          */
-        get skew(): number /*f64*/
-        set skew(value: number /*f64*/)
+        get skew(): float64
+        set skew(value: float64)
         
         /** Local [Transform2D]. */
         get transform(): Transform2D
@@ -1293,20 +1293,20 @@ declare module "godot" {
         set global_position(value: Vector2)
         
         /** Global rotation in radians. */
-        get global_rotation(): number /*f64*/
-        set global_rotation(value: number /*f64*/)
+        get global_rotation(): float64
+        set global_rotation(value: float64)
         
         /** Helper property to access [member global_rotation] in degrees instead of radians. */
-        get global_rotation_degrees(): number /*f64*/
-        set global_rotation_degrees(value: number /*f64*/)
+        get global_rotation_degrees(): float64
+        set global_rotation_degrees(value: float64)
         
         /** Global scale. */
         get global_scale(): Vector2
         set global_scale(value: Vector2)
         
         /** Global skew in radians. */
-        get global_skew(): number /*f64*/
-        set global_skew(value: number /*f64*/)
+        get global_skew(): float64
+        set global_skew(value: float64)
         
         /** Global [Transform2D]. */
         get global_transform(): Transform2D
@@ -1421,7 +1421,7 @@ declare module "godot" {
          *      
          *  **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].  
          */
-        set_subgizmo_selection(gizmo: Node3DGizmo, id: number /*i64*/, transform: Transform3D): void
+        set_subgizmo_selection(gizmo: Node3DGizmo, id: int64, transform: Transform3D): void
         
         /** Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid after a property change. */
         clear_subgizmo_selection(): void
@@ -1450,10 +1450,10 @@ declare module "godot" {
         is_transform_notification_enabled(): boolean
         
         /** Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. */
-        rotate(axis: Vector3, angle: number /*f64*/): void
+        rotate(axis: Vector3, angle: float64): void
         
         /** Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in global coordinate system. */
-        global_rotate(axis: Vector3, angle: number /*f64*/): void
+        global_rotate(axis: Vector3, angle: float64): void
         
         /** Scales the global (world) transformation by the given [Vector3] scale factors. */
         global_scale(scale: Vector3): void
@@ -1462,7 +1462,7 @@ declare module "godot" {
         global_translate(offset: Vector3): void
         
         /** Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system. */
-        rotate_object_local(axis: Vector3, angle: number /*f64*/): void
+        rotate_object_local(axis: Vector3, angle: float64): void
         
         /** Scales the local transformation by given 3D scale factors in object-local coordinate system. */
         scale_object_local(scale: Vector3): void
@@ -1471,13 +1471,13 @@ declare module "godot" {
         translate_object_local(offset: Vector3): void
         
         /** Rotates the local transformation around the X axis by angle in radians. */
-        rotate_x(angle: number /*f64*/): void
+        rotate_x(angle: float64): void
         
         /** Rotates the local transformation around the Y axis by angle in radians. */
-        rotate_y(angle: number /*f64*/): void
+        rotate_y(angle: float64): void
         
         /** Rotates the local transformation around the Z axis by angle in radians. */
-        rotate_z(angle: number /*f64*/): void
+        rotate_z(angle: float64): void
         
         /** Changes the node's position by the given offset [Vector3].  
          *  Note that the translation [param offset] is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.  
@@ -1550,12 +1550,12 @@ declare module "godot" {
         set scale(value: Vector3)
         
         /** Specify how rotation (and scale) will be presented in the editor. */
-        get rotation_edit_mode(): number /*i64*/
-        set rotation_edit_mode(value: number /*i64*/)
+        get rotation_edit_mode(): int64
+        set rotation_edit_mode(value: int64)
         
         /** Specify the axis rotation order of the [member rotation] property. The final orientation is constructed by rotating the Euler angles in the order specified by this property. */
-        get rotation_order(): number /*i64*/
-        set rotation_order(value: number /*i64*/)
+        get rotation_order(): int64
+        set rotation_order(value: int64)
         
         /** If `true`, the node will not inherit its transformations from its parent. Node transformations are only in global space. */
         get top_level(): boolean
@@ -1595,8 +1595,8 @@ declare module "godot" {
         constructor(identifier?: any)
         _get_editor_data(_unnamed_arg0: Object): Object
         _request_gizmo(_unnamed_arg0: Object): void
-        _request_gizmo_for_id(_unnamed_arg0: number /*i64*/): void
-        _set_subgizmo_selection(_unnamed_arg0: Object, _unnamed_arg1: Node3DGizmo, _unnamed_arg2: number /*i64*/, _unnamed_arg3: Transform3D): void
+        _request_gizmo_for_id(_unnamed_arg0: int64): void
+        _set_subgizmo_selection(_unnamed_arg0: Object, _unnamed_arg1: Node3DGizmo, _unnamed_arg2: int64, _unnamed_arg3: Transform3D): void
         _clear_subgizmo_selection(_unnamed_arg0: Object): void
         _refresh_menu_icons(): void
         readonly transform_key_request: Signal //  => void
@@ -1632,43 +1632,43 @@ declare module "godot" {
     class Noise extends Resource {
         constructor(identifier?: any)
         /** Returns the 1D noise value at the given (x) coordinate. */
-        get_noise_1d(x: number /*f64*/): number /*f64*/
+        get_noise_1d(x: float64): float64
         
         /** Returns the 2D noise value at the given position. */
-        get_noise_2d(x: number /*f64*/, y: number /*f64*/): number /*f64*/
+        get_noise_2d(x: float64, y: float64): float64
         
         /** Returns the 2D noise value at the given position. */
-        get_noise_2dv(v: Vector2): number /*f64*/
+        get_noise_2dv(v: Vector2): float64
         
         /** Returns the 3D noise value at the given position. */
-        get_noise_3d(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/): number /*f64*/
+        get_noise_3d(x: float64, y: float64, z: float64): float64
         
         /** Returns the 3D noise value at the given position. */
-        get_noise_3dv(v: Vector3): number /*f64*/
+        get_noise_3dv(v: Vector3): float64
         
         /** Returns an [Image] containing 2D noise values.  
          *      
          *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
          */
-        get_image(width: number /*i64*/, height: number /*i64*/, invert: boolean = false, in_3d_space: boolean = false, normalize: boolean = true): Image
+        get_image(width: int64, height: int64, invert: boolean = false, in_3d_space: boolean = false, normalize: boolean = true): Image
         
         /** Returns an [Image] containing seamless 2D noise values.  
          *      
          *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
          */
-        get_seamless_image(width: number /*i64*/, height: number /*i64*/, invert: boolean = false, in_3d_space: boolean = false, skirt: number /*f64*/ = 0.1, normalize: boolean = true): Image
+        get_seamless_image(width: int64, height: int64, invert: boolean = false, in_3d_space: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): Image
         
         /** Returns an [Array] of [Image]s containing 3D noise values for use with [method ImageTexture3D.create].  
          *      
          *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
          */
-        get_image_3d(width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, invert: boolean = false, normalize: boolean = true): Array
+        get_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, normalize: boolean = true): Array
         
         /** Returns an [Array] of [Image]s containing seamless 3D noise values for use with [method ImageTexture3D.create].  
          *      
          *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
          */
-        get_seamless_image_3d(width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, invert: boolean = false, skirt: number /*f64*/ = 0.1, normalize: boolean = true): Array
+        get_seamless_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): Array
     }
     class NoiseEditorInspectorPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
@@ -1685,8 +1685,8 @@ declare module "godot" {
         _update_texture(): void
         _generate_texture(): Image
         _thread_done(image: Image): void
-        set_width(width: number /*i64*/): void
-        set_height(height: number /*i64*/): void
+        set_width(width: int64): void
+        set_height(height: int64): void
         set_invert(invert: boolean): void
         get_invert(): boolean
         set_in_3d_space(enable: boolean): void
@@ -1695,12 +1695,12 @@ declare module "godot" {
         is_generating_mipmaps(): boolean
         set_seamless(seamless: boolean): void
         get_seamless(): boolean
-        set_seamless_blend_skirt(seamless_blend_skirt: number /*f64*/): void
-        get_seamless_blend_skirt(): number /*f64*/
+        set_seamless_blend_skirt(seamless_blend_skirt: float64): void
+        get_seamless_blend_skirt(): float64
         set_as_normal_map(as_normal_map: boolean): void
         is_normal_map(): boolean
-        set_bump_strength(bump_strength: number /*f64*/): void
-        get_bump_strength(): number /*f64*/
+        set_bump_strength(bump_strength: float64): void
+        get_bump_strength(): float64
         set_normalize(normalize: boolean): void
         is_normalized(): boolean
         set_color_ramp(gradient: Gradient): void
@@ -1709,12 +1709,12 @@ declare module "godot" {
         get_noise(): Noise
         
         /** Width of the generated texture (in pixels). */
-        get width(): number /*i64*/
-        set width(value: number /*i64*/)
+        get width(): int64
+        set width(value: int64)
         
         /** Height of the generated texture (in pixels). */
-        get height(): number /*i64*/
-        set height(value: number /*i64*/)
+        get height(): int64
+        set height(value: int64)
         
         /** If `true`, inverts the noise texture. White becomes black, black becomes white. */
         get invert(): boolean
@@ -1744,16 +1744,16 @@ declare module "godot" {
          *      
          *  **Note:** If using a [member width] or [member height] lower than the default, you may need to increase [member seamless_blend_skirt] to make seamless blending more effective.  
          */
-        get seamless_blend_skirt(): number /*f64*/
-        set seamless_blend_skirt(value: number /*f64*/)
+        get seamless_blend_skirt(): float64
+        set seamless_blend_skirt(value: float64)
         
         /** If `true`, the resulting texture contains a normal map created from the original noise interpreted as a bump map. */
         get as_normal_map(): boolean
         set as_normal_map(value: boolean)
         
         /** Strength of the bump maps used in this texture. A higher value will make the bump maps appear larger while a lower value will make them appear softer. */
-        get bump_strength(): number /*f64*/
-        set bump_strength(value: number /*f64*/)
+        get bump_strength(): float64
+        set bump_strength(value: float64)
         
         /** If `true`, the noise image coming from the noise generator is normalized to the range `0.0` to `1.0`.  
          *  Turning normalization off can affect the contrast and allows you to generate non repeating tileable noise textures.  
@@ -1778,15 +1778,15 @@ declare module "godot" {
         _update_texture(): void
         _generate_texture(): Array
         _thread_done(image: Array): void
-        set_width(width: number /*i64*/): void
-        set_height(height: number /*i64*/): void
-        set_depth(depth: number /*i64*/): void
+        set_width(width: int64): void
+        set_height(height: int64): void
+        set_depth(depth: int64): void
         set_invert(invert: boolean): void
         get_invert(): boolean
         set_seamless(seamless: boolean): void
         get_seamless(): boolean
-        set_seamless_blend_skirt(seamless_blend_skirt: number /*f64*/): void
-        get_seamless_blend_skirt(): number /*f64*/
+        set_seamless_blend_skirt(seamless_blend_skirt: float64): void
+        get_seamless_blend_skirt(): float64
         set_normalize(normalize: boolean): void
         is_normalized(): boolean
         set_color_ramp(gradient: Gradient): void
@@ -1795,16 +1795,16 @@ declare module "godot" {
         get_noise(): Noise
         
         /** Width of the generated texture (in pixels). */
-        get width(): number /*i64*/
-        set width(value: number /*i64*/)
+        get width(): int64
+        set width(value: int64)
         
         /** Height of the generated texture (in pixels). */
-        get height(): number /*i64*/
-        set height(value: number /*i64*/)
+        get height(): int64
+        set height(value: int64)
         
         /** Depth of the generated texture (in pixels). */
-        get depth(): number /*i64*/
-        set depth(value: number /*i64*/)
+        get depth(): int64
+        set depth(value: int64)
         
         /** If `true`, inverts the noise texture. White becomes black, black becomes white. */
         get invert(): boolean
@@ -1823,8 +1823,8 @@ declare module "godot" {
          *      
          *  **Note:** If using a [member width], [member height] or [member depth] lower than the default, you may need to increase [member seamless_blend_skirt] to make seamless blending more effective.  
          */
-        get seamless_blend_skirt(): number /*f64*/
-        set seamless_blend_skirt(value: number /*f64*/)
+        get seamless_blend_skirt(): float64
+        set seamless_blend_skirt(value: float64)
         
         /** If `true`, the noise image coming from the noise generator is normalized to the range `0.0` to `1.0`.  
          *  Turning normalization off can affect the contrast and allows you to generate non repeating tileable noise textures.  
@@ -1888,7 +1888,7 @@ declare module "godot" {
          *      
          *  **Note:** The base [Object] defines a few notifications ([constant NOTIFICATION_POSTINITIALIZE] and [constant NOTIFICATION_PREDELETE]). Inheriting classes such as [Node] define a lot more notifications, which are also received by this method.  
          */
-        /* gdvirtual */ _notification(what: number /*i64*/): void
+        /* gdvirtual */ _notification(what: int64): void
         
         /** Override this method to customize the behavior of [method set]. Should set the [param property] to [param value] and return `true`, or `false` if the [param property] should be handled normally. The  *exact*  way to set the [param property] is up to this method's implementation.  
          *  Combined with [method _get] and [method _get_property_list], this method allows defining custom properties, which is particularly useful for editor plugins. Note that a property  *must*  be present in [method get_property_list], otherwise this method will not be called.  
@@ -2025,13 +2025,13 @@ declare module "godot" {
          *  If [param reversed] is `true`, the call order is reversed.  
          *    
          */
-        notification(what: number /*i64*/, reversed: boolean = false): void
+        notification(what: int64, reversed: boolean = false): void
         
         /** Returns a [String] representing the object. Defaults to `"<ClassName#RID>"`. Override [method _to_string] to customize the string representation of the object. */
         to_string(): string
         
         /** Returns the object's unique instance ID. This ID can be saved in [EncodedObjectAsID], and can be used to retrieve this object instance with [method @GlobalScope.instance_from_id]. */
-        get_instance_id(): number /*i64*/
+        get_instance_id(): int64
         
         /** Attaches [param script] to the object, and instantiates it. As a result, the script's [method _init] is called. A [Script] is used to extend the object's functionality.  
          *  If a script already exists, its instance is detached, and its property values and state are lost. Built-in property values are still kept.  
@@ -2174,7 +2174,7 @@ declare module "godot" {
          *  When calling [method emit_signal], the signal parameters can be also passed. The examples below show the relationship between these signal parameters and bound parameters.  
          *    
          */
-        connect(signal: StringName, callable: Callable, flags: number /*i64*/ = 0): Error
+        connect(signal: StringName, callable: Callable, flags: int64 = 0): Error
         
         /** Disconnects a [param signal] by name from a given [param callable]. If the connection does not exist, generates an error. Use [method is_connected] to make sure that the connection exists. */
         disconnect(signal: StringName, callable: Callable): void
@@ -2213,7 +2213,7 @@ declare module "godot" {
          *      
          *  **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's recommended handling these cases with [method tr].  
          */
-        tr_n(message: StringName, plural_message: StringName, n: number /*i64*/, context: StringName = ''): string
+        tr_n(message: StringName, plural_message: StringName, n: int64, context: StringName = ''): string
         
         /** Returns `true` if the [method Node.queue_free] method was called for the object. */
         is_queued_for_deletion(): boolean
@@ -2248,16 +2248,16 @@ declare module "godot" {
      */
     class OccluderInstance3D extends Node3D {
         constructor(identifier?: any)
-        set_bake_mask(mask: number /*i64*/): void
-        get_bake_mask(): number /*i64*/
+        set_bake_mask(mask: int64): void
+        get_bake_mask(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member bake_mask], given a [param layer_number] between 1 and 32. */
-        set_bake_mask_value(layer_number: number /*i64*/, value: boolean): void
+        set_bake_mask_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member bake_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_bake_mask_value(layer_number: number /*i64*/): boolean
-        set_bake_simplification_distance(simplification_distance: number /*f64*/): void
-        get_bake_simplification_distance(): number /*f64*/
+        get_bake_mask_value(layer_number: int64): boolean
+        set_bake_simplification_distance(simplification_distance: float64): void
+        get_bake_simplification_distance(): float64
         set_occluder(occluder: Occluder3D): void
         get_occluder(): Occluder3D
         _is_editable_3d_polygon(): boolean
@@ -2273,8 +2273,8 @@ declare module "godot" {
         /** The visual layers to account for when baking for occluders. Only [MeshInstance3D]s whose [member VisualInstance3D.layers] match with this [member bake_mask] will be included in the generated occluder mesh. By default, all objects with  *opaque*  materials are taken into account for the occluder baking.  
          *  To improve performance and avoid artifacts, it is recommended to exclude dynamic objects, small objects and fixtures from the baking process by moving them to a separate visual layer and excluding this layer in [member bake_mask].  
          */
-        get bake_mask(): number /*i64*/
-        set bake_mask(value: number /*i64*/)
+        get bake_mask(): int64
+        set bake_mask(value: int64)
         
         /** The simplification distance to use for simplifying the generated occluder polygon (in 3D units). Higher values result in a less detailed occluder mesh, which improves performance but reduces culling accuracy.  
          *  The occluder geometry is rendered on the CPU, so it is important to keep its geometry as simple as possible. Since the buffer is rendered at a low resolution, less detailed occluder meshes generally still work well. The default value is fairly aggressive, so you may have to decrease it if you run into false negatives (objects being occluded even though they are visible by the camera). A value of `0.01` will act conservatively, and will keep geometry  *perceptually*  unaffected in the occlusion culling buffer. Depending on the scene, a value of `0.01` may still simplify the mesh noticeably compared to disabling simplification entirely.  
@@ -2282,8 +2282,8 @@ declare module "godot" {
          *      
          *  **Note:** This uses the [url=https://meshoptimizer.org/]meshoptimizer[/url] library under the hood, similar to LOD generation.  
          */
-        get bake_simplification_distance(): number /*f64*/
-        set bake_simplification_distance(value: number /*f64*/)
+        get bake_simplification_distance(): float64
+        set bake_simplification_distance(value: float64)
     }
     class OccluderInstance3DEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -2322,8 +2322,8 @@ declare module "godot" {
         set closed(value: boolean)
         
         /** The culling mode to use. */
-        get cull_mode(): number /*i64*/
-        set cull_mode(value: number /*i64*/)
+        get cull_mode(): int64
+        set cull_mode(value: int64)
         
         /** A [Vector2] array with the index for polygon's vertices positions.  
          *      
@@ -2349,11 +2349,11 @@ declare module "godot" {
         get_packet_data(): Array
         set_packet_granule_positions(granule_positions: PackedInt64Array): void
         get_packet_granule_positions(): PackedInt64Array
-        set_sampling_rate(sampling_rate: number /*f64*/): void
-        get_sampling_rate(): number /*f64*/
+        set_sampling_rate(sampling_rate: float64): void
+        get_sampling_rate(): float64
         
         /** The length of this stream, in seconds. */
-        get_length(): number /*f64*/
+        get_length(): float64
         
         /** Contains the raw packets that make up this OggPacketSequence. */
         get packet_data(): Array
@@ -2364,8 +2364,8 @@ declare module "godot" {
         set granule_positions(value: PackedInt64Array)
         
         /** Holds sample rate information about this sequence. Must be set by another class that actually understands the codec. */
-        get sampling_rate(): number /*f64*/
-        set sampling_rate(value: number /*f64*/)
+        get sampling_rate(): float64
+        set sampling_rate(value: float64)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_oggpacketsequenceplayback.html */
     class OggPacketSequencePlayback extends RefCounted {
@@ -2390,8 +2390,8 @@ declare module "godot" {
         get_shadow_mode(): OmniLight3D.ShadowMode
         
         /** See [enum ShadowMode]. */
-        get omni_shadow_mode(): number /*i64*/
-        set omni_shadow_mode(value: number /*i64*/)
+        get omni_shadow_mode(): int64
+        set omni_shadow_mode(value: int64)
     }
     /** Makes the OpenXR API available for GDExtension.  
      *  	  
@@ -2400,19 +2400,19 @@ declare module "godot" {
     class OpenXRAPIExtension extends RefCounted {
         constructor(identifier?: any)
         /** Returns the [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrInstance.html]XrInstance[/url] created during the initialization of the OpenXR API. */
-        get_instance(): number /*i64*/
+        get_instance(): int64
         
         /** Returns the id of the system, which is a [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSystemId.html]XrSystemId[/url] cast to an integer. */
-        get_system_id(): number /*i64*/
+        get_system_id(): int64
         
         /** Returns the OpenXR session, which is an [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSession.html]XrSession[/url] cast to an integer. */
-        get_session(): number /*i64*/
+        get_session(): int64
         
         /** Creates a [Transform3D] from an [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrPosef.html]XrPosef[/url]. */
-        transform_from_pose(pose: number /*i64*/): Transform3D
+        transform_from_pose(pose: int64): Transform3D
         
         /** Returns `true` if the provided [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] (cast to an integer) is successful. Otherwise returns `false` and prints the [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] converted to a string, with the specified additional information. */
-        xr_result(result: number /*i64*/, format: string, args: Array): boolean
+        xr_result(result: int64, format: string, args: Array): boolean
         
         /** Returns `true` if OpenXR is enabled. */
         static openxr_is_enabled(check_run_in_editor: boolean): boolean
@@ -2421,13 +2421,13 @@ declare module "godot" {
          *      
          *  **Note:** `openxr/util.h` contains utility macros for acquiring OpenXR functions, e.g. `GDEXTENSION_INIT_XR_FUNC_V(xrCreateAction)`.  
          */
-        get_instance_proc_addr(name: string): number /*i64*/
+        get_instance_proc_addr(name: string): int64
         
         /** Returns an error string for the given [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url]. */
-        get_error_string(result: number /*i64*/): string
+        get_error_string(result: int64): string
         
         /** Returns the name of the specified swapchain format. */
-        get_swapchain_format_name(swapchain_format: number /*i64*/): string
+        get_swapchain_format_name(swapchain_format: int64): string
         
         /** Returns `true` if OpenXR is initialized. */
         is_initialized(): boolean
@@ -2436,10 +2436,10 @@ declare module "godot" {
         is_running(): boolean
         
         /** Returns the play space, which is an [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSpace.html]XrSpace[/url] cast to an integer. */
-        get_play_space(): number /*i64*/
+        get_play_space(): int64
         
         /** Returns the timing for the next frame. */
-        get_next_frame_time(): number /*i64*/
+        get_next_frame_time(): int64
         
         /** Returns `true` if OpenXR is initialized for rendering with an XR viewport. */
         can_render(): boolean
@@ -2475,8 +2475,8 @@ declare module "godot" {
         set localized_name(value: string)
         
         /** The type of action. */
-        get action_type(): number /*i64*/
-        set action_type(value: number /*i64*/)
+        get action_type(): int64
+        set action_type(value: int64)
         
         /** A collections of toplevel paths to which this action can be bound. */
         get toplevel_paths(): PackedStringArray
@@ -2492,13 +2492,13 @@ declare module "godot" {
         get_action_sets(): Array
         
         /** Retrieve the number of actions sets in our action map. */
-        get_action_set_count(): number /*i64*/
+        get_action_set_count(): int64
         
         /** Retrieve an action set by name. */
         find_action_set(name: string): OpenXRActionSet
         
         /** Retrieve the action set at this index. */
-        get_action_set(idx: number /*i64*/): OpenXRActionSet
+        get_action_set(idx: int64): OpenXRActionSet
         
         /** Add an action set. */
         add_action_set(action_set: OpenXRActionSet): void
@@ -2509,13 +2509,13 @@ declare module "godot" {
         get_interaction_profiles(): Array
         
         /** Retrieve the number of interaction profiles in our action map. */
-        get_interaction_profile_count(): number /*i64*/
+        get_interaction_profile_count(): int64
         
         /** Find an interaction profile by its name (path). */
         find_interaction_profile(name: string): OpenXRInteractionProfile
         
         /** Get the interaction profile at this index. */
-        get_interaction_profile(idx: number /*i64*/): OpenXRInteractionProfile
+        get_interaction_profile(idx: int64): OpenXRInteractionProfile
         
         /** Add an interaction profile. */
         add_interaction_profile(interaction_profile: OpenXRInteractionProfile): void
@@ -2542,11 +2542,11 @@ declare module "godot" {
         constructor(identifier?: any)
         set_localized_name(localized_name: string): void
         get_localized_name(): string
-        set_priority(priority: number /*i64*/): void
-        get_priority(): number /*i64*/
+        set_priority(priority: int64): void
+        get_priority(): int64
         
         /** Retrieve the number of actions in our action set. */
-        get_action_count(): number /*i64*/
+        get_action_count(): int64
         set_actions(actions: Array): void
         get_actions(): Array
         
@@ -2561,8 +2561,8 @@ declare module "godot" {
         set localized_name(value: string)
         
         /** The priority for this action set. */
-        get priority(): number /*i64*/
-        set priority(value: number /*i64*/)
+        get priority(): int64
+        set priority(value: int64)
         
         /** Collection of actions for this action set. */
         get actions(): OpenXRAction
@@ -2581,16 +2581,16 @@ declare module "godot" {
         /* gdvirtual */ _get_requested_extensions(): Dictionary
         
         /** Adds additional data structures when interogating OpenXR system abilities. */
-        /* gdvirtual */ _set_system_properties_and_get_next_pointer(next_pointer: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _set_system_properties_and_get_next_pointer(next_pointer: int64): int64
         
         /** Adds additional data structures when the OpenXR instance is created. */
-        /* gdvirtual */ _set_instance_create_info_and_get_next_pointer(next_pointer: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _set_instance_create_info_and_get_next_pointer(next_pointer: int64): int64
         
         /** Adds additional data structures when the OpenXR session is created. */
-        /* gdvirtual */ _set_session_create_and_get_next_pointer(next_pointer: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _set_session_create_and_get_next_pointer(next_pointer: int64): int64
         
         /** Adds additional data structures when creating OpenXR swapchains. */
-        /* gdvirtual */ _set_swapchain_create_info_and_get_next_pointer(next_pointer: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _set_swapchain_create_info_and_get_next_pointer(next_pointer: int64): int64
         
         /** Allows extensions to register additional controller metadata. This function is called even when the OpenXR API is not constructed as the metadata needs to be available to the editor.  
          *  Extensions should also provide metadata regardless of whether they are supported on the host system. The controller data is used to setup action maps for users who may have access to the relevant hardware.  
@@ -2601,13 +2601,13 @@ declare module "godot" {
         /* gdvirtual */ _on_before_instance_created(): void
         
         /** Called right after the OpenXR instance is created. */
-        /* gdvirtual */ _on_instance_created(instance: number /*i64*/): void
+        /* gdvirtual */ _on_instance_created(instance: int64): void
         
         /** Called right before the OpenXR instance is destroyed. */
         /* gdvirtual */ _on_instance_destroyed(): void
         
         /** Called right after the OpenXR session is created. */
-        /* gdvirtual */ _on_session_created(session: number /*i64*/): void
+        /* gdvirtual */ _on_session_created(session: int64): void
         
         /** Called as part of the OpenXR process handling. This happens right before general and physics processing steps of the main loop. During this step controller data is queried and made available to game logic. */
         /* gdvirtual */ _on_process(): void
@@ -2643,7 +2643,7 @@ declare module "godot" {
         /* gdvirtual */ _on_state_exiting(): void
         
         /** Called when there is an OpenXR event to process. When implementing, return `true` if the event was handled, return `false` otherwise. */
-        /* gdvirtual */ _on_event_polled(event: number /*i64*/): boolean
+        /* gdvirtual */ _on_event_polled(event: int64): boolean
         
         /** Returns the created [OpenXRAPIExtension], which can be used to access the OpenXR API. */
         get_openxr_api(): OpenXRAPIExtension
@@ -2687,12 +2687,12 @@ declare module "godot" {
         get_motion_range(): OpenXRHand.MotionRange
         
         /** Specifies whether this node tracks the left or right hand of the player. */
-        get hand(): number /*i64*/
-        set hand(value: number /*i64*/)
+        get hand(): int64
+        set hand(value: int64)
         
         /** Set the motion range (if supported) limiting the hand motion. */
-        get motion_range(): number /*i64*/
-        set motion_range(value: number /*i64*/)
+        get motion_range(): int64
+        set motion_range(value: int64)
         
         /** Set a [Skeleton3D] node for which the pose positions will be updated. */
         get hand_skeleton(): NodePath
@@ -2708,7 +2708,7 @@ declare module "godot" {
         get_action(): OpenXRAction
         
         /** Get the number of input/output paths in this binding. */
-        get_path_count(): number /*i64*/
+        get_path_count(): int64
         set_paths(paths: PackedStringArray): void
         get_paths(): PackedStringArray
         
@@ -2739,10 +2739,10 @@ declare module "godot" {
         get_interaction_profile_path(): string
         
         /** Get the number of bindings in this interaction profile. */
-        get_binding_count(): number /*i64*/
+        get_binding_count(): int64
         
         /** Retrieve the binding at this index. */
-        get_binding(index: number /*i64*/): OpenXRIPBinding
+        get_binding(index: int64): OpenXRIPBinding
         set_bindings(bindings: Array): void
         get_bindings(): Array
         
@@ -2904,18 +2904,18 @@ declare module "godot" {
      */
     class OpenXRInterface extends XRInterface {
         constructor(identifier?: any)
-        get_display_refresh_rate(): number /*f64*/
-        set_display_refresh_rate(refresh_rate: number /*f64*/): void
-        get_render_target_size_multiplier(): number /*f64*/
-        set_render_target_size_multiplier(multiplier: number /*f64*/): void
+        get_display_refresh_rate(): float64
+        set_display_refresh_rate(refresh_rate: float64): void
+        get_render_target_size_multiplier(): float64
+        set_render_target_size_multiplier(multiplier: float64): void
         
         /** Returns `true` if OpenXR's foveation extension is supported, the interface must be initialized before this returns a valid value.  
          *      
          *  **Note:** This feature is only available on the compatibility renderer and currently only available on some stand alone headsets. For Vulkan set [member Viewport.vrs_mode] to `VRS_XR` on desktop.  
          */
         is_foveation_supported(): boolean
-        get_foveation_level(): number /*i64*/
-        set_foveation_level(foveation_level: number /*i64*/): void
+        get_foveation_level(): int64
+        set_foveation_level(foveation_level: int64): void
         get_foveation_dynamic(): boolean
         set_foveation_dynamic(foveation_dynamic: boolean): void
         
@@ -2947,7 +2947,7 @@ declare module "godot" {
         get_hand_joint_position(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): Vector3
         
         /** If handtracking is enabled, returns the radius of a joint ([param joint]) of a hand ([param hand]) as provided by OpenXR. This is without worldscale applied! */
-        get_hand_joint_radius(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): number /*f64*/
+        get_hand_joint_radius(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): float64
         
         /** If handtracking is enabled, returns the linear velocity of a joint ([param joint]) of a hand ([param hand]) as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied! */
         get_hand_joint_linear_velocity(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): Vector3
@@ -2968,16 +2968,16 @@ declare module "godot" {
         is_eye_gaze_interaction_supported(): boolean
         
         /** The display refresh rate for the current HMD. Only functional if this feature is supported by the OpenXR runtime and after the interface has been initialized. */
-        get display_refresh_rate(): number /*f64*/
-        set display_refresh_rate(value: number /*f64*/)
+        get display_refresh_rate(): float64
+        set display_refresh_rate(value: float64)
         
         /** The render size multiplier for the current HMD. Must be set before the interface has been initialized. */
-        get render_target_size_multiplier(): number /*f64*/
-        set render_target_size_multiplier(value: number /*f64*/)
+        get render_target_size_multiplier(): float64
+        set render_target_size_multiplier(value: float64)
         
         /** Set foveation level from 0 (off) to 3 (high), the interface must be initialized before this is accessible. */
-        get foveation_level(): number /*i64*/
-        set foveation_level(value: number /*i64*/)
+        get foveation_level(): int64
+        set foveation_level(value: int64)
         
         /** Enable dynamic foveation adjustment, the interface must be initialized before this is accessible. If enabled foveation will automatically adjusted between low and [member foveation_level]. */
         get foveation_dynamic(): boolean
@@ -3014,54 +3014,54 @@ declare module "godot" {
     class OptionButton extends Button {
         constructor(identifier?: any)
         /** Adds an item, with text [param label] and (optionally) [param id]. If no [param id] is passed, the item index will be used as the item's ID. New items are appended at the end. */
-        add_item(label: string, id: number /*i64*/ = -1): void
+        add_item(label: string, id: int64 = -1): void
         
         /** Adds an item, with a [param texture] icon, text [param label] and (optionally) [param id]. If no [param id] is passed, the item index will be used as the item's ID. New items are appended at the end. */
-        add_icon_item(texture: Texture2D, label: string, id: number /*i64*/ = -1): void
+        add_icon_item(texture: Texture2D, label: string, id: int64 = -1): void
         
         /** Sets the text of the item at index [param idx]. */
-        set_item_text(idx: number /*i64*/, text: string): void
+        set_item_text(idx: int64, text: string): void
         
         /** Sets the icon of the item at index [param idx]. */
-        set_item_icon(idx: number /*i64*/, texture: Texture2D): void
+        set_item_icon(idx: int64, texture: Texture2D): void
         
         /** Sets whether the item at index [param idx] is disabled.  
          *  Disabled items are drawn differently in the dropdown and are not selectable by the user. If the current selected item is set as disabled, it will remain selected.  
          */
-        set_item_disabled(idx: number /*i64*/, disabled: boolean): void
+        set_item_disabled(idx: int64, disabled: boolean): void
         
         /** Sets the ID of the item at index [param idx]. */
-        set_item_id(idx: number /*i64*/, id: number /*i64*/): void
+        set_item_id(idx: int64, id: int64): void
         
         /** Sets the metadata of an item. Metadata may be of any type and can be used to store extra information about an item, such as an external string ID. */
-        set_item_metadata(idx: number /*i64*/, metadata: any): void
+        set_item_metadata(idx: int64, metadata: any): void
         
         /** Sets the tooltip of the item at index [param idx]. */
-        set_item_tooltip(idx: number /*i64*/, tooltip: string): void
+        set_item_tooltip(idx: int64, tooltip: string): void
         
         /** Returns the text of the item at index [param idx]. */
-        get_item_text(idx: number /*i64*/): string
+        get_item_text(idx: int64): string
         
         /** Returns the icon of the item at index [param idx]. */
-        get_item_icon(idx: number /*i64*/): Texture2D
+        get_item_icon(idx: int64): Texture2D
         
         /** Returns the ID of the item at index [param idx]. */
-        get_item_id(idx: number /*i64*/): number /*i64*/
+        get_item_id(idx: int64): int64
         
         /** Returns the index of the item with the given [param id]. */
-        get_item_index(id: number /*i64*/): number /*i64*/
+        get_item_index(id: int64): int64
         
         /** Retrieves the metadata of an item. Metadata may be any type and can be used to store extra information about an item, such as an external string ID. */
-        get_item_metadata(idx: number /*i64*/): any
+        get_item_metadata(idx: int64): any
         
         /** Returns the tooltip of the item at index [param idx]. */
-        get_item_tooltip(idx: number /*i64*/): string
+        get_item_tooltip(idx: int64): string
         
         /** Returns `true` if the item at index [param idx] is disabled. */
-        is_item_disabled(idx: number /*i64*/): boolean
+        is_item_disabled(idx: int64): boolean
         
         /** Returns `true` if the item at index [param idx] is marked as a separator. */
-        is_item_separator(idx: number /*i64*/): boolean
+        is_item_separator(idx: int64): boolean
         
         /** Adds a separator to the list of items. Separators help to group items, and can optionally be given a [param text] header. A separator also gets an index assigned, and is appended at the end of the item list. */
         add_separator(text: string = ''): void
@@ -3072,18 +3072,18 @@ declare module "godot" {
         /** Selects an item by index and makes it the current item. This will work even if the item is disabled.  
          *  Passing `-1` as the index deselects any currently selected item.  
          */
-        select(idx: number /*i64*/): void
-        get_selected(): number /*i64*/
+        select(idx: int64): void
+        get_selected(): int64
         
         /** Returns the ID of the selected item, or `-1` if no item is selected. */
-        get_selected_id(): number /*i64*/
+        get_selected_id(): int64
         
         /** Gets the metadata of the selected item. Metadata for items can be set using [method set_item_metadata]. */
         get_selected_metadata(): any
         
         /** Removes the item at index [param idx]. */
-        remove_item(idx: number /*i64*/): void
-        _select_int(idx: number /*i64*/): void
+        remove_item(idx: int64): void
+        _select_int(idx: int64): void
         
         /** Returns the [PopupMenu] contained in this button.  
          *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.  
@@ -3092,8 +3092,8 @@ declare module "godot" {
         
         /** Adjusts popup position and sizing for the [OptionButton], then shows the [PopupMenu]. Prefer this over using `get_popup().popup()`. */
         show_popup(): void
-        set_item_count(count: number /*i64*/): void
-        get_item_count(): number /*i64*/
+        set_item_count(count: int64): void
+        get_item_count(): int64
         
         /** Returns `true` if this button contains at least one item which is not disabled, or marked as a separator. */
         has_selectable_items(): boolean
@@ -3101,7 +3101,7 @@ declare module "godot" {
         /** Returns the index of the first item which is not disabled, or marked as a separator. If [param from_last] is `true`, the items will be searched in reverse order.  
          *  Returns `-1` if no item is found.  
          */
-        get_selectable_item(from_last: boolean = false): number /*i64*/
+        get_selectable_item(from_last: boolean = false): int64
         set_fit_to_longest_item(fit: boolean): void
         is_fit_to_longest_item(): boolean
         set_allow_reselect(allow: boolean): void
@@ -3115,8 +3115,8 @@ declare module "godot" {
         set item_count(value: any /*Items,popup/item_*/)
         
         /** The index of the currently selected item, or `-1` if no item is selected. */
-        get selected(): number /*i64*/
-        set selected(value: number /*i64*/)
+        get selected(): int64
+        set selected(value: int64)
         
         /** If `true`, minimum size will be determined by the longest item's text, instead of the currently selected one's.  
          *      
@@ -3132,10 +3132,10 @@ declare module "godot" {
         /** Emitted when the current item has been changed by the user. The index of the item selected is passed as argument.  
          *  [member allow_reselect] must be enabled to reselect an item.  
          */
-        readonly item_selected: Signal // index: number /*i64*/ => void
+        readonly item_selected: Signal // index: int64 => void
         
         /** Emitted when the user navigates to an item using the [member ProjectSettings.input/ui_up] or [member ProjectSettings.input/ui_down] input actions. The index of the item selected is passed as argument. */
-        readonly item_focused: Signal // index: number /*i64*/ => void
+        readonly item_focused: Signal // index: int64 => void
     }
     class OrphanResourcesDialog extends ConfirmationDialog {
         constructor(identifier?: any)
@@ -3147,7 +3147,7 @@ declare module "godot" {
     class PCKPacker extends RefCounted {
         constructor(identifier?: any)
         /** Creates a new PCK file with the name [param pck_name]. The `.pck` file extension isn't added automatically, so it should be part of [param pck_name] (even though it's not required). */
-        pck_start(pck_name: string, alignment: number /*i64*/ = 32, key: string = '0000000000000000000000000000000000000000000000000000000000000000', encrypt_directory: boolean = false): Error
+        pck_start(pck_name: string, alignment: int64 = 32, key: string = '0000000000000000000000000000000000000000000000000000000000000000', encrypt_directory: boolean = false): Error
         
         /** Adds the [param source_path] file to the current PCK package at the [param pck_path] internal path (should start with `res://`). */
         add_file(pck_path: string, source_path: string, encrypt: boolean = false): Error
@@ -3174,7 +3174,7 @@ declare module "godot" {
         pack(value: any): Error
         
         /** Returns the size of the packed container (see [method Array.size] and [method Dictionary.size]). */
-        size(): number /*i64*/
+        size(): int64
         get __data__(): PackedByteArray
         set __data__(value: PackedByteArray)
     }
@@ -3185,7 +3185,7 @@ declare module "godot" {
     class PackedDataContainerRef extends RefCounted {
         constructor(identifier?: any)
         /** Returns the size of the packed container (see [method Array.size] and [method Dictionary.size]). */
-        size(): number /*i64*/
+        size(): int64
         _iter_init(_unnamed_arg0: Array): any
         _iter_get(_unnamed_arg0: any): any
         _iter_next(_unnamed_arg0: Array): any
@@ -3273,15 +3273,15 @@ declare module "godot" {
         get_packet_error(): Error
         
         /** Returns the number of packets currently available in the ring-buffer. */
-        get_available_packet_count(): number /*i64*/
-        get_encode_buffer_max_size(): number /*i64*/
-        set_encode_buffer_max_size(max_size: number /*i64*/): void
+        get_available_packet_count(): int64
+        get_encode_buffer_max_size(): int64
+        set_encode_buffer_max_size(max_size: int64): void
         
         /** Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier memory allocations.  
          *  The [method put_var] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than [member encode_buffer_max_size], the method will error out with [constant ERR_OUT_OF_MEMORY].  
          */
-        get encode_buffer_max_size(): number /*i64*/
-        set encode_buffer_max_size(value: number /*i64*/)
+        get encode_buffer_max_size(): int64
+        set encode_buffer_max_size(value: int64)
     }
     namespace PacketPeerDTLS {
         enum Status {
@@ -3322,10 +3322,10 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerextension.html */
     class PacketPeerExtension extends PacketPeer {
         constructor(identifier?: any)
-        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): Error
-        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): Error
-        /* gdvirtual */ _get_available_packet_count(): number /*i64*/
-        /* gdvirtual */ _get_max_packet_size(): number /*i64*/
+        /* gdvirtual */ _get_packet(r_buffer: int64, r_buffer_size: int64): Error
+        /* gdvirtual */ _put_packet(p_buffer: int64, p_buffer_size: int64): Error
+        /* gdvirtual */ _get_available_packet_count(): int64
+        /* gdvirtual */ _get_max_packet_size(): int64
     }
     /** Wrapper to use a PacketPeer over a StreamPeer.  
      *  	  
@@ -3335,14 +3335,14 @@ declare module "godot" {
         constructor(identifier?: any)
         set_stream_peer(peer: StreamPeer): void
         get_stream_peer(): StreamPeer
-        set_input_buffer_max_size(max_size_bytes: number /*i64*/): void
-        set_output_buffer_max_size(max_size_bytes: number /*i64*/): void
-        get_input_buffer_max_size(): number /*i64*/
-        get_output_buffer_max_size(): number /*i64*/
-        get input_buffer_max_size(): number /*i64*/
-        set input_buffer_max_size(value: number /*i64*/)
-        get output_buffer_max_size(): number /*i64*/
-        set output_buffer_max_size(value: number /*i64*/)
+        set_input_buffer_max_size(max_size_bytes: int64): void
+        set_output_buffer_max_size(max_size_bytes: int64): void
+        get_input_buffer_max_size(): int64
+        get_output_buffer_max_size(): int64
+        get input_buffer_max_size(): int64
+        set input_buffer_max_size(value: int64)
+        get output_buffer_max_size(): int64
+        set output_buffer_max_size(value: int64)
         
         /** The wrapped [StreamPeer] object. */
         get stream_peer(): StreamPeer
@@ -3359,7 +3359,7 @@ declare module "godot" {
          *  If [param bind_address] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound to all available addresses matching that IP type.  
          *  If [param bind_address] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only be bound to the interface with that addresses (or fail if no interface with the given address exists).  
          */
-        bind(port: number /*i64*/, bind_address: string = '*', recv_buf_size: number /*i64*/ = 65536): Error
+        bind(port: int64, bind_address: string = '*', recv_buf_size: int64 = 65536): Error
         
         /** Closes the [PacketPeerUDP]'s underlying UDP socket. */
         close(): void
@@ -3378,7 +3378,7 @@ declare module "godot" {
          *      
          *  **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your application is transferring sensitive information.  
          */
-        connect_to_host(host: string, port: number /*i64*/): Error
+        connect_to_host(host: string, port: int64): Error
         
         /** Returns `true` if the UDP socket is open and has been connected to a remote address. See [method connect_to_host]. */
         is_socket_connected(): boolean
@@ -3387,16 +3387,16 @@ declare module "godot" {
         get_packet_ip(): string
         
         /** Returns the port of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]). */
-        get_packet_port(): number /*i64*/
+        get_packet_port(): int64
         
         /** Returns the local port to which this peer is bound. */
-        get_local_port(): number /*i64*/
+        get_local_port(): int64
         
         /** Sets the destination address and port for sending packets and variables. A hostname will be resolved using DNS if needed.  
          *      
          *  **Note:** [method set_broadcast_enabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).  
          */
-        set_dest_address(host: string, port: number /*i64*/): Error
+        set_dest_address(host: string, port: int64): Error
         
         /** Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255", 4343)`. This option is disabled by default.  
          *      
@@ -3655,24 +3655,24 @@ declare module "godot" {
         constructor(identifier?: any)
         set_direction(degrees: Vector3): void
         get_direction(): Vector3
-        set_inherit_velocity_ratio(ratio: number /*f64*/): void
-        get_inherit_velocity_ratio(): number /*f64*/
-        set_spread(degrees: number /*f64*/): void
-        get_spread(): number /*f64*/
-        set_flatness(amount: number /*f64*/): void
-        get_flatness(): number /*f64*/
+        set_inherit_velocity_ratio(ratio: float64): void
+        get_inherit_velocity_ratio(): float64
+        set_spread(degrees: float64): void
+        get_spread(): float64
+        set_flatness(amount: float64): void
+        get_flatness(): float64
         
         /** Sets the minimum value range for the given parameter. */
-        set_param_min(param: ParticleProcessMaterial.Parameter, value: number /*f64*/): void
+        set_param_min(param: ParticleProcessMaterial.Parameter, value: float64): void
         
         /** Returns the minimum value range for the given parameter. */
-        get_param_min(param: ParticleProcessMaterial.Parameter): number /*f64*/
+        get_param_min(param: ParticleProcessMaterial.Parameter): float64
         
         /** Sets the maximum value range for the given parameter. */
-        set_param_max(param: ParticleProcessMaterial.Parameter, value: number /*f64*/): void
+        set_param_max(param: ParticleProcessMaterial.Parameter, value: float64): void
         
         /** Returns the maximum value range for the given parameter. */
-        get_param_max(param: ParticleProcessMaterial.Parameter): number /*f64*/
+        get_param_max(param: ParticleProcessMaterial.Parameter): float64
         
         /** Sets the [Texture2D] for the specified [enum Parameter]. */
         set_param_texture(param: ParticleProcessMaterial.Parameter, texture: Texture2D): void
@@ -3701,8 +3701,8 @@ declare module "godot" {
         get_velocity_pivot(): Vector3
         set_emission_shape(shape: ParticleProcessMaterial.EmissionShape): void
         get_emission_shape(): ParticleProcessMaterial.EmissionShape
-        set_emission_sphere_radius(radius: number /*f64*/): void
-        get_emission_sphere_radius(): number /*f64*/
+        set_emission_sphere_radius(radius: float64): void
+        get_emission_sphere_radius(): float64
         set_emission_box_extents(extents: Vector3): void
         get_emission_box_extents(): Vector3
         set_emission_point_texture(texture: Texture2D): void
@@ -3711,42 +3711,42 @@ declare module "godot" {
         get_emission_normal_texture(): Texture2D
         set_emission_color_texture(texture: Texture2D): void
         get_emission_color_texture(): Texture2D
-        set_emission_point_count(point_count: number /*i64*/): void
-        get_emission_point_count(): number /*i64*/
+        set_emission_point_count(point_count: int64): void
+        get_emission_point_count(): int64
         set_emission_ring_axis(axis: Vector3): void
         get_emission_ring_axis(): Vector3
-        set_emission_ring_height(height: number /*f64*/): void
-        get_emission_ring_height(): number /*f64*/
-        set_emission_ring_radius(radius: number /*f64*/): void
-        get_emission_ring_radius(): number /*f64*/
-        set_emission_ring_inner_radius(inner_radius: number /*f64*/): void
-        get_emission_ring_inner_radius(): number /*f64*/
+        set_emission_ring_height(height: float64): void
+        get_emission_ring_height(): float64
+        set_emission_ring_radius(radius: float64): void
+        get_emission_ring_radius(): float64
+        set_emission_ring_inner_radius(inner_radius: float64): void
+        get_emission_ring_inner_radius(): float64
         set_emission_shape_offset(emission_shape_offset: Vector3): void
         get_emission_shape_offset(): Vector3
         set_emission_shape_scale(emission_shape_scale: Vector3): void
         get_emission_shape_scale(): Vector3
         get_turbulence_enabled(): boolean
         set_turbulence_enabled(turbulence_enabled: boolean): void
-        get_turbulence_noise_strength(): number /*f64*/
-        set_turbulence_noise_strength(turbulence_noise_strength: number /*f64*/): void
-        get_turbulence_noise_scale(): number /*f64*/
-        set_turbulence_noise_scale(turbulence_noise_scale: number /*f64*/): void
-        get_turbulence_noise_speed_random(): number /*f64*/
-        set_turbulence_noise_speed_random(turbulence_noise_speed_random: number /*f64*/): void
+        get_turbulence_noise_strength(): float64
+        set_turbulence_noise_strength(turbulence_noise_strength: float64): void
+        get_turbulence_noise_scale(): float64
+        set_turbulence_noise_scale(turbulence_noise_scale: float64): void
+        get_turbulence_noise_speed_random(): float64
+        set_turbulence_noise_speed_random(turbulence_noise_speed_random: float64): void
         get_turbulence_noise_speed(): Vector3
         set_turbulence_noise_speed(turbulence_noise_speed: Vector3): void
         get_gravity(): Vector3
         set_gravity(accel_vec: Vector3): void
-        set_lifetime_randomness(randomness: number /*f64*/): void
-        get_lifetime_randomness(): number /*f64*/
+        set_lifetime_randomness(randomness: float64): void
+        get_lifetime_randomness(): float64
         get_sub_emitter_mode(): ParticleProcessMaterial.SubEmitterMode
         set_sub_emitter_mode(mode: ParticleProcessMaterial.SubEmitterMode): void
-        get_sub_emitter_frequency(): number /*f64*/
-        set_sub_emitter_frequency(hz: number /*f64*/): void
-        get_sub_emitter_amount_at_end(): number /*i64*/
-        set_sub_emitter_amount_at_end(amount: number /*i64*/): void
-        get_sub_emitter_amount_at_collision(): number /*i64*/
-        set_sub_emitter_amount_at_collision(amount: number /*i64*/): void
+        get_sub_emitter_frequency(): float64
+        set_sub_emitter_frequency(hz: float64): void
+        get_sub_emitter_amount_at_end(): int64
+        set_sub_emitter_amount_at_end(amount: int64): void
+        get_sub_emitter_amount_at_collision(): int64
+        set_sub_emitter_amount_at_collision(amount: int64): void
         get_sub_emitter_keep_velocity(): boolean
         set_sub_emitter_keep_velocity(enable: boolean): void
         set_attractor_interaction_enabled(enabled: boolean): void
@@ -3755,14 +3755,14 @@ declare module "godot" {
         get_collision_mode(): ParticleProcessMaterial.CollisionMode
         set_collision_use_scale(radius: boolean): void
         is_collision_using_scale(): boolean
-        set_collision_friction(friction: number /*f64*/): void
-        get_collision_friction(): number /*f64*/
-        set_collision_bounce(bounce: number /*f64*/): void
-        get_collision_bounce(): number /*f64*/
+        set_collision_friction(friction: float64): void
+        get_collision_friction(): float64
+        set_collision_bounce(bounce: float64): void
+        get_collision_bounce(): float64
         
         /** Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime * (1.0 - randf() * lifetime_randomness)`. For example, a [member lifetime_randomness] of `0.4` scales the lifetime between `0.6` to `1.0` of its original value. */
-        get lifetime_randomness(): number /*f64*/
-        set lifetime_randomness(value: number /*f64*/)
+        get lifetime_randomness(): float64
+        set lifetime_randomness(value: float64)
         
         /** The offset for the [member emission_shape], in local space. */
         get emission_shape_offset(): Vector3
@@ -3773,12 +3773,12 @@ declare module "godot" {
         set emission_shape_scale(value: Vector3)
         
         /** Particles will be emitted inside this region. Use [enum EmissionShape] constants for values. */
-        get emission_shape(): number /*i64*/
-        set emission_shape(value: number /*i64*/)
+        get emission_shape(): int64
+        set emission_shape(value: int64)
         
         /** The sphere's radius if [member emission_shape] is set to [constant EMISSION_SHAPE_SPHERE]. */
-        get emission_sphere_radius(): number /*f64*/
-        set emission_sphere_radius(value: number /*f64*/)
+        get emission_sphere_radius(): float64
+        set emission_sphere_radius(value: float64)
         
         /** The box's extents if [member emission_shape] is set to [constant EMISSION_SHAPE_BOX]. */
         get emission_box_extents(): Vector3
@@ -3800,28 +3800,28 @@ declare module "godot" {
         set emission_color_texture(value: Texture2D)
         
         /** The number of emission points if [member emission_shape] is set to [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
-        get emission_point_count(): number /*i64*/
-        set emission_point_count(value: number /*i64*/)
+        get emission_point_count(): int64
+        set emission_point_count(value: int64)
         
         /** The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
         get emission_ring_axis(): Vector3
         set emission_ring_axis(value: Vector3)
         
         /** The height of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_height(): number /*f64*/
-        set emission_ring_height(value: number /*f64*/)
+        get emission_ring_height(): float64
+        set emission_ring_height(value: float64)
         
         /** The radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_radius(): number /*f64*/
-        set emission_ring_radius(value: number /*f64*/)
+        get emission_ring_radius(): float64
+        set emission_ring_radius(value: float64)
         
         /** The inner radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_inner_radius(): number /*f64*/
-        set emission_ring_inner_radius(value: number /*f64*/)
+        get emission_ring_inner_radius(): float64
+        set emission_ring_inner_radius(value: float64)
         
         /** Percentage of the velocity of the respective [GPUParticles2D] or [GPUParticles3D] inherited by each particle when spawning. */
-        get inherit_velocity_ratio(): number /*f64*/
-        set inherit_velocity_ratio(value: number /*f64*/)
+        get inherit_velocity_ratio(): float64
+        set inherit_velocity_ratio(value: float64)
         
         /** A pivot point used to calculate radial and orbital velocity of particles. */
         get velocity_pivot(): Vector3
@@ -3832,12 +3832,12 @@ declare module "godot" {
         set direction(value: Vector3)
         
         /** Each particle's initial direction range from `+spread` to `-spread` degrees. */
-        get spread(): number /*f64*/
-        set spread(value: number /*f64*/)
+        get spread(): float64
+        set spread(value: float64)
         
         /** Amount of [member spread] along the Y axis. */
-        get flatness(): number /*f64*/
-        set flatness(value: number /*f64*/)
+        get flatness(): float64
+        set flatness(value: float64)
         
         /** A [CurveTexture] that defines the maximum velocity of a particle during its lifetime. */
         get velocity_limit_curve(): CurveTexture
@@ -3891,14 +3891,14 @@ declare module "godot" {
         set turbulence_enabled(value: boolean)
         
         /** The turbulence noise strength. Increasing this will result in a stronger, more contrasting, flow pattern. */
-        get turbulence_noise_strength(): number /*f64*/
-        set turbulence_noise_strength(value: number /*f64*/)
+        get turbulence_noise_strength(): float64
+        set turbulence_noise_strength(value: float64)
         
         /** This value controls the overall scale/frequency of the turbulence noise pattern.  
          *  A small scale will result in smaller features with more detail while a high scale will result in smoother noise with larger features.  
          */
-        get turbulence_noise_scale(): number /*f64*/
-        set turbulence_noise_scale(value: number /*f64*/)
+        get turbulence_noise_scale(): float64
+        set turbulence_noise_scale(value: float64)
         
         /** A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.  
          *  The default value of `Vector3(0, 0, 0)` turns off the scrolling.  
@@ -3909,8 +3909,8 @@ declare module "godot" {
         /** The in-place rate of change of the turbulence field. This defines how quickly the noise pattern varies over time.  
          *  A value of 0.0 will result in a fixed pattern.  
          */
-        get turbulence_noise_speed_random(): number /*f64*/
-        set turbulence_noise_speed_random(value: number /*f64*/)
+        get turbulence_noise_speed_random(): float64
+        set turbulence_noise_speed_random(value: float64)
         
         /** The particles' collision mode.  
          *      
@@ -3918,45 +3918,45 @@ declare module "godot" {
          *      
          *  **Note:** 2D Particles can only collide with [LightOccluder2D] nodes, not [PhysicsBody2D] nodes.  
          */
-        get collision_mode(): number /*i64*/
-        set collision_mode(value: number /*i64*/)
+        get collision_mode(): int64
+        set collision_mode(value: int64)
         
         /** The particles' friction. Values range from `0` (frictionless) to `1` (maximum friction). Only effective if [member collision_mode] is [constant COLLISION_RIGID]. */
-        get collision_friction(): number /*f64*/
-        set collision_friction(value: number /*f64*/)
+        get collision_friction(): float64
+        set collision_friction(value: float64)
         
         /** The particles' bounciness. Values range from `0` (no bounce) to `1` (full bounciness). Only effective if [member collision_mode] is [constant COLLISION_RIGID]. */
-        get collision_bounce(): number /*f64*/
-        set collision_bounce(value: number /*f64*/)
+        get collision_bounce(): float64
+        set collision_bounce(value: float64)
         
         /** If `true`, [member GPUParticles3D.collision_base_size] is multiplied by the particle's effective scale (see [member scale_min], [member scale_max], [member scale_curve], and [member scale_over_velocity_curve]). */
         get collision_use_scale(): boolean
         set collision_use_scale(value: boolean)
         
         /** The particle subemitter mode (see [member GPUParticles2D.sub_emitter] and [member GPUParticles3D.sub_emitter]). */
-        get sub_emitter_mode(): number /*i64*/
-        set sub_emitter_mode(value: number /*i64*/)
+        get sub_emitter_mode(): int64
+        set sub_emitter_mode(value: int64)
         
         /** The frequency at which particles should be emitted from the subemitter node. One particle will be spawned every [member sub_emitter_frequency] seconds.  
          *      
          *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
          */
-        get sub_emitter_frequency(): number /*f64*/
-        set sub_emitter_frequency(value: number /*f64*/)
+        get sub_emitter_frequency(): float64
+        set sub_emitter_frequency(value: float64)
         
         /** The amount of particles to spawn from the subemitter node when the particle expires.  
          *      
          *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
          */
-        get sub_emitter_amount_at_end(): number /*i64*/
-        set sub_emitter_amount_at_end(value: number /*i64*/)
+        get sub_emitter_amount_at_end(): int64
+        set sub_emitter_amount_at_end(value: int64)
         
         /** The amount of particles to spawn from the subemitter node when a collision occurs. When combined with [constant COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to achieve effects such as raindrops hitting the ground.  
          *      
          *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
          */
-        get sub_emitter_amount_at_collision(): number /*i64*/
-        set sub_emitter_amount_at_collision(value: number /*i64*/)
+        get sub_emitter_amount_at_collision(): int64
+        set sub_emitter_amount_at_collision(value: int64)
         
         /** If `true`, the subemitter inherits the parent particle's velocity when it spawns. */
         get sub_emitter_keep_velocity(): boolean
@@ -4012,14 +4012,14 @@ declare module "godot" {
      */
     class PathFollow2D extends Node2D {
         constructor(identifier?: any)
-        set_progress(progress: number /*f64*/): void
-        get_progress(): number /*f64*/
-        set_h_offset(h_offset: number /*f64*/): void
-        get_h_offset(): number /*f64*/
-        set_v_offset(v_offset: number /*f64*/): void
-        get_v_offset(): number /*f64*/
-        set_progress_ratio(ratio: number /*f64*/): void
-        get_progress_ratio(): number /*f64*/
+        set_progress(progress: float64): void
+        get_progress(): float64
+        set_h_offset(h_offset: float64): void
+        get_h_offset(): float64
+        set_v_offset(v_offset: float64): void
+        get_v_offset(): float64
+        set_progress_ratio(ratio: float64): void
+        get_progress_ratio(): float64
         set_rotates(enabled: boolean): void
         is_rotating(): boolean
         set_cubic_interpolation(enabled: boolean): void
@@ -4028,20 +4028,20 @@ declare module "godot" {
         has_loop(): boolean
         
         /** The distance along the path, in pixels. Changing this value sets this node's position to a point within the path. */
-        get progress(): number /*f64*/
-        set progress(value: number /*f64*/)
+        get progress(): float64
+        set progress(value: float64)
         
         /** The distance along the path as a number in the range 0.0 (for the first vertex) to 1.0 (for the last). This is just another way of expressing the progress within the path, as the offset supplied is multiplied internally by the path's length. */
-        get progress_ratio(): number /*f64*/
-        set progress_ratio(value: number /*f64*/)
+        get progress_ratio(): float64
+        set progress_ratio(value: float64)
         
         /** The node's offset along the curve. */
-        get h_offset(): number /*f64*/
-        set h_offset(value: number /*f64*/)
+        get h_offset(): float64
+        set h_offset(value: float64)
         
         /** The node's offset perpendicular to the curve. */
-        get v_offset(): number /*f64*/
-        set v_offset(value: number /*f64*/)
+        get v_offset(): float64
+        set v_offset(value: float64)
         
         /** If `true`, this node rotates to follow the path, with the +X direction facing forward on the path. */
         get rotates(): boolean
@@ -4082,14 +4082,14 @@ declare module "godot" {
      */
     class PathFollow3D extends Node3D {
         constructor(identifier?: any)
-        set_progress(progress: number /*f64*/): void
-        get_progress(): number /*f64*/
-        set_h_offset(h_offset: number /*f64*/): void
-        get_h_offset(): number /*f64*/
-        set_v_offset(v_offset: number /*f64*/): void
-        get_v_offset(): number /*f64*/
-        set_progress_ratio(ratio: number /*f64*/): void
-        get_progress_ratio(): number /*f64*/
+        set_progress(progress: float64): void
+        get_progress(): float64
+        set_h_offset(h_offset: float64): void
+        get_h_offset(): float64
+        set_v_offset(v_offset: float64): void
+        get_v_offset(): float64
+        set_progress_ratio(ratio: float64): void
+        get_progress_ratio(): float64
         set_rotation_mode(rotation_mode: PathFollow3D.RotationMode): void
         get_rotation_mode(): PathFollow3D.RotationMode
         set_cubic_interpolation(enabled: boolean): void
@@ -4105,24 +4105,24 @@ declare module "godot" {
         static correct_posture(transform: Transform3D, rotation_mode: PathFollow3D.RotationMode): Transform3D
         
         /** The distance from the first vertex, measured in 3D units along the path. Changing this value sets this node's position to a point within the path. */
-        get progress(): number /*f64*/
-        set progress(value: number /*f64*/)
+        get progress(): float64
+        set progress(value: float64)
         
         /** The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last. This is just another way of expressing the progress within the path, as the progress supplied is multiplied internally by the path's length. */
-        get progress_ratio(): number /*f64*/
-        set progress_ratio(value: number /*f64*/)
+        get progress_ratio(): float64
+        set progress_ratio(value: float64)
         
         /** The node's offset along the curve. */
-        get h_offset(): number /*f64*/
-        set h_offset(value: number /*f64*/)
+        get h_offset(): float64
+        set h_offset(value: float64)
         
         /** The node's offset perpendicular to the curve. */
-        get v_offset(): number /*f64*/
-        set v_offset(value: number /*f64*/)
+        get v_offset(): float64
+        set v_offset(value: float64)
         
         /** Allows or forbids rotation on one or more axes, depending on the [enum RotationMode] constants being used. */
-        get rotation_mode(): number /*i64*/
-        set rotation_mode(value: number /*i64*/)
+        get rotation_mode(): int64
+        set rotation_mode(value: int64)
         
         /** If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also [constant Vector3.FORWARD] and [constant Vector3.MODEL_FRONT]. */
         get use_model_front(): boolean
@@ -4160,8 +4160,8 @@ declare module "godot" {
         is_simulating_physics(): boolean
         set_bone2d_nodepath(nodepath: NodePath): void
         get_bone2d_nodepath(): NodePath
-        set_bone2d_index(bone_index: number /*i64*/): void
-        get_bone2d_index(): number /*i64*/
+        set_bone2d_index(bone_index: int64): void
+        get_bone2d_index(): int64
         set_follow_bone_when_simulating(follow_bone: boolean): void
         get_follow_bone_when_simulating(): boolean
         
@@ -4170,8 +4170,8 @@ declare module "godot" {
         set bone2d_nodepath(value: NodePath)
         
         /** The index of the [Bone2D] that this [PhysicalBone2D] should simulate. */
-        get bone2d_index(): number /*i64*/
-        set bone2d_index(value: number /*i64*/)
+        get bone2d_index(): int64
+        set bone2d_index(value: int64)
         
         /** If `true`, the [PhysicalBone2D] will automatically configure the first [Joint2D] child node. The automatic configuration is limited to setting up the node properties and positioning the [Joint2D]. */
         get auto_configure_joint(): boolean
@@ -4225,23 +4225,23 @@ declare module "godot" {
         get_body_offset(): Transform3D
         get_simulate_physics(): boolean
         is_simulating_physics(): boolean
-        get_bone_id(): number /*i64*/
-        set_mass(mass: number /*f64*/): void
-        get_mass(): number /*f64*/
-        set_friction(friction: number /*f64*/): void
-        get_friction(): number /*f64*/
-        set_bounce(bounce: number /*f64*/): void
-        get_bounce(): number /*f64*/
-        set_gravity_scale(gravity_scale: number /*f64*/): void
-        get_gravity_scale(): number /*f64*/
+        get_bone_id(): int64
+        set_mass(mass: float64): void
+        get_mass(): float64
+        set_friction(friction: float64): void
+        get_friction(): float64
+        set_bounce(bounce: float64): void
+        get_bounce(): float64
+        set_gravity_scale(gravity_scale: float64): void
+        get_gravity_scale(): float64
         set_linear_damp_mode(linear_damp_mode: PhysicalBone3D.DampMode): void
         get_linear_damp_mode(): PhysicalBone3D.DampMode
         set_angular_damp_mode(angular_damp_mode: PhysicalBone3D.DampMode): void
         get_angular_damp_mode(): PhysicalBone3D.DampMode
-        set_linear_damp(linear_damp: number /*f64*/): void
-        get_linear_damp(): number /*f64*/
-        set_angular_damp(angular_damp: number /*f64*/): void
-        get_angular_damp(): number /*f64*/
+        set_linear_damp(linear_damp: float64): void
+        get_linear_damp(): float64
+        set_angular_damp(angular_damp: float64): void
+        get_angular_damp(): float64
         set_linear_velocity(linear_velocity: Vector3): void
         get_linear_velocity(): Vector3
         set_angular_velocity(angular_velocity: Vector3): void
@@ -4252,8 +4252,8 @@ declare module "godot" {
         is_able_to_sleep(): boolean
         
         /** Sets the joint type. See [enum JointType] for possible values. */
-        get joint_type(): number /*i64*/
-        set joint_type(value: number /*i64*/)
+        get joint_type(): int64
+        set joint_type(value: int64)
         
         /** Sets the joint's transform. */
         get joint_offset(): Transform3D
@@ -4268,47 +4268,47 @@ declare module "godot" {
         set body_offset(value: Transform3D)
         
         /** The body's mass. */
-        get mass(): number /*f64*/
-        set mass(value: number /*f64*/)
+        get mass(): float64
+        set mass(value: float64)
         
         /** The body's friction, from `0` (frictionless) to `1` (max friction). */
-        get friction(): number /*f64*/
-        set friction(value: number /*f64*/)
+        get friction(): float64
+        set friction(value: float64)
         
         /** The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).  
          *      
          *  **Note:** Even with [member bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [PhysicalBone3D] that preserves all its energy over time, set [member bounce] to `1.0`, [member linear_damp_mode] to [constant DAMP_MODE_REPLACE], [member linear_damp] to `0.0`, [member angular_damp_mode] to [constant DAMP_MODE_REPLACE], and [member angular_damp] to `0.0`.  
          */
-        get bounce(): number /*f64*/
-        set bounce(value: number /*f64*/)
+        get bounce(): float64
+        set bounce(value: float64)
         
         /** This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce the body's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object. */
-        get gravity_scale(): number /*f64*/
-        set gravity_scale(value: number /*f64*/)
+        get gravity_scale(): float64
+        set gravity_scale(value: float64)
         
         /** If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [method _integrate_forces] function, if defined. */
         get custom_integrator(): boolean
         set custom_integrator(value: boolean)
         
         /** Defines how [member linear_damp] is applied. See [enum DampMode] for possible values. */
-        get linear_damp_mode(): number /*i64*/
-        set linear_damp_mode(value: number /*i64*/)
+        get linear_damp_mode(): int64
+        set linear_damp_mode(value: int64)
         
         /** Damps the body's movement. By default, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member linear_damp_mode], you can set [member linear_damp] to be added to or to replace the body's damping value.  
          *  See [member ProjectSettings.physics/3d/default_linear_damp] for more details about damping.  
          */
-        get linear_damp(): number /*f64*/
-        set linear_damp(value: number /*f64*/)
+        get linear_damp(): float64
+        set linear_damp(value: float64)
         
         /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
-        get angular_damp_mode(): number /*i64*/
-        set angular_damp_mode(value: number /*i64*/)
+        get angular_damp_mode(): int64
+        set angular_damp_mode(value: int64)
         
         /** Damps the body's rotation. By default, the body will use the **Default Angular Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member angular_damp_mode], you can set [member angular_damp] to be added to or to replace the body's damping value.  
          *  See [member ProjectSettings.physics/3d/default_angular_damp] for more details about damping.  
          */
-        get angular_damp(): number /*f64*/
-        set angular_damp(value: number /*f64*/)
+        get angular_damp(): float64
+        set angular_damp(value: float64)
         
         /** The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state. */
         get linear_velocity(): Vector3
@@ -4334,64 +4334,64 @@ declare module "godot" {
      */
     class PhysicalSkyMaterial extends Material {
         constructor(identifier?: any)
-        set_rayleigh_coefficient(rayleigh: number /*f64*/): void
-        get_rayleigh_coefficient(): number /*f64*/
+        set_rayleigh_coefficient(rayleigh: float64): void
+        get_rayleigh_coefficient(): float64
         set_rayleigh_color(color: Color): void
         get_rayleigh_color(): Color
-        set_mie_coefficient(mie: number /*f64*/): void
-        get_mie_coefficient(): number /*f64*/
-        set_mie_eccentricity(eccentricity: number /*f64*/): void
-        get_mie_eccentricity(): number /*f64*/
+        set_mie_coefficient(mie: float64): void
+        get_mie_coefficient(): float64
+        set_mie_eccentricity(eccentricity: float64): void
+        get_mie_eccentricity(): float64
         set_mie_color(color: Color): void
         get_mie_color(): Color
-        set_turbidity(turbidity: number /*f64*/): void
-        get_turbidity(): number /*f64*/
-        set_sun_disk_scale(scale: number /*f64*/): void
-        get_sun_disk_scale(): number /*f64*/
+        set_turbidity(turbidity: float64): void
+        get_turbidity(): float64
+        set_sun_disk_scale(scale: float64): void
+        get_sun_disk_scale(): float64
         set_ground_color(color: Color): void
         get_ground_color(): Color
-        set_energy_multiplier(multiplier: number /*f64*/): void
-        get_energy_multiplier(): number /*f64*/
+        set_energy_multiplier(multiplier: float64): void
+        get_energy_multiplier(): float64
         set_use_debanding(use_debanding: boolean): void
         get_use_debanding(): boolean
         set_night_sky(night_sky: Texture2D): void
         get_night_sky(): Texture2D
         
         /** Controls the strength of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. Rayleigh scattering results from light colliding with small particles. It is responsible for the blue color of the sky. */
-        get rayleigh_coefficient(): number /*f64*/
-        set rayleigh_coefficient(value: number /*f64*/)
+        get rayleigh_coefficient(): float64
+        set rayleigh_coefficient(value: float64)
         
         /** Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a corresponding blue sunset. */
         get rayleigh_color(): Color
         set rayleigh_color(value: Color)
         
         /** Controls the strength of [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] for the sky. Mie scattering results from light colliding with larger particles (like water). On earth, Mie scattering results in a whitish color around the sun and horizon. */
-        get mie_coefficient(): number /*f64*/
-        set mie_coefficient(value: number /*f64*/)
+        get mie_coefficient(): float64
+        set mie_coefficient(value: float64)
         
         /** Controls the direction of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url]. A value of `1` means that when light hits a particle it's passing through straight forward. A value of `-1` means that all light is scatter backwards. */
-        get mie_eccentricity(): number /*f64*/
-        set mie_eccentricity(value: number /*f64*/)
+        get mie_eccentricity(): float64
+        set mie_eccentricity(value: float64)
         
         /** Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] effect. While not physically accurate, this allows for the creation of alien-looking planets. */
         get mie_color(): Color
         set mie_color(value: Color)
         
         /** Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while a low turbidity results in a clearer atmosphere. */
-        get turbidity(): number /*f64*/
-        set turbidity(value: number /*f64*/)
+        get turbidity(): float64
+        set turbidity(value: float64)
         
         /** Sets the size of the sun disk. Default value is based on Sol's perceived size from Earth. */
-        get sun_disk_scale(): number /*f64*/
-        set sun_disk_scale(value: number /*f64*/)
+        get sun_disk_scale(): float64
+        set sun_disk_scale(value: float64)
         
         /** Modulates the [Color] on the bottom half of the sky to represent the ground. */
         get ground_color(): Color
         set ground_color(value: Color)
         
         /** The sky's overall brightness multiplier. Higher values result in a brighter sky. */
-        get energy_multiplier(): number /*f64*/
-        set energy_multiplier(value: number /*f64*/)
+        get energy_multiplier(): float64
+        set energy_multiplier(value: float64)
         
         /** If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky. */
         get use_debanding(): boolean
@@ -4416,7 +4416,7 @@ declare module "godot" {
          *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody2D.safe_margin] for more details).  
          *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [CharacterBody2D] for improving floor detection during floor snapping.  
          */
-        move_and_collide(motion: Vector2, test_only: boolean = false, safe_margin: number /*f64*/ = 0.08, recovery_as_collision: boolean = false): KinematicCollision2D
+        move_and_collide(motion: Vector2, test_only: boolean = false, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): KinematicCollision2D
         
         /** Checks for collisions without moving the body. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
          *  Virtually sets the node's position, scale and rotation to that of the given [Transform2D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
@@ -4424,7 +4424,7 @@ declare module "godot" {
          *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody2D.safe_margin] for more details).  
          *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
          */
-        test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = <any> {} /*compound.type from nil*/, safe_margin: number /*f64*/ = 0.08, recovery_as_collision: boolean = false): boolean
+        test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = <any> {} /*compound.type from nil*/, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): boolean
         
         /** Returns an array of nodes that were added as collision exceptions for this body. */
         get_collision_exceptions(): Array
@@ -4448,7 +4448,7 @@ declare module "godot" {
          *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.  
          *  [param max_collisions] allows to retrieve more than one collision result.  
          */
-        move_and_collide(motion: Vector3, test_only: boolean = false, safe_margin: number /*f64*/ = 0.001, recovery_as_collision: boolean = false, max_collisions: number /*i64*/ = 1): KinematicCollision3D
+        move_and_collide(motion: Vector3, test_only: boolean = false, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): KinematicCollision3D
         
         /** Checks for collisions without moving the body. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
          *  Virtually sets the node's position, scale and rotation to that of the given [Transform3D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
@@ -4457,7 +4457,7 @@ declare module "godot" {
          *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
          *  [param max_collisions] allows to retrieve more than one collision result.  
          */
-        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = <any> {} /*compound.type from nil*/, safe_margin: number /*f64*/ = 0.001, recovery_as_collision: boolean = false, max_collisions: number /*i64*/ = 1): boolean
+        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = <any> {} /*compound.type from nil*/, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): boolean
         
         /** Locks or unlocks the specified linear or rotational [param axis] depending on the value of [param lock]. */
         set_axis_lock(axis: PhysicsServer3D.BodyAxis, lock: boolean): void
@@ -4481,16 +4481,16 @@ declare module "godot" {
     class PhysicsDirectBodyState2D extends Object {
         constructor(identifier?: any)
         get_total_gravity(): Vector2
-        get_total_linear_damp(): number /*f64*/
-        get_total_angular_damp(): number /*f64*/
+        get_total_linear_damp(): float64
+        get_total_angular_damp(): float64
         get_center_of_mass(): Vector2
         get_center_of_mass_local(): Vector2
-        get_inverse_mass(): number /*f64*/
-        get_inverse_inertia(): number /*f64*/
+        get_inverse_mass(): float64
+        get_inverse_inertia(): float64
         set_linear_velocity(velocity: Vector2): void
         get_linear_velocity(): Vector2
-        set_angular_velocity(velocity: number /*f64*/): void
-        get_angular_velocity(): number /*f64*/
+        set_angular_velocity(velocity: float64): void
+        get_angular_velocity(): float64
         set_transform(transform: Transform2D): void
         get_transform(): Transform2D
         
@@ -4508,7 +4508,7 @@ declare module "godot" {
          *      
          *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inverse_inertia].  
          */
-        apply_torque_impulse(impulse: number /*f64*/): void
+        apply_torque_impulse(impulse: float64): void
         
         /** Applies a positioned impulse to the body.  
          *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
@@ -4530,7 +4530,7 @@ declare module "godot" {
          *      
          *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inverse_inertia].  
          */
-        apply_torque(torque: number /*f64*/): void
+        apply_torque(torque: float64): void
         
         /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
          *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
@@ -4543,7 +4543,7 @@ declare module "godot" {
         add_constant_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
         
         /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = 0`. */
-        add_constant_torque(torque: number /*f64*/): void
+        add_constant_torque(torque: float64): void
         
         /** Sets the body's total constant positional forces applied during each physics update.  
          *  See [method add_constant_force] and [method add_constant_central_force].  
@@ -4558,12 +4558,12 @@ declare module "godot" {
         /** Sets the body's total constant rotational forces applied during each physics update.  
          *  See [method add_constant_torque].  
          */
-        set_constant_torque(torque: number /*f64*/): void
+        set_constant_torque(torque: float64): void
         
         /** Returns the body's total constant rotational forces applied during each physics update.  
          *  See [method add_constant_torque].  
          */
-        get_constant_torque(): number /*f64*/
+        get_constant_torque(): float64
         set_sleep_state(enabled: boolean): void
         is_sleeping(): boolean
         
@@ -4571,41 +4571,41 @@ declare module "godot" {
          *      
          *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody2D.contact_monitor].  
          */
-        get_contact_count(): number /*i64*/
+        get_contact_count(): int64
         
         /** Returns the position of the contact point on the body in the global coordinate system. */
-        get_contact_local_position(contact_idx: number /*i64*/): Vector2
+        get_contact_local_position(contact_idx: int64): Vector2
         
         /** Returns the local normal at the contact point. */
-        get_contact_local_normal(contact_idx: number /*i64*/): Vector2
+        get_contact_local_normal(contact_idx: int64): Vector2
         
         /** Returns the local shape index of the collision. */
-        get_contact_local_shape(contact_idx: number /*i64*/): number /*i64*/
+        get_contact_local_shape(contact_idx: int64): int64
         
         /** Returns the velocity vector at the body's contact point. */
-        get_contact_local_velocity_at_position(contact_idx: number /*i64*/): Vector2
+        get_contact_local_velocity_at_position(contact_idx: int64): Vector2
         
         /** Returns the collider's [RID]. */
-        get_contact_collider(contact_idx: number /*i64*/): RID
+        get_contact_collider(contact_idx: int64): RID
         
         /** Returns the position of the contact point on the collider in the global coordinate system. */
-        get_contact_collider_position(contact_idx: number /*i64*/): Vector2
+        get_contact_collider_position(contact_idx: int64): Vector2
         
         /** Returns the collider's object id. */
-        get_contact_collider_id(contact_idx: number /*i64*/): number /*i64*/
+        get_contact_collider_id(contact_idx: int64): int64
         
         /** Returns the collider object. This depends on how it was created (will return a scene node if such was used to create it). */
-        get_contact_collider_object(contact_idx: number /*i64*/): Object
+        get_contact_collider_object(contact_idx: int64): Object
         
         /** Returns the collider's shape index. */
-        get_contact_collider_shape(contact_idx: number /*i64*/): number /*i64*/
+        get_contact_collider_shape(contact_idx: int64): int64
         
         /** Returns the velocity vector at the collider's contact point. */
-        get_contact_collider_velocity_at_position(contact_idx: number /*i64*/): Vector2
+        get_contact_collider_velocity_at_position(contact_idx: int64): Vector2
         
         /** Returns the impulse created by the contact. */
-        get_contact_impulse(contact_idx: number /*i64*/): Vector2
-        get_step(): number /*f64*/
+        get_contact_impulse(contact_idx: int64): Vector2
+        get_step(): float64
         
         /** Calls the built-in force integration code. */
         integrate_forces(): void
@@ -4614,19 +4614,19 @@ declare module "godot" {
         get_space_state(): PhysicsDirectSpaceState2D
         
         /** The timestep (delta) used for the simulation. */
-        get step(): number /*f64*/
+        get step(): float64
         
         /** The inverse of the mass of the body. */
-        get inverse_mass(): number /*f64*/
+        get inverse_mass(): float64
         
         /** The inverse of the inertia of the body. */
-        get inverse_inertia(): number /*f64*/
+        get inverse_inertia(): float64
         
         /** The rate at which the body stops rotating, if there are not any other forces moving it. */
-        get total_angular_damp(): number /*f64*/
+        get total_angular_damp(): float64
         
         /** The rate at which the body stops moving, if there are not any other forces moving it. */
-        get total_linear_damp(): number /*f64*/
+        get total_linear_damp(): float64
         
         /** The total gravity vector being currently applied to this body. */
         get total_gravity(): Vector2
@@ -4638,8 +4638,8 @@ declare module "godot" {
         get center_of_mass_local(): Vector2
         
         /** The body's rotational velocity in  *radians*  per second. */
-        get angular_velocity(): number /*f64*/
-        set angular_velocity(value: number /*f64*/)
+        get angular_velocity(): float64
+        set angular_velocity(value: float64)
         
         /** The body's linear velocity in pixels per second. */
         get linear_velocity(): Vector2
@@ -4663,10 +4663,10 @@ declare module "godot" {
         /* gdvirtual */ _get_total_gravity(): Vector2
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_linear_damp] and its respective getter. */
-        /* gdvirtual */ _get_total_linear_damp(): number /*f64*/
+        /* gdvirtual */ _get_total_linear_damp(): float64
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_angular_damp] and its respective getter. */
-        /* gdvirtual */ _get_total_angular_damp(): number /*f64*/
+        /* gdvirtual */ _get_total_angular_damp(): float64
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass] and its respective getter. */
         /* gdvirtual */ _get_center_of_mass(): Vector2
@@ -4675,10 +4675,10 @@ declare module "godot" {
         /* gdvirtual */ _get_center_of_mass_local(): Vector2
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_mass] and its respective getter. */
-        /* gdvirtual */ _get_inverse_mass(): number /*f64*/
+        /* gdvirtual */ _get_inverse_mass(): float64
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_inertia] and its respective getter. */
-        /* gdvirtual */ _get_inverse_inertia(): number /*f64*/
+        /* gdvirtual */ _get_inverse_inertia(): float64
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective setter. */
         /* gdvirtual */ _set_linear_velocity(velocity: Vector2): void
@@ -4687,10 +4687,10 @@ declare module "godot" {
         /* gdvirtual */ _get_linear_velocity(): Vector2
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective setter. */
-        /* gdvirtual */ _set_angular_velocity(velocity: number /*f64*/): void
+        /* gdvirtual */ _set_angular_velocity(velocity: float64): void
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective getter. */
-        /* gdvirtual */ _get_angular_velocity(): number /*f64*/
+        /* gdvirtual */ _get_angular_velocity(): float64
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective setter. */
         /* gdvirtual */ _set_transform(transform: Transform2D): void
@@ -4708,7 +4708,7 @@ declare module "godot" {
         /* gdvirtual */ _apply_impulse(impulse: Vector2, position: Vector2): void
         
         /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque_impulse]. */
-        /* gdvirtual */ _apply_torque_impulse(impulse: number /*f64*/): void
+        /* gdvirtual */ _apply_torque_impulse(impulse: float64): void
         
         /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_force]. */
         /* gdvirtual */ _apply_central_force(force: Vector2): void
@@ -4717,7 +4717,7 @@ declare module "godot" {
         /* gdvirtual */ _apply_force(force: Vector2, position: Vector2): void
         
         /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque]. */
-        /* gdvirtual */ _apply_torque(torque: number /*f64*/): void
+        /* gdvirtual */ _apply_torque(torque: float64): void
         
         /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_central_force]. */
         /* gdvirtual */ _add_constant_central_force(force: Vector2): void
@@ -4726,7 +4726,7 @@ declare module "godot" {
         /* gdvirtual */ _add_constant_force(force: Vector2, position: Vector2): void
         
         /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_torque]. */
-        /* gdvirtual */ _add_constant_torque(torque: number /*f64*/): void
+        /* gdvirtual */ _add_constant_torque(torque: float64): void
         
         /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_force]. */
         /* gdvirtual */ _set_constant_force(force: Vector2): void
@@ -4735,10 +4735,10 @@ declare module "godot" {
         /* gdvirtual */ _get_constant_force(): Vector2
         
         /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_torque]. */
-        /* gdvirtual */ _set_constant_torque(torque: number /*f64*/): void
+        /* gdvirtual */ _set_constant_torque(torque: float64): void
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_torque]. */
-        /* gdvirtual */ _get_constant_torque(): number /*f64*/
+        /* gdvirtual */ _get_constant_torque(): float64
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective setter. */
         /* gdvirtual */ _set_sleep_state(enabled: boolean): void
@@ -4747,43 +4747,43 @@ declare module "godot" {
         /* gdvirtual */ _is_sleeping(): boolean
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_count]. */
-        /* gdvirtual */ _get_contact_count(): number /*i64*/
+        /* gdvirtual */ _get_contact_count(): int64
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_position]. */
-        /* gdvirtual */ _get_contact_local_position(contact_idx: number /*i64*/): Vector2
+        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector2
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_normal]. */
-        /* gdvirtual */ _get_contact_local_normal(contact_idx: number /*i64*/): Vector2
+        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector2
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_shape]. */
-        /* gdvirtual */ _get_contact_local_shape(contact_idx: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_velocity_at_position]. */
-        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: number /*i64*/): Vector2
+        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector2
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider]. */
-        /* gdvirtual */ _get_contact_collider(contact_idx: number /*i64*/): RID
+        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_position]. */
-        /* gdvirtual */ _get_contact_collider_position(contact_idx: number /*i64*/): Vector2
+        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector2
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_id]. */
-        /* gdvirtual */ _get_contact_collider_id(contact_idx: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_object]. */
-        /* gdvirtual */ _get_contact_collider_object(contact_idx: number /*i64*/): Object
+        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_shape]. */
-        /* gdvirtual */ _get_contact_collider_shape(contact_idx: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_velocity_at_position]. */
-        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: number /*i64*/): Vector2
+        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector2
         
         /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_impulse]. */
-        /* gdvirtual */ _get_contact_impulse(contact_idx: number /*i64*/): Vector2
+        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector2
         
         /** Implement to override the behavior of [member PhysicsDirectBodyState2D.step] and its respective getter. */
-        /* gdvirtual */ _get_step(): number /*f64*/
+        /* gdvirtual */ _get_step(): float64
         
         /** Overridable version of [method PhysicsDirectBodyState2D.integrate_forces]. */
         /* gdvirtual */ _integrate_forces(): void
@@ -4798,12 +4798,12 @@ declare module "godot" {
     class PhysicsDirectBodyState3D extends Object {
         constructor(identifier?: any)
         get_total_gravity(): Vector3
-        get_total_linear_damp(): number /*f64*/
-        get_total_angular_damp(): number /*f64*/
+        get_total_linear_damp(): float64
+        get_total_angular_damp(): float64
         get_center_of_mass(): Vector3
         get_center_of_mass_local(): Vector3
         get_principal_inertia_axes(): Basis
-        get_inverse_mass(): number /*f64*/
+        get_inverse_mass(): float64
         get_inverse_inertia(): Vector3
         get_inverse_inertia_tensor(): Basis
         set_linear_velocity(velocity: Vector3): void
@@ -4890,41 +4890,41 @@ declare module "godot" {
          *      
          *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody3D.contact_monitor].  
          */
-        get_contact_count(): number /*i64*/
+        get_contact_count(): int64
         
         /** Returns the position of the contact point on the body in the global coordinate system. */
-        get_contact_local_position(contact_idx: number /*i64*/): Vector3
+        get_contact_local_position(contact_idx: int64): Vector3
         
         /** Returns the local normal at the contact point. */
-        get_contact_local_normal(contact_idx: number /*i64*/): Vector3
+        get_contact_local_normal(contact_idx: int64): Vector3
         
         /** Impulse created by the contact. */
-        get_contact_impulse(contact_idx: number /*i64*/): Vector3
+        get_contact_impulse(contact_idx: int64): Vector3
         
         /** Returns the local shape index of the collision. */
-        get_contact_local_shape(contact_idx: number /*i64*/): number /*i64*/
+        get_contact_local_shape(contact_idx: int64): int64
         
         /** Returns the linear velocity vector at the body's contact point. */
-        get_contact_local_velocity_at_position(contact_idx: number /*i64*/): Vector3
+        get_contact_local_velocity_at_position(contact_idx: int64): Vector3
         
         /** Returns the collider's [RID]. */
-        get_contact_collider(contact_idx: number /*i64*/): RID
+        get_contact_collider(contact_idx: int64): RID
         
         /** Returns the position of the contact point on the collider in the global coordinate system. */
-        get_contact_collider_position(contact_idx: number /*i64*/): Vector3
+        get_contact_collider_position(contact_idx: int64): Vector3
         
         /** Returns the collider's object id. */
-        get_contact_collider_id(contact_idx: number /*i64*/): number /*i64*/
+        get_contact_collider_id(contact_idx: int64): int64
         
         /** Returns the collider object. */
-        get_contact_collider_object(contact_idx: number /*i64*/): Object
+        get_contact_collider_object(contact_idx: int64): Object
         
         /** Returns the collider's shape index. */
-        get_contact_collider_shape(contact_idx: number /*i64*/): number /*i64*/
+        get_contact_collider_shape(contact_idx: int64): int64
         
         /** Returns the linear velocity vector at the collider's contact point. */
-        get_contact_collider_velocity_at_position(contact_idx: number /*i64*/): Vector3
-        get_step(): number /*f64*/
+        get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
+        get_step(): float64
         
         /** Calls the built-in force integration code. */
         integrate_forces(): void
@@ -4933,16 +4933,16 @@ declare module "godot" {
         get_space_state(): PhysicsDirectSpaceState3D
         
         /** The timestep (delta) used for the simulation. */
-        get step(): number /*f64*/
+        get step(): float64
         
         /** The inverse of the mass of the body. */
-        get inverse_mass(): number /*f64*/
+        get inverse_mass(): float64
         
         /** The rate at which the body stops rotating, if there are not any other forces moving it. */
-        get total_angular_damp(): number /*f64*/
+        get total_angular_damp(): float64
         
         /** The rate at which the body stops moving, if there are not any other forces moving it. */
-        get total_linear_damp(): number /*f64*/
+        get total_linear_damp(): float64
         
         /** The inverse of the inertia of the body. */
         get inverse_inertia(): Vector3
@@ -4983,12 +4983,12 @@ declare module "godot" {
     class PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
         constructor(identifier?: any)
         /* gdvirtual */ _get_total_gravity(): Vector3
-        /* gdvirtual */ _get_total_linear_damp(): number /*f64*/
-        /* gdvirtual */ _get_total_angular_damp(): number /*f64*/
+        /* gdvirtual */ _get_total_linear_damp(): float64
+        /* gdvirtual */ _get_total_angular_damp(): float64
         /* gdvirtual */ _get_center_of_mass(): Vector3
         /* gdvirtual */ _get_center_of_mass_local(): Vector3
         /* gdvirtual */ _get_principal_inertia_axes(): Basis
-        /* gdvirtual */ _get_inverse_mass(): number /*f64*/
+        /* gdvirtual */ _get_inverse_mass(): float64
         /* gdvirtual */ _get_inverse_inertia(): Vector3
         /* gdvirtual */ _get_inverse_inertia_tensor(): Basis
         /* gdvirtual */ _set_linear_velocity(velocity: Vector3): void
@@ -5013,19 +5013,19 @@ declare module "godot" {
         /* gdvirtual */ _get_constant_torque(): Vector3
         /* gdvirtual */ _set_sleep_state(enabled: boolean): void
         /* gdvirtual */ _is_sleeping(): boolean
-        /* gdvirtual */ _get_contact_count(): number /*i64*/
-        /* gdvirtual */ _get_contact_local_position(contact_idx: number /*i64*/): Vector3
-        /* gdvirtual */ _get_contact_local_normal(contact_idx: number /*i64*/): Vector3
-        /* gdvirtual */ _get_contact_impulse(contact_idx: number /*i64*/): Vector3
-        /* gdvirtual */ _get_contact_local_shape(contact_idx: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: number /*i64*/): Vector3
-        /* gdvirtual */ _get_contact_collider(contact_idx: number /*i64*/): RID
-        /* gdvirtual */ _get_contact_collider_position(contact_idx: number /*i64*/): Vector3
-        /* gdvirtual */ _get_contact_collider_id(contact_idx: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _get_contact_collider_object(contact_idx: number /*i64*/): Object
-        /* gdvirtual */ _get_contact_collider_shape(contact_idx: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: number /*i64*/): Vector3
-        /* gdvirtual */ _get_step(): number /*f64*/
+        /* gdvirtual */ _get_contact_count(): int64
+        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
+        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
+        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_step(): float64
         /* gdvirtual */ _integrate_forces(): void
         /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState3D
     }
@@ -5044,7 +5044,7 @@ declare module "godot" {
          *      
          *  **Note:** [ConcavePolygonShape2D]s and [CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.  
          */
-        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: number /*i64*/ = 32): Array
+        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: int64 = 32): Array
         
         /** Intersects a ray in a given space. Ray position and other parameters are defined through [PhysicsRayQueryParameters2D]. The returned object is a dictionary with the following fields:  
          *  `collider`: The colliding object.  
@@ -5064,7 +5064,7 @@ declare module "godot" {
          *  `shape`: The shape index of the colliding shape.  
          *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
          */
-        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: number /*i64*/ = 32): Array
+        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): Array
         
         /** Checks how far a [Shape2D] can move without colliding. All the parameters for the query, including the shape and the motion, are supplied through a [PhysicsShapeQueryParameters2D] object.  
          *  Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.  
@@ -5076,7 +5076,7 @@ declare module "godot" {
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. The resulting array contains a list of points where the shape intersects another. Like with [method intersect_shape], the number of returned results can be limited to save processing time.  
          *  Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [PhysicsShapeQueryParameters2D] object, second one is in the collided shape from the physics space.  
          */
-        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: number /*i64*/ = 32): Array
+        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): Array
         
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. If it collides with more than one shape, the nearest one is selected. If the shape did not intersect anything, then an empty dictionary is returned instead.  
          *      
@@ -5096,12 +5096,12 @@ declare module "godot" {
      */
     class PhysicsDirectSpaceState2DExtension extends PhysicsDirectSpaceState2D {
         constructor(identifier?: any)
-        /* gdvirtual */ _intersect_ray(from: Vector2, to: Vector2, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, hit_from_inside: boolean, result: number /*i64*/): boolean
-        /* gdvirtual */ _intersect_point(position: Vector2, canvas_instance_id: number /*i64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, results: number /*i64*/, max_results: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _intersect_shape(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, result: number /*i64*/, max_results: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _cast_motion(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, closest_safe: number /*i64*/, closest_unsafe: number /*i64*/): boolean
-        /* gdvirtual */ _collide_shape(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, results: number /*i64*/, max_results: number /*i64*/, result_count: number /*i64*/): boolean
-        /* gdvirtual */ _rest_info(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, rest_info: number /*i64*/): boolean
+        /* gdvirtual */ _intersect_ray(from: Vector2, to: Vector2, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, hit_from_inside: boolean, result: int64): boolean
+        /* gdvirtual */ _intersect_point(position: Vector2, canvas_instance_id: int64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, results: int64, max_results: int64): int64
+        /* gdvirtual */ _intersect_shape(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: float64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, result: int64, max_results: int64): int64
+        /* gdvirtual */ _cast_motion(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: float64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, closest_safe: int64, closest_unsafe: int64): boolean
+        /* gdvirtual */ _collide_shape(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: float64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, results: int64, max_results: int64, result_count: int64): boolean
+        /* gdvirtual */ _rest_info(shape_rid: RID, transform: Transform2D, motion: Vector2, margin: float64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, rest_info: int64): boolean
         is_body_excluded_from_query(body: RID): boolean
     }
     /** Provides direct access to a physics space in the [PhysicsServer3D].  
@@ -5117,7 +5117,7 @@ declare module "godot" {
          *  `shape`: The shape index of the colliding shape.  
          *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
          */
-        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: number /*i64*/ = 32): Array
+        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: int64 = 32): Array
         
         /** Intersects a ray in a given space. Ray position and other parameters are defined through [PhysicsRayQueryParameters3D]. The returned object is a dictionary with the following fields:  
          *  `collider`: The colliding object.  
@@ -5142,7 +5142,7 @@ declare module "godot" {
          *      
          *  **Note:** This method does not take into account the `motion` property of the object.  
          */
-        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: number /*i64*/ = 32): Array
+        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): Array
         
         /** Checks how far a [Shape3D] can move without colliding. All the parameters for the query, including the shape, are supplied through a [PhysicsShapeQueryParameters3D] object.  
          *  Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.  
@@ -5156,7 +5156,7 @@ declare module "godot" {
          *      
          *  **Note:** This method does not take into account the `motion` property of the object.  
          */
-        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: number /*i64*/ = 32): Array
+        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): Array
         
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters3D] object, against the space. If it collides with more than one shape, the nearest one is selected. The returned object is a dictionary containing the following fields:  
          *  `collider_id`: The colliding object's ID.  
@@ -5177,12 +5177,12 @@ declare module "godot" {
      */
     class PhysicsDirectSpaceState3DExtension extends PhysicsDirectSpaceState3D {
         constructor(identifier?: any)
-        /* gdvirtual */ _intersect_ray(from: Vector3, to: Vector3, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, hit_from_inside: boolean, hit_back_faces: boolean, pick_ray: boolean, result: number /*i64*/): boolean
-        /* gdvirtual */ _intersect_point(position: Vector3, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, results: number /*i64*/, max_results: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _intersect_shape(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, result_count: number /*i64*/, max_results: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _cast_motion(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, closest_safe: number /*i64*/, closest_unsafe: number /*i64*/, info: number /*i64*/): boolean
-        /* gdvirtual */ _collide_shape(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, results: number /*i64*/, max_results: number /*i64*/, result_count: number /*i64*/): boolean
-        /* gdvirtual */ _rest_info(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: number /*f64*/, collision_mask: number /*i64*/, collide_with_bodies: boolean, collide_with_areas: boolean, rest_info: number /*i64*/): boolean
+        /* gdvirtual */ _intersect_ray(from: Vector3, to: Vector3, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, hit_from_inside: boolean, hit_back_faces: boolean, pick_ray: boolean, result: int64): boolean
+        /* gdvirtual */ _intersect_point(position: Vector3, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, results: int64, max_results: int64): int64
+        /* gdvirtual */ _intersect_shape(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: float64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, result_count: int64, max_results: int64): int64
+        /* gdvirtual */ _cast_motion(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: float64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, closest_safe: int64, closest_unsafe: int64, info: int64): boolean
+        /* gdvirtual */ _collide_shape(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: float64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, results: int64, max_results: int64, result_count: int64): boolean
+        /* gdvirtual */ _rest_info(shape_rid: RID, transform: Transform3D, motion: Vector3, margin: float64, collision_mask: int64, collide_with_bodies: boolean, collide_with_areas: boolean, rest_info: int64): boolean
         /* gdvirtual */ _get_closest_point_to_object_volume(object: RID, point: Vector3): Vector3
         is_body_excluded_from_query(body: RID): boolean
     }
@@ -5192,18 +5192,18 @@ declare module "godot" {
      */
     class PhysicsMaterial extends Resource {
         constructor(identifier?: any)
-        set_friction(friction: number /*f64*/): void
-        get_friction(): number /*f64*/
+        set_friction(friction: float64): void
+        get_friction(): float64
         set_rough(rough: boolean): void
         is_rough(): boolean
-        set_bounce(bounce: number /*f64*/): void
-        get_bounce(): number /*f64*/
+        set_bounce(bounce: float64): void
+        get_bounce(): float64
         set_absorbent(absorbent: boolean): void
         is_absorbent(): boolean
         
         /** The body's friction. Values range from `0` (frictionless) to `1` (maximum friction). */
-        get friction(): number /*f64*/
-        set friction(value: number /*f64*/)
+        get friction(): float64
+        set friction(value: float64)
         
         /** If `true`, the physics engine will use the friction of the object marked as "rough" when two objects collide. If `false`, the physics engine will use the lowest friction of all colliding objects instead. If `true` for both colliding objects, the physics engine will use the highest friction. */
         get rough(): boolean
@@ -5213,8 +5213,8 @@ declare module "godot" {
          *      
          *  **Note:** Even with [member bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [PhysicsBody3D] that preserves all its energy over time, set [member bounce] to `1.0`, the body's linear damp mode to **Replace** (if applicable), its linear damp to `0.0`, its angular damp mode to **Replace** (if applicable), and its angular damp to `0.0`.  
          */
-        get bounce(): number /*f64*/
-        set bounce(value: number /*f64*/)
+        get bounce(): float64
+        set bounce(value: float64)
         
         /** If `true`, subtracts the bounciness from the colliding object's bounciness instead of adding it. */
         get absorbent(): boolean
@@ -5228,10 +5228,10 @@ declare module "godot" {
         constructor(identifier?: any)
         set_position(position: Vector2): void
         get_position(): Vector2
-        set_canvas_instance_id(canvas_instance_id: number /*i64*/): void
-        get_canvas_instance_id(): number /*i64*/
-        set_collision_mask(collision_mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_canvas_instance_id(canvas_instance_id: int64): void
+        get_canvas_instance_id(): int64
+        set_collision_mask(collision_mask: int64): void
+        get_collision_mask(): int64
         set_exclude(exclude: Array): void
         get_exclude(): Array
         set_collide_with_bodies(enable: boolean): void
@@ -5246,12 +5246,12 @@ declare module "godot" {
         /** If different from `0`, restricts the query to a specific canvas layer specified by its instance ID. See [method Object.get_instance_id].  
          *  If `0`, restricts the query to the Viewport's default canvas layer.  
          */
-        get canvas_instance_id(): number /*i64*/
-        set canvas_instance_id(value: number /*i64*/)
+        get canvas_instance_id(): int64
+        set canvas_instance_id(value: int64)
         
         /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
         get exclude(): Array
@@ -5273,8 +5273,8 @@ declare module "godot" {
         constructor(identifier?: any)
         set_position(position: Vector3): void
         get_position(): Vector3
-        set_collision_mask(collision_mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_collision_mask(collision_mask: int64): void
+        get_collision_mask(): int64
         set_exclude(exclude: Array): void
         get_exclude(): Array
         set_collide_with_bodies(enable: boolean): void
@@ -5287,8 +5287,8 @@ declare module "godot" {
         set position(value: Vector3)
         
         /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
         get exclude(): Array
@@ -5311,13 +5311,13 @@ declare module "godot" {
         /** Returns a new, pre-configured [PhysicsRayQueryParameters2D] object. Use it to quickly create query parameters using the most common options.  
          *    
          */
-        static create(from: Vector2, to: Vector2, collision_mask: number /*i64*/ = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters2D
+        static create(from: Vector2, to: Vector2, collision_mask: int64 = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters2D
         set_from(from: Vector2): void
         get_from(): Vector2
         set_to(to: Vector2): void
         get_to(): Vector2
-        set_collision_mask(collision_mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_collision_mask(collision_mask: int64): void
+        get_collision_mask(): int64
         set_exclude(exclude: Array): void
         get_exclude(): Array
         set_collide_with_bodies(enable: boolean): void
@@ -5336,8 +5336,8 @@ declare module "godot" {
         set to(value: Vector2)
         
         /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
         get exclude(): Array
@@ -5364,13 +5364,13 @@ declare module "godot" {
         /** Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create query parameters using the most common options.  
          *    
          */
-        static create(from: Vector3, to: Vector3, collision_mask: number /*i64*/ = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters3D
+        static create(from: Vector3, to: Vector3, collision_mask: int64 = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters3D
         set_from(from: Vector3): void
         get_from(): Vector3
         set_to(to: Vector3): void
         get_to(): Vector3
-        set_collision_mask(collision_mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_collision_mask(collision_mask: int64): void
+        get_collision_mask(): int64
         set_exclude(exclude: Array): void
         get_exclude(): Array
         set_collide_with_bodies(enable: boolean): void
@@ -5391,8 +5391,8 @@ declare module "godot" {
         set to(value: Vector3)
         
         /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
         get exclude(): Array
@@ -5424,22 +5424,22 @@ declare module "godot" {
          *      
          *  **Note:** The [param vertex] parameter used to be of type `const void*` prior to Godot 4.2.  
          */
-        /* gdvirtual */ _set_vertex(vertex_id: number /*i64*/, vertex: Vector3): void
+        /* gdvirtual */ _set_vertex(vertex_id: int64, vertex: Vector3): void
         
         /** Called by the [PhysicsServer3D] to set the normal for the [SoftBody3D] vertex at the index specified by [param vertex_id].  
          *      
          *  **Note:** The [param normal] parameter used to be of type `const void*` prior to Godot 4.2.  
          */
-        /* gdvirtual */ _set_normal(vertex_id: number /*i64*/, normal: Vector3): void
+        /* gdvirtual */ _set_normal(vertex_id: int64, normal: Vector3): void
         
         /** Called by the [PhysicsServer3D] to set the bounding box for the [SoftBody3D]. */
         /* gdvirtual */ _set_aabb(aabb: AABB): void
         
         /** Sets the position for the [SoftBody3D] vertex at the index specified by [param vertex_id]. */
-        set_vertex(vertex_id: number /*i64*/, vertex: Vector3): void
+        set_vertex(vertex_id: int64, vertex: Vector3): void
         
         /** Sets the normal for the [SoftBody3D] vertex at the index specified by [param vertex_id]. */
-        set_normal(vertex_id: number /*i64*/, normal: Vector3): void
+        set_normal(vertex_id: int64, normal: Vector3): void
         
         /** Sets the bounding box for the [SoftBody3D]. */
         set_aabb(aabb: AABB): void
@@ -5458,10 +5458,10 @@ declare module "godot" {
         get_transform(): Transform2D
         set_motion(motion: Vector2): void
         get_motion(): Vector2
-        set_margin(margin: number /*f64*/): void
-        get_margin(): number /*f64*/
-        set_collision_mask(collision_mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_margin(margin: float64): void
+        get_margin(): float64
+        set_collision_mask(collision_mask: int64): void
+        get_collision_mask(): int64
         set_exclude(exclude: Array): void
         get_exclude(): Array
         set_collide_with_bodies(enable: boolean): void
@@ -5470,16 +5470,16 @@ declare module "godot" {
         is_collide_with_areas_enabled(): boolean
         
         /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
         get exclude(): Array
         set exclude(value: Array)
         
         /** The collision margin for the shape. */
-        get margin(): number /*f64*/
-        set margin(value: number /*f64*/)
+        get margin(): float64
+        set margin(value: float64)
         
         /** The motion of the shape being queried for. */
         get motion(): Vector2
@@ -5521,10 +5521,10 @@ declare module "godot" {
         get_transform(): Transform3D
         set_motion(motion: Vector3): void
         get_motion(): Vector3
-        set_margin(margin: number /*f64*/): void
-        get_margin(): number /*f64*/
-        set_collision_mask(collision_mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_margin(margin: float64): void
+        get_margin(): float64
+        set_collision_mask(collision_mask: int64): void
+        get_collision_mask(): int64
         set_exclude(exclude: Array): void
         get_exclude(): Array
         set_collide_with_bodies(enable: boolean): void
@@ -5533,16 +5533,16 @@ declare module "godot" {
         is_collide_with_areas_enabled(): boolean
         
         /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
         get exclude(): Array
         set exclude(value: Array)
         
         /** The collision margin for the shape. */
-        get margin(): number /*f64*/
-        set margin(value: number /*f64*/)
+        get margin(): float64
+        set margin(value: float64)
         
         /** The motion of the shape being queried for. */
         get motion(): Vector2
@@ -5580,8 +5580,8 @@ declare module "godot" {
         set_from(from: Transform2D): void
         get_motion(): Vector2
         set_motion(motion: Vector2): void
-        get_margin(): number /*f64*/
-        set_margin(margin: number /*f64*/): void
+        get_margin(): float64
+        set_margin(margin: float64): void
         is_collide_separation_ray_enabled(): boolean
         set_collide_separation_ray_enabled(enabled: boolean): void
         get_exclude_bodies(): Array
@@ -5600,8 +5600,8 @@ declare module "godot" {
         set motion(value: Vector2)
         
         /** Increases the size of the shapes involved in the collision detection. */
-        get margin(): number /*f64*/
-        set margin(value: number /*f64*/)
+        get margin(): float64
+        set margin(value: float64)
         
         /** If set to `true`, shapes of type [constant PhysicsServer2D.SHAPE_SEPARATION_RAY] are used to detect collisions and can stop the motion. Can be useful when snapping to the ground.  
          *  If set to `false`, shapes of type [constant PhysicsServer2D.SHAPE_SEPARATION_RAY] are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.  
@@ -5633,10 +5633,10 @@ declare module "godot" {
         set_from(from: Transform3D): void
         get_motion(): Vector3
         set_motion(motion: Vector3): void
-        get_margin(): number /*f64*/
-        set_margin(margin: number /*f64*/): void
-        get_max_collisions(): number /*i64*/
-        set_max_collisions(max_collisions: number /*i64*/): void
+        get_margin(): float64
+        set_margin(margin: float64): void
+        get_max_collisions(): int64
+        set_max_collisions(max_collisions: int64): void
         is_collide_separation_ray_enabled(): boolean
         set_collide_separation_ray_enabled(enabled: boolean): void
         get_exclude_bodies(): Array
@@ -5655,12 +5655,12 @@ declare module "godot" {
         set motion(value: Vector3)
         
         /** Increases the size of the shapes involved in the collision detection. */
-        get margin(): number /*f64*/
-        set margin(value: number /*f64*/)
+        get margin(): float64
+        set margin(value: float64)
         
         /** Maximum number of returned collisions, between `1` and `32`. Always returns the deepest detected collisions. */
-        get max_collisions(): number /*i64*/
-        set max_collisions(value: number /*i64*/)
+        get max_collisions(): int64
+        set max_collisions(value: int64)
         
         /** If set to `true`, shapes of type [constant PhysicsServer3D.SHAPE_SEPARATION_RAY] are used to detect collisions and can stop the motion. Can be useful when snapping to the ground.  
          *  If set to `false`, shapes of type [constant PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.  
@@ -5704,7 +5704,7 @@ declare module "godot" {
         get_collider_velocity(): Vector2
         
         /** Returns the unique instance ID of the colliding body's attached [Object], if a collision occurred. See [method Object.get_instance_id]. */
-        get_collider_id(): number /*i64*/
+        get_collider_id(): int64
         
         /** Returns the colliding body's [RID] used by the [PhysicsServer2D], if a collision occurred. */
         get_collider_rid(): RID
@@ -5713,19 +5713,19 @@ declare module "godot" {
         get_collider(): Object
         
         /** Returns the colliding body's shape index, if a collision occurred. See [CollisionObject2D]. */
-        get_collider_shape(): number /*i64*/
+        get_collider_shape(): int64
         
         /** Returns the moving object's colliding shape, if a collision occurred. */
-        get_collision_local_shape(): number /*i64*/
+        get_collision_local_shape(): int64
         
         /** Returns the length of overlap along the collision normal, if a collision occurred. */
-        get_collision_depth(): number /*f64*/
+        get_collision_depth(): float64
         
         /** Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`. */
-        get_collision_safe_fraction(): number /*f64*/
+        get_collision_safe_fraction(): float64
         
         /** Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`. */
-        get_collision_unsafe_fraction(): number /*f64*/
+        get_collision_unsafe_fraction(): float64
     }
     /** Describes the motion and collision result from [method PhysicsServer3D.body_test_motion].  
      *  	  
@@ -5740,40 +5740,40 @@ declare module "godot" {
         get_remainder(): Vector3
         
         /** Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`. */
-        get_collision_safe_fraction(): number /*f64*/
+        get_collision_safe_fraction(): float64
         
         /** Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`. */
-        get_collision_unsafe_fraction(): number /*f64*/
+        get_collision_unsafe_fraction(): float64
         
         /** Returns the number of detected collisions. */
-        get_collision_count(): number /*i64*/
+        get_collision_count(): int64
         
         /** Returns the point of collision in global coordinates given a collision index (the deepest collision by default), if a collision occurred. */
-        get_collision_point(collision_index: number /*i64*/ = 0): Vector3
+        get_collision_point(collision_index: int64 = 0): Vector3
         
         /** Returns the colliding body's shape's normal at the point of collision given a collision index (the deepest collision by default), if a collision occurred. */
-        get_collision_normal(collision_index: number /*i64*/ = 0): Vector3
+        get_collision_normal(collision_index: int64 = 0): Vector3
         
         /** Returns the colliding body's velocity given a collision index (the deepest collision by default), if a collision occurred. */
-        get_collider_velocity(collision_index: number /*i64*/ = 0): Vector3
+        get_collider_velocity(collision_index: int64 = 0): Vector3
         
         /** Returns the unique instance ID of the colliding body's attached [Object] given a collision index (the deepest collision by default), if a collision occurred. See [method Object.get_instance_id]. */
-        get_collider_id(collision_index: number /*i64*/ = 0): number /*i64*/
+        get_collider_id(collision_index: int64 = 0): int64
         
         /** Returns the colliding body's [RID] used by the [PhysicsServer3D] given a collision index (the deepest collision by default), if a collision occurred. */
-        get_collider_rid(collision_index: number /*i64*/ = 0): RID
+        get_collider_rid(collision_index: int64 = 0): RID
         
         /** Returns the colliding body's attached [Object] given a collision index (the deepest collision by default), if a collision occurred. */
-        get_collider(collision_index: number /*i64*/ = 0): Object
+        get_collider(collision_index: int64 = 0): Object
         
         /** Returns the colliding body's shape index given a collision index (the deepest collision by default), if a collision occurred. See [CollisionObject3D]. */
-        get_collider_shape(collision_index: number /*i64*/ = 0): number /*i64*/
+        get_collider_shape(collision_index: int64 = 0): int64
         
         /** Returns the moving object's colliding shape given a collision index (the deepest collision by default), if a collision occurred. */
-        get_collision_local_shape(collision_index: number /*i64*/ = 0): number /*i64*/
+        get_collision_local_shape(collision_index: int64 = 0): int64
         
         /** Returns the length of overlap along the collision normal given a collision index (the deepest collision by default), if a collision occurred. */
-        get_collision_depth(collision_index: number /*i64*/ = 0): number /*f64*/
+        get_collision_depth(collision_index: int64 = 0): float64
     }
     /** A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely rotate.  
      *  	  
@@ -5781,42 +5781,42 @@ declare module "godot" {
      */
     class PinJoint2D extends Joint2D {
         constructor(identifier?: any)
-        set_softness(softness: number /*f64*/): void
-        get_softness(): number /*f64*/
-        set_angular_limit_lower(angular_limit_lower: number /*f64*/): void
-        get_angular_limit_lower(): number /*f64*/
-        set_angular_limit_upper(angular_limit_upper: number /*f64*/): void
-        get_angular_limit_upper(): number /*f64*/
-        set_motor_target_velocity(motor_target_velocity: number /*f64*/): void
-        get_motor_target_velocity(): number /*f64*/
+        set_softness(softness: float64): void
+        get_softness(): float64
+        set_angular_limit_lower(angular_limit_lower: float64): void
+        get_angular_limit_lower(): float64
+        set_angular_limit_upper(angular_limit_upper: float64): void
+        get_angular_limit_upper(): float64
+        set_motor_target_velocity(motor_target_velocity: float64): void
+        get_motor_target_velocity(): float64
         set_motor_enabled(enabled: boolean): void
         is_motor_enabled(): boolean
         set_angular_limit_enabled(enabled: boolean): void
         is_angular_limit_enabled(): boolean
         
         /** The higher this value, the more the bond to the pinned partner can flex. */
-        get softness(): number /*f64*/
-        set softness(value: number /*f64*/)
+        get softness(): float64
+        set softness(value: float64)
         
         /** If `true`, the pin maximum and minimum rotation, defined by [member angular_limit_lower] and [member angular_limit_upper] are applied. */
         get angular_limit_enabled(): boolean
         set angular_limit_enabled(value: boolean)
         
         /** The minimum rotation. Only active if [member angular_limit_enabled] is `true`. */
-        get angular_limit_lower(): number /*f64*/
-        set angular_limit_lower(value: number /*f64*/)
+        get angular_limit_lower(): float64
+        set angular_limit_lower(value: float64)
         
         /** The maximum rotation. Only active if [member angular_limit_enabled] is `true`. */
-        get angular_limit_upper(): number /*f64*/
-        set angular_limit_upper(value: number /*f64*/)
+        get angular_limit_upper(): float64
+        set angular_limit_upper(value: float64)
         
         /** When activated, a motor turns the pin. */
         get motor_enabled(): boolean
         set motor_enabled(value: boolean)
         
         /** Target speed for the motor. In radians per second. */
-        get motor_target_velocity(): number /*f64*/
-        set motor_target_velocity(value: number /*f64*/)
+        get motor_target_velocity(): float64
+        set motor_target_velocity(value: float64)
     }
     namespace PinJoint3D {
         enum Param {
@@ -5837,10 +5837,10 @@ declare module "godot" {
     class PinJoint3D extends Joint3D {
         constructor(identifier?: any)
         /** Sets the value of the specified parameter. */
-        set_param(param: PinJoint3D.Param, value: number /*f64*/): void
+        set_param(param: PinJoint3D.Param, value: float64): void
         
         /** Returns the value of the specified parameter. */
-        get_param(param: PinJoint3D.Param): number /*f64*/
+        get_param(param: PinJoint3D.Param): float64
     }
     /** A [Cubemap] without image data.  
      *  	  
@@ -5915,15 +5915,15 @@ declare module "godot" {
         constructor(identifier?: any)
         set_size(size: Vector2i): void
         get_size(): Vector2i
-        set_layers(layers: number /*i64*/): void
+        set_layers(layers: int64): void
         
         /** The size of each texture layer (in pixels). */
         get size(): Vector2i
         set size(value: Vector2i)
         
         /** The number of layers in the texture array. */
-        get layers(): number /*i64*/
-        set layers(value: number /*i64*/)
+        get layers(): int64
+        set layers(value: int64)
     }
     namespace PlaneMesh {
         enum Orientation {
@@ -5945,10 +5945,10 @@ declare module "godot" {
         constructor(identifier?: any)
         set_size(size: Vector2): void
         get_size(): Vector2
-        set_subdivide_width(subdivide: number /*i64*/): void
-        get_subdivide_width(): number /*i64*/
-        set_subdivide_depth(subdivide: number /*i64*/): void
-        get_subdivide_depth(): number /*i64*/
+        set_subdivide_width(subdivide: int64): void
+        get_subdivide_width(): int64
+        set_subdivide_depth(subdivide: int64): void
+        get_subdivide_depth(): int64
         set_center_offset(offset: Vector3): void
         get_center_offset(): Vector3
         set_orientation(orientation: PlaneMesh.Orientation): void
@@ -5959,20 +5959,20 @@ declare module "godot" {
         set size(value: Vector2)
         
         /** Number of subdivision along the X axis. */
-        get subdivide_width(): number /*i64*/
-        set subdivide_width(value: number /*i64*/)
+        get subdivide_width(): int64
+        set subdivide_width(value: int64)
         
         /** Number of subdivision along the Z axis. */
-        get subdivide_depth(): number /*i64*/
-        set subdivide_depth(value: number /*i64*/)
+        get subdivide_depth(): int64
+        set subdivide_depth(value: int64)
         
         /** Offset of the generated plane. Useful for particles. */
         get center_offset(): Vector3
         set center_offset(value: Vector3)
         
         /** Direction that the [PlaneMesh] is facing. See [enum Orientation] for options. */
-        get orientation(): number /*i64*/
-        set orientation(value: number /*i64*/)
+        get orientation(): int64
+        set orientation(value: int64)
     }
     class PluginConfigDialog extends ConfirmationDialog {
         constructor(identifier?: any)
@@ -5988,8 +5988,8 @@ declare module "godot" {
         get_texture(): Texture2D
         set_texture_offset(texture_offset: Vector2): void
         get_texture_offset(): Vector2
-        set_texture_scale(texture_scale: number /*f64*/): void
-        get_texture_scale(): number /*f64*/
+        set_texture_scale(texture_scale: float64): void
+        get_texture_scale(): float64
         
         /** [Texture2D] used for the light's appearance. */
         get texture(): Texture2D
@@ -6000,12 +6000,12 @@ declare module "godot" {
         set offset(value: Vector2)
         
         /** The [member texture]'s scale factor. */
-        get texture_scale(): number /*f64*/
-        set texture_scale(value: number /*f64*/)
+        get texture_scale(): float64
+        set texture_scale(value: float64)
         
         /** The height of the light. Used with 2D normal mapping. The units are in pixels, e.g. if the height is 100, then it will illuminate an object 100 pixels away at a 45° angle to the plane. */
-        get height(): number /*f64*/
-        set height(value: number /*f64*/)
+        get height(): float64
+        set height(value: float64)
     }
     /** Mesh with a single Point primitive.  
      *  	  
@@ -6034,16 +6034,16 @@ declare module "godot" {
         get_texture(): Texture2D
         set_texture_offset(texture_offset: Vector2): void
         get_texture_offset(): Vector2
-        set_texture_rotation(texture_rotation: number /*f64*/): void
-        get_texture_rotation(): number /*f64*/
+        set_texture_rotation(texture_rotation: float64): void
+        get_texture_rotation(): float64
         set_texture_scale(texture_scale: Vector2): void
         get_texture_scale(): Vector2
         set_invert_enabled(invert: boolean): void
         get_invert_enabled(): boolean
         set_antialiased(antialiased: boolean): void
         get_antialiased(): boolean
-        set_invert_border(invert_border: number /*f64*/): void
-        get_invert_border(): number /*f64*/
+        set_invert_border(invert_border: float64): void
+        get_invert_border(): float64
         set_offset(offset: Vector2): void
         get_offset(): Vector2
         
@@ -6051,29 +6051,29 @@ declare module "godot" {
         add_bone(path: NodePath, weights: PackedFloat32Array): void
         
         /** Returns the number of bones in this [Polygon2D]. */
-        get_bone_count(): number /*i64*/
+        get_bone_count(): int64
         
         /** Returns the path to the node associated with the specified bone. */
-        get_bone_path(index: number /*i64*/): NodePath
+        get_bone_path(index: int64): NodePath
         
         /** Returns the weight values of the specified bone. */
-        get_bone_weights(index: number /*i64*/): PackedFloat32Array
+        get_bone_weights(index: int64): PackedFloat32Array
         
         /** Removes the specified bone from this [Polygon2D]. */
-        erase_bone(index: number /*i64*/): void
+        erase_bone(index: int64): void
         
         /** Removes all bones from this [Polygon2D]. */
         clear_bones(): void
         
         /** Sets the path to the node associated with the specified bone. */
-        set_bone_path(index: number /*i64*/, path: NodePath): void
+        set_bone_path(index: int64, path: NodePath): void
         
         /** Sets the weight values for the specified bone. */
-        set_bone_weights(index: number /*i64*/, weights: PackedFloat32Array): void
+        set_bone_weights(index: int64, weights: PackedFloat32Array): void
         set_skeleton(skeleton: NodePath): void
         get_skeleton(): NodePath
-        set_internal_vertex_count(internal_vertex_count: number /*i64*/): void
-        get_internal_vertex_count(): number /*i64*/
+        set_internal_vertex_count(internal_vertex_count: int64): void
+        get_internal_vertex_count(): int64
         _set_bones(bones: Array): void
         _get_bones(): Array
         
@@ -6102,8 +6102,8 @@ declare module "godot" {
         set texture_scale(value: Vector2)
         
         /** The texture's rotation in radians. */
-        get texture_rotation(): number /*f64*/
-        set texture_rotation(value: number /*f64*/)
+        get texture_rotation(): float64
+        set texture_rotation(value: float64)
         
         /** Path to a [Skeleton2D] node used for skeleton-based deformations of this polygon. If empty or invalid, skeletal deformations will not be used. */
         get skeleton(): NodePath
@@ -6114,8 +6114,8 @@ declare module "godot" {
         set invert_enabled(value: boolean)
         
         /** Added padding applied to the bounding box when [member invert_enabled] is set to `true`. Setting this value too small may result in a "Bad Polygon" error. */
-        get invert_border(): number /*f64*/
-        set invert_border(value: number /*f64*/)
+        get invert_border(): float64
+        set invert_border(value: float64)
         
         /** The polygon's list of vertices. The final point will be connected to the first.  
          *      
@@ -6141,8 +6141,8 @@ declare module "godot" {
         set bones(value: Array)
         
         /** Number of internal vertices, used for UV mapping. */
-        get internal_vertex_count(): number /*i64*/
-        set internal_vertex_count(value: number /*i64*/)
+        get internal_vertex_count(): int64
+        set internal_vertex_count(value: int64)
     }
     class Polygon2DEditor extends AbstractPolygon2DEditor {
         constructor(identifier?: any)
@@ -6183,8 +6183,8 @@ declare module "godot" {
         get_intersections(from: Vector2, to: Vector2): PackedVector2Array
         get_closest_point(point: Vector2): Vector2
         is_point_inside(point: Vector2): boolean
-        set_point_penalty(idx: number /*i64*/, penalty: number /*f64*/): void
-        get_point_penalty(idx: number /*i64*/): number /*f64*/
+        set_point_penalty(idx: int64, penalty: float64): void
+        get_point_penalty(idx: int64): float64
         get_bounds(): Rect2
         _set_data(data: Dictionary): void
         _get_data(): Dictionary
@@ -6218,246 +6218,246 @@ declare module "godot" {
          *      
          *  **Note:** The provided [param id] is used only in [signal id_pressed] and [signal id_focused] signals. It's not related to the `index` arguments in e.g. [method set_item_checked].  
          */
-        add_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_item(label: string, id: int64 = -1, accel: Key = 0): void
         
         /** Adds a new item with text [param label] and icon [param texture].  
          *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
          */
-        add_icon_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_icon_item(texture: Texture2D, label: string, id: int64 = -1, accel: Key = 0): void
         
         /** Adds a new checkable item with text [param label].  
          *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
          *      
          *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
          */
-        add_check_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_check_item(label: string, id: int64 = -1, accel: Key = 0): void
         
         /** Adds a new checkable item with text [param label] and icon [param texture].  
          *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
          *      
          *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
          */
-        add_icon_check_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_icon_check_item(texture: Texture2D, label: string, id: int64 = -1, accel: Key = 0): void
         
         /** Adds a new radio check button with text [param label].  
          *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
          *      
          *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
          */
-        add_radio_check_item(label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_radio_check_item(label: string, id: int64 = -1, accel: Key = 0): void
         
         /** Same as [method add_icon_check_item], but uses a radio check button. */
-        add_icon_radio_check_item(texture: Texture2D, label: string, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_icon_radio_check_item(texture: Texture2D, label: string, id: int64 = -1, accel: Key = 0): void
         
         /** Adds a new multistate item with text [param label].  
          *  Contrarily to normal binary items, multistate items can have more than two states, as defined by [param max_states]. Each press or activate of the item will increase the state by one. The default value is defined by [param default_state].  
          *  An [param id] can optionally be provided, as well as an accelerator ([param accel]). If no [param id] is provided, one will be created from the index. If no [param accel] is provided, then the default value of 0 (corresponding to [constant @GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [method get_item_accelerator] for more info on accelerators.  
          */
-        add_multistate_item(label: string, max_states: number /*i64*/, default_state: number /*i64*/ = 0, id: number /*i64*/ = -1, accel: Key = 0): void
+        add_multistate_item(label: string, max_states: int64, default_state: int64 = 0, id: int64 = -1, accel: Key = 0): void
         
         /** Adds a [Shortcut].  
          *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
          *  If [param allow_echo] is `true`, the shortcut can be activated with echo events.  
          */
-        add_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false, allow_echo: boolean = false): void
+        add_shortcut(shortcut: Shortcut, id: int64 = -1, global: boolean = false, allow_echo: boolean = false): void
         
         /** Adds a new item and assigns the specified [Shortcut] and icon [param texture] to it. Sets the label of the checkbox to the [Shortcut]'s name.  
          *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
          *  If [param allow_echo] is `true`, the shortcut can be activated with echo events.  
          */
-        add_icon_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false, allow_echo: boolean = false): void
+        add_icon_shortcut(texture: Texture2D, shortcut: Shortcut, id: int64 = -1, global: boolean = false, allow_echo: boolean = false): void
         
         /** Adds a new checkable item and assigns the specified [Shortcut] to it. Sets the label of the checkbox to the [Shortcut]'s name.  
          *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
          *      
          *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
          */
-        add_check_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        add_check_shortcut(shortcut: Shortcut, id: int64 = -1, global: boolean = false): void
         
         /** Adds a new checkable item and assigns the specified [Shortcut] and icon [param texture] to it. Sets the label of the checkbox to the [Shortcut]'s name.  
          *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
          *      
          *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
          */
-        add_icon_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        add_icon_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: int64 = -1, global: boolean = false): void
         
         /** Adds a new radio check button and assigns a [Shortcut] to it. Sets the label of the checkbox to the [Shortcut]'s name.  
          *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
          *      
          *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
          */
-        add_radio_check_shortcut(shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        add_radio_check_shortcut(shortcut: Shortcut, id: int64 = -1, global: boolean = false): void
         
         /** Same as [method add_icon_check_shortcut], but uses a radio check button. */
-        add_icon_radio_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: number /*i64*/ = -1, global: boolean = false): void
+        add_icon_radio_check_shortcut(texture: Texture2D, shortcut: Shortcut, id: int64 = -1, global: boolean = false): void
         
         /** Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. The [param submenu] argument must be the name of an existing [PopupMenu] that has been added as a child to this node. This submenu will be shown when the item is clicked, hovered for long enough, or activated using the `ui_select` or `ui_right` input actions.  
          *  An [param id] can optionally be provided. If no [param id] is provided, one will be created from the index.  
          */
-        add_submenu_item(label: string, submenu: string, id: number /*i64*/ = -1): void
+        add_submenu_item(label: string, submenu: string, id: int64 = -1): void
         
         /** Sets the text of the item at the given [param index]. */
-        set_item_text(index: number /*i64*/, text: string): void
+        set_item_text(index: int64, text: string): void
         
         /** Sets item's text base writing direction. */
-        set_item_text_direction(index: number /*i64*/, direction: Control.TextDirection): void
+        set_item_text_direction(index: int64, direction: Control.TextDirection): void
         
         /** Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
-        set_item_language(index: number /*i64*/, language: string): void
+        set_item_language(index: int64, language: string): void
         
         /** Replaces the [Texture2D] icon of the item at the given [param index]. */
-        set_item_icon(index: number /*i64*/, icon: Texture2D): void
+        set_item_icon(index: int64, icon: Texture2D): void
         
         /** Sets the maximum allowed width of the icon for the item at the given [param index]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio. */
-        set_item_icon_max_width(index: number /*i64*/, width: number /*i64*/): void
+        set_item_icon_max_width(index: int64, width: int64): void
         
         /** Sets a modulating [Color] of the item's icon at the given [param index]. */
-        set_item_icon_modulate(index: number /*i64*/, modulate: Color): void
+        set_item_icon_modulate(index: int64, modulate: Color): void
         
         /** Sets the checkstate status of the item at the given [param index]. */
-        set_item_checked(index: number /*i64*/, checked: boolean): void
+        set_item_checked(index: int64, checked: boolean): void
         
         /** Sets the [param id] of the item at the given [param index].  
          *  The [param id] is used in [signal id_pressed] and [signal id_focused] signals.  
          */
-        set_item_id(index: number /*i64*/, id: number /*i64*/): void
+        set_item_id(index: int64, id: int64): void
         
         /** Sets the accelerator of the item at the given [param index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. [param accel] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). */
-        set_item_accelerator(index: number /*i64*/, accel: Key): void
+        set_item_accelerator(index: int64, accel: Key): void
         
         /** Sets the metadata of an item, which may be of any type. You can later get it with [method get_item_metadata], which provides a simple way of assigning context data to items. */
-        set_item_metadata(index: number /*i64*/, metadata: any): void
+        set_item_metadata(index: int64, metadata: any): void
         
         /** Enables/disables the item at the given [param index]. When it is disabled, it can't be selected and its action can't be invoked. */
-        set_item_disabled(index: number /*i64*/, disabled: boolean): void
+        set_item_disabled(index: int64, disabled: boolean): void
         
         /** Sets the submenu of the item at the given [param index]. The submenu is the name of a child [PopupMenu] node that would be shown when the item is clicked. */
-        set_item_submenu(index: number /*i64*/, submenu: string): void
+        set_item_submenu(index: int64, submenu: string): void
         
         /** Mark the item at the given [param index] as a separator, which means that it would be displayed as a line. If `false`, sets the type of the item to plain text. */
-        set_item_as_separator(index: number /*i64*/, enable: boolean): void
+        set_item_as_separator(index: int64, enable: boolean): void
         
         /** Sets whether the item at the given [param index] has a checkbox. If `false`, sets the type of the item to plain text.  
          *      
          *  **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.  
          */
-        set_item_as_checkable(index: number /*i64*/, enable: boolean): void
+        set_item_as_checkable(index: int64, enable: boolean): void
         
         /** Sets the type of the item at the given [param index] to radio button. If `false`, sets the type of the item to plain text. */
-        set_item_as_radio_checkable(index: number /*i64*/, enable: boolean): void
+        set_item_as_radio_checkable(index: int64, enable: boolean): void
         
         /** Sets the [String] tooltip of the item at the given [param index]. */
-        set_item_tooltip(index: number /*i64*/, tooltip: string): void
+        set_item_tooltip(index: int64, tooltip: string): void
         
         /** Sets a [Shortcut] for the item at the given [param index]. */
-        set_item_shortcut(index: number /*i64*/, shortcut: Shortcut, global: boolean = false): void
+        set_item_shortcut(index: int64, shortcut: Shortcut, global: boolean = false): void
         
         /** Sets the horizontal offset of the item at the given [param index]. */
-        set_item_indent(index: number /*i64*/, indent: number /*i64*/): void
+        set_item_indent(index: int64, indent: int64): void
         
         /** Sets the state of a multistate item. See [method add_multistate_item] for details. */
-        set_item_multistate(index: number /*i64*/, state: number /*i64*/): void
+        set_item_multistate(index: int64, state: int64): void
         
         /** Disables the [Shortcut] of the item at the given [param index]. */
-        set_item_shortcut_disabled(index: number /*i64*/, disabled: boolean): void
+        set_item_shortcut_disabled(index: int64, disabled: boolean): void
         
         /** Toggles the check state of the item at the given [param index]. */
-        toggle_item_checked(index: number /*i64*/): void
+        toggle_item_checked(index: int64): void
         
         /** Cycle to the next state of a multistate item. See [method add_multistate_item] for details. */
-        toggle_item_multistate(index: number /*i64*/): void
+        toggle_item_multistate(index: int64): void
         
         /** Returns the text of the item at the given [param index]. */
-        get_item_text(index: number /*i64*/): string
+        get_item_text(index: int64): string
         
         /** Returns item's text base writing direction. */
-        get_item_text_direction(index: number /*i64*/): Control.TextDirection
+        get_item_text_direction(index: int64): Control.TextDirection
         
         /** Returns item's text language code. */
-        get_item_language(index: number /*i64*/): string
+        get_item_language(index: int64): string
         
         /** Returns the icon of the item at the given [param index]. */
-        get_item_icon(index: number /*i64*/): Texture2D
+        get_item_icon(index: int64): Texture2D
         
         /** Returns the maximum allowed width of the icon for the item at the given [param index]. */
-        get_item_icon_max_width(index: number /*i64*/): number /*i64*/
+        get_item_icon_max_width(index: int64): int64
         
         /** Returns a [Color] modulating the item's icon at the given [param index]. */
-        get_item_icon_modulate(index: number /*i64*/): Color
+        get_item_icon_modulate(index: int64): Color
         
         /** Returns `true` if the item at the given [param index] is checked. */
-        is_item_checked(index: number /*i64*/): boolean
+        is_item_checked(index: int64): boolean
         
         /** Returns the ID of the item at the given [param index]. `id` can be manually assigned, while index can not. */
-        get_item_id(index: number /*i64*/): number /*i64*/
+        get_item_id(index: int64): int64
         
         /** Returns the index of the item containing the specified [param id]. Index is automatically assigned to each item by the engine and can not be set manually. */
-        get_item_index(id: number /*i64*/): number /*i64*/
+        get_item_index(id: int64): int64
         
         /** Returns the accelerator of the item at the given [param index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The return value is an integer which is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the specified [param index], [method get_item_accelerator] returns `0` (corresponding to [constant @GlobalScope.KEY_NONE]). */
-        get_item_accelerator(index: number /*i64*/): Key
+        get_item_accelerator(index: int64): Key
         
         /** Returns the metadata of the specified item, which might be of any type. You can set it with [method set_item_metadata], which provides a simple way of assigning context data to items. */
-        get_item_metadata(index: number /*i64*/): any
+        get_item_metadata(index: int64): any
         
         /** Returns `true` if the item at the given [param index] is disabled. When it is disabled it can't be selected, or its action invoked.  
          *  See [method set_item_disabled] for more info on how to disable an item.  
          */
-        is_item_disabled(index: number /*i64*/): boolean
+        is_item_disabled(index: int64): boolean
         
         /** Returns the submenu name of the item at the given [param index]. See [method add_submenu_item] for more info on how to add a submenu. */
-        get_item_submenu(index: number /*i64*/): string
+        get_item_submenu(index: int64): string
         
         /** Returns `true` if the item is a separator. If it is, it will be displayed as a line. See [method add_separator] for more info on how to add a separator. */
-        is_item_separator(index: number /*i64*/): boolean
+        is_item_separator(index: int64): boolean
         
         /** Returns `true` if the item at the given [param index] is checkable in some way, i.e. if it has a checkbox or radio button.  
          *      
          *  **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.  
          */
-        is_item_checkable(index: number /*i64*/): boolean
+        is_item_checkable(index: int64): boolean
         
         /** Returns `true` if the item at the given [param index] has radio button-style checkability.  
          *      
          *  **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.  
          */
-        is_item_radio_checkable(index: number /*i64*/): boolean
+        is_item_radio_checkable(index: int64): boolean
         
         /** Returns `true` if the specified item's shortcut is disabled. */
-        is_item_shortcut_disabled(index: number /*i64*/): boolean
+        is_item_shortcut_disabled(index: int64): boolean
         
         /** Returns the tooltip associated with the item at the given [param index]. */
-        get_item_tooltip(index: number /*i64*/): string
+        get_item_tooltip(index: int64): string
         
         /** Returns the [Shortcut] associated with the item at the given [param index]. */
-        get_item_shortcut(index: number /*i64*/): Shortcut
+        get_item_shortcut(index: int64): Shortcut
         
         /** Returns the horizontal offset of the item at the given [param index]. */
-        get_item_indent(index: number /*i64*/): number /*i64*/
+        get_item_indent(index: int64): int64
         
         /** Sets the currently focused item as the given [param index].  
          *  Passing `-1` as the index makes so that no item is focused.  
          */
-        set_focused_item(index: number /*i64*/): void
+        set_focused_item(index: int64): void
         
         /** Returns the index of the currently focused item. Returns `-1` if no item is focused. */
-        get_focused_item(): number /*i64*/
-        set_item_count(count: number /*i64*/): void
-        get_item_count(): number /*i64*/
+        get_focused_item(): int64
+        set_item_count(count: int64): void
+        get_item_count(): int64
         
         /** Moves the scroll view to make the item at the given [param index] visible. */
-        scroll_to_item(index: number /*i64*/): void
+        scroll_to_item(index: int64): void
         
         /** Removes the item at the given [param index] from the menu.  
          *      
          *  **Note:** The indices of items after the removed item will be shifted by one.  
          */
-        remove_item(index: number /*i64*/): void
+        remove_item(index: int64): void
         
         /** Adds a separator between items. Separators also occupy an index, which you can set by using the [param id] parameter.  
          *  A [param label] can optionally be provided, which will appear at the center of the separator.  
          */
-        add_separator(label: string = '', id: number /*i64*/ = -1): void
+        add_separator(label: string = '', id: int64 = -1): void
         
         /** Removes all items from the [PopupMenu]. If [param free_submenus] is `true`, the submenu nodes are automatically freed. */
         clear(free_submenus: boolean = false): void
@@ -6467,8 +6467,8 @@ declare module "godot" {
         is_hide_on_checkable_item_selection(): boolean
         set_hide_on_state_item_selection(enable: boolean): void
         is_hide_on_state_item_selection(): boolean
-        set_submenu_popup_delay(seconds: number /*f64*/): void
-        get_submenu_popup_delay(): number /*f64*/
+        set_submenu_popup_delay(seconds: float64): void
+        get_submenu_popup_delay(): float64
         set_allow_search(allow: boolean): void
         get_allow_search(): boolean
         
@@ -6485,8 +6485,8 @@ declare module "godot" {
         set hide_on_state_item_selection(value: boolean)
         
         /** Sets the delay time in seconds for the submenu item to popup on mouse hovering. If the popup menu is added as a child of another (acting as a submenu), it will inherit the delay time of the parent menu item. */
-        get submenu_popup_delay(): number /*f64*/
-        set submenu_popup_delay(value: number /*f64*/)
+        get submenu_popup_delay(): float64
+        set submenu_popup_delay(value: float64)
         
         /** If `true`, allows navigating [PopupMenu] with letter keys. */
         get allow_search(): boolean
@@ -6500,13 +6500,13 @@ declare module "godot" {
          *      
          *  **Note:** If [param id] is negative (either explicitly or due to overflow), this will return the corresponding index instead.  
          */
-        readonly id_pressed: Signal // id: number /*i64*/ => void
+        readonly id_pressed: Signal // id: int64 => void
         
         /** Emitted when the user navigated to an item of some [param id] using the [member ProjectSettings.input/ui_up] or [member ProjectSettings.input/ui_down] input action. */
-        readonly id_focused: Signal // id: number /*i64*/ => void
+        readonly id_focused: Signal // id: int64 => void
         
         /** Emitted when an item of some [param index] is pressed or its accelerator is activated. */
-        readonly index_pressed: Signal // index: number /*i64*/ => void
+        readonly index_pressed: Signal // index: int64 => void
         
         /** Emitted when any item is added, modified or removed. */
         readonly menu_changed: Signal //  => void
@@ -6538,7 +6538,7 @@ declare module "godot" {
          *  [param normal_map] is recommended to ensure optimum quality if this image will be used as a normal map.  
          *  If lossy compression is requested, the quality setting can optionally be provided. This maps to Lossy WebP compression quality.  
          */
-        create_from_image(image: Image, compression_mode: PortableCompressedTexture2D.CompressionMode, normal_map: boolean = false, lossy_quality: number /*f64*/ = 0.8): void
+        create_from_image(image: Image, compression_mode: PortableCompressedTexture2D.CompressionMode, normal_map: boolean = false, lossy_quality: float64 = 0.8): void
         
         /** Return the image format used (valid after initialized). */
         get_format(): Image.Format
@@ -6601,8 +6601,8 @@ declare module "godot" {
         get_flip_faces(): boolean
         set_add_uv2(add_uv2: boolean): void
         get_add_uv2(): boolean
-        set_uv2_padding(uv2_padding: number /*f64*/): void
-        get_uv2_padding(): number /*f64*/
+        set_uv2_padding(uv2_padding: float64): void
+        get_uv2_padding(): float64
         _request_update(): void
         
         /** The current [Material] of the primitive mesh. */
@@ -6626,8 +6626,8 @@ declare module "godot" {
         /** If [member add_uv2] is set, specifies the padding in pixels applied along seams of the mesh. Lower padding values allow making better use of the lightmap texture (resulting in higher texel density), but may introduce visible lightmap bleeding along edges.  
          *  If the size of the lightmap texture can't be determined when generating the mesh, UV2 is calculated assuming a texture size of 1024x1024.  
          */
-        get uv2_padding(): number /*f64*/
-        set uv2_padding(value: number /*f64*/)
+        get uv2_padding(): float64
+        set uv2_padding(value: float64)
     }
     /** Class representing a prism-shaped [PrimitiveMesh].  
      *  	  
@@ -6635,36 +6635,36 @@ declare module "godot" {
      */
     class PrismMesh extends PrimitiveMesh {
         constructor(identifier?: any)
-        set_left_to_right(left_to_right: number /*f64*/): void
-        get_left_to_right(): number /*f64*/
+        set_left_to_right(left_to_right: float64): void
+        get_left_to_right(): float64
         set_size(size: Vector3): void
         get_size(): Vector3
-        set_subdivide_width(segments: number /*i64*/): void
-        get_subdivide_width(): number /*i64*/
-        set_subdivide_height(segments: number /*i64*/): void
-        get_subdivide_height(): number /*i64*/
-        set_subdivide_depth(segments: number /*i64*/): void
-        get_subdivide_depth(): number /*i64*/
+        set_subdivide_width(segments: int64): void
+        get_subdivide_width(): int64
+        set_subdivide_height(segments: int64): void
+        get_subdivide_height(): int64
+        set_subdivide_depth(segments: int64): void
+        get_subdivide_depth(): int64
         
         /** Displacement of the upper edge along the X axis. 0.0 positions edge straight above the bottom-left edge. */
-        get left_to_right(): number /*f64*/
-        set left_to_right(value: number /*f64*/)
+        get left_to_right(): float64
+        set left_to_right(value: float64)
         
         /** Size of the prism. */
         get size(): Vector3
         set size(value: Vector3)
         
         /** Number of added edge loops along the X axis. */
-        get subdivide_width(): number /*i64*/
-        set subdivide_width(value: number /*i64*/)
+        get subdivide_width(): int64
+        set subdivide_width(value: int64)
         
         /** Number of added edge loops along the Y axis. */
-        get subdivide_height(): number /*i64*/
-        set subdivide_height(value: number /*i64*/)
+        get subdivide_height(): int64
+        set subdivide_height(value: int64)
         
         /** Number of added edge loops along the Z axis. */
-        get subdivide_depth(): number /*i64*/
-        set subdivide_depth(value: number /*i64*/)
+        get subdivide_depth(): int64
+        set subdivide_depth(value: int64)
     }
     /** A material that defines a simple sky for a [Sky] resource.  
      *  	  
@@ -6676,10 +6676,10 @@ declare module "godot" {
         get_sky_top_color(): Color
         set_sky_horizon_color(color: Color): void
         get_sky_horizon_color(): Color
-        set_sky_curve(curve: number /*f64*/): void
-        get_sky_curve(): number /*f64*/
-        set_sky_energy_multiplier(multiplier: number /*f64*/): void
-        get_sky_energy_multiplier(): number /*f64*/
+        set_sky_curve(curve: float64): void
+        get_sky_curve(): float64
+        set_sky_energy_multiplier(multiplier: float64): void
+        get_sky_energy_multiplier(): float64
         set_sky_cover(sky_cover: Texture2D): void
         get_sky_cover(): Texture2D
         set_sky_cover_modulate(color: Color): void
@@ -6688,14 +6688,14 @@ declare module "godot" {
         get_ground_bottom_color(): Color
         set_ground_horizon_color(color: Color): void
         get_ground_horizon_color(): Color
-        set_ground_curve(curve: number /*f64*/): void
-        get_ground_curve(): number /*f64*/
-        set_ground_energy_multiplier(energy: number /*f64*/): void
-        get_ground_energy_multiplier(): number /*f64*/
-        set_sun_angle_max(degrees: number /*f64*/): void
-        get_sun_angle_max(): number /*f64*/
-        set_sun_curve(curve: number /*f64*/): void
-        get_sun_curve(): number /*f64*/
+        set_ground_curve(curve: float64): void
+        get_ground_curve(): float64
+        set_ground_energy_multiplier(energy: float64): void
+        get_ground_energy_multiplier(): float64
+        set_sun_angle_max(degrees: float64): void
+        get_sun_angle_max(): float64
+        set_sun_curve(curve: float64): void
+        get_sun_curve(): float64
         set_use_debanding(use_debanding: boolean): void
         get_use_debanding(): boolean
         
@@ -6708,12 +6708,12 @@ declare module "godot" {
         set sky_horizon_color(value: Color)
         
         /** How quickly the [member sky_horizon_color] fades into the [member sky_top_color]. */
-        get sky_curve(): number /*f64*/
-        set sky_curve(value: number /*f64*/)
+        get sky_curve(): float64
+        set sky_curve(value: float64)
         
         /** Multiplier for sky color. A higher value will make the sky brighter. */
-        get sky_energy_multiplier(): number /*f64*/
-        set sky_energy_multiplier(value: number /*f64*/)
+        get sky_energy_multiplier(): float64
+        set sky_energy_multiplier(value: float64)
         
         /** The sky cover texture to use. This texture must use an equirectangular projection (similar to [PanoramaSkyMaterial]). The texture's colors will be  *added*  to the existing sky color, and will be multiplied by [member sky_energy_multiplier] and [member sky_cover_modulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look). */
         get sky_cover(): Texture2D
@@ -6732,20 +6732,20 @@ declare module "godot" {
         set ground_horizon_color(value: Color)
         
         /** How quickly the [member ground_horizon_color] fades into the [member ground_bottom_color]. */
-        get ground_curve(): number /*f64*/
-        set ground_curve(value: number /*f64*/)
+        get ground_curve(): float64
+        set ground_curve(value: float64)
         
         /** Multiplier for ground color. A higher value will make the ground brighter. */
-        get ground_energy_multiplier(): number /*f64*/
-        set ground_energy_multiplier(value: number /*f64*/)
+        get ground_energy_multiplier(): float64
+        set ground_energy_multiplier(value: float64)
         
         /** Distance from center of sun where it fades out completely. */
-        get sun_angle_max(): number /*f64*/
-        set sun_angle_max(value: number /*f64*/)
+        get sun_angle_max(): float64
+        set sun_angle_max(value: float64)
         
         /** How quickly the sun fades away between the edge of the sun disk and [member sun_angle_max]. */
-        get sun_curve(): number /*f64*/
-        set sun_curve(value: number /*f64*/)
+        get sun_curve(): float64
+        set sun_curve(value: float64)
         
         /** If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky. */
         get use_debanding(): boolean
@@ -6775,14 +6775,14 @@ declare module "godot" {
      */
     class ProgressBar extends Range {
         constructor(identifier?: any)
-        set_fill_mode(mode: number /*i64*/): void
-        get_fill_mode(): number /*i64*/
+        set_fill_mode(mode: int64): void
+        get_fill_mode(): int64
         set_show_percentage(visible: boolean): void
         is_percentage_shown(): boolean
         
         /** The fill direction. See [enum FillMode] for possible values. */
-        get fill_mode(): number /*i64*/
-        set fill_mode(value: number /*i64*/)
+        get fill_mode(): int64
+        set fill_mode(value: int64)
         
         /** If `true`, the fill percentage is displayed on the bar. */
         get show_percentage(): boolean
@@ -6843,7 +6843,7 @@ declare module "godot" {
         set_ease(ease: Tween.EaseType): PropertyTweener
         
         /** Sets the time in seconds after which the [PropertyTweener] will start interpolating. By default there's no delay. */
-        set_delay(delay: number /*f64*/): PropertyTweener
+        set_delay(delay: float64): PropertyTweener
     }
     /** Class representing a square mesh facing the camera.  
      *  	  
@@ -6875,20 +6875,20 @@ declare module "godot" {
         get_format(): RenderingDevice.DataFormat
         set_samples(p_member: RenderingDevice.TextureSamples): void
         get_samples(): RenderingDevice.TextureSamples
-        set_usage_flags(p_member: number /*i64*/): void
-        get_usage_flags(): number /*i64*/
+        set_usage_flags(p_member: int64): void
+        get_usage_flags(): int64
         
         /** The attachment's data format. */
-        get format(): number /*i64*/
-        set format(value: number /*i64*/)
+        get format(): int64
+        set format(value: int64)
         
         /** The number of samples used when sampling the attachment. */
-        get samples(): number /*i64*/
-        set samples(value: number /*i64*/)
+        get samples(): int64
+        set samples(value: int64)
         
         /** The attachment's usage flags, which determine what can be done with it. */
-        get usage_flags(): number /*i64*/
-        set usage_flags(value: number /*i64*/)
+        get usage_flags(): int64
+        set usage_flags(value: int64)
     }
     /** Framebuffer pass attachment description (used by [RenderingDevice]).  
      *  	  
@@ -6906,8 +6906,8 @@ declare module "godot" {
         get_resolve_attachments(): PackedInt32Array
         set_preserve_attachments(p_member: PackedInt32Array): void
         get_preserve_attachments(): PackedInt32Array
-        set_depth_attachment(p_member: number /*i64*/): void
-        get_depth_attachment(): number /*i64*/
+        set_depth_attachment(p_member: int64): void
+        get_depth_attachment(): int64
         
         /** Color attachments in order starting from 0. If this attachment is not used by the shader, pass ATTACHMENT_UNUSED to skip. */
         get color_attachments(): PackedInt32Array
@@ -6926,8 +6926,8 @@ declare module "godot" {
         set preserve_attachments(value: PackedInt32Array)
         
         /** Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this pass. */
-        get depth_attachment(): number /*i64*/
-        set depth_attachment(value: number /*i64*/)
+        get depth_attachment(): int64
+        set depth_attachment(value: int64)
     }
     /** Pipeline color blend state (used by [RenderingDevice]).  
      *  	  
@@ -6949,8 +6949,8 @@ declare module "godot" {
         set enable_logic_op(value: boolean)
         
         /** The logic operation to perform for blending. Only effective if [member enable_logic_op] is `true`. */
-        get logic_op(): number /*i64*/
-        set logic_op(value: number /*i64*/)
+        get logic_op(): int64
+        set logic_op(value: int64)
         
         /** The constant color to blend with. See also [method RenderingDevice.draw_list_set_blend_constants]. */
         get blend_constant(): Color
@@ -6996,28 +6996,28 @@ declare module "godot" {
         set enable_blend(value: boolean)
         
         /** Controls how the blend factor for the color channels is determined based on the source's fragments. */
-        get src_color_blend_factor(): number /*i64*/
-        set src_color_blend_factor(value: number /*i64*/)
+        get src_color_blend_factor(): int64
+        set src_color_blend_factor(value: int64)
         
         /** Controls how the blend factor for the color channels is determined based on the destination's fragments. */
-        get dst_color_blend_factor(): number /*i64*/
-        set dst_color_blend_factor(value: number /*i64*/)
+        get dst_color_blend_factor(): int64
+        set dst_color_blend_factor(value: int64)
         
         /** The blend mode to use for the red/green/blue color channels. */
-        get color_blend_op(): number /*i64*/
-        set color_blend_op(value: number /*i64*/)
+        get color_blend_op(): int64
+        set color_blend_op(value: int64)
         
         /** Controls how the blend factor for the alpha channel is determined based on the source's fragments. */
-        get src_alpha_blend_factor(): number /*i64*/
-        set src_alpha_blend_factor(value: number /*i64*/)
+        get src_alpha_blend_factor(): int64
+        set src_alpha_blend_factor(value: int64)
         
         /** Controls how the blend factor for the alpha channel is determined based on the destination's fragments. */
-        get dst_alpha_blend_factor(): number /*i64*/
-        set dst_alpha_blend_factor(value: number /*i64*/)
+        get dst_alpha_blend_factor(): int64
+        set dst_alpha_blend_factor(value: int64)
         
         /** The blend mode to use for the alpha channel. */
-        get alpha_blend_op(): number /*i64*/
-        set alpha_blend_op(value: number /*i64*/)
+        get alpha_blend_op(): int64
+        set alpha_blend_op(value: int64)
         
         /** If `true`, writes the new red color channel to the final result. */
         get write_r(): boolean
@@ -7049,10 +7049,10 @@ declare module "godot" {
         get_depth_compare_operator(): RenderingDevice.CompareOperator
         set_enable_depth_range(p_member: boolean): void
         get_enable_depth_range(): boolean
-        set_depth_range_min(p_member: number /*f64*/): void
-        get_depth_range_min(): number /*f64*/
-        set_depth_range_max(p_member: number /*f64*/): void
-        get_depth_range_max(): number /*f64*/
+        set_depth_range_min(p_member: float64): void
+        get_depth_range_min(): float64
+        set_depth_range_max(p_member: float64): void
+        get_depth_range_max(): float64
         set_enable_stencil(p_member: boolean): void
         get_enable_stencil(): boolean
         set_front_op_fail(p_member: RenderingDevice.StencilOperation): void
@@ -7063,12 +7063,12 @@ declare module "godot" {
         get_front_op_depth_fail(): RenderingDevice.StencilOperation
         set_front_op_compare(p_member: RenderingDevice.CompareOperator): void
         get_front_op_compare(): RenderingDevice.CompareOperator
-        set_front_op_compare_mask(p_member: number /*i64*/): void
-        get_front_op_compare_mask(): number /*i64*/
-        set_front_op_write_mask(p_member: number /*i64*/): void
-        get_front_op_write_mask(): number /*i64*/
-        set_front_op_reference(p_member: number /*i64*/): void
-        get_front_op_reference(): number /*i64*/
+        set_front_op_compare_mask(p_member: int64): void
+        get_front_op_compare_mask(): int64
+        set_front_op_write_mask(p_member: int64): void
+        get_front_op_write_mask(): int64
+        set_front_op_reference(p_member: int64): void
+        get_front_op_reference(): int64
         set_back_op_fail(p_member: RenderingDevice.StencilOperation): void
         get_back_op_fail(): RenderingDevice.StencilOperation
         set_back_op_pass(p_member: RenderingDevice.StencilOperation): void
@@ -7077,12 +7077,12 @@ declare module "godot" {
         get_back_op_depth_fail(): RenderingDevice.StencilOperation
         set_back_op_compare(p_member: RenderingDevice.CompareOperator): void
         get_back_op_compare(): RenderingDevice.CompareOperator
-        set_back_op_compare_mask(p_member: number /*i64*/): void
-        get_back_op_compare_mask(): number /*i64*/
-        set_back_op_write_mask(p_member: number /*i64*/): void
-        get_back_op_write_mask(): number /*i64*/
-        set_back_op_reference(p_member: number /*i64*/): void
-        get_back_op_reference(): number /*i64*/
+        set_back_op_compare_mask(p_member: int64): void
+        get_back_op_compare_mask(): int64
+        set_back_op_write_mask(p_member: int64): void
+        get_back_op_write_mask(): int64
+        set_back_op_reference(p_member: int64): void
+        get_back_op_reference(): int64
         
         /** If `true`, enables depth testing which allows objects to be automatically occluded by other objects based on their depth. This also allows objects to be partially occluded by other objects. If `false`, objects will appear in the order they were drawn (like in Godot's 2D renderer). */
         get enable_depth_test(): boolean
@@ -7093,80 +7093,80 @@ declare module "godot" {
         set enable_depth_write(value: boolean)
         
         /** The method used for comparing the previous and current depth values. */
-        get depth_compare_operator(): number /*i64*/
-        set depth_compare_operator(value: number /*i64*/)
+        get depth_compare_operator(): int64
+        set depth_compare_operator(value: int64)
         
         /** If `true`, each depth value will be tested to see if it is between [member depth_range_min] and [member depth_range_max]. If it is outside of these values, it is discarded. */
         get enable_depth_range(): boolean
         set enable_depth_range(value: boolean)
         
         /** The minimum depth that returns true for [member enable_depth_range]. */
-        get depth_range_min(): number /*f64*/
-        set depth_range_min(value: number /*f64*/)
+        get depth_range_min(): float64
+        set depth_range_min(value: float64)
         
         /** The maximum depth that returns true for [member enable_depth_range]. */
-        get depth_range_max(): number /*f64*/
-        set depth_range_max(value: number /*f64*/)
+        get depth_range_max(): float64
+        set depth_range_max(value: float64)
         
         /** If `true`, enables stencil testing. There are separate stencil buffers for front-facing triangles and back-facing triangles. See properties that begin with "front_op" and properties with "back_op" for each. */
         get enable_stencil(): boolean
         set enable_stencil(value: boolean)
         
         /** The operation to perform on the stencil buffer for front pixels that fail the stencil test. */
-        get front_op_fail(): number /*i64*/
-        set front_op_fail(value: number /*i64*/)
+        get front_op_fail(): int64
+        set front_op_fail(value: int64)
         
         /** The operation to perform on the stencil buffer for front pixels that pass the stencil test. */
-        get front_op_pass(): number /*i64*/
-        set front_op_pass(value: number /*i64*/)
+        get front_op_pass(): int64
+        set front_op_pass(value: int64)
         
         /** The operation to perform on the stencil buffer for front pixels that pass the stencil test but fail the depth test. */
-        get front_op_depth_fail(): number /*i64*/
-        set front_op_depth_fail(value: number /*i64*/)
+        get front_op_depth_fail(): int64
+        set front_op_depth_fail(value: int64)
         
         /** The method used for comparing the previous front stencil value and [member front_op_reference]. */
-        get front_op_compare(): number /*i64*/
-        set front_op_compare(value: number /*i64*/)
+        get front_op_compare(): int64
+        set front_op_compare(value: int64)
         
         /** Selects which bits from the front stencil value will be compared. */
-        get front_op_compare_mask(): number /*i64*/
-        set front_op_compare_mask(value: number /*i64*/)
+        get front_op_compare_mask(): int64
+        set front_op_compare_mask(value: int64)
         
         /** Selects which bits from the front stencil value will be changed. */
-        get front_op_write_mask(): number /*i64*/
-        set front_op_write_mask(value: number /*i64*/)
+        get front_op_write_mask(): int64
+        set front_op_write_mask(value: int64)
         
         /** The value the previous front stencil value will be compared to. */
-        get front_op_reference(): number /*i64*/
-        set front_op_reference(value: number /*i64*/)
+        get front_op_reference(): int64
+        set front_op_reference(value: int64)
         
         /** The operation to perform on the stencil buffer for back pixels that fail the stencil test */
-        get back_op_fail(): number /*i64*/
-        set back_op_fail(value: number /*i64*/)
+        get back_op_fail(): int64
+        set back_op_fail(value: int64)
         
         /** The operation to perform on the stencil buffer for back pixels that pass the stencil test. */
-        get back_op_pass(): number /*i64*/
-        set back_op_pass(value: number /*i64*/)
+        get back_op_pass(): int64
+        set back_op_pass(value: int64)
         
         /** The operation to perform on the stencil buffer for back pixels that pass the stencil test but fail the depth test. */
-        get back_op_depth_fail(): number /*i64*/
-        set back_op_depth_fail(value: number /*i64*/)
+        get back_op_depth_fail(): int64
+        set back_op_depth_fail(value: int64)
         
         /** The method used for comparing the previous back stencil value and [member back_op_reference]. */
-        get back_op_compare(): number /*i64*/
-        set back_op_compare(value: number /*i64*/)
+        get back_op_compare(): int64
+        set back_op_compare(value: int64)
         
         /** Selects which bits from the back stencil value will be compared. */
-        get back_op_compare_mask(): number /*i64*/
-        set back_op_compare_mask(value: number /*i64*/)
+        get back_op_compare_mask(): int64
+        set back_op_compare_mask(value: int64)
         
         /** Selects which bits from the back stencil value will be changed. */
-        get back_op_write_mask(): number /*i64*/
-        set back_op_write_mask(value: number /*i64*/)
+        get back_op_write_mask(): int64
+        set back_op_write_mask(value: int64)
         
         /** The value the previous back stencil value will be compared to. */
-        get back_op_reference(): number /*i64*/
-        set back_op_reference(value: number /*i64*/)
+        get back_op_reference(): int64
+        set back_op_reference(value: int64)
     }
     /** Pipeline multisample state (used by [RenderingDevice]).  
      *  	  
@@ -7178,8 +7178,8 @@ declare module "godot" {
         get_sample_count(): RenderingDevice.TextureSamples
         set_enable_sample_shading(p_member: boolean): void
         get_enable_sample_shading(): boolean
-        set_min_sample_shading(p_member: number /*f64*/): void
-        get_min_sample_shading(): number /*f64*/
+        set_min_sample_shading(p_member: float64): void
+        get_min_sample_shading(): float64
         set_enable_alpha_to_coverage(p_member: boolean): void
         get_enable_alpha_to_coverage(): boolean
         set_enable_alpha_to_one(p_member: boolean): void
@@ -7188,16 +7188,16 @@ declare module "godot" {
         get_sample_masks(): Array
         
         /** The number of MSAA samples (or SSAA samples if [member enable_sample_shading] is `true`) to perform. Higher values result in better antialiasing, at the cost of performance. */
-        get sample_count(): number /*i64*/
-        set sample_count(value: number /*i64*/)
+        get sample_count(): int64
+        set sample_count(value: int64)
         
         /** If `true`, enables per-sample shading which replaces MSAA by SSAA. This provides higher quality antialiasing that works with transparent (alpha scissor) edges. This has a very high performance cost. See also [member min_sample_shading]. See the [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-sampleshading]per-sample shading Vulkan documentation[/url] for more details. */
         get enable_sample_shading(): boolean
         set enable_sample_shading(value: boolean)
         
         /** The multiplier of [member sample_count] that determines how many samples are performed for each fragment. Must be between `0.0` and `1.0` (inclusive). Only effective if [member enable_sample_shading] is `true`. If [member min_sample_shading] is `1.0`, fragment invocation must only read from the coverage index sample. Tile image access must not be used if [member enable_sample_shading] is  *not*  `1.0`. */
-        get min_sample_shading(): number /*f64*/
-        set min_sample_shading(value: number /*f64*/)
+        get min_sample_shading(): float64
+        set min_sample_shading(value: float64)
         
         /** If `true`, alpha to coverage is enabled. This generates a temporary coverage value based on the alpha component of the fragment's first color output. This allows alpha transparency to make use of multisample antialiasing. */
         get enable_alpha_to_coverage(): boolean
@@ -7229,16 +7229,16 @@ declare module "godot" {
         get_front_face(): RenderingDevice.PolygonFrontFace
         set_depth_bias_enabled(p_member: boolean): void
         get_depth_bias_enabled(): boolean
-        set_depth_bias_constant_factor(p_member: number /*f64*/): void
-        get_depth_bias_constant_factor(): number /*f64*/
-        set_depth_bias_clamp(p_member: number /*f64*/): void
-        get_depth_bias_clamp(): number /*f64*/
-        set_depth_bias_slope_factor(p_member: number /*f64*/): void
-        get_depth_bias_slope_factor(): number /*f64*/
-        set_line_width(p_member: number /*f64*/): void
-        get_line_width(): number /*f64*/
-        set_patch_control_points(p_member: number /*i64*/): void
-        get_patch_control_points(): number /*i64*/
+        set_depth_bias_constant_factor(p_member: float64): void
+        get_depth_bias_constant_factor(): float64
+        set_depth_bias_clamp(p_member: float64): void
+        get_depth_bias_clamp(): float64
+        set_depth_bias_slope_factor(p_member: float64): void
+        get_depth_bias_slope_factor(): float64
+        set_line_width(p_member: float64): void
+        get_line_width(): float64
+        set_patch_control_points(p_member: int64): void
+        get_patch_control_points(): int64
         get enable_depth_clamp(): boolean
         set enable_depth_clamp(value: boolean)
         
@@ -7251,28 +7251,28 @@ declare module "godot" {
         set wireframe(value: boolean)
         
         /** The cull mode to use when drawing polygons, which determines whether front faces or backfaces are hidden. */
-        get cull_mode(): number /*i64*/
-        set cull_mode(value: number /*i64*/)
+        get cull_mode(): int64
+        set cull_mode(value: int64)
         
         /** The winding order to use to determine which face of a triangle is considered its front face. */
-        get front_face(): number /*i64*/
-        set front_face(value: number /*i64*/)
+        get front_face(): int64
+        set front_face(value: int64)
         get depth_bias_enabled(): boolean
         set depth_bias_enabled(value: boolean)
-        get depth_bias_constant_factor(): number /*f64*/
-        set depth_bias_constant_factor(value: number /*f64*/)
-        get depth_bias_clamp(): number /*f64*/
-        set depth_bias_clamp(value: number /*f64*/)
-        get depth_bias_slope_factor(): number /*f64*/
-        set depth_bias_slope_factor(value: number /*f64*/)
+        get depth_bias_constant_factor(): float64
+        set depth_bias_constant_factor(value: float64)
+        get depth_bias_clamp(): float64
+        set depth_bias_clamp(value: float64)
+        get depth_bias_slope_factor(): float64
+        set depth_bias_slope_factor(value: float64)
         
         /** The line width to use when drawing lines (in pixels). Thick lines may not be supported on all hardware. */
-        get line_width(): number /*f64*/
-        set line_width(value: number /*f64*/)
+        get line_width(): float64
+        set line_width(value: float64)
         
         /** The number of control points to use when drawing a patch with tessellation enabled. Higher values result in higher quality at the cost of performance. */
-        get patch_control_points(): number /*i64*/
-        set patch_control_points(value: number /*i64*/)
+        get patch_control_points(): int64
+        set patch_control_points(value: int64)
     }
     /** Pipeline specialization constant (used by [RenderingDevice]).  
      *  	  
@@ -7282,16 +7282,16 @@ declare module "godot" {
         constructor(identifier?: any)
         set_value(value: any): void
         get_value(): any
-        set_constant_id(constant_id: number /*i64*/): void
-        get_constant_id(): number /*i64*/
+        set_constant_id(constant_id: int64): void
+        get_constant_id(): int64
         
         /** The specialization constant's value. Only [bool], [int] and [float] types are valid for specialization constants. */
         get value(): any
         set value(value: any)
         
         /** The identifier of the specialization constant. This is a value starting from `0` and that increments for every different specialization constant for a given shader. */
-        get constant_id(): number /*i64*/
-        set constant_id(value: number /*i64*/)
+        get constant_id(): int64
+        set constant_id(value: int64)
     }
     /** Sampler state (used by [RenderingDevice]).  
      *  	  
@@ -7311,50 +7311,50 @@ declare module "godot" {
         get_repeat_v(): RenderingDevice.SamplerRepeatMode
         set_repeat_w(p_member: RenderingDevice.SamplerRepeatMode): void
         get_repeat_w(): RenderingDevice.SamplerRepeatMode
-        set_lod_bias(p_member: number /*f64*/): void
-        get_lod_bias(): number /*f64*/
+        set_lod_bias(p_member: float64): void
+        get_lod_bias(): float64
         set_use_anisotropy(p_member: boolean): void
         get_use_anisotropy(): boolean
-        set_anisotropy_max(p_member: number /*f64*/): void
-        get_anisotropy_max(): number /*f64*/
+        set_anisotropy_max(p_member: float64): void
+        get_anisotropy_max(): float64
         set_enable_compare(p_member: boolean): void
         get_enable_compare(): boolean
         set_compare_op(p_member: RenderingDevice.CompareOperator): void
         get_compare_op(): RenderingDevice.CompareOperator
-        set_min_lod(p_member: number /*f64*/): void
-        get_min_lod(): number /*f64*/
-        set_max_lod(p_member: number /*f64*/): void
-        get_max_lod(): number /*f64*/
+        set_min_lod(p_member: float64): void
+        get_min_lod(): float64
+        set_max_lod(p_member: float64): void
+        get_max_lod(): float64
         set_border_color(p_member: RenderingDevice.SamplerBorderColor): void
         get_border_color(): RenderingDevice.SamplerBorderColor
         set_unnormalized_uvw(p_member: boolean): void
         get_unnormalized_uvw(): boolean
         
         /** The sampler's magnification filter. */
-        get mag_filter(): number /*i64*/
-        set mag_filter(value: number /*i64*/)
-        get min_filter(): number /*i64*/
-        set min_filter(value: number /*i64*/)
+        get mag_filter(): int64
+        set mag_filter(value: int64)
+        get min_filter(): int64
+        set min_filter(value: int64)
         
         /** The filtering method to use for mipmaps. */
-        get mip_filter(): number /*i64*/
-        set mip_filter(value: number /*i64*/)
+        get mip_filter(): int64
+        set mip_filter(value: int64)
         
         /** The repeat mode to use along the U axis of UV coordinates. This affects the returned values if sampling outside the UV bounds. */
-        get repeat_u(): number /*i64*/
-        set repeat_u(value: number /*i64*/)
+        get repeat_u(): int64
+        set repeat_u(value: int64)
         
         /** The repeat mode to use along the V axis of UV coordinates. This affects the returned values if sampling outside the UV bounds. */
-        get repeat_v(): number /*i64*/
-        set repeat_v(value: number /*i64*/)
+        get repeat_v(): int64
+        set repeat_v(value: int64)
         
         /** The repeat mode to use along the W axis of UV coordinates. This affects the returned values if sampling outside the UV bounds. Only effective for 3D samplers. */
-        get repeat_w(): number /*i64*/
-        set repeat_w(value: number /*i64*/)
+        get repeat_w(): int64
+        set repeat_w(value: int64)
         
         /** The mipmap LOD bias to use. Positive values will make the sampler blurrier at a given distance, while negative values will make the sampler sharper at a given distance (at the risk of looking grainy). Recommended values are between `-0.5` and `0.0`. Only effective if the sampler has mipmaps available. */
-        get lod_bias(): number /*f64*/
-        set lod_bias(value: number /*f64*/)
+        get lod_bias(): float64
+        set lod_bias(value: float64)
         
         /** If `true`, perform anisotropic sampling. See [member anisotropy_max]. */
         get use_anisotropy(): boolean
@@ -7363,28 +7363,28 @@ declare module "godot" {
         /** Maximum anisotropy that can be used when sampling. Only effective if [member use_anisotropy] is `true`. Higher values result in a sharper sampler at oblique angles, at the cost of performance (due to memory bandwidth). This value may be limited by the graphics hardware in use. Most graphics hardware only supports values up to `16.0`.  
          *  If [member anisotropy_max] is `1.0`, forcibly disables anisotropy even if [member use_anisotropy] is `true`.  
          */
-        get anisotropy_max(): number /*f64*/
-        set anisotropy_max(value: number /*f64*/)
+        get anisotropy_max(): float64
+        set anisotropy_max(value: float64)
         
         /** If `true`, returned values will be based on the comparison operation defined in [member compare_op]. This is a hardware-based approach and is therefore faster than performing this manually in a shader. For example, compare operations are used for shadow map rendering by comparing depth values from a shadow sampler. */
         get enable_compare(): boolean
         set enable_compare(value: boolean)
         
         /** The compare operation to use. Only effective if [member enable_compare] is `true`. */
-        get compare_op(): number /*i64*/
-        set compare_op(value: number /*i64*/)
+        get compare_op(): int64
+        set compare_op(value: int64)
         
         /** The minimum mipmap LOD bias to display (highest resolution). Only effective if the sampler has mipmaps available. */
-        get min_lod(): number /*f64*/
-        set min_lod(value: number /*f64*/)
+        get min_lod(): float64
+        set min_lod(value: float64)
         
         /** The maximum mipmap LOD bias to display (lowest resolution). Only effective if the sampler has mipmaps available. */
-        get max_lod(): number /*f64*/
-        set max_lod(value: number /*f64*/)
+        get max_lod(): float64
+        set max_lod(value: float64)
         
         /** The border color that will be returned when sampling outside the sampler's bounds and the [member repeat_u], [member repeat_v] or [member repeat_w] modes have repeating disabled. */
-        get border_color(): number /*i64*/
-        set border_color(value: number /*i64*/)
+        get border_color(): int64
+        set border_color(value: int64)
         get unnormalized_uvw(): boolean
         set unnormalized_uvw(value: boolean)
     }
@@ -7446,8 +7446,8 @@ declare module "godot" {
         get_language(): RenderingDevice.ShaderLanguage
         
         /** The language the shader is written in. */
-        get language(): number /*i64*/
-        set language(value: number /*i64*/)
+        get language(): int64
+        set language(value: int64)
     }
     /** Texture format (used by [RenderingDevice]).  
      *  	  
@@ -7457,16 +7457,16 @@ declare module "godot" {
         constructor(identifier?: any)
         set_format(p_member: RenderingDevice.DataFormat): void
         get_format(): RenderingDevice.DataFormat
-        set_width(p_member: number /*i64*/): void
-        get_width(): number /*i64*/
-        set_height(p_member: number /*i64*/): void
-        get_height(): number /*i64*/
-        set_depth(p_member: number /*i64*/): void
-        get_depth(): number /*i64*/
-        set_array_layers(p_member: number /*i64*/): void
-        get_array_layers(): number /*i64*/
-        set_mipmaps(p_member: number /*i64*/): void
-        get_mipmaps(): number /*i64*/
+        set_width(p_member: int64): void
+        get_width(): int64
+        set_height(p_member: int64): void
+        get_height(): int64
+        set_depth(p_member: int64): void
+        get_depth(): int64
+        set_array_layers(p_member: int64): void
+        get_array_layers(): int64
+        set_mipmaps(p_member: int64): void
+        get_mipmaps(): int64
         set_texture_type(p_member: RenderingDevice.TextureType): void
         get_texture_type(): RenderingDevice.TextureType
         set_samples(p_member: RenderingDevice.TextureSamples): void
@@ -7477,40 +7477,40 @@ declare module "godot" {
         remove_shareable_format(format: RenderingDevice.DataFormat): void
         
         /** The texture's pixel data format. */
-        get format(): number /*i64*/
-        set format(value: number /*i64*/)
+        get format(): int64
+        set format(value: int64)
         
         /** The texture's width (in pixels). */
-        get width(): number /*i64*/
-        set width(value: number /*i64*/)
+        get width(): int64
+        set width(value: int64)
         
         /** The texture's height (in pixels). */
-        get height(): number /*i64*/
-        set height(value: number /*i64*/)
+        get height(): int64
+        set height(value: int64)
         
         /** The texture's depth (in pixels). This is always `1` for 2D textures. */
-        get depth(): number /*i64*/
-        set depth(value: number /*i64*/)
+        get depth(): int64
+        set depth(value: int64)
         
         /** The number of layers in the texture. Only relevant for 2D texture arrays. */
-        get array_layers(): number /*i64*/
-        set array_layers(value: number /*i64*/)
+        get array_layers(): int64
+        set array_layers(value: int64)
         
         /** The number of mipmaps available in the texture. */
-        get mipmaps(): number /*i64*/
-        set mipmaps(value: number /*i64*/)
+        get mipmaps(): int64
+        set mipmaps(value: int64)
         
         /** The texture type. */
-        get texture_type(): number /*i64*/
-        set texture_type(value: number /*i64*/)
+        get texture_type(): int64
+        set texture_type(value: int64)
         
         /** The number of samples used when sampling the texture. */
-        get samples(): number /*i64*/
-        set samples(value: number /*i64*/)
+        get samples(): int64
+        set samples(value: int64)
         
         /** The texture's usage bits, which determine what can be done using the texture. */
-        get usage_bits(): number /*i64*/
-        set usage_bits(value: number /*i64*/)
+        get usage_bits(): int64
+        set usage_bits(value: int64)
     }
     /** Texture view (used by [RenderingDevice]).  
      *  	  
@@ -7530,24 +7530,24 @@ declare module "godot" {
         get_swizzle_a(): RenderingDevice.TextureSwizzle
         
         /** Optional override for the data format to return sampled values in. The default value of [constant RenderingDevice.DATA_FORMAT_MAX] does not override the format. */
-        get format_override(): number /*i64*/
-        set format_override(value: number /*i64*/)
+        get format_override(): int64
+        set format_override(value: int64)
         
         /** The channel to sample when sampling the red color channel. */
-        get swizzle_r(): number /*i64*/
-        set swizzle_r(value: number /*i64*/)
+        get swizzle_r(): int64
+        set swizzle_r(value: int64)
         
         /** The channel to sample when sampling the green color channel. */
-        get swizzle_g(): number /*i64*/
-        set swizzle_g(value: number /*i64*/)
+        get swizzle_g(): int64
+        set swizzle_g(value: int64)
         
         /** The channel to sample when sampling the blue color channel. */
-        get swizzle_b(): number /*i64*/
-        set swizzle_b(value: number /*i64*/)
+        get swizzle_b(): int64
+        set swizzle_b(value: int64)
         
         /** The channel to sample when sampling the alpha channel. */
-        get swizzle_a(): number /*i64*/
-        set swizzle_a(value: number /*i64*/)
+        get swizzle_a(): int64
+        set swizzle_a(value: int64)
     }
     /** Shader uniform (used by [RenderingDevice]).  
      *  	  
@@ -7557,20 +7557,20 @@ declare module "godot" {
         constructor(identifier?: any)
         set_uniform_type(p_member: RenderingDevice.UniformType): void
         get_uniform_type(): RenderingDevice.UniformType
-        set_binding(p_member: number /*i64*/): void
-        get_binding(): number /*i64*/
+        set_binding(p_member: int64): void
+        get_binding(): int64
         add_id(id: RID): void
         clear_ids(): void
         _set_ids(ids: Array): void
         get_ids(): Array
         
         /** The uniform's data type. */
-        get uniform_type(): number /*i64*/
-        set uniform_type(value: number /*i64*/)
+        get uniform_type(): int64
+        set uniform_type(value: int64)
         
         /** The uniform's binding. */
-        get binding(): number /*i64*/
-        set binding(value: number /*i64*/)
+        get binding(): int64
+        set binding(value: int64)
         get _ids(): Array
         set _ids(value: Array)
     }
@@ -7580,26 +7580,26 @@ declare module "godot" {
      */
     class RDVertexAttribute extends RefCounted {
         constructor(identifier?: any)
-        set_location(p_member: number /*i64*/): void
-        get_location(): number /*i64*/
-        set_offset(p_member: number /*i64*/): void
-        get_offset(): number /*i64*/
+        set_location(p_member: int64): void
+        get_location(): int64
+        set_offset(p_member: int64): void
+        get_offset(): int64
         set_format(p_member: RenderingDevice.DataFormat): void
         get_format(): RenderingDevice.DataFormat
-        set_stride(p_member: number /*i64*/): void
-        get_stride(): number /*i64*/
+        set_stride(p_member: int64): void
+        get_stride(): int64
         set_frequency(p_member: RenderingDevice.VertexFrequency): void
         get_frequency(): RenderingDevice.VertexFrequency
-        get location(): number /*i64*/
-        set location(value: number /*i64*/)
-        get offset(): number /*i64*/
-        set offset(value: number /*i64*/)
-        get format(): number /*i64*/
-        set format(value: number /*i64*/)
-        get stride(): number /*i64*/
-        set stride(value: number /*i64*/)
-        get frequency(): number /*i64*/
-        set frequency(value: number /*i64*/)
+        get location(): int64
+        set location(value: int64)
+        get offset(): int64
+        set offset(value: int64)
+        get format(): int64
+        set format(value: int64)
+        get stride(): int64
+        set stride(value: int64)
+        get frequency(): int64
+        set frequency(value: int64)
     }
     /** Provides methods for generating pseudo-random numbers.  
      *  	  
@@ -7607,25 +7607,25 @@ declare module "godot" {
      */
     class RandomNumberGenerator extends RefCounted {
         constructor(identifier?: any)
-        set_seed(seed: number /*i64*/): void
-        get_seed(): number /*i64*/
-        set_state(state: number /*i64*/): void
-        get_state(): number /*i64*/
+        set_seed(seed: int64): void
+        get_seed(): int64
+        set_state(state: int64): void
+        get_state(): int64
         
         /** Returns a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive). */
-        randi(): number /*i64*/
+        randi(): int64
         
         /** Returns a pseudo-random float between `0.0` and `1.0` (inclusive). */
-        randf(): number /*f64*/
+        randf(): float64
         
         /** Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url] pseudo-random number, using Box-Muller transform with the specified [param mean] and a standard [param deviation]. This is also called Gaussian distribution. */
-        randfn(mean: number /*f64*/ = 0, deviation: number /*f64*/ = 1): number /*f64*/
+        randfn(mean: float64 = 0, deviation: float64 = 1): float64
         
         /** Returns a pseudo-random float between [param from] and [param to] (inclusive). */
-        randf_range(from: number /*f64*/, to: number /*f64*/): number /*f64*/
+        randf_range(from: float64, to: float64): float64
         
         /** Returns a pseudo-random 32-bit signed integer between [param from] and [param to] (inclusive). */
-        randi_range(from: number /*i64*/, to: number /*i64*/): number /*i64*/
+        randi_range(from: int64, to: int64): int64
         
         /** Sets up a time-based seed for this [RandomNumberGenerator] instance. Unlike the [@GlobalScope] random number generation functions, different [RandomNumberGenerator] instances can use different seeds. */
         randomize(): void
@@ -7639,8 +7639,8 @@ declare module "godot" {
          *  **Note:** The default value of this property is pseudo-random, and changes when calling [method randomize]. The `0` value documented here is a placeholder, and not the actual default seed.  
          *    
          */
-        get seed(): number /*i64*/
-        set seed(value: number /*i64*/)
+        get seed(): int64
+        set seed(value: int64)
         
         /** The current state of the random number generator. Save and restore this property to restore the generator to a previous state:  
          *    
@@ -7649,8 +7649,8 @@ declare module "godot" {
          *      
          *  **Note:** The default value of this property is pseudo-random, and changes when calling [method randomize]. The `0` value documented here is a placeholder, and not the actual default seed.  
          */
-        get state(): number /*i64*/
-        set state(value: number /*i64*/)
+        get state(): int64
+        set state(value: int64)
     }
     /** Abstract base class for controls that represent a number within a range.  
      *  	  
@@ -7659,22 +7659,22 @@ declare module "godot" {
     class Range extends Control {
         constructor(identifier?: any)
         /** Called when the [Range]'s value is changed (following the same conditions as [signal value_changed]). */
-        /* gdvirtual */ _value_changed(new_value: number /*f64*/): void
-        get_value(): number /*f64*/
-        get_min(): number /*f64*/
-        get_max(): number /*f64*/
-        get_step(): number /*f64*/
-        get_page(): number /*f64*/
-        get_as_ratio(): number /*f64*/
-        set_value(value: number /*f64*/): void
+        /* gdvirtual */ _value_changed(new_value: float64): void
+        get_value(): float64
+        get_min(): float64
+        get_max(): float64
+        get_step(): float64
+        get_page(): float64
+        get_as_ratio(): float64
+        set_value(value: float64): void
         
         /** Sets the [Range]'s current value to the specified [param value], without emitting the [signal value_changed] signal. */
-        set_value_no_signal(value: number /*f64*/): void
-        set_min(minimum: number /*f64*/): void
-        set_max(maximum: number /*f64*/): void
-        set_step(step: number /*f64*/): void
-        set_page(pagesize: number /*f64*/): void
-        set_as_ratio(value: number /*f64*/): void
+        set_value_no_signal(value: float64): void
+        set_min(minimum: float64): void
+        set_max(maximum: float64): void
+        set_step(step: float64): void
+        set_page(pagesize: float64): void
+        set_as_ratio(value: float64): void
         set_use_rounded_values(enabled: boolean): void
         is_using_rounded_values(): boolean
         set_exp_ratio(enabled: boolean): void
@@ -7691,28 +7691,28 @@ declare module "godot" {
         unshare(): void
         
         /** Minimum value. Range is clamped if [member value] is less than [member min_value]. */
-        get min_value(): number /*f64*/
-        set min_value(value: number /*f64*/)
+        get min_value(): float64
+        set min_value(value: float64)
         
         /** Maximum value. Range is clamped if [member value] is greater than [member max_value]. */
-        get max_value(): number /*f64*/
-        set max_value(value: number /*f64*/)
+        get max_value(): float64
+        set max_value(value: float64)
         
         /** If greater than 0, [member value] will always be rounded to a multiple of this property's value. If [member rounded] is also `true`, [member value] will first be rounded to a multiple of this property's value, then rounded to the nearest integer. */
-        get step(): number /*f64*/
-        set step(value: number /*f64*/)
+        get step(): float64
+        set step(value: float64)
         
         /** Page size. Used mainly for [ScrollBar]. ScrollBar's length is its size multiplied by [member page] over the difference between [member min_value] and [member max_value]. */
-        get page(): number /*f64*/
-        set page(value: number /*f64*/)
+        get page(): float64
+        set page(value: float64)
         
         /** Range's current value. Changing this property (even via code) will trigger [signal value_changed] signal. Use [method set_value_no_signal] if you want to avoid it. */
-        get value(): number /*f64*/
-        set value(value: number /*f64*/)
+        get value(): float64
+        set value(value: float64)
         
         /** The value mapped between 0 and 1. */
-        get ratio(): number /*f64*/
-        set ratio(value: number /*f64*/)
+        get ratio(): float64
+        set ratio(value: float64)
         
         /** If `true`, and [member min_value] is greater than 0, [member value] will be represented exponentially rather than linearly. */
         get exp_edit(): boolean
@@ -7734,7 +7734,7 @@ declare module "godot" {
          *      
          *  **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also emitted when [param value] is set directly via code.  
          */
-        readonly value_changed: Signal // value: number /*f64*/ => void
+        readonly value_changed: Signal // value: float64 => void
         
         /** Emitted when [member min_value], [member max_value], [member page], or [member step] change. */
         readonly changed: Signal //  => void
@@ -7769,7 +7769,7 @@ declare module "godot" {
          *  To get the intersected shape node, for a [CollisionObject2D] target, use:  
          *    
          */
-        get_collider_shape(): number /*i64*/
+        get_collider_shape(): int64
         
         /** Returns the collision point at which the ray intersects the closest object. If [member hit_from_inside] is `true` and the ray starts inside of a collision shape, this function will return the origin point of the ray.  
          *      
@@ -7794,14 +7794,14 @@ declare module "godot" {
         
         /** Removes all collision exceptions for this ray. */
         clear_exceptions(): void
-        set_collision_mask(mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_collision_mask(mask: int64): void
+        get_collision_mask(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        set_collision_mask_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        get_collision_mask_value(layer_number: int64): boolean
         set_exclude_parent_body(mask: boolean): void
         get_exclude_parent_body(): boolean
         set_collide_with_areas(enable: boolean): void
@@ -7824,8 +7824,8 @@ declare module "godot" {
         set target_position(value: Vector2)
         
         /** The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** If `true`, the ray will detect a hit when starting inside shapes. In this case the collision normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes. */
         get hit_from_inside(): boolean
@@ -7869,7 +7869,7 @@ declare module "godot" {
          *  To get the intersected shape node, for a [CollisionObject3D] target, use:  
          *    
          */
-        get_collider_shape(): number /*i64*/
+        get_collider_shape(): int64
         
         /** Returns the collision point at which the ray intersects the closest object. If [member hit_from_inside] is `true` and the ray starts inside of a collision shape, this function will return the origin point of the ray.  
          *      
@@ -7881,7 +7881,7 @@ declare module "godot" {
         get_collision_normal(): Vector3
         
         /** Returns the collision object's face index at the collision point, or `-1` if the shape intersecting the ray is not a [ConcavePolygonShape3D]. */
-        get_collision_face_index(): number /*i64*/
+        get_collision_face_index(): int64
         
         /** Adds a collision exception so the ray does not report collisions with the specified [RID]. */
         add_exception_rid(rid: RID): void
@@ -7897,14 +7897,14 @@ declare module "godot" {
         
         /** Removes all collision exceptions for this ray. */
         clear_exceptions(): void
-        set_collision_mask(mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_collision_mask(mask: int64): void
+        get_collision_mask(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        set_collision_mask_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        get_collision_mask_value(layer_number: int64): boolean
         set_exclude_parent_body(mask: boolean): void
         get_exclude_parent_body(): boolean
         set_collide_with_areas(enable: boolean): void
@@ -7917,8 +7917,8 @@ declare module "godot" {
         is_hit_back_faces_enabled(): boolean
         set_debug_shape_custom_color(debug_shape_custom_color: Color): void
         get_debug_shape_custom_color(): Color
-        set_debug_shape_thickness(debug_shape_thickness: number /*i64*/): void
-        get_debug_shape_thickness(): number /*i64*/
+        set_debug_shape_thickness(debug_shape_thickness: int64): void
+        get_debug_shape_thickness(): int64
         
         /** If `true`, collisions will be reported. */
         get enabled(): boolean
@@ -7933,8 +7933,8 @@ declare module "godot" {
         set target_position(value: Vector3)
         
         /** The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** If `true`, the ray will detect a hit when starting inside shapes. In this case the collision normal will be `Vector3(0, 0, 0)`. Does not affect shapes with no volume like concave polygon or heightmap. */
         get hit_from_inside(): boolean
@@ -7959,8 +7959,8 @@ declare module "godot" {
         set debug_shape_custom_color(value: Color)
         
         /** If set to `1`, a line is used as the debug shape. Otherwise, a truncated pyramid is drawn to represent the [RayCast3D]. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for the debug shape to be visible at run-time. */
-        get debug_shape_thickness(): number /*i64*/
-        set debug_shape_thickness(value: number /*i64*/)
+        get debug_shape_thickness(): int64
+        set debug_shape_thickness(value: int64)
     }
     class RayCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -8000,7 +8000,7 @@ declare module "godot" {
         unreference(): boolean
         
         /** Returns the current reference count. */
-        get_reference_count(): number /*i64*/
+        get_reference_count(): int64
     }
     /** A rectangle hint for designing UIs.  
      *  	  
@@ -8010,8 +8010,8 @@ declare module "godot" {
         constructor(identifier?: any)
         get_border_color(): Color
         set_border_color(color: Color): void
-        get_border_width(): number /*f64*/
-        set_border_width(width: number /*f64*/): void
+        get_border_width(): float64
+        set_border_width(width: float64): void
         get_editor_only(): boolean
         set_editor_only(enabled: boolean): void
         
@@ -8020,8 +8020,8 @@ declare module "godot" {
         set border_color(value: Color)
         
         /** Sets the border width of the [ReferenceRect]. The border grows both inwards and outwards with respect to the rectangle box. */
-        get border_width(): number /*f64*/
-        set border_width(value: number /*f64*/)
+        get border_width(): float64
+        set border_width(value: float64)
         
         /** If `true`, the [ReferenceRect] will only be visible while in editor. Otherwise, [ReferenceRect] will be visible in the running project. */
         get editor_only(): boolean
@@ -8052,18 +8052,18 @@ declare module "godot" {
      */
     class ReflectionProbe extends VisualInstance3D {
         constructor(identifier?: any)
-        set_intensity(intensity: number /*f64*/): void
-        get_intensity(): number /*f64*/
+        set_intensity(intensity: float64): void
+        get_intensity(): float64
         set_ambient_mode(ambient: ReflectionProbe.AmbientMode): void
         get_ambient_mode(): ReflectionProbe.AmbientMode
         set_ambient_color(ambient: Color): void
         get_ambient_color(): Color
-        set_ambient_color_energy(ambient_energy: number /*f64*/): void
-        get_ambient_color_energy(): number /*f64*/
-        set_max_distance(max_distance: number /*f64*/): void
-        get_max_distance(): number /*f64*/
-        set_mesh_lod_threshold(ratio: number /*f64*/): void
-        get_mesh_lod_threshold(): number /*f64*/
+        set_ambient_color_energy(ambient_energy: float64): void
+        get_ambient_color_energy(): float64
+        set_max_distance(max_distance: float64): void
+        get_max_distance(): float64
+        set_mesh_lod_threshold(ratio: float64): void
+        get_mesh_lod_threshold(): float64
         set_size(size: Vector3): void
         get_size(): Vector3
         set_origin_offset(origin_offset: Vector3): void
@@ -8074,25 +8074,25 @@ declare module "godot" {
         is_box_projection_enabled(): boolean
         set_enable_shadows(enable: boolean): void
         are_shadows_enabled(): boolean
-        set_cull_mask(layers: number /*i64*/): void
-        get_cull_mask(): number /*i64*/
+        set_cull_mask(layers: int64): void
+        get_cull_mask(): int64
         set_update_mode(mode: ReflectionProbe.UpdateMode): void
         get_update_mode(): ReflectionProbe.UpdateMode
         
         /** Sets how frequently the [ReflectionProbe] is updated. Can be [constant UPDATE_ONCE] or [constant UPDATE_ALWAYS]. */
-        get update_mode(): number /*i64*/
-        set update_mode(value: number /*i64*/)
+        get update_mode(): int64
+        set update_mode(value: int64)
         
         /** Defines the reflection intensity. Intensity modulates the strength of the reflection. */
-        get intensity(): number /*f64*/
-        set intensity(value: number /*f64*/)
+        get intensity(): float64
+        set intensity(value: float64)
         
         /** The maximum distance away from the [ReflectionProbe] an object can be before it is culled. Decrease this to improve performance, especially when using the [constant UPDATE_ALWAYS] [member update_mode].  
          *      
          *  **Note:** The maximum reflection distance is always at least equal to the probe's extents. This means that decreasing [member max_distance] will not always cull objects from reflections, especially if the reflection probe's box defined by its [member size] is already large.  
          */
-        get max_distance(): number /*f64*/
-        set max_distance(value: number /*f64*/)
+        get max_distance(): float64
+        set max_distance(value: float64)
         
         /** The size of the reflection probe. The larger the size, the more space covered by the probe, which will lower the perceived resolution. It is best to keep the size only as large as you need it.  
          *      
@@ -8121,27 +8121,27 @@ declare module "godot" {
         set enable_shadows(value: boolean)
         
         /** Sets the cull mask which determines what objects are drawn by this probe. Every [VisualInstance3D] with a layer included in this cull mask will be rendered by the probe. To improve performance, it is best to only include large objects which are likely to take up a lot of space in the reflection. */
-        get cull_mask(): number /*i64*/
-        set cull_mask(value: number /*i64*/)
+        get cull_mask(): int64
+        set cull_mask(value: int64)
         
         /** The automatic LOD bias to use for meshes rendered within the [ReflectionProbe] (this is analog to [member Viewport.mesh_lod_threshold]). Higher values will use less detailed versions of meshes that have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [member mesh_lod_threshold] to improve performance at the cost of geometry detail, especially when using the [constant UPDATE_ALWAYS] [member update_mode].  
          *      
          *  **Note:** [member mesh_lod_threshold] does not affect [GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).  
          */
-        get mesh_lod_threshold(): number /*f64*/
-        set mesh_lod_threshold(value: number /*f64*/)
+        get mesh_lod_threshold(): float64
+        set mesh_lod_threshold(value: float64)
         
         /** The ambient color to use within the [ReflectionProbe]'s box defined by its [member size]. The ambient color will smoothly blend with other [ReflectionProbe]s and the rest of the scene (outside the [ReflectionProbe]'s box defined by its [member size]). */
-        get ambient_mode(): number /*i64*/
-        set ambient_mode(value: number /*i64*/)
+        get ambient_mode(): int64
+        set ambient_mode(value: int64)
         
         /** The custom ambient color to use within the [ReflectionProbe]'s box defined by its [member size]. Only effective if [member ambient_mode] is [constant AMBIENT_COLOR]. */
         get ambient_color(): Color
         set ambient_color(value: Color)
         
         /** The custom ambient color energy to use within the [ReflectionProbe]'s box defined by its [member size]. Only effective if [member ambient_mode] is [constant AMBIENT_COLOR]. */
-        get ambient_color_energy(): number /*f64*/
-        set ambient_color_energy(value: number /*f64*/)
+        get ambient_color_energy(): float64
+        set ambient_color_energy(value: float64)
     }
     class ReflectionProbeGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -8164,17 +8164,17 @@ declare module "godot" {
         /** Searches the text for the compiled pattern. Returns a [RegExMatch] container of the first matching result if found, otherwise `null`.  
          *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
          */
-        search(subject: string, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): RegExMatch
+        search(subject: string, offset: int64 = 0, end: int64 = -1): RegExMatch
         
         /** Searches the text for the compiled pattern. Returns an array of [RegExMatch] containers for each non-overlapping result. If no results were found, an empty array is returned instead.  
          *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
          */
-        search_all(subject: string, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): Array
+        search_all(subject: string, offset: int64 = 0, end: int64 = -1): Array
         
         /** Searches the text for the compiled pattern and replaces it with the specified string. Escapes and backreferences such as `$1` and `$name` are expanded and resolved. By default, only the first instance is replaced, but it can be changed for all instances (global replacement).  
          *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
          */
-        sub(subject: string, replacement: string, all: boolean = false, offset: number /*i64*/ = 0, end: number /*i64*/ = -1): string
+        sub(subject: string, replacement: string, all: boolean = false, offset: int64 = 0, end: int64 = -1): string
         
         /** Returns whether this object has a valid search pattern assigned. */
         is_valid(): boolean
@@ -8183,7 +8183,7 @@ declare module "godot" {
         get_pattern(): string
         
         /** Returns the number of capturing groups in compiled pattern. */
-        get_group_count(): number /*i64*/
+        get_group_count(): int64
         
         /** Returns an array of names of named capturing groups in the compiled pattern. They are ordered by appearance. */
         get_names(): PackedStringArray
@@ -8197,7 +8197,7 @@ declare module "godot" {
         get_subject(): string
         
         /** Returns the number of capturing groups. */
-        get_group_count(): number /*i64*/
+        get_group_count(): int64
         get_names(): Dictionary
         get_strings(): PackedStringArray
         
@@ -8209,12 +8209,12 @@ declare module "godot" {
         /** Returns the starting position of the match within the source string. The starting position of capturing groups can be retrieved by providing its group number as an integer or its string name (if it's a named group). The default value of 0 refers to the whole pattern.  
          *  Returns -1 if the group did not match or doesn't exist.  
          */
-        get_start(name: any = <any> {} /*compound.type from nil*/): number /*i64*/
+        get_start(name: any = <any> {} /*compound.type from nil*/): int64
         
         /** Returns the end position of the match within the source string. The end position of capturing groups can be retrieved by providing its group number as an integer or its string name (if it's a named group). The default value of 0 refers to the whole pattern.  
          *  Returns -1 if the group did not match or doesn't exist.  
          */
-        get_end(name: any = <any> {} /*compound.type from nil*/): number /*i64*/
+        get_end(name: any = <any> {} /*compound.type from nil*/): int64
         
         /** The source string used with the search pattern to find this matching result. */
         get subject(): string
@@ -8339,18 +8339,18 @@ declare module "godot" {
         set_internal_size(internal_size: Vector2i): void
         get_target_size(): Vector2i
         set_target_size(target_size: Vector2i): void
-        get_view_count(): number /*i64*/
-        set_view_count(view_count: number /*i64*/): void
+        get_view_count(): int64
+        set_view_count(view_count: int64): void
         get_scaling_3d_mode(): RenderingServer.ViewportScaling3DMode
         set_scaling_3d_mode(scaling_3d_mode: RenderingServer.ViewportScaling3DMode): void
         get_msaa_3d(): RenderingServer.ViewportMSAA
         set_msaa_3d(msaa_3d: RenderingServer.ViewportMSAA): void
         get_screen_space_aa(): RenderingServer.ViewportScreenSpaceAA
         set_screen_space_aa(screen_space_aa: RenderingServer.ViewportScreenSpaceAA): void
-        get_fsr_sharpness(): number /*f64*/
-        set_fsr_sharpness(fsr_sharpness: number /*f64*/): void
-        get_texture_mipmap_bias(): number /*f64*/
-        set_texture_mipmap_bias(texture_mipmap_bias: number /*f64*/): void
+        get_fsr_sharpness(): float64
+        set_fsr_sharpness(fsr_sharpness: float64): void
+        get_texture_mipmap_bias(): float64
+        set_texture_mipmap_bias(texture_mipmap_bias: float64): void
         
         /** The render target associated with these buffer. */
         get render_target(): RID
@@ -8365,20 +8365,20 @@ declare module "godot" {
         set target_size(value: Vector2i)
         
         /** The number of views we're rendering. */
-        get view_count(): number /*i64*/
-        set view_count(value: number /*i64*/)
+        get view_count(): int64
+        set view_count(value: int64)
         
         /** The requested scaling mode with which we upscale/downscale if [member internal_size] and [member target_size] are not equal. */
-        get scaling_3d_mode(): number /*i64*/
-        set scaling_3d_mode(value: number /*i64*/)
+        get scaling_3d_mode(): int64
+        set scaling_3d_mode(value: int64)
         
         /** The MSAA mode we're using for 3D rendering. */
-        get msaa_3d(): number /*i64*/
-        set msaa_3d(value: number /*i64*/)
+        get msaa_3d(): int64
+        set msaa_3d(value: int64)
         
         /** The requested screen space AA applied in post processing. */
-        get screen_space_aa(): number /*i64*/
-        set screen_space_aa(value: number /*i64*/)
+        get screen_space_aa(): int64
+        set screen_space_aa(value: int64)
         
         /** FSR Sharpness applicable if FSR upscaling is used. */
         get fsr_sharpness(): boolean
@@ -8398,10 +8398,10 @@ declare module "godot" {
         /* gdvirtual */ _configure(config: RenderSceneBuffersConfiguration): void
         
         /** Implement this in GDExtension to record a new FSR sharpness value. */
-        /* gdvirtual */ _set_fsr_sharpness(fsr_sharpness: number /*f64*/): void
+        /* gdvirtual */ _set_fsr_sharpness(fsr_sharpness: float64): void
         
         /** Implement this in GDExtension to change the texture mipmap bias. */
-        /* gdvirtual */ _set_texture_mipmap_bias(texture_mipmap_bias: number /*f64*/): void
+        /* gdvirtual */ _set_texture_mipmap_bias(texture_mipmap_bias: float64): void
         
         /** Implement this in GDExtension to react to the debanding flag changing. */
         /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
@@ -8416,7 +8416,7 @@ declare module "godot" {
         has_texture(context: StringName, name: StringName): boolean
         
         /** Create a new texture with the given definition and cache this under the given name. Will return the existing texture if it already exists. */
-        create_texture(context: StringName, name: StringName, data_format: RenderingDevice.DataFormat, usage_bits: number /*i64*/, texture_samples: RenderingDevice.TextureSamples, size: Vector2i, layers: number /*i64*/, mipmaps: number /*i64*/, unique: boolean): RID
+        create_texture(context: StringName, name: StringName, data_format: RenderingDevice.DataFormat, usage_bits: int64, texture_samples: RenderingDevice.TextureSamples, size: Vector2i, layers: int64, mipmaps: int64, unique: boolean): RID
         
         /** Create a new texture using the given format and view and cache this under the given name. Will return the existing texture if it already exists. */
         create_texture_from_format(context: StringName, name: StringName, format: RDTextureFormat, view: RDTextureView, unique: boolean): RID
@@ -8431,13 +8431,13 @@ declare module "godot" {
         get_texture_format(context: StringName, name: StringName): RDTextureFormat
         
         /** Returns a specific slice (layer or mipmap) for a cached texture. */
-        get_texture_slice(context: StringName, name: StringName, layer: number /*i64*/, mipmap: number /*i64*/, layers: number /*i64*/, mipmaps: number /*i64*/): RID
+        get_texture_slice(context: StringName, name: StringName, layer: int64, mipmap: int64, layers: int64, mipmaps: int64): RID
         
         /** Returns a specific view of a slice (layer or mipmap) for a cached texture. */
-        get_texture_slice_view(context: StringName, name: StringName, layer: number /*i64*/, mipmap: number /*i64*/, layers: number /*i64*/, mipmaps: number /*i64*/, view: RDTextureView): RID
+        get_texture_slice_view(context: StringName, name: StringName, layer: int64, mipmap: int64, layers: int64, mipmaps: int64, view: RDTextureView): RID
         
         /** Returns the texture size of a given slice of a cached texture. */
-        get_texture_slice_size(context: StringName, name: StringName, mipmap: number /*i64*/): Vector2i
+        get_texture_slice_size(context: StringName, name: StringName, mipmap: int64): Vector2i
         
         /** Frees all buffers related to this context. */
         clear_context(context: StringName): void
@@ -8446,25 +8446,25 @@ declare module "godot" {
         get_color_texture(): RID
         
         /** Returns the specified layer from the color texture we are rendering 3D content to. */
-        get_color_layer(layer: number /*i64*/): RID
+        get_color_layer(layer: int64): RID
         
         /** Returns the depth texture we are rendering 3D content to. If multiview is used this will be a texture array with all views. */
         get_depth_texture(): RID
         
         /** Returns the specified layer from the depth texture we are rendering 3D content to. */
-        get_depth_layer(layer: number /*i64*/): RID
+        get_depth_layer(layer: int64): RID
         
         /** Returns the velocity texture we are rendering 3D content to. If multiview is used this will be a texture array with all views. */
         get_velocity_texture(): RID
         
         /** Returns the specified layer from the velocity texture we are rendering 3D content to. */
-        get_velocity_layer(layer: number /*i64*/): RID
+        get_velocity_layer(layer: int64): RID
         
         /** Returns the render target associated with this buffers object. */
         get_render_target(): RID
         
         /** Returns the view count for the associated viewport. */
-        get_view_count(): number /*i64*/
+        get_view_count(): int64
         
         /** Returns the internal size of the render buffer (size before upscaling) with which textures are created by default. */
         get_internal_size(): Vector2i
@@ -9932,10 +9932,10 @@ declare module "godot" {
          *      
          *  **Note:** Layer slicing is only supported for 2D texture arrays, not 3D textures or cubemaps.  
          */
-        texture_create_shared_from_slice(view: RDTextureView, with_texture: RID, layer: number /*i64*/, mipmap: number /*i64*/, mipmaps: number /*i64*/ = 1, slice_type: RenderingDevice.TextureSliceType = 0): RID
+        texture_create_shared_from_slice(view: RDTextureView, with_texture: RID, layer: int64, mipmap: int64, mipmaps: int64 = 1, slice_type: RenderingDevice.TextureSliceType = 0): RID
         
         /** Returns an RID for an existing [param image] (`VkImage`) with the given [param type], [param format], [param samples], [param usage_flags], [param width], [param height], [param depth], and [param layers]. This can be used to allow Godot to render onto foreign images. */
-        texture_create_from_extension(type: RenderingDevice.TextureType, format: RenderingDevice.DataFormat, samples: RenderingDevice.TextureSamples, usage_flags: RenderingDevice.TextureUsageBits, image: number /*i64*/, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, layers: number /*i64*/): RID
+        texture_create_from_extension(type: RenderingDevice.TextureType, format: RenderingDevice.DataFormat, samples: RenderingDevice.TextureSamples, usage_flags: RenderingDevice.TextureUsageBits, image: int64, width: int64, height: int64, depth: int64, layers: int64): RID
         
         /** Updates texture data with new data, replacing the previous data in place. The updated texture data must have the same dimensions and format. For 2D textures (which only have one layer), [param layer] must be `0`. Returns [constant @GlobalScope.OK] if the update was successful, [constant @GlobalScope.ERR_INVALID_PARAMETER] otherwise.  
          *      
@@ -9945,7 +9945,7 @@ declare module "godot" {
          *      
          *  **Note:** The existing [param texture] requires the [constant TEXTURE_USAGE_CAN_UPDATE_BIT] to be updatable.  
          */
-        texture_update(texture: RID, layer: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): Error
+        texture_update(texture: RID, layer: int64, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Returns the [param texture] data for the specified [param layer] as raw binary data. For 2D textures (which only have one layer), [param layer] must be `0`.  
          *      
@@ -9953,7 +9953,7 @@ declare module "godot" {
          *      
          *  **Note:** [param texture] requires the [constant TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved. Otherwise, an error is printed and a empty [PackedByteArray] is returned.  
          */
-        texture_get_data(texture: RID, layer: number /*i64*/): PackedByteArray
+        texture_get_data(texture: RID, layer: int64): PackedByteArray
         
         /** Returns `true` if the specified [param format] is supported for the given [param usage_flags], `false` otherwise. */
         texture_is_format_supported_for_usage(format: RenderingDevice.DataFormat, usage_flags: RenderingDevice.TextureUsageBits): boolean
@@ -9976,13 +9976,13 @@ declare module "godot" {
          *      
          *  **Note:** [param from_texture] and [param to_texture] must be of the same type (color or depth).  
          */
-        texture_copy(from_texture: RID, to_texture: RID, from_pos: Vector3, to_pos: Vector3, size: Vector3, src_mipmap: number /*i64*/, dst_mipmap: number /*i64*/, src_layer: number /*i64*/, dst_layer: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): Error
+        texture_copy(from_texture: RID, to_texture: RID, from_pos: Vector3, to_pos: Vector3, size: Vector3, src_mipmap: int64, dst_mipmap: int64, src_layer: int64, dst_layer: int64, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Clears the specified [param texture] by replacing all of its pixels with the specified [param color]. [param base_mipmap] and [param mipmap_count] determine which mipmaps of the texture are affected by this clear operation, while [param base_layer] and [param layer_count] determine which layers of a 3D texture (or texture array) are affected by this clear operation. For 2D textures (which only have one layer by design), [param base_layer] must be `0` and [param layer_count] must be `1`.  
          *      
          *  **Note:** [param texture] can't be cleared while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to clear this texture.  
          */
-        texture_clear(texture: RID, color: Color, base_mipmap: number /*i64*/, mipmap_count: number /*i64*/, base_layer: number /*i64*/, layer_count: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): Error
+        texture_clear(texture: RID, color: Color, base_mipmap: int64, mipmap_count: int64, base_layer: int64, layer_count: int64, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Resolves the [param from_texture] texture onto [param to_texture] with multisample antialiasing enabled. This must be used when rendering a framebuffer for MSAA to work. Returns [constant @GlobalScope.OK] if successful, [constant @GlobalScope.ERR_INVALID_PARAMETER] otherwise.  
          *      
@@ -10009,39 +10009,39 @@ declare module "godot" {
          *      
          *  **Note:** This function returns a `uint64_t` which internally maps to a `GLuint` (OpenGL) or `VkImage` (Vulkan).  
          */
-        texture_get_native_handle(texture: RID): number /*i64*/
+        texture_get_native_handle(texture: RID): int64
         
         /** Creates a new framebuffer format with the specified [param attachments] and [param view_count]. Returns the new framebuffer's unique framebuffer format ID.  
          *  If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension.  
          */
-        framebuffer_format_create(attachments: Array, view_count: number /*i64*/ = 1): number /*i64*/
+        framebuffer_format_create(attachments: Array, view_count: int64 = 1): int64
         
         /** Creates a multipass framebuffer format with the specified [param attachments], [param passes] and [param view_count] and returns its ID. If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension. */
-        framebuffer_format_create_multipass(attachments: Array, passes: Array, view_count: number /*i64*/ = 1): number /*i64*/
+        framebuffer_format_create_multipass(attachments: Array, passes: Array, view_count: int64 = 1): int64
         
         /** Creates a new empty framebuffer format with the specified number of [param samples] and returns its ID. */
-        framebuffer_format_create_empty(samples: RenderingDevice.TextureSamples = 0): number /*i64*/
+        framebuffer_format_create_empty(samples: RenderingDevice.TextureSamples = 0): int64
         
         /** Returns the number of texture samples used for the given framebuffer [param format] ID (returned by [method framebuffer_get_format]). */
-        framebuffer_format_get_texture_samples(format: number /*i64*/, render_pass: number /*i64*/ = 0): RenderingDevice.TextureSamples
+        framebuffer_format_get_texture_samples(format: int64, render_pass: int64 = 0): RenderingDevice.TextureSamples
         
         /** Creates a new framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        framebuffer_create(textures: Array, validate_with_format: number /*i64*/ = -1, view_count: number /*i64*/ = 1): RID
+        framebuffer_create(textures: Array, validate_with_format: int64 = -1, view_count: int64 = 1): RID
         
         /** Creates a new multipass framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        framebuffer_create_multipass(textures: Array, passes: Array, validate_with_format: number /*i64*/ = -1, view_count: number /*i64*/ = 1): RID
+        framebuffer_create_multipass(textures: Array, passes: Array, validate_with_format: int64 = -1, view_count: int64 = 1): RID
         
         /** Creates a new empty framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        framebuffer_create_empty(size: Vector2i, samples: RenderingDevice.TextureSamples = 0, validate_with_format: number /*i64*/ = -1): RID
+        framebuffer_create_empty(size: Vector2i, samples: RenderingDevice.TextureSamples = 0, validate_with_format: int64 = -1): RID
         
         /** Returns the format ID of the framebuffer specified by the [param framebuffer] RID. This ID is guaranteed to be unique for the same formats and does not need to be freed. */
-        framebuffer_get_format(framebuffer: RID): number /*i64*/
+        framebuffer_get_format(framebuffer: RID): int64
         
         /** Returns `true` if the framebuffer specified by the [param framebuffer] RID is valid, `false` otherwise. */
         framebuffer_is_valid(framebuffer: RID): boolean
@@ -10057,23 +10057,23 @@ declare module "godot" {
         /** It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        vertex_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_as_storage: boolean = false): RID
+        vertex_buffer_create(size_bytes: int64, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_as_storage: boolean = false): RID
         
         /** Creates a new vertex format with the specified [param vertex_descriptions]. Returns a unique vertex format ID corresponding to the newly created vertex format. */
-        vertex_format_create(vertex_descriptions: Array): number /*i64*/
+        vertex_format_create(vertex_descriptions: Array): int64
         
         /** Creates a vertex array based on the specified buffers. Optionally, [param offsets] (in bytes) may be defined for each buffer. */
-        vertex_array_create(vertex_count: number /*i64*/, vertex_format: number /*i64*/, src_buffers: Array, offsets: PackedInt64Array = <any> {} /*compound.type from 31([object Object])*/): RID
+        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: Array, offsets: PackedInt64Array = <any> {} /*compound.type from 31([object Object])*/): RID
         
         /** Creates a new index buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        index_buffer_create(size_indices: number /*i64*/, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_restart_indices: boolean = false): RID
+        index_buffer_create(size_indices: int64, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_restart_indices: boolean = false): RID
         
         /** Creates a new index array. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        index_array_create(index_buffer: RID, index_offset: number /*i64*/, index_count: number /*i64*/): RID
+        index_array_create(index_buffer: RID, index_offset: int64, index_count: int64): RID
         
         /** Compiles a SPIR-V from the shader source code in [param shader_source] and returns the SPIR-V as a [RDShaderSPIRV]. This intermediate language shader is portable across different GPU models and driver versions, but cannot be run directly by GPUs until compiled into a binary shader using [method shader_compile_binary_from_spirv].  
          *  If [param allow_cache] is `true`, make use of the shader cache generated by Godot. This avoids a potentially lengthy shader compilation step if the shader is already in cache. If [param allow_cache] is `false`, Godot's shader cache is ignored and the shader will always be recompiled.  
@@ -10099,27 +10099,27 @@ declare module "godot" {
         shader_create_placeholder(): RID
         
         /** Returns the internal vertex input mask. Internally, the vertex input mask is an unsigned integer consisting of the locations (specified in GLSL via. `layout(location = ...)`) of the input variables (specified in GLSL by the `in` keyword). */
-        shader_get_vertex_input_attribute_mask(shader: RID): number /*i64*/
+        shader_get_vertex_input_attribute_mask(shader: RID): int64
         
         /** Creates a new uniform buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        uniform_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
+        uniform_buffer_create(size_bytes: int64, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
         
         /** Creates a [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage buffer[/url] with the specified [param data] and [param usage]. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        storage_buffer_create(size_bytes: number /*i64*/, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, usage: RenderingDevice.StorageBufferUsage = 0): RID
+        storage_buffer_create(size_bytes: int64, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, usage: RenderingDevice.StorageBufferUsage = 0): RID
         
         /** Creates a new texture buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        texture_buffer_create(size_bytes: number /*i64*/, format: RenderingDevice.DataFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
+        texture_buffer_create(size_bytes: int64, format: RenderingDevice.DataFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
         
         /** Creates a new uniform set. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        uniform_set_create(uniforms: Array, shader: RID, shader_set: number /*i64*/): RID
+        uniform_set_create(uniforms: Array, shader: RID, shader_set: int64): RID
         
         /** Checks if the [param uniform_set] is valid, i.e. is owned. */
         uniform_set_is_valid(uniform_set: RID): boolean
@@ -10130,7 +10130,7 @@ declare module "godot" {
          *  - a draw list is currently active (created by [method draw_list_begin])  
          *  - a compute list is currently active (created by [method compute_list_begin])  
          */
-        buffer_update(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): Error
+        buffer_update(buffer: RID, offset: int64, size_bytes: int64, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Clears the contents of the [param buffer], clearing [param size_bytes] bytes, starting at [param offset]. Always raises a memory barrier.  
          *  Prints an error if:  
@@ -10139,15 +10139,15 @@ declare module "godot" {
          *  - a draw list is currently active (created by [method draw_list_begin])  
          *  - a compute list is currently active (created by [method compute_list_begin])  
          */
-        buffer_clear(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): Error
+        buffer_clear(buffer: RID, offset: int64, size_bytes: int64, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Returns a copy of the data of the specified [param buffer], optionally [param offset_bytes] and [param size_bytes] can be set to copy only a portion of the buffer. */
-        buffer_get_data(buffer: RID, offset_bytes: number /*i64*/ = 0, size_bytes: number /*i64*/ = 0): PackedByteArray
+        buffer_get_data(buffer: RID, offset_bytes: int64 = 0, size_bytes: int64 = 0): PackedByteArray
         
         /** Creates a new render pipeline. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        render_pipeline_create(shader: RID, framebuffer_format: number /*i64*/, vertex_format: number /*i64*/, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: number /*i64*/ = 0, specialization_constants: Array = <any> {} /*compound.type from 28([object Object])*/): RID
+        render_pipeline_create(shader: RID, framebuffer_format: int64, vertex_format: int64, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: int64 = 0, specialization_constants: Array = <any> {} /*compound.type from 28([object Object])*/): RID
         
         /** Returns `true` if the render pipeline specified by the [param render_pipeline] RID is valid, `false` otherwise. */
         render_pipeline_is_valid(render_pipeline: RID): boolean
@@ -10164,71 +10164,71 @@ declare module "godot" {
          *      
          *  **Note:** Only the main [RenderingDevice] returned by [method RenderingServer.get_rendering_device] has a width. If called on a local [RenderingDevice], this method prints an error and returns [constant INVALID_ID].  
          */
-        screen_get_width(screen: number /*i64*/ = 0): number /*i64*/
+        screen_get_width(screen: int64 = 0): int64
         
         /** Returns the window height matching the graphics API context for the given window ID (in pixels). Despite the parameter being named [param screen], this returns the  *window*  size. See also [method screen_get_width].  
          *      
          *  **Note:** Only the main [RenderingDevice] returned by [method RenderingServer.get_rendering_device] has a height. If called on a local [RenderingDevice], this method prints an error and returns [constant INVALID_ID].  
          */
-        screen_get_height(screen: number /*i64*/ = 0): number /*i64*/
+        screen_get_height(screen: int64 = 0): int64
         
         /** Returns the screen's framebuffer format.  
          *      
          *  **Note:** Only the main [RenderingDevice] returned by [method RenderingServer.get_rendering_device] has a format. If called on a local [RenderingDevice], this method prints an error and returns [constant INVALID_ID].  
          */
-        screen_get_framebuffer_format(): number /*i64*/
+        screen_get_framebuffer_format(): int64
         
         /** High-level variant of [method draw_list_begin], with the parameters automatically being adjusted for drawing onto the window specified by the [param screen] ID.  
          *      
          *  **Note:** Cannot be used with local RenderingDevices, as these don't have a screen. If called on a local RenderingDevice, [method draw_list_begin_for_screen] returns [constant INVALID_ID].  
          */
-        draw_list_begin_for_screen(screen: number /*i64*/ = 0, clear_color: Color = new Color(0, 0, 0, 1)): number /*i64*/
+        draw_list_begin_for_screen(screen: int64 = 0, clear_color: Color = new Color(0, 0, 0, 1)): int64
         
         /** Starts a list of raster drawing commands created with the `draw_*` methods. The returned value should be passed to other `draw_list_*` functions.  
          *  Multiple draw lists cannot be created at the same time; you must finish the previous draw list first using [method draw_list_end].  
          *  A simple drawing operation might look like this (code is not a complete example):  
          *    
          */
-        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: number /*f64*/ = 1, clear_stencil: number /*i64*/ = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): number /*i64*/
+        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): int64
         
         /** Variant of [method draw_list_begin] with support for multiple splits. The [param splits] parameter determines how many splits are created. */
-        draw_list_begin_split(framebuffer: RID, splits: number /*i64*/, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: number /*f64*/ = 1, clear_stencil: number /*i64*/ = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): PackedInt64Array
+        draw_list_begin_split(framebuffer: RID, splits: int64, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): PackedInt64Array
         
         /** Sets blend constants for the specified [param draw_list] to [param color]. Blend constants are used only if the graphics pipeline is created with [constant DYNAMIC_STATE_BLEND_CONSTANTS] flag set. */
-        draw_list_set_blend_constants(draw_list: number /*i64*/, color: Color): void
+        draw_list_set_blend_constants(draw_list: int64, color: Color): void
         
         /** Binds [param render_pipeline] to the specified [param draw_list]. */
-        draw_list_bind_render_pipeline(draw_list: number /*i64*/, render_pipeline: RID): void
+        draw_list_bind_render_pipeline(draw_list: int64, render_pipeline: RID): void
         
         /** Binds [param uniform_set] to the specified [param draw_list]. A [param set_index] must also be specified, which is an identifier starting from `0` that must match the one expected by the draw list. */
-        draw_list_bind_uniform_set(draw_list: number /*i64*/, uniform_set: RID, set_index: number /*i64*/): void
+        draw_list_bind_uniform_set(draw_list: int64, uniform_set: RID, set_index: int64): void
         
         /** Binds [param vertex_array] to the specified [param draw_list]. */
-        draw_list_bind_vertex_array(draw_list: number /*i64*/, vertex_array: RID): void
+        draw_list_bind_vertex_array(draw_list: int64, vertex_array: RID): void
         
         /** Binds [param index_array] to the specified [param draw_list]. */
-        draw_list_bind_index_array(draw_list: number /*i64*/, index_array: RID): void
+        draw_list_bind_index_array(draw_list: int64, index_array: RID): void
         
         /** Sets the push constant data to [param buffer] for the specified [param draw_list]. The shader determines how this binary data is used. The buffer's size in bytes must also be specified in [param size_bytes] (this can be obtained by calling the [method PackedByteArray.size] method on the passed [param buffer]). */
-        draw_list_set_push_constant(draw_list: number /*i64*/, buffer: PackedByteArray, size_bytes: number /*i64*/): void
+        draw_list_set_push_constant(draw_list: int64, buffer: PackedByteArray, size_bytes: int64): void
         
         /** Submits [param draw_list] for rendering on the GPU. This is the raster equivalent to [method compute_list_dispatch]. */
-        draw_list_draw(draw_list: number /*i64*/, use_indices: boolean, instances: number /*i64*/, procedural_vertex_count: number /*i64*/ = 0): void
+        draw_list_draw(draw_list: int64, use_indices: boolean, instances: int64, procedural_vertex_count: int64 = 0): void
         
         /** Creates a scissor rectangle and enables it for the specified [param draw_list]. Scissor rectangles are used for clipping by discarding fragments that fall outside a specified rectangular portion of the screen. See also [method draw_list_disable_scissor].  
          *      
          *  **Note:** The specified [param rect] is automatically intersected with the screen's dimensions, which means it cannot exceed the screen's dimensions.  
          */
-        draw_list_enable_scissor(draw_list: number /*i64*/, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/): void
+        draw_list_enable_scissor(draw_list: int64, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/): void
         
         /** Removes and disables the scissor rectangle for the specified [param draw_list]. See also [method draw_list_enable_scissor]. */
-        draw_list_disable_scissor(draw_list: number /*i64*/): void
+        draw_list_disable_scissor(draw_list: int64): void
         
         /** Switches to the next draw pass and returns the split's ID. Equivalent to [method draw_list_switch_to_next_pass_split] with `splits` set to `1`. */
-        draw_list_switch_to_next_pass(): number /*i64*/
+        draw_list_switch_to_next_pass(): int64
         
         /** Switches to the next draw pass, with the number of splits allocated specified in [param splits]. The return value is an array containing the ID of each split. For single-split usage, see [method draw_list_switch_to_next_pass]. */
-        draw_list_switch_to_next_pass_split(splits: number /*i64*/): PackedInt64Array
+        draw_list_switch_to_next_pass_split(splits: int64): PackedInt64Array
         
         /** Finishes a list of raster drawing commands created with the `draw_*` methods. */
         draw_list_end(post_barrier: RenderingDevice.BarrierMask = 32767): void
@@ -10238,22 +10238,22 @@ declare module "godot" {
          *  A simple compute operation might look like this (code is not a complete example):  
          *    
          */
-        compute_list_begin(allow_draw_overlap: boolean = false): number /*i64*/
+        compute_list_begin(allow_draw_overlap: boolean = false): int64
         
         /** Tells the GPU what compute pipeline to use when processing the compute list. If the shader has changed since the last time this function was called, Godot will unbind all descriptor sets and will re-bind them inside [method compute_list_dispatch]. */
-        compute_list_bind_compute_pipeline(compute_list: number /*i64*/, compute_pipeline: RID): void
+        compute_list_bind_compute_pipeline(compute_list: int64, compute_pipeline: RID): void
         
         /** Sets the push constant data to [param buffer] for the specified [param compute_list]. The shader determines how this binary data is used. The buffer's size in bytes must also be specified in [param size_bytes] (this can be obtained by calling the [method PackedByteArray.size] method on the passed [param buffer]). */
-        compute_list_set_push_constant(compute_list: number /*i64*/, buffer: PackedByteArray, size_bytes: number /*i64*/): void
+        compute_list_set_push_constant(compute_list: int64, buffer: PackedByteArray, size_bytes: int64): void
         
         /** Binds the [param uniform_set] to this [param compute_list]. Godot ensures that all textures in the uniform set have the correct Vulkan access masks. If Godot had to change access masks of textures, it will raise a Vulkan image memory barrier. */
-        compute_list_bind_uniform_set(compute_list: number /*i64*/, uniform_set: RID, set_index: number /*i64*/): void
+        compute_list_bind_uniform_set(compute_list: int64, uniform_set: RID, set_index: int64): void
         
         /** Submits the compute list for processing on the GPU. This is the compute equivalent to [method draw_list_draw]. */
-        compute_list_dispatch(compute_list: number /*i64*/, x_groups: number /*i64*/, y_groups: number /*i64*/, z_groups: number /*i64*/): void
+        compute_list_dispatch(compute_list: int64, x_groups: int64, y_groups: int64, z_groups: int64): void
         
         /** Raises a Vulkan compute barrier in the specified [param compute_list]. */
-        compute_list_add_barrier(compute_list: number /*i64*/): void
+        compute_list_add_barrier(compute_list: int64): void
         
         /** Finishes a list of compute commands created with the `compute_*` methods. */
         compute_list_end(post_barrier: RenderingDevice.BarrierMask = 32767): void
@@ -10265,27 +10265,27 @@ declare module "godot" {
         capture_timestamp(name: string): void
         
         /** Returns the total number of timestamps (rendering steps) available for profiling. */
-        get_captured_timestamps_count(): number /*i64*/
+        get_captured_timestamps_count(): int64
         
         /** Returns the index of the last frame rendered that has rendering timestamps available for querying. */
-        get_captured_timestamps_frame(): number /*i64*/
+        get_captured_timestamps_frame(): int64
         
         /** Returns the timestamp in GPU time for the rendering step specified by [param index] (in microseconds since the engine started). See also [method get_captured_timestamp_cpu_time] and [method capture_timestamp]. */
-        get_captured_timestamp_gpu_time(index: number /*i64*/): number /*i64*/
+        get_captured_timestamp_gpu_time(index: int64): int64
         
         /** Returns the timestamp in CPU time for the rendering step specified by [param index] (in microseconds since the engine started). See also [method get_captured_timestamp_gpu_time] and [method capture_timestamp]. */
-        get_captured_timestamp_cpu_time(index: number /*i64*/): number /*i64*/
+        get_captured_timestamp_cpu_time(index: int64): int64
         
         /** Returns the timestamp's name for the rendering step specified by [param index]. See also [method capture_timestamp]. */
-        get_captured_timestamp_name(index: number /*i64*/): string
+        get_captured_timestamp_name(index: int64): string
         
         /** Returns the value of the specified [param limit]. This limit varies depending on the current graphics hardware (and sometimes the driver version). If the given limit is exceeded, rendering errors will occur.  
          *  Limits for various graphics hardware can be found in the [url=https://vulkan.gpuinfo.org/]Vulkan Hardware Database[/url].  
          */
-        limit_get(limit: RenderingDevice.Limit): number /*i64*/
+        limit_get(limit: RenderingDevice.Limit): int64
         
         /** Returns the frame count kept by the graphics API. Higher values result in higher input lag, but with more consistent throughput. For the main [RenderingDevice], frames are cycled (usually 3 with triple-buffered V-Sync enabled). However, local [RenderingDevice]s only have 1 frame. */
-        get_frame_delay(): number /*i64*/
+        get_frame_delay(): int64
         
         /** Pushes the frame setup and draw command buffers then marks the local device as currently processing (which allows calling [method sync]).  
          *      
@@ -10338,9 +10338,9 @@ declare module "godot" {
         get_device_pipeline_cache_uuid(): string
         
         /** Returns the memory usage in bytes corresponding to the given [param type]. When using Vulkan, these statistics are calculated by [url=https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator]Vulkan Memory Allocator[/url]. */
-        get_memory_usage(type: RenderingDevice.MemoryType): number /*i64*/
+        get_memory_usage(type: RenderingDevice.MemoryType): int64
         
         /** Returns the unique identifier of the driver [param resource] for the specified [param rid]. Some driver resource types ignore the specified [param rid] (see [enum DriverResource] descriptions). [param index] is always ignored but must be specified anyway. */
-        get_driver_resource(resource: RenderingDevice.DriverResource, rid: RID, index: number /*i64*/): number /*i64*/
+        get_driver_resource(resource: RenderingDevice.DriverResource, rid: RID, index: int64): int64
     }
 }

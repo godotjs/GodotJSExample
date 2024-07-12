@@ -1,58 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** An anchor point in AR space.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_xranchor3d.html  
-     */
-    class XRAnchor3D extends XRNode3D {
-        constructor(identifier?: any)
-        /** Returns the estimated size of the plane that was detected. Say when the anchor relates to a table in the real world, this is the estimated size of the surface of that table. */
-        get_size(): Vector3
-        
-        /** Returns a plane aligned with our anchor; handy for intersection testing. */
-        get_plane(): Plane
-    }
-    /** A camera node with a few overrules for AR/VR applied, such as location tracking.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_xrcamera3d.html  
-     */
-    class XRCamera3D extends Camera3D {
-        constructor(identifier?: any)
-    }
-    /** A spatial node representing a spatially-tracked controller.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_xrcontroller3d.html  
-     */
-    class XRController3D extends XRNode3D {
-        constructor(identifier?: any)
-        /** Returns `true` if the button with the given [param name] is pressed. */
-        is_button_pressed(name: StringName): boolean
-        
-        /** Returns a [Variant] for the input with the given [param name]. This works for any input type, the variant will be typed according to the actions configuration. */
-        get_input(name: StringName): any
-        
-        /** Returns a numeric value for the input with the given [param name]. This is used for triggers and grip sensors. */
-        get_float(name: StringName): number /*f64*/
-        
-        /** Returns a [Vector2] for the input with the given [param name]. This is used for thumbsticks and thumbpads found on many controllers. */
-        get_vector2(name: StringName): Vector2
-        
-        /** Returns the hand holding this controller, if known. See [enum XRPositionalTracker.TrackerHand]. */
-        get_tracker_hand(): XRPositionalTracker.TrackerHand
-        
-        /** Emitted when a button on this controller is pressed. */
-        readonly button_pressed: Signal // name: string => void
-        
-        /** Emitted when a button on this controller is released. */
-        readonly button_released: Signal // name: string => void
-        
-        /** Emitted when a trigger or similar input on this controller changes value. */
-        readonly input_float_changed: Signal // name: string, value: number /*f64*/ => void
-        
-        /** Emitted when a thumbstick or thumbpad on this controller is moved. */
-        readonly input_vector2_changed: Signal // name: string, value: Vector2 => void
-    }
     namespace XRInterface {
         enum Capabilities {
             /** No XR capabilities. */
@@ -129,7 +77,7 @@ declare module "godot" {
         get_name(): StringName
         
         /** Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface. */
-        get_capabilities(): number /*i64*/
+        get_capabilities(): int64
         is_primary(): boolean
         set_primary(primary: boolean): void
         
@@ -161,13 +109,13 @@ declare module "godot" {
         get_render_target_size(): Vector2
         
         /** Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic. */
-        get_view_count(): number /*i64*/
+        get_view_count(): int64
         
         /** Triggers a haptic pulse on a device associated with this interface.  
          *  [param action_name] is the name of the action for this pulse.  
          *  [param tracker_name] is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.  
          */
-        trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
+        trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
         
         /** Call this to find out if a given play area mode is supported by this interface. */
         supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
@@ -182,7 +130,7 @@ declare module "godot" {
         set_anchor_detection_is_enabled(enable: boolean): void
         
         /** If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [CameraServer] for this interface. */
-        get_camera_feed_id(): number /*i64*/
+        get_camera_feed_id(): int64
         
         /** Is `true` if this interface supports passthrough. */
         is_passthrough_supported(): boolean
@@ -203,10 +151,10 @@ declare module "godot" {
          *  [param view] is the view/eye index.  
          *  [param cam_transform] is the transform that maps device coordinates to scene coordinates, typically the [member Node3D.global_transform] of the current XROrigin3D.  
          */
-        get_transform_for_view(view: number /*i64*/, cam_transform: Transform3D): Transform3D
+        get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
         
         /** Returns the projection matrix for a view/eye. */
-        get_projection_for_view(view: number /*i64*/, aspect: number /*f64*/, near: number /*f64*/, far: number /*f64*/): Projection
+        get_projection_for_view(view: int64, aspect: float64, near: float64, far: float64): Projection
         
         /** Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode]. */
         get_supported_environment_blend_modes(): Array
@@ -225,19 +173,19 @@ declare module "godot" {
         set interface_is_primary(value: boolean)
         
         /** The play area mode for this interface. */
-        get xr_play_area_mode(): number /*i64*/
-        set xr_play_area_mode(value: number /*i64*/)
+        get xr_play_area_mode(): int64
+        set xr_play_area_mode(value: int64)
         
         /** Specify how XR should blend in the environment. This is specific to certain AR and passthrough devices where camera images are blended in by the XR compositor. */
-        get environment_blend_mode(): number /*i64*/
-        set environment_blend_mode(value: number /*i64*/)
+        get environment_blend_mode(): int64
+        set environment_blend_mode(value: int64)
         
         /** On an AR interface, `true` if anchor detection is enabled. */
         get ar_is_anchor_detection_enabled(): boolean
         set ar_is_anchor_detection_enabled(value: boolean)
         
         /** Emitted when the play area is changed. This can be a result of the player resetting the boundary or entering a new play area, the player changing the play area mode, the world scale changing or the player resetting their headset orientation. */
-        readonly play_area_changed: Signal // mode: number /*i64*/ => void
+        readonly play_area_changed: Signal // mode: int64 => void
     }
     /** Base class for XR interface extensions (plugins).  
      *  	  
@@ -249,7 +197,7 @@ declare module "godot" {
         /* gdvirtual */ _get_name(): StringName
         
         /** Returns the capabilities of this interface. */
-        /* gdvirtual */ _get_capabilities(): number /*i64*/
+        /* gdvirtual */ _get_capabilities(): int64
         
         /** Returns `true` if this interface has been initialized. */
         /* gdvirtual */ _is_initialized(): boolean
@@ -279,16 +227,16 @@ declare module "godot" {
         /* gdvirtual */ _get_render_target_size(): Vector2
         
         /** Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic. */
-        /* gdvirtual */ _get_view_count(): number /*i64*/
+        /* gdvirtual */ _get_view_count(): int64
         
         /** Returns the [Transform3D] that positions the [XRCamera3D] in the world. */
         /* gdvirtual */ _get_camera_transform(): Transform3D
         
         /** Returns a [Transform3D] for a given view. */
-        /* gdvirtual */ _get_transform_for_view(view: number /*i64*/, cam_transform: Transform3D): Transform3D
+        /* gdvirtual */ _get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
         
         /** Returns the projection matrix for the given view as a [PackedFloat64Array]. */
-        /* gdvirtual */ _get_projection_for_view(view: number /*i64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): PackedFloat64Array
+        /* gdvirtual */ _get_projection_for_view(view: int64, aspect: float64, z_near: float64, z_far: float64): PackedFloat64Array
         /* gdvirtual */ _get_vrs_texture(): RID
         
         /** Called if this [XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [XRPositionalTracker]s at this point in time. */
@@ -316,7 +264,7 @@ declare module "godot" {
         /* gdvirtual */ _get_tracking_status(): XRInterface.TrackingStatus
         
         /** Triggers a haptic pulse to be emitted on the specified tracker. */
-        /* gdvirtual */ _trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
+        /* gdvirtual */ _trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
         
         /** Return `true` if anchor detection is enabled for this interface. */
         /* gdvirtual */ _get_anchor_detection_is_enabled(): boolean
@@ -325,7 +273,7 @@ declare module "godot" {
         /* gdvirtual */ _set_anchor_detection_is_enabled(enabled: boolean): void
         
         /** Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should be presented as the background on an AR capable device (if applicable). */
-        /* gdvirtual */ _get_camera_feed_id(): number /*i64*/
+        /* gdvirtual */ _get_camera_feed_id(): int64
         
         /** Return color texture into which to render (if applicable). */
         /* gdvirtual */ _get_color_texture(): RID
@@ -340,7 +288,7 @@ declare module "godot" {
         get_velocity_texture(): RID
         
         /** Blits our render results to screen optionally applying lens distortion. This can only be called while processing `_commit_views`. */
-        add_blit(render_target: RID, src_rect: Rect2, dst_rect: Rect2i, use_layer: boolean, layer: number /*i64*/, apply_lens_distortion: boolean, eye_center: Vector2, k1: number /*f64*/, k2: number /*f64*/, upscale: number /*f64*/, aspect_ratio: number /*f64*/): void
+        add_blit(render_target: RID, src_rect: Rect2, dst_rect: Rect2i, use_layer: boolean, layer: int64, apply_lens_distortion: boolean, eye_center: Vector2, k1: float64, k2: float64, upscale: float64, aspect_ratio: float64): void
         
         /** Returns a valid [RID] for a texture to which we should render the current frame if supported by the interface. */
         get_render_target_texture(render_target: RID): RID
@@ -368,7 +316,7 @@ declare module "godot" {
         /** Triggers a haptic pulse on a device associated with this interface.  
          *  [param action_name] is the name of the action for this pulse.  
          */
-        trigger_haptic_pulse(action_name: string, frequency: number /*f64*/, amplitude: number /*f64*/, duration_sec: number /*f64*/, delay_sec: number /*f64*/): void
+        trigger_haptic_pulse(action_name: string, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
         
         /** The name of the tracker we're bound to. Which trackers are available is not known during design time.  
          *  Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [XRInterface].  
@@ -391,14 +339,14 @@ declare module "godot" {
      */
     class XROrigin3D extends Node3D {
         constructor(identifier?: any)
-        set_world_scale(world_scale: number /*f64*/): void
-        get_world_scale(): number /*f64*/
+        set_world_scale(world_scale: float64): void
+        get_world_scale(): float64
         set_current(enabled: boolean): void
         is_current(): boolean
         
         /** The scale of the game world compared to the real world. This is the same as [member XRServer.world_scale]. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
-        get world_scale(): number /*f64*/
-        set world_scale(value: number /*f64*/)
+        get world_scale(): float64
+        set world_scale(value: float64)
         
         /** If `true`, this origin node is currently being used by the [XRServer]. Only one origin point can be used at a time. */
         get current(): boolean
@@ -455,8 +403,8 @@ declare module "godot" {
         set angular_velocity(value: string)
         
         /** The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is. */
-        get tracking_confidence(): number /*i64*/
-        set tracking_confidence(value: number /*i64*/)
+        get tracking_confidence(): int64
+        set tracking_confidence(value: int64)
     }
     namespace XRPositionalTracker {
         enum TrackerHand {
@@ -506,8 +454,8 @@ declare module "godot" {
         set_input(name: StringName, value: any): void
         
         /** The type of tracker. */
-        get type(): number /*i64*/
-        set type(value: number /*i64*/)
+        get type(): int64
+        set type(value: int64)
         
         /** The description of this tracker. */
         get description(): string
@@ -518,8 +466,8 @@ declare module "godot" {
         set profile(value: string)
         
         /** Defines which hand this tracker relates to. */
-        get hand(): number /*i64*/
-        set hand(value: number /*i64*/)
+        get hand(): int64
+        set hand(value: int64)
         
         /** Emitted when the state of a pose tracked by this tracker changes. */
         readonly pose_changed: Signal // pose: XRPose => void
@@ -534,7 +482,7 @@ declare module "godot" {
         readonly button_released: Signal // name: string => void
         
         /** Emitted when a trigger or similar input on this tracker changes value. */
-        readonly input_float_changed: Signal // name: string, value: number /*f64*/ => void
+        readonly input_float_changed: Signal // name: string, value: float64 => void
         
         /** Emitted when a thumbstick or thumbpad on this tracker moves. */
         readonly input_vector2_changed: Signal // name: string, vector: Vector2 => void
@@ -647,49 +595,49 @@ declare module "godot" {
         constructor()
         constructor(from: Vector2)
         constructor(from: Vector2i)
-        constructor(x: number /*f64*/, y: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
+        constructor(x: float64, y: float64)
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
         
         /** Returns this vector's angle with respect to the positive X axis, or `(1, 0)` vector, in radians.  
          *  For example, `Vector2.RIGHT.angle()` will return zero, `Vector2.DOWN.angle()` will return `PI / 2` (a quarter turn, or 90 degrees), and `Vector2(1, -1).angle()` will return `-PI / 4` (a negative eighth turn, or -45 degrees).  
          *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/vector2_angle.png]Illustration of the returned angle.[/url]  
          *  Equivalent to the result of [method @GlobalScope.atan2] when called with the vector's [member y] and [member x] as parameters: `atan2(y, x)`.  
          */
-        angle(): number /*f64*/
+        angle(): float64
         
         /** Returns the angle to the given vector, in radians.  
          *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/vector2_angle_to.png]Illustration of the returned angle.[/url]  
          */
-        angle_to(to: Vector2): number /*f64*/
+        angle_to(to: Vector2): float64
         
         /** Returns the angle between the line connecting the two points and the X axis, in radians.  
          *  `a.angle_to_point(b)` is equivalent of doing `(b - a).angle()`.  
          *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/vector2_angle_to_point.png]Illustration of the returned angle.[/url]  
          */
-        angle_to_point(to: Vector2): number /*f64*/
+        angle_to_point(to: Vector2): float64
         
         /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
         direction_to(to: Vector2): Vector2
         
         /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector2): number /*f64*/
+        distance_to(to: Vector2): float64
         
         /** Returns the squared distance between this vector and [param to].  
          *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        distance_squared_to(to: Vector2): number /*f64*/
+        distance_squared_to(to: Vector2): float64
         
         /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
+        length(): float64
         
         /** Returns the squared length (squared magnitude) of this vector.  
          *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        length_squared(): number /*f64*/
+        length_squared(): float64
         
         /** Returns the vector with a maximum length by limiting its length to [param length]. */
-        limit_length(length: number /*f64*/ = 1): Vector2
+        limit_length(length: float64 = 1): Vector2
         
         /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. See also [method is_normalized].  
          *      
@@ -712,7 +660,7 @@ declare module "godot" {
         is_finite(): boolean
         
         /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
-        posmod(mod: number /*f64*/): Vector2
+        posmod(mod: float64): Vector2
         
         /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
         posmodv(modv: Vector2): Vector2
@@ -721,38 +669,38 @@ declare module "godot" {
         project(b: Vector2): Vector2
         
         /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
-        lerp(to: Vector2, weight: number /*f64*/): Vector2
+        lerp(to: Vector2, weight: float64): Vector2
         
         /** Returns the result of spherical linear interpolation between this vector and [param to], by amount [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
          *  This method also handles interpolating the lengths if the input vectors have different lengths. For the special case of one or both input vectors having zero length, this method behaves like [method lerp].  
          */
-        slerp(to: Vector2, weight: number /*f64*/): Vector2
+        slerp(to: Vector2, weight: float64): Vector2
         
         /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
-        cubic_interpolate(b: Vector2, pre_a: Vector2, post_b: Vector2, weight: number /*f64*/): Vector2
+        cubic_interpolate(b: Vector2, pre_a: Vector2, post_b: Vector2, weight: float64): Vector2
         
         /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
          *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
          */
-        cubic_interpolate_in_time(b: Vector2, pre_a: Vector2, post_b: Vector2, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector2
+        cubic_interpolate_in_time(b: Vector2, pre_a: Vector2, post_b: Vector2, weight: float64, b_t: float64, pre_a_t: float64, post_b_t: float64): Vector2
         
         /** Returns the point at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_interpolate(control_1: Vector2, control_2: Vector2, end: Vector2, t: number /*f64*/): Vector2
+        bezier_interpolate(control_1: Vector2, control_2: Vector2, end: Vector2, t: float64): Vector2
         
         /** Returns the derivative at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_derivative(control_1: Vector2, control_2: Vector2, end: Vector2, t: number /*f64*/): Vector2
+        bezier_derivative(control_1: Vector2, control_2: Vector2, end: Vector2, t: float64): Vector2
         
         /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
+        max_axis_index(): int64
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Y]. */
-        min_axis_index(): number /*i64*/
+        min_axis_index(): int64
         
         /** Returns a new vector moved toward [param to] by the fixed [param delta] amount. Will not go past the final value. */
-        move_toward(to: Vector2, delta: number /*f64*/): Vector2
+        move_toward(to: Vector2, delta: float64): Vector2
         
         /** Returns the result of rotating this vector by [param angle] (in radians). See also [method @GlobalScope.deg_to_rad]. */
-        rotated(angle: number /*f64*/): Vector2
+        rotated(angle: float64): Vector2
         
         /** Returns a perpendicular vector rotated 90 degrees counter-clockwise compared to the original, with the same length. */
         orthogonal(): Vector2
@@ -767,7 +715,7 @@ declare module "godot" {
         round(): Vector2
         
         /** Returns the aspect ratio of this vector, the ratio of [member x] to [member y]. */
-        aspect(): number /*f64*/
+        aspect(): float64
         
         /** Returns the dot product of this vector and [param with]. This can be used to compare the angle between two vectors. For example, this can be used to determine whether an enemy is facing the player.  
          *  The dot product will be `0` for a straight angle (90 degrees), greater than 0 for angles narrower than 90 degrees and lower than 0 for angles wider than 90 degrees.  
@@ -775,7 +723,7 @@ declare module "godot" {
          *      
          *  **Note:** `a.dot(b)` is equivalent to `b.dot(a)`.  
          */
-        dot(with_: Vector2): number /*f64*/
+        dot(with_: Vector2): float64
         
         /** Returns the result of sliding the vector along a plane defined by the given normal. */
         slide(n: Vector2): Vector2
@@ -791,7 +739,7 @@ declare module "godot" {
          *      
          *  **Note:** Cross product is not defined in 2D mathematically. This method embeds the 2D vectors in the XY plane of 3D space and uses their cross product's Z component as the analog.  
          */
-        cross(with_: Vector2): number /*f64*/
+        cross(with_: Vector2): float64
         
         /** Returns a new vector with all components in absolute values (i.e. positive). */
         abs(): Vector2
@@ -808,14 +756,14 @@ declare module "godot" {
         /** Creates a unit [Vector2] rotated to the given [param angle] in radians. This is equivalent to doing `Vector2(cos(angle), sin(angle))` or `Vector2.RIGHT.rotated(angle)`.  
          *    
          */
-        static from_angle(angle: number /*f64*/): Vector2
+        static from_angle(angle: float64): Vector2
         static ADD(left: Vector2, right: Vector2): Vector2
         static SUBTRACT(left: Vector2, right: Vector2): Vector2
-        static MULTIPLY(left: number /*f64*/, right: Vector2): Vector2
+        static MULTIPLY(left: float64, right: Vector2): Vector2
         static MULTIPLY(left: Vector2, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: number /*f64*/): Vector2
+        static MULTIPLY(left: Vector2, right: float64): Vector2
         static DIVIDE(left: Vector2, right: Vector2): Vector2
-        static DIVIDE(left: Vector2, right: number /*f64*/): Vector2
+        static DIVIDE(left: Vector2, right: float64): Vector2
         static NEGATE(left: Vector2, right: any): boolean
         static EQUAL(left: Vector2, right: Vector2): boolean
         static NOT_EQUAL(left: Vector2, right: Vector2): boolean
@@ -823,10 +771,10 @@ declare module "godot" {
         static LESS_EQUAL(left: Vector2, right: Vector2): boolean
         static GREATER(left: Vector2, right: Vector2): boolean
         static GREATER_EQUAL(left: Vector2, right: Vector2): boolean
-        get x(): number /*f64*/
-        set x(value: number /*f64*/)
-        get y(): number /*f64*/
-        set y(value: number /*f64*/)
+        get x(): float64
+        set x(value: float64)
+        get y(): float64
+        set y(value: float64)
     }
     namespace Vector2i {
         enum Axis {
@@ -868,26 +816,26 @@ declare module "godot" {
         constructor()
         constructor(from: Vector2i)
         constructor(from: Vector2)
-        constructor(x: number /*i64*/, y: number /*i64*/)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
+        constructor(x: int64, y: int64)
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
         
         /** Returns the aspect ratio of this vector, the ratio of [member x] to [member y]. */
-        aspect(): number /*f64*/
+        aspect(): float64
         
         /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
+        max_axis_index(): int64
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Y]. */
-        min_axis_index(): number /*i64*/
+        min_axis_index(): int64
         
         /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
+        length(): float64
         
         /** Returns the squared length (squared magnitude) of this vector.  
          *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        length_squared(): number /*i64*/
+        length_squared(): int64
         
         /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
         sign(): Vector2i
@@ -902,11 +850,11 @@ declare module "godot" {
         snapped(step: Vector2i): Vector2i
         static ADD(left: Vector2i, right: Vector2i): Vector2i
         static SUBTRACT(left: Vector2i, right: Vector2i): Vector2i
-        static MULTIPLY(left: number /*f64*/, right: Vector2i): Vector2i
+        static MULTIPLY(left: float64, right: Vector2i): Vector2i
         static MULTIPLY(left: Vector2i, right: Vector2i): Vector2i
-        static MULTIPLY(left: Vector2i, right: number /*f64*/): Vector2i
+        static MULTIPLY(left: Vector2i, right: float64): Vector2i
         static DIVIDE(left: Vector2i, right: Vector2i): Vector2i
-        static DIVIDE(left: Vector2i, right: number /*f64*/): Vector2i
+        static DIVIDE(left: Vector2i, right: float64): Vector2i
         static NEGATE(left: Vector2i, right: any): boolean
         static EQUAL(left: Vector2i, right: Vector2i): boolean
         static NOT_EQUAL(left: Vector2i, right: Vector2i): boolean
@@ -914,10 +862,10 @@ declare module "godot" {
         static LESS_EQUAL(left: Vector2i, right: Vector2i): boolean
         static GREATER(left: Vector2i, right: Vector2i): boolean
         static GREATER_EQUAL(left: Vector2i, right: Vector2i): boolean
-        get x(): number /*i64*/
-        set x(value: number /*i64*/)
-        get y(): number /*i64*/
-        set y(value: number /*i64*/)
+        get x(): int64
+        set x(value: int64)
+        get y(): int64
+        set y(value: int64)
     }
     /** A 2D axis-aligned bounding box using floating-point coordinates.  
      *  	  
@@ -928,13 +876,13 @@ declare module "godot" {
         constructor(from: Rect2)
         constructor(from: Rect2i)
         constructor(position: Vector2, size: Vector2)
-        constructor(x: number /*f64*/, y: number /*f64*/, width: number /*f64*/, height: number /*f64*/)
+        constructor(x: float64, y: float64, width: float64, height: float64)
         
         /** Returns the center point of the rectangle. This is the same as `position + (size / 2.0)`. */
         get_center(): Vector2
         
         /** Returns the rectangle's area. This is equivalent to `size.x * size.y`. See also [method has_area]. */
-        get_area(): number /*f64*/
+        get_area(): float64
         
         /** Returns `true` if this rectangle has positive width and height. See also [method get_area]. */
         has_area(): boolean
@@ -975,13 +923,13 @@ declare module "godot" {
         /** Returns a copy of this rectangle extended on all sides by the given [param amount]. A negative [param amount] shrinks the rectangle instead. See also [method grow_individual] and [method grow_side].  
          *    
          */
-        grow(amount: number /*f64*/): Rect2
+        grow(amount: float64): Rect2
         
         /** Returns a copy of this rectangle with its [param side] extended by the given [param amount] (see [enum Side] constants). A negative [param amount] shrinks the rectangle, instead. See also [method grow] and [method grow_individual]. */
-        grow_side(side: number /*i64*/, amount: number /*f64*/): Rect2
+        grow_side(side: int64, amount: float64): Rect2
         
         /** Returns a copy of this rectangle with its [param left], [param top], [param right], and [param bottom] sides extended by the given amounts. Negative values shrink the sides, instead. See also [method grow] and [method grow_side]. */
-        grow_individual(left: number /*f64*/, top: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/): Rect2
+        grow_individual(left: float64, top: float64, right: float64, bottom: float64): Rect2
         
         /** Returns a [Rect2] equivalent to this rectangle, with its width and height modified to be non-negative values, and with its [member position] being the top-left corner of the rectangle.  
          *    
@@ -1005,7 +953,7 @@ declare module "godot" {
         constructor(from: Rect2i)
         constructor(from: Rect2)
         constructor(position: Vector2i, size: Vector2i)
-        constructor(x: number /*i64*/, y: number /*i64*/, width: number /*i64*/, height: number /*i64*/)
+        constructor(x: int64, y: int64, width: int64, height: int64)
         
         /** Returns the center point of the rectangle. This is the same as `position + (size / 2)`.  
          *      
@@ -1014,7 +962,7 @@ declare module "godot" {
         get_center(): Vector2i
         
         /** Returns the rectangle's area. This is equivalent to `size.x * size.y`. See also [method has_area]. */
-        get_area(): number /*i64*/
+        get_area(): int64
         
         /** Returns `true` if this rectangle has positive width and height. See also [method get_area]. */
         has_area(): boolean
@@ -1049,13 +997,13 @@ declare module "godot" {
         /** Returns a copy of this rectangle extended on all sides by the given [param amount]. A negative [param amount] shrinks the rectangle instead. See also [method grow_individual] and [method grow_side].  
          *    
          */
-        grow(amount: number /*i64*/): Rect2i
+        grow(amount: int64): Rect2i
         
         /** Returns a copy of this rectangle with its [param side] extended by the given [param amount] (see [enum Side] constants). A negative [param amount] shrinks the rectangle, instead. See also [method grow] and [method grow_individual]. */
-        grow_side(side: number /*i64*/, amount: number /*i64*/): Rect2i
+        grow_side(side: int64, amount: int64): Rect2i
         
         /** Returns a copy of this rectangle with its [param left], [param top], [param right], and [param bottom] sides extended by the given amounts. Negative values shrink the sides, instead. See also [method grow] and [method grow_side]. */
-        grow_individual(left: number /*i64*/, top: number /*i64*/, right: number /*i64*/, bottom: number /*i64*/): Rect2i
+        grow_individual(left: int64, top: int64, right: int64, bottom: int64): Rect2i
         
         /** Returns a [Rect2i] equivalent to this rectangle, with its width and height modified to be non-negative values, and with its [member position] being the top-left corner of the rectangle.  
          *    
@@ -1134,43 +1082,43 @@ declare module "godot" {
         constructor()
         constructor(from: Vector3)
         constructor(from: Vector3i)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
+        constructor(x: float64, y: float64, z: float64)
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
-        min_axis_index(): number /*i64*/
+        min_axis_index(): int64
         
         /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
+        max_axis_index(): int64
         
         /** Returns the unsigned minimum angle to the given vector, in radians. */
-        angle_to(to: Vector3): number /*f64*/
+        angle_to(to: Vector3): float64
         
         /** Returns the signed angle to the given vector, in radians. The sign of the angle is positive in a counter-clockwise direction and negative in a clockwise direction when viewed from the side specified by the [param axis]. */
-        signed_angle_to(to: Vector3, axis: Vector3): number /*f64*/
+        signed_angle_to(to: Vector3, axis: Vector3): float64
         
         /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
         direction_to(to: Vector3): Vector3
         
         /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector3): number /*f64*/
+        distance_to(to: Vector3): float64
         
         /** Returns the squared distance between this vector and [param to].  
          *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        distance_squared_to(to: Vector3): number /*f64*/
+        distance_squared_to(to: Vector3): float64
         
         /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
+        length(): float64
         
         /** Returns the squared length (squared magnitude) of this vector.  
          *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        length_squared(): number /*f64*/
+        length_squared(): float64
         
         /** Returns the vector with a maximum length by limiting its length to [param length]. */
-        limit_length(length: number /*f64*/ = 1): Vector3
+        limit_length(length: float64 = 1): Vector3
         
         /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. See also [method is_normalized].  
          *      
@@ -1202,32 +1150,32 @@ declare module "godot" {
         snapped(step: Vector3): Vector3
         
         /** Returns the result of rotating this vector around a given axis by [param angle] (in radians). The axis must be a normalized vector. See also [method @GlobalScope.deg_to_rad]. */
-        rotated(axis: Vector3, angle: number /*f64*/): Vector3
+        rotated(axis: Vector3, angle: float64): Vector3
         
         /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
-        lerp(to: Vector3, weight: number /*f64*/): Vector3
+        lerp(to: Vector3, weight: float64): Vector3
         
         /** Returns the result of spherical linear interpolation between this vector and [param to], by amount [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
          *  This method also handles interpolating the lengths if the input vectors have different lengths. For the special case of one or both input vectors having zero length, this method behaves like [method lerp].  
          */
-        slerp(to: Vector3, weight: number /*f64*/): Vector3
+        slerp(to: Vector3, weight: float64): Vector3
         
         /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
-        cubic_interpolate(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: number /*f64*/): Vector3
+        cubic_interpolate(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: float64): Vector3
         
         /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
          *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
          */
-        cubic_interpolate_in_time(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector3
+        cubic_interpolate_in_time(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: float64, b_t: float64, pre_a_t: float64, post_b_t: float64): Vector3
         
         /** Returns the point at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_interpolate(control_1: Vector3, control_2: Vector3, end: Vector3, t: number /*f64*/): Vector3
+        bezier_interpolate(control_1: Vector3, control_2: Vector3, end: Vector3, t: float64): Vector3
         
         /** Returns the derivative at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_derivative(control_1: Vector3, control_2: Vector3, end: Vector3, t: number /*f64*/): Vector3
+        bezier_derivative(control_1: Vector3, control_2: Vector3, end: Vector3, t: float64): Vector3
         
         /** Returns a new vector moved toward [param to] by the fixed [param delta] amount. Will not go past the final value. */
-        move_toward(to: Vector3, delta: number /*f64*/): Vector3
+        move_toward(to: Vector3, delta: float64): Vector3
         
         /** Returns the dot product of this vector and [param with]. This can be used to compare the angle between two vectors. For example, this can be used to determine whether an enemy is facing the player.  
          *  The dot product will be `0` for a straight angle (90 degrees), greater than 0 for angles narrower than 90 degrees and lower than 0 for angles wider than 90 degrees.  
@@ -1235,7 +1183,7 @@ declare module "godot" {
          *      
          *  **Note:** `a.dot(b)` is equivalent to `b.dot(a)`.  
          */
-        dot(with_: Vector3): number /*f64*/
+        dot(with_: Vector3): float64
         
         /** Returns the cross product of this vector and [param with].  
          *  This returns a vector perpendicular to both this and [param with], which would be the normal vector of the plane defined by the two vectors. As there are two such vectors, in opposite directions, this method returns the vector defined by a right-handed coordinate system. If the two vectors are parallel this returns an empty vector, making it useful for testing if two vectors are parallel.  
@@ -1258,7 +1206,7 @@ declare module "godot" {
         round(): Vector3
         
         /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
-        posmod(mod: number /*f64*/): Vector3
+        posmod(mod: float64): Vector3
         
         /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
         posmodv(modv: Vector3): Vector3
@@ -1290,11 +1238,11 @@ declare module "godot" {
         static octahedron_decode(uv: Vector2): Vector3
         static ADD(left: Vector3, right: Vector3): Vector3
         static SUBTRACT(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: number /*f64*/, right: Vector3): Vector3
+        static MULTIPLY(left: float64, right: Vector3): Vector3
         static MULTIPLY(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: number /*f64*/): Vector3
+        static MULTIPLY(left: Vector3, right: float64): Vector3
         static DIVIDE(left: Vector3, right: Vector3): Vector3
-        static DIVIDE(left: Vector3, right: number /*f64*/): Vector3
+        static DIVIDE(left: Vector3, right: float64): Vector3
         static NEGATE(left: Vector3, right: any): boolean
         static EQUAL(left: Vector3, right: Vector3): boolean
         static NOT_EQUAL(left: Vector3, right: Vector3): boolean
@@ -1302,12 +1250,12 @@ declare module "godot" {
         static LESS_EQUAL(left: Vector3, right: Vector3): boolean
         static GREATER(left: Vector3, right: Vector3): boolean
         static GREATER_EQUAL(left: Vector3, right: Vector3): boolean
-        get x(): number /*f64*/
-        set x(value: number /*f64*/)
-        get y(): number /*f64*/
-        set y(value: number /*f64*/)
-        get z(): number /*f64*/
-        set z(value: number /*f64*/)
+        get x(): float64
+        set x(value: float64)
+        get y(): float64
+        set y(value: float64)
+        get z(): float64
+        set z(value: float64)
     }
     namespace Vector3i {
         enum Axis {
@@ -1358,23 +1306,23 @@ declare module "godot" {
         constructor()
         constructor(from: Vector3i)
         constructor(from: Vector3)
-        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
+        constructor(x: int64, y: int64, z: int64)
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
-        min_axis_index(): number /*i64*/
+        min_axis_index(): int64
         
         /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
+        max_axis_index(): int64
         
         /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
+        length(): float64
         
         /** Returns the squared length (squared magnitude) of this vector.  
          *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        length_squared(): number /*i64*/
+        length_squared(): int64
         
         /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
         sign(): Vector3i
@@ -1389,11 +1337,11 @@ declare module "godot" {
         snapped(step: Vector3i): Vector3i
         static ADD(left: Vector3i, right: Vector3i): Vector3i
         static SUBTRACT(left: Vector3i, right: Vector3i): Vector3i
-        static MULTIPLY(left: number /*f64*/, right: Vector3i): Vector3i
+        static MULTIPLY(left: float64, right: Vector3i): Vector3i
         static MULTIPLY(left: Vector3i, right: Vector3i): Vector3i
-        static MULTIPLY(left: Vector3i, right: number /*f64*/): Vector3i
+        static MULTIPLY(left: Vector3i, right: float64): Vector3i
         static DIVIDE(left: Vector3i, right: Vector3i): Vector3i
-        static DIVIDE(left: Vector3i, right: number /*f64*/): Vector3i
+        static DIVIDE(left: Vector3i, right: float64): Vector3i
         static NEGATE(left: Vector3i, right: any): boolean
         static EQUAL(left: Vector3i, right: Vector3i): boolean
         static NOT_EQUAL(left: Vector3i, right: Vector3i): boolean
@@ -1401,12 +1349,12 @@ declare module "godot" {
         static LESS_EQUAL(left: Vector3i, right: Vector3i): boolean
         static GREATER(left: Vector3i, right: Vector3i): boolean
         static GREATER_EQUAL(left: Vector3i, right: Vector3i): boolean
-        get x(): number /*i64*/
-        set x(value: number /*i64*/)
-        get y(): number /*i64*/
-        set y(value: number /*i64*/)
-        get z(): number /*i64*/
-        set z(value: number /*i64*/)
+        get x(): int64
+        set x(value: int64)
+        get y(): int64
+        set y(value: int64)
+        get z(): int64
+        set z(value: int64)
     }
     /** A 2×3 matrix representing a 2D transformation.  
      *  	  
@@ -1423,8 +1371,8 @@ declare module "godot" {
         static readonly FLIP_Y: Transform2D
         constructor()
         constructor(from: Transform2D)
-        constructor(rotation: number /*f64*/, position: Vector2)
-        constructor(rotation: number /*f64*/, scale: Vector2, skew: number /*f64*/, position: Vector2)
+        constructor(rotation: float64, position: Vector2)
+        constructor(rotation: float64, scale: Vector2, skew: float64, position: Vector2)
         constructor(x_axis: Vector2, y_axis: Vector2, origin: Vector2)
         set_indexed(index: number, value: Vector2)
         get_indexed(index: number): Vector2
@@ -1436,7 +1384,7 @@ declare module "godot" {
         affine_inverse(): Transform2D
         
         /** Returns the transform's rotation (in radians). */
-        get_rotation(): number /*f64*/
+        get_rotation(): float64
         
         /** Returns the transform's origin (translation). */
         get_origin(): Vector2
@@ -1445,7 +1393,7 @@ declare module "godot" {
         get_scale(): Vector2
         
         /** Returns the transform's skew (in radians). */
-        get_skew(): number /*f64*/
+        get_skew(): float64
         
         /** Returns the transform with the basis orthogonal (90 degrees), and normalized axis vectors (scale of 1 or -1). */
         orthonormalized(): Transform2D
@@ -1454,13 +1402,13 @@ declare module "godot" {
          *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the left, i.e., `R * X`.  
          *  This can be seen as transforming with respect to the global/parent frame.  
          */
-        rotated(angle: number /*f64*/): Transform2D
+        rotated(angle: float64): Transform2D
         
         /** Returns a copy of the transform rotated by the given [param angle] (in radians).  
          *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the right, i.e., `X * R`.  
          *  This can be seen as transforming with respect to the local frame.  
          */
-        rotated_local(angle: number /*f64*/): Transform2D
+        rotated_local(angle: float64): Transform2D
         
         /** Returns a copy of the transform scaled by the given [param scale] factor.  
          *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the left, i.e., `S * X`.  
@@ -1489,7 +1437,7 @@ declare module "godot" {
         /** Returns the determinant of the basis matrix. If the basis is uniformly scaled, then its determinant equals the square of the scale factor.  
          *  A negative determinant means the basis was flipped, so one part of the scale is negative. A zero determinant means the basis isn't invertible, and is usually considered invalid.  
          */
-        determinant(): number /*f64*/
+        determinant(): float64
         
         /** Returns a vector transformed (multiplied) by the basis matrix.  
          *  This method does not account for translation (the [member origin] vector).  
@@ -1504,7 +1452,7 @@ declare module "godot" {
         basis_xform_inv(v: Vector2): Vector2
         
         /** Returns a transform interpolated between this transform and another by a given [param weight] (on the range of 0.0 to 1.0). */
-        interpolate_with(xform: Transform2D, weight: number /*f64*/): Transform2D
+        interpolate_with(xform: Transform2D, weight: float64): Transform2D
         
         /** Returns `true` if the transform's basis is conformal, meaning it preserves angles and distance ratios, and may only be composed of rotation and uniform scale. Returns `false` if the transform's basis has non-uniform scale or shear/skew. This can be used to validate if the transform is non-distorted, which is important for physics and other use cases. */
         is_conformal(): boolean
@@ -1520,7 +1468,7 @@ declare module "godot" {
          */
         looking_at(target: Vector2 = Vector2.ZERO): Transform2D
         static MULTIPLY(left: Transform2D, right: Transform2D): Transform2D
-        static MULTIPLY(left: Transform2D, right: number /*f64*/): Transform2D
+        static MULTIPLY(left: Transform2D, right: float64): Transform2D
         static MULTIPLY(left: Transform2D, right: Vector2): Vector2
         static MULTIPLY(left: Vector2, right: Transform2D): Vector2
         static MULTIPLY(left: Transform2D, right: Rect2): Rect2
@@ -1567,23 +1515,23 @@ declare module "godot" {
         constructor()
         constructor(from: Vector4)
         constructor(from: Vector4i)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
+        constructor(x: float64, y: float64, z: float64, w: float64)
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
-        min_axis_index(): number /*i64*/
+        min_axis_index(): int64
         
         /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
+        max_axis_index(): int64
         
         /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
+        length(): float64
         
         /** Returns the squared length (squared magnitude) of this vector.  
          *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        length_squared(): number /*f64*/
+        length_squared(): float64
         
         /** Returns a new vector with all components in absolute values (i.e. positive). */
         abs(): Vector4
@@ -1601,18 +1549,18 @@ declare module "godot" {
         round(): Vector4
         
         /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
-        lerp(to: Vector4, weight: number /*f64*/): Vector4
+        lerp(to: Vector4, weight: float64): Vector4
         
         /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
-        cubic_interpolate(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: number /*f64*/): Vector4
+        cubic_interpolate(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: float64): Vector4
         
         /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
          *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
          */
-        cubic_interpolate_in_time(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Vector4
+        cubic_interpolate_in_time(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: float64, b_t: float64, pre_a_t: float64, post_b_t: float64): Vector4
         
         /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
-        posmod(mod: number /*f64*/): Vector4
+        posmod(mod: float64): Vector4
         
         /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
         posmodv(modv: Vector4): Vector4
@@ -1636,15 +1584,15 @@ declare module "godot" {
         direction_to(to: Vector4): Vector4
         
         /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector4): number /*f64*/
+        distance_to(to: Vector4): float64
         
         /** Returns the squared distance between this vector and [param to].  
          *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        distance_squared_to(to: Vector4): number /*f64*/
+        distance_squared_to(to: Vector4): float64
         
         /** Returns the dot product of this vector and [param with]. */
-        dot(with_: Vector4): number /*f64*/
+        dot(with_: Vector4): float64
         
         /** Returns the inverse of the vector. This is the same as `Vector4(1.0 / v.x, 1.0 / v.y, 1.0 / v.z, 1.0 / v.w)`. */
         inverse(): Vector4
@@ -1661,11 +1609,11 @@ declare module "godot" {
         is_finite(): boolean
         static ADD(left: Vector4, right: Vector4): Vector4
         static SUBTRACT(left: Vector4, right: Vector4): Vector4
-        static MULTIPLY(left: number /*f64*/, right: Vector4): Vector4
+        static MULTIPLY(left: float64, right: Vector4): Vector4
         static MULTIPLY(left: Vector4, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: number /*f64*/): Vector4
+        static MULTIPLY(left: Vector4, right: float64): Vector4
         static DIVIDE(left: Vector4, right: Vector4): Vector4
-        static DIVIDE(left: Vector4, right: number /*f64*/): Vector4
+        static DIVIDE(left: Vector4, right: float64): Vector4
         static NEGATE(left: Vector4, right: any): boolean
         static EQUAL(left: Vector4, right: Vector4): boolean
         static NOT_EQUAL(left: Vector4, right: Vector4): boolean
@@ -1673,14 +1621,14 @@ declare module "godot" {
         static LESS_EQUAL(left: Vector4, right: Vector4): boolean
         static GREATER(left: Vector4, right: Vector4): boolean
         static GREATER_EQUAL(left: Vector4, right: Vector4): boolean
-        get x(): number /*f64*/
-        set x(value: number /*f64*/)
-        get y(): number /*f64*/
-        set y(value: number /*f64*/)
-        get z(): number /*f64*/
-        set z(value: number /*f64*/)
-        get w(): number /*f64*/
-        set w(value: number /*f64*/)
+        get x(): float64
+        set x(value: float64)
+        get y(): float64
+        set y(value: float64)
+        get z(): float64
+        set z(value: float64)
+        get w(): float64
+        set w(value: float64)
     }
     namespace Vector4i {
         enum Axis {
@@ -1716,23 +1664,23 @@ declare module "godot" {
         constructor()
         constructor(from: Vector4i)
         constructor(from: Vector4)
-        constructor(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/, w: number /*i64*/)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
+        constructor(x: int64, y: int64, z: int64, w: int64)
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
         
         /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
-        min_axis_index(): number /*i64*/
+        min_axis_index(): int64
         
         /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): number /*i64*/
+        max_axis_index(): int64
         
         /** Returns the length (magnitude) of this vector. */
-        length(): number /*f64*/
+        length(): float64
         
         /** Returns the squared length (squared magnitude) of this vector.  
          *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
          */
-        length_squared(): number /*i64*/
+        length_squared(): int64
         
         /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
         sign(): Vector4i
@@ -1747,11 +1695,11 @@ declare module "godot" {
         snapped(step: Vector4i): Vector4i
         static ADD(left: Vector4i, right: Vector4i): Vector4i
         static SUBTRACT(left: Vector4i, right: Vector4i): Vector4i
-        static MULTIPLY(left: number /*f64*/, right: Vector4i): Vector4i
+        static MULTIPLY(left: float64, right: Vector4i): Vector4i
         static MULTIPLY(left: Vector4i, right: Vector4i): Vector4i
-        static MULTIPLY(left: Vector4i, right: number /*f64*/): Vector4i
+        static MULTIPLY(left: Vector4i, right: float64): Vector4i
         static DIVIDE(left: Vector4i, right: Vector4i): Vector4i
-        static DIVIDE(left: Vector4i, right: number /*f64*/): Vector4i
+        static DIVIDE(left: Vector4i, right: float64): Vector4i
         static NEGATE(left: Vector4i, right: any): boolean
         static EQUAL(left: Vector4i, right: Vector4i): boolean
         static NOT_EQUAL(left: Vector4i, right: Vector4i): boolean
@@ -1759,14 +1707,14 @@ declare module "godot" {
         static LESS_EQUAL(left: Vector4i, right: Vector4i): boolean
         static GREATER(left: Vector4i, right: Vector4i): boolean
         static GREATER_EQUAL(left: Vector4i, right: Vector4i): boolean
-        get x(): number /*i64*/
-        set x(value: number /*i64*/)
-        get y(): number /*i64*/
-        set y(value: number /*i64*/)
-        get z(): number /*i64*/
-        set z(value: number /*i64*/)
-        get w(): number /*i64*/
-        set w(value: number /*i64*/)
+        get x(): int64
+        set x(value: int64)
+        get y(): int64
+        set y(value: int64)
+        get z(): int64
+        set z(value: int64)
+        get w(): int64
+        set w(value: int64)
     }
     /** A plane in Hessian normal form.  
      *  	  
@@ -1784,10 +1732,10 @@ declare module "godot" {
         constructor()
         constructor(from: Plane)
         constructor(normal: Vector3)
-        constructor(normal: Vector3, d: number /*f64*/)
+        constructor(normal: Vector3, d: float64)
         constructor(normal: Vector3, point: Vector3)
         constructor(point1: Vector3, point2: Vector3, point3: Vector3)
-        constructor(a: number /*f64*/, b: number /*f64*/, c: number /*f64*/, d: number /*f64*/)
+        constructor(a: float64, b: float64, c: float64, d: float64)
         
         /** Returns a copy of the plane, with normalized [member normal] (so it's a unit vector). Returns `Plane(0, 0, 0, 0)` if [member normal] can't be normalized (it has zero length). */
         normalized(): Plane
@@ -1805,10 +1753,10 @@ declare module "godot" {
         is_point_over(point: Vector3): boolean
         
         /** Returns the shortest distance from the plane to the position [param point]. If the point is above the plane, the distance will be positive. If below, the distance will be negative. */
-        distance_to(point: Vector3): number /*f64*/
+        distance_to(point: Vector3): float64
         
         /** Returns `true` if [param point] is inside the plane. Comparison uses a custom minimum [param tolerance] threshold. */
-        has_point(point: Vector3, tolerance: number /*f64*/ = 0.00001): boolean
+        has_point(point: Vector3, tolerance: float64 = 0.00001): boolean
         
         /** Returns the orthogonal projection of [param point] into a point in the plane. */
         project(point: Vector3): Vector3
@@ -1824,14 +1772,14 @@ declare module "godot" {
         static NEGATE(left: Plane, right: any): boolean
         static EQUAL(left: Plane, right: Plane): boolean
         static NOT_EQUAL(left: Plane, right: Plane): boolean
-        get x(): number /*f64*/
-        set x(value: number /*f64*/)
-        get y(): number /*f64*/
-        set y(value: number /*f64*/)
-        get z(): number /*f64*/
-        set z(value: number /*f64*/)
-        get d(): number /*f64*/
-        set d(value: number /*f64*/)
+        get x(): float64
+        set x(value: float64)
+        get y(): float64
+        set y(value: float64)
+        get z(): float64
+        set z(value: float64)
+        get d(): float64
+        set d(value: float64)
         get normal(): Vector3
         set normal(value: Vector3)
     }
@@ -1847,20 +1795,20 @@ declare module "godot" {
         constructor()
         constructor(from: Quaternion)
         constructor(from: Basis)
-        constructor(axis: Vector3, angle: number /*f64*/)
+        constructor(axis: Vector3, angle: float64)
         constructor(arc_from: Vector3, arc_to: Vector3)
-        constructor(x: number /*f64*/, y: number /*f64*/, z: number /*f64*/, w: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
+        constructor(x: float64, y: float64, z: float64, w: float64)
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
         
         /** Returns this quaternion's length, also called magnitude. */
-        length(): number /*f64*/
+        length(): float64
         
         /** Returns this quaternion's length, squared.  
          *      
          *  **Note:** This method is faster than [method length], so prefer it if you only need to compare quaternion lengths.  
          */
-        length_squared(): number /*f64*/
+        length_squared(): float64
         
         /** Returns a copy of this quaternion, normalized so that its length is `1.0`. See also [method is_normalized]. */
         normalized(): Quaternion
@@ -1887,31 +1835,31 @@ declare module "godot" {
          *      
          *  **Note:** The magnitude of the floating-point error for this method is abnormally high, so methods such as `is_zero_approx` will not work reliably.  
          */
-        angle_to(to: Quaternion): number /*f64*/
+        angle_to(to: Quaternion): float64
         
         /** Returns the dot product between this quaternion and [param with].  
          *  This is equivalent to `(quat.x * with.x) + (quat.y * with.y) + (quat.z * with.z) + (quat.w * with.w)`.  
          */
-        dot(with_: Quaternion): number /*f64*/
+        dot(with_: Quaternion): float64
         
         /** Performs a spherical-linear interpolation with the [param to] quaternion, given a [param weight] and returns the result. Both this quaternion and [param to] must be normalized. */
-        slerp(to: Quaternion, weight: number /*f64*/): Quaternion
+        slerp(to: Quaternion, weight: float64): Quaternion
         
         /** Performs a spherical-linear interpolation with the [param to] quaternion, given a [param weight] and returns the result. Unlike [method slerp], this method does not check if the rotation path is smaller than 90 degrees. Both this quaternion and [param to] must be normalized. */
-        slerpni(to: Quaternion, weight: number /*f64*/): Quaternion
+        slerpni(to: Quaternion, weight: float64): Quaternion
         
         /** Performs a spherical cubic interpolation between quaternions [param pre_a], this vector, [param b], and [param post_b], by the given amount [param weight]. */
-        spherical_cubic_interpolate(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/): Quaternion
+        spherical_cubic_interpolate(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: float64): Quaternion
         
         /** Performs a spherical cubic interpolation between quaternions [param pre_a], this vector, [param b], and [param post_b], by the given amount [param weight].  
          *  It can perform smoother interpolation than [method spherical_cubic_interpolate] by the time values.  
          */
-        spherical_cubic_interpolate_in_time(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: number /*f64*/, b_t: number /*f64*/, pre_a_t: number /*f64*/, post_b_t: number /*f64*/): Quaternion
+        spherical_cubic_interpolate_in_time(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: float64, b_t: float64, pre_a_t: float64, post_b_t: float64): Quaternion
         
         /** Returns this quaternion's rotation as a [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
          *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): Z (roll) is calculated first, then X (pitch), and lastly Y (yaw). When using the opposite method [method from_euler], this order is reversed.  
          */
-        get_euler(order: number /*i64*/ = 2): Vector3
+        get_euler(order: int64 = 2): Vector3
         
         /** Constructs a new [Quaternion] from the given [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians. This method always uses the YXZ convention ([constant EULER_ORDER_YXZ]). */
         static from_euler(euler: Vector3): Quaternion
@@ -1923,26 +1871,26 @@ declare module "godot" {
          *      
          *  **Note:** The quaternion must be normalized.  
          */
-        get_angle(): number /*f64*/
+        get_angle(): float64
         static ADD(left: Quaternion, right: Quaternion): Quaternion
         static SUBTRACT(left: Quaternion, right: Quaternion): Quaternion
         static MULTIPLY(left: Quaternion, right: Quaternion): Quaternion
-        static MULTIPLY(left: Quaternion, right: number /*f64*/): Quaternion
-        static MULTIPLY(left: number /*f64*/, right: Quaternion): Quaternion
+        static MULTIPLY(left: Quaternion, right: float64): Quaternion
+        static MULTIPLY(left: float64, right: Quaternion): Quaternion
         static MULTIPLY(left: Vector3, right: Quaternion): Vector3
         static MULTIPLY(left: Quaternion, right: Vector3): Vector3
-        static DIVIDE(left: Quaternion, right: number /*f64*/): Quaternion
+        static DIVIDE(left: Quaternion, right: float64): Quaternion
         static NEGATE(left: Quaternion, right: any): boolean
         static EQUAL(left: Quaternion, right: Quaternion): boolean
         static NOT_EQUAL(left: Quaternion, right: Quaternion): boolean
-        get x(): number /*f64*/
-        set x(value: number /*f64*/)
-        get y(): number /*f64*/
-        set y(value: number /*f64*/)
-        get z(): number /*f64*/
-        set z(value: number /*f64*/)
-        get w(): number /*f64*/
-        set w(value: number /*f64*/)
+        get x(): float64
+        set x(value: float64)
+        get y(): float64
+        set y(value: float64)
+        get z(): float64
+        set z(value: float64)
+        get w(): float64
+        set w(value: float64)
     }
     /** A 3D axis-aligned bounding box.  
      *  	  
@@ -1964,7 +1912,7 @@ declare module "godot" {
         get_center(): Vector3
         
         /** Returns the bounding box's volume. This is equivalent to `size.x * size.y * size.z`. See also [method has_volume]. */
-        get_volume(): number /*f64*/
+        get_volume(): float64
         
         /** Returns `true` if this bounding box's width, height, and depth are all positive. See also [method get_volume]. */
         has_volume(): boolean
@@ -2013,7 +1961,7 @@ declare module "godot" {
         /** Returns a copy of this bounding box extended on all sides by the given amount [param by]. A negative amount shrinks the box instead.  
          *    
          */
-        grow(by: number /*f64*/): AABB
+        grow(by: float64): AABB
         
         /** Returns the vertex's position of this bounding box that's the farthest in the given direction. This point is commonly known as the support point in collision detection algorithms. */
         get_support(dir: Vector3): Vector3
@@ -2027,12 +1975,12 @@ declare module "godot" {
         /** Returns the index to the longest axis of this bounding box's [member size] (see [constant Vector3.AXIS_X], [constant Vector3.AXIS_Y], and [constant Vector3.AXIS_Z]).  
          *  For an example, see [method get_longest_axis].  
          */
-        get_longest_axis_index(): number /*i64*/
+        get_longest_axis_index(): int64
         
         /** Returns the longest dimension of this bounding box's [member size].  
          *  For an example, see [method get_longest_axis].  
          */
-        get_longest_axis_size(): number /*f64*/
+        get_longest_axis_size(): float64
         
         /** Returns the shortest normaalized axis of this bounding box's [member size], as a [Vector3] ([constant Vector3.RIGHT], [constant Vector3.UP], or [constant Vector3.BACK]).  
          *    
@@ -2043,15 +1991,15 @@ declare module "godot" {
         /** Returns the index to the shortest axis of this bounding box's [member size] (see [constant Vector3.AXIS_X], [constant Vector3.AXIS_Y], and [constant Vector3.AXIS_Z]).  
          *  For an example, see [method get_shortest_axis].  
          */
-        get_shortest_axis_index(): number /*i64*/
+        get_shortest_axis_index(): int64
         
         /** Returns the shortest dimension of this bounding box's [member size].  
          *  For an example, see [method get_shortest_axis].  
          */
-        get_shortest_axis_size(): number /*f64*/
+        get_shortest_axis_size(): float64
         
         /** Returns the position of one of the 8 vertices that compose this bounding box. With a [param idx] of `0` this is the same as [member position], and a [param idx] of `7` is the same as [member end]. */
-        get_endpoint(idx: number /*i64*/): Vector3
+        get_endpoint(idx: int64): Vector3
         
         /** Returns the first point where this bounding box and the given segment intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
          *  The segment begins at [param from] and ends at [param to].  
@@ -2102,7 +2050,7 @@ declare module "godot" {
         constructor()
         constructor(from: Basis)
         constructor(from: Quaternion)
-        constructor(axis: Vector3, angle: number /*f64*/)
+        constructor(axis: Vector3, angle: float64)
         constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3)
         set_indexed(index: number, value: Vector3)
         get_indexed(index: number): Vector3
@@ -2127,13 +2075,13 @@ declare module "godot" {
          *      
          *  **Note:** If the basis's scale is the same for every axis, its determinant is always that scale by the power of 2.  
          */
-        determinant(): number /*f64*/
+        determinant(): float64
         
         /** Returns this basis rotated around the given [param axis] by [param angle] (in radians). The [param axis] must be a normalized vector (see [method Vector3.normalized]).  
          *  Positive values rotate this basis clockwise around the axis, while negative values rotate it counterclockwise.  
          *    
          */
-        rotated(axis: Vector3, angle: number /*f64*/): Basis
+        rotated(axis: Vector3, angle: float64): Basis
         
         /** Returns this basis with each axis's components scaled by the given [param scale]'s components.  
          *  The basis matrix's rows are multiplied by [param scale]'s components. This operation is a global scale (relative to the parent).  
@@ -2158,28 +2106,28 @@ declare module "godot" {
          *      
          *  **Note:** In the Inspector dock, a basis's rotation is often displayed in Euler angles (in degrees), as is the case with the [member Node3D.rotation] property.  
          */
-        get_euler(order: number /*i64*/ = 2): Vector3
+        get_euler(order: int64 = 2): Vector3
         
         /** Returns the transposed dot product between [param with] and the [member x] axis (see [method transposed]).  
          *  This is equivalent to `basis.x.dot(vector)`.  
          */
-        tdotx(with_: Vector3): number /*f64*/
+        tdotx(with_: Vector3): float64
         
         /** Returns the transposed dot product between [param with] and the [member y] axis (see [method transposed]).  
          *  This is equivalent to `basis.y.dot(vector)`.  
          */
-        tdoty(with_: Vector3): number /*f64*/
+        tdoty(with_: Vector3): float64
         
         /** Returns the transposed dot product between [param with] and the [member z] axis (see [method transposed]).  
          *  This is equivalent to `basis.z.dot(vector)`.  
          */
-        tdotz(with_: Vector3): number /*f64*/
+        tdotz(with_: Vector3): float64
         
         /** Performs a spherical-linear interpolation with the [param to] basis, given a [param weight]. Both this basis and [param to] should represent a rotation.  
          *  **Example:** Smoothly rotate a [Node3D] to the target basis over time, with a [Tween].  
          *    
          */
-        slerp(to: Basis, weight: number /*f64*/): Basis
+        slerp(to: Basis, weight: float64): Basis
         
         /** Returns `true` if this basis is conformal. A conformal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *uniform*  (the axes share the same length). This method can be especially useful during physics calculations. */
         is_conformal(): boolean
@@ -2216,9 +2164,9 @@ declare module "godot" {
          *    
          *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): the basis rotates first around the Y axis (yaw), then X (pitch), and lastly Z (roll). When using the opposite method [method get_euler], this order is reversed.  
          */
-        static from_euler(euler: Vector3, order: number /*i64*/ = 2): Basis
+        static from_euler(euler: Vector3, order: int64 = 2): Basis
         static MULTIPLY(left: Basis, right: Basis): Basis
-        static MULTIPLY(left: Basis, right: number /*f64*/): Basis
+        static MULTIPLY(left: Basis, right: float64): Basis
         static MULTIPLY(left: Basis, right: Vector3): Vector3
         static MULTIPLY(left: Vector3, right: Basis): Vector3
         static EQUAL(left: Basis, right: Basis): boolean
@@ -2274,14 +2222,14 @@ declare module "godot" {
          *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the left, i.e., `R * X`.  
          *  This can be seen as transforming with respect to the global/parent frame.  
          */
-        rotated(axis: Vector3, angle: number /*f64*/): Transform3D
+        rotated(axis: Vector3, angle: float64): Transform3D
         
         /** Returns a copy of this transform rotated around the given [param axis] by the given [param angle] (in radians).  
          *  The [param axis] must be a normalized vector.  
          *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the right, i.e., `X * R`.  
          *  This can be seen as transforming with respect to the local frame.  
          */
-        rotated_local(axis: Vector3, angle: number /*f64*/): Transform3D
+        rotated_local(axis: Vector3, angle: float64): Transform3D
         
         /** Returns a copy of this transform scaled by the given [param scale] factor.  
          *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the left, i.e., `S * X`.  
@@ -2316,7 +2264,7 @@ declare module "godot" {
         /** Returns the result of the linear interpolation between this transform and [param xform] by the given [param weight].  
          *  The [param weight] should be between `0.0` and `1.0` (inclusive). Values outside this range are allowed and can be used to perform  *extrapolation*  instead.  
          */
-        interpolate_with(xform: Transform3D, weight: number /*f64*/): Transform3D
+        interpolate_with(xform: Transform3D, weight: float64): Transform3D
         
         /** Returns `true` if this transform and [param xform] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
         is_equal_approx(xform: Transform3D): boolean
@@ -2324,7 +2272,7 @@ declare module "godot" {
         /** Returns `true` if this transform is finite, by calling [method @GlobalScope.is_finite] on each component. */
         is_finite(): boolean
         static MULTIPLY(left: Transform3D, right: Transform3D): Transform3D
-        static MULTIPLY(left: Transform3D, right: number /*f64*/): Transform3D
+        static MULTIPLY(left: Transform3D, right: float64): Transform3D
         static MULTIPLY(left: Transform3D, right: Vector3): Vector3
         static MULTIPLY(left: Vector3, right: Transform3D): Vector3
         static MULTIPLY(left: Transform3D, right: AABB): AABB
@@ -2387,34 +2335,34 @@ declare module "godot" {
         /** Creates a new [Projection] that projects positions using a perspective projection with the given Y-axis field of view (in degrees), X:Y aspect ratio, and clipping planes.  
          *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
          */
-        static create_perspective(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
+        static create_perspective(fovy: float64, aspect: float64, z_near: float64, z_far: float64, flip_fov: boolean = false): Projection
         
         /** Creates a new [Projection] that projects positions using a perspective projection with the given Y-axis field of view (in degrees), X:Y aspect ratio, and clipping distances. The projection is adjusted for a head-mounted display with the given distance between eyes and distance to a point that can be focused on.  
          *  [param eye] creates the projection for the left eye when set to 1, or the right eye when set to 2.  
          *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
          */
-        static create_perspective_hmd(fovy: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean, eye: number /*i64*/, intraocular_dist: number /*f64*/, convergence_dist: number /*f64*/): Projection
+        static create_perspective_hmd(fovy: float64, aspect: float64, z_near: float64, z_far: float64, flip_fov: boolean, eye: int64, intraocular_dist: float64, convergence_dist: float64): Projection
         
         /** Creates a new [Projection] for projecting positions onto a head-mounted display with the given X:Y aspect ratio, distance between eyes, display width, distance to lens, oversampling factor, and depth clipping planes.  
          *  [param eye] creates the projection for the left eye when set to 1, or the right eye when set to 2.  
          */
-        static create_for_hmd(eye: number /*i64*/, aspect: number /*f64*/, intraocular_dist: number /*f64*/, display_width: number /*f64*/, display_to_lens: number /*f64*/, oversample: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
+        static create_for_hmd(eye: int64, aspect: float64, intraocular_dist: float64, display_width: float64, display_to_lens: float64, oversample: float64, z_near: float64, z_far: float64): Projection
         
         /** Creates a new [Projection] that projects positions using an orthogonal projection with the given clipping planes. */
-        static create_orthogonal(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
+        static create_orthogonal(left: float64, right: float64, bottom: float64, top: float64, z_near: float64, z_far: float64): Projection
         
         /** Creates a new [Projection] that projects positions using an orthogonal projection with the given size, X:Y aspect ratio, and clipping planes.  
          *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
          */
-        static create_orthogonal_aspect(size: number /*f64*/, aspect: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
+        static create_orthogonal_aspect(size: float64, aspect: float64, z_near: float64, z_far: float64, flip_fov: boolean = false): Projection
         
         /** Creates a new [Projection] that projects positions in a frustum with the given clipping planes. */
-        static create_frustum(left: number /*f64*/, right: number /*f64*/, bottom: number /*f64*/, top: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): Projection
+        static create_frustum(left: float64, right: float64, bottom: float64, top: float64, z_near: float64, z_far: float64): Projection
         
         /** Creates a new [Projection] that projects positions in a frustum with the given size, X:Y aspect ratio, offset, and clipping planes.  
          *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
          */
-        static create_frustum_aspect(size: number /*f64*/, aspect: number /*f64*/, offset: Vector2, z_near: number /*f64*/, z_far: number /*f64*/, flip_fov: boolean = false): Projection
+        static create_frustum_aspect(size: float64, aspect: float64, offset: Vector2, z_near: float64, z_far: float64, flip_fov: boolean = false): Projection
         
         /** Creates a new [Projection] that scales a given projection to fit around a given [AABB] in projection space. */
         static create_fit_aabb(aabb: AABB): Projection
@@ -2422,18 +2370,18 @@ declare module "godot" {
         /** Returns a scalar value that is the signed factor by which areas are scaled by this matrix. If the sign is negative, the matrix flips the orientation of the area.  
          *  The determinant can be used to calculate the invertibility of a matrix or solve linear systems of equations involving the matrix, among other applications.  
          */
-        determinant(): number /*f64*/
+        determinant(): float64
         
         /** Returns a [Projection] with the near clipping distance adjusted to be [param new_znear].  
          *      
          *  **Note:** The original [Projection] must be a perspective projection.  
          */
-        perspective_znear_adjusted(new_znear: number /*f64*/): Projection
+        perspective_znear_adjusted(new_znear: float64): Projection
         
         /** Returns the clipping plane of this [Projection] whose index is given by [param plane].  
          *  [param plane] should be equal to one of [constant PLANE_NEAR], [constant PLANE_FAR], [constant PLANE_LEFT], [constant PLANE_TOP], [constant PLANE_RIGHT], or [constant PLANE_BOTTOM].  
          */
-        get_projection_plane(plane: number /*i64*/): Plane
+        get_projection_plane(plane: int64): Plane
         
         /** Returns a copy of this [Projection] with the signs of the values of the Y column flipped. */
         flipped_y(): Projection
@@ -2442,19 +2390,19 @@ declare module "godot" {
         jitter_offseted(offset: Vector2): Projection
         
         /** Returns the vertical field of view of the projection (in degrees) associated with the given horizontal field of view (in degrees) and aspect ratio. */
-        static get_fovy(fovx: number /*f64*/, aspect: number /*f64*/): number /*f64*/
+        static get_fovy(fovx: float64, aspect: float64): float64
         
         /** Returns the distance for this [Projection] beyond which positions are clipped. */
-        get_z_far(): number /*f64*/
+        get_z_far(): float64
         
         /** Returns the distance for this [Projection] before which positions are clipped. */
-        get_z_near(): number /*f64*/
+        get_z_near(): float64
         
         /** Returns the X:Y aspect ratio of this [Projection]'s viewport. */
-        get_aspect(): number /*f64*/
+        get_aspect(): float64
         
         /** Returns the horizontal field of view of the projection (in degrees). */
-        get_fov(): number /*f64*/
+        get_fov(): float64
         
         /** Returns `true` if this [Projection] performs an orthogonal projection. */
         is_orthogonal(): boolean
@@ -2469,10 +2417,10 @@ declare module "godot" {
         inverse(): Projection
         
         /** Returns the number of pixels with the given pixel width displayed per meter, after this [Projection] is applied. */
-        get_pixels_per_meter(for_pixel_width: number /*i64*/): number /*i64*/
+        get_pixels_per_meter(for_pixel_width: int64): int64
         
         /** Returns the factor by which the visible level of detail is scaled by this [Projection]. */
-        get_lod_multiplier(): number /*f64*/
+        get_lod_multiplier(): float64
         static MULTIPLY(left: Projection, right: Projection): Projection
         static MULTIPLY(left: Projection, right: Vector4): Vector4
         static MULTIPLY(left: Vector4, right: Projection): Vector4
@@ -2931,43 +2879,43 @@ declare module "godot" {
         static readonly YELLOW_GREEN: Color
         constructor()
         constructor(from: Color)
-        constructor(from: Color, alpha: number /*f64*/)
-        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/)
-        constructor(r: number /*f64*/, g: number /*f64*/, b: number /*f64*/, a: number /*f64*/)
+        constructor(from: Color, alpha: float64)
+        constructor(r: float64, g: float64, b: float64)
+        constructor(r: float64, g: float64, b: float64, a: float64)
         constructor(code: string)
-        constructor(code: string, alpha: number /*f64*/)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
+        constructor(code: string, alpha: float64)
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
         
         /** Returns the color converted to a 32-bit integer in ARGB format (each component is 8 bits). ARGB is more compatible with DirectX.  
          *    
          */
-        to_argb32(): number /*i64*/
+        to_argb32(): int64
         
         /** Returns the color converted to a 32-bit integer in ABGR format (each component is 8 bits). ABGR is the reversed version of the default RGBA format.  
          *    
          */
-        to_abgr32(): number /*i64*/
+        to_abgr32(): int64
         
         /** Returns the color converted to a 32-bit integer in RGBA format (each component is 8 bits). RGBA is Godot's default format.  
          *    
          */
-        to_rgba32(): number /*i64*/
+        to_rgba32(): int64
         
         /** Returns the color converted to a 64-bit integer in ARGB format (each component is 16 bits). ARGB is more compatible with DirectX.  
          *    
          */
-        to_argb64(): number /*i64*/
+        to_argb64(): int64
         
         /** Returns the color converted to a 64-bit integer in ABGR format (each component is 16 bits). ABGR is the reversed version of the default RGBA format.  
          *    
          */
-        to_abgr64(): number /*i64*/
+        to_abgr64(): int64
         
         /** Returns the color converted to a 64-bit integer in RGBA format (each component is 16 bits). RGBA is Godot's default format.  
          *    
          */
-        to_rgba64(): number /*i64*/
+        to_rgba64(): int64
         
         /** Returns the color converted to an HTML hexadecimal color [String] in RGBA format, without the hash (`#`) prefix.  
          *  Setting [param with_alpha] to `false`, excludes alpha from the hexadecimal string, using RGB format instead of RGBA format.  
@@ -2986,17 +2934,17 @@ declare module "godot" {
         /** Returns the linear interpolation between this color's components and [param to]'s components. The interpolation factor [param weight] should be between 0.0 and 1.0 (inclusive). See also [method @GlobalScope.lerp].  
          *    
          */
-        lerp(to: Color, weight: number /*f64*/): Color
+        lerp(to: Color, weight: float64): Color
         
         /** Returns a new color resulting from making this color lighter by the specified [param amount], which should be a ratio from 0.0 to 1.0. See also [method darkened].  
          *    
          */
-        lightened(amount: number /*f64*/): Color
+        lightened(amount: float64): Color
         
         /** Returns a new color resulting from making this color darker by the specified [param amount] (ratio from 0.0 to 1.0). See also [method lightened].  
          *    
          */
-        darkened(amount: number /*f64*/): Color
+        darkened(amount: float64): Color
         
         /** Returns a new color resulting from overlaying this color over the given color. In a painting program, you can imagine it as the [param over] color painted over this color (including alpha).  
          *    
@@ -3007,7 +2955,7 @@ declare module "godot" {
          *      
          *  **Note:** [method get_luminance] relies on the color being in the linear color space to return an accurate relative luminance value. If the color is in the sRGB color space, use [method srgb_to_linear] to convert it to the linear color space first.  
          */
-        get_luminance(): number /*f64*/
+        get_luminance(): float64
         
         /** Returns the color converted to the linear color space. This method assumes the original color already is in the sRGB color space. See also [method linear_to_srgb] which performs the opposite operation. */
         srgb_to_linear(): Color
@@ -3022,12 +2970,12 @@ declare module "godot" {
          *  In GDScript and C#, the [int] is best visualized with hexadecimal notation (`"0x"` prefix, making it `"0xRRGGBBAA"`).  
          *    
          */
-        static hex(hex: number /*i64*/): Color
+        static hex(hex: int64): Color
         
         /** Returns the [Color] associated with the provided [param hex] integer in 64-bit RGBA format (16 bits per channel).  
          *  In GDScript and C#, the [int] is best visualized with hexadecimal notation (`"0x"` prefix, making it `"0xRRRRGGGGBBBBAAAA"`).  
          */
-        static hex64(hex: number /*i64*/): Color
+        static hex64(hex: int64): Color
         
         /** Returns a new color from [param rgba], an HTML hexadecimal color string. [param rgba] is not case-sensitive, and may be prefixed by a hash sign (`#`).  
          *  [param rgba] must be a valid three-digit or six-digit hexadecimal color string, and may contain an alpha channel value. If [param rgba] does not contain an alpha channel value, an alpha channel value of 1.0 is applied. If [param rgba] is invalid, returns an empty color.  
@@ -3046,47 +2994,47 @@ declare module "godot" {
         /** Constructs a color from an [url=https://en.wikipedia.org/wiki/HSL_and_HSV]HSV profile[/url]. The hue ([param h]), saturation ([param s]), and value ([param v]) are typically between 0.0 and 1.0.  
          *    
          */
-        static from_hsv(h: number /*f64*/, s: number /*f64*/, v: number /*f64*/, alpha: number /*f64*/ = 1): Color
+        static from_hsv(h: float64, s: float64, v: float64, alpha: float64 = 1): Color
         
         /** Constructs a color from an [url=https://bottosson.github.io/posts/colorpicker/]OK HSL profile[/url]. The hue ([param h]), saturation ([param s]), and lightness ([param l]) are typically between 0.0 and 1.0.  
          *    
          */
-        static from_ok_hsl(h: number /*f64*/, s: number /*f64*/, l: number /*f64*/, alpha: number /*f64*/ = 1): Color
+        static from_ok_hsl(h: float64, s: float64, l: float64, alpha: float64 = 1): Color
         
         /** Decodes a [Color] from a RGBE9995 format integer. See [constant Image.FORMAT_RGBE9995]. */
-        static from_rgbe9995(rgbe: number /*i64*/): Color
+        static from_rgbe9995(rgbe: int64): Color
         static ADD(left: Color, right: Color): Color
         static SUBTRACT(left: Color, right: Color): Color
         static MULTIPLY(left: Color, right: Color): Color
-        static MULTIPLY(left: Color, right: number /*f64*/): Color
-        static MULTIPLY(left: number /*f64*/, right: Color): Color
+        static MULTIPLY(left: Color, right: float64): Color
+        static MULTIPLY(left: float64, right: Color): Color
         static DIVIDE(left: Color, right: Color): Color
-        static DIVIDE(left: Color, right: number /*f64*/): Color
+        static DIVIDE(left: Color, right: float64): Color
         static NEGATE(left: Color, right: any): boolean
         static EQUAL(left: Color, right: Color): boolean
         static NOT_EQUAL(left: Color, right: Color): boolean
-        get r(): number /*f64*/
-        set r(value: number /*f64*/)
-        get g(): number /*f64*/
-        set g(value: number /*f64*/)
-        get b(): number /*f64*/
-        set b(value: number /*f64*/)
-        get a(): number /*f64*/
-        set a(value: number /*f64*/)
-        get r8(): number /*i64*/
-        set r8(value: number /*i64*/)
-        get g8(): number /*i64*/
-        set g8(value: number /*i64*/)
-        get b8(): number /*i64*/
-        set b8(value: number /*i64*/)
-        get a8(): number /*i64*/
-        set a8(value: number /*i64*/)
-        get h(): number /*f64*/
-        set h(value: number /*f64*/)
-        get s(): number /*f64*/
-        set s(value: number /*f64*/)
-        get v(): number /*f64*/
-        set v(value: number /*f64*/)
+        get r(): float64
+        set r(value: float64)
+        get g(): float64
+        set g(value: float64)
+        get b(): float64
+        set b(value: float64)
+        get a(): float64
+        set a(value: float64)
+        get r8(): int64
+        set r8(value: int64)
+        get g8(): int64
+        set g8(value: int64)
+        get b8(): int64
+        set b8(value: int64)
+        get a8(): int64
+        set a8(value: int64)
+        get h(): float64
+        set h(value: float64)
+        get s(): float64
+        set s(value: float64)
+        get v(): float64
+        set v(value: float64)
     }
     /** A pre-parsed scene tree path.  
      *  	  
@@ -3103,25 +3051,25 @@ declare module "godot" {
         /** Gets the number of node names which make up the path. Subnames (see [method get_subname_count]) are not included.  
          *  For example, `"Path2D/PathFollow2D/Sprite2D"` has 3 names.  
          */
-        get_name_count(): number /*i64*/
+        get_name_count(): int64
         
         /** Gets the node name indicated by [param idx] (0 to [method get_name_count] - 1).  
          *    
          */
-        get_name(idx: number /*i64*/): StringName
+        get_name(idx: int64): StringName
         
         /** Gets the number of resource or property names ("subnames") in the path. Each subname is listed after a colon character (`:`) in the node path.  
          *  For example, `"Path2D/PathFollow2D/Sprite2D:texture:load_path"` has 2 subnames.  
          */
-        get_subname_count(): number /*i64*/
+        get_subname_count(): int64
         
         /** Returns the 32-bit hash value representing the [NodePath]'s contents. */
-        hash(): number /*i64*/
+        hash(): int64
         
         /** Gets the resource or property name indicated by [param idx] (0 to [method get_subname_count] - 1).  
          *    
          */
-        get_subname(idx: number /*i64*/): StringName
+        get_subname(idx: int64): StringName
         
         /** Returns all paths concatenated with a slash character (`/`) as separator without subnames. */
         get_concatenated_names(): StringName
@@ -3153,7 +3101,7 @@ declare module "godot" {
         is_valid(): boolean
         
         /** Returns the ID of the referenced low-level resource. */
-        get_id(): number /*i64*/
+        get_id(): int64
         static EQUAL(left: RID, right: RID): boolean
         static NOT_EQUAL(left: RID, right: RID): boolean
         static LESS(left: RID, right: RID): boolean
@@ -3189,13 +3137,13 @@ declare module "godot" {
         get_object(): Object
         
         /** Returns the ID of this [Callable]'s object (see [method Object.get_instance_id]). */
-        get_object_id(): number /*i64*/
+        get_object_id(): int64
         
         /** Returns the name of the method represented by this [Callable]. If the callable is a GDScript lambda function, returns the function's name or `"<anonymous lambda>"`. */
         get_method(): StringName
         
         /** Returns the total amount of arguments bound (or unbound) via successive [method bind] or [method unbind] calls. If the amount of arguments unbound is greater than the ones bound, this function returns a value less than zero. */
-        get_bound_arguments_count(): number /*i64*/
+        get_bound_arguments_count(): int64
         
         /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
         get_bound_arguments(): Array
@@ -3204,7 +3152,7 @@ declare module "godot" {
          *      
          *  **Note:** [Callable]s with equal content will always produce identical hash values. However, the reverse is not true. Returning identical hash values does  *not*  imply the callables are equal, because different callables can have identical hash values due to hash collisions. The engine uses a 32-bit hash algorithm for [method hash].  
          */
-        hash(): number /*i64*/
+        hash(): int64
         
         /** Returns a copy of this [Callable] with one or more arguments bound, reading them from an array. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
          *      
@@ -3217,7 +3165,7 @@ declare module "godot" {
          *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
          *    
          */
-        unbind(argcount: number /*i64*/): Callable
+        unbind(argcount: int64): Callable
         
         /** Calls the method represented by this [Callable]. Arguments can be passed and should match the method's signature. */
         call(...vargargs: any[]): void
@@ -3234,7 +3182,7 @@ declare module "godot" {
         rpc(...vargargs: any[]): void
         
         /** Perform an RPC (Remote Procedure Call) on a specific peer ID (see multiplayer documentation for reference). This is used for multiplayer and is normally not available unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc_id]. */
-        rpc_id(peer_id: number /*i64*/, ...vargargs: any[]): void
+        rpc_id(peer_id: int64, ...vargargs: any[]): void
         
         /** Returns a copy of this [Callable] with one or more arguments bound. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
          *      
@@ -3260,7 +3208,7 @@ declare module "godot" {
         get_object(): Object
         
         /** Returns the ID of the object emitting this signal (see [method Object.get_instance_id]). */
-        get_object_id(): number /*i64*/
+        get_object_id(): int64
         
         /** Returns the name of this signal. */
         get_name(): StringName
@@ -3269,7 +3217,7 @@ declare module "godot" {
          *  A signal can only be connected once to the same [Callable]. If the signal is already connected, returns [constant ERR_INVALID_PARAMETER] and pushes an error message, unless the signal is connected with [constant Object.CONNECT_REFERENCE_COUNTED]. To prevent this, use [method is_connected] first to check for existing connections.  
          *    
          */
-        connect(callable: Callable, flags: number /*i64*/ = 0): number /*i64*/
+        connect(callable: Callable, flags: int64 = 0): int64
         
         /** Disconnects this signal from the specified [Callable]. If the connection does not exist, generates an error. Use [method is_connected] to make sure that the connection exists. */
         disconnect(callable: Callable): void
@@ -3300,7 +3248,7 @@ declare module "godot" {
         get_indexed(index: number): any
         
         /** Returns the number of entries in the dictionary. Empty dictionaries (`{ }`) always return `0`. See also [method is_empty]. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the dictionary is empty (its size is `0`). See also [method size]. */
         is_empty(): boolean
@@ -3348,7 +3296,7 @@ declare module "godot" {
          *      
          *  **Note:** Dictionaries with equal hash values are  *not*  guaranteed to be the same, because of hash collisions. On the contrary, dictionaries with different hash values are guaranteed to be different.  
          */
-        hash(): number /*i64*/
+        hash(): int64
         
         /** Returns the list of keys in the dictionary. */
         keys(): Array
@@ -3377,7 +3325,7 @@ declare module "godot" {
     class Array {
         constructor()
         constructor(from: Array)
-        constructor(base: Array, type: number /*i64*/, class_name: StringName, script: any)
+        constructor(base: Array, type: int64, class_name: StringName, script: any)
         constructor(from: PackedByteArray)
         constructor(from: PackedInt32Array)
         constructor(from: PackedInt64Array)
@@ -3391,7 +3339,7 @@ declare module "godot" {
         get_indexed(index: number): any
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
@@ -3403,7 +3351,7 @@ declare module "godot" {
          *      
          *  **Note:** [Array]s with equal content will always produce identical hash values. However, the reverse is not true. Returning identical hash values does  *not*  imply the arrays are equal, because different arrays can have identical hash values due to hash collisions.  
          */
-        hash(): number /*i64*/
+        hash(): int64
         
         /** Assigns elements of another [param array] into the array. Resizes the array to match [param array]. Performs type conversions if the array is typed. */
         assign(array: Array): void
@@ -3430,7 +3378,7 @@ declare module "godot" {
          *      
          *  **Note:** This method acts in-place and doesn't return a modified array.  
          */
-        resize(size: number /*i64*/): number /*i64*/
+        resize(size: int64): int64
         
         /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`pos == size()`). Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          *      
@@ -3438,7 +3386,7 @@ declare module "godot" {
          *      
          *  **Note:** On large arrays, this method will be slower if the inserted element is close to the beginning of the array (index 0). This is because all elements placed after the newly inserted element have to be reindexed.  
          */
-        insert(position: number /*i64*/, value: any): number /*i64*/
+        insert(position: int64, value: any): int64
         
         /** Removes an element from the array by index. If the index does not exist in the array, nothing happens. To remove an element by searching for its value, use [method erase] instead.  
          *      
@@ -3448,7 +3396,7 @@ declare module "godot" {
          *      
          *  **Note:** [param position] cannot be negative. To remove an element relative to the end of the array, use `arr.remove_at(arr.size() - (i + 1))`. To remove the last element from the array without returning the value, use `arr.resize(arr.size() - 1)`.  
          */
-        remove_at(position: number /*i64*/): void
+        remove_at(position: int64): void
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements:  
          *    
@@ -3485,13 +3433,13 @@ declare module "godot" {
         pick_random(): void
         
         /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(what: any, from: number /*i64*/ = 0): number /*i64*/
+        find(what: any, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(what: any, from: number /*i64*/ = -1): number /*i64*/
+        rfind(what: any, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array. */
-        count(value: any): number /*i64*/
+        count(value: any): int64
         
         /** Returns `true` if the array contains the given value.  
          *    
@@ -3514,7 +3462,7 @@ declare module "godot" {
          *      
          *  **Note:** On large arrays, this method can be slower than [method pop_back] as it will reindex the array's elements that are located after the removed element. The larger the array and the lower the index of the removed element, the slower [method pop_at] will be.  
          */
-        pop_at(position: number /*i64*/): void
+        pop_at(position: int64): void
         
         /** Sorts the array.  
          *      
@@ -3544,7 +3492,7 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
          */
-        bsearch(value: any, before: boolean = true): number /*i64*/
+        bsearch(value: any, before: boolean = true): int64
         
         /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search and a custom comparison method. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array. The custom method receives two arguments (an element from the array and the value searched for) and must return `true` if the first argument is less than the second, and return `false` otherwise.  
          *      
@@ -3552,7 +3500,7 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch_custom] on an unsorted array results in unexpected behavior.  
          */
-        bsearch_custom(value: any, func: Callable, before: boolean = true): number /*i64*/
+        bsearch_custom(value: any, func: Callable, before: boolean = true): int64
         
         /** Reverses the order of the elements in the array. */
         reverse(): void
@@ -3570,7 +3518,7 @@ declare module "godot" {
          *      
          *  **Note:** To include the first element when [param step] is negative, use `arr.slice(begin, -arr.size() - 1, step)` (i.e. `[0, 1, 2].slice(1, -4, -1)` returns `[1, 0]`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647, step: number /*i64*/ = 1, deep: boolean = false): Array
+        slice(begin: int64, end: int64 = 2147483647, step: int64 = 1, deep: boolean = false): Array
         
         /** Calls the provided [Callable] on each element in the array and returns a new array with the elements for which the method returned `true`.  
          *  The callable's method should take one [Variant] parameter (the current array element) and return a boolean value.  
@@ -3633,7 +3581,7 @@ declare module "godot" {
         is_same_typed(array: Array): boolean
         
         /** Returns the built-in type of the typed array as a [enum Variant.Type] constant. If the array is not typed, returns [constant TYPE_NIL]. */
-        get_typed_builtin(): number /*i64*/
+        get_typed_builtin(): int64
         
         /** Returns the **native** class name of the typed array if the built-in type is [constant TYPE_OBJECT]. Otherwise, this method returns an empty string. */
         get_typed_class_name(): StringName
@@ -3661,44 +3609,44 @@ declare module "godot" {
         constructor()
         constructor(from: PackedByteArray)
         constructor(from: Array)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the byte at the given index. */
-        set(index: number /*i64*/, value: number /*i64*/): void
+        set(index: int64, value: int64): void
         
         /** Appends an element at the end of the array. */
-        push_back(value: number /*i64*/): boolean
+        push_back(value: int64): boolean
         
         /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: number /*i64*/): boolean
+        append(value: int64): boolean
         
         /** Appends a [PackedByteArray] at the end of this array. */
         append_array(array: PackedByteArray): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: number /*i64*/): number /*i64*/
+        insert(at_index: int64, value: int64): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: number /*i64*/): void
+        fill(value: int64): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
         
         /** Returns `true` if the array contains [param value]. */
-        has(value: number /*i64*/): boolean
+        has(value: int64): boolean
         
         /** Reverses the order of the elements in the array. */
         reverse(): void
@@ -3707,7 +3655,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedByteArray
+        slice(begin: int64, end: int64 = 2147483647): PackedByteArray
         
         /** Sorts the elements of the array in ascending order. */
         sort(): void
@@ -3716,19 +3664,19 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
          */
-        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
+        bsearch(value: int64, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedByteArray
         
         /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
+        find(value: int64, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: int64, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array. */
-        count(value: number /*i64*/): number /*i64*/
+        count(value: int64): int64
         
         /** Converts ASCII/Latin-1 encoded array to [String]. Fast alternative to [method get_string_from_utf8] if the content is ASCII/Latin-1 only. Unlike the UTF-8 function this function maps every byte to a character in the array. Multibyte sequences will not be interpreted correctly. For parsing user input always use [method get_string_from_utf8]. This is the inverse of [method String.to_ascii_buffer]. */
         get_string_from_ascii(): string
@@ -3751,13 +3699,13 @@ declare module "godot" {
         hex_encode(): string
         
         /** Returns a new [PackedByteArray] with the data compressed. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants. */
-        compress(compression_mode: number /*i64*/ = 0): PackedByteArray
+        compress(compression_mode: int64 = 0): PackedByteArray
         
         /** Returns a new [PackedByteArray] with the data decompressed. Set [param buffer_size] to the size of the uncompressed data. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants.  
          *      
          *  **Note:** Decompression is not guaranteed to work with data not compressed by Godot, for example if data compressed with the deflate compression mode lacks a checksum or header.  
          */
-        decompress(buffer_size: number /*i64*/, compression_mode: number /*i64*/ = 0): PackedByteArray
+        decompress(buffer_size: int64, compression_mode: int64 = 0): PackedByteArray
         
         /** Returns a new [PackedByteArray] with the data decompressed. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants. **This method only accepts brotli, gzip, and deflate compression modes.**  
          *  This method is potentially slower than [method decompress], as it may have to re-allocate its output buffer multiple times while decompressing, whereas [method decompress] knows it's output buffer size from the beginning.  
@@ -3765,49 +3713,49 @@ declare module "godot" {
          *      
          *  **Note:** Decompression is not guaranteed to work with data not compressed by Godot, for example if data compressed with the deflate compression mode lacks a checksum or header.  
          */
-        decompress_dynamic(max_output_size: number /*i64*/, compression_mode: number /*i64*/ = 0): PackedByteArray
+        decompress_dynamic(max_output_size: int64, compression_mode: int64 = 0): PackedByteArray
         
         /** Decodes a 8-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u8(byte_offset: number /*i64*/): number /*i64*/
+        decode_u8(byte_offset: int64): int64
         
         /** Decodes a 8-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s8(byte_offset: number /*i64*/): number /*i64*/
+        decode_s8(byte_offset: int64): int64
         
         /** Decodes a 16-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u16(byte_offset: number /*i64*/): number /*i64*/
+        decode_u16(byte_offset: int64): int64
         
         /** Decodes a 16-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s16(byte_offset: number /*i64*/): number /*i64*/
+        decode_s16(byte_offset: int64): int64
         
         /** Decodes a 32-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u32(byte_offset: number /*i64*/): number /*i64*/
+        decode_u32(byte_offset: int64): int64
         
         /** Decodes a 32-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s32(byte_offset: number /*i64*/): number /*i64*/
+        decode_s32(byte_offset: int64): int64
         
         /** Decodes a 64-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u64(byte_offset: number /*i64*/): number /*i64*/
+        decode_u64(byte_offset: int64): int64
         
         /** Decodes a 64-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s64(byte_offset: number /*i64*/): number /*i64*/
+        decode_s64(byte_offset: int64): int64
         
         /** Decodes a 16-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_half(byte_offset: number /*i64*/): number /*f64*/
+        decode_half(byte_offset: int64): float64
         
         /** Decodes a 32-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_float(byte_offset: number /*i64*/): number /*f64*/
+        decode_float(byte_offset: int64): float64
         
         /** Decodes a 64-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_double(byte_offset: number /*i64*/): number /*f64*/
+        decode_double(byte_offset: int64): float64
         
         /** Returns `true` if a valid [Variant] value can be decoded at the [param byte_offset]. Returns `false` otherwise or when the value is [Object]-derived and [param allow_objects] is `false`. */
-        has_encoded_var(byte_offset: number /*i64*/, allow_objects: boolean = false): boolean
+        has_encoded_var(byte_offset: int64, allow_objects: boolean = false): boolean
         
         /** Decodes a [Variant] from the bytes starting at [param byte_offset]. Returns `null` if a valid variant can't be decoded or the value is [Object]-derived and [param allow_objects] is `false`. */
-        decode_var(byte_offset: number /*i64*/, allow_objects: boolean = false): void
+        decode_var(byte_offset: int64, allow_objects: boolean = false): void
         
         /** Decodes a size of a [Variant] from the bytes starting at [param byte_offset]. Requires at least 4 bytes of data starting at the offset, otherwise fails. */
-        decode_var_size(byte_offset: number /*i64*/, allow_objects: boolean = false): number /*i64*/
+        decode_var_size(byte_offset: int64, allow_objects: boolean = false): int64
         
         /** Returns a copy of the data converted to a [PackedInt32Array], where each block of 4 bytes has been converted to a signed 32-bit integer (C++ `int32_t`).  
          *  The size of the input array must be a multiple of 4 (size of 32-bit integer). The size of the new array will be `byte_array.size() / 4`.  
@@ -3834,40 +3782,40 @@ declare module "godot" {
         to_float64_array(): PackedFloat64Array
         
         /** Encodes a 8-bit unsigned integer number (byte) at the index of [param byte_offset] bytes. The array must have at least 1 byte of space, starting at the offset. */
-        encode_u8(byte_offset: number /*i64*/, value: number /*i64*/): void
+        encode_u8(byte_offset: int64, value: int64): void
         
         /** Encodes a 8-bit signed integer number (signed byte) at the index of [param byte_offset] bytes. The array must have at least 1 byte of space, starting at the offset. */
-        encode_s8(byte_offset: number /*i64*/, value: number /*i64*/): void
+        encode_s8(byte_offset: int64, value: int64): void
         
         /** Encodes a 16-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_u16(byte_offset: number /*i64*/, value: number /*i64*/): void
+        encode_u16(byte_offset: int64, value: int64): void
         
         /** Encodes a 16-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_s16(byte_offset: number /*i64*/, value: number /*i64*/): void
+        encode_s16(byte_offset: int64, value: int64): void
         
         /** Encodes a 32-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_u32(byte_offset: number /*i64*/, value: number /*i64*/): void
+        encode_u32(byte_offset: int64, value: int64): void
         
         /** Encodes a 32-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_s32(byte_offset: number /*i64*/, value: number /*i64*/): void
+        encode_s32(byte_offset: int64, value: int64): void
         
         /** Encodes a 64-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of space, starting at the offset. */
-        encode_u64(byte_offset: number /*i64*/, value: number /*i64*/): void
+        encode_u64(byte_offset: int64, value: int64): void
         
         /** Encodes a 64-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of space, starting at the offset. */
-        encode_s64(byte_offset: number /*i64*/, value: number /*i64*/): void
+        encode_s64(byte_offset: int64, value: int64): void
         
         /** Encodes a 16-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_half(byte_offset: number /*i64*/, value: number /*f64*/): void
+        encode_half(byte_offset: int64, value: float64): void
         
         /** Encodes a 32-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_float(byte_offset: number /*i64*/, value: number /*f64*/): void
+        encode_float(byte_offset: int64, value: float64): void
         
         /** Encodes a 64-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of allocated space, starting at the offset. */
-        encode_double(byte_offset: number /*i64*/, value: number /*f64*/): void
+        encode_double(byte_offset: int64, value: float64): void
         
         /** Encodes a [Variant] at the index of [param byte_offset] bytes. A sufficient space must be allocated, depending on the encoded variant's size. If [param allow_objects] is `false`, [Object]-derived values are not permitted and will instead be serialized as ID-only. */
-        encode_var(byte_offset: number /*i64*/, value: any, allow_objects: boolean = false): number /*i64*/
+        encode_var(byte_offset: int64, value: any, allow_objects: boolean = false): int64
         static EQUAL(left: PackedByteArray, right: PackedByteArray): boolean
         static NOT_EQUAL(left: PackedByteArray, right: PackedByteArray): boolean
     }
@@ -3879,44 +3827,44 @@ declare module "godot" {
         constructor()
         constructor(from: PackedInt32Array)
         constructor(from: Array)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the integer at the given index. */
-        set(index: number /*i64*/, value: number /*i64*/): void
+        set(index: int64, value: int64): void
         
         /** Appends a value to the array. */
-        push_back(value: number /*i64*/): boolean
+        push_back(value: int64): boolean
         
         /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: number /*i64*/): boolean
+        append(value: int64): boolean
         
         /** Appends a [PackedInt32Array] at the end of this array. */
         append_array(array: PackedInt32Array): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new integer at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: number /*i64*/): number /*i64*/
+        insert(at_index: int64, value: int64): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: number /*i64*/): void
+        fill(value: int64): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
         
         /** Returns `true` if the array contains [param value]. */
-        has(value: number /*i64*/): boolean
+        has(value: int64): boolean
         
         /** Reverses the order of the elements in the array. */
         reverse(): void
@@ -3925,7 +3873,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedInt32Array
+        slice(begin: int64, end: int64 = 2147483647): PackedInt32Array
         
         /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 4 bytes.  
          *  The size of the new array will be `int32_array.size() * 4`.  
@@ -3939,19 +3887,19 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
          */
-        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
+        bsearch(value: int64, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedInt32Array
         
         /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
+        find(value: int64, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: int64, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array. */
-        count(value: number /*i64*/): number /*i64*/
+        count(value: int64): int64
         static EQUAL(left: PackedInt32Array, right: PackedInt32Array): boolean
         static NOT_EQUAL(left: PackedInt32Array, right: PackedInt32Array): boolean
     }
@@ -3963,44 +3911,44 @@ declare module "godot" {
         constructor()
         constructor(from: PackedInt64Array)
         constructor(from: Array)
-        set_indexed(index: number, value: number /*i64*/)
-        get_indexed(index: number): number /*i64*/
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the integer at the given index. */
-        set(index: number /*i64*/, value: number /*i64*/): void
+        set(index: int64, value: int64): void
         
         /** Appends a value to the array. */
-        push_back(value: number /*i64*/): boolean
+        push_back(value: int64): boolean
         
         /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: number /*i64*/): boolean
+        append(value: int64): boolean
         
         /** Appends a [PackedInt64Array] at the end of this array. */
         append_array(array: PackedInt64Array): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new integer at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: number /*i64*/): number /*i64*/
+        insert(at_index: int64, value: int64): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: number /*i64*/): void
+        fill(value: int64): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
         
         /** Returns `true` if the array contains [param value]. */
-        has(value: number /*i64*/): boolean
+        has(value: int64): boolean
         
         /** Reverses the order of the elements in the array. */
         reverse(): void
@@ -4009,7 +3957,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedInt64Array
+        slice(begin: int64, end: int64 = 2147483647): PackedInt64Array
         
         /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 8 bytes.  
          *  The size of the new array will be `int64_array.size() * 8`.  
@@ -4023,19 +3971,19 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
          */
-        bsearch(value: number /*i64*/, before: boolean = true): number /*i64*/
+        bsearch(value: int64, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedInt64Array
         
         /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: number /*i64*/, from: number /*i64*/ = 0): number /*i64*/
+        find(value: int64, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: number /*i64*/, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: int64, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array. */
-        count(value: number /*i64*/): number /*i64*/
+        count(value: int64): int64
         static EQUAL(left: PackedInt64Array, right: PackedInt64Array): boolean
         static NOT_EQUAL(left: PackedInt64Array, right: PackedInt64Array): boolean
     }
@@ -4047,38 +3995,38 @@ declare module "godot" {
         constructor()
         constructor(from: PackedFloat32Array)
         constructor(from: Array)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the float at the given index. */
-        set(index: number /*i64*/, value: number /*f64*/): void
+        set(index: int64, value: float64): void
         
         /** Appends an element at the end of the array. */
-        push_back(value: number /*f64*/): boolean
+        push_back(value: float64): boolean
         
         /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: number /*f64*/): boolean
+        append(value: float64): boolean
         
         /** Appends a [PackedFloat32Array] at the end of this array. */
         append_array(array: PackedFloat32Array): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: number /*f64*/): number /*i64*/
+        insert(at_index: int64, value: float64): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: number /*f64*/): void
+        fill(value: float64): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
@@ -4087,7 +4035,7 @@ declare module "godot" {
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        has(value: number /*f64*/): boolean
+        has(value: float64): boolean
         
         /** Reverses the order of the elements in the array. */
         reverse(): void
@@ -4096,7 +4044,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedFloat32Array
+        slice(begin: int64, end: int64 = 2147483647): PackedFloat32Array
         
         /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 4 bytes.  
          *  The size of the new array will be `float32_array.size() * 4`.  
@@ -4115,7 +4063,7 @@ declare module "godot" {
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        bsearch(value: number /*f64*/, before: boolean = true): number /*i64*/
+        bsearch(value: float64, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedFloat32Array
@@ -4124,19 +4072,19 @@ declare module "godot" {
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        find(value: number /*f64*/, from: number /*i64*/ = 0): number /*i64*/
+        find(value: float64, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        rfind(value: number /*f64*/, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: float64, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array.  
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        count(value: number /*f64*/): number /*i64*/
+        count(value: float64): int64
         static EQUAL(left: PackedFloat32Array, right: PackedFloat32Array): boolean
         static NOT_EQUAL(left: PackedFloat32Array, right: PackedFloat32Array): boolean
     }
@@ -4148,38 +4096,38 @@ declare module "godot" {
         constructor()
         constructor(from: PackedFloat64Array)
         constructor(from: Array)
-        set_indexed(index: number, value: number /*f64*/)
-        get_indexed(index: number): number /*f64*/
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the float at the given index. */
-        set(index: number /*i64*/, value: number /*f64*/): void
+        set(index: int64, value: float64): void
         
         /** Appends an element at the end of the array. */
-        push_back(value: number /*f64*/): boolean
+        push_back(value: float64): boolean
         
         /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: number /*f64*/): boolean
+        append(value: float64): boolean
         
         /** Appends a [PackedFloat64Array] at the end of this array. */
         append_array(array: PackedFloat64Array): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: number /*f64*/): number /*i64*/
+        insert(at_index: int64, value: float64): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: number /*f64*/): void
+        fill(value: float64): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
@@ -4188,7 +4136,7 @@ declare module "godot" {
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        has(value: number /*f64*/): boolean
+        has(value: float64): boolean
         
         /** Reverses the order of the elements in the array. */
         reverse(): void
@@ -4197,7 +4145,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedFloat64Array
+        slice(begin: int64, end: int64 = 2147483647): PackedFloat64Array
         
         /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 8 bytes.  
          *  The size of the new array will be `float64_array.size() * 8`.  
@@ -4216,7 +4164,7 @@ declare module "godot" {
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        bsearch(value: number /*f64*/, before: boolean = true): number /*i64*/
+        bsearch(value: float64, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedFloat64Array
@@ -4225,19 +4173,19 @@ declare module "godot" {
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        find(value: number /*f64*/, from: number /*i64*/ = 0): number /*i64*/
+        find(value: float64, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        rfind(value: number /*f64*/, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: float64, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array.  
          *      
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        count(value: number /*f64*/): number /*i64*/
+        count(value: float64): int64
         static EQUAL(left: PackedFloat64Array, right: PackedFloat64Array): boolean
         static NOT_EQUAL(left: PackedFloat64Array, right: PackedFloat64Array): boolean
     }
@@ -4253,13 +4201,13 @@ declare module "godot" {
         get_indexed(index: number): string
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the [String] at the given index. */
-        set(index: number /*i64*/, value: string): void
+        set(index: int64, value: string): void
         
         /** Appends a string element at end of the array. */
         push_back(value: string): boolean
@@ -4271,16 +4219,16 @@ declare module "godot" {
         append_array(array: PackedStringArray): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: string): number /*i64*/
+        insert(at_index: int64, value: string): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
         fill(value: string): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
@@ -4295,7 +4243,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedStringArray
+        slice(begin: int64, end: int64 = 2147483647): PackedStringArray
         
         /** Returns a [PackedByteArray] with each string encoded as bytes. */
         to_byte_array(): PackedByteArray
@@ -4307,19 +4255,19 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
          */
-        bsearch(value: string, before: boolean = true): number /*i64*/
+        bsearch(value: string, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedStringArray
         
         /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: string, from: number /*i64*/ = 0): number /*i64*/
+        find(value: string, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: string, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: string, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array. */
-        count(value: string): number /*i64*/
+        count(value: string): int64
         static EQUAL(left: PackedStringArray, right: PackedStringArray): boolean
         static NOT_EQUAL(left: PackedStringArray, right: PackedStringArray): boolean
     }
@@ -4335,13 +4283,13 @@ declare module "godot" {
         get_indexed(index: number): Vector2
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the [Vector2] at the given index. */
-        set(index: number /*i64*/, value: Vector2): void
+        set(index: int64, value: Vector2): void
         
         /** Inserts a [Vector2] at the end. */
         push_back(value: Vector2): boolean
@@ -4353,16 +4301,16 @@ declare module "godot" {
         append_array(array: PackedVector2Array): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: Vector2): number /*i64*/
+        insert(at_index: int64, value: Vector2): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
         fill(value: Vector2): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
@@ -4380,7 +4328,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedVector2Array
+        slice(begin: int64, end: int64 = 2147483647): PackedVector2Array
         
         /** Returns a [PackedByteArray] with each vector encoded as bytes. */
         to_byte_array(): PackedByteArray
@@ -4397,7 +4345,7 @@ declare module "godot" {
          *      
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        bsearch(value: Vector2, before: boolean = true): number /*i64*/
+        bsearch(value: Vector2, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedVector2Array
@@ -4406,19 +4354,19 @@ declare module "godot" {
          *      
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        find(value: Vector2, from: number /*i64*/ = 0): number /*i64*/
+        find(value: Vector2, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
          *      
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        rfind(value: Vector2, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: Vector2, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array.  
          *      
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        count(value: Vector2): number /*i64*/
+        count(value: Vector2): int64
         static EQUAL(left: PackedVector2Array, right: PackedVector2Array): boolean
         static NOT_EQUAL(left: PackedVector2Array, right: PackedVector2Array): boolean
     }
@@ -4434,13 +4382,13 @@ declare module "godot" {
         get_indexed(index: number): Vector3
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the [Vector3] at the given index. */
-        set(index: number /*i64*/, value: Vector3): void
+        set(index: int64, value: Vector3): void
         
         /** Inserts a [Vector3] at the end. */
         push_back(value: Vector3): boolean
@@ -4452,16 +4400,16 @@ declare module "godot" {
         append_array(array: PackedVector3Array): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: Vector3): number /*i64*/
+        insert(at_index: int64, value: Vector3): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
         fill(value: Vector3): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
@@ -4479,7 +4427,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedVector3Array
+        slice(begin: int64, end: int64 = 2147483647): PackedVector3Array
         
         /** Returns a [PackedByteArray] with each vector encoded as bytes. */
         to_byte_array(): PackedByteArray
@@ -4496,7 +4444,7 @@ declare module "godot" {
          *      
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        bsearch(value: Vector3, before: boolean = true): number /*i64*/
+        bsearch(value: Vector3, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedVector3Array
@@ -4505,19 +4453,19 @@ declare module "godot" {
          *      
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        find(value: Vector3, from: number /*i64*/ = 0): number /*i64*/
+        find(value: Vector3, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
          *      
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        rfind(value: Vector3, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: Vector3, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array.  
          *      
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
-        count(value: Vector3): number /*i64*/
+        count(value: Vector3): int64
         static EQUAL(left: PackedVector3Array, right: PackedVector3Array): boolean
         static NOT_EQUAL(left: PackedVector3Array, right: PackedVector3Array): boolean
     }
@@ -4533,13 +4481,13 @@ declare module "godot" {
         get_indexed(index: number): Color
         
         /** Returns the number of elements in the array. */
-        size(): number /*i64*/
+        size(): int64
         
         /** Returns `true` if the array is empty. */
         is_empty(): boolean
         
         /** Changes the [Color] at the given index. */
-        set(index: number /*i64*/, value: Color): void
+        set(index: int64, value: Color): void
         
         /** Appends a value to the array. */
         push_back(value: Color): boolean
@@ -4551,16 +4499,16 @@ declare module "godot" {
         append_array(array: PackedColorArray): void
         
         /** Removes an element from the array by index. */
-        remove_at(index: number /*i64*/): void
+        remove_at(index: int64): void
         
         /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: number /*i64*/, value: Color): number /*i64*/
+        insert(at_index: int64, value: Color): int64
         
         /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
         fill(value: Color): void
         
         /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: number /*i64*/): number /*i64*/
+        resize(new_size: int64): int64
         
         /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
         clear(): void
@@ -4575,7 +4523,7 @@ declare module "godot" {
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
          *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
          */
-        slice(begin: number /*i64*/, end: number /*i64*/ = 2147483647): PackedColorArray
+        slice(begin: int64, end: int64 = 2147483647): PackedColorArray
         
         /** Returns a [PackedByteArray] with each color encoded as bytes. */
         to_byte_array(): PackedByteArray
@@ -4587,19 +4535,19 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
          */
-        bsearch(value: Color, before: boolean = true): number /*i64*/
+        bsearch(value: Color, before: boolean = true): int64
         
         /** Creates a copy of the array, and returns it. */
         duplicate(): PackedColorArray
         
         /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: Color, from: number /*i64*/ = 0): number /*i64*/
+        find(value: Color, from: int64 = 0): int64
         
         /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: Color, from: number /*i64*/ = -1): number /*i64*/
+        rfind(value: Color, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array. */
-        count(value: Color): number /*i64*/
+        count(value: Color): int64
         static EQUAL(left: PackedColorArray, right: PackedColorArray): boolean
         static NOT_EQUAL(left: PackedColorArray, right: PackedColorArray): boolean
     }
@@ -6188,98 +6136,98 @@ declare module "godot" {
     /** Returns the sine of angle [param angle_rad] in radians.  
      *    
      */
-    static function sin(angle_rad: number /*f64*/): number /*f64*/
+    static function sin(angle_rad: float64): float64
     
     /** Returns the cosine of angle [param angle_rad] in radians.  
      *    
      */
-    static function cos(angle_rad: number /*f64*/): number /*f64*/
+    static function cos(angle_rad: float64): float64
     
     /** Returns the tangent of angle [param angle_rad] in radians.  
      *    
      */
-    static function tan(angle_rad: number /*f64*/): number /*f64*/
+    static function tan(angle_rad: float64): float64
     
     /** Returns the hyperbolic sine of [param x].  
      *    
      */
-    static function sinh(x: number /*f64*/): number /*f64*/
+    static function sinh(x: float64): float64
     
     /** Returns the hyperbolic cosine of [param x] in radians.  
      *    
      */
-    static function cosh(x: number /*f64*/): number /*f64*/
+    static function cosh(x: float64): float64
     
     /** Returns the hyperbolic tangent of [param x].  
      *    
      */
-    static function tanh(x: number /*f64*/): number /*f64*/
+    static function tanh(x: float64): float64
     
     /** Returns the arc sine of [param x] in radians. Use to get the angle of sine [param x]. [param x] will be clamped between `-1.0` and `1.0` (inclusive), in order to prevent [method asin] from returning [constant @GDScript.NAN].  
      *    
      */
-    static function asin(x: number /*f64*/): number /*f64*/
+    static function asin(x: float64): float64
     
     /** Returns the arc cosine of [param x] in radians. Use to get the angle of cosine [param x]. [param x] will be clamped between `-1.0` and `1.0` (inclusive), in order to prevent [method acos] from returning [constant @GDScript.NAN].  
      *    
      */
-    static function acos(x: number /*f64*/): number /*f64*/
+    static function acos(x: float64): float64
     
     /** Returns the arc tangent of [param x] in radians. Use it to get the angle from an angle's tangent in trigonometry.  
      *  The method cannot know in which quadrant the angle should fall. See [method atan2] if you have both `y` and [code skip-lint]x`.  
      *    
      *  If [param x] is between `-PI / 2` and `PI / 2` (inclusive), `atan(tan(x))` is equal to [param x].  
      */
-    static function atan(x: number /*f64*/): number /*f64*/
+    static function atan(x: float64): float64
     
     /** Returns the arc tangent of `y/x` in radians. Use to get the angle of tangent `y/x`. To compute the value, the method takes into account the sign of both arguments in order to determine the quadrant.  
      *  Important note: The Y coordinate comes first, by convention.  
      *    
      */
-    static function atan2(y: number /*f64*/, x: number /*f64*/): number /*f64*/
+    static function atan2(y: float64, x: float64): float64
     
     /** Returns the hyperbolic arc (also called inverse) sine of [param x], returning a value in radians. Use it to get the angle from an angle's sine in hyperbolic space.  
      *    
      */
-    static function asinh(x: number /*f64*/): number /*f64*/
+    static function asinh(x: float64): float64
     
     /** Returns the hyperbolic arc (also called inverse) cosine of [param x], returning a value in radians. Use it to get the angle from an angle's cosine in hyperbolic space if [param x] is larger or equal to 1. For values of [param x] lower than 1, it will return 0, in order to prevent [method acosh] from returning [constant @GDScript.NAN].  
      *    
      */
-    static function acosh(x: number /*f64*/): number /*f64*/
+    static function acosh(x: float64): float64
     
     /** Returns the hyperbolic arc (also called inverse) tangent of [param x], returning a value in radians. Use it to get the angle from an angle's tangent in hyperbolic space if [param x] is between -1 and 1 (non-inclusive).  
      *  In mathematics, the inverse hyperbolic tangent is only defined for -1 < [param x] < 1 in the real set, so values equal or lower to -1 for [param x] return negative [constant @GDScript.INF] and values equal or higher than 1 return positive [constant @GDScript.INF] in order to prevent [method atanh] from returning [constant @GDScript.NAN].  
      *    
      */
-    static function atanh(x: number /*f64*/): number /*f64*/
+    static function atanh(x: float64): float64
     
     /** Returns the square root of [param x], where [param x] is a non-negative number.  
      *    
      *      
      *  **Note:** Negative values of [param x] return NaN ("Not a Number"). in C#, if you need negative inputs, use `System.Numerics.Complex`.  
      */
-    static function sqrt(x: number /*f64*/): number /*f64*/
+    static function sqrt(x: float64): float64
     
     /** Returns the floating-point remainder of [param x] divided by [param y], keeping the sign of [param x].  
      *    
      *  For the integer remainder operation, use the `%` operator.  
      */
-    static function fmod(x: number /*f64*/, y: number /*f64*/): number /*f64*/
+    static function fmod(x: float64, y: float64): float64
     
     /** Returns the floating-point modulus of [param x] divided by [param y], wrapping equally in positive and negative.  
      *    
      *  Produces:  
      *    
      */
-    static function fposmod(x: number /*f64*/, y: number /*f64*/): number /*f64*/
+    static function fposmod(x: float64, y: float64): float64
     
     /** Returns the integer modulus of [param x] divided by [param y] that wraps equally in positive and negative.  
      *    
      *  Produces:  
      *    
      */
-    static function posmod(x: number /*i64*/, y: number /*i64*/): number /*i64*/
+    static function posmod(x: int64, y: int64): int64
     
     /** Rounds [param x] downward (towards negative infinity), returning the largest whole number that is not more than [param x]. Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
      *    
@@ -6292,14 +6240,14 @@ declare module "godot" {
     /** Rounds [param x] downward (towards negative infinity), returning the largest whole number that is not more than [param x].  
      *  A type-safe version of [method floor], returning a [float].  
      */
-    static function floorf(x: number /*f64*/): number /*f64*/
+    static function floorf(x: float64): float64
     
     /** Rounds [param x] downward (towards negative infinity), returning the largest whole number that is not more than [param x].  
      *  A type-safe version of [method floor], returning an [int].  
      *      
      *  **Note:** This function is  *not*  the same as `int(x)`, which rounds towards 0.  
      */
-    static function floori(x: number /*f64*/): number /*i64*/
+    static function floori(x: float64): int64
     
     /** Rounds [param x] upward (towards positive infinity), returning the smallest whole number that is not less than [param x]. Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
      *    
@@ -6312,12 +6260,12 @@ declare module "godot" {
     /** Rounds [param x] upward (towards positive infinity), returning the smallest whole number that is not less than [param x].  
      *  A type-safe version of [method ceil], returning a [float].  
      */
-    static function ceilf(x: number /*f64*/): number /*f64*/
+    static function ceilf(x: float64): float64
     
     /** Rounds [param x] upward (towards positive infinity), returning the smallest whole number that is not less than [param x].  
      *  A type-safe version of [method ceil], returning an [int].  
      */
-    static function ceili(x: number /*f64*/): number /*i64*/
+    static function ceili(x: float64): int64
     
     /** Rounds [param x] to the nearest whole number, with halfway cases rounded away from 0. Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
      *    
@@ -6330,12 +6278,12 @@ declare module "godot" {
     /** Rounds [param x] to the nearest whole number, with halfway cases rounded away from 0.  
      *  A type-safe version of [method round], returning a [float].  
      */
-    static function roundf(x: number /*f64*/): number /*f64*/
+    static function roundf(x: float64): float64
     
     /** Rounds [param x] to the nearest whole number, with halfway cases rounded away from 0.  
      *  A type-safe version of [method round], returning an [int].  
      */
-    static function roundi(x: number /*f64*/): number /*i64*/
+    static function roundi(x: float64): int64
     
     /** Returns the absolute value of a [Variant] parameter [param x] (i.e. non-negative value). Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
      *    
@@ -6347,12 +6295,12 @@ declare module "godot" {
     /** Returns the absolute value of float parameter [param x] (i.e. positive value).  
      *    
      */
-    static function absf(x: number /*f64*/): number /*f64*/
+    static function absf(x: float64): float64
     
     /** Returns the absolute value of int parameter [param x] (i.e. positive value).  
      *    
      */
-    static function absi(x: number /*i64*/): number /*i64*/
+    static function absi(x: int64): int64
     
     /** Returns the same type of [Variant] as [param x], with `-1` for negative values, `1` for positive values, and `0` for zeros. For `nan` values it returns 0.  
      *  Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
@@ -6365,12 +6313,12 @@ declare module "godot" {
     /** Returns `-1.0` if [param x] is negative, `1.0` if [param x] is positive, and `0.0` if [param x] is zero. For `nan` values of [param x] it returns 0.0.  
      *    
      */
-    static function signf(x: number /*f64*/): number /*f64*/
+    static function signf(x: float64): float64
     
     /** Returns `-1` if [param x] is negative, `1` if [param x] is positive, and `0` if if [param x] is zero.  
      *    
      */
-    static function signi(x: number /*i64*/): number /*i64*/
+    static function signi(x: int64): int64
     
     /** Returns the multiple of [param step] that is the closest to [param x]. This can also be used to round a floating point number to an arbitrary number of decimals.  
      *  The returned value is the same type of [Variant] as [param step]. Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
@@ -6385,19 +6333,19 @@ declare module "godot" {
      *  A type-safe version of [method snapped], returning a [float].  
      *    
      */
-    static function snappedf(x: number /*f64*/, step: number /*f64*/): number /*f64*/
+    static function snappedf(x: float64, step: float64): float64
     
     /** Returns the multiple of [param step] that is the closest to [param x].  
      *  A type-safe version of [method snapped], returning an [int].  
      *    
      */
-    static function snappedi(x: number /*f64*/, step: number /*i64*/): number /*i64*/
+    static function snappedi(x: float64, step: int64): int64
     
     /** Returns the result of [param base] raised to the power of [param exp].  
      *  In GDScript, this is the equivalent of the `**` operator.  
      *    
      */
-    static function pow(base: number /*f64*/, exp: number /*f64*/): number /*f64*/
+    static function pow(base: float64, exp: float64): float64
     
     /** Returns the [url=https://en.wikipedia.org/wiki/Natural_logarithm]natural logarithm[/url] of [param x] (base [url=https://en.wikipedia.org/wiki/E_(mathematical_constant)] *e* [/url], with  *e*  being approximately 2.71828). This is the amount of time needed to reach a certain level of continuous growth.  
      *      
@@ -6406,46 +6354,46 @@ declare module "godot" {
      *      
      *  **Note:** The logarithm of `0` returns `-inf`, while negative values return `-nan`.  
      */
-    static function log(x: number /*f64*/): number /*f64*/
+    static function log(x: float64): float64
     
     /** The natural exponential function. It raises the mathematical constant  *e*  to the power of [param x] and returns it.  
      *   *e*  has an approximate value of 2.71828, and can be obtained with `exp(1)`.  
      *  For exponents to other bases use the method [method pow].  
      *    
      */
-    static function exp(x: number /*f64*/): number /*f64*/
+    static function exp(x: float64): float64
     
     /** Returns `true` if [param x] is a NaN ("Not a Number" or invalid) value. */
-    static function is_nan(x: number /*f64*/): boolean
+    static function is_nan(x: float64): boolean
     
     /** Returns `true` if [param x] is either positive infinity or negative infinity. */
-    static function is_inf(x: number /*f64*/): boolean
+    static function is_inf(x: float64): boolean
     
     /** Returns `true` if [param a] and [param b] are approximately equal to each other.  
      *  Here, "approximately equal" means that [param a] and [param b] are within a small internal epsilon of each other, which scales with the magnitude of the numbers.  
      *  Infinity values of the same sign are considered equal.  
      */
-    static function is_equal_approx(a: number /*f64*/, b: number /*f64*/): boolean
+    static function is_equal_approx(a: float64, b: float64): boolean
     
     /** Returns `true` if [param x] is zero or almost zero. The comparison is done using a tolerance calculation with a small internal epsilon.  
      *  This function is faster than using [method is_equal_approx] with one value as zero.  
      */
-    static function is_zero_approx(x: number /*f64*/): boolean
+    static function is_zero_approx(x: float64): boolean
     
     /** Returns whether [param x] is a finite value, i.e. it is not [constant @GDScript.NAN], positive infinity, or negative infinity. */
-    static function is_finite(x: number /*f64*/): boolean
+    static function is_finite(x: float64): boolean
     
     /** Returns an "eased" value of [param x] based on an easing function defined with [param curve]. This easing function is based on an exponent. The [param curve] can be any floating-point number, with specific values leading to the following behaviors:  
      *    
      *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/ease_cheatsheet.png]ease() curve values cheatsheet[/url]  
      *  See also [method smoothstep]. If you need to perform more advanced transitions, use [method Tween.interpolate_value].  
      */
-    static function ease(x: number /*f64*/, curve: number /*f64*/): number /*f64*/
+    static function ease(x: float64, curve: float64): float64
     
     /** Returns the position of the first non-zero digit, after the decimal point. Note that the maximum return value is 10, which is a design decision in the implementation.  
      *    
      */
-    static function step_decimals(x: number /*f64*/): number /*i64*/
+    static function step_decimals(x: float64): int64
     
     /** Linearly interpolates between two values by the factor defined in [param weight]. To perform interpolation, [param weight] should be between `0.0` and `1.0` (inclusive). However, values outside this range are allowed and can be used to perform  *extrapolation* . If this is not desired, use [method clamp] on the result of this function.  
      *  Both [param from] and [param to] must be the same type. Supported types: [int], [float], [Vector2], [Vector3], [Vector4], [Color], [Quaternion], [Basis].  
@@ -6460,32 +6408,32 @@ declare module "godot" {
      *    
      *  See also [method inverse_lerp] which performs the reverse of this operation. To perform eased interpolation with [method lerp], combine it with [method ease] or [method smoothstep].  
      */
-    static function lerpf(from: number /*f64*/, to: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function lerpf(from: float64, to: float64, weight: float64): float64
     
     /** Cubic interpolates between two values by the factor defined in [param weight] with [param pre] and [param post] values. */
-    static function cubic_interpolate(from: number /*f64*/, to: number /*f64*/, pre: number /*f64*/, post: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function cubic_interpolate(from: float64, to: float64, pre: float64, post: float64, weight: float64): float64
     
     /** Cubic interpolates between two rotation values with shortest path by the factor defined in [param weight] with [param pre] and [param post] values. See also [method lerp_angle]. */
-    static function cubic_interpolate_angle(from: number /*f64*/, to: number /*f64*/, pre: number /*f64*/, post: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function cubic_interpolate_angle(from: float64, to: float64, pre: float64, post: float64, weight: float64): float64
     
     /** Cubic interpolates between two values by the factor defined in [param weight] with [param pre] and [param post] values.  
      *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
      */
-    static function cubic_interpolate_in_time(from: number /*f64*/, to: number /*f64*/, pre: number /*f64*/, post: number /*f64*/, weight: number /*f64*/, to_t: number /*f64*/, pre_t: number /*f64*/, post_t: number /*f64*/): number /*f64*/
+    static function cubic_interpolate_in_time(from: float64, to: float64, pre: float64, post: float64, weight: float64, to_t: float64, pre_t: float64, post_t: float64): float64
     
     /** Cubic interpolates between two rotation values with shortest path by the factor defined in [param weight] with [param pre] and [param post] values. See also [method lerp_angle].  
      *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
      */
-    static function cubic_interpolate_angle_in_time(from: number /*f64*/, to: number /*f64*/, pre: number /*f64*/, post: number /*f64*/, weight: number /*f64*/, to_t: number /*f64*/, pre_t: number /*f64*/, post_t: number /*f64*/): number /*f64*/
+    static function cubic_interpolate_angle_in_time(from: float64, to: float64, pre: float64, post: float64, weight: float64, to_t: float64, pre_t: float64, post_t: float64): float64
     
     /** Returns the point at the given [param t] on a one-dimensional [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by the given [param control_1], [param control_2], and [param end] points. */
-    static function bezier_interpolate(start: number /*f64*/, control_1: number /*f64*/, control_2: number /*f64*/, end: number /*f64*/, t: number /*f64*/): number /*f64*/
+    static function bezier_interpolate(start: float64, control_1: float64, control_2: float64, end: float64, t: float64): float64
     
     /** Returns the derivative at the given [param t] on a one-dimensional [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by the given [param control_1], [param control_2], and [param end] points. */
-    static function bezier_derivative(start: number /*f64*/, control_1: number /*f64*/, control_2: number /*f64*/, end: number /*f64*/, t: number /*f64*/): number /*f64*/
+    static function bezier_derivative(start: float64, control_1: float64, control_2: float64, end: float64, t: float64): float64
     
     /** Returns the difference between the two angles, in the range of `[-PI, +PI]`. When [param from] and [param to] are opposite, returns `-PI` if [param from] is smaller than [param to], or `PI` otherwise. */
-    static function angle_difference(from: number /*f64*/, to: number /*f64*/): number /*f64*/
+    static function angle_difference(from: float64, to: float64): float64
     
     /** Linearly interpolates between two angles (in radians) by a [param weight] value between 0.0 and 1.0.  
      *  Similar to [method lerp], but interpolates correctly when the angles wrap around [constant @GDScript.TAU]. To perform eased interpolation with [method lerp_angle], combine it with [method ease] or [method smoothstep].  
@@ -6493,19 +6441,19 @@ declare module "godot" {
      *      
      *  **Note:** This function lerps through the shortest path between [param from] and [param to]. However, when these two angles are approximately `PI + k * TAU` apart for any integer `k`, it's not obvious which way they lerp due to floating-point precision errors. For example, `lerp_angle(0, PI, weight)` lerps counter-clockwise, while `lerp_angle(0, PI + 5 * TAU, weight)` lerps clockwise.  
      */
-    static function lerp_angle(from: number /*f64*/, to: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function lerp_angle(from: float64, to: float64, weight: float64): float64
     
     /** Returns an interpolation or extrapolation factor considering the range specified in [param from] and [param to], and the interpolated value specified in [param weight]. The returned value will be between `0.0` and `1.0` if [param weight] is between [param from] and [param to] (inclusive). If [param weight] is located outside this range, then an extrapolation factor will be returned (return value lower than `0.0` or greater than `1.0`). Use [method clamp] on the result of [method inverse_lerp] if this is not desired.  
      *    
      *  See also [method lerp], which performs the reverse of this operation, and [method remap] to map a continuous series of values to another.  
      */
-    static function inverse_lerp(from: number /*f64*/, to: number /*f64*/, weight: number /*f64*/): number /*f64*/
+    static function inverse_lerp(from: float64, to: float64, weight: float64): float64
     
     /** Maps a [param value] from range `[istart, istop]` to `[ostart, ostop]`. See also [method lerp] and [method inverse_lerp]. If [param value] is outside `[istart, istop]`, then the resulting value will also be outside `[ostart, ostop]`. If this is not desired, use [method clamp] on the result of this function.  
      *    
      *  For complex use cases where multiple ranges are needed, consider using [Curve] or [Gradient] instead.  
      */
-    static function remap(value: number /*f64*/, istart: number /*f64*/, istop: number /*f64*/, ostart: number /*f64*/, ostop: number /*f64*/): number /*f64*/
+    static function remap(value: float64, istart: float64, istop: float64, ostart: float64, ostop: float64): float64
     
     /** Returns the result of smoothly interpolating the value of [param x] between `0` and `1`, based on the where [param x] lies with respect to the edges [param from] and [param to].  
      *  The return value is `0` if `x <= from`, and `1` if `x >= to`. If [param x] lies between [param from] and [param to], the returned value follows an S-shaped curve that maps [param x] between `0` and `1`.  
@@ -6514,38 +6462,38 @@ declare module "godot" {
      *  Compared to [method ease] with a curve value of `-1.6521`, [method smoothstep] returns the smoothest possible curve with no sudden changes in the derivative. If you need to perform more advanced transitions, use [Tween] or [AnimationPlayer].  
      *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/smoothstep_ease_comparison.png]Comparison between smoothstep() and ease(x, -1.6521) return values[/url]  
      */
-    static function smoothstep(from: number /*f64*/, to: number /*f64*/, x: number /*f64*/): number /*f64*/
+    static function smoothstep(from: float64, to: float64, x: float64): float64
     
     /** Moves [param from] toward [param to] by the [param delta] amount. Will not go past [param to].  
      *  Use a negative [param delta] value to move away.  
      *    
      */
-    static function move_toward(from: number /*f64*/, to: number /*f64*/, delta: number /*f64*/): number /*f64*/
+    static function move_toward(from: float64, to: float64, delta: float64): float64
     
     /** Rotates [param from] toward [param to] by the [param delta] amount. Will not go past [param to].  
      *  Similar to [method move_toward], but interpolates correctly when the angles wrap around [constant @GDScript.TAU].  
      *  If [param delta] is negative, this function will rotate away from [param to], toward the opposite angle, and will not go past the opposite angle.  
      */
-    static function rotate_toward(from: number /*f64*/, to: number /*f64*/, delta: number /*f64*/): number /*f64*/
+    static function rotate_toward(from: float64, to: float64, delta: float64): float64
     
     /** Converts an angle expressed in degrees to radians.  
      *    
      */
-    static function deg_to_rad(deg: number /*f64*/): number /*f64*/
+    static function deg_to_rad(deg: float64): float64
     
     /** Converts an angle expressed in radians to degrees.  
      *    
      */
-    static function rad_to_deg(rad: number /*f64*/): number /*f64*/
+    static function rad_to_deg(rad: float64): float64
     
     /** Converts from linear energy to decibels (audio). This can be used to implement volume sliders that behave as expected (since volume isn't linear).  
      *  **Example:**  
      *    
      */
-    static function linear_to_db(lin: number /*f64*/): number /*f64*/
+    static function linear_to_db(lin: float64): float64
     
     /** Converts from decibels to linear energy (audio). */
-    static function db_to_linear(db: number /*f64*/): number /*f64*/
+    static function db_to_linear(db: float64): float64
     
     /** Wraps the [Variant] [param value] between [param min] and [param max]. Can be used for creating loop-alike behavior or infinite surfaces.  
      *  Variant types [int] and [float] are supported. If any of the arguments is [float] this function returns a [float], otherwise it returns an [int].  
@@ -6557,7 +6505,7 @@ declare module "godot" {
      *    
      *    
      */
-    static function wrapi(value: number /*i64*/, min: number /*i64*/, max: number /*i64*/): number /*i64*/
+    static function wrapi(value: int64, min: int64, max: int64): int64
     
     /** Wraps the float [param value] between [param min] and [param max]. Can be used for creating loop-alike behavior or infinite surfaces.  
      *    
@@ -6567,7 +6515,7 @@ declare module "godot" {
      *  **Note:** If [param min] is `0`, this is equivalent to [method fposmod], so prefer using that instead.  
      *  [method wrapf] is more flexible than using the [method fposmod] approach by giving the user control over the minimum value.  
      */
-    static function wrapf(value: number /*f64*/, min: number /*f64*/, max: number /*f64*/): number /*f64*/
+    static function wrapf(value: float64, min: float64, max: float64): float64
     
     /** Returns the maximum of the given numeric values. This function can take any number of arguments.  
      *    
@@ -6577,12 +6525,12 @@ declare module "godot" {
     /** Returns the maximum of two [int] values.  
      *    
      */
-    static function maxi(a: number /*i64*/, b: number /*i64*/): number /*i64*/
+    static function maxi(a: int64, b: int64): int64
     
     /** Returns the maximum of two [float] values.  
      *    
      */
-    static function maxf(a: number /*f64*/, b: number /*f64*/): number /*f64*/
+    static function maxf(a: float64, b: float64): float64
     
     /** Returns the minimum of the given numeric values. This function can take any number of arguments.  
      *    
@@ -6592,12 +6540,12 @@ declare module "godot" {
     /** Returns the minimum of two [int] values.  
      *    
      */
-    static function mini(a: number /*i64*/, b: number /*i64*/): number /*i64*/
+    static function mini(a: int64, b: int64): int64
     
     /** Returns the minimum of two [float] values.  
      *    
      */
-    static function minf(a: number /*f64*/, b: number /*f64*/): number /*f64*/
+    static function minf(a: float64, b: float64): float64
     
     /** Clamps the [param value], returning a [Variant] not less than [param min] and not more than [param max]. Any values that can be compared with the less than and greater than operators will work.  
      *    
@@ -6611,23 +6559,23 @@ declare module "godot" {
     /** Clamps the [param value], returning an [int] not less than [param min] and not more than [param max].  
      *    
      */
-    static function clampi(value: number /*i64*/, min: number /*i64*/, max: number /*i64*/): number /*i64*/
+    static function clampi(value: int64, min: int64, max: int64): int64
     
     /** Clamps the [param value], returning a [float] not less than [param min] and not more than [param max].  
      *    
      */
-    static function clampf(value: number /*f64*/, min: number /*f64*/, max: number /*f64*/): number /*f64*/
+    static function clampf(value: float64, min: float64, max: float64): float64
     
     /** Returns the smallest integer power of 2 that is greater than or equal to [param value].  
      *    
      *  **Warning:** Due to its implementation, this method returns `0` rather than `1` for values less than or equal to `0`, with an exception for [param value] being the smallest negative 64-bit integer (`-9223372036854775808`) in which case the [param value] is returned unchanged.  
      */
-    static function nearest_po2(value: number /*i64*/): number /*i64*/
+    static function nearest_po2(value: int64): int64
     
     /** Wraps [param value] between `0` and the [param length]. If the limit is reached, the next value the function returns is decreased to the `0` side or increased to the [param length] side (like a triangle wave). If [param length] is less than zero, it becomes positive.  
      *    
      */
-    static function pingpong(value: number /*f64*/, length: number /*f64*/): number /*f64*/
+    static function pingpong(value: float64, length: float64): float64
     
     /** Randomizes the seed (or the internal state) of the random number generator. The current implementation uses a number based on the device's time.  
      *      
@@ -6638,37 +6586,37 @@ declare module "godot" {
     /** Returns a random unsigned 32-bit integer. Use remainder to obtain a random value in the interval `[0, N - 1]` (where N is smaller than 2^32).  
      *    
      */
-    static function randi(): number /*i64*/
+    static function randi(): int64
     
     /** Returns a random floating point value between `0.0` and `1.0` (inclusive).  
      *    
      */
-    static function randf(): number /*f64*/
+    static function randf(): float64
     
     /** Returns a random signed 32-bit integer between [param from] and [param to] (inclusive). If [param to] is lesser than [param from], they are swapped.  
      *    
      */
-    static function randi_range(from: number /*i64*/, to: number /*i64*/): number /*i64*/
+    static function randi_range(from: int64, to: int64): int64
     
     /** Returns a random floating point value between [param from] and [param to] (inclusive).  
      *    
      */
-    static function randf_range(from: number /*f64*/, to: number /*f64*/): number /*f64*/
+    static function randf_range(from: float64, to: float64): float64
     
     /** Returns a normally-distributed pseudo-random floating point value using Box-Muller transform with the specified [param mean] and a standard [param deviation]. This is also called Gaussian distribution. */
-    static function randfn(mean: number /*f64*/, deviation: number /*f64*/): number /*f64*/
+    static function randfn(mean: float64, deviation: float64): float64
     
     /** Sets the seed for the random number generator to [param base]. Setting the seed manually can ensure consistent, repeatable results for most random functions.  
      *    
      */
-    static function seed(base: number /*i64*/): void
+    static function seed(base: int64): void
     
     /** Given a [param seed], returns a [PackedInt64Array] of size `2`, where its first element is the randomized [int] value, and the second element is the same as [param seed]. Passing the same [param seed] consistently returns the same array.  
      *      
      *  **Note:** "Seed" here refers to the internal state of the pseudo random number generator, currently implemented as a 64 bit integer.  
      *    
      */
-    static function rand_from_seed(seed: number /*i64*/): PackedInt64Array
+    static function rand_from_seed(seed: int64): PackedInt64Array
     
     /** Returns a [WeakRef] instance holding a weak reference to [param obj]. Returns an empty [WeakRef] instance if [param obj] is `null`. Prints an error and returns `null` if [param obj] is neither [Object]-derived nor `null`.  
      *  A weak reference to an object is not enough to keep the object alive: when the only remaining references to a referent are weak references, garbage collection is free to destroy the referent and reuse its memory for something else. However, until the object is actually destroyed the weak reference may return the object even if there are no strong references to it.  
@@ -6679,14 +6627,14 @@ declare module "godot" {
      *    
      *  See also [method type_string].  
      */
-    // [INVALID_NAME]: static function typeof(variable: any): number /*i64*/
+    // [INVALID_NAME]: static function typeof(variable: any): int64
     
     /** Converts the given [param variant] to the given [param type], using the [enum Variant.Type] values. This method is generous with how it handles types, it can automatically convert between array types, convert numeric [String]s to [int], and converting most things to [String].  
      *  If the type conversion cannot be done, this method will return the default value for that type, for example converting [Rect2] to [Vector2] will always return [constant Vector2.ZERO]. This method will never show error messages as long as [param type] is a valid Variant type.  
      *  The returned value is a [Variant], but the data inside and the [enum Variant.Type] will be the same as the requested type.  
      *    
      */
-    static function type_convert(variant: any, type: number /*i64*/): void
+    static function type_convert(variant: any, type: int64): void
     
     /** Converts one or more arguments of any [Variant] type to a [String] in the best way possible.  
      *    
@@ -6696,13 +6644,13 @@ declare module "godot" {
     /** Returns a human-readable name for the given [enum Error] code.  
      *    
      */
-    static function error_string(error: number /*i64*/): string
+    static function error_string(error: int64): string
     
     /** Returns a human-readable name of the given [param type], using the [enum Variant.Type] values.  
      *    
      *  See also [method typeof].  
      */
-    static function type_string(type: number /*i64*/): string
+    static function type_string(type: int64): string
     
     /** Converts one or more arguments of any type to string in the best way possible and prints them to the console.  
      *    
@@ -6801,24 +6749,24 @@ declare module "godot" {
     /** Returns the integer hash of the passed [param variable].  
      *    
      */
-    static function hash(variable: any): number /*i64*/
+    static function hash(variable: any): int64
     
     /** Returns the [Object] that corresponds to [param instance_id]. All Objects have a unique instance ID. See also [method Object.get_instance_id].  
      *    
      */
-    static function instance_from_id(instance_id: number /*i64*/): Object
+    static function instance_from_id(instance_id: int64): Object
     
     /** Returns `true` if the Object that corresponds to [param id] is a valid object (e.g. has not been deleted from memory). All Objects have a unique instance ID. */
-    static function is_instance_id_valid(id: number /*i64*/): boolean
+    static function is_instance_id_valid(id: int64): boolean
     
     /** Returns `true` if [param instance] is a valid Object (e.g. has not been deleted from memory). */
     static function is_instance_valid(instance: any): boolean
     
     /** Allocates a unique ID which can be used by the implementation to construct a RID. This is used mainly from native extensions to implement servers. */
-    static function rid_allocate_id(): number /*i64*/
+    static function rid_allocate_id(): int64
     
     /** Creates a RID from a [param base]. This is used mainly from native extensions to build servers. */
-    static function rid_from_int64(base: number /*i64*/): RID
+    static function rid_from_int64(base: int64): RID
     
     /** Returns `true`, for value types, if [param a] and [param b] share the same value. Returns `true`, for reference types, if the references of [param a] and [param b] are the same.  
      *    

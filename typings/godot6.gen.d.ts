@@ -1,74 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** Texture for 2D and 3D.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_texture2d.html  
-     */
-    class Texture2D extends Texture {
-        constructor(identifier?: any)
-        /** Called when the [Texture2D]'s width is queried. */
-        /* gdvirtual */ _get_width(): number /*i64*/
-        
-        /** Called when the [Texture2D]'s height is queried. */
-        /* gdvirtual */ _get_height(): number /*i64*/
-        
-        /** Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)` position. */
-        /* gdvirtual */ _is_pixel_opaque(x: number /*i64*/, y: number /*i64*/): boolean
-        
-        /** Called when the presence of an alpha channel in the [Texture2D] is queried. */
-        /* gdvirtual */ _has_alpha(): boolean
-        
-        /** Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the top-left offset specified in [param pos]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: boolean): void
-        
-        /** Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw_rect(to_canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color, transpose: boolean): void
-        
-        /** Called when a part of the [Texture2D] specified by [param src_rect]'s coordinates is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: boolean, clip_uv: boolean): void
-        
-        /** Returns the texture width in pixels. */
-        get_width(): number /*i64*/
-        
-        /** Returns the texture height in pixels. */
-        get_height(): number /*i64*/
-        
-        /** Returns the texture size in pixels. */
-        get_size(): Vector2
-        
-        /** Returns `true` if this [Texture2D] has an alpha channel. */
-        has_alpha(): boolean
-        
-        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified [param position]. */
-        draw(canvas_item: RID, position: Vector2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
-        
-        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API. */
-        draw_rect(canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
-        
-        /** Draws a part of the texture using a [CanvasItem] with the [RenderingServer] API. */
-        draw_rect_region(canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false, clip_uv: boolean = true): void
-        
-        /** Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each time). [Image]s can be accessed and manipulated directly.  
-         *      
-         *  **Note:** This will return `null` if this [Texture2D] is invalid.  
-         *      
-         *  **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.  
-         */
-        get_image(): Image
-        
-        /** Creates a placeholder version of this resource ([PlaceholderTexture2D]). */
-        create_placeholder(): Resource
-    }
     /** A single texture resource which consists of multiple, separate images. Each image has the same dimensions and number of mipmap levels.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_texture2darray.html  
@@ -108,13 +40,13 @@ declare module "godot" {
         /* gdvirtual */ _get_format(): Image.Format
         
         /** Called when the [Texture3D]'s width is queried. */
-        /* gdvirtual */ _get_width(): number /*i64*/
+        /* gdvirtual */ _get_width(): int64
         
         /** Called when the [Texture3D]'s height is queried. */
-        /* gdvirtual */ _get_height(): number /*i64*/
+        /* gdvirtual */ _get_height(): int64
         
         /** Called when the [Texture3D]'s depth is queried. */
-        /* gdvirtual */ _get_depth(): number /*i64*/
+        /* gdvirtual */ _get_depth(): int64
         
         /** Called when the presence of mipmaps in the [Texture3D] is queried. */
         /* gdvirtual */ _has_mipmaps(): boolean
@@ -126,13 +58,13 @@ declare module "godot" {
         get_format(): Image.Format
         
         /** Returns the [Texture3D]'s width in pixels. Width is typically represented by the X axis. */
-        get_width(): number /*i64*/
+        get_width(): int64
         
         /** Returns the [Texture3D]'s height in pixels. Width is typically represented by the Y axis. */
-        get_height(): number /*i64*/
+        get_height(): int64
         
         /** Returns the [Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a dimension not present in [Texture2D]). */
-        get_depth(): number /*i64*/
+        get_depth(): int64
         
         /** Returns `true` if the [Texture3D] has generated mipmaps. */
         has_mipmaps(): boolean
@@ -235,20 +167,20 @@ declare module "godot" {
         set texture_click_mask(value: BitMap)
         
         /** If `true`, the size of the texture won't be considered for minimum size calculation, so the [TextureButton] can be shrunk down past the texture size. */
-        get ignore_texture_size(): bool
-        set ignore_texture_size(value: bool)
+        get ignore_texture_size(): boolean
+        set ignore_texture_size(value: boolean)
         
         /** Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options. */
-        get stretch_mode(): number /*i64*/
-        set stretch_mode(value: number /*i64*/)
+        get stretch_mode(): int64
+        set stretch_mode(value: int64)
         
         /** If `true`, texture is flipped horizontally. */
-        get flip_h(): bool
-        set flip_h(value: bool)
+        get flip_h(): boolean
+        set flip_h(value: boolean)
         
         /** If `true`, texture is flipped vertically. */
-        get flip_v(): bool
-        set flip_v(value: bool)
+        get flip_v(): boolean
+        set flip_v(value: boolean)
     }
     /** Texture Array for Cubemaps that is bound to a texture created on the [RenderingDevice].  
      *  	  
@@ -289,22 +221,22 @@ declare module "godot" {
         /* gdvirtual */ _get_format(): Image.Format
         
         /** Called when the layers' type in the [TextureLayered] is queried. */
-        /* gdvirtual */ _get_layered_type(): number /*i64*/
+        /* gdvirtual */ _get_layered_type(): int64
         
         /** Called when the [TextureLayered]'s width queried. */
-        /* gdvirtual */ _get_width(): number /*i64*/
+        /* gdvirtual */ _get_width(): int64
         
         /** Called when the [TextureLayered]'s height is queried. */
-        /* gdvirtual */ _get_height(): number /*i64*/
+        /* gdvirtual */ _get_height(): int64
         
         /** Called when the number of layers in the [TextureLayered] is queried. */
-        /* gdvirtual */ _get_layers(): number /*i64*/
+        /* gdvirtual */ _get_layers(): int64
         
         /** Called when the presence of mipmaps in the [TextureLayered] is queried. */
         /* gdvirtual */ _has_mipmaps(): boolean
         
         /** Called when the data for a layer in the [TextureLayered] is queried. */
-        /* gdvirtual */ _get_layer_data(layer_index: number /*i64*/): Image
+        /* gdvirtual */ _get_layer_data(layer_index: int64): Image
         
         /** Returns the current format being used by this texture. See [enum Image.Format] for details. */
         get_format(): Image.Format
@@ -313,19 +245,19 @@ declare module "godot" {
         get_layered_type(): TextureLayered.LayeredType
         
         /** Returns the width of the texture in pixels. Width is typically represented by the X axis. */
-        get_width(): number /*i64*/
+        get_width(): int64
         
         /** Returns the height of the texture in pixels. Height is typically represented by the Y axis. */
-        get_height(): number /*i64*/
+        get_height(): int64
         
         /** Returns the number of referenced [Image]s. */
-        get_layers(): number /*i64*/
+        get_layers(): int64
         
         /** Returns `true` if the layers have generated mipmaps. */
         has_mipmaps(): boolean
         
         /** Returns an [Image] resource with the data from specified [param layer]. */
-        get_layer_data(layer: number /*i64*/): Image
+        get_layer_data(layer: int64): Image
     }
     class TextureLayeredEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -385,8 +317,8 @@ declare module "godot" {
         get_progress_texture(): Texture2D
         set_over_texture(tex: Texture2D): void
         get_over_texture(): Texture2D
-        set_fill_mode(mode: number /*i64*/): void
-        get_fill_mode(): number /*i64*/
+        set_fill_mode(mode: int64): void
+        get_fill_mode(): int64
         set_tint_under(tint: Color): void
         get_tint_under(): Color
         set_tint_progress(tint: Color): void
@@ -395,24 +327,24 @@ declare module "godot" {
         get_tint_over(): Color
         set_texture_progress_offset(offset: Vector2): void
         get_texture_progress_offset(): Vector2
-        set_radial_initial_angle(mode: number /*f64*/): void
-        get_radial_initial_angle(): number /*f64*/
+        set_radial_initial_angle(mode: float64): void
+        get_radial_initial_angle(): float64
         set_radial_center_offset(mode: Vector2): void
         get_radial_center_offset(): Vector2
-        set_fill_degrees(mode: number /*f64*/): void
-        get_fill_degrees(): number /*f64*/
+        set_fill_degrees(mode: float64): void
+        get_fill_degrees(): float64
         
         /** Sets the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
-        set_stretch_margin(margin: Side, value: number /*i64*/): void
+        set_stretch_margin(margin: Side, value: int64): void
         
         /** Returns the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
-        get_stretch_margin(margin: Side): number /*i64*/
+        get_stretch_margin(margin: Side): int64
         set_nine_patch_stretch(stretch: boolean): void
         get_nine_patch_stretch(): boolean
         
         /** The fill direction. See [enum FillMode] for possible values. */
-        get fill_mode(): number /*i64*/
-        set fill_mode(value: number /*i64*/)
+        get fill_mode(): int64
+        set fill_mode(value: int64)
         
         /** If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*` properties like [member stretch_margin_bottom] to set up the nine patch's 3×3 grid. When using a radial [member fill_mode], this setting will enable stretching. */
         get nine_patch_stretch(): boolean
@@ -449,14 +381,14 @@ declare module "godot" {
         set tint_progress(value: Color)
         
         /** Starting angle for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE] or [constant FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the texture fills and tends towards [member radial_fill_degrees]. */
-        get radial_initial_angle(): number /*f64*/
-        set radial_initial_angle(value: number /*f64*/)
+        get radial_initial_angle(): float64
+        set radial_initial_angle(value: float64)
         
         /** Upper limit for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE] or [constant FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up to this angle.  
          *  See [member Range.value], [member Range.max_value].  
          */
-        get radial_fill_degrees(): number /*f64*/
-        set radial_fill_degrees(value: number /*f64*/)
+        get radial_fill_degrees(): float64
+        set radial_fill_degrees(value: float64)
         
         /** Offsets [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE] or [constant FILL_COUNTER_CLOCKWISE]. */
         get radial_center_offset(): Vector2
@@ -530,12 +462,12 @@ declare module "godot" {
          *      
          *  **Note:** Using [constant EXPAND_FIT_WIDTH], [constant EXPAND_FIT_WIDTH_PROPORTIONAL], [constant EXPAND_FIT_HEIGHT] or [constant EXPAND_FIT_HEIGHT_PROPORTIONAL] may result in unstable behavior in some containers. This functionality is being re-evaluated and will change in the future.  
          */
-        get expand_mode(): number /*i64*/
-        set expand_mode(value: number /*i64*/)
+        get expand_mode(): int64
+        set expand_mode(value: int64)
         
         /** Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode]. */
-        get stretch_mode(): number /*i64*/
-        set stretch_mode(value: number /*i64*/)
+        get stretch_mode(): int64
+        set stretch_mode(value: int64)
         
         /** If `true`, texture is flipped horizontally. */
         get flip_h(): boolean
@@ -671,13 +603,13 @@ declare module "godot" {
         get_font_type_list(): PackedStringArray
         
         /** Creates or changes the value of the font size property defined by [param name] and [param theme_type]. Use [method clear_font_size] to remove the property. */
-        set_font_size(name: StringName, theme_type: StringName, font_size: number /*i64*/): void
+        set_font_size(name: StringName, theme_type: StringName, font_size: int64): void
         
         /** Returns the font size property defined by [param name] and [param theme_type], if it exists.  
          *  Returns the default theme font size if the property doesn't exist and the default theme font size is set up (see [member default_font_size]). Use [method has_font_size] to check for existence of the property and [method has_default_font_size] to check for existence of the default theme font.  
          *  Returns the engine fallback font size value, if neither exist (see [member ThemeDB.fallback_font_size]).  
          */
-        get_font_size(name: StringName, theme_type: StringName): number /*i64*/
+        get_font_size(name: StringName, theme_type: StringName): int64
         
         /** Returns `true` if the font size property defined by [param name] and [param theme_type] exists, or if the default theme font size is set up (see [method has_default_font_size]).  
          *  Returns `false` if neither exist. Use [method set_font_size] to define the property.  
@@ -730,12 +662,12 @@ declare module "godot" {
         get_color_type_list(): PackedStringArray
         
         /** Creates or changes the value of the constant property defined by [param name] and [param theme_type]. Use [method clear_constant] to remove the property. */
-        set_constant(name: StringName, theme_type: StringName, constant: number /*i64*/): void
+        set_constant(name: StringName, theme_type: StringName, constant: int64): void
         
         /** Returns the constant property defined by [param name] and [param theme_type], if it exists.  
          *  Returns `0` if the property doesn't exist. Use [method has_constant] to check for existence.  
          */
-        get_constant(name: StringName, theme_type: StringName): number /*i64*/
+        get_constant(name: StringName, theme_type: StringName): int64
         
         /** Returns `true` if the constant property defined by [param name] and [param theme_type] exists.  
          *  Returns `false` if it doesn't exist. Use [method set_constant] to define it.  
@@ -757,8 +689,8 @@ declare module "godot" {
         
         /** Returns a list of all unique theme type names for constant properties. Use [method get_type_list] to get a list of all unique theme types. */
         get_constant_type_list(): PackedStringArray
-        set_default_base_scale(base_scale: number /*f64*/): void
-        get_default_base_scale(): number /*f64*/
+        set_default_base_scale(base_scale: float64): void
+        get_default_base_scale(): float64
         
         /** Returns `true` if [member default_base_scale] has a valid value.  
          *  Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.  
@@ -771,8 +703,8 @@ declare module "godot" {
          *  Returns `false` if it doesn't.  
          */
         has_default_font(): boolean
-        set_default_font_size(font_size: number /*i64*/): void
-        get_default_font_size(): number /*i64*/
+        set_default_font_size(font_size: int64): void
+        get_default_font_size(): int64
         
         /** Returns `true` if [member default_font_size] has a valid value.  
          *  Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.  
@@ -870,8 +802,8 @@ declare module "godot" {
         /** The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used (see [member ThemeDB.fallback_base_scale]).  
          *  Use [method has_default_base_scale] to check if this value is valid.  
          */
-        get default_base_scale(): number /*f64*/
-        set default_base_scale(value: number /*f64*/)
+        get default_base_scale(): float64
+        set default_base_scale(value: float64)
         
         /** The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font]).  
          *  Use [method has_default_font] to check if this value is valid.  
@@ -882,8 +814,8 @@ declare module "godot" {
         /** The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font_size]).  
          *  Values below `0` are invalid and can be used to unset the property. Use [method has_default_font_size] to check if this value is valid.  
          */
-        get default_font_size(): number /*i64*/
-        set default_font_size(value: number /*i64*/)
+        get default_font_size(): int64
+        set default_font_size(value: int64)
     }
     class ThemeContext extends Object {
         constructor(identifier?: any)
@@ -976,7 +908,7 @@ declare module "godot" {
     }
     class TileAtlasView extends Control {
         constructor(identifier?: any)
-        readonly transform_changed: Signal // zoom: number /*f64*/, scroll: Vector2 => void
+        readonly transform_changed: Signal // zoom: float64, scroll: Vector2 => void
     }
     /** Settings for a single tile in a [TileSet].  
      *  	  
@@ -996,76 +928,76 @@ declare module "godot" {
         get_texture_origin(): Vector2i
         set_modulate(modulate: Color): void
         get_modulate(): Color
-        set_z_index(z_index: number /*i64*/): void
-        get_z_index(): number /*i64*/
-        set_y_sort_origin(y_sort_origin: number /*i64*/): void
-        get_y_sort_origin(): number /*i64*/
+        set_z_index(z_index: int64): void
+        get_z_index(): int64
+        set_y_sort_origin(y_sort_origin: int64): void
+        get_y_sort_origin(): int64
         
         /** Sets the occluder for the TileSet occlusion layer with index [param layer_id]. */
-        set_occluder(layer_id: number /*i64*/, occluder_polygon: OccluderPolygon2D): void
+        set_occluder(layer_id: int64, occluder_polygon: OccluderPolygon2D): void
         
         /** Returns the occluder polygon of the tile for the TileSet occlusion layer with index [param layer_id]. */
-        get_occluder(layer_id: number /*i64*/): OccluderPolygon2D
+        get_occluder(layer_id: int64): OccluderPolygon2D
         
         /** Sets the constant linear velocity. This does not move the tile. This linear velocity is applied to objects colliding with this tile. This is useful to create conveyor belts. */
-        set_constant_linear_velocity(layer_id: number /*i64*/, velocity: Vector2): void
+        set_constant_linear_velocity(layer_id: int64, velocity: Vector2): void
         
         /** Returns the constant linear velocity applied to objects colliding with this tile. */
-        get_constant_linear_velocity(layer_id: number /*i64*/): Vector2
+        get_constant_linear_velocity(layer_id: int64): Vector2
         
         /** Sets the constant angular velocity. This does not rotate the tile. This angular velocity is applied to objects colliding with this tile. */
-        set_constant_angular_velocity(layer_id: number /*i64*/, velocity: number /*f64*/): void
+        set_constant_angular_velocity(layer_id: int64, velocity: float64): void
         
         /** Returns the constant angular velocity applied to objects colliding with this tile. */
-        get_constant_angular_velocity(layer_id: number /*i64*/): number /*f64*/
+        get_constant_angular_velocity(layer_id: int64): float64
         
         /** Sets the polygons count for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygons_count(layer_id: number /*i64*/, polygons_count: number /*i64*/): void
+        set_collision_polygons_count(layer_id: int64, polygons_count: int64): void
         
         /** Returns how many polygons the tile has for TileSet physics layer with index [param layer_id]. */
-        get_collision_polygons_count(layer_id: number /*i64*/): number /*i64*/
+        get_collision_polygons_count(layer_id: int64): int64
         
         /** Adds a collision polygon to the tile on the given TileSet physics layer. */
-        add_collision_polygon(layer_id: number /*i64*/): void
+        add_collision_polygon(layer_id: int64): void
         
         /** Removes the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        remove_collision_polygon(layer_id: number /*i64*/, polygon_index: number /*i64*/): void
+        remove_collision_polygon(layer_id: int64, polygon_index: int64): void
         
         /** Sets the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygon_points(layer_id: number /*i64*/, polygon_index: number /*i64*/, polygon: PackedVector2Array): void
+        set_collision_polygon_points(layer_id: int64, polygon_index: int64, polygon: PackedVector2Array): void
         
         /** Returns the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        get_collision_polygon_points(layer_id: number /*i64*/, polygon_index: number /*i64*/): PackedVector2Array
+        get_collision_polygon_points(layer_id: int64, polygon_index: int64): PackedVector2Array
         
         /** Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygon_one_way(layer_id: number /*i64*/, polygon_index: number /*i64*/, one_way: boolean): void
+        set_collision_polygon_one_way(layer_id: int64, polygon_index: int64, one_way: boolean): void
         
         /** Returns whether one-way collisions are enabled for the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        is_collision_polygon_one_way(layer_id: number /*i64*/, polygon_index: number /*i64*/): boolean
+        is_collision_polygon_one_way(layer_id: int64, polygon_index: int64): boolean
         
         /** Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygon_one_way_margin(layer_id: number /*i64*/, polygon_index: number /*i64*/, one_way_margin: number /*f64*/): void
+        set_collision_polygon_one_way_margin(layer_id: int64, polygon_index: int64, one_way_margin: float64): void
         
         /** Returns the one-way margin (for one-way platforms) of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        get_collision_polygon_one_way_margin(layer_id: number /*i64*/, polygon_index: number /*i64*/): number /*f64*/
-        set_terrain_set(terrain_set: number /*i64*/): void
-        get_terrain_set(): number /*i64*/
-        set_terrain(terrain: number /*i64*/): void
-        get_terrain(): number /*i64*/
+        get_collision_polygon_one_way_margin(layer_id: int64, polygon_index: int64): float64
+        set_terrain_set(terrain_set: int64): void
+        get_terrain_set(): int64
+        set_terrain(terrain: int64): void
+        get_terrain(): int64
         
         /** Sets the tile's terrain bit for the given [param peering_bit] direction. */
-        set_terrain_peering_bit(peering_bit: TileSet.CellNeighbor, terrain: number /*i64*/): void
+        set_terrain_peering_bit(peering_bit: TileSet.CellNeighbor, terrain: int64): void
         
         /** Returns the tile's terrain bit for the given [param peering_bit] direction. */
-        get_terrain_peering_bit(peering_bit: TileSet.CellNeighbor): number /*i64*/
+        get_terrain_peering_bit(peering_bit: TileSet.CellNeighbor): int64
         
         /** Sets the navigation polygon for the TileSet navigation layer with index [param layer_id]. */
-        set_navigation_polygon(layer_id: number /*i64*/, navigation_polygon: NavigationPolygon): void
+        set_navigation_polygon(layer_id: int64, navigation_polygon: NavigationPolygon): void
         
         /** Returns the navigation polygon of the tile for the TileSet navigation layer with index [param layer_id]. */
-        get_navigation_polygon(layer_id: number /*i64*/): NavigationPolygon
-        set_probability(probability: number /*f64*/): void
-        get_probability(): number /*f64*/
+        get_navigation_polygon(layer_id: int64): NavigationPolygon
+        set_probability(probability: float64): void
+        get_probability(): float64
         
         /** Sets the tile's custom data value for the TileSet custom data layer with name [param layer_name]. */
         set_custom_data(layer_name: string, value: any): void
@@ -1074,10 +1006,10 @@ declare module "godot" {
         get_custom_data(layer_name: string): any
         
         /** Sets the tile's custom data value for the TileSet custom data layer with index [param layer_id]. */
-        set_custom_data_by_layer_id(layer_id: number /*i64*/, value: any): void
+        set_custom_data_by_layer_id(layer_id: int64, value: any): void
         
         /** Returns the custom data value for custom data layer with index [param layer_id]. */
-        get_custom_data_by_layer_id(layer_id: number /*i64*/): any
+        get_custom_data_by_layer_id(layer_id: int64): any
         
         /** If `true`, the tile will have its texture flipped horizontally. */
         get flip_h(): boolean
@@ -1104,24 +1036,24 @@ declare module "godot" {
         set material(value: CanvasItemMaterial | ShaderMaterial)
         
         /** Ordering index of this tile, relative to [TileMap]. */
-        get z_index(): number /*i64*/
-        set z_index(value: number /*i64*/)
+        get z_index(): int64
+        set z_index(value: int64)
         
         /** Vertical point of the tile used for determining y-sorted order. */
-        get y_sort_origin(): number /*i64*/
-        set y_sort_origin(value: number /*i64*/)
+        get y_sort_origin(): int64
+        set y_sort_origin(value: int64)
         
         /** ID of the terrain set that the tile uses. */
-        get terrain_set(): number /*i64*/
-        set terrain_set(value: number /*i64*/)
+        get terrain_set(): int64
+        set terrain_set(value: int64)
         
         /** ID of the terrain from the terrain set that the tile uses. */
-        get terrain(): number /*i64*/
-        set terrain(value: number /*i64*/)
+        get terrain(): int64
+        set terrain(value: int64)
         
         /** Relative probability of this tile being selected when drawing a pattern of random tiles. */
-        get probability(): number /*f64*/
-        set probability(value: number /*f64*/)
+        get probability(): float64
+        set probability(value: float64)
         
         /** Emitted when any of the properties are changed. */
         readonly changed: Signal //  => void
@@ -1149,7 +1081,7 @@ declare module "godot" {
          *      
          *  **Note:** If the result of this function should changed, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.  
          */
-        /* gdvirtual */ _use_tile_data_runtime_update(layer: number /*i64*/, coords: Vector2i): boolean
+        /* gdvirtual */ _use_tile_data_runtime_update(layer: int64, coords: Vector2i): boolean
         
         /** Called with a TileData object about to be used internally by the TileMap, allowing its modification at runtime.  
          *  This method is only called if [method _use_tile_data_runtime_update] is implemented and returns `true` for the given tile [param coords] and [param layer].  
@@ -1157,114 +1089,114 @@ declare module "godot" {
          *      
          *  **Note:** If the properties of [param tile_data] object should change over time, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.  
          */
-        /* gdvirtual */ _tile_data_runtime_update(layer: number /*i64*/, coords: Vector2i, tile_data: TileData): void
+        /* gdvirtual */ _tile_data_runtime_update(layer: int64, coords: Vector2i, tile_data: TileData): void
         
         /** See [method set_layer_navigation_map]. */
-        set_navigation_map(layer: number /*i64*/, map: RID): void
+        set_navigation_map(layer: int64, map: RID): void
         
         /** See [method get_layer_navigation_map]. */
-        get_navigation_map(layer: number /*i64*/): RID
+        get_navigation_map(layer: int64): RID
         
         /**  *Deprecated.*  See [method notify_runtime_tile_data_update] and [method update_internals]. */
-        force_update(layer: number /*i64*/ = -1): void
+        force_update(layer: int64 = -1): void
         set_tileset(tileset: TileSet): void
         get_tileset(): TileSet
-        set_rendering_quadrant_size(size: number /*i64*/): void
-        get_rendering_quadrant_size(): number /*i64*/
+        set_rendering_quadrant_size(size: int64): void
+        get_rendering_quadrant_size(): int64
         
         /** Returns the number of layers in the TileMap. */
-        get_layers_count(): number /*i64*/
+        get_layers_count(): int64
         
         /** Adds a layer at the given position [param to_position] in the array. If [param to_position] is negative, the position is counted from the end, with `-1` adding the layer at the end of the array. */
-        add_layer(to_position: number /*i64*/): void
+        add_layer(to_position: int64): void
         
         /** Moves the layer at index [param layer] to the given position [param to_position] in the array. */
-        move_layer(layer: number /*i64*/, to_position: number /*i64*/): void
+        move_layer(layer: int64, to_position: int64): void
         
         /** Removes the layer at index [param layer]. */
-        remove_layer(layer: number /*i64*/): void
+        remove_layer(layer: int64): void
         
         /** Sets a layer's name. This is mostly useful in the editor.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_layer_name(layer: number /*i64*/, name: string): void
+        set_layer_name(layer: int64, name: string): void
         
         /** Returns a TileMap layer's name.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_layer_name(layer: number /*i64*/): string
+        get_layer_name(layer: int64): string
         
         /** Enables or disables the layer [param layer]. A disabled layer is not processed at all (no rendering, no physics, etc...).  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_layer_enabled(layer: number /*i64*/, enabled: boolean): void
+        set_layer_enabled(layer: int64, enabled: boolean): void
         
         /** Returns if a layer is enabled.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        is_layer_enabled(layer: number /*i64*/): boolean
+        is_layer_enabled(layer: int64): boolean
         
         /** Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_layer_modulate(layer: number /*i64*/, modulate: Color): void
+        set_layer_modulate(layer: int64, modulate: Color): void
         
         /** Returns a TileMap layer's modulate.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_layer_modulate(layer: number /*i64*/): Color
+        get_layer_modulate(layer: int64): Color
         
         /** Enables or disables a layer's Y-sorting. If a layer is Y-sorted, the layer will behave as a CanvasItem node where each of its tile gets Y-sorted.  
          *  Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behavior.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_layer_y_sort_enabled(layer: number /*i64*/, y_sort_enabled: boolean): void
+        set_layer_y_sort_enabled(layer: int64, y_sort_enabled: boolean): void
         
         /** Returns if a layer Y-sorts its tiles.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        is_layer_y_sort_enabled(layer: number /*i64*/): boolean
+        is_layer_y_sort_enabled(layer: int64): boolean
         
         /** Sets a layer's Y-sort origin value. This Y-sort origin value is added to each tile's Y-sort origin value.  
          *  This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_layer_y_sort_origin(layer: number /*i64*/, y_sort_origin: number /*i64*/): void
+        set_layer_y_sort_origin(layer: int64, y_sort_origin: int64): void
         
         /** Returns a TileMap layer's Y sort origin.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_layer_y_sort_origin(layer: number /*i64*/): number /*i64*/
+        get_layer_y_sort_origin(layer: int64): int64
         
         /** Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_layer_z_index(layer: number /*i64*/, z_index: number /*i64*/): void
+        set_layer_z_index(layer: int64, z_index: int64): void
         
         /** Returns a TileMap layer's Z-index value.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_layer_z_index(layer: number /*i64*/): number /*i64*/
+        get_layer_z_index(layer: int64): int64
         
         /** Enables or disables a layer's built-in navigation regions generation. Disable this if you need to bake navigation regions from a TileMap using a [NavigationRegion2D] node. */
-        set_layer_navigation_enabled(layer: number /*i64*/, enabled: boolean): void
+        set_layer_navigation_enabled(layer: int64, enabled: boolean): void
         
         /** Returns if a layer's built-in navigation regions generation is enabled. */
-        is_layer_navigation_enabled(layer: number /*i64*/): boolean
+        is_layer_navigation_enabled(layer: int64): boolean
         
         /** Assigns a [NavigationServer2D] navigation map [RID] to the specified TileMap [param layer].  
          *  By default the TileMap uses the default [World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.  
          *  In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use [method NavigationAgent2D.set_navigation_map] with the navigation map received from [method get_layer_navigation_map].  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_layer_navigation_map(layer: number /*i64*/, map: RID): void
+        set_layer_navigation_map(layer: int64, map: RID): void
         
         /** Returns the [NavigationServer2D] navigation map [RID] currently assigned to the specified TileMap [param layer].  
          *  By default the TileMap uses the default [World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.  
          *  In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use [method NavigationAgent2D.set_navigation_map] with the navigation map received from [method get_layer_navigation_map].  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_layer_navigation_map(layer: number /*i64*/): RID
+        get_layer_navigation_map(layer: int64): RID
         set_collision_animatable(enabled: boolean): void
         is_collision_animatable(): boolean
         set_collision_visibility_mode(collision_visibility_mode: TileMap.VisibilityMode): void
@@ -1279,46 +1211,46 @@ declare module "godot" {
          *  If [param source_id] is set to `-1`, [param atlas_coords] to `Vector2i(-1, -1)` or [param alternative_tile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_cell(layer: number /*i64*/, coords: Vector2i, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = 0): void
+        set_cell(layer: int64, coords: Vector2i, source_id: int64 = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: int64 = 0): void
         
         /** Erases the cell on layer [param layer] at coordinates [param coords].  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        erase_cell(layer: number /*i64*/, coords: Vector2i): void
+        erase_cell(layer: int64, coords: Vector2i): void
         
         /** Returns the tile source ID of the cell on layer [param layer] at coordinates [param coords]. Returns `-1` if the cell does not exist.  
          *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_cell_source_id(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): number /*i64*/
+        get_cell_source_id(layer: int64, coords: Vector2i, use_proxies: boolean = false): int64
         
         /** Returns the tile atlas coordinates ID of the cell on layer [param layer] at coordinates [param coords]. If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_cell_atlas_coords(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): Vector2i
+        get_cell_atlas_coords(layer: int64, coords: Vector2i, use_proxies: boolean = false): Vector2i
         
         /** Returns the tile alternative ID of the cell on layer [param layer] at [param coords]. If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_cell_alternative_tile(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): number /*i64*/
+        get_cell_alternative_tile(layer: int64, coords: Vector2i, use_proxies: boolean = false): int64
         
         /** Returns the [TileData] object associated with the given cell, or `null` if the cell does not exist or is not a [TileSetAtlasSource].  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].  
          *    
          */
-        get_cell_tile_data(layer: number /*i64*/, coords: Vector2i, use_proxies: boolean = false): TileData
+        get_cell_tile_data(layer: int64, coords: Vector2i, use_proxies: boolean = false): TileData
         
         /** Returns the coordinates of the tile for given physics body RID. Such RID can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
         get_coords_for_body_rid(body: RID): Vector2i
         
         /** Returns the tilemap layer of the tile for given physics body RID. Such RID can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
-        get_layer_for_body_rid(body: RID): number /*i64*/
+        get_layer_for_body_rid(body: RID): int64
         
         /** Creates a new [TileMapPattern] from the given layer and set of cells.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_pattern(layer: number /*i64*/, coords_array: Array): TileMapPattern
+        get_pattern(layer: int64, coords_array: Array): TileMapPattern
         
         /** Returns for the given coordinate [param coords_in_pattern] in a [TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [param position_in_tilemap] coordinates (see [method set_pattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`. */
         map_pattern(position_in_tilemap: Vector2i, coords_in_pattern: Vector2i, pattern: TileMapPattern): Vector2i
@@ -1326,7 +1258,7 @@ declare module "godot" {
         /** Paste the given [TileMapPattern] at the given [param position] and [param layer] in the tile map.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_pattern(layer: number /*i64*/, position: Vector2i, pattern: TileMapPattern): void
+        set_pattern(layer: int64, position: Vector2i, pattern: TileMapPattern): void
         
         /** Update all the cells in the [param cells] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. If an updated cell has the same terrain as one of its neighboring cells, this function tries to join the two. This function might update neighboring tiles if needed to create correct terrain transitions.  
          *  If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.  
@@ -1334,7 +1266,7 @@ declare module "godot" {
          *      
          *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
          */
-        set_cells_terrain_connect(layer: number /*i64*/, cells: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean = true): void
+        set_cells_terrain_connect(layer: int64, cells: Array, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
         
         /** Update all the cells in the [param path] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.  
          *  If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.  
@@ -1342,7 +1274,7 @@ declare module "godot" {
          *      
          *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
          */
-        set_cells_terrain_path(layer: number /*i64*/, path: Array, terrain_set: number /*i64*/, terrain: number /*i64*/, ignore_empty_terrains: boolean = true): void
+        set_cells_terrain_path(layer: int64, path: Array, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
         
         /** Clears cells that do not exist in the tileset. */
         fix_invalid_tiles(): void
@@ -1350,7 +1282,7 @@ declare module "godot" {
         /** Clears all cells on the given layer.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        clear_layer(layer: number /*i64*/): void
+        clear_layer(layer: int64): void
         
         /** Clears all cells. */
         clear(): void
@@ -1367,7 +1299,7 @@ declare module "godot" {
          *      
          *  **Note:** This does not trigger a direct update of the TileMap, the update will be done at the end of the frame as usual (unless you call [method update_internals]).  
          */
-        notify_runtime_tile_data_update(layer: number /*i64*/ = -1): void
+        notify_runtime_tile_data_update(layer: int64 = -1): void
         
         /** Returns the list of all neighbourings cells to the one at [param coords]. */
         get_surrounding_cells(coords: Vector2i): Array
@@ -1375,14 +1307,14 @@ declare module "godot" {
         /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_used_cells(layer: number /*i64*/): Array
+        get_used_cells(layer: int64): Array
         
         /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. Tiles may be filtered according to their source ([param source_id]), their atlas coordinates ([param atlas_coords]) or alternative id ([param alternative_tile]).  
          *  If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [method get_used_cells].  
          *  A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_used_cells_by_id(layer: number /*i64*/, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = -1): Array
+        get_used_cells_by_id(layer: int64, source_id: int64 = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: int64 = -1): Array
         
         /** Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers. */
         get_used_rect(): Rect2i
@@ -1408,8 +1340,8 @@ declare module "godot" {
          *      
          *  **Note:** As quadrants are created according to the map's coordinate system, the quadrant's "square shape" might not look like square in the TileMap's local coordinate system.  
          */
-        get rendering_quadrant_size(): number /*i64*/
-        set rendering_quadrant_size(value: number /*i64*/)
+        get rendering_quadrant_size(): int64
+        set rendering_quadrant_size(value: int64)
         
         /** If enabled, the TileMap will see its collisions synced to the physics tick and change its collision type from static to kinematic. This is required to create TileMap-based moving platform.  
          *      
@@ -1419,12 +1351,12 @@ declare module "godot" {
         set collision_animatable(value: boolean)
         
         /** Show or hide the TileMap's collision shapes. If set to [constant VISIBILITY_MODE_DEFAULT], this depends on the show collision debug settings. */
-        get collision_visibility_mode(): number /*i64*/
-        set collision_visibility_mode(value: number /*i64*/)
+        get collision_visibility_mode(): int64
+        set collision_visibility_mode(value: int64)
         
         /** Show or hide the TileMap's navigation meshes. If set to [constant VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings. */
-        get navigation_visibility_mode(): number /*i64*/
-        set navigation_visibility_mode(value: number /*i64*/)
+        get navigation_visibility_mode(): int64
+        set navigation_visibility_mode(value: int64)
         
         /** Emitted when the [TileSet] of this TileMap changes. */
         readonly changed: Signal //  => void
@@ -1451,7 +1383,7 @@ declare module "godot" {
     class TileMapPattern extends Resource {
         constructor(identifier?: any)
         /** Sets the tile identifiers for the cell at coordinates [param coords]. See [method TileMap.set_cell]. */
-        set_cell(coords: Vector2i, source_id: number /*i64*/ = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: number /*i64*/ = -1): void
+        set_cell(coords: Vector2i, source_id: int64 = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: int64 = -1): void
         
         /** Returns whether the pattern has a tile at the given coordinates. */
         has_cell(coords: Vector2i): boolean
@@ -1460,13 +1392,13 @@ declare module "godot" {
         remove_cell(coords: Vector2i, update_size: boolean): void
         
         /** Returns the tile source ID of the cell at [param coords]. */
-        get_cell_source_id(coords: Vector2i): number /*i64*/
+        get_cell_source_id(coords: Vector2i): int64
         
         /** Returns the tile atlas coordinates ID of the cell at [param coords]. */
         get_cell_atlas_coords(coords: Vector2i): Vector2i
         
         /** Returns the tile alternative ID of the cell at [param coords]. */
-        get_cell_alternative_tile(coords: Vector2i): number /*i64*/
+        get_cell_alternative_tile(coords: Vector2i): int64
         
         /** Returns the list of used cell coordinates in the pattern. */
         get_used_cells(): Array
@@ -1595,31 +1527,31 @@ declare module "godot" {
     class TileSet extends Resource {
         constructor(identifier?: any)
         /** Returns a new unused source ID. This generated ID is the same that a call to [method add_source] would return. */
-        get_next_source_id(): number /*i64*/
+        get_next_source_id(): int64
         
         /** Adds a [TileSetSource] to the TileSet. If [param atlas_source_id_override] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.  
          *  The function returns the added source ID or -1 if the source could not be added.  
          *  **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [TileSet], it will be removed from that one.  
          */
-        add_source(source: TileSetSource, atlas_source_id_override: number /*i64*/ = -1): number /*i64*/
+        add_source(source: TileSetSource, atlas_source_id_override: int64 = -1): int64
         
         /** Removes the source with the given source ID. */
-        remove_source(source_id: number /*i64*/): void
+        remove_source(source_id: int64): void
         
         /** Changes a source's ID. */
-        set_source_id(source_id: number /*i64*/, new_source_id: number /*i64*/): void
+        set_source_id(source_id: int64, new_source_id: int64): void
         
         /** Returns the number of [TileSetSource] in this TileSet. */
-        get_source_count(): number /*i64*/
+        get_source_count(): int64
         
         /** Returns the source ID for source with index [param index]. */
-        get_source_id(index: number /*i64*/): number /*i64*/
+        get_source_id(index: int64): int64
         
         /** Returns if this TileSet has a source for the given source ID. */
-        has_source(source_id: number /*i64*/): boolean
+        has_source(source_id: int64): boolean
         
         /** Returns the [TileSetSource] with ID [param source_id]. */
-        get_source(source_id: number /*i64*/): TileSetSource
+        get_source(source_id: int64): TileSetSource
         set_tile_shape(shape: TileSet.TileShape): void
         get_tile_shape(): TileSet.TileShape
         set_tile_layout(layout: TileSet.TileLayout): void
@@ -1632,216 +1564,216 @@ declare module "godot" {
         is_uv_clipping(): boolean
         
         /** Returns the occlusion layers count. */
-        get_occlusion_layers_count(): number /*i64*/
+        get_occlusion_layers_count(): int64
         
         /** Adds an occlusion layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
          *  Occlusion layers allow assigning occlusion polygons to atlas tiles.  
          */
-        add_occlusion_layer(to_position: number /*i64*/ = -1): void
+        add_occlusion_layer(to_position: int64 = -1): void
         
         /** Moves the occlusion layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_occlusion_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
+        move_occlusion_layer(layer_index: int64, to_position: int64): void
         
         /** Removes the occlusion layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
-        remove_occlusion_layer(layer_index: number /*i64*/): void
+        remove_occlusion_layer(layer_index: int64): void
         
         /** Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet occlusion layer. */
-        set_occlusion_layer_light_mask(layer_index: number /*i64*/, light_mask: number /*i64*/): void
+        set_occlusion_layer_light_mask(layer_index: int64, light_mask: int64): void
         
         /** Returns the light mask of the occlusion layer. */
-        get_occlusion_layer_light_mask(layer_index: number /*i64*/): number /*i64*/
+        get_occlusion_layer_light_mask(layer_index: int64): int64
         
         /** Enables or disables SDF collision for occluders in the given TileSet occlusion layer. */
-        set_occlusion_layer_sdf_collision(layer_index: number /*i64*/, sdf_collision: boolean): void
+        set_occlusion_layer_sdf_collision(layer_index: int64, sdf_collision: boolean): void
         
         /** Returns if the occluders from this layer use `sdf_collision`. */
-        get_occlusion_layer_sdf_collision(layer_index: number /*i64*/): boolean
+        get_occlusion_layer_sdf_collision(layer_index: int64): boolean
         
         /** Returns the physics layers count. */
-        get_physics_layers_count(): number /*i64*/
+        get_physics_layers_count(): int64
         
         /** Adds a physics layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
          *  Physics layers allow assigning collision polygons to atlas tiles.  
          */
-        add_physics_layer(to_position: number /*i64*/ = -1): void
+        add_physics_layer(to_position: int64 = -1): void
         
         /** Moves the physics layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_physics_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
+        move_physics_layer(layer_index: int64, to_position: int64): void
         
         /** Removes the physics layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
-        remove_physics_layer(layer_index: number /*i64*/): void
+        remove_physics_layer(layer_index: int64): void
         
         /** Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer. */
-        set_physics_layer_collision_layer(layer_index: number /*i64*/, layer: number /*i64*/): void
+        set_physics_layer_collision_layer(layer_index: int64, layer: int64): void
         
         /** Returns the collision layer (as in the physics server) bodies on the given TileSet's physics layer are in. */
-        get_physics_layer_collision_layer(layer_index: number /*i64*/): number /*i64*/
+        get_physics_layer_collision_layer(layer_index: int64): int64
         
         /** Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer. */
-        set_physics_layer_collision_mask(layer_index: number /*i64*/, mask: number /*i64*/): void
+        set_physics_layer_collision_mask(layer_index: int64, mask: int64): void
         
         /** Returns the collision mask of bodies on the given TileSet's physics layer. */
-        get_physics_layer_collision_mask(layer_index: number /*i64*/): number /*i64*/
+        get_physics_layer_collision_mask(layer_index: int64): int64
         
         /** Sets the physics material for bodies in the given TileSet physics layer. */
-        set_physics_layer_physics_material(layer_index: number /*i64*/, physics_material: PhysicsMaterial): void
+        set_physics_layer_physics_material(layer_index: int64, physics_material: PhysicsMaterial): void
         
         /** Returns the physics material of bodies on the given TileSet's physics layer. */
-        get_physics_layer_physics_material(layer_index: number /*i64*/): PhysicsMaterial
+        get_physics_layer_physics_material(layer_index: int64): PhysicsMaterial
         
         /** Returns the terrain sets count. */
-        get_terrain_sets_count(): number /*i64*/
+        get_terrain_sets_count(): int64
         
         /** Adds a new terrain set at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array. */
-        add_terrain_set(to_position: number /*i64*/ = -1): void
+        add_terrain_set(to_position: int64 = -1): void
         
         /** Moves the terrain set at index [param terrain_set] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_terrain_set(terrain_set: number /*i64*/, to_position: number /*i64*/): void
+        move_terrain_set(terrain_set: int64, to_position: int64): void
         
         /** Removes the terrain set at index [param terrain_set]. Also updates the atlas tiles accordingly. */
-        remove_terrain_set(terrain_set: number /*i64*/): void
+        remove_terrain_set(terrain_set: int64): void
         
         /** Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighboring tiles' terrains. */
-        set_terrain_set_mode(terrain_set: number /*i64*/, mode: TileSet.TerrainMode): void
+        set_terrain_set_mode(terrain_set: int64, mode: TileSet.TerrainMode): void
         
         /** Returns a terrain set mode. */
-        get_terrain_set_mode(terrain_set: number /*i64*/): TileSet.TerrainMode
+        get_terrain_set_mode(terrain_set: int64): TileSet.TerrainMode
         
         /** Returns the number of terrains in the given terrain set. */
-        get_terrains_count(terrain_set: number /*i64*/): number /*i64*/
+        get_terrains_count(terrain_set: int64): int64
         
         /** Adds a new terrain to the given terrain set [param terrain_set] at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array. */
-        add_terrain(terrain_set: number /*i64*/, to_position: number /*i64*/ = -1): void
+        add_terrain(terrain_set: int64, to_position: int64 = -1): void
         
         /** Moves the terrain at index [param terrain_index] for terrain set [param terrain_set] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_terrain(terrain_set: number /*i64*/, terrain_index: number /*i64*/, to_position: number /*i64*/): void
+        move_terrain(terrain_set: int64, terrain_index: int64, to_position: int64): void
         
         /** Removes the terrain at index [param terrain_index] in the given terrain set [param terrain_set]. Also updates the atlas tiles accordingly. */
-        remove_terrain(terrain_set: number /*i64*/, terrain_index: number /*i64*/): void
+        remove_terrain(terrain_set: int64, terrain_index: int64): void
         
         /** Sets a terrain's name. */
-        set_terrain_name(terrain_set: number /*i64*/, terrain_index: number /*i64*/, name: string): void
+        set_terrain_name(terrain_set: int64, terrain_index: int64, name: string): void
         
         /** Returns a terrain's name. */
-        get_terrain_name(terrain_set: number /*i64*/, terrain_index: number /*i64*/): string
+        get_terrain_name(terrain_set: int64, terrain_index: int64): string
         
         /** Sets a terrain's color. This color is used for identifying the different terrains in the TileSet editor. */
-        set_terrain_color(terrain_set: number /*i64*/, terrain_index: number /*i64*/, color: Color): void
+        set_terrain_color(terrain_set: int64, terrain_index: int64, color: Color): void
         
         /** Returns a terrain's color. */
-        get_terrain_color(terrain_set: number /*i64*/, terrain_index: number /*i64*/): Color
+        get_terrain_color(terrain_set: int64, terrain_index: int64): Color
         
         /** Returns the navigation layers count. */
-        get_navigation_layers_count(): number /*i64*/
+        get_navigation_layers_count(): int64
         
         /** Adds a navigation layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
          *  Navigation layers allow assigning a navigable area to atlas tiles.  
          */
-        add_navigation_layer(to_position: number /*i64*/ = -1): void
+        add_navigation_layer(to_position: int64 = -1): void
         
         /** Moves the navigation layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_navigation_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
+        move_navigation_layer(layer_index: int64, to_position: int64): void
         
         /** Removes the navigation layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
-        remove_navigation_layer(layer_index: number /*i64*/): void
+        remove_navigation_layer(layer_index: int64): void
         
         /** Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer. */
-        set_navigation_layer_layers(layer_index: number /*i64*/, layers: number /*i64*/): void
+        set_navigation_layer_layers(layer_index: int64, layers: int64): void
         
         /** Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer. */
-        get_navigation_layer_layers(layer_index: number /*i64*/): number /*i64*/
+        get_navigation_layer_layers(layer_index: int64): int64
         
         /** Based on [param value], enables or disables the specified navigation layer of the TileSet navigation data layer identified by the given [param layer_index], given a navigation_layers [param layer_number] between 1 and 32. */
-        set_navigation_layer_layer_value(layer_index: number /*i64*/, layer_number: number /*i64*/, value: boolean): void
+        set_navigation_layer_layer_value(layer_index: int64, layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified navigation layer of the TileSet navigation data layer identified by the given [param layer_index] is enabled, given a navigation_layers [param layer_number] between 1 and 32. */
-        get_navigation_layer_layer_value(layer_index: number /*i64*/, layer_number: number /*i64*/): boolean
+        get_navigation_layer_layer_value(layer_index: int64, layer_number: int64): boolean
         
         /** Returns the custom data layers count. */
-        get_custom_data_layers_count(): number /*i64*/
+        get_custom_data_layers_count(): int64
         
         /** Adds a custom data layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.  
          *  Custom data layers allow assigning custom properties to atlas tiles.  
          */
-        add_custom_data_layer(to_position: number /*i64*/ = -1): void
+        add_custom_data_layer(to_position: int64 = -1): void
         
         /** Moves the custom data layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
-        move_custom_data_layer(layer_index: number /*i64*/, to_position: number /*i64*/): void
+        move_custom_data_layer(layer_index: int64, to_position: int64): void
         
         /** Removes the custom data layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
-        remove_custom_data_layer(layer_index: number /*i64*/): void
+        remove_custom_data_layer(layer_index: int64): void
         
         /** Returns the index of the custom data layer identified by the given name. */
-        get_custom_data_layer_by_name(layer_name: string): number /*i64*/
+        get_custom_data_layer_by_name(layer_name: string): int64
         
         /** Sets the name of the custom data layer identified by the given index. Names are identifiers of the layer therefore if the name is already taken it will fail and raise an error. */
-        set_custom_data_layer_name(layer_index: number /*i64*/, layer_name: string): void
+        set_custom_data_layer_name(layer_index: int64, layer_name: string): void
         
         /** Returns the name of the custom data layer identified by the given index. */
-        get_custom_data_layer_name(layer_index: number /*i64*/): string
+        get_custom_data_layer_name(layer_index: int64): string
         
         /** Sets the type of the custom data layer identified by the given index. */
-        set_custom_data_layer_type(layer_index: number /*i64*/, layer_type: Variant.Type): void
+        set_custom_data_layer_type(layer_index: int64, layer_type: Variant.Type): void
         
         /** Returns the type of the custom data layer identified by the given index. */
-        get_custom_data_layer_type(layer_index: number /*i64*/): Variant.Type
+        get_custom_data_layer_type(layer_index: int64): Variant.Type
         
         /** Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.  
          *  This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target source when one is available.  
          *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
          */
-        set_source_level_tile_proxy(source_from: number /*i64*/, source_to: number /*i64*/): void
+        set_source_level_tile_proxy(source_from: int64, source_to: int64): void
         
         /** Returns the source-level proxy for the given source identifier.  
          *  If the TileSet has no proxy for the given identifier, returns -1.  
          */
-        get_source_level_tile_proxy(source_from: number /*i64*/): number /*i64*/
+        get_source_level_tile_proxy(source_from: int64): int64
         
         /** Returns if there is a source-level proxy for the given source ID. */
-        has_source_level_tile_proxy(source_from: number /*i64*/): boolean
+        has_source_level_tile_proxy(source_from: int64): boolean
         
         /** Removes a source-level tile proxy. */
-        remove_source_level_tile_proxy(source_from: number /*i64*/): void
+        remove_source_level_tile_proxy(source_from: int64): void
         
         /** Creates a coordinates-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers. The alternative tile ID is kept the same when using coordinates-level proxies.  
          *  This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.  
          *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
          */
-        set_coords_level_tile_proxy(p_source_from: number /*i64*/, coords_from: Vector2i, source_to: number /*i64*/, coords_to: Vector2i): void
+        set_coords_level_tile_proxy(p_source_from: int64, coords_from: Vector2i, source_to: int64, coords_to: Vector2i): void
         
         /** Returns the coordinate-level proxy for the given identifiers. The returned array contains the two target identifiers of the proxy (source ID and atlas coordinates ID).  
          *  If the TileSet has no proxy for the given identifiers, returns an empty Array.  
          */
-        get_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): Array
+        get_coords_level_tile_proxy(source_from: int64, coords_from: Vector2i): Array
         
         /** Returns if there is a coodinates-level proxy for the given identifiers. */
-        has_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): boolean
+        has_coords_level_tile_proxy(source_from: int64, coords_from: Vector2i): boolean
         
         /** Removes a coordinates-level proxy for the given identifiers. */
-        remove_coords_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i): void
+        remove_coords_level_tile_proxy(source_from: int64, coords_from: Vector2i): void
         
         /** Create an alternative-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers.  
          *  This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.  
          *  Proxied tiles can be automatically replaced in TileMap nodes using the editor.  
          */
-        set_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/, source_to: number /*i64*/, coords_to: Vector2i, alternative_to: number /*i64*/): void
+        set_alternative_level_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64, source_to: int64, coords_to: Vector2i, alternative_to: int64): void
         
         /** Returns the alternative-level proxy for the given identifiers. The returned array contains the three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).  
          *  If the TileSet has no proxy for the given identifiers, returns an empty Array.  
          */
-        get_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): Array
+        get_alternative_level_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): Array
         
         /** Returns if there is an alternative-level proxy for the given identifiers. */
-        has_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): boolean
+        has_alternative_level_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): boolean
         
         /** Removes an alternative-level proxy for the given identifiers. */
-        remove_alternative_level_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): void
+        remove_alternative_level_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): void
         
         /** According to the configured proxies, maps the provided identifiers to a new set of identifiers. The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.  
          *  This function first look for matching alternative-level proxies, then coordinates-level proxies, then source-level proxies.  
          *  If no proxy corresponding to provided identifiers are found, returns the same values the ones used as arguments.  
          */
-        map_tile_proxy(source_from: number /*i64*/, coords_from: Vector2i, alternative_from: number /*i64*/): Array
+        map_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): Array
         
         /** Clears tile proxies pointing to invalid tiles. */
         cleanup_invalid_tile_proxies(): void
@@ -1850,28 +1782,28 @@ declare module "godot" {
         clear_tile_proxies(): void
         
         /** Adds a [TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [param index]. */
-        add_pattern(pattern: TileMapPattern, index: number /*i64*/ = -1): number /*i64*/
+        add_pattern(pattern: TileMapPattern, index: int64 = -1): int64
         
         /** Returns the [TileMapPattern] at the given [param index]. */
-        get_pattern(index: number /*i64*/ = -1): TileMapPattern
+        get_pattern(index: int64 = -1): TileMapPattern
         
         /** Remove the [TileMapPattern] at the given index. */
-        remove_pattern(index: number /*i64*/): void
+        remove_pattern(index: int64): void
         
         /** Returns the number of [TileMapPattern] this tile set handles. */
-        get_patterns_count(): number /*i64*/
+        get_patterns_count(): int64
         
         /** The tile shape. */
-        get tile_shape(): number /*i64*/
-        set tile_shape(value: number /*i64*/)
+        get tile_shape(): int64
+        set tile_shape(value: int64)
         
         /** For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles are indexed in the TileMap grid. */
-        get tile_layout(): number /*i64*/
-        set tile_layout(value: number /*i64*/)
+        get tile_layout(): int64
+        set tile_layout(value: int64)
         
         /** For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset axis. */
-        get tile_offset_axis(): number /*i64*/
-        set tile_offset_axis(value: number /*i64*/)
+        get tile_offset_axis(): int64
+        set tile_offset_axis(value: int64)
         
         /** The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas. */
         get tile_size(): Vector2i
@@ -1936,7 +1868,7 @@ declare module "godot" {
         get_tile_size_in_atlas(atlas_coords: Vector2i): Vector2i
         
         /** Returns whether there is enough room in an atlas to create/modify a tile with the given properties. If [param ignored_tile] is provided, act as is the given tile was not present in the atlas. This may be used when you want to modify a tile's properties. */
-        has_room_for_tile(atlas_coords: Vector2i, size: Vector2i, animation_columns: number /*i64*/, animation_separation: Vector2i, frames_count: number /*i64*/, ignored_tile: Vector2i = <any> {} /*compound.type from 6([object Object])*/): boolean
+        has_room_for_tile(atlas_coords: Vector2i, size: Vector2i, animation_columns: int64, animation_separation: Vector2i, frames_count: int64, ignored_tile: Vector2i = <any> {} /*compound.type from 6([object Object])*/): boolean
         
         /** Returns an array of tiles coordinates ID that will be automatically removed when modifying one or several of those properties: [param texture], [param margins], [param separation] or [param texture_region_size]. This can be used to undo changes that would have caused tiles data loss. */
         get_tiles_to_be_removed_on_change(texture: Texture2D, margins: Vector2i, separation: Vector2i, texture_region_size: Vector2i): PackedVector2Array
@@ -1951,10 +1883,10 @@ declare module "godot" {
         clear_tiles_outside_texture(): void
         
         /** Sets the number of columns in the animation layout of the tile at coordinates [param atlas_coords]. If set to 0, then the different frames of the animation are laid out as a single horizontal line in the atlas. */
-        set_tile_animation_columns(atlas_coords: Vector2i, frame_columns: number /*i64*/): void
+        set_tile_animation_columns(atlas_coords: Vector2i, frame_columns: int64): void
         
         /** Returns how many columns the tile at [param atlas_coords] has in its animation layout. */
-        get_tile_animation_columns(atlas_coords: Vector2i): number /*i64*/
+        get_tile_animation_columns(atlas_coords: Vector2i): int64
         
         /** Sets the margin (in grid tiles) between each tile in the animation layout of the tile at coordinates [param atlas_coords] has. */
         set_tile_animation_separation(atlas_coords: Vector2i, separation: Vector2i): void
@@ -1963,10 +1895,10 @@ declare module "godot" {
         get_tile_animation_separation(atlas_coords: Vector2i): Vector2i
         
         /** Sets the animation speed of the tile at coordinates [param atlas_coords] has. */
-        set_tile_animation_speed(atlas_coords: Vector2i, speed: number /*f64*/): void
+        set_tile_animation_speed(atlas_coords: Vector2i, speed: float64): void
         
         /** Returns the animation speed of the tile at coordinates [param atlas_coords]. */
-        get_tile_animation_speed(atlas_coords: Vector2i): number /*f64*/
+        get_tile_animation_speed(atlas_coords: Vector2i): float64
         
         /** Sets the [enum TileAnimationMode] of the tile at [param atlas_coords] to [param mode]. See also [method get_tile_animation_mode]. */
         set_tile_animation_mode(atlas_coords: Vector2i, mode: TileSetAtlasSource.TileAnimationMode): void
@@ -1975,46 +1907,46 @@ declare module "godot" {
         get_tile_animation_mode(atlas_coords: Vector2i): TileSetAtlasSource.TileAnimationMode
         
         /** Sets how many animation frames the tile at coordinates [param atlas_coords] has. */
-        set_tile_animation_frames_count(atlas_coords: Vector2i, frames_count: number /*i64*/): void
+        set_tile_animation_frames_count(atlas_coords: Vector2i, frames_count: int64): void
         
         /** Returns how many animation frames has the tile at coordinates [param atlas_coords]. */
-        get_tile_animation_frames_count(atlas_coords: Vector2i): number /*i64*/
+        get_tile_animation_frames_count(atlas_coords: Vector2i): int64
         
         /** Sets the animation frame [param duration] of frame [param frame_index] for the tile at coordinates [param atlas_coords]. */
-        set_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: number /*i64*/, duration: number /*f64*/): void
+        set_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: int64, duration: float64): void
         
         /** Returns the animation frame duration of frame [param frame_index] for the tile at coordinates [param atlas_coords]. */
-        get_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: number /*i64*/): number /*f64*/
+        get_tile_animation_frame_duration(atlas_coords: Vector2i, frame_index: int64): float64
         
         /** Returns the sum of the sum of the frame durations of the tile at coordinates [param atlas_coords]. This value needs to be divided by the animation speed to get the actual animation loop duration. */
-        get_tile_animation_total_duration(atlas_coords: Vector2i): number /*f64*/
+        get_tile_animation_total_duration(atlas_coords: Vector2i): float64
         
         /** Creates an alternative tile for the tile at coordinates [param atlas_coords]. If [param alternative_id_override] is -1, give it an automatically generated unique ID, or assigns it the given ID otherwise.  
          *  Returns the new alternative identifier, or -1 if the alternative could not be created with a provided [param alternative_id_override].  
          */
-        create_alternative_tile(atlas_coords: Vector2i, alternative_id_override: number /*i64*/ = -1): number /*i64*/
+        create_alternative_tile(atlas_coords: Vector2i, alternative_id_override: int64 = -1): int64
         
         /** Remove a tile's alternative with alternative ID [param alternative_tile].  
          *  Calling this function with [param alternative_tile] equals to 0 will fail, as the base tile alternative cannot be removed.  
          */
-        remove_alternative_tile(atlas_coords: Vector2i, alternative_tile: number /*i64*/): void
+        remove_alternative_tile(atlas_coords: Vector2i, alternative_tile: int64): void
         
         /** Change a tile's alternative ID from [param alternative_tile] to [param new_id].  
          *  Calling this function with [param new_id] of 0 will fail, as the base tile alternative cannot be moved.  
          */
-        set_alternative_tile_id(atlas_coords: Vector2i, alternative_tile: number /*i64*/, new_id: number /*i64*/): void
+        set_alternative_tile_id(atlas_coords: Vector2i, alternative_tile: int64, new_id: int64): void
         
         /** Returns the alternative ID a following call to [method create_alternative_tile] would return. */
-        get_next_alternative_tile_id(atlas_coords: Vector2i): number /*i64*/
+        get_next_alternative_tile_id(atlas_coords: Vector2i): int64
         
         /** Returns the [TileData] object for the given atlas coordinates and alternative ID. */
-        get_tile_data(atlas_coords: Vector2i, alternative_tile: number /*i64*/): TileData
+        get_tile_data(atlas_coords: Vector2i, alternative_tile: int64): TileData
         
         /** Returns the atlas grid size, which depends on how many tiles can fit in the texture. It thus depends on the [member texture]'s size, the atlas [member margins], and the tiles' [member texture_region_size]. */
         get_atlas_grid_size(): Vector2i
         
         /** Returns a tile's texture region in the atlas texture. For animated tiles, a [param frame] argument might be provided for the different frames of the animation. */
-        get_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/ = 0): Rect2i
+        get_tile_texture_region(atlas_coords: Vector2i, frame: int64 = 0): Rect2i
         _update_padded_texture(): void
         
         /** If [member use_texture_padding] is `false`, returns [member texture]. Otherwise, returns and internal [ImageTexture] created that includes the padding. */
@@ -2024,7 +1956,7 @@ declare module "godot" {
          *      
          *  **Note:** If [member use_texture_padding] is `false`, returns the same as [method get_tile_texture_region].  
          */
-        get_runtime_tile_texture_region(atlas_coords: Vector2i, frame: number /*i64*/): Rect2i
+        get_runtime_tile_texture_region(atlas_coords: Vector2i, frame: int64): Rect2i
         
         /** The atlas texture. */
         get texture(): Texture2D
@@ -2052,7 +1984,7 @@ declare module "godot" {
         constructor(identifier?: any)
         _set_selection_from_array(_unnamed_arg0: Array): void
         _check_outside_tiles(): void
-        readonly source_id_changed: Signal // source_id: number /*i64*/ => void
+        readonly source_id_changed: Signal // source_id: int64 => void
     }
     class TileSetAtlasSourceProxyObject extends Object {
         constructor(identifier?: any)
@@ -2066,10 +1998,10 @@ declare module "godot" {
     }
     class TileSetScenesCollectionProxyObject extends Object {
         constructor(identifier?: any)
-        set_id(id: number /*i64*/): void
-        get_id(): number /*i64*/
-        get id(): number /*i64*/
-        set id(value: number /*i64*/)
+        set_id(id: int64): void
+        get_id(): int64
+        get id(): int64
+        set id(value: int64)
         readonly changed: Signal // what: string => void
     }
     /** Exposes a set of scenes as tiles for a [TileSet] resource.  
@@ -2079,44 +2011,44 @@ declare module "godot" {
     class TileSetScenesCollectionSource extends TileSetSource {
         constructor(identifier?: any)
         /** Returns the number or scene tiles this TileSet source has. */
-        get_scene_tiles_count(): number /*i64*/
+        get_scene_tiles_count(): int64
         
         /** Returns the scene tile ID of the scene tile at [param index]. */
-        get_scene_tile_id(index: number /*i64*/): number /*i64*/
+        get_scene_tile_id(index: int64): int64
         
         /** Returns whether this TileSet source has a scene tile with [param id]. */
-        has_scene_tile_id(id: number /*i64*/): boolean
+        has_scene_tile_id(id: int64): boolean
         
         /** Creates a scene-based tile out of the given scene.  
          *  Returns a newly generated unique ID.  
          */
-        create_scene_tile(packed_scene: PackedScene, id_override: number /*i64*/ = -1): number /*i64*/
+        create_scene_tile(packed_scene: PackedScene, id_override: int64 = -1): int64
         
         /** Changes a scene tile's ID from [param id] to [param new_id]. This will fail if there is already a tile with an ID equal to [param new_id]. */
-        set_scene_tile_id(id: number /*i64*/, new_id: number /*i64*/): void
+        set_scene_tile_id(id: int64, new_id: int64): void
         
         /** Assigns a [PackedScene] resource to the scene tile with [param id]. This will fail if the scene does not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap. */
-        set_scene_tile_scene(id: number /*i64*/, packed_scene: PackedScene): void
+        set_scene_tile_scene(id: int64, packed_scene: PackedScene): void
         
         /** Returns the [PackedScene] resource of scene tile with [param id]. */
-        get_scene_tile_scene(id: number /*i64*/): PackedScene
+        get_scene_tile_scene(id: int64): PackedScene
         
         /** Sets whether or not the scene tile with [param id] should display a placeholder in the editor. This might be useful for scenes that are not visible. */
-        set_scene_tile_display_placeholder(id: number /*i64*/, display_placeholder: boolean): void
+        set_scene_tile_display_placeholder(id: int64, display_placeholder: boolean): void
         
         /** Returns whether the scene tile with [param id] displays a placeholder in the editor. */
-        get_scene_tile_display_placeholder(id: number /*i64*/): boolean
+        get_scene_tile_display_placeholder(id: int64): boolean
         
         /** Remove the scene tile with [param id]. */
-        remove_scene_tile(id: number /*i64*/): void
+        remove_scene_tile(id: int64): void
         
         /** Returns the scene ID a following call to [method create_scene_tile] would return. */
-        get_next_scene_tile_id(): number /*i64*/
+        get_next_scene_tile_id(): int64
     }
     class TileSetScenesCollectionSourceEditor extends HBoxContainer {
         constructor(identifier?: any)
         _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
-        readonly source_id_changed: Signal // source_id: number /*i64*/ => void
+        readonly source_id_changed: Signal // source_id: int64 => void
     }
     /** Exposes a set of tiles for a [TileSet] resource.  
      *  	  
@@ -2125,10 +2057,10 @@ declare module "godot" {
     class TileSetSource extends Resource {
         constructor(identifier?: any)
         /** Returns how many tiles this atlas source defines (not including alternative tiles). */
-        get_tiles_count(): number /*i64*/
+        get_tiles_count(): int64
         
         /** Returns the tile coordinates ID of the tile with index [param index]. */
-        get_tile_id(index: number /*i64*/): Vector2i
+        get_tile_id(index: int64): Vector2i
         
         /** Returns if this atlas has a tile with coordinates ID [param atlas_coords]. */
         has_tile(atlas_coords: Vector2i): boolean
@@ -2137,13 +2069,13 @@ declare module "godot" {
          *  For [TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always part of the alternatives list.  
          *  Returns -1 if there is not tile at the given coords.  
          */
-        get_alternative_tiles_count(atlas_coords: Vector2i): number /*i64*/
+        get_alternative_tiles_count(atlas_coords: Vector2i): int64
         
         /** Returns the alternative ID for the tile with coordinates ID [param atlas_coords] at index [param index]. */
-        get_alternative_tile_id(atlas_coords: Vector2i, index: number /*i64*/): number /*i64*/
+        get_alternative_tile_id(atlas_coords: Vector2i, index: int64): int64
         
         /** Returns if the base tile at coordinates [param atlas_coords] has an alternative with ID [param alternative_tile]. */
-        has_alternative_tile(atlas_coords: Vector2i, alternative_tile: number /*i64*/): boolean
+        has_alternative_tile(atlas_coords: Vector2i, alternative_tile: int64): boolean
     }
     class TileSourceInspectorPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
@@ -2166,8 +2098,8 @@ declare module "godot" {
      */
     class Timer extends Node {
         constructor(identifier?: any)
-        set_wait_time(time_sec: number /*f64*/): void
-        get_wait_time(): number /*f64*/
+        set_wait_time(time_sec: float64): void
+        get_wait_time(): float64
         set_one_shot(enable: boolean): void
         is_one_shot(): boolean
         set_autostart(enable: boolean): void
@@ -2177,7 +2109,7 @@ declare module "godot" {
          *      
          *  **Note:** This method will not resume a paused timer. See [member paused].  
          */
-        start(time_sec: number /*f64*/ = -1): void
+        start(time_sec: float64 = -1): void
         
         /** Stops the timer. */
         stop(): void
@@ -2186,20 +2118,20 @@ declare module "godot" {
         
         /** Returns `true` if the timer is stopped. */
         is_stopped(): boolean
-        get_time_left(): number /*f64*/
+        get_time_left(): float64
         set_timer_process_callback(callback: Timer.TimerProcessCallback): void
         get_timer_process_callback(): Timer.TimerProcessCallback
         
         /** Processing callback. See [enum TimerProcessCallback]. */
-        get process_callback(): number /*i64*/
-        set process_callback(value: number /*i64*/)
+        get process_callback(): int64
+        set process_callback(value: int64)
         
         /** The wait time in seconds.  
          *      
          *  **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if [member process_callback] is [constant TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For very low wait times, it is recommended to use a process loop in a script instead of using a Timer node. Timers are affected by [member Engine.time_scale], a higher scale means quicker timeouts, and vice versa.  
          */
-        get wait_time(): number /*f64*/
-        set wait_time(value: number /*f64*/)
+        get wait_time(): float64
+        set wait_time(value: float64)
         
         /** If `true`, the timer will stop when reaching 0. If `false`, it will restart. */
         get one_shot(): boolean
@@ -2220,7 +2152,7 @@ declare module "godot" {
          *      
          *  **Note:** This value is read-only and cannot be set. It is based on [member wait_time], which can be set using [method start].  
          */
-        get time_left(): number /*f64*/
+        get time_left(): float64
         
         /** Emitted when the timer reaches 0. */
         readonly timeout: Signal //  => void
@@ -2231,30 +2163,30 @@ declare module "godot" {
      */
     class TorusMesh extends PrimitiveMesh {
         constructor(identifier?: any)
-        set_inner_radius(radius: number /*f64*/): void
-        get_inner_radius(): number /*f64*/
-        set_outer_radius(radius: number /*f64*/): void
-        get_outer_radius(): number /*f64*/
-        set_rings(rings: number /*i64*/): void
-        get_rings(): number /*i64*/
-        set_ring_segments(rings: number /*i64*/): void
-        get_ring_segments(): number /*i64*/
+        set_inner_radius(radius: float64): void
+        get_inner_radius(): float64
+        set_outer_radius(radius: float64): void
+        get_outer_radius(): float64
+        set_rings(rings: int64): void
+        get_rings(): int64
+        set_ring_segments(rings: int64): void
+        get_ring_segments(): int64
         
         /** The inner radius of the torus. */
-        get inner_radius(): number /*f64*/
-        set inner_radius(value: number /*f64*/)
+        get inner_radius(): float64
+        set inner_radius(value: float64)
         
         /** The outer radius of the torus. */
-        get outer_radius(): number /*f64*/
-        set outer_radius(value: number /*f64*/)
+        get outer_radius(): float64
+        set outer_radius(value: float64)
         
         /** The number of slices the torus is constructed of. */
-        get rings(): number /*i64*/
-        set rings(value: number /*i64*/)
+        get rings(): int64
+        set rings(value: int64)
         
         /** The number of edges each ring of the torus is constructed of. */
-        get ring_segments(): number /*i64*/
-        set ring_segments(value: number /*i64*/)
+        get ring_segments(): int64
+        set ring_segments(value: int64)
     }
     namespace TouchScreenButton {
         enum VisibilityMode {
@@ -2329,8 +2261,8 @@ declare module "godot" {
         set action(value: StringName)
         
         /** The button's visibility mode. See [enum VisibilityMode] for possible values. */
-        get visibility_mode(): number /*i64*/
-        set visibility_mode(value: number /*i64*/)
+        get visibility_mode(): int64
+        set visibility_mode(value: int64)
         
         /** Emitted when the button is pressed (down). */
         readonly pressed: Signal //  => void
@@ -2345,7 +2277,7 @@ declare module "godot" {
     class Translation extends Resource {
         constructor(identifier?: any)
         /** Virtual method to override [method get_plural_message]. */
-        /* gdvirtual */ _get_plural_message(src_message: StringName, src_plural_message: StringName, n: number /*i64*/, context: StringName): StringName
+        /* gdvirtual */ _get_plural_message(src_message: StringName, src_plural_message: StringName, n: int64, context: StringName): StringName
         
         /** Virtual method to override [method get_message]. */
         /* gdvirtual */ _get_message(src_message: StringName, context: StringName): StringName
@@ -2368,7 +2300,7 @@ declare module "godot" {
         /** Returns a message's translation involving plurals.  
          *  The number [param n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.  
          */
-        get_plural_message(src_message: StringName, src_plural_message: StringName, n: number /*i64*/, context: StringName = ''): StringName
+        get_plural_message(src_message: StringName, src_plural_message: StringName, n: int64, context: StringName = ''): StringName
         
         /** Erases a message. */
         erase_message(src_message: StringName, context: StringName = ''): void
@@ -2380,7 +2312,7 @@ declare module "godot" {
         get_translated_message_list(): PackedStringArray
         
         /** Returns the number of existing messages. */
-        get_message_count(): number /*i64*/
+        get_message_count(): int64
         _set_messages(messages: Dictionary): void
         _get_messages(): Dictionary
         get messages(): Dictionary
@@ -2438,34 +2370,34 @@ declare module "godot" {
          *  If [param parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.  
          *  The new item will be the [param index]-th child of parent, or it will be the last child if there are not enough siblings.  
          */
-        create_item(parent: TreeItem = <any> {} /*compound.type from nil*/, index: number /*i64*/ = -1): TreeItem
+        create_item(parent: TreeItem = <any> {} /*compound.type from nil*/, index: int64 = -1): TreeItem
         
         /** Returns the tree's root item, or `null` if the tree is empty. */
         get_root(): TreeItem
         
         /** Overrides the calculated minimum width of a column. It can be set to `0` to restore the default behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [member Control.size_flags_stretch_ratio]. */
-        set_column_custom_minimum_width(column: number /*i64*/, min_width: number /*i64*/): void
+        set_column_custom_minimum_width(column: int64, min_width: int64): void
         
         /** If `true`, the column will have the "Expand" flag of [Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [member Control.size_flags_stretch_ratio] (see [method set_column_expand_ratio]). */
-        set_column_expand(column: number /*i64*/, expand: boolean): void
+        set_column_expand(column: int64, expand: boolean): void
         
         /** Sets the relative expand ratio for a column. See [method set_column_expand]. */
-        set_column_expand_ratio(column: number /*i64*/, ratio: number /*i64*/): void
+        set_column_expand_ratio(column: int64, ratio: int64): void
         
         /** Allows to enable clipping for column's content, making the content size ignored. */
-        set_column_clip_content(column: number /*i64*/, enable: boolean): void
+        set_column_clip_content(column: int64, enable: boolean): void
         
         /** Returns `true` if the column has enabled expanding (see [method set_column_expand]). */
-        is_column_expanding(column: number /*i64*/): boolean
+        is_column_expanding(column: int64): boolean
         
         /** Returns `true` if the column has enabled clipping (see [method set_column_clip_content]). */
-        is_column_clipping_content(column: number /*i64*/): boolean
+        is_column_clipping_content(column: int64): boolean
         
         /** Returns the expand ratio assigned to the column. */
-        get_column_expand_ratio(column: number /*i64*/): number /*i64*/
+        get_column_expand_ratio(column: int64): int64
         
         /** Returns the column's width in pixels. */
-        get_column_width(column: number /*i64*/): number /*i64*/
+        get_column_width(column: int64): int64
         set_hide_root(enable: boolean): void
         is_root_hidden(): boolean
         
@@ -2481,23 +2413,23 @@ declare module "godot" {
         get_selected(): TreeItem
         
         /** Selects the specified [TreeItem] and column. */
-        set_selected(item: TreeItem, column: number /*i64*/): void
+        set_selected(item: TreeItem, column: int64): void
         
         /** Returns the currently focused column, or -1 if no column is focused.  
          *  In [constant SELECT_SINGLE] mode, the focused column is the selected column. In [constant SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [constant SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not necessarily any column selected.  
          *  To tell whether a column of an item is selected, use [method TreeItem.is_selected].  
          */
-        get_selected_column(): number /*i64*/
+        get_selected_column(): int64
         
         /** Returns the last pressed button's index. */
-        get_pressed_button(): number /*i64*/
+        get_pressed_button(): int64
         set_select_mode(mode: Tree.SelectMode): void
         get_select_mode(): Tree.SelectMode
         
         /** Deselects all tree items (rows and columns). In [constant SELECT_MULTI] mode also removes selection cursor. */
         deselect_all(): void
-        set_columns(amount: number /*i64*/): void
-        get_columns(): number /*i64*/
+        set_columns(amount: int64): void
+        get_columns(): int64
         
         /** Returns the currently edited item. Can be used with [signal item_edited] to get the item that was modified.  
          *    
@@ -2505,7 +2437,7 @@ declare module "godot" {
         get_edited(): TreeItem
         
         /** Returns the column for the currently edited item. */
-        get_edited_column(): number /*i64*/
+        get_edited_column(): int64
         
         /** Edits the selected tree item as if it was clicked.  
          *  Either the item must be set editable with [method TreeItem.set_editable] or [param force_edit] must be `true`.  
@@ -2517,22 +2449,22 @@ declare module "godot" {
         get_custom_popup_rect(): Rect2
         
         /** Returns the rectangle area for the specified [TreeItem]. If [param column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned. */
-        get_item_area_rect(item: TreeItem, column: number /*i64*/ = -1, button_index: number /*i64*/ = -1): Rect2
+        get_item_area_rect(item: TreeItem, column: int64 = -1, button_index: int64 = -1): Rect2
         
         /** Returns the tree item at the specified position (relative to the tree origin position). */
         get_item_at_position(position: Vector2): TreeItem
         
         /** Returns the column index at [param position], or -1 if no item is there. */
-        get_column_at_position(position: Vector2): number /*i64*/
+        get_column_at_position(position: Vector2): int64
         
         /** Returns the drop section at [param position], or -100 if no item is there.  
          *  Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop sections, respectively. See [enum DropModeFlags] for a description of each drop section.  
          *  To get the item which the returned drop section is relative to, use [method get_item_at_position].  
          */
-        get_drop_section_at_position(position: Vector2): number /*i64*/
+        get_drop_section_at_position(position: Vector2): int64
         
         /** Returns the button ID at [param position], or -1 if no button is there. */
-        get_button_id_at_position(position: Vector2): number /*i64*/
+        get_button_id_at_position(position: Vector2): int64
         
         /** Makes the currently focused cell visible.  
          *  This will scroll the tree if necessary. In [constant SELECT_ROW] mode, this will not do horizontal scrolling, as all the cells in the selected row is focused logically.  
@@ -2544,28 +2476,28 @@ declare module "godot" {
         are_column_titles_visible(): boolean
         
         /** Sets the title of a column. */
-        set_column_title(column: number /*i64*/, title: string): void
+        set_column_title(column: int64, title: string): void
         
         /** Returns the column's title. */
-        get_column_title(column: number /*i64*/): string
+        get_column_title(column: int64): string
         
         /** Sets the column title alignment. Note that [constant @GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not supported for column titles. */
-        set_column_title_alignment(column: number /*i64*/, title_alignment: HorizontalAlignment): void
+        set_column_title_alignment(column: int64, title_alignment: HorizontalAlignment): void
         
         /** Returns the column title alignment. */
-        get_column_title_alignment(column: number /*i64*/): HorizontalAlignment
+        get_column_title_alignment(column: int64): HorizontalAlignment
         
         /** Sets column title base writing direction. */
-        set_column_title_direction(column: number /*i64*/, direction: Control.TextDirection): void
+        set_column_title_direction(column: int64, direction: Control.TextDirection): void
         
         /** Returns column title base writing direction. */
-        get_column_title_direction(column: number /*i64*/): Control.TextDirection
+        get_column_title_direction(column: int64): Control.TextDirection
         
         /** Sets language code of column title used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
-        set_column_title_language(column: number /*i64*/, language: string): void
+        set_column_title_language(column: int64, language: string): void
         
         /** Returns column title language code. */
-        get_column_title_language(column: number /*i64*/): string
+        get_column_title_language(column: int64): string
         
         /** Returns the current scrolling position. */
         get_scroll(): Vector2
@@ -2580,8 +2512,8 @@ declare module "godot" {
         is_folding_hidden(): boolean
         set_enable_recursive_folding(enable: boolean): void
         is_recursive_folding_enabled(): boolean
-        set_drop_mode_flags(flags: number /*i64*/): void
-        get_drop_mode_flags(): number /*i64*/
+        set_drop_mode_flags(flags: int64): void
+        get_drop_mode_flags(): int64
         set_allow_rmb_select(allow: boolean): void
         get_allow_rmb_select(): boolean
         set_allow_reselect(allow: boolean): void
@@ -2590,8 +2522,8 @@ declare module "godot" {
         get_allow_search(): boolean
         
         /** The number of columns. */
-        get columns(): number /*i64*/
-        set columns(value: number /*i64*/)
+        get columns(): int64
+        set columns(value: int64)
         
         /** If `true`, column titles are visible. */
         get column_titles_visible(): boolean
@@ -2624,12 +2556,12 @@ declare module "godot" {
         /** The drop mode as an OR combination of flags. See [enum DropModeFlags] constants. Once dropping is done, reverts to [constant DROP_MODE_DISABLED]. Setting this during [method Control._can_drop_data] is recommended.  
          *  This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.  
          */
-        get drop_mode_flags(): number /*i64*/
-        set drop_mode_flags(value: number /*i64*/)
+        get drop_mode_flags(): int64
+        set drop_mode_flags(value: int64)
         
         /** Allows single or multiple selection. See the [enum SelectMode] constants. */
-        get select_mode(): number /*i64*/
-        set select_mode(value: number /*i64*/)
+        get select_mode(): int64
+        set select_mode(value: int64)
         
         /** If `true`, enables horizontal scrolling. */
         get scroll_horizontal_enabled(): boolean
@@ -2646,19 +2578,19 @@ declare module "godot" {
         readonly cell_selected: Signal //  => void
         
         /** Emitted instead of [signal item_selected] if [member select_mode] is set to [constant SELECT_MULTI]. */
-        readonly multi_selected: Signal // item: TreeItem, column: number /*i64*/, selected: boolean => void
+        readonly multi_selected: Signal // item: TreeItem, column: int64, selected: boolean => void
         
         /** Emitted when an item is selected with a mouse button. */
-        readonly item_mouse_selected: Signal // position: Vector2, mouse_button_index: number /*i64*/ => void
+        readonly item_mouse_selected: Signal // position: Vector2, mouse_button_index: int64 => void
         
         /** Emitted when a mouse button is clicked in the empty space of the tree. */
-        readonly empty_clicked: Signal // position: Vector2, mouse_button_index: number /*i64*/ => void
+        readonly empty_clicked: Signal // position: Vector2, mouse_button_index: int64 => void
         
         /** Emitted when an item is edited. */
         readonly item_edited: Signal //  => void
         
         /** Emitted when an item with [constant TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button. */
-        readonly custom_item_clicked: Signal // mouse_button_index: number /*i64*/ => void
+        readonly custom_item_clicked: Signal // mouse_button_index: int64 => void
         
         /** Emitted when an item's icon is double-clicked. For a signal that emits when any part of the item is double-clicked, see [signal item_activated]. */
         readonly item_icon_double_clicked: Signal //  => void
@@ -2667,10 +2599,10 @@ declare module "godot" {
         readonly item_collapsed: Signal // item: TreeItem => void
         
         /** Emitted when [method TreeItem.propagate_check] is called. Connect to this signal to process the items that are affected when [method TreeItem.propagate_check] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item. */
-        readonly check_propagated_to_item: Signal // item: TreeItem, column: number /*i64*/ => void
+        readonly check_propagated_to_item: Signal // item: TreeItem, column: int64 => void
         
         /** Emitted when a button on the tree was pressed (see [method TreeItem.add_button]). */
-        readonly button_clicked: Signal // item: TreeItem, column: number /*i64*/, id: number /*i64*/, mouse_button_index: number /*i64*/ => void
+        readonly button_clicked: Signal // item: TreeItem, column: int64, id: int64, mouse_button_index: int64 => void
         
         /** Emitted when a cell with the [constant TreeItem.CELL_MODE_CUSTOM] is clicked to be edited. */
         readonly custom_popup_edited: Signal // arrow_clicked: boolean => void
@@ -2679,7 +2611,7 @@ declare module "godot" {
         readonly item_activated: Signal //  => void
         
         /** Emitted when a column's title is clicked with either [constant MOUSE_BUTTON_LEFT] or [constant MOUSE_BUTTON_RIGHT]. */
-        readonly column_title_clicked: Signal // column: number /*i64*/, mouse_button_index: number /*i64*/ => void
+        readonly column_title_clicked: Signal // column: int64, mouse_button_index: int64 => void
         
         /** Emitted when a left mouse button click does not select any item. */
         readonly nothing_selected: Signal //  => void
@@ -2707,126 +2639,126 @@ declare module "godot" {
     class TreeItem extends Object {
         constructor(identifier?: any)
         /** Sets the given column's cell mode to [param mode]. See [enum TreeCellMode] constants. */
-        set_cell_mode(column: number /*i64*/, mode: TreeItem.TreeCellMode): void
+        set_cell_mode(column: int64, mode: TreeItem.TreeCellMode): void
         
         /** Returns the column's cell mode. */
-        get_cell_mode(column: number /*i64*/): TreeItem.TreeCellMode
+        get_cell_mode(column: int64): TreeItem.TreeCellMode
         
         /** If [param multiline] is `true`, the given [param column] is multiline editable.  
          *      
          *  **Note:** This option only affects the type of control ([LineEdit] or [TextEdit]) that appears when editing the column. You can set multiline values with [method set_text] even if the column is not multiline editable.  
          */
-        set_edit_multiline(column: number /*i64*/, multiline: boolean): void
+        set_edit_multiline(column: int64, multiline: boolean): void
         
         /** Returns `true` if the given [param column] is multiline editable. */
-        is_edit_multiline(column: number /*i64*/): boolean
+        is_edit_multiline(column: int64): boolean
         
         /** If [param checked] is `true`, the given [param column] is checked. Clears column's indeterminate status. */
-        set_checked(column: number /*i64*/, checked: boolean): void
+        set_checked(column: int64, checked: boolean): void
         
         /** If [param indeterminate] is `true`, the given [param column] is marked indeterminate.  
          *      
          *  **Note:** If set `true` from `false`, then column is cleared of checked status.  
          */
-        set_indeterminate(column: number /*i64*/, indeterminate: boolean): void
+        set_indeterminate(column: int64, indeterminate: boolean): void
         
         /** Returns `true` if the given [param column] is checked. */
-        is_checked(column: number /*i64*/): boolean
+        is_checked(column: int64): boolean
         
         /** Returns `true` if the given [param column] is indeterminate. */
-        is_indeterminate(column: number /*i64*/): boolean
+        is_indeterminate(column: int64): boolean
         
         /** Propagates this item's checked status to its children and parents for the given [param column]. It is possible to process the items affected by this method call by connecting to [signal Tree.check_propagated_to_item]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If [param emit_signal] is `false`, then [signal Tree.check_propagated_to_item] will not be emitted. */
-        propagate_check(column: number /*i64*/, emit_signal: boolean = true): void
+        propagate_check(column: int64, emit_signal: boolean = true): void
         
         /** Sets the given column's text value. */
-        set_text(column: number /*i64*/, text: string): void
+        set_text(column: int64, text: string): void
         
         /** Returns the given column's text. */
-        get_text(column: number /*i64*/): string
+        get_text(column: int64): string
         
         /** Sets item's text base writing direction. */
-        set_text_direction(column: number /*i64*/, direction: Control.TextDirection): void
+        set_text_direction(column: int64, direction: Control.TextDirection): void
         
         /** Returns item's text base writing direction. */
-        get_text_direction(column: number /*i64*/): Control.TextDirection
+        get_text_direction(column: int64): Control.TextDirection
         
         /** Sets the autowrap mode in the given [param column]. If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle. */
-        set_autowrap_mode(column: number /*i64*/, autowrap_mode: TextServer.AutowrapMode): void
+        set_autowrap_mode(column: int64, autowrap_mode: TextServer.AutowrapMode): void
         
         /** Returns the text autowrap mode in the given [param column]. By default it is [constant TextServer.AUTOWRAP_OFF]. */
-        get_autowrap_mode(column: number /*i64*/): TextServer.AutowrapMode
+        get_autowrap_mode(column: int64): TextServer.AutowrapMode
         
         /** Sets the clipping behavior when the text exceeds the item's bounding rectangle in the given [param column]. */
-        set_text_overrun_behavior(column: number /*i64*/, overrun_behavior: TextServer.OverrunBehavior): void
+        set_text_overrun_behavior(column: int64, overrun_behavior: TextServer.OverrunBehavior): void
         
         /** Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given [param column]. By default it is [constant TextServer.OVERRUN_TRIM_ELLIPSIS]. */
-        get_text_overrun_behavior(column: number /*i64*/): TextServer.OverrunBehavior
-        set_structured_text_bidi_override(column: number /*i64*/, parser: TextServer.StructuredTextParser): void
-        get_structured_text_bidi_override(column: number /*i64*/): TextServer.StructuredTextParser
-        set_structured_text_bidi_override_options(column: number /*i64*/, args: Array): void
-        get_structured_text_bidi_override_options(column: number /*i64*/): Array
+        get_text_overrun_behavior(column: int64): TextServer.OverrunBehavior
+        set_structured_text_bidi_override(column: int64, parser: TextServer.StructuredTextParser): void
+        get_structured_text_bidi_override(column: int64): TextServer.StructuredTextParser
+        set_structured_text_bidi_override_options(column: int64, args: Array): void
+        get_structured_text_bidi_override_options(column: int64): Array
         
         /** Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
-        set_language(column: number /*i64*/, language: string): void
+        set_language(column: int64, language: string): void
         
         /** Returns item's text language code. */
-        get_language(column: number /*i64*/): string
+        get_language(column: int64): string
         
         /** Sets a string to be shown after a column's value (for example, a unit abbreviation). */
-        set_suffix(column: number /*i64*/, text: string): void
+        set_suffix(column: int64, text: string): void
         
         /** Gets the suffix string shown after the column value. */
-        get_suffix(column: number /*i64*/): string
+        get_suffix(column: int64): string
         
         /** Sets the given column's icon [Texture2D]. */
-        set_icon(column: number /*i64*/, texture: Texture2D): void
+        set_icon(column: int64, texture: Texture2D): void
         
         /** Returns the given column's icon [Texture2D]. Error if no icon is set. */
-        get_icon(column: number /*i64*/): Texture2D
+        get_icon(column: int64): Texture2D
         
         /** Sets the given column's icon's texture region. */
-        set_icon_region(column: number /*i64*/, region: Rect2): void
+        set_icon_region(column: int64, region: Rect2): void
         
         /** Returns the icon [Texture2D] region as [Rect2]. */
-        get_icon_region(column: number /*i64*/): Rect2
+        get_icon_region(column: int64): Rect2
         
         /** Sets the maximum allowed width of the icon in the given [param column]. This limit is applied on top of the default size of the icon and on top of [theme_item Tree.icon_max_width]. The height is adjusted according to the icon's ratio. */
-        set_icon_max_width(column: number /*i64*/, width: number /*i64*/): void
+        set_icon_max_width(column: int64, width: int64): void
         
         /** Returns the maximum allowed width of the icon in the given [param column]. */
-        get_icon_max_width(column: number /*i64*/): number /*i64*/
+        get_icon_max_width(column: int64): int64
         
         /** Modulates the given column's icon with [param modulate]. */
-        set_icon_modulate(column: number /*i64*/, modulate: Color): void
+        set_icon_modulate(column: int64, modulate: Color): void
         
         /** Returns the [Color] modulating the column's icon. */
-        get_icon_modulate(column: number /*i64*/): Color
+        get_icon_modulate(column: int64): Color
         
         /** Sets the value of a [constant CELL_MODE_RANGE] column. */
-        set_range(column: number /*i64*/, value: number /*f64*/): void
+        set_range(column: int64, value: float64): void
         
         /** Returns the value of a [constant CELL_MODE_RANGE] column. */
-        get_range(column: number /*i64*/): number /*f64*/
+        get_range(column: int64): float64
         
         /** Sets the range of accepted values for a column. The column must be in the [constant CELL_MODE_RANGE] mode.  
          *  If [param expr] is `true`, the edit mode slider will use an exponential scale as with [member Range.exp_edit].  
          */
-        set_range_config(column: number /*i64*/, min: number /*f64*/, max: number /*f64*/, step: number /*f64*/, expr: boolean = false): void
+        set_range_config(column: int64, min: float64, max: float64, step: float64, expr: boolean = false): void
         
         /** Returns a dictionary containing the range parameters for a given column. The keys are "min", "max", "step", and "expr". */
-        get_range_config(column: number /*i64*/): Dictionary
+        get_range_config(column: int64): Dictionary
         
         /** Sets the metadata value for the given column, which can be retrieved later using [method get_metadata]. This can be used, for example, to store a reference to the original data. */
-        set_metadata(column: number /*i64*/, meta: any): void
+        set_metadata(column: int64, meta: any): void
         
         /** Returns the metadata value that was set for the given column using [method set_metadata]. */
-        get_metadata(column: number /*i64*/): any
+        get_metadata(column: int64): any
         
         /** Sets the given column's custom draw callback to [param callback] method on [param object].  
          *  The [param callback] should accept two arguments: the [TreeItem] that is drawn and its position and size as a [Rect2].  
          */
-        set_custom_draw(column: number /*i64*/, object: Object, callback: StringName): void
+        set_custom_draw(column: int64, object: Object, callback: StringName): void
         set_collapsed(enable: boolean): void
         is_collapsed(): boolean
         
@@ -2840,122 +2772,122 @@ declare module "godot" {
         set_visible(enable: boolean): void
         is_visible(): boolean
         uncollapse_tree(): void
-        set_custom_minimum_height(height: number /*i64*/): void
-        get_custom_minimum_height(): number /*i64*/
+        set_custom_minimum_height(height: int64): void
+        get_custom_minimum_height(): int64
         
         /** If [param selectable] is `true`, the given [param column] is selectable. */
-        set_selectable(column: number /*i64*/, selectable: boolean): void
+        set_selectable(column: int64, selectable: boolean): void
         
         /** Returns `true` if the given [param column] is selectable. */
-        is_selectable(column: number /*i64*/): boolean
+        is_selectable(column: int64): boolean
         
         /** Returns `true` if the given [param column] is selected. */
-        is_selected(column: number /*i64*/): boolean
+        is_selected(column: int64): boolean
         
         /** Selects the given [param column]. */
-        select(column: number /*i64*/): void
+        select(column: int64): void
         
         /** Deselects the given column. */
-        deselect(column: number /*i64*/): void
+        deselect(column: int64): void
         
         /** If [param enabled] is `true`, the given [param column] is editable. */
-        set_editable(column: number /*i64*/, enabled: boolean): void
+        set_editable(column: int64, enabled: boolean): void
         
         /** Returns `true` if the given [param column] is editable. */
-        is_editable(column: number /*i64*/): boolean
+        is_editable(column: int64): boolean
         
         /** Sets the given column's custom color. */
-        set_custom_color(column: number /*i64*/, color: Color): void
+        set_custom_color(column: int64, color: Color): void
         
         /** Returns the custom color of column [param column]. */
-        get_custom_color(column: number /*i64*/): Color
+        get_custom_color(column: int64): Color
         
         /** Resets the color for the given column to default. */
-        clear_custom_color(column: number /*i64*/): void
+        clear_custom_color(column: int64): void
         
         /** Sets custom font used to draw text in the given [param column]. */
-        set_custom_font(column: number /*i64*/, font: Font): void
+        set_custom_font(column: int64, font: Font): void
         
         /** Returns custom font used to draw text in the column [param column]. */
-        get_custom_font(column: number /*i64*/): Font
+        get_custom_font(column: int64): Font
         
         /** Sets custom font size used to draw text in the given [param column]. */
-        set_custom_font_size(column: number /*i64*/, font_size: number /*i64*/): void
+        set_custom_font_size(column: int64, font_size: int64): void
         
         /** Returns custom font size used to draw text in the column [param column]. */
-        get_custom_font_size(column: number /*i64*/): number /*i64*/
+        get_custom_font_size(column: int64): int64
         
         /** Sets the given column's custom background color and whether to just use it as an outline. */
-        set_custom_bg_color(column: number /*i64*/, color: Color, just_outline: boolean = false): void
+        set_custom_bg_color(column: int64, color: Color, just_outline: boolean = false): void
         
         /** Resets the background color for the given column to default. */
-        clear_custom_bg_color(column: number /*i64*/): void
+        clear_custom_bg_color(column: int64): void
         
         /** Returns the custom background color of column [param column]. */
-        get_custom_bg_color(column: number /*i64*/): Color
-        set_custom_as_button(column: number /*i64*/, enable: boolean): void
-        is_custom_set_as_button(column: number /*i64*/): boolean
+        get_custom_bg_color(column: int64): Color
+        set_custom_as_button(column: int64, enable: boolean): void
+        is_custom_set_as_button(column: int64): boolean
         
         /** Adds a button with [Texture2D] [param button] at column [param column]. The [param id] is used to identify the button in the according [signal Tree.button_clicked] signal and can be different from the buttons index. If not specified, the next available index is used, which may be retrieved by calling [method get_button_count] immediately before this method. Optionally, the button can be [param disabled] and have a [param tooltip_text]. */
-        add_button(column: number /*i64*/, button: Texture2D, id: number /*i64*/ = -1, disabled: boolean = false, tooltip_text: string = ''): void
+        add_button(column: int64, button: Texture2D, id: int64 = -1, disabled: boolean = false, tooltip_text: string = ''): void
         
         /** Returns the number of buttons in column [param column]. */
-        get_button_count(column: number /*i64*/): number /*i64*/
+        get_button_count(column: int64): int64
         
         /** Returns the tooltip text for the button at index [param button_index] in column [param column]. */
-        get_button_tooltip_text(column: number /*i64*/, button_index: number /*i64*/): string
+        get_button_tooltip_text(column: int64, button_index: int64): string
         
         /** Returns the ID for the button at index [param button_index] in column [param column]. */
-        get_button_id(column: number /*i64*/, button_index: number /*i64*/): number /*i64*/
+        get_button_id(column: int64, button_index: int64): int64
         
         /** Returns the button index if there is a button with ID [param id] in column [param column], otherwise returns -1. */
-        get_button_by_id(column: number /*i64*/, id: number /*i64*/): number /*i64*/
+        get_button_by_id(column: int64, id: int64): int64
         
         /** Returns the [Texture2D] of the button at index [param button_index] in column [param column]. */
-        get_button(column: number /*i64*/, button_index: number /*i64*/): Texture2D
+        get_button(column: int64, button_index: int64): Texture2D
         
         /** Sets the tooltip text for the button at index [param button_index] in the given [param column]. */
-        set_button_tooltip_text(column: number /*i64*/, button_index: number /*i64*/, tooltip: string): void
+        set_button_tooltip_text(column: int64, button_index: int64, tooltip: string): void
         
         /** Sets the given column's button [Texture2D] at index [param button_index] to [param button]. */
-        set_button(column: number /*i64*/, button_index: number /*i64*/, button: Texture2D): void
+        set_button(column: int64, button_index: int64, button: Texture2D): void
         
         /** Removes the button at index [param button_index] in column [param column]. */
-        erase_button(column: number /*i64*/, button_index: number /*i64*/): void
+        erase_button(column: int64, button_index: int64): void
         
         /** If `true`, disables the button at index [param button_index] in the given [param column]. */
-        set_button_disabled(column: number /*i64*/, button_index: number /*i64*/, disabled: boolean): void
+        set_button_disabled(column: int64, button_index: int64, disabled: boolean): void
         
         /** Sets the given column's button color at index [param button_index] to [param color]. */
-        set_button_color(column: number /*i64*/, button_index: number /*i64*/, color: Color): void
+        set_button_color(column: int64, button_index: int64, color: Color): void
         
         /** Returns `true` if the button at index [param button_index] for the given [param column] is disabled. */
-        is_button_disabled(column: number /*i64*/, button_index: number /*i64*/): boolean
+        is_button_disabled(column: int64, button_index: int64): boolean
         
         /** Sets the given column's tooltip text. */
-        set_tooltip_text(column: number /*i64*/, tooltip: string): void
+        set_tooltip_text(column: int64, tooltip: string): void
         
         /** Returns the given column's tooltip text. */
-        get_tooltip_text(column: number /*i64*/): string
+        get_tooltip_text(column: int64): string
         
         /** Sets the given column's text alignment. See [enum HorizontalAlignment] for possible values. */
-        set_text_alignment(column: number /*i64*/, text_alignment: HorizontalAlignment): void
+        set_text_alignment(column: int64, text_alignment: HorizontalAlignment): void
         
         /** Returns the given column's text alignment. */
-        get_text_alignment(column: number /*i64*/): HorizontalAlignment
+        get_text_alignment(column: int64): HorizontalAlignment
         
         /** If [param enable] is `true`, the given [param column] is expanded to the right. */
-        set_expand_right(column: number /*i64*/, enable: boolean): void
+        set_expand_right(column: int64, enable: boolean): void
         
         /** Returns `true` if `expand_right` is set. */
-        get_expand_right(column: number /*i64*/): boolean
+        get_expand_right(column: int64): boolean
         set_disable_folding(disable: boolean): void
         is_folding_disabled(): boolean
         
         /** Creates an item and adds it as a child.  
          *  The new item will be inserted as position [param index] (the default value `-1` means the last position), or it will be the last child if [param index] is higher than the child count.  
          */
-        create_child(index: number /*i64*/ = -1): TreeItem
+        create_child(index: int64 = -1): TreeItem
         
         /** Adds a previously unparented [TreeItem] as a direct child of this one. The [param child] item must not be a part of any [Tree] or parented to any [TreeItem]. See also [method remove_child]. */
         add_child(child: TreeItem): void
@@ -3004,16 +2936,16 @@ declare module "godot" {
         /** Returns a child item by its [param index] (see [method get_child_count]). This method is often used for iterating all children of an item.  
          *  Negative indices access the children from the last one.  
          */
-        get_child(index: number /*i64*/): TreeItem
+        get_child(index: int64): TreeItem
         
         /** Returns the number of child items. */
-        get_child_count(): number /*i64*/
+        get_child_count(): int64
         
         /** Returns an array of references to the item's children. */
         get_children(): Array
         
         /** Returns the node's order in the tree. For example, if called on the first child item the position is `0`. */
-        get_index(): number /*i64*/
+        get_index(): int64
         
         /** Moves this TreeItem right before the given [param item].  
          *      
@@ -3045,8 +2977,8 @@ declare module "godot" {
         set disable_folding(value: boolean)
         
         /** The custom minimum height. */
-        get custom_minimum_height(): number /*i64*/
-        set custom_minimum_height(value: number /*i64*/)
+        get custom_minimum_height(): int64
+        set custom_minimum_height(value: int64)
     }
     /** Internal mesh type.  
      *  	  
@@ -3061,16 +2993,16 @@ declare module "godot" {
      */
     class TubeTrailMesh extends PrimitiveMesh {
         constructor(identifier?: any)
-        set_radius(radius: number /*f64*/): void
-        get_radius(): number /*f64*/
-        set_radial_steps(radial_steps: number /*i64*/): void
-        get_radial_steps(): number /*i64*/
-        set_sections(sections: number /*i64*/): void
-        get_sections(): number /*i64*/
-        set_section_length(section_length: number /*f64*/): void
-        get_section_length(): number /*f64*/
-        set_section_rings(section_rings: number /*i64*/): void
-        get_section_rings(): number /*i64*/
+        set_radius(radius: float64): void
+        get_radius(): float64
+        set_radial_steps(radial_steps: int64): void
+        get_radial_steps(): int64
+        set_sections(sections: int64): void
+        get_sections(): int64
+        set_section_length(section_length: float64): void
+        get_section_length(): float64
+        set_section_rings(section_rings: int64): void
+        get_section_rings(): int64
         set_cap_top(cap_top: boolean): void
         is_cap_top(): boolean
         set_cap_bottom(cap_bottom: boolean): void
@@ -3079,24 +3011,24 @@ declare module "godot" {
         get_curve(): Curve
         
         /** The baseline radius of the tube. The radius of a particular section ring is obtained by multiplying this radius by the value of the [member curve] at the given distance. */
-        get radius(): number /*f64*/
-        set radius(value: number /*f64*/)
+        get radius(): float64
+        set radius(value: float64)
         
         /** The number of sides on the tube. For example, a value of `5` means the tube will be pentagonal. Higher values result in a more detailed tube at the cost of performance. */
-        get radial_steps(): number /*i64*/
-        set radial_steps(value: number /*i64*/)
+        get radial_steps(): int64
+        set radial_steps(value: int64)
         
         /** The total number of sections on the tube. */
-        get sections(): number /*i64*/
-        set sections(value: number /*i64*/)
+        get sections(): int64
+        set sections(value: int64)
         
         /** The length of a section of the tube. */
-        get section_length(): number /*f64*/
-        set section_length(value: number /*f64*/)
+        get section_length(): float64
+        set section_length(value: float64)
         
         /** The number of rings in a section. The [member curve] is sampled on each ring to determine its radius. Higher values result in a more detailed tube at the cost of performance. */
-        get section_rings(): number /*i64*/
-        set section_rings(value: number /*i64*/)
+        get section_rings(): int64
+        set section_rings(value: int64)
         
         /** If `true`, generates a cap at the top of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
         get cap_top(): boolean
@@ -3194,7 +3126,7 @@ declare module "godot" {
          *  **Example:** Moving an object twice from the same position, with different transition types:  
          *    
          */
-        tween_property(object: Object, property: NodePath, final_val: any, duration: number /*f64*/): PropertyTweener
+        tween_property(object: Object, property: NodePath, final_val: any, duration: float64): PropertyTweener
         
         /** Creates and appends an [IntervalTweener]. This method can be used to create delays in the tween animation, as an alternative to using the delay in other [Tweener]s, or when there's no animation (in which case the [Tween] acts as a timer). [param time] is the length of the interval, in seconds.  
          *  **Example:** Creating an interval in code execution:  
@@ -3202,7 +3134,7 @@ declare module "godot" {
          *  **Example:** Creating an object that moves back and forth and jumps every few seconds:  
          *    
          */
-        tween_interval(time: number /*f64*/): IntervalTweener
+        tween_interval(time: float64): IntervalTweener
         
         /** Creates and appends a [CallbackTweener]. This method can be used to call an arbitrary method in any object. Use [method Callable.bind] to bind additional arguments for the call.  
          *  **Example:** Object that keeps shooting every 1 second:  
@@ -3218,12 +3150,12 @@ declare module "godot" {
          *  **Example:** Setting the text of a [Label], using an intermediate method and after a delay:  
          *    
          */
-        tween_method(method: Callable, from: any, to: any, duration: number /*f64*/): MethodTweener
+        tween_method(method: Callable, from: any, to: any, duration: float64): MethodTweener
         
         /** Processes the [Tween] by the given [param delta] value, in seconds. This is mostly useful for manual control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately, by setting [param delta] longer than the whole duration of the [Tween] animation.  
          *  Returns `true` if the [Tween] still has [Tweener]s that haven't finished.  
          */
-        custom_step(delta: number /*f64*/): boolean
+        custom_step(delta: float64): boolean
         
         /** Stops the tweening and resets the [Tween] to its initial state. This will not remove any appended [Tweener]s.  
          *      
@@ -3247,7 +3179,7 @@ declare module "godot" {
          *      
          *  **Note:** As it results from accumulating frame deltas, the time returned after the [Tween] has finished animating will be slightly greater than the actual [Tween] duration.  
          */
-        get_total_elapsed_time(): number /*f64*/
+        get_total_elapsed_time(): float64
         
         /** Returns whether the [Tween] is currently running, i.e. it wasn't paused and it's not finished. */
         is_running(): boolean
@@ -3281,13 +3213,13 @@ declare module "godot" {
          *  Calling this method without arguments will make the [Tween] run infinitely, until either it is killed with [method kill], the [Tween]'s bound node is freed, or all the animated objects have been freed (which makes further animation impossible).  
          *  **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [Tween]'s lifetime depends on some node, always use [method bind_node].  
          */
-        set_loops(loops: number /*i64*/ = 0): Tween
+        set_loops(loops: int64 = 0): Tween
         
         /** Returns the number of remaining loops for this [Tween] (see [method set_loops]). A return value of `-1` indicates an infinitely looping [Tween], and a return value of `0` indicates that the [Tween] has already finished. */
-        get_loops_left(): number /*i64*/
+        get_loops_left(): int64
         
         /** Scales the speed of tweening. This affects all [Tweener]s and their delays. */
-        set_speed_scale(speed: number /*f64*/): Tween
+        set_speed_scale(speed: float64): Tween
         
         /** Sets the default transition type for [PropertyTweener]s and [MethodTweener]s animated by this [Tween].  
          *  If not specified, the default value is [constant TRANS_LINEAR].  
@@ -3320,13 +3252,13 @@ declare module "godot" {
          *      
          *  **Note:** If [param duration] is equal to `0`, the method will always return the final value, regardless of [param elapsed_time] provided.  
          */
-        static interpolate_value(initial_value: any, delta_value: any, elapsed_time: number /*f64*/, duration: number /*f64*/, trans_type: Tween.TransitionType, ease_type: Tween.EaseType): any
+        static interpolate_value(initial_value: any, delta_value: any, elapsed_time: float64, duration: float64, trans_type: Tween.TransitionType, ease_type: Tween.EaseType): any
         
         /** Emitted when one step of the [Tween] is complete, providing the step index. One step is either a single [Tweener] or a group of [Tweener]s running in parallel. */
-        readonly step_finished: Signal // idx: number /*i64*/ => void
+        readonly step_finished: Signal // idx: int64 => void
         
         /** Emitted when a full loop is complete (see [method set_loops]), providing the loop index. This signal is not emitted after the final loop, use [signal finished] instead for this case. */
-        readonly loop_finished: Signal // loop_count: number /*i64*/ => void
+        readonly loop_finished: Signal // loop_count: int64 => void
         
         /** Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to infinite looping (see [method set_loops]). */
         readonly finished: Signal //  => void
@@ -3347,7 +3279,7 @@ declare module "godot" {
     class UDPServer extends RefCounted {
         constructor(identifier?: any)
         /** Starts the server by opening a UDP socket listening on the given [param port]. You can optionally specify a [param bind_address] to only listen for packets sent to that address. See also [method PacketPeerUDP.bind]. */
-        listen(port: number /*i64*/, bind_address: string = '*'): Error
+        listen(port: int64, bind_address: string = '*'): Error
         
         /** Call this method at regular intervals (e.g. inside [method Node._process]) to process new packets. And packet from known address/port pair will be delivered to the appropriate [PacketPeerUDP], any packet received from an unknown address/port pair will be added as a pending connection (see [method is_connection_available], [method take_connection]). The maximum number of pending connection is defined via [member max_pending_connections]. */
         poll(): Error
@@ -3356,7 +3288,7 @@ declare module "godot" {
         is_connection_available(): boolean
         
         /** Returns the local port this server is listening to. */
-        get_local_port(): number /*i64*/
+        get_local_port(): int64
         
         /** Returns `true` if the socket is open and listening on a port. */
         is_listening(): boolean
@@ -3366,12 +3298,12 @@ declare module "godot" {
         
         /** Stops the server, closing the UDP socket if open. Will close all connected [PacketPeerUDP] accepted via [method take_connection] (remote peers will not be notified). */
         stop(): void
-        set_max_pending_connections(max_pending_connections: number /*i64*/): void
-        get_max_pending_connections(): number /*i64*/
+        set_max_pending_connections(max_pending_connections: int64): void
+        get_max_pending_connections(): int64
         
         /** Define the maximum number of pending connections, during [method poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected). */
-        get max_pending_connections(): number /*i64*/
-        set max_pending_connections(value: number /*i64*/)
+        get max_pending_connections(): int64
+        set max_pending_connections(value: int64)
     }
     namespace UPNP {
         enum UPNPResult {
@@ -3470,19 +3402,19 @@ declare module "godot" {
     class UPNP extends RefCounted {
         constructor(identifier?: any)
         /** Returns the number of discovered [UPNPDevice]s. */
-        get_device_count(): number /*i64*/
+        get_device_count(): int64
         
         /** Returns the [UPNPDevice] at the given [param index]. */
-        get_device(index: number /*i64*/): UPNPDevice
+        get_device(index: int64): UPNPDevice
         
         /** Adds the given [UPNPDevice] to the list of discovered devices. */
         add_device(device: UPNPDevice): void
         
         /** Sets the device at [param index] from the list of discovered devices to [param device]. */
-        set_device(index: number /*i64*/, device: UPNPDevice): void
+        set_device(index: int64, device: UPNPDevice): void
         
         /** Removes the device at [param index] from the list of discovered devices. */
-        remove_device(index: number /*i64*/): void
+        remove_device(index: int64): void
         
         /** Clears the list of discovered devices. */
         clear_devices(): void
@@ -3494,7 +3426,7 @@ declare module "godot" {
          *  Filters for IGD (InternetGatewayDevice) type devices by default, as those manage port forwarding. [param timeout] is the time to wait for responses in milliseconds. [param ttl] is the time-to-live; only touch this if you know what you're doing.  
          *  See [enum UPNPResult] for possible return values.  
          */
-        discover(timeout: number /*i64*/ = 2000, ttl: number /*i64*/ = 2, device_filter: string = 'InternetGatewayDevice'): number /*i64*/
+        discover(timeout: int64 = 2000, ttl: int64 = 2, device_filter: string = 'InternetGatewayDevice'): int64
         
         /** Returns the external [IP] address of the default gateway (see [method get_gateway]) as string. Returns an empty string on error. */
         query_external_address(): string
@@ -3506,14 +3438,14 @@ declare module "godot" {
          *  The mapping's lease [param duration] can be limited by specifying a duration in seconds. The default of `0` means no duration, i.e. a permanent lease and notably some devices only support these permanent leases. Note that whether permanent or not, this is only a request and the gateway may still decide at any point to remove the mapping (which usually happens on a reboot of the gateway, when its external IP address changes, or on some models when it detects a port mapping has become inactive, i.e. had no traffic for multiple minutes). If not `0` (permanent), the allowed range according to spec is between `120` (2 minutes) and `86400` seconds (24 hours).  
          *  See [enum UPNPResult] for possible return values.  
          */
-        add_port_mapping(port: number /*i64*/, port_internal: number /*i64*/ = 0, desc: string = '', proto: string = 'UDP', duration: number /*i64*/ = 0): number /*i64*/
+        add_port_mapping(port: int64, port_internal: int64 = 0, desc: string = '', proto: string = 'UDP', duration: int64 = 0): int64
         
         /** Deletes the port mapping for the given port and protocol combination on the default gateway (see [method get_gateway]) if one exists. [param port] must be a valid port between 1 and 65535, [param proto] can be either `"TCP"` or `"UDP"`. May be refused for mappings pointing to addresses other than this one, for well-known ports (below 1024), or for mappings not added via UPnP. See [enum UPNPResult] for possible return values. */
-        delete_port_mapping(port: number /*i64*/, proto: string = 'UDP'): number /*i64*/
+        delete_port_mapping(port: int64, proto: string = 'UDP'): int64
         set_discover_multicast_if(m_if: string): void
         get_discover_multicast_if(): string
-        set_discover_local_port(port: number /*i64*/): void
-        get_discover_local_port(): number /*i64*/
+        set_discover_local_port(port: int64): void
+        get_discover_local_port(): int64
         set_discover_ipv6(ipv6: boolean): void
         is_discover_ipv6(): boolean
         
@@ -3522,8 +3454,8 @@ declare module "godot" {
         set discover_multicast_if(value: string)
         
         /** If `0`, the local port to use for discovery is chosen automatically by the system. If `1`, discovery will be done from the source port 1900 (same as destination port). Otherwise, the value will be used as the port. */
-        get discover_local_port(): number /*i64*/
-        set discover_local_port(value: number /*i64*/)
+        get discover_local_port(): int64
+        set discover_local_port(value: int64)
         
         /** If `true`, IPv6 is used for [UPNPDevice] discovery. */
         get discover_ipv6(): boolean
@@ -3575,10 +3507,10 @@ declare module "godot" {
         query_external_address(): string
         
         /** Adds a port mapping to forward the given external port on this [UPNPDevice] for the given protocol to the local machine. See [method UPNP.add_port_mapping]. */
-        add_port_mapping(port: number /*i64*/, port_internal: number /*i64*/ = 0, desc: string = '', proto: string = 'UDP', duration: number /*i64*/ = 0): number /*i64*/
+        add_port_mapping(port: int64, port_internal: int64 = 0, desc: string = '', proto: string = 'UDP', duration: int64 = 0): int64
         
         /** Deletes the port mapping identified by the given port and protocol combination on this device. See [method UPNP.delete_port_mapping]. */
-        delete_port_mapping(port: number /*i64*/, proto: string = 'UDP'): number /*i64*/
+        delete_port_mapping(port: int64, proto: string = 'UDP'): int64
         set_description_url(url: string): void
         get_description_url(): string
         set_service_type(type: string): void
@@ -3613,8 +3545,8 @@ declare module "godot" {
         set igd_our_addr(value: string)
         
         /** IGD status. See [enum IGDStatus]. */
-        get igd_status(): number /*i64*/
-        set igd_status(value: number /*i64*/)
+        get igd_status(): int64
+        set igd_status(value: int64)
     }
     namespace UndoRedo {
         enum MergeMode {
@@ -3675,13 +3607,13 @@ declare module "godot" {
         end_force_keep_in_merge_ends(): void
         
         /** Returns how many elements are in the history. */
-        get_history_count(): number /*i64*/
+        get_history_count(): int64
         
         /** Gets the index of the current action. */
-        get_current_action(): number /*i64*/
+        get_current_action(): int64
         
         /** Gets the action name from its index. */
-        get_action_name(id: number /*i64*/): string
+        get_action_name(id: int64): string
         
         /** Clear the undo/redo history and associated references.  
          *  Passing `false` to [param increase_version] will prevent the version number from increasing when the history is cleared.  
@@ -3700,7 +3632,7 @@ declare module "godot" {
         /** Gets the version. Every time a new action is committed, the [UndoRedo]'s version number is increased automatically.  
          *  This is useful mostly to check if something changed from a saved version.  
          */
-        get_version(): number /*i64*/
+        get_version(): int64
         
         /** Redo the last action. */
         redo(): boolean
@@ -3762,31 +3694,31 @@ declare module "godot" {
      */
     class VehicleBody3D extends RigidBody3D {
         constructor(identifier?: any)
-        set_engine_force(engine_force: number /*f64*/): void
-        get_engine_force(): number /*f64*/
-        set_brake(brake: number /*f64*/): void
-        get_brake(): number /*f64*/
-        set_steering(steering: number /*f64*/): void
-        get_steering(): number /*f64*/
+        set_engine_force(engine_force: float64): void
+        get_engine_force(): float64
+        set_brake(brake: float64): void
+        get_brake(): float64
+        set_steering(steering: float64): void
+        get_steering(): float64
         
         /** Accelerates the vehicle by applying an engine force. The vehicle is only sped up if the wheels that have [member VehicleWheel3D.use_as_traction] set to `true` and are in contact with a surface. The [member RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.  
          *      
          *  **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.  
          *  A negative value will result in the vehicle reversing.  
          */
-        get engine_force(): number /*f64*/
-        set engine_force(value: number /*f64*/)
+        get engine_force(): float64
+        set engine_force(value: float64)
         
         /** Slows down the vehicle by applying a braking force. The vehicle is only slowed down if the wheels are in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [member RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking. */
-        get brake(): number /*f64*/
-        set brake(value: number /*f64*/)
+        get brake(): float64
+        set brake(value: float64)
         
         /** The steering angle for the vehicle. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [member VehicleWheel3D.use_as_steering] set to `true` will automatically be rotated.  
          *      
          *  **Note:** This property is edited in the inspector in degrees. In code the property is set in radians.  
          */
-        get steering(): number /*f64*/
-        set steering(value: number /*f64*/)
+        get steering(): float64
+        set steering(value: float64)
     }
     /** A 3D physics body for a [VehicleBody3D] that simulates the behavior of a wheel.  
      *  	  
@@ -3794,26 +3726,26 @@ declare module "godot" {
      */
     class VehicleWheel3D extends Node3D {
         constructor(identifier?: any)
-        set_radius(length: number /*f64*/): void
-        get_radius(): number /*f64*/
-        set_suspension_rest_length(length: number /*f64*/): void
-        get_suspension_rest_length(): number /*f64*/
-        set_suspension_travel(length: number /*f64*/): void
-        get_suspension_travel(): number /*f64*/
-        set_suspension_stiffness(length: number /*f64*/): void
-        get_suspension_stiffness(): number /*f64*/
-        set_suspension_max_force(length: number /*f64*/): void
-        get_suspension_max_force(): number /*f64*/
-        set_damping_compression(length: number /*f64*/): void
-        get_damping_compression(): number /*f64*/
-        set_damping_relaxation(length: number /*f64*/): void
-        get_damping_relaxation(): number /*f64*/
+        set_radius(length: float64): void
+        get_radius(): float64
+        set_suspension_rest_length(length: float64): void
+        get_suspension_rest_length(): float64
+        set_suspension_travel(length: float64): void
+        get_suspension_travel(): float64
+        set_suspension_stiffness(length: float64): void
+        get_suspension_stiffness(): float64
+        set_suspension_max_force(length: float64): void
+        get_suspension_max_force(): float64
+        set_damping_compression(length: float64): void
+        get_damping_compression(): float64
+        set_damping_relaxation(length: float64): void
+        get_damping_relaxation(): float64
         set_use_as_traction(enable: boolean): void
         is_used_as_traction(): boolean
         set_use_as_steering(enable: boolean): void
         is_used_as_steering(): boolean
-        set_friction_slip(length: number /*f64*/): void
-        get_friction_slip(): number /*f64*/
+        set_friction_slip(length: float64): void
+        get_friction_slip(): float64
         
         /** Returns `true` if this wheel is in contact with a surface. */
         is_in_contact(): boolean
@@ -3822,36 +3754,36 @@ declare module "godot" {
          *  Returns `null` if the wheel is not in contact with a surface, or the contact body is not a [PhysicsBody3D].  
          */
         get_contact_body(): Node3D
-        set_roll_influence(roll_influence: number /*f64*/): void
-        get_roll_influence(): number /*f64*/
+        set_roll_influence(roll_influence: float64): void
+        get_roll_influence(): float64
         
         /** Returns a value between 0.0 and 1.0 that indicates whether this wheel is skidding. 0.0 is skidding (the wheel has lost grip, e.g. icy terrain), 1.0 means not skidding (the wheel has full grip, e.g. dry asphalt road). */
-        get_skidinfo(): number /*f64*/
+        get_skidinfo(): float64
         
         /** Returns the rotational speed of the wheel in revolutions per minute. */
-        get_rpm(): number /*f64*/
-        set_engine_force(engine_force: number /*f64*/): void
-        get_engine_force(): number /*f64*/
-        set_brake(brake: number /*f64*/): void
-        get_brake(): number /*f64*/
-        set_steering(steering: number /*f64*/): void
-        get_steering(): number /*f64*/
+        get_rpm(): float64
+        set_engine_force(engine_force: float64): void
+        get_engine_force(): float64
+        set_brake(brake: float64): void
+        get_brake(): float64
+        set_steering(steering: float64): void
+        get_steering(): float64
         
         /** Accelerates the wheel by applying an engine force. The wheel is only sped up if it is in contact with a surface. The [member RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.  
          *      
          *  **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.  
          *  A negative value will result in the wheel reversing.  
          */
-        get engine_force(): number /*f64*/
-        set engine_force(value: number /*f64*/)
+        get engine_force(): float64
+        set engine_force(value: float64)
         
         /** Slows down the wheel by applying a braking force. The wheel is only slowed down if it is in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [member RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking. */
-        get brake(): number /*f64*/
-        set brake(value: number /*f64*/)
+        get brake(): float64
+        set brake(value: float64)
         
         /** The steering angle for the wheel, in radians. Setting this to a non-zero value will result in the vehicle turning when it's moving. */
-        get steering(): number /*f64*/
-        set steering(value: number /*f64*/)
+        get steering(): float64
+        set steering(value: float64)
         
         /** If `true`, this wheel transfers engine force to the ground to propel the vehicle forward. This value is used in conjunction with [member VehicleBody3D.engine_force] and ignored if you are using the per-wheel [member engine_force] value instead. */
         get use_as_traction(): boolean
@@ -3862,42 +3794,42 @@ declare module "godot" {
         set use_as_steering(value: boolean)
         
         /** This value affects the roll of your vehicle. If set to 1.0 for all wheels, your vehicle will resist body roll, while a value of 0.0 will be prone to rolling over. */
-        get wheel_roll_influence(): number /*f64*/
-        set wheel_roll_influence(value: number /*f64*/)
+        get wheel_roll_influence(): float64
+        set wheel_roll_influence(value: float64)
         
         /** The radius of the wheel in meters. */
-        get wheel_radius(): number /*f64*/
-        set wheel_radius(value: number /*f64*/)
+        get wheel_radius(): float64
+        set wheel_radius(value: float64)
         
         /** This is the distance in meters the wheel is lowered from its origin point. Don't set this to 0.0 and move the wheel into position, instead move the origin point of your wheel (the gizmo in Godot) to the position the wheel will take when bottoming out, then use the rest length to move the wheel down to the position it should be in when the car is in rest. */
-        get wheel_rest_length(): number /*f64*/
-        set wheel_rest_length(value: number /*f64*/)
+        get wheel_rest_length(): float64
+        set wheel_rest_length(value: float64)
         
         /** This determines how much grip this wheel has. It is combined with the friction setting of the surface the wheel is in contact with. 0.0 means no grip, 1.0 is normal grip. For a drift car setup, try setting the grip of the rear wheels slightly lower than the front wheels, or use a lower value to simulate tire wear.  
          *  It's best to set this to 1.0 when starting out.  
          */
-        get wheel_friction_slip(): number /*f64*/
-        set wheel_friction_slip(value: number /*f64*/)
+        get wheel_friction_slip(): float64
+        set wheel_friction_slip(value: float64)
         
         /** This is the distance the suspension can travel. As Godot units are equivalent to meters, keep this setting relatively low. Try a value between 0.1 and 0.3 depending on the type of car. */
-        get suspension_travel(): number /*f64*/
-        set suspension_travel(value: number /*f64*/)
+        get suspension_travel(): float64
+        set suspension_travel(value: float64)
         
         /** This value defines the stiffness of the suspension. Use a value lower than 50 for an off-road car, a value between 50 and 100 for a race car and try something around 200 for something like a Formula 1 car. */
-        get suspension_stiffness(): number /*f64*/
-        set suspension_stiffness(value: number /*f64*/)
+        get suspension_stiffness(): float64
+        set suspension_stiffness(value: float64)
         
         /** The maximum force the spring can resist. This value should be higher than a quarter of the [member RigidBody3D.mass] of the [VehicleBody3D] or the spring will not carry the weight of the vehicle. Good results are often obtained by a value that is about 3× to 4× this number. */
-        get suspension_max_force(): number /*f64*/
-        set suspension_max_force(value: number /*f64*/)
+        get suspension_max_force(): float64
+        set suspension_max_force(value: float64)
         
         /** The damping applied to the spring when the spring is being compressed. This value should be between 0.0 (no damping) and 1.0. A value of 0.0 means the car will keep bouncing as the spring keeps its energy. A good value for this is around 0.3 for a normal car, 0.5 for a race car. */
-        get damping_compression(): number /*f64*/
-        set damping_compression(value: number /*f64*/)
+        get damping_compression(): float64
+        set damping_compression(value: float64)
         
         /** The damping applied to the spring when relaxing. This value should be between 0.0 (no damping) and 1.0. This value should always be slightly higher than the [member damping_compression] property. For a [member damping_compression] value of 0.3, try a relaxation value of 0.5. */
-        get damping_relaxation(): number /*f64*/
-        set damping_relaxation(value: number /*f64*/)
+        get damping_relaxation(): float64
+        set damping_relaxation(value: float64)
     }
     class VehicleWheel3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -3944,31 +3876,31 @@ declare module "godot" {
         /* gdvirtual */ _is_paused(): boolean
         
         /** Returns the video duration in seconds, if known, or 0 if unknown. */
-        /* gdvirtual */ _get_length(): number /*f64*/
+        /* gdvirtual */ _get_length(): float64
         
         /** Return the current playback timestamp. Called in response to the [member VideoStreamPlayer.stream_position] getter. */
-        /* gdvirtual */ _get_playback_position(): number /*f64*/
+        /* gdvirtual */ _get_playback_position(): float64
         
         /** Seeks to [param time] seconds. Called in response to the [member VideoStreamPlayer.stream_position] setter. */
-        /* gdvirtual */ _seek(time: number /*f64*/): void
+        /* gdvirtual */ _seek(time: float64): void
         
         /** Select the audio track [param idx]. Called when playback starts, and in response to the [member VideoStreamPlayer.audio_track] setter. */
-        /* gdvirtual */ _set_audio_track(idx: number /*i64*/): void
+        /* gdvirtual */ _set_audio_track(idx: int64): void
         
         /** Allocates a [Texture2D] in which decoded video frames will be drawn. */
         /* gdvirtual */ _get_texture(): Texture2D
         
         /** Ticks video playback for [param delta] seconds. Called every frame as long as [method _is_paused] and [method _is_playing] return true. */
-        /* gdvirtual */ _update(delta: number /*f64*/): void
+        /* gdvirtual */ _update(delta: float64): void
         
         /** Returns the number of audio channels. */
-        /* gdvirtual */ _get_channels(): number /*i64*/
+        /* gdvirtual */ _get_channels(): int64
         
         /** Returns the audio sample rate used for mixing. */
-        /* gdvirtual */ _get_mix_rate(): number /*i64*/
+        /* gdvirtual */ _get_mix_rate(): int64
         
         /** Render [param num_frames] audio frames (of [method _get_channels] floats each) from [param buffer], starting from index [param offset] in the array. Returns the number of audio frames rendered, or -1 on error. */
-        mix_audio(num_frames: number /*i64*/, buffer: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/, offset: number /*i64*/ = 0): number /*i64*/
+        mix_audio(num_frames: int64, buffer: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/, offset: int64 = 0): int64
     }
     /** A control used for video playback.  
      *  	  
@@ -3997,12 +3929,12 @@ declare module "godot" {
         is_paused(): boolean
         set_loop(loop: boolean): void
         has_loop(): boolean
-        set_volume(volume: number /*f64*/): void
-        get_volume(): number /*f64*/
-        set_volume_db(db: number /*f64*/): void
-        get_volume_db(): number /*f64*/
-        set_audio_track(track: number /*i64*/): void
-        get_audio_track(): number /*i64*/
+        set_volume(volume: float64): void
+        get_volume(): float64
+        set_volume_db(db: float64): void
+        get_volume_db(): float64
+        set_audio_track(track: int64): void
+        get_audio_track(): int64
         
         /** Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned. */
         get_stream_name(): string
@@ -4011,15 +3943,15 @@ declare module "godot" {
          *      
          *  **Note:** For [VideoStreamTheora] streams (the built-in format supported by Godot), this value will always be zero, as getting the stream length is not implemented yet. The feature may be supported by video formats implemented by a GDExtension add-on.  
          */
-        get_stream_length(): number /*f64*/
-        set_stream_position(position: number /*f64*/): void
-        get_stream_position(): number /*f64*/
+        get_stream_length(): float64
+        set_stream_position(position: float64): void
+        get_stream_position(): float64
         set_autoplay(enabled: boolean): void
         has_autoplay(): boolean
         set_expand(enable: boolean): void
         has_expand(): boolean
-        set_buffering_msec(msec: number /*i64*/): void
-        get_buffering_msec(): number /*i64*/
+        set_buffering_msec(msec: int64): void
+        get_buffering_msec(): int64
         set_bus(bus: StringName): void
         get_bus(): StringName
         
@@ -4027,20 +3959,20 @@ declare module "godot" {
         get_video_texture(): Texture2D
         
         /** The embedded audio track to play. */
-        get audio_track(): number /*i64*/
-        set audio_track(value: number /*i64*/)
+        get audio_track(): int64
+        set audio_track(value: int64)
         
         /** The assigned video stream. See description for supported formats. */
         get stream(): VideoStream
         set stream(value: VideoStream)
         
         /** Audio volume in dB. */
-        get volume_db(): number /*f64*/
-        set volume_db(value: number /*f64*/)
+        get volume_db(): float64
+        set volume_db(value: float64)
         
         /** Audio volume as a linear value. */
-        get volume(): number /*f64*/
-        set volume(value: number /*f64*/)
+        get volume(): float64
+        set volume(value: float64)
         
         /** If `true`, playback starts when the scene loads. */
         get autoplay(): boolean
@@ -4059,15 +3991,15 @@ declare module "godot" {
         set loop(value: boolean)
         
         /** Amount of time in milliseconds to store in buffer while playing. */
-        get buffering_msec(): number /*i64*/
-        set buffering_msec(value: number /*i64*/)
+        get buffering_msec(): int64
+        set buffering_msec(value: int64)
         
         /** The current position of the stream, in seconds.  
          *      
          *  **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDExtension add-on.  
          */
-        get stream_position(): number /*f64*/
-        set stream_position(value: number /*f64*/)
+        get stream_position(): float64
+        set stream_position(value: float64)
         
         /** Audio bus to use for sound playback. */
         get bus(): StringName
@@ -4329,7 +4261,7 @@ declare module "godot" {
         get_debug_draw(): Viewport.DebugDraw
         
         /** Returns rendering statistics of the given type. See [enum RenderInfoType] and [enum RenderInfo] for options. */
-        get_render_info(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): number /*i64*/
+        get_render_info(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): int64
         
         /** Returns the viewport's texture.  
          *      
@@ -4414,8 +4346,8 @@ declare module "godot" {
         is_input_disabled(): boolean
         _gui_remove_focus_for_window(_unnamed_arg0: Node): void
         _post_gui_grab_click_focus(): void
-        set_positional_shadow_atlas_size(size: number /*i64*/): void
-        get_positional_shadow_atlas_size(): number /*i64*/
+        set_positional_shadow_atlas_size(size: int64): void
+        get_positional_shadow_atlas_size(): int64
         set_positional_shadow_atlas_16_bits(enable: boolean): void
         get_positional_shadow_atlas_16_bits(): boolean
         set_snap_controls_to_pixels(enabled: boolean): void
@@ -4426,10 +4358,10 @@ declare module "godot" {
         is_snap_2d_vertices_to_pixel_enabled(): boolean
         
         /** Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible. */
-        set_positional_shadow_atlas_quadrant_subdiv(quadrant: number /*i64*/, subdiv: Viewport.PositionalShadowAtlasQuadrantSubdiv): void
+        set_positional_shadow_atlas_quadrant_subdiv(quadrant: int64, subdiv: Viewport.PositionalShadowAtlasQuadrantSubdiv): void
         
         /** Returns the [enum PositionalShadowAtlasQuadrantSubdiv] of the specified quadrant. */
-        get_positional_shadow_atlas_quadrant_subdiv(quadrant: number /*i64*/): Viewport.PositionalShadowAtlasQuadrantSubdiv
+        get_positional_shadow_atlas_quadrant_subdiv(quadrant: int64): Viewport.PositionalShadowAtlasQuadrantSubdiv
         
         /** Stops the input from propagating further down the [SceneTree].  
          *      
@@ -4454,22 +4386,22 @@ declare module "godot" {
          *  **Note:** [Window]s inside other viewports will not be listed.  
          */
         get_embedded_subwindows(): Array
-        set_canvas_cull_mask(mask: number /*i64*/): void
-        get_canvas_cull_mask(): number /*i64*/
+        set_canvas_cull_mask(mask: int64): void
+        get_canvas_cull_mask(): int64
         
         /** Set/clear individual bits on the rendering layer mask. This simplifies editing this [Viewport]'s layers. */
-        set_canvas_cull_mask_bit(layer: number /*i64*/, enable: boolean): void
+        set_canvas_cull_mask_bit(layer: int64, enable: boolean): void
         
         /** Returns an individual bit on the rendering layer mask. */
-        get_canvas_cull_mask_bit(layer: number /*i64*/): boolean
+        get_canvas_cull_mask_bit(layer: int64): boolean
         set_default_canvas_item_texture_repeat(mode: Viewport.DefaultCanvasItemTextureRepeat): void
         get_default_canvas_item_texture_repeat(): Viewport.DefaultCanvasItemTextureRepeat
         set_sdf_oversize(oversize: Viewport.SDFOversize): void
         get_sdf_oversize(): Viewport.SDFOversize
         set_sdf_scale(scale: Viewport.SDFScale): void
         get_sdf_scale(): Viewport.SDFScale
-        set_mesh_lod_threshold(pixels: number /*f64*/): void
-        get_mesh_lod_threshold(): number /*f64*/
+        set_mesh_lod_threshold(pixels: float64): void
+        get_mesh_lod_threshold(): float64
         _process_picking(): void
         set_world_3d(world_3d: World3D): void
         get_world_3d(): World3D
@@ -4489,12 +4421,12 @@ declare module "godot" {
         is_using_xr(): boolean
         set_scaling_3d_mode(scaling_3d_mode: Viewport.Scaling3DMode): void
         get_scaling_3d_mode(): Viewport.Scaling3DMode
-        set_scaling_3d_scale(scale: number /*f64*/): void
-        get_scaling_3d_scale(): number /*f64*/
-        set_fsr_sharpness(fsr_sharpness: number /*f64*/): void
-        get_fsr_sharpness(): number /*f64*/
-        set_texture_mipmap_bias(texture_mipmap_bias: number /*f64*/): void
-        get_texture_mipmap_bias(): number /*f64*/
+        set_scaling_3d_scale(scale: float64): void
+        get_scaling_3d_scale(): float64
+        set_fsr_sharpness(fsr_sharpness: float64): void
+        get_fsr_sharpness(): float64
+        set_texture_mipmap_bias(texture_mipmap_bias: float64): void
+        get_texture_mipmap_bias(): float64
         set_vrs_mode(mode: Viewport.VRSMode): void
         get_vrs_mode(): Viewport.VRSMode
         set_vrs_texture(texture: Texture2D): void
@@ -4536,16 +4468,16 @@ declare module "godot" {
         set snap_2d_vertices_to_pixel(value: boolean)
         
         /** The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. This has no effect on shader-induced aliasing or texture aliasing. */
-        get msaa_2d(): number /*i64*/
-        set msaa_2d(value: number /*i64*/)
+        get msaa_2d(): int64
+        set msaa_2d(value: int64)
         
         /** The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [member scaling_3d_mode] for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing. */
-        get msaa_3d(): number /*i64*/
-        set msaa_3d(value: number /*i64*/)
+        get msaa_3d(): int64
+        set msaa_3d(value: int64)
         
         /** Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry. */
-        get screen_space_aa(): number /*i64*/
-        set screen_space_aa(value: number /*i64*/)
+        get screen_space_aa(): int64
+        set screen_space_aa(value: int64)
         
         /** Enables Temporal Anti-Aliasing for this viewport. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion.  
          *      
@@ -4574,12 +4506,12 @@ declare module "godot" {
          *      
          *  **Note:** [member mesh_lod_threshold] does not affect [GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).  
          */
-        get mesh_lod_threshold(): number /*f64*/
-        set mesh_lod_threshold(value: number /*f64*/)
+        get mesh_lod_threshold(): float64
+        set mesh_lod_threshold(value: float64)
         
         /** The overlay mode for test rendered geometry in debug purposes. */
-        get debug_draw(): number /*i64*/
-        set debug_draw(value: number /*i64*/)
+        get debug_draw(): int64
+        set debug_draw(value: int64)
         
         /** If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients.  
          *      
@@ -4591,15 +4523,15 @@ declare module "godot" {
         /** Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/mode] project setting.  
          */
-        get scaling_3d_mode(): number /*i64*/
-        set scaling_3d_mode(value: number /*i64*/)
+        get scaling_3d_mode(): int64
+        set scaling_3d_mode(value: int64)
         
         /** Scales the 3D render buffer based on the viewport size uses an image filter specified in [member ProjectSettings.rendering/scaling_3d/mode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [member ProjectSettings.rendering/anti_aliasing/quality/msaa_3d] for multi-sample antialiasing, which is significantly cheaper but only smooths the edges of polygons.  
          *  When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/scale] project setting.  
          */
-        get scaling_3d_scale(): number /*f64*/
-        set scaling_3d_scale(value: number /*f64*/)
+        get scaling_3d_scale(): float64
+        set scaling_3d_scale(value: float64)
         
         /** Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).  
          *  Enabling temporal antialiasing ([member use_taa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([member screen_space_aa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this value.  
@@ -4607,18 +4539,18 @@ declare module "godot" {
          *  **Note:** If [member scaling_3d_scale] is lower than `1.0` (exclusive), [member texture_mipmap_bias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `log2(scaling_3d_scale) + mipmap_bias`.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/textures/default_filters/texture_mipmap_bias] project setting.  
          */
-        get texture_mipmap_bias(): number /*f64*/
-        set texture_mipmap_bias(value: number /*f64*/)
+        get texture_mipmap_bias(): float64
+        set texture_mipmap_bias(value: float64)
         
         /** Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference.  
          *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/fsr_sharpness] project setting.  
          */
-        get fsr_sharpness(): number /*f64*/
-        set fsr_sharpness(value: number /*f64*/)
+        get fsr_sharpness(): float64
+        set fsr_sharpness(value: float64)
         
         /** The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not support VRS this property is ignored. */
-        get vrs_mode(): number /*i64*/
-        set vrs_mode(value: number /*i64*/)
+        get vrs_mode(): int64
+        set vrs_mode(value: int64)
         
         /** Texture to use when [member vrs_mode] is set to [constant Viewport.VRS_TEXTURE].  
          *  The texture  *must*  use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:  
@@ -4628,12 +4560,12 @@ declare module "godot" {
         set vrs_texture(value: Texture2D)
         
         /** Sets the default filter mode used by [CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options. */
-        get canvas_item_default_texture_filter(): number /*i64*/
-        set canvas_item_default_texture_filter(value: number /*i64*/)
+        get canvas_item_default_texture_filter(): int64
+        set canvas_item_default_texture_filter(value: int64)
         
         /** Sets the default repeat mode used by [CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options. */
-        get canvas_item_default_texture_repeat(): number /*i64*/
-        set canvas_item_default_texture_repeat(value: number /*i64*/)
+        get canvas_item_default_texture_repeat(): int64
+        set canvas_item_default_texture_repeat(value: int64)
         
         /** If `true`, the viewport will process 2D audio streams. */
         get audio_listener_enable_2d(): boolean
@@ -4670,17 +4602,17 @@ declare module "godot" {
         /** If `true`, sub-windows (popups and dialogs) will be embedded inside application window as control-like nodes. If `false`, they will appear as separate windows handled by the operating system. */
         get gui_embed_subwindows(): boolean
         set gui_embed_subwindows(value: boolean)
-        get sdf_oversize(): number /*i64*/
-        set sdf_oversize(value: number /*i64*/)
-        get sdf_scale(): number /*i64*/
-        set sdf_scale(value: number /*i64*/)
+        get sdf_oversize(): int64
+        set sdf_oversize(value: int64)
+        get sdf_scale(): int64
+        set sdf_scale(value: int64)
         
         /** The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the nearest power of 2.  
          *      
          *  **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).  
          */
-        get positional_shadow_atlas_size(): number /*i64*/
-        set positional_shadow_atlas_size(value: number /*i64*/)
+        get positional_shadow_atlas_size(): int64
+        set positional_shadow_atlas_size(value: int64)
         
         /** Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices. */
         get positional_shadow_atlas_16_bits(): boolean
@@ -4695,8 +4627,8 @@ declare module "godot" {
         set global_canvas_transform(value: Transform2D)
         
         /** The rendering layers in which this [Viewport] renders [CanvasItem] nodes. */
-        get canvas_cull_mask(): number /*i64*/
-        set canvas_cull_mask(value: number /*i64*/)
+        get canvas_cull_mask(): int64
+        set canvas_cull_mask(value: int64)
         
         /** Emitted when the size of the viewport is changed, whether by resizing of window, or some other means. */
         readonly size_changed: Signal //  => void
@@ -4750,8 +4682,8 @@ declare module "godot" {
         get_enable_node_path(): NodePath
         
         /** Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED]. */
-        get enable_mode(): number /*i64*/
-        set enable_mode(value: number /*i64*/)
+        get enable_mode(): int64
+        set enable_mode(value: int64)
         
         /** The path to the target node, relative to the [VisibleOnScreenEnabler2D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler2D] is inside the scene tree) and every time the [VisibleOnScreenEnabler2D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
         get enable_node_path(): NodePath
@@ -4781,8 +4713,8 @@ declare module "godot" {
         get_enable_node_path(): NodePath
         
         /** Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED]. */
-        get enable_mode(): number /*i64*/
-        set enable_mode(value: number /*i64*/)
+        get enable_mode(): int64
+        set enable_mode(value: int64)
         
         /** The path to the target node, relative to the [VisibleOnScreenEnabler3D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler3D] is inside the scene tree) and every time the [VisibleOnScreenEnabler3D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
         get enable_node_path(): NodePath
@@ -4856,16 +4788,16 @@ declare module "godot" {
         
         /** Returns the RID of this instance. This RID is the same as the RID returned by [method RenderingServer.instance_create]. This RID is needed if you want to call [RenderingServer] functions directly on this [VisualInstance3D]. */
         get_instance(): RID
-        set_layer_mask(mask: number /*i64*/): void
-        get_layer_mask(): number /*i64*/
+        set_layer_mask(mask: int64): void
+        get_layer_mask(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member layers], given a [param layer_number] between 1 and 20. */
-        set_layer_mask_value(layer_number: number /*i64*/, value: boolean): void
+        set_layer_mask_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member layers] is enabled, given a [param layer_number] between 1 and 20. */
-        get_layer_mask_value(layer_number: number /*i64*/): boolean
-        set_sorting_offset(offset: number /*f64*/): void
-        get_sorting_offset(): number /*f64*/
+        get_layer_mask_value(layer_number: int64): boolean
+        set_sorting_offset(offset: float64): void
+        get_sorting_offset(): float64
         set_sorting_use_aabb_center(enabled: boolean): void
         is_sorting_use_aabb_center(): boolean
         
@@ -4879,12 +4811,12 @@ declare module "godot" {
          *      
          *  **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [member GeometryInstance3D.gi_mode] to [constant GeometryInstance3D.GI_MODE_DISABLED] for meshes and [member Light3D.light_bake_mode] to [constant Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.  
          */
-        get layers(): number /*i64*/
-        set layers(value: number /*i64*/)
+        get layers(): int64
+        set layers(value: int64)
         
         /** The amount by which the depth of this [VisualInstance3D] will be adjusted when sorting by depth. Uses the same units as the engine (which are typically meters). Adjusting it to a higher value will make the [VisualInstance3D] reliably draw on top of other [VisualInstance3D]s that are otherwise positioned at the same spot. To ensure it always draws on top of other objects around it (not positioned at the same spot), set the value to be greater than the distance between this [VisualInstance3D] and the other nearby [VisualInstance3D]s. */
-        get sorting_offset(): number /*f64*/
-        set sorting_offset(value: number /*f64*/)
+        get sorting_offset(): float64
+        set sorting_offset(value: float64)
         
         /** If `true`, the object is sorted based on the [AABB] center. The object will be sorted based on the global position otherwise.  
          *  The [AABB] center based sorting is generally more accurate for 3D models. The position based sorting instead allows to better control the drawing order when working with [GPUParticles3D] and [CPUParticles3D].  
@@ -4982,43 +4914,43 @@ declare module "godot" {
         set_mode(mode: Shader.Mode): void
         
         /** Adds the specified [param node] to the shader. */
-        add_node(type: VisualShader.Type, node: VisualShaderNode, position: Vector2, id: number /*i64*/): void
+        add_node(type: VisualShader.Type, node: VisualShaderNode, position: Vector2, id: int64): void
         
         /** Returns the shader node instance with specified [param type] and [param id]. */
-        get_node(type: VisualShader.Type, id: number /*i64*/): VisualShaderNode
+        get_node(type: VisualShader.Type, id: int64): VisualShaderNode
         
         /** Sets the position of the specified node. */
-        set_node_position(type: VisualShader.Type, id: number /*i64*/, position: Vector2): void
+        set_node_position(type: VisualShader.Type, id: int64, position: Vector2): void
         
         /** Returns the position of the specified node within the shader graph. */
-        get_node_position(type: VisualShader.Type, id: number /*i64*/): Vector2
+        get_node_position(type: VisualShader.Type, id: int64): Vector2
         
         /** Returns the list of all nodes in the shader with the specified type. */
         get_node_list(type: VisualShader.Type): PackedInt32Array
         
         /** Returns next valid node ID that can be added to the shader graph. */
-        get_valid_node_id(type: VisualShader.Type): number /*i64*/
+        get_valid_node_id(type: VisualShader.Type): int64
         
         /** Removes the specified node from the shader. */
-        remove_node(type: VisualShader.Type, id: number /*i64*/): void
+        remove_node(type: VisualShader.Type, id: int64): void
         
         /** Replaces the specified node with a node of new class type. */
-        replace_node(type: VisualShader.Type, id: number /*i64*/, new_class: StringName): void
+        replace_node(type: VisualShader.Type, id: int64, new_class: StringName): void
         
         /** Returns `true` if the specified node and port connection exist. */
-        is_node_connection(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): boolean
+        is_node_connection(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): boolean
         
         /** Returns `true` if the specified nodes and ports can be connected together. */
-        can_connect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): boolean
+        can_connect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): boolean
         
         /** Connects the specified nodes and ports. */
-        connect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): Error
+        connect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): Error
         
         /** Connects the specified nodes and ports. */
-        disconnect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): void
+        disconnect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): void
         
         /** Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly. */
-        connect_nodes_forced(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): void
+        connect_nodes_forced(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): void
         
         /** Returns the list of connected nodes with the specified type. */
         get_node_connections(type: VisualShader.Type): Array
@@ -5082,22 +5014,22 @@ declare module "godot" {
     class VisualShaderNode extends Resource {
         constructor(identifier?: any)
         /** Returns the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph. */
-        get_default_input_port(type: VisualShaderNode.PortType): number /*i64*/
-        set_output_port_for_preview(port: number /*i64*/): void
-        get_output_port_for_preview(): number /*i64*/
-        _set_output_port_expanded(port: number /*i64*/, _unnamed_arg1: boolean): void
-        _is_output_port_expanded(_unnamed_arg0: number /*i64*/): boolean
+        get_default_input_port(type: VisualShaderNode.PortType): int64
+        set_output_port_for_preview(port: int64): void
+        get_output_port_for_preview(): int64
+        _set_output_port_expanded(port: int64, _unnamed_arg1: boolean): void
+        _is_output_port_expanded(_unnamed_arg0: int64): boolean
         _set_output_ports_expanded(values: Array): void
         _get_output_ports_expanded(): Array
         
         /** Sets the default [param value] for the selected input [param port]. */
-        set_input_port_default_value(port: number /*i64*/, value: any, prev_value: any = <any> {} /*compound.type from nil*/): void
+        set_input_port_default_value(port: int64, value: any, prev_value: any = <any> {} /*compound.type from nil*/): void
         
         /** Returns the default value of the input [param port]. */
-        get_input_port_default_value(port: number /*i64*/): any
+        get_input_port_default_value(port: int64): any
         
         /** Removes the default value of the input [param port]. */
-        remove_input_port_default_value(port: number /*i64*/): void
+        remove_input_port_default_value(port: int64): void
         
         /** Clears the default input ports value. */
         clear_default_input_values(): void
@@ -5109,8 +5041,8 @@ declare module "godot" {
         get_default_input_values(): Array
         
         /** Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview. */
-        get output_port_for_preview(): number /*i64*/
-        set output_port_for_preview(value: number /*i64*/)
+        get output_port_for_preview(): int64
+        set output_port_for_preview(value: int64)
         get default_input_values(): Array
         set default_input_values(value: Array)
         get expanded_output_ports(): Array
@@ -5146,8 +5078,8 @@ declare module "godot" {
         is_keep_scale_enabled(): boolean
         
         /** Controls how the object faces the camera. See [enum BillboardType]. */
-        get billboard_type(): number /*i64*/
-        set billboard_type(value: number /*i64*/)
+        get billboard_type(): int64
+        set billboard_type(value: int64)
         
         /** If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. */
         get keep_scale(): boolean
@@ -5219,8 +5151,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeClamp.OpType
         
         /** A type of operands and returned value. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
     }
     /** A [Color] constant to be used within the visual shader graph.  
      *  	  
@@ -5267,8 +5199,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeColorFunc.Function
         
         /** A function to be applied to the input color. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
     }
     namespace VisualShaderNodeColorOp {
         enum Operator {
@@ -5331,8 +5263,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeColorOp.Operator
         
         /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        get operator(): number /*i64*/
-        set operator(value: number /*i64*/)
+        get operator(): int64
+        set operator(value: int64)
     }
     /** A [Color] parameter to be used within the visual shader graph.  
      *  	  
@@ -5448,16 +5380,16 @@ declare module "godot" {
         get_condition(): VisualShaderNodeCompare.Condition
         
         /** The type to be used in the comparison. See [enum ComparisonType] for options. */
-        get type(): number /*i64*/
-        set type(value: number /*i64*/)
+        get type(): int64
+        set type(value: int64)
         
         /** A comparison function. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
         
         /** Extra condition which is applied if [member type] is set to [constant CTYPE_VECTOR_3D]. */
-        get condition(): number /*i64*/
-        set condition(value: number /*i64*/)
+        get condition(): int64
+        set condition(value: int64)
     }
     /** A base type for the constants within the visual shader graph.  
      *  	  
@@ -5505,16 +5437,16 @@ declare module "godot" {
         get_texture_type(): VisualShaderNodeCubemap.TextureType
         
         /** Defines which source should be used for the sampling. See [enum Source] for options. */
-        get source(): number /*i64*/
-        set source(value: number /*i64*/)
+        get source(): int64
+        set source(value: int64)
         
         /** The [Cubemap] texture to sample when using [constant SOURCE_TEXTURE] as [member source]. */
         get cube_map(): Cubemap
         set cube_map(value: Cubemap)
         
         /** Defines the type of data provided by the source texture. See [enum TextureType] for options. */
-        get texture_type(): number /*i64*/
-        set texture_type(value: number /*i64*/)
+        get texture_type(): int64
+        set texture_type(value: int64)
     }
     /** A [Cubemap] parameter node to be used within the visual shader graph.  
      *  	  
@@ -5578,62 +5510,62 @@ declare module "godot" {
         /** Override this method to define the number of input ports of the associated custom node.  
          *  Defining this method is **required**. If not overridden, the node has no input ports.  
          */
-        /* gdvirtual */ _get_input_port_count(): number /*i64*/
+        /* gdvirtual */ _get_input_port_count(): int64
         
         /** Override this method to define the returned type of each input port of the associated custom node (see [enum VisualShaderNode.PortType] for possible types).  
          *  Defining this method is **optional**, but recommended. If not overridden, input ports will return the [constant VisualShaderNode.PORT_TYPE_SCALAR] type.  
          */
-        /* gdvirtual */ _get_input_port_type(port: number /*i64*/): VisualShaderNode.PortType
+        /* gdvirtual */ _get_input_port_type(port: int64): VisualShaderNode.PortType
         
         /** Override this method to define the names of input ports of the associated custom node. The names are used both for the input slots in the editor and as identifiers in the shader code, and are passed in the `input_vars` array in [method _get_code].  
          *  Defining this method is **optional**, but recommended. If not overridden, input ports are named as `"in" + str(port)`.  
          */
-        /* gdvirtual */ _get_input_port_name(port: number /*i64*/): string
+        /* gdvirtual */ _get_input_port_name(port: int64): string
         
         /** Override this method to define the default value for the specified input port. Prefer use this over [method VisualShaderNode.set_input_port_default_value].  
          *  Defining this method is **required**. If not overridden, the node has no default values for their input ports.  
          */
-        /* gdvirtual */ _get_input_port_default_value(port: number /*i64*/): void
+        /* gdvirtual */ _get_input_port_default_value(port: int64): void
         
         /** Override this method to define the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph.  
          *  Defining this method is **optional**. If not overridden, the connection will be created to the first valid port.  
          */
-        /* gdvirtual */ _get_default_input_port(type: VisualShaderNode.PortType): number /*i64*/
+        /* gdvirtual */ _get_default_input_port(type: VisualShaderNode.PortType): int64
         
         /** Override this method to define the number of output ports of the associated custom node.  
          *  Defining this method is **required**. If not overridden, the node has no output ports.  
          */
-        /* gdvirtual */ _get_output_port_count(): number /*i64*/
+        /* gdvirtual */ _get_output_port_count(): int64
         
         /** Override this method to define the returned type of each output port of the associated custom node (see [enum VisualShaderNode.PortType] for possible types).  
          *  Defining this method is **optional**, but recommended. If not overridden, output ports will return the [constant VisualShaderNode.PORT_TYPE_SCALAR] type.  
          */
-        /* gdvirtual */ _get_output_port_type(port: number /*i64*/): VisualShaderNode.PortType
+        /* gdvirtual */ _get_output_port_type(port: int64): VisualShaderNode.PortType
         
         /** Override this method to define the names of output ports of the associated custom node. The names are used both for the output slots in the editor and as identifiers in the shader code, and are passed in the `output_vars` array in [method _get_code].  
          *  Defining this method is **optional**, but recommended. If not overridden, output ports are named as `"out" + str(port)`.  
          */
-        /* gdvirtual */ _get_output_port_name(port: number /*i64*/): string
+        /* gdvirtual */ _get_output_port_name(port: int64): string
         
         /** Override this method to define the number of the properties.  
          *  Defining this method is **optional**.  
          */
-        /* gdvirtual */ _get_property_count(): number /*i64*/
+        /* gdvirtual */ _get_property_count(): int64
         
         /** Override this method to define the names of the property of the associated custom node.  
          *  Defining this method is **optional**.  
          */
-        /* gdvirtual */ _get_property_name(index: number /*i64*/): string
+        /* gdvirtual */ _get_property_name(index: int64): string
         
         /** Override this method to define the default index of the property of the associated custom node.  
          *  Defining this method is **optional**.  
          */
-        /* gdvirtual */ _get_property_default_index(index: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _get_property_default_index(index: int64): int64
         
         /** Override this method to define the options inside the drop-down list property of the associated custom node.  
          *  Defining this method is **optional**.  
          */
-        /* gdvirtual */ _get_property_options(index: number /*i64*/): PackedStringArray
+        /* gdvirtual */ _get_property_options(index: int64): PackedStringArray
         
         /** Override this method to define the actual shader code of the associated custom node. The shader code should be returned as a string, which can have multiple lines (the `"""` multiline string construct can be used for convenience).  
          *  The [param input_vars] and [param output_vars] arrays contain the string names of the various input and output variables, as defined by `_get_input_*` and `_get_output_*` virtual methods in this class.  
@@ -5668,13 +5600,13 @@ declare module "godot" {
         /* gdvirtual */ _is_available(mode: Shader.Mode, type: VisualShader.Type): boolean
         _set_initialized(enabled: boolean): void
         _is_initialized(): boolean
-        _set_input_port_default_value(port: number /*i64*/, value: any): void
-        _set_option_index(option: number /*i64*/, value: number /*i64*/): void
+        _set_input_port_default_value(port: int64, value: any): void
+        _set_option_index(option: int64, value: int64): void
         _set_properties(properties: string): void
         _get_properties(): string
         
         /** Returns the selected index of the drop-down list option within a graph. You may use this function to define the specific behavior in the [method _get_code] or [method _get_global_code]. */
-        get_option_index(option: number /*i64*/): number /*i64*/
+        get_option_index(option: int64): int64
         get initialized(): boolean
         set initialized(value: boolean)
         get properties(): string
@@ -5738,16 +5670,16 @@ declare module "godot" {
         get_precision(): VisualShaderNodeDerivativeFunc.Precision
         
         /** A type of operands and returned value. See [enum OpType] for options. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
         
         /** A derivative function type. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
         
         /** Sets the level of precision to use for the derivative function. See [enum Precision] for options. When using the GL Compatibility renderer, this setting has no effect. */
-        get precision(): number /*i64*/
-        set precision(value: number /*i64*/)
+        get precision(): int64
+        set precision(value: int64)
     }
     /** Calculates the determinant of a [Transform3D] within the visual shader graph.  
      *  	  
@@ -5796,12 +5728,12 @@ declare module "godot" {
      */
     class VisualShaderNodeFloatConstant extends VisualShaderNodeConstant {
         constructor(identifier?: any)
-        set_constant(constant: number /*f64*/): void
-        get_constant(): number /*f64*/
+        set_constant(constant: float64): void
+        get_constant(): float64
         
         /** A floating-point constant which represents a state of this node. */
-        get constant(): number /*f64*/
-        set constant(value: number /*f64*/)
+        get constant(): float64
+        set constant(value: float64)
     }
     namespace VisualShaderNodeFloatFunc {
         enum Function {
@@ -5915,8 +5847,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeFloatFunc.Function
         
         /** A function to be applied to the scalar. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
     }
     namespace VisualShaderNodeFloatOp {
         enum Operator {
@@ -5964,8 +5896,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeFloatOp.Operator
         
         /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        get operator(): number /*i64*/
-        set operator(value: number /*i64*/)
+        get operator(): int64
+        set operator(value: int64)
     }
     namespace VisualShaderNodeFloatParameter {
         enum Hint {
@@ -5990,40 +5922,40 @@ declare module "godot" {
         constructor(identifier?: any)
         set_hint(hint: VisualShaderNodeFloatParameter.Hint): void
         get_hint(): VisualShaderNodeFloatParameter.Hint
-        set_min(value: number /*f64*/): void
-        get_min(): number /*f64*/
-        set_max(value: number /*f64*/): void
-        get_max(): number /*f64*/
-        set_step(value: number /*f64*/): void
-        get_step(): number /*f64*/
+        set_min(value: float64): void
+        get_min(): float64
+        set_max(value: float64): void
+        get_max(): float64
+        set_step(value: float64): void
+        get_step(): float64
         set_default_value_enabled(enabled: boolean): void
         is_default_value_enabled(): boolean
-        set_default_value(value: number /*f64*/): void
-        get_default_value(): number /*f64*/
+        set_default_value(value: float64): void
+        get_default_value(): float64
         
         /** A hint applied to the uniform, which controls the values it can take when set through the Inspector. */
-        get hint(): number /*i64*/
-        set hint(value: number /*i64*/)
+        get hint(): int64
+        set hint(value: int64)
         
         /** Maximum value for range hints. Used if [member hint] is set to [constant HINT_RANGE] or [constant HINT_RANGE_STEP]. */
-        get min(): number /*f64*/
-        set min(value: number /*f64*/)
+        get min(): float64
+        set min(value: float64)
         
         /** Minimum value for range hints. Used if [member hint] is set to [constant HINT_RANGE] or [constant HINT_RANGE_STEP]. */
-        get max(): number /*f64*/
-        set max(value: number /*f64*/)
+        get max(): float64
+        set max(value: float64)
         
         /** Step (increment) value for the range hint with step. Used if [member hint] is set to [constant HINT_RANGE_STEP]. */
-        get step(): number /*f64*/
-        set step(value: number /*f64*/)
+        get step(): float64
+        set step(value: float64)
         
         /** Enables usage of the [member default_value]. */
         get default_value_enabled(): boolean
         set default_value_enabled(value: boolean)
         
         /** A default value to be assigned within the shader. */
-        get default_value(): number /*f64*/
-        set default_value(value: number /*f64*/)
+        get default_value(): float64
+        set default_value(value: float64)
     }
     /** A Fresnel effect to be used within the visual shader graph.  
      *  	  
@@ -6061,52 +5993,52 @@ declare module "godot" {
         is_valid_port_name(name: string): boolean
         
         /** Adds an input port with the specified [param type] (see [enum VisualShaderNode.PortType]) and [param name]. */
-        add_input_port(id: number /*i64*/, type: number /*i64*/, name: string): void
+        add_input_port(id: int64, type: int64, name: string): void
         
         /** Removes the specified input port. */
-        remove_input_port(id: number /*i64*/): void
+        remove_input_port(id: int64): void
         
         /** Returns the number of input ports in use. Alternative for [method get_free_input_port_id]. */
-        get_input_port_count(): number /*i64*/
+        get_input_port_count(): int64
         
         /** Returns `true` if the specified input port exists. */
-        has_input_port(id: number /*i64*/): boolean
+        has_input_port(id: int64): boolean
         
         /** Removes all previously specified input ports. */
         clear_input_ports(): void
         
         /** Adds an output port with the specified [param type] (see [enum VisualShaderNode.PortType]) and [param name]. */
-        add_output_port(id: number /*i64*/, type: number /*i64*/, name: string): void
+        add_output_port(id: int64, type: int64, name: string): void
         
         /** Removes the specified output port. */
-        remove_output_port(id: number /*i64*/): void
+        remove_output_port(id: int64): void
         
         /** Returns the number of output ports in use. Alternative for [method get_free_output_port_id]. */
-        get_output_port_count(): number /*i64*/
+        get_output_port_count(): int64
         
         /** Returns `true` if the specified output port exists. */
-        has_output_port(id: number /*i64*/): boolean
+        has_output_port(id: int64): boolean
         
         /** Removes all previously specified output ports. */
         clear_output_ports(): void
         
         /** Renames the specified input port. */
-        set_input_port_name(id: number /*i64*/, name: string): void
+        set_input_port_name(id: int64, name: string): void
         
         /** Sets the specified input port's type (see [enum VisualShaderNode.PortType]). */
-        set_input_port_type(id: number /*i64*/, type: number /*i64*/): void
+        set_input_port_type(id: int64, type: int64): void
         
         /** Renames the specified output port. */
-        set_output_port_name(id: number /*i64*/, name: string): void
+        set_output_port_name(id: int64, name: string): void
         
         /** Sets the specified output port's type (see [enum VisualShaderNode.PortType]). */
-        set_output_port_type(id: number /*i64*/, type: number /*i64*/): void
+        set_output_port_type(id: int64, type: int64): void
         
         /** Returns a free input port ID which can be used in [method add_input_port]. */
-        get_free_input_port_id(): number /*i64*/
+        get_free_input_port_id(): int64
         
         /** Returns a free output port ID which can be used in [method add_output_port]. */
-        get_free_output_port_id(): number /*i64*/
+        get_free_output_port_id(): int64
     }
     /** Outputs a 3D vector based on the result of a floating point comparison within the visual shader graph.  
      *  	  
@@ -6140,12 +6072,12 @@ declare module "godot" {
      */
     class VisualShaderNodeIntConstant extends VisualShaderNodeConstant {
         constructor(identifier?: any)
-        set_constant(constant: number /*i64*/): void
-        get_constant(): number /*i64*/
+        set_constant(constant: int64): void
+        get_constant(): int64
         
         /** An integer constant which represents a state of this node. */
-        get constant(): number /*i64*/
-        set constant(value: number /*i64*/)
+        get constant(): int64
+        set constant(value: int64)
     }
     namespace VisualShaderNodeIntFunc {
         enum Function {
@@ -6175,8 +6107,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeIntFunc.Function
         
         /** A function to be applied to the scalar. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
     }
     namespace VisualShaderNodeIntOp {
         enum Operator {
@@ -6230,8 +6162,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeIntOp.Operator
         
         /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        get operator(): number /*i64*/
-        set operator(value: number /*i64*/)
+        get operator(): int64
+        set operator(value: int64)
     }
     namespace VisualShaderNodeIntParameter {
         enum Hint {
@@ -6256,40 +6188,40 @@ declare module "godot" {
         constructor(identifier?: any)
         set_hint(hint: VisualShaderNodeIntParameter.Hint): void
         get_hint(): VisualShaderNodeIntParameter.Hint
-        set_min(value: number /*i64*/): void
-        get_min(): number /*i64*/
-        set_max(value: number /*i64*/): void
-        get_max(): number /*i64*/
-        set_step(value: number /*i64*/): void
-        get_step(): number /*i64*/
+        set_min(value: int64): void
+        get_min(): int64
+        set_max(value: int64): void
+        get_max(): int64
+        set_step(value: int64): void
+        get_step(): int64
         set_default_value_enabled(enabled: boolean): void
         is_default_value_enabled(): boolean
-        set_default_value(value: number /*i64*/): void
-        get_default_value(): number /*i64*/
+        set_default_value(value: int64): void
+        get_default_value(): int64
         
         /** Range hint of this node. Use it to customize valid parameter range. */
-        get hint(): number /*i64*/
-        set hint(value: number /*i64*/)
+        get hint(): int64
+        set hint(value: int64)
         
         /** The minimum value this parameter can take. [member hint] must be either [constant HINT_RANGE] or [constant HINT_RANGE_STEP] for this to take effect. */
-        get min(): number /*i64*/
-        set min(value: number /*i64*/)
+        get min(): int64
+        set min(value: int64)
         
         /** The maximum value this parameter can take. [member hint] must be either [constant HINT_RANGE] or [constant HINT_RANGE_STEP] for this to take effect. */
-        get max(): number /*i64*/
-        set max(value: number /*i64*/)
+        get max(): int64
+        set max(value: int64)
         
         /** The step between parameter's values. Forces the parameter to be a multiple of the given value. [member hint] must be [constant HINT_RANGE_STEP] for this to take effect. */
-        get step(): number /*i64*/
-        set step(value: number /*i64*/)
+        get step(): int64
+        set step(value: int64)
         
         /** If `true`, the node will have a custom default value. */
         get default_value_enabled(): boolean
         set default_value_enabled(value: boolean)
         
         /** Default value of this parameter, which will be used if not set externally. [member default_value_enabled] must be enabled; defaults to `0` otherwise. */
-        get default_value(): number /*i64*/
-        set default_value(value: number /*i64*/)
+        get default_value(): int64
+        set default_value(value: int64)
     }
     namespace VisualShaderNodeIs {
         enum Function {
@@ -6313,8 +6245,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeIs.Function
         
         /** The comparison function. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
     }
     /** A visual shader node that returns the depth value of the DEPTH_TEXTURE node in a linear space.  
      *  	  
@@ -6360,8 +6292,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeMix.OpType
         
         /** A type of operands and returned value. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
     }
     namespace VisualShaderNodeMultiplyAdd {
         enum OpType {
@@ -6391,8 +6323,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeMultiplyAdd.OpType
         
         /** A type of operands and returned value. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
     }
     /** Calculates an outer product of two vectors within the visual shader graph.  
      *  	  
@@ -6439,8 +6371,8 @@ declare module "godot" {
         set parameter_name(value: StringName)
         
         /** Defines the scope of the parameter. */
-        get qualifier(): number /*i64*/
-        set qualifier(value: number /*i64*/)
+        get qualifier(): int64
+        set qualifier(value: int64)
     }
     /** A reference to an existing [VisualShaderNodeParameter].  
      *  	  
@@ -6450,14 +6382,14 @@ declare module "godot" {
         constructor(identifier?: any)
         set_parameter_name(name: string): void
         get_parameter_name(): string
-        _set_parameter_type(type: number /*i64*/): void
-        _get_parameter_type(): number /*i64*/
+        _set_parameter_type(type: int64): void
+        _get_parameter_type(): int64
         
         /** The name of the parameter which this reference points to. */
         get parameter_name(): StringName
         set parameter_name(value: StringName)
-        get param_type(): number /*i64*/
-        set param_type(value: number /*i64*/)
+        get param_type(): int64
+        set param_type(value: int64)
     }
     namespace VisualShaderNodeParticleAccelerator {
         enum Mode {
@@ -6484,8 +6416,8 @@ declare module "godot" {
         get_mode(): VisualShaderNodeParticleAccelerator.Mode
         
         /** Defines in what manner the particles will be accelerated. */
-        get mode(): number /*i64*/
-        set mode(value: number /*i64*/)
+        get mode(): int64
+        set mode(value: int64)
     }
     /** A visual shader node that makes particles emitted in a box shape.  
      *  	  
@@ -6529,8 +6461,8 @@ declare module "godot" {
         get_flags(): VisualShaderNodeParticleEmit.EmitFlags
         
         /** Flags used to override the properties defined in the sub-emitter's process material. */
-        get flags(): number /*i64*/
-        set flags(value: number /*i64*/)
+        get flags(): int64
+        set flags(value: int64)
     }
     /** A base class for particle emitters.  
      *  	  
@@ -6555,8 +6487,8 @@ declare module "godot" {
         get_mesh(): Mesh
         set_use_all_surfaces(enabled: boolean): void
         is_use_all_surfaces(): boolean
-        set_surface_index(surface_index: number /*i64*/): void
-        get_surface_index(): number /*i64*/
+        set_surface_index(surface_index: int64): void
+        get_surface_index(): int64
         
         /** The [Mesh] that defines emission shape. */
         get mesh(): Mesh
@@ -6567,8 +6499,8 @@ declare module "godot" {
         set use_all_surfaces(value: boolean)
         
         /** Index of the surface that emits particles. [member use_all_surfaces] must be `false` for this to take effect. */
-        get surface_index(): number /*i64*/
-        set surface_index(value: number /*i64*/)
+        get surface_index(): int64
+        set surface_index(value: int64)
     }
     /** A visual shader helper node for multiplying position and rotation of particles.  
      *  	  
@@ -6618,8 +6550,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeParticleRandomness.OpType
         
         /** A type of operands and returned value. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
     }
     /** A visual shader node that makes particles emitted in a ring shape.  
      *  	  
@@ -6712,8 +6644,8 @@ declare module "godot" {
         get_source(): VisualShaderNodeSample3D.Source
         
         /** An input source type. */
-        get source(): number /*i64*/
-        set source(value: number /*i64*/)
+        get source(): int64
+        set source(value: int64)
     }
     /** A visual shader node that unpacks the screen normal texture in World Space.  
      *  	  
@@ -6766,8 +6698,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeSmoothStep.OpType
         
         /** A type of operands and returned value. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
     }
     namespace VisualShaderNodeStep {
         enum OpType {
@@ -6806,8 +6738,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeStep.OpType
         
         /** A type of operands and returned value. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
     }
     namespace VisualShaderNodeSwitch {
         enum OpType {
@@ -6849,8 +6781,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeSwitch.OpType
         
         /** A type of operands and returned value. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
     }
     namespace VisualShaderNodeTexture {
         enum Source {
@@ -6909,16 +6841,16 @@ declare module "godot" {
         get_texture_type(): VisualShaderNodeTexture.TextureType
         
         /** Determines the source for the lookup. See [enum Source] for options. */
-        get source(): number /*i64*/
-        set source(value: number /*i64*/)
+        get source(): int64
+        set source(value: int64)
         
         /** The source texture, if needed for the selected [member source]. */
         get texture(): Texture2D
         set texture(value: Texture2D)
         
         /** Specifies the type of the texture if [member source] is set to [constant SOURCE_TEXTURE]. See [enum TextureType] for options. */
-        get texture_type(): number /*i64*/
-        set texture_type(value: number /*i64*/)
+        get texture_type(): int64
+        set texture_type(value: int64)
     }
     /** A 2D texture uniform array to be used within the visual shader graph.  
      *  	  
@@ -7080,24 +7012,24 @@ declare module "godot" {
         get_texture_source(): VisualShaderNodeTextureParameter.TextureSource
         
         /** Defines the type of data provided by the source texture. See [enum TextureType] for options. */
-        get texture_type(): number /*i64*/
-        set texture_type(value: number /*i64*/)
+        get texture_type(): int64
+        set texture_type(value: int64)
         
         /** Sets the default color if no texture is assigned to the uniform. */
-        get color_default(): number /*i64*/
-        set color_default(value: number /*i64*/)
+        get color_default(): int64
+        set color_default(value: int64)
         
         /** Sets the texture filtering mode. See [enum TextureFilter] for options. */
-        get texture_filter(): number /*i64*/
-        set texture_filter(value: number /*i64*/)
+        get texture_filter(): int64
+        set texture_filter(value: int64)
         
         /** Sets the texture repeating mode. See [enum TextureRepeat] for options. */
-        get texture_repeat(): number /*i64*/
-        set texture_repeat(value: number /*i64*/)
+        get texture_repeat(): int64
+        set texture_repeat(value: int64)
         
         /** Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness texture. See [enum TextureSource] for options. */
-        get texture_source(): number /*i64*/
-        set texture_source(value: number /*i64*/)
+        get texture_source(): int64
+        set texture_source(value: int64)
     }
     /** Performs a uniform texture lookup with triplanar within the visual shader graph.  
      *  	  
@@ -7169,8 +7101,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeTransformFunc.Function
         
         /** The function to be computed. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
     }
     namespace VisualShaderNodeTransformOp {
         enum Operator {
@@ -7215,8 +7147,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeTransformOp.Operator
         
         /** The type of the operation to be performed on the transforms. See [enum Operator] for options. */
-        get operator(): number /*i64*/
-        set operator(value: number /*i64*/)
+        get operator(): int64
+        set operator(value: int64)
     }
     /** A [Transform3D] parameter for use within the visual shader graph.  
      *  	  
@@ -7265,8 +7197,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeTransformVecMult.Operator
         
         /** The multiplication type to be performed. See [enum Operator] for options. */
-        get operator(): number /*i64*/
-        set operator(value: number /*i64*/)
+        get operator(): int64
+        set operator(value: int64)
     }
     /** An unsigned scalar integer constant to be used within the visual shader graph.  
      *  	  
@@ -7274,12 +7206,12 @@ declare module "godot" {
      */
     class VisualShaderNodeUIntConstant extends VisualShaderNodeConstant {
         constructor(identifier?: any)
-        set_constant(constant: number /*i64*/): void
-        get_constant(): number /*i64*/
+        set_constant(constant: int64): void
+        get_constant(): int64
         
         /** An unsigned integer constant which represents a state of this node. */
-        get constant(): number /*i64*/
-        set constant(value: number /*i64*/)
+        get constant(): int64
+        set constant(value: int64)
     }
     namespace VisualShaderNodeUIntFunc {
         enum Function {
@@ -7303,8 +7235,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeUIntFunc.Function
         
         /** A function to be applied to the scalar. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
     }
     namespace VisualShaderNodeUIntOp {
         enum Operator {
@@ -7358,8 +7290,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeUIntOp.Operator
         
         /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        get operator(): number /*i64*/
-        set operator(value: number /*i64*/)
+        get operator(): int64
+        set operator(value: int64)
     }
     /** A visual shader node for shader parameter (uniform) of type unsigned [int].  
      *  	  
@@ -7369,16 +7301,16 @@ declare module "godot" {
         constructor(identifier?: any)
         set_default_value_enabled(enabled: boolean): void
         is_default_value_enabled(): boolean
-        set_default_value(value: number /*i64*/): void
-        get_default_value(): number /*i64*/
+        set_default_value(value: int64): void
+        get_default_value(): int64
         
         /** If `true`, the node will have a custom default value. */
         get default_value_enabled(): boolean
         set default_value_enabled(value: boolean)
         
         /** Default value of this parameter, which will be used if not set externally. [member default_value_enabled] must be enabled; defaults to `0` otherwise. */
-        get default_value(): number /*i64*/
-        set default_value(value: number /*i64*/)
+        get default_value(): int64
+        set default_value(value: int64)
     }
     namespace VisualShaderNodeUVFunc {
         enum Function {
@@ -7402,8 +7334,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeUVFunc.Function
         
         /** A function to be applied to the texture coordinates. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
     }
     /** A visual shader node that modifies the texture UV using polar coordinates.  
      *  	  
@@ -7428,8 +7360,8 @@ declare module "godot" {
         set varying_name(value: StringName)
         
         /** Type of the variable. Determines where the variable can be accessed. */
-        get varying_type(): number /*i64*/
-        set varying_type(value: number /*i64*/)
+        get varying_type(): int64
+        set varying_type(value: int64)
     }
     /** A visual shader node that gets a value of a varying.  
      *  	  
@@ -7566,8 +7498,8 @@ declare module "godot" {
         get_op_type(): VisualShaderNodeVectorBase.OpType
         
         /** A vector type that this operation is performed on. */
-        get op_type(): number /*i64*/
-        set op_type(value: number /*i64*/)
+        get op_type(): int64
+        set op_type(value: int64)
     }
     /** Composes a [Vector2], [Vector3] or 4D vector (represented as a [Quaternion]) from scalars within the visual shader graph.  
      *  	  
@@ -7705,8 +7637,8 @@ declare module "godot" {
         get_function(): VisualShaderNodeVectorFunc.Function
         
         /** The function to be performed. See [enum Function] for options. */
-        get function(): number /*i64*/
-        set function(value: number /*i64*/)
+        get function(): int64
+        set function(value: int64)
     }
     /** Returns the length of a [Vector3] within the visual shader graph.  
      *  	  
@@ -7767,8 +7699,8 @@ declare module "godot" {
         get_operator(): VisualShaderNodeVectorOp.Operator
         
         /** The operator to be used. See [enum Operator] for options. */
-        get operator(): number /*i64*/
-        set operator(value: number /*i64*/)
+        get operator(): int64
+        set operator(value: int64)
     }
     /** Returns the vector that points in the direction of refraction. For use within the visual shader graph.  
      *  	  
@@ -7829,8 +7761,8 @@ declare module "godot" {
         debug_bake(): void
         
         /** Number of times to subdivide the grid that the [VoxelGI] operates on. A higher number results in finer detail and thus higher visual quality, while lower numbers result in better performance. */
-        get subdiv(): number /*i64*/
-        set subdiv(value: number /*i64*/)
+        get subdiv(): int64
+        set subdiv(value: int64)
         
         /** The size of the area covered by the [VoxelGI]. If you make the size larger without increasing the subdivisions with [member subdiv], the size of each cell will increase and result in lower detailed lighting.  
          *      
@@ -7865,16 +7797,16 @@ declare module "godot" {
         get_octree_cells(): PackedByteArray
         get_data_cells(): PackedByteArray
         get_level_counts(): PackedInt32Array
-        set_dynamic_range(dynamic_range: number /*f64*/): void
-        get_dynamic_range(): number /*f64*/
-        set_energy(energy: number /*f64*/): void
-        get_energy(): number /*f64*/
-        set_bias(bias: number /*f64*/): void
-        get_bias(): number /*f64*/
-        set_normal_bias(bias: number /*f64*/): void
-        get_normal_bias(): number /*f64*/
-        set_propagation(propagation: number /*f64*/): void
-        get_propagation(): number /*f64*/
+        set_dynamic_range(dynamic_range: float64): void
+        get_dynamic_range(): float64
+        set_energy(energy: float64): void
+        get_energy(): float64
+        set_bias(bias: float64): void
+        get_bias(): float64
+        set_normal_bias(bias: float64): void
+        get_normal_bias(): float64
+        set_propagation(propagation: float64): void
+        get_propagation(): float64
         set_interior(interior: boolean): void
         is_interior(): boolean
         set_use_two_bounces(enable: boolean): void
@@ -7885,24 +7817,24 @@ declare module "godot" {
         set _data(value: Dictionary)
         
         /** The dynamic range to use (`1.0` represents a low dynamic range scene brightness). Higher values can be used to provide brighter indirect lighting, at the cost of more visible color banding in dark areas (both in indirect lighting and reflections). To avoid color banding, it's recommended to use the lowest value that does not result in visible light clipping. */
-        get dynamic_range(): number /*f64*/
-        set dynamic_range(value: number /*f64*/)
+        get dynamic_range(): float64
+        set dynamic_range(value: float64)
         
         /** The energy of the indirect lighting and reflections produced by the [VoxelGI] node. Higher values result in brighter indirect lighting. If indirect lighting looks too flat, try decreasing [member propagation] while increasing [member energy] at the same time. See also [member use_two_bounces] which influences the indirect lighting's effective brightness. */
-        get energy(): number /*f64*/
-        set energy(value: number /*f64*/)
+        get energy(): float64
+        set energy(value: float64)
         
         /** The normal bias to use for indirect lighting and reflections. Higher values reduce self-reflections visible in non-rough materials, at the cost of more visible light leaking and flatter-looking indirect lighting. To prioritize hiding self-reflections over lighting quality, set [member bias] to `0.0` and [member normal_bias] to a value between `1.0` and `2.0`. */
-        get bias(): number /*f64*/
-        set bias(value: number /*f64*/)
+        get bias(): float64
+        set bias(value: float64)
         
         /** The normal bias to use for indirect lighting and reflections. Higher values reduce self-reflections visible in non-rough materials, at the cost of more visible light leaking and flatter-looking indirect lighting. See also [member bias]. To prioritize hiding self-reflections over lighting quality, set [member bias] to `0.0` and [member normal_bias] to a value between `1.0` and `2.0`. */
-        get normal_bias(): number /*f64*/
-        set normal_bias(value: number /*f64*/)
+        get normal_bias(): float64
+        set normal_bias(value: float64)
         
         /** The multiplier to use when light bounces off a surface. Higher values result in brighter indirect lighting. If indirect lighting looks too flat, try decreasing [member propagation] while increasing [member energy] at the same time. See also [member use_two_bounces] which influences the indirect lighting's effective brightness. */
-        get propagation(): number /*f64*/
-        set propagation(value: number /*f64*/)
+        get propagation(): float64
+        set propagation(value: float64)
         
         /** If `true`, performs two bounces of indirect lighting instead of one. This makes indirect lighting look more natural and brighter at a small performance cost. The second bounce is also visible in reflections. If the scene appears too bright after enabling [member use_two_bounces], adjust [member propagation] and [member energy]. */
         get use_two_bounces(): boolean
@@ -7975,17 +7907,17 @@ declare module "godot" {
         /** Returns the ID assigned to this channel during creation (or auto-assigned during negotiation).  
          *  If the channel is not negotiated out-of-band the ID will only be available after the connection is established (will return `65535` until then).  
          */
-        get_id(): number /*i64*/
+        get_id(): int64
         
         /** Returns the `maxPacketLifeTime` value assigned to this channel during creation.  
          *  Will be `65535` if not specified.  
          */
-        get_max_packet_life_time(): number /*i64*/
+        get_max_packet_life_time(): int64
         
         /** Returns the `maxRetransmits` value assigned to this channel during creation.  
          *  Will be `65535` if not specified.  
          */
-        get_max_retransmits(): number /*i64*/
+        get_max_retransmits(): int64
         
         /** Returns the sub-protocol assigned to this channel during creation. An empty string if not specified. */
         get_protocol(): string
@@ -7994,19 +7926,19 @@ declare module "godot" {
         is_negotiated(): boolean
         
         /** Returns the number of bytes currently queued to be sent over this channel. */
-        get_buffered_amount(): number /*i64*/
+        get_buffered_amount(): int64
         
         /** The transfer mode to use when sending outgoing packet. Either text or binary. */
-        get write_mode(): number /*i64*/
-        set write_mode(value: number /*i64*/)
+        get write_mode(): int64
+        set write_mode(value: int64)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_webrtcdatachannelextension.html */
     class WebRTCDataChannelExtension extends WebRTCDataChannel {
         constructor(identifier?: any)
-        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): Error
-        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): Error
-        /* gdvirtual */ _get_available_packet_count(): number /*i64*/
-        /* gdvirtual */ _get_max_packet_size(): number /*i64*/
+        /* gdvirtual */ _get_packet(r_buffer: int64, r_buffer_size: int64): Error
+        /* gdvirtual */ _put_packet(p_buffer: int64, p_buffer_size: int64): Error
+        /* gdvirtual */ _get_available_packet_count(): int64
+        /* gdvirtual */ _get_max_packet_size(): int64
         /* gdvirtual */ _poll(): Error
         /* gdvirtual */ _close(): void
         /* gdvirtual */ _set_write_mode(p_write_mode: WebRTCDataChannel.WriteMode): void
@@ -8015,12 +7947,12 @@ declare module "godot" {
         /* gdvirtual */ _get_ready_state(): WebRTCDataChannel.ChannelState
         /* gdvirtual */ _get_label(): string
         /* gdvirtual */ _is_ordered(): boolean
-        /* gdvirtual */ _get_id(): number /*i64*/
-        /* gdvirtual */ _get_max_packet_life_time(): number /*i64*/
-        /* gdvirtual */ _get_max_retransmits(): number /*i64*/
+        /* gdvirtual */ _get_id(): int64
+        /* gdvirtual */ _get_max_packet_life_time(): int64
+        /* gdvirtual */ _get_max_retransmits(): int64
         /* gdvirtual */ _get_protocol(): string
         /* gdvirtual */ _is_negotiated(): boolean
-        /* gdvirtual */ _get_buffered_amount(): number /*i64*/
+        /* gdvirtual */ _get_buffered_amount(): int64
     }
     /** A simple interface to create a peer-to-peer mesh network composed of [WebRTCPeerConnection] that is compatible with the [MultiplayerAPI].  
      *  	  
@@ -8036,24 +7968,24 @@ declare module "godot" {
         /** Initialize the multiplayer peer as a client with the given [param peer_id] (must be between 2 and 2147483647). In this mode, you should only call [method add_peer] once and with [param peer_id] of `1`. This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_client(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
+        create_client(peer_id: int64, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
         
         /** Initialize the multiplayer peer as a mesh (i.e. all peers connect to each other) with the given [param peer_id] (must be between 1 and 2147483647). */
-        create_mesh(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
+        create_mesh(peer_id: int64, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
         
         /** Add a new peer to the mesh with the given [param peer_id]. The [WebRTCPeerConnection] must be in state [constant WebRTCPeerConnection.STATE_NEW].  
          *  Three channels will be created for reliable, unreliable, and ordered transport. The value of [param unreliable_lifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable and ordered channels (see [method WebRTCPeerConnection.create_data_channel]).  
          */
-        add_peer(peer: WebRTCPeerConnection, peer_id: number /*i64*/, unreliable_lifetime: number /*i64*/ = 1): Error
+        add_peer(peer: WebRTCPeerConnection, peer_id: int64, unreliable_lifetime: int64 = 1): Error
         
         /** Remove the peer with given [param peer_id] from the mesh. If the peer was connected, and [signal MultiplayerPeer.peer_connected] was emitted for it, then [signal MultiplayerPeer.peer_disconnected] will be emitted. */
-        remove_peer(peer_id: number /*i64*/): void
+        remove_peer(peer_id: int64): void
         
         /** Returns `true` if the given [param peer_id] is in the peers map (it might not be connected though). */
-        has_peer(peer_id: number /*i64*/): boolean
+        has_peer(peer_id: int64): boolean
         
         /** Returns a dictionary representation of the peer with given [param peer_id] with three keys. `"connection"` containing the [WebRTCPeerConnection] to this peer, `"channels"` an array of three [WebRTCDataChannel], and `"connected"` a boolean representing if the peer connection is currently connected (all three channels are open). */
-        get_peer(peer_id: number /*i64*/): Dictionary
+        get_peer(peer_id: int64): Dictionary
         
         /** Returns a dictionary which keys are the peer ids and values the peer representation as in [method get_peer]. */
         get_peers(): Dictionary
@@ -8149,7 +8081,7 @@ declare module "godot" {
         set_remote_description(type: string, sdp: string): Error
         
         /** Add an ice candidate generated by a remote peer (and received over the signaling server). See [signal ice_candidate_created]. */
-        add_ice_candidate(media: string, index: number /*i64*/, name: string): Error
+        add_ice_candidate(media: string, index: int64, name: string): Error
         
         /** Call this method frequently (e.g. in [method Node._process] or [method Node._physics_process]) to properly receive signals. */
         poll(): Error
@@ -8173,7 +8105,7 @@ declare module "godot" {
         readonly session_description_created: Signal // type: string, sdp: string => void
         
         /** Emitted when a new ICE candidate has been created. The three parameters are meant to be passed to the remote peer over the signaling server. */
-        readonly ice_candidate_created: Signal // media: string, index: number /*i64*/, name: string => void
+        readonly ice_candidate_created: Signal // media: string, index: int64, name: string => void
         
         /** Emitted when a new in-band channel is received, i.e. when the channel was created with `negotiated: false` (default).  
          *  The object will be an instance of [WebRTCDataChannel]. You must keep a reference of it or it will be closed automatically. See [method create_data_channel].  
@@ -8191,7 +8123,7 @@ declare module "godot" {
         /* gdvirtual */ _create_offer(): Error
         /* gdvirtual */ _set_remote_description(p_type: string, p_sdp: string): Error
         /* gdvirtual */ _set_local_description(p_type: string, p_sdp: string): Error
-        /* gdvirtual */ _add_ice_candidate(p_sdp_mid_name: string, p_sdp_mline_index: number /*i64*/, p_sdp_name: string): Error
+        /* gdvirtual */ _add_ice_candidate(p_sdp_mid_name: string, p_sdp_mline_index: int64, p_sdp_name: string): Error
         /* gdvirtual */ _poll(): Error
         /* gdvirtual */ _close(): void
     }
@@ -8232,7 +8164,7 @@ declare module "godot" {
         get_requested_reference_space_types(): string
         
         /** Returns `true` if there is an active input source with the given [param input_source_id]. */
-        is_input_source_active(input_source_id: number /*i64*/): boolean
+        is_input_source_active(input_source_id: int64): boolean
         
         /** Gets an [XRPositionalTracker] for the given [param input_source_id].  
          *  In the context of WebXR, an input source can be an advanced VR controller like the Oculus Touch or Index controllers, or even a tap on the screen, a spoken voice command or a button press on the device itself. When a non-traditional input source is used, interpret the position and orientation of the [XRPositionalTracker] as a ray pointing at the object the user wishes to interact with.  
@@ -8244,19 +8176,19 @@ declare module "godot" {
          *  - [signal squeeze]  
          *  - [signal squeezestart]  
          */
-        get_input_source_tracker(input_source_id: number /*i64*/): XRPositionalTracker
+        get_input_source_tracker(input_source_id: int64): XRPositionalTracker
         
         /** Returns the target ray mode for the given [param input_source_id].  
          *  This can help interpret the input coming from that input source. See [url=https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/targetRayMode]XRInputSource.targetRayMode[/url] for more information.  
          */
-        get_input_source_target_ray_mode(input_source_id: number /*i64*/): WebXRInterface.TargetRayMode
+        get_input_source_target_ray_mode(input_source_id: int64): WebXRInterface.TargetRayMode
         get_visibility_state(): string
         
         /** Returns the display refresh rate for the current HMD. Not supported on all HMDs and browsers. It may not report an accurate value until after using [method set_display_refresh_rate]. */
-        get_display_refresh_rate(): number /*f64*/
+        get_display_refresh_rate(): float64
         
         /** Sets the display refresh rate for the current HMD. Not supported on all HMDs and browsers. It won't take effect right away until after [signal display_refresh_rate_changed] is emitted. */
-        set_display_refresh_rate(refresh_rate: number /*f64*/): void
+        set_display_refresh_rate(refresh_rate: float64): void
         
         /** Returns display refresh rates supported by the current HMD. Only returned if this feature is supported by the web browser and after the interface has been initialized. */
         get_available_display_refresh_rates(): Array
@@ -8323,32 +8255,32 @@ declare module "godot" {
         /** Emitted when one of the input source has started its "primary action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly selectstart: Signal // input_source_id: number /*i64*/ => void
+        readonly selectstart: Signal // input_source_id: int64 => void
         
         /** Emitted after one of the input sources has finished its "primary action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly select: Signal // input_source_id: number /*i64*/ => void
+        readonly select: Signal // input_source_id: int64 => void
         
         /** Emitted when one of the input sources has finished its "primary action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly selectend: Signal // input_source_id: number /*i64*/ => void
+        readonly selectend: Signal // input_source_id: int64 => void
         
         /** Emitted when one of the input sources has started its "primary squeeze action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly squeezestart: Signal // input_source_id: number /*i64*/ => void
+        readonly squeezestart: Signal // input_source_id: int64 => void
         
         /** Emitted after one of the input sources has finished its "primary squeeze action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly squeeze: Signal // input_source_id: number /*i64*/ => void
+        readonly squeeze: Signal // input_source_id: int64 => void
         
         /** Emitted when one of the input sources has finished its "primary squeeze action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly squeezeend: Signal // input_source_id: number /*i64*/ => void
+        readonly squeezeend: Signal // input_source_id: int64 => void
         
         /** Emitted when [member visibility_state] has changed. */
         readonly visibility_state_changed: Signal //  => void
@@ -8524,11 +8456,11 @@ declare module "godot" {
         get_title(): string
         
         /** Returns the ID of the window. */
-        get_window_id(): number /*i64*/
+        get_window_id(): int64
         set_initial_position(initial_position: Window.WindowInitialPosition): void
         get_initial_position(): Window.WindowInitialPosition
-        set_current_screen(index: number /*i64*/): void
-        get_current_screen(): number /*i64*/
+        set_current_screen(index: int64): void
+        get_current_screen(): int64
         set_position(position: Vector2i): void
         get_position(): Vector2i
         
@@ -8617,8 +8549,8 @@ declare module "godot" {
         get_content_scale_stretch(): Window.ContentScaleStretch
         set_keep_title_visible(title_visible: boolean): void
         get_keep_title_visible(): boolean
-        set_content_scale_factor(factor: number /*f64*/): void
-        get_content_scale_factor(): number /*f64*/
+        set_content_scale_factor(factor: float64): void
+        get_content_scale_factor(): float64
         
         /** Enables font oversampling. This makes fonts look better when they are scaled up. */
         set_use_font_oversampling(enable: boolean): void
@@ -8663,7 +8595,7 @@ declare module "godot" {
         /** Creates a local override for a theme font size with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_size_override].  
          *  See also [method get_theme_font_size].  
          */
-        add_theme_font_size_override(name: StringName, font_size: number /*i64*/): void
+        add_theme_font_size_override(name: StringName, font_size: int64): void
         
         /** Creates a local override for a theme [Color] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_color_override].  
          *  See also [method get_theme_color] and [method Control.add_theme_color_override] for more details.  
@@ -8673,7 +8605,7 @@ declare module "godot" {
         /** Creates a local override for a theme constant with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_constant_override].  
          *  See also [method get_theme_constant].  
          */
-        add_theme_constant_override(name: StringName, constant: number /*i64*/): void
+        add_theme_constant_override(name: StringName, constant: int64): void
         
         /** Removes a local override for a theme icon with the specified [param name] previously added by [method add_theme_icon_override] or via the Inspector dock. */
         remove_theme_icon_override(name: StringName): void
@@ -8711,7 +8643,7 @@ declare module "godot" {
         /** Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size item with the specified [param name] and [param theme_type].  
          *  See [method Control.get_theme_color] for details.  
          */
-        get_theme_font_size(name: StringName, theme_type: StringName = ''): number /*i64*/
+        get_theme_font_size(name: StringName, theme_type: StringName = ''): int64
         
         /** Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item with the specified [param name] and [param theme_type].  
          *  See [method Control.get_theme_color] for more details.  
@@ -8721,7 +8653,7 @@ declare module "godot" {
         /** Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant item with the specified [param name] and [param theme_type].  
          *  See [method Control.get_theme_color] for more details.  
          */
-        get_theme_constant(name: StringName, theme_type: StringName = ''): number /*i64*/
+        get_theme_constant(name: StringName, theme_type: StringName = ''): int64
         
         /** Returns `true` if there is a local override for a theme icon with the specified [param name] in this [Control] node.  
          *  See [method add_theme_icon_override].  
@@ -8786,7 +8718,7 @@ declare module "godot" {
         /** Returns the default base scale value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_base_scale] value.  
          *  See [method Control.get_theme_color] for details.  
          */
-        get_theme_default_base_scale(): number /*f64*/
+        get_theme_default_base_scale(): float64
         
         /** Returns the default font from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font] value.  
          *  See [method Control.get_theme_color] for details.  
@@ -8796,7 +8728,7 @@ declare module "godot" {
         /** Returns the default font size value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font_size] value.  
          *  See [method Control.get_theme_color] for details.  
          */
-        get_theme_default_font_size(): number /*i64*/
+        get_theme_default_font_size(): int64
         
         /** Sets layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew). */
         set_layout_direction(direction: Window.LayoutDirection): void
@@ -8824,13 +8756,13 @@ declare module "godot" {
         /** If [Window] is embedded, popups the [Window] centered inside its embedder and sets its size as a [param ratio] of embedder's size.  
          *  If [Window] is a native window, popups the [Window] centered inside the screen of its parent [Window] and sets its size as a [param ratio] of the screen size.  
          */
-        popup_centered_ratio(ratio: number /*f64*/ = 0.8): void
+        popup_centered_ratio(ratio: float64 = 0.8): void
         
         /** Popups the [Window] centered inside its parent [Window]. [param fallback_ratio] determines the maximum size of the [Window], in relation to its parent.  
          *      
          *  **Note:** Calling it with the default value of [param minsize] is equivalent to calling it with [member size].  
          */
-        popup_centered_clamped(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
+        popup_centered_clamped(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: float64 = 0.75): void
         
         /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup] on it. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].  
@@ -8850,12 +8782,12 @@ declare module "godot" {
         /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_centered_ratio] on it. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].  
          */
-        popup_exclusive_centered_ratio(from_node: Node, ratio: number /*f64*/ = 0.8): void
+        popup_exclusive_centered_ratio(from_node: Node, ratio: float64 = 0.8): void
         
         /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_centered_clamped] on it. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].  
          */
-        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
+        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: float64 = 0.75): void
         
         /** Set's the window's current mode.  
          *      
@@ -8863,16 +8795,16 @@ declare module "godot" {
          *      
          *  **Note:** This method only works with native windows, i.e. the main window and [Window]-derived nodes when [member Viewport.gui_embed_subwindows] is disabled in the main viewport.  
          */
-        get mode(): number /*i64*/
-        set mode(value: number /*i64*/)
+        get mode(): int64
+        set mode(value: int64)
         
         /** The window's title. If the [Window] is native, title styles set in [Theme] will have no effect. */
         get title(): string
         set title(value: string)
         
         /** Specifies the initial type of position for the [Window]. See [enum WindowInitialPosition] constants. */
-        get initial_position(): number /*i64*/
-        set initial_position(value: number /*i64*/)
+        get initial_position(): int64
+        set initial_position(value: int64)
         
         /** The window's position in pixels.  
          *  If [member ProjectSettings.display/window/subwindows/embed_subwindows] is `false`, the position is in absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`, the window's position is in the coordinates of its parent [Viewport].  
@@ -8887,8 +8819,8 @@ declare module "godot" {
         set size(value: Vector2i)
         
         /** The screen the window is currently on. */
-        get current_screen(): number /*i64*/
-        set current_screen(value: number /*i64*/)
+        get current_screen(): int64
+        set current_screen(value: int64)
         
         /** Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.  
          *  Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).  
@@ -8948,20 +8880,20 @@ declare module "godot" {
         set content_scale_size(value: Vector2i)
         
         /** Specifies how the content is scaled when the [Window] is resized. */
-        get content_scale_mode(): number /*i64*/
-        set content_scale_mode(value: number /*i64*/)
+        get content_scale_mode(): int64
+        set content_scale_mode(value: int64)
         
         /** Specifies how the content's aspect behaves when the [Window] is resized. The base aspect is determined by [member content_scale_size]. */
-        get content_scale_aspect(): number /*i64*/
-        set content_scale_aspect(value: number /*i64*/)
+        get content_scale_aspect(): int64
+        set content_scale_aspect(value: int64)
         
         /** The policy to use to determine the final scale factor for 2D elements. This affects how [member content_scale_factor] is applied, in addition to the automatic scale factor determined by [member content_scale_size]. */
-        get content_scale_stretch(): number /*i64*/
-        set content_scale_stretch(value: number /*i64*/)
+        get content_scale_stretch(): int64
+        set content_scale_stretch(value: int64)
         
         /** Specifies the base scale of [Window]'s content when its [member size] is equal to [member content_scale_size]. */
-        get content_scale_factor(): number /*f64*/
-        set content_scale_factor(value: number /*f64*/)
+        get content_scale_factor(): float64
+        set content_scale_factor(value: float64)
         
         /** Toggles if any text should automatically change to its translated version depending on the current locale. */
         get auto_translate(): boolean
@@ -9103,8 +9035,8 @@ declare module "godot" {
         constructor(identifier?: any)
         set_normal(normal: Vector2): void
         get_normal(): Vector2
-        set_distance(distance: number /*f64*/): void
-        get_distance(): number /*f64*/
+        set_distance(distance: float64): void
+        get_distance(): float64
         
         /** The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to [constant Vector2.UP]. */
         get normal(): Vector2
@@ -9113,8 +9045,8 @@ declare module "godot" {
         /** The distance from the origin to the line, expressed in terms of [member normal] (according to its direction and magnitude). Actual absolute distance from the origin to the line can be calculated as `abs(distance) / normal.length()`.  
          *  In the scalar equation of the line `ax + by = d`, this is `d`, while the `(a, b)` coordinates are represented by the [member normal] property.  
          */
-        get distance(): number /*f64*/
-        set distance(value: number /*f64*/)
+        get distance(): float64
+        set distance(value: float64)
     }
     /** A 3D world boundary (half-space) shape used for physics collision.  
      *  	  
@@ -9209,19 +9141,19 @@ declare module "godot" {
         get_node_data(): string
         
         /** Returns the byte offset of the currently parsed node since the beginning of the file or buffer. This is usually equivalent to the number of characters before the read position. */
-        get_node_offset(): number /*i64*/
+        get_node_offset(): int64
         
         /** Returns the number of attributes in the currently parsed element.  
          *      
          *  **Note:** If this method is used while the currently parsed node is not [constant NODE_ELEMENT] or [constant NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.  
          */
-        get_attribute_count(): number /*i64*/
+        get_attribute_count(): int64
         
         /** Returns the name of an attribute of the currently parsed element, specified by the [param idx] index. */
-        get_attribute_name(idx: number /*i64*/): string
+        get_attribute_name(idx: int64): string
         
         /** Returns the value of an attribute of the currently parsed element, specified by the [param idx] index. */
-        get_attribute_value(idx: number /*i64*/): string
+        get_attribute_value(idx: int64): string
         
         /** Returns `true` if the currently parsed element has an attribute with the [param name]. */
         has_attribute(name: string): boolean
@@ -9236,18 +9168,70 @@ declare module "godot" {
         is_empty(): boolean
         
         /** Returns the current line in the parsed file, counting from 0. */
-        get_current_line(): number /*i64*/
+        get_current_line(): int64
         
         /** Skips the current section. If the currently parsed node contains more inner nodes, they will be ignored and the cursor will go to the closing of the current element. */
         skip_section(): void
         
         /** Moves the buffer cursor to a certain offset (since the beginning) and reads the next node there. This method returns an error code. */
-        seek(position: number /*i64*/): Error
+        seek(position: int64): Error
         
         /** Opens an XML [param file] for parsing. This method returns an error code. */
         open(file: string): Error
         
         /** Opens an XML raw [param buffer] for parsing. This method returns an error code. */
         open_buffer(buffer: PackedByteArray): Error
+    }
+    /** An anchor point in AR space.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_xranchor3d.html  
+     */
+    class XRAnchor3D extends XRNode3D {
+        constructor(identifier?: any)
+        /** Returns the estimated size of the plane that was detected. Say when the anchor relates to a table in the real world, this is the estimated size of the surface of that table. */
+        get_size(): Vector3
+        
+        /** Returns a plane aligned with our anchor; handy for intersection testing. */
+        get_plane(): Plane
+    }
+    /** A camera node with a few overrules for AR/VR applied, such as location tracking.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_xrcamera3d.html  
+     */
+    class XRCamera3D extends Camera3D {
+        constructor(identifier?: any)
+    }
+    /** A spatial node representing a spatially-tracked controller.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_xrcontroller3d.html  
+     */
+    class XRController3D extends XRNode3D {
+        constructor(identifier?: any)
+        /** Returns `true` if the button with the given [param name] is pressed. */
+        is_button_pressed(name: StringName): boolean
+        
+        /** Returns a [Variant] for the input with the given [param name]. This works for any input type, the variant will be typed according to the actions configuration. */
+        get_input(name: StringName): any
+        
+        /** Returns a numeric value for the input with the given [param name]. This is used for triggers and grip sensors. */
+        get_float(name: StringName): float64
+        
+        /** Returns a [Vector2] for the input with the given [param name]. This is used for thumbsticks and thumbpads found on many controllers. */
+        get_vector2(name: StringName): Vector2
+        
+        /** Returns the hand holding this controller, if known. See [enum XRPositionalTracker.TrackerHand]. */
+        get_tracker_hand(): XRPositionalTracker.TrackerHand
+        
+        /** Emitted when a button on this controller is pressed. */
+        readonly button_pressed: Signal // name: string => void
+        
+        /** Emitted when a button on this controller is released. */
+        readonly button_released: Signal // name: string => void
+        
+        /** Emitted when a trigger or similar input on this controller changes value. */
+        readonly input_float_changed: Signal // name: string, value: float64 => void
+        
+        /** Emitted when a thumbstick or thumbpad on this controller is moved. */
+        readonly input_vector2_changed: Signal // name: string, value: Vector2 => void
     }
 }

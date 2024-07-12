@@ -52,74 +52,74 @@ declare module "godot" {
         /** Called when estimating the cost between a point and the path's ending point.  
          *  Note that this function is hidden in the default [AStar2D] class.  
          */
-        /* gdvirtual */ _estimate_cost(from_id: number /*i64*/, to_id: number /*i64*/): number /*f64*/
+        /* gdvirtual */ _estimate_cost(from_id: int64, to_id: int64): float64
         
         /** Called when computing the cost between two connected points.  
          *  Note that this function is hidden in the default [AStar2D] class.  
          */
-        /* gdvirtual */ _compute_cost(from_id: number /*i64*/, to_id: number /*i64*/): number /*f64*/
+        /* gdvirtual */ _compute_cost(from_id: int64, to_id: int64): float64
         
         /** Returns the next available point ID with no point associated to it. */
-        get_available_point_id(): number /*i64*/
+        get_available_point_id(): int64
         
         /** Adds a new point at the given position with the given identifier. The [param id] must be 0 or larger, and the [param weight_scale] must be 0.0 or greater.  
          *  The [param weight_scale] is multiplied by the result of [method _compute_cost] when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower [param weight_scale]s to form a path.  
          *    
          *  If there already exists a point for the given [param id], its position and weight scale are updated to the given values.  
          */
-        add_point(id: number /*i64*/, position: Vector2, weight_scale: number /*f64*/ = 1): void
+        add_point(id: int64, position: Vector2, weight_scale: float64 = 1): void
         
         /** Returns the position of the point associated with the given [param id]. */
-        get_point_position(id: number /*i64*/): Vector2
+        get_point_position(id: int64): Vector2
         
         /** Sets the [param position] for the point with the given [param id]. */
-        set_point_position(id: number /*i64*/, position: Vector2): void
+        set_point_position(id: int64, position: Vector2): void
         
         /** Returns the weight scale of the point associated with the given [param id]. */
-        get_point_weight_scale(id: number /*i64*/): number /*f64*/
+        get_point_weight_scale(id: int64): float64
         
         /** Sets the [param weight_scale] for the point with the given [param id]. The [param weight_scale] is multiplied by the result of [method _compute_cost] when determining the overall cost of traveling across a segment from a neighboring point to this point. */
-        set_point_weight_scale(id: number /*i64*/, weight_scale: number /*f64*/): void
+        set_point_weight_scale(id: int64, weight_scale: float64): void
         
         /** Removes the point associated with the given [param id] from the points pool. */
-        remove_point(id: number /*i64*/): void
+        remove_point(id: int64): void
         
         /** Returns whether a point associated with the given [param id] exists. */
-        has_point(id: number /*i64*/): boolean
+        has_point(id: int64): boolean
         
         /** Returns an array with the IDs of the points that form the connection with the given point.  
          *    
          */
-        get_point_connections(id: number /*i64*/): PackedInt64Array
+        get_point_connections(id: int64): PackedInt64Array
         
         /** Returns an array of all point IDs. */
         get_point_ids(): PackedInt64Array
         
         /** Disables or enables the specified point for pathfinding. Useful for making a temporary obstacle. */
-        set_point_disabled(id: number /*i64*/, disabled: boolean = true): void
+        set_point_disabled(id: int64, disabled: boolean = true): void
         
         /** Returns whether a point is disabled or not for pathfinding. By default, all points are enabled. */
-        is_point_disabled(id: number /*i64*/): boolean
+        is_point_disabled(id: int64): boolean
         
         /** Creates a segment between the given points. If [param bidirectional] is `false`, only movement from [param id] to [param to_id] is allowed, not the reverse direction.  
          *    
          */
-        connect_points(id: number /*i64*/, to_id: number /*i64*/, bidirectional: boolean = true): void
+        connect_points(id: int64, to_id: int64, bidirectional: boolean = true): void
         
         /** Deletes the segment between the given points. If [param bidirectional] is `false`, only movement from [param id] to [param to_id] is prevented, and a unidirectional segment possibly remains. */
-        disconnect_points(id: number /*i64*/, to_id: number /*i64*/, bidirectional: boolean = true): void
+        disconnect_points(id: int64, to_id: int64, bidirectional: boolean = true): void
         
         /** Returns whether there is a connection/segment between the given points. If [param bidirectional] is `false`, returns whether movement from [param id] to [param to_id] is possible through this segment. */
-        are_points_connected(id: number /*i64*/, to_id: number /*i64*/, bidirectional: boolean = true): boolean
+        are_points_connected(id: int64, to_id: int64, bidirectional: boolean = true): boolean
         
         /** Returns the number of points currently in the points pool. */
-        get_point_count(): number /*i64*/
+        get_point_count(): int64
         
         /** Returns the capacity of the structure backing the points, useful in conjunction with [method reserve_space]. */
-        get_point_capacity(): number /*i64*/
+        get_point_capacity(): int64
         
         /** Reserves space internally for [param num_nodes] points, useful if you're adding a known large number of points at once, such as points on a grid. New capacity must be greater or equals to old capacity. */
-        reserve_space(num_nodes: number /*i64*/): void
+        reserve_space(num_nodes: int64): void
         
         /** Clears all the points and segments. */
         clear(): void
@@ -128,7 +128,7 @@ declare module "godot" {
          *      
          *  **Note:** If several points are the closest to [param to_position], the one with the smallest ID will be returned, ensuring a deterministic result.  
          */
-        get_closest_point(to_position: Vector2, include_disabled: boolean = false): number /*i64*/
+        get_closest_point(to_position: Vector2, include_disabled: boolean = false): int64
         
         /** Returns the closest position to [param to_position] that resides inside a segment between two connected points.  
          *    
@@ -140,13 +140,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty [PackedVector2Array] and will print an error message.  
          */
-        get_point_path(from_id: number /*i64*/, to_id: number /*i64*/): PackedVector2Array
+        get_point_path(from_id: int64, to_id: int64): PackedVector2Array
         
         /** Returns an array with the IDs of the points that form the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.  
          *    
          *  If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.  
          */
-        get_id_path(from_id: number /*i64*/, to_id: number /*i64*/): PackedInt64Array
+        get_id_path(from_id: int64, to_id: int64): PackedInt64Array
     }
     /** An implementation of A* for finding the shortest path between two vertices on a connected graph in 3D space.  
      *  	  
@@ -157,74 +157,74 @@ declare module "godot" {
         /** Called when estimating the cost between a point and the path's ending point.  
          *  Note that this function is hidden in the default [AStar3D] class.  
          */
-        /* gdvirtual */ _estimate_cost(from_id: number /*i64*/, to_id: number /*i64*/): number /*f64*/
+        /* gdvirtual */ _estimate_cost(from_id: int64, to_id: int64): float64
         
         /** Called when computing the cost between two connected points.  
          *  Note that this function is hidden in the default [AStar3D] class.  
          */
-        /* gdvirtual */ _compute_cost(from_id: number /*i64*/, to_id: number /*i64*/): number /*f64*/
+        /* gdvirtual */ _compute_cost(from_id: int64, to_id: int64): float64
         
         /** Returns the next available point ID with no point associated to it. */
-        get_available_point_id(): number /*i64*/
+        get_available_point_id(): int64
         
         /** Adds a new point at the given position with the given identifier. The [param id] must be 0 or larger, and the [param weight_scale] must be 0.0 or greater.  
          *  The [param weight_scale] is multiplied by the result of [method _compute_cost] when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower [param weight_scale]s to form a path.  
          *    
          *  If there already exists a point for the given [param id], its position and weight scale are updated to the given values.  
          */
-        add_point(id: number /*i64*/, position: Vector3, weight_scale: number /*f64*/ = 1): void
+        add_point(id: int64, position: Vector3, weight_scale: float64 = 1): void
         
         /** Returns the position of the point associated with the given [param id]. */
-        get_point_position(id: number /*i64*/): Vector3
+        get_point_position(id: int64): Vector3
         
         /** Sets the [param position] for the point with the given [param id]. */
-        set_point_position(id: number /*i64*/, position: Vector3): void
+        set_point_position(id: int64, position: Vector3): void
         
         /** Returns the weight scale of the point associated with the given [param id]. */
-        get_point_weight_scale(id: number /*i64*/): number /*f64*/
+        get_point_weight_scale(id: int64): float64
         
         /** Sets the [param weight_scale] for the point with the given [param id]. The [param weight_scale] is multiplied by the result of [method _compute_cost] when determining the overall cost of traveling across a segment from a neighboring point to this point. */
-        set_point_weight_scale(id: number /*i64*/, weight_scale: number /*f64*/): void
+        set_point_weight_scale(id: int64, weight_scale: float64): void
         
         /** Removes the point associated with the given [param id] from the points pool. */
-        remove_point(id: number /*i64*/): void
+        remove_point(id: int64): void
         
         /** Returns whether a point associated with the given [param id] exists. */
-        has_point(id: number /*i64*/): boolean
+        has_point(id: int64): boolean
         
         /** Returns an array with the IDs of the points that form the connection with the given point.  
          *    
          */
-        get_point_connections(id: number /*i64*/): PackedInt64Array
+        get_point_connections(id: int64): PackedInt64Array
         
         /** Returns an array of all point IDs. */
         get_point_ids(): PackedInt64Array
         
         /** Disables or enables the specified point for pathfinding. Useful for making a temporary obstacle. */
-        set_point_disabled(id: number /*i64*/, disabled: boolean = true): void
+        set_point_disabled(id: int64, disabled: boolean = true): void
         
         /** Returns whether a point is disabled or not for pathfinding. By default, all points are enabled. */
-        is_point_disabled(id: number /*i64*/): boolean
+        is_point_disabled(id: int64): boolean
         
         /** Creates a segment between the given points. If [param bidirectional] is `false`, only movement from [param id] to [param to_id] is allowed, not the reverse direction.  
          *    
          */
-        connect_points(id: number /*i64*/, to_id: number /*i64*/, bidirectional: boolean = true): void
+        connect_points(id: int64, to_id: int64, bidirectional: boolean = true): void
         
         /** Deletes the segment between the given points. If [param bidirectional] is `false`, only movement from [param id] to [param to_id] is prevented, and a unidirectional segment possibly remains. */
-        disconnect_points(id: number /*i64*/, to_id: number /*i64*/, bidirectional: boolean = true): void
+        disconnect_points(id: int64, to_id: int64, bidirectional: boolean = true): void
         
         /** Returns whether the two given points are directly connected by a segment. If [param bidirectional] is `false`, returns whether movement from [param id] to [param to_id] is possible through this segment. */
-        are_points_connected(id: number /*i64*/, to_id: number /*i64*/, bidirectional: boolean = true): boolean
+        are_points_connected(id: int64, to_id: int64, bidirectional: boolean = true): boolean
         
         /** Returns the number of points currently in the points pool. */
-        get_point_count(): number /*i64*/
+        get_point_count(): int64
         
         /** Returns the capacity of the structure backing the points, useful in conjunction with [method reserve_space]. */
-        get_point_capacity(): number /*i64*/
+        get_point_capacity(): int64
         
         /** Reserves space internally for [param num_nodes] points. Useful if you're adding a known large number of points at once, such as points on a grid. New capacity must be greater or equals to old capacity. */
-        reserve_space(num_nodes: number /*i64*/): void
+        reserve_space(num_nodes: int64): void
         
         /** Clears all the points and segments. */
         clear(): void
@@ -233,7 +233,7 @@ declare module "godot" {
          *      
          *  **Note:** If several points are the closest to [param to_position], the one with the smallest ID will be returned, ensuring a deterministic result.  
          */
-        get_closest_point(to_position: Vector3, include_disabled: boolean = false): number /*i64*/
+        get_closest_point(to_position: Vector3, include_disabled: boolean = false): int64
         
         /** Returns the closest position to [param to_position] that resides inside a segment between two connected points.  
          *    
@@ -245,13 +245,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty [PackedVector3Array] and will print an error message.  
          */
-        get_point_path(from_id: number /*i64*/, to_id: number /*i64*/): PackedVector3Array
+        get_point_path(from_id: int64, to_id: int64): PackedVector3Array
         
         /** Returns an array with the IDs of the points that form the path found by AStar3D between the given points. The array is ordered from the starting point to the ending point of the path.  
          *    
          *  If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.  
          */
-        get_id_path(from_id: number /*i64*/, to_id: number /*i64*/): PackedInt64Array
+        get_id_path(from_id: int64, to_id: int64): PackedInt64Array
     }
     namespace AStarGrid2D {
         enum Heuristic {
@@ -308,12 +308,12 @@ declare module "godot" {
         /** Called when estimating the cost between a point and the path's ending point.  
          *  Note that this function is hidden in the default [AStarGrid2D] class.  
          */
-        /* gdvirtual */ _estimate_cost(from_id: Vector2i, to_id: Vector2i): number /*f64*/
+        /* gdvirtual */ _estimate_cost(from_id: Vector2i, to_id: Vector2i): float64
         
         /** Called when computing the cost between two connected points.  
          *  Note that this function is hidden in the default [AStarGrid2D] class.  
          */
-        /* gdvirtual */ _compute_cost(from_id: Vector2i, to_id: Vector2i): number /*f64*/
+        /* gdvirtual */ _compute_cost(from_id: Vector2i, to_id: Vector2i): float64
         set_region(region: Rect2i): void
         get_region(): Rect2i
         set_size(size: Vector2i): void
@@ -324,7 +324,7 @@ declare module "godot" {
         get_cell_size(): Vector2
         
         /** Returns `true` if the [param x] and [param y] is a valid grid coordinate (id), i.e. if it is inside [member region]. Equivalent to `region.has_point(Vector2i(x, y))`. */
-        is_in_bounds(x: number /*i64*/, y: number /*i64*/): boolean
+        is_in_bounds(x: int64, y: int64): boolean
         
         /** Returns `true` if the [param id] vector is a valid grid coordinate, i.e. if it is inside [member region]. Equivalent to `region.has_point(id)`. */
         is_in_boundsv(id: Vector2i): boolean
@@ -359,10 +359,10 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method update] is not needed after the call of this function.  
          */
-        set_point_weight_scale(id: Vector2i, weight_scale: number /*f64*/): void
+        set_point_weight_scale(id: Vector2i, weight_scale: float64): void
         
         /** Returns the weight scale of the point associated with the given [param id]. */
-        get_point_weight_scale(id: Vector2i): number /*f64*/
+        get_point_weight_scale(id: Vector2i): float64
         
         /** Fills the given [param region] on the grid with the specified value for the solid flag.  
          *      
@@ -374,7 +374,7 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method update] is not needed after the call of this function.  
          */
-        fill_weight_scale_region(region: Rect2i, weight_scale: number /*f64*/): void
+        fill_weight_scale_region(region: Rect2i, weight_scale: float64): void
         
         /** Clears the grid and sets the [member region] to `Rect2i(0, 0, 0, 0)`. */
         clear(): void
@@ -417,16 +417,16 @@ declare module "godot" {
         set jumping_enabled(value: boolean)
         
         /** The default [enum Heuristic] which will be used to calculate the cost between two points if [method _compute_cost] was not overridden. */
-        get default_compute_heuristic(): number /*i64*/
-        set default_compute_heuristic(value: number /*i64*/)
+        get default_compute_heuristic(): int64
+        set default_compute_heuristic(value: int64)
         
         /** The default [enum Heuristic] which will be used to calculate the cost between the point and the end point if [method _estimate_cost] was not overridden. */
-        get default_estimate_heuristic(): number /*i64*/
-        set default_estimate_heuristic(value: number /*i64*/)
+        get default_estimate_heuristic(): int64
+        set default_estimate_heuristic(value: int64)
         
         /** A specific [enum DiagonalMode] mode which will force the path to avoid or accept the specified diagonals. */
-        get diagonal_mode(): number /*i64*/
-        set diagonal_mode(value: number /*i64*/)
+        get diagonal_mode(): int64
+        set diagonal_mode(value: int64)
     }
     class AbstractPolygon2DEditor extends HBoxContainer {
         constructor(identifier?: any)
@@ -521,7 +521,7 @@ declare module "godot" {
     }
     class AnchorPresetPicker extends ControlEditorPresetPicker {
         constructor(identifier?: any)
-        readonly anchors_preset_selected: Signal // preset: number /*i64*/ => void
+        readonly anchors_preset_selected: Signal // preset: int64 => void
     }
     /** A 2D physics body that can't be moved by external forces. When moved manually, it affects other bodies in its path.  
      *  	  
@@ -568,7 +568,7 @@ declare module "godot" {
         /** Plays the animation with key [param name]. If [param custom_speed] is negative and [param from_end] is `true`, the animation will play backwards (which is equivalent to calling [method play_backwards]).  
          *  If this method is called with that same animation [param name], or with no [param name] parameter, the assigned animation will resume playing if it was paused.  
          */
-        play(name: StringName = '', custom_speed: number /*f64*/ = 1, from_end: boolean = false): void
+        play(name: StringName = '', custom_speed: float64 = 1, from_end: boolean = false): void
         
         /** Plays the animation with key [param name] in reverse.  
          *  This method is a shorthand for [method play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.  
@@ -590,24 +590,24 @@ declare module "godot" {
         is_flipped_h(): boolean
         set_flip_v(flip_v: boolean): void
         is_flipped_v(): boolean
-        set_frame(frame: number /*i64*/): void
-        get_frame(): number /*i64*/
-        set_frame_progress(progress: number /*f64*/): void
-        get_frame_progress(): number /*f64*/
+        set_frame(frame: int64): void
+        get_frame(): int64
+        set_frame_progress(progress: float64): void
+        get_frame_progress(): float64
         
         /** The setter of [member frame] resets the [member frame_progress] to `0.0` implicitly, but this method avoids that.  
          *  This is useful when you want to carry over the current [member frame_progress] to another [member frame].  
          *  **Example:**  
          *    
          */
-        set_frame_and_progress(frame: number /*i64*/, progress: number /*f64*/): void
-        set_speed_scale(speed_scale: number /*f64*/): void
-        get_speed_scale(): number /*f64*/
+        set_frame_and_progress(frame: int64, progress: float64): void
+        set_speed_scale(speed_scale: float64): void
+        get_speed_scale(): float64
         
         /** Returns the actual playing speed of current animation or `0` if not playing. This speed is the [member speed_scale] property multiplied by `custom_speed` argument specified when calling the [method play] method.  
          *  Returns a negative value if the current animation is playing backwards.  
          */
-        get_playing_speed(): number /*f64*/
+        get_playing_speed(): float64
         
         /** The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit, clear, make unique and save the states of the [SpriteFrames] resource. */
         get sprite_frames(): SpriteFrames
@@ -622,18 +622,18 @@ declare module "godot" {
         set autoplay(value: StringName)
         
         /** The displayed animation frame's index. Setting this property also resets [member frame_progress]. If this is not desired, use [method set_frame_and_progress]. */
-        get frame(): number /*i64*/
-        set frame(value: number /*i64*/)
+        get frame(): int64
+        set frame(value: int64)
         
         /** The progress value between `0.0` and `1.0` until the current frame transitions to the next frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`. */
-        get frame_progress(): number /*f64*/
-        set frame_progress(value: number /*f64*/)
+        get frame_progress(): float64
+        set frame_progress(value: float64)
         
         /** The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.  
          *  If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.  
          */
-        get speed_scale(): number /*f64*/
-        set speed_scale(value: number /*f64*/)
+        get speed_scale(): float64
+        set speed_scale(value: float64)
         
         /** If `true`, texture will be centered. */
         get centered(): boolean
@@ -685,7 +685,7 @@ declare module "godot" {
         /** Plays the animation with key [param name]. If [param custom_speed] is negative and [param from_end] is `true`, the animation will play backwards (which is equivalent to calling [method play_backwards]).  
          *  If this method is called with that same animation [param name], or with no [param name] parameter, the assigned animation will resume playing if it was paused.  
          */
-        play(name: StringName = '', custom_speed: number /*f64*/ = 1, from_end: boolean = false): void
+        play(name: StringName = '', custom_speed: float64 = 1, from_end: boolean = false): void
         
         /** Plays the animation with key [param name] in reverse.  
          *  This method is a shorthand for [method play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.  
@@ -699,24 +699,24 @@ declare module "godot" {
         
         /** Stops the currently playing animation. The animation position is reset to `0` and the `custom_speed` is reset to `1.0`. See also [method pause]. */
         stop(): void
-        set_frame(frame: number /*i64*/): void
-        get_frame(): number /*i64*/
-        set_frame_progress(progress: number /*f64*/): void
-        get_frame_progress(): number /*f64*/
+        set_frame(frame: int64): void
+        get_frame(): int64
+        set_frame_progress(progress: float64): void
+        get_frame_progress(): float64
         
         /** The setter of [member frame] resets the [member frame_progress] to `0.0` implicitly, but this method avoids that.  
          *  This is useful when you want to carry over the current [member frame_progress] to another [member frame].  
          *  **Example:**  
          *    
          */
-        set_frame_and_progress(frame: number /*i64*/, progress: number /*f64*/): void
-        set_speed_scale(speed_scale: number /*f64*/): void
-        get_speed_scale(): number /*f64*/
+        set_frame_and_progress(frame: int64, progress: float64): void
+        set_speed_scale(speed_scale: float64): void
+        get_speed_scale(): float64
         
         /** Returns the actual playing speed of current animation or `0` if not playing. This speed is the [member speed_scale] property multiplied by `custom_speed` argument specified when calling the [method play] method.  
          *  Returns a negative value if the current animation is playing backwards.  
          */
-        get_playing_speed(): number /*f64*/
+        get_playing_speed(): float64
         _res_changed(): void
         
         /** The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit, clear, make unique and save the states of the [SpriteFrames] resource. */
@@ -732,18 +732,18 @@ declare module "godot" {
         set autoplay(value: StringName)
         
         /** The displayed animation frame's index. Setting this property also resets [member frame_progress]. If this is not desired, use [method set_frame_and_progress]. */
-        get frame(): number /*i64*/
-        set frame(value: number /*i64*/)
+        get frame(): int64
+        set frame(value: int64)
         
         /** The progress value between `0.0` and `1.0` until the current frame transitions to the next frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`. */
-        get frame_progress(): number /*f64*/
-        set frame_progress(value: number /*f64*/)
+        get frame_progress(): float64
+        set frame_progress(value: float64)
         
         /** The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.  
          *  If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.  
          */
-        get speed_scale(): number /*f64*/
-        set speed_scale(value: number /*f64*/)
+        get speed_scale(): float64
+        set speed_scale(value: float64)
         
         /** Emitted when [member sprite_frames] changes. */
         readonly sprite_frames_changed: Signal //  => void
@@ -768,38 +768,38 @@ declare module "godot" {
         /** The maximum number of frames supported by [AnimatedTexture]. If you need more frames in your animation, use [AnimationPlayer] or [AnimatedSprite2D]. */
         static readonly MAX_FRAMES = 256
         constructor(identifier?: any)
-        set_frames(frames: number /*i64*/): void
-        get_frames(): number /*i64*/
-        set_current_frame(frame: number /*i64*/): void
-        get_current_frame(): number /*i64*/
+        set_frames(frames: int64): void
+        get_frames(): int64
+        set_current_frame(frame: int64): void
+        get_current_frame(): int64
         set_pause(pause: boolean): void
         get_pause(): boolean
         set_one_shot(one_shot: boolean): void
         get_one_shot(): boolean
-        set_speed_scale(scale: number /*f64*/): void
-        get_speed_scale(): number /*f64*/
+        set_speed_scale(scale: float64): void
+        get_speed_scale(): float64
         
         /** Assigns a [Texture2D] to the given frame. Frame IDs start at 0, so the first frame has ID 0, and the last frame of the animation has ID [member frames] - 1.  
          *  You can define any number of textures up to [constant MAX_FRAMES], but keep in mind that only frames from 0 to [member frames] - 1 will be part of the animation.  
          */
-        set_frame_texture(frame: number /*i64*/, texture: Texture2D): void
+        set_frame_texture(frame: int64, texture: Texture2D): void
         
         /** Returns the given frame's [Texture2D]. */
-        get_frame_texture(frame: number /*i64*/): Texture2D
+        get_frame_texture(frame: int64): Texture2D
         
         /** Sets the duration of any given [param frame]. The final duration is affected by the [member speed_scale]. If set to `0`, the frame is skipped during playback. */
-        set_frame_duration(frame: number /*i64*/, duration: number /*f64*/): void
+        set_frame_duration(frame: int64, duration: float64): void
         
         /** Returns the given [param frame]'s duration, in seconds. */
-        get_frame_duration(frame: number /*i64*/): number /*f64*/
+        get_frame_duration(frame: int64): float64
         
         /** Number of frames to use in the animation. While you can create the frames independently with [method set_frame_texture], you need to set this value for the animation to take new frames into account. The maximum number of frames is [constant MAX_FRAMES]. */
-        get frames(): number /*i64*/
-        set frames(value: number /*i64*/)
+        get frames(): int64
+        set frames(value: int64)
         
         /** Sets the currently visible frame of the texture. Setting this frame while playing resets the current frame time, so the newly selected frame plays for its whole configured frame duration. */
-        get current_frame(): number /*i64*/
-        set current_frame(value: number /*i64*/)
+        get current_frame(): int64
+        set current_frame(value: int64)
         
         /** If `true`, the animation will pause where it currently is (i.e. at [member current_frame]). The animation will continue from where it was paused when changing this property to `false`. */
         get pause(): boolean
@@ -810,8 +810,8 @@ declare module "godot" {
         set one_shot(value: boolean)
         
         /** The animation speed is multiplied by this value. If set to a negative value, the animation is played in reverse. */
-        get speed_scale(): number /*f64*/
-        set speed_scale(value: number /*f64*/)
+        get speed_scale(): float64
+        set speed_scale(value: float64)
     }
     namespace Animation {
         enum TrackType {
@@ -912,256 +912,256 @@ declare module "godot" {
     class Animation extends Resource {
         constructor(identifier?: any)
         /** Adds a track to the Animation. */
-        add_track(type: Animation.TrackType, at_position: number /*i64*/ = -1): number /*i64*/
+        add_track(type: Animation.TrackType, at_position: int64 = -1): int64
         
         /** Removes a track by specifying the track index. */
-        remove_track(track_idx: number /*i64*/): void
+        remove_track(track_idx: int64): void
         
         /** Returns the amount of tracks in the animation. */
-        get_track_count(): number /*i64*/
+        get_track_count(): int64
         
         /** Gets the type of a track. */
-        track_get_type(track_idx: number /*i64*/): Animation.TrackType
+        track_get_type(track_idx: int64): Animation.TrackType
         
         /** Gets the path of a track. For more information on the path format, see [method track_set_path]. */
-        track_get_path(track_idx: number /*i64*/): NodePath
+        track_get_path(track_idx: int64): NodePath
         
         /** Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by `":"`.  
          *  For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.  
          */
-        track_set_path(track_idx: number /*i64*/, path: NodePath): void
+        track_set_path(track_idx: int64, path: NodePath): void
         
         /** Returns the index of the specified track. If the track is not found, return -1. */
-        find_track(path: NodePath, type: Animation.TrackType): number /*i64*/
+        find_track(path: NodePath, type: Animation.TrackType): int64
         
         /** Moves a track up. */
-        track_move_up(track_idx: number /*i64*/): void
+        track_move_up(track_idx: int64): void
         
         /** Moves a track down. */
-        track_move_down(track_idx: number /*i64*/): void
+        track_move_down(track_idx: int64): void
         
         /** Changes the index position of track [param track_idx] to the one defined in [param to_idx]. */
-        track_move_to(track_idx: number /*i64*/, to_idx: number /*i64*/): void
+        track_move_to(track_idx: int64, to_idx: int64): void
         
         /** Swaps the track [param track_idx]'s index position with the track [param with_idx]. */
-        track_swap(track_idx: number /*i64*/, with_idx: number /*i64*/): void
+        track_swap(track_idx: int64, with_idx: int64): void
         
         /** Sets the given track as imported or not. */
-        track_set_imported(track_idx: number /*i64*/, imported: boolean): void
+        track_set_imported(track_idx: int64, imported: boolean): void
         
         /** Returns `true` if the given track is imported. Else, return `false`. */
-        track_is_imported(track_idx: number /*i64*/): boolean
+        track_is_imported(track_idx: int64): boolean
         
         /** Enables/disables the given track. Tracks are enabled by default. */
-        track_set_enabled(track_idx: number /*i64*/, enabled: boolean): void
+        track_set_enabled(track_idx: int64, enabled: boolean): void
         
         /** Returns `true` if the track at index [param track_idx] is enabled. */
-        track_is_enabled(track_idx: number /*i64*/): boolean
+        track_is_enabled(track_idx: int64): boolean
         
         /** Inserts a key in a given 3D position track. Returns the key index. */
-        position_track_insert_key(track_idx: number /*i64*/, time: number /*f64*/, position: Vector3): number /*i64*/
+        position_track_insert_key(track_idx: int64, time: float64, position: Vector3): int64
         
         /** Inserts a key in a given 3D rotation track. Returns the key index. */
-        rotation_track_insert_key(track_idx: number /*i64*/, time: number /*f64*/, rotation: Quaternion): number /*i64*/
+        rotation_track_insert_key(track_idx: int64, time: float64, rotation: Quaternion): int64
         
         /** Inserts a key in a given 3D scale track. Returns the key index. */
-        scale_track_insert_key(track_idx: number /*i64*/, time: number /*f64*/, scale: Vector3): number /*i64*/
+        scale_track_insert_key(track_idx: int64, time: float64, scale: Vector3): int64
         
         /** Inserts a key in a given blend shape track. Returns the key index. */
-        blend_shape_track_insert_key(track_idx: number /*i64*/, time: number /*f64*/, amount: number /*f64*/): number /*i64*/
+        blend_shape_track_insert_key(track_idx: int64, time: float64, amount: float64): int64
         
         /** Returns the interpolated position value at the given time (in seconds). The [param track_idx] must be the index of a 3D position track. */
-        position_track_interpolate(track_idx: number /*i64*/, time_sec: number /*f64*/): Vector3
+        position_track_interpolate(track_idx: int64, time_sec: float64): Vector3
         
         /** Returns the interpolated rotation value at the given time (in seconds). The [param track_idx] must be the index of a 3D rotation track. */
-        rotation_track_interpolate(track_idx: number /*i64*/, time_sec: number /*f64*/): Quaternion
+        rotation_track_interpolate(track_idx: int64, time_sec: float64): Quaternion
         
         /** Returns the interpolated scale value at the given time (in seconds). The [param track_idx] must be the index of a 3D scale track. */
-        scale_track_interpolate(track_idx: number /*i64*/, time_sec: number /*f64*/): Vector3
+        scale_track_interpolate(track_idx: int64, time_sec: float64): Vector3
         
         /** Returns the interpolated blend shape value at the given time (in seconds). The [param track_idx] must be the index of a blend shape track. */
-        blend_shape_track_interpolate(track_idx: number /*i64*/, time_sec: number /*f64*/): number /*f64*/
+        blend_shape_track_interpolate(track_idx: int64, time_sec: float64): float64
         
         /** Inserts a generic key in a given track. Returns the key index. */
-        track_insert_key(track_idx: number /*i64*/, time: number /*f64*/, key: any, transition: number /*f64*/ = 1): number /*i64*/
+        track_insert_key(track_idx: int64, time: float64, key: any, transition: float64 = 1): int64
         
         /** Removes a key by index in a given track. */
-        track_remove_key(track_idx: number /*i64*/, key_idx: number /*i64*/): void
+        track_remove_key(track_idx: int64, key_idx: int64): void
         
         /** Removes a key at [param time] in a given track. */
-        track_remove_key_at_time(track_idx: number /*i64*/, time: number /*f64*/): void
+        track_remove_key_at_time(track_idx: int64, time: float64): void
         
         /** Sets the value of an existing key. */
-        track_set_key_value(track_idx: number /*i64*/, key: number /*i64*/, value: any): void
+        track_set_key_value(track_idx: int64, key: int64, value: any): void
         
         /** Sets the transition curve (easing) for a specific key (see the built-in math function [method @GlobalScope.ease]). */
-        track_set_key_transition(track_idx: number /*i64*/, key_idx: number /*i64*/, transition: number /*f64*/): void
+        track_set_key_transition(track_idx: int64, key_idx: int64, transition: float64): void
         
         /** Sets the time of an existing key. */
-        track_set_key_time(track_idx: number /*i64*/, key_idx: number /*i64*/, time: number /*f64*/): void
+        track_set_key_time(track_idx: int64, key_idx: int64, time: float64): void
         
         /** Returns the transition curve (easing) for a specific key (see the built-in math function [method @GlobalScope.ease]). */
-        track_get_key_transition(track_idx: number /*i64*/, key_idx: number /*i64*/): number /*f64*/
+        track_get_key_transition(track_idx: int64, key_idx: int64): float64
         
         /** Returns the number of keys in a given track. */
-        track_get_key_count(track_idx: number /*i64*/): number /*i64*/
+        track_get_key_count(track_idx: int64): int64
         
         /** Returns the value of a given key in a given track. */
-        track_get_key_value(track_idx: number /*i64*/, key_idx: number /*i64*/): any
+        track_get_key_value(track_idx: int64, key_idx: int64): any
         
         /** Returns the time at which the key is located. */
-        track_get_key_time(track_idx: number /*i64*/, key_idx: number /*i64*/): number /*f64*/
+        track_get_key_time(track_idx: int64, key_idx: int64): float64
         
         /** Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given. */
-        track_find_key(track_idx: number /*i64*/, time: number /*f64*/, find_mode: Animation.FindMode = 0): number /*i64*/
+        track_find_key(track_idx: int64, time: float64, find_mode: Animation.FindMode = 0): int64
         
         /** Sets the interpolation type of a given track. */
-        track_set_interpolation_type(track_idx: number /*i64*/, interpolation: Animation.InterpolationType): void
+        track_set_interpolation_type(track_idx: int64, interpolation: Animation.InterpolationType): void
         
         /** Returns the interpolation type of a given track. */
-        track_get_interpolation_type(track_idx: number /*i64*/): Animation.InterpolationType
+        track_get_interpolation_type(track_idx: int64): Animation.InterpolationType
         
         /** If `true`, the track at [param track_idx] wraps the interpolation loop. */
-        track_set_interpolation_loop_wrap(track_idx: number /*i64*/, interpolation: boolean): void
+        track_set_interpolation_loop_wrap(track_idx: int64, interpolation: boolean): void
         
         /** Returns `true` if the track at [param track_idx] wraps the interpolation loop. New tracks wrap the interpolation loop by default. */
-        track_get_interpolation_loop_wrap(track_idx: number /*i64*/): boolean
+        track_get_interpolation_loop_wrap(track_idx: int64): boolean
         
         /** Returns `true` if the track is compressed, `false` otherwise. See also [method compress]. */
-        track_is_compressed(track_idx: number /*i64*/): boolean
+        track_is_compressed(track_idx: int64): boolean
         
         /** Sets the update mode (see [enum UpdateMode]) of a value track. */
-        value_track_set_update_mode(track_idx: number /*i64*/, mode: Animation.UpdateMode): void
+        value_track_set_update_mode(track_idx: int64, mode: Animation.UpdateMode): void
         
         /** Returns the update mode of a value track. */
-        value_track_get_update_mode(track_idx: number /*i64*/): Animation.UpdateMode
+        value_track_get_update_mode(track_idx: int64): Animation.UpdateMode
         
         /** Returns the interpolated value at the given time (in seconds). The [param track_idx] must be the index of a value track. */
-        value_track_interpolate(track_idx: number /*i64*/, time_sec: number /*f64*/): any
+        value_track_interpolate(track_idx: int64, time_sec: float64): any
         
         /** Returns the method name of a method track. */
-        method_track_get_name(track_idx: number /*i64*/, key_idx: number /*i64*/): StringName
+        method_track_get_name(track_idx: int64, key_idx: int64): StringName
         
         /** Returns the arguments values to be called on a method track for a given key in a given track. */
-        method_track_get_params(track_idx: number /*i64*/, key_idx: number /*i64*/): Array
+        method_track_get_params(track_idx: int64, key_idx: int64): Array
         
         /** Inserts a Bezier Track key at the given [param time] in seconds. The [param track_idx] must be the index of a Bezier Track.  
          *  [param in_handle] is the left-side weight of the added Bezier curve point, [param out_handle] is the right-side one, while [param value] is the actual value at this point.  
          */
-        bezier_track_insert_key(track_idx: number /*i64*/, time: number /*f64*/, value: number /*f64*/, in_handle: Vector2 = Vector2.ZERO, out_handle: Vector2 = Vector2.ZERO): number /*i64*/
+        bezier_track_insert_key(track_idx: int64, time: float64, value: float64, in_handle: Vector2 = Vector2.ZERO, out_handle: Vector2 = Vector2.ZERO): int64
         
         /** Sets the value of the key identified by [param key_idx] to the given value. The [param track_idx] must be the index of a Bezier Track. */
-        bezier_track_set_key_value(track_idx: number /*i64*/, key_idx: number /*i64*/, value: number /*f64*/): void
+        bezier_track_set_key_value(track_idx: int64, key_idx: int64, value: float64): void
         
         /** Sets the in handle of the key identified by [param key_idx] to value [param in_handle]. The [param track_idx] must be the index of a Bezier Track. */
-        bezier_track_set_key_in_handle(track_idx: number /*i64*/, key_idx: number /*i64*/, in_handle: Vector2, balanced_value_time_ratio: number /*f64*/ = 1): void
+        bezier_track_set_key_in_handle(track_idx: int64, key_idx: int64, in_handle: Vector2, balanced_value_time_ratio: float64 = 1): void
         
         /** Sets the out handle of the key identified by [param key_idx] to value [param out_handle]. The [param track_idx] must be the index of a Bezier Track. */
-        bezier_track_set_key_out_handle(track_idx: number /*i64*/, key_idx: number /*i64*/, out_handle: Vector2, balanced_value_time_ratio: number /*f64*/ = 1): void
+        bezier_track_set_key_out_handle(track_idx: int64, key_idx: int64, out_handle: Vector2, balanced_value_time_ratio: float64 = 1): void
         
         /** Returns the value of the key identified by [param key_idx]. The [param track_idx] must be the index of a Bezier Track. */
-        bezier_track_get_key_value(track_idx: number /*i64*/, key_idx: number /*i64*/): number /*f64*/
+        bezier_track_get_key_value(track_idx: int64, key_idx: int64): float64
         
         /** Returns the in handle of the key identified by [param key_idx]. The [param track_idx] must be the index of a Bezier Track. */
-        bezier_track_get_key_in_handle(track_idx: number /*i64*/, key_idx: number /*i64*/): Vector2
+        bezier_track_get_key_in_handle(track_idx: int64, key_idx: int64): Vector2
         
         /** Returns the out handle of the key identified by [param key_idx]. The [param track_idx] must be the index of a Bezier Track. */
-        bezier_track_get_key_out_handle(track_idx: number /*i64*/, key_idx: number /*i64*/): Vector2
+        bezier_track_get_key_out_handle(track_idx: int64, key_idx: int64): Vector2
         
         /** Returns the interpolated value at the given [param time] (in seconds). The [param track_idx] must be the index of a Bezier Track. */
-        bezier_track_interpolate(track_idx: number /*i64*/, time: number /*f64*/): number /*f64*/
+        bezier_track_interpolate(track_idx: int64, time: float64): float64
         
         /** Inserts an Audio Track key at the given [param time] in seconds. The [param track_idx] must be the index of an Audio Track.  
          *  [param stream] is the [AudioStream] resource to play. [param start_offset] is the number of seconds cut off at the beginning of the audio stream, while [param end_offset] is at the ending.  
          */
-        audio_track_insert_key(track_idx: number /*i64*/, time: number /*f64*/, stream: Resource, start_offset: number /*f64*/ = 0, end_offset: number /*f64*/ = 0): number /*i64*/
+        audio_track_insert_key(track_idx: int64, time: float64, stream: Resource, start_offset: float64 = 0, end_offset: float64 = 0): int64
         
         /** Sets the stream of the key identified by [param key_idx] to value [param stream]. The [param track_idx] must be the index of an Audio Track. */
-        audio_track_set_key_stream(track_idx: number /*i64*/, key_idx: number /*i64*/, stream: Resource): void
+        audio_track_set_key_stream(track_idx: int64, key_idx: int64, stream: Resource): void
         
         /** Sets the start offset of the key identified by [param key_idx] to value [param offset]. The [param track_idx] must be the index of an Audio Track. */
-        audio_track_set_key_start_offset(track_idx: number /*i64*/, key_idx: number /*i64*/, offset: number /*f64*/): void
+        audio_track_set_key_start_offset(track_idx: int64, key_idx: int64, offset: float64): void
         
         /** Sets the end offset of the key identified by [param key_idx] to value [param offset]. The [param track_idx] must be the index of an Audio Track. */
-        audio_track_set_key_end_offset(track_idx: number /*i64*/, key_idx: number /*i64*/, offset: number /*f64*/): void
+        audio_track_set_key_end_offset(track_idx: int64, key_idx: int64, offset: float64): void
         
         /** Returns the audio stream of the key identified by [param key_idx]. The [param track_idx] must be the index of an Audio Track. */
-        audio_track_get_key_stream(track_idx: number /*i64*/, key_idx: number /*i64*/): Resource
+        audio_track_get_key_stream(track_idx: int64, key_idx: int64): Resource
         
         /** Returns the start offset of the key identified by [param key_idx]. The [param track_idx] must be the index of an Audio Track.  
          *  Start offset is the number of seconds cut off at the beginning of the audio stream.  
          */
-        audio_track_get_key_start_offset(track_idx: number /*i64*/, key_idx: number /*i64*/): number /*f64*/
+        audio_track_get_key_start_offset(track_idx: int64, key_idx: int64): float64
         
         /** Returns the end offset of the key identified by [param key_idx]. The [param track_idx] must be the index of an Audio Track.  
          *  End offset is the number of seconds cut off at the ending of the audio stream.  
          */
-        audio_track_get_key_end_offset(track_idx: number /*i64*/, key_idx: number /*i64*/): number /*f64*/
+        audio_track_get_key_end_offset(track_idx: int64, key_idx: int64): float64
         
         /** Sets whether the track will be blended with other animations. If `true`, the audio playback volume changes depending on the blend value. */
-        audio_track_set_use_blend(track_idx: number /*i64*/, enable: boolean): void
+        audio_track_set_use_blend(track_idx: int64, enable: boolean): void
         
         /** Returns `true` if the track at [param track_idx] will be blended with other animations. */
-        audio_track_is_use_blend(track_idx: number /*i64*/): boolean
+        audio_track_is_use_blend(track_idx: int64): boolean
         
         /** Inserts a key with value [param animation] at the given [param time] (in seconds). The [param track_idx] must be the index of an Animation Track. */
-        animation_track_insert_key(track_idx: number /*i64*/, time: number /*f64*/, animation: StringName): number /*i64*/
+        animation_track_insert_key(track_idx: int64, time: float64, animation: StringName): int64
         
         /** Sets the key identified by [param key_idx] to value [param animation]. The [param track_idx] must be the index of an Animation Track. */
-        animation_track_set_key_animation(track_idx: number /*i64*/, key_idx: number /*i64*/, animation: StringName): void
+        animation_track_set_key_animation(track_idx: int64, key_idx: int64, animation: StringName): void
         
         /** Returns the animation name at the key identified by [param key_idx]. The [param track_idx] must be the index of an Animation Track. */
-        animation_track_get_key_animation(track_idx: number /*i64*/, key_idx: number /*i64*/): StringName
-        set_length(time_sec: number /*f64*/): void
-        get_length(): number /*f64*/
+        animation_track_get_key_animation(track_idx: int64, key_idx: int64): StringName
+        set_length(time_sec: float64): void
+        get_length(): float64
         set_loop_mode(loop_mode: Animation.LoopMode): void
         get_loop_mode(): Animation.LoopMode
-        set_step(size_sec: number /*f64*/): void
-        get_step(): number /*f64*/
+        set_step(size_sec: float64): void
+        get_step(): float64
         
         /** Clear the animation (clear all tracks and reset all). */
         clear(): void
         
         /** Adds a new track to [param to_animation] that is a copy of the given track from this animation. */
-        copy_track(track_idx: number /*i64*/, to_animation: Animation): void
+        copy_track(track_idx: int64, to_animation: Animation): void
         
         /** Compress the animation and all its tracks in-place. This will make [method track_is_compressed] return `true` once called on this [Animation]. Compressed tracks require less memory to be played, and are designed to be used for complex 3D animations (such as cutscenes) imported from external 3D software. Compression is lossy, but the difference is usually not noticeable in real world conditions.  
          *      
          *  **Note:** Compressed tracks have various limitations (such as not being editable from the editor), so only use compressed animations if you actually need them.  
          */
-        compress(page_size: number /*i64*/ = 8192, fps: number /*i64*/ = 120, split_tolerance: number /*f64*/ = 4): void
+        compress(page_size: int64 = 8192, fps: int64 = 120, split_tolerance: float64 = 4): void
         
         /** The total length of the animation (in seconds).  
          *      
          *  **Note:** Length is not delimited by the last key, as this one may be before or after the end to ensure correct interpolation and looping.  
          */
-        get length(): number /*f64*/
-        set length(value: number /*f64*/)
+        get length(): float64
+        set length(value: float64)
         
         /** Determines the behavior of both ends of the animation timeline during animation playback. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation. */
-        get loop_mode(): number /*i64*/
-        set loop_mode(value: number /*i64*/)
+        get loop_mode(): int64
+        set loop_mode(value: int64)
         
         /** The animation step value. */
-        get step(): number /*f64*/
-        set step(value: number /*f64*/)
+        get step(): float64
+        set step(value: float64)
     }
     class AnimationBezierTrackEdit extends Control {
         constructor(identifier?: any)
         _clear_selection(): void
         _clear_selection_for_anim(_unnamed_arg0: Animation): void
-        _select_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: number /*i64*/, _unnamed_arg2: number /*f64*/): void
-        _update_hidden_tracks_after(_unnamed_arg0: number /*i64*/): void
-        _update_locked_tracks_after(_unnamed_arg0: number /*i64*/): void
-        _bezier_track_insert_key(_unnamed_arg0: number /*i64*/, _unnamed_arg1: number /*f64*/, _unnamed_arg2: number /*f64*/, _unnamed_arg3: Vector2, _unnamed_arg4: Vector2, _unnamed_arg5: any /*Animation.HandleMode*/): void
-        readonly timeline_changed: Signal // position: number /*f64*/ => void
-        readonly remove_request: Signal // track: number /*i64*/ => void
-        readonly insert_key: Signal // offset: number /*f64*/ => void
-        readonly select_key: Signal // index: number /*i64*/, single: boolean, track: number /*i64*/ => void
+        _select_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: int64, _unnamed_arg2: float64): void
+        _update_hidden_tracks_after(_unnamed_arg0: int64): void
+        _update_locked_tracks_after(_unnamed_arg0: int64): void
+        _bezier_track_insert_key(_unnamed_arg0: int64, _unnamed_arg1: float64, _unnamed_arg2: float64, _unnamed_arg3: Vector2, _unnamed_arg4: Vector2, _unnamed_arg5: any /*Animation.HandleMode*/): void
+        readonly timeline_changed: Signal // position: float64 => void
+        readonly remove_request: Signal // track: int64 => void
+        readonly insert_key: Signal // offset: float64 => void
+        readonly select_key: Signal // index: int64, single: boolean, track: int64 => void
         readonly clear_selection: Signal //  => void
         readonly close_request: Signal //  => void
         readonly move_selection_begin: Signal //  => void
-        readonly move_selection: Signal // offset: number /*f64*/ => void
+        readonly move_selection: Signal // offset: float64 => void
         readonly move_selection_commit: Signal //  => void
         readonly move_selection_cancel: Signal //  => void
     }
@@ -1238,7 +1238,7 @@ declare module "godot" {
     class AnimationMixer extends Node {
         constructor(identifier?: any)
         /** A virtual function for processing after key getting during playback. */
-        /* gdvirtual */ _post_process_key_value(animation: Animation, track: number /*i64*/, value: any, object: Object, object_idx: number /*i64*/): void
+        /* gdvirtual */ _post_process_key_value(animation: Animation, track: int64, value: any, object: Object, object_idx: int64): void
         
         /** Adds [param library] to the animation player, under the key [param name]. */
         add_animation_library(name: StringName, library: AnimationLibrary): Error
@@ -1278,8 +1278,8 @@ declare module "godot" {
         get_callback_mode_process(): AnimationMixer.AnimationCallbackModeProcess
         set_callback_mode_method(mode: AnimationMixer.AnimationCallbackModeMethod): void
         get_callback_mode_method(): AnimationMixer.AnimationCallbackModeMethod
-        set_audio_max_polyphony(max_polyphony: number /*i64*/): void
-        get_audio_max_polyphony(): number /*i64*/
+        set_audio_max_polyphony(max_polyphony: int64): void
+        get_audio_max_polyphony(): int64
         set_root_motion_track(path: NodePath): void
         get_root_motion_track(): NodePath
         
@@ -1337,7 +1337,7 @@ declare module "godot" {
         clear_caches(): void
         
         /** Manually advance the animations by the specified time (in seconds). */
-        advance(delta: number /*f64*/): void
+        advance(delta: float64): void
         set_reset_on_save_enabled(enabled: boolean): void
         is_reset_on_save_enabled(): boolean
         _reset(): void
@@ -1383,16 +1383,16 @@ declare module "godot" {
         /** The number of possible simultaneous sounds for each of the assigned AudioStreamPlayers.  
          *  For example, if this value is `32` and the animation has two audio tracks, the two [AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.  
          */
-        get audio_max_polyphony(): number /*i64*/
-        set audio_max_polyphony(value: number /*i64*/)
+        get audio_max_polyphony(): int64
+        set audio_max_polyphony(value: int64)
         
         /** The process notification in which to update animations. */
-        get callback_mode_process(): number /*i64*/
-        set callback_mode_process(value: number /*i64*/)
+        get callback_mode_process(): int64
+        set callback_mode_process(value: int64)
         
         /** The call mode to use for Call Method tracks. */
-        get callback_mode_method(): number /*i64*/
-        set callback_mode_method(value: number /*i64*/)
+        get callback_mode_method(): int64
+        set callback_mode_method(value: int64)
         
         /** Editor only. Notifies when the property have been updated to update dummy [AnimationPlayer] in animation player editor. */
         readonly mixer_updated: Signal //  => void
@@ -1455,7 +1455,7 @@ declare module "godot" {
          *  Here, call the [method blend_input], [method blend_node] or [method blend_animation] functions. You can also use [method get_parameter] and [method set_parameter] to modify local memory.  
          *  This function should return the time left for the current animation to finish (if unsure, pass the value from the main blend being called).  
          */
-        /* gdvirtual */ _process(time: number /*f64*/, seek: boolean, is_external_seeking: boolean, test_only: boolean): number /*f64*/
+        /* gdvirtual */ _process(time: float64, seek: boolean, is_external_seeking: boolean, test_only: boolean): float64
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to override the text caption for this animation node. */
         /* gdvirtual */ _get_caption(): string
@@ -1467,19 +1467,19 @@ declare module "godot" {
         add_input(name: string): boolean
         
         /** Removes an input, call this only when inactive. */
-        remove_input(index: number /*i64*/): void
+        remove_input(index: int64): void
         
         /** Sets the name of the input at the given [param input] index. If the setting fails, returns `false`. */
-        set_input_name(input: number /*i64*/, name: string): boolean
+        set_input_name(input: int64, name: string): boolean
         
         /** Gets the name of an input by index. */
-        get_input_name(input: number /*i64*/): string
+        get_input_name(input: int64): string
         
         /** Amount of inputs in this animation node, only useful for animation nodes that go into [AnimationNodeBlendTree]. */
-        get_input_count(): number /*i64*/
+        get_input_count(): int64
         
         /** Returns the input index which corresponds to [param name]. If not found, returns `-1`. */
-        find_input(name: string): number /*i64*/
+        find_input(name: string): int64
         
         /** Adds or removes a path for the filter. */
         set_filter_path(path: NodePath, enable: boolean): void
@@ -1494,13 +1494,13 @@ declare module "godot" {
         /** Blend an animation by [param blend] amount (name must be valid in the linked [AnimationPlayer]). A [param time] and [param delta] may be passed, as well as whether [param seeked] happened.  
          *  A [param looped_flag] is used by internal processing immediately after the loop. See also [enum Animation.LoopedFlag].  
          */
-        blend_animation(animation: StringName, time: number /*f64*/, delta: number /*f64*/, seeked: boolean, is_external_seeking: boolean, blend: number /*f64*/, looped_flag: Animation.LoopedFlag = 0): void
+        blend_animation(animation: StringName, time: float64, delta: float64, seeked: boolean, is_external_seeking: boolean, blend: float64, looped_flag: Animation.LoopedFlag = 0): void
         
         /** Blend another animation node (in case this animation node contains child animation nodes). This function is only useful if you inherit from [AnimationRootNode] instead, otherwise editors will not display your animation node for addition. */
-        blend_node(name: StringName, node: AnimationNode, time: number /*f64*/, seek: boolean, is_external_seeking: boolean, blend: number /*f64*/, filter: AnimationNode.FilterAction = 0, sync: boolean = true, test_only: boolean = false): number /*f64*/
+        blend_node(name: StringName, node: AnimationNode, time: float64, seek: boolean, is_external_seeking: boolean, blend: float64, filter: AnimationNode.FilterAction = 0, sync: boolean = true, test_only: boolean = false): float64
         
         /** Blend an input. This is only useful for animation nodes created for an [AnimationNodeBlendTree]. The [param time] parameter is a relative delta, unless [param seek] is `true`, in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options). */
-        blend_input(input_index: number /*i64*/, time: number /*f64*/, seek: boolean, is_external_seeking: boolean, blend: number /*f64*/, filter: AnimationNode.FilterAction = 0, sync: boolean = true, test_only: boolean = false): number /*f64*/
+        blend_input(input_index: int64, time: float64, seek: boolean, is_external_seeking: boolean, blend: float64, filter: AnimationNode.FilterAction = 0, sync: boolean = true, test_only: boolean = false): float64
         
         /** Sets a custom parameter. These are used as local memory, because resources can be reused across the tree or scenes. */
         set_parameter(name: StringName, value: any): void
@@ -1518,10 +1518,10 @@ declare module "godot" {
         readonly tree_changed: Signal //  => void
         
         /** Emitted by nodes that inherit from this class and that have an internal tree when one of their animation node names changes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and [AnimationNodeBlendTree]. */
-        readonly animation_node_renamed: Signal // object_id: number /*i64*/, old_name: string, new_name: string => void
+        readonly animation_node_renamed: Signal // object_id: int64, old_name: string, new_name: string => void
         
         /** Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes removes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and [AnimationNodeBlendTree]. */
-        readonly animation_node_removed: Signal // object_id: number /*i64*/, name: string => void
+        readonly animation_node_removed: Signal // object_id: int64, name: string => void
     }
     /** Blends two animations additively inside of an [AnimationNodeBlendTree].  
      *  	  
@@ -1562,8 +1562,8 @@ declare module "godot" {
         set animation(value: StringName)
         
         /** Determines the playback direction of the animation. */
-        get play_mode(): number /*i64*/
-        set play_mode(value: number /*i64*/)
+        get play_mode(): int64
+        set play_mode(value: int64)
     }
     /** Blends two animations linearly inside of an [AnimationNodeBlendTree].  
      *  	  
@@ -1598,58 +1598,58 @@ declare module "godot" {
     class AnimationNodeBlendSpace1D extends AnimationRootNode {
         constructor(identifier?: any)
         /** Adds a new point that represents a [param node] on the virtual axis at a given position set by [param pos]. You can insert it at a specific index using the [param at_index] argument. If you use the default value for [param at_index], the point is inserted at the end of the blend points array. */
-        add_blend_point(node: AnimationRootNode, pos: number /*f64*/, at_index: number /*i64*/ = -1): void
+        add_blend_point(node: AnimationRootNode, pos: float64, at_index: int64 = -1): void
         
         /** Updates the position of the point at index [param point] on the blend axis. */
-        set_blend_point_position(point: number /*i64*/, pos: number /*f64*/): void
+        set_blend_point_position(point: int64, pos: float64): void
         
         /** Returns the position of the point at index [param point]. */
-        get_blend_point_position(point: number /*i64*/): number /*f64*/
+        get_blend_point_position(point: int64): float64
         
         /** Changes the [AnimationNode] referenced by the point at index [param point]. */
-        set_blend_point_node(point: number /*i64*/, node: AnimationRootNode): void
+        set_blend_point_node(point: int64, node: AnimationRootNode): void
         
         /** Returns the [AnimationNode] referenced by the point at index [param point]. */
-        get_blend_point_node(point: number /*i64*/): AnimationRootNode
+        get_blend_point_node(point: int64): AnimationRootNode
         
         /** Removes the point at index [param point] from the blend axis. */
-        remove_blend_point(point: number /*i64*/): void
+        remove_blend_point(point: int64): void
         
         /** Returns the number of points on the blend axis. */
-        get_blend_point_count(): number /*i64*/
-        set_min_space(min_space: number /*f64*/): void
-        get_min_space(): number /*f64*/
-        set_max_space(max_space: number /*f64*/): void
-        get_max_space(): number /*f64*/
-        set_snap(snap: number /*f64*/): void
-        get_snap(): number /*f64*/
+        get_blend_point_count(): int64
+        set_min_space(min_space: float64): void
+        get_min_space(): float64
+        set_max_space(max_space: float64): void
+        get_max_space(): float64
+        set_snap(snap: float64): void
+        get_snap(): float64
         set_value_label(text: string): void
         get_value_label(): string
         set_blend_mode(mode: AnimationNodeBlendSpace1D.BlendMode): void
         get_blend_mode(): AnimationNodeBlendSpace1D.BlendMode
         set_use_sync(enable: boolean): void
         is_using_sync(): boolean
-        _add_blend_point(index: number /*i64*/, node: AnimationRootNode): void
+        _add_blend_point(index: int64, node: AnimationRootNode): void
         
         /** The blend space's axis's lower limit for the points' position. See [method add_blend_point]. */
-        get min_space(): number /*f64*/
-        set min_space(value: number /*f64*/)
+        get min_space(): float64
+        set min_space(value: float64)
         
         /** The blend space's axis's upper limit for the points' position. See [method add_blend_point]. */
-        get max_space(): number /*f64*/
-        set max_space(value: number /*f64*/)
+        get max_space(): float64
+        set max_space(value: float64)
         
         /** Position increment to snap to when moving a point on the axis. */
-        get snap(): number /*f64*/
-        set snap(value: number /*f64*/)
+        get snap(): float64
+        set snap(value: float64)
         
         /** Label of the virtual axis of the blend space. */
         get value_label(): string
         set value_label(value: string)
         
         /** Controls the interpolation between animations. See [enum BlendMode] constants. */
-        get blend_mode(): number /*i64*/
-        set blend_mode(value: number /*i64*/)
+        get blend_mode(): int64
+        set blend_mode(value: int64)
         
         /** If `false`, the blended animations' frame are stopped when the blend value is `0`.  
          *  If `true`, forcing the blended animations to advance frame.  
@@ -1682,37 +1682,37 @@ declare module "godot" {
     class AnimationNodeBlendSpace2D extends AnimationRootNode {
         constructor(identifier?: any)
         /** Adds a new point that represents a [param node] at the position set by [param pos]. You can insert it at a specific index using the [param at_index] argument. If you use the default value for [param at_index], the point is inserted at the end of the blend points array. */
-        add_blend_point(node: AnimationRootNode, pos: Vector2, at_index: number /*i64*/ = -1): void
+        add_blend_point(node: AnimationRootNode, pos: Vector2, at_index: int64 = -1): void
         
         /** Updates the position of the point at index [param point] on the blend axis. */
-        set_blend_point_position(point: number /*i64*/, pos: Vector2): void
+        set_blend_point_position(point: int64, pos: Vector2): void
         
         /** Returns the position of the point at index [param point]. */
-        get_blend_point_position(point: number /*i64*/): Vector2
+        get_blend_point_position(point: int64): Vector2
         
         /** Changes the [AnimationNode] referenced by the point at index [param point]. */
-        set_blend_point_node(point: number /*i64*/, node: AnimationRootNode): void
+        set_blend_point_node(point: int64, node: AnimationRootNode): void
         
         /** Returns the [AnimationRootNode] referenced by the point at index [param point]. */
-        get_blend_point_node(point: number /*i64*/): AnimationRootNode
+        get_blend_point_node(point: int64): AnimationRootNode
         
         /** Removes the point at index [param point] from the blend space. */
-        remove_blend_point(point: number /*i64*/): void
+        remove_blend_point(point: int64): void
         
         /** Returns the number of points in the blend space. */
-        get_blend_point_count(): number /*i64*/
+        get_blend_point_count(): int64
         
         /** Creates a new triangle using three points [param x], [param y], and [param z]. Triangles can overlap. You can insert the triangle at a specific index using the [param at_index] argument. If you use the default value for [param at_index], the point is inserted at the end of the blend points array. */
-        add_triangle(x: number /*i64*/, y: number /*i64*/, z: number /*i64*/, at_index: number /*i64*/ = -1): void
+        add_triangle(x: int64, y: int64, z: int64, at_index: int64 = -1): void
         
         /** Returns the position of the point at index [param point] in the triangle of index [param triangle]. */
-        get_triangle_point(triangle: number /*i64*/, point: number /*i64*/): number /*i64*/
+        get_triangle_point(triangle: int64, point: int64): int64
         
         /** Removes the triangle at index [param triangle] from the blend space. */
-        remove_triangle(triangle: number /*i64*/): void
+        remove_triangle(triangle: int64): void
         
         /** Returns the number of triangles in the blend space. */
-        get_triangle_count(): number /*i64*/
+        get_triangle_count(): int64
         set_min_space(min_space: Vector2): void
         get_min_space(): Vector2
         set_max_space(max_space: Vector2): void
@@ -1723,7 +1723,7 @@ declare module "godot" {
         get_x_label(): string
         set_y_label(text: string): void
         get_y_label(): string
-        _add_blend_point(index: number /*i64*/, node: AnimationRootNode): void
+        _add_blend_point(index: int64, node: AnimationRootNode): void
         _set_triangles(triangles: PackedInt32Array): void
         _get_triangles(): PackedInt32Array
         set_auto_triangles(enable: boolean): void
@@ -1761,8 +1761,8 @@ declare module "godot" {
         set y_label(value: string)
         
         /** Controls the interpolation between animations. See [enum BlendMode] constants. */
-        get blend_mode(): number /*i64*/
-        set blend_mode(value: number /*i64*/)
+        get blend_mode(): int64
+        set blend_mode(value: int64)
         
         /** If `false`, the blended animations' frame are stopped when the blend value is `0`.  
          *  If `true`, forcing the blended animations to advance frame.  
@@ -1819,10 +1819,10 @@ declare module "godot" {
         has_node(name: StringName): boolean
         
         /** Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input port specified by [param input_index]. */
-        connect_node(input_node: StringName, input_index: number /*i64*/, output_node: StringName): void
+        connect_node(input_node: StringName, input_index: int64, output_node: StringName): void
         
         /** Disconnects the animation node connected to the specified input. */
-        disconnect_node(input_node: StringName, input_index: number /*i64*/): void
+        disconnect_node(input_node: StringName, input_index: int64): void
         
         /** Modifies the position of a sub animation node. */
         set_node_position(name: StringName, position: Vector2): void
@@ -1872,38 +1872,38 @@ declare module "godot" {
      */
     class AnimationNodeOneShot extends AnimationNodeSync {
         constructor(identifier?: any)
-        set_fadein_time(time: number /*f64*/): void
-        get_fadein_time(): number /*f64*/
+        set_fadein_time(time: float64): void
+        get_fadein_time(): float64
         set_fadein_curve(curve: Curve): void
         get_fadein_curve(): Curve
-        set_fadeout_time(time: number /*f64*/): void
-        get_fadeout_time(): number /*f64*/
+        set_fadeout_time(time: float64): void
+        get_fadeout_time(): float64
         set_fadeout_curve(curve: Curve): void
         get_fadeout_curve(): Curve
         set_autorestart(active: boolean): void
         has_autorestart(): boolean
-        set_autorestart_delay(time: number /*f64*/): void
-        get_autorestart_delay(): number /*f64*/
-        set_autorestart_random_delay(time: number /*f64*/): void
-        get_autorestart_random_delay(): number /*f64*/
+        set_autorestart_delay(time: float64): void
+        get_autorestart_delay(): float64
+        set_autorestart_random_delay(time: float64): void
+        get_autorestart_random_delay(): float64
         set_mix_mode(mode: AnimationNodeOneShot.MixMode): void
         get_mix_mode(): AnimationNodeOneShot.MixMode
         
         /** The blend type. */
-        get mix_mode(): number /*i64*/
-        set mix_mode(value: number /*i64*/)
+        get mix_mode(): int64
+        set mix_mode(value: int64)
         
         /** The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 0 second and ends at 1 second during the animation. */
-        get fadein_time(): number /*f64*/
-        set fadein_time(value: number /*f64*/)
+        get fadein_time(): float64
+        set fadein_time(value: float64)
         
         /** Determines how cross-fading between animations is eased. If empty, the transition will be linear. */
         get fadein_curve(): Curve
         set fadein_curve(value: Curve)
         
         /** The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 4 second and ends at 5 second during the animation. */
-        get fadeout_time(): number /*f64*/
-        set fadeout_time(value: number /*f64*/)
+        get fadeout_time(): float64
+        set fadeout_time(value: float64)
         
         /** Determines how cross-fading between animations is eased. If empty, the transition will be linear. */
         get fadeout_curve(): Curve
@@ -1916,12 +1916,12 @@ declare module "godot" {
         set autorestart(value: boolean)
         
         /** The delay after which the automatic restart is triggered, in seconds. */
-        get autorestart_delay(): number /*f64*/
-        set autorestart_delay(value: number /*f64*/)
+        get autorestart_delay(): float64
+        set autorestart_delay(value: float64)
         
         /** If [member autorestart] is `true`, a random additional delay (in seconds) between 0 and this value will be added to [member autorestart_delay]. */
-        get autorestart_random_delay(): number /*f64*/
-        set autorestart_random_delay(value: number /*f64*/)
+        get autorestart_random_delay(): float64
+        set autorestart_random_delay(value: float64)
     }
     /** The animation output node of an [AnimationNodeBlendTree].  
      *  	  
@@ -1980,19 +1980,19 @@ declare module "godot" {
         add_transition(from: StringName, to: StringName, transition: AnimationNodeStateMachineTransition): void
         
         /** Returns the given transition. */
-        get_transition(idx: number /*i64*/): AnimationNodeStateMachineTransition
+        get_transition(idx: int64): AnimationNodeStateMachineTransition
         
         /** Returns the given transition's start node. */
-        get_transition_from(idx: number /*i64*/): StringName
+        get_transition_from(idx: int64): StringName
         
         /** Returns the given transition's end node. */
-        get_transition_to(idx: number /*i64*/): StringName
+        get_transition_to(idx: int64): StringName
         
         /** Returns the number of connections in the graph. */
-        get_transition_count(): number /*i64*/
+        get_transition_count(): int64
         
         /** Deletes the given transition by index. */
-        remove_transition_by_index(idx: number /*i64*/): void
+        remove_transition_by_index(idx: int64): void
         
         /** Deletes the transition between the two specified animation nodes. */
         remove_transition(from: StringName, to: StringName): void
@@ -2010,8 +2010,8 @@ declare module "godot" {
         are_ends_reset(): boolean
         
         /** This property can define the process of transitions for different use cases. See also [enum AnimationNodeStateMachine.StateMachineType]. */
-        get state_machine_type(): number /*i64*/
-        set state_machine_type(value: number /*i64*/)
+        get state_machine_type(): int64
+        set state_machine_type(value: int64)
         
         /** If `true`, allows teleport to the self state with [method AnimationNodeStateMachinePlayback.travel]. When the reset option is enabled in [method AnimationNodeStateMachinePlayback.travel], the animation is restarted. If `false`, nothing happens on the teleportation to the self state. */
         get allow_transition_to_self(): boolean
@@ -2027,7 +2027,7 @@ declare module "godot" {
         constructor(identifier?: any)
         _update_graph(): void
         _open_editor(_unnamed_arg0: string): void
-        _connect_to(_unnamed_arg0: number /*i64*/): void
+        _connect_to(_unnamed_arg0: int64): void
         _stop_connecting(): void
         _delete_selected(): void
         _delete_all(): void
@@ -2066,13 +2066,13 @@ declare module "godot" {
         get_current_node(): StringName
         
         /** Returns the playback position within the current animation state. */
-        get_current_play_position(): number /*f64*/
+        get_current_play_position(): float64
         
         /** Returns the current state length.  
          *      
          *  **Note:** It is possible that any [AnimationRootNode] can be nodes as well as animations. This means that there can be multiple animations within a single state. Which animation length has priority depends on the nodes connected inside it. Also, if a transition does not reset, the remaining length at that point will be returned.  
          */
-        get_current_length(): number /*f64*/
+        get_current_length(): float64
         
         /** Returns the starting state of currently fading animation. */
         get_fading_from_node(): StringName
@@ -2114,20 +2114,20 @@ declare module "godot" {
         get_advance_mode(): AnimationNodeStateMachineTransition.AdvanceMode
         set_advance_condition(name: StringName): void
         get_advance_condition(): StringName
-        set_xfade_time(secs: number /*f64*/): void
-        get_xfade_time(): number /*f64*/
+        set_xfade_time(secs: float64): void
+        get_xfade_time(): float64
         set_xfade_curve(curve: Curve): void
         get_xfade_curve(): Curve
         set_reset(reset: boolean): void
         is_reset(): boolean
-        set_priority(priority: number /*i64*/): void
-        get_priority(): number /*i64*/
+        set_priority(priority: int64): void
+        get_priority(): int64
         set_advance_expression(text: string): void
         get_advance_expression(): string
         
         /** The time to cross-fade between this state and the next. */
-        get xfade_time(): number /*f64*/
-        set xfade_time(value: number /*f64*/)
+        get xfade_time(): float64
+        set xfade_time(value: float64)
         
         /** Ease curve for better control over cross-fade between this state and the next. */
         get xfade_curve(): Curve
@@ -2138,16 +2138,16 @@ declare module "godot" {
         set reset(value: boolean)
         
         /** Lower priority transitions are preferred when travelling through the tree via [method AnimationNodeStateMachinePlayback.travel] or [member advance_mode] is set to [constant ADVANCE_MODE_AUTO]. */
-        get priority(): number /*i64*/
-        set priority(value: number /*i64*/)
+        get priority(): int64
+        set priority(value: int64)
         
         /** The transition type. */
-        get switch_mode(): number /*i64*/
-        set switch_mode(value: number /*i64*/)
+        get switch_mode(): int64
+        set switch_mode(value: int64)
         
         /** Determines whether the transition should disabled, enabled when using [method AnimationNodeStateMachinePlayback.travel], or traversed automatically if the [member advance_condition] and [member advance_expression] checks are true (if assigned). */
-        get advance_mode(): number /*i64*/
-        set advance_mode(value: number /*i64*/)
+        get advance_mode(): int64
+        set advance_mode(value: int64)
         
         /** Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the [AnimationTree] that can be controlled from code (see [url=$DOCS_URL/tutorials/animation/animation_tree.html#controlling-from-code]Using AnimationTree[/url]). For example, if [member AnimationTree.tree_root] is an [AnimationNodeStateMachine] and [member advance_condition] is set to `"idle"`:  
          *    
@@ -2204,29 +2204,29 @@ declare module "godot" {
      */
     class AnimationNodeTransition extends AnimationNodeSync {
         constructor(identifier?: any)
-        set_input_count(input_count: number /*i64*/): void
+        set_input_count(input_count: int64): void
         
         /** Enables or disables auto-advance for the given [param input] index. If enabled, state changes to the next input after playing the animation once. If enabled for the last input state, it loops to the first. */
-        set_input_as_auto_advance(input: number /*i64*/, enable: boolean): void
+        set_input_as_auto_advance(input: int64, enable: boolean): void
         
         /** Returns `true` if auto-advance is enabled for the given [param input] index. */
-        is_input_set_as_auto_advance(input: number /*i64*/): boolean
+        is_input_set_as_auto_advance(input: int64): boolean
         
         /** If `true`, the destination animation is restarted when the animation transitions. */
-        set_input_reset(input: number /*i64*/, enable: boolean): void
+        set_input_reset(input: int64, enable: boolean): void
         
         /** Returns whether the animation restarts when the animation transitions from the other animation. */
-        is_input_reset(input: number /*i64*/): boolean
-        set_xfade_time(time: number /*f64*/): void
-        get_xfade_time(): number /*f64*/
+        is_input_reset(input: int64): boolean
+        set_xfade_time(time: float64): void
+        get_xfade_time(): float64
         set_xfade_curve(curve: Curve): void
         get_xfade_curve(): Curve
         set_allow_transition_to_self(enable: boolean): void
         is_allow_transition_to_self(): boolean
         
         /** Cross-fading time (in seconds) between each animation connected to the inputs. */
-        get xfade_time(): number /*f64*/
-        set xfade_time(value: number /*f64*/)
+        get xfade_time(): float64
+        set xfade_time(value: float64)
         
         /** Determines how cross-fading between animations is eased. If empty, the transition will be linear. */
         get xfade_curve(): Curve
@@ -2272,12 +2272,12 @@ declare module "godot" {
         animation_get_next(animation_from: StringName): StringName
         
         /** Specifies a blend time (in seconds) between two animations, referenced by their keys. */
-        set_blend_time(animation_from: StringName, animation_to: StringName, sec: number /*f64*/): void
+        set_blend_time(animation_from: StringName, animation_to: StringName, sec: float64): void
         
         /** Returns the blend time (in seconds) between two animations, referenced by their keys. */
-        get_blend_time(animation_from: StringName, animation_to: StringName): number /*f64*/
-        set_default_blend_time(sec: number /*f64*/): void
-        get_default_blend_time(): number /*f64*/
+        get_blend_time(animation_from: StringName, animation_to: StringName): float64
+        set_default_blend_time(sec: float64): void
+        get_default_blend_time(): float64
         
         /** Plays the animation with key [param name]. Custom blend times and speed can be set.  
          *  The [param from_end] option only affects when switching to a new animation track, or if the same track but at the start or end. It does not affect resuming playback that was paused in the middle of an animation. If [param custom_speed] is negative and [param from_end] is `true`, the animation will play backwards (which is equivalent to calling [method play_backwards]).  
@@ -2285,12 +2285,12 @@ declare module "godot" {
          *      
          *  **Note:** The animation will be updated the next time the [AnimationPlayer] is processed. If other variables are updated at the same time this is called, they may be updated too early. To perform the update immediately, call `advance(0)`.  
          */
-        play(name: StringName = '', custom_blend: number /*f64*/ = -1, custom_speed: number /*f64*/ = 1, from_end: boolean = false): void
+        play(name: StringName = '', custom_blend: float64 = -1, custom_speed: float64 = 1, from_end: boolean = false): void
         
         /** Plays the animation with key [param name] in reverse.  
          *  This method is a shorthand for [method play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.  
          */
-        play_backwards(name: StringName = '', custom_blend: number /*f64*/ = -1): void
+        play_backwards(name: StringName = '', custom_blend: float64 = -1): void
         
         /** Pauses the currently playing animation. The [member current_animation_position] will be kept and calling [method play] or [method play_backwards] without arguments or with the same animation name as [member assigned_animation] will resume the animation.  
          *  See also [method stop].  
@@ -2322,26 +2322,26 @@ declare module "godot" {
         
         /** Clears all queued, unplayed animations. */
         clear_queue(): void
-        set_speed_scale(speed: number /*f64*/): void
-        get_speed_scale(): number /*f64*/
+        set_speed_scale(speed: float64): void
+        get_speed_scale(): float64
         
         /** Returns the actual playing speed of current animation or `0` if not playing. This speed is the [member speed_scale] property multiplied by `custom_speed` argument specified when calling the [method play] method.  
          *  Returns a negative value if the current animation is playing backwards.  
          */
-        get_playing_speed(): number /*f64*/
+        get_playing_speed(): float64
         set_autoplay(name: string): void
         get_autoplay(): string
         set_movie_quit_on_finish_enabled(enabled: boolean): void
         is_movie_quit_on_finish_enabled(): boolean
-        get_current_animation_position(): number /*f64*/
-        get_current_animation_length(): number /*f64*/
+        get_current_animation_position(): float64
+        get_current_animation_length(): float64
         
         /** Seeks the animation to the [param seconds] point in time (in seconds). If [param update] is `true`, the animation updates too, otherwise it updates at process time. Events between the current frame and [param seconds] are skipped.  
          *  If [param update_only] is true, the method / audio / animation playback tracks will not be processed.  
          *      
          *  **Note:** Seeking to the end of the animation doesn't emit [signal AnimationMixer.animation_finished]. If you want to skip animation and emit the signal, use [method AnimationMixer.advance].  
          */
-        seek(seconds: number /*f64*/, update: boolean = false, update_only: boolean = false): void
+        seek(seconds: float64, update: boolean = false, update_only: boolean = false): void
         
         /** For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess]. */
         set_process_callback(mode: AnimationPlayer.AnimationProcessCallback): void
@@ -2377,20 +2377,20 @@ declare module "godot" {
         set autoplay(value: StringName)
         
         /** The length (in seconds) of the currently playing animation. */
-        get current_animation_length(): number /*f64*/
+        get current_animation_length(): float64
         
         /** The position (in seconds) of the currently playing animation. */
-        get current_animation_position(): number /*f64*/
+        get current_animation_position(): float64
         
         /** The default time in which to blend animations. Ranges from 0 to 4096 with 0.01 precision. */
-        get playback_default_blend_time(): number /*f64*/
-        set playback_default_blend_time(value: number /*f64*/)
+        get playback_default_blend_time(): float64
+        set playback_default_blend_time(value: float64)
         
         /** The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.  
          *  If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.  
          */
-        get speed_scale(): number /*f64*/
-        set speed_scale(value: number /*f64*/)
+        get speed_scale(): float64
+        set speed_scale(value: float64)
         
         /** If `true` and the engine is running in Movie Maker mode (see [MovieWriter]), exits the engine with [method SceneTree.quit] as soon as an animation is done playing in this [AnimationPlayer]. A message is printed when the engine quits for this reason.  
          *      
@@ -2430,9 +2430,9 @@ declare module "godot" {
         update_values(): void
         readonly zoom_changed: Signal //  => void
         readonly name_limit_changed: Signal //  => void
-        readonly timeline_changed: Signal // position: number /*f64*/, timeline_only: boolean => void
-        readonly track_added: Signal // track: number /*i64*/ => void
-        readonly length_changed: Signal // size: number /*f64*/ => void
+        readonly timeline_changed: Signal // position: float64, timeline_only: boolean => void
+        readonly track_added: Signal // track: int64 => void
+        readonly length_changed: Signal // size: float64 => void
     }
     class AnimationTrackEditDefaultPlugin extends AnimationTrackEditPlugin {
         constructor(identifier?: any)
@@ -2443,16 +2443,16 @@ declare module "godot" {
     class AnimationTrackEditor extends VBoxContainer {
         constructor(identifier?: any)
         _animation_update(): void
-        _track_grab_focus(_unnamed_arg0: number /*i64*/): void
+        _track_grab_focus(_unnamed_arg0: int64): void
         _redraw_tracks(): void
         _clear_selection_for_anim(_unnamed_arg0: Animation): void
-        _select_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: number /*i64*/, _unnamed_arg2: number /*f64*/): void
+        _select_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: int64, _unnamed_arg2: float64): void
         _clear_selection(_unnamed_arg0: boolean): void
-        _bezier_track_set_key_handle_mode(animation: Animation, track_idx: number /*i64*/, key_idx: number /*i64*/, key_handle_mode: any /*Animation.HandleMode*/, key_handle_set_mode: any /*Animation.HandleSetMode*/ = 0): void
-        readonly timeline_changed: Signal // position: number /*f64*/, timeline_only: boolean => void
+        _bezier_track_set_key_handle_mode(animation: Animation, track_idx: int64, key_idx: int64, key_handle_mode: any /*Animation.HandleMode*/, key_handle_set_mode: any /*Animation.HandleSetMode*/ = 0): void
+        readonly timeline_changed: Signal // position: float64, timeline_only: boolean => void
         readonly keying_changed: Signal //  => void
-        readonly animation_len_changed: Signal // len: number /*f64*/ => void
-        readonly animation_step_changed: Signal // step: number /*f64*/ => void
+        readonly animation_len_changed: Signal // len: float64 => void
+        readonly animation_step_changed: Signal // step: float64 => void
     }
     class AnimationTrackKeyEditEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -2541,24 +2541,24 @@ declare module "godot" {
         get_gravity_space_override_mode(): Area2D.SpaceOverride
         set_gravity_is_point(enable: boolean): void
         is_gravity_a_point(): boolean
-        set_gravity_point_unit_distance(distance_scale: number /*f64*/): void
-        get_gravity_point_unit_distance(): number /*f64*/
+        set_gravity_point_unit_distance(distance_scale: float64): void
+        get_gravity_point_unit_distance(): float64
         set_gravity_point_center(center: Vector2): void
         get_gravity_point_center(): Vector2
         set_gravity_direction(direction: Vector2): void
         get_gravity_direction(): Vector2
-        set_gravity(gravity: number /*f64*/): void
-        get_gravity(): number /*f64*/
+        set_gravity(gravity: float64): void
+        get_gravity(): float64
         set_linear_damp_space_override_mode(space_override_mode: Area2D.SpaceOverride): void
         get_linear_damp_space_override_mode(): Area2D.SpaceOverride
         set_angular_damp_space_override_mode(space_override_mode: Area2D.SpaceOverride): void
         get_angular_damp_space_override_mode(): Area2D.SpaceOverride
-        set_linear_damp(linear_damp: number /*f64*/): void
-        get_linear_damp(): number /*f64*/
-        set_angular_damp(angular_damp: number /*f64*/): void
-        get_angular_damp(): number /*f64*/
-        set_priority(priority: number /*i64*/): void
-        get_priority(): number /*i64*/
+        set_linear_damp(linear_damp: float64): void
+        get_linear_damp(): float64
+        set_angular_damp(angular_damp: float64): void
+        get_angular_damp(): float64
+        set_priority(priority: int64): void
+        get_priority(): int64
         set_monitoring(enable: boolean): void
         is_monitoring(): boolean
         set_monitorable(enable: boolean): void
@@ -2610,12 +2610,12 @@ declare module "godot" {
         set monitorable(value: boolean)
         
         /** The area's priority. Higher priority areas are processed first. The [World2D]'s physics is always processed last, after all areas. */
-        get priority(): number /*i64*/
-        set priority(value: number /*i64*/)
+        get priority(): int64
+        set priority(value: int64)
         
         /** Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values. */
-        get gravity_space_override(): number /*i64*/
-        set gravity_space_override(value: number /*i64*/)
+        get gravity_space_override(): int64
+        set gravity_space_override(value: int64)
         
         /** If `true`, gravity is calculated from a point (set via [member gravity_point_center]). See also [member gravity_space_override]. */
         get gravity_point(): boolean
@@ -2624,8 +2624,8 @@ declare module "godot" {
         /** The distance at which the gravity strength is equal to [member gravity]. For example, on a planet 100 pixels in radius with a surface gravity of 4.0 px/s², set the [member gravity] to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 pixels from the center the gravity will be 1.0 px/s² (twice the distance, 1/4th the gravity), at 50 pixels it will be 16.0 px/s² (half the distance, 4x the gravity), and so on.  
          *  The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.  
          */
-        get gravity_point_unit_distance(): number /*f64*/
-        set gravity_point_unit_distance(value: number /*f64*/)
+        get gravity_point_unit_distance(): float64
+        set gravity_point_unit_distance(value: float64)
         
         /** If gravity is a point (see [member gravity_point]), this will be the point of attraction. */
         get gravity_point_center(): Vector2
@@ -2636,28 +2636,28 @@ declare module "godot" {
         set gravity_direction(value: Vector2)
         
         /** The area's gravity intensity (in pixels per second squared). This value multiplies the gravity direction. This is useful to alter the force of gravity without altering its direction. */
-        get gravity(): number /*f64*/
-        set gravity(value: number /*f64*/)
+        get gravity(): float64
+        set gravity(value: float64)
         
         /** Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values. */
-        get linear_damp_space_override(): number /*i64*/
-        set linear_damp_space_override(value: number /*i64*/)
+        get linear_damp_space_override(): int64
+        set linear_damp_space_override(value: int64)
         
         /** The rate at which objects stop moving in this area. Represents the linear velocity lost per second.  
          *  See [member ProjectSettings.physics/2d/default_linear_damp] for more details about damping.  
          */
-        get linear_damp(): number /*f64*/
-        set linear_damp(value: number /*f64*/)
+        get linear_damp(): float64
+        set linear_damp(value: float64)
         
         /** Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values. */
-        get angular_damp_space_override(): number /*i64*/
-        set angular_damp_space_override(value: number /*i64*/)
+        get angular_damp_space_override(): int64
+        set angular_damp_space_override(value: int64)
         
         /** The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.  
          *  See [member ProjectSettings.physics/2d/default_angular_damp] for more details about damping.  
          */
-        get angular_damp(): number /*f64*/
-        set angular_damp(value: number /*f64*/)
+        get angular_damp(): float64
+        set angular_damp(value: float64)
         
         /** If `true`, the area's audio bus overrides the default audio bus. */
         get audio_bus_override(): boolean
@@ -2672,12 +2672,12 @@ declare module "godot" {
          *  **Example of getting the** [CollisionShape2D] **node from the shape index:**  
          *    
          */
-        readonly body_shape_entered: Signal // body_rid: RID, body: Node2D, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        readonly body_shape_entered: Signal // body_rid: RID, body: Node2D, body_shape_index: int64, local_shape_index: int64 => void
         
         /** Emitted when a [Shape2D] of the received [param body] exits a shape of this area. [param body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [member monitoring] to be set to `true`.  
          *  See also [signal body_shape_entered].  
          */
-        readonly body_shape_exited: Signal // body_rid: RID, body: Node2D, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        readonly body_shape_exited: Signal // body_rid: RID, body: Node2D, body_shape_index: int64, local_shape_index: int64 => void
         
         /** Emitted when the received [param body] enters this area. [param body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [member monitoring] to be set to `true`. */
         readonly body_entered: Signal // body: Node2D => void
@@ -2690,12 +2690,12 @@ declare module "godot" {
          *  **Example of getting the** [CollisionShape2D] **node from the shape index:**  
          *    
          */
-        readonly area_shape_entered: Signal // area_rid: RID, area: Area2D, area_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        readonly area_shape_entered: Signal // area_rid: RID, area: Area2D, area_shape_index: int64, local_shape_index: int64 => void
         
         /** Emitted when a [Shape2D] of the received [param area] exits a shape of this area. Requires [member monitoring] to be set to `true`.  
          *  See also [signal area_shape_entered].  
          */
-        readonly area_shape_exited: Signal // area_rid: RID, area: Area2D, area_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        readonly area_shape_exited: Signal // area_rid: RID, area: Area2D, area_shape_index: int64, local_shape_index: int64 => void
         
         /** Emitted when the received [param area] enters this area. Requires [member monitoring] to be set to `true`. */
         readonly area_entered: Signal // area: Area2D => void
@@ -2731,28 +2731,28 @@ declare module "godot" {
         get_gravity_space_override_mode(): Area3D.SpaceOverride
         set_gravity_is_point(enable: boolean): void
         is_gravity_a_point(): boolean
-        set_gravity_point_unit_distance(distance_scale: number /*f64*/): void
-        get_gravity_point_unit_distance(): number /*f64*/
+        set_gravity_point_unit_distance(distance_scale: float64): void
+        get_gravity_point_unit_distance(): float64
         set_gravity_point_center(center: Vector3): void
         get_gravity_point_center(): Vector3
         set_gravity_direction(direction: Vector3): void
         get_gravity_direction(): Vector3
-        set_gravity(gravity: number /*f64*/): void
-        get_gravity(): number /*f64*/
+        set_gravity(gravity: float64): void
+        get_gravity(): float64
         set_linear_damp_space_override_mode(space_override_mode: Area3D.SpaceOverride): void
         get_linear_damp_space_override_mode(): Area3D.SpaceOverride
         set_angular_damp_space_override_mode(space_override_mode: Area3D.SpaceOverride): void
         get_angular_damp_space_override_mode(): Area3D.SpaceOverride
-        set_angular_damp(angular_damp: number /*f64*/): void
-        get_angular_damp(): number /*f64*/
-        set_linear_damp(linear_damp: number /*f64*/): void
-        get_linear_damp(): number /*f64*/
-        set_priority(priority: number /*i64*/): void
-        get_priority(): number /*i64*/
-        set_wind_force_magnitude(wind_force_magnitude: number /*f64*/): void
-        get_wind_force_magnitude(): number /*f64*/
-        set_wind_attenuation_factor(wind_attenuation_factor: number /*f64*/): void
-        get_wind_attenuation_factor(): number /*f64*/
+        set_angular_damp(angular_damp: float64): void
+        get_angular_damp(): float64
+        set_linear_damp(linear_damp: float64): void
+        get_linear_damp(): float64
+        set_priority(priority: int64): void
+        get_priority(): int64
+        set_wind_force_magnitude(wind_force_magnitude: float64): void
+        get_wind_force_magnitude(): float64
+        set_wind_attenuation_factor(wind_attenuation_factor: float64): void
+        get_wind_attenuation_factor(): float64
         set_wind_source_path(wind_source_path: NodePath): void
         get_wind_source_path(): NodePath
         set_monitorable(enable: boolean): void
@@ -2800,10 +2800,10 @@ declare module "godot" {
         is_using_reverb_bus(): boolean
         set_reverb_bus_name(name: StringName): void
         get_reverb_bus_name(): StringName
-        set_reverb_amount(amount: number /*f64*/): void
-        get_reverb_amount(): number /*f64*/
-        set_reverb_uniformity(amount: number /*f64*/): void
-        get_reverb_uniformity(): number /*f64*/
+        set_reverb_amount(amount: float64): void
+        get_reverb_amount(): float64
+        set_reverb_uniformity(amount: float64): void
+        get_reverb_uniformity(): float64
         
         /** If `true`, the area detects bodies or areas entering and exiting it. */
         get monitoring(): boolean
@@ -2814,12 +2814,12 @@ declare module "godot" {
         set monitorable(value: boolean)
         
         /** The area's priority. Higher priority areas are processed first. The [World3D]'s physics is always processed last, after all areas. */
-        get priority(): number /*i64*/
-        set priority(value: number /*i64*/)
+        get priority(): int64
+        set priority(value: int64)
         
         /** Override mode for gravity calculations within this area. See [enum SpaceOverride] for possible values. */
-        get gravity_space_override(): number /*i64*/
-        set gravity_space_override(value: number /*i64*/)
+        get gravity_space_override(): int64
+        set gravity_space_override(value: int64)
         
         /** If `true`, gravity is calculated from a point (set via [member gravity_point_center]). See also [member gravity_space_override]. */
         get gravity_point(): boolean
@@ -2828,8 +2828,8 @@ declare module "godot" {
         /** The distance at which the gravity strength is equal to [member gravity]. For example, on a planet 100 meters in radius with a surface gravity of 4.0 m/s², set the [member gravity] to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 meters from the center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it will be 16.0 m/s² (half the distance, 4x the gravity), and so on.  
          *  The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.  
          */
-        get gravity_point_unit_distance(): number /*f64*/
-        set gravity_point_unit_distance(value: number /*f64*/)
+        get gravity_point_unit_distance(): float64
+        set gravity_point_unit_distance(value: float64)
         
         /** If gravity is a point (see [member gravity_point]), this will be the point of attraction. */
         get gravity_point_center(): Vector3
@@ -2840,36 +2840,36 @@ declare module "godot" {
         set gravity_direction(value: Vector3)
         
         /** The area's gravity intensity (in meters per second squared). This value multiplies the gravity direction. This is useful to alter the force of gravity without altering its direction. */
-        get gravity(): number /*f64*/
-        set gravity(value: number /*f64*/)
+        get gravity(): float64
+        set gravity(value: float64)
         
         /** Override mode for linear damping calculations within this area. See [enum SpaceOverride] for possible values. */
-        get linear_damp_space_override(): number /*i64*/
-        set linear_damp_space_override(value: number /*i64*/)
+        get linear_damp_space_override(): int64
+        set linear_damp_space_override(value: int64)
         
         /** The rate at which objects stop moving in this area. Represents the linear velocity lost per second.  
          *  See [member ProjectSettings.physics/3d/default_linear_damp] for more details about damping.  
          */
-        get linear_damp(): number /*f64*/
-        set linear_damp(value: number /*f64*/)
+        get linear_damp(): float64
+        set linear_damp(value: float64)
         
         /** Override mode for angular damping calculations within this area. See [enum SpaceOverride] for possible values. */
-        get angular_damp_space_override(): number /*i64*/
-        set angular_damp_space_override(value: number /*i64*/)
+        get angular_damp_space_override(): int64
+        set angular_damp_space_override(value: int64)
         
         /** The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.  
          *  See [member ProjectSettings.physics/3d/default_angular_damp] for more details about damping.  
          */
-        get angular_damp(): number /*f64*/
-        set angular_damp(value: number /*f64*/)
+        get angular_damp(): float64
+        set angular_damp(value: float64)
         
         /** The magnitude of area-specific wind force. */
-        get wind_force_magnitude(): number /*f64*/
-        set wind_force_magnitude(value: number /*f64*/)
+        get wind_force_magnitude(): float64
+        set wind_force_magnitude(value: float64)
         
         /** The exponential rate at which wind force decreases with distance from its origin. */
-        get wind_attenuation_factor(): number /*f64*/
-        set wind_attenuation_factor(value: number /*f64*/)
+        get wind_attenuation_factor(): float64
+        set wind_attenuation_factor(value: float64)
         
         /** The [Node3D] which is used to specify the direction and origin of an area-specific wind force. The direction is opposite to the z-axis of the [Node3D]'s local transform, and its origin is the origin of the [Node3D]'s local transform. */
         get wind_source_path(): NodePath
@@ -2892,24 +2892,24 @@ declare module "godot" {
         set reverb_bus_name(value: StringName)
         
         /** The degree to which this area applies reverb to its associated audio. Ranges from `0` to `1` with `0.1` precision. */
-        get reverb_bus_amount(): number /*f64*/
-        set reverb_bus_amount(value: number /*f64*/)
+        get reverb_bus_amount(): float64
+        set reverb_bus_amount(value: float64)
         
         /** The degree to which this area's reverb is a uniform effect. Ranges from `0` to `1` with `0.1` precision. */
-        get reverb_bus_uniformity(): number /*f64*/
-        set reverb_bus_uniformity(value: number /*f64*/)
+        get reverb_bus_uniformity(): float64
+        set reverb_bus_uniformity(value: float64)
         
         /** Emitted when a [Shape3D] of the received [param body] enters a shape of this area. [param body] can be a [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured. Requires [member monitoring] to be set to `true`.  
          *  [param local_shape_index] and [param body_shape_index] contain indices of the interacting shapes from this area and the interacting body, respectively. [param body_rid] contains the [RID] of the body. These values can be used with the [PhysicsServer3D].  
          *  **Example of getting the** [CollisionShape3D] **node from the shape index:**  
          *    
          */
-        readonly body_shape_entered: Signal // body_rid: RID, body: Node3D, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        readonly body_shape_entered: Signal // body_rid: RID, body: Node3D, body_shape_index: int64, local_shape_index: int64 => void
         
         /** Emitted when a [Shape3D] of the received [param body] exits a shape of this area. [param body] can be a [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured. Requires [member monitoring] to be set to `true`.  
          *  See also [signal body_shape_entered].  
          */
-        readonly body_shape_exited: Signal // body_rid: RID, body: Node3D, body_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        readonly body_shape_exited: Signal // body_rid: RID, body: Node3D, body_shape_index: int64, local_shape_index: int64 => void
         
         /** Emitted when the received [param body] enters this area. [param body] can be a [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured. Requires [member monitoring] to be set to `true`. */
         readonly body_entered: Signal // body: Node3D => void
@@ -2922,12 +2922,12 @@ declare module "godot" {
          *  **Example of getting the** [CollisionShape3D] **node from the shape index:**  
          *    
          */
-        readonly area_shape_entered: Signal // area_rid: RID, area: Area3D, area_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        readonly area_shape_entered: Signal // area_rid: RID, area: Area3D, area_shape_index: int64, local_shape_index: int64 => void
         
         /** Emitted when a [Shape3D] of the received [param area] exits a shape of this area. Requires [member monitoring] to be set to `true`.  
          *  See also [signal area_shape_entered].  
          */
-        readonly area_shape_exited: Signal // area_rid: RID, area: Area3D, area_shape_index: number /*i64*/, local_shape_index: number /*i64*/ => void
+        readonly area_shape_exited: Signal // area_rid: RID, area: Area3D, area_shape_index: int64, local_shape_index: int64 => void
         
         /** Emitted when the received [param area] enters this area. Requires [member monitoring] to be set to `true`. */
         readonly area_entered: Signal // area: Area3D => void
@@ -2945,13 +2945,13 @@ declare module "godot" {
         add_blend_shape(name: StringName): void
         
         /** Returns the number of blend shapes that the [ArrayMesh] holds. */
-        get_blend_shape_count(): number /*i64*/
+        get_blend_shape_count(): int64
         
         /** Returns the name of the blend shape at this index. */
-        get_blend_shape_name(index: number /*i64*/): StringName
+        get_blend_shape_name(index: int64): StringName
         
         /** Sets the name of the blend shape at this index. */
-        set_blend_shape_name(index: number /*i64*/, name: StringName): void
+        set_blend_shape_name(index: int64, name: StringName): void
         
         /** Removes all blend shapes from this [ArrayMesh]. */
         clear_blend_shapes(): void
@@ -2971,36 +2971,36 @@ declare module "godot" {
         
         /** Removes all surfaces from this [ArrayMesh]. */
         clear_surfaces(): void
-        surface_update_vertex_region(surf_idx: number /*i64*/, offset: number /*i64*/, data: PackedByteArray): void
-        surface_update_attribute_region(surf_idx: number /*i64*/, offset: number /*i64*/, data: PackedByteArray): void
-        surface_update_skin_region(surf_idx: number /*i64*/, offset: number /*i64*/, data: PackedByteArray): void
+        surface_update_vertex_region(surf_idx: int64, offset: int64, data: PackedByteArray): void
+        surface_update_attribute_region(surf_idx: int64, offset: int64, data: PackedByteArray): void
+        surface_update_skin_region(surf_idx: int64, offset: int64, data: PackedByteArray): void
         
         /** Returns the length in vertices of the vertex array in the requested surface (see [method add_surface_from_arrays]). */
-        surface_get_array_len(surf_idx: number /*i64*/): number /*i64*/
+        surface_get_array_len(surf_idx: int64): int64
         
         /** Returns the length in indices of the index array in the requested surface (see [method add_surface_from_arrays]). */
-        surface_get_array_index_len(surf_idx: number /*i64*/): number /*i64*/
+        surface_get_array_index_len(surf_idx: int64): int64
         
         /** Returns the format mask of the requested surface (see [method add_surface_from_arrays]). */
-        surface_get_format(surf_idx: number /*i64*/): Mesh.ArrayFormat
+        surface_get_format(surf_idx: int64): Mesh.ArrayFormat
         
         /** Returns the primitive type of the requested surface (see [method add_surface_from_arrays]). */
-        surface_get_primitive_type(surf_idx: number /*i64*/): Mesh.PrimitiveType
+        surface_get_primitive_type(surf_idx: int64): Mesh.PrimitiveType
         
         /** Returns the index of the first surface with this name held within this [ArrayMesh]. If none are found, -1 is returned. */
-        surface_find_by_name(name: string): number /*i64*/
+        surface_find_by_name(name: string): int64
         
         /** Sets a name for a given surface. */
-        surface_set_name(surf_idx: number /*i64*/, name: string): void
+        surface_set_name(surf_idx: int64, name: string): void
         
         /** Gets the name assigned to this surface. */
-        surface_get_name(surf_idx: number /*i64*/): string
+        surface_get_name(surf_idx: int64): string
         
         /** Regenerates tangents for each of the [ArrayMesh]'s surfaces. */
         regen_normal_maps(): void
         
         /** Performs a UV unwrap on the [ArrayMesh] to prepare the mesh for lightmapping. */
-        lightmap_unwrap(transform: Transform3D, texel_size: number /*f64*/): Error
+        lightmap_unwrap(transform: Transform3D, texel_size: float64): Error
         set_custom_aabb(aabb: AABB): void
         get_custom_aabb(): AABB
         set_shadow_mesh(mesh: ArrayMesh): void
@@ -3015,8 +3015,8 @@ declare module "godot" {
         set _surfaces(value: Array)
         
         /** Sets the blend shape mode to one of [enum Mesh.BlendShapeMode]. */
-        get blend_shape_mode(): number /*i64*/
-        set blend_shape_mode(value: number /*i64*/)
+        get blend_shape_mode(): int64
+        set blend_shape_mode(value: int64)
         
         /** Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices. */
         get custom_aabb(): AABB
@@ -3084,8 +3084,8 @@ declare module "godot" {
      */
     class AspectRatioContainer extends Container {
         constructor(identifier?: any)
-        set_ratio(ratio: number /*f64*/): void
-        get_ratio(): number /*f64*/
+        set_ratio(ratio: float64): void
+        get_ratio(): float64
         set_stretch_mode(stretch_mode: AspectRatioContainer.StretchMode): void
         get_stretch_mode(): AspectRatioContainer.StretchMode
         set_alignment_horizontal(alignment_horizontal: AspectRatioContainer.AlignmentMode): void
@@ -3094,20 +3094,20 @@ declare module "godot" {
         get_alignment_vertical(): AspectRatioContainer.AlignmentMode
         
         /** The aspect ratio to enforce on child controls. This is the width divided by the height. The ratio depends on the [member stretch_mode]. */
-        get ratio(): number /*f64*/
-        set ratio(value: number /*f64*/)
+        get ratio(): float64
+        set ratio(value: float64)
         
         /** The stretch mode used to align child controls. */
-        get stretch_mode(): number /*i64*/
-        set stretch_mode(value: number /*i64*/)
+        get stretch_mode(): int64
+        set stretch_mode(value: int64)
         
         /** Specifies the horizontal relative position of child controls. */
-        get alignment_horizontal(): number /*i64*/
-        set alignment_horizontal(value: number /*i64*/)
+        get alignment_horizontal(): int64
+        set alignment_horizontal(value: int64)
         
         /** Specifies the vertical relative position of child controls. */
-        get alignment_vertical(): number /*i64*/
-        set alignment_vertical(value: number /*i64*/)
+        get alignment_vertical(): int64
+        set alignment_vertical(value: int64)
     }
     class AssetLibraryEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -3174,12 +3174,12 @@ declare module "godot" {
      */
     class AudioEffectAmplify extends AudioEffect {
         constructor(identifier?: any)
-        set_volume_db(volume: number /*f64*/): void
-        get_volume_db(): number /*f64*/
+        set_volume_db(volume: float64): void
+        get_volume_db(): float64
         
         /** Amount of amplification in decibels. Positive values make the sound louder, negative values make it quieter. Value can range from -80 to 24. */
-        get volume_db(): number /*f64*/
-        set volume_db(value: number /*f64*/)
+        get volume_db(): float64
+        set volume_db(value: float64)
     }
     /** Adds a band limit filter to the audio bus.  
      *  	  
@@ -3202,33 +3202,33 @@ declare module "godot" {
     class AudioEffectCapture extends AudioEffect {
         constructor(identifier?: any)
         /** Returns `true` if at least [param frames] audio frames are available to read in the internal ring buffer. */
-        can_get_buffer(frames: number /*i64*/): boolean
+        can_get_buffer(frames: int64): boolean
         
         /** Gets the next [param frames] audio samples from the internal ring buffer.  
          *  Returns a [PackedVector2Array] containing exactly [param frames] audio samples if available, or an empty [PackedVector2Array] if insufficient data was available.  
          */
-        get_buffer(frames: number /*i64*/): PackedVector2Array
+        get_buffer(frames: int64): PackedVector2Array
         
         /** Clears the internal ring buffer. */
         clear_buffer(): void
-        set_buffer_length(buffer_length_seconds: number /*f64*/): void
-        get_buffer_length(): number /*f64*/
+        set_buffer_length(buffer_length_seconds: float64): void
+        get_buffer_length(): float64
         
         /** Returns the number of frames available to read using [method get_buffer]. */
-        get_frames_available(): number /*i64*/
+        get_frames_available(): int64
         
         /** Returns the number of audio frames discarded from the audio bus due to full buffer. */
-        get_discarded_frames(): number /*i64*/
+        get_discarded_frames(): int64
         
         /** Returns the total size of the internal ring buffer in frames. */
-        get_buffer_length_frames(): number /*i64*/
+        get_buffer_length_frames(): int64
         
         /** Returns the number of audio frames inserted from the audio bus. */
-        get_pushed_frames(): number /*i64*/
+        get_pushed_frames(): int64
         
         /** Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect if already initialized. */
-        get buffer_length(): number /*f64*/
-        set buffer_length(value: number /*f64*/)
+        get buffer_length(): float64
+        set buffer_length(value: float64)
     }
     /** Adds a chorus audio effect.  
      *  	  
@@ -3236,36 +3236,36 @@ declare module "godot" {
      */
     class AudioEffectChorus extends AudioEffect {
         constructor(identifier?: any)
-        set_voice_count(voices: number /*i64*/): void
-        get_voice_count(): number /*i64*/
-        set_voice_delay_ms(voice_idx: number /*i64*/, delay_ms: number /*f64*/): void
-        get_voice_delay_ms(voice_idx: number /*i64*/): number /*f64*/
-        set_voice_rate_hz(voice_idx: number /*i64*/, rate_hz: number /*f64*/): void
-        get_voice_rate_hz(voice_idx: number /*i64*/): number /*f64*/
-        set_voice_depth_ms(voice_idx: number /*i64*/, depth_ms: number /*f64*/): void
-        get_voice_depth_ms(voice_idx: number /*i64*/): number /*f64*/
-        set_voice_level_db(voice_idx: number /*i64*/, level_db: number /*f64*/): void
-        get_voice_level_db(voice_idx: number /*i64*/): number /*f64*/
-        set_voice_cutoff_hz(voice_idx: number /*i64*/, cutoff_hz: number /*f64*/): void
-        get_voice_cutoff_hz(voice_idx: number /*i64*/): number /*f64*/
-        set_voice_pan(voice_idx: number /*i64*/, pan: number /*f64*/): void
-        get_voice_pan(voice_idx: number /*i64*/): number /*f64*/
-        set_wet(amount: number /*f64*/): void
-        get_wet(): number /*f64*/
-        set_dry(amount: number /*f64*/): void
-        get_dry(): number /*f64*/
+        set_voice_count(voices: int64): void
+        get_voice_count(): int64
+        set_voice_delay_ms(voice_idx: int64, delay_ms: float64): void
+        get_voice_delay_ms(voice_idx: int64): float64
+        set_voice_rate_hz(voice_idx: int64, rate_hz: float64): void
+        get_voice_rate_hz(voice_idx: int64): float64
+        set_voice_depth_ms(voice_idx: int64, depth_ms: float64): void
+        get_voice_depth_ms(voice_idx: int64): float64
+        set_voice_level_db(voice_idx: int64, level_db: float64): void
+        get_voice_level_db(voice_idx: int64): float64
+        set_voice_cutoff_hz(voice_idx: int64, cutoff_hz: float64): void
+        get_voice_cutoff_hz(voice_idx: int64): float64
+        set_voice_pan(voice_idx: int64, pan: float64): void
+        get_voice_pan(voice_idx: int64): float64
+        set_wet(amount: float64): void
+        get_wet(): float64
+        set_dry(amount: float64): void
+        get_dry(): float64
         
         /** The number of voices in the effect. */
-        get voice_count(): number /*i64*/
-        set voice_count(value: number /*i64*/)
+        get voice_count(): int64
+        set voice_count(value: int64)
         
         /** The effect's raw signal. */
-        get dry(): number /*f64*/
-        set dry(value: number /*f64*/)
+        get dry(): float64
+        set dry(value: float64)
         
         /** The effect's processed signal. */
-        get wet(): number /*f64*/
-        set wet(value: number /*f64*/)
+        get wet(): float64
+        set wet(value: float64)
     }
     /** Adds a compressor audio effect to an audio bus.  
      *  Reduces sounds that exceed a certain threshold level, smooths out the dynamics and increases the overall volume.  
@@ -3274,44 +3274,44 @@ declare module "godot" {
      */
     class AudioEffectCompressor extends AudioEffect {
         constructor(identifier?: any)
-        set_threshold(threshold: number /*f64*/): void
-        get_threshold(): number /*f64*/
-        set_ratio(ratio: number /*f64*/): void
-        get_ratio(): number /*f64*/
-        set_gain(gain: number /*f64*/): void
-        get_gain(): number /*f64*/
-        set_attack_us(attack_us: number /*f64*/): void
-        get_attack_us(): number /*f64*/
-        set_release_ms(release_ms: number /*f64*/): void
-        get_release_ms(): number /*f64*/
-        set_mix(mix: number /*f64*/): void
-        get_mix(): number /*f64*/
+        set_threshold(threshold: float64): void
+        get_threshold(): float64
+        set_ratio(ratio: float64): void
+        get_ratio(): float64
+        set_gain(gain: float64): void
+        get_gain(): float64
+        set_attack_us(attack_us: float64): void
+        get_attack_us(): float64
+        set_release_ms(release_ms: float64): void
+        get_release_ms(): float64
+        set_mix(mix: float64): void
+        get_mix(): float64
         set_sidechain(sidechain: StringName): void
         get_sidechain(): StringName
         
         /** The level above which compression is applied to the audio. Value can range from -60 to 0. */
-        get threshold(): number /*f64*/
-        set threshold(value: number /*f64*/)
+        get threshold(): float64
+        set threshold(value: float64)
         
         /** Amount of compression applied to the audio once it passes the threshold level. The higher the ratio, the more the loud parts of the audio will be compressed. Value can range from 1 to 48. */
-        get ratio(): number /*f64*/
-        set ratio(value: number /*f64*/)
+        get ratio(): float64
+        set ratio(value: float64)
         
         /** Gain applied to the output signal. */
-        get gain(): number /*f64*/
-        set gain(value: number /*f64*/)
+        get gain(): float64
+        set gain(value: float64)
         
         /** Compressor's reaction time when the signal exceeds the threshold, in microseconds. Value can range from 20 to 2000. */
-        get attack_us(): number /*f64*/
-        set attack_us(value: number /*f64*/)
+        get attack_us(): float64
+        set attack_us(value: float64)
         
         /** Compressor's delay time to stop reducing the signal after the signal level falls below the threshold, in milliseconds. Value can range from 20 to 2000. */
-        get release_ms(): number /*f64*/
-        set release_ms(value: number /*f64*/)
+        get release_ms(): float64
+        set release_ms(value: float64)
         
         /** Balance between original signal and effect signal. Value can range from 0 (totally dry) to 1 (totally wet). */
-        get mix(): number /*f64*/
-        set mix(value: number /*f64*/)
+        get mix(): float64
+        set mix(value: float64)
         
         /** Reduce the sound level using another audio bus for threshold detection. */
         get sidechain(): StringName
@@ -3324,84 +3324,84 @@ declare module "godot" {
      */
     class AudioEffectDelay extends AudioEffect {
         constructor(identifier?: any)
-        set_dry(amount: number /*f64*/): void
-        get_dry(): number /*f64*/
+        set_dry(amount: float64): void
+        get_dry(): float64
         set_tap1_active(amount: boolean): void
         is_tap1_active(): boolean
-        set_tap1_delay_ms(amount: number /*f64*/): void
-        get_tap1_delay_ms(): number /*f64*/
-        set_tap1_level_db(amount: number /*f64*/): void
-        get_tap1_level_db(): number /*f64*/
-        set_tap1_pan(amount: number /*f64*/): void
-        get_tap1_pan(): number /*f64*/
+        set_tap1_delay_ms(amount: float64): void
+        get_tap1_delay_ms(): float64
+        set_tap1_level_db(amount: float64): void
+        get_tap1_level_db(): float64
+        set_tap1_pan(amount: float64): void
+        get_tap1_pan(): float64
         set_tap2_active(amount: boolean): void
         is_tap2_active(): boolean
-        set_tap2_delay_ms(amount: number /*f64*/): void
-        get_tap2_delay_ms(): number /*f64*/
-        set_tap2_level_db(amount: number /*f64*/): void
-        get_tap2_level_db(): number /*f64*/
-        set_tap2_pan(amount: number /*f64*/): void
-        get_tap2_pan(): number /*f64*/
+        set_tap2_delay_ms(amount: float64): void
+        get_tap2_delay_ms(): float64
+        set_tap2_level_db(amount: float64): void
+        get_tap2_level_db(): float64
+        set_tap2_pan(amount: float64): void
+        get_tap2_pan(): float64
         set_feedback_active(amount: boolean): void
         is_feedback_active(): boolean
-        set_feedback_delay_ms(amount: number /*f64*/): void
-        get_feedback_delay_ms(): number /*f64*/
-        set_feedback_level_db(amount: number /*f64*/): void
-        get_feedback_level_db(): number /*f64*/
-        set_feedback_lowpass(amount: number /*f64*/): void
-        get_feedback_lowpass(): number /*f64*/
+        set_feedback_delay_ms(amount: float64): void
+        get_feedback_delay_ms(): float64
+        set_feedback_level_db(amount: float64): void
+        get_feedback_level_db(): float64
+        set_feedback_lowpass(amount: float64): void
+        get_feedback_lowpass(): float64
         
         /** Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0 to 1. */
-        get dry(): number /*f64*/
-        set dry(value: number /*f64*/)
+        get dry(): float64
+        set dry(value: float64)
         
         /** If `true`, the first tap will be enabled. */
         get tap1_active(): boolean
         set tap1_active(value: boolean)
         
         /** First tap delay time in milliseconds. */
-        get tap1_delay_ms(): number /*f64*/
-        set tap1_delay_ms(value: number /*f64*/)
+        get tap1_delay_ms(): float64
+        set tap1_delay_ms(value: float64)
         
         /** Sound level for the first tap. */
-        get tap1_level_db(): number /*f64*/
-        set tap1_level_db(value: number /*f64*/)
+        get tap1_level_db(): float64
+        set tap1_level_db(value: float64)
         
         /** Pan position for the first tap. Value can range from -1 (fully left) to 1 (fully right). */
-        get tap1_pan(): number /*f64*/
-        set tap1_pan(value: number /*f64*/)
+        get tap1_pan(): float64
+        set tap1_pan(value: float64)
         
         /** If `true`, the second tap will be enabled. */
         get tap2_active(): boolean
         set tap2_active(value: boolean)
         
         /** Second tap delay time in milliseconds. */
-        get tap2_delay_ms(): number /*f64*/
-        set tap2_delay_ms(value: number /*f64*/)
+        get tap2_delay_ms(): float64
+        set tap2_delay_ms(value: float64)
         
         /** Sound level for the second tap. */
-        get tap2_level_db(): number /*f64*/
-        set tap2_level_db(value: number /*f64*/)
+        get tap2_level_db(): float64
+        set tap2_level_db(value: float64)
         
         /** Pan position for the second tap. Value can range from -1 (fully left) to 1 (fully right). */
-        get tap2_pan(): number /*f64*/
-        set tap2_pan(value: number /*f64*/)
+        get tap2_pan(): float64
+        set tap2_pan(value: float64)
         
         /** If `true`, feedback is enabled. */
         get feedback_active(): boolean
         set feedback_active(value: boolean)
         
         /** Feedback delay time in milliseconds. */
-        get feedback_delay_ms(): number /*f64*/
-        set feedback_delay_ms(value: number /*f64*/)
+        get feedback_delay_ms(): float64
+        set feedback_delay_ms(value: float64)
         
         /** Sound level for feedback. */
-        get feedback_level_db(): number /*f64*/
-        set feedback_level_db(value: number /*f64*/)
+        get feedback_level_db(): float64
+        set feedback_level_db(value: float64)
         
         /** Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the source signal. */
-        get feedback_lowpass(): number /*f64*/
-        set feedback_lowpass(value: number /*f64*/)
+        get feedback_lowpass(): float64
+        set feedback_lowpass(value: float64)
     }
     namespace AudioEffectDistortion {
         enum Mode {
@@ -3428,34 +3428,34 @@ declare module "godot" {
         constructor(identifier?: any)
         set_mode(mode: AudioEffectDistortion.Mode): void
         get_mode(): AudioEffectDistortion.Mode
-        set_pre_gain(pre_gain: number /*f64*/): void
-        get_pre_gain(): number /*f64*/
-        set_keep_hf_hz(keep_hf_hz: number /*f64*/): void
-        get_keep_hf_hz(): number /*f64*/
-        set_drive(drive: number /*f64*/): void
-        get_drive(): number /*f64*/
-        set_post_gain(post_gain: number /*f64*/): void
-        get_post_gain(): number /*f64*/
+        set_pre_gain(pre_gain: float64): void
+        get_pre_gain(): float64
+        set_keep_hf_hz(keep_hf_hz: float64): void
+        get_keep_hf_hz(): float64
+        set_drive(drive: float64): void
+        get_drive(): float64
+        set_post_gain(post_gain: float64): void
+        get_post_gain(): float64
         
         /** Distortion type. */
-        get mode(): number /*i64*/
-        set mode(value: number /*i64*/)
+        get mode(): int64
+        set mode(value: int64)
         
         /** Increases or decreases the volume before the effect, in decibels. Value can range from -60 to 60. */
-        get pre_gain(): number /*f64*/
-        set pre_gain(value: number /*f64*/)
+        get pre_gain(): float64
+        set pre_gain(value: float64)
         
         /** High-pass filter, in Hz. Frequencies higher than this value will not be affected by the distortion. Value can range from 1 to 20000. */
-        get keep_hf_hz(): number /*f64*/
-        set keep_hf_hz(value: number /*f64*/)
+        get keep_hf_hz(): float64
+        set keep_hf_hz(value: float64)
         
         /** Distortion power. Value can range from 0 to 1. */
-        get drive(): number /*f64*/
-        set drive(value: number /*f64*/)
+        get drive(): float64
+        set drive(value: float64)
         
         /** Increases or decreases the volume after the effect, in decibels. Value can range from -80 to 24. */
-        get post_gain(): number /*f64*/
-        set post_gain(value: number /*f64*/)
+        get post_gain(): float64
+        set post_gain(value: float64)
     }
     /** Base class for audio equalizers. Gives you control over frequencies.  
      *  Use it to create a custom equalizer if [AudioEffectEQ6], [AudioEffectEQ10] or [AudioEffectEQ21] don't fit your needs.  
@@ -3465,13 +3465,13 @@ declare module "godot" {
     class AudioEffectEQ extends AudioEffect {
         constructor(identifier?: any)
         /** Sets band's gain at the specified index, in dB. */
-        set_band_gain_db(band_idx: number /*i64*/, volume_db: number /*f64*/): void
+        set_band_gain_db(band_idx: int64, volume_db: float64): void
         
         /** Returns the band's gain at the specified index, in dB. */
-        get_band_gain_db(band_idx: number /*i64*/): number /*f64*/
+        get_band_gain_db(band_idx: int64): float64
         
         /** Returns the number of bands of the equalizer. */
-        get_band_count(): number /*i64*/
+        get_band_count(): int64
     }
     /** Adds a 10-band equalizer audio effect to an Audio bus. Gives you control over frequencies from 31 Hz to 16000 Hz.  
      *  Each frequency can be modulated between -60/+24 dB.  
@@ -3511,28 +3511,28 @@ declare module "godot" {
      */
     class AudioEffectFilter extends AudioEffect {
         constructor(identifier?: any)
-        set_cutoff(freq: number /*f64*/): void
-        get_cutoff(): number /*f64*/
-        set_resonance(amount: number /*f64*/): void
-        get_resonance(): number /*f64*/
-        set_gain(amount: number /*f64*/): void
-        get_gain(): number /*f64*/
+        set_cutoff(freq: float64): void
+        get_cutoff(): float64
+        set_resonance(amount: float64): void
+        get_resonance(): float64
+        set_gain(amount: float64): void
+        get_gain(): float64
         set_db(amount: AudioEffectFilter.FilterDB): void
         get_db(): AudioEffectFilter.FilterDB
         
         /** Threshold frequency for the filter, in Hz. */
-        get cutoff_hz(): number /*f64*/
-        set cutoff_hz(value: number /*f64*/)
+        get cutoff_hz(): float64
+        set cutoff_hz(value: float64)
         
         /** Amount of boost in the frequency range near the cutoff frequency. */
-        get resonance(): number /*f64*/
-        set resonance(value: number /*f64*/)
+        get resonance(): float64
+        set resonance(value: float64)
         
         /** Gain amount of the frequencies after the filter. */
-        get gain(): number /*f64*/
-        set gain(value: number /*f64*/)
-        get db(): number /*i64*/
-        set db(value: number /*i64*/)
+        get gain(): float64
+        set gain(value: float64)
+        get db(): int64
+        set db(value: int64)
     }
     /** Adds a high-pass filter to the audio bus.  
      *  	  
@@ -3551,7 +3551,7 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectinstance.html */
     class AudioEffectInstance extends RefCounted {
         constructor(identifier?: any)
-        /* gdvirtual */ _process(src_buffer: number /*i64*/, dst_buffer: number /*i64*/, frame_count: number /*i64*/): void
+        /* gdvirtual */ _process(src_buffer: int64, dst_buffer: int64, frame_count: int64): void
         /* gdvirtual */ _process_silence(): boolean
     }
     /** Adds a soft-clip limiter audio effect to an Audio bus.  
@@ -3560,28 +3560,28 @@ declare module "godot" {
      */
     class AudioEffectLimiter extends AudioEffect {
         constructor(identifier?: any)
-        set_ceiling_db(ceiling: number /*f64*/): void
-        get_ceiling_db(): number /*f64*/
-        set_threshold_db(threshold: number /*f64*/): void
-        get_threshold_db(): number /*f64*/
-        set_soft_clip_db(soft_clip: number /*f64*/): void
-        get_soft_clip_db(): number /*f64*/
-        set_soft_clip_ratio(soft_clip: number /*f64*/): void
-        get_soft_clip_ratio(): number /*f64*/
+        set_ceiling_db(ceiling: float64): void
+        get_ceiling_db(): float64
+        set_threshold_db(threshold: float64): void
+        get_threshold_db(): float64
+        set_soft_clip_db(soft_clip: float64): void
+        get_soft_clip_db(): float64
+        set_soft_clip_ratio(soft_clip: float64): void
+        get_soft_clip_ratio(): float64
         
         /** The waveform's maximum allowed value, in decibels. Value can range from -20 to -0.1. */
-        get ceiling_db(): number /*f64*/
-        set ceiling_db(value: number /*f64*/)
+        get ceiling_db(): float64
+        set ceiling_db(value: float64)
         
         /** Threshold from which the limiter begins to be active, in decibels. Value can range from -30 to 0. */
-        get threshold_db(): number /*f64*/
-        set threshold_db(value: number /*f64*/)
+        get threshold_db(): float64
+        set threshold_db(value: float64)
         
         /** Applies a gain to the limited waves, in decibels. Value can range from 0 to 6. */
-        get soft_clip_db(): number /*f64*/
-        set soft_clip_db(value: number /*f64*/)
-        get soft_clip_ratio(): number /*f64*/
-        set soft_clip_ratio(value: number /*f64*/)
+        get soft_clip_db(): float64
+        set soft_clip_db(value: float64)
+        get soft_clip_ratio(): float64
+        set soft_clip_ratio(value: float64)
     }
     /** Adds a low-pass filter to the audio bus.  
      *  	  
@@ -3610,12 +3610,12 @@ declare module "godot" {
      */
     class AudioEffectPanner extends AudioEffect {
         constructor(identifier?: any)
-        set_pan(cpanume: number /*f64*/): void
-        get_pan(): number /*f64*/
+        set_pan(cpanume: float64): void
+        get_pan(): float64
         
         /** Pan position. Value can range from -1 (fully left) to 1 (fully right). */
-        get pan(): number /*f64*/
-        set pan(value: number /*f64*/)
+        get pan(): float64
+        set pan(value: float64)
     }
     /** Adds a phaser audio effect to an audio bus.  
      *  Combines the original signal with a copy that is slightly out of phase with the original.  
@@ -3624,36 +3624,36 @@ declare module "godot" {
      */
     class AudioEffectPhaser extends AudioEffect {
         constructor(identifier?: any)
-        set_range_min_hz(hz: number /*f64*/): void
-        get_range_min_hz(): number /*f64*/
-        set_range_max_hz(hz: number /*f64*/): void
-        get_range_max_hz(): number /*f64*/
-        set_rate_hz(hz: number /*f64*/): void
-        get_rate_hz(): number /*f64*/
-        set_feedback(fbk: number /*f64*/): void
-        get_feedback(): number /*f64*/
-        set_depth(depth: number /*f64*/): void
-        get_depth(): number /*f64*/
+        set_range_min_hz(hz: float64): void
+        get_range_min_hz(): float64
+        set_range_max_hz(hz: float64): void
+        get_range_max_hz(): float64
+        set_rate_hz(hz: float64): void
+        get_rate_hz(): float64
+        set_feedback(fbk: float64): void
+        get_feedback(): float64
+        set_depth(depth: float64): void
+        get_depth(): float64
         
         /** Determines the minimum frequency affected by the LFO modulations, in Hz. Value can range from 10 to 10000. */
-        get range_min_hz(): number /*f64*/
-        set range_min_hz(value: number /*f64*/)
+        get range_min_hz(): float64
+        set range_min_hz(value: float64)
         
         /** Determines the maximum frequency affected by the LFO modulations, in Hz. Value can range from 10 to 10000. */
-        get range_max_hz(): number /*f64*/
-        set range_max_hz(value: number /*f64*/)
+        get range_max_hz(): float64
+        set range_max_hz(value: float64)
         
         /** Adjusts the rate in Hz at which the effect sweeps up and down across the frequency range. */
-        get rate_hz(): number /*f64*/
-        set rate_hz(value: number /*f64*/)
+        get rate_hz(): float64
+        set rate_hz(value: float64)
         
         /** Output percent of modified sound. Value can range from 0.1 to 0.9. */
-        get feedback(): number /*f64*/
-        set feedback(value: number /*f64*/)
+        get feedback(): float64
+        set feedback(value: float64)
         
         /** Governs how high the filter frequencies sweep. Low value will primarily affect bass frequencies. High value can sweep high into the treble. Value can range from 0.1 to 4. */
-        get depth(): number /*f64*/
-        set depth(value: number /*f64*/)
+        get depth(): float64
+        set depth(value: float64)
     }
     namespace AudioEffectPitchShift {
         enum FFTSize {
@@ -3683,24 +3683,24 @@ declare module "godot" {
      */
     class AudioEffectPitchShift extends AudioEffect {
         constructor(identifier?: any)
-        set_pitch_scale(rate: number /*f64*/): void
-        get_pitch_scale(): number /*f64*/
-        set_oversampling(amount: number /*i64*/): void
-        get_oversampling(): number /*i64*/
+        set_pitch_scale(rate: float64): void
+        get_pitch_scale(): float64
+        set_oversampling(amount: int64): void
+        get_oversampling(): int64
         set_fft_size(size: AudioEffectPitchShift.FFTSize): void
         get_fft_size(): AudioEffectPitchShift.FFTSize
         
         /** The pitch scale to use. `1.0` is the default pitch and plays sounds unaffected. [member pitch_scale] can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial pitch). */
-        get pitch_scale(): number /*f64*/
-        set pitch_scale(value: number /*f64*/)
+        get pitch_scale(): float64
+        set pitch_scale(value: float64)
         
         /** The oversampling factor to use. Higher values result in better quality, but are more demanding on the CPU and may cause audio cracking if the CPU can't keep up. */
-        get oversampling(): number /*f64*/
-        set oversampling(value: number /*f64*/)
+        get oversampling(): float64
+        set oversampling(value: float64)
         
         /** The size of the [url=https://en.wikipedia.org/wiki/Fast_Fourier_transform]Fast Fourier transform[/url] buffer. Higher values smooth out the effect over time, but have greater latency. The effects of this higher latency are especially noticeable on sounds that have sudden amplitude changes. */
-        get fft_size(): number /*i64*/
-        set fft_size(value: number /*i64*/)
+        get fft_size(): int64
+        set fft_size(value: int64)
     }
     /** Audio effect used for recording the sound from an audio bus.  
      *  	  
@@ -3720,8 +3720,8 @@ declare module "godot" {
         get_recording(): AudioStreamWAV
         
         /** Specifies the format in which the sample will be recorded. See [enum AudioStreamWAV.Format] for available formats. */
-        get format(): number /*i64*/
-        set format(value: number /*i64*/)
+        get format(): int64
+        set format(value: int64)
     }
     /** Adds a reverberation audio effect to an Audio bus.  
      *  	  
@@ -3729,54 +3729,54 @@ declare module "godot" {
      */
     class AudioEffectReverb extends AudioEffect {
         constructor(identifier?: any)
-        set_predelay_msec(msec: number /*f64*/): void
-        get_predelay_msec(): number /*f64*/
-        set_predelay_feedback(feedback: number /*f64*/): void
-        get_predelay_feedback(): number /*f64*/
-        set_room_size(size: number /*f64*/): void
-        get_room_size(): number /*f64*/
-        set_damping(amount: number /*f64*/): void
-        get_damping(): number /*f64*/
-        set_spread(amount: number /*f64*/): void
-        get_spread(): number /*f64*/
-        set_dry(amount: number /*f64*/): void
-        get_dry(): number /*f64*/
-        set_wet(amount: number /*f64*/): void
-        get_wet(): number /*f64*/
-        set_hpf(amount: number /*f64*/): void
-        get_hpf(): number /*f64*/
+        set_predelay_msec(msec: float64): void
+        get_predelay_msec(): float64
+        set_predelay_feedback(feedback: float64): void
+        get_predelay_feedback(): float64
+        set_room_size(size: float64): void
+        get_room_size(): float64
+        set_damping(amount: float64): void
+        get_damping(): float64
+        set_spread(amount: float64): void
+        get_spread(): float64
+        set_dry(amount: float64): void
+        get_dry(): float64
+        set_wet(amount: float64): void
+        get_wet(): float64
+        set_hpf(amount: float64): void
+        get_hpf(): float64
         
         /** Time between the original signal and the early reflections of the reverb signal, in milliseconds. */
-        get predelay_msec(): number /*f64*/
-        set predelay_msec(value: number /*f64*/)
+        get predelay_msec(): float64
+        set predelay_msec(value: float64)
         
         /** Output percent of predelay. Value can range from 0 to 1. */
-        get predelay_feedback(): number /*f64*/
-        set predelay_feedback(value: number /*f64*/)
+        get predelay_feedback(): float64
+        set predelay_feedback(value: float64)
         
         /** Dimensions of simulated room. Bigger means more echoes. Value can range from 0 to 1. */
-        get room_size(): number /*f64*/
-        set room_size(value: number /*f64*/)
+        get room_size(): float64
+        set room_size(value: float64)
         
         /** Defines how reflective the imaginary room's walls are. Value can range from 0 to 1. */
-        get damping(): number /*f64*/
-        set damping(value: number /*f64*/)
+        get damping(): float64
+        set damping(value: float64)
         
         /** Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range from 0 to 1. */
-        get spread(): number /*f64*/
-        set spread(value: number /*f64*/)
+        get spread(): float64
+        set spread(value: float64)
         
         /** High-pass filter passes signals with a frequency higher than a certain cutoff frequency and attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1. */
-        get hipass(): number /*f64*/
-        set hipass(value: number /*f64*/)
+        get hipass(): float64
+        set hipass(value: float64)
         
         /** Output percent of original sound. At 0, only modified sound is outputted. Value can range from 0 to 1. */
-        get dry(): number /*f64*/
-        set dry(value: number /*f64*/)
+        get dry(): float64
+        set dry(value: float64)
         
         /** Output percent of modified sound. At 0, only original sound is outputted. Value can range from 0 to 1. */
-        get wet(): number /*f64*/
-        set wet(value: number /*f64*/)
+        get wet(): float64
+        set wet(value: float64)
     }
     namespace AudioEffectSpectrumAnalyzer {
         enum FFTSize {
@@ -3805,22 +3805,22 @@ declare module "godot" {
      */
     class AudioEffectSpectrumAnalyzer extends AudioEffect {
         constructor(identifier?: any)
-        set_buffer_length(seconds: number /*f64*/): void
-        get_buffer_length(): number /*f64*/
-        set_tap_back_pos(seconds: number /*f64*/): void
-        get_tap_back_pos(): number /*f64*/
+        set_buffer_length(seconds: float64): void
+        get_buffer_length(): float64
+        set_tap_back_pos(seconds: float64): void
+        get_tap_back_pos(): float64
         set_fft_size(size: AudioEffectSpectrumAnalyzer.FFTSize): void
         get_fft_size(): AudioEffectSpectrumAnalyzer.FFTSize
         
         /** The length of the buffer to keep (in seconds). Higher values keep data around for longer, but require more memory. */
-        get buffer_length(): number /*f64*/
-        set buffer_length(value: number /*f64*/)
-        get tap_back_pos(): number /*f64*/
-        set tap_back_pos(value: number /*f64*/)
+        get buffer_length(): float64
+        set buffer_length(value: float64)
+        get tap_back_pos(): float64
+        set tap_back_pos(value: float64)
         
         /** The size of the [url=https://en.wikipedia.org/wiki/Fast_Fourier_transform]Fast Fourier transform[/url] buffer. Higher values smooth out the spectrum analysis over time, but have greater latency. The effects of this higher latency are especially noticeable with sudden amplitude changes. */
-        get fft_size(): number /*i64*/
-        set fft_size(value: number /*i64*/)
+        get fft_size(): int64
+        set fft_size(value: int64)
     }
     namespace AudioEffectSpectrumAnalyzerInstance {
         enum MagnitudeMode {
@@ -3834,7 +3834,7 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectspectrumanalyzerinstance.html */
     class AudioEffectSpectrumAnalyzerInstance extends AudioEffectInstance {
         constructor(identifier?: any)
-        get_magnitude_for_frequency_range(from_hz: number /*f64*/, to_hz: number /*f64*/, mode: AudioEffectSpectrumAnalyzerInstance.MagnitudeMode = 1): Vector2
+        get_magnitude_for_frequency_range(from_hz: float64, to_hz: float64, mode: AudioEffectSpectrumAnalyzerInstance.MagnitudeMode = 1): Vector2
     }
     /** An audio effect that can be used to adjust the intensity of stereo panning.  
      *  	  
@@ -3842,20 +3842,20 @@ declare module "godot" {
      */
     class AudioEffectStereoEnhance extends AudioEffect {
         constructor(identifier?: any)
-        set_pan_pullout(amount: number /*f64*/): void
-        get_pan_pullout(): number /*f64*/
-        set_time_pullout(amount: number /*f64*/): void
-        get_time_pullout(): number /*f64*/
-        set_surround(amount: number /*f64*/): void
-        get_surround(): number /*f64*/
+        set_pan_pullout(amount: float64): void
+        get_pan_pullout(): float64
+        set_time_pullout(amount: float64): void
+        get_time_pullout(): float64
+        set_surround(amount: float64): void
+        get_surround(): float64
         
         /** Values greater than 1.0 increase intensity of any panning on audio passing through this effect, whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix audio to mono. */
-        get pan_pullout(): number /*f64*/
-        set pan_pullout(value: number /*f64*/)
-        get time_pullout_ms(): number /*f64*/
-        set time_pullout_ms(value: number /*f64*/)
-        get surround(): number /*f64*/
-        set surround(value: number /*f64*/)
+        get pan_pullout(): float64
+        set pan_pullout(value: float64)
+        get time_pullout_ms(): float64
+        set time_pullout_ms(value: float64)
+        get surround(): float64
+        set surround(value: float64)
     }
     /** Overrides the location sounds are heard from.  
      *  	  
@@ -3911,7 +3911,7 @@ declare module "godot" {
         /* gdvirtual */ _get_stream_name(): string
         
         /** Override this method to customize the returned value of [method get_length]. Should return the length of this audio stream, in seconds. */
-        /* gdvirtual */ _get_length(): number /*f64*/
+        /* gdvirtual */ _get_length(): float64
         
         /** Override this method to customize the returned value of [method is_monophonic]. Should return `true` if this audio stream only supports one channel. */
         /* gdvirtual */ _is_monophonic(): boolean
@@ -3919,15 +3919,15 @@ declare module "godot" {
         /** Overridable method. Should return the tempo of this audio stream, in beats per minute (BPM). Used by the engine to determine the position of every beat.  
          *  Ideally, the returned value should be based off the stream's sample rate ([member AudioStreamWAV.mix_rate], for example).  
          */
-        /* gdvirtual */ _get_bpm(): number /*f64*/
+        /* gdvirtual */ _get_bpm(): float64
         
         /** Overridable method. Should return the total number of beats of this audio stream. Used by the engine to determine the position of every beat.  
          *  Ideally, the returned value should be based off the stream's sample rate ([member AudioStreamWAV.mix_rate], for example).  
          */
-        /* gdvirtual */ _get_beat_count(): number /*i64*/
+        /* gdvirtual */ _get_beat_count(): int64
         
         /** Returns the length of the audio stream in seconds. */
-        get_length(): number /*f64*/
+        get_length(): float64
         
         /** Returns `true` if this audio stream only supports one channel ( *monophony* ), or `false` if the audio stream supports two or more channels ( *polyphony* ). */
         is_monophonic(): boolean
@@ -3944,21 +3944,21 @@ declare module "godot" {
      */
     class AudioStreamGenerator extends AudioStream {
         constructor(identifier?: any)
-        set_mix_rate(hz: number /*f64*/): void
-        get_mix_rate(): number /*f64*/
-        set_buffer_length(seconds: number /*f64*/): void
-        get_buffer_length(): number /*f64*/
+        set_mix_rate(hz: float64): void
+        get_mix_rate(): float64
+        set_buffer_length(seconds: float64): void
+        get_buffer_length(): float64
         
         /** The sample rate to use (in Hz). Higher values are more demanding for the CPU to generate, but result in better quality.  
          *  In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and `48000`.  
          *  According to the [url=https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem]Nyquist-Shannon sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are generating lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.  
          */
-        get mix_rate(): number /*f64*/
-        set mix_rate(value: number /*f64*/)
+        get mix_rate(): float64
+        set mix_rate(value: float64)
         
         /** The length of the buffer to generate (in seconds). Lower values result in less latency, but require the script to generate audio data faster, resulting in increased CPU usage and more risk for audio cracking if the CPU can't keep up. */
-        get buffer_length(): number /*f64*/
-        set buffer_length(value: number /*f64*/)
+        get buffer_length(): float64
+        set buffer_length(value: float64)
     }
     /** Plays back audio generated using [AudioStreamGenerator].  
      *  	  
@@ -3970,16 +3970,16 @@ declare module "godot" {
         push_frame(frame: Vector2): boolean
         
         /** Returns `true` if a buffer of the size [param amount] can be pushed to the audio sample data buffer without overflowing it, `false` otherwise. */
-        can_push_buffer(amount: number /*i64*/): boolean
+        can_push_buffer(amount: int64): boolean
         
         /** Pushes several audio data frames to the buffer. This is usually more efficient than [method push_frame] in C# and compiled languages via GDExtension, but [method push_buffer] may be  *less*  efficient in GDScript. */
         push_buffer(frames: PackedVector2Array): boolean
         
         /** Returns the number of frames that can be pushed to the audio sample data buffer without overflowing it. If the result is `0`, the buffer is full. */
-        get_frames_available(): number /*i64*/
+        get_frames_available(): int64
         
         /** Returns the number of times the playback skipped due to a buffer underrun in the audio sample data. This value is reset at the start of the playback. */
-        get_skips(): number /*i64*/
+        get_skips(): int64
         
         /** Clears the audio sample data buffer. */
         clear_buffer(): void
@@ -3997,14 +3997,14 @@ declare module "godot" {
         get_data(): PackedByteArray
         set_loop(enable: boolean): void
         has_loop(): boolean
-        set_loop_offset(seconds: number /*f64*/): void
-        get_loop_offset(): number /*f64*/
-        set_bpm(bpm: number /*f64*/): void
-        get_bpm(): number /*f64*/
-        set_beat_count(count: number /*i64*/): void
-        get_beat_count(): number /*i64*/
-        set_bar_beats(count: number /*i64*/): void
-        get_bar_beats(): number /*i64*/
+        set_loop_offset(seconds: float64): void
+        get_loop_offset(): float64
+        set_bpm(bpm: float64): void
+        get_bpm(): float64
+        set_beat_count(count: int64): void
+        get_beat_count(): int64
+        set_bar_beats(count: int64): void
+        get_bar_beats(): int64
         
         /** Contains the audio data in bytes.  
          *  You can load a file without having to import it beforehand using the code snippet below. Keep in mind that this snippet loads the whole file into memory and may not be ideal for huge files (hundreds of megabytes or more).  
@@ -4012,20 +4012,20 @@ declare module "godot" {
          */
         get data(): PackedByteArray
         set data(value: PackedByteArray)
-        get bpm(): number /*f64*/
-        set bpm(value: number /*f64*/)
-        get beat_count(): number /*i64*/
-        set beat_count(value: number /*i64*/)
-        get bar_beats(): number /*i64*/
-        set bar_beats(value: number /*i64*/)
+        get bpm(): float64
+        set bpm(value: float64)
+        get beat_count(): int64
+        set beat_count(value: int64)
+        get bar_beats(): int64
+        set bar_beats(value: int64)
         
         /** If `true`, the stream will automatically loop when it reaches the end. */
         get loop(): boolean
         set loop(value: boolean)
         
         /** Time in seconds at which the stream starts after being looped. */
-        get loop_offset(): number /*f64*/
-        set loop_offset(value: number /*f64*/)
+        get loop_offset(): float64
+        set loop_offset(value: float64)
     }
     /** Plays real-time audio input data.  
      *  	  
@@ -4049,32 +4049,32 @@ declare module "godot" {
         get_packet_sequence(): OggPacketSequence
         set_loop(enable: boolean): void
         has_loop(): boolean
-        set_loop_offset(seconds: number /*f64*/): void
-        get_loop_offset(): number /*f64*/
-        set_bpm(bpm: number /*f64*/): void
-        get_bpm(): number /*f64*/
-        set_beat_count(count: number /*i64*/): void
-        get_beat_count(): number /*i64*/
-        set_bar_beats(count: number /*i64*/): void
-        get_bar_beats(): number /*i64*/
+        set_loop_offset(seconds: float64): void
+        get_loop_offset(): float64
+        set_bpm(bpm: float64): void
+        get_bpm(): float64
+        set_beat_count(count: int64): void
+        get_beat_count(): int64
+        set_bar_beats(count: int64): void
+        get_bar_beats(): int64
         
         /** Contains the raw Ogg data for this stream. */
         get packet_sequence(): Object
         set packet_sequence(value: Object)
-        get bpm(): number /*f64*/
-        set bpm(value: number /*f64*/)
-        get beat_count(): number /*i64*/
-        set beat_count(value: number /*i64*/)
-        get bar_beats(): number /*i64*/
-        set bar_beats(value: number /*i64*/)
+        get bpm(): float64
+        set bpm(value: float64)
+        get beat_count(): int64
+        set beat_count(value: int64)
+        get bar_beats(): int64
+        set bar_beats(value: int64)
         
         /** If `true`, the audio will play again from the specified [member loop_offset] once it is done playing. Useful for ambient sounds and background music. */
         get loop(): boolean
         set loop(value: boolean)
         
         /** Time in seconds at which the stream starts after being looped. */
-        get loop_offset(): number /*f64*/
-        set loop_offset(value: number /*f64*/)
+        get loop_offset(): float64
+        set loop_offset(value: float64)
     }
     /** Meta class for playing back audio.  
      *  	  
@@ -4083,7 +4083,7 @@ declare module "godot" {
     class AudioStreamPlayback extends RefCounted {
         constructor(identifier?: any)
         /** Override this method to customize what happens when the playback starts at the given position, such as by calling [method AudioStreamPlayer.play]. */
-        /* gdvirtual */ _start(from_pos: number /*f64*/): void
+        /* gdvirtual */ _start(from_pos: float64): void
         
         /** Override this method to customize what happens when the playback is stopped, such as by calling [method AudioStreamPlayer.stop]. */
         /* gdvirtual */ _stop(): void
@@ -4092,19 +4092,19 @@ declare module "godot" {
         /* gdvirtual */ _is_playing(): boolean
         
         /** Overridable method. Should return how many times this audio stream has looped. Most built-in playbacks always return `0`. */
-        /* gdvirtual */ _get_loop_count(): number /*i64*/
+        /* gdvirtual */ _get_loop_count(): int64
         
         /** Overridable method. Should return the current progress along the audio stream, in seconds. */
-        /* gdvirtual */ _get_playback_position(): number /*f64*/
+        /* gdvirtual */ _get_playback_position(): float64
         
         /** Override this method to customize what happens when seeking this audio stream at the given [param position], such as by calling [method AudioStreamPlayer.seek]. */
-        /* gdvirtual */ _seek(position: number /*f64*/): void
+        /* gdvirtual */ _seek(position: float64): void
         
         /** Override this method to customize how the audio stream is mixed. This method is called even if the playback is not active.  
          *      
          *  **Note:** It is not useful to override this method in GDScript or C#. Only GDExtension can take advantage of it.  
          */
-        /* gdvirtual */ _mix(buffer: number /*i64*/, rate_scale: number /*f64*/, frames: number /*i64*/): number /*i64*/
+        /* gdvirtual */ _mix(buffer: int64, rate_scale: float64, frames: int64): int64
         
         /** Overridable method. Called whenever the audio stream is mixed if the playback is active and [method AudioServer.set_enable_tagging_used_audio_streams] has been set to `true`. Editor plugins may use this method to "tag" the current position along the audio stream and display it in a preview. */
         /* gdvirtual */ _tag_used_streams(): void
@@ -4127,25 +4127,25 @@ declare module "godot" {
          *  This ID becomes invalid when the stream ends (if it does not loop), when the [AudioStreamPlaybackPolyphonic] is stopped, or when [method stop_stream] is called.  
          *  This function returns [constant INVALID_ID] if the amount of streams currently playing equals [member AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this value.  
          */
-        play_stream(stream: AudioStream, from_offset: number /*f64*/ = 0, volume_db: number /*f64*/ = 0, pitch_scale: number /*f64*/ = 1): number /*i64*/
+        play_stream(stream: AudioStream, from_offset: float64 = 0, volume_db: float64 = 0, pitch_scale: float64 = 1): int64
         
         /** Change the stream volume (in db). The [param stream] argument is an integer ID returned by [method play_stream]. */
-        set_stream_volume(stream: number /*i64*/, volume_db: number /*f64*/): void
+        set_stream_volume(stream: int64, volume_db: float64): void
         
         /** Change the stream pitch scale. The [param stream] argument is an integer ID returned by [method play_stream]. */
-        set_stream_pitch_scale(stream: number /*i64*/, pitch_scale: number /*f64*/): void
+        set_stream_pitch_scale(stream: int64, pitch_scale: float64): void
         
         /** Return true whether the stream associated with an integer ID is still playing. Check [method play_stream] for information on when this ID becomes invalid. */
-        is_stream_playing(stream: number /*i64*/): boolean
+        is_stream_playing(stream: int64): boolean
         
         /** Stop a stream. The [param stream] argument is an integer ID returned by [method play_stream], which becomes invalid after calling this function. */
-        stop_stream(stream: number /*i64*/): void
+        stop_stream(stream: int64): void
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplaybackresampled.html */
     class AudioStreamPlaybackResampled extends AudioStreamPlayback {
         constructor(identifier?: any)
-        /* gdvirtual */ _mix_resampled(dst_buffer: number /*i64*/, frame_count: number /*i64*/): number /*i64*/
-        /* gdvirtual */ _get_stream_sampling_rate(): number /*f64*/
+        /* gdvirtual */ _mix_resampled(dst_buffer: int64, frame_count: int64): int64
+        /* gdvirtual */ _get_stream_sampling_rate(): float64
         begin_resample(): void
     }
     namespace AudioStreamPlayer {
@@ -4168,23 +4168,23 @@ declare module "godot" {
         constructor(identifier?: any)
         set_stream(stream: AudioStream): void
         get_stream(): AudioStream
-        set_volume_db(volume_db: number /*f64*/): void
-        get_volume_db(): number /*f64*/
-        set_pitch_scale(pitch_scale: number /*f64*/): void
-        get_pitch_scale(): number /*f64*/
+        set_volume_db(volume_db: float64): void
+        get_volume_db(): float64
+        set_pitch_scale(pitch_scale: float64): void
+        get_pitch_scale(): float64
         
         /** Plays the audio from the given [param from_position], in seconds. */
-        play(from_position: number /*f64*/ = 0): void
+        play(from_position: float64 = 0): void
         
         /** Sets the position from which audio will be played, in seconds. */
-        seek(to_position: number /*f64*/): void
+        seek(to_position: float64): void
         
         /** Stops the audio. */
         stop(): void
         is_playing(): boolean
         
         /** Returns the position in the [AudioStream] in seconds. */
-        get_playback_position(): number /*f64*/
+        get_playback_position(): float64
         set_bus(bus: StringName): void
         get_bus(): StringName
         set_autoplay(enable: boolean): void
@@ -4195,8 +4195,8 @@ declare module "godot" {
         _is_active(): boolean
         set_stream_paused(pause: boolean): void
         get_stream_paused(): boolean
-        set_max_polyphony(max_polyphony: number /*i64*/): void
-        get_max_polyphony(): number /*i64*/
+        set_max_polyphony(max_polyphony: int64): void
+        get_max_polyphony(): int64
         
         /** Returns whether the [AudioStreamPlayer] can return the [AudioStreamPlayback] object or not. */
         has_stream_playback(): boolean
@@ -4209,12 +4209,12 @@ declare module "godot" {
         set stream(value: AudioStream)
         
         /** Volume of sound, in dB. */
-        get volume_db(): number /*f64*/
-        set volume_db(value: number /*f64*/)
+        get volume_db(): float64
+        set volume_db(value: float64)
         
         /** The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate. */
-        get pitch_scale(): number /*f64*/
-        set pitch_scale(value: number /*f64*/)
+        get pitch_scale(): float64
+        set pitch_scale(value: float64)
         
         /** If `true`, audio is playing. */
         get playing(): boolean
@@ -4229,12 +4229,12 @@ declare module "godot" {
         set stream_paused(value: boolean)
         
         /** If the audio configuration has more than two speakers, this sets the target channels. See [enum MixTarget] constants. */
-        get mix_target(): number /*i64*/
-        set mix_target(value: number /*i64*/)
+        get mix_target(): int64
+        set mix_target(value: int64)
         
         /** The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds. */
-        get max_polyphony(): number /*i64*/
-        set max_polyphony(value: number /*i64*/)
+        get max_polyphony(): int64
+        set max_polyphony(value: int64)
         
         /** Bus on which this audio is playing.  
          *      
@@ -4254,41 +4254,41 @@ declare module "godot" {
         constructor(identifier?: any)
         set_stream(stream: AudioStream): void
         get_stream(): AudioStream
-        set_volume_db(volume_db: number /*f64*/): void
-        get_volume_db(): number /*f64*/
-        set_pitch_scale(pitch_scale: number /*f64*/): void
-        get_pitch_scale(): number /*f64*/
+        set_volume_db(volume_db: float64): void
+        get_volume_db(): float64
+        set_pitch_scale(pitch_scale: float64): void
+        get_pitch_scale(): float64
         
         /** Queues the audio to play on the next physics frame, from the given position [param from_position], in seconds. */
-        play(from_position: number /*f64*/ = 0): void
+        play(from_position: float64 = 0): void
         
         /** Sets the position from which audio will be played, in seconds. */
-        seek(to_position: number /*f64*/): void
+        seek(to_position: float64): void
         
         /** Stops the audio. */
         stop(): void
         is_playing(): boolean
         
         /** Returns the position in the [AudioStream]. */
-        get_playback_position(): number /*f64*/
+        get_playback_position(): float64
         set_bus(bus: StringName): void
         get_bus(): StringName
         set_autoplay(enable: boolean): void
         is_autoplay_enabled(): boolean
         _set_playing(enable: boolean): void
         _is_active(): boolean
-        set_max_distance(pixels: number /*f64*/): void
-        get_max_distance(): number /*f64*/
-        set_attenuation(curve: number /*f64*/): void
-        get_attenuation(): number /*f64*/
-        set_area_mask(mask: number /*i64*/): void
-        get_area_mask(): number /*i64*/
+        set_max_distance(pixels: float64): void
+        get_max_distance(): float64
+        set_attenuation(curve: float64): void
+        get_attenuation(): float64
+        set_area_mask(mask: int64): void
+        get_area_mask(): int64
         set_stream_paused(pause: boolean): void
         get_stream_paused(): boolean
-        set_max_polyphony(max_polyphony: number /*i64*/): void
-        get_max_polyphony(): number /*i64*/
-        set_panning_strength(panning_strength: number /*f64*/): void
-        get_panning_strength(): number /*f64*/
+        set_max_polyphony(max_polyphony: int64): void
+        get_max_polyphony(): int64
+        set_panning_strength(panning_strength: float64): void
+        get_panning_strength(): float64
         
         /** Returns whether the [AudioStreamPlayer] can return the [AudioStreamPlayback] object or not. */
         has_stream_playback(): boolean
@@ -4301,12 +4301,12 @@ declare module "godot" {
         set stream(value: AudioStream)
         
         /** Base volume before attenuation. */
-        get volume_db(): number /*f64*/
-        set volume_db(value: number /*f64*/)
+        get volume_db(): float64
+        set volume_db(value: float64)
         
         /** The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate. */
-        get pitch_scale(): number /*f64*/
-        set pitch_scale(value: number /*f64*/)
+        get pitch_scale(): float64
+        set pitch_scale(value: float64)
         
         /** If `true`, audio is playing or is queued to be played (see [method play]). */
         get playing(): boolean
@@ -4321,20 +4321,20 @@ declare module "godot" {
         set stream_paused(value: boolean)
         
         /** Maximum distance from which audio is still hearable. */
-        get max_distance(): number /*f64*/
-        set max_distance(value: number /*f64*/)
+        get max_distance(): float64
+        set max_distance(value: float64)
         
         /** The volume is attenuated over distance with this as an exponent. */
-        get attenuation(): number /*f64*/
-        set attenuation(value: number /*f64*/)
+        get attenuation(): float64
+        set attenuation(value: float64)
         
         /** The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds. */
-        get max_polyphony(): number /*i64*/
-        set max_polyphony(value: number /*i64*/)
+        get max_polyphony(): int64
+        set max_polyphony(value: int64)
         
         /** Scales the panning strength for this node by multiplying the base [member ProjectSettings.audio/general/2d_panning_strength] with this factor. Higher values will pan audio from left to right more dramatically than lower values. */
-        get panning_strength(): number /*f64*/
-        set panning_strength(value: number /*f64*/)
+        get panning_strength(): float64
+        set panning_strength(value: float64)
         
         /** Bus on which this audio is playing.  
          *      
@@ -4344,8 +4344,8 @@ declare module "godot" {
         set bus(value: StringName)
         
         /** Determines which [Area2D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater. */
-        get area_mask(): number /*i64*/
-        set area_mask(value: number /*i64*/)
+        get area_mask(): int64
+        set area_mask(value: int64)
         
         /** Emitted when the audio stops playing. */
         readonly finished: Signal //  => void
@@ -4383,57 +4383,57 @@ declare module "godot" {
         constructor(identifier?: any)
         set_stream(stream: AudioStream): void
         get_stream(): AudioStream
-        set_volume_db(volume_db: number /*f64*/): void
-        get_volume_db(): number /*f64*/
-        set_unit_size(unit_size: number /*f64*/): void
-        get_unit_size(): number /*f64*/
-        set_max_db(max_db: number /*f64*/): void
-        get_max_db(): number /*f64*/
-        set_pitch_scale(pitch_scale: number /*f64*/): void
-        get_pitch_scale(): number /*f64*/
+        set_volume_db(volume_db: float64): void
+        get_volume_db(): float64
+        set_unit_size(unit_size: float64): void
+        get_unit_size(): float64
+        set_max_db(max_db: float64): void
+        get_max_db(): float64
+        set_pitch_scale(pitch_scale: float64): void
+        get_pitch_scale(): float64
         
         /** Queues the audio to play on the next physics frame, from the given position [param from_position], in seconds. */
-        play(from_position: number /*f64*/ = 0): void
+        play(from_position: float64 = 0): void
         
         /** Sets the position from which audio will be played, in seconds. */
-        seek(to_position: number /*f64*/): void
+        seek(to_position: float64): void
         
         /** Stops the audio. */
         stop(): void
         is_playing(): boolean
         
         /** Returns the position in the [AudioStream]. */
-        get_playback_position(): number /*f64*/
+        get_playback_position(): float64
         set_bus(bus: StringName): void
         get_bus(): StringName
         set_autoplay(enable: boolean): void
         is_autoplay_enabled(): boolean
         _set_playing(enable: boolean): void
         _is_active(): boolean
-        set_max_distance(meters: number /*f64*/): void
-        get_max_distance(): number /*f64*/
-        set_area_mask(mask: number /*i64*/): void
-        get_area_mask(): number /*i64*/
-        set_emission_angle(degrees: number /*f64*/): void
-        get_emission_angle(): number /*f64*/
+        set_max_distance(meters: float64): void
+        get_max_distance(): float64
+        set_area_mask(mask: int64): void
+        get_area_mask(): int64
+        set_emission_angle(degrees: float64): void
+        get_emission_angle(): float64
         set_emission_angle_enabled(enabled: boolean): void
         is_emission_angle_enabled(): boolean
-        set_emission_angle_filter_attenuation_db(db: number /*f64*/): void
-        get_emission_angle_filter_attenuation_db(): number /*f64*/
-        set_attenuation_filter_cutoff_hz(degrees: number /*f64*/): void
-        get_attenuation_filter_cutoff_hz(): number /*f64*/
-        set_attenuation_filter_db(db: number /*f64*/): void
-        get_attenuation_filter_db(): number /*f64*/
+        set_emission_angle_filter_attenuation_db(db: float64): void
+        get_emission_angle_filter_attenuation_db(): float64
+        set_attenuation_filter_cutoff_hz(degrees: float64): void
+        get_attenuation_filter_cutoff_hz(): float64
+        set_attenuation_filter_db(db: float64): void
+        get_attenuation_filter_db(): float64
         set_attenuation_model(model: AudioStreamPlayer3D.AttenuationModel): void
         get_attenuation_model(): AudioStreamPlayer3D.AttenuationModel
         set_doppler_tracking(mode: AudioStreamPlayer3D.DopplerTracking): void
         get_doppler_tracking(): AudioStreamPlayer3D.DopplerTracking
         set_stream_paused(pause: boolean): void
         get_stream_paused(): boolean
-        set_max_polyphony(max_polyphony: number /*i64*/): void
-        get_max_polyphony(): number /*i64*/
-        set_panning_strength(panning_strength: number /*f64*/): void
-        get_panning_strength(): number /*f64*/
+        set_max_polyphony(max_polyphony: int64): void
+        get_max_polyphony(): int64
+        set_panning_strength(panning_strength: float64): void
+        get_panning_strength(): float64
         
         /** Returns whether the [AudioStreamPlayer] can return the [AudioStreamPlayback] object or not. */
         has_stream_playback(): boolean
@@ -4446,24 +4446,24 @@ declare module "godot" {
         set stream(value: AudioStream)
         
         /** Decides if audio should get quieter with distance linearly, quadratically, logarithmically, or not be affected by distance, effectively disabling attenuation. */
-        get attenuation_model(): number /*i64*/
-        set attenuation_model(value: number /*i64*/)
+        get attenuation_model(): int64
+        set attenuation_model(value: int64)
         
         /** The base sound level before attenuation, in decibels. */
-        get volume_db(): number /*f64*/
-        set volume_db(value: number /*f64*/)
+        get volume_db(): float64
+        set volume_db(value: float64)
         
         /** The factor for the attenuation effect. Higher values make the sound audible over a larger distance. */
-        get unit_size(): number /*f64*/
-        set unit_size(value: number /*f64*/)
+        get unit_size(): float64
+        set unit_size(value: float64)
         
         /** Sets the absolute maximum of the sound level, in decibels. */
-        get max_db(): number /*f64*/
-        set max_db(value: number /*f64*/)
+        get max_db(): float64
+        set max_db(value: float64)
         
         /** The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate. */
-        get pitch_scale(): number /*f64*/
-        set pitch_scale(value: number /*f64*/)
+        get pitch_scale(): float64
+        set pitch_scale(value: float64)
         
         /** If `true`, audio is playing or is queued to be played (see [method play]). */
         get playing(): boolean
@@ -4478,16 +4478,16 @@ declare module "godot" {
         set stream_paused(value: boolean)
         
         /** The distance past which the sound can no longer be heard at all. Only has an effect if set to a value greater than `0.0`. [member max_distance] works in tandem with [member unit_size]. However, unlike [member unit_size] whose behavior depends on the [member attenuation_model], [member max_distance] always works in a linear fashion. This can be used to prevent the [AudioStreamPlayer3D] from requiring audio mixing when the listener is far away, which saves CPU resources. */
-        get max_distance(): number /*f64*/
-        set max_distance(value: number /*f64*/)
+        get max_distance(): float64
+        set max_distance(value: float64)
         
         /** The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds. */
-        get max_polyphony(): number /*i64*/
-        set max_polyphony(value: number /*i64*/)
+        get max_polyphony(): int64
+        set max_polyphony(value: int64)
         
         /** Scales the panning strength for this node by multiplying the base [member ProjectSettings.audio/general/3d_panning_strength] with this factor. Higher values will pan audio from left to right more dramatically than lower values. */
-        get panning_strength(): number /*f64*/
-        set panning_strength(value: number /*f64*/)
+        get panning_strength(): float64
+        set panning_strength(value: float64)
         
         /** The bus on which this audio is playing.  
          *      
@@ -4497,32 +4497,32 @@ declare module "godot" {
         set bus(value: StringName)
         
         /** Determines which [Area3D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater. */
-        get area_mask(): number /*i64*/
-        set area_mask(value: number /*i64*/)
+        get area_mask(): int64
+        set area_mask(value: int64)
         
         /** If `true`, the audio should be attenuated according to the direction of the sound. */
         get emission_angle_enabled(): boolean
         set emission_angle_enabled(value: boolean)
         
         /** The angle in which the audio reaches a listener unattenuated. */
-        get emission_angle_degrees(): number /*f64*/
-        set emission_angle_degrees(value: number /*f64*/)
+        get emission_angle_degrees(): float64
+        set emission_angle_degrees(value: float64)
         
         /** Attenuation factor used if listener is outside of [member emission_angle_degrees] and [member emission_angle_enabled] is set, in decibels. */
-        get emission_angle_filter_attenuation_db(): number /*f64*/
-        set emission_angle_filter_attenuation_db(value: number /*f64*/)
+        get emission_angle_filter_attenuation_db(): float64
+        set emission_angle_filter_attenuation_db(value: float64)
         
         /** The cutoff frequency of the attenuation low-pass filter, in Hz. A sound above this frequency is attenuated more than a sound below this frequency. To disable this effect, set this to `20500` as this frequency is above the human hearing limit. */
-        get attenuation_filter_cutoff_hz(): number /*f64*/
-        set attenuation_filter_cutoff_hz(value: number /*f64*/)
+        get attenuation_filter_cutoff_hz(): float64
+        set attenuation_filter_cutoff_hz(value: float64)
         
         /** Amount how much the filter affects the loudness, in decibels. */
-        get attenuation_filter_db(): number /*f64*/
-        set attenuation_filter_db(value: number /*f64*/)
+        get attenuation_filter_db(): float64
+        set attenuation_filter_db(value: float64)
         
         /** Decides in which step the Doppler effect should be calculated. */
-        get doppler_tracking(): number /*i64*/
-        set doppler_tracking(value: number /*i64*/)
+        get doppler_tracking(): int64
+        set doppler_tracking(value: int64)
         
         /** Emitted when the audio stops playing. */
         readonly finished: Signal //  => void
@@ -4536,18 +4536,18 @@ declare module "godot" {
      */
     class AudioStreamPolyphonic extends AudioStream {
         constructor(identifier?: any)
-        set_polyphony(voices: number /*i64*/): void
-        get_polyphony(): number /*i64*/
+        set_polyphony(voices: int64): void
+        get_polyphony(): int64
         
         /** Maximum amount of simultaneous streams that can be played. */
-        get polyphony(): number /*i64*/
-        set polyphony(value: number /*i64*/)
+        get polyphony(): int64
+        set polyphony(value: int64)
     }
     class AudioStreamPreviewGenerator extends Node {
         constructor(identifier?: any)
-        _update_emit(_unnamed_arg0: number /*i64*/): void
+        _update_emit(_unnamed_arg0: int64): void
         generate_preview(stream: AudioStream): any /*AudioStreamPreview*/
-        readonly preview_updated: Signal // obj_id: number /*i64*/ => void
+        readonly preview_updated: Signal // obj_id: int64 => void
     }
     namespace AudioStreamRandomizer {
         enum PlaybackMode {
@@ -4568,49 +4568,49 @@ declare module "godot" {
     class AudioStreamRandomizer extends AudioStream {
         constructor(identifier?: any)
         /** Insert a stream at the specified index. If the index is less than zero, the insertion occurs at the end of the underlying pool. */
-        add_stream(index: number /*i64*/, stream: AudioStream, weight: number /*f64*/ = 1): void
+        add_stream(index: int64, stream: AudioStream, weight: float64 = 1): void
         
         /** Move a stream from one index to another. */
-        move_stream(index_from: number /*i64*/, index_to: number /*i64*/): void
+        move_stream(index_from: int64, index_to: int64): void
         
         /** Remove the stream at the specified index. */
-        remove_stream(index: number /*i64*/): void
+        remove_stream(index: int64): void
         
         /** Set the AudioStream at the specified index. */
-        set_stream(index: number /*i64*/, stream: AudioStream): void
+        set_stream(index: int64, stream: AudioStream): void
         
         /** Returns the stream at the specified index. */
-        get_stream(index: number /*i64*/): AudioStream
+        get_stream(index: int64): AudioStream
         
         /** Set the probability weight of the stream at the specified index. The higher this value, the more likely that the randomizer will choose this stream during random playback modes. */
-        set_stream_probability_weight(index: number /*i64*/, weight: number /*f64*/): void
+        set_stream_probability_weight(index: int64, weight: float64): void
         
         /** Returns the probability weight associated with the stream at the given index. */
-        get_stream_probability_weight(index: number /*i64*/): number /*f64*/
-        set_streams_count(count: number /*i64*/): void
-        get_streams_count(): number /*i64*/
-        set_random_pitch(scale: number /*f64*/): void
-        get_random_pitch(): number /*f64*/
-        set_random_volume_offset_db(db_offset: number /*f64*/): void
-        get_random_volume_offset_db(): number /*f64*/
+        get_stream_probability_weight(index: int64): float64
+        set_streams_count(count: int64): void
+        get_streams_count(): int64
+        set_random_pitch(scale: float64): void
+        get_random_pitch(): float64
+        set_random_volume_offset_db(db_offset: float64): void
+        get_random_volume_offset_db(): float64
         set_playback_mode(mode: AudioStreamRandomizer.PlaybackMode): void
         get_playback_mode(): AudioStreamRandomizer.PlaybackMode
         
         /** Controls how this AudioStreamRandomizer picks which AudioStream to play next. */
-        get playback_mode(): number /*i64*/
-        set playback_mode(value: number /*i64*/)
+        get playback_mode(): int64
+        set playback_mode(value: int64)
         
         /** The intensity of random pitch variation. A value of 1 means no variation. */
-        get random_pitch(): number /*f64*/
-        set random_pitch(value: number /*f64*/)
+        get random_pitch(): float64
+        set random_pitch(value: float64)
         
         /** The intensity of random volume variation. A value of 0 means no variation. */
-        get random_volume_offset_db(): number /*f64*/
-        set random_volume_offset_db(value: number /*f64*/)
+        get random_volume_offset_db(): float64
+        set random_volume_offset_db(value: float64)
         
         /** The number of streams in the stream pool. */
-        get streams_count(): number /*i64*/
-        set streams_count(value: number /*i64*/)
+        get streams_count(): int64
+        set streams_count(value: int64)
     }
     class AudioStreamRandomizerEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -4652,12 +4652,12 @@ declare module "godot" {
         get_format(): AudioStreamWAV.Format
         set_loop_mode(loop_mode: AudioStreamWAV.LoopMode): void
         get_loop_mode(): AudioStreamWAV.LoopMode
-        set_loop_begin(loop_begin: number /*i64*/): void
-        get_loop_begin(): number /*i64*/
-        set_loop_end(loop_end: number /*i64*/): void
-        get_loop_end(): number /*i64*/
-        set_mix_rate(mix_rate: number /*i64*/): void
-        get_mix_rate(): number /*i64*/
+        set_loop_begin(loop_begin: int64): void
+        get_loop_begin(): int64
+        set_loop_end(loop_end: int64): void
+        get_loop_end(): int64
+        set_mix_rate(mix_rate: int64): void
+        get_mix_rate(): int64
         set_stereo(stereo: boolean): void
         is_stereo(): boolean
         
@@ -4675,27 +4675,27 @@ declare module "godot" {
         set data(value: PackedByteArray)
         
         /** Audio format. See [enum Format] constants for values. */
-        get format(): number /*i64*/
-        set format(value: number /*i64*/)
+        get format(): int64
+        set format(value: int64)
         
         /** The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values. */
-        get loop_mode(): number /*i64*/
-        set loop_mode(value: number /*i64*/)
+        get loop_mode(): int64
+        set loop_mode(value: int64)
         
         /** The loop start point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present. */
-        get loop_begin(): number /*i64*/
-        set loop_begin(value: number /*i64*/)
+        get loop_begin(): int64
+        set loop_begin(value: int64)
         
         /** The loop end point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present. */
-        get loop_end(): number /*i64*/
-        set loop_end(value: number /*i64*/)
+        get loop_end(): int64
+        set loop_end(value: int64)
         
         /** The sample rate for mixing this audio. Higher values require more storage space, but result in better quality.  
          *  In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and `48000`.  
          *  According to the [url=https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem]Nyquist-Shannon sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are using lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.  
          */
-        get mix_rate(): number /*i64*/
-        set mix_rate(value: number /*i64*/)
+        get mix_rate(): int64
+        set mix_rate(value: int64)
         
         /** If `true`, audio is stereo. */
         get stereo(): boolean
@@ -4725,8 +4725,8 @@ declare module "godot" {
         get_copy_mode(): BackBufferCopy.CopyMode
         
         /** Buffer mode. See [enum CopyMode] constants. */
-        get copy_mode(): number /*i64*/
-        set copy_mode(value: number /*i64*/)
+        get copy_mode(): int64
+        set copy_mode(value: int64)
         
         /** The area covered by the [BackBufferCopy]. Only used if [member copy_mode] is [constant COPY_MODE_RECT]. */
         get rect(): Rect2
@@ -4734,8 +4734,8 @@ declare module "godot" {
     }
     class BackgroundProgress extends HBoxContainer {
         constructor(identifier?: any)
-        _add_task(_unnamed_arg0: string, _unnamed_arg1: string, _unnamed_arg2: number /*i64*/): void
-        _task_step(_unnamed_arg0: string, _unnamed_arg1: number /*i64*/): void
+        _add_task(_unnamed_arg0: string, _unnamed_arg1: string, _unnamed_arg2: int64): void
+        _task_step(_unnamed_arg0: string, _unnamed_arg1: int64): void
         _end_task(_unnamed_arg0: string): void
         _update(): void
     }
@@ -4824,14 +4824,14 @@ declare module "godot" {
         set button_pressed(value: boolean)
         
         /** Determines when the button is considered clicked, one of the [enum ActionMode] constants. */
-        get action_mode(): number /*i64*/
-        set action_mode(value: number /*i64*/)
+        get action_mode(): int64
+        set action_mode(value: int64)
         
         /** Binary mask to choose which mouse buttons this button will respond to.  
          *  To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT`.  
          */
-        get button_mask(): number /*i64*/
-        set button_mask(value: number /*i64*/)
+        get button_mask(): int64
+        set button_mask(value: int64)
         
         /** If `true`, the button stays pressed when moving the cursor outside the button while pressing it.  
          *      
@@ -5239,50 +5239,50 @@ declare module "godot" {
         get_transparency(): BaseMaterial3D.Transparency
         set_alpha_antialiasing(alpha_aa: BaseMaterial3D.AlphaAntiAliasing): void
         get_alpha_antialiasing(): BaseMaterial3D.AlphaAntiAliasing
-        set_alpha_antialiasing_edge(edge: number /*f64*/): void
-        get_alpha_antialiasing_edge(): number /*f64*/
+        set_alpha_antialiasing_edge(edge: float64): void
+        get_alpha_antialiasing_edge(): float64
         set_shading_mode(shading_mode: BaseMaterial3D.ShadingMode): void
         get_shading_mode(): BaseMaterial3D.ShadingMode
-        set_specular(specular: number /*f64*/): void
-        get_specular(): number /*f64*/
-        set_metallic(metallic: number /*f64*/): void
-        get_metallic(): number /*f64*/
-        set_roughness(roughness: number /*f64*/): void
-        get_roughness(): number /*f64*/
+        set_specular(specular: float64): void
+        get_specular(): float64
+        set_metallic(metallic: float64): void
+        get_metallic(): float64
+        set_roughness(roughness: float64): void
+        get_roughness(): float64
         set_emission(emission: Color): void
         get_emission(): Color
-        set_emission_energy_multiplier(emission_energy_multiplier: number /*f64*/): void
-        get_emission_energy_multiplier(): number /*f64*/
-        set_emission_intensity(emission_energy_multiplier: number /*f64*/): void
-        get_emission_intensity(): number /*f64*/
-        set_normal_scale(normal_scale: number /*f64*/): void
-        get_normal_scale(): number /*f64*/
-        set_rim(rim: number /*f64*/): void
-        get_rim(): number /*f64*/
-        set_rim_tint(rim_tint: number /*f64*/): void
-        get_rim_tint(): number /*f64*/
-        set_clearcoat(clearcoat: number /*f64*/): void
-        get_clearcoat(): number /*f64*/
-        set_clearcoat_roughness(clearcoat_roughness: number /*f64*/): void
-        get_clearcoat_roughness(): number /*f64*/
-        set_anisotropy(anisotropy: number /*f64*/): void
-        get_anisotropy(): number /*f64*/
-        set_heightmap_scale(heightmap_scale: number /*f64*/): void
-        get_heightmap_scale(): number /*f64*/
-        set_subsurface_scattering_strength(strength: number /*f64*/): void
-        get_subsurface_scattering_strength(): number /*f64*/
+        set_emission_energy_multiplier(emission_energy_multiplier: float64): void
+        get_emission_energy_multiplier(): float64
+        set_emission_intensity(emission_energy_multiplier: float64): void
+        get_emission_intensity(): float64
+        set_normal_scale(normal_scale: float64): void
+        get_normal_scale(): float64
+        set_rim(rim: float64): void
+        get_rim(): float64
+        set_rim_tint(rim_tint: float64): void
+        get_rim_tint(): float64
+        set_clearcoat(clearcoat: float64): void
+        get_clearcoat(): float64
+        set_clearcoat_roughness(clearcoat_roughness: float64): void
+        get_clearcoat_roughness(): float64
+        set_anisotropy(anisotropy: float64): void
+        get_anisotropy(): float64
+        set_heightmap_scale(heightmap_scale: float64): void
+        get_heightmap_scale(): float64
+        set_subsurface_scattering_strength(strength: float64): void
+        get_subsurface_scattering_strength(): float64
         set_transmittance_color(color: Color): void
         get_transmittance_color(): Color
-        set_transmittance_depth(depth: number /*f64*/): void
-        get_transmittance_depth(): number /*f64*/
-        set_transmittance_boost(boost: number /*f64*/): void
-        get_transmittance_boost(): number /*f64*/
+        set_transmittance_depth(depth: float64): void
+        get_transmittance_depth(): float64
+        set_transmittance_boost(boost: float64): void
+        get_transmittance_boost(): float64
         set_backlight(backlight: Color): void
         get_backlight(): Color
-        set_refraction(refraction: number /*f64*/): void
-        get_refraction(): number /*f64*/
-        set_point_size(point_size: number /*f64*/): void
-        get_point_size(): number /*f64*/
+        set_refraction(refraction: float64): void
+        get_refraction(): float64
+        set_point_size(point_size: float64): void
+        get_point_size(): float64
         set_detail_uv(detail_uv: BaseMaterial3D.DetailUV): void
         get_detail_uv(): BaseMaterial3D.DetailUV
         set_blend_mode(blend_mode: BaseMaterial3D.BlendMode): void
@@ -5321,42 +5321,42 @@ declare module "godot" {
         get_uv1_scale(): Vector3
         set_uv1_offset(offset: Vector3): void
         get_uv1_offset(): Vector3
-        set_uv1_triplanar_blend_sharpness(sharpness: number /*f64*/): void
-        get_uv1_triplanar_blend_sharpness(): number /*f64*/
+        set_uv1_triplanar_blend_sharpness(sharpness: float64): void
+        get_uv1_triplanar_blend_sharpness(): float64
         set_uv2_scale(scale: Vector3): void
         get_uv2_scale(): Vector3
         set_uv2_offset(offset: Vector3): void
         get_uv2_offset(): Vector3
-        set_uv2_triplanar_blend_sharpness(sharpness: number /*f64*/): void
-        get_uv2_triplanar_blend_sharpness(): number /*f64*/
+        set_uv2_triplanar_blend_sharpness(sharpness: float64): void
+        get_uv2_triplanar_blend_sharpness(): float64
         set_billboard_mode(mode: BaseMaterial3D.BillboardMode): void
         get_billboard_mode(): BaseMaterial3D.BillboardMode
-        set_particles_anim_h_frames(frames: number /*i64*/): void
-        get_particles_anim_h_frames(): number /*i64*/
-        set_particles_anim_v_frames(frames: number /*i64*/): void
-        get_particles_anim_v_frames(): number /*i64*/
+        set_particles_anim_h_frames(frames: int64): void
+        get_particles_anim_h_frames(): int64
+        set_particles_anim_v_frames(frames: int64): void
+        get_particles_anim_v_frames(): int64
         set_particles_anim_loop(loop: boolean): void
         get_particles_anim_loop(): boolean
         set_heightmap_deep_parallax(enable: boolean): void
         is_heightmap_deep_parallax_enabled(): boolean
-        set_heightmap_deep_parallax_min_layers(layer: number /*i64*/): void
-        get_heightmap_deep_parallax_min_layers(): number /*i64*/
-        set_heightmap_deep_parallax_max_layers(layer: number /*i64*/): void
-        get_heightmap_deep_parallax_max_layers(): number /*i64*/
+        set_heightmap_deep_parallax_min_layers(layer: int64): void
+        get_heightmap_deep_parallax_min_layers(): int64
+        set_heightmap_deep_parallax_max_layers(layer: int64): void
+        get_heightmap_deep_parallax_max_layers(): int64
         set_heightmap_deep_parallax_flip_tangent(flip: boolean): void
         get_heightmap_deep_parallax_flip_tangent(): boolean
         set_heightmap_deep_parallax_flip_binormal(flip: boolean): void
         get_heightmap_deep_parallax_flip_binormal(): boolean
-        set_grow(amount: number /*f64*/): void
-        get_grow(): number /*f64*/
+        set_grow(amount: float64): void
+        get_grow(): float64
         set_emission_operator(operator: BaseMaterial3D.EmissionOperator): void
         get_emission_operator(): BaseMaterial3D.EmissionOperator
-        set_ao_light_affect(amount: number /*f64*/): void
-        get_ao_light_affect(): number /*f64*/
-        set_alpha_scissor_threshold(threshold: number /*f64*/): void
-        get_alpha_scissor_threshold(): number /*f64*/
-        set_alpha_hash_scale(threshold: number /*f64*/): void
-        get_alpha_hash_scale(): number /*f64*/
+        set_ao_light_affect(amount: float64): void
+        get_ao_light_affect(): float64
+        set_alpha_scissor_threshold(threshold: float64): void
+        get_alpha_scissor_threshold(): float64
+        set_alpha_hash_scale(threshold: float64): void
+        get_alpha_hash_scale(): float64
         set_grow_enabled(enable: boolean): void
         is_grow_enabled(): boolean
         set_metallic_texture_channel(channel: BaseMaterial3D.TextureChannel): void
@@ -5369,71 +5369,71 @@ declare module "godot" {
         get_refraction_texture_channel(): BaseMaterial3D.TextureChannel
         set_proximity_fade_enabled(enabled: boolean): void
         is_proximity_fade_enabled(): boolean
-        set_proximity_fade_distance(distance: number /*f64*/): void
-        get_proximity_fade_distance(): number /*f64*/
-        set_msdf_pixel_range(range: number /*f64*/): void
-        get_msdf_pixel_range(): number /*f64*/
-        set_msdf_outline_size(size: number /*f64*/): void
-        get_msdf_outline_size(): number /*f64*/
+        set_proximity_fade_distance(distance: float64): void
+        get_proximity_fade_distance(): float64
+        set_msdf_pixel_range(range: float64): void
+        get_msdf_pixel_range(): float64
+        set_msdf_outline_size(size: float64): void
+        get_msdf_outline_size(): float64
         set_distance_fade(mode: BaseMaterial3D.DistanceFadeMode): void
         get_distance_fade(): BaseMaterial3D.DistanceFadeMode
-        set_distance_fade_max_distance(distance: number /*f64*/): void
-        get_distance_fade_max_distance(): number /*f64*/
-        set_distance_fade_min_distance(distance: number /*f64*/): void
-        get_distance_fade_min_distance(): number /*f64*/
+        set_distance_fade_max_distance(distance: float64): void
+        get_distance_fade_max_distance(): float64
+        set_distance_fade_min_distance(distance: float64): void
+        get_distance_fade_min_distance(): float64
         
         /** The material's transparency mode. Some transparency modes will disable shadow casting. Any transparency mode other than [constant TRANSPARENCY_DISABLED] has a greater performance impact compared to opaque rendering. See also [member blend_mode]. */
-        get transparency(): number /*i64*/
-        set transparency(value: number /*i64*/)
+        get transparency(): int64
+        set transparency(value: int64)
         
         /** Threshold at which the alpha scissor will discard values. Higher values will result in more pixels being discarded. If the material becomes too opaque at a distance, try increasing [member alpha_scissor_threshold]. If the material disappears at a distance, try decreasing [member alpha_scissor_threshold]. */
-        get alpha_scissor_threshold(): number /*f64*/
-        set alpha_scissor_threshold(value: number /*f64*/)
+        get alpha_scissor_threshold(): float64
+        set alpha_scissor_threshold(value: float64)
         
         /** The hashing scale for Alpha Hash. Recommended values between `0` and `2`. */
-        get alpha_hash_scale(): number /*f64*/
-        set alpha_hash_scale(value: number /*f64*/)
+        get alpha_hash_scale(): float64
+        set alpha_hash_scale(value: float64)
         
         /** The type of alpha antialiasing to apply. See [enum AlphaAntiAliasing]. */
-        get alpha_antialiasing_mode(): number /*i64*/
-        set alpha_antialiasing_mode(value: number /*i64*/)
+        get alpha_antialiasing_mode(): int64
+        set alpha_antialiasing_mode(value: int64)
         
         /** Threshold at which antialiasing will be applied on the alpha channel. */
-        get alpha_antialiasing_edge(): number /*f64*/
-        set alpha_antialiasing_edge(value: number /*f64*/)
+        get alpha_antialiasing_edge(): float64
+        set alpha_antialiasing_edge(value: float64)
         
         /** The material's blend mode.  
          *      
          *  **Note:** Values other than `Mix` force the object into the transparent pipeline. See [enum BlendMode].  
          */
-        get blend_mode(): number /*i64*/
-        set blend_mode(value: number /*i64*/)
+        get blend_mode(): int64
+        set blend_mode(value: int64)
         
         /** Determines which side of the triangle to cull depending on whether the triangle faces towards or away from the camera. See [enum CullMode]. */
-        get cull_mode(): number /*i64*/
-        set cull_mode(value: number /*i64*/)
+        get cull_mode(): int64
+        set cull_mode(value: int64)
         
         /** Determines when depth rendering takes place. See [enum DepthDrawMode]. See also [member transparency]. */
-        get depth_draw_mode(): number /*i64*/
-        set depth_draw_mode(value: number /*i64*/)
+        get depth_draw_mode(): int64
+        set depth_draw_mode(value: int64)
         
         /** Sets whether the shading takes place, per-pixel, per-vertex or unshaded. Per-vertex lighting is faster, making it the best choice for mobile applications, however it looks considerably worse than per-pixel. Unshaded rendering is the fastest, but disables all interactions with lights.  
          *      
          *  **Note:** Setting the shading mode vertex shading currently has no effect, as vertex shading is not implemented yet.  
          */
-        get shading_mode(): number /*i64*/
-        set shading_mode(value: number /*i64*/)
+        get shading_mode(): int64
+        set shading_mode(value: int64)
         
         /** The algorithm used for diffuse light scattering. See [enum DiffuseMode]. */
-        get diffuse_mode(): number /*i64*/
-        set diffuse_mode(value: number /*i64*/)
+        get diffuse_mode(): int64
+        set diffuse_mode(value: int64)
         
         /** The method for rendering the specular blob. See [enum SpecularMode].  
          *      
          *  **Note:** [member specular_mode] only applies to the specular blob. It does not affect specular reflections from the sky, screen-space reflections, [VoxelGI], SDFGI or [ReflectionProbe]s. To disable reflections from these sources as well, set [member metallic_specular] to `0.0` instead.  
          */
-        get specular_mode(): number /*i64*/
-        set specular_mode(value: number /*i64*/)
+        get specular_mode(): int64
+        set specular_mode(value: int64)
         
         /** The material's base color.  
          *      
@@ -5443,82 +5443,82 @@ declare module "godot" {
         set albedo_color(value: Color)
         
         /** A high value makes the material appear more like a metal. Non-metals use their albedo as the diffuse color and add diffuse to the specular reflection. With non-metals, the reflection appears on top of the albedo color. Metals use their albedo as a multiplier to the specular reflection and set the diffuse color to black resulting in a tinted reflection. Materials work better when fully metal or fully non-metal, values between `0` and `1` should only be used for blending between metal and non-metal sections. To alter the amount of reflection use [member roughness]. */
-        get metallic(): number /*f64*/
-        set metallic(value: number /*f64*/)
+        get metallic(): float64
+        set metallic(value: float64)
         
         /** Adjusts the strength of specular reflections. Specular reflections are composed of scene reflections and the specular lobe which is the bright spot that is reflected from light sources. When set to `0.0`, no specular reflections will be visible. This differs from the [constant SPECULAR_DISABLED] [enum SpecularMode] as [constant SPECULAR_DISABLED] only applies to the specular lobe from the light source.  
          *      
          *  **Note:** Unlike [member metallic], this is not energy-conserving, so it should be left at `0.5` in most cases. See also [member roughness].  
          */
-        get metallic_specular(): number /*f64*/
-        set metallic_specular(value: number /*f64*/)
+        get metallic_specular(): float64
+        set metallic_specular(value: float64)
         
         /** Specifies the channel of the [member metallic_texture] in which the metallic information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
-        get metallic_texture_channel(): number /*i64*/
-        set metallic_texture_channel(value: number /*i64*/)
+        get metallic_texture_channel(): int64
+        set metallic_texture_channel(value: int64)
         
         /** Surface reflection. A value of `0` represents a perfect mirror while a value of `1` completely blurs the reflection. See also [member metallic]. */
-        get roughness(): number /*f64*/
-        set roughness(value: number /*f64*/)
+        get roughness(): float64
+        set roughness(value: float64)
         
         /** Specifies the channel of the [member roughness_texture] in which the roughness information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
-        get roughness_texture_channel(): number /*i64*/
-        set roughness_texture_channel(value: number /*i64*/)
+        get roughness_texture_channel(): int64
+        set roughness_texture_channel(value: int64)
         
         /** The emitted light's color. See [member emission_enabled]. */
         get emission(): Color
         set emission(value: Color)
         
         /** Multiplier for emitted light. See [member emission_enabled]. */
-        get emission_energy_multiplier(): number /*f64*/
-        set emission_energy_multiplier(value: number /*f64*/)
+        get emission_energy_multiplier(): float64
+        set emission_energy_multiplier(value: float64)
         
         /** Luminance of emitted light, measured in nits (candela per square meter). Only available when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is enabled. The default is roughly equivalent to an indoor lightbulb. */
-        get emission_intensity(): number /*f64*/
-        set emission_intensity(value: number /*f64*/)
+        get emission_intensity(): float64
+        set emission_intensity(value: float64)
         
         /** Sets how [member emission] interacts with [member emission_texture]. Can either add or multiply. See [enum EmissionOperator] for options. */
-        get emission_operator(): number /*i64*/
-        set emission_operator(value: number /*i64*/)
+        get emission_operator(): int64
+        set emission_operator(value: int64)
         
         /** The strength of the normal map's effect. */
-        get normal_scale(): number /*f64*/
-        set normal_scale(value: number /*f64*/)
+        get normal_scale(): float64
+        set normal_scale(value: float64)
         
         /** Sets the strength of the rim lighting effect. */
-        get rim(): number /*f64*/
-        set rim(value: number /*f64*/)
+        get rim(): float64
+        set rim(value: float64)
         
         /** The amount of to blend light and albedo color when rendering rim effect. If `0` the light color is used, while `1` means albedo color is used. An intermediate value generally works best. */
-        get rim_tint(): number /*f64*/
-        set rim_tint(value: number /*f64*/)
+        get rim_tint(): float64
+        set rim_tint(value: float64)
         
         /** Sets the strength of the clearcoat effect. Setting to `0` looks the same as disabling the clearcoat effect. */
-        get clearcoat(): number /*f64*/
-        set clearcoat(value: number /*f64*/)
+        get clearcoat(): float64
+        set clearcoat(value: float64)
         
         /** Sets the roughness of the clearcoat pass. A higher value results in a rougher clearcoat while a lower value results in a smoother clearcoat. */
-        get clearcoat_roughness(): number /*f64*/
-        set clearcoat_roughness(value: number /*f64*/)
+        get clearcoat_roughness(): float64
+        set clearcoat_roughness(value: float64)
         
         /** The strength of the anisotropy effect. This is multiplied by [member anisotropy_flowmap]'s alpha channel if a texture is defined there and the texture contains an alpha channel. */
-        get anisotropy(): number /*f64*/
-        set anisotropy(value: number /*f64*/)
+        get anisotropy(): float64
+        set anisotropy(value: float64)
         
         /** Amount that ambient occlusion affects lighting from lights. If `0`, ambient occlusion only affects ambient light. If `1`, ambient occlusion affects lights just as much as it affects ambient light. This can be used to impact the strength of the ambient occlusion effect, but typically looks unrealistic. */
-        get ao_light_affect(): number /*f64*/
-        set ao_light_affect(value: number /*f64*/)
+        get ao_light_affect(): float64
+        set ao_light_affect(value: float64)
         
         /** Specifies the channel of the [member ao_texture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
-        get ao_texture_channel(): number /*i64*/
-        set ao_texture_channel(value: number /*i64*/)
+        get ao_texture_channel(): int64
+        set ao_texture_channel(value: int64)
         
         /** The heightmap scale to use for the parallax effect (see [member heightmap_enabled]). The default value is tuned so that the highest point (value = 255) appears to be 5 cm higher than the lowest point (value = 0). Higher values result in a deeper appearance, but may result in artifacts appearing when looking at the material from oblique angles, especially when the camera moves. Negative values can be used to invert the parallax effect, but this is different from inverting the texture using [member heightmap_flip_texture] as the material will also appear to be "closer" to the camera. In most cases, [member heightmap_scale] should be kept to a positive value.  
          *      
          *  **Note:** If the height map effect looks strange regardless of this value, try adjusting [member heightmap_flip_binormal] and [member heightmap_flip_tangent]. See also [member heightmap_texture] for recommendations on authoring heightmap textures, as the way the heightmap texture is authored affects how [member heightmap_scale] behaves.  
          */
-        get heightmap_scale(): number /*f64*/
-        set heightmap_scale(value: number /*f64*/)
+        get heightmap_scale(): float64
+        set heightmap_scale(value: float64)
         
         /** If `true`, uses parallax occlusion mapping to represent depth in the material instead of simple offset mapping (see [member heightmap_enabled]). This results in a more convincing depth effect, but is much more expensive on the GPU. Only enable this on materials where it makes a significant visual difference. */
         get heightmap_deep_parallax(): boolean
@@ -5528,15 +5528,15 @@ declare module "godot" {
          *      
          *  **Note:** Only effective if [member heightmap_deep_parallax] is `true`.  
          */
-        get heightmap_min_layers(): number /*i64*/
-        set heightmap_min_layers(value: number /*i64*/)
+        get heightmap_min_layers(): int64
+        set heightmap_min_layers(value: int64)
         
         /** The number of layers to use for parallax occlusion mapping when the camera is up close to the material. Higher values result in a more convincing depth effect, especially in materials that have steep height changes. Higher values have a significant cost on the GPU, so it should only be increased on materials where it makes a significant visual difference.  
          *      
          *  **Note:** Only effective if [member heightmap_deep_parallax] is `true`.  
          */
-        get heightmap_max_layers(): number /*i64*/
-        set heightmap_max_layers(value: number /*i64*/)
+        get heightmap_max_layers(): int64
+        set heightmap_max_layers(value: int64)
         
         /** If `true`, flips the mesh's tangent vectors when interpreting the height map. If the heightmap effect looks strange when the camera moves (even with a reasonable [member heightmap_scale]), try setting this to `true`. */
         get heightmap_flip_tangent(): boolean
@@ -5547,40 +5547,40 @@ declare module "godot" {
         set heightmap_flip_binormal(value: boolean)
         
         /** The strength of the subsurface scattering effect. The depth of the effect is also controlled by [member ProjectSettings.rendering/environment/subsurface_scattering/subsurface_scattering_scale], which is set globally. */
-        get subsurf_scatter_strength(): number /*f64*/
-        set subsurf_scatter_strength(value: number /*f64*/)
+        get subsurf_scatter_strength(): float64
+        set subsurf_scatter_strength(value: float64)
         
         /** The color to multiply the subsurface scattering transmittance effect with. Ignored if [member subsurf_scatter_skin_mode] is `true`. */
         get subsurf_scatter_transmittance_color(): Color
         set subsurf_scatter_transmittance_color(value: Color)
         
         /** The depth of the subsurface scattering transmittance effect. */
-        get subsurf_scatter_transmittance_depth(): number /*f64*/
-        set subsurf_scatter_transmittance_depth(value: number /*f64*/)
+        get subsurf_scatter_transmittance_depth(): float64
+        set subsurf_scatter_transmittance_depth(value: float64)
         
         /** The intensity of the subsurface scattering transmittance effect. */
-        get subsurf_scatter_transmittance_boost(): number /*f64*/
-        set subsurf_scatter_transmittance_boost(value: number /*f64*/)
+        get subsurf_scatter_transmittance_boost(): float64
+        set subsurf_scatter_transmittance_boost(value: float64)
         
         /** The color used by the backlight effect. Represents the light passing through an object. */
         get backlight(): Color
         set backlight(value: Color)
         
         /** The strength of the refraction effect. */
-        get refraction_scale(): number /*f64*/
-        set refraction_scale(value: number /*f64*/)
+        get refraction_scale(): float64
+        set refraction_scale(value: float64)
         
         /** Specifies the channel of the [member refraction_texture] in which the refraction information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored refraction in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
-        get refraction_texture_channel(): number /*i64*/
-        set refraction_texture_channel(value: number /*i64*/)
+        get refraction_texture_channel(): int64
+        set refraction_texture_channel(value: int64)
         
         /** Specifies how the [member detail_albedo] should blend with the current `ALBEDO`. See [enum BlendMode] for options. */
-        get detail_blend_mode(): number /*i64*/
-        set detail_blend_mode(value: number /*i64*/)
+        get detail_blend_mode(): int64
+        set detail_blend_mode(value: int64)
         
         /** Specifies whether to use `UV` or `UV2` for the detail layer. See [enum DetailUV] for options. */
-        get detail_uv_layer(): number /*i64*/
-        set detail_uv_layer(value: number /*i64*/)
+        get detail_uv_layer(): int64
+        set detail_uv_layer(value: int64)
         
         /** How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [member uv1_triplanar] is enabled, but it is not used anywhere else. */
         get uv1_scale(): Vector3
@@ -5594,8 +5594,8 @@ declare module "godot" {
          *      
          *  **Note:** [member uv1_triplanar_sharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.  
          */
-        get uv1_triplanar_sharpness(): number /*f64*/
-        set uv1_triplanar_sharpness(value: number /*f64*/)
+        get uv1_triplanar_sharpness(): float64
+        set uv1_triplanar_sharpness(value: float64)
         
         /** How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [member uv2_triplanar] is enabled, but it is not used anywhere else. */
         get uv2_scale(): Vector3
@@ -5609,30 +5609,30 @@ declare module "godot" {
          *      
          *  **Note:** [member uv2_triplanar_sharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.  
          */
-        get uv2_triplanar_sharpness(): number /*f64*/
-        set uv2_triplanar_sharpness(value: number /*f64*/)
+        get uv2_triplanar_sharpness(): float64
+        set uv2_triplanar_sharpness(value: float64)
         
         /** Filter flags for the texture. See [enum TextureFilter] for options.  
          *      
          *  **Note:** [member heightmap_texture] is always sampled with linear filtering, even if nearest-neighbor filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need sharper height transitions between pixels, resize the heightmap texture in an image editor with nearest-neighbor filtering.  
          */
-        get texture_filter(): number /*i64*/
-        set texture_filter(value: number /*i64*/)
+        get texture_filter(): int64
+        set texture_filter(value: int64)
         
         /** Controls how the object faces the camera. See [enum BillboardMode].  
          *      
          *  **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.  
          */
-        get billboard_mode(): number /*i64*/
-        set billboard_mode(value: number /*i64*/)
+        get billboard_mode(): int64
+        set billboard_mode(value: int64)
         
         /** The number of horizontal frames in the particle sprite sheet. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member billboard_mode]. */
-        get particles_anim_h_frames(): number /*i64*/
-        set particles_anim_h_frames(value: number /*i64*/)
+        get particles_anim_h_frames(): int64
+        set particles_anim_h_frames(value: int64)
         
         /** The number of vertical frames in the particle sprite sheet. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member billboard_mode]. */
-        get particles_anim_v_frames(): number /*i64*/
-        set particles_anim_v_frames(value: number /*i64*/)
+        get particles_anim_v_frames(): int64
+        set particles_anim_v_frames(value: int64)
         
         /** If `true`, particle animations are looped. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member billboard_mode]. */
         get particles_anim_loop(): boolean
@@ -5646,46 +5646,46 @@ declare module "godot" {
         set grow(value: boolean)
         
         /** Grows object vertices in the direction of their normals. Only effective if [member grow] is `true`. */
-        get grow_amount(): number /*f64*/
-        set grow_amount(value: number /*f64*/)
+        get grow_amount(): float64
+        set grow_amount(value: float64)
         
         /** The point size in pixels. See [member use_point_size]. */
-        get point_size(): number /*f64*/
-        set point_size(value: number /*f64*/)
+        get point_size(): float64
+        set point_size(value: float64)
         
         /** If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel based on its distance to another object. */
         get proximity_fade_enabled(): boolean
         set proximity_fade_enabled(value: boolean)
         
         /** Distance over which the fade effect takes place. The larger the distance the longer it takes for an object to fade. */
-        get proximity_fade_distance(): number /*f64*/
-        set proximity_fade_distance(value: number /*f64*/)
+        get proximity_fade_distance(): float64
+        set proximity_fade_distance(value: float64)
         
         /** The width of the range around the shape between the minimum and maximum representable signed distance. */
-        get msdf_pixel_range(): number /*f64*/
-        set msdf_pixel_range(value: number /*f64*/)
+        get msdf_pixel_range(): float64
+        set msdf_pixel_range(value: float64)
         
         /** The width of the shape outline. */
-        get msdf_outline_size(): number /*f64*/
-        set msdf_outline_size(value: number /*f64*/)
+        get msdf_outline_size(): float64
+        set msdf_outline_size(value: float64)
         
         /** Specifies which type of fade to use. Can be any of the [enum DistanceFadeMode]s. */
-        get distance_fade_mode(): number /*i64*/
-        set distance_fade_mode(value: number /*i64*/)
+        get distance_fade_mode(): int64
+        set distance_fade_mode(value: int64)
         
         /** Distance at which the object starts to become visible. If the object is less than this distance away, it will be invisible.  
          *      
          *  **Note:** If [member distance_fade_min_distance] is greater than [member distance_fade_max_distance], the behavior will be reversed. The object will start to fade away at [member distance_fade_max_distance] and will fully disappear once it reaches [member distance_fade_min_distance].  
          */
-        get distance_fade_min_distance(): number /*f64*/
-        set distance_fade_min_distance(value: number /*f64*/)
+        get distance_fade_min_distance(): float64
+        set distance_fade_min_distance(value: float64)
         
         /** Distance at which the object appears fully opaque.  
          *      
          *  **Note:** If [member distance_fade_max_distance] is less than [member distance_fade_min_distance], the behavior will be reversed. The object will start to fade away at [member distance_fade_max_distance] and will fully disappear once it reaches [member distance_fade_min_distance].  
          */
-        get distance_fade_max_distance(): number /*f64*/
-        set distance_fade_max_distance(value: number /*f64*/)
+        get distance_fade_max_distance(): float64
+        set distance_fade_max_distance(value: float64)
     }
     /** Boolean matrix.  
      *  	  
@@ -5697,25 +5697,25 @@ declare module "godot" {
         create(size: Vector2i): void
         
         /** Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to `false` if the alpha value of the image at that position is equal to [param threshold] or less, and `true` in other case. */
-        create_from_image_alpha(image: Image, threshold: number /*f64*/ = 0.1): void
+        create_from_image_alpha(image: Image, threshold: float64 = 0.1): void
         
         /** Sets the bitmap's element at the specified position, to the specified value. */
         set_bitv(position: Vector2i, bit: boolean): void
         
         /** Sets the bitmap's element at the specified position, to the specified value. */
-        set_bit(x: number /*i64*/, y: number /*i64*/, bit: boolean): void
+        set_bit(x: int64, y: int64, bit: boolean): void
         
         /** Returns bitmap's value at the specified position. */
         get_bitv(position: Vector2i): boolean
         
         /** Returns bitmap's value at the specified position. */
-        get_bit(x: number /*i64*/, y: number /*i64*/): boolean
+        get_bit(x: int64, y: int64): boolean
         
         /** Sets a rectangular portion of the bitmap to the specified value. */
         set_bit_rect(rect: Rect2i, bit: boolean): void
         
         /** Returns the number of bitmap elements that are set to `true`. */
-        get_true_bit_count(): number /*i64*/
+        get_true_bit_count(): int64
         
         /** Returns bitmap's dimensions. */
         get_size(): Vector2i
@@ -5726,7 +5726,7 @@ declare module "godot" {
         _get_data(): Dictionary
         
         /** Applies morphological dilation or erosion to the bitmap. If [param pixels] is positive, dilation is applied to the bitmap. If [param pixels] is negative, erosion is applied to the bitmap. [param rect] defines the area where the morphological operation is applied. Pixels located outside the [param rect] are unaffected by [method grow_mask]. */
-        grow_mask(pixels: number /*i64*/, rect: Rect2i): void
+        grow_mask(pixels: int64, rect: Rect2i): void
         
         /** Returns an image of the same size as the bitmap and with a [enum Image.Format] of type [constant Image.FORMAT_L8]. `true` bits of the bitmap are being converted into white pixels, and `false` bits into black. */
         convert_to_image(): Image
@@ -5736,7 +5736,7 @@ declare module "godot" {
          *    
          *  [param epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [param epsilon] corresponds to more points in the polygons.  
          */
-        opaque_to_polygons(rect: Rect2i, epsilon: number /*f64*/ = 2): Array
+        opaque_to_polygons(rect: Rect2i, epsilon: float64 = 2): Array
         get data(): Dictionary
         set data(value: Dictionary)
     }
@@ -5759,7 +5759,7 @@ declare module "godot" {
         get_skeleton_rest(): Transform2D
         
         /** Returns the node's index as part of the entire skeleton. See [Skeleton2D]. */
-        get_index_in_skeleton(): number /*i64*/
+        get_index_in_skeleton(): int64
         
         /** When set to `true`, the [Bone2D] node will attempt to automatically calculate the bone angle and length using the first child [Bone2D] node, if one exists. If none exist, the [Bone2D] cannot automatically calculate these values and will print a warning. */
         set_autocalculate_length_and_angle(auto_calculate: boolean): void
@@ -5768,22 +5768,22 @@ declare module "godot" {
         get_autocalculate_length_and_angle(): boolean
         
         /** Sets the length of the bone in the [Bone2D]. */
-        set_length(length: number /*f64*/): void
+        set_length(length: float64): void
         
         /** Returns the length of the bone in the [Bone2D] node. */
-        get_length(): number /*f64*/
+        get_length(): float64
         
         /** Sets the bone angle for the [Bone2D]. This is typically set to the rotation from the [Bone2D] to a child [Bone2D] node.  
          *      
          *  **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [member Node2D.transform].  
          */
-        set_bone_angle(angle: number /*f64*/): void
+        set_bone_angle(angle: float64): void
         
         /** Returns the angle of the bone in the [Bone2D].  
          *      
          *  **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [member Node2D.transform].  
          */
-        get_bone_angle(): number /*f64*/
+        get_bone_angle(): float64
         
         /** Rest transform of the bone. You can reset the node's transforms to this value using [method apply_rest]. */
         get rest(): Transform2D
@@ -5797,11 +5797,11 @@ declare module "godot" {
         constructor(identifier?: any)
         set_bone_name(bone_name: string): void
         get_bone_name(): string
-        set_bone_idx(bone_idx: number /*i64*/): void
-        get_bone_idx(): number /*i64*/
+        set_bone_idx(bone_idx: int64): void
+        get_bone_idx(): int64
         
         /** A function that is called automatically when the [Skeleton3D] the BoneAttachment3D node is using has a bone that has changed its pose. This function is where the BoneAttachment3D node updates its position so it is correctly bound when it is  *not*  set to override the bone pose. */
-        on_bone_pose_update(bone_index: number /*i64*/): void
+        on_bone_pose_update(bone_index: int64): void
         set_override_pose(override_pose: boolean): void
         get_override_pose(): boolean
         
@@ -5822,8 +5822,8 @@ declare module "godot" {
         set bone_name(value: StringName)
         
         /** The index of the attached bone. */
-        get bone_idx(): number /*i64*/
-        set bone_idx(value: number /*i64*/)
+        get bone_idx(): int64
+        set bone_idx(value: int64)
         
         /** Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to. When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to `false`, the BoneAttachment3D will always be set to the bone's transform. */
         get override_pose(): boolean
@@ -5892,8 +5892,8 @@ declare module "godot" {
         is_vertical(): boolean
         
         /** The alignment of the container's children (must be one of [constant ALIGNMENT_BEGIN], [constant ALIGNMENT_CENTER], or [constant ALIGNMENT_END]). */
-        get alignment(): number /*i64*/
-        set alignment(value: number /*i64*/)
+        get alignment(): int64
+        set alignment(value: int64)
         
         /** If `true`, the [BoxContainer] will arrange its children vertically, rather than horizontally.  
          *  Can't be changed when using [HBoxContainer] and [VBoxContainer].  
@@ -5909,28 +5909,28 @@ declare module "godot" {
         constructor(identifier?: any)
         set_size(size: Vector3): void
         get_size(): Vector3
-        set_subdivide_width(subdivide: number /*i64*/): void
-        get_subdivide_width(): number /*i64*/
-        set_subdivide_height(divisions: number /*i64*/): void
-        get_subdivide_height(): number /*i64*/
-        set_subdivide_depth(divisions: number /*i64*/): void
-        get_subdivide_depth(): number /*i64*/
+        set_subdivide_width(subdivide: int64): void
+        get_subdivide_width(): int64
+        set_subdivide_height(divisions: int64): void
+        get_subdivide_height(): int64
+        set_subdivide_depth(divisions: int64): void
+        get_subdivide_depth(): int64
         
         /** The box's width, height and depth. */
         get size(): Vector3
         set size(value: Vector3)
         
         /** Number of extra edge loops inserted along the X axis. */
-        get subdivide_width(): number /*i64*/
-        set subdivide_width(value: number /*i64*/)
+        get subdivide_width(): int64
+        set subdivide_width(value: int64)
         
         /** Number of extra edge loops inserted along the Y axis. */
-        get subdivide_height(): number /*i64*/
-        set subdivide_height(value: number /*i64*/)
+        get subdivide_height(): int64
+        set subdivide_height(value: int64)
         
         /** Number of extra edge loops inserted along the Z axis. */
-        get subdivide_depth(): number /*i64*/
-        set subdivide_depth(value: number /*i64*/)
+        get subdivide_depth(): int64
+        set subdivide_depth(value: int64)
     }
     /** Cuboid shape for use with occlusion culling in [OccluderInstance3D].  
      *  	  
@@ -6002,32 +6002,32 @@ declare module "godot" {
         set flat(value: boolean)
         
         /** Text alignment policy for the button's text, use one of the [enum HorizontalAlignment] constants. */
-        get alignment(): number /*i64*/
-        set alignment(value: number /*i64*/)
+        get alignment(): int64
+        set alignment(value: int64)
         
         /** Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes. */
-        get text_overrun_behavior(): number /*i64*/
-        set text_overrun_behavior(value: number /*i64*/)
+        get text_overrun_behavior(): int64
+        set text_overrun_behavior(value: int64)
         
         /** When this property is enabled, text that is too large to fit the button is clipped, when disabled the Button will always be wide enough to hold the text. */
         get clip_text(): boolean
         set clip_text(value: boolean)
         
         /** Specifies if the icon should be aligned horizontally to the left, right, or center of a button. Uses the same [enum HorizontalAlignment] constants as the text alignment. If centered horizontally and vertically, text will draw on top of the icon. */
-        get icon_alignment(): number /*i64*/
-        set icon_alignment(value: number /*i64*/)
+        get icon_alignment(): int64
+        set icon_alignment(value: int64)
         
         /** Specifies if the icon should be aligned vertically to the top, bottom, or center of a button. Uses the same [enum VerticalAlignment] constants as the text alignment. If centered horizontally and vertically, text will draw on top of the icon. */
-        get vertical_icon_alignment(): number /*i64*/
-        set vertical_icon_alignment(value: number /*i64*/)
+        get vertical_icon_alignment(): int64
+        set vertical_icon_alignment(value: int64)
         
         /** When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect. See also [theme_item icon_max_width]. */
         get expand_icon(): boolean
         set expand_icon(value: boolean)
         
         /** Base text writing direction. */
-        get text_direction(): number /*i64*/
-        set text_direction(value: number /*i64*/)
+        get text_direction(): int64
+        set text_direction(value: int64)
         
         /** Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
         get language(): string
@@ -6145,29 +6145,29 @@ declare module "godot" {
     class CPUParticles2D extends Node2D {
         constructor(identifier?: any)
         set_emitting(emitting: boolean): void
-        set_amount(amount: number /*i64*/): void
-        set_lifetime(secs: number /*f64*/): void
+        set_amount(amount: int64): void
+        set_lifetime(secs: float64): void
         set_one_shot(enable: boolean): void
-        set_pre_process_time(secs: number /*f64*/): void
-        set_explosiveness_ratio(ratio: number /*f64*/): void
-        set_randomness_ratio(ratio: number /*f64*/): void
-        set_lifetime_randomness(random: number /*f64*/): void
+        set_pre_process_time(secs: float64): void
+        set_explosiveness_ratio(ratio: float64): void
+        set_randomness_ratio(ratio: float64): void
+        set_lifetime_randomness(random: float64): void
         set_use_local_coordinates(enable: boolean): void
-        set_fixed_fps(fps: number /*i64*/): void
+        set_fixed_fps(fps: int64): void
         set_fractional_delta(enable: boolean): void
-        set_speed_scale(scale: number /*f64*/): void
+        set_speed_scale(scale: float64): void
         is_emitting(): boolean
-        get_amount(): number /*i64*/
-        get_lifetime(): number /*f64*/
+        get_amount(): int64
+        get_lifetime(): float64
         get_one_shot(): boolean
-        get_pre_process_time(): number /*f64*/
-        get_explosiveness_ratio(): number /*f64*/
-        get_randomness_ratio(): number /*f64*/
-        get_lifetime_randomness(): number /*f64*/
+        get_pre_process_time(): float64
+        get_explosiveness_ratio(): float64
+        get_randomness_ratio(): float64
+        get_lifetime_randomness(): float64
         get_use_local_coordinates(): boolean
-        get_fixed_fps(): number /*i64*/
+        get_fixed_fps(): int64
         get_fractional_delta(): boolean
-        get_speed_scale(): number /*f64*/
+        get_speed_scale(): float64
         set_draw_order(order: CPUParticles2D.DrawOrder): void
         get_draw_order(): CPUParticles2D.DrawOrder
         set_texture(texture: Texture2D): void
@@ -6177,20 +6177,20 @@ declare module "godot" {
         restart(): void
         set_direction(direction: Vector2): void
         get_direction(): Vector2
-        set_spread(spread: number /*f64*/): void
-        get_spread(): number /*f64*/
+        set_spread(spread: float64): void
+        get_spread(): float64
         
         /** Sets the minimum value for the given parameter. */
-        set_param_min(param: CPUParticles2D.Parameter, value: number /*f64*/): void
+        set_param_min(param: CPUParticles2D.Parameter, value: float64): void
         
         /** Returns the minimum value range for the given parameter. */
-        get_param_min(param: CPUParticles2D.Parameter): number /*f64*/
+        get_param_min(param: CPUParticles2D.Parameter): float64
         
         /** Sets the maximum value for the given parameter. */
-        set_param_max(param: CPUParticles2D.Parameter, value: number /*f64*/): void
+        set_param_max(param: CPUParticles2D.Parameter, value: float64): void
         
         /** Returns the maximum value range for the given parameter. */
-        get_param_max(param: CPUParticles2D.Parameter): number /*f64*/
+        get_param_max(param: CPUParticles2D.Parameter): float64
         
         /** Sets the [Curve] of the parameter specified by [enum Parameter]. */
         set_param_curve(param: CPUParticles2D.Parameter, curve: Curve): void
@@ -6211,8 +6211,8 @@ declare module "godot" {
         get_particle_flag(particle_flag: CPUParticles2D.ParticleFlags): boolean
         set_emission_shape(shape: CPUParticles2D.EmissionShape): void
         get_emission_shape(): CPUParticles2D.EmissionShape
-        set_emission_sphere_radius(radius: number /*f64*/): void
-        get_emission_sphere_radius(): number /*f64*/
+        set_emission_sphere_radius(radius: float64): void
+        get_emission_sphere_radius(): float64
         set_emission_rect_extents(extents: Vector2): void
         get_emission_rect_extents(): Vector2
         set_emission_points(array: PackedVector2Array): void
@@ -6238,40 +6238,40 @@ declare module "godot" {
         set emitting(value: boolean)
         
         /** Number of particles emitted in one emission cycle. */
-        get amount(): number /*i64*/
-        set amount(value: number /*i64*/)
+        get amount(): int64
+        set amount(value: int64)
         
         /** Amount of time each particle will exist. */
-        get lifetime(): number /*f64*/
-        set lifetime(value: number /*f64*/)
+        get lifetime(): float64
+        set lifetime(value: float64)
         
         /** If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end. */
         get one_shot(): boolean
         set one_shot(value: boolean)
         
         /** Particle system starts as if it had already run for this many seconds. */
-        get preprocess(): number /*f64*/
-        set preprocess(value: number /*f64*/)
+        get preprocess(): float64
+        set preprocess(value: float64)
         
         /** Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles. */
-        get speed_scale(): number /*f64*/
-        set speed_scale(value: number /*f64*/)
+        get speed_scale(): float64
+        set speed_scale(value: float64)
         
         /** How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins. */
-        get explosiveness(): number /*f64*/
-        set explosiveness(value: number /*f64*/)
+        get explosiveness(): float64
+        set explosiveness(value: float64)
         
         /** Emission lifetime randomness ratio. */
-        get randomness(): number /*f64*/
-        set randomness(value: number /*f64*/)
+        get randomness(): float64
+        set randomness(value: float64)
         
         /** Particle lifetime randomness ratio. */
-        get lifetime_randomness(): number /*f64*/
-        set lifetime_randomness(value: number /*f64*/)
+        get lifetime_randomness(): float64
+        set lifetime_randomness(value: float64)
         
         /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself. */
-        get fixed_fps(): number /*i64*/
-        set fixed_fps(value: number /*i64*/)
+        get fixed_fps(): int64
+        set fixed_fps(value: int64)
         
         /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
         get fract_delta(): boolean
@@ -6282,20 +6282,20 @@ declare module "godot" {
         set local_coords(value: boolean)
         
         /** Particle draw order. Uses [enum DrawOrder] values. */
-        get draw_order(): number /*i64*/
-        set draw_order(value: number /*i64*/)
+        get draw_order(): int64
+        set draw_order(value: int64)
         
         /** Particle texture. If `null`, particles will be squares. */
         get texture(): Texture2D
         set texture(value: Texture2D)
         
         /** Particles will be emitted inside this region. See [enum EmissionShape] for possible values. */
-        get emission_shape(): number /*i64*/
-        set emission_shape(value: number /*i64*/)
+        get emission_shape(): int64
+        set emission_shape(value: int64)
         
         /** The sphere's radius if [member emission_shape] is set to [constant EMISSION_SHAPE_SPHERE]. */
-        get emission_sphere_radius(): number /*f64*/
-        set emission_sphere_radius(value: number /*f64*/)
+        get emission_sphere_radius(): float64
+        set emission_sphere_radius(value: float64)
         
         /** The rectangle's extents if [member emission_shape] is set to [constant EMISSION_SHAPE_RECTANGLE]. */
         get emission_rect_extents(): Vector2
@@ -6318,8 +6318,8 @@ declare module "godot" {
         set direction(value: Vector2)
         
         /** Each particle's initial direction range from `+spread` to `-spread` degrees. */
-        get spread(): number /*f64*/
-        set spread(value: number /*f64*/)
+        get spread(): float64
+        set spread(value: float64)
         
         /** Gravity applied to every particle. */
         get gravity(): Vector2
@@ -6456,29 +6456,29 @@ declare module "godot" {
     class CPUParticles3D extends GeometryInstance3D {
         constructor(identifier?: any)
         set_emitting(emitting: boolean): void
-        set_amount(amount: number /*i64*/): void
-        set_lifetime(secs: number /*f64*/): void
+        set_amount(amount: int64): void
+        set_lifetime(secs: float64): void
         set_one_shot(enable: boolean): void
-        set_pre_process_time(secs: number /*f64*/): void
-        set_explosiveness_ratio(ratio: number /*f64*/): void
-        set_randomness_ratio(ratio: number /*f64*/): void
-        set_lifetime_randomness(random: number /*f64*/): void
+        set_pre_process_time(secs: float64): void
+        set_explosiveness_ratio(ratio: float64): void
+        set_randomness_ratio(ratio: float64): void
+        set_lifetime_randomness(random: float64): void
         set_use_local_coordinates(enable: boolean): void
-        set_fixed_fps(fps: number /*i64*/): void
+        set_fixed_fps(fps: int64): void
         set_fractional_delta(enable: boolean): void
-        set_speed_scale(scale: number /*f64*/): void
+        set_speed_scale(scale: float64): void
         is_emitting(): boolean
-        get_amount(): number /*i64*/
-        get_lifetime(): number /*f64*/
+        get_amount(): int64
+        get_lifetime(): float64
         get_one_shot(): boolean
-        get_pre_process_time(): number /*f64*/
-        get_explosiveness_ratio(): number /*f64*/
-        get_randomness_ratio(): number /*f64*/
-        get_lifetime_randomness(): number /*f64*/
+        get_pre_process_time(): float64
+        get_explosiveness_ratio(): float64
+        get_randomness_ratio(): float64
+        get_lifetime_randomness(): float64
         get_use_local_coordinates(): boolean
-        get_fixed_fps(): number /*i64*/
+        get_fixed_fps(): int64
         get_fractional_delta(): boolean
-        get_speed_scale(): number /*f64*/
+        get_speed_scale(): float64
         set_draw_order(order: CPUParticles3D.DrawOrder): void
         get_draw_order(): CPUParticles3D.DrawOrder
         set_mesh(mesh: Mesh): void
@@ -6488,22 +6488,22 @@ declare module "godot" {
         restart(): void
         set_direction(direction: Vector3): void
         get_direction(): Vector3
-        set_spread(degrees: number /*f64*/): void
-        get_spread(): number /*f64*/
-        set_flatness(amount: number /*f64*/): void
-        get_flatness(): number /*f64*/
+        set_spread(degrees: float64): void
+        get_spread(): float64
+        set_flatness(amount: float64): void
+        get_flatness(): float64
         
         /** Sets the minimum value for the given parameter. */
-        set_param_min(param: CPUParticles3D.Parameter, value: number /*f64*/): void
+        set_param_min(param: CPUParticles3D.Parameter, value: float64): void
         
         /** Returns the minimum value range for the given parameter. */
-        get_param_min(param: CPUParticles3D.Parameter): number /*f64*/
+        get_param_min(param: CPUParticles3D.Parameter): float64
         
         /** Sets the maximum value for the given parameter. */
-        set_param_max(param: CPUParticles3D.Parameter, value: number /*f64*/): void
+        set_param_max(param: CPUParticles3D.Parameter, value: float64): void
         
         /** Returns the maximum value range for the given parameter. */
-        get_param_max(param: CPUParticles3D.Parameter): number /*f64*/
+        get_param_max(param: CPUParticles3D.Parameter): float64
         
         /** Sets the [Curve] of the parameter specified by [enum Parameter]. */
         set_param_curve(param: CPUParticles3D.Parameter, curve: Curve): void
@@ -6524,8 +6524,8 @@ declare module "godot" {
         get_particle_flag(particle_flag: CPUParticles3D.ParticleFlags): boolean
         set_emission_shape(shape: CPUParticles3D.EmissionShape): void
         get_emission_shape(): CPUParticles3D.EmissionShape
-        set_emission_sphere_radius(radius: number /*f64*/): void
-        get_emission_sphere_radius(): number /*f64*/
+        set_emission_sphere_radius(radius: float64): void
+        get_emission_sphere_radius(): float64
         set_emission_box_extents(extents: Vector3): void
         get_emission_box_extents(): Vector3
         set_emission_points(array: PackedVector3Array): void
@@ -6536,12 +6536,12 @@ declare module "godot" {
         get_emission_colors(): PackedColorArray
         set_emission_ring_axis(axis: Vector3): void
         get_emission_ring_axis(): Vector3
-        set_emission_ring_height(height: number /*f64*/): void
-        get_emission_ring_height(): number /*f64*/
-        set_emission_ring_radius(radius: number /*f64*/): void
-        get_emission_ring_radius(): number /*f64*/
-        set_emission_ring_inner_radius(inner_radius: number /*f64*/): void
-        get_emission_ring_inner_radius(): number /*f64*/
+        set_emission_ring_height(height: float64): void
+        get_emission_ring_height(): float64
+        set_emission_ring_radius(radius: float64): void
+        get_emission_ring_radius(): float64
+        set_emission_ring_inner_radius(inner_radius: float64): void
+        get_emission_ring_inner_radius(): float64
         get_gravity(): Vector3
         set_gravity(accel_vec: Vector3): void
         get_split_scale(): boolean
@@ -6561,40 +6561,40 @@ declare module "godot" {
         set emitting(value: boolean)
         
         /** Number of particles emitted in one emission cycle. */
-        get amount(): number /*i64*/
-        set amount(value: number /*i64*/)
+        get amount(): int64
+        set amount(value: int64)
         
         /** Amount of time each particle will exist. */
-        get lifetime(): number /*f64*/
-        set lifetime(value: number /*f64*/)
+        get lifetime(): float64
+        set lifetime(value: float64)
         
         /** If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end. */
         get one_shot(): boolean
         set one_shot(value: boolean)
         
         /** Particle system starts as if it had already run for this many seconds. */
-        get preprocess(): number /*f64*/
-        set preprocess(value: number /*f64*/)
+        get preprocess(): float64
+        set preprocess(value: float64)
         
         /** Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles. */
-        get speed_scale(): number /*f64*/
-        set speed_scale(value: number /*f64*/)
+        get speed_scale(): float64
+        set speed_scale(value: float64)
         
         /** How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins. */
-        get explosiveness(): number /*f64*/
-        set explosiveness(value: number /*f64*/)
+        get explosiveness(): float64
+        set explosiveness(value: float64)
         
         /** Emission lifetime randomness ratio. */
-        get randomness(): number /*f64*/
-        set randomness(value: number /*f64*/)
+        get randomness(): float64
+        set randomness(value: float64)
         
         /** Particle lifetime randomness ratio. */
-        get lifetime_randomness(): number /*f64*/
-        set lifetime_randomness(value: number /*f64*/)
+        get lifetime_randomness(): float64
+        set lifetime_randomness(value: float64)
         
         /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the particle system itself. */
-        get fixed_fps(): number /*i64*/
-        set fixed_fps(value: number /*i64*/)
+        get fixed_fps(): int64
+        set fixed_fps(value: int64)
         
         /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
         get fract_delta(): boolean
@@ -6605,20 +6605,20 @@ declare module "godot" {
         set local_coords(value: boolean)
         
         /** Particle draw order. Uses [enum DrawOrder] values. */
-        get draw_order(): number /*i64*/
-        set draw_order(value: number /*i64*/)
+        get draw_order(): int64
+        set draw_order(value: int64)
         
         /** The [Mesh] used for each particle. If `null`, particles will be spheres. */
         get mesh(): Mesh
         set mesh(value: Mesh)
         
         /** Particles will be emitted inside this region. See [enum EmissionShape] for possible values. */
-        get emission_shape(): number /*i64*/
-        set emission_shape(value: number /*i64*/)
+        get emission_shape(): int64
+        set emission_shape(value: int64)
         
         /** The sphere's radius if [enum EmissionShape] is set to [constant EMISSION_SHAPE_SPHERE]. */
-        get emission_sphere_radius(): number /*f64*/
-        set emission_sphere_radius(value: number /*f64*/)
+        get emission_sphere_radius(): float64
+        set emission_sphere_radius(value: float64)
         
         /** The rectangle's extents if [member emission_shape] is set to [constant EMISSION_SHAPE_BOX]. */
         get emission_box_extents(): Vector3
@@ -6644,28 +6644,28 @@ declare module "godot" {
         set emission_ring_axis(value: Vector3)
         
         /** The height of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_height(): number /*f64*/
-        set emission_ring_height(value: number /*f64*/)
+        get emission_ring_height(): float64
+        set emission_ring_height(value: float64)
         
         /** The radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_radius(): number /*f64*/
-        set emission_ring_radius(value: number /*f64*/)
+        get emission_ring_radius(): float64
+        set emission_ring_radius(value: float64)
         
         /** The inner radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_inner_radius(): number /*f64*/
-        set emission_ring_inner_radius(value: number /*f64*/)
+        get emission_ring_inner_radius(): float64
+        set emission_ring_inner_radius(value: float64)
         
         /** Unit vector specifying the particles' emission direction. */
         get direction(): Vector3
         set direction(value: Vector3)
         
         /** Each particle's initial direction range from `+spread` to `-spread` degrees. Applied to X/Z plane and Y/Z planes. */
-        get spread(): number /*f64*/
-        set spread(value: number /*f64*/)
+        get spread(): float64
+        set spread(value: float64)
         
         /** Amount of [member spread] in Y/Z plane. A value of `1` restricts particles to X/Z plane. */
-        get flatness(): number /*f64*/
-        set flatness(value: number /*f64*/)
+        get flatness(): float64
+        set flatness(value: float64)
         
         /** Gravity applied to every particle. */
         get gravity(): Vector3
@@ -6752,12 +6752,12 @@ declare module "godot" {
      */
     class CSGCylinder3D extends CSGPrimitive3D {
         constructor(identifier?: any)
-        set_radius(radius: number /*f64*/): void
-        get_radius(): number /*f64*/
-        set_height(height: number /*f64*/): void
-        get_height(): number /*f64*/
-        set_sides(sides: number /*i64*/): void
-        get_sides(): number /*i64*/
+        set_radius(radius: float64): void
+        get_radius(): float64
+        set_height(height: float64): void
+        get_height(): float64
+        set_sides(sides: int64): void
+        get_sides(): int64
         set_cone(cone: boolean): void
         is_cone(): boolean
         set_material(material: Material): void
@@ -6766,16 +6766,16 @@ declare module "godot" {
         get_smooth_faces(): boolean
         
         /** The radius of the cylinder. */
-        get radius(): number /*f64*/
-        set radius(value: number /*f64*/)
+        get radius(): float64
+        set radius(value: float64)
         
         /** The height of the cylinder. */
-        get height(): number /*f64*/
-        set height(value: number /*f64*/)
+        get height(): float64
+        set height(value: float64)
         
         /** The number of sides of the cylinder, the higher this number the more detail there will be in the cylinder. */
-        get sides(): number /*i64*/
-        set sides(value: number /*i64*/)
+        get sides(): int64
+        set sides(value: int64)
         
         /** If `true` a cone is created, the [member radius] will only apply to one side. */
         get cone(): boolean
@@ -6857,28 +6857,28 @@ declare module "godot" {
         get_polygon(): PackedVector2Array
         set_mode(mode: CSGPolygon3D.Mode): void
         get_mode(): CSGPolygon3D.Mode
-        set_depth(depth: number /*f64*/): void
-        get_depth(): number /*f64*/
-        set_spin_degrees(degrees: number /*f64*/): void
-        get_spin_degrees(): number /*f64*/
-        set_spin_sides(spin_sides: number /*i64*/): void
-        get_spin_sides(): number /*i64*/
+        set_depth(depth: float64): void
+        get_depth(): float64
+        set_spin_degrees(degrees: float64): void
+        get_spin_degrees(): float64
+        set_spin_sides(spin_sides: int64): void
+        get_spin_sides(): int64
         set_path_node(path: NodePath): void
         get_path_node(): NodePath
         set_path_interval_type(interval_type: CSGPolygon3D.PathIntervalType): void
         get_path_interval_type(): CSGPolygon3D.PathIntervalType
-        set_path_interval(interval: number /*f64*/): void
-        get_path_interval(): number /*f64*/
-        set_path_simplify_angle(degrees: number /*f64*/): void
-        get_path_simplify_angle(): number /*f64*/
+        set_path_interval(interval: float64): void
+        get_path_interval(): float64
+        set_path_simplify_angle(degrees: float64): void
+        get_path_simplify_angle(): float64
         set_path_rotation(path_rotation: CSGPolygon3D.PathRotation): void
         get_path_rotation(): CSGPolygon3D.PathRotation
         set_path_local(enable: boolean): void
         is_path_local(): boolean
         set_path_continuous_u(enable: boolean): void
         is_path_continuous_u(): boolean
-        set_path_u_distance(distance: number /*f64*/): void
-        get_path_u_distance(): number /*f64*/
+        set_path_u_distance(distance: float64): void
+        get_path_u_distance(): float64
         set_path_joined(enable: boolean): void
         is_path_joined(): boolean
         set_material(material: Material): void
@@ -6896,40 +6896,40 @@ declare module "godot" {
         set polygon(value: PackedVector2Array)
         
         /** The [member mode] used to extrude the [member polygon]. */
-        get mode(): number /*i64*/
-        set mode(value: number /*i64*/)
+        get mode(): int64
+        set mode(value: int64)
         
         /** When [member mode] is [constant MODE_DEPTH], the depth of the extrusion. */
-        get depth(): number /*f64*/
-        set depth(value: number /*f64*/)
+        get depth(): float64
+        set depth(value: float64)
         
         /** When [member mode] is [constant MODE_SPIN], the total number of degrees the [member polygon] is rotated when extruding. */
-        get spin_degrees(): number /*f64*/
-        set spin_degrees(value: number /*f64*/)
+        get spin_degrees(): float64
+        set spin_degrees(value: float64)
         
         /** When [member mode] is [constant MODE_SPIN], the number of extrusions made. */
-        get spin_sides(): number /*i64*/
-        set spin_sides(value: number /*i64*/)
+        get spin_sides(): int64
+        set spin_sides(value: int64)
         
         /** When [member mode] is [constant MODE_PATH], the location of the [Path3D] object used to extrude the [member polygon]. */
         get path_node(): NodePath
         set path_node(value: NodePath)
         
         /** When [member mode] is [constant MODE_PATH], this will determine if the interval should be by distance ([constant PATH_INTERVAL_DISTANCE]) or subdivision fractions ([constant PATH_INTERVAL_SUBDIVIDE]). */
-        get path_interval_type(): number /*i64*/
-        set path_interval_type(value: number /*i64*/)
+        get path_interval_type(): int64
+        set path_interval_type(value: int64)
         
         /** When [member mode] is [constant MODE_PATH], the path interval or ratio of path points to extrusions. */
-        get path_interval(): number /*f64*/
-        set path_interval(value: number /*f64*/)
+        get path_interval(): float64
+        set path_interval(value: float64)
         
         /** When [member mode] is [constant MODE_PATH], extrusions that are less than this angle, will be merged together to reduce polygon count. */
-        get path_simplify_angle(): number /*f64*/
-        set path_simplify_angle(value: number /*f64*/)
+        get path_simplify_angle(): float64
+        set path_simplify_angle(value: float64)
         
         /** When [member mode] is [constant MODE_PATH], the [enum PathRotation] method used to rotate the [member polygon] as it is extruded. */
-        get path_rotation(): number /*i64*/
-        set path_rotation(value: number /*i64*/)
+        get path_rotation(): int64
+        set path_rotation(value: int64)
         
         /** When [member mode] is [constant MODE_PATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the starting point for the extrusions, not the [Transform3D] of the [member path_node]. */
         get path_local(): boolean
@@ -6940,8 +6940,8 @@ declare module "godot" {
         set path_continuous_u(value: boolean)
         
         /** When [member mode] is [constant MODE_PATH], this is the distance along the path, in meters, the texture coordinates will tile. When set to 0, texture coordinates will match geometry exactly with no tiling. */
-        get path_u_distance(): number /*f64*/
-        set path_u_distance(value: number /*f64*/)
+        get path_u_distance(): float64
+        set path_u_distance(value: float64)
         
         /** When [member mode] is [constant MODE_PATH], if `true` the ends of the path are joined, by adding an extrusion between the last and first points of the path. */
         get path_joined(): boolean
@@ -6992,28 +6992,28 @@ declare module "godot" {
         is_root_shape(): boolean
         set_operation(operation: CSGShape3D.Operation): void
         get_operation(): CSGShape3D.Operation
-        set_snap(snap: number /*f64*/): void
-        get_snap(): number /*f64*/
+        set_snap(snap: float64): void
+        get_snap(): float64
         set_use_collision(operation: boolean): void
         is_using_collision(): boolean
-        set_collision_layer(layer: number /*i64*/): void
-        get_collision_layer(): number /*i64*/
-        set_collision_mask(mask: number /*i64*/): void
-        get_collision_mask(): number /*i64*/
+        set_collision_layer(layer: int64): void
+        get_collision_layer(): int64
+        set_collision_mask(mask: int64): void
+        get_collision_mask(): int64
         
         /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: number /*i64*/, value: boolean): void
+        set_collision_mask_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: number /*i64*/): boolean
+        get_collision_mask_value(layer_number: int64): boolean
         
         /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: number /*i64*/, value: boolean): void
+        set_collision_layer_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: number /*i64*/): boolean
-        set_collision_priority(priority: number /*f64*/): void
-        get_collision_priority(): number /*f64*/
+        get_collision_layer_value(layer_number: int64): boolean
+        set_collision_priority(priority: float64): void
+        get_collision_priority(): float64
         set_calculate_tangents(enabled: boolean): void
         is_calculating_tangents(): boolean
         
@@ -7021,12 +7021,12 @@ declare module "godot" {
         get_meshes(): Array
         
         /** The operation that is performed on this shape. This is ignored for the first CSG child node as the operation is between this node and the previous child of this nodes parent. */
-        get operation(): number /*i64*/
-        set operation(value: number /*i64*/)
+        get operation(): int64
+        set operation(value: int64)
         
         /** Snap makes the mesh vertices snap to a given distance so that the faces of two meshes can be perfectly aligned. A lower value results in greater precision but may be harder to adjust. */
-        get snap(): number /*f64*/
-        set snap(value: number /*f64*/)
+        get snap(): float64
+        set snap(value: float64)
         
         /** Calculate tangents for the CSG shape which allows the use of normal maps. This is only applied on the root shape, this setting is ignored on any child. */
         get calculate_tangents(): boolean
@@ -7040,16 +7040,16 @@ declare module "godot" {
          *  Collidable objects can exist in any of 32 different layers. These layers work like a tagging system, and are not visual. A collidable can use these layers to select with which objects it can collide, using the collision_mask property.  
          *  A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
          */
-        get collision_layer(): number /*i64*/
-        set collision_layer(value: number /*i64*/)
+        get collision_layer(): int64
+        set collision_layer(value: int64)
         
         /** The physics layers this CSG shape scans for collisions. Only effective if [member use_collision] is `true`. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): number /*i64*/
-        set collision_mask(value: number /*i64*/)
+        get collision_mask(): int64
+        set collision_mask(value: int64)
         
         /** The priority used to solve colliding when occurring penetration. Only effective if [member use_collision] is `true`. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        get collision_priority(): number /*f64*/
-        set collision_priority(value: number /*f64*/)
+        get collision_priority(): float64
+        set collision_priority(value: float64)
     }
     class CSGShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -7060,28 +7060,28 @@ declare module "godot" {
      */
     class CSGSphere3D extends CSGPrimitive3D {
         constructor(identifier?: any)
-        set_radius(radius: number /*f64*/): void
-        get_radius(): number /*f64*/
-        set_radial_segments(radial_segments: number /*i64*/): void
-        get_radial_segments(): number /*i64*/
-        set_rings(rings: number /*i64*/): void
-        get_rings(): number /*i64*/
+        set_radius(radius: float64): void
+        get_radius(): float64
+        set_radial_segments(radial_segments: int64): void
+        get_radial_segments(): int64
+        set_rings(rings: int64): void
+        get_rings(): int64
         set_smooth_faces(smooth_faces: boolean): void
         get_smooth_faces(): boolean
         set_material(material: Material): void
         get_material(): Material
         
         /** Radius of the sphere. */
-        get radius(): number /*f64*/
-        set radius(value: number /*f64*/)
+        get radius(): float64
+        set radius(value: float64)
         
         /** Number of vertical slices for the sphere. */
-        get radial_segments(): number /*i64*/
-        set radial_segments(value: number /*i64*/)
+        get radial_segments(): int64
+        set radial_segments(value: int64)
         
         /** Number of horizontal slices for the sphere. */
-        get rings(): number /*i64*/
-        set rings(value: number /*i64*/)
+        get rings(): int64
+        set rings(value: int64)
         
         /** If `true` the normals of the sphere are set to give a smooth effect making the sphere seem rounded. If `false` the sphere will have a flat shaded look. */
         get smooth_faces(): boolean
@@ -7097,34 +7097,34 @@ declare module "godot" {
      */
     class CSGTorus3D extends CSGPrimitive3D {
         constructor(identifier?: any)
-        set_inner_radius(radius: number /*f64*/): void
-        get_inner_radius(): number /*f64*/
-        set_outer_radius(radius: number /*f64*/): void
-        get_outer_radius(): number /*f64*/
-        set_sides(sides: number /*i64*/): void
-        get_sides(): number /*i64*/
-        set_ring_sides(sides: number /*i64*/): void
-        get_ring_sides(): number /*i64*/
+        set_inner_radius(radius: float64): void
+        get_inner_radius(): float64
+        set_outer_radius(radius: float64): void
+        get_outer_radius(): float64
+        set_sides(sides: int64): void
+        get_sides(): int64
+        set_ring_sides(sides: int64): void
+        get_ring_sides(): int64
         set_material(material: Material): void
         get_material(): Material
         set_smooth_faces(smooth_faces: boolean): void
         get_smooth_faces(): boolean
         
         /** The inner radius of the torus. */
-        get inner_radius(): number /*f64*/
-        set inner_radius(value: number /*f64*/)
+        get inner_radius(): float64
+        set inner_radius(value: float64)
         
         /** The outer radius of the torus. */
-        get outer_radius(): number /*f64*/
-        set outer_radius(value: number /*f64*/)
+        get outer_radius(): float64
+        set outer_radius(value: float64)
         
         /** The number of slices the torus is constructed of. */
-        get sides(): number /*i64*/
-        set sides(value: number /*i64*/)
+        get sides(): int64
+        set sides(value: int64)
         
         /** The number of edges each ring of the torus is constructed of. */
-        get ring_sides(): number /*i64*/
-        set ring_sides(value: number /*i64*/)
+        get ring_sides(): int64
+        set ring_sides(value: int64)
         
         /** If `true` the normals of the torus are set to give a smooth effect making the torus seem rounded. If `false` the torus will have a flat shaded look. */
         get smooth_faces(): boolean
@@ -7144,7 +7144,7 @@ declare module "godot" {
          *  **Example:**  
          *    
          */
-        set_delay(delay: number /*f64*/): CallbackTweener
+        set_delay(delay: float64): CallbackTweener
     }
     namespace Camera2D {
         enum AnchorMode {
@@ -7188,26 +7188,26 @@ declare module "godot" {
         _make_current(_unnamed_arg0: Object): void
         
         /** Sets the camera limit for the specified [enum Side]. See also [member limit_bottom], [member limit_top], [member limit_left], and [member limit_right]. */
-        set_limit(margin: Side, limit: number /*i64*/): void
+        set_limit(margin: Side, limit: int64): void
         
         /** Returns the camera limit for the specified [enum Side]. See also [member limit_bottom], [member limit_top], [member limit_left], and [member limit_right]. */
-        get_limit(margin: Side): number /*i64*/
+        get_limit(margin: Side): int64
         set_limit_smoothing_enabled(limit_smoothing_enabled: boolean): void
         is_limit_smoothing_enabled(): boolean
         set_drag_vertical_enabled(enabled: boolean): void
         is_drag_vertical_enabled(): boolean
         set_drag_horizontal_enabled(enabled: boolean): void
         is_drag_horizontal_enabled(): boolean
-        set_drag_vertical_offset(offset: number /*f64*/): void
-        get_drag_vertical_offset(): number /*f64*/
-        set_drag_horizontal_offset(offset: number /*f64*/): void
-        get_drag_horizontal_offset(): number /*f64*/
+        set_drag_vertical_offset(offset: float64): void
+        get_drag_vertical_offset(): float64
+        set_drag_horizontal_offset(offset: float64): void
+        get_drag_horizontal_offset(): float64
         
         /** Sets the specified [enum Side]'s margin. See also [member drag_bottom_margin], [member drag_top_margin], [member drag_left_margin], and [member drag_right_margin]. */
-        set_drag_margin(margin: Side, drag_margin: number /*f64*/): void
+        set_drag_margin(margin: Side, drag_margin: float64): void
         
         /** Returns the specified [enum Side]'s margin. See also [member drag_bottom_margin], [member drag_top_margin], [member drag_left_margin], and [member drag_right_margin]. */
-        get_drag_margin(margin: Side): number /*f64*/
+        get_drag_margin(margin: Side): float64
         
         /** Returns this camera's target position, in global coordinates.  
          *      
@@ -7224,14 +7224,14 @@ declare module "godot" {
         get_zoom(): Vector2
         set_custom_viewport(viewport: Node): void
         get_custom_viewport(): Node
-        set_position_smoothing_speed(position_smoothing_speed: number /*f64*/): void
-        get_position_smoothing_speed(): number /*f64*/
+        set_position_smoothing_speed(position_smoothing_speed: float64): void
+        get_position_smoothing_speed(): float64
         set_position_smoothing_enabled(position_smoothing_speed: boolean): void
         is_position_smoothing_enabled(): boolean
         set_rotation_smoothing_enabled(enabled: boolean): void
         is_rotation_smoothing_enabled(): boolean
-        set_rotation_smoothing_speed(speed: number /*f64*/): void
-        get_rotation_smoothing_speed(): number /*f64*/
+        set_rotation_smoothing_speed(speed: float64): void
+        get_rotation_smoothing_speed(): float64
         
         /** Forces the camera to update scroll immediately. */
         force_update_scroll(): void
@@ -7243,7 +7243,7 @@ declare module "godot" {
         
         /** Aligns the camera to the tracked node. */
         align(): void
-        _set_old_smoothing(follow_smoothing: number /*f64*/): void
+        _set_old_smoothing(follow_smoothing: float64): void
         set_screen_drawing_enabled(screen_drawing_enabled: boolean): void
         is_screen_drawing_enabled(): boolean
         set_limit_drawing_enabled(limit_drawing_enabled: boolean): void
@@ -7256,8 +7256,8 @@ declare module "godot" {
         set offset(value: Vector2)
         
         /** The Camera2D's anchor point. See [enum AnchorMode] constants. */
-        get anchor_mode(): number /*i64*/
-        set anchor_mode(value: number /*i64*/)
+        get anchor_mode(): int64
+        set anchor_mode(value: int64)
         
         /** If `true`, the camera's rendered view is not affected by its [member Node2D.rotation] and [member Node2D.global_rotation]. */
         get ignore_rotation(): boolean
@@ -7281,8 +7281,8 @@ declare module "godot" {
         set custom_viewport(value: Viewport)
         
         /** The camera's process callback. See [enum Camera2DProcessCallback]. */
-        get process_callback(): number /*i64*/
-        set process_callback(value: number /*i64*/)
+        get process_callback(): int64
+        set process_callback(value: int64)
         
         /** If `true`, the camera smoothly stops when reaches its limits.  
          *  This property has no effect if [member position_smoothing_enabled] is `false`.  
@@ -7297,8 +7297,8 @@ declare module "godot" {
         set position_smoothing_enabled(value: boolean)
         
         /** Speed in pixels per second of the camera's smoothing effect when [member position_smoothing_enabled] is `true`. */
-        get position_smoothing_speed(): number /*f64*/
-        set position_smoothing_speed(value: number /*f64*/)
+        get position_smoothing_speed(): float64
+        set position_smoothing_speed(value: float64)
         
         /** If `true`, the camera's view smoothly rotates, via asymptotic smoothing, to align with its target rotation at [member rotation_smoothing_speed].  
          *      
@@ -7308,8 +7308,8 @@ declare module "godot" {
         set rotation_smoothing_enabled(value: boolean)
         
         /** The angular, asymptotic speed of the camera's rotation smoothing effect when [member rotation_smoothing_enabled] is `true`. */
-        get rotation_smoothing_speed(): number /*f64*/
-        set rotation_smoothing_speed(value: number /*f64*/)
+        get rotation_smoothing_speed(): float64
+        set rotation_smoothing_speed(value: float64)
         
         /** If `true`, the camera only moves when reaching the horizontal (left and right) drag margins. If `false`, the camera moves horizontally regardless of margins. */
         get drag_horizontal_enabled(): boolean
@@ -7323,15 +7323,15 @@ declare module "godot" {
          *      
          *  **Note:** Used to set the initial horizontal drag offset; determine the current offset; or force the current offset. It's not automatically updated when [member drag_horizontal_enabled] is `true` or the drag margins are changed.  
          */
-        get drag_horizontal_offset(): number /*f64*/
-        set drag_horizontal_offset(value: number /*f64*/)
+        get drag_horizontal_offset(): float64
+        set drag_horizontal_offset(value: float64)
         
         /** The relative vertical drag offset of the camera between the bottom (`-1`) and top (`1`) drag margins.  
          *      
          *  **Note:** Used to set the initial vertical drag offset; determine the current offset; or force the current offset. It's not automatically updated when [member drag_vertical_enabled] is `true` or the drag margins are changed.  
          */
-        get drag_vertical_offset(): number /*f64*/
-        set drag_vertical_offset(value: number /*f64*/)
+        get drag_vertical_offset(): float64
+        set drag_vertical_offset(value: float64)
         
         /** If `true`, draws the camera's screen rectangle in the editor. */
         get editor_draw_screen(): boolean
@@ -7403,16 +7403,16 @@ declare module "godot" {
         is_position_behind(world_point: Vector3): boolean
         
         /** Returns the 3D point in world space that maps to the given 2D coordinate in the [Viewport] rectangle on a plane that is the given [param z_depth] distance into the scene away from the camera. */
-        project_position(screen_point: Vector2, z_depth: number /*f64*/): Vector3
+        project_position(screen_point: Vector2, z_depth: float64): Vector3
         
         /** Sets the camera projection to perspective mode (see [constant PROJECTION_PERSPECTIVE]), by specifying a [param fov] (field of view) angle in degrees, and the [param z_near] and [param z_far] clip planes in world space units. */
-        set_perspective(fov: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): void
+        set_perspective(fov: float64, z_near: float64, z_far: float64): void
         
         /** Sets the camera projection to orthogonal mode (see [constant PROJECTION_ORTHOGONAL]), by specifying a [param size], and the [param z_near] and [param z_far] clip planes in world space units. (As a hint, 2D games often use this projection, with values specified in pixels.) */
-        set_orthogonal(size: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): void
+        set_orthogonal(size: float64, z_near: float64, z_far: float64): void
         
         /** Sets the camera projection to frustum mode (see [constant PROJECTION_FRUSTUM]), by specifying a [param size], an [param offset], and the [param z_near] and [param z_far] clip planes in world space units. See also [member frustum_offset]. */
-        set_frustum(size: number /*f64*/, offset: Vector2, z_near: number /*f64*/, z_far: number /*f64*/): void
+        set_frustum(size: float64, offset: Vector2, z_near: float64, z_far: float64): void
         
         /** Makes this camera the current camera for the [Viewport] (see class description). If the camera node is outside the scene tree, it will attempt to become current once it's added. */
         make_current(): void
@@ -7427,24 +7427,24 @@ declare module "godot" {
         
         /** Returns the projection matrix that this camera uses to render to its associated viewport. The camera must be part of the scene tree to function. */
         get_camera_projection(): Projection
-        get_fov(): number /*f64*/
+        get_fov(): float64
         get_frustum_offset(): Vector2
-        get_size(): number /*f64*/
-        get_far(): number /*f64*/
-        get_near(): number /*f64*/
-        set_fov(fov: number /*f64*/): void
+        get_size(): float64
+        get_far(): float64
+        get_near(): float64
+        set_fov(fov: float64): void
         set_frustum_offset(offset: Vector2): void
-        set_size(size: number /*f64*/): void
-        set_far(far: number /*f64*/): void
-        set_near(near: number /*f64*/): void
+        set_size(size: float64): void
+        set_far(far: float64): void
+        set_near(near: float64): void
         get_projection(): Camera3D.ProjectionType
         set_projection(mode: Camera3D.ProjectionType): void
-        set_h_offset(offset: number /*f64*/): void
-        get_h_offset(): number /*f64*/
-        set_v_offset(offset: number /*f64*/): void
-        get_v_offset(): number /*f64*/
-        set_cull_mask(mask: number /*i64*/): void
-        get_cull_mask(): number /*i64*/
+        set_h_offset(offset: float64): void
+        get_h_offset(): float64
+        set_v_offset(offset: float64): void
+        get_v_offset(): float64
+        set_cull_mask(mask: int64): void
+        get_cull_mask(): int64
         set_environment(env: Environment): void
         get_environment(): Environment
         set_attributes(env: CameraAttributes): void
@@ -7467,14 +7467,14 @@ declare module "godot" {
         get_pyramid_shape_rid(): RID
         
         /** Based on [param value], enables or disables the specified layer in the [member cull_mask], given a [param layer_number] between 1 and 20. */
-        set_cull_mask_value(layer_number: number /*i64*/, value: boolean): void
+        set_cull_mask_value(layer_number: int64, value: boolean): void
         
         /** Returns whether or not the specified layer of the [member cull_mask] is enabled, given a [param layer_number] between 1 and 20. */
-        get_cull_mask_value(layer_number: number /*i64*/): boolean
+        get_cull_mask_value(layer_number: int64): boolean
         
         /** The axis to lock during [member fov]/[member size] adjustments. Can be either [constant KEEP_WIDTH] or [constant KEEP_HEIGHT]. */
-        get keep_aspect(): number /*i64*/
-        set keep_aspect(value: number /*i64*/)
+        get keep_aspect(): int64
+        set keep_aspect(value: int64)
         
         /** The culling mask that describes which [member VisualInstance3D.layers] are rendered by this camera. By default, all 20 user-visible layers are rendered.  
          *      
@@ -7483,8 +7483,8 @@ declare module "godot" {
          *      
          *  **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [member GeometryInstance3D.gi_mode] to [constant GeometryInstance3D.GI_MODE_DISABLED] for meshes and [member Light3D.light_bake_mode] to [constant Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.  
          */
-        get cull_mask(): number /*i64*/
-        set cull_mask(value: number /*i64*/)
+        get cull_mask(): int64
+        set cull_mask(value: int64)
         
         /** The [Environment] to use for this camera. */
         get environment(): Environment
@@ -7495,20 +7495,20 @@ declare module "godot" {
         set attributes(value: CameraAttributesPractical | CameraAttributesPhysical)
         
         /** The horizontal (X) offset of the camera viewport. */
-        get h_offset(): number /*f64*/
-        set h_offset(value: number /*f64*/)
+        get h_offset(): float64
+        set h_offset(value: float64)
         
         /** The vertical (Y) offset of the camera viewport. */
-        get v_offset(): number /*f64*/
-        set v_offset(value: number /*f64*/)
+        get v_offset(): float64
+        set v_offset(value: float64)
         
         /** If not [constant DOPPLER_TRACKING_DISABLED], this camera will simulate the [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] for objects changed in particular `_process` methods. See [enum DopplerTracking] for possible values. */
-        get doppler_tracking(): number /*i64*/
-        set doppler_tracking(value: number /*i64*/)
+        get doppler_tracking(): int64
+        set doppler_tracking(value: int64)
         
         /** The camera's projection mode. In [constant PROJECTION_PERSPECTIVE] mode, objects' Z distance from the camera's local space scales their perceived size. */
-        get projection(): number /*i64*/
-        set projection(value: number /*i64*/)
+        get projection(): int64
+        set projection(value: int64)
         
         /** If `true`, the ancestor [Viewport] is currently using this camera.  
          *  If multiple cameras are in the scene, one will always be made current. For example, if two [Camera3D] nodes are present in the scene and only one is current, setting one camera's [member current] to `false` will cause the other camera to be made current.  
@@ -7523,12 +7523,12 @@ declare module "godot" {
          *  - ~107.51 degrees in a 16:9 viewport  
          *  - ~121.63 degrees in a 21:9 viewport  
          */
-        get fov(): number /*f64*/
-        set fov(value: number /*f64*/)
+        get fov(): float64
+        set fov(value: float64)
         
         /** The camera's size in meters measured as the diameter of the width or height, depending on [member keep_aspect]. Only applicable in orthogonal and frustum modes. */
-        get size(): number /*f64*/
-        set size(value: number /*f64*/)
+        get size(): float64
+        set size(value: float64)
         
         /** The camera's frustum offset. This can be changed from the default to create "tilted frustum" effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].  
          *      
@@ -7538,12 +7538,12 @@ declare module "godot" {
         set frustum_offset(value: Vector2)
         
         /** The distance to the near culling boundary for this camera relative to its local Z axis. Lower values allow the camera to see objects more up close to its origin, at the cost of lower precision across the  *entire*  range. Values lower than the default can lead to increased Z-fighting. */
-        get near(): number /*f64*/
-        set near(value: number /*f64*/)
+        get near(): float64
+        set near(value: float64)
         
         /** The distance to the far culling boundary for this camera relative to its local Z axis. Higher values allow the camera to see further away, while decreasing [member far] can improve performance if it results in objects being partially or fully culled. */
-        get far(): number /*f64*/
-        set far(value: number /*f64*/)
+        get far(): float64
+        set far(value: float64)
     }
     class Camera3DEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -7557,36 +7557,36 @@ declare module "godot" {
      */
     class CameraAttributes extends Resource {
         constructor(identifier?: any)
-        set_exposure_multiplier(multiplier: number /*f64*/): void
-        get_exposure_multiplier(): number /*f64*/
-        set_exposure_sensitivity(sensitivity: number /*f64*/): void
-        get_exposure_sensitivity(): number /*f64*/
+        set_exposure_multiplier(multiplier: float64): void
+        get_exposure_multiplier(): float64
+        set_exposure_sensitivity(sensitivity: float64): void
+        get_exposure_sensitivity(): float64
         set_auto_exposure_enabled(enabled: boolean): void
         is_auto_exposure_enabled(): boolean
-        set_auto_exposure_speed(exposure_speed: number /*f64*/): void
-        get_auto_exposure_speed(): number /*f64*/
-        set_auto_exposure_scale(exposure_grey: number /*f64*/): void
-        get_auto_exposure_scale(): number /*f64*/
+        set_auto_exposure_speed(exposure_speed: float64): void
+        get_auto_exposure_speed(): float64
+        set_auto_exposure_scale(exposure_grey: float64): void
+        get_auto_exposure_scale(): float64
         
         /** Sensitivity of camera sensors, measured in ISO. A higher sensitivity results in a brighter image. Only available when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is enabled. When [member auto_exposure_enabled] this can be used as a method of exposure compensation, doubling the value will increase the exposure value (measured in EV100) by 1 stop. */
-        get exposure_sensitivity(): number /*f64*/
-        set exposure_sensitivity(value: number /*f64*/)
+        get exposure_sensitivity(): float64
+        set exposure_sensitivity(value: float64)
         
         /** Multiplier for the exposure amount. A higher value results in a brighter image. */
-        get exposure_multiplier(): number /*f64*/
-        set exposure_multiplier(value: number /*f64*/)
+        get exposure_multiplier(): float64
+        set exposure_multiplier(value: float64)
         
         /** If `true`, enables the tonemapping auto exposure mode of the scene renderer. If `true`, the renderer will automatically determine the exposure setting to adapt to the scene's illumination and the observed light. */
         get auto_exposure_enabled(): boolean
         set auto_exposure_enabled(value: boolean)
         
         /** The scale of the auto exposure effect. Affects the intensity of auto exposure. */
-        get auto_exposure_scale(): number /*f64*/
-        set auto_exposure_scale(value: number /*f64*/)
+        get auto_exposure_scale(): float64
+        set auto_exposure_scale(value: float64)
         
         /** The speed of the auto exposure effect. Affects the time needed for the camera to perform auto exposure. */
-        get auto_exposure_speed(): number /*f64*/
-        set auto_exposure_speed(value: number /*f64*/)
+        get auto_exposure_speed(): float64
+        set auto_exposure_speed(value: float64)
     }
     /** Physically-based camera settings.  
      *  	  
@@ -7594,61 +7594,61 @@ declare module "godot" {
      */
     class CameraAttributesPhysical extends CameraAttributes {
         constructor(identifier?: any)
-        set_aperture(aperture: number /*f64*/): void
-        get_aperture(): number /*f64*/
-        set_shutter_speed(shutter_speed: number /*f64*/): void
-        get_shutter_speed(): number /*f64*/
-        set_focal_length(focal_length: number /*f64*/): void
-        get_focal_length(): number /*f64*/
-        set_focus_distance(focus_distance: number /*f64*/): void
-        get_focus_distance(): number /*f64*/
-        set_near(near: number /*f64*/): void
-        get_near(): number /*f64*/
-        set_far(far: number /*f64*/): void
-        get_far(): number /*f64*/
+        set_aperture(aperture: float64): void
+        get_aperture(): float64
+        set_shutter_speed(shutter_speed: float64): void
+        get_shutter_speed(): float64
+        set_focal_length(focal_length: float64): void
+        get_focal_length(): float64
+        set_focus_distance(focus_distance: float64): void
+        get_focus_distance(): float64
+        set_near(near: float64): void
+        get_near(): float64
+        set_far(far: float64): void
+        get_far(): float64
         
         /** Returns the vertical field of view that corresponds to the [member frustum_focal_length]. This value is calculated internally whenever [member frustum_focal_length] is changed. */
-        get_fov(): number /*f64*/
-        set_auto_exposure_max_exposure_value(exposure_value_max: number /*f64*/): void
-        get_auto_exposure_max_exposure_value(): number /*f64*/
-        set_auto_exposure_min_exposure_value(exposure_value_min: number /*f64*/): void
-        get_auto_exposure_min_exposure_value(): number /*f64*/
+        get_fov(): float64
+        set_auto_exposure_max_exposure_value(exposure_value_max: float64): void
+        get_auto_exposure_max_exposure_value(): float64
+        set_auto_exposure_min_exposure_value(exposure_value_min: float64): void
+        get_auto_exposure_min_exposure_value(): float64
         
         /** Distance from camera of object that will be in focus, measured in meters. Internally this will be clamped to be at least 1 millimeter larger than [member frustum_focal_length]. */
-        get frustum_focus_distance(): number /*f64*/
-        set frustum_focus_distance(value: number /*f64*/)
+        get frustum_focus_distance(): float64
+        set frustum_focus_distance(value: float64)
         
         /** Distance between camera lens and camera aperture, measured in millimeters. Controls field of view and depth of field. A larger focal length will result in a smaller field of view and a narrower depth of field meaning fewer objects will be in focus. A smaller focal length will result in a wider field of view and a larger depth of field meaning more objects will be in focus. When attached to a [Camera3D] as its [member Camera3D.attributes], it will override the [member Camera3D.fov] property and the [member Camera3D.keep_aspect] property. */
-        get frustum_focal_length(): number /*f64*/
-        set frustum_focal_length(value: number /*f64*/)
+        get frustum_focal_length(): float64
+        set frustum_focal_length(value: float64)
         
         /** Override value for [member Camera3D.near]. Used internally when calculating depth of field. When attached to a [Camera3D] as its [member Camera3D.attributes], it will override the [member Camera3D.near] property. */
-        get frustum_near(): number /*f64*/
-        set frustum_near(value: number /*f64*/)
+        get frustum_near(): float64
+        set frustum_near(value: float64)
         
         /** Override value for [member Camera3D.far]. Used internally when calculating depth of field. When attached to a [Camera3D] as its [member Camera3D.attributes], it will override the [member Camera3D.far] property. */
-        get frustum_far(): number /*f64*/
-        set frustum_far(value: number /*f64*/)
+        get frustum_far(): float64
+        set frustum_far(value: float64)
         
         /** Size of the aperture of the camera, measured in f-stops. An f-stop is a unitless ratio between the focal length of the camera and the diameter of the aperture. A high aperture setting will result in a smaller aperture which leads to a dimmer image and sharper focus. A low aperture results in a wide aperture which lets in more light resulting in a brighter, less-focused image. Default is appropriate for outdoors at daytime (i.e. for use with a default [DirectionalLight3D]), for indoor lighting, a value between 2 and 4 is more appropriate.  
          *  Only available when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is enabled.  
          */
-        get exposure_aperture(): number /*f64*/
-        set exposure_aperture(value: number /*f64*/)
+        get exposure_aperture(): float64
+        set exposure_aperture(value: float64)
         
         /** Time for shutter to open and close, evaluated as `1 / shutter_speed` seconds. A higher value will allow less light (leading to a darker image), while a lower value will allow more light (leading to a brighter image).  
          *  Only available when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is enabled.  
          */
-        get exposure_shutter_speed(): number /*f64*/
-        set exposure_shutter_speed(value: number /*f64*/)
+        get exposure_shutter_speed(): float64
+        set exposure_shutter_speed(value: float64)
         
         /** The minimum luminance luminance (in EV100) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing above a certain brightness, resulting in a cut off point where the scene will remain dark. */
-        get auto_exposure_min_exposure_value(): number /*f64*/
-        set auto_exposure_min_exposure_value(value: number /*f64*/)
+        get auto_exposure_min_exposure_value(): float64
+        set auto_exposure_min_exposure_value(value: float64)
         
         /** The maximum luminance (in EV100) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing below a certain brightness, resulting in a cut off point where the scene will remain bright. */
-        get auto_exposure_max_exposure_value(): number /*f64*/
-        set auto_exposure_max_exposure_value(value: number /*f64*/)
+        get auto_exposure_max_exposure_value(): float64
+        set auto_exposure_max_exposure_value(value: float64)
     }
     /** Camera settings in an easy to use format.  
      *  	  
@@ -7658,22 +7658,22 @@ declare module "godot" {
         constructor(identifier?: any)
         set_dof_blur_far_enabled(enabled: boolean): void
         is_dof_blur_far_enabled(): boolean
-        set_dof_blur_far_distance(distance: number /*f64*/): void
-        get_dof_blur_far_distance(): number /*f64*/
-        set_dof_blur_far_transition(distance: number /*f64*/): void
-        get_dof_blur_far_transition(): number /*f64*/
+        set_dof_blur_far_distance(distance: float64): void
+        get_dof_blur_far_distance(): float64
+        set_dof_blur_far_transition(distance: float64): void
+        get_dof_blur_far_transition(): float64
         set_dof_blur_near_enabled(enabled: boolean): void
         is_dof_blur_near_enabled(): boolean
-        set_dof_blur_near_distance(distance: number /*f64*/): void
-        get_dof_blur_near_distance(): number /*f64*/
-        set_dof_blur_near_transition(distance: number /*f64*/): void
-        get_dof_blur_near_transition(): number /*f64*/
-        set_dof_blur_amount(amount: number /*f64*/): void
-        get_dof_blur_amount(): number /*f64*/
-        set_auto_exposure_max_sensitivity(max_sensitivity: number /*f64*/): void
-        get_auto_exposure_max_sensitivity(): number /*f64*/
-        set_auto_exposure_min_sensitivity(min_sensitivity: number /*f64*/): void
-        get_auto_exposure_min_sensitivity(): number /*f64*/
+        set_dof_blur_near_distance(distance: float64): void
+        get_dof_blur_near_distance(): float64
+        set_dof_blur_near_transition(distance: float64): void
+        get_dof_blur_near_transition(): float64
+        set_dof_blur_amount(amount: float64): void
+        get_dof_blur_amount(): float64
+        set_auto_exposure_max_sensitivity(max_sensitivity: float64): void
+        get_auto_exposure_max_sensitivity(): float64
+        set_auto_exposure_min_sensitivity(min_sensitivity: float64): void
+        get_auto_exposure_min_sensitivity(): float64
         
         /** Enables depth of field blur for objects further than [member dof_blur_far_distance]. Strength of blur is controlled by [member dof_blur_amount] and modulated by [member dof_blur_far_transition].  
          *      
@@ -7683,12 +7683,12 @@ declare module "godot" {
         set dof_blur_far_enabled(value: boolean)
         
         /** Objects further from the [Camera3D] by this amount will be blurred by the depth of field effect. Measured in meters. */
-        get dof_blur_far_distance(): number /*f64*/
-        set dof_blur_far_distance(value: number /*f64*/)
+        get dof_blur_far_distance(): float64
+        set dof_blur_far_distance(value: float64)
         
         /** When positive, distance over which (starting from [member dof_blur_far_distance]) blur effect will scale from 0 to [member dof_blur_amount]. When negative, uses physically-based scaling so depth of field effect will scale from 0 at [member dof_blur_far_distance] and will increase in a physically accurate way as objects get further from the [Camera3D]. */
-        get dof_blur_far_transition(): number /*f64*/
-        set dof_blur_far_transition(value: number /*f64*/)
+        get dof_blur_far_transition(): float64
+        set dof_blur_far_transition(value: float64)
         
         /** Enables depth of field blur for objects closer than [member dof_blur_near_distance]. Strength of blur is controlled by [member dof_blur_amount] and modulated by [member dof_blur_near_transition].  
          *      
@@ -7698,24 +7698,24 @@ declare module "godot" {
         set dof_blur_near_enabled(value: boolean)
         
         /** Objects closer from the [Camera3D] by this amount will be blurred by the depth of field effect. Measured in meters. */
-        get dof_blur_near_distance(): number /*f64*/
-        set dof_blur_near_distance(value: number /*f64*/)
+        get dof_blur_near_distance(): float64
+        set dof_blur_near_distance(value: float64)
         
         /** When positive, distance over which blur effect will scale from 0 to [member dof_blur_amount], ending at [member dof_blur_near_distance]. When negative, uses physically-based scaling so depth of field effect will scale from 0 at [member dof_blur_near_distance] and will increase in a physically accurate way as objects get closer to the [Camera3D]. */
-        get dof_blur_near_transition(): number /*f64*/
-        set dof_blur_near_transition(value: number /*f64*/)
+        get dof_blur_near_transition(): float64
+        set dof_blur_near_transition(value: float64)
         
         /** Sets the maximum amount of blur. When using physically-based blur amounts, will instead act as a multiplier. High values lead to an increased amount of blurriness, but can be much more expensive to calculate. It is best to keep this as low as possible for a given art style. */
-        get dof_blur_amount(): number /*f64*/
-        set dof_blur_amount(value: number /*f64*/)
+        get dof_blur_amount(): float64
+        set dof_blur_amount(value: float64)
         
         /** The minimum sensitivity (in ISO) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing above a certain brightness, resulting in a cut off point where the scene will remain dark. */
-        get auto_exposure_min_sensitivity(): number /*f64*/
-        set auto_exposure_min_sensitivity(value: number /*f64*/)
+        get auto_exposure_min_sensitivity(): float64
+        set auto_exposure_min_sensitivity(value: float64)
         
         /** The maximum sensitivity (in ISO) used when calculating auto exposure. When calculating scene average luminance, color values will be clamped to at least this value. This limits the auto-exposure from exposing below a certain brightness, resulting in a cut off point where the scene will remain bright. */
-        get auto_exposure_max_sensitivity(): number /*f64*/
-        set auto_exposure_max_sensitivity(value: number /*f64*/)
+        get auto_exposure_max_sensitivity(): float64
+        set auto_exposure_max_sensitivity(value: float64)
     }
     namespace CameraFeed {
         enum FeedDataType {
@@ -7749,7 +7749,7 @@ declare module "godot" {
     class CameraFeed extends RefCounted {
         constructor(identifier?: any)
         /** Returns the unique ID for this feed. */
-        get_id(): number /*i64*/
+        get_id(): int64
         is_active(): boolean
         set_active(active: boolean): void
         
@@ -7782,20 +7782,20 @@ declare module "godot" {
      */
     class CameraTexture extends Texture2D {
         constructor(identifier?: any)
-        set_camera_feed_id(feed_id: number /*i64*/): void
-        get_camera_feed_id(): number /*i64*/
+        set_camera_feed_id(feed_id: int64): void
+        get_camera_feed_id(): int64
         set_which_feed(which_feed: CameraServer.FeedImage): void
         get_which_feed(): CameraServer.FeedImage
         set_camera_active(active: boolean): void
         get_camera_active(): boolean
         
         /** The ID of the [CameraFeed] for which we want to display the image. */
-        get camera_feed_id(): number /*i64*/
-        set camera_feed_id(value: number /*i64*/)
+        get camera_feed_id(): int64
+        set camera_feed_id(value: int64)
         
         /** Which image within the [CameraFeed] we want access to, important if the camera image is split in a Y and CbCr component. */
-        get which_feed(): number /*i64*/
-        set which_feed(value: number /*i64*/)
+        get which_feed(): int64
+        set which_feed(value: int64)
         
         /** Convenience property that gives access to the active property of the [CameraFeed]. */
         get camera_is_active(): boolean
@@ -7807,20 +7807,20 @@ declare module "godot" {
      */
     class CanvasGroup extends Node2D {
         constructor(identifier?: any)
-        set_fit_margin(fit_margin: number /*f64*/): void
-        get_fit_margin(): number /*f64*/
-        set_clear_margin(clear_margin: number /*f64*/): void
-        get_clear_margin(): number /*f64*/
+        set_fit_margin(fit_margin: float64): void
+        get_fit_margin(): float64
+        set_clear_margin(clear_margin: float64): void
+        get_clear_margin(): float64
         set_use_mipmaps(use_mipmaps: boolean): void
         is_using_mipmaps(): boolean
         
         /** Sets the size of a margin used to expand the drawable rect of this [CanvasGroup]. The size of the [CanvasGroup] is determined by fitting a rect around its children then expanding that rect by [member fit_margin]. This increases both the backbuffer area used and the area covered by the [CanvasGroup] both of which can reduce performance. This should be kept as small as possible and should only be expanded when an increased size is needed (e.g. for custom shader effects). */
-        get fit_margin(): number /*f64*/
-        set fit_margin(value: number /*f64*/)
+        get fit_margin(): float64
+        set fit_margin(value: float64)
         
         /** Sets the size of the margin used to expand the clearing rect of this [CanvasGroup]. This expands the area of the backbuffer that will be used by the [CanvasGroup]. A smaller margin will reduce the area of the backbuffer used which can increase performance, however if [member use_mipmaps] is enabled, a small margin may result in mipmap errors at the edge of the [CanvasGroup]. Accordingly, this should be left as small as possible, but should be increased if artifacts appear along the edges of the canvas group. */
-        get clear_margin(): number /*f64*/
-        set clear_margin(value: number /*f64*/)
+        get clear_margin(): float64
+        set clear_margin(value: float64)
         
         /** If `true`, calculates mipmaps for the backbuffer before drawing the [CanvasGroup] so that mipmaps can be used in a custom [ShaderMaterial] attached to the [CanvasGroup]. Generating mipmaps has a performance cost so this should not be enabled unless required. */
         get use_mipmaps(): boolean
@@ -7933,8 +7933,8 @@ declare module "godot" {
         _edit_set_rect(rect: Rect2): void
         _edit_get_rect(): Rect2
         _edit_use_rect(): boolean
-        _edit_set_rotation(degrees: number /*f64*/): void
-        _edit_get_rotation(): number /*f64*/
+        _edit_set_rotation(degrees: float64): void
+        _edit_get_rotation(): float64
         _edit_use_rotation(): boolean
         _edit_set_pivot(pivot: Vector2): void
         _edit_get_pivot(): Vector2
@@ -7964,14 +7964,14 @@ declare module "godot" {
         move_to_front(): void
         set_as_top_level(enable: boolean): void
         is_set_as_top_level(): boolean
-        set_light_mask(light_mask: number /*i64*/): void
-        get_light_mask(): number /*i64*/
+        set_light_mask(light_mask: int64): void
+        get_light_mask(): int64
         set_modulate(modulate: Color): void
         get_modulate(): Color
         set_self_modulate(self_modulate: Color): void
         get_self_modulate(): Color
-        set_z_index(z_index: number /*i64*/): void
-        get_z_index(): number /*i64*/
+        set_z_index(z_index: int64): void
+        get_z_index(): int64
         set_z_as_relative(enable: boolean): void
         is_z_relative(): boolean
         set_y_sort_enabled(enabled: boolean): void
@@ -7982,38 +7982,38 @@ declare module "godot" {
         /** Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased. See also [method draw_multiline] and [method draw_polyline].  
          *  If [param width] is negative, then a two-point primitive will be drawn instead of a four-point one. This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_line(from: Vector2, to: Vector2, color: Color, width: number /*f64*/ = -1, antialiased: boolean = false): void
+        draw_line(from: Vector2, to: Vector2, color: Color, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a dashed line from a 2D point to another, with a given color and width. See also [method draw_multiline] and [method draw_polyline].  
          *  If [param width] is negative, then a two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_dashed_line(from: Vector2, to: Vector2, color: Color, width: number /*f64*/ = -1, dash: number /*f64*/ = 2, aligned: boolean = true): void
+        draw_dashed_line(from: Vector2, to: Vector2, color: Color, width: float64 = -1, dash: float64 = 2, aligned: boolean = true): void
         
         /** Draws interconnected line segments with a uniform [param color] and [param width] and optional antialiasing (supported only for positive [param width]). When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw disconnected lines, use [method draw_multiline] instead. See also [method draw_polygon].  
          *  If [param width] is negative, it will be ignored and the polyline will be drawn using [constant RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_polyline(points: PackedVector2Array, color: Color, width: number /*f64*/ = -1, antialiased: boolean = false): void
+        draw_polyline(points: PackedVector2Array, color: Color, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws interconnected line segments with a uniform [param width], point-by-point coloring, and optional antialiasing (supported only for positive [param width]). Colors assigned to line points match by index between [param points] and [param colors], i.e. each line segment is filled with a gradient between the colors of the endpoints. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw disconnected lines, use [method draw_multiline_colors] instead. See also [method draw_polygon].  
          *  If [param width] is negative, it will be ignored and the polyline will be drawn using [constant RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_polyline_colors(points: PackedVector2Array, colors: PackedColorArray, width: number /*f64*/ = -1, antialiased: boolean = false): void
+        draw_polyline_colors(points: PackedVector2Array, colors: PackedColorArray, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws an unfilled arc between the given angles with a uniform [param color] and [param width] and optional antialiasing (supported only for positive [param width]). The larger the value of [param point_count], the smoother the curve. See also [method draw_circle].  
          *  If [param width] is negative, it will be ignored and the arc will be drawn using [constant RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          *  The arc is drawn from [param start_angle] towards the value of [param end_angle] so in clockwise direction if `start_angle < end_angle` and counter-clockwise otherwise. Passing the same angles but in reversed order will produce the same arc. If absolute difference of [param start_angle] and [param end_angle] is greater than [constant @GDScript.TAU] radians, then a full circle arc is drawn (i.e. arc will not overlap itself).  
          */
-        draw_arc(center: Vector2, radius: number /*f64*/, start_angle: number /*f64*/, end_angle: number /*f64*/, point_count: number /*i64*/, color: Color, width: number /*f64*/ = -1, antialiased: boolean = false): void
+        draw_arc(center: Vector2, radius: float64, start_angle: float64, end_angle: float64, point_count: int64, color: Color, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws multiple disconnected lines with a uniform [param width] and [param color]. Each line is defined by two consecutive points from [param points] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw interconnected lines, use [method draw_polyline] instead.  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_multiline(points: PackedVector2Array, color: Color, width: number /*f64*/ = -1): void
+        draw_multiline(points: PackedVector2Array, color: Color, width: float64 = -1): void
         
         /** Draws multiple disconnected lines with a uniform [param width] and segment-by-segment coloring. Each segment is defined by two consecutive points from [param points] array and a corresponding color from [param colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and has `colors *` color. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw interconnected lines, use [method draw_polyline_colors] instead.  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_multiline_colors(points: PackedVector2Array, colors: PackedColorArray, width: number /*f64*/ = -1): void
+        draw_multiline_colors(points: PackedVector2Array, colors: PackedColorArray, width: float64 = -1): void
         
         /** Draws a rectangle. If [param filled] is `true`, the rectangle will be filled with the [param color] specified. If [param filled] is `false`, the rectangle will be drawn as a stroke with the [param color] and [param width] specified. See also [method draw_texture_rect].  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
@@ -8022,10 +8022,10 @@ declare module "godot" {
          *      
          *  **Note:** Unfilled rectangles drawn with a negative [param width] may not display perfectly. For example, corners may be missing or brighter due to overlapping lines (for a translucent [param color]).  
          */
-        draw_rect(rect: Rect2, color: Color, filled: boolean = true, width: number /*f64*/ = -1): void
+        draw_rect(rect: Rect2, color: Color, filled: boolean = true, width: float64 = -1): void
         
         /** Draws a colored, filled circle. See also [method draw_arc], [method draw_polyline] and [method draw_polygon]. */
-        draw_circle(position: Vector2, radius: number /*f64*/, color: Color): void
+        draw_circle(position: Vector2, radius: float64, color: Color): void
         
         /** Draws a texture at a given position. */
         draw_texture(texture: Texture2D, position: Vector2, modulate: Color = new Color(1, 1, 1, 1)): void
@@ -8040,7 +8040,7 @@ declare module "godot" {
          *  If [param outline] is positive, each alpha channel value of pixel in region is set to maximum value of true distance in the [param outline] radius.  
          *  Value of the [param pixel_range] should the same that was used during distance field texture generation.  
          */
-        draw_msdf_texture_rect_region(texture: Texture2D, rect: Rect2, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), outline: number /*f64*/ = 0, pixel_range: number /*f64*/ = 4, scale: number /*f64*/ = 1): void
+        draw_msdf_texture_rect_region(texture: Texture2D, rect: Rect2, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), outline: float64 = 0, pixel_range: float64 = 4, scale: float64 = 1): void
         
         /** Draws a textured rectangle region of the font texture with LCD subpixel anti-aliasing at a given position, optionally modulated by a color.  
          *  Texture is drawn using the following blend operation, blend mode of the [CanvasItemMaterial] is ignored:  
@@ -8065,22 +8065,22 @@ declare module "godot" {
          *    
          *  See also [method Font.draw_string].  
          */
-        draw_string(font: Font, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, modulate: Color = new Color(1, 1, 1, 1), justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
+        draw_string(font: Font, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: float64 = -1, font_size: int64 = 16, modulate: Color = new Color(1, 1, 1, 1), justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
         
         /** Breaks [param text] into lines and draws it using the specified [param font] at the [param pos] (top-left corner). The text will have its color multiplied by [param modulate]. If [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width. */
-        draw_multiline_string(font: Font, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, max_lines: number /*i64*/ = -1, modulate: Color = new Color(1, 1, 1, 1), brk_flags: TextServer.LineBreakFlag = 3, justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
+        draw_multiline_string(font: Font, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: float64 = -1, font_size: int64 = 16, max_lines: int64 = -1, modulate: Color = new Color(1, 1, 1, 1), brk_flags: TextServer.LineBreakFlag = 3, justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
         
         /** Draws [param text] outline using the specified [param font] at the [param pos] (bottom-left corner using the baseline of the font). The text will have its color multiplied by [param modulate]. If [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width. */
-        draw_string_outline(font: Font, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, size: number /*i64*/ = 1, modulate: Color = new Color(1, 1, 1, 1), justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
+        draw_string_outline(font: Font, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: float64 = -1, font_size: int64 = 16, size: int64 = 1, modulate: Color = new Color(1, 1, 1, 1), justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
         
         /** Breaks [param text] to the lines and draws text outline using the specified [param font] at the [param pos] (top-left corner). The text will have its color multiplied by [param modulate]. If [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width. */
-        draw_multiline_string_outline(font: Font, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: number /*f64*/ = -1, font_size: number /*i64*/ = 16, max_lines: number /*i64*/ = -1, size: number /*i64*/ = 1, modulate: Color = new Color(1, 1, 1, 1), brk_flags: TextServer.LineBreakFlag = 3, justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
+        draw_multiline_string_outline(font: Font, pos: Vector2, text: string, alignment: HorizontalAlignment = 0, width: float64 = -1, font_size: int64 = 16, max_lines: int64 = -1, size: int64 = 1, modulate: Color = new Color(1, 1, 1, 1), brk_flags: TextServer.LineBreakFlag = 3, justification_flags: TextServer.JustificationFlag = 3, direction: TextServer.Direction = 0, orientation: TextServer.Orientation = 0): void
         
         /** Draws a string first character using a custom font. */
-        draw_char(font: Font, pos: Vector2, char: string, font_size: number /*i64*/ = 16, modulate: Color = new Color(1, 1, 1, 1)): void
+        draw_char(font: Font, pos: Vector2, char: string, font_size: int64 = 16, modulate: Color = new Color(1, 1, 1, 1)): void
         
         /** Draws a string first character outline using a custom font. */
-        draw_char_outline(font: Font, pos: Vector2, char: string, font_size: number /*i64*/ = 16, size: number /*i64*/ = -1, modulate: Color = new Color(1, 1, 1, 1)): void
+        draw_char_outline(font: Font, pos: Vector2, char: string, font_size: int64 = 16, size: int64 = -1, modulate: Color = new Color(1, 1, 1, 1)): void
         
         /** Draws a [Mesh] in 2D, using the provided texture. See [MeshInstance2D] for related documentation. */
         draw_mesh(mesh: Mesh, texture: Texture2D, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, modulate: Color = new Color(1, 1, 1, 1)): void
@@ -8092,13 +8092,13 @@ declare module "godot" {
          *      
          *  **Note:** [member FontFile.oversampling] does  *not*  take [param scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
          */
-        draw_set_transform(position: Vector2, rotation: number /*f64*/ = 0, scale: Vector2 = Vector2.ONE): void
+        draw_set_transform(position: Vector2, rotation: float64 = 0, scale: Vector2 = Vector2.ONE): void
         
         /** Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed by this. */
         draw_set_transform_matrix(xform: Transform2D): void
         
         /** Subsequent drawing commands will be ignored unless they fall within the specified animation slice. This is a faster way to implement animations that loop on background rather than redrawing constantly. */
-        draw_animation_slice(animation_length: number /*f64*/, slice_begin: number /*f64*/, slice_end: number /*f64*/, offset: number /*f64*/ = 0): void
+        draw_animation_slice(animation_length: float64, slice_begin: float64, slice_end: float64, offset: float64 = 0): void
         
         /** After submitting all animations slices via [method draw_animation_slice], this function can be used to revert drawing to its default state (all subsequent drawing commands will be visible). If you don't care about this particular use case, usage of this function after submitting the slices is not required. */
         draw_end_animation(): void
@@ -8165,14 +8165,14 @@ declare module "godot" {
         
         /** Transformations issued by [param event]'s inputs are applied in local space instead of global space. */
         make_input_local(event: InputEvent): InputEvent
-        set_visibility_layer(layer: number /*i64*/): void
-        get_visibility_layer(): number /*i64*/
+        set_visibility_layer(layer: int64): void
+        get_visibility_layer(): int64
         
         /** Set/clear individual bits on the rendering visibility layer. This simplifies editing this [CanvasItem]'s visibility layer. */
-        set_visibility_layer_bit(layer: number /*i64*/, enabled: boolean): void
+        set_visibility_layer_bit(layer: int64, enabled: boolean): void
         
         /** Returns an individual bit on the rendering visibility layer. */
-        get_visibility_layer_bit(layer: number /*i64*/): boolean
+        get_visibility_layer_bit(layer: int64): boolean
         set_texture_filter(mode: CanvasItem.TextureFilter): void
         get_texture_filter(): CanvasItem.TextureFilter
         set_texture_repeat(mode: CanvasItem.TextureRepeat): void
@@ -8207,23 +8207,23 @@ declare module "godot" {
         set top_level(value: boolean)
         
         /** Allows the current node to clip child nodes, essentially acting as a mask. */
-        get clip_children(): number /*i64*/
-        set clip_children(value: number /*i64*/)
+        get clip_children(): int64
+        set clip_children(value: int64)
         
         /** The rendering layers in which this [CanvasItem] responds to [Light2D] nodes. */
-        get light_mask(): number /*i64*/
-        set light_mask(value: number /*i64*/)
+        get light_mask(): int64
+        set light_mask(value: int64)
         
         /** The rendering layer in which this [CanvasItem] is rendered by [Viewport] nodes. A [Viewport] will render a [CanvasItem] if it and all its parents share a layer with the [Viewport]'s canvas cull mask. */
-        get visibility_layer(): number /*i64*/
-        set visibility_layer(value: number /*i64*/)
+        get visibility_layer(): int64
+        set visibility_layer(value: int64)
         
         /** Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [constant RenderingServer.CANVAS_ITEM_Z_MIN] and [constant RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).  
          *      
          *  **Note:** Changing the Z index of a [Control] only affects the drawing order, not the order in which input events are handled. This can be useful to implement certain UI animations, e.g. a menu where hovered items are scaled and should overlap others.  
          */
-        get z_index(): number /*i64*/
-        set z_index(value: number /*i64*/)
+        get z_index(): int64
+        set z_index(value: int64)
         
         /** If `true`, the node's Z index is relative to its parent's Z index. If this node's Z index is 2 and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5. */
         get z_as_relative(): boolean
@@ -8236,12 +8236,12 @@ declare module "godot" {
         set y_sort_enabled(value: boolean)
         
         /** The texture filtering mode to use on this [CanvasItem]. */
-        get texture_filter(): number /*i64*/
-        set texture_filter(value: number /*i64*/)
+        get texture_filter(): int64
+        set texture_filter(value: int64)
         
         /** The texture repeating mode to use on this [CanvasItem]. */
-        get texture_repeat(): number /*i64*/
-        set texture_repeat(value: number /*i64*/)
+        get texture_repeat(): int64
+        set texture_repeat(value: int64)
         
         /** The material applied to this [CanvasItem]. */
         get material(): CanvasItemMaterial | ShaderMaterial
@@ -8321,20 +8321,20 @@ declare module "godot" {
         get_light_mode(): CanvasItemMaterial.LightMode
         set_particles_animation(particles_anim: boolean): void
         get_particles_animation(): boolean
-        set_particles_anim_h_frames(frames: number /*i64*/): void
-        get_particles_anim_h_frames(): number /*i64*/
-        set_particles_anim_v_frames(frames: number /*i64*/): void
-        get_particles_anim_v_frames(): number /*i64*/
+        set_particles_anim_h_frames(frames: int64): void
+        get_particles_anim_h_frames(): int64
+        set_particles_anim_v_frames(frames: int64): void
+        get_particles_anim_v_frames(): int64
         set_particles_anim_loop(loop: boolean): void
         get_particles_anim_loop(): boolean
         
         /** The manner in which a material's rendering is applied to underlying textures. */
-        get blend_mode(): number /*i64*/
-        set blend_mode(value: number /*i64*/)
+        get blend_mode(): int64
+        set blend_mode(value: int64)
         
         /** The manner in which material reacts to lighting. */
-        get light_mode(): number /*i64*/
-        set light_mode(value: number /*i64*/)
+        get light_mode(): int64
+        set light_mode(value: int64)
         
         /** If `true`, enable spritesheet-based animation features when assigned to [GPUParticles2D] and [CPUParticles2D] nodes. The [member ParticleProcessMaterial.anim_speed_max] or [member CPUParticles2D.anim_speed_max] should also be set to a positive value for the animation to play.  
          *  This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.  
@@ -8346,15 +8346,15 @@ declare module "godot" {
          *      
          *  **Note:** This property is only used and visible in the editor if [member particles_animation] is `true`.  
          */
-        get particles_anim_h_frames(): number /*i64*/
-        set particles_anim_h_frames(value: number /*i64*/)
+        get particles_anim_h_frames(): int64
+        set particles_anim_h_frames(value: int64)
         
         /** The number of rows in the spritesheet assigned as [Texture2D] for a [GPUParticles2D] or [CPUParticles2D].  
          *      
          *  **Note:** This property is only used and visible in the editor if [member particles_animation] is `true`.  
          */
-        get particles_anim_v_frames(): number /*i64*/
-        set particles_anim_v_frames(value: number /*i64*/)
+        get particles_anim_v_frames(): int64
+        set particles_anim_v_frames(value: int64)
         
         /** If `true`, the particles animation will loop.  
          *      
@@ -8372,8 +8372,8 @@ declare module "godot" {
      */
     class CanvasLayer extends Node {
         constructor(identifier?: any)
-        set_layer(layer: number /*i64*/): void
-        get_layer(): number /*i64*/
+        set_layer(layer: int64): void
+        get_layer(): int64
         set_visible(visible: boolean): void
         is_visible(): boolean
         
@@ -8389,14 +8389,14 @@ declare module "godot" {
         get_final_transform(): Transform2D
         set_offset(offset: Vector2): void
         get_offset(): Vector2
-        set_rotation(radians: number /*f64*/): void
-        get_rotation(): number /*f64*/
+        set_rotation(radians: float64): void
+        get_rotation(): float64
         set_scale(scale: Vector2): void
         get_scale(): Vector2
         set_follow_viewport(enable: boolean): void
         is_following_viewport(): boolean
-        set_follow_viewport_scale(scale: number /*f64*/): void
-        get_follow_viewport_scale(): number /*f64*/
+        set_follow_viewport_scale(scale: float64): void
+        get_follow_viewport_scale(): float64
         set_custom_viewport(viewport: Node): void
         get_custom_viewport(): Node
         
@@ -8407,8 +8407,8 @@ declare module "godot" {
          *      
          *  **Note:** If multiple CanvasLayers have the same layer index, [CanvasItem] children of one CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer is drawn in front is non-deterministic.  
          */
-        get layer(): number /*i64*/
-        set layer(value: number /*i64*/)
+        get layer(): int64
+        set layer(value: int64)
         
         /** If `false`, any [CanvasItem] under this [CanvasLayer] will be hidden.  
          *  Unlike [member CanvasItem.visible], visibility of a [CanvasLayer] isn't propagated to underlying layers.  
@@ -8421,8 +8421,8 @@ declare module "godot" {
         set offset(value: Vector2)
         
         /** The layer's rotation in radians. */
-        get rotation(): number /*f64*/
-        set rotation(value: number /*f64*/)
+        get rotation(): float64
+        set rotation(value: float64)
         
         /** The layer's scale. */
         get scale(): Vector2
@@ -8443,8 +8443,8 @@ declare module "godot" {
         set follow_viewport_enabled(value: boolean)
         
         /** Scales the layer when using [member follow_viewport_enabled]. Layers moving into the foreground should have increasing scales, while layers moving into the background should have decreasing scales. */
-        get follow_viewport_scale(): number /*f64*/
-        set follow_viewport_scale(value: number /*f64*/)
+        get follow_viewport_scale(): float64
+        set follow_viewport_scale(value: float64)
         
         /** Emitted when visibility of the layer is changed. See [member visible]. */
         readonly visibility_changed: Signal //  => void
@@ -8476,8 +8476,8 @@ declare module "godot" {
         get_specular_texture(): Texture2D
         set_specular_color(color: Color): void
         get_specular_color(): Color
-        set_specular_shininess(shininess: number /*f64*/): void
-        get_specular_shininess(): number /*f64*/
+        set_specular_shininess(shininess: float64): void
+        get_specular_shininess(): float64
         set_texture_filter(filter: CanvasItem.TextureFilter): void
         get_texture_filter(): CanvasItem.TextureFilter
         set_texture_repeat(repeat: CanvasItem.TextureRepeat): void
@@ -8503,16 +8503,16 @@ declare module "godot" {
         set specular_color(value: Color)
         
         /** The specular exponent for [Light2D] specular reflections. Higher values result in a more glossy/"wet" look, with reflections becoming more localized and less visible overall. The default value of `1.0` disables specular reflections entirely. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
-        get specular_shininess(): number /*f64*/
-        set specular_shininess(value: number /*f64*/)
+        get specular_shininess(): float64
+        set specular_shininess(value: float64)
         
         /** The texture filtering mode to use when drawing this [CanvasTexture]. */
-        get texture_filter(): number /*i64*/
-        set texture_filter(value: number /*i64*/)
+        get texture_filter(): int64
+        set texture_filter(value: int64)
         
         /** The texture repeat mode to use when drawing this [CanvasTexture]. */
-        get texture_repeat(): number /*i64*/
-        set texture_repeat(value: number /*i64*/)
+        get texture_repeat(): int64
+        set texture_repeat(value: int64)
     }
     /** Class representing a capsule-shaped [PrimitiveMesh].  
      *  	  
@@ -8520,30 +8520,30 @@ declare module "godot" {
      */
     class CapsuleMesh extends PrimitiveMesh {
         constructor(identifier?: any)
-        set_radius(radius: number /*f64*/): void
-        get_radius(): number /*f64*/
-        set_height(height: number /*f64*/): void
-        get_height(): number /*f64*/
-        set_radial_segments(segments: number /*i64*/): void
-        get_radial_segments(): number /*i64*/
-        set_rings(rings: number /*i64*/): void
-        get_rings(): number /*i64*/
+        set_radius(radius: float64): void
+        get_radius(): float64
+        set_height(height: float64): void
+        get_height(): float64
+        set_radial_segments(segments: int64): void
+        get_radial_segments(): int64
+        set_rings(rings: int64): void
+        get_rings(): int64
         
         /** Radius of the capsule mesh. */
-        get radius(): number /*f64*/
-        set radius(value: number /*f64*/)
+        get radius(): float64
+        set radius(value: float64)
         
         /** Total height of the capsule mesh (including the hemispherical ends). */
-        get height(): number /*f64*/
-        set height(value: number /*f64*/)
+        get height(): float64
+        set height(value: float64)
         
         /** Number of radial segments on the capsule mesh. */
-        get radial_segments(): number /*i64*/
-        set radial_segments(value: number /*i64*/)
+        get radial_segments(): int64
+        set radial_segments(value: int64)
         
         /** Number of rings along the height of the capsule. */
-        get rings(): number /*i64*/
-        set rings(value: number /*i64*/)
+        get rings(): int64
+        set rings(value: int64)
     }
     /** A 2D capsule shape used for physics collision.  
      *  	  
@@ -8551,18 +8551,18 @@ declare module "godot" {
      */
     class CapsuleShape2D extends Shape2D {
         constructor(identifier?: any)
-        set_radius(radius: number /*f64*/): void
-        get_radius(): number /*f64*/
-        set_height(height: number /*f64*/): void
-        get_height(): number /*f64*/
+        set_radius(radius: float64): void
+        get_radius(): float64
+        set_height(height: float64): void
+        get_height(): float64
         
         /** The capsule's radius. */
-        get radius(): number /*f64*/
-        set radius(value: number /*f64*/)
+        get radius(): float64
+        set radius(value: float64)
         
         /** The capsule's height. */
-        get height(): number /*f64*/
-        set height(value: number /*f64*/)
+        get height(): float64
+        set height(value: float64)
     }
     /** A 3D capsule shape used for physics collision.  
      *  	  
@@ -8570,18 +8570,18 @@ declare module "godot" {
      */
     class CapsuleShape3D extends Shape3D {
         constructor(identifier?: any)
-        set_radius(radius: number /*f64*/): void
-        get_radius(): number /*f64*/
-        set_height(height: number /*f64*/): void
-        get_height(): number /*f64*/
+        set_radius(radius: float64): void
+        get_radius(): float64
+        set_height(height: float64): void
+        get_height(): float64
         
         /** The capsule's radius. */
-        get radius(): number /*f64*/
-        set radius(value: number /*f64*/)
+        get radius(): float64
+        set radius(value: float64)
         
         /** The capsule's height. */
-        get height(): number /*f64*/
-        set height(value: number /*f64*/)
+        get height(): float64
+        set height(value: float64)
     }
     class Cast2DEditor extends Control {
         constructor(identifier?: any)
@@ -8612,8 +8612,8 @@ declare module "godot" {
         set_transform(transform: Transform2D): void
         get_range(): Vector2i
         set_range(range: Vector2i): void
-        get_elapsed_time(): number /*f64*/
-        set_elapsed_time(time: number /*f64*/): void
+        get_elapsed_time(): float64
+        set_elapsed_time(time: float64): void
         is_visible(): boolean
         set_visibility(visibility: boolean): void
         is_outline(): boolean
@@ -8624,14 +8624,14 @@ declare module "godot" {
         set_color(color: Color): void
         get_environment(): Dictionary
         set_environment(environment: Dictionary): void
-        get_glyph_index(): number /*i64*/
-        set_glyph_index(glyph_index: number /*i64*/): void
-        get_relative_index(): number /*i64*/
-        set_relative_index(relative_index: number /*i64*/): void
-        get_glyph_count(): number /*i64*/
-        set_glyph_count(glyph_count: number /*i64*/): void
-        get_glyph_flags(): number /*i64*/
-        set_glyph_flags(glyph_flags: number /*i64*/): void
+        get_glyph_index(): int64
+        set_glyph_index(glyph_index: int64): void
+        get_relative_index(): int64
+        set_relative_index(relative_index: int64): void
+        get_glyph_count(): int64
+        set_glyph_count(glyph_count: int64): void
+        get_glyph_flags(): int64
+        set_glyph_flags(glyph_flags: int64): void
         get_font(): RID
         set_font(font: RID): void
         
@@ -8647,8 +8647,8 @@ declare module "godot" {
          *      
          *  **Note:** Time still passes while the [RichTextLabel] is hidden.  
          */
-        get elapsed_time(): number /*f64*/
-        set elapsed_time(value: number /*f64*/)
+        get elapsed_time(): float64
+        set elapsed_time(value: float64)
         
         /** If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [member color] to `Color(1, 1, 1, 0)` instead. */
         get visible(): boolean
@@ -8674,20 +8674,20 @@ declare module "godot" {
         set env(value: Dictionary)
         
         /** Font specific glyph index. */
-        get glyph_index(): number /*i64*/
-        set glyph_index(value: number /*i64*/)
+        get glyph_index(): int64
+        set glyph_index(value: int64)
         
         /** Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster. Setting this property won't affect drawing. */
-        get glyph_count(): number /*i64*/
-        set glyph_count(value: number /*i64*/)
+        get glyph_count(): int64
+        set glyph_count(value: int64)
         
         /** Glyph flags. See [enum TextServer.GraphemeFlag] for more info. Setting this property won't affect drawing. */
-        get glyph_flags(): number /*i64*/
-        set glyph_flags(value: number /*i64*/)
+        get glyph_flags(): int64
+        set glyph_flags(value: int64)
         
         /** The character offset of the glyph, relative to the current [RichTextEffect] custom block. Setting this property won't affect drawing. */
-        get relative_index(): number /*i64*/
-        set relative_index(value: number /*i64*/)
+        get relative_index(): int64
+        set relative_index(value: int64)
         
         /** Font resource used to render glyph. */
         get font(): RID
@@ -8730,8 +8730,8 @@ declare module "godot" {
         apply_floor_snap(): void
         set_velocity(velocity: Vector2): void
         get_velocity(): Vector2
-        set_safe_margin(margin: number /*f64*/): void
-        get_safe_margin(): number /*f64*/
+        set_safe_margin(margin: float64): void
+        get_safe_margin(): float64
         is_floor_stop_on_slope_enabled(): boolean
         set_floor_stop_on_slope_enabled(enabled: boolean): void
         set_floor_constant_speed_enabled(enabled: boolean): void
@@ -8740,18 +8740,18 @@ declare module "godot" {
         is_floor_block_on_wall_enabled(): boolean
         set_slide_on_ceiling_enabled(enabled: boolean): void
         is_slide_on_ceiling_enabled(): boolean
-        set_platform_floor_layers(exclude_layer: number /*i64*/): void
-        get_platform_floor_layers(): number /*i64*/
-        set_platform_wall_layers(exclude_layer: number /*i64*/): void
-        get_platform_wall_layers(): number /*i64*/
-        get_max_slides(): number /*i64*/
-        set_max_slides(max_slides: number /*i64*/): void
-        get_floor_max_angle(): number /*f64*/
-        set_floor_max_angle(radians: number /*f64*/): void
-        get_floor_snap_length(): number /*f64*/
-        set_floor_snap_length(floor_snap_length: number /*f64*/): void
-        get_wall_min_slide_angle(): number /*f64*/
-        set_wall_min_slide_angle(radians: number /*f64*/): void
+        set_platform_floor_layers(exclude_layer: int64): void
+        get_platform_floor_layers(): int64
+        set_platform_wall_layers(exclude_layer: int64): void
+        get_platform_wall_layers(): int64
+        get_max_slides(): int64
+        set_max_slides(max_slides: int64): void
+        get_floor_max_angle(): float64
+        set_floor_max_angle(radians: float64): void
+        get_floor_snap_length(): float64
+        set_floor_snap_length(floor_snap_length: float64): void
+        get_wall_min_slide_angle(): float64
+        set_wall_min_slide_angle(radians: float64): void
         get_up_direction(): Vector2
         set_up_direction(up_direction: Vector2): void
         set_motion_mode(mode: CharacterBody2D.MotionMode): void
@@ -8793,26 +8793,26 @@ declare module "godot" {
         get_real_velocity(): Vector2
         
         /** Returns the floor's collision angle at the last collision point according to [param up_direction], which is [constant Vector2.UP] by default. This value is always positive and only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`. */
-        get_floor_angle(up_direction: Vector2 = new Vector2(0, -1)): number /*f64*/
+        get_floor_angle(up_direction: Vector2 = new Vector2(0, -1)): float64
         
         /** Returns the linear velocity of the platform at the last collision point. Only valid after calling [method move_and_slide]. */
         get_platform_velocity(): Vector2
         
         /** Returns the number of times the body collided and changed direction during the last call to [method move_and_slide]. */
-        get_slide_collision_count(): number /*i64*/
+        get_slide_collision_count(): int64
         
         /** Returns a [KinematicCollision2D], which contains information about a collision that occurred during the last call to [method move_and_slide]. Since the body can collide several times in a single call to [method move_and_slide], you must specify the index of the collision in the range 0 to ([method get_slide_collision_count] - 1).  
          *  **Example usage:**  
          *    
          */
-        get_slide_collision(slide_idx: number /*i64*/): KinematicCollision2D
+        get_slide_collision(slide_idx: int64): KinematicCollision2D
         
         /** Returns a [KinematicCollision2D], which contains information about the latest collision that occurred during the last call to [method move_and_slide]. */
         get_last_slide_collision(): KinematicCollision2D
         
         /** Sets the motion mode which defines the behavior of [method move_and_slide]. See [enum MotionMode] constants for available modes. */
-        get motion_mode(): number /*i64*/
-        set motion_mode(value: number /*i64*/)
+        get motion_mode(): int64
+        set motion_mode(value: int64)
         
         /** Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [method move_and_slide]. Defaults to [constant Vector2.UP]. As the vector will be normalized it can't be equal to [constant Vector2.ZERO], if you want all collisions to be reported as walls, consider using [constant MOTION_MODE_FLOATING] as [member motion_mode]. */
         get up_direction(): Vector2
@@ -8827,12 +8827,12 @@ declare module "godot" {
         set slide_on_ceiling(value: boolean)
         
         /** Maximum number of times the body can change direction before it stops when calling [method move_and_slide]. */
-        get max_slides(): number /*i64*/
-        set max_slides(value: number /*i64*/)
+        get max_slides(): int64
+        set max_slides(value: int64)
         
         /** Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. This property only affects movement when [member motion_mode] is [constant MOTION_MODE_FLOATING]. */
-        get wall_min_slide_angle(): number /*f64*/
-        set wall_min_slide_angle(value: number /*f64*/)
+        get wall_min_slide_angle(): float64
+        set wall_min_slide_angle(value: float64)
         
         /** If `true`, the body will not slide on slopes when calling [method move_and_slide] when the body is standing still.  
          *  If `false`, the body will slide on floor's slopes when [member velocity] applies a downward force.  
@@ -8851,34 +8851,34 @@ declare module "godot" {
         set floor_block_on_wall(value: boolean)
         
         /** Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [method move_and_slide]. The default value equals 45 degrees. */
-        get floor_max_angle(): number /*f64*/
-        set floor_max_angle(value: number /*f64*/)
+        get floor_max_angle(): float64
+        set floor_max_angle(value: float64)
         
         /** Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [method move_and_slide]. The snapping vector is determined by the given distance along the opposite direction of the [member up_direction].  
          *  As long as the snapping vector is in contact with the ground and the body moves against [member up_direction], the body will remain attached to the surface. Snapping is not applied if the body moves along [member up_direction], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [method apply_floor_snap].  
          */
-        get floor_snap_length(): number /*f64*/
-        set floor_snap_length(value: number /*f64*/)
+        get floor_snap_length(): float64
+        set floor_snap_length(value: float64)
         
         /** Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior. */
-        get platform_on_leave(): number /*i64*/
-        set platform_on_leave(value: number /*i64*/)
+        get platform_on_leave(): int64
+        set platform_on_leave(value: int64)
         
         /** Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all floor bodies are detected and propagate their velocity. */
-        get platform_floor_layers(): number /*i64*/
-        set platform_floor_layers(value: number /*i64*/)
+        get platform_floor_layers(): int64
+        set platform_floor_layers(value: int64)
         
         /** Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all wall bodies are ignored. */
-        get platform_wall_layers(): number /*i64*/
-        set platform_wall_layers(value: number /*i64*/)
+        get platform_wall_layers(): int64
+        set platform_wall_layers(value: int64)
         
         /** Extra margin used for collision recovery when calling [method move_and_slide].  
          *  If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.  
          *  A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.  
          *  A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.  
          */
-        get safe_margin(): number /*f64*/
-        set safe_margin(value: number /*f64*/)
+        get safe_margin(): float64
+        set safe_margin(value: float64)
     }
     namespace CharacterBody3D {
         enum MotionMode {
@@ -8916,8 +8916,8 @@ declare module "godot" {
         apply_floor_snap(): void
         set_velocity(velocity: Vector3): void
         get_velocity(): Vector3
-        set_safe_margin(margin: number /*f64*/): void
-        get_safe_margin(): number /*f64*/
+        set_safe_margin(margin: float64): void
+        get_safe_margin(): float64
         is_floor_stop_on_slope_enabled(): boolean
         set_floor_stop_on_slope_enabled(enabled: boolean): void
         set_floor_constant_speed_enabled(enabled: boolean): void
@@ -8926,18 +8926,18 @@ declare module "godot" {
         is_floor_block_on_wall_enabled(): boolean
         set_slide_on_ceiling_enabled(enabled: boolean): void
         is_slide_on_ceiling_enabled(): boolean
-        set_platform_floor_layers(exclude_layer: number /*i64*/): void
-        get_platform_floor_layers(): number /*i64*/
-        set_platform_wall_layers(exclude_layer: number /*i64*/): void
-        get_platform_wall_layers(): number /*i64*/
-        get_max_slides(): number /*i64*/
-        set_max_slides(max_slides: number /*i64*/): void
-        get_floor_max_angle(): number /*f64*/
-        set_floor_max_angle(radians: number /*f64*/): void
-        get_floor_snap_length(): number /*f64*/
-        set_floor_snap_length(floor_snap_length: number /*f64*/): void
-        get_wall_min_slide_angle(): number /*f64*/
-        set_wall_min_slide_angle(radians: number /*f64*/): void
+        set_platform_floor_layers(exclude_layer: int64): void
+        get_platform_floor_layers(): int64
+        set_platform_wall_layers(exclude_layer: int64): void
+        get_platform_wall_layers(): int64
+        get_max_slides(): int64
+        set_max_slides(max_slides: int64): void
+        get_floor_max_angle(): float64
+        set_floor_max_angle(radians: float64): void
+        get_floor_snap_length(): float64
+        set_floor_snap_length(floor_snap_length: float64): void
+        get_wall_min_slide_angle(): float64
+        set_wall_min_slide_angle(radians: float64): void
         get_up_direction(): Vector3
         set_up_direction(up_direction: Vector3): void
         set_motion_mode(mode: CharacterBody3D.MotionMode): void
@@ -8979,7 +8979,7 @@ declare module "godot" {
         get_real_velocity(): Vector3
         
         /** Returns the floor's collision angle at the last collision point according to [param up_direction], which is [constant Vector3.UP] by default. This value is always positive and only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`. */
-        get_floor_angle(up_direction: Vector3 = Vector3.ZERO): number /*f64*/
+        get_floor_angle(up_direction: Vector3 = Vector3.ZERO): float64
         
         /** Returns the linear velocity of the platform at the last collision point. Only valid after calling [method move_and_slide]. */
         get_platform_velocity(): Vector3
@@ -8988,17 +8988,17 @@ declare module "godot" {
         get_platform_angular_velocity(): Vector3
         
         /** Returns the number of times the body collided and changed direction during the last call to [method move_and_slide]. */
-        get_slide_collision_count(): number /*i64*/
+        get_slide_collision_count(): int64
         
         /** Returns a [KinematicCollision3D], which contains information about a collision that occurred during the last call to [method move_and_slide]. Since the body can collide several times in a single call to [method move_and_slide], you must specify the index of the collision in the range 0 to ([method get_slide_collision_count] - 1). */
-        get_slide_collision(slide_idx: number /*i64*/): KinematicCollision3D
+        get_slide_collision(slide_idx: int64): KinematicCollision3D
         
         /** Returns a [KinematicCollision3D], which contains information about the latest collision that occurred during the last call to [method move_and_slide]. */
         get_last_slide_collision(): KinematicCollision3D
         
         /** Sets the motion mode which defines the behavior of [method move_and_slide]. See [enum MotionMode] constants for available modes. */
-        get motion_mode(): number /*i64*/
-        set motion_mode(value: number /*i64*/)
+        get motion_mode(): int64
+        set motion_mode(value: int64)
         
         /** Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [method move_and_slide]. Defaults to [constant Vector3.UP]. As the vector will be normalized it can't be equal to [constant Vector3.ZERO], if you want all collisions to be reported as walls, consider using [constant MOTION_MODE_FLOATING] as [member motion_mode]. */
         get up_direction(): Vector3
@@ -9013,12 +9013,12 @@ declare module "godot" {
         set velocity(value: Vector3)
         
         /** Maximum number of times the body can change direction before it stops when calling [method move_and_slide]. */
-        get max_slides(): number /*i64*/
-        set max_slides(value: number /*i64*/)
+        get max_slides(): int64
+        set max_slides(value: int64)
         
         /** Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. When [member motion_mode] is [constant MOTION_MODE_GROUNDED], it only affects movement if [member floor_block_on_wall] is `true`. */
-        get wall_min_slide_angle(): number /*f64*/
-        set wall_min_slide_angle(value: number /*f64*/)
+        get wall_min_slide_angle(): float64
+        set wall_min_slide_angle(value: float64)
         
         /** If `true`, the body will not slide on slopes when calling [method move_and_slide] when the body is standing still.  
          *  If `false`, the body will slide on floor's slopes when [member velocity] applies a downward force.  
@@ -9037,34 +9037,34 @@ declare module "godot" {
         set floor_block_on_wall(value: boolean)
         
         /** Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [method move_and_slide]. The default value equals 45 degrees. */
-        get floor_max_angle(): number /*f64*/
-        set floor_max_angle(value: number /*f64*/)
+        get floor_max_angle(): float64
+        set floor_max_angle(value: float64)
         
         /** Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [method move_and_slide]. The snapping vector is determined by the given distance along the opposite direction of the [member up_direction].  
          *  As long as the snapping vector is in contact with the ground and the body moves against [member up_direction], the body will remain attached to the surface. Snapping is not applied if the body moves along [member up_direction], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [method apply_floor_snap].  
          */
-        get floor_snap_length(): number /*f64*/
-        set floor_snap_length(value: number /*f64*/)
+        get floor_snap_length(): float64
+        set floor_snap_length(value: float64)
         
         /** Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior. */
-        get platform_on_leave(): number /*i64*/
-        set platform_on_leave(value: number /*i64*/)
+        get platform_on_leave(): int64
+        set platform_on_leave(value: int64)
         
         /** Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody3D]. By default, all floor bodies are detected and propagate their velocity. */
-        get platform_floor_layers(): number /*i64*/
-        set platform_floor_layers(value: number /*i64*/)
+        get platform_floor_layers(): int64
+        set platform_floor_layers(value: int64)
         
         /** Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody3D]. By default, all wall bodies are ignored. */
-        get platform_wall_layers(): number /*i64*/
-        set platform_wall_layers(value: number /*i64*/)
+        get platform_wall_layers(): int64
+        set platform_wall_layers(value: int64)
         
         /** Extra margin used for collision recovery when calling [method move_and_slide].  
          *  If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.  
          *  A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.  
          *  A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.  
          */
-        get safe_margin(): number /*f64*/
-        set safe_margin(value: number /*f64*/)
+        get safe_margin(): float64
+        set safe_margin(value: float64)
     }
     /** A button that represents a binary choice.  
      *  	  
@@ -9086,12 +9086,12 @@ declare module "godot" {
      */
     class CircleShape2D extends Shape2D {
         constructor(identifier?: any)
-        set_radius(radius: number /*f64*/): void
-        get_radius(): number /*f64*/
+        set_radius(radius: float64): void
+        get_radius(): float64
         
         /** The circle's radius. */
-        get radius(): number /*f64*/
-        set radius(value: number /*f64*/)
+        get radius(): float64
+        set radius(value: float64)
     }
     namespace CodeEdit {
         enum CodeCompletionKind {
@@ -9155,8 +9155,8 @@ declare module "godot" {
          *  Both [param candidates] and the return is a [Array] of [Dictionary], see [method get_code_completion_option] for [Dictionary] content.  
          */
         /* gdvirtual */ _filter_code_completion_candidates(candidates: Array): Array
-        set_indent_size(size: number /*i64*/): void
-        get_indent_size(): number /*i64*/
+        set_indent_size(size: int64): void
+        get_indent_size(): int64
         set_indent_using_spaces(use_spaces: boolean): void
         is_indent_using_spaces(): boolean
         set_auto_indent_enabled(enable: boolean): void
@@ -9176,7 +9176,7 @@ declare module "godot" {
         /** Converts the indents of lines between [param from_line] and [param to_line] to tabs or spaces as set by [member indent_use_spaces].  
          *  Values of `-1` convert the entire text.  
          */
-        convert_indent(from_line: number /*i64*/ = -1, to_line: number /*i64*/ = -1): void
+        convert_indent(from_line: int64 = -1, to_line: int64 = -1): void
         set_auto_brace_completion_enabled(enable: boolean): void
         is_auto_brace_completion_enabled(): boolean
         set_highlight_matching_braces_enabled(enable: boolean): void
@@ -9205,10 +9205,10 @@ declare module "godot" {
         is_drawing_executing_lines_gutter(): boolean
         
         /** Sets the line as breakpointed. */
-        set_line_as_breakpoint(line: number /*i64*/, breakpointed: boolean): void
+        set_line_as_breakpoint(line: int64, breakpointed: boolean): void
         
         /** Returns whether the line at the specified index is breakpointed or not. */
-        is_line_breakpointed(line: number /*i64*/): boolean
+        is_line_breakpointed(line: int64): boolean
         
         /** Clears all breakpointed lines. */
         clear_breakpointed_lines(): void
@@ -9217,10 +9217,10 @@ declare module "godot" {
         get_breakpointed_lines(): PackedInt32Array
         
         /** Sets the line as bookmarked. */
-        set_line_as_bookmarked(line: number /*i64*/, bookmarked: boolean): void
+        set_line_as_bookmarked(line: int64, bookmarked: boolean): void
         
         /** Returns whether the line at the specified index is bookmarked or not. */
-        is_line_bookmarked(line: number /*i64*/): boolean
+        is_line_bookmarked(line: int64): boolean
         
         /** Clears all bookmarked lines. */
         clear_bookmarked_lines(): void
@@ -9229,10 +9229,10 @@ declare module "godot" {
         get_bookmarked_lines(): PackedInt32Array
         
         /** Sets the line as executing. */
-        set_line_as_executing(line: number /*i64*/, executing: boolean): void
+        set_line_as_executing(line: int64, executing: boolean): void
         
         /** Returns whether the line at the specified index is marked as executing or not. */
-        is_line_executing(line: number /*i64*/): boolean
+        is_line_executing(line: int64): boolean
         
         /** Clears all executed lines. */
         clear_executing_lines(): void
@@ -9249,13 +9249,13 @@ declare module "godot" {
         is_line_folding_enabled(): boolean
         
         /** Returns if the given line is foldable, that is, it has indented lines right below it or a comment / string block. */
-        can_fold_line(line: number /*i64*/): boolean
+        can_fold_line(line: int64): boolean
         
         /** Folds the given line, if possible (see [method can_fold_line]). */
-        fold_line(line: number /*i64*/): void
+        fold_line(line: int64): void
         
         /** Unfolds all lines that were previously folded. */
-        unfold_line(line: number /*i64*/): void
+        unfold_line(line: int64): void
         
         /** Folds all lines that are possible to be folded (see [method can_fold_line]). */
         fold_all_lines(): void
@@ -9264,10 +9264,10 @@ declare module "godot" {
         unfold_all_lines(): void
         
         /** Toggle the folding of the code block at the given line. */
-        toggle_foldable_line(line: number /*i64*/): void
+        toggle_foldable_line(line: int64): void
         
         /** Returns whether the line at the specified index is folded or not. */
-        is_line_folded(line: number /*i64*/): boolean
+        is_line_folded(line: int64): boolean
         
         /** Returns all lines that are current folded. */
         get_folded_lines(): Array
@@ -9289,10 +9289,10 @@ declare module "godot" {
         set_code_region_tags(start: string = 'region', end: string = 'endregion'): void
         
         /** Returns whether the line at the specified index is a code region start. */
-        is_line_code_region_start(line: number /*i64*/): boolean
+        is_line_code_region_start(line: int64): boolean
         
         /** Returns whether the line at the specified index is a code region end. */
-        is_line_code_region_end(line: number /*i64*/): boolean
+        is_line_code_region_end(line: int64): boolean
         
         /** Adds a string delimiter.  
          *  Both the start and end keys must be symbols. Only the start key has to be unique.  
@@ -9312,7 +9312,7 @@ declare module "godot" {
         get_string_delimiters(): Array
         
         /** Returns the delimiter index if [param line] [param column] is in a string. If [param column] is not provided, will return the delimiter index if the entire [param line] is a string. Otherwise `-1`. */
-        is_in_string(line: number /*i64*/, column: number /*i64*/ = -1): number /*i64*/
+        is_in_string(line: int64, column: int64 = -1): int64
         
         /** Adds a comment delimiter.  
          *  Both the start and end keys must be symbols. Only the start key has to be unique.  
@@ -9332,19 +9332,19 @@ declare module "godot" {
         get_comment_delimiters(): Array
         
         /** Returns delimiter index if [param line] [param column] is in a comment. If [param column] is not provided, will return delimiter index if the entire [param line] is a comment. Otherwise `-1`. */
-        is_in_comment(line: number /*i64*/, column: number /*i64*/ = -1): number /*i64*/
+        is_in_comment(line: int64, column: int64 = -1): int64
         
         /** Gets the start key for a string or comment region index. */
-        get_delimiter_start_key(delimiter_index: number /*i64*/): string
+        get_delimiter_start_key(delimiter_index: int64): string
         
         /** Gets the end key for a string or comment region index. */
-        get_delimiter_end_key(delimiter_index: number /*i64*/): string
+        get_delimiter_end_key(delimiter_index: int64): string
         
         /** If [param line] [param column] is in a string or comment, returns the start position of the region. If not or no start could be found, both [Vector2] values will be `-1`. */
-        get_delimiter_start_position(line: number /*i64*/, column: number /*i64*/): Vector2
+        get_delimiter_start_position(line: int64, column: int64): Vector2
         
         /** If [param line] [param column] is in a string or comment, returns the end position of the region. If not or no end could be found, both [Vector2] values will be `-1`. */
-        get_delimiter_end_position(line: number /*i64*/, column: number /*i64*/): Vector2
+        get_delimiter_end_position(line: int64, column: int64): Vector2
         
         /** Sets the code hint text. Pass an empty string to clear. */
         set_code_hint(code_hint: string): void
@@ -9363,7 +9363,7 @@ declare module "godot" {
          *      
          *  **Note:** This list will replace all current candidates.  
          */
-        add_code_completion_option(type: CodeEdit.CodeCompletionKind, display_text: string, insert_text: string, text_color: Color = new Color(1, 1, 1, 1), icon: Resource = <any> {} /*compound.type from nil*/, value: any = <any> {} /*compound.type from nil*/, location: number /*i64*/ = 1024): void
+        add_code_completion_option(type: CodeEdit.CodeCompletionKind, display_text: string, insert_text: string, text_color: Color = new Color(1, 1, 1, 1), icon: Resource = <any> {} /*compound.type from nil*/, value: any = <any> {} /*compound.type from nil*/, location: int64 = 1024): void
         
         /** Submits all completion options added with [method add_code_completion_option]. Will try to force the autocomplete menu to popup, if [param force] is `true`.  
          *      
@@ -9382,13 +9382,13 @@ declare module "godot" {
          *  `icon`: Icon to draw on the autocomplete menu.  
          *  `default_value`: Value of the symbol.  
          */
-        get_code_completion_option(index: number /*i64*/): Dictionary
+        get_code_completion_option(index: int64): Dictionary
         
         /** Gets the index of the current selected completion option. */
-        get_code_completion_selected_index(): number /*i64*/
+        get_code_completion_selected_index(): int64
         
         /** Sets the current selected completion option. */
-        set_code_completion_selected_index(index: number /*i64*/): void
+        set_code_completion_selected_index(index: int64): void
         
         /** Inserts the selected entry into the text. If [param replace] is true, any existing text is replaced rather than merged. */
         confirm_code_completion(replace: boolean = false): void
@@ -9408,7 +9408,7 @@ declare module "godot" {
         get_text_for_symbol_lookup(): string
         
         /** Returns the full text with char `0xFFFF` at the specified location. */
-        get_text_with_cursor_char(line: number /*i64*/, column: number /*i64*/): string
+        get_text_with_cursor_char(line: int64, column: int64): string
         
         /** Sets the symbol emitted by [signal symbol_validate] as a valid lookup. */
         set_symbol_lookup_word_as_valid(valid: boolean): void
@@ -9469,8 +9469,8 @@ declare module "godot" {
         set code_completion_prefixes(value: PackedStringArray)
         
         /** Size of the tabulation indent (one [kbd]Tab[/kbd] press) in characters. If [member indent_use_spaces] is enabled the number of spaces to use. */
-        get indent_size(): number /*i64*/
-        set indent_size(value: number /*i64*/)
+        get indent_size(): int64
+        set indent_size(value: int64)
         
         /** Use spaces instead of tabs for indentation. */
         get indent_use_spaces(): boolean
@@ -9497,13 +9497,13 @@ declare module "godot" {
         set auto_brace_completion_pairs(value: Dictionary)
         
         /** Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a removed is emitted at the old line. */
-        readonly breakpoint_toggled: Signal // line: number /*i64*/ => void
+        readonly breakpoint_toggled: Signal // line: int64 => void
         
         /** Emitted when the user requests code completion. */
         readonly code_completion_requested: Signal //  => void
         
         /** Emitted when the user has clicked on a valid symbol. */
-        readonly symbol_lookup: Signal // symbol: string, line: number /*i64*/, column: number /*i64*/ => void
+        readonly symbol_lookup: Signal // symbol: string, line: int64, column: int64 => void
         
         /** Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [method set_symbol_lookup_word_as_valid]. */
         readonly symbol_validate: Signal // symbol: string => void

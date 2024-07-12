@@ -1,7 +1,9 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    
+    type int64 = number
+    type float64 = number
+    type unresolved = any
     // // Singleton Class
     namespace Performance {
         enum Monitor {
@@ -117,7 +119,7 @@ declare module "godot" {
          *    
          *  See [method get_custom_monitor] to query custom performance monitors' values.  
          */
-        static get_monitor(monitor: Performance.Monitor): number /*f64*/
+        static get_monitor(monitor: Performance.Monitor): float64
         
         /** Adds a custom monitor with the name [param id]. You can specify the category of the monitor using slash delimiters in [param id] (for example: `"Game/NumberOfNPCs"`). If there is more than one slash delimiter, then the default category is used. The default category is `"Custom"`. Prints an error if given [param id] is already present.  
          *    
@@ -136,7 +138,7 @@ declare module "godot" {
         static get_custom_monitor(id: StringName): any
         
         /** Returns the last tick in which custom monitor was added/removed (in microseconds since the engine started). This is set to [method Time.get_ticks_usec] when the monitor is updated. */
-        static get_monitor_modification_time(): number /*i64*/
+        static get_monitor_modification_time(): int64
         
         /** Returns the names of active custom monitors in an [Array]. */
         static get_custom_monitor_names(): Array
@@ -151,13 +153,13 @@ declare module "godot" {
         static add_interface(interface: TextServer): void
         
         /** Returns the number of interfaces currently registered. */
-        static get_interface_count(): number /*i64*/
+        static get_interface_count(): int64
         
         /** Removes an interface. All fonts and shaped text caches should be freed before removing an interface. */
         static remove_interface(interface: TextServer): void
         
         /** Returns the interface registered at a given index. */
-        static get_interface(idx: number /*i64*/): TextServer
+        static get_interface(idx: int64): TextServer
         
         /** Returns a list of available interfaces, with the index and name of each interface. */
         static get_interfaces(): Array
@@ -187,7 +189,7 @@ declare module "godot" {
         static register_server(name: string, create_callback: Callable): void
         
         /** Set the default [PhysicsServer2D] implementation to the one identified by [param name], if [param priority] is greater than the priority of the current default implementation. */
-        static set_default_server(name: string, priority: number /*i64*/): void
+        static set_default_server(name: string, priority: int64): void
     }
     // // Singleton Class
     /** A singleton for managing [PhysicsServer3D] implementations.  
@@ -199,7 +201,7 @@ declare module "godot" {
         static register_server(name: string, create_callback: Callable): void
         
         /** Set the default [PhysicsServer3D] implementation to the one identified by [param name], if [param priority] is greater than the priority of the current default implementation. */
-        static set_default_server(name: string, priority: number /*i64*/): void
+        static set_default_server(name: string, priority: int64): void
     }
     // // Singleton Class
     /** Helper class for creating and clearing navigation meshes.  
@@ -267,10 +269,10 @@ declare module "godot" {
         static get_global_class_list(): Array
         
         /** Sets the order of a configuration value (influences when saved to the config file). */
-        static set_order(name: string, position: number /*i64*/): void
+        static set_order(name: string, position: int64): void
         
         /** Returns the order of a configuration value (influences when saved to the config file). */
-        static get_order(name: string): number /*i64*/
+        static get_order(name: string): int64
         
         /** Sets the specified setting's initial value. This is the value the setting reverts to. */
         static set_initial_value(name: string, value: any): void
@@ -321,7 +323,7 @@ declare module "godot" {
          *      
          *  **Note:** The optional [param offset] parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.  
          */
-        static load_resource_pack(pack: string, replace_files: boolean = true, offset: number /*i64*/ = 0): boolean
+        static load_resource_pack(pack: string, replace_files: boolean = true, offset: int64 = 0): boolean
         
         /** Saves the configuration to a custom file. The file extension must be `.godot` (to save in text-based [ConfigFile] format) or `.binary` (to save in binary format). You can also save `override.cfg` file, which is also text, but can be used in exported projects unlike other formats. */
         static save_custom(file: string): Error
@@ -376,19 +378,19 @@ declare module "godot" {
         static resolve_hostname_addresses(host: string, ip_type: IP.Type = 3): PackedStringArray
         
         /** Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as [param ip_type]. Returns the queue ID if successful, or [constant RESOLVER_INVALID_ID] on error. */
-        static resolve_hostname_queue_item(host: string, ip_type: IP.Type = 3): number /*i64*/
+        static resolve_hostname_queue_item(host: string, ip_type: IP.Type = 3): int64
         
         /** Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue [param id]. */
-        static get_resolve_item_status(id: number /*i64*/): IP.ResolverStatus
+        static get_resolve_item_status(id: int64): IP.ResolverStatus
         
         /** Returns a queued hostname's IP address, given its queue [param id]. Returns an empty string on error or if resolution hasn't happened yet (see [method get_resolve_item_status]). */
-        static get_resolve_item_address(id: number /*i64*/): string
+        static get_resolve_item_address(id: int64): string
         
         /** Returns resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [method get_resolve_item_status]). */
-        static get_resolve_item_addresses(id: number /*i64*/): Array
+        static get_resolve_item_addresses(id: int64): Array
         
         /** Removes a given item [param id] from the queue. This should be used to free a queue after it has completed to enable more queries to happen. */
-        static erase_resolve_item(id: number /*i64*/): void
+        static erase_resolve_item(id: int64): void
         
         /** Returns all the user's current IPv4 and IPv6 addresses as an array. */
         static get_local_addresses(): PackedStringArray
@@ -450,10 +452,10 @@ declare module "godot" {
      */
     class Geometry2D extends Object {
         /** Returns `true` if [param point] is inside the circle or if it's located exactly  *on*  the circle's boundary, otherwise returns `false`. */
-        static is_point_in_circle(point: Vector2, circle_position: Vector2, circle_radius: number /*f64*/): boolean
+        static is_point_in_circle(point: Vector2, circle_position: Vector2, circle_radius: float64): boolean
         
         /** Given the 2D segment ([param segment_from], [param segment_to]), returns the position on the segment (as a number between 0 and 1) at which the segment hits the circle that is located at position [param circle_position] and has radius [param circle_radius]. If the segment does not intersect the circle, -1 is returned (this is also the case if the line extending the segment would intersect the circle, but the segment does not). */
-        static segment_intersects_circle(segment_from: Vector2, segment_to: Vector2, circle_position: Vector2, circle_radius: number /*f64*/): number /*f64*/
+        static segment_intersects_circle(segment_from: Vector2, segment_to: Vector2, circle_position: Vector2, circle_radius: float64): float64
         
         /** Checks if the two segments ([param from_a], [param to_a]) and ([param from_b], [param to_b]) intersect. If yes, return the point of intersection as [Vector2]. If no intersection takes place, returns `null`. */
         static segment_intersects_segment(from_a: Vector2, to_a: Vector2, from_b: Vector2, to_b: Vector2): any
@@ -527,14 +529,14 @@ declare module "godot" {
          *  **Note:** To translate the polygon's vertices specifically, multiply them to a [Transform2D]:  
          *    
          */
-        static offset_polygon(polygon: PackedVector2Array, delta: number /*f64*/, join_type: Geometry2D.PolyJoinType = 0): Array
+        static offset_polygon(polygon: PackedVector2Array, delta: float64, join_type: Geometry2D.PolyJoinType = 0): Array
         
         /** Inflates or deflates [param polyline] by [param delta] units (pixels), producing polygons. If [param delta] is positive, makes the polyline grow outward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. If [param delta] is negative, returns an empty array.  
          *  Each polygon's vertices will be rounded as determined by [param join_type], see [enum PolyJoinType].  
          *  Each polygon's endpoints will be rounded as determined by [param end_type], see [enum PolyEndType].  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static offset_polyline(polyline: PackedVector2Array, delta: number /*f64*/, join_type: Geometry2D.PolyJoinType = 0, end_type: Geometry2D.PolyEndType = 3): Array
+        static offset_polyline(polyline: PackedVector2Array, delta: float64, join_type: Geometry2D.PolyJoinType = 0, end_type: Geometry2D.PolyEndType = 3): Array
         
         /** Given an array of [Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a [PackedVector2Array] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [Vector2i]. */
         static make_atlas(sizes: PackedVector2Array): Dictionary
@@ -552,10 +554,10 @@ declare module "godot" {
         static build_box_planes(extents: Vector3): Array
         
         /** Returns an array of [Plane]s closely bounding a faceted cylinder centered at the origin with radius [param radius] and height [param height]. The parameter [param sides] defines how many planes will be generated for the round part of the cylinder. The parameter [param axis] describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z). */
-        static build_cylinder_planes(radius: number /*f64*/, height: number /*f64*/, sides: number /*i64*/, axis: Vector3.Axis = 2): Array
+        static build_cylinder_planes(radius: float64, height: float64, sides: int64, axis: Vector3.Axis = 2): Array
         
         /** Returns an array of [Plane]s closely bounding a faceted capsule centered at the origin with radius [param radius] and height [param height]. The parameter [param sides] defines how many planes will be generated for the side part of the capsule, whereas [param lats] gives the number of latitudinal steps at the bottom and top of the capsule. The parameter [param axis] describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z). */
-        static build_capsule_planes(radius: number /*f64*/, height: number /*f64*/, sides: number /*i64*/, lats: number /*i64*/, axis: Vector3.Axis = 2): Array
+        static build_capsule_planes(radius: float64, height: float64, sides: int64, lats: int64, axis: Vector3.Axis = 2): Array
         
         /** Given the two 3D segments ([param p1], [param p2]) and ([param q1], [param q2]), finds those two points on the two segments that are closest to each other. Returns a [PackedVector3Array] that contains this point on ([param p1], [param p2]) as well the accompanying point on ([param q1], [param q2]). */
         static get_closest_points_between_segments(p1: Vector3, p2: Vector3, q1: Vector3, q2: Vector3): PackedVector3Array
@@ -578,10 +580,10 @@ declare module "godot" {
         static segment_intersects_triangle(from: Vector3, to: Vector3, a: Vector3, b: Vector3, c: Vector3): any
         
         /** Checks if the segment ([param from], [param to]) intersects the sphere that is located at [param sphere_position] and has radius [param sphere_radius]. If no, returns an empty [PackedVector3Array]. If yes, returns a [PackedVector3Array] containing the point of intersection and the sphere's normal at the point of intersection. */
-        static segment_intersects_sphere(from: Vector3, to: Vector3, sphere_position: Vector3, sphere_radius: number /*f64*/): PackedVector3Array
+        static segment_intersects_sphere(from: Vector3, to: Vector3, sphere_position: Vector3, sphere_radius: float64): PackedVector3Array
         
         /** Checks if the segment ([param from], [param to]) intersects the cylinder with height [param height] that is centered at the origin and has radius [param radius]. If no, returns an empty [PackedVector3Array]. If an intersection takes place, the returned array contains the point of intersection and the cylinder's normal at the point of intersection. */
-        static segment_intersects_cylinder(from: Vector3, to: Vector3, height: number /*f64*/, radius: number /*f64*/): PackedVector3Array
+        static segment_intersects_cylinder(from: Vector3, to: Vector3, height: float64, radius: float64): PackedVector3Array
         
         /** Given a convex hull defined though the [Plane]s in the array [param planes], tests if the segment ([param from], [param to]) intersects with that hull. If an intersection is found, returns a [PackedVector3Array] containing the point the intersection and the hull's normal. Otherwise, returns an empty array. */
         static segment_intersects_convex(from: Vector3, to: Vector3, planes: Array): PackedVector3Array
@@ -675,7 +677,7 @@ declare module "godot" {
         static exists(path: string, type_hint: string = ''): boolean
         
         /** Returns the ID associated with a given resource path, or `-1` when no such ID exists. */
-        static get_resource_uid(path: string): number /*i64*/
+        static get_resource_uid(path: string): int64
     }
     // // Singleton Class
     namespace ResourceSaver {
@@ -795,13 +797,13 @@ declare module "godot" {
         static crash(message: string): void
         static set_low_processor_usage_mode(enable: boolean): void
         static is_in_low_processor_usage_mode(): boolean
-        static set_low_processor_usage_mode_sleep_usec(usec: number /*i64*/): void
-        static get_low_processor_usage_mode_sleep_usec(): number /*i64*/
+        static set_low_processor_usage_mode_sleep_usec(usec: int64): void
+        static get_low_processor_usage_mode_sleep_usec(): int64
         static set_delta_smoothing(delta_smoothing_enabled: boolean): void
         static is_delta_smoothing_enabled(): boolean
         
         /** Returns the number of  *logical*  CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of  *physical*  CPU cores. */
-        static get_processor_count(): number /*i64*/
+        static get_processor_count(): int64
         
         /** Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").  
          *      
@@ -822,7 +824,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
-        static get_system_font_path(font_name: string, weight: number /*i64*/ = 400, stretch: number /*i64*/ = 100, italic: boolean = false): string
+        static get_system_font_path(font_name: string, weight: int64 = 400, stretch: int64 = 100, italic: boolean = false): string
         
         /** Returns an array of the system substitute font file paths, which are similar to the font with [param font_name] and style for the specified text, locale and script. Returns empty array if no matching fonts found.  
          *  The following aliases can be used to request default fonts: "sans-serif", "serif", "monospace", "cursive", and "fantasy".  
@@ -833,7 +835,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
-        static get_system_font_path_for_text(font_name: string, text: string, locale: string = '', script: string = '', weight: number /*i64*/ = 400, stretch: number /*i64*/ = 100, italic: boolean = false): PackedStringArray
+        static get_system_font_path_for_text(font_name: string, text: string, locale: string = '', script: string = '', weight: int64 = 400, stretch: int64 = 100, italic: boolean = false): PackedStringArray
         
         /** Returns the path to the current engine executable.  
          *      
@@ -869,7 +871,7 @@ declare module "godot" {
          *      
          *  **Note:** On Android, system commands such as `dumpsys` can only be run on a rooted device.  
          */
-        static execute(path: string, arguments_: PackedStringArray, output: Array = <any> {} /*compound.type from 28([object Object])*/, read_stderr: boolean = false, open_console: boolean = false): number /*i64*/
+        static execute(path: string, arguments_: PackedStringArray, output: Array = <any> {} /*compound.type from 28([object Object])*/, read_stderr: boolean = false, open_console: boolean = false): int64
         
         /** Creates a new process that runs independently of Godot. It will not terminate if Godot terminates. The path specified in [param path] must exist and be executable file or macOS .app bundle. Platform path resolution will be used. The [param arguments] are used in the given order and separated by a space.  
          *  On Windows, if [param open_console] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.  
@@ -882,14 +884,14 @@ declare module "godot" {
          *      
          *  **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export or system .app bundle, system .app bundles will ignore arguments.  
          */
-        static create_process(path: string, arguments_: PackedStringArray, open_console: boolean = false): number /*i64*/
+        static create_process(path: string, arguments_: PackedStringArray, open_console: boolean = false): int64
         
         /** Creates a new instance of Godot that runs independently. The [param arguments] are used in the given order and separated by a space.  
          *  If the process creation succeeds, the method will return the new process ID, which you can use to monitor the process (and potentially terminate it with [method kill]). If the process creation fails, the method will return `-1`.  
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
-        static create_instance(arguments_: PackedStringArray): number /*i64*/
+        static create_instance(arguments_: PackedStringArray): int64
         
         /** Kill (terminate) the process identified by the given process ID ([param pid]), e.g. the one returned by [method execute] in non-blocking mode. See also [method crash].  
          *      
@@ -897,7 +899,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
-        static kill(pid: number /*i64*/): Error
+        static kill(pid: int64): Error
         
         /** Requests the OS to open a resource with the most appropriate program. For example:  
          *  - `OS.shell_open("C:\\Users\name\Downloads")` on Windows opens the file explorer at the user's Downloads folder.  
@@ -924,13 +926,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
-        static is_process_running(pid: number /*i64*/): boolean
+        static is_process_running(pid: int64): boolean
         
         /** Returns the project's process ID.  
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
-        static get_process_id(): number /*i64*/
+        static get_process_id(): int64
         
         /** Returns `true` if the environment variable with the name [param variable] exists.  
          *      
@@ -1034,7 +1036,7 @@ declare module "godot" {
          *      
          *  **Note:** When [method delay_usec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [method delay_usec] as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).  
          */
-        static delay_usec(usec: number /*i64*/): void
+        static delay_usec(usec: int64): void
         
         /** Delays execution of the current thread by [param msec] milliseconds. [param msec] must be greater than or equal to `0`. Otherwise, [method delay_msec] will do nothing and will print an error message.  
          *      
@@ -1042,7 +1044,7 @@ declare module "godot" {
          *      
          *  **Note:** When [method delay_msec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [method delay_msec] as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).  
          */
-        static delay_msec(msec: number /*i64*/): void
+        static delay_msec(msec: int64): void
         
         /** Returns the host OS locale as a string of the form `language_Script_COUNTRY_VARIANT@extra`. If you want only the language code and not the fully specified locale from the OS, you can use [method get_locale_language].  
          *  `language` - 2 or 3-letter [url=https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]language code[/url], in lower case.  
@@ -1077,10 +1079,10 @@ declare module "godot" {
         static is_debug_build(): boolean
         
         /** Returns the amount of static memory being used by the program in bytes (only works in debug). */
-        static get_static_memory_usage(): number /*i64*/
+        static get_static_memory_usage(): int64
         
         /** Returns the maximum amount of static memory used (only works in debug). */
-        static get_static_memory_peak_usage(): number /*i64*/
+        static get_static_memory_peak_usage(): int64
         
         /** Returns the [Dictionary] with the following keys:  
          *  `"physical"` - total amount of usable physical memory, in bytes or `-1` if unknown. This value can be slightly less than the actual physical memory amount, since it does not include memory reserved by kernel and devices.  
@@ -1146,7 +1148,7 @@ declare module "godot" {
         static get_keycode_string(code: Key): string
         
         /** Returns `true` if the input keycode corresponds to a Unicode character. */
-        static is_keycode_unicode(code: number /*i64*/): boolean
+        static is_keycode_unicode(code: int64): boolean
         
         /** Returns the keycode of the given string (e.g. "Escape"). */
         static find_keycode_from_string(string_: string): Key
@@ -1161,13 +1163,13 @@ declare module "godot" {
          *      
          *  **Note:** Thread IDs are not deterministic and may be reused across application restarts.  
          */
-        static get_thread_caller_id(): number /*i64*/
+        static get_thread_caller_id(): int64
         
         /** Returns the ID of the main thread. See [method get_thread_caller_id].  
          *      
          *  **Note:** Thread IDs are not deterministic and may be reused across application restarts.  
          */
-        static get_main_thread_id(): number /*i64*/
+        static get_main_thread_id(): int64
         
         /** Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build, etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [url=$DOCS_URL/tutorials/export/feature_tags.html]Feature Tags[/url] documentation for more details.  
          *      
@@ -1207,8 +1209,8 @@ declare module "godot" {
         set low_processor_usage_mode(value: boolean)
         
         /** The amount of sleeping between frames when the low-processor usage mode is enabled (in microseconds). Higher values will result in lower CPU usage. */
-        get low_processor_usage_mode_sleep_usec(): number /*i64*/
-        set low_processor_usage_mode_sleep_usec(value: number /*i64*/)
+        get low_processor_usage_mode_sleep_usec(): int64
+        set low_processor_usage_mode_sleep_usec(value: int64)
         
         /** If `true`, the engine filters the time delta measured between each frame, and attempts to compensate for random variation. This will only operate on systems where V-Sync is active. */
         get delta_smoothing(): boolean
@@ -1220,37 +1222,37 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_engine.html  
      */
     class Engine extends Object {
-        static set_physics_ticks_per_second(physics_ticks_per_second: number /*i64*/): void
-        static get_physics_ticks_per_second(): number /*i64*/
-        static set_max_physics_steps_per_frame(max_physics_steps: number /*i64*/): void
-        static get_max_physics_steps_per_frame(): number /*i64*/
-        static set_physics_jitter_fix(physics_jitter_fix: number /*f64*/): void
-        static get_physics_jitter_fix(): number /*f64*/
+        static set_physics_ticks_per_second(physics_ticks_per_second: int64): void
+        static get_physics_ticks_per_second(): int64
+        static set_max_physics_steps_per_frame(max_physics_steps: int64): void
+        static get_max_physics_steps_per_frame(): int64
+        static set_physics_jitter_fix(physics_jitter_fix: float64): void
+        static get_physics_jitter_fix(): float64
         
         /** Returns the fraction through the current physics tick we are at the time of rendering the frame. This can be used to implement fixed timestep interpolation. */
-        static get_physics_interpolation_fraction(): number /*f64*/
-        static set_max_fps(max_fps: number /*i64*/): void
-        static get_max_fps(): number /*i64*/
-        static set_time_scale(time_scale: number /*f64*/): void
-        static get_time_scale(): number /*f64*/
+        static get_physics_interpolation_fraction(): float64
+        static set_max_fps(max_fps: int64): void
+        static get_max_fps(): int64
+        static set_time_scale(time_scale: float64): void
+        static get_time_scale(): float64
         
         /** Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with `--disable-render-loop` via command line, [method get_frames_drawn] always returns `0`. See [method get_process_frames]. */
-        static get_frames_drawn(): number /*i64*/
+        static get_frames_drawn(): int64
         
         /** Returns the frames per second of the running game. */
-        static get_frames_per_second(): number /*f64*/
+        static get_frames_per_second(): float64
         
         /** Returns the total number of frames passed since engine initialization which is advanced on each **physics frame**. See also [method get_process_frames].  
          *  [method get_physics_frames] can be used to run expensive logic less often without relying on a [Timer]:  
          *    
          */
-        static get_physics_frames(): number /*i64*/
+        static get_physics_frames(): int64
         
         /** Returns the total number of frames passed since engine initialization which is advanced on each **process frame**, regardless of whether the render loop is enabled. See also [method get_frames_drawn] and [method get_physics_frames].  
          *  [method get_process_frames] can be used to run expensive logic less often without relying on a [Timer]:  
          *    
          */
-        static get_process_frames(): number /*i64*/
+        static get_process_frames(): int64
         
         /** Returns the main loop object (see [MainLoop] and [SceneTree]). */
         static get_main_loop(): MainLoop
@@ -1338,10 +1340,10 @@ declare module "godot" {
         static unregister_script_language(language: ScriptLanguage): Error
         
         /** Returns the number of available script languages. Use with [method get_script_language]. */
-        static get_script_language_count(): number /*i64*/
+        static get_script_language_count(): int64
         
         /** Returns an instance of a [ScriptLanguage] with the given index. */
-        static get_script_language(index: number /*i64*/): ScriptLanguage
+        static get_script_language(index: int64): ScriptLanguage
         
         /** Returns `true` if the script is currently running inside the editor, `false` otherwise. This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:  
          *    
@@ -1368,12 +1370,12 @@ declare module "godot" {
          *      
          *  **Note:** Only [member max_physics_steps_per_frame] physics ticks may be simulated per rendered frame at most. If more physics ticks have to be simulated per rendered frame to keep up with rendering, the project will appear to slow down (even if `delta` is used consistently in physics calculations). Therefore, it is recommended to also increase [member max_physics_steps_per_frame] if increasing [member physics_ticks_per_second] significantly above its default value.  
          */
-        get physics_ticks_per_second(): number /*i64*/
-        set physics_ticks_per_second(value: number /*i64*/)
+        get physics_ticks_per_second(): int64
+        set physics_ticks_per_second(value: int64)
         
         /** Controls the maximum number of physics steps that can be simulated each rendered frame. The default value is tuned to avoid "spiral of death" situations where expensive physics simulations trigger more expensive simulations indefinitely. However, the game will appear to slow down if the rendering FPS is less than `1 / max_physics_steps_per_frame` of [member physics_ticks_per_second]. This occurs even if `delta` is consistently used in physics calculations. To avoid this, increase [member max_physics_steps_per_frame] if you have increased [member physics_ticks_per_second] significantly above its default value. */
-        get max_physics_steps_per_frame(): number /*i64*/
-        set max_physics_steps_per_frame(value: number /*i64*/)
+        get max_physics_steps_per_frame(): int64
+        set max_physics_steps_per_frame(value: int64)
         
         /** The maximum number of frames per second that can be rendered. A value of `0` means "no limit". The actual number of frames per second may still be below this value if the CPU or GPU cannot keep up with the project logic and rendering.  
          *  Limiting the FPS can be useful to reduce system power consumption, which reduces heat and noise emissions (and improves battery life on mobile devices).  
@@ -1382,19 +1384,19 @@ declare module "godot" {
          *  If [member ProjectSettings.display/window/vsync/vsync_mode] is `Disabled`, limiting the FPS to a high value that can be consistently reached on the system can reduce input lag compared to an uncapped framerate. Since this works by ensuring the GPU load is lower than 100%, this latency reduction is only effective in GPU-bottlenecked scenarios, not CPU-bottlenecked scenarios.  
          *  See also [member physics_ticks_per_second] and [member ProjectSettings.application/run/max_fps].  
          */
-        get max_fps(): number /*i64*/
-        set max_fps(value: number /*i64*/)
+        get max_fps(): int64
+        set max_fps(value: int64)
         
         /** Controls how fast or slow the in-game clock ticks versus the real life one. It defaults to 1.0. A value of 2.0 means the game moves twice as fast as real life, whilst a value of 0.5 means the game moves at half the regular speed. This also affects [Timer] and [SceneTreeTimer] (see [method SceneTree.create_timer] for how to control this). */
-        get time_scale(): number /*f64*/
-        set time_scale(value: number /*f64*/)
+        get time_scale(): float64
+        set time_scale(value: float64)
         
         /** Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be good enough for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.  
          *      
          *  **Note:** For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting [member physics_jitter_fix] to `0`.  
          */
-        get physics_jitter_fix(): number /*f64*/
-        set physics_jitter_fix(value: number /*f64*/)
+        get physics_jitter_fix(): float64
+        set physics_jitter_fix(value: float64)
     }
     // // Singleton Class
     /** A class information repository.  
@@ -1457,7 +1459,7 @@ declare module "godot" {
         static class_has_integer_constant(class_: StringName, name: StringName): boolean
         
         /** Returns the value of the integer constant [param name] of [param class] or its ancestry. Always returns 0 when the constant could not be found. */
-        static class_get_integer_constant(class_: StringName, name: StringName): number /*i64*/
+        static class_get_integer_constant(class_: StringName, name: StringName): int64
         
         /** Returns whether [param class] or its ancestry has an enum called [param name] or not. */
         static class_has_enum(class_: StringName, name: StringName, no_inheritance: boolean = false): boolean
@@ -1526,7 +1528,7 @@ declare module "godot" {
         static get_tool_locale(): string
         
         /** Compares two locales and returns a similarity score between `0` (no match) and `10` (full match). */
-        static compare_locales(locale_a: string, locale_b: string): number /*i64*/
+        static compare_locales(locale_a: string, locale_b: string): int64
         
         /** Returns a [param locale] string standardized to match known locales (e.g. `en-US` would be matched to `en_US`). */
         static standardize_locale(locale: string): string
@@ -1558,7 +1560,7 @@ declare module "godot" {
         /** Returns the current locale's translation for the given message (key), plural message and context.  
          *  The number [param n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.  
          */
-        static translate_plural(message: StringName, plural_message: StringName, n: number /*i64*/, context: StringName = ''): StringName
+        static translate_plural(message: StringName, plural_message: StringName, n: int64, context: StringName = ''): StringName
         
         /** Adds a [Translation] resource. */
         static add_translation(translation: Translation): void
@@ -1695,7 +1697,7 @@ declare module "godot" {
         static is_mouse_button_pressed(button: MouseButton): boolean
         
         /** Returns `true` if you are pressing the joypad button (see [enum JoyButton]). */
-        static is_joy_button_pressed(device: number /*i64*/, button: JoyButton): boolean
+        static is_joy_button_pressed(device: int64, button: JoyButton): boolean
         
         /** Returns `true` if you are pressing the action event.  
          *  If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.  
@@ -1728,23 +1730,23 @@ declare module "godot" {
         /** Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis such as the keyboard, the value returned will be 0 or 1.  
          *  If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.  
          */
-        static get_action_strength(action: StringName, exact_match: boolean = false): number /*f64*/
+        static get_action_strength(action: StringName, exact_match: boolean = false): float64
         
         /** Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring the action's deadzone. In most cases, you should use [method get_action_strength] instead.  
          *  If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.  
          */
-        static get_action_raw_strength(action: StringName, exact_match: boolean = false): number /*f64*/
+        static get_action_raw_strength(action: StringName, exact_match: boolean = false): float64
         
         /** Get axis input by specifying two actions, one negative and one positive.  
          *  This is a shorthand for writing `Input.get_action_strength("positive_action") - Input.get_action_strength("negative_action")`.  
          */
-        static get_axis(negative_action: StringName, positive_action: StringName): number /*f64*/
+        static get_axis(negative_action: StringName, positive_action: StringName): float64
         
         /** Gets an input vector by specifying four actions for the positive and negative X and Y axes.  
          *  This method is useful when getting vector input, such as from a joystick, directional pad, arrows, or WASD. The vector has its length limited to 1 and has a circular deadzone, which is useful for using vector input as movement.  
          *  By default, the deadzone is automatically calculated from the average of the action deadzones. However, you can override the deadzone to be whatever you want (on the range of 0 to 1).  
          */
-        static get_vector(negative_x: StringName, positive_x: StringName, negative_y: StringName, positive_y: StringName, deadzone: number /*f64*/ = -1): Vector2
+        static get_vector(negative_x: StringName, positive_x: StringName, negative_y: StringName, positive_y: StringName, deadzone: float64 = -1): Vector2
         
         /** Adds a new mapping entry (in SDL2 format) to the mapping database. Optionally update already connected devices. */
         static add_joy_mapping(mapping: string, update_existing: boolean = false): void
@@ -1753,16 +1755,16 @@ declare module "godot" {
         static remove_joy_mapping(guid: string): void
         
         /** Returns `true` if the system knows the specified device. This means that it sets all button and axis indices. Unknown joypads are not expected to match these constants, but you can still retrieve events from them. */
-        static is_joy_known(device: number /*i64*/): boolean
+        static is_joy_known(device: int64): boolean
         
         /** Returns the current value of the joypad axis at given index (see [enum JoyAxis]). */
-        static get_joy_axis(device: number /*i64*/, axis: JoyAxis): number /*f64*/
+        static get_joy_axis(device: int64, axis: JoyAxis): float64
         
         /** Returns the name of the joypad at the specified device index, e.g. `PS4 Controller`. Godot uses the [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to determine gamepad names. */
-        static get_joy_name(device: number /*i64*/): string
+        static get_joy_name(device: int64): string
         
         /** Returns a SDL2-compatible device GUID on platforms that use gamepad remapping, e.g. `030000004c050000c405000000010000`. Returns `"Default Gamepad"` otherwise. Godot uses the [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to determine gamepad names and mappings based on this GUID. */
-        static get_joy_guid(device: number /*i64*/): string
+        static get_joy_guid(device: int64): string
         
         /** Returns a dictionary with extra platform-specific information about the device, e.g. the raw gamepad name from the OS or the Steam Input index.  
          *  On Windows the dictionary contains the following fields:  
@@ -1773,31 +1775,31 @@ declare module "godot" {
          *  `product_id`: The USB product ID of the device.  
          *  `steam_input_index`: The Steam Input gamepad index, if the device is not a Steam Input device this key won't be present.  
          */
-        static get_joy_info(device: number /*i64*/): Dictionary
+        static get_joy_info(device: int64): Dictionary
         
         /** Queries whether an input device should be ignored or not. Devices can be ignored by setting the environment variable `SDL_GAMECONTROLLER_IGNORE_DEVICES`. Read the [url=https://wiki.libsdl.org/SDL2]SDL documentation[/url] for more information.  
          *      
          *  **Note:** Some 3rd party tools can contribute to the list of ignored devices. For example,  *SteamInput*  creates virtual devices from physical devices for remapping purposes. To avoid handling the same input device twice, the original device is added to the ignore list.  
          */
-        static should_ignore_device(vendor_id: number /*i64*/, product_id: number /*i64*/): boolean
+        static should_ignore_device(vendor_id: int64, product_id: int64): boolean
         
         /** Returns an [Array] containing the device IDs of all currently connected joypads. */
         static get_connected_joypads(): Array
         
         /** Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the strength of the strong motor. */
-        static get_joy_vibration_strength(device: number /*i64*/): Vector2
+        static get_joy_vibration_strength(device: int64): Vector2
         
         /** Returns the duration of the current vibration effect in seconds. */
-        static get_joy_vibration_duration(device: number /*i64*/): number /*f64*/
+        static get_joy_vibration_duration(device: int64): float64
         
         /** Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. [param weak_magnitude] is the strength of the weak motor (between 0 and 1) and [param strong_magnitude] is the strength of the strong motor (between 0 and 1). [param duration] is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely). The vibration can be stopped early by calling [method stop_joy_vibration].  
          *      
          *  **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.  
          */
-        static start_joy_vibration(device: number /*i64*/, weak_magnitude: number /*f64*/, strong_magnitude: number /*f64*/, duration: number /*f64*/ = 0): void
+        static start_joy_vibration(device: int64, weak_magnitude: float64, strong_magnitude: float64, duration: float64 = 0): void
         
         /** Stops the vibration of the joypad started with [method start_joy_vibration]. */
-        static stop_joy_vibration(device: number /*i64*/): void
+        static stop_joy_vibration(device: int64): void
         
         /** Vibrate the handheld device for the specified duration in milliseconds.  
          *      
@@ -1809,7 +1811,7 @@ declare module "godot" {
          *      
          *  **Note:** Some web browsers such as Safari and Firefox for Android do not support [method vibrate_handheld].  
          */
-        static vibrate_handheld(duration_ms: number /*i64*/ = 500): void
+        static vibrate_handheld(duration_ms: int64 = 500): void
         
         /** Returns the gravity in m/s² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns [constant Vector3.ZERO].  
          *      
@@ -1880,7 +1882,7 @@ declare module "godot" {
          *      
          *  **Note:** This method will not cause any [method Node._input] calls. It is intended to be used with [method is_action_pressed] and [method is_action_just_pressed]. If you want to simulate `_input`, use [method parse_input_event] instead.  
          */
-        static action_press(action: StringName, strength: number /*f64*/ = 1): void
+        static action_press(action: StringName, strength: float64 = 1): void
         
         /** If the specified action is already pressed, this will release it. */
         static action_release(action: StringName): void
@@ -1924,8 +1926,8 @@ declare module "godot" {
         static flush_buffered_events(): void
         
         /** Controls the mouse mode. See [enum MouseMode] for more information. */
-        get mouse_mode(): number /*i64*/
-        set mouse_mode(value: number /*i64*/)
+        get mouse_mode(): int64
+        set mouse_mode(value: int64)
         
         /** If `true`, similar input events sent by the operating system are accumulated. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.  
          *  Input accumulation can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.  
@@ -1936,7 +1938,7 @@ declare module "godot" {
         set use_accumulated_input(value: boolean)
         
         /** Emitted when a joypad device has been connected or disconnected. */
-        static readonly joy_connection_changed: Signal // device: number /*i64*/, connected: boolean => void
+        static readonly joy_connection_changed: Signal // device: int64, connected: boolean => void
     }
     // // Singleton Class
     /** A singleton that manages all [InputEventAction]s.  
@@ -1953,16 +1955,16 @@ declare module "godot" {
         /** Adds an empty action to the [InputMap] with a configurable [param deadzone].  
          *  An [InputEvent] can then be added to this action with [method action_add_event].  
          */
-        static add_action(action: StringName, deadzone: number /*f64*/ = 0.5): void
+        static add_action(action: StringName, deadzone: float64 = 0.5): void
         
         /** Removes an action from the [InputMap]. */
         static erase_action(action: StringName): void
         
         /** Sets a deadzone value for the action. */
-        static action_set_deadzone(action: StringName, deadzone: number /*f64*/): void
+        static action_set_deadzone(action: StringName, deadzone: float64): void
         
         /** Returns a deadzone value for the action. */
-        static action_get_deadzone(action: StringName): number /*f64*/
+        static action_get_deadzone(action: StringName): float64
         
         /** Adds an [InputEvent] to an action. This [InputEvent] will trigger the action. */
         static action_add_event(action: StringName, event: InputEvent): void
@@ -2101,24 +2103,24 @@ declare module "godot" {
         /** Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.  
          *  The returned Dictionary's values will be the same as the [method get_datetime_dict_from_system] if the Unix timestamp is the current time, with the exception of Daylight Savings Time as it cannot be determined from the epoch.  
          */
-        static get_datetime_dict_from_unix_time(unix_time_val: number /*i64*/): Dictionary
+        static get_datetime_dict_from_unix_time(unix_time_val: int64): Dictionary
         
         /** Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, and `weekday`. */
-        static get_date_dict_from_unix_time(unix_time_val: number /*i64*/): Dictionary
+        static get_date_dict_from_unix_time(unix_time_val: int64): Dictionary
         
         /** Converts the given time to a dictionary of keys: `hour`, `minute`, and `second`. */
-        static get_time_dict_from_unix_time(unix_time_val: number /*i64*/): Dictionary
+        static get_time_dict_from_unix_time(unix_time_val: int64): Dictionary
         
         /** Converts the given Unix timestamp to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).  
          *  If [param use_space] is `true`, the date and time bits are separated by an empty space character instead of the letter T.  
          */
-        static get_datetime_string_from_unix_time(unix_time_val: number /*i64*/, use_space: boolean = false): string
+        static get_datetime_string_from_unix_time(unix_time_val: int64, use_space: boolean = false): string
         
         /** Converts the given Unix timestamp to an ISO 8601 date string (YYYY-MM-DD). */
-        static get_date_string_from_unix_time(unix_time_val: number /*i64*/): string
+        static get_date_string_from_unix_time(unix_time_val: int64): string
         
         /** Converts the given Unix timestamp to an ISO 8601 time string (HH:MM:SS). */
-        static get_time_string_from_unix_time(unix_time_val: number /*i64*/): string
+        static get_time_string_from_unix_time(unix_time_val: int64): string
         
         /** Converts the given ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS) to a dictionary of keys: `year`, `month`, `day`, [code skip-lint]weekday`, `hour`, `minute`, and `second`.  
          *  If [param weekday] is `false`, then the [code skip-lint]weekday` entry is excluded (the calculation is relatively expensive).  
@@ -2141,7 +2143,7 @@ declare module "godot" {
          *      
          *  **Note:** Unix timestamps are often in UTC. This method does not do any timezone conversion, so the timestamp will be in the same timezone as the given datetime dictionary.  
          */
-        static get_unix_time_from_datetime_dict(datetime: Dictionary): number /*i64*/
+        static get_unix_time_from_datetime_dict(datetime: Dictionary): int64
         
         /** Converts the given ISO 8601 date and/or time string to a Unix timestamp. The string can contain a date only, a time only, or both.  
          *      
@@ -2149,10 +2151,10 @@ declare module "godot" {
          *      
          *  **Note:** Any decimal fraction in the time string will be ignored silently.  
          */
-        static get_unix_time_from_datetime_string(datetime: string): number /*i64*/
+        static get_unix_time_from_datetime_string(datetime: string): int64
         
         /** Converts the given timezone offset in minutes to a timezone offset string. For example, -480 returns "-08:00", 345 returns "+05:45", and 0 returns "+00:00". */
-        static get_offset_string_from_offset_minutes(offset_minutes: number /*i64*/): string
+        static get_offset_string_from_offset_minutes(offset_minutes: int64): string
         
         /** Returns the current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, `second`, and `dst` (Daylight Savings Time). */
         static get_datetime_dict_from_system(utc: boolean = false): Dictionary
@@ -2193,17 +2195,17 @@ declare module "godot" {
          *      
          *  **Note:** Unlike other methods that use integer timestamps, this method returns the timestamp as a [float] for sub-second precision.  
          */
-        static get_unix_time_from_system(): number /*f64*/
+        static get_unix_time_from_system(): float64
         
         /** Returns the amount of time passed in milliseconds since the engine started.  
          *  Will always be positive or 0 and uses a 64-bit value (it will wrap after roughly 500 million years).  
          */
-        static get_ticks_msec(): number /*i64*/
+        static get_ticks_msec(): int64
         
         /** Returns the amount of time passed in microseconds since the engine started.  
          *  Will always be positive or 0 and uses a 64-bit value (it will wrap after roughly half a million years).  
          */
-        static get_ticks_usec(): number /*i64*/
+        static get_ticks_usec(): int64
     }
     // // Singleton Class
     namespace GDExtensionManager {
@@ -2239,38 +2241,38 @@ declare module "godot" {
         static readonly INVALID_ID = -1
         
         /** Converts the given UID to a `uid://` string value. */
-        static id_to_text(id: number /*i64*/): string
+        static id_to_text(id: int64): string
         
         /** Extracts the UID value from the given `uid://` string. */
-        static text_to_id(text_id: string): number /*i64*/
+        static text_to_id(text_id: string): int64
         
         /** Generates a random resource UID which is guaranteed to be unique within the list of currently loaded UIDs.  
          *  In order for this UID to be registered, you must call [method add_id] or [method set_id].  
          */
-        static create_id(): number /*i64*/
+        static create_id(): int64
         
         /** Returns whether the given UID value is known to the cache. */
-        static has_id(id: number /*i64*/): boolean
+        static has_id(id: int64): boolean
         
         /** Adds a new UID value which is mapped to the given resource path.  
          *  Fails with an error if the UID already exists, so be sure to check [method has_id] beforehand, or use [method set_id] instead.  
          */
-        static add_id(id: number /*i64*/, path: string): void
+        static add_id(id: int64, path: string): void
         
         /** Updates the resource path of an existing UID.  
          *  Fails with an error if the UID does not exist, so be sure to check [method has_id] beforehand, or use [method add_id] instead.  
          */
-        static set_id(id: number /*i64*/, path: string): void
+        static set_id(id: int64, path: string): void
         
         /** Returns the path that the given UID value refers to.  
          *  Fails with an error if the UID does not exist, so be sure to check [method has_id] beforehand.  
          */
-        static get_id_path(id: number /*i64*/): string
+        static get_id_path(id: int64): string
         
         /** Removes a loaded UID value from the cache.  
          *  Fails with an error if the UID does not exist, so be sure to check [method has_id] beforehand.  
          */
-        static remove_id(id: number /*i64*/): void
+        static remove_id(id: int64): void
     }
     // // Singleton Class
     /** A singleton that allocates some [Thread]s on startup, used to offload tasks to these threads.  
@@ -2281,35 +2283,35 @@ declare module "godot" {
         /** Adds [param action] as a task to be executed by a worker thread. [param high_priority] determines if the task has a high priority or a low priority (default). You can optionally provide a [param description] to help with debugging.  
          *  Returns a task ID that can be used by other methods.  
          */
-        static add_task(action: Callable, high_priority: boolean = false, description: string = ''): number /*i64*/
+        static add_task(action: Callable, high_priority: boolean = false, description: string = ''): int64
         
         /** Returns `true` if the task with the given ID is completed. */
-        static is_task_completed(task_id: number /*i64*/): boolean
+        static is_task_completed(task_id: int64): boolean
         
         /** Pauses the thread that calls this method until the task with the given ID is completed.  
          *  Returns [constant @GlobalScope.OK] if the task could be successfully awaited.  
          *  Returns [constant @GlobalScope.ERR_INVALID_PARAMETER] if a task with the passed ID does not exist (maybe because it was already awaited and disposed of).  
          *  Returns [constant @GlobalScope.ERR_BUSY] if the call is made from another running task and, due to task scheduling, the task to await is at a lower level in the call stack and therefore can't progress. This is an advanced situation that should only matter when some tasks depend on others.  
          */
-        static wait_for_task_completion(task_id: number /*i64*/): Error
+        static wait_for_task_completion(task_id: int64): Error
         
         /** Adds [param action] as a group task to be executed by the worker threads. The [Callable] will be called a number of times based on [param elements], with the first thread calling it with the value `0` as a parameter, and each consecutive execution incrementing this value by 1 until it reaches `element - 1`.  
          *  The number of threads the task is distributed to is defined by [param tasks_needed], where the default value `-1` means it is distributed to all worker threads. [param high_priority] determines if the task has a high priority or a low priority (default). You can optionally provide a [param description] to help with debugging.  
          *  Returns a group task ID that can be used by other methods.  
          */
-        static add_group_task(action: Callable, elements: number /*i64*/, tasks_needed: number /*i64*/ = -1, high_priority: boolean = false, description: string = ''): number /*i64*/
+        static add_group_task(action: Callable, elements: int64, tasks_needed: int64 = -1, high_priority: boolean = false, description: string = ''): int64
         
         /** Returns `true` if the group task with the given ID is completed. */
-        static is_group_task_completed(group_id: number /*i64*/): boolean
+        static is_group_task_completed(group_id: int64): boolean
         
         /** Returns how many times the [Callable] of the group task with the given ID has already been executed by the worker threads.  
          *      
          *  **Note:** If a thread has started executing the [Callable] but is yet to finish, it won't be counted.  
          */
-        static get_group_processed_element_count(group_id: number /*i64*/): number /*i64*/
+        static get_group_processed_element_count(group_id: int64): int64
         
         /** Pauses the thread that calls this method until the group task with the given ID is completed. */
-        static wait_for_group_task_completion(group_id: number /*i64*/): void
+        static wait_for_group_task_completion(group_id: int64): void
     }
     // // Singleton Class
     /** A singleton that provides access to static information about [Theme] resources used by the engine and by your project.  
@@ -2324,12 +2326,12 @@ declare module "godot" {
          *  To set the project theme, see [member ProjectSettings.gui/theme/custom].  
          */
         static get_project_theme(): Theme
-        static set_fallback_base_scale(base_scale: number /*f64*/): void
-        static get_fallback_base_scale(): number /*f64*/
+        static set_fallback_base_scale(base_scale: float64): void
+        static get_fallback_base_scale(): float64
         static set_fallback_font(font: Font): void
         static get_fallback_font(): Font
-        static set_fallback_font_size(font_size: number /*i64*/): void
-        static get_fallback_font_size(): number /*i64*/
+        static set_fallback_font_size(font_size: int64): void
+        static get_fallback_font_size(): int64
         static set_fallback_icon(icon: Texture2D): void
         static get_fallback_icon(): Texture2D
         static set_fallback_stylebox(stylebox: StyleBox): void
@@ -2338,8 +2340,8 @@ declare module "godot" {
         /** The fallback base scale factor of every [Control] node and [Theme] resource. Used when no other value is available to the control.  
          *  See also [member Theme.default_base_scale].  
          */
-        get fallback_base_scale(): number /*f64*/
-        set fallback_base_scale(value: number /*f64*/)
+        get fallback_base_scale(): float64
+        set fallback_base_scale(value: float64)
         
         /** The fallback font of every [Control] node and [Theme] resource. Used when no other value is available to the control.  
          *  See also [member Theme.default_font].  
@@ -2350,8 +2352,8 @@ declare module "godot" {
         /** The fallback font size of every [Control] node and [Theme] resource. Used when no other value is available to the control.  
          *  See also [member Theme.default_font_size].  
          */
-        get fallback_font_size(): number /*i64*/
-        set fallback_font_size(value: number /*i64*/)
+        get fallback_font_size(): int64
+        set fallback_font_size(value: int64)
         
         /** The fallback icon of every [Control] node and [Theme] resource. Used when no other value is available to the control. */
         get fallback_icon(): Texture2D
@@ -2394,7 +2396,7 @@ declare module "godot" {
         static get_editor_settings(): EditorSettings
         
         /** Returns mesh previews rendered at the given size as an [Array] of [Texture2D]s. */
-        static make_mesh_previews(meshes: Array, preview_size: number /*i64*/): Array
+        static make_mesh_previews(meshes: Array, preview_size: int64): Array
         
         /** Sets the enabled status of a plugin. The plugin name is the same as its directory name. */
         static set_plugin_enabled(plugin: string, enabled: boolean): void
@@ -2427,7 +2429,7 @@ declare module "godot" {
         static get_editor_viewport_2d(): SubViewport
         
         /** Returns the specified 3D editor [SubViewport], from `0` to `3`. The viewport can be used to access the active editor cameras with [method Viewport.get_camera_3d]. */
-        static get_editor_viewport_3d(idx: number /*i64*/ = 0): SubViewport
+        static get_editor_viewport_3d(idx: int64 = 0): SubViewport
         
         /** Sets the editor's current main screen to the one specified in [param name]. [param name] must match the title of the tab in question exactly (e.g. `2D`, `3D`, [code skip-lint]Script`, or `AssetLib` for default tabs). */
         static set_main_screen_editor(name: string): void
@@ -2438,7 +2440,7 @@ declare module "godot" {
          *      
          *  **Note:** This value is set via the `interface/editor/display_scale` and `interface/editor/custom_display_scale` editor settings. Editor must be restarted for changes to be properly applied.  
          */
-        static get_editor_scale(): number /*f64*/
+        static get_editor_scale(): float64
         
         /** Pops up the [param dialog] in the editor UI with [method Window.popup_exclusive]. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method Window.set_unparent_when_invisible].  
@@ -2453,12 +2455,12 @@ declare module "godot" {
         /** Pops up the [param dialog] in the editor UI with [method Window.popup_exclusive_centered_ratio]. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method Window.set_unparent_when_invisible].  
          */
-        static popup_dialog_centered_ratio(dialog: Window, ratio: number /*f64*/ = 0.8): void
+        static popup_dialog_centered_ratio(dialog: Window, ratio: float64 = 0.8): void
         
         /** Pops up the [param dialog] in the editor UI with [method Window.popup_exclusive_centered_clamped]. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method Window.set_unparent_when_invisible].  
          */
-        static popup_dialog_centered_clamped(dialog: Window, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: number /*f64*/ = 0.75): void
+        static popup_dialog_centered_clamped(dialog: Window, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: float64 = 0.75): void
         
         /** Returns the name of the currently activated feature profile. If the default profile is currently active, an empty string is returned instead.  
          *  In order to get a reference to the [EditorFeatureProfile], you must load the feature profile using [method EditorFeatureProfile.load_from_file].  
@@ -2506,7 +2508,7 @@ declare module "godot" {
         static edit_node(node: Node): void
         
         /** Edits the given [Script]. The line and column on which to open the script can also be specified. The script will be open with the user-configured editor for the script's language which may be an external editor. */
-        static edit_script(script: Script, line: number /*i64*/ = -1, column: number /*i64*/ = 0, grab_focus: boolean = true): void
+        static edit_script(script: Script, line: int64 = -1, column: int64 = 0, grab_focus: boolean = true): void
         
         /** Opens the scene at the given path. */
         static open_scene_from_path(scene_filepath: string): void
@@ -3026,7 +3028,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_submenu_item(menu_root: string, label: string, submenu: string, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_submenu_item(menu_root: string, label: string, submenu: string, index: int64 = -1): int64
         
         /** Adds a new item with text [param label] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3038,7 +3040,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new checkable item with text [param label] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3050,7 +3052,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_check_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_check_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3062,7 +3064,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_icon_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_icon_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new checkable item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3074,7 +3076,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_icon_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_icon_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new radio-checkable item with text [param label] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3088,7 +3090,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_radio_check_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_radio_check_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new radio-checkable item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3102,7 +3104,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_icon_radio_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_icon_radio_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new item with text [param label] to the global menu with ID [param menu_root].  
          *  Contrarily to normal binary items, multistate items can have more than two states, as defined by [param max_states]. Each press or activate of the item will increase the state by one. The default value is defined by [param default_state].  
@@ -3117,7 +3119,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_multistate_item(menu_root: string, label: string, max_states: number /*i64*/, default_state: number /*i64*/, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_multistate_item(menu_root: string, label: string, max_states: int64, default_state: int64, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a separator between items to the global menu with ID [param menu_root]. Separators also occupy an index.  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3126,31 +3128,31 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_separator(menu_root: string, index: number /*i64*/ = -1): number /*i64*/
+        static global_menu_add_separator(menu_root: string, index: int64 = -1): int64
         
         /** Returns the index of the item with the specified [param text]. Index is automatically assigned to each item by the engine. Index can not be set manually.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_index_from_text(menu_root: string, text: string): number /*i64*/
+        static global_menu_get_item_index_from_text(menu_root: string, text: string): int64
         
         /** Returns the index of the item with the specified [param tag]. Index is automatically assigned to each item by the engine. Index can not be set manually.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_index_from_tag(menu_root: string, tag: any): number /*i64*/
+        static global_menu_get_item_index_from_tag(menu_root: string, tag: any): int64
         
         /** Returns `true` if the item at index [param idx] is checked.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_is_item_checked(menu_root: string, idx: number /*i64*/): boolean
+        static global_menu_is_item_checked(menu_root: string, idx: int64): boolean
         
         /** Returns `true` if the item at index [param idx] is checkable in some way, i.e. if it has a checkbox or radio button.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_is_item_checkable(menu_root: string, idx: number /*i64*/): boolean
+        static global_menu_is_item_checkable(menu_root: string, idx: int64): boolean
         
         /** Returns `true` if the item at index [param idx] has radio button-style checkability.  
          *      
@@ -3158,99 +3160,99 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_is_item_radio_checkable(menu_root: string, idx: number /*i64*/): boolean
+        static global_menu_is_item_radio_checkable(menu_root: string, idx: int64): boolean
         
         /** Returns the callback of the item at index [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_callback(menu_root: string, idx: number /*i64*/): Callable
+        static global_menu_get_item_callback(menu_root: string, idx: int64): Callable
         
         /** Returns the callback of the item accelerator at index [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_key_callback(menu_root: string, idx: number /*i64*/): Callable
+        static global_menu_get_item_key_callback(menu_root: string, idx: int64): Callable
         
         /** Returns the metadata of the specified item, which might be of any type. You can set it with [method global_menu_set_item_tag], which provides a simple way of assigning context data to items.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_tag(menu_root: string, idx: number /*i64*/): any
+        static global_menu_get_item_tag(menu_root: string, idx: int64): any
         
         /** Returns the text of the item at index [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_text(menu_root: string, idx: number /*i64*/): string
+        static global_menu_get_item_text(menu_root: string, idx: int64): string
         
         /** Returns the submenu ID of the item at index [param idx]. See [method global_menu_add_submenu_item] for more info on how to add a submenu.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_submenu(menu_root: string, idx: number /*i64*/): string
+        static global_menu_get_item_submenu(menu_root: string, idx: int64): string
         
         /** Returns the accelerator of the item at index [param idx]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_accelerator(menu_root: string, idx: number /*i64*/): Key
+        static global_menu_get_item_accelerator(menu_root: string, idx: int64): Key
         
         /** Returns `true` if the item at index [param idx] is disabled. When it is disabled it can't be selected, or its action invoked.  
          *  See [method global_menu_set_item_disabled] for more info on how to disable an item.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_is_item_disabled(menu_root: string, idx: number /*i64*/): boolean
+        static global_menu_is_item_disabled(menu_root: string, idx: int64): boolean
         
         /** Returns `true` if the item at index [param idx] is hidden.  
          *  See [method global_menu_set_item_hidden] for more info on how to hide an item.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_is_item_hidden(menu_root: string, idx: number /*i64*/): boolean
+        static global_menu_is_item_hidden(menu_root: string, idx: int64): boolean
         
         /** Returns the tooltip associated with the specified index [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_tooltip(menu_root: string, idx: number /*i64*/): string
+        static global_menu_get_item_tooltip(menu_root: string, idx: int64): string
         
         /** Returns the state of a multistate item. See [method global_menu_add_multistate_item] for details.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_state(menu_root: string, idx: number /*i64*/): number /*i64*/
+        static global_menu_get_item_state(menu_root: string, idx: int64): int64
         
         /** Returns number of states of a multistate item. See [method global_menu_add_multistate_item] for details.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_max_states(menu_root: string, idx: number /*i64*/): number /*i64*/
+        static global_menu_get_item_max_states(menu_root: string, idx: int64): int64
         
         /** Returns the icon of the item at index [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_icon(menu_root: string, idx: number /*i64*/): Texture2D
+        static global_menu_get_item_icon(menu_root: string, idx: int64): Texture2D
         
         /** Returns the horizontal offset of the item at the given [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_indentation_level(menu_root: string, idx: number /*i64*/): number /*i64*/
+        static global_menu_get_item_indentation_level(menu_root: string, idx: int64): int64
         
         /** Sets the checkstate status of the item at index [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_checked(menu_root: string, idx: number /*i64*/, checked: boolean): void
+        static global_menu_set_item_checked(menu_root: string, idx: int64, checked: boolean): void
         
         /** Sets whether the item at index [param idx] has a checkbox. If `false`, sets the type of the item to plain text.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_checkable(menu_root: string, idx: number /*i64*/, checkable: boolean): void
+        static global_menu_set_item_checkable(menu_root: string, idx: int64, checkable: boolean): void
         
         /** Sets the type of the item at the specified index [param idx] to radio button. If `false`, sets the type of the item to plain text.  
          *      
@@ -3258,7 +3260,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_radio_checkable(menu_root: string, idx: number /*i64*/, checkable: boolean): void
+        static global_menu_set_item_radio_checkable(menu_root: string, idx: int64, checkable: boolean): void
         
         /** Sets the callback of the item at index [param idx]. Callback is emitted when an item is pressed.  
          *      
@@ -3266,7 +3268,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_callback(menu_root: string, idx: number /*i64*/, callback: Callable): void
+        static global_menu_set_item_callback(menu_root: string, idx: int64, callback: Callable): void
         
         /** Sets the callback of the item at index [param idx]. The callback is emitted when an item is hovered.  
          *      
@@ -3274,7 +3276,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_hover_callbacks(menu_root: string, idx: number /*i64*/, callback: Callable): void
+        static global_menu_set_item_hover_callbacks(menu_root: string, idx: int64, callback: Callable): void
         
         /** Sets the callback of the item at index [param idx]. Callback is emitted when its accelerator is activated.  
          *      
@@ -3282,61 +3284,61 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_key_callback(menu_root: string, idx: number /*i64*/, key_callback: Callable): void
+        static global_menu_set_item_key_callback(menu_root: string, idx: int64, key_callback: Callable): void
         
         /** Sets the metadata of an item, which may be of any type. You can later get it with [method global_menu_get_item_tag], which provides a simple way of assigning context data to items.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_tag(menu_root: string, idx: number /*i64*/, tag: any): void
+        static global_menu_set_item_tag(menu_root: string, idx: int64, tag: any): void
         
         /** Sets the text of the item at index [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_text(menu_root: string, idx: number /*i64*/, text: string): void
+        static global_menu_set_item_text(menu_root: string, idx: int64, text: string): void
         
         /** Sets the submenu of the item at index [param idx]. The submenu is the ID of a global menu root that would be shown when the item is clicked.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_submenu(menu_root: string, idx: number /*i64*/, submenu: string): void
+        static global_menu_set_item_submenu(menu_root: string, idx: int64, submenu: string): void
         
         /** Sets the accelerator of the item at index [param idx]. [param keycode] can be a single [enum Key], or a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_accelerator(menu_root: string, idx: number /*i64*/, keycode: Key): void
+        static global_menu_set_item_accelerator(menu_root: string, idx: int64, keycode: Key): void
         
         /** Enables/disables the item at index [param idx]. When it is disabled, it can't be selected and its action can't be invoked.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_disabled(menu_root: string, idx: number /*i64*/, disabled: boolean): void
+        static global_menu_set_item_disabled(menu_root: string, idx: int64, disabled: boolean): void
         
         /** Hides/shows the item at index [param idx]. When it is hidden, an item does not appear in a menu and its action cannot be invoked.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_hidden(menu_root: string, idx: number /*i64*/, hidden: boolean): void
+        static global_menu_set_item_hidden(menu_root: string, idx: int64, hidden: boolean): void
         
         /** Sets the [String] tooltip of the item at the specified index [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_tooltip(menu_root: string, idx: number /*i64*/, tooltip: string): void
+        static global_menu_set_item_tooltip(menu_root: string, idx: int64, tooltip: string): void
         
         /** Sets the state of a multistate item. See [method global_menu_add_multistate_item] for details.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_state(menu_root: string, idx: number /*i64*/, state: number /*i64*/): void
+        static global_menu_set_item_state(menu_root: string, idx: int64, state: int64): void
         
         /** Sets number of state of a multistate item. See [method global_menu_add_multistate_item] for details.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_max_states(menu_root: string, idx: number /*i64*/, max_states: number /*i64*/): void
+        static global_menu_set_item_max_states(menu_root: string, idx: int64, max_states: int64): void
         
         /** Replaces the [Texture2D] icon of the specified [param idx].  
          *      
@@ -3344,19 +3346,19 @@ declare module "godot" {
          *      
          *  **Note:** This method is not supported by macOS "_dock" menu items.  
          */
-        static global_menu_set_item_icon(menu_root: string, idx: number /*i64*/, icon: Texture2D): void
+        static global_menu_set_item_icon(menu_root: string, idx: int64, icon: Texture2D): void
         
         /** Sets the horizontal offset of the item at the given [param idx].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_set_item_indentation_level(menu_root: string, idx: number /*i64*/, level: number /*i64*/): void
+        static global_menu_set_item_indentation_level(menu_root: string, idx: int64, level: int64): void
         
         /** Returns number of items in the global menu with ID [param menu_root].  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_count(menu_root: string): number /*i64*/
+        static global_menu_get_item_count(menu_root: string): int64
         
         /** Removes the item at index [param idx] from the global menu [param menu_root].  
          *      
@@ -3364,7 +3366,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_remove_item(menu_root: string, idx: number /*i64*/): void
+        static global_menu_remove_item(menu_root: string, idx: int64): void
         
         /** Removes all items from the global menu with ID [param menu_root].  
          *      
@@ -3426,7 +3428,7 @@ declare module "godot" {
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
-        static tts_speak(text: string, voice: string, volume: number /*i64*/ = 50, pitch: number /*f64*/ = 1, rate: number /*f64*/ = 1, utterance_id: number /*i64*/ = 0, interrupt: boolean = false): void
+        static tts_speak(text: string, voice: string, volume: int64 = 50, pitch: float64 = 1, rate: float64 = 1, utterance_id: int64 = 0, interrupt: boolean = false): void
         
         /** Puts the synthesizer into a paused state.  
          *      
@@ -3463,7 +3465,7 @@ declare module "godot" {
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
         static tts_set_utterance_callback(event: DisplayServer.TTSUtteranceEvent, callable: Callable): void
-        static _tts_post_utterance_event(event: DisplayServer.TTSUtteranceEvent, id: number /*i64*/, char_pos: number /*i64*/): void
+        static _tts_post_utterance_event(event: DisplayServer.TTSUtteranceEvent, id: int64, char_pos: int64): void
         
         /** Returns `true` if OS supports dark mode.  
          *      
@@ -3538,28 +3540,28 @@ declare module "godot" {
         static get_display_safe_area(): Rect2i
         
         /** Returns the number of displays available. */
-        static get_screen_count(): number /*i64*/
+        static get_screen_count(): int64
         
         /** Returns index of the primary screen. */
-        static get_primary_screen(): number /*i64*/
+        static get_primary_screen(): int64
         
         /** Returns the index of the screen containing the window with the keyboard focus, or the primary screen if there's no focused window. */
-        static get_keyboard_focus_screen(): number /*i64*/
+        static get_keyboard_focus_screen(): int64
         
         /** Returns index of the screen which contains specified rectangle. */
-        static get_screen_from_rect(rect: Rect2): number /*i64*/
+        static get_screen_from_rect(rect: Rect2): int64
         
         /** Returns the screen's top-left corner position in pixels. On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:  
          *    
          *  See also [method screen_get_size].  
          */
-        static screen_get_position(screen: number /*i64*/ = -1): Vector2i
+        static screen_get_position(screen: int64 = -1): Vector2i
         
         /** Returns the screen's size in pixels. See also [method screen_get_position] and [method screen_get_usable_rect]. */
-        static screen_get_size(screen: number /*i64*/ = -1): Vector2i
+        static screen_get_size(screen: int64 = -1): Vector2i
         
         /** Returns the portion of the screen that is not obstructed by a status bar in pixels. See also [method screen_get_size]. */
-        static screen_get_usable_rect(screen: number /*i64*/ = -1): Rect2i
+        static screen_get_usable_rect(screen: int64 = -1): Rect2i
         
         /** Returns the dots per inch density of the specified screen. If [param screen] is [constant SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.  
          *      
@@ -3570,7 +3572,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, Linux (X11), macOS and Windows. Returns `72` on unsupported platforms.  
          */
-        static screen_get_dpi(screen: number /*i64*/ = -1): number /*i64*/
+        static screen_get_dpi(screen: int64 = -1): int64
         
         /** Returns the scale factor of the specified screen by index.  
          *      
@@ -3578,7 +3580,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static screen_get_scale(screen: number /*i64*/ = -1): number /*f64*/
+        static screen_get_scale(screen: int64 = -1): float64
         
         /** Returns `true` if touch events are available (Android or iOS), the capability is detected on the Web platform or if [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is `true`. */
         static is_touchscreen_available(): boolean
@@ -3589,7 +3591,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static screen_get_max_scale(): number /*f64*/
+        static screen_get_max_scale(): float64
         
         /** Returns the current refresh rate of the specified screen. If [param screen] is [constant SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.  
          *      
@@ -3597,7 +3599,7 @@ declare module "godot" {
          *  To fallback to a default refresh rate if the method fails, try:  
          *    
          */
-        static screen_get_refresh_rate(screen: number /*i64*/ = -1): number /*f64*/
+        static screen_get_refresh_rate(screen: int64 = -1): float64
         
         /** Returns color of the display pixel at the [param position].  
          *      
@@ -3613,19 +3615,19 @@ declare module "godot" {
          *      
          *  **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not granted it will return desktop wallpaper color.  
          */
-        static screen_get_image(screen: number /*i64*/ = -1): Image
+        static screen_get_image(screen: int64 = -1): Image
         
         /** Sets the [param screen]'s [param orientation]. See also [method screen_get_orientation].  
          *      
          *  **Note:** On iOS, this method has no effect if [member ProjectSettings.display/window/handheld/orientation] is not set to [constant SCREEN_SENSOR].  
          */
-        static screen_set_orientation(orientation: DisplayServer.ScreenOrientation, screen: number /*i64*/ = -1): void
+        static screen_set_orientation(orientation: DisplayServer.ScreenOrientation, screen: int64 = -1): void
         
         /** Returns the [param screen]'s current orientation. See also [method screen_set_orientation].  
          *      
          *  **Note:** This method is implemented on Android and iOS.  
          */
-        static screen_get_orientation(screen: number /*i64*/ = -1): DisplayServer.ScreenOrientation
+        static screen_get_orientation(screen: int64 = -1): DisplayServer.ScreenOrientation
         
         /** Sets whether the screen should never be turned off by the operating system's power-saving measures. See also [method screen_is_kept_on]. */
         static screen_set_keep_on(enable: boolean): void
@@ -3642,22 +3644,22 @@ declare module "godot" {
         /** Returns the ID of the window at the specified screen [param position] (in pixels). On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:  
          *    
          */
-        static get_window_at_screen_position(position: Vector2i): number /*i64*/
+        static get_window_at_screen_position(position: Vector2i): int64
         
         /** Returns internal structure pointers for use in plugins.  
          *      
          *  **Note:** This method is implemented on Android, Linux (X11), macOS and Windows.  
          */
-        static window_get_native_handle(handle_type: DisplayServer.HandleType, window_id: number /*i64*/ = 0): number /*i64*/
+        static window_get_native_handle(handle_type: DisplayServer.HandleType, window_id: int64 = 0): int64
         
         /** Returns ID of the active popup window, or [constant INVALID_WINDOW_ID] if there is none. */
-        static window_get_active_popup(): number /*i64*/
+        static window_get_active_popup(): int64
         
         /** Sets the bounding box of control, or menu item that was used to open the popup window, in the screen coordinate system. Clicking this area will not auto-close this popup. */
-        static window_set_popup_safe_rect(window: number /*i64*/, rect: Rect2i): void
+        static window_set_popup_safe_rect(window: int64, rect: Rect2i): void
         
         /** Returns the bounding box of control, or menu item that was used to open the popup window, in the screen coordinate system. */
-        static window_get_popup_safe_rect(window: number /*i64*/): Rect2i
+        static window_get_popup_safe_rect(window: int64): Rect2i
         
         /** Sets the title of the given window to [param title].  
          *      
@@ -3665,13 +3667,13 @@ declare module "godot" {
          *      
          *  **Note:** Avoid changing the window title every frame, as this can cause performance issues on certain window managers. Try to change the window title only a few times per second at most.  
          */
-        static window_set_title(title: string, window_id: number /*i64*/ = 0): void
+        static window_set_title(title: string, window_id: int64 = 0): void
         
         /** Returns the estimated window title bar size (including text and window buttons) for the window specified by [param window_id] (in pixels). This method does not change the window title.  
          *      
          *  **Note:** This method is implemented on macOS and Windows.  
          */
-        static window_get_title_size(title: string, window_id: number /*i64*/ = 0): Vector2i
+        static window_get_title_size(title: string, window_id: int64 = 0): Vector2i
         
         /** Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.  
          *  Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).  
@@ -3681,19 +3683,19 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
          */
-        static window_set_mouse_passthrough(region: PackedVector2Array, window_id: number /*i64*/ = 0): void
+        static window_set_mouse_passthrough(region: PackedVector2Array, window_id: int64 = 0): void
         
         /** Returns the screen the window specified by [param window_id] is currently positioned on. If the screen overlaps multiple displays, the screen where the window's center is located is returned. See also [method window_set_current_screen]. */
-        static window_get_current_screen(window_id: number /*i64*/ = 0): number /*i64*/
+        static window_get_current_screen(window_id: int64 = 0): int64
         
         /** Moves the window specified by [param window_id] to the specified [param screen]. See also [method window_get_current_screen]. */
-        static window_set_current_screen(screen: number /*i64*/, window_id: number /*i64*/ = 0): void
+        static window_set_current_screen(screen: int64, window_id: int64 = 0): void
         
         /** Returns the position of the client area of the given window on the screen. */
-        static window_get_position(window_id: number /*i64*/ = 0): Vector2i
+        static window_get_position(window_id: int64 = 0): Vector2i
         
         /** Returns the position of the given window on the screen including the borders drawn by the operating system. See also [method window_get_position]. */
-        static window_get_position_with_decorations(window_id: number /*i64*/ = 0): Vector2i
+        static window_get_position_with_decorations(window_id: int64 = 0): Vector2i
         
         /** Sets the position of the given window to [param position]. On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:  
          *    
@@ -3701,49 +3703,49 @@ declare module "godot" {
          *      
          *  **Note:** It's recommended to change this value using [member Window.position] instead.  
          */
-        static window_set_position(position: Vector2i, window_id: number /*i64*/ = 0): void
+        static window_set_position(position: Vector2i, window_id: int64 = 0): void
         
         /** Returns the size of the window specified by [param window_id] (in pixels), excluding the borders drawn by the operating system. This is also called the "client area". See also [method window_get_size_with_decorations], [method window_set_size] and [method window_get_position]. */
-        static window_get_size(window_id: number /*i64*/ = 0): Vector2i
+        static window_get_size(window_id: int64 = 0): Vector2i
         
         /** Sets the size of the given window to [param size] (in pixels). See also [method window_get_size] and [method window_get_position].  
          *      
          *  **Note:** It's recommended to change this value using [member Window.size] instead.  
          */
-        static window_set_size(size: Vector2i, window_id: number /*i64*/ = 0): void
+        static window_set_size(size: Vector2i, window_id: int64 = 0): void
         
         /** Sets the [param callback] that will be called when the window specified by [param window_id] is moved or resized.  
          *  **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.  
          */
-        static window_set_rect_changed_callback(callback: Callable, window_id: number /*i64*/ = 0): void
+        static window_set_rect_changed_callback(callback: Callable, window_id: int64 = 0): void
         
         /** Sets the [param callback] that will be called when an event occurs in the window specified by [param window_id].  
          *  **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.  
          */
-        static window_set_window_event_callback(callback: Callable, window_id: number /*i64*/ = 0): void
+        static window_set_window_event_callback(callback: Callable, window_id: int64 = 0): void
         
         /** Sets the [param callback] that should be called when any [InputEvent] is sent to the window specified by [param window_id].  
          *  **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.  
          */
-        static window_set_input_event_callback(callback: Callable, window_id: number /*i64*/ = 0): void
+        static window_set_input_event_callback(callback: Callable, window_id: int64 = 0): void
         
         /** Sets the [param callback] that should be called when text is entered using the virtual keyboard to the window specified by [param window_id].  
          *  **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.  
          */
-        static window_set_input_text_callback(callback: Callable, window_id: number /*i64*/ = 0): void
+        static window_set_input_text_callback(callback: Callable, window_id: int64 = 0): void
         
         /** Sets the [param callback] that should be called when files are dropped from the operating system's file manager to the window specified by [param window_id].  
          *  **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.  
          *      
          *  **Note:** This method is implemented on Windows, macOS, Linux (X11) and Web.  
          */
-        static window_set_drop_files_callback(callback: Callable, window_id: number /*i64*/ = 0): void
+        static window_set_drop_files_callback(callback: Callable, window_id: int64 = 0): void
         
         /** Returns the [method Object.get_instance_id] of the [Window] the [param window_id] is attached to. */
-        static window_get_attached_instance_id(window_id: number /*i64*/ = 0): number /*i64*/
+        static window_get_attached_instance_id(window_id: int64 = 0): int64
         
         /** Returns the window's maximum size (in pixels). See also [method window_set_max_size]. */
-        static window_get_max_size(window_id: number /*i64*/ = 0): Vector2i
+        static window_get_max_size(window_id: int64 = 0): Vector2i
         
         /** Sets the maximum size of the window specified by [param window_id] in pixels. Normally, the user will not be able to drag the window to make it smaller than the specified size. See also [method window_get_max_size].  
          *      
@@ -3751,10 +3753,10 @@ declare module "godot" {
          *      
          *  **Note:** Using third-party tools, it is possible for users to disable window geometry restrictions and therefore bypass this limit.  
          */
-        static window_set_max_size(max_size: Vector2i, window_id: number /*i64*/ = 0): void
+        static window_set_max_size(max_size: Vector2i, window_id: int64 = 0): void
         
         /** Returns the window's minimum size (in pixels). See also [method window_set_min_size]. */
-        static window_get_min_size(window_id: number /*i64*/ = 0): Vector2i
+        static window_get_min_size(window_id: int64 = 0): Vector2i
         
         /** Sets the minimum size for the given window to [param min_size] (in pixels). Normally, the user will not be able to drag the window to make it larger than the specified size. See also [method window_get_min_size].  
          *      
@@ -3764,46 +3766,46 @@ declare module "godot" {
          *      
          *  **Note:** Using third-party tools, it is possible for users to disable window geometry restrictions and therefore bypass this limit.  
          */
-        static window_set_min_size(min_size: Vector2i, window_id: number /*i64*/ = 0): void
+        static window_set_min_size(min_size: Vector2i, window_id: int64 = 0): void
         
         /** Returns the size of the window specified by [param window_id] (in pixels), including the borders drawn by the operating system. See also [method window_get_size]. */
-        static window_get_size_with_decorations(window_id: number /*i64*/ = 0): Vector2i
+        static window_get_size_with_decorations(window_id: int64 = 0): Vector2i
         
         /** Returns the mode of the given window. */
-        static window_get_mode(window_id: number /*i64*/ = 0): DisplayServer.WindowMode
+        static window_get_mode(window_id: int64 = 0): DisplayServer.WindowMode
         
         /** Sets window mode for the given window to [param mode]. See [enum WindowMode] for possible values and how each mode behaves.  
          *      
          *  **Note:** Setting the window to full screen forcibly sets the borderless flag to `true`, so make sure to set it back to `false` when not wanted.  
          */
-        static window_set_mode(mode: DisplayServer.WindowMode, window_id: number /*i64*/ = 0): void
+        static window_set_mode(mode: DisplayServer.WindowMode, window_id: int64 = 0): void
         
         /** Enables or disables the given window's given [param flag]. See [enum WindowFlags] for possible values and their behavior. */
-        static window_set_flag(flag: DisplayServer.WindowFlags, enabled: boolean, window_id: number /*i64*/ = 0): void
+        static window_set_flag(flag: DisplayServer.WindowFlags, enabled: boolean, window_id: int64 = 0): void
         
         /** Returns the current value of the given window's [param flag]. */
-        static window_get_flag(flag: DisplayServer.WindowFlags, window_id: number /*i64*/ = 0): boolean
+        static window_get_flag(flag: DisplayServer.WindowFlags, window_id: int64 = 0): boolean
         
         /** When [constant WINDOW_FLAG_EXTEND_TO_TITLE] flag is set, set offset to the center of the first titlebar button.  
          *      
          *  **Note:** This flag is implemented only on macOS.  
          */
-        static window_set_window_buttons_offset(offset: Vector2i, window_id: number /*i64*/ = 0): void
+        static window_set_window_buttons_offset(offset: Vector2i, window_id: int64 = 0): void
         
         /** Returns left margins (`x`), right margins (`y`) and height (`z`) of the title that are safe to use (contains no buttons or other elements) when [constant WINDOW_FLAG_EXTEND_TO_TITLE] flag is set. */
-        static window_get_safe_title_margins(window_id: number /*i64*/ = 0): Vector3i
+        static window_get_safe_title_margins(window_id: int64 = 0): Vector3i
         
         /** Makes the window specified by [param window_id] request attention, which is materialized by the window title and taskbar entry blinking until the window is focused. This usually has no visible effect if the window is currently focused. The exact behavior varies depending on the operating system. */
-        static window_request_attention(window_id: number /*i64*/ = 0): void
+        static window_request_attention(window_id: int64 = 0): void
         
         /** Moves the window specified by [param window_id] to the foreground, so that it is visible over other windows. */
-        static window_move_to_foreground(window_id: number /*i64*/ = 0): void
+        static window_move_to_foreground(window_id: int64 = 0): void
         
         /** Returns `true` if the window specified by [param window_id] is focused. */
-        static window_is_focused(window_id: number /*i64*/ = 0): boolean
+        static window_is_focused(window_id: int64 = 0): boolean
         
         /** Returns `true` if anything can be drawn in the window specified by [param window_id], `false` otherwise. Using the `--disable-render-loop` command line argument or a headless build will return `false`. */
-        static window_can_draw(window_id: number /*i64*/ = 0): boolean
+        static window_can_draw(window_id: int64 = 0): boolean
         
         /** Sets window transient parent. Transient window is will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.  
          *      
@@ -3811,7 +3813,7 @@ declare module "godot" {
          *      
          *  **Note:** The behavior might be different depending on the platform.  
          */
-        static window_set_transient(window_id: number /*i64*/, parent_window_id: number /*i64*/): void
+        static window_set_transient(window_id: int64, parent_window_id: int64): void
         
         /** If set to `true`, this window will always stay on top of its parent window, parent window will ignore input while this window is opened.  
          *      
@@ -3819,13 +3821,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on macOS and Windows.  
          */
-        static window_set_exclusive(window_id: number /*i64*/, exclusive: boolean): void
+        static window_set_exclusive(window_id: int64, exclusive: boolean): void
         
         /** Sets whether [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] should be enabled for the window specified by [param window_id]. See also [method window_set_ime_position]. */
-        static window_set_ime_active(active: boolean, window_id: number /*i64*/ = 0): void
+        static window_set_ime_active(active: boolean, window_id: int64 = 0): void
         
         /** Sets the position of the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] popup for the specified [param window_id]. Only effective if [method window_set_ime_active] was set to `true` for the specified [param window_id]. */
-        static window_set_ime_position(position: Vector2i, window_id: number /*i64*/ = 0): void
+        static window_set_ime_position(position: Vector2i, window_id: int64 = 0): void
         
         /** Sets the V-Sync mode of the given window. See also [member ProjectSettings.display/window/vsync/vsync_mode].  
          *  See [enum DisplayServer.VSyncMode] for possible values and how they affect the behavior of your application.  
@@ -3833,13 +3835,13 @@ declare module "godot" {
          *      
          *  **Note:** V-Sync modes other than [constant VSYNC_ENABLED] are only supported in the Forward+ and Mobile rendering methods, not Compatibility.  
          */
-        static window_set_vsync_mode(vsync_mode: DisplayServer.VSyncMode, window_id: number /*i64*/ = 0): void
+        static window_set_vsync_mode(vsync_mode: DisplayServer.VSyncMode, window_id: int64 = 0): void
         
         /** Returns the V-Sync mode of the given window. */
-        static window_get_vsync_mode(window_id: number /*i64*/ = 0): DisplayServer.VSyncMode
+        static window_get_vsync_mode(window_id: int64 = 0): DisplayServer.VSyncMode
         
         /** Returns `true` if the given window can be maximized (the maximize button is enabled). */
-        static window_is_maximize_allowed(window_id: number /*i64*/ = 0): boolean
+        static window_is_maximize_allowed(window_id: int64 = 0): boolean
         
         /** Returns `true`, if double-click on a window title should maximize it.  
          *      
@@ -3875,13 +3877,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, iOS and Web.  
          */
-        static virtual_keyboard_show(existing_text: string, position: Rect2 = <any> {} /*compound.type from 7([object Object])*/, type: DisplayServer.VirtualKeyboardType = 0, max_length: number /*i64*/ = -1, cursor_start: number /*i64*/ = -1, cursor_end: number /*i64*/ = -1): void
+        static virtual_keyboard_show(existing_text: string, position: Rect2 = <any> {} /*compound.type from 7([object Object])*/, type: DisplayServer.VirtualKeyboardType = 0, max_length: int64 = -1, cursor_start: int64 = -1, cursor_end: int64 = -1): void
         
         /** Hides the virtual keyboard if it is shown, does nothing otherwise. */
         static virtual_keyboard_hide(): void
         
         /** Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it is currently hidden. */
-        static virtual_keyboard_get_height(): number /*i64*/
+        static virtual_keyboard_get_height(): int64
         
         /** Sets the default mouse cursor shape. The cursor's appearance will vary depending on the user's operating system and mouse cursor theme. See also [method cursor_get_shape] and [method cursor_set_custom_image]. */
         static cursor_set_shape(shape: DisplayServer.CursorShape): void
@@ -3902,7 +3904,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on Windows.  
          */
-        static enable_for_stealing_focus(process_id: number /*i64*/): void
+        static enable_for_stealing_focus(process_id: int64): void
         
         /** Shows a text dialog which uses the operating system's native look-and-feel. [param callback] will be called when the dialog is closed for any reason.  
          *      
@@ -3937,31 +3939,31 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
          */
-        static keyboard_get_layout_count(): number /*i64*/
+        static keyboard_get_layout_count(): int64
         
         /** Returns active keyboard layout index.  
          *      
          *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
          */
-        static keyboard_get_current_layout(): number /*i64*/
+        static keyboard_get_current_layout(): int64
         
         /** Sets the active keyboard layout.  
          *      
          *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
          */
-        static keyboard_set_current_layout(index: number /*i64*/): void
+        static keyboard_set_current_layout(index: int64): void
         
         /** Returns the ISO-639/BCP-47 language code of the keyboard layout at position [param index].  
          *      
          *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
          */
-        static keyboard_get_layout_language(index: number /*i64*/): string
+        static keyboard_get_layout_language(index: int64): string
         
         /** Returns the localized name of the keyboard layout at position [param index].  
          *      
          *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
          */
-        static keyboard_get_layout_name(index: number /*i64*/): string
+        static keyboard_get_layout_name(index: int64): string
         
         /** Converts a physical (US QWERTY) [param keycode] to one in the active keyboard layout.  
          *      
@@ -3994,13 +3996,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on Windows.  
          */
-        static tablet_get_driver_count(): number /*i64*/
+        static tablet_get_driver_count(): int64
         
         /** Returns the tablet driver name for the given index.  
          *      
          *  **Note:** This method is implemented only on Windows.  
          */
-        static tablet_get_driver_name(idx: number /*i64*/): string
+        static tablet_get_driver_name(idx: int64): string
         
         /** Returns current active tablet driver name.  
          *      
@@ -5413,7 +5415,7 @@ declare module "godot" {
         /**     
          *  **Note:** The equivalent resource is [Texture3D].  
          */
-        static texture_3d_create(format: Image.Format, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, mipmaps: boolean, data: Array): RID
+        static texture_3d_create(format: Image.Format, width: int64, height: int64, depth: int64, mipmaps: boolean, data: Array): RID
         
         /**  *Deprecated.*  ProxyTexture was removed in Godot 4, so this method does nothing when called and always returns a null [RID]. */
         static texture_proxy_create(base: RID): RID
@@ -5422,7 +5424,7 @@ declare module "godot" {
          *      
          *  **Note:** The [param image] must have the same width, height and format as the current [param texture] data. Otherwise, an error will be printed and the original texture won't be modified. If you need to use different width, height or format, use [method texture_replace] instead.  
          */
-        static texture_2d_update(texture: RID, image: Image, layer: number /*i64*/): void
+        static texture_2d_update(texture: RID, image: Image, layer: int64): void
         
         /** Updates the texture specified by the [param texture] [RID]'s data with the data in [param data]. All the texture's layers must be replaced at once.  
          *      
@@ -5460,14 +5462,14 @@ declare module "godot" {
         static texture_2d_get(texture: RID): Image
         
         /** Returns an [Image] instance from the given [param texture] [RID] and [param layer]. */
-        static texture_2d_layer_get(texture: RID, layer: number /*i64*/): Image
+        static texture_2d_layer_get(texture: RID, layer: int64): Image
         
         /** Returns 3D texture data as an array of [Image]s for the specified texture [RID]. */
         static texture_3d_get(texture: RID): Array
         
         /** Replaces [param texture]'s texture data by the texture specified by the [param by_texture] RID, without changing [param texture]'s RID. */
         static texture_replace(texture: RID, by_texture: RID): void
-        static texture_set_size_override(texture: RID, width: number /*i64*/, height: number /*i64*/): void
+        static texture_set_size_override(texture: RID, width: int64, height: int64): void
         static texture_set_path(texture: RID, path: string): void
         static texture_get_path(texture: RID): string
         
@@ -5485,7 +5487,7 @@ declare module "godot" {
          *      
          *  **Note:** This function returns a `uint64_t` which internally maps to a `GLuint` (OpenGL) or `VkImage` (Vulkan).  
          */
-        static texture_get_native_handle(texture: RID, srgb: boolean = false): number /*i64*/
+        static texture_get_native_handle(texture: RID, srgb: boolean = false): int64
         
         /** Creates an empty shader and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `shader_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -5513,13 +5515,13 @@ declare module "godot" {
          *      
          *  **Note:** If the sampler array is used use [param index] to access the specified texture.  
          */
-        static shader_set_default_texture_parameter(shader: RID, name: StringName, texture: RID, index: number /*i64*/ = 0): void
+        static shader_set_default_texture_parameter(shader: RID, name: StringName, texture: RID, index: int64 = 0): void
         
         /** Returns a default texture from a shader searched by name.  
          *      
          *  **Note:** If the sampler array is used use [param index] to access the specified texture.  
          */
-        static shader_get_default_texture_parameter(shader: RID, name: StringName, index: number /*i64*/ = 0): RID
+        static shader_get_default_texture_parameter(shader: RID, name: StringName, index: int64 = 0): RID
         
         /** Creates an empty material and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `material_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -5538,11 +5540,11 @@ declare module "godot" {
         static material_get_param(material: RID, parameter: StringName): any
         
         /** Sets a material's render priority. */
-        static material_set_render_priority(material: RID, priority: number /*i64*/): void
+        static material_set_render_priority(material: RID, priority: int64): void
         
         /** Sets an object's next material. */
         static material_set_next_pass(material: RID, next_material: RID): void
-        static mesh_create_from_surfaces(surfaces: Array, blend_shape_count: number /*i64*/ = 0): RID
+        static mesh_create_from_surfaces(surfaces: Array, blend_shape_count: int64 = 0): RID
         
         /** Creates a new mesh and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `mesh_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -5553,24 +5555,24 @@ declare module "godot" {
         static mesh_create(): RID
         
         /** Returns the offset of a given attribute by [param array_index] in the start of its respective buffer. */
-        static mesh_surface_get_format_offset(format: RenderingServer.ArrayFormat, vertex_count: number /*i64*/, array_index: number /*i64*/): number /*i64*/
+        static mesh_surface_get_format_offset(format: RenderingServer.ArrayFormat, vertex_count: int64, array_index: int64): int64
         
         /** Returns the stride of the vertex positions for a mesh with given [param format]. Note importantly that vertex positions are stored consecutively and are not interleaved with the other attributes in the vertex buffer (normals and tangents). */
-        static mesh_surface_get_format_vertex_stride(format: RenderingServer.ArrayFormat, vertex_count: number /*i64*/): number /*i64*/
+        static mesh_surface_get_format_vertex_stride(format: RenderingServer.ArrayFormat, vertex_count: int64): int64
         
         /** Returns the stride of the combined normals and tangents for a mesh with given [param format]. Note importantly that, while normals and tangents are in the vertex buffer with vertices, they are only interleaved with each other and so have a different stride than vertex positions. */
-        static mesh_surface_get_format_normal_tangent_stride(format: RenderingServer.ArrayFormat, vertex_count: number /*i64*/): number /*i64*/
+        static mesh_surface_get_format_normal_tangent_stride(format: RenderingServer.ArrayFormat, vertex_count: int64): int64
         
         /** Returns the stride of the attribute buffer for a mesh with given [param format]. */
-        static mesh_surface_get_format_attribute_stride(format: RenderingServer.ArrayFormat, vertex_count: number /*i64*/): number /*i64*/
+        static mesh_surface_get_format_attribute_stride(format: RenderingServer.ArrayFormat, vertex_count: int64): int64
         
         /** Returns the stride of the skin buffer for a mesh with given [param format]. */
-        static mesh_surface_get_format_skin_stride(format: RenderingServer.ArrayFormat, vertex_count: number /*i64*/): number /*i64*/
+        static mesh_surface_get_format_skin_stride(format: RenderingServer.ArrayFormat, vertex_count: int64): int64
         static mesh_add_surface(mesh: RID, surface: Dictionary): void
         static mesh_add_surface_from_arrays(mesh: RID, primitive: RenderingServer.PrimitiveType, arrays: Array, blend_shapes: Array = <any> {} /*compound.type from 28([object Object])*/, lods: Dictionary = <any> {} /*compound.type from 27([object Object])*/, compress_format: RenderingServer.ArrayFormat = 0): void
         
         /** Returns a mesh's blend shape count. */
-        static mesh_get_blend_shape_count(mesh: RID): number /*i64*/
+        static mesh_get_blend_shape_count(mesh: RID): int64
         
         /** Sets a mesh's blend shape mode. */
         static mesh_set_blend_shape_mode(mesh: RID, mode: RenderingServer.BlendShapeMode): void
@@ -5579,20 +5581,20 @@ declare module "godot" {
         static mesh_get_blend_shape_mode(mesh: RID): RenderingServer.BlendShapeMode
         
         /** Sets a mesh's surface's material. */
-        static mesh_surface_set_material(mesh: RID, surface: number /*i64*/, material: RID): void
+        static mesh_surface_set_material(mesh: RID, surface: int64, material: RID): void
         
         /** Returns a mesh's surface's material. */
-        static mesh_surface_get_material(mesh: RID, surface: number /*i64*/): RID
-        static mesh_get_surface(mesh: RID, surface: number /*i64*/): Dictionary
+        static mesh_surface_get_material(mesh: RID, surface: int64): RID
+        static mesh_get_surface(mesh: RID, surface: int64): Dictionary
         
         /** Returns a mesh's surface's buffer arrays. */
-        static mesh_surface_get_arrays(mesh: RID, surface: number /*i64*/): Array
+        static mesh_surface_get_arrays(mesh: RID, surface: int64): Array
         
         /** Returns a mesh's surface's arrays for blend shapes. */
-        static mesh_surface_get_blend_shape_arrays(mesh: RID, surface: number /*i64*/): Array
+        static mesh_surface_get_blend_shape_arrays(mesh: RID, surface: int64): Array
         
         /** Returns a mesh's number of surfaces. */
-        static mesh_get_surface_count(mesh: RID): number /*i64*/
+        static mesh_get_surface_count(mesh: RID): int64
         
         /** Sets a mesh's custom aabb. */
         static mesh_set_custom_aabb(mesh: RID, aabb: AABB): void
@@ -5602,9 +5604,9 @@ declare module "godot" {
         
         /** Removes all surfaces from a mesh. */
         static mesh_clear(mesh: RID): void
-        static mesh_surface_update_vertex_region(mesh: RID, surface: number /*i64*/, offset: number /*i64*/, data: PackedByteArray): void
-        static mesh_surface_update_attribute_region(mesh: RID, surface: number /*i64*/, offset: number /*i64*/, data: PackedByteArray): void
-        static mesh_surface_update_skin_region(mesh: RID, surface: number /*i64*/, offset: number /*i64*/, data: PackedByteArray): void
+        static mesh_surface_update_vertex_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray): void
+        static mesh_surface_update_attribute_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray): void
+        static mesh_surface_update_skin_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray): void
         static mesh_set_shadow_mesh(mesh: RID, shadow_mesh: RID): void
         
         /** Creates a new multimesh on the RenderingServer and returns an [RID] handle. This RID will be used in all `multimesh_*` RenderingServer functions.  
@@ -5614,25 +5616,25 @@ declare module "godot" {
          *  **Note:** The equivalent resource is [MultiMesh].  
          */
         static multimesh_create(): RID
-        static multimesh_allocate_data(multimesh: RID, instances: number /*i64*/, transform_format: RenderingServer.MultimeshTransformFormat, color_format: boolean = false, custom_data_format: boolean = false): void
+        static multimesh_allocate_data(multimesh: RID, instances: int64, transform_format: RenderingServer.MultimeshTransformFormat, color_format: boolean = false, custom_data_format: boolean = false): void
         
         /** Returns the number of instances allocated for this multimesh. */
-        static multimesh_get_instance_count(multimesh: RID): number /*i64*/
+        static multimesh_get_instance_count(multimesh: RID): int64
         
         /** Sets the mesh to be drawn by the multimesh. Equivalent to [member MultiMesh.mesh]. */
         static multimesh_set_mesh(multimesh: RID, mesh: RID): void
         
         /** Sets the [Transform3D] for this instance. Equivalent to [method MultiMesh.set_instance_transform]. */
-        static multimesh_instance_set_transform(multimesh: RID, index: number /*i64*/, transform: Transform3D): void
+        static multimesh_instance_set_transform(multimesh: RID, index: int64, transform: Transform3D): void
         
         /** Sets the [Transform2D] for this instance. For use when multimesh is used in 2D. Equivalent to [method MultiMesh.set_instance_transform_2d]. */
-        static multimesh_instance_set_transform_2d(multimesh: RID, index: number /*i64*/, transform: Transform2D): void
+        static multimesh_instance_set_transform_2d(multimesh: RID, index: int64, transform: Transform2D): void
         
         /** Sets the color by which this instance will be modulated. Equivalent to [method MultiMesh.set_instance_color]. */
-        static multimesh_instance_set_color(multimesh: RID, index: number /*i64*/, color: Color): void
+        static multimesh_instance_set_color(multimesh: RID, index: int64, color: Color): void
         
         /** Sets the custom data for this instance. Custom data is passed as a [Color], but is interpreted as a `vec4` in the shader. Equivalent to [method MultiMesh.set_instance_custom_data]. */
-        static multimesh_instance_set_custom_data(multimesh: RID, index: number /*i64*/, custom_data: Color): void
+        static multimesh_instance_set_custom_data(multimesh: RID, index: int64, custom_data: Color): void
         
         /** Returns the RID of the mesh that will be used in drawing this multimesh. */
         static multimesh_get_mesh(multimesh: RID): RID
@@ -5641,22 +5643,22 @@ declare module "godot" {
         static multimesh_get_aabb(multimesh: RID): AABB
         
         /** Returns the [Transform3D] of the specified instance. */
-        static multimesh_instance_get_transform(multimesh: RID, index: number /*i64*/): Transform3D
+        static multimesh_instance_get_transform(multimesh: RID, index: int64): Transform3D
         
         /** Returns the [Transform2D] of the specified instance. For use when the multimesh is set to use 2D transforms. */
-        static multimesh_instance_get_transform_2d(multimesh: RID, index: number /*i64*/): Transform2D
+        static multimesh_instance_get_transform_2d(multimesh: RID, index: int64): Transform2D
         
         /** Returns the color by which the specified instance will be modulated. */
-        static multimesh_instance_get_color(multimesh: RID, index: number /*i64*/): Color
+        static multimesh_instance_get_color(multimesh: RID, index: int64): Color
         
         /** Returns the custom data associated with the specified instance. */
-        static multimesh_instance_get_custom_data(multimesh: RID, index: number /*i64*/): Color
+        static multimesh_instance_get_custom_data(multimesh: RID, index: int64): Color
         
         /** Sets the number of instances visible at a given time. If -1, all instances that have been allocated are drawn. Equivalent to [member MultiMesh.visible_instance_count]. */
-        static multimesh_set_visible_instances(multimesh: RID, visible: number /*i64*/): void
+        static multimesh_set_visible_instances(multimesh: RID, visible: int64): void
         
         /** Returns the number of visible instances for this multimesh. */
-        static multimesh_get_visible_instances(multimesh: RID): number /*i64*/
+        static multimesh_get_visible_instances(multimesh: RID): int64
         
         /** Set the entire data to use for drawing the [param multimesh] at once to [param buffer] (such as instance transforms and colors). [param buffer]'s size must match the number of instances multiplied by the per-instance data size (which depends on the enabled MultiMesh fields). Otherwise, an error message is printed and nothing is rendered. See also [method multimesh_get_buffer].  
          *  The per-instance data size and expected data order is:  
@@ -5674,22 +5676,22 @@ declare module "godot" {
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
          */
         static skeleton_create(): RID
-        static skeleton_allocate_data(skeleton: RID, bones: number /*i64*/, is_2d_skeleton: boolean = false): void
+        static skeleton_allocate_data(skeleton: RID, bones: int64, is_2d_skeleton: boolean = false): void
         
         /** Returns the number of bones allocated for this skeleton. */
-        static skeleton_get_bone_count(skeleton: RID): number /*i64*/
+        static skeleton_get_bone_count(skeleton: RID): int64
         
         /** Sets the [Transform3D] for a specific bone of this skeleton. */
-        static skeleton_bone_set_transform(skeleton: RID, bone: number /*i64*/, transform: Transform3D): void
+        static skeleton_bone_set_transform(skeleton: RID, bone: int64, transform: Transform3D): void
         
         /** Returns the [Transform3D] set for a specific bone of this skeleton. */
-        static skeleton_bone_get_transform(skeleton: RID, bone: number /*i64*/): Transform3D
+        static skeleton_bone_get_transform(skeleton: RID, bone: int64): Transform3D
         
         /** Sets the [Transform2D] for a specific bone of this skeleton. */
-        static skeleton_bone_set_transform_2d(skeleton: RID, bone: number /*i64*/, transform: Transform2D): void
+        static skeleton_bone_set_transform_2d(skeleton: RID, bone: int64, transform: Transform2D): void
         
         /** Returns the [Transform2D] set for a specific bone of this skeleton. */
-        static skeleton_bone_get_transform_2d(skeleton: RID, bone: number /*i64*/): Transform2D
+        static skeleton_bone_get_transform_2d(skeleton: RID, bone: int64): Transform2D
         static skeleton_set_base_transform_2d(skeleton: RID, base_transform: Transform2D): void
         
         /** Creates a directional light and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID can be used in most `light_*` RenderingServer functions.  
@@ -5718,7 +5720,7 @@ declare module "godot" {
         static light_set_color(light: RID, color: Color): void
         
         /** Sets the specified 3D light parameter. See [enum LightParam] for options. Equivalent to [method Light3D.set_param]. */
-        static light_set_param(light: RID, param: RenderingServer.LightParam, value: number /*f64*/): void
+        static light_set_param(light: RID, param: RenderingServer.LightParam, value: float64): void
         
         /** If `true`, light will cast shadows. Equivalent to [member Light3D.shadow_enabled]. */
         static light_set_shadow(light: RID, enabled: boolean): void
@@ -5730,10 +5732,10 @@ declare module "godot" {
         static light_set_negative(light: RID, enable: boolean): void
         
         /** Sets the cull mask for this 3D light. Lights only affect objects in the selected layers. Equivalent to [member Light3D.light_cull_mask]. */
-        static light_set_cull_mask(light: RID, mask: number /*i64*/): void
+        static light_set_cull_mask(light: RID, mask: int64): void
         
         /** Sets the distance fade for this 3D light. This acts as a form of level of detail (LOD) and can be used to improve performance. Equivalent to [member Light3D.distance_fade_enabled], [member Light3D.distance_fade_begin], [member Light3D.distance_fade_shadow], and [member Light3D.distance_fade_length]. */
-        static light_set_distance_fade(decal: RID, enabled: boolean, begin: number /*f64*/, shadow: number /*f64*/, length: number /*f64*/): void
+        static light_set_distance_fade(decal: RID, enabled: boolean, begin: float64, shadow: float64, length: float64): void
         
         /** If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the mesh to use double-sided shadows with [method instance_geometry_set_cast_shadows_setting]. Equivalent to [member Light3D.shadow_reverse_cull_face]. */
         static light_set_reverse_cull_face_mode(light: RID, enabled: boolean): void
@@ -5742,7 +5744,7 @@ declare module "godot" {
         static light_set_bake_mode(light: RID, bake_mode: RenderingServer.LightBakeMode): void
         
         /** Sets the maximum SDFGI cascade in which the 3D light's indirect lighting is rendered. Higher values allow the light to be rendered in SDFGI further away from the camera. */
-        static light_set_max_sdfgi_cascade(light: RID, cascade: number /*i64*/): void
+        static light_set_max_sdfgi_cascade(light: RID, cascade: int64): void
         
         /** Sets whether to use a dual paraboloid or a cubemap for the shadow map. Dual paraboloid is faster but may suffer from artifacts. Equivalent to [member OmniLight3D.omni_shadow_mode]. */
         static light_omni_set_shadow_mode(light: RID, mode: RenderingServer.LightOmniShadowMode): void
@@ -5766,7 +5768,7 @@ declare module "godot" {
         static directional_soft_shadow_filter_set_quality(quality: RenderingServer.ShadowQuality): void
         
         /** Sets the [param size] of the directional light shadows in 3D. See also [member ProjectSettings.rendering/lights_and_shadows/directional_shadow/size]. This parameter is global and cannot be set on a per-viewport basis. */
-        static directional_shadow_atlas_set_size(size: number /*i64*/, is_16bits: boolean): void
+        static directional_shadow_atlas_set_size(size: int64, is_16bits: boolean): void
         
         /** Creates a reflection probe and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `reflection_probe_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -5780,7 +5782,7 @@ declare module "godot" {
         static reflection_probe_set_update_mode(probe: RID, mode: RenderingServer.ReflectionProbeUpdateMode): void
         
         /** Sets the intensity of the reflection probe. Intensity modulates the strength of the reflection. Equivalent to [member ReflectionProbe.intensity]. */
-        static reflection_probe_set_intensity(probe: RID, intensity: number /*f64*/): void
+        static reflection_probe_set_intensity(probe: RID, intensity: float64): void
         
         /** Sets the reflection probe's ambient light mode. Equivalent to [member ReflectionProbe.ambient_mode]. */
         static reflection_probe_set_ambient_mode(probe: RID, mode: RenderingServer.ReflectionProbeAmbientMode): void
@@ -5789,10 +5791,10 @@ declare module "godot" {
         static reflection_probe_set_ambient_color(probe: RID, color: Color): void
         
         /** Sets the reflection probe's custom ambient light energy. Equivalent to [member ReflectionProbe.ambient_color_energy]. */
-        static reflection_probe_set_ambient_energy(probe: RID, energy: number /*f64*/): void
+        static reflection_probe_set_ambient_energy(probe: RID, energy: float64): void
         
         /** Sets the max distance away from the probe an object can be before it is culled. Equivalent to [member ReflectionProbe.max_distance]. */
-        static reflection_probe_set_max_distance(probe: RID, distance: number /*f64*/): void
+        static reflection_probe_set_max_distance(probe: RID, distance: float64): void
         
         /** Sets the size of the area that the reflection probe will capture. Equivalent to [member ReflectionProbe.size]. */
         static reflection_probe_set_size(probe: RID, size: Vector3): void
@@ -5810,13 +5812,13 @@ declare module "godot" {
         static reflection_probe_set_enable_shadows(probe: RID, enable: boolean): void
         
         /** Sets the render cull mask for this reflection probe. Only instances with a matching cull mask will be rendered by this probe. Equivalent to [member ReflectionProbe.cull_mask]. */
-        static reflection_probe_set_cull_mask(probe: RID, layers: number /*i64*/): void
+        static reflection_probe_set_cull_mask(probe: RID, layers: int64): void
         
         /** Sets the resolution to use when rendering the specified reflection probe. The [param resolution] is specified for each cubemap face: for instance, specifying `512` will allocate 6 faces of 512×512 each (plus mipmaps for roughness levels). */
-        static reflection_probe_set_resolution(probe: RID, resolution: number /*i64*/): void
+        static reflection_probe_set_resolution(probe: RID, resolution: int64): void
         
         /** Sets the mesh level of detail to use in the reflection probe rendering. Higher values will use less detailed versions of meshes that have LOD variations generated, which can improve performance. Equivalent to [member ReflectionProbe.mesh_lod_threshold]. */
-        static reflection_probe_set_mesh_lod_threshold(probe: RID, pixels: number /*f64*/): void
+        static reflection_probe_set_mesh_lod_threshold(probe: RID, pixels: float64): void
         
         /** Creates a decal and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `decal_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -5833,25 +5835,25 @@ declare module "godot" {
         static decal_set_texture(decal: RID, type: RenderingServer.DecalTexture, texture: RID): void
         
         /** Sets the emission [param energy] in the decal specified by the [param decal] RID. Equivalent to [member Decal.emission_energy]. */
-        static decal_set_emission_energy(decal: RID, energy: number /*f64*/): void
+        static decal_set_emission_energy(decal: RID, energy: float64): void
         
         /** Sets the [param albedo_mix] in the decal specified by the [param decal] RID. Equivalent to [member Decal.albedo_mix]. */
-        static decal_set_albedo_mix(decal: RID, albedo_mix: number /*f64*/): void
+        static decal_set_albedo_mix(decal: RID, albedo_mix: float64): void
         
         /** Sets the color multiplier in the decal specified by the [param decal] RID to [param color]. Equivalent to [member Decal.modulate]. */
         static decal_set_modulate(decal: RID, color: Color): void
         
         /** Sets the cull [param mask] in the decal specified by the [param decal] RID. Equivalent to [member Decal.cull_mask]. */
-        static decal_set_cull_mask(decal: RID, mask: number /*i64*/): void
+        static decal_set_cull_mask(decal: RID, mask: int64): void
         
         /** Sets the distance fade parameters in the decal specified by the [param decal] RID. Equivalent to [member Decal.distance_fade_enabled], [member Decal.distance_fade_begin] and [member Decal.distance_fade_length]. */
-        static decal_set_distance_fade(decal: RID, enabled: boolean, begin: number /*f64*/, length: number /*f64*/): void
+        static decal_set_distance_fade(decal: RID, enabled: boolean, begin: float64, length: float64): void
         
         /** Sets the upper fade ([param above]) and lower fade ([param below]) in the decal specified by the [param decal] RID. Equivalent to [member Decal.upper_fade] and [member Decal.lower_fade]. */
-        static decal_set_fade(decal: RID, above: number /*f64*/, below: number /*f64*/): void
+        static decal_set_fade(decal: RID, above: float64, below: float64): void
         
         /** Sets the normal [param fade] in the decal specified by the [param decal] RID. Equivalent to [member Decal.normal_fade]. */
-        static decal_set_normal_fade(decal: RID, fade: number /*f64*/): void
+        static decal_set_normal_fade(decal: RID, fade: float64): void
         
         /** Sets the texture [param filter] mode to use when rendering decals. This parameter is global and cannot be set on a per-decal basis. */
         static decals_set_filter(filter: RenderingServer.DecalFilter): void
@@ -5874,22 +5876,22 @@ declare module "godot" {
         static voxel_gi_get_to_cell_xform(voxel_gi: RID): Transform3D
         
         /** Sets the [member VoxelGIData.dynamic_range] value to use on the specified [param voxel_gi]'s [RID]. */
-        static voxel_gi_set_dynamic_range(voxel_gi: RID, range: number /*f64*/): void
+        static voxel_gi_set_dynamic_range(voxel_gi: RID, range: float64): void
         
         /** Sets the [member VoxelGIData.propagation] value to use on the specified [param voxel_gi]'s [RID]. */
-        static voxel_gi_set_propagation(voxel_gi: RID, amount: number /*f64*/): void
+        static voxel_gi_set_propagation(voxel_gi: RID, amount: float64): void
         
         /** Sets the [member VoxelGIData.energy] value to use on the specified [param voxel_gi]'s [RID]. */
-        static voxel_gi_set_energy(voxel_gi: RID, energy: number /*f64*/): void
+        static voxel_gi_set_energy(voxel_gi: RID, energy: float64): void
         
         /** Used to inform the renderer what exposure normalization value was used while baking the voxel gi. This value will be used and modulated at run time to ensure that the voxel gi maintains a consistent level of exposure even if the scene-wide exposure normalization is changed at run time. For more information see [method camera_attributes_set_exposure]. */
-        static voxel_gi_set_baked_exposure_normalization(voxel_gi: RID, baked_exposure: number /*f64*/): void
+        static voxel_gi_set_baked_exposure_normalization(voxel_gi: RID, baked_exposure: float64): void
         
         /** Sets the [member VoxelGIData.bias] value to use on the specified [param voxel_gi]'s [RID]. */
-        static voxel_gi_set_bias(voxel_gi: RID, bias: number /*f64*/): void
+        static voxel_gi_set_bias(voxel_gi: RID, bias: float64): void
         
         /** Sets the [member VoxelGIData.normal_bias] value to use on the specified [param voxel_gi]'s [RID]. */
-        static voxel_gi_set_normal_bias(voxel_gi: RID, bias: number /*f64*/): void
+        static voxel_gi_set_normal_bias(voxel_gi: RID, bias: float64): void
         
         /** Sets the [member VoxelGIData.interior] value to use on the specified [param voxel_gi]'s [RID]. */
         static voxel_gi_set_interior(voxel_gi: RID, enable: boolean): void
@@ -5918,8 +5920,8 @@ declare module "godot" {
         static lightmap_get_probe_capture_bsp_tree(lightmap: RID): PackedInt32Array
         
         /** Used to inform the renderer what exposure normalization value was used while baking the lightmap. This value will be used and modulated at run time to ensure that the lightmap maintains a consistent level of exposure even if the scene-wide exposure normalization is changed at run time. For more information see [method camera_attributes_set_exposure]. */
-        static lightmap_set_baked_exposure_normalization(lightmap: RID, baked_exposure: number /*f64*/): void
-        static lightmap_set_probe_capture_update_speed(speed: number /*f64*/): void
+        static lightmap_set_baked_exposure_normalization(lightmap: RID, baked_exposure: float64): void
+        static lightmap_set_probe_capture_update_speed(speed: float64): void
         
         /** Creates a GPU-based particle system and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `particles_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -5941,28 +5943,28 @@ declare module "godot" {
         static particles_get_emitting(particles: RID): boolean
         
         /** Sets the number of particles to be drawn and allocates the memory for them. Equivalent to [member GPUParticles3D.amount]. */
-        static particles_set_amount(particles: RID, amount: number /*i64*/): void
+        static particles_set_amount(particles: RID, amount: int64): void
         
         /** Sets the amount ratio for particles to be emitted. Equivalent to [member GPUParticles3D.amount_ratio]. */
-        static particles_set_amount_ratio(particles: RID, ratio: number /*f64*/): void
+        static particles_set_amount_ratio(particles: RID, ratio: float64): void
         
         /** Sets the lifetime of each particle in the system. Equivalent to [member GPUParticles3D.lifetime]. */
-        static particles_set_lifetime(particles: RID, lifetime: number /*f64*/): void
+        static particles_set_lifetime(particles: RID, lifetime: float64): void
         
         /** If `true`, particles will emit once and then stop. Equivalent to [member GPUParticles3D.one_shot]. */
         static particles_set_one_shot(particles: RID, one_shot: boolean): void
         
         /** Sets the preprocess time for the particles' animation. This lets you delay starting an animation until after the particles have begun emitting. Equivalent to [member GPUParticles3D.preprocess]. */
-        static particles_set_pre_process_time(particles: RID, time: number /*f64*/): void
+        static particles_set_pre_process_time(particles: RID, time: float64): void
         
         /** Sets the explosiveness ratio. Equivalent to [member GPUParticles3D.explosiveness]. */
-        static particles_set_explosiveness_ratio(particles: RID, ratio: number /*f64*/): void
+        static particles_set_explosiveness_ratio(particles: RID, ratio: float64): void
         
         /** Sets the emission randomness ratio. This randomizes the emission of particles within their phase. Equivalent to [member GPUParticles3D.randomness]. */
-        static particles_set_randomness_ratio(particles: RID, ratio: number /*f64*/): void
+        static particles_set_randomness_ratio(particles: RID, ratio: float64): void
         
         /** Sets the value that informs a [ParticleProcessMaterial] to rush all particles towards the end of their lifetime. */
-        static particles_set_interp_to_end(particles: RID, factor: number /*f64*/): void
+        static particles_set_interp_to_end(particles: RID, factor: float64): void
         
         /** Sets the velocity of a particle node, that will be used by [member ParticleProcessMaterial.inherit_velocity_ratio]. */
         static particles_set_emitter_velocity(particles: RID, velocity: Vector3): void
@@ -5971,7 +5973,7 @@ declare module "godot" {
         static particles_set_custom_aabb(particles: RID, aabb: AABB): void
         
         /** Sets the speed scale of the particle system. Equivalent to [member GPUParticles3D.speed_scale]. */
-        static particles_set_speed_scale(particles: RID, scale: number /*f64*/): void
+        static particles_set_speed_scale(particles: RID, scale: float64): void
         
         /** If `true`, particles use local coordinates. If `false` they use global coordinates. Equivalent to [member GPUParticles3D.local_coords]. */
         static particles_set_use_local_coordinates(particles: RID, enable: boolean): void
@@ -5983,16 +5985,16 @@ declare module "godot" {
         static particles_set_process_material(particles: RID, material: RID): void
         
         /** Sets the frame rate that the particle system rendering will be fixed to. Equivalent to [member GPUParticles3D.fixed_fps]. */
-        static particles_set_fixed_fps(particles: RID, fps: number /*i64*/): void
+        static particles_set_fixed_fps(particles: RID, fps: int64): void
         static particles_set_interpolate(particles: RID, enable: boolean): void
         
         /** If `true`, uses fractional delta which smooths the movement of the particles. Equivalent to [member GPUParticles3D.fract_delta]. */
         static particles_set_fractional_delta(particles: RID, enable: boolean): void
-        static particles_set_collision_base_size(particles: RID, size: number /*f64*/): void
+        static particles_set_collision_base_size(particles: RID, size: float64): void
         static particles_set_transform_align(particles: RID, align: RenderingServer.ParticlesTransformAlign): void
         
         /** If [param enable] is `true`, enables trails for the [param particles] with the specified [param length_sec] in seconds. Equivalent to [member GPUParticles3D.trail_enabled] and [member GPUParticles3D.trail_lifetime]. */
-        static particles_set_trails(particles: RID, enable: boolean, length_sec: number /*f64*/): void
+        static particles_set_trails(particles: RID, enable: boolean, length_sec: float64): void
         static particles_set_trail_bind_poses(particles: RID, bind_poses: Array): void
         
         /** Returns `true` if particles are not emitting and particles are set to inactive. */
@@ -6006,16 +6008,16 @@ declare module "godot" {
         static particles_set_subemitter(particles: RID, subemitter_particles: RID): void
         
         /** Manually emits particles from the [param particles] instance. */
-        static particles_emit(particles: RID, transform: Transform3D, velocity: Vector3, color: Color, custom: Color, emit_flags: number /*i64*/): void
+        static particles_emit(particles: RID, transform: Transform3D, velocity: Vector3, color: Color, custom: Color, emit_flags: int64): void
         
         /** Sets the draw order of the particles to one of the named enums from [enum ParticlesDrawOrder]. See [enum ParticlesDrawOrder] for options. Equivalent to [member GPUParticles3D.draw_order]. */
         static particles_set_draw_order(particles: RID, order: RenderingServer.ParticlesDrawOrder): void
         
         /** Sets the number of draw passes to use. Equivalent to [member GPUParticles3D.draw_passes]. */
-        static particles_set_draw_passes(particles: RID, count: number /*i64*/): void
+        static particles_set_draw_passes(particles: RID, count: int64): void
         
         /** Sets the mesh to be used for the specified draw pass. Equivalent to [member GPUParticles3D.draw_pass_1], [member GPUParticles3D.draw_pass_2], [member GPUParticles3D.draw_pass_3], and [member GPUParticles3D.draw_pass_4]. */
-        static particles_set_draw_pass_mesh(particles: RID, pass: number /*i64*/, mesh: RID): void
+        static particles_set_draw_pass_mesh(particles: RID, pass: int64, mesh: RID): void
         
         /** Calculates and returns the axis-aligned bounding box that contains all the particles. Equivalent to [method GPUParticles3D.capture_aabb]. */
         static particles_get_current_aabb(particles: RID): AABB
@@ -6033,22 +6035,22 @@ declare module "godot" {
         static particles_collision_set_collision_type(particles_collision: RID, type: RenderingServer.ParticlesCollisionType): void
         
         /** Sets the cull [param mask] for the 3D GPU particles collision or attractor specified by the [param particles_collision] RID. Equivalent to [member GPUParticlesCollision3D.cull_mask] or [member GPUParticlesAttractor3D.cull_mask] depending on the [param particles_collision] type. */
-        static particles_collision_set_cull_mask(particles_collision: RID, mask: number /*i64*/): void
+        static particles_collision_set_cull_mask(particles_collision: RID, mask: int64): void
         
         /** Sets the [param radius] for the 3D GPU particles sphere collision or attractor specified by the [param particles_collision] RID. Equivalent to [member GPUParticlesCollisionSphere3D.radius] or [member GPUParticlesAttractorSphere3D.radius] depending on the [param particles_collision] type. */
-        static particles_collision_set_sphere_radius(particles_collision: RID, radius: number /*f64*/): void
+        static particles_collision_set_sphere_radius(particles_collision: RID, radius: float64): void
         
         /** Sets the [param extents] for the 3D GPU particles collision by the [param particles_collision] RID. Equivalent to [member GPUParticlesCollisionBox3D.size], [member GPUParticlesCollisionSDF3D.size], [member GPUParticlesCollisionHeightField3D.size], [member GPUParticlesAttractorBox3D.size] or [member GPUParticlesAttractorVectorField3D.size] depending on the [param particles_collision] type. */
         static particles_collision_set_box_extents(particles_collision: RID, extents: Vector3): void
         
         /** Sets the [param strength] for the 3D GPU particles attractor specified by the [param particles_collision] RID. Only used for attractors, not colliders. Equivalent to [member GPUParticlesAttractor3D.strength]. */
-        static particles_collision_set_attractor_strength(particles_collision: RID, strength: number /*f64*/): void
+        static particles_collision_set_attractor_strength(particles_collision: RID, strength: float64): void
         
         /** Sets the directionality [param amount] for the 3D GPU particles attractor specified by the [param particles_collision] RID. Only used for attractors, not colliders. Equivalent to [member GPUParticlesAttractor3D.directionality]. */
-        static particles_collision_set_attractor_directionality(particles_collision: RID, amount: number /*f64*/): void
+        static particles_collision_set_attractor_directionality(particles_collision: RID, amount: float64): void
         
         /** Sets the attenuation [param curve] for the 3D GPU particles attractor specified by the [param particles_collision] RID. Only used for attractors, not colliders. Equivalent to [member GPUParticlesAttractor3D.attenuation]. */
-        static particles_collision_set_attractor_attenuation(particles_collision: RID, curve: number /*f64*/): void
+        static particles_collision_set_attractor_attenuation(particles_collision: RID, curve: float64): void
         
         /** Sets the signed distance field [param texture] for the 3D GPU particles collision specified by the [param particles_collision] RID. Equivalent to [member GPUParticlesCollisionSDF3D.texture] or [member GPUParticlesAttractorVectorField3D.texture] depending on the [param particles_collision] type. */
         static particles_collision_set_field_texture(particles_collision: RID, texture: RID): void
@@ -6103,19 +6105,19 @@ declare module "godot" {
         static camera_create(): RID
         
         /** Sets camera to use perspective projection. Objects on the screen becomes smaller when they are far away. */
-        static camera_set_perspective(camera: RID, fovy_degrees: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): void
+        static camera_set_perspective(camera: RID, fovy_degrees: float64, z_near: float64, z_far: float64): void
         
         /** Sets camera to use orthogonal projection, also known as orthographic projection. Objects remain the same size on the screen no matter how far away they are. */
-        static camera_set_orthogonal(camera: RID, size: number /*f64*/, z_near: number /*f64*/, z_far: number /*f64*/): void
+        static camera_set_orthogonal(camera: RID, size: float64, z_near: float64, z_far: float64): void
         
         /** Sets camera to use frustum projection. This mode allows adjusting the [param offset] argument to create "tilted frustum" effects. */
-        static camera_set_frustum(camera: RID, size: number /*f64*/, offset: Vector2, z_near: number /*f64*/, z_far: number /*f64*/): void
+        static camera_set_frustum(camera: RID, size: float64, offset: Vector2, z_near: float64, z_far: float64): void
         
         /** Sets [Transform3D] of camera. */
         static camera_set_transform(camera: RID, transform: Transform3D): void
         
         /** Sets the cull mask associated with this camera. The cull mask describes which 3D layers are rendered by this camera. Equivalent to [member Camera3D.cull_mask]. */
-        static camera_set_cull_mask(camera: RID, layers: number /*i64*/): void
+        static camera_set_cull_mask(camera: RID, layers: int64): void
         
         /** Sets the environment used by this camera. Equivalent to [member Camera3D.environment]. */
         static camera_set_environment(camera: RID, env: RID): void
@@ -6137,7 +6139,7 @@ declare module "godot" {
         static viewport_set_use_xr(viewport: RID, use_xr: boolean): void
         
         /** Sets the viewport's width and height in pixels. */
-        static viewport_set_size(viewport: RID, width: number /*i64*/, height: number /*i64*/): void
+        static viewport_set_size(viewport: RID, width: int64, height: int64): void
         
         /** If `true`, sets the viewport active, else sets it inactive. */
         static viewport_set_active(viewport: RID, active: boolean): void
@@ -6151,13 +6153,13 @@ declare module "godot" {
          *    
          *  Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For further optimization, see [method viewport_set_render_direct_to_screen].  
          */
-        static viewport_attach_to_screen(viewport: RID, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/, screen: number /*i64*/ = 0): void
+        static viewport_attach_to_screen(viewport: RID, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/, screen: int64 = 0): void
         
         /** If `true`, render the contents of the viewport directly to screen. This allows a low-level optimization where you can skip drawing a viewport to the root viewport. While this optimization can result in a significant increase in speed (especially on older devices), it comes at a cost of usability. When this is enabled, you cannot read from the viewport or from the screen_texture. You also lose the benefit of certain window settings, such as the various stretch modes. Another consequence to be aware of is that in 2D the rendering happens in window coordinates, so if you have a viewport that is double the size of the window, and you set this, then only the portion that fits within the window will be drawn, no automatic scaling is possible, even if your game scene is significantly larger than the window size. */
         static viewport_set_render_direct_to_screen(viewport: RID, enabled: boolean): void
         
         /** Sets the rendering mask associated with this [Viewport]. Only [CanvasItem] nodes with a matching rendering visibility layer will be rendered by this [Viewport]. */
-        static viewport_set_canvas_cull_mask(viewport: RID, canvas_cull_mask: number /*i64*/): void
+        static viewport_set_canvas_cull_mask(viewport: RID, canvas_cull_mask: int64): void
         
         /** Sets the 3D resolution scaling mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible. */
         static viewport_set_scaling_3d_mode(viewport: RID, scaling_3d_mode: RenderingServer.ViewportScaling3DMode): void
@@ -6165,16 +6167,16 @@ declare module "godot" {
         /** Scales the 3D render buffer based on the viewport size uses an image filter specified in [enum ViewportScaling3DMode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [enum ViewportMSAA] for multi-sample antialiasing, which is significantly cheaper but only smoothens the edges of polygons.  
          *  When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.  
          */
-        static viewport_set_scaling_3d_scale(viewport: RID, scale: number /*f64*/): void
+        static viewport_set_scaling_3d_scale(viewport: RID, scale: float64): void
         
         /** Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference. */
-        static viewport_set_fsr_sharpness(viewport: RID, sharpness: number /*f64*/): void
+        static viewport_set_fsr_sharpness(viewport: RID, sharpness: float64): void
         
         /** Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close). To get sharper textures at a distance without introducing too much graininess, set this between `-0.75` and `0.0`. Enabling temporal antialiasing ([member ProjectSettings.rendering/anti_aliasing/quality/use_taa]) can help reduce the graininess visible when using negative mipmap bias.  
          *      
          *  **Note:** When the 3D scaling mode is set to FSR 1.0, this value is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `-log2(1.0 / scale) + mipmap_bias`.  
          */
-        static viewport_set_texture_mipmap_bias(viewport: RID, mipmap_bias: number /*f64*/): void
+        static viewport_set_texture_mipmap_bias(viewport: RID, mipmap_bias: float64): void
         
         /** Sets when the viewport should be updated. See [enum ViewportUpdateMode] constants for options. */
         static viewport_set_update_mode(viewport: RID, update_mode: RenderingServer.ViewportUpdateMode): void
@@ -6227,7 +6229,7 @@ declare module "godot" {
         /** Sets the stacking order for a viewport's canvas.  
          *  [param layer] is the actual canvas layer, while [param sublayer] specifies the stacking order of the canvas among those in the same layer.  
          */
-        static viewport_set_canvas_stacking(viewport: RID, canvas: RID, layer: number /*i64*/, sublayer: number /*i64*/): void
+        static viewport_set_canvas_stacking(viewport: RID, canvas: RID, layer: int64, sublayer: int64): void
         
         /** If `true`, the viewport renders its background as transparent. */
         static viewport_set_transparent_background(viewport: RID, enabled: boolean): void
@@ -6242,10 +6244,10 @@ declare module "godot" {
          *      
          *  **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).  
          */
-        static viewport_set_positional_shadow_atlas_size(viewport: RID, size: number /*i64*/, use_16_bits: boolean = false): void
+        static viewport_set_positional_shadow_atlas_size(viewport: RID, size: int64, use_16_bits: boolean = false): void
         
         /** Sets the number of subdivisions to use in the specified shadow atlas [param quadrant] for omni and spot shadows. See also [method Viewport.set_positional_shadow_atlas_quadrant_subdiv]. */
-        static viewport_set_positional_shadow_atlas_quadrant_subdivision(viewport: RID, quadrant: number /*i64*/, subdivision: number /*i64*/): void
+        static viewport_set_positional_shadow_atlas_quadrant_subdivision(viewport: RID, quadrant: int64, subdivision: int64): void
         
         /** Sets the multisample anti-aliasing mode for 3D on the specified [param viewport] RID. See [enum ViewportMSAA] for options. */
         static viewport_set_msaa_3d(viewport: RID, msaa: RenderingServer.ViewportMSAA): void
@@ -6272,7 +6274,7 @@ declare module "godot" {
         static viewport_set_use_occlusion_culling(viewport: RID, enable: boolean): void
         
         /** Sets the [member ProjectSettings.rendering/occlusion_culling/occlusion_rays_per_thread] to use for occlusion culling. This parameter is global and cannot be set on a per-viewport basis. */
-        static viewport_set_occlusion_rays_per_thread(rays_per_thread: number /*i64*/): void
+        static viewport_set_occlusion_rays_per_thread(rays_per_thread: int64): void
         
         /** Sets the [member ProjectSettings.rendering/occlusion_culling/bvh_build_quality] to use for occlusion culling. This parameter is global and cannot be set on a per-viewport basis. */
         static viewport_set_occlusion_culling_build_quality(quality: RenderingServer.ViewportOcclusionCullingBuildQuality): void
@@ -6283,7 +6285,7 @@ declare module "godot" {
          *  **Note:** Viewport rendering information is not available until at least 2 frames have been rendered by the engine. If rendering information is not available, [method viewport_get_render_info] returns `0`. To print rendering information in `_ready()` successfully, use the following:  
          *    
          */
-        static viewport_get_render_info(viewport: RID, type: RenderingServer.ViewportRenderInfoType, info: RenderingServer.ViewportRenderInfo): number /*i64*/
+        static viewport_get_render_info(viewport: RID, type: RenderingServer.ViewportRenderInfoType, info: RenderingServer.ViewportRenderInfo): int64
         
         /** Sets the debug draw mode of a viewport. See [enum ViewportDebugDraw] for options. */
         static viewport_set_debug_draw(viewport: RID, draw: RenderingServer.ViewportDebugDraw): void
@@ -6295,7 +6297,7 @@ declare module "godot" {
          *      
          *  **Note:** Requires measurements to be enabled on the specified [param viewport] using [method viewport_set_measure_render_time]. Otherwise, this method returns `0.0`.  
          */
-        static viewport_get_measured_render_time_cpu(viewport: RID): number /*f64*/
+        static viewport_get_measured_render_time_cpu(viewport: RID): float64
         
         /** Returns the GPU time taken to render the last frame in milliseconds. To get a complete readout of GPU time spent to render the scene, sum the render times of all viewports that are drawn every frame. Unlike [method Engine.get_frames_per_second], this method accurately reflects GPU utilization even if framerate is capped via V-Sync or [member Engine.max_fps]. See also [method viewport_get_measured_render_time_gpu].  
          *      
@@ -6303,7 +6305,7 @@ declare module "godot" {
          *      
          *  **Note:** When GPU utilization is low enough during a certain period of time, GPUs will decrease their power state (which in turn decreases core and memory clock speeds). This can cause the reported GPU time to increase if GPU utilization is kept low enough by a framerate cap (compared to what it would be at the GPU's highest power state). Keep this in mind when benchmarking using [method viewport_get_measured_render_time_gpu]. This behavior can be overridden in the graphics driver settings at the cost of higher power usage.  
          */
-        static viewport_get_measured_render_time_gpu(viewport: RID): number /*f64*/
+        static viewport_get_measured_render_time_gpu(viewport: RID): float64
         
         /** Sets the Variable Rate Shading (VRS) mode for the viewport. If the GPU does not support VRS, this property is ignored. Equivalent to [member ProjectSettings.rendering/vrs/mode]. */
         static viewport_set_vrs_mode(viewport: RID, mode: RenderingServer.ViewportVRSMode): void
@@ -6317,7 +6319,7 @@ declare module "godot" {
         static sky_create(): RID
         
         /** Sets the [param radiance_size] of the sky specified by the [param sky] RID (in pixels). Equivalent to [member Sky.radiance_size]. */
-        static sky_set_radiance_size(sky: RID, radiance_size: number /*i64*/): void
+        static sky_set_radiance_size(sky: RID, radiance_size: int64): void
         
         /** Sets the process [param mode] of the sky specified by the [param sky] RID. Equivalent to [member Sky.process_mode]. */
         static sky_set_mode(sky: RID, mode: RenderingServer.SkyMode): void
@@ -6331,7 +6333,7 @@ declare module "godot" {
          *      
          *  **Note:** [param size] should be a 2:1 aspect ratio for the generated panorama to have square pixels. For radiance maps, there is no point in using a height greater than [member Sky.radiance_size], as it won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no point in going past a size of 128×64 pixels when saving an irradiance map.  
          */
-        static sky_bake_panorama(sky: RID, energy: number /*f64*/, bake_irradiance: boolean, size: Vector2i): Image
+        static sky_bake_panorama(sky: RID, energy: float64, bake_irradiance: boolean, size: Vector2i): Image
         
         /** Creates an environment and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `environment_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -6347,7 +6349,7 @@ declare module "godot" {
         static environment_set_sky(env: RID, sky: RID): void
         
         /** Sets a custom field of view for the background [Sky]. Equivalent to [member Environment.sky_custom_fov]. */
-        static environment_set_sky_custom_fov(env: RID, scale: number /*f64*/): void
+        static environment_set_sky_custom_fov(env: RID, scale: float64): void
         
         /** Sets the rotation of the background [Sky] expressed as a [Basis]. Equivalent to [member Environment.sky_rotation], where the rotation vector is used to construct the [Basis]. */
         static environment_set_sky_orientation(env: RID, orientation: Basis): void
@@ -6356,47 +6358,47 @@ declare module "godot" {
         static environment_set_bg_color(env: RID, color: Color): void
         
         /** Sets the intensity of the background color. */
-        static environment_set_bg_energy(env: RID, multiplier: number /*f64*/, exposure_value: number /*f64*/): void
+        static environment_set_bg_energy(env: RID, multiplier: float64, exposure_value: float64): void
         
         /** Sets the maximum layer to use if using Canvas background mode. */
-        static environment_set_canvas_max_layer(env: RID, max_layer: number /*i64*/): void
+        static environment_set_canvas_max_layer(env: RID, max_layer: int64): void
         
         /** Sets the values to be used for ambient light rendering. See [Environment] for more details. */
-        static environment_set_ambient_light(env: RID, color: Color, ambient: RenderingServer.EnvironmentAmbientSource = 0, energy: number /*f64*/ = 1, sky_contibution: number /*f64*/ = 0, reflection_source: RenderingServer.EnvironmentReflectionSource = 0): void
+        static environment_set_ambient_light(env: RID, color: Color, ambient: RenderingServer.EnvironmentAmbientSource = 0, energy: float64 = 1, sky_contibution: float64 = 0, reflection_source: RenderingServer.EnvironmentReflectionSource = 0): void
         
         /** Configures glow for the specified environment RID. See `glow_*` properties in [Environment] for more information. */
-        static environment_set_glow(env: RID, enable: boolean, levels: PackedFloat32Array, intensity: number /*f64*/, strength: number /*f64*/, mix: number /*f64*/, bloom_threshold: number /*f64*/, blend_mode: RenderingServer.EnvironmentGlowBlendMode, hdr_bleed_threshold: number /*f64*/, hdr_bleed_scale: number /*f64*/, hdr_luminance_cap: number /*f64*/, glow_map_strength: number /*f64*/, glow_map: RID): void
+        static environment_set_glow(env: RID, enable: boolean, levels: PackedFloat32Array, intensity: float64, strength: float64, mix: float64, bloom_threshold: float64, blend_mode: RenderingServer.EnvironmentGlowBlendMode, hdr_bleed_threshold: float64, hdr_bleed_scale: float64, hdr_luminance_cap: float64, glow_map_strength: float64, glow_map: RID): void
         
         /** Sets the variables to be used with the "tonemap" post-process effect. See [Environment] for more details. */
-        static environment_set_tonemap(env: RID, tone_mapper: RenderingServer.EnvironmentToneMapper, exposure: number /*f64*/, white: number /*f64*/): void
+        static environment_set_tonemap(env: RID, tone_mapper: RenderingServer.EnvironmentToneMapper, exposure: float64, white: float64): void
         
         /** Sets the values to be used with the "adjustments" post-process effect. See [Environment] for more details. */
-        static environment_set_adjustment(env: RID, enable: boolean, brightness: number /*f64*/, contrast: number /*f64*/, saturation: number /*f64*/, use_1d_color_correction: boolean, color_correction: RID): void
+        static environment_set_adjustment(env: RID, enable: boolean, brightness: float64, contrast: float64, saturation: float64, use_1d_color_correction: boolean, color_correction: RID): void
         
         /** Sets the variables to be used with the screen-space reflections (SSR) post-process effect. See [Environment] for more details. */
-        static environment_set_ssr(env: RID, enable: boolean, max_steps: number /*i64*/, fade_in: number /*f64*/, fade_out: number /*f64*/, depth_tolerance: number /*f64*/): void
+        static environment_set_ssr(env: RID, enable: boolean, max_steps: int64, fade_in: float64, fade_out: float64, depth_tolerance: float64): void
         
         /** Sets the variables to be used with the screen-space ambient occlusion (SSAO) post-process effect. See [Environment] for more details. */
-        static environment_set_ssao(env: RID, enable: boolean, radius: number /*f64*/, intensity: number /*f64*/, power: number /*f64*/, detail: number /*f64*/, horizon: number /*f64*/, sharpness: number /*f64*/, light_affect: number /*f64*/, ao_channel_affect: number /*f64*/): void
+        static environment_set_ssao(env: RID, enable: boolean, radius: float64, intensity: float64, power: float64, detail: float64, horizon: float64, sharpness: float64, light_affect: float64, ao_channel_affect: float64): void
         
         /** Configures fog for the specified environment RID. See `fog_*` properties in [Environment] for more information. */
-        static environment_set_fog(env: RID, enable: boolean, light_color: Color, light_energy: number /*f64*/, sun_scatter: number /*f64*/, density: number /*f64*/, height: number /*f64*/, height_density: number /*f64*/, aerial_perspective: number /*f64*/, sky_affect: number /*f64*/): void
+        static environment_set_fog(env: RID, enable: boolean, light_color: Color, light_energy: float64, sun_scatter: float64, density: float64, height: float64, height_density: float64, aerial_perspective: float64, sky_affect: float64): void
         
         /** Configures signed distance field global illumination for the specified environment RID. See `sdfgi_*` properties in [Environment] for more information. */
-        static environment_set_sdfgi(env: RID, enable: boolean, cascades: number /*i64*/, min_cell_size: number /*f64*/, y_scale: RenderingServer.EnvironmentSDFGIYScale, use_occlusion: boolean, bounce_feedback: number /*f64*/, read_sky: boolean, energy: number /*f64*/, normal_bias: number /*f64*/, probe_bias: number /*f64*/): void
+        static environment_set_sdfgi(env: RID, enable: boolean, cascades: int64, min_cell_size: float64, y_scale: RenderingServer.EnvironmentSDFGIYScale, use_occlusion: boolean, bounce_feedback: float64, read_sky: boolean, energy: float64, normal_bias: float64, probe_bias: float64): void
         
         /** Sets the variables to be used with the volumetric fog post-process effect. See [Environment] for more details. */
-        static environment_set_volumetric_fog(env: RID, enable: boolean, density: number /*f64*/, albedo: Color, emission: Color, emission_energy: number /*f64*/, anisotropy: number /*f64*/, length: number /*f64*/, p_detail_spread: number /*f64*/, gi_inject: number /*f64*/, temporal_reprojection: boolean, temporal_reprojection_amount: number /*f64*/, ambient_inject: number /*f64*/, sky_affect: number /*f64*/): void
+        static environment_set_volumetric_fog(env: RID, enable: boolean, density: float64, albedo: Color, emission: Color, emission_energy: float64, anisotropy: float64, length: float64, p_detail_spread: float64, gi_inject: float64, temporal_reprojection: boolean, temporal_reprojection_amount: float64, ambient_inject: float64, sky_affect: float64): void
         
         /** If [param enable] is `true`, enables bicubic upscaling for glow which improves quality at the cost of performance. Equivalent to [member ProjectSettings.rendering/environment/glow/upscale_mode]. */
         static environment_glow_set_use_bicubic_upscale(enable: boolean): void
         static environment_set_ssr_roughness_quality(quality: RenderingServer.EnvironmentSSRRoughnessQuality): void
         
         /** Sets the quality level of the screen-space ambient occlusion (SSAO) post-process effect. See [Environment] for more details. */
-        static environment_set_ssao_quality(quality: RenderingServer.EnvironmentSSAOQuality, half_size: boolean, adaptive_target: number /*f64*/, blur_passes: number /*i64*/, fadeout_from: number /*f64*/, fadeout_to: number /*f64*/): void
+        static environment_set_ssao_quality(quality: RenderingServer.EnvironmentSSAOQuality, half_size: boolean, adaptive_target: float64, blur_passes: int64, fadeout_from: float64, fadeout_to: float64): void
         
         /** Sets the quality level of the screen-space indirect lighting (SSIL) post-process effect. See [Environment] for more details. */
-        static environment_set_ssil_quality(quality: RenderingServer.EnvironmentSSILQuality, half_size: boolean, adaptive_target: number /*f64*/, blur_passes: number /*i64*/, fadeout_from: number /*f64*/, fadeout_to: number /*f64*/): void
+        static environment_set_ssil_quality(quality: RenderingServer.EnvironmentSSILQuality, half_size: boolean, adaptive_target: float64, blur_passes: int64, fadeout_from: float64, fadeout_to: float64): void
         
         /** Sets the number of rays to throw per frame when computing signed distance field global illumination. Equivalent to [member ProjectSettings.rendering/global_illumination/sdfgi/probe_ray_count]. */
         static environment_set_sdfgi_ray_count(ray_count: RenderingServer.EnvironmentSDFGIRayCount): void
@@ -6408,7 +6410,7 @@ declare module "godot" {
         static environment_set_sdfgi_frames_to_update_light(frames: RenderingServer.EnvironmentSDFGIFramesToUpdateLight): void
         
         /** Sets the resolution of the volumetric fog's froxel buffer. [param size] is modified by the screen's aspect ratio and then used to set the width and height of the buffer. While [param depth] is directly used to set the depth of the buffer. */
-        static environment_set_volumetric_fog_volume_size(size: number /*i64*/, depth: number /*i64*/): void
+        static environment_set_volumetric_fog_volume_size(size: int64, depth: int64): void
         
         /** Enables filtering of the volumetric fog scattering buffer. This results in much smoother volumes with very few under-sampling artifacts. */
         static environment_set_volumetric_fog_filter_active(active: boolean): void
@@ -6422,13 +6424,13 @@ declare module "godot" {
         static environment_bake_panorama(environment: RID, bake_irradiance: boolean, size: Vector2i): Image
         
         /** Sets the screen-space roughness limiter parameters, such as whether it should be enabled and its thresholds. Equivalent to [member ProjectSettings.rendering/anti_aliasing/screen_space_roughness_limiter/enabled], [member ProjectSettings.rendering/anti_aliasing/screen_space_roughness_limiter/amount] and [member ProjectSettings.rendering/anti_aliasing/screen_space_roughness_limiter/limit]. */
-        static screen_space_roughness_limiter_set_active(enable: boolean, amount: number /*f64*/, limit: number /*f64*/): void
+        static screen_space_roughness_limiter_set_active(enable: boolean, amount: float64, limit: float64): void
         
         /** Sets [member ProjectSettings.rendering/environment/subsurface_scattering/subsurface_scattering_quality] to use when rendering materials that have subsurface scattering enabled. */
         static sub_surface_scattering_set_quality(quality: RenderingServer.SubSurfaceScatteringQuality): void
         
         /** Sets the [member ProjectSettings.rendering/environment/subsurface_scattering/subsurface_scattering_scale] and [member ProjectSettings.rendering/environment/subsurface_scattering/subsurface_scattering_depth_scale] to use when rendering materials that have subsurface scattering enabled. */
-        static sub_surface_scattering_set_scale(scale: number /*f64*/, depth_scale: number /*f64*/): void
+        static sub_surface_scattering_set_scale(scale: float64, depth_scale: float64): void
         
         /** Creates a camera attributes object and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `camera_attributes_` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -6444,7 +6446,7 @@ declare module "godot" {
         static camera_attributes_set_dof_blur_bokeh_shape(shape: RenderingServer.DOFBokehShape): void
         
         /** Sets the parameters to use with the DOF blur effect. These parameters take on the same meaning as their counterparts in [CameraAttributesPractical]. */
-        static camera_attributes_set_dof_blur(camera_attributes: RID, far_enable: boolean, far_distance: number /*f64*/, far_transition: number /*f64*/, near_enable: boolean, near_distance: number /*f64*/, near_transition: number /*f64*/, amount: number /*f64*/): void
+        static camera_attributes_set_dof_blur(camera_attributes: RID, far_enable: boolean, far_distance: float64, far_transition: float64, near_enable: boolean, near_distance: float64, near_transition: float64, amount: float64): void
         
         /** Sets the exposure values that will be used by the renderers. The normalization amount is used to bake a given Exposure Value (EV) into rendering calculations to reduce the dynamic range of the scene.  
          *  The normalization factor can be calculated from exposure value (EV100) as follows:  
@@ -6452,10 +6454,10 @@ declare module "godot" {
          *  The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds), and sensitivity (in ISO) as follows:  
          *    
          */
-        static camera_attributes_set_exposure(camera_attributes: RID, multiplier: number /*f64*/, normalization: number /*f64*/): void
+        static camera_attributes_set_exposure(camera_attributes: RID, multiplier: float64, normalization: float64): void
         
         /** Sets the parameters to use with the auto-exposure effect. These parameters take on the same meaning as their counterparts in [CameraAttributes] and [CameraAttributesPractical]. */
-        static camera_attributes_set_auto_exposure(camera_attributes: RID, enable: boolean, min_sensitivity: number /*f64*/, max_sensitivity: number /*f64*/, speed: number /*f64*/, scale: number /*f64*/): void
+        static camera_attributes_set_auto_exposure(camera_attributes: RID, enable: boolean, min_sensitivity: float64, max_sensitivity: float64, speed: float64, scale: float64): void
         
         /** Creates a scenario and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `scenario_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -6492,22 +6494,22 @@ declare module "godot" {
         static instance_set_scenario(instance: RID, scenario: RID): void
         
         /** Sets the render layers that this instance will be drawn to. Equivalent to [member VisualInstance3D.layers]. */
-        static instance_set_layer_mask(instance: RID, mask: number /*i64*/): void
+        static instance_set_layer_mask(instance: RID, mask: int64): void
         
         /** Sets the sorting offset and switches between using the bounding box or instance origin for depth sorting. */
-        static instance_set_pivot_data(instance: RID, sorting_offset: number /*f64*/, use_aabb_center: boolean): void
+        static instance_set_pivot_data(instance: RID, sorting_offset: float64, use_aabb_center: boolean): void
         
         /** Sets the world space transform of the instance. Equivalent to [member Node3D.global_transform]. */
         static instance_set_transform(instance: RID, transform: Transform3D): void
         
         /** Attaches a unique Object ID to instance. Object ID must be attached to instance for proper culling with [method instances_cull_aabb], [method instances_cull_convex], and [method instances_cull_ray]. */
-        static instance_attach_object_instance_id(instance: RID, id: number /*i64*/): void
+        static instance_attach_object_instance_id(instance: RID, id: int64): void
         
         /** Sets the weight for a given blend shape associated with this instance. */
-        static instance_set_blend_shape_weight(instance: RID, shape: number /*i64*/, weight: number /*f64*/): void
+        static instance_set_blend_shape_weight(instance: RID, shape: int64, weight: float64): void
         
         /** Sets the override material of a specific surface. Equivalent to [method MeshInstance3D.set_surface_override_material]. */
-        static instance_set_surface_override_material(instance: RID, surface: number /*i64*/, material: RID): void
+        static instance_set_surface_override_material(instance: RID, surface: int64, material: RID): void
         
         /** Sets whether an instance is drawn or not. Equivalent to [member Node3D.visible]. */
         static instance_set_visible(instance: RID, visible: boolean): void
@@ -6518,7 +6520,7 @@ declare module "godot" {
          *      
          *  **Note:** [param transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.  
          */
-        static instance_geometry_set_transparency(instance: RID, transparency: number /*f64*/): void
+        static instance_geometry_set_transparency(instance: RID, transparency: float64): void
         
         /** Sets a custom AABB to use when culling objects from the view frustum. Equivalent to setting [member GeometryInstance3D.custom_aabb]. */
         static instance_set_custom_aabb(instance: RID, aabb: AABB): void
@@ -6527,7 +6529,7 @@ declare module "godot" {
         static instance_attach_skeleton(instance: RID, skeleton: RID): void
         
         /** Sets a margin to increase the size of the AABB when culling objects from the view frustum. This allows you to avoid culling objects that fall outside the view frustum. Equivalent to [member GeometryInstance3D.extra_cull_margin]. */
-        static instance_set_extra_visibility_margin(instance: RID, margin: number /*f64*/): void
+        static instance_set_extra_visibility_margin(instance: RID, margin: float64): void
         
         /** Sets the visibility parent for the given instance. Equivalent to [member Node3D.visibility_parent]. */
         static instance_set_visibility_parent(instance: RID, parent: RID): void
@@ -6548,13 +6550,13 @@ declare module "godot" {
         static instance_geometry_set_material_overlay(instance: RID, material: RID): void
         
         /** Sets the visibility range values for the given geometry instance. Equivalent to [member GeometryInstance3D.visibility_range_begin] and related properties. */
-        static instance_geometry_set_visibility_range(instance: RID, min: number /*f64*/, max: number /*f64*/, min_margin: number /*f64*/, max_margin: number /*f64*/, fade_mode: RenderingServer.VisibilityRangeFadeMode): void
+        static instance_geometry_set_visibility_range(instance: RID, min: float64, max: float64, min_margin: float64, max_margin: float64, fade_mode: RenderingServer.VisibilityRangeFadeMode): void
         
         /** Sets the lightmap GI instance to use for the specified 3D geometry instance. The lightmap UV scale for the specified instance (equivalent to [member GeometryInstance3D.gi_lightmap_scale]) and lightmap atlas slice must also be specified. */
-        static instance_geometry_set_lightmap(instance: RID, lightmap: RID, lightmap_uv_scale: Rect2, lightmap_slice: number /*i64*/): void
+        static instance_geometry_set_lightmap(instance: RID, lightmap: RID, lightmap_uv_scale: Rect2, lightmap_slice: int64): void
         
         /** Sets the level of detail bias to use when rendering the specified 3D geometry instance. Higher values result in higher detail from further away. Equivalent to [member GeometryInstance3D.lod_bias]. */
-        static instance_geometry_set_lod_bias(instance: RID, lod_bias: number /*f64*/): void
+        static instance_geometry_set_lod_bias(instance: RID, lod_bias: float64): void
         
         /** Sets the per-instance shader uniform on the specified 3D geometry instance. Equivalent to [method GeometryInstance3D.set_instance_shader_parameter]. */
         static instance_geometry_set_shader_parameter(instance: RID, parameter: StringName, value: any): void
@@ -6613,7 +6615,7 @@ declare module "godot" {
         static canvas_texture_set_channel(canvas_texture: RID, channel: RenderingServer.CanvasTextureChannel, texture: RID): void
         
         /** Sets the [param base_color] and [param shininess] to use for the canvas texture specified by the [param canvas_texture] RID. Equivalent to [member CanvasTexture.specular_color] and [member CanvasTexture.specular_shininess]. */
-        static canvas_texture_set_shading_parameters(canvas_texture: RID, base_color: Color, shininess: number /*f64*/): void
+        static canvas_texture_set_shading_parameters(canvas_texture: RID, base_color: Color, shininess: float64): void
         
         /** Sets the texture [param filter] mode to use for the canvas texture specified by the [param canvas_texture] RID. */
         static canvas_texture_set_texture_filter(canvas_texture: RID, filter: RenderingServer.CanvasItemTextureFilter): void
@@ -6641,10 +6643,10 @@ declare module "godot" {
         static canvas_item_set_visible(item: RID, visible: boolean): void
         
         /** Sets the light [param mask] for the canvas item specified by the [param item] RID. Equivalent to [member CanvasItem.light_mask]. */
-        static canvas_item_set_light_mask(item: RID, mask: number /*i64*/): void
+        static canvas_item_set_light_mask(item: RID, mask: int64): void
         
         /** Sets the rendering visibility layer associated with this [CanvasItem]. Only [Viewport] nodes with a matching rendering mask will render this [CanvasItem]. */
-        static canvas_item_set_visibility_layer(item: RID, visibility_layer: number /*i64*/): void
+        static canvas_item_set_visibility_layer(item: RID, visibility_layer: int64): void
         
         /** Sets the [param transform] of the canvas item specified by the [param item] RID. This affects where and how the item will be drawn. Child canvas items' transforms are multiplied by their parent's transform. Equivalent to [member Node2D.transform]. */
         static canvas_item_set_transform(item: RID, transform: Transform2D): void
@@ -6671,25 +6673,25 @@ declare module "godot" {
         static canvas_item_set_draw_behind_parent(item: RID, enabled: boolean): void
         
         /** Draws a line on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_line]. */
-        static canvas_item_add_line(item: RID, from: Vector2, to: Vector2, color: Color, width: number /*f64*/ = -1, antialiased: boolean = false): void
+        static canvas_item_add_line(item: RID, from: Vector2, to: Vector2, color: Color, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a 2D polyline on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_polyline] and [method CanvasItem.draw_polyline_colors]. */
-        static canvas_item_add_polyline(item: RID, points: PackedVector2Array, colors: PackedColorArray, width: number /*f64*/ = -1, antialiased: boolean = false): void
+        static canvas_item_add_polyline(item: RID, points: PackedVector2Array, colors: PackedColorArray, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a 2D multiline on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_multiline] and [method CanvasItem.draw_multiline_colors]. */
-        static canvas_item_add_multiline(item: RID, points: PackedVector2Array, colors: PackedColorArray, width: number /*f64*/ = -1): void
+        static canvas_item_add_multiline(item: RID, points: PackedVector2Array, colors: PackedColorArray, width: float64 = -1): void
         
         /** Draws a rectangle on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_rect]. */
         static canvas_item_add_rect(item: RID, rect: Rect2, color: Color): void
         
         /** Draws a circle on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_circle]. */
-        static canvas_item_add_circle(item: RID, pos: Vector2, radius: number /*f64*/, color: Color): void
+        static canvas_item_add_circle(item: RID, pos: Vector2, radius: float64, color: Color): void
         
         /** Draws a 2D textured rectangle on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_texture_rect] and [method Texture2D.draw_rect]. */
         static canvas_item_add_texture_rect(item: RID, rect: Rect2, texture: RID, tile: boolean = false, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
         
         /** See also [method CanvasItem.draw_msdf_texture_rect_region]. */
-        static canvas_item_add_msdf_texture_rect_region(item: RID, rect: Rect2, texture: RID, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), outline_size: number /*i64*/ = 0, px_range: number /*f64*/ = 1, scale: number /*f64*/ = 1): void
+        static canvas_item_add_msdf_texture_rect_region(item: RID, rect: Rect2, texture: RID, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), outline_size: int64 = 0, px_range: float64 = 1, scale: float64 = 1): void
         
         /** See also [method CanvasItem.draw_lcd_texture_rect_region]. */
         static canvas_item_add_lcd_texture_rect_region(item: RID, rect: Rect2, texture: RID, src_rect: Rect2, modulate: Color): void
@@ -6710,7 +6712,7 @@ declare module "godot" {
          *      
          *  **Note:** [param count] is unused and can be left unspecified.  
          */
-        static canvas_item_add_triangle_array(item: RID, indices: PackedInt32Array, points: PackedVector2Array, colors: PackedColorArray, uvs: PackedVector2Array = <any> {} /*compound.type from 35([object Object])*/, bones: PackedInt32Array = <any> {} /*compound.type from 30([object Object])*/, weights: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/, texture: RID = <any> {} /*compound.type from 23([object Object])*/, count: number /*i64*/ = -1): void
+        static canvas_item_add_triangle_array(item: RID, indices: PackedInt32Array, points: PackedVector2Array, colors: PackedColorArray, uvs: PackedVector2Array = <any> {} /*compound.type from 35([object Object])*/, bones: PackedInt32Array = <any> {} /*compound.type from 30([object Object])*/, weights: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/, texture: RID = <any> {} /*compound.type from 23([object Object])*/, count: int64 = -1): void
         
         /** Draws a mesh created with [method mesh_create] with given [param transform], [param modulate] color, and [param texture]. This is used internally by [MeshInstance2D]. */
         static canvas_item_add_mesh(item: RID, mesh: RID, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, modulate: Color = new Color(1, 1, 1, 1), texture: RID = <any> {} /*compound.type from 23([object Object])*/): void
@@ -6728,13 +6730,13 @@ declare module "godot" {
         static canvas_item_add_clip_ignore(item: RID, ignore: boolean): void
         
         /** Subsequent drawing commands will be ignored unless they fall within the specified animation slice. This is a faster way to implement animations that loop on background rather than redrawing constantly. */
-        static canvas_item_add_animation_slice(item: RID, animation_length: number /*f64*/, slice_begin: number /*f64*/, slice_end: number /*f64*/, offset: number /*f64*/ = 0): void
+        static canvas_item_add_animation_slice(item: RID, animation_length: float64, slice_begin: float64, slice_end: float64, offset: float64 = 0): void
         
         /** If [param enabled] is `true`, child nodes with the lowest Y position are drawn before those with a higher Y position. Y-sorting only affects children that inherit from the canvas item specified by the [param item] RID, not the canvas item itself. Equivalent to [member CanvasItem.y_sort_enabled]. */
         static canvas_item_set_sort_children_by_y(item: RID, enabled: boolean): void
         
         /** Sets the [CanvasItem]'s Z index, i.e. its draw order (lower indexes are drawn first). */
-        static canvas_item_set_z_index(item: RID, z_index: number /*i64*/): void
+        static canvas_item_set_z_index(item: RID, z_index: int64): void
         
         /** If this is enabled, the Z index of the parent will be added to the children's Z index. */
         static canvas_item_set_z_as_relative_to_parent(item: RID, enabled: boolean): void
@@ -6746,7 +6748,7 @@ declare module "godot" {
         static canvas_item_clear(item: RID): void
         
         /** Sets the index for the [CanvasItem]. */
-        static canvas_item_set_draw_index(item: RID, index: number /*i64*/): void
+        static canvas_item_set_draw_index(item: RID, index: int64): void
         
         /** Sets a new [param material] to the canvas item specified by the [param item] RID. Equivalent to [member CanvasItem.material]. */
         static canvas_item_set_material(item: RID, material: RID): void
@@ -6763,7 +6765,7 @@ declare module "godot" {
          *      
          *  **Note:** The equivalent node functionality is found in [CanvasGroup] and [member CanvasItem.clip_children].  
          */
-        static canvas_item_set_canvas_group_mode(item: RID, mode: RenderingServer.CanvasGroupMode, clear_margin: number /*f64*/ = 5, fit_empty: boolean = false, fit_margin: number /*f64*/ = 0, blur_mipmaps: boolean = false): void
+        static canvas_item_set_canvas_group_mode(item: RID, mode: RenderingServer.CanvasGroupMode, clear_margin: float64 = 5, fit_empty: boolean = false, fit_margin: float64 = 0, blur_mipmaps: boolean = false): void
         
         /** Returns the bounding rectangle for a canvas item in local space, as calculated by the renderer. This bound is used internally for culling.  
          *  **Warning:** This function is intended for debugging in the editor, and will pass through and return a zero [Rect2] in exported projects.  
@@ -6784,7 +6786,7 @@ declare module "godot" {
         static canvas_light_set_enabled(light: RID, enabled: boolean): void
         
         /** Sets the scale factor of a [PointLight2D]'s texture. Equivalent to [member PointLight2D.texture_scale]. */
-        static canvas_light_set_texture_scale(light: RID, scale: number /*f64*/): void
+        static canvas_light_set_texture_scale(light: RID, scale: float64): void
         
         /** Sets the canvas light's [Transform2D]. */
         static canvas_light_set_transform(light: RID, transform: Transform2D): void
@@ -6799,22 +6801,22 @@ declare module "godot" {
         static canvas_light_set_color(light: RID, color: Color): void
         
         /** Sets a canvas light's height. */
-        static canvas_light_set_height(light: RID, height: number /*f64*/): void
+        static canvas_light_set_height(light: RID, height: float64): void
         
         /** Sets a canvas light's energy. */
-        static canvas_light_set_energy(light: RID, energy: number /*f64*/): void
+        static canvas_light_set_energy(light: RID, energy: float64): void
         
         /** Sets the Z range of objects that will be affected by this light. Equivalent to [member Light2D.range_z_min] and [member Light2D.range_z_max]. */
-        static canvas_light_set_z_range(light: RID, min_z: number /*i64*/, max_z: number /*i64*/): void
+        static canvas_light_set_z_range(light: RID, min_z: int64, max_z: int64): void
         
         /** The layer range that gets rendered with this light. */
-        static canvas_light_set_layer_range(light: RID, min_layer: number /*i64*/, max_layer: number /*i64*/): void
+        static canvas_light_set_layer_range(light: RID, min_layer: int64, max_layer: int64): void
         
         /** The light mask. See [LightOccluder2D] for more information on light masks. */
-        static canvas_light_set_item_cull_mask(light: RID, mask: number /*i64*/): void
+        static canvas_light_set_item_cull_mask(light: RID, mask: int64): void
         
         /** The binary mask used to determine which layers this canvas light's shadows affects. See [LightOccluder2D] for more information on light masks. */
-        static canvas_light_set_item_shadow_cull_mask(light: RID, mask: number /*i64*/): void
+        static canvas_light_set_item_shadow_cull_mask(light: RID, mask: int64): void
         
         /** The mode of the light, see [enum CanvasLightMode] constants. */
         static canvas_light_set_mode(light: RID, mode: RenderingServer.CanvasLightMode): void
@@ -6829,7 +6831,7 @@ declare module "godot" {
         static canvas_light_set_shadow_color(light: RID, color: Color): void
         
         /** Smoothens the shadow. The lower, the smoother. */
-        static canvas_light_set_shadow_smooth(light: RID, smooth: number /*f64*/): void
+        static canvas_light_set_shadow_smooth(light: RID, smooth: float64): void
         
         /** Sets the blend mode for the given canvas light. See [enum CanvasLightBlendMode] for options. Equivalent to [member Light2D.blend_mode]. */
         static canvas_light_set_blend_mode(light: RID, mode: RenderingServer.CanvasLightBlendMode): void
@@ -6855,7 +6857,7 @@ declare module "godot" {
         static canvas_light_occluder_set_transform(occluder: RID, transform: Transform2D): void
         
         /** The light mask. See [LightOccluder2D] for more information on light masks. */
-        static canvas_light_occluder_set_light_mask(occluder: RID, mask: number /*i64*/): void
+        static canvas_light_occluder_set_light_mask(occluder: RID, mask: int64): void
         
         /** Creates a new light occluder polygon and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `canvas_occluder_polygon_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -6871,7 +6873,7 @@ declare module "godot" {
         static canvas_occluder_polygon_set_cull_mode(occluder_polygon: RID, mode: RenderingServer.CanvasOccluderPolygonCullMode): void
         
         /** Sets the [member ProjectSettings.rendering/2d/shadow_atlas/size] to use for [Light2D] shadow rendering (in pixels). The value is rounded up to the nearest power of 2. */
-        static canvas_set_shadow_texture_size(size: number /*i64*/): void
+        static canvas_set_shadow_texture_size(size: int64): void
         
         /** Creates a new global shader uniform.  
          *      
@@ -6922,7 +6924,7 @@ declare module "godot" {
          *  **Note:** Rendering information is not available until at least 2 frames have been rendered by the engine. If rendering information is not available, [method get_rendering_info] returns `0`. To print rendering information in `_ready()` successfully, use the following:  
          *    
          */
-        static get_rendering_info(info: RenderingServer.RenderingInfo): number /*i64*/
+        static get_rendering_info(info: RenderingServer.RenderingInfo): int64
         
         /** Returns the name of the video adapter (e.g. "GeForce GTX 1080/PCIe/SSE2").  
          *      
@@ -6951,7 +6953,7 @@ declare module "godot" {
         static get_video_adapter_api_version(): string
         
         /** Returns a mesh of a sphere with the given number of horizontal subdivisions, vertical subdivisions and radius. See also [method get_test_cube]. */
-        static make_sphere_mesh(latitudes: number /*i64*/, longitudes: number /*i64*/, radius: number /*f64*/): RID
+        static make_sphere_mesh(latitudes: int64, longitudes: int64, radius: float64): RID
         
         /** Returns the RID of the test cube. This mesh will be created and returned on the first call to [method get_test_cube], then it will be cached for subsequent calls. See also [method make_sphere_mesh]. */
         static get_test_cube(): RID
@@ -6989,13 +6991,13 @@ declare module "godot" {
         static set_render_loop_enabled(enabled: boolean): void
         
         /** Returns the time taken to setup rendering on the CPU in milliseconds. This value is shared across all viewports and does  *not*  require [method viewport_set_measure_render_time] to be enabled on a viewport to be queried. See also [method viewport_get_measured_render_time_cpu]. */
-        static get_frame_setup_time_cpu(): number /*f64*/
+        static get_frame_setup_time_cpu(): float64
         
         /** Forces a synchronization between the CPU and GPU, which may be required in certain cases. Only call this when needed, as CPU-GPU synchronization has a performance cost. */
         static force_sync(): void
         
         /** Forces redrawing of all viewports at once. Must be called from the main thread. */
-        static force_draw(swap_buffers: boolean = true, frame_step: number /*f64*/ = 0): void
+        static force_draw(swap_buffers: boolean = true, frame_step: float64 = 0): void
         
         /** Returns the global RenderingDevice.  
          *      
@@ -7043,91 +7045,91 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_audioserver.html  
      */
     class AudioServer extends Object {
-        static set_bus_count(amount: number /*i64*/): void
-        static get_bus_count(): number /*i64*/
+        static set_bus_count(amount: int64): void
+        static get_bus_count(): int64
         
         /** Removes the bus at index [param index]. */
-        static remove_bus(index: number /*i64*/): void
+        static remove_bus(index: int64): void
         
         /** Adds a bus at [param at_position]. */
-        static add_bus(at_position: number /*i64*/ = -1): void
+        static add_bus(at_position: int64 = -1): void
         
         /** Moves the bus from index [param index] to index [param to_index]. */
-        static move_bus(index: number /*i64*/, to_index: number /*i64*/): void
+        static move_bus(index: int64, to_index: int64): void
         
         /** Sets the name of the bus at index [param bus_idx] to [param name]. */
-        static set_bus_name(bus_idx: number /*i64*/, name: string): void
+        static set_bus_name(bus_idx: int64, name: string): void
         
         /** Returns the name of the bus with the index [param bus_idx]. */
-        static get_bus_name(bus_idx: number /*i64*/): string
+        static get_bus_name(bus_idx: int64): string
         
         /** Returns the index of the bus with the name [param bus_name]. Returns `-1` if no bus with the specified name exist. */
-        static get_bus_index(bus_name: StringName): number /*i64*/
+        static get_bus_index(bus_name: StringName): int64
         
         /** Returns the number of channels of the bus at index [param bus_idx]. */
-        static get_bus_channels(bus_idx: number /*i64*/): number /*i64*/
+        static get_bus_channels(bus_idx: int64): int64
         
         /** Sets the volume of the bus at index [param bus_idx] to [param volume_db]. */
-        static set_bus_volume_db(bus_idx: number /*i64*/, volume_db: number /*f64*/): void
+        static set_bus_volume_db(bus_idx: int64, volume_db: float64): void
         
         /** Returns the volume of the bus at index [param bus_idx] in dB. */
-        static get_bus_volume_db(bus_idx: number /*i64*/): number /*f64*/
+        static get_bus_volume_db(bus_idx: int64): float64
         
         /** Connects the output of the bus at [param bus_idx] to the bus named [param send]. */
-        static set_bus_send(bus_idx: number /*i64*/, send: StringName): void
+        static set_bus_send(bus_idx: int64, send: StringName): void
         
         /** Returns the name of the bus that the bus at index [param bus_idx] sends to. */
-        static get_bus_send(bus_idx: number /*i64*/): StringName
+        static get_bus_send(bus_idx: int64): StringName
         
         /** If `true`, the bus at index [param bus_idx] is in solo mode. */
-        static set_bus_solo(bus_idx: number /*i64*/, enable: boolean): void
+        static set_bus_solo(bus_idx: int64, enable: boolean): void
         
         /** If `true`, the bus at index [param bus_idx] is in solo mode. */
-        static is_bus_solo(bus_idx: number /*i64*/): boolean
+        static is_bus_solo(bus_idx: int64): boolean
         
         /** If `true`, the bus at index [param bus_idx] is muted. */
-        static set_bus_mute(bus_idx: number /*i64*/, enable: boolean): void
+        static set_bus_mute(bus_idx: int64, enable: boolean): void
         
         /** If `true`, the bus at index [param bus_idx] is muted. */
-        static is_bus_mute(bus_idx: number /*i64*/): boolean
+        static is_bus_mute(bus_idx: int64): boolean
         
         /** If `true`, the bus at index [param bus_idx] is bypassing effects. */
-        static set_bus_bypass_effects(bus_idx: number /*i64*/, enable: boolean): void
+        static set_bus_bypass_effects(bus_idx: int64, enable: boolean): void
         
         /** If `true`, the bus at index [param bus_idx] is bypassing effects. */
-        static is_bus_bypassing_effects(bus_idx: number /*i64*/): boolean
+        static is_bus_bypassing_effects(bus_idx: int64): boolean
         
         /** Adds an [AudioEffect] effect to the bus [param bus_idx] at [param at_position]. */
-        static add_bus_effect(bus_idx: number /*i64*/, effect: AudioEffect, at_position: number /*i64*/ = -1): void
+        static add_bus_effect(bus_idx: int64, effect: AudioEffect, at_position: int64 = -1): void
         
         /** Removes the effect at index [param effect_idx] from the bus at index [param bus_idx]. */
-        static remove_bus_effect(bus_idx: number /*i64*/, effect_idx: number /*i64*/): void
+        static remove_bus_effect(bus_idx: int64, effect_idx: int64): void
         
         /** Returns the number of effects on the bus at [param bus_idx]. */
-        static get_bus_effect_count(bus_idx: number /*i64*/): number /*i64*/
+        static get_bus_effect_count(bus_idx: int64): int64
         
         /** Returns the [AudioEffect] at position [param effect_idx] in bus [param bus_idx]. */
-        static get_bus_effect(bus_idx: number /*i64*/, effect_idx: number /*i64*/): AudioEffect
+        static get_bus_effect(bus_idx: int64, effect_idx: int64): AudioEffect
         
         /** Returns the [AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel). */
-        static get_bus_effect_instance(bus_idx: number /*i64*/, effect_idx: number /*i64*/, channel: number /*i64*/ = 0): AudioEffectInstance
+        static get_bus_effect_instance(bus_idx: int64, effect_idx: int64, channel: int64 = 0): AudioEffectInstance
         
         /** Swaps the position of two effects in bus [param bus_idx]. */
-        static swap_bus_effects(bus_idx: number /*i64*/, effect_idx: number /*i64*/, by_effect_idx: number /*i64*/): void
+        static swap_bus_effects(bus_idx: int64, effect_idx: int64, by_effect_idx: int64): void
         
         /** If `true`, the effect at index [param effect_idx] on the bus at index [param bus_idx] is enabled. */
-        static set_bus_effect_enabled(bus_idx: number /*i64*/, effect_idx: number /*i64*/, enabled: boolean): void
+        static set_bus_effect_enabled(bus_idx: int64, effect_idx: int64, enabled: boolean): void
         
         /** If `true`, the effect at index [param effect_idx] on the bus at index [param bus_idx] is enabled. */
-        static is_bus_effect_enabled(bus_idx: number /*i64*/, effect_idx: number /*i64*/): boolean
+        static is_bus_effect_enabled(bus_idx: int64, effect_idx: int64): boolean
         
         /** Returns the peak volume of the left speaker at bus index [param bus_idx] and channel index [param channel]. */
-        static get_bus_peak_volume_left_db(bus_idx: number /*i64*/, channel: number /*i64*/): number /*f64*/
+        static get_bus_peak_volume_left_db(bus_idx: int64, channel: int64): float64
         
         /** Returns the peak volume of the right speaker at bus index [param bus_idx] and channel index [param channel]. */
-        static get_bus_peak_volume_right_db(bus_idx: number /*i64*/, channel: number /*i64*/): number /*f64*/
-        static set_playback_speed_scale(scale: number /*f64*/): void
-        static get_playback_speed_scale(): number /*f64*/
+        static get_bus_peak_volume_right_db(bus_idx: int64, channel: int64): float64
+        static set_playback_speed_scale(scale: float64): void
+        static get_playback_speed_scale(): float64
         
         /** Locks the audio driver's main loop.  
          *      
@@ -7142,7 +7144,7 @@ declare module "godot" {
         static get_speaker_mode(): AudioServer.SpeakerMode
         
         /** Returns the sample rate at the output of the [AudioServer]. */
-        static get_mix_rate(): number /*f64*/
+        static get_mix_rate(): float64
         
         /** Returns the names of all audio output devices detected on the system. */
         static get_output_device_list(): PackedStringArray
@@ -7150,16 +7152,16 @@ declare module "godot" {
         static set_output_device(name: string): void
         
         /** Returns the relative time until the next mix occurs. */
-        static get_time_to_next_mix(): number /*f64*/
+        static get_time_to_next_mix(): float64
         
         /** Returns the relative time since the last mix occurred. */
-        static get_time_since_last_mix(): number /*f64*/
+        static get_time_since_last_mix(): float64
         
         /** Returns the audio driver's effective output latency. This is based on [member ProjectSettings.audio/driver/output_latency], but the exact returned value will differ depending on the operating system and audio driver.  
          *      
          *  **Note:** This can be expensive; it is not recommended to call [method get_output_latency] every frame.  
          */
-        static get_output_latency(): number /*f64*/
+        static get_output_latency(): float64
         
         /** Returns the names of all audio input devices detected on the system.  
          *      
@@ -7182,8 +7184,8 @@ declare module "godot" {
         static set_enable_tagging_used_audio_streams(enable: boolean): void
         
         /** Number of available audio buses. */
-        get bus_count(): number /*i64*/
-        set bus_count(value: number /*i64*/)
+        get bus_count(): int64
+        set bus_count(value: int64)
         
         /** Name of the current device for audio output (see [method get_output_device_list]). On systems with multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio output device. The value `"Default"` will play audio on the system-wide default audio output. If an invalid device name is set, the value will be reverted back to `"Default"`. */
         get output_device(): string
@@ -7197,14 +7199,14 @@ declare module "godot" {
         set input_device(value: string)
         
         /** Scales the rate at which audio is played (i.e. setting it to `0.5` will make the audio be played at half its speed). */
-        get playback_speed_scale(): number /*f64*/
-        set playback_speed_scale(value: number /*f64*/)
+        get playback_speed_scale(): float64
+        set playback_speed_scale(value: float64)
         
         /** Emitted when an audio bus is added, deleted, or moved. */
         static readonly bus_layout_changed: Signal //  => void
         
         /** Emitted when the audio bus at [param bus_index] is renamed from [param old_name] to [param new_name]. */
-        static readonly bus_renamed: Signal // bus_index: number /*i64*/, old_name: StringName, new_name: StringName => void
+        static readonly bus_renamed: Signal // bus_index: int64, old_name: StringName, new_name: StringName => void
     }
     // // Singleton Class
     namespace PhysicsServer2D {
@@ -7534,10 +7536,10 @@ declare module "godot" {
         static space_is_active(space: RID): boolean
         
         /** Sets the value of the given space parameter. See [enum SpaceParameter] for the list of available parameters. */
-        static space_set_param(space: RID, param: PhysicsServer2D.SpaceParameter, value: number /*f64*/): void
+        static space_set_param(space: RID, param: PhysicsServer2D.SpaceParameter, value: float64): void
         
         /** Returns the value of the given space parameter. See [enum SpaceParameter] for the list of available parameters. */
-        static space_get_param(space: RID, param: PhysicsServer2D.SpaceParameter): number /*f64*/
+        static space_get_param(space: RID, param: PhysicsServer2D.SpaceParameter): float64
         
         /** Returns the state of a space, a [PhysicsDirectSpaceState2D]. This object can be used for collision/intersection queries. */
         static space_get_direct_state(space: RID): PhysicsDirectSpaceState2D
@@ -7558,40 +7560,40 @@ declare module "godot" {
         static area_add_shape(area: RID, shape: RID, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, disabled: boolean = false): void
         
         /** Replaces the area's shape at the given index by another shape, while not affecting the `transform` and `disabled` properties at the same index. */
-        static area_set_shape(area: RID, shape_idx: number /*i64*/, shape: RID): void
+        static area_set_shape(area: RID, shape_idx: int64, shape: RID): void
         
         /** Sets the local transform matrix of the area's shape with the given index. */
-        static area_set_shape_transform(area: RID, shape_idx: number /*i64*/, transform: Transform2D): void
+        static area_set_shape_transform(area: RID, shape_idx: int64, transform: Transform2D): void
         
         /** Sets the disabled property of the area's shape with the given index. If [param disabled] is `true`, then the shape will not detect any other shapes entering or exiting it. */
-        static area_set_shape_disabled(area: RID, shape_idx: number /*i64*/, disabled: boolean): void
+        static area_set_shape_disabled(area: RID, shape_idx: int64, disabled: boolean): void
         
         /** Returns the number of shapes added to the area. */
-        static area_get_shape_count(area: RID): number /*i64*/
+        static area_get_shape_count(area: RID): int64
         
         /** Returns the [RID] of the shape with the given index in the area's array of shapes. */
-        static area_get_shape(area: RID, shape_idx: number /*i64*/): RID
+        static area_get_shape(area: RID, shape_idx: int64): RID
         
         /** Returns the local transform matrix of the shape with the given index in the area's array of shapes. */
-        static area_get_shape_transform(area: RID, shape_idx: number /*i64*/): Transform2D
+        static area_get_shape_transform(area: RID, shape_idx: int64): Transform2D
         
         /** Removes the shape with the given index from the area's array of shapes. The shape itself is not deleted, so it can continue to be used elsewhere or added back later. As a result of this operation, the area's shapes which used to have indices higher than [param shape_idx] will have their index decreased by one. */
-        static area_remove_shape(area: RID, shape_idx: number /*i64*/): void
+        static area_remove_shape(area: RID, shape_idx: int64): void
         
         /** Removes all shapes from the area. This does not delete the shapes themselves, so they can continue to be used elsewhere or added back later. */
         static area_clear_shapes(area: RID): void
         
         /** Assigns the area to one or many physics layers, via a bitmask. */
-        static area_set_collision_layer(area: RID, layer: number /*i64*/): void
+        static area_set_collision_layer(area: RID, layer: int64): void
         
         /** Returns the physics layer or layers the area belongs to, as a bitmask. */
-        static area_get_collision_layer(area: RID): number /*i64*/
+        static area_get_collision_layer(area: RID): int64
         
         /** Sets which physics layers the area will monitor, via a bitmask. */
-        static area_set_collision_mask(area: RID, mask: number /*i64*/): void
+        static area_set_collision_mask(area: RID, mask: int64): void
         
         /** Returns the physics layer or layers the area can contact with, as a bitmask. */
-        static area_get_collision_mask(area: RID): number /*i64*/
+        static area_get_collision_mask(area: RID): int64
         
         /** Sets the value of the given area parameter. See [enum AreaParameter] for the list of available parameters. */
         static area_set_param(area: RID, param: PhysicsServer2D.AreaParameter, value: any): void
@@ -7606,16 +7608,16 @@ declare module "godot" {
         static area_get_transform(area: RID): Transform2D
         
         /** Attaches the `ObjectID` of an [Object] to the area. Use [method Object.get_instance_id] to get the `ObjectID` of a [CollisionObject2D]. */
-        static area_attach_object_instance_id(area: RID, id: number /*i64*/): void
+        static area_attach_object_instance_id(area: RID, id: int64): void
         
         /** Returns the `ObjectID` attached to the area. Use [method @GlobalScope.instance_from_id] to retrieve an [Object] from a nonzero `ObjectID`. */
-        static area_get_object_instance_id(area: RID): number /*i64*/
+        static area_get_object_instance_id(area: RID): int64
         
         /** Attaches the `ObjectID` of a canvas to the area. Use [method Object.get_instance_id] to get the `ObjectID` of a [CanvasLayer]. */
-        static area_attach_canvas_instance_id(area: RID, id: number /*i64*/): void
+        static area_attach_canvas_instance_id(area: RID, id: int64): void
         
         /** Returns the `ObjectID` of the canvas attached to the area. Use [method @GlobalScope.instance_from_id] to retrieve a [CanvasLayer] from a nonzero `ObjectID`. */
-        static area_get_canvas_instance_id(area: RID): number /*i64*/
+        static area_get_canvas_instance_id(area: RID): int64
         
         /** Sets the area's body monitor callback. This callback will be called when any other (shape of a) body enters or exits (a shape of) the given area, and must take the following five parameters:  
          *  1. an integer `status`: either [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED] depending on whether the other body shape entered or exited the area,  
@@ -7664,43 +7666,43 @@ declare module "godot" {
         static body_add_shape(body: RID, shape: RID, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, disabled: boolean = false): void
         
         /** Replaces the body's shape at the given index by another shape, while not affecting the `transform`, `disabled`, and one-way collision properties at the same index. */
-        static body_set_shape(body: RID, shape_idx: number /*i64*/, shape: RID): void
+        static body_set_shape(body: RID, shape_idx: int64, shape: RID): void
         
         /** Sets the local transform matrix of the body's shape with the given index. */
-        static body_set_shape_transform(body: RID, shape_idx: number /*i64*/, transform: Transform2D): void
+        static body_set_shape_transform(body: RID, shape_idx: int64, transform: Transform2D): void
         
         /** Returns the number of shapes added to the body. */
-        static body_get_shape_count(body: RID): number /*i64*/
+        static body_get_shape_count(body: RID): int64
         
         /** Returns the [RID] of the shape with the given index in the body's array of shapes. */
-        static body_get_shape(body: RID, shape_idx: number /*i64*/): RID
+        static body_get_shape(body: RID, shape_idx: int64): RID
         
         /** Returns the local transform matrix of the shape with the given index in the area's array of shapes. */
-        static body_get_shape_transform(body: RID, shape_idx: number /*i64*/): Transform2D
+        static body_get_shape_transform(body: RID, shape_idx: int64): Transform2D
         
         /** Removes the shape with the given index from the body's array of shapes. The shape itself is not deleted, so it can continue to be used elsewhere or added back later. As a result of this operation, the body's shapes which used to have indices higher than [param shape_idx] will have their index decreased by one. */
-        static body_remove_shape(body: RID, shape_idx: number /*i64*/): void
+        static body_remove_shape(body: RID, shape_idx: int64): void
         
         /** Removes all shapes from the body. This does not delete the shapes themselves, so they can continue to be used elsewhere or added back later. */
         static body_clear_shapes(body: RID): void
         
         /** Sets the disabled property of the body's shape with the given index. If [param disabled] is `true`, then the shape will be ignored in all collision detection. */
-        static body_set_shape_disabled(body: RID, shape_idx: number /*i64*/, disabled: boolean): void
+        static body_set_shape_disabled(body: RID, shape_idx: int64, disabled: boolean): void
         
         /** Sets the one-way collision properties of the body's shape with the given index. If [param enable] is `true`, the one-way collision direction given by the shape's local upward axis `body_get_shape_transform(body, shape_idx).y` will be used to ignore collisions with the shape in the opposite direction, and to ensure depenetration of kinematic bodies happens in this direction. */
-        static body_set_shape_as_one_way_collision(body: RID, shape_idx: number /*i64*/, enable: boolean, margin: number /*f64*/): void
+        static body_set_shape_as_one_way_collision(body: RID, shape_idx: int64, enable: boolean, margin: float64): void
         
         /** Attaches the `ObjectID` of an [Object] to the body. Use [method Object.get_instance_id] to get the `ObjectID` of a [CollisionObject2D]. */
-        static body_attach_object_instance_id(body: RID, id: number /*i64*/): void
+        static body_attach_object_instance_id(body: RID, id: int64): void
         
         /** Returns the `ObjectID` attached to the body. Use [method @GlobalScope.instance_from_id] to retrieve an [Object] from a nonzero `ObjectID`. */
-        static body_get_object_instance_id(body: RID): number /*i64*/
+        static body_get_object_instance_id(body: RID): int64
         
         /** Attaches the `ObjectID` of a canvas to the body. Use [method Object.get_instance_id] to get the `ObjectID` of a [CanvasLayer]. */
-        static body_attach_canvas_instance_id(body: RID, id: number /*i64*/): void
+        static body_attach_canvas_instance_id(body: RID, id: int64): void
         
         /** Returns the `ObjectID` of the canvas attached to the body. Use [method @GlobalScope.instance_from_id] to retrieve a [CanvasLayer] from a nonzero `ObjectID`. */
-        static body_get_canvas_instance_id(body: RID): number /*i64*/
+        static body_get_canvas_instance_id(body: RID): int64
         
         /** Sets the continuous collision detection mode using one of the [enum CCDMode] constants.  
          *  Continuous collision detection tries to predict where a moving body would collide in between physics updates, instead of moving it and correcting its movement if it collided.  
@@ -7711,22 +7713,22 @@ declare module "godot" {
         static body_get_continuous_collision_detection_mode(body: RID): PhysicsServer2D.CCDMode
         
         /** Sets the physics layer or layers the body belongs to, via a bitmask. */
-        static body_set_collision_layer(body: RID, layer: number /*i64*/): void
+        static body_set_collision_layer(body: RID, layer: int64): void
         
         /** Returns the physics layer or layers the body belongs to, as a bitmask. */
-        static body_get_collision_layer(body: RID): number /*i64*/
+        static body_get_collision_layer(body: RID): int64
         
         /** Sets the physics layer or layers the body can collide with, via a bitmask. */
-        static body_set_collision_mask(body: RID, mask: number /*i64*/): void
+        static body_set_collision_mask(body: RID, mask: int64): void
         
         /** Returns the physics layer or layers the body can collide with, as a bitmask. */
-        static body_get_collision_mask(body: RID): number /*i64*/
+        static body_get_collision_mask(body: RID): int64
         
         /** Sets the body's collision priority. This is used in the depenetration phase of [method body_test_motion]. The higher the priority is, the lower the penetration into the body will be. */
-        static body_set_collision_priority(body: RID, priority: number /*f64*/): void
+        static body_set_collision_priority(body: RID, priority: float64): void
         
         /** Returns the body's collision priority. This is used in the depenetration phase of [method body_test_motion]. The higher the priority is, the lower the penetration into the body will be. */
-        static body_get_collision_priority(body: RID): number /*f64*/
+        static body_get_collision_priority(body: RID): float64
         
         /** Sets the value of the given body parameter. See [enum BodyParameter] for the list of available parameters. */
         static body_set_param(body: RID, param: PhysicsServer2D.BodyParameter, value: any): void
@@ -7755,7 +7757,7 @@ declare module "godot" {
         /** Applies a rotational impulse to the body. The impulse does not affect position.  
          *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
          */
-        static body_apply_torque_impulse(body: RID, impulse: number /*f64*/): void
+        static body_apply_torque_impulse(body: RID, impulse: float64): void
         
         /** Applies a positioned impulse to the body. The impulse can affect rotation if [param position] is different from the body's center of mass.  
          *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
@@ -7774,7 +7776,7 @@ declare module "godot" {
         static body_apply_force(body: RID, force: Vector2, position: Vector2 = Vector2.ZERO): void
         
         /** Applies a rotational force to the body. The force does not affect position. A force is time dependent and meant to be applied every physics update. */
-        static body_apply_torque(body: RID, torque: number /*f64*/): void
+        static body_apply_torque(body: RID, torque: float64): void
         
         /** Adds a constant directional force to the body. The force does not affect rotation. The force remains applied over time until cleared with `PhysicsServer2D.body_set_constant_force(body, Vector2(0, 0))`.  
          *  This is equivalent to using [method body_add_constant_force] at the body's center of mass.  
@@ -7787,7 +7789,7 @@ declare module "godot" {
         static body_add_constant_force(body: RID, force: Vector2, position: Vector2 = Vector2.ZERO): void
         
         /** Adds a constant rotational force to the body. The force does not affect position. The force remains applied over time until cleared with `PhysicsServer2D.body_set_constant_torque(body, 0)`. */
-        static body_add_constant_torque(body: RID, torque: number /*f64*/): void
+        static body_add_constant_torque(body: RID, torque: float64): void
         
         /** Sets the body's total constant positional force applied during each physics update.  
          *  See [method body_add_constant_force] and [method body_add_constant_central_force].  
@@ -7802,12 +7804,12 @@ declare module "godot" {
         /** Sets the body's total constant rotational force applied during each physics update.  
          *  See [method body_add_constant_torque].  
          */
-        static body_set_constant_torque(body: RID, torque: number /*f64*/): void
+        static body_set_constant_torque(body: RID, torque: float64): void
         
         /** Returns the body's total constant rotational force applied during each physics update.  
          *  See [method body_add_constant_torque].  
          */
-        static body_get_constant_torque(body: RID): number /*f64*/
+        static body_get_constant_torque(body: RID): float64
         
         /** Modifies the body's linear velocity so that its projection to the axis `axis_velocity.normalized()` is exactly `axis_velocity.length()`. This is useful for jumping behavior. */
         static body_set_axis_velocity(body: RID, axis_velocity: Vector2): void
@@ -7819,10 +7821,10 @@ declare module "godot" {
         static body_remove_collision_exception(body: RID, excepted_body: RID): void
         
         /** Sets the maximum number of contacts that the body can report. If [param amount] is greater than zero, then the body will keep track of at most this many contacts with other bodies. */
-        static body_set_max_contacts_reported(body: RID, amount: number /*i64*/): void
+        static body_set_max_contacts_reported(body: RID, amount: int64): void
         
         /** Returns the maximum number of contacts that the body can report. See [method body_set_max_contacts_reported]. */
-        static body_get_max_contacts_reported(body: RID): number /*i64*/
+        static body_get_max_contacts_reported(body: RID): int64
         
         /** Sets whether the body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]). */
         static body_set_omit_force_integration(body: RID, enable: boolean): void
@@ -7852,10 +7854,10 @@ declare module "godot" {
         static joint_clear(joint: RID): void
         
         /** Sets the value of the given joint parameter. See [enum JointParam] for the list of available parameters. */
-        static joint_set_param(joint: RID, param: PhysicsServer2D.JointParam, value: number /*f64*/): void
+        static joint_set_param(joint: RID, param: PhysicsServer2D.JointParam, value: float64): void
         
         /** Returns the value of the given joint parameter. See [enum JointParam] for the list of available parameters. */
-        static joint_get_param(joint: RID, param: PhysicsServer2D.JointParam): number /*f64*/
+        static joint_get_param(joint: RID, param: PhysicsServer2D.JointParam): float64
         
         /** Sets whether the bodies attached to the [Joint2D] will collide with each other. */
         static joint_disable_collisions_between_bodies(joint: RID, disable: boolean): void
@@ -7879,16 +7881,16 @@ declare module "godot" {
         static pin_joint_get_flag(joint: RID, flag: PhysicsServer2D.PinJointFlag): boolean
         
         /** Sets a pin joint parameter. See [enum PinJointParam] for a list of available parameters. */
-        static pin_joint_set_param(joint: RID, param: PhysicsServer2D.PinJointParam, value: number /*f64*/): void
+        static pin_joint_set_param(joint: RID, param: PhysicsServer2D.PinJointParam, value: float64): void
         
         /** Returns the value of a pin joint parameter. See [enum PinJointParam] for a list of available parameters. */
-        static pin_joint_get_param(joint: RID, param: PhysicsServer2D.PinJointParam): number /*f64*/
+        static pin_joint_get_param(joint: RID, param: PhysicsServer2D.PinJointParam): float64
         
         /** Sets the value of the given damped spring joint parameter. See [enum DampedSpringParam] for the list of available parameters. */
-        static damped_spring_joint_set_param(joint: RID, param: PhysicsServer2D.DampedSpringParam, value: number /*f64*/): void
+        static damped_spring_joint_set_param(joint: RID, param: PhysicsServer2D.DampedSpringParam, value: float64): void
         
         /** Returns the value of the given damped spring joint parameter. See [enum DampedSpringParam] for the list of available parameters. */
-        static damped_spring_joint_get_param(joint: RID, param: PhysicsServer2D.DampedSpringParam): number /*f64*/
+        static damped_spring_joint_get_param(joint: RID, param: PhysicsServer2D.DampedSpringParam): float64
         
         /** Returns the joint's type (see [enum JointType]). */
         static joint_get_type(joint: RID): PhysicsServer2D.JointType
@@ -7900,7 +7902,7 @@ declare module "godot" {
         static set_active(active: boolean): void
         
         /** Returns information about the current state of the 2D physics engine. See [enum ProcessInfo] for the list of available states. */
-        static get_process_info(process_info: PhysicsServer2D.ProcessInfo): number /*i64*/
+        static get_process_info(process_info: PhysicsServer2D.ProcessInfo): int64
     }
     // // Singleton Class
     namespace PhysicsServer3D {
@@ -8374,10 +8376,10 @@ declare module "godot" {
         static space_is_active(space: RID): boolean
         
         /** Sets the value for a space parameter. A list of available parameters is on the [enum SpaceParameter] constants. */
-        static space_set_param(space: RID, param: PhysicsServer3D.SpaceParameter, value: number /*f64*/): void
+        static space_set_param(space: RID, param: PhysicsServer3D.SpaceParameter, value: float64): void
         
         /** Returns the value of a space parameter. */
-        static space_get_param(space: RID, param: PhysicsServer3D.SpaceParameter): number /*f64*/
+        static space_get_param(space: RID, param: PhysicsServer3D.SpaceParameter): float64
         
         /** Returns the state of a space, a [PhysicsDirectSpaceState3D]. This object can be used to make collision/intersection queries. */
         static space_get_direct_state(space: RID): PhysicsDirectSpaceState3D
@@ -8395,38 +8397,38 @@ declare module "godot" {
         static area_add_shape(area: RID, shape: RID, transform: Transform3D = <any> {} /*compound.type from 18([object Object])*/, disabled: boolean = false): void
         
         /** Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID]. */
-        static area_set_shape(area: RID, shape_idx: number /*i64*/, shape: RID): void
+        static area_set_shape(area: RID, shape_idx: int64, shape: RID): void
         
         /** Sets the transform matrix for an area shape. */
-        static area_set_shape_transform(area: RID, shape_idx: number /*i64*/, transform: Transform3D): void
-        static area_set_shape_disabled(area: RID, shape_idx: number /*i64*/, disabled: boolean): void
+        static area_set_shape_transform(area: RID, shape_idx: int64, transform: Transform3D): void
+        static area_set_shape_disabled(area: RID, shape_idx: int64, disabled: boolean): void
         
         /** Returns the number of shapes assigned to an area. */
-        static area_get_shape_count(area: RID): number /*i64*/
+        static area_get_shape_count(area: RID): int64
         
         /** Returns the [RID] of the nth shape of an area. */
-        static area_get_shape(area: RID, shape_idx: number /*i64*/): RID
+        static area_get_shape(area: RID, shape_idx: int64): RID
         
         /** Returns the transform matrix of a shape within an area. */
-        static area_get_shape_transform(area: RID, shape_idx: number /*i64*/): Transform3D
+        static area_get_shape_transform(area: RID, shape_idx: int64): Transform3D
         
         /** Removes a shape from an area. It does not delete the shape, so it can be reassigned later. */
-        static area_remove_shape(area: RID, shape_idx: number /*i64*/): void
+        static area_remove_shape(area: RID, shape_idx: int64): void
         
         /** Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later. */
         static area_clear_shapes(area: RID): void
         
         /** Assigns the area to one or many physics layers. */
-        static area_set_collision_layer(area: RID, layer: number /*i64*/): void
+        static area_set_collision_layer(area: RID, layer: int64): void
         
         /** Returns the physics layer or layers an area belongs to. */
-        static area_get_collision_layer(area: RID): number /*i64*/
+        static area_get_collision_layer(area: RID): int64
         
         /** Sets which physics layers the area will monitor. */
-        static area_set_collision_mask(area: RID, mask: number /*i64*/): void
+        static area_set_collision_mask(area: RID, mask: int64): void
         
         /** Returns the physics layer or layers an area can contact with. */
-        static area_get_collision_mask(area: RID): number /*i64*/
+        static area_get_collision_mask(area: RID): int64
         
         /** Sets the value for an area parameter. A list of available parameters is on the [enum AreaParameter] constants. */
         static area_set_param(area: RID, param: PhysicsServer3D.AreaParameter, value: any): void
@@ -8441,10 +8443,10 @@ declare module "godot" {
         static area_get_transform(area: RID): Transform3D
         
         /** Assigns the area to a descendant of [Object], so it can exist in the node tree. */
-        static area_attach_object_instance_id(area: RID, id: number /*i64*/): void
+        static area_attach_object_instance_id(area: RID, id: int64): void
         
         /** Gets the instance ID of the object the area is assigned to. */
-        static area_get_object_instance_id(area: RID): number /*i64*/
+        static area_get_object_instance_id(area: RID): int64
         
         /** Sets the area's body monitor callback. This callback will be called when any other (shape of a) body enters or exits (a shape of) the given area, and must take the following five parameters:  
          *  1. an integer `status`: either [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED] depending on whether the other body shape entered or exited the area,  
@@ -8484,53 +8486,53 @@ declare module "godot" {
         static body_get_mode(body: RID): PhysicsServer3D.BodyMode
         
         /** Sets the physics layer or layers a body belongs to. */
-        static body_set_collision_layer(body: RID, layer: number /*i64*/): void
+        static body_set_collision_layer(body: RID, layer: int64): void
         
         /** Returns the physics layer or layers a body belongs to. */
-        static body_get_collision_layer(body: RID): number /*i64*/
+        static body_get_collision_layer(body: RID): int64
         
         /** Sets the physics layer or layers a body can collide with. */
-        static body_set_collision_mask(body: RID, mask: number /*i64*/): void
+        static body_set_collision_mask(body: RID, mask: int64): void
         
         /** Returns the physics layer or layers a body can collide with. */
-        static body_get_collision_mask(body: RID): number /*i64*/
+        static body_get_collision_mask(body: RID): int64
         
         /** Sets the body's collision priority. */
-        static body_set_collision_priority(body: RID, priority: number /*f64*/): void
+        static body_set_collision_priority(body: RID, priority: float64): void
         
         /** Returns the body's collision priority. */
-        static body_get_collision_priority(body: RID): number /*f64*/
+        static body_get_collision_priority(body: RID): float64
         
         /** Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index. */
         static body_add_shape(body: RID, shape: RID, transform: Transform3D = <any> {} /*compound.type from 18([object Object])*/, disabled: boolean = false): void
         
         /** Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID]. */
-        static body_set_shape(body: RID, shape_idx: number /*i64*/, shape: RID): void
+        static body_set_shape(body: RID, shape_idx: int64, shape: RID): void
         
         /** Sets the transform matrix for a body shape. */
-        static body_set_shape_transform(body: RID, shape_idx: number /*i64*/, transform: Transform3D): void
-        static body_set_shape_disabled(body: RID, shape_idx: number /*i64*/, disabled: boolean): void
+        static body_set_shape_transform(body: RID, shape_idx: int64, transform: Transform3D): void
+        static body_set_shape_disabled(body: RID, shape_idx: int64, disabled: boolean): void
         
         /** Returns the number of shapes assigned to a body. */
-        static body_get_shape_count(body: RID): number /*i64*/
+        static body_get_shape_count(body: RID): int64
         
         /** Returns the [RID] of the nth shape of a body. */
-        static body_get_shape(body: RID, shape_idx: number /*i64*/): RID
+        static body_get_shape(body: RID, shape_idx: int64): RID
         
         /** Returns the transform matrix of a body shape. */
-        static body_get_shape_transform(body: RID, shape_idx: number /*i64*/): Transform3D
+        static body_get_shape_transform(body: RID, shape_idx: int64): Transform3D
         
         /** Removes a shape from a body. The shape is not deleted, so it can be reused afterwards. */
-        static body_remove_shape(body: RID, shape_idx: number /*i64*/): void
+        static body_remove_shape(body: RID, shape_idx: int64): void
         
         /** Removes all shapes from a body. */
         static body_clear_shapes(body: RID): void
         
         /** Assigns the area to a descendant of [Object], so it can exist in the node tree. */
-        static body_attach_object_instance_id(body: RID, id: number /*i64*/): void
+        static body_attach_object_instance_id(body: RID, id: int64): void
         
         /** Gets the instance ID of the object the area is assigned to. */
-        static body_get_object_instance_id(body: RID): number /*i64*/
+        static body_get_object_instance_id(body: RID): int64
         
         /** If `true`, the continuous collision detection mode is enabled.  
          *  Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.  
@@ -8632,10 +8634,10 @@ declare module "godot" {
         static body_remove_collision_exception(body: RID, excepted_body: RID): void
         
         /** Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies. This is enabled by setting the maximum number of contacts reported to a number greater than 0. */
-        static body_set_max_contacts_reported(body: RID, amount: number /*i64*/): void
+        static body_set_max_contacts_reported(body: RID, amount: int64): void
         
         /** Returns the maximum contacts that can be reported. See [method body_set_max_contacts_reported]. */
-        static body_get_max_contacts_reported(body: RID): number /*i64*/
+        static body_get_max_contacts_reported(body: RID): int64
         
         /** Sets whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]). */
         static body_set_omit_force_integration(body: RID, enable: boolean): void
@@ -8663,10 +8665,10 @@ declare module "godot" {
         static joint_make_pin(joint: RID, body_A: RID, local_A: Vector3, body_B: RID, local_B: Vector3): void
         
         /** Sets a pin_joint parameter (see [enum PinJointParam] constants). */
-        static pin_joint_set_param(joint: RID, param: PhysicsServer3D.PinJointParam, value: number /*f64*/): void
+        static pin_joint_set_param(joint: RID, param: PhysicsServer3D.PinJointParam, value: float64): void
         
         /** Gets a pin_joint parameter (see [enum PinJointParam] constants). */
-        static pin_joint_get_param(joint: RID, param: PhysicsServer3D.PinJointParam): number /*f64*/
+        static pin_joint_get_param(joint: RID, param: PhysicsServer3D.PinJointParam): float64
         
         /** Sets position of the joint in the local space of body a of the joint. */
         static pin_joint_set_local_a(joint: RID, local_A: Vector3): void
@@ -8682,10 +8684,10 @@ declare module "godot" {
         static joint_make_hinge(joint: RID, body_A: RID, hinge_A: Transform3D, body_B: RID, hinge_B: Transform3D): void
         
         /** Sets a hinge_joint parameter (see [enum HingeJointParam] constants). */
-        static hinge_joint_set_param(joint: RID, param: PhysicsServer3D.HingeJointParam, value: number /*f64*/): void
+        static hinge_joint_set_param(joint: RID, param: PhysicsServer3D.HingeJointParam, value: float64): void
         
         /** Gets a hinge_joint parameter (see [enum HingeJointParam]). */
-        static hinge_joint_get_param(joint: RID, param: PhysicsServer3D.HingeJointParam): number /*f64*/
+        static hinge_joint_get_param(joint: RID, param: PhysicsServer3D.HingeJointParam): float64
         
         /** Sets a hinge_joint flag (see [enum HingeJointFlag] constants). */
         static hinge_joint_set_flag(joint: RID, flag: PhysicsServer3D.HingeJointFlag, enabled: boolean): void
@@ -8695,26 +8697,26 @@ declare module "godot" {
         static joint_make_slider(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
         
         /** Gets a slider_joint parameter (see [enum SliderJointParam] constants). */
-        static slider_joint_set_param(joint: RID, param: PhysicsServer3D.SliderJointParam, value: number /*f64*/): void
+        static slider_joint_set_param(joint: RID, param: PhysicsServer3D.SliderJointParam, value: float64): void
         
         /** Gets a slider_joint parameter (see [enum SliderJointParam] constants). */
-        static slider_joint_get_param(joint: RID, param: PhysicsServer3D.SliderJointParam): number /*f64*/
+        static slider_joint_get_param(joint: RID, param: PhysicsServer3D.SliderJointParam): float64
         static joint_make_cone_twist(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
         
         /** Sets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants). */
-        static cone_twist_joint_set_param(joint: RID, param: PhysicsServer3D.ConeTwistJointParam, value: number /*f64*/): void
+        static cone_twist_joint_set_param(joint: RID, param: PhysicsServer3D.ConeTwistJointParam, value: float64): void
         
         /** Gets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants). */
-        static cone_twist_joint_get_param(joint: RID, param: PhysicsServer3D.ConeTwistJointParam): number /*f64*/
+        static cone_twist_joint_get_param(joint: RID, param: PhysicsServer3D.ConeTwistJointParam): float64
         
         /** Returns the type of the Joint3D. */
         static joint_get_type(joint: RID): PhysicsServer3D.JointType
         
         /** Sets the priority value of the Joint3D. */
-        static joint_set_solver_priority(joint: RID, priority: number /*i64*/): void
+        static joint_set_solver_priority(joint: RID, priority: int64): void
         
         /** Gets the priority value of the Joint3D. */
-        static joint_get_solver_priority(joint: RID): number /*i64*/
+        static joint_get_solver_priority(joint: RID): int64
         
         /** Sets whether the bodies attached to the [Joint3D] will collide with each other. */
         static joint_disable_collisions_between_bodies(joint: RID, disable: boolean): void
@@ -8724,10 +8726,10 @@ declare module "godot" {
         static joint_make_generic_6dof(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
         
         /** Sets a generic_6_DOF_joint parameter (see [enum G6DOFJointAxisParam] constants). */
-        static generic_6dof_joint_set_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam, value: number /*f64*/): void
+        static generic_6dof_joint_set_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam, value: float64): void
         
         /** Gets a generic_6_DOF_joint parameter (see [enum G6DOFJointAxisParam] constants). */
-        static generic_6dof_joint_get_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam): number /*f64*/
+        static generic_6dof_joint_get_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam): float64
         
         /** Sets a generic_6_DOF_joint flag (see [enum G6DOFJointAxisFlag] constants). */
         static generic_6dof_joint_set_flag(joint: RID, axis: Vector3.Axis, flag: PhysicsServer3D.G6DOFJointAxisFlag, enable: boolean): void
@@ -8742,7 +8744,7 @@ declare module "godot" {
         static set_active(active: boolean): void
         
         /** Returns information about the current state of the 3D physics engine. See [enum ProcessInfo] for a list of available states. */
-        static get_process_info(process_info: PhysicsServer3D.ProcessInfo): number /*i64*/
+        static get_process_info(process_info: PhysicsServer3D.ProcessInfo): int64
     }
     // // Singleton Class
     /** A server interface for low-level 2D navigation access.  
@@ -8763,10 +8765,10 @@ declare module "godot" {
         static map_is_active(map: RID): boolean
         
         /** Sets the map cell size used to rasterize the navigation mesh vertices. Must match with the cell size of the used navigation meshes. */
-        static map_set_cell_size(map: RID, cell_size: number /*f64*/): void
+        static map_set_cell_size(map: RID, cell_size: float64): void
         
         /** Returns the map cell size used to rasterize the navigation mesh vertices. */
-        static map_get_cell_size(map: RID): number /*f64*/
+        static map_get_cell_size(map: RID): float64
         
         /** Set the navigation [param map] edge connection use. If [param enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
         static map_set_use_edge_connections(map: RID, enabled: boolean): void
@@ -8775,19 +8777,19 @@ declare module "godot" {
         static map_get_use_edge_connections(map: RID): boolean
         
         /** Set the map edge connection margin used to weld the compatible region edges. */
-        static map_set_edge_connection_margin(map: RID, margin: number /*f64*/): void
+        static map_set_edge_connection_margin(map: RID, margin: float64): void
         
         /** Returns the edge connection margin of the map. The edge connection margin is a distance used to connect two regions. */
-        static map_get_edge_connection_margin(map: RID): number /*f64*/
+        static map_get_edge_connection_margin(map: RID): float64
         
         /** Set the map's link connection radius used to connect links to navigation polygons. */
-        static map_set_link_connection_radius(map: RID, radius: number /*f64*/): void
+        static map_set_link_connection_radius(map: RID, radius: float64): void
         
         /** Returns the link connection radius of the map. This distance is the maximum range any link will search for navigation mesh polygons to connect to. */
-        static map_get_link_connection_radius(map: RID): number /*f64*/
+        static map_get_link_connection_radius(map: RID): float64
         
         /** Returns the navigation path to reach the destination from the origin. [param navigation_layers] is a bitmask of all region navigation layers that are allowed to be in the path. */
-        static map_get_path(map: RID, origin: Vector2, destination: Vector2, optimize: boolean, navigation_layers: number /*i64*/ = 1): PackedVector2Array
+        static map_get_path(map: RID, origin: Vector2, destination: Vector2, optimize: boolean, navigation_layers: int64 = 1): PackedVector2Array
         
         /** Returns the point closest to the provided [param to_point] on the navigation mesh surface. */
         static map_get_closest_point(map: RID, to_point: Vector2): Vector2
@@ -8834,22 +8836,22 @@ declare module "godot" {
         static region_get_use_edge_connections(region: RID): boolean
         
         /** Sets the [param enter_cost] for this [param region]. */
-        static region_set_enter_cost(region: RID, enter_cost: number /*f64*/): void
+        static region_set_enter_cost(region: RID, enter_cost: float64): void
         
         /** Returns the enter cost of this [param region]. */
-        static region_get_enter_cost(region: RID): number /*f64*/
+        static region_get_enter_cost(region: RID): float64
         
         /** Sets the [param travel_cost] for this [param region]. */
-        static region_set_travel_cost(region: RID, travel_cost: number /*f64*/): void
+        static region_set_travel_cost(region: RID, travel_cost: float64): void
         
         /** Returns the travel cost of this [param region]. */
-        static region_get_travel_cost(region: RID): number /*f64*/
+        static region_get_travel_cost(region: RID): float64
         
         /** Set the `ObjectID` of the object which manages this region. */
-        static region_set_owner_id(region: RID, owner_id: number /*i64*/): void
+        static region_set_owner_id(region: RID, owner_id: int64): void
         
         /** Returns the `ObjectID` of the object which manages this region. */
-        static region_get_owner_id(region: RID): number /*i64*/
+        static region_get_owner_id(region: RID): int64
         
         /** Returns `true` if the provided [param point] in world space is currently owned by the provided navigation [param region]. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.  
          *  If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.  
@@ -8865,10 +8867,10 @@ declare module "godot" {
         static region_get_map(region: RID): RID
         
         /** Set the region's navigation layers. This allows selecting regions from a path request (when using [method NavigationServer2D.map_get_path]). */
-        static region_set_navigation_layers(region: RID, navigation_layers: number /*i64*/): void
+        static region_set_navigation_layers(region: RID, navigation_layers: int64): void
         
         /** Returns the region's navigation layers. */
-        static region_get_navigation_layers(region: RID): number /*i64*/
+        static region_get_navigation_layers(region: RID): int64
         
         /** Sets the global transformation for the region. */
         static region_set_transform(region: RID, transform: Transform2D): void
@@ -8877,13 +8879,13 @@ declare module "godot" {
         static region_set_navigation_polygon(region: RID, navigation_polygon: NavigationPolygon): void
         
         /** Returns how many connections this [param region] has with other regions in the map. */
-        static region_get_connections_count(region: RID): number /*i64*/
+        static region_get_connections_count(region: RID): int64
         
         /** Returns the starting point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
-        static region_get_connection_pathway_start(region: RID, connection: number /*i64*/): Vector2
+        static region_get_connection_pathway_start(region: RID, connection: int64): Vector2
         
         /** Returns the ending point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
-        static region_get_connection_pathway_end(region: RID, connection: number /*i64*/): Vector2
+        static region_get_connection_pathway_end(region: RID, connection: int64): Vector2
         
         /** Create a new link between two positions on a map. */
         static link_create(): RID
@@ -8907,10 +8909,10 @@ declare module "godot" {
         static link_is_bidirectional(link: RID): boolean
         
         /** Set the links's navigation layers. This allows selecting links from a path request (when using [method NavigationServer2D.map_get_path]). */
-        static link_set_navigation_layers(link: RID, navigation_layers: number /*i64*/): void
+        static link_set_navigation_layers(link: RID, navigation_layers: int64): void
         
         /** Returns the navigation layers for this [param link]. */
-        static link_get_navigation_layers(link: RID): number /*i64*/
+        static link_get_navigation_layers(link: RID): int64
         
         /** Sets the entry position for this [param link]. */
         static link_set_start_position(link: RID, position: Vector2): void
@@ -8925,22 +8927,22 @@ declare module "godot" {
         static link_get_end_position(link: RID): Vector2
         
         /** Sets the [param enter_cost] for this [param link]. */
-        static link_set_enter_cost(link: RID, enter_cost: number /*f64*/): void
+        static link_set_enter_cost(link: RID, enter_cost: float64): void
         
         /** Returns the enter cost of this [param link]. */
-        static link_get_enter_cost(link: RID): number /*f64*/
+        static link_get_enter_cost(link: RID): float64
         
         /** Sets the [param travel_cost] for this [param link]. */
-        static link_set_travel_cost(link: RID, travel_cost: number /*f64*/): void
+        static link_set_travel_cost(link: RID, travel_cost: float64): void
         
         /** Returns the travel cost of this [param link]. */
-        static link_get_travel_cost(link: RID): number /*f64*/
+        static link_get_travel_cost(link: RID): float64
         
         /** Set the `ObjectID` of the object which manages this link. */
-        static link_set_owner_id(link: RID, owner_id: number /*i64*/): void
+        static link_set_owner_id(link: RID, owner_id: int64): void
         
         /** Returns the `ObjectID` of the object which manages this link. */
-        static link_get_owner_id(link: RID): number /*i64*/
+        static link_get_owner_id(link: RID): int64
         
         /** Creates the agent. */
         static agent_create(): RID
@@ -8964,22 +8966,22 @@ declare module "godot" {
         static agent_get_paused(agent: RID): boolean
         
         /** Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
-        static agent_set_neighbor_distance(agent: RID, distance: number /*f64*/): void
+        static agent_set_neighbor_distance(agent: RID, distance: float64): void
         
         /** Sets the maximum number of other agents the agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
-        static agent_set_max_neighbors(agent: RID, count: number /*i64*/): void
+        static agent_set_max_neighbors(agent: RID, count: int64): void
         
         /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
-        static agent_set_time_horizon_agents(agent: RID, time_horizon: number /*f64*/): void
+        static agent_set_time_horizon_agents(agent: RID, time_horizon: float64): void
         
         /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to static avoidance obstacles. The larger this number, the sooner this agent will respond to the presence of static avoidance obstacles, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
-        static agent_set_time_horizon_obstacles(agent: RID, time_horizon: number /*f64*/): void
+        static agent_set_time_horizon_obstacles(agent: RID, time_horizon: float64): void
         
         /** Sets the radius of the agent. */
-        static agent_set_radius(agent: RID, radius: number /*f64*/): void
+        static agent_set_radius(agent: RID, radius: float64): void
         
         /** Sets the maximum speed of the agent. Must be positive. */
-        static agent_set_max_speed(agent: RID, max_speed: number /*f64*/): void
+        static agent_set_max_speed(agent: RID, max_speed: float64): void
         
         /** Replaces the internal velocity in the collision avoidance simulation with [param velocity] for the specified [param agent]. When an agent is teleported to a new position far away this function should be used in the same frame. If called frequently this function can get agents stuck. */
         static agent_set_velocity_forced(agent: RID, velocity: Vector2): void
@@ -9000,15 +9002,15 @@ declare module "godot" {
         static agent_set_avoidance_callback(agent: RID, callback: Callable): void
         
         /** Set the agent's `avoidance_layers` bitmask. */
-        static agent_set_avoidance_layers(agent: RID, layers: number /*i64*/): void
+        static agent_set_avoidance_layers(agent: RID, layers: int64): void
         
         /** Set the agent's `avoidance_mask` bitmask. */
-        static agent_set_avoidance_mask(agent: RID, mask: number /*i64*/): void
+        static agent_set_avoidance_mask(agent: RID, mask: int64): void
         
         /** Set the agent's `avoidance_priority` with a [param priority] between 0.0 (lowest priority) to 1.0 (highest priority).  
          *  The specified [param agent] does not adjust the velocity for other agents that would match the `avoidance_mask` but have a lower ` avoidance_priority`. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.  
          */
-        static agent_set_avoidance_priority(agent: RID, priority: number /*f64*/): void
+        static agent_set_avoidance_priority(agent: RID, priority: float64): void
         
         /** Creates a new navigation obstacle. */
         static obstacle_create(): RID
@@ -9032,7 +9034,7 @@ declare module "godot" {
         static obstacle_get_paused(obstacle: RID): boolean
         
         /** Sets the radius of the dynamic obstacle. */
-        static obstacle_set_radius(obstacle: RID, radius: number /*f64*/): void
+        static obstacle_set_radius(obstacle: RID, radius: float64): void
         
         /** Sets [param velocity] of the dynamic [param obstacle]. Allows other agents to better predict the movement of the dynamic obstacle. Only works in combination with the radius of the obstacle. */
         static obstacle_set_velocity(obstacle: RID, velocity: Vector2): void
@@ -9044,7 +9046,7 @@ declare module "godot" {
         static obstacle_set_vertices(obstacle: RID, vertices: PackedVector2Array): void
         
         /** Set the obstacles's `avoidance_layers` bitmask. */
-        static obstacle_set_avoidance_layers(obstacle: RID, layers: number /*i64*/): void
+        static obstacle_set_avoidance_layers(obstacle: RID, layers: int64): void
         
         /** Parses the [SceneTree] for source geometry according to the properties of [param navigation_polygon]. Updates the provided [param source_geometry_data] resource with the resulting data. The resource can then be used to bake a navigation mesh with [method bake_from_source_geometry_data]. After the process is finished the optional [param callback] will be called.  
          *      
@@ -9129,16 +9131,16 @@ declare module "godot" {
         static map_get_up(map: RID): Vector3
         
         /** Sets the map cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with the cell size of the used navigation meshes. */
-        static map_set_cell_size(map: RID, cell_size: number /*f64*/): void
+        static map_set_cell_size(map: RID, cell_size: float64): void
         
         /** Returns the map cell size used to rasterize the navigation mesh vertices on the XZ plane. */
-        static map_get_cell_size(map: RID): number /*f64*/
+        static map_get_cell_size(map: RID): float64
         
         /** Sets the map cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with the cell height of the used navigation meshes. */
-        static map_set_cell_height(map: RID, cell_height: number /*f64*/): void
+        static map_set_cell_height(map: RID, cell_height: float64): void
         
         /** Returns the map cell height used to rasterize the navigation mesh vertices on the Y axis. */
-        static map_get_cell_height(map: RID): number /*f64*/
+        static map_get_cell_height(map: RID): float64
         
         /** Set the navigation [param map] edge connection use. If [param enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
         static map_set_use_edge_connections(map: RID, enabled: boolean): void
@@ -9147,19 +9149,19 @@ declare module "godot" {
         static map_get_use_edge_connections(map: RID): boolean
         
         /** Set the map edge connection margin used to weld the compatible region edges. */
-        static map_set_edge_connection_margin(map: RID, margin: number /*f64*/): void
+        static map_set_edge_connection_margin(map: RID, margin: float64): void
         
         /** Returns the edge connection margin of the map. This distance is the minimum vertex distance needed to connect two edges from different regions. */
-        static map_get_edge_connection_margin(map: RID): number /*f64*/
+        static map_get_edge_connection_margin(map: RID): float64
         
         /** Set the map's link connection radius used to connect links to navigation polygons. */
-        static map_set_link_connection_radius(map: RID, radius: number /*f64*/): void
+        static map_set_link_connection_radius(map: RID, radius: float64): void
         
         /** Returns the link connection radius of the map. This distance is the maximum range any link will search for navigation mesh polygons to connect to. */
-        static map_get_link_connection_radius(map: RID): number /*f64*/
+        static map_get_link_connection_radius(map: RID): float64
         
         /** Returns the navigation path to reach the destination from the origin. [param navigation_layers] is a bitmask of all region navigation layers that are allowed to be in the path. */
-        static map_get_path(map: RID, origin: Vector3, destination: Vector3, optimize: boolean, navigation_layers: number /*i64*/ = 1): PackedVector3Array
+        static map_get_path(map: RID, origin: Vector3, destination: Vector3, optimize: boolean, navigation_layers: int64 = 1): PackedVector3Array
         
         /** Returns the closest point between the navigation surface and the segment. */
         static map_get_closest_point_to_segment(map: RID, start: Vector3, end: Vector3, use_collision: boolean = false): Vector3
@@ -9212,22 +9214,22 @@ declare module "godot" {
         static region_get_use_edge_connections(region: RID): boolean
         
         /** Sets the [param enter_cost] for this [param region]. */
-        static region_set_enter_cost(region: RID, enter_cost: number /*f64*/): void
+        static region_set_enter_cost(region: RID, enter_cost: float64): void
         
         /** Returns the enter cost of this [param region]. */
-        static region_get_enter_cost(region: RID): number /*f64*/
+        static region_get_enter_cost(region: RID): float64
         
         /** Sets the [param travel_cost] for this [param region]. */
-        static region_set_travel_cost(region: RID, travel_cost: number /*f64*/): void
+        static region_set_travel_cost(region: RID, travel_cost: float64): void
         
         /** Returns the travel cost of this [param region]. */
-        static region_get_travel_cost(region: RID): number /*f64*/
+        static region_get_travel_cost(region: RID): float64
         
         /** Set the `ObjectID` of the object which manages this region. */
-        static region_set_owner_id(region: RID, owner_id: number /*i64*/): void
+        static region_set_owner_id(region: RID, owner_id: int64): void
         
         /** Returns the `ObjectID` of the object which manages this region. */
-        static region_get_owner_id(region: RID): number /*i64*/
+        static region_get_owner_id(region: RID): int64
         
         /** Returns `true` if the provided [param point] in world space is currently owned by the provided navigation [param region]. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.  
          *  If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.  
@@ -9243,10 +9245,10 @@ declare module "godot" {
         static region_get_map(region: RID): RID
         
         /** Set the region's navigation layers. This allows selecting regions from a path request (when using [method NavigationServer3D.map_get_path]). */
-        static region_set_navigation_layers(region: RID, navigation_layers: number /*i64*/): void
+        static region_set_navigation_layers(region: RID, navigation_layers: int64): void
         
         /** Returns the region's navigation layers. */
-        static region_get_navigation_layers(region: RID): number /*i64*/
+        static region_get_navigation_layers(region: RID): int64
         
         /** Sets the global transformation for the region. */
         static region_set_transform(region: RID, transform: Transform3D): void
@@ -9260,13 +9262,13 @@ declare module "godot" {
         static region_bake_navigation_mesh(navigation_mesh: NavigationMesh, root_node: Node): void
         
         /** Returns how many connections this [param region] has with other regions in the map. */
-        static region_get_connections_count(region: RID): number /*i64*/
+        static region_get_connections_count(region: RID): int64
         
         /** Returns the starting point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
-        static region_get_connection_pathway_start(region: RID, connection: number /*i64*/): Vector3
+        static region_get_connection_pathway_start(region: RID, connection: int64): Vector3
         
         /** Returns the ending point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
-        static region_get_connection_pathway_end(region: RID, connection: number /*i64*/): Vector3
+        static region_get_connection_pathway_end(region: RID, connection: int64): Vector3
         
         /** Create a new link between two positions on a map. */
         static link_create(): RID
@@ -9290,10 +9292,10 @@ declare module "godot" {
         static link_is_bidirectional(link: RID): boolean
         
         /** Set the links's navigation layers. This allows selecting links from a path request (when using [method NavigationServer3D.map_get_path]). */
-        static link_set_navigation_layers(link: RID, navigation_layers: number /*i64*/): void
+        static link_set_navigation_layers(link: RID, navigation_layers: int64): void
         
         /** Returns the navigation layers for this [param link]. */
-        static link_get_navigation_layers(link: RID): number /*i64*/
+        static link_get_navigation_layers(link: RID): int64
         
         /** Sets the entry position for this [param link]. */
         static link_set_start_position(link: RID, position: Vector3): void
@@ -9308,22 +9310,22 @@ declare module "godot" {
         static link_get_end_position(link: RID): Vector3
         
         /** Sets the [param enter_cost] for this [param link]. */
-        static link_set_enter_cost(link: RID, enter_cost: number /*f64*/): void
+        static link_set_enter_cost(link: RID, enter_cost: float64): void
         
         /** Returns the enter cost of this [param link]. */
-        static link_get_enter_cost(link: RID): number /*f64*/
+        static link_get_enter_cost(link: RID): float64
         
         /** Sets the [param travel_cost] for this [param link]. */
-        static link_set_travel_cost(link: RID, travel_cost: number /*f64*/): void
+        static link_set_travel_cost(link: RID, travel_cost: float64): void
         
         /** Returns the travel cost of this [param link]. */
-        static link_get_travel_cost(link: RID): number /*f64*/
+        static link_get_travel_cost(link: RID): float64
         
         /** Set the `ObjectID` of the object which manages this link. */
-        static link_set_owner_id(link: RID, owner_id: number /*i64*/): void
+        static link_set_owner_id(link: RID, owner_id: int64): void
         
         /** Returns the `ObjectID` of the object which manages this link. */
-        static link_get_owner_id(link: RID): number /*i64*/
+        static link_get_owner_id(link: RID): int64
         
         /** Creates the agent. */
         static agent_create(): RID
@@ -9356,25 +9358,25 @@ declare module "godot" {
         static agent_get_paused(agent: RID): boolean
         
         /** Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
-        static agent_set_neighbor_distance(agent: RID, distance: number /*f64*/): void
+        static agent_set_neighbor_distance(agent: RID, distance: float64): void
         
         /** Sets the maximum number of other agents the agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
-        static agent_set_max_neighbors(agent: RID, count: number /*i64*/): void
+        static agent_set_max_neighbors(agent: RID, count: int64): void
         
         /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
-        static agent_set_time_horizon_agents(agent: RID, time_horizon: number /*f64*/): void
+        static agent_set_time_horizon_agents(agent: RID, time_horizon: float64): void
         
         /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to static avoidance obstacles. The larger this number, the sooner this agent will respond to the presence of static avoidance obstacles, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
-        static agent_set_time_horizon_obstacles(agent: RID, time_horizon: number /*f64*/): void
+        static agent_set_time_horizon_obstacles(agent: RID, time_horizon: float64): void
         
         /** Sets the radius of the agent. */
-        static agent_set_radius(agent: RID, radius: number /*f64*/): void
+        static agent_set_radius(agent: RID, radius: float64): void
         
         /** Updates the provided [param agent] [param height]. */
-        static agent_set_height(agent: RID, height: number /*f64*/): void
+        static agent_set_height(agent: RID, height: float64): void
         
         /** Sets the maximum speed of the agent. Must be positive. */
-        static agent_set_max_speed(agent: RID, max_speed: number /*f64*/): void
+        static agent_set_max_speed(agent: RID, max_speed: float64): void
         
         /** Replaces the internal velocity in the collision avoidance simulation with [param velocity] for the specified [param agent]. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck. */
         static agent_set_velocity_forced(agent: RID, velocity: Vector3): void
@@ -9395,15 +9397,15 @@ declare module "godot" {
         static agent_set_avoidance_callback(agent: RID, callback: Callable): void
         
         /** Set the agent's `avoidance_layers` bitmask. */
-        static agent_set_avoidance_layers(agent: RID, layers: number /*i64*/): void
+        static agent_set_avoidance_layers(agent: RID, layers: int64): void
         
         /** Set the agent's `avoidance_mask` bitmask. */
-        static agent_set_avoidance_mask(agent: RID, mask: number /*i64*/): void
+        static agent_set_avoidance_mask(agent: RID, mask: int64): void
         
         /** Set the agent's `avoidance_priority` with a [param priority] between 0.0 (lowest priority) to 1.0 (highest priority).  
          *  The specified [param agent] does not adjust the velocity for other agents that would match the `avoidance_mask` but have a lower ` avoidance_priority`. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.  
          */
-        static agent_set_avoidance_priority(agent: RID, priority: number /*f64*/): void
+        static agent_set_avoidance_priority(agent: RID, priority: float64): void
         
         /** Creates a new obstacle. */
         static obstacle_create(): RID
@@ -9433,10 +9435,10 @@ declare module "godot" {
         static obstacle_get_paused(obstacle: RID): boolean
         
         /** Sets the radius of the dynamic obstacle. */
-        static obstacle_set_radius(obstacle: RID, radius: number /*f64*/): void
+        static obstacle_set_radius(obstacle: RID, radius: float64): void
         
         /** Sets the [param height] for the [param obstacle]. In 3D agents will ignore obstacles that are above or below them while using 2D avoidance. */
-        static obstacle_set_height(obstacle: RID, height: number /*f64*/): void
+        static obstacle_set_height(obstacle: RID, height: float64): void
         
         /** Sets [param velocity] of the dynamic [param obstacle]. Allows other agents to better predict the movement of the dynamic obstacle. Only works in combination with the radius of the obstacle. */
         static obstacle_set_velocity(obstacle: RID, velocity: Vector3): void
@@ -9448,7 +9450,7 @@ declare module "godot" {
         static obstacle_set_vertices(obstacle: RID, vertices: PackedVector3Array): void
         
         /** Set the obstacles's `avoidance_layers` bitmask. */
-        static obstacle_set_avoidance_layers(obstacle: RID, layers: number /*i64*/): void
+        static obstacle_set_avoidance_layers(obstacle: RID, layers: int64): void
         
         /** Parses the [SceneTree] for source geometry according to the properties of [param navigation_mesh]. Updates the provided [param source_geometry_data] resource with the resulting data. The resource can then be used to bake a navigation mesh with [method bake_from_source_geometry_data]. After the process is finished the optional [param callback] will be called.  
          *      
@@ -9476,7 +9478,7 @@ declare module "godot" {
         static get_debug_enabled(): boolean
         
         /** Returns information about the current state of the NavigationServer. See [enum ProcessInfo] for a list of available states. */
-        static get_process_info(process_info: NavigationServer3D.ProcessInfo): number /*i64*/
+        static get_process_info(process_info: NavigationServer3D.ProcessInfo): int64
         
         /** Emitted when a navigation map is updated, when a region moves or is modified. */
         static readonly map_changed: Signal // map: RID => void
@@ -9527,8 +9529,8 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_xrserver.html  
      */
     class XRServer extends Object {
-        static get_world_scale(): number /*f64*/
-        static set_world_scale(scale: number /*f64*/): void
+        static get_world_scale(): float64
+        static set_world_scale(scale: float64): void
         static get_world_origin(): Transform3D
         static set_world_origin(world_origin: Transform3D): void
         
@@ -9551,13 +9553,13 @@ declare module "godot" {
         static add_interface(interface: XRInterface): void
         
         /** Returns the number of interfaces currently registered with the AR/VR server. If your project supports multiple AR/VR platforms, you can look through the available interface, and either present the user with a selection or simply try to initialize each interface and use the first one that returns `true`. */
-        static get_interface_count(): number /*i64*/
+        static get_interface_count(): int64
         
         /** Removes this [param interface]. */
         static remove_interface(interface: XRInterface): void
         
         /** Returns the interface registered at the given [param idx] index in the list of interfaces. */
-        static get_interface(idx: number /*i64*/): XRInterface
+        static get_interface(idx: int64): XRInterface
         
         /** Returns a list of available interfaces the ID and name of each interface. */
         static get_interfaces(): Array
@@ -9572,7 +9574,7 @@ declare module "godot" {
         static remove_tracker(tracker: XRPositionalTracker): void
         
         /** Returns a dictionary of trackers for [param tracker_types]. */
-        static get_trackers(tracker_types: number /*i64*/): Dictionary
+        static get_trackers(tracker_types: int64): Dictionary
         
         /** Returns the positional tracker with the given [param tracker_name]. */
         static get_tracker(tracker_name: StringName): XRPositionalTracker
@@ -9580,8 +9582,8 @@ declare module "godot" {
         static set_primary_interface(interface: XRInterface): void
         
         /** The scale of the game world compared to the real world. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
-        get world_scale(): number /*f64*/
-        set world_scale(value: number /*f64*/)
+        get world_scale(): float64
+        set world_scale(value: float64)
         
         /** The current origin of our tracking space in the virtual world. This is used by the renderer to properly position the camera with new tracking data.  
          *      
@@ -9601,13 +9603,13 @@ declare module "godot" {
         static readonly interface_removed: Signal // interface_name: StringName => void
         
         /** Emitted when a new tracker has been added. If you don't use a fixed number of controllers or if you're using [XRAnchor3D]s for an AR solution, it is important to react to this signal to add the appropriate [XRController3D] or [XRAnchor3D] nodes related to this new tracker. */
-        static readonly tracker_added: Signal // tracker_name: StringName, type: number /*i64*/ => void
+        static readonly tracker_added: Signal // tracker_name: StringName, type: int64 => void
         
         /** Emitted when an existing tracker has been updated. This can happen if the user switches controllers. */
-        static readonly tracker_updated: Signal // tracker_name: StringName, type: number /*i64*/ => void
+        static readonly tracker_updated: Signal // tracker_name: StringName, type: int64 => void
         
         /** Emitted when a tracker is removed. You should remove any [XRController3D] or [XRAnchor3D] points if applicable. This is not mandatory, the nodes simply become inactive and will be made active again when a new tracker becomes available (i.e. a new controller is switched on that takes the place of the previous one). */
-        static readonly tracker_removed: Signal // tracker_name: StringName, type: number /*i64*/ => void
+        static readonly tracker_removed: Signal // tracker_name: StringName, type: int64 => void
     }
     // // Singleton Class
     namespace CameraServer {
@@ -9631,10 +9633,10 @@ declare module "godot" {
      */
     class CameraServer extends Object {
         /** Returns the [CameraFeed] corresponding to the camera with the given [param index]. */
-        static get_feed(index: number /*i64*/): CameraFeed
+        static get_feed(index: int64): CameraFeed
         
         /** Returns the number of [CameraFeed]s registered. */
-        static get_feed_count(): number /*i64*/
+        static get_feed_count(): int64
         
         /** Returns an array of [CameraFeed]s. */
         static feeds(): Array
@@ -9646,9 +9648,9 @@ declare module "godot" {
         static remove_feed(feed: CameraFeed): void
         
         /** Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in). */
-        static readonly camera_feed_added: Signal // id: number /*i64*/ => void
+        static readonly camera_feed_added: Signal // id: int64 => void
         
         /** Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged). */
-        static readonly camera_feed_removed: Signal // id: number /*i64*/ => void
+        static readonly camera_feed_removed: Signal // id: int64 => void
     }
 }
