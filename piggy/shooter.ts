@@ -17,7 +17,7 @@ export default class Shooter extends Sprite2D {
     private _pos!: Vector2;
     
     _ready() {
-        this._pos = this.get_position();
+        this._pos = this.position;
     }
 
     _process(dt: number) {
@@ -34,7 +34,7 @@ export default class Shooter extends Sprite2D {
 
         if (this._dirty) {
             this._dirty = false;
-            this.set_position(this._pos);
+            this.position = this._pos;
             this.moved.emit(this._pos.y);
 
             let ui = <PiggyUI>this.get_tree().current_scene.get_node(new NodePath("ui"));
@@ -44,6 +44,6 @@ export default class Shooter extends Sprite2D {
 
     private _shot() {
         let marker = <Marker2D>this.get_node(new NodePath("shot_point"));
-        this.shot.emit(marker.get_global_position());
+        this.shot.emit(marker.global_position);
     }
 }

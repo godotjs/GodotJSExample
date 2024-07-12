@@ -795,12 +795,6 @@ declare module "godot" {
         
         /** Crashes the engine (or the editor if called within a `@tool` script). This should  *only*  be used for testing the system's crash handler, not for any other purpose. For general error reporting, use (in order of preference) [method @GDScript.assert], [method @GlobalScope.push_error] or [method alert]. See also [method kill]. */
         static crash(message: string): void
-        static set_low_processor_usage_mode(enable: boolean): void
-        static is_in_low_processor_usage_mode(): boolean
-        static set_low_processor_usage_mode_sleep_usec(usec: int64): void
-        static get_low_processor_usage_mode_sleep_usec(): int64
-        static set_delta_smoothing(delta_smoothing_enabled: boolean): void
-        static is_delta_smoothing_enabled(): boolean
         
         /** Returns the number of  *logical*  CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of  *physical*  CPU cores. */
         static get_processor_count(): int64
@@ -1222,19 +1216,8 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_engine.html  
      */
     class Engine extends Object {
-        static set_physics_ticks_per_second(physics_ticks_per_second: int64): void
-        static get_physics_ticks_per_second(): int64
-        static set_max_physics_steps_per_frame(max_physics_steps: int64): void
-        static get_max_physics_steps_per_frame(): int64
-        static set_physics_jitter_fix(physics_jitter_fix: float64): void
-        static get_physics_jitter_fix(): float64
-        
         /** Returns the fraction through the current physics tick we are at the time of rendering the frame. This can be used to implement fixed timestep interpolation. */
         static get_physics_interpolation_fraction(): float64
-        static set_max_fps(max_fps: int64): void
-        static get_max_fps(): int64
-        static set_time_scale(time_scale: float64): void
-        static get_time_scale(): float64
         
         /** Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with `--disable-render-loop` via command line, [method get_frames_drawn] always returns `0`. See [method get_process_frames]. */
         static get_frames_drawn(): int64
@@ -1355,8 +1338,6 @@ declare module "godot" {
         
         /** Returns the path to the [MovieWriter]'s output file, or an empty string if the engine wasn't started in Movie Maker mode. This path can be absolute or relative depending on how the user specified it. */
         static get_write_movie_path(): string
-        static set_print_error_messages(enabled: boolean): void
-        static is_printing_error_messages(): boolean
         
         /** If `false`, stops printing error and warning messages to the console and editor Output log. This can be used to hide error and warning messages during unit test suite runs. This property is equivalent to the [member ProjectSettings.application/run/disable_stderr] project setting.  
          *  **Warning:** If you set this to `false` anywhere in the project, important error messages may be hidden even if they are emitted from other scripts. If this is set to `false` in a `@tool` script, this will also impact the editor itself. Do  *not*  report bugs before ensuring error messages are enabled (as they are by default).  
@@ -1578,8 +1559,6 @@ declare module "godot" {
         
         /** Returns an array of all loaded locales of the project. */
         static get_loaded_locales(): PackedStringArray
-        static is_pseudolocalization_enabled(): boolean
-        static set_pseudolocalization_enabled(enabled: boolean): void
         
         /** Reparses the pseudolocalization options and reloads the translation. */
         static reload_pseudolocalization(): void
@@ -1867,8 +1846,6 @@ declare module "godot" {
         
         /** Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to [method DisplayServer.mouse_get_button_state]. */
         static get_mouse_button_mask(): MouseButtonMask
-        static set_mouse_mode(mode: Input.MouseMode): void
-        static get_mouse_mode(): Input.MouseMode
         
         /** Sets the mouse position to the specified vector, provided in pixels and relative to an origin at the upper left corner of the currently focused Window Manager game window.  
          *  Mouse position is clipped to the limits of the screen resolution, or to the limits of the game window if [enum MouseMode] is set to [constant MOUSE_MODE_CONFINED] or [constant MOUSE_MODE_CONFINED_HIDDEN].  
@@ -1917,8 +1894,6 @@ declare module "godot" {
          *  **Note:** Calling this function has no influence on the operating system. So for example sending an [InputEventMouseMotion] will not move the OS mouse cursor to the specified position (use [method warp_mouse] instead) and sending [kbd]Alt/Cmd + Tab[/kbd] as [InputEventKey] won't toggle between active windows.  
          */
         static parse_input_event(event: InputEvent): void
-        static set_use_accumulated_input(enable: boolean): void
-        static is_using_accumulated_input(): boolean
         
         /** Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([member use_accumulated_input]) or agile input flushing ([member ProjectSettings.input_devices/buffering/agile_event_flushing]).  
          *  The engine will already do this itself at key execution points (at least once per frame). However, this can be useful in advanced cases where you want precise control over the timing of event handling.  
@@ -2326,16 +2301,6 @@ declare module "godot" {
          *  To set the project theme, see [member ProjectSettings.gui/theme/custom].  
          */
         static get_project_theme(): Theme
-        static set_fallback_base_scale(base_scale: float64): void
-        static get_fallback_base_scale(): float64
-        static set_fallback_font(font: Font): void
-        static get_fallback_font(): Font
-        static set_fallback_font_size(font_size: int64): void
-        static get_fallback_font_size(): int64
-        static set_fallback_icon(icon: Texture2D): void
-        static get_fallback_icon(): Texture2D
-        static set_fallback_stylebox(stylebox: StyleBox): void
-        static get_fallback_stylebox(): StyleBox
         
         /** The fallback base scale factor of every [Control] node and [Theme] resource. Used when no other value is available to the control.  
          *  See also [member Theme.default_base_scale].  
@@ -2433,8 +2398,6 @@ declare module "godot" {
         
         /** Sets the editor's current main screen to the one specified in [param name]. [param name] must match the title of the tab in question exactly (e.g. `2D`, `3D`, [code skip-lint]Script`, or `AssetLib` for default tabs). */
         static set_main_screen_editor(name: string): void
-        static set_distraction_free_mode(enter: boolean): void
-        static is_distraction_free_mode_enabled(): boolean
         
         /** Returns the actual scale of the editor UI (`1.0` being 100% scale). This can be used to adjust position and dimensions of the UI added by plugins.  
          *      
@@ -2551,8 +2514,6 @@ declare module "godot" {
         
         /** Returns the name of the scene that is being played. If no scene is currently being played, returns an empty string. */
         static get_playing_scene(): string
-        static set_movie_maker_enabled(enabled: boolean): void
-        static is_movie_maker_enabled(): boolean
         
         /** If `true`, enables distraction-free mode which hides side docks to increase the space available for the main view. */
         get distraction_free_mode(): boolean
@@ -6987,8 +6948,6 @@ declare module "godot" {
         
         /** This method is currently unimplemented and does nothing if called with [param generate] set to `true`. */
         static set_debug_generate_wireframes(generate: boolean): void
-        static is_render_loop_enabled(): boolean
-        static set_render_loop_enabled(enabled: boolean): void
         
         /** Returns the time taken to setup rendering on the CPU in milliseconds. This value is shared across all viewports and does  *not*  require [method viewport_set_measure_render_time] to be enabled on a viewport to be queried. See also [method viewport_get_measured_render_time_cpu]. */
         static get_frame_setup_time_cpu(): float64
@@ -7045,9 +7004,6 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_audioserver.html  
      */
     class AudioServer extends Object {
-        static set_bus_count(amount: int64): void
-        static get_bus_count(): int64
-        
         /** Removes the bus at index [param index]. */
         static remove_bus(index: int64): void
         
@@ -7128,8 +7084,6 @@ declare module "godot" {
         
         /** Returns the peak volume of the right speaker at bus index [param bus_idx] and channel index [param channel]. */
         static get_bus_peak_volume_right_db(bus_idx: int64, channel: int64): float64
-        static set_playback_speed_scale(scale: float64): void
-        static get_playback_speed_scale(): float64
         
         /** Locks the audio driver's main loop.  
          *      
@@ -7148,8 +7102,6 @@ declare module "godot" {
         
         /** Returns the names of all audio output devices detected on the system. */
         static get_output_device_list(): PackedStringArray
-        static get_output_device(): string
-        static set_output_device(name: string): void
         
         /** Returns the relative time until the next mix occurs. */
         static get_time_to_next_mix(): float64
@@ -7168,8 +7120,6 @@ declare module "godot" {
          *  **Note:** [member ProjectSettings.audio/driver/enable_input] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.  
          */
         static get_input_device_list(): PackedStringArray
-        static get_input_device(): string
-        static set_input_device(name: string): void
         
         /** Overwrites the currently used [AudioBusLayout]. */
         static set_bus_layout(bus_layout: AudioBusLayout): void
@@ -9529,11 +9479,6 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_xrserver.html  
      */
     class XRServer extends Object {
-        static get_world_scale(): float64
-        static set_world_scale(scale: float64): void
-        static get_world_origin(): Transform3D
-        static set_world_origin(world_origin: Transform3D): void
-        
         /** Returns the reference frame transform. Mostly used internally and exposed for GDExtension build interfaces. */
         static get_reference_frame(): Transform3D
         
@@ -9578,8 +9523,6 @@ declare module "godot" {
         
         /** Returns the positional tracker with the given [param tracker_name]. */
         static get_tracker(tracker_name: StringName): XRPositionalTracker
-        static get_primary_interface(): XRInterface
-        static set_primary_interface(interface: XRInterface): void
         
         /** The scale of the game world compared to the real world. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
         get world_scale(): float64

@@ -12,13 +12,13 @@ export default class Arrow extends Sprite2D {
 
     _ready() {
         // for the arrows placed in editor
-        this._pos = this.get_position();
+        this._pos = this.position;
         
     }
 
     init_position(pos: Vector2) {
         this._pos = pos;
-        this.set_position(this._pos);
+        this.position = this._pos;
     }
 
     _process(dt: number) {
@@ -30,6 +30,6 @@ export default class Arrow extends Sprite2D {
             return;
         }
 
-        this.set_position(this._pos);
+        this.position = this._pos;
     }
 }

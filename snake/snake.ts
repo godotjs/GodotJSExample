@@ -60,7 +60,7 @@ export default class Snake extends Node {
         if (scene) {
             const node = <Node2D>scene.instantiate(PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED);
             this._control_node.add_child(node, false, Node.InternalMode.INTERNAL_MODE_DISABLED);
-            node.set_scale(new Vector2(0.25, 0.25))
+            node.scale = new Vector2(0.25, 0.25);
             return node;
         }
     }

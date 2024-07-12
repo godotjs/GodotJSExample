@@ -37,10 +37,10 @@ export default class PiggyMain extends Node {
     }
 
     private on_shooter_moved(y: number) {
-        let rope_y = this.rope.get_position().y;
+        let rope_y = this.rope.position.y;
         let scale = new Vector2(1, (y - rope_y) / 64);
-        this.rope.set_scale(scale);
-        let mat = <ShaderMaterial>this.rope.get_material();
+        this.rope.scale = scale;
+        let mat = <ShaderMaterial>this.rope.material;
         try {
             mat.set_shader_parameter("tiling", scale.y);
         } catch (e) { 
