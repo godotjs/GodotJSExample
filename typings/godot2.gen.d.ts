@@ -99,6 +99,13 @@ declare module "godot" {
         get color_regions(): Dictionary
         set color_regions(value: Dictionary)
     }
+    class CodeTextEditor extends VBoxContainer {
+        constructor(identifier?: any)
+        readonly validate_script: Signal //  => void
+        readonly load_theme_settings: Signal //  => void
+        readonly show_errors_panel: Signal //  => void
+        readonly show_warnings_panel: Signal //  => void
+    }
     namespace CollisionObject2D {
         enum DisableMode {
             /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
@@ -808,7 +815,7 @@ declare module "godot" {
     class CompressedTexture2D extends Texture2D {
         constructor(identifier?: any)
         /** Loads the texture from the specified [param path]. */
-        load(path: string): GodotError
+        load(path: string): Error
         get_load_path(): string
         
         /** The [CompressedTexture2D]'s file path to a `.ctex` file. */
@@ -829,7 +836,7 @@ declare module "godot" {
     class CompressedTexture3D extends Texture3D {
         constructor(identifier?: any)
         /** Loads the texture from the specified [param path]. */
-        load(path: string): GodotError
+        load(path: string): Error
         get_load_path(): string
         
         /** The [CompressedTexture3D]'s file path to a `.ctex3d` file. */
@@ -843,7 +850,7 @@ declare module "godot" {
     class CompressedTextureLayered extends TextureLayered {
         constructor(identifier?: any)
         /** Loads the texture at [param path]. */
-        load(path: string): GodotError
+        load(path: string): Error
         get_load_path(): string
         
         /** The path the texture should be loaded from. */
@@ -957,17 +964,17 @@ declare module "godot" {
         /** Loads the config file specified as a parameter. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        load(path: string): GodotError
+        load(path: string): Error
         
         /** Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        parse(data: string): GodotError
+        parse(data: string): Error
         
         /** Saves the contents of the [ConfigFile] object to the file specified as a parameter. The output file uses an INI-style structure.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        save(path: string): GodotError
+        save(path: string): Error
         
         /** Obtain the text version of this config file (the same text that would be written to a file). */
         encode_to_text(): string
@@ -975,22 +982,22 @@ declare module "godot" {
         /** Loads the encrypted config file specified as a parameter, using the provided [param key] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        load_encrypted(path: string, key: PackedByteArray): GodotError
+        load_encrypted(path: string, key: PackedByteArray): Error
         
         /** Loads the encrypted config file specified as a parameter, using the provided [param password] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        load_encrypted_pass(path: string, password: string): GodotError
+        load_encrypted_pass(path: string, password: string): Error
         
         /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param key] to encrypt it. The output file uses an INI-style structure.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        save_encrypted(path: string, key: PackedByteArray): GodotError
+        save_encrypted(path: string, key: PackedByteArray): Error
         
         /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param password] to encrypt it. The output file uses an INI-style structure.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        save_encrypted_pass(path: string, password: string): GodotError
+        save_encrypted_pass(path: string, password: string): Error
         
         /** Removes the entire contents of the config. */
         clear(): void
@@ -2095,13 +2102,13 @@ declare module "godot" {
          *      
          *  **Note:** [param path] should be a "*.pub" file if [param public_only] is `true`, a "*.key" file otherwise.  
          */
-        save(path: string, public_only: boolean = false): GodotError
+        save(path: string, public_only: boolean = false): Error
         
         /** Loads a key from [param path]. If [param public_only] is `true`, only the public key will be loaded.  
          *      
          *  **Note:** [param path] should be a "*.pub" file if [param public_only] is `true`, a "*.key" file otherwise.  
          */
-        load(path: string, public_only: boolean = false): GodotError
+        load(path: string, public_only: boolean = false): Error
         
         /** Returns `true` if this CryptoKey only has the public part, and not the private one. */
         is_public_only(): boolean
@@ -2110,7 +2117,7 @@ declare module "godot" {
         save_to_string(public_only: boolean = false): string
         
         /** Loads a key from the given [param string_key]. If [param public_only] is `true`, only the public key will be loaded. */
-        load_from_string(string_key: string, public_only: boolean = false): GodotError
+        load_from_string(string_key: string, public_only: boolean = false): Error
     }
     /** Six square textures representing the faces of a cube. Commonly used as a skybox.  
      *  	  
@@ -2608,7 +2615,7 @@ declare module "godot" {
     class DTLSServer extends RefCounted {
         constructor(identifier?: any)
         /** Setup the DTLS server to use the given [param server_options]. See [method TLSOptions.server]. */
-        setup(server_options: TLSOptions): GodotError
+        setup(server_options: TLSOptions): Error
         
         /** Try to initiate the DTLS handshake with the given [param udp_peer] which must be already connected (see [method PacketPeerUDP.connect_to_host]).  
          *      
@@ -2819,14 +2826,14 @@ declare module "godot" {
         static open(path: string): DirAccess
         
         /** Returns the result of the last [method open] call in the current thread. */
-        static get_open_error(): GodotError
+        static get_open_error(): Error
         
         /** Initializes the stream used to list all files and directories using the [method get_next] function, closing the currently opened stream if needed. Once the stream has been processed, it should typically be closed with [method list_dir_end].  
          *  Affected by [member include_hidden] and [member include_navigational].  
          *      
          *  **Note:** The order of files and directories returned by this method is not deterministic, and can vary between operating systems. If you want a list of all files or folders sorted alphabetically, use [method get_files] or [method get_directories].  
          */
-        list_dir_begin(): GodotError
+        list_dir_begin(): Error
         
         /** Returns the next element (file or directory) in the current directory.  
          *  The name of the file or directory is returned (and not its full path). Once the stream has been fully processed, the method returns an empty [String] and closes the stream automatically (i.e. [method list_dir_end] would not be mandatory in such a case).  
@@ -2883,7 +2890,7 @@ declare module "godot" {
          *      
          *  **Note:** The new directory must be within the same scope, e.g. when you had opened a directory inside `res://`, you can't change it to `user://` directory. If you need to open a directory in another access scope, use [method open] to create a new instance instead.  
          */
-        change_dir(to_dir: string): GodotError
+        change_dir(to_dir: string): Error
         
         /** Returns the absolute path to the currently opened directory (e.g. `res://folder` or `C:\tmp\folder`). */
         get_current_dir(include_drive: boolean = true): string
@@ -2891,18 +2898,18 @@ declare module "godot" {
         /** Creates a directory. The argument can be relative to the current directory, or an absolute path. The target directory should be placed in an already existing directory (to create the full path recursively, see [method make_dir_recursive]).  
          *  Returns one of the [enum Error] code constants ([constant OK] on success).  
          */
-        make_dir(path: string): GodotError
+        make_dir(path: string): Error
         
         /** Static version of [method make_dir]. Supports only absolute paths. */
-        static make_dir_absolute(path: string): GodotError
+        static make_dir_absolute(path: string): Error
         
         /** Creates a target directory and all necessary intermediate directories in its path, by calling [method make_dir] recursively. The argument can be relative to the current directory, or an absolute path.  
          *  Returns one of the [enum Error] code constants ([constant OK] on success).  
          */
-        make_dir_recursive(path: string): GodotError
+        make_dir_recursive(path: string): Error
         
         /** Static version of [method make_dir_recursive]. Supports only absolute paths. */
-        static make_dir_recursive_absolute(path: string): GodotError
+        static make_dir_recursive_absolute(path: string): Error
         
         /** Returns whether the target file exists. The argument can be relative to the current directory, or an absolute path.  
          *  For a static equivalent, use [method FileAccess.file_exists].  
@@ -2922,27 +2929,27 @@ declare module "godot" {
          *  If [param chmod_flags] is different than `-1`, the Unix permissions for the destination path will be set to the provided value, if available on the current operating system.  
          *  Returns one of the [enum Error] code constants ([constant OK] on success).  
          */
-        copy(from: string, to: string, chmod_flags: number /*i64*/ = -1): GodotError
+        copy(from: string, to: string, chmod_flags: number /*i64*/ = -1): Error
         
         /** Static version of [method copy]. Supports only absolute paths. */
-        static copy_absolute(from: string, to: string, chmod_flags: number /*i64*/ = -1): GodotError
+        static copy_absolute(from: string, to: string, chmod_flags: number /*i64*/ = -1): Error
         
         /** Renames (move) the [param from] file or directory to the [param to] destination. Both arguments should be paths to files or directories, either relative or absolute. If the destination file or directory exists and is not access-protected, it will be overwritten.  
          *  Returns one of the [enum Error] code constants ([constant OK] on success).  
          */
-        rename(from: string, to: string): GodotError
+        rename(from: string, to: string): Error
         
         /** Static version of [method rename]. Supports only absolute paths. */
-        static rename_absolute(from: string, to: string): GodotError
+        static rename_absolute(from: string, to: string): Error
         
         /** Permanently deletes the target file or an empty directory. The argument can be relative to the current directory, or an absolute path. If the target directory is not empty, the operation will fail.  
          *  If you don't want to delete the file/directory permanently, use [method OS.move_to_trash] instead.  
          *  Returns one of the [enum Error] code constants ([constant OK] on success).  
          */
-        remove(path: string): GodotError
+        remove(path: string): Error
         
         /** Static version of [method remove]. Supports only absolute paths. */
-        static remove_absolute(path: string): GodotError
+        static remove_absolute(path: string): Error
         set_include_navigational(enable: boolean): void
         get_include_navigational(): boolean
         set_include_hidden(enable: boolean): void
@@ -3094,10 +3101,10 @@ declare module "godot" {
     class ENetConnection extends RefCounted {
         constructor(identifier?: any)
         /** Create an ENetHost like [method create_host] which is also bound to the given [param bind_address] and [param bind_port]. */
-        create_host_bound(bind_address: string, bind_port: number /*i64*/, max_peers: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): GodotError
+        create_host_bound(bind_address: string, bind_port: number /*i64*/, max_peers: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): Error
         
         /** Create an ENetHost that will allow up to [param max_peers] connected peers, each allocating up to [param max_channels] channels, optionally limiting bandwidth to [param in_bandwidth] and [param out_bandwidth]. */
-        create_host(max_peers: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): GodotError
+        create_host(max_peers: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): Error
         
         /** Destroys the host and all resources associated with it. */
         destroy(): void
@@ -3134,10 +3141,10 @@ declare module "godot" {
         compress(mode: ENetConnection.CompressionMode): void
         
         /** Configure this ENetHost to use the custom Godot extension allowing DTLS encryption for ENet servers. Call this right after [method create_host_bound] to have ENet expect peers to connect using DTLS. See [method TLSOptions.server]. */
-        dtls_server_setup(server_options: TLSOptions): GodotError
+        dtls_server_setup(server_options: TLSOptions): Error
         
         /** Configure this ENetHost to use the custom Godot extension allowing DTLS encryption for ENet clients. Call this before [method connect_to_host] to have ENet connect using DTLS validating the server certificate against [param hostname]. You can pass the optional [param client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        dtls_client_setup(hostname: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): GodotError
+        dtls_client_setup(hostname: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): Error
         
         /** Configures the DTLS server to automatically drop new connections.  
          *      
@@ -3173,19 +3180,19 @@ declare module "godot" {
     class ENetMultiplayerPeer extends MultiplayerPeer {
         constructor(identifier?: any)
         /** Create server that listens to connections via [param port]. The port needs to be an available, unused port between 0 and 65535. Note that ports below 1024 are privileged and may require elevated permissions depending on the platform. To change the interface the server listens on, use [method set_bind_ip]. The default IP is the wildcard `"*"`, which listens on all available interfaces. [param max_clients] is the maximum number of clients that are allowed at once, any number up to 4095 may be used, although the achievable number of simultaneous clients may be far lower and depends on the application. For additional details on the bandwidth parameters, see [method create_client]. Returns [constant OK] if a server was created, [constant ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already has an open connection (in which case you need to call [method MultiplayerPeer.close] first) or [constant ERR_CANT_CREATE] if the server could not be created. */
-        create_server(port: number /*i64*/, max_clients: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): GodotError
+        create_server(port: number /*i64*/, max_clients: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): Error
         
         /** Create client that connects to a server at [param address] using specified [param port]. The given address needs to be either a fully qualified domain name (e.g. `"www.example.com"`) or an IP address in IPv4 or IPv6 format (e.g. `"192.168.1.1"`). The [param port] is the port the server is listening on. The [param channel_count] parameter can be used to specify the number of ENet channels allocated for the connection. The [param in_bandwidth] and [param out_bandwidth] parameters can be used to limit the incoming and outgoing bandwidth to the given number of bytes per second. The default of 0 means unlimited bandwidth. Note that ENet will strategically drop packets on specific sides of a connection between peers to ensure the peer's bandwidth is not overwhelmed. The bandwidth parameters also determine the window size of a connection which limits the amount of reliable packets that may be in transit at any given time. Returns [constant OK] if a client was created, [constant ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already has an open connection (in which case you need to call [method MultiplayerPeer.close] first) or [constant ERR_CANT_CREATE] if the client could not be created. If [param local_port] is specified, the client will also listen to the given port; this is useful for some NAT traversal techniques. */
-        create_client(address: string, port: number /*i64*/, channel_count: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0, local_port: number /*i64*/ = 0): GodotError
+        create_client(address: string, port: number /*i64*/, channel_count: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0, local_port: number /*i64*/ = 0): Error
         
         /** Initialize this [MultiplayerPeer] in mesh mode. The provided [param unique_id] will be used as the local peer network unique ID once assigned as the [member MultiplayerAPI.multiplayer_peer]. In the mesh configuration you will need to set up each new peer manually using [ENetConnection] before calling [method add_mesh_peer]. While this technique is more advanced, it allows for better control over the connection process (e.g. when dealing with NAT punch-through) and for better distribution of the network load (which would otherwise be more taxing on the server). */
-        create_mesh(unique_id: number /*i64*/): GodotError
+        create_mesh(unique_id: number /*i64*/): Error
         
         /** Add a new remote peer with the given [param peer_id] connected to the given [param host].  
          *      
          *  **Note:** The [param host] must have exactly one peer in the [constant ENetPacketPeer.STATE_CONNECTED] state.  
          */
-        add_mesh_peer(peer_id: number /*i64*/, host: ENetConnection): GodotError
+        add_mesh_peer(peer_id: number /*i64*/, host: ENetConnection): Error
         
         /** The IP used when creating a server. This is set to the wildcard `"*"` by default, which binds to all available interfaces. The given IP needs to be in IPv4 or IPv6 address format, for example: `"192.168.1.1"`. */
         set_bind_ip(ip: string): void
@@ -3313,7 +3320,7 @@ declare module "godot" {
         reset(): void
         
         /** Queues a [param packet] to be sent over the specified [param channel]. See `FLAG_*` constants for available packet flags. */
-        send(channel: number /*i64*/, packet: PackedByteArray, flags: number /*i64*/): GodotError
+        send(channel: number /*i64*/, packet: PackedByteArray, flags: number /*i64*/): Error
         
         /** Configures throttle parameter for a peer.  
          *  Unreliable packets are dropped by ENet in response to the varying conditions of the Internet connection to the peer. The throttle represents a probability that an unreliable packet should not be dropped and thus sent by ENet to the peer. By measuring fluctuations in round trip times of reliable packets over the specified [param interval], ENet will either increase the probability by the amount specified in the [param acceleration] parameter, or decrease it by the amount specified in the [param deceleration] parameter (both are ratios to [constant PACKET_THROTTLE_SCALE]).  
@@ -3419,8 +3426,8 @@ declare module "godot" {
         set_disable_build_option(build_option: EditorBuildProfile.BuildOption, disable: boolean): void
         is_build_option_disabled(build_option: EditorBuildProfile.BuildOption): boolean
         get_build_option_name(build_option: EditorBuildProfile.BuildOption): string
-        save_to_file(path: string): GodotError
-        load_from_file(path: string): GodotError
+        save_to_file(path: string): Error
+        load_from_file(path: string): Error
     }
     class EditorBuildProfileManager extends AcceptDialog {
         constructor(identifier?: any)
@@ -3848,13 +3855,13 @@ declare module "godot" {
          *      
          *  **Note:** Feature profiles created via the user interface are saved in the `feature_profiles` directory, as a file with the `.profile` extension. The editor configuration folder can be found by using [method EditorPaths.get_config_dir].  
          */
-        save_to_file(path: string): GodotError
+        save_to_file(path: string): Error
         
         /** Loads an editor feature profile from a file. The file must follow the JSON format obtained by using the feature profile manager's **Export** button or the [method save_to_file] method.  
          *      
          *  **Note:** Feature profiles created via the user interface are loaded from the `feature_profiles` directory, as a file with the `.profile` extension. The editor configuration folder can be found by using [method EditorPaths.get_config_dir].  
          */
-        load_from_file(path: string): GodotError
+        load_from_file(path: string): Error
     }
     class EditorFeatureProfileManager extends AcceptDialog {
         constructor(identifier?: any)
@@ -4182,10 +4189,10 @@ declare module "godot" {
         /** Imports [param source_file] into [param save_path] with the import [param options] specified. The [param platform_variants] and [param gen_files] arrays will be modified by this function.  
          *  This method must be overridden to do the actual importing work. See this class' description for an example of overriding this method.  
          */
-        /* gdvirtual */ _import(source_file: string, save_path: string, options: Dictionary, platform_variants: Array, gen_files: Array): GodotError
+        /* gdvirtual */ _import(source_file: string, save_path: string, options: Dictionary, platform_variants: Array, gen_files: Array): Error
         
         /** This function can only be called during the [method _import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [param custom_options]. Additionally, in cases where multiple importers can handle a file, the [param custom_importer] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [param generator_parameters] defines optional extra metadata which will be stored as [code skip-lint]generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data. */
-        append_import_external_resource(path: string, custom_options: Dictionary = <any> {} /*compound.type from 27([object Object])*/, custom_importer: string = '', generator_parameters: any = <any> {} /*compound.type from nil*/): GodotError
+        append_import_external_resource(path: string, custom_options: Dictionary = <any> {} /*compound.type from 27([object Object])*/, custom_importer: string = '', generator_parameters: any = <any> {} /*compound.type from nil*/): Error
     }
     /** A control used to edit properties of an object.  
      *  	  
@@ -6669,7 +6676,7 @@ declare module "godot" {
         /** Parses the expression and returns an [enum Error] code.  
          *  You can optionally specify names of variables that may appear in the expression with [param input_names], so that you can bind them when it gets executed.  
          */
-        parse(expression: string, input_names: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/): GodotError
+        parse(expression: string, input_names: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/): Error
         
         /** Executes the expression that was previously parsed by [method parse] and returns the result. Before you use the returned object, you should check if the method failed by calling [method has_execute_failed].  
          *  If you defined input variables in [method parse], you can specify their values in the inputs array, in the same order.  
@@ -7019,7 +7026,7 @@ declare module "godot" {
         static open_compressed(path: string, mode_flags: FileAccess.ModeFlags, compression_mode: FileAccess.CompressionMode = 0): FileAccess
         
         /** Returns the result of the last [method open] call in the current thread. */
-        static get_open_error(): GodotError
+        static get_open_error(): Error
         
         /** Returns the whole [param path] file contents as a [PackedByteArray] without any decoding.  
          *  Returns an empty [PackedByteArray] if an error occurred while opening the file. You can use [method get_open_error] to check the error that occurred.  
@@ -7119,7 +7126,7 @@ declare module "godot" {
         set_big_endian(big_endian: boolean): void
         
         /** Returns the last error that happened when trying to perform operations. Compare with the `ERR_FILE_*` constants from [enum Error]. */
-        get_error(): GodotError
+        get_error(): Error
         
         /** Returns the next [Variant] value from the file. If [param allow_objects] is `true`, decoding objects is allowed.  
          *  Internally, this uses the same decoding mechanism as the [method @GlobalScope.bytes_to_var] method.  
@@ -7224,7 +7231,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on iOS, Linux/BSD, and macOS.  
          */
-        static set_unix_permissions(file: string, permissions: FileAccess.UnixPermissionFlags): GodotError
+        static set_unix_permissions(file: string, permissions: FileAccess.UnixPermissionFlags): Error
         
         /** Returns `true`, if file `hidden` attribute is set.  
          *      
@@ -7236,13 +7243,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on iOS, BSD, macOS, and Windows.  
          */
-        static set_hidden_attribute(file: string, hidden: boolean): GodotError
+        static set_hidden_attribute(file: string, hidden: boolean): Error
         
         /** Sets file **read only** attribute.  
          *      
          *  **Note:** This method is implemented on iOS, BSD, macOS, and Windows.  
          */
-        static set_read_only_attribute(file: string, ro: boolean): GodotError
+        static set_read_only_attribute(file: string, ro: boolean): Error
         
         /** Returns `true`, if file `read only` attribute is set.  
          *      
@@ -7755,12 +7762,12 @@ declare module "godot" {
         /** Loads an AngelCode BMFont (.fnt, .font) bitmap font from file [param path].  
          *  **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.  
          */
-        load_bitmap_font(path: string): GodotError
+        load_bitmap_font(path: string): Error
         
         /** Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2) or Type 1 (.pfb, .pfm) dynamic font from file [param path].  
          *  **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.  
          */
-        load_dynamic_font(path: string): GodotError
+        load_dynamic_font(path: string): Error
         set_data(data: PackedByteArray): void
         get_data(): PackedByteArray
         set_font_name(name: string): void
@@ -8138,6 +8145,9 @@ declare module "godot" {
         get opentype_features(): Dictionary
         set opentype_features(value: Dictionary)
     }
+    class FramebufferCacheRD extends Object {
+        constructor(identifier?: any)
+    }
     namespace GDExtension {
         enum InitializationLevel {
             INITIALIZATION_LEVEL_CORE = 0,
@@ -8149,11 +8159,14 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gdextension.html */
     class GDExtension extends Resource {
         constructor(identifier?: any)
-        open_library(path: string, entry_symbol: string): GodotError
+        open_library(path: string, entry_symbol: string): Error
         close_library(): void
         is_library_open(): boolean
         get_minimum_library_initialization_level(): GDExtension.InitializationLevel
         initialize_library(level: GDExtension.InitializationLevel): void
+    }
+    class GDShaderSyntaxHighlighter extends CodeHighlighter {
+        constructor(identifier?: any)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfaccessor.html */
     class GLTFAccessor extends Resource {
@@ -8317,16 +8330,16 @@ declare module "godot" {
          *      
          *  **Note:** The [param base_path] tells [method append_from_file] where to find dependencies and can be empty.  
          */
-        append_from_file(path: string, state: GLTFState, flags: number /*i64*/ = 0, base_path: string = ''): GodotError
+        append_from_file(path: string, state: GLTFState, flags: number /*i64*/ = 0, base_path: string = ''): Error
         
         /** Takes a [PackedByteArray] defining a GLTF and imports the data to the given [GLTFState] object through the [param state] parameter.  
          *      
          *  **Note:** The [param base_path] tells [method append_from_buffer] where to find dependencies and can be empty.  
          */
-        append_from_buffer(bytes: PackedByteArray, base_path: string, state: GLTFState, flags: number /*i64*/ = 0): GodotError
+        append_from_buffer(bytes: PackedByteArray, base_path: string, state: GLTFState, flags: number /*i64*/ = 0): Error
         
         /** Takes a Godot Engine scene node and exports it and its descendants to the given [GLTFState] object through the [param state] parameter. */
-        append_from_scene(node: Node, state: GLTFState, flags: number /*i64*/ = 0): GodotError
+        append_from_scene(node: Node, state: GLTFState, flags: number /*i64*/ = 0): Error
         
         /** Takes a [GLTFState] object through the [param state] parameter and returns a Godot Engine scene node. */
         generate_scene(state: GLTFState, bake_fps: number /*f64*/ = 30, trimming: boolean = false, remove_immutable_tracks: boolean = true): Node
@@ -8338,7 +8351,7 @@ declare module "godot" {
          *      
          *  **Note:** The extension of the glTF file determines if it is a .glb binary file or a .gltf file.  
          */
-        write_to_filesystem(state: GLTFState, path: string): GodotError
+        write_to_filesystem(state: GLTFState, path: string): Error
         set_image_format(image_format: string): void
         get_image_format(): string
         set_lossy_quality(lossy_quality: number /*f64*/): void
@@ -8381,7 +8394,7 @@ declare module "godot" {
         /** Part of the import process. This method is run first, before all other parts of the import process.  
          *  The return value is used to determine if this [GLTFDocumentExtension] instance should be used for importing a given GLTF file. If [constant OK], the import will use this [GLTFDocumentExtension] instance. If not overridden, [constant OK] is returned.  
          */
-        /* gdvirtual */ _import_preflight(state: GLTFState, extensions: PackedStringArray): GodotError
+        /* gdvirtual */ _import_preflight(state: GLTFState, extensions: PackedStringArray): Error
         
         /** Part of the import process. This method is run after [method _import_preflight] and before [method _parse_node_extensions].  
          *  Returns an array of the GLTF extensions supported by this GLTFDocumentExtension class. This is used to validate if a GLTF file with required extensions can be loaded.  
@@ -8391,12 +8404,12 @@ declare module "godot" {
         /** Part of the import process. This method is run after [method _get_supported_extensions] and before [method _import_post_parse].  
          *  Runs when parsing the node extensions of a GLTFNode. This method can be used to process the extension JSON data into a format that can be used by [method _generate_scene_node]. The return value should be a member of the [enum Error] enum.  
          */
-        /* gdvirtual */ _parse_node_extensions(state: GLTFState, gltf_node: GLTFNode, extensions: Dictionary): GodotError
+        /* gdvirtual */ _parse_node_extensions(state: GLTFState, gltf_node: GLTFNode, extensions: Dictionary): Error
         
         /** Part of the import process. This method is run after [method _parse_node_extensions] and before [method _parse_texture_json].  
          *  Runs when parsing image data from a GLTF file. The data could be sourced from a separate file, a URI, or a buffer, and then is passed as a byte array.  
          */
-        /* gdvirtual */ _parse_image_data(state: GLTFState, image_data: PackedByteArray, mime_type: string, ret_image: Image): GodotError
+        /* gdvirtual */ _parse_image_data(state: GLTFState, image_data: PackedByteArray, mime_type: string, ret_image: Image): Error
         
         /** Returns the file extension to use for saving image data into, for example, `".png"`. If defined, when this extension is used to handle images, and the images are saved to a separate file, the image bytes will be copied to a file with this extension. If this is set, there should be a [ResourceImporter] class able to import the file. If not defined or empty, Godot will save the image into a PNG file. */
         /* gdvirtual */ _get_image_file_extension(): string
@@ -8404,7 +8417,7 @@ declare module "godot" {
         /** Part of the import process. This method is run after [method _parse_image_data] and before [method _generate_scene_node].  
          *  Runs when parsing the texture JSON from the GLTF textures array. This can be used to set the source image index to use as the texture.  
          */
-        /* gdvirtual */ _parse_texture_json(state: GLTFState, texture_json: Dictionary, ret_gltf_texture: GLTFTexture): GodotError
+        /* gdvirtual */ _parse_texture_json(state: GLTFState, texture_json: Dictionary, ret_gltf_texture: GLTFTexture): Error
         
         /** Part of the import process. This method is run after [method _import_post_parse] and before [method _import_node].  
          *  Runs when generating a Godot scene node from a GLTFNode. The returned node will be added to the scene tree. Multiple nodes can be generated in this step if they are added as a child of the returned node.  
@@ -8416,22 +8429,22 @@ declare module "godot" {
         /** Part of the import process. This method is run after [method _parse_node_extensions] and before [method _generate_scene_node].  
          *  This method can be used to modify any of the data imported so far, including any scene nodes, before running the final per-node import step.  
          */
-        /* gdvirtual */ _import_post_parse(state: GLTFState): GodotError
+        /* gdvirtual */ _import_post_parse(state: GLTFState): Error
         
         /** Part of the import process. This method is run after [method _generate_scene_node] and before [method _import_post].  
          *  This method can be used to make modifications to each of the generated Godot scene nodes.  
          */
-        /* gdvirtual */ _import_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node): GodotError
+        /* gdvirtual */ _import_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node): Error
         
         /** Part of the import process. This method is run last, after all other parts of the import process.  
          *  This method can be used to modify the final Godot scene generated by the import process.  
          */
-        /* gdvirtual */ _import_post(state: GLTFState, root: Node): GodotError
+        /* gdvirtual */ _import_post(state: GLTFState, root: Node): Error
         
         /** Part of the export process. This method is run first, before all other parts of the export process.  
          *  The return value is used to determine if this [GLTFDocumentExtension] instance should be used for exporting a given GLTF file. If [constant OK], the export will use this [GLTFDocumentExtension] instance. If not overridden, [constant OK] is returned.  
          */
-        /* gdvirtual */ _export_preflight(state: GLTFState, root: Node): GodotError
+        /* gdvirtual */ _export_preflight(state: GLTFState, root: Node): Error
         
         /** Part of the export process. This method is run after [method _export_preflight] and before [method _export_preserialize].  
          *  Runs when converting the data from a Godot scene node. This method can be used to process the Godot scene node data into a format that can be used by [method _export_node].  
@@ -8441,7 +8454,7 @@ declare module "godot" {
         /** Part of the export process. This method is run after [method _convert_scene_node] and before [method _get_saveable_image_formats].  
          *  This method can be used to alter the state before performing serialization. It runs every time when generating a buffer with [method GLTFDocument.generate_buffer] or writing to the file system with [method GLTFDocument.write_to_filesystem].  
          */
-        /* gdvirtual */ _export_preserialize(state: GLTFState): GodotError
+        /* gdvirtual */ _export_preserialize(state: GLTFState): Error
         
         /** Part of the export process. This method is run after [method _convert_scene_node] and before [method _export_node].  
          *  Returns an array of the image formats that can be saved/exported by this extension. This extension will only be selected as the image exporter if the [GLTFDocument]'s [member GLTFDocument.image_format] is in this array. If this [GLTFDocumentExtension] is selected as the image exporter, one of the [method _save_image_at_path] or [method _serialize_image_to_bytes] methods will run next, otherwise [method _export_node] will run next. If the format name contains `"Lossy"`, the lossy quality slider will be displayed.  
@@ -8457,22 +8470,22 @@ declare module "godot" {
         /** Part of the export process. This method is run after [method _get_saveable_image_formats] and before [method _serialize_texture_json].  
          *  This method is run when saving images separately from the GLTF file. When images are embedded, [method _serialize_image_to_bytes] runs instead. Note that these methods only run when this [GLTFDocumentExtension] is selected as the image exporter.  
          */
-        /* gdvirtual */ _save_image_at_path(state: GLTFState, image: Image, file_path: string, image_format: string, lossy_quality: number /*f64*/): GodotError
+        /* gdvirtual */ _save_image_at_path(state: GLTFState, image: Image, file_path: string, image_format: string, lossy_quality: number /*f64*/): Error
         
         /** Part of the export process. This method is run after [method _save_image_at_path] or [method _serialize_image_to_bytes], and before [method _export_node]. Note that this method only runs when this [GLTFDocumentExtension] is selected as the image exporter.  
          *  This method can be used to set up the extensions for the texture JSON by editing [param texture_json]. The extension must also be added as used extension with [method GLTFState.add_used_extension], be sure to set `required` to `true` if you are not providing a fallback.  
          */
-        /* gdvirtual */ _serialize_texture_json(state: GLTFState, texture_json: Dictionary, gltf_texture: GLTFTexture, image_format: string): GodotError
+        /* gdvirtual */ _serialize_texture_json(state: GLTFState, texture_json: Dictionary, gltf_texture: GLTFTexture, image_format: string): Error
         
         /** Part of the export process. This method is run after [method _get_saveable_image_formats] and before [method _export_post]. If this [GLTFDocumentExtension] is used for exporting images, this runs after [method _serialize_texture_json].  
          *  This method can be used to modify the final JSON of each node.  
          */
-        /* gdvirtual */ _export_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node): GodotError
+        /* gdvirtual */ _export_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node): Error
         
         /** Part of the export process. This method is run last, after all other parts of the export process.  
          *  This method can be used to modify the final JSON of the generated GLTF file.  
          */
-        /* gdvirtual */ _export_post(state: GLTFState): GodotError
+        /* gdvirtual */ _export_post(state: GLTFState): Error
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensionconvertimportermesh.html */
     class GLTFDocumentExtensionConvertImporterMesh extends GLTFDocumentExtension {

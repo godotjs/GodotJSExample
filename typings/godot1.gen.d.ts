@@ -26,7 +26,7 @@ declare module "godot" {
     class AESContext extends RefCounted {
         constructor(identifier?: any)
         /** Start the AES context in the given [param mode]. A [param key] of either 16 or 32 bytes must always be provided, while an [param iv] (initialization vector) of exactly 16 bytes, is only needed when [param mode] is either [constant MODE_CBC_ENCRYPT] or [constant MODE_CBC_DECRYPT]. */
-        start(mode: AESContext.Mode, key: PackedByteArray, iv: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): GodotError
+        start(mode: AESContext.Mode, key: PackedByteArray, iv: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): Error
         
         /** Run the desired operation for this AES context. Will return a [PackedByteArray] containing the result of encrypting (or decrypting) the given [param src]. See [method start] for mode of operation.  
          *      
@@ -1172,7 +1172,7 @@ declare module "godot" {
     class AnimationLibrary extends Resource {
         constructor(identifier?: any)
         /** Adds the [param animation] to the library, accessible by the key [param name]. */
-        add_animation(name: StringName, animation: Animation): GodotError
+        add_animation(name: StringName, animation: Animation): Error
         
         /** Removes the [Animation] with the key [param name]. */
         remove_animation(name: StringName): void
@@ -1241,7 +1241,7 @@ declare module "godot" {
         /* gdvirtual */ _post_process_key_value(animation: Animation, track: number /*i64*/, value: any, object: Object, object_idx: number /*i64*/): void
         
         /** Adds [param library] to the animation player, under the key [param name]. */
-        add_animation_library(name: StringName, library: AnimationLibrary): GodotError
+        add_animation_library(name: StringName, library: AnimationLibrary): Error
         
         /** Removes the [AnimationLibrary] associated with the key [param name]. */
         remove_animation_library(name: StringName): void
@@ -3000,7 +3000,7 @@ declare module "godot" {
         regen_normal_maps(): void
         
         /** Performs a UV unwrap on the [ArrayMesh] to prepare the mesh for lightmapping. */
-        lightmap_unwrap(transform: Transform3D, texel_size: number /*f64*/): GodotError
+        lightmap_unwrap(transform: Transform3D, texel_size: number /*f64*/): Error
         set_custom_aabb(aabb: AABB): void
         get_custom_aabb(): AABB
         set_shadow_mesh(mesh: ArrayMesh): void
@@ -4665,7 +4665,7 @@ declare module "godot" {
          *      
          *  **Note:** A `.wav` extension is automatically appended to [param path] if it is missing.  
          */
-        save_to_wav(path: string): GodotError
+        save_to_wav(path: string): Error
         
         /** Contains the audio data in bytes.  
          *      
@@ -8276,9 +8276,6 @@ declare module "godot" {
         readonly item_group_status_changed: Signal //  => void
     }
     class CanvasItemEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class CanvasItemEditorSelectedItem extends Object {
         constructor(identifier?: any)
     }
     class CanvasItemEditorViewport extends Control {

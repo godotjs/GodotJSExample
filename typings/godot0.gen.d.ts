@@ -1,7 +1,7 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    class GodotError {}
+    
     // // Singleton Class
     namespace Performance {
         enum Monitor {
@@ -313,7 +313,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is intended to be used by editor plugins, as modified [ProjectSettings] can't be loaded back in the running app. If you want to change project settings in exported projects, use [method save_custom] to save `override.cfg` file.  
          */
-        static save(): GodotError
+        static save(): Error
         
         /** Loads the contents of the .pck or .zip file specified by [param pack] into the resource filesystem (`res://`). Returns `true` on success.  
          *      
@@ -324,7 +324,7 @@ declare module "godot" {
         static load_resource_pack(pack: string, replace_files: boolean = true, offset: number /*i64*/ = 0): boolean
         
         /** Saves the configuration to a custom file. The file extension must be `.godot` (to save in text-based [ConfigFile] format) or `.binary` (to save in binary format). You can also save `override.cfg` file, which is also text, but can be used in exported projects unlike other formats. */
-        static save_custom(file: string): GodotError
+        static save_custom(file: string): Error
         
         /** Emitted when any setting is changed, up to once per process frame. */
         static readonly settings_changed: Signal //  => void
@@ -618,7 +618,7 @@ declare module "godot" {
         /** Loads the resource using threads. If [param use_sub_threads] is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).  
          *  The [param cache_mode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.  
          */
-        static load_threaded_request(path: string, type_hint: string = '', use_sub_threads: boolean = false, cache_mode: ResourceLoader.CacheMode = 1): GodotError
+        static load_threaded_request(path: string, type_hint: string = '', use_sub_threads: boolean = false, cache_mode: ResourceLoader.CacheMode = 1): Error
         
         /** Returns the status of a threaded loading operation started with [method load_threaded_request] for the resource at [param path]. See [enum ThreadLoadStatus] for possible return values.  
          *  An array variable can optionally be passed via [param progress], and will return a one-element array containing the percentage of completion of the threaded loading.  
@@ -716,7 +716,7 @@ declare module "godot" {
          *      
          *  **Note:** When the project is running, any generated UID associated with the resource will not be saved as the required code is only executed in editor mode.  
          */
-        static save(resource: Resource, path: string = '', flags: ResourceSaver.SaverFlags = 0): GodotError
+        static save(resource: Resource, path: string = '', flags: ResourceSaver.SaverFlags = 0): Error
         
         /** Returns the list of extensions available for saving a resource of a given type. */
         static get_recognized_extensions(type: Resource): PackedStringArray
@@ -897,7 +897,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
-        static kill(pid: number /*i64*/): GodotError
+        static kill(pid: number /*i64*/): Error
         
         /** Requests the OS to open a resource with the most appropriate program. For example:  
          *  - `OS.shell_open("C:\\Users\name\Downloads")` on Windows opens the file explorer at the user's Downloads folder.  
@@ -909,7 +909,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, iOS, Web, Linux, macOS and Windows.  
          */
-        static shell_open(uri: string): GodotError
+        static shell_open(uri: string): Error
         
         /** Requests the OS to open the file manager, then navigate to the given [param file_or_dir_path] and select the target file or folder.  
          *  If [param file_or_dir_path] is a valid directory path, and [param open_folder] is `true`, the method will open the file manager and enter the target folder without selecting anything.  
@@ -917,7 +917,7 @@ declare module "godot" {
          *      
          *  **Note:** Currently this method is only implemented on Windows and macOS. On other platforms, it will fallback to [method shell_open] with a directory path of [param file_or_dir_path] with prefix `file://`.  
          */
-        static shell_show_in_file_manager(file_or_dir_path: string, open_folder: boolean = true): GodotError
+        static shell_show_in_file_manager(file_or_dir_path: string, open_folder: boolean = true): Error
         
         /** Returns `true` if the child process ID ([param pid]) is still running or `false` if it has terminated.  
          *  Must be a valid ID generated from [method create_process].  
@@ -1096,7 +1096,7 @@ declare module "godot" {
          *  **Note:** If the user has disabled the recycle bin on their system, the file will be permanently deleted instead.  
          *    
          */
-        static move_to_trash(path: string): GodotError
+        static move_to_trash(path: string): Error
         
         /** Returns the absolute directory path where user data is written (`user://`).  
          *  On Windows, this is `%AppData%\Godot\app_userdata\[project_name]`, or `%AppData%\[custom_name]` if `use_custom_user_dir` is set. `%AppData%` expands to `%UserProfile%\AppData\Roaming`.  
@@ -1155,7 +1155,7 @@ declare module "godot" {
         static set_use_file_access_save_and_swap(enabled: boolean): void
         
         /** Sets the name of the current thread. */
-        static set_thread_name(name: string): GodotError
+        static set_thread_name(name: string): Error
         
         /** Returns the ID of the current thread. This can be used in logs to ease debugging of multi-threaded applications.  
          *      
@@ -1328,14 +1328,14 @@ declare module "godot" {
          *  - [constant ERR_UNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new language  
          *  - [constant ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar extension/name/type  
          */
-        static register_script_language(language: ScriptLanguage): GodotError
+        static register_script_language(language: ScriptLanguage): Error
         
         /** Unregisters the [ScriptLanguage] instance from `ScriptServer`.  
          *  Returns:  
          *  - [constant OK] on success  
          *  - [constant ERR_DOES_NOT_EXIST] if the language is already not registered in `ScriptServer`  
          */
-        static unregister_script_language(language: ScriptLanguage): GodotError
+        static unregister_script_language(language: ScriptLanguage): Error
         
         /** Returns the number of available script languages. Use with [method get_script_language]. */
         static get_script_language_count(): number /*i64*/
@@ -1439,7 +1439,7 @@ declare module "godot" {
         static class_get_property(object: Object, property: StringName): any
         
         /** Sets [param property] value of [param object] to [param value]. */
-        static class_set_property(object: Object, property: StringName, value: any): GodotError
+        static class_set_property(object: Object, property: StringName, value: any): Error
         
         /** Returns whether [param class] (or its ancestry if [param no_inheritance] is `false`) has a method called [param method] or not. */
         static class_has_method(class_: StringName, method: StringName, no_inheritance: boolean = false): boolean
@@ -2291,7 +2291,7 @@ declare module "godot" {
          *  Returns [constant @GlobalScope.ERR_INVALID_PARAMETER] if a task with the passed ID does not exist (maybe because it was already awaited and disposed of).  
          *  Returns [constant @GlobalScope.ERR_BUSY] if the call is made from another running task and, due to task scheduling, the task to await is at a lower level in the call stack and therefore can't progress. This is an advanced situation that should only matter when some tasks depend on others.  
          */
-        static wait_for_task_completion(task_id: number /*i64*/): GodotError
+        static wait_for_task_completion(task_id: number /*i64*/): Error
         
         /** Adds [param action] as a group task to be executed by the worker threads. The [Callable] will be called a number of times based on [param elements], with the first thread calling it with the value `0` as a parameter, and each consecutive execution incrementing this value by 1 until it reaches `element - 1`.  
          *  The number of threads the task is distributed to is defined by [param tasks_needed], where the default value `-1` means it is distributed to all worker threads. [param high_priority] determines if the task has a high priority or a low priority (default). You can optionally provide a [param description] to help with debugging.  
@@ -2521,7 +2521,7 @@ declare module "godot" {
         static get_edited_scene_root(): Node
         
         /** Saves the currently active scene. Returns either [constant OK] or [constant ERR_CANT_CREATE]. */
-        static save_scene(): GodotError
+        static save_scene(): Error
         
         /** Saves the currently active scene as a file at [param path]. */
         static save_scene_as(path: string, with_preview: boolean = true): void
@@ -2607,7 +2607,7 @@ declare module "godot" {
          *      
          *  **Note:** Only relevant when exported as a Progressive Web App and [method pwa_needs_update] returns `true`.  
          */
-        static pwa_update(): GodotError
+        static pwa_update(): Error
         
         /** Force synchronization of the persistent file system (when enabled).  
          *      
@@ -3908,13 +3908,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static dialog_show(title: string, description: string, buttons: PackedStringArray, callback: Callable): GodotError
+        static dialog_show(title: string, description: string, buttons: PackedStringArray, callback: Callable): Error
         
         /** Shows a text input dialog which uses the operating system's native look-and-feel. [param callback] will be called with a [String] argument equal to the text field's contents when the dialog is closed for any reason.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static dialog_input_text(title: string, description: string, existing_text: string, callback: Callable): GodotError
+        static dialog_input_text(title: string, description: string, existing_text: string, callback: Callable): Error
         
         /** Displays OS native dialog for selecting files or directories in the file system.  
          *  Callbacks have the following arguments: `bool status, PackedStringArray selected_paths, int selected_filter_index`.  
@@ -3931,7 +3931,7 @@ declare module "godot" {
          *      
          *  **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [method OS.get_granted_permissions] to get a list of saved bookmarks.  
          */
-        static file_dialog_show(title: string, current_directory: string, filename: string, show_hidden: boolean, mode: DisplayServer.FileDialogMode, filters: PackedStringArray, callback: Callable): GodotError
+        static file_dialog_show(title: string, current_directory: string, filename: string, show_hidden: boolean, mode: DisplayServer.FileDialogMode, filters: PackedStringArray, callback: Callable): Error
         
         /** Returns the number of keyboard layouts.  
          *      

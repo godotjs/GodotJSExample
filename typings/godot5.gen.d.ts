@@ -142,7 +142,7 @@ declare module "godot" {
         /** If implemented, renames dependencies within the given resource and saves it. [param renames] is a dictionary `{ String => String }` mapping old dependency paths to new paths.  
          *  Returns [constant OK] on success, or an [enum Error] constant in case of failure.  
          */
-        /* gdvirtual */ _rename_dependencies(path: string, renames: Dictionary): GodotError
+        /* gdvirtual */ _rename_dependencies(path: string, renames: Dictionary): Error
         /* gdvirtual */ _exists(path: string): boolean
         /* gdvirtual */ _get_classes_used(path: string): PackedStringArray
         
@@ -160,10 +160,10 @@ declare module "godot" {
         /** Saves the given resource object to a file at the target [param path]. [param flags] is a bitmask composed with [enum ResourceSaver.SaverFlags] constants.  
          *  Returns [constant OK] on success, or an [enum Error] constant in case of failure.  
          */
-        /* gdvirtual */ _save(resource: Resource, path: string, flags: number /*i64*/): GodotError
+        /* gdvirtual */ _save(resource: Resource, path: string, flags: number /*i64*/): Error
         
         /** Sets a new UID for the resource at the given [param path]. Returns [constant OK] on success, or an [enum Error] constant in case of failure. */
-        /* gdvirtual */ _set_uid(path: string, uid: number /*i64*/): GodotError
+        /* gdvirtual */ _set_uid(path: string, uid: number /*i64*/): Error
         
         /** Returns whether the given resource object can be saved by this saver. */
         /* gdvirtual */ _recognize(resource: Resource): boolean
@@ -1648,12 +1648,12 @@ declare module "godot" {
         get_authenticating_peers(): PackedInt32Array
         
         /** Sends the specified [param data] to the remote peer identified by [param id] as part of an authentication message. This can be used to authenticate peers, and control when [signal MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected peers). */
-        send_auth(id: number /*i64*/, data: PackedByteArray): GodotError
+        send_auth(id: number /*i64*/, data: PackedByteArray): Error
         
         /** Mark the authentication step as completed for the remote peer identified by [param id]. The [signal MultiplayerAPI.peer_connected] signal will be emitted for this peer once the remote side also completes the authentication. No further authentication messages are expected to be received from this peer.  
          *  If a peer disconnects before completing authentication, either due to a network issue, the [member auth_timeout] expiring, or manually calling [method disconnect_peer], the [signal peer_authentication_failed] signal will be emitted instead of [signal MultiplayerAPI.peer_disconnected].  
          */
-        complete_auth(id: number /*i64*/): GodotError
+        complete_auth(id: number /*i64*/): Error
         set_auth_callback(callback: Callable): void
         get_auth_callback(): Callable
         set_auth_timeout(timeout: number /*f64*/): void
@@ -1666,7 +1666,7 @@ declare module "godot" {
         is_server_relay_enabled(): boolean
         
         /** Sends the given raw [param bytes] to a specific peer identified by [param id] (see [method MultiplayerPeer.set_target_peer]). Default ID is `0`, i.e. broadcast to all peers. */
-        send_bytes(bytes: PackedByteArray, id: number /*i64*/ = 0, mode: MultiplayerPeer.TransferMode = 2, channel: number /*i64*/ = 0): GodotError
+        send_bytes(bytes: PackedByteArray, id: number /*i64*/ = 0, mode: MultiplayerPeer.TransferMode = 2, channel: number /*i64*/ = 0): Error
         get_max_sync_packet_size(): number /*i64*/
         set_max_sync_packet_size(size: number /*i64*/): void
         get_max_delta_packet_size(): number /*i64*/
@@ -2034,7 +2034,7 @@ declare module "godot" {
          *      
          *  **Note:** See [method change_scene_to_packed] for details on the order of operations.  
          */
-        change_scene_to_file(path: string): GodotError
+        change_scene_to_file(path: string): Error
         
         /** Changes the running scene to a new instance of the given [PackedScene] (which must be valid).  
          *  Returns [constant OK] on success, [constant ERR_CANT_CREATE] if the scene cannot be instantiated, or [constant ERR_INVALID_PARAMETER] if the scene is invalid.  
@@ -2044,12 +2044,12 @@ declare module "godot" {
          *  2. At the end of the frame, the formerly current scene, already removed from the tree, will be deleted (freed from memory) and then the new scene will be instantiated and added to the tree. [method Node.get_tree] and [member current_scene] will be back to working as usual.  
          *  This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [method Node.queue_free].  
          */
-        change_scene_to_packed(packed_scene: PackedScene): GodotError
+        change_scene_to_packed(packed_scene: PackedScene): Error
         
         /** Reloads the currently active scene.  
          *  Returns [constant OK] on success, [constant ERR_UNCONFIGURED] if no [member current_scene] was defined yet, [constant ERR_CANT_OPEN] if [member current_scene] cannot be loaded into a [PackedScene], or [constant ERR_CANT_CREATE] if the scene cannot be instantiated.  
          */
-        reload_current_scene(): GodotError
+        reload_current_scene(): Error
         
         /** If a current scene is loaded, calling this method will unload it. */
         unload_current_scene(): void
@@ -2220,7 +2220,7 @@ declare module "godot" {
         set_source_code(source: string): void
         
         /** Reloads the script's class implementation. Returns an error code. */
-        reload(keep_state: boolean = false): GodotError
+        reload(keep_state: boolean = false): Error
         
         /** Returns the script directly inherited by this script. */
         get_base_script(): Script
@@ -2412,7 +2412,7 @@ declare module "godot" {
         /* gdvirtual */ _has_source_code(): boolean
         /* gdvirtual */ _get_source_code(): string
         /* gdvirtual */ _set_source_code(code: string): void
-        /* gdvirtual */ _reload(keep_state: boolean): GodotError
+        /* gdvirtual */ _reload(keep_state: boolean): Error
         /* gdvirtual */ _get_documentation(): Array
         /* gdvirtual */ _get_class_icon_path(): string
         /* gdvirtual */ _has_method(method: StringName): boolean
@@ -2508,7 +2508,7 @@ declare module "godot" {
         /* gdvirtual */ _can_inherit_from_file(): boolean
         /* gdvirtual */ _find_function(class_name: string, function_name: string): number /*i64*/
         /* gdvirtual */ _make_function(class_name: string, function_name: string, function_args: PackedStringArray): string
-        /* gdvirtual */ _open_in_external_editor(script: Script, line: number /*i64*/, column: number /*i64*/): GodotError
+        /* gdvirtual */ _open_in_external_editor(script: Script, line: number /*i64*/, column: number /*i64*/): Error
         /* gdvirtual */ _overrides_external_editor(): boolean
         /* gdvirtual */ _complete_code(code: string, path: string, owner: Object): Dictionary
         /* gdvirtual */ _lookup_code(code: string, symbol: string, path: string, owner: Object): Dictionary
@@ -2880,6 +2880,10 @@ declare module "godot" {
         /** The [Shader] program used to render this material. */
         get shader(): Shader
         set shader(value: Shader)
+    }
+    class ShaderTextEditor extends CodeTextEditor {
+        constructor(identifier?: any)
+        readonly script_validated: Signal // valid: boolean => void
     }
     /** Abstract base class for 2D shapes used for physics collision.  
      *  	  
@@ -5205,7 +5209,7 @@ declare module "godot" {
     class StreamPeer extends RefCounted {
         constructor(identifier?: any)
         /** Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum Error] code. */
-        put_data(data: PackedByteArray): GodotError
+        put_data(data: PackedByteArray): Error
         
         /** Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum Error] code and an integer, describing how much data was actually sent. */
         put_partial_data(data: PackedByteArray): Array
@@ -5349,10 +5353,10 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_streampeerextension.html */
     class StreamPeerExtension extends StreamPeer {
         constructor(identifier?: any)
-        /* gdvirtual */ _get_data(r_buffer: number /*i64*/, r_bytes: number /*i64*/, r_received: number /*i64*/): GodotError
-        /* gdvirtual */ _get_partial_data(r_buffer: number /*i64*/, r_bytes: number /*i64*/, r_received: number /*i64*/): GodotError
-        /* gdvirtual */ _put_data(p_data: number /*i64*/, p_bytes: number /*i64*/, r_sent: number /*i64*/): GodotError
-        /* gdvirtual */ _put_partial_data(p_data: number /*i64*/, p_bytes: number /*i64*/, r_sent: number /*i64*/): GodotError
+        /* gdvirtual */ _get_data(r_buffer: number /*i64*/, r_bytes: number /*i64*/, r_received: number /*i64*/): Error
+        /* gdvirtual */ _get_partial_data(r_buffer: number /*i64*/, r_bytes: number /*i64*/, r_received: number /*i64*/): Error
+        /* gdvirtual */ _put_data(p_data: number /*i64*/, p_bytes: number /*i64*/, r_sent: number /*i64*/): Error
+        /* gdvirtual */ _put_partial_data(p_data: number /*i64*/, p_bytes: number /*i64*/, r_sent: number /*i64*/): Error
         /* gdvirtual */ _get_available_bytes(): number /*i64*/
     }
     /** A stream peer that handles GZIP and deflate compression/decompression.  
@@ -5362,13 +5366,13 @@ declare module "godot" {
     class StreamPeerGZIP extends StreamPeer {
         constructor(identifier?: any)
         /** Start the stream in compression mode with the given [param buffer_size], if [param use_deflate] is `true` uses deflate instead of GZIP. */
-        start_compression(use_deflate: boolean = false, buffer_size: number /*i64*/ = 65535): GodotError
+        start_compression(use_deflate: boolean = false, buffer_size: number /*i64*/ = 65535): Error
         
         /** Start the stream in decompression mode with the given [param buffer_size], if [param use_deflate] is `true` uses deflate instead of GZIP. */
-        start_decompression(use_deflate: boolean = false, buffer_size: number /*i64*/ = 65535): GodotError
+        start_decompression(use_deflate: boolean = false, buffer_size: number /*i64*/ = 65535): Error
         
         /** Finalizes the stream, compressing or decompressing any buffered chunk left. */
-        finish(): GodotError
+        finish(): Error
         
         /** Clears this stream, resetting the internal state. */
         clear(): void
@@ -5397,13 +5401,13 @@ declare module "godot" {
         /** Opens the TCP socket, and binds it to the specified local address.  
          *  This method is generally not needed, and only used to force the subsequent call to [method connect_to_host] to use the specified [param host] and [param port] as source address. This can be desired in some NAT punchthrough techniques, or when forcing the source network interface.  
          */
-        bind(port: number /*i64*/, host: string = '*'): GodotError
+        bind(port: number /*i64*/, host: string = '*'): Error
         
         /** Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [constant OK] on success. */
-        connect_to_host(host: string, port: number /*i64*/): GodotError
+        connect_to_host(host: string, port: number /*i64*/): Error
         
         /** Poll the socket, updating its state. See [method get_status]. */
-        poll(): GodotError
+        poll(): Error
         
         /** Returns the status of the connection, see [enum Status]. */
         get_status(): StreamPeerTCP.Status
@@ -5454,10 +5458,10 @@ declare module "godot" {
         poll(): void
         
         /** Accepts a peer connection as a server using the given [param server_options]. See [method TLSOptions.server]. */
-        accept_stream(stream: StreamPeer, server_options: TLSOptions): GodotError
+        accept_stream(stream: StreamPeer, server_options: TLSOptions): Error
         
         /** Connects to a peer using an underlying [StreamPeer] [param stream] and verifying the remote certificate is correctly signed for the given [param common_name]. You can pass the optional [param client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        connect_to_stream(stream: StreamPeer, common_name: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): GodotError
+        connect_to_stream(stream: StreamPeer, common_name: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): Error
         
         /** Returns the status of the connection. See [enum Status] for values. */
         get_status(): StreamPeerTLS.Status
@@ -6166,7 +6170,7 @@ declare module "godot" {
          *  If [param bind_address] is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen on all available addresses matching that IP type.  
          *  If [param bind_address] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).  
          */
-        listen(port: number /*i64*/, bind_address: string = '*'): GodotError
+        listen(port: number /*i64*/, bind_address: string = '*'): Error
         
         /** Returns `true` if a connection is available for taking. */
         is_connection_available(): boolean
@@ -9186,79 +9190,17 @@ declare module "godot" {
         /* gdvirtual */ _parse_structured_text(parser_type: TextServer.StructuredTextParser, args: Array, text: string): Array
         /* gdvirtual */ _cleanup(): void
     }
+    class TextShaderEditor extends MarginContainer {
+        constructor(identifier?: any)
+        _show_warnings_panel(_unnamed_arg0: boolean): void
+        _warning_clicked(_unnamed_arg0: any): void
+        readonly validation_changed: Signal //  => void
+    }
     /** Base class for all texture types.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_texture.html  
      */
     class Texture extends Resource {
         constructor(identifier?: any)
-    }
-    /** Texture for 2D and 3D.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_texture2d.html  
-     */
-    class Texture2D extends Texture {
-        constructor(identifier?: any)
-        /** Called when the [Texture2D]'s width is queried. */
-        /* gdvirtual */ _get_width(): number /*i64*/
-        
-        /** Called when the [Texture2D]'s height is queried. */
-        /* gdvirtual */ _get_height(): number /*i64*/
-        
-        /** Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)` position. */
-        /* gdvirtual */ _is_pixel_opaque(x: number /*i64*/, y: number /*i64*/): boolean
-        
-        /** Called when the presence of an alpha channel in the [Texture2D] is queried. */
-        /* gdvirtual */ _has_alpha(): boolean
-        
-        /** Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the top-left offset specified in [param pos]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: boolean): void
-        
-        /** Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw_rect(to_canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color, transpose: boolean): void
-        
-        /** Called when a part of the [Texture2D] specified by [param src_rect]'s coordinates is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: boolean, clip_uv: boolean): void
-        
-        /** Returns the texture width in pixels. */
-        get_width(): number /*i64*/
-        
-        /** Returns the texture height in pixels. */
-        get_height(): number /*i64*/
-        
-        /** Returns the texture size in pixels. */
-        get_size(): Vector2
-        
-        /** Returns `true` if this [Texture2D] has an alpha channel. */
-        has_alpha(): boolean
-        
-        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified [param position]. */
-        draw(canvas_item: RID, position: Vector2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
-        
-        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API. */
-        draw_rect(canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
-        
-        /** Draws a part of the texture using a [CanvasItem] with the [RenderingServer] API. */
-        draw_rect_region(canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false, clip_uv: boolean = true): void
-        
-        /** Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each time). [Image]s can be accessed and manipulated directly.  
-         *      
-         *  **Note:** This will return `null` if this [Texture2D] is invalid.  
-         *      
-         *  **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.  
-         */
-        get_image(): Image
-        
-        /** Creates a placeholder version of this resource ([PlaceholderTexture2D]). */
-        create_placeholder(): Resource
     }
 }

@@ -30,10 +30,10 @@ interface ScopeWriter extends CodeWriter {
     finish(): void;
 }
 
-//TODO remove all these lines after all primitive types implemented
 const MockLines = [
-    "class GodotError {}",
+    "",
 ]
+
 const KeywordReplacement: { [name: string]: string } = {
     ["default"]: "default_",
     ["let"]: "let_",
@@ -106,7 +106,7 @@ const PrimitiveTypeNames : { [type: number]: string } = {
 }
 const RemapTypes: { [name: string]: string } = {
     ["bool"]: "bool",
-    ["Error"]: "GodotError",
+    ["Error"]: "Error",
 }
 const IgnoredTypes = new Set([
     "IPUnix",
@@ -899,9 +899,13 @@ export default class TSDCodeGen {
     }
 
     private emit_utilities() {
+        const doc = this._types.find_doc("@GlobalScope");
+        let separator_line = false;
         for (let utility_name in this._types.utilities) {
             const utility_func = this._types.utilities[utility_name];
             const cg = this.split();
+            DocCommentHelper.write(cg, doc?.methods[utility_func.name]?.description, separator_line);
+            separator_line = true;
             cg.utility_(utility_func);
         }
     }
@@ -910,8 +914,12 @@ export default class TSDCodeGen {
         for (let global_name in this._types.globals) {
             const global_obj = this._types.globals[global_name];
             const cg = this.split();
+            const doc = this._types.find_doc("@GlobalScope");
             const ns = cg.enum_(global_obj.name);
+            let separator_line = false;
             for (let name in global_obj.values) {
+                DocCommentHelper.write(ns, doc?.constants[name]?.description, separator_line);
+                separator_line = true;
                 ns.element_(name, global_obj.values[name]);
             }
             ns.finish();

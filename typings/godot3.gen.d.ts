@@ -823,6 +823,9 @@ declare module "godot" {
     class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
         constructor(identifier?: any)
     }
+    class GotoLineDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
+    }
     namespace Gradient {
         enum InterpolationMode {
             /** Linear interpolation. */
@@ -1058,7 +1061,7 @@ declare module "godot" {
         /* gdvirtual */ _is_node_hover_valid(from_node: StringName, from_port: number /*i64*/, to_node: StringName, to_port: number /*i64*/): boolean
         
         /** Create a connection between the [param from_port] of the [param from_node] [GraphNode] and the [param to_port] of the [param to_node] [GraphNode]. If the connection already exists, no connection is created. */
-        connect_node(from_node: StringName, from_port: number /*i64*/, to_node: StringName, to_port: number /*i64*/): GodotError
+        connect_node(from_node: StringName, from_port: number /*i64*/, to_node: StringName, to_port: number /*i64*/): Error
         
         /** Returns `true` if the [param from_port] of the [param from_node] [GraphNode] is connected to the [param to_port] of the [param to_node] [GraphNode]. */
         is_node_connected(from_node: StringName, from_port: number /*i64*/, to_node: StringName, to_port: number /*i64*/): boolean
@@ -1723,10 +1726,10 @@ declare module "godot" {
     class HMACContext extends RefCounted {
         constructor(identifier?: any)
         /** Initializes the HMACContext. This method cannot be called again on the same HMACContext until [method finish] has been called. */
-        start(hash_type: HashingContext.HashType, key: PackedByteArray): GodotError
+        start(hash_type: HashingContext.HashType, key: PackedByteArray): Error
         
         /** Updates the message to be HMACed. This can be called multiple times before [method finish] is called to append [param data] to the message, but cannot be called until [method start] has been called. */
-        update(data: PackedByteArray): GodotError
+        update(data: PackedByteArray): Error
         
         /** Returns the resulting HMAC. If the HMAC failed, an empty [PackedByteArray] is returned. */
         finish(): PackedByteArray
@@ -2016,7 +2019,7 @@ declare module "godot" {
         /** Connects to a host. This needs to be done before any requests are sent.  
          *  If no [param port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS. You can pass the optional [param tls_options] parameter to customize the trusted certification authorities, or the common name verification when using HTTPS. See [method TLSOptions.client] and [method TLSOptions.client_unsafe].  
          */
-        connect_to_host(host: string, port: number /*i64*/ = -1, tls_options: TLSOptions = <any> {} /*compound.type from nil*/): GodotError
+        connect_to_host(host: string, port: number /*i64*/ = -1, tls_options: TLSOptions = <any> {} /*compound.type from nil*/): Error
         set_connection(connection: StreamPeer): void
         get_connection(): StreamPeer
         
@@ -2025,7 +2028,7 @@ declare module "godot" {
          *  Headers are HTTP request headers. For available HTTP methods, see [enum Method].  
          *  Sends the body data raw, as a byte array and does not encode it in any way.  
          */
-        request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: PackedByteArray): GodotError
+        request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: PackedByteArray): Error
         
         /** Sends a request to the connected host.  
          *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
@@ -2035,7 +2038,7 @@ declare module "godot" {
          *      
          *  **Note:** The [param body] parameter is ignored if [param method] is [constant HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [method String.uri_encode] for an example.  
          */
-        request(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: string = ''): GodotError
+        request(method: HTTPClient.Method, url: string, headers: PackedStringArray, body: string = ''): Error
         
         /** Closes the current connection, allowing reuse of this [HTTPClient]. */
         close(): void
@@ -2077,7 +2080,7 @@ declare module "godot" {
         get_status(): HTTPClient.Status
         
         /** This needs to be called in order to have any request processed. Check results with [method get_status]. */
-        poll(): GodotError
+        poll(): Error
         
         /** Sets the proxy server for HTTP requests.  
          *  The proxy server is unset if [param host] is empty or [param port] is -1.  
@@ -2162,12 +2165,12 @@ declare module "godot" {
          *      
          *  **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.  
          */
-        request(url: string, custom_headers: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data: string = ''): GodotError
+        request(url: string, custom_headers: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data: string = ''): Error
         
         /** Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
          *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
          */
-        request_raw(url: string, custom_headers: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data_raw: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): GodotError
+        request_raw(url: string, custom_headers: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data_raw: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): Error
         
         /** Cancels the current request. */
         cancel_request(): void
@@ -2268,10 +2271,10 @@ declare module "godot" {
     class HashingContext extends RefCounted {
         constructor(identifier?: any)
         /** Starts a new hash computation of the given [param type] (e.g. [constant HASH_SHA256] to start computation of a SHA-256). */
-        start(type: HashingContext.HashType): GodotError
+        start(type: HashingContext.HashType): Error
         
         /** Updates the computation with the given [param chunk] of data. */
-        update(chunk: PackedByteArray): GodotError
+        update(chunk: PackedByteArray): Error
         
         /** Closes the current context, and return the computed hash. */
         finish(): PackedByteArray
@@ -2657,7 +2660,7 @@ declare module "godot" {
         /** Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`. Enabling [param renormalize] when generating mipmaps for normal map textures will make sure all resulting vector values are normalized.  
          *  It is possible to check if the image has mipmaps by calling [method has_mipmaps] or [method get_mipmap_count]. Calling [method generate_mipmaps] on an image that already has mipmaps will replace existing mipmaps in the image.  
          */
-        generate_mipmaps(renormalize: boolean = false): GodotError
+        generate_mipmaps(renormalize: boolean = false): Error
         
         /** Removes the image's mipmaps. */
         clear_mipmaps(): void
@@ -2678,13 +2681,13 @@ declare module "godot" {
          *  **Warning:** This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the `user://` directory, and may not work in exported projects.  
          *  See also [ImageTexture] description for usage examples.  
          */
-        load(path: string): GodotError
+        load(path: string): Error
         
         /** Creates a new [Image] and loads data from the specified file. */
         static load_from_file(path: string): Image
         
         /** Saves the image as a PNG file to the file at [param path]. */
-        save_png(path: string): GodotError
+        save_png(path: string): Error
         
         /** Saves the image as a PNG file to a byte array. */
         save_png_to_buffer(): PackedByteArray
@@ -2693,7 +2696,7 @@ declare module "godot" {
          *      
          *  **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the image will still be saved, but the resulting JPEG file won't contain the alpha channel.  
          */
-        save_jpg(path: string, quality: number /*f64*/ = 0.75): GodotError
+        save_jpg(path: string, quality: number /*f64*/ = 0.75): Error
         
         /** Saves the image as a JPEG file to a byte array with the specified [param quality] between `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the cost of larger byte array sizes (and therefore memory usage). Recommended [param quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.  
          *      
@@ -2705,7 +2708,7 @@ declare module "godot" {
          *      
          *  **Note:** The TinyEXR module is disabled in non-editor builds, which means [method save_exr] will return [constant ERR_UNAVAILABLE] when it is called from an exported project.  
          */
-        save_exr(path: string, grayscale: boolean = false): GodotError
+        save_exr(path: string, grayscale: boolean = false): Error
         
         /** Saves the image as an EXR file to a byte array. If [param grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return an empty byte array if Godot was compiled without the TinyEXR module.  
          *      
@@ -2717,7 +2720,7 @@ declare module "godot" {
          *      
          *  **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.  
          */
-        save_webp(path: string, lossy: boolean = false, quality: number /*f64*/ = 0.75): GodotError
+        save_webp(path: string, lossy: boolean = false, quality: number /*f64*/ = 0.75): Error
         
         /** Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless. If [param lossy] is true, the image will be saved lossy, using the [param quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.  
          *      
@@ -2738,19 +2741,19 @@ declare module "godot" {
          *  The [param source] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.  
          *  For ASTC compression, the [param astc_format] parameter must be supplied.  
          */
-        compress(mode: Image.CompressMode, source: Image.CompressSource = 0, astc_format: Image.ASTCFormat = 0): GodotError
+        compress(mode: Image.CompressMode, source: Image.CompressSource = 0, astc_format: Image.ASTCFormat = 0): Error
         
         /** Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.  
          *  This is an alternative to [method compress] that lets the user supply the channels used in order for the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this argument is ignored.  
          *  For ASTC compression, the [param astc_format] parameter must be supplied.  
          */
-        compress_from_channels(mode: Image.CompressMode, channels: Image.UsedChannels, astc_format: Image.ASTCFormat = 0): GodotError
+        compress_from_channels(mode: Image.CompressMode, channels: Image.UsedChannels, astc_format: Image.ASTCFormat = 0): Error
         
         /** Decompresses the image if it is VRAM compressed in a supported format. Returns [constant OK] if the format is supported, otherwise [constant ERR_UNAVAILABLE].  
          *      
          *  **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2 are not supported.  
          */
-        decompress(): GodotError
+        decompress(): Error
         
         /** Returns `true` if the image is compressed. */
         is_compressed(): boolean
@@ -2841,19 +2844,19 @@ declare module "godot" {
         adjust_bcs(brightness: number /*f64*/, contrast: number /*f64*/, saturation: number /*f64*/): void
         
         /** Loads an image from the binary contents of a PNG file. */
-        load_png_from_buffer(buffer: PackedByteArray): GodotError
+        load_png_from_buffer(buffer: PackedByteArray): Error
         
         /** Loads an image from the binary contents of a JPEG file. */
-        load_jpg_from_buffer(buffer: PackedByteArray): GodotError
+        load_jpg_from_buffer(buffer: PackedByteArray): Error
         
         /** Loads an image from the binary contents of a WebP file. */
-        load_webp_from_buffer(buffer: PackedByteArray): GodotError
+        load_webp_from_buffer(buffer: PackedByteArray): Error
         
         /** Loads an image from the binary contents of a TGA file.  
          *      
          *  **Note:** This method is only available in engine builds with the TGA module enabled. By default, the TGA module is enabled, but it can be disabled at build-time using the `module_tga_enabled=no` SCons option.  
          */
-        load_tga_from_buffer(buffer: PackedByteArray): GodotError
+        load_tga_from_buffer(buffer: PackedByteArray): Error
         
         /** Loads an image from the binary contents of a BMP file.  
          *      
@@ -2861,7 +2864,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is only available in engine builds with the BMP module enabled. By default, the BMP module is enabled, but it can be disabled at build-time using the `module_bmp_enabled=no` SCons option.  
          */
-        load_bmp_from_buffer(buffer: PackedByteArray): GodotError
+        load_bmp_from_buffer(buffer: PackedByteArray): Error
         
         /** Loads an image from the binary contents of a [url=https://github.com/KhronosGroup/KTX-Software]KTX[/url] file. Unlike most image formats, KTX can store VRAM-compressed data and embed mipmaps.  
          *      
@@ -2869,7 +2872,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is only available in engine builds with the KTX module enabled. By default, the KTX module is enabled, but it can be disabled at build-time using the `module_ktx_enabled=no` SCons option.  
          */
-        load_ktx_from_buffer(buffer: PackedByteArray): GodotError
+        load_ktx_from_buffer(buffer: PackedByteArray): Error
         
         /** Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).  
          *      
@@ -2877,13 +2880,13 @@ declare module "godot" {
          *      
          *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
          */
-        load_svg_from_buffer(buffer: PackedByteArray, scale: number /*f64*/ = 1): GodotError
+        load_svg_from_buffer(buffer: PackedByteArray, scale: number /*f64*/ = 1): Error
         
         /** Loads an image from the string contents of a SVG file (**.svg**).  
          *      
          *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
          */
-        load_svg_from_string(svg_str: string, scale: number /*f64*/ = 1): GodotError
+        load_svg_from_string(svg_str: string, scale: number /*f64*/ = 1): Error
         
         /** Holds all the image's color data in a given format. See [enum Format] constants. */
         get data(): Dictionary
@@ -2913,7 +2916,7 @@ declare module "godot" {
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
         
         /** Loads the content of [param fileaccess] into the provided [param image]. */
-        /* gdvirtual */ _load_image(image: Image, fileaccess: FileAccess, flags: ImageFormatLoader.LoaderFlags, scale: number /*f64*/): GodotError
+        /* gdvirtual */ _load_image(image: Image, fileaccess: FileAccess, flags: ImageFormatLoader.LoaderFlags, scale: number /*f64*/): Error
         
         /** Add this format loader to the engine, allowing it to recognize the file extensions returned by [method _get_recognized_extensions]. */
         add_format_loader(): void
@@ -2955,7 +2958,7 @@ declare module "godot" {
     class ImageTexture3D extends Texture3D {
         constructor(identifier?: any)
         /** Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth]. See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then generate mipmaps for the [ImageTexture3D]. */
-        create(format: Image.Format, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, use_mipmaps: boolean, data: Array): GodotError
+        create(format: Image.Format, width: number /*i64*/, height: number /*i64*/, depth: number /*i64*/, use_mipmaps: boolean, data: Array): Error
         
         /** Replaces the texture's existing data with the layers specified in [param data]. The size of [param data] must match the parameters that were used for [method create]. In other words, the texture cannot be resized or have its format changed by calling [method update]. */
         update(data: Array): void
@@ -2973,7 +2976,7 @@ declare module "godot" {
         /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images  *must*  have the same width, height, image format and mipmapping setting.  
          *  Each [Image] represents one `layer`.  
          */
-        create_from_images(images: Array): GodotError
+        create_from_images(images: Array): Error
         
         /** Replaces the existing [Image] data at the given [param layer] with this new image.  
          *  The given [Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.  
@@ -4127,7 +4130,7 @@ declare module "godot" {
          *  Non-static variant of [method parse_string], if you want custom error handling.  
          *  The optional [param keep_text] argument instructs the parser to keep a copy of the original text. This text can be obtained later by using the [method get_parsed_text] function and is used when saving the resource (instead of generating new text from [member data]).  
          */
-        parse(json_text: string, keep_text: boolean = false): GodotError
+        parse(json_text: string, keep_text: boolean = false): Error
         get_data(): any
         set_data(data: any): void
         
@@ -6744,10 +6747,10 @@ declare module "godot" {
         /** Uses specified surface of given [Mesh] to populate data for MeshDataTool.  
          *  Requires [Mesh] with primitive type [constant Mesh.PRIMITIVE_TRIANGLES].  
          */
-        create_from_surface(mesh: ArrayMesh, surface: number /*i64*/): GodotError
+        create_from_surface(mesh: ArrayMesh, surface: number /*i64*/): Error
         
         /** Adds a new surface to specified [Mesh] with edited data. */
-        commit_to_surface(mesh: ArrayMesh, compression_flags: number /*i64*/ = 0): GodotError
+        commit_to_surface(mesh: ArrayMesh, compression_flags: number /*i64*/ = 0): Error
         
         /** Returns the [Mesh]'s format. Format is an integer made up of [Mesh] format flags combined together. For example, a mesh containing both vertices and normals would return a format of `3` because [constant Mesh.ARRAY_FORMAT_VERTEX] is `1` and [constant Mesh.ARRAY_FORMAT_NORMAL] is `2`.  
          *  See [enum Mesh.ArrayFormat] for a list of format flags.  
@@ -7197,10 +7200,10 @@ declare module "godot" {
         /* gdvirtual */ _handles_file(path: string): boolean
         
         /** Called once before the engine starts writing video and audio data. [param movie_size] is the width and height of the video to save. [param fps] is the number of frames per second specified in the project settings or using the `--fixed-fps <fps>` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url]. */
-        /* gdvirtual */ _write_begin(movie_size: Vector2i, fps: number /*i64*/, base_path: string): GodotError
+        /* gdvirtual */ _write_begin(movie_size: Vector2i, fps: number /*i64*/, base_path: string): Error
         
         /** Called at the end of every rendered frame. The [param frame_image] and [param audio_frame_block] function arguments should be written to. */
-        /* gdvirtual */ _write_frame(frame_image: Image, audio_frame_block: number /*i64*/): GodotError
+        /* gdvirtual */ _write_frame(frame_image: Image, audio_frame_block: number /*i64*/): Error
         
         /** Called when the engine finishes writing. This occurs when the engine quits by pressing the window manager's close button, or when [method SceneTree.quit] is called.  
          *      
@@ -7416,25 +7419,25 @@ declare module "godot" {
          *      
          *  **Note:** This method results in RPCs being called, so they will be executed in the same context of this function (e.g. `_process`, `physics`, [Thread]).  
          */
-        poll(): GodotError
+        poll(): Error
         
         /** Sends an RPC to the target [param peer]. The given [param method] will be called on the remote [param object] with the provided [param arguments]. The RPC may also be called locally depending on the implementation and RPC configuration. See [method Node.rpc] and [method Node.rpc_config].  
          *      
          *  **Note:** Prefer using [method Node.rpc], [method Node.rpc_id], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.  
          */
-        rpc(peer: number /*i64*/, object: Object, method: StringName, arguments_: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        rpc(peer: number /*i64*/, object: Object, method: StringName, arguments_: Array = <any> {} /*compound.type from 28([object Object])*/): Error
         
         /** Notifies the MultiplayerAPI of a new [param configuration] for the given [param object]. This method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and a valid [NodePath] as [param configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [SceneMultiplayer]) for details on how they use it.  
          *      
          *  **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [MultiplayerAPIExtension].  
          */
-        object_configuration_add(object: Object, configuration: any): GodotError
+        object_configuration_add(object: Object, configuration: any): Error
         
         /** Notifies the MultiplayerAPI to remove a [param configuration] for the given [param object]. This method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and an empty [NodePath] as [param configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [SceneMultiplayer]) for details on how they use it.  
          *      
          *  **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI behavior via [MultiplayerAPIExtension].  
          */
-        object_configuration_remove(object: Object, configuration: any): GodotError
+        object_configuration_remove(object: Object, configuration: any): Error
         
         /** Returns the peer IDs of all connected peers of this MultiplayerAPI's [member multiplayer_peer]. */
         get_peers(): PackedInt32Array
@@ -7474,7 +7477,7 @@ declare module "godot" {
     class MultiplayerAPIExtension extends MultiplayerAPI {
         constructor(identifier?: any)
         /** Callback for [method MultiplayerAPI.poll]. */
-        /* gdvirtual */ _poll(): GodotError
+        /* gdvirtual */ _poll(): Error
         
         /** Called when the [member MultiplayerAPI.multiplayer_peer] is set. */
         /* gdvirtual */ _set_multiplayer_peer(multiplayer_peer: MultiplayerPeer): void
@@ -7489,16 +7492,16 @@ declare module "godot" {
         /* gdvirtual */ _get_peer_ids(): PackedInt32Array
         
         /** Callback for [method MultiplayerAPI.rpc]. */
-        /* gdvirtual */ _rpc(peer: number /*i64*/, object: Object, method: StringName, args: Array): GodotError
+        /* gdvirtual */ _rpc(peer: number /*i64*/, object: Object, method: StringName, args: Array): Error
         
         /** Callback for [method MultiplayerAPI.get_remote_sender_id]. */
         /* gdvirtual */ _get_remote_sender_id(): number /*i64*/
         
         /** Callback for [method MultiplayerAPI.object_configuration_add]. */
-        /* gdvirtual */ _object_configuration_add(object: Object, configuration: any): GodotError
+        /* gdvirtual */ _object_configuration_add(object: Object, configuration: any): Error
         
         /** Callback for [method MultiplayerAPI.object_configuration_remove]. */
-        /* gdvirtual */ _object_configuration_remove(object: Object, configuration: any): GodotError
+        /* gdvirtual */ _object_configuration_remove(object: Object, configuration: any): Error
     }
     class MultiplayerEditorDebugger extends EditorDebuggerPlugin {
         constructor(identifier?: any)
@@ -7610,10 +7613,10 @@ declare module "godot" {
     class MultiplayerPeerExtension extends MultiplayerPeer {
         constructor(identifier?: any)
         /** Called when a packet needs to be received by the [MultiplayerAPI], with [param r_buffer_size] being the size of the binary [param r_buffer] in bytes. */
-        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): GodotError
+        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): Error
         
         /** Called when a packet needs to be sent by the [MultiplayerAPI], with [param p_buffer_size] being the size of the binary [param p_buffer] in bytes. */
-        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): GodotError
+        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): Error
         
         /** Called when the available packet count is internally requested by the [MultiplayerAPI]. */
         /* gdvirtual */ _get_available_packet_count(): number /*i64*/
@@ -7625,7 +7628,7 @@ declare module "godot" {
         /* gdvirtual */ _get_packet_script(): PackedByteArray
         
         /** Called when a packet needs to be sent by the [MultiplayerAPI], if [method _put_packet] isn't implemented. Use this when extending this class via GDScript. */
-        /* gdvirtual */ _put_packet_script(p_buffer: PackedByteArray): GodotError
+        /* gdvirtual */ _put_packet_script(p_buffer: PackedByteArray): Error
         
         /** Called to get the channel over which the next available packet was received. See [method MultiplayerPeer.get_packet_channel]. */
         /* gdvirtual */ _get_packet_channel(): number /*i64*/

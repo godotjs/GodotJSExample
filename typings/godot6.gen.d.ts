@@ -1,6 +1,74 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** Texture for 2D and 3D.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_texture2d.html  
+     */
+    class Texture2D extends Texture {
+        constructor(identifier?: any)
+        /** Called when the [Texture2D]'s width is queried. */
+        /* gdvirtual */ _get_width(): number /*i64*/
+        
+        /** Called when the [Texture2D]'s height is queried. */
+        /* gdvirtual */ _get_height(): number /*i64*/
+        
+        /** Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)` position. */
+        /* gdvirtual */ _is_pixel_opaque(x: number /*i64*/, y: number /*i64*/): boolean
+        
+        /** Called when the presence of an alpha channel in the [Texture2D] is queried. */
+        /* gdvirtual */ _has_alpha(): boolean
+        
+        /** Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the top-left offset specified in [param pos]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
+         *      
+         *  **Note:** This is only used in 2D rendering, not 3D.  
+         */
+        /* gdvirtual */ _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: boolean): void
+        
+        /** Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
+         *      
+         *  **Note:** This is only used in 2D rendering, not 3D.  
+         */
+        /* gdvirtual */ _draw_rect(to_canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color, transpose: boolean): void
+        
+        /** Called when a part of the [Texture2D] specified by [param src_rect]'s coordinates is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
+         *      
+         *  **Note:** This is only used in 2D rendering, not 3D.  
+         */
+        /* gdvirtual */ _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: boolean, clip_uv: boolean): void
+        
+        /** Returns the texture width in pixels. */
+        get_width(): number /*i64*/
+        
+        /** Returns the texture height in pixels. */
+        get_height(): number /*i64*/
+        
+        /** Returns the texture size in pixels. */
+        get_size(): Vector2
+        
+        /** Returns `true` if this [Texture2D] has an alpha channel. */
+        has_alpha(): boolean
+        
+        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified [param position]. */
+        draw(canvas_item: RID, position: Vector2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
+        
+        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API. */
+        draw_rect(canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
+        
+        /** Draws a part of the texture using a [CanvasItem] with the [RenderingServer] API. */
+        draw_rect_region(canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false, clip_uv: boolean = true): void
+        
+        /** Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each time). [Image]s can be accessed and manipulated directly.  
+         *      
+         *  **Note:** This will return `null` if this [Texture2D] is invalid.  
+         *      
+         *  **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.  
+         */
+        get_image(): Image
+        
+        /** Creates a placeholder version of this resource ([PlaceholderTexture2D]). */
+        create_placeholder(): Resource
+    }
     /** A single texture resource which consists of multiple, separate images. Each image has the same dimensions and number of mipmap levels.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_texture2darray.html  
@@ -874,7 +942,7 @@ declare module "godot" {
          *  The [param priority] of the [Thread] can be changed by passing a value from the [enum Priority] enum.  
          *  Returns [constant OK] on success, or [constant ERR_CANT_CREATE] on failure.  
          */
-        start(callable: Callable, priority: Thread.Priority = 1): GodotError
+        start(callable: Callable, priority: Thread.Priority = 1): Error
         
         /** Returns the current [Thread]'s ID, uniquely identifying it among all threads. If the [Thread] has not started running or if [method wait_to_finish] has been called, this returns an empty string. */
         get_id(): string
@@ -3279,10 +3347,10 @@ declare module "godot" {
     class UDPServer extends RefCounted {
         constructor(identifier?: any)
         /** Starts the server by opening a UDP socket listening on the given [param port]. You can optionally specify a [param bind_address] to only listen for packets sent to that address. See also [method PacketPeerUDP.bind]. */
-        listen(port: number /*i64*/, bind_address: string = '*'): GodotError
+        listen(port: number /*i64*/, bind_address: string = '*'): Error
         
         /** Call this method at regular intervals (e.g. inside [method Node._process]) to process new packets. And packet from known address/port pair will be delivered to the appropriate [PacketPeerUDP], any packet received from an unknown address/port pair will be added as a pending connection (see [method is_connection_available], [method take_connection]). The maximum number of pending connection is defined via [member max_pending_connections]. */
-        poll(): GodotError
+        poll(): Error
         
         /** Returns `true` if a packet with a new address/port combination was received on the socket. */
         is_connection_available(): boolean
@@ -3642,6 +3710,9 @@ declare module "godot" {
         
         /** Called when [method undo] or [method redo] was called. */
         readonly version_changed: Signal //  => void
+    }
+    class UniformSetCacheRD extends Object {
+        constructor(identifier?: any)
     }
     /** A container that arranges its child controls vertically.  
      *  	  
@@ -4941,7 +5012,7 @@ declare module "godot" {
         can_connect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): boolean
         
         /** Connects the specified nodes and ports. */
-        connect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): GodotError
+        connect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): Error
         
         /** Connects the specified nodes and ports. */
         disconnect_nodes(type: VisualShader.Type, from_node: number /*i64*/, from_port: number /*i64*/, to_node: number /*i64*/, to_port: number /*i64*/): void
@@ -7882,7 +7953,7 @@ declare module "godot" {
     class WebRTCDataChannel extends PacketPeer {
         constructor(identifier?: any)
         /** Reserved, but not used for now. */
-        poll(): GodotError
+        poll(): Error
         
         /** Closes this data channel, notifying the other peer. */
         close(): void
@@ -7932,11 +8003,11 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_webrtcdatachannelextension.html */
     class WebRTCDataChannelExtension extends WebRTCDataChannel {
         constructor(identifier?: any)
-        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): GodotError
-        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): GodotError
+        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): Error
+        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): Error
         /* gdvirtual */ _get_available_packet_count(): number /*i64*/
         /* gdvirtual */ _get_max_packet_size(): number /*i64*/
-        /* gdvirtual */ _poll(): GodotError
+        /* gdvirtual */ _poll(): Error
         /* gdvirtual */ _close(): void
         /* gdvirtual */ _set_write_mode(p_write_mode: WebRTCDataChannel.WriteMode): void
         /* gdvirtual */ _get_write_mode(): WebRTCDataChannel.WriteMode
@@ -7960,20 +8031,20 @@ declare module "godot" {
         /** Initialize the multiplayer peer as a server (with unique ID of `1`). This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_server(channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        create_server(channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
         
         /** Initialize the multiplayer peer as a client with the given [param peer_id] (must be between 2 and 2147483647). In this mode, you should only call [method add_peer] once and with [param peer_id] of `1`. This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_client(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        create_client(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
         
         /** Initialize the multiplayer peer as a mesh (i.e. all peers connect to each other) with the given [param peer_id] (must be between 1 and 2147483647). */
-        create_mesh(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): GodotError
+        create_mesh(peer_id: number /*i64*/, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
         
         /** Add a new peer to the mesh with the given [param peer_id]. The [WebRTCPeerConnection] must be in state [constant WebRTCPeerConnection.STATE_NEW].  
          *  Three channels will be created for reliable, unreliable, and ordered transport. The value of [param unreliable_lifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable and ordered channels (see [method WebRTCPeerConnection.create_data_channel]).  
          */
-        add_peer(peer: WebRTCPeerConnection, peer_id: number /*i64*/, unreliable_lifetime: number /*i64*/ = 1): GodotError
+        add_peer(peer: WebRTCPeerConnection, peer_id: number /*i64*/, unreliable_lifetime: number /*i64*/ = 1): Error
         
         /** Remove the peer with given [param peer_id] from the mesh. If the peer was connected, and [signal MultiplayerPeer.peer_connected] was emitted for it, then [signal MultiplayerPeer.peer_disconnected] will be emitted. */
         remove_peer(peer_id: number /*i64*/): void
@@ -8050,7 +8121,7 @@ declare module "godot" {
          *  Valid [param configuration] options are:  
          *    
          */
-        initialize(configuration: Dictionary = <any> {} /*compound.type from 27([object Object])*/): GodotError
+        initialize(configuration: Dictionary = <any> {} /*compound.type from 27([object Object])*/): Error
         
         /** Returns a new [WebRTCDataChannel] (or `null` on failure) with given [param label] and optionally configured via the [param options] dictionary. This method can only be called when the connection is in state [constant STATE_NEW].  
          *  There are two ways to create a working data channel: either call [method create_data_channel] on only one of the peer and listen to [signal data_channel_received] on the other, or call [method create_data_channel] on both peers, with the same values, and the `"negotiated"` option set to `true`.  
@@ -8064,24 +8135,24 @@ declare module "godot" {
         /** Creates a new SDP offer to start a WebRTC connection with a remote peer. At least one [WebRTCDataChannel] must have been created before calling this method.  
          *  If this functions returns [constant OK], [signal session_description_created] will be called when the session is ready to be sent.  
          */
-        create_offer(): GodotError
+        create_offer(): Error
         
         /** Sets the SDP description of the local peer. This should be called in response to [signal session_description_created].  
          *  After calling this function the peer will start emitting [signal ice_candidate_created] (unless an [enum Error] different from [constant OK] is returned).  
          */
-        set_local_description(type: string, sdp: string): GodotError
+        set_local_description(type: string, sdp: string): Error
         
         /** Sets the SDP description of the remote peer. This should be called with the values generated by a remote peer and received over the signaling server.  
          *  If [param type] is `"offer"` the peer will emit [signal session_description_created] with the appropriate answer.  
          *  If [param type] is `"answer"` the peer will start emitting [signal ice_candidate_created].  
          */
-        set_remote_description(type: string, sdp: string): GodotError
+        set_remote_description(type: string, sdp: string): Error
         
         /** Add an ice candidate generated by a remote peer (and received over the signaling server). See [signal ice_candidate_created]. */
-        add_ice_candidate(media: string, index: number /*i64*/, name: string): GodotError
+        add_ice_candidate(media: string, index: number /*i64*/, name: string): Error
         
         /** Call this method frequently (e.g. in [method Node._process] or [method Node._physics_process]) to properly receive signals. */
-        poll(): GodotError
+        poll(): Error
         
         /** Close the peer connection and all data channels associated with it.  
          *      
@@ -8115,13 +8186,13 @@ declare module "godot" {
         /* gdvirtual */ _get_connection_state(): WebRTCPeerConnection.ConnectionState
         /* gdvirtual */ _get_gathering_state(): WebRTCPeerConnection.GatheringState
         /* gdvirtual */ _get_signaling_state(): WebRTCPeerConnection.SignalingState
-        /* gdvirtual */ _initialize(p_config: Dictionary): GodotError
+        /* gdvirtual */ _initialize(p_config: Dictionary): Error
         /* gdvirtual */ _create_data_channel(p_label: string, p_config: Dictionary): WebRTCDataChannel
-        /* gdvirtual */ _create_offer(): GodotError
-        /* gdvirtual */ _set_remote_description(p_type: string, p_sdp: string): GodotError
-        /* gdvirtual */ _set_local_description(p_type: string, p_sdp: string): GodotError
-        /* gdvirtual */ _add_ice_candidate(p_sdp_mid_name: string, p_sdp_mline_index: number /*i64*/, p_sdp_name: string): GodotError
-        /* gdvirtual */ _poll(): GodotError
+        /* gdvirtual */ _create_offer(): Error
+        /* gdvirtual */ _set_remote_description(p_type: string, p_sdp: string): Error
+        /* gdvirtual */ _set_local_description(p_type: string, p_sdp: string): Error
+        /* gdvirtual */ _add_ice_candidate(p_sdp_mid_name: string, p_sdp_mline_index: number /*i64*/, p_sdp_name: string): Error
+        /* gdvirtual */ _poll(): Error
         /* gdvirtual */ _close(): void
     }
     namespace WebXRInterface {
@@ -9084,16 +9155,16 @@ declare module "godot" {
     class X509Certificate extends Resource {
         constructor(identifier?: any)
         /** Saves a certificate to the given [param path] (should be a "*.crt" file). */
-        save(path: string): GodotError
+        save(path: string): Error
         
         /** Loads a certificate from [param path] ("*.crt" file). */
-        load(path: string): GodotError
+        load(path: string): Error
         
         /** Returns a string representation of the certificate, or an empty string if the certificate is invalid. */
         save_to_string(): string
         
         /** Loads a certificate from the given [param string]. */
-        load_from_string(string_: string): GodotError
+        load_from_string(string_: string): Error
     }
     namespace XMLParser {
         enum NodeType {
@@ -9126,7 +9197,7 @@ declare module "godot" {
     class XMLParser extends RefCounted {
         constructor(identifier?: any)
         /** Parses the next node in the file. This method returns an error code. */
-        read(): GodotError
+        read(): Error
         
         /** Returns the type of the current node. Compare with [enum NodeType] constants. */
         get_node_type(): XMLParser.NodeType
@@ -9171,64 +9242,12 @@ declare module "godot" {
         skip_section(): void
         
         /** Moves the buffer cursor to a certain offset (since the beginning) and reads the next node there. This method returns an error code. */
-        seek(position: number /*i64*/): GodotError
+        seek(position: number /*i64*/): Error
         
         /** Opens an XML [param file] for parsing. This method returns an error code. */
-        open(file: string): GodotError
+        open(file: string): Error
         
         /** Opens an XML raw [param buffer] for parsing. This method returns an error code. */
-        open_buffer(buffer: PackedByteArray): GodotError
-    }
-    /** An anchor point in AR space.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_xranchor3d.html  
-     */
-    class XRAnchor3D extends XRNode3D {
-        constructor(identifier?: any)
-        /** Returns the estimated size of the plane that was detected. Say when the anchor relates to a table in the real world, this is the estimated size of the surface of that table. */
-        get_size(): Vector3
-        
-        /** Returns a plane aligned with our anchor; handy for intersection testing. */
-        get_plane(): Plane
-    }
-    /** A camera node with a few overrules for AR/VR applied, such as location tracking.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_xrcamera3d.html  
-     */
-    class XRCamera3D extends Camera3D {
-        constructor(identifier?: any)
-    }
-    /** A spatial node representing a spatially-tracked controller.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_xrcontroller3d.html  
-     */
-    class XRController3D extends XRNode3D {
-        constructor(identifier?: any)
-        /** Returns `true` if the button with the given [param name] is pressed. */
-        is_button_pressed(name: StringName): boolean
-        
-        /** Returns a [Variant] for the input with the given [param name]. This works for any input type, the variant will be typed according to the actions configuration. */
-        get_input(name: StringName): any
-        
-        /** Returns a numeric value for the input with the given [param name]. This is used for triggers and grip sensors. */
-        get_float(name: StringName): number /*f64*/
-        
-        /** Returns a [Vector2] for the input with the given [param name]. This is used for thumbsticks and thumbpads found on many controllers. */
-        get_vector2(name: StringName): Vector2
-        
-        /** Returns the hand holding this controller, if known. See [enum XRPositionalTracker.TrackerHand]. */
-        get_tracker_hand(): XRPositionalTracker.TrackerHand
-        
-        /** Emitted when a button on this controller is pressed. */
-        readonly button_pressed: Signal // name: string => void
-        
-        /** Emitted when a button on this controller is released. */
-        readonly button_released: Signal // name: string => void
-        
-        /** Emitted when a trigger or similar input on this controller changes value. */
-        readonly input_float_changed: Signal // name: string, value: number /*f64*/ => void
-        
-        /** Emitted when a thumbstick or thumbpad on this controller is moved. */
-        readonly input_vector2_changed: Signal // name: string, value: Vector2 => void
+        open_buffer(buffer: PackedByteArray): Error
     }
 }

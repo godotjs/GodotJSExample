@@ -1066,12 +1066,12 @@ declare module "godot" {
          *      
          *  **Note:** You can only safely use RPCs on clients after you received the [signal MultiplayerAPI.connected_to_server] signal from the [MultiplayerAPI]. You also need to keep track of the connection state, either by the [MultiplayerAPI] signals like [signal MultiplayerAPI.server_disconnected] or by checking (`get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`).  
          */
-        rpc(method: StringName, ...vargargs: any[]): GodotError
+        rpc(method: StringName, ...vargargs: any[]): Error
         
         /** Sends a [method rpc] to a specific peer identified by [param peer_id] (see [method MultiplayerPeer.set_target_peer]).  
          *  May return [constant OK] if the call is successful, [constant ERR_INVALID_PARAMETER] if the arguments passed in the [param method] do not match, [constant ERR_UNCONFIGURED] if the node's [member multiplayer] cannot be fetched (such as when the node is not inside the tree), [constant ERR_CONNECTION_ERROR] if [member multiplayer]'s connection is not available.  
          */
-        rpc_id(peer_id: number /*i64*/, method: StringName, ...vargargs: any[]): GodotError
+        rpc_id(peer_id: number /*i64*/, method: StringName, ...vargargs: any[]): Error
         
         /** Refreshes the warnings displayed for this node in the Scene dock. Use [method _get_configuration_warnings] to customize the warning messages to display. */
         update_configuration_warnings(): void
@@ -2091,7 +2091,7 @@ declare module "godot" {
          *      
          *  **Note:** In C#, [param signal] must be in snake_case when referring to built-in Godot signals. Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on each call.  
          */
-        emit_signal(signal: StringName, ...vargargs: any[]): GodotError
+        emit_signal(signal: StringName, ...vargargs: any[]): Error
         
         /** Calls the [param method] on the object and returns the result. This method supports a variable number of arguments, so parameters can be passed as a comma separated list.  
          *    
@@ -2174,7 +2174,7 @@ declare module "godot" {
          *  When calling [method emit_signal], the signal parameters can be also passed. The examples below show the relationship between these signal parameters and bound parameters.  
          *    
          */
-        connect(signal: StringName, callable: Callable, flags: number /*i64*/ = 0): GodotError
+        connect(signal: StringName, callable: Callable, flags: number /*i64*/ = 0): Error
         
         /** Disconnects a [param signal] by name from a given [param callable]. If the connection does not exist, generates an error. Use [method is_connected] to make sure that the connection exists. */
         disconnect(signal: StringName, callable: Callable): void
@@ -3147,13 +3147,13 @@ declare module "godot" {
     class PCKPacker extends RefCounted {
         constructor(identifier?: any)
         /** Creates a new PCK file with the name [param pck_name]. The `.pck` file extension isn't added automatically, so it should be part of [param pck_name] (even though it's not required). */
-        pck_start(pck_name: string, alignment: number /*i64*/ = 32, key: string = '0000000000000000000000000000000000000000000000000000000000000000', encrypt_directory: boolean = false): GodotError
+        pck_start(pck_name: string, alignment: number /*i64*/ = 32, key: string = '0000000000000000000000000000000000000000000000000000000000000000', encrypt_directory: boolean = false): Error
         
         /** Adds the [param source_path] file to the current PCK package at the [param pck_path] internal path (should start with `res://`). */
-        add_file(pck_path: string, source_path: string, encrypt: boolean = false): GodotError
+        add_file(pck_path: string, source_path: string, encrypt: boolean = false): Error
         
         /** Writes the files specified using all [method add_file] calls since the last flush. If [param verbose] is `true`, a list of files added will be printed to the console for easier debugging. */
-        flush(verbose: boolean = false): GodotError
+        flush(verbose: boolean = false): Error
     }
     /** Efficiently packs and serializes [Array] or [Dictionary].  
      *  	  
@@ -3171,7 +3171,7 @@ declare module "godot" {
          *      
          *  **Note:** Subsequent calls to this method will overwrite the existing data.  
          */
-        pack(value: any): GodotError
+        pack(value: any): Error
         
         /** Returns the size of the packed container (see [method Array.size] and [method Dictionary.size]). */
         size(): number /*i64*/
@@ -3221,7 +3221,7 @@ declare module "godot" {
     class PackedScene extends Resource {
         constructor(identifier?: any)
         /** Pack will ignore any sub-nodes not owned by given node. See [member Node.owner]. */
-        pack(path: Node): GodotError
+        pack(path: Node): Error
         
         /** Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [constant Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node. */
         instantiate(edit_state: PackedScene.GenEditState = 0): Node
@@ -3261,16 +3261,16 @@ declare module "godot" {
         /** Sends a [Variant] as a packet. If [param full_objects] is `true`, encoding objects is allowed (and can potentially include code).  
          *  Internally, this uses the same encoding mechanism as the [method @GlobalScope.var_to_bytes] method.  
          */
-        put_var(var_: any, full_objects: boolean = false): GodotError
+        put_var(var_: any, full_objects: boolean = false): Error
         
         /** Gets a raw packet. */
         get_packet(): PackedByteArray
         
         /** Sends a raw packet. */
-        put_packet(buffer: PackedByteArray): GodotError
+        put_packet(buffer: PackedByteArray): Error
         
         /** Returns the error state of the last packet received (via [method get_packet] and [method get_var]). */
-        get_packet_error(): GodotError
+        get_packet_error(): Error
         
         /** Returns the number of packets currently available in the ring-buffer. */
         get_available_packet_count(): number /*i64*/
@@ -3311,7 +3311,7 @@ declare module "godot" {
         poll(): void
         
         /** Connects a [param packet_peer] beginning the DTLS handshake using the underlying [PacketPeerUDP] which must be connected (see [method PacketPeerUDP.connect_to_host]). You can optionally specify the [param client_options] to be used while verifying the TLS connections. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        connect_to_peer(packet_peer: PacketPeerUDP, hostname: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): GodotError
+        connect_to_peer(packet_peer: PacketPeerUDP, hostname: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): Error
         
         /** Returns the status of the connection. See [enum Status] for values. */
         get_status(): PacketPeerDTLS.Status
@@ -3322,8 +3322,8 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerextension.html */
     class PacketPeerExtension extends PacketPeer {
         constructor(identifier?: any)
-        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): GodotError
-        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): GodotError
+        /* gdvirtual */ _get_packet(r_buffer: number /*i64*/, r_buffer_size: number /*i64*/): Error
+        /* gdvirtual */ _put_packet(p_buffer: number /*i64*/, p_buffer_size: number /*i64*/): Error
         /* gdvirtual */ _get_available_packet_count(): number /*i64*/
         /* gdvirtual */ _get_max_packet_size(): number /*i64*/
     }
@@ -3359,7 +3359,7 @@ declare module "godot" {
          *  If [param bind_address] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound to all available addresses matching that IP type.  
          *  If [param bind_address] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only be bound to the interface with that addresses (or fail if no interface with the given address exists).  
          */
-        bind(port: number /*i64*/, bind_address: string = '*', recv_buf_size: number /*i64*/ = 65536): GodotError
+        bind(port: number /*i64*/, bind_address: string = '*', recv_buf_size: number /*i64*/ = 65536): Error
         
         /** Closes the [PacketPeerUDP]'s underlying UDP socket. */
         close(): void
@@ -3369,7 +3369,7 @@ declare module "godot" {
          *  **Note:** [method wait] can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:  
          *    
          */
-        wait(): GodotError
+        wait(): Error
         
         /** Returns whether this [PacketPeerUDP] is bound to an address and can receive packets. */
         is_bound(): boolean
@@ -3378,7 +3378,7 @@ declare module "godot" {
          *      
          *  **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your application is transferring sensitive information.  
          */
-        connect_to_host(host: string, port: number /*i64*/): GodotError
+        connect_to_host(host: string, port: number /*i64*/): Error
         
         /** Returns `true` if the UDP socket is open and has been connected to a remote address. See [method connect_to_host]. */
         is_socket_connected(): boolean
@@ -3396,7 +3396,7 @@ declare module "godot" {
          *      
          *  **Note:** [method set_broadcast_enabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).  
          */
-        set_dest_address(host: string, port: number /*i64*/): GodotError
+        set_dest_address(host: string, port: number /*i64*/): Error
         
         /** Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255", 4343)`. This option is disabled by default.  
          *      
@@ -3409,10 +3409,10 @@ declare module "godot" {
          *      
          *  **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for multicast to work.  
          */
-        join_multicast_group(multicast_address: string, interface_name: string): GodotError
+        join_multicast_group(multicast_address: string, interface_name: string): Error
         
         /** Removes the interface identified by [param interface_name] from the multicast group specified by [param multicast_address]. */
-        leave_multicast_group(multicast_address: string, interface_name: string): GodotError
+        leave_multicast_group(multicast_address: string, interface_name: string): Error
     }
     /** A GUI control that displays a [StyleBox].  
      *  	  
@@ -8159,7 +8159,7 @@ declare module "godot" {
         clear(): void
         
         /** Compiles and assign the search pattern to use. Returns [constant OK] if the compilation is successful. If an error is encountered, details are printed to standard output and an error is returned. */
-        compile(pattern: string): GodotError
+        compile(pattern: string): Error
         
         /** Searches the text for the compiled pattern. Returns a [RegExMatch] container of the first matching result if found, otherwise `null`.  
          *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
@@ -8309,6 +8309,15 @@ declare module "godot" {
         constructor(identifier?: any)
         rename(): void
     }
+    class RenderBufferCustomDataRD extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class RenderBufferDataForwardClustered extends RenderBufferCustomDataRD {
+        constructor(identifier?: any)
+    }
+    class RenderBuffersGI extends RenderBufferCustomDataRD {
+        constructor(identifier?: any)
+    }
     /** Abstract scene buffers object, created for each viewport for which 3D rendering is done.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_renderscenebuffers.html  
@@ -8396,9 +8405,6 @@ declare module "godot" {
         
         /** Implement this in GDExtension to react to the debanding flag changing. */
         /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
-    }
-    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
-        constructor(identifier?: any)
     }
     /** Abstract render scene buffer implementation for the RenderingDevice based renderers.  
      *  	  
@@ -9939,7 +9945,7 @@ declare module "godot" {
          *      
          *  **Note:** The existing [param texture] requires the [constant TEXTURE_USAGE_CAN_UPDATE_BIT] to be updatable.  
          */
-        texture_update(texture: RID, layer: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        texture_update(texture: RID, layer: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Returns the [param texture] data for the specified [param layer] as raw binary data. For 2D textures (which only have one layer), [param layer] must be `0`.  
          *      
@@ -9970,13 +9976,13 @@ declare module "godot" {
          *      
          *  **Note:** [param from_texture] and [param to_texture] must be of the same type (color or depth).  
          */
-        texture_copy(from_texture: RID, to_texture: RID, from_pos: Vector3, to_pos: Vector3, size: Vector3, src_mipmap: number /*i64*/, dst_mipmap: number /*i64*/, src_layer: number /*i64*/, dst_layer: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        texture_copy(from_texture: RID, to_texture: RID, from_pos: Vector3, to_pos: Vector3, size: Vector3, src_mipmap: number /*i64*/, dst_mipmap: number /*i64*/, src_layer: number /*i64*/, dst_layer: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Clears the specified [param texture] by replacing all of its pixels with the specified [param color]. [param base_mipmap] and [param mipmap_count] determine which mipmaps of the texture are affected by this clear operation, while [param base_layer] and [param layer_count] determine which layers of a 3D texture (or texture array) are affected by this clear operation. For 2D textures (which only have one layer by design), [param base_layer] must be `0` and [param layer_count] must be `1`.  
          *      
          *  **Note:** [param texture] can't be cleared while a draw list that uses it as part of a framebuffer is being created. Ensure the draw list is finalized (and that the color/depth texture using it is not set to [constant FINAL_ACTION_CONTINUE]) to clear this texture.  
          */
-        texture_clear(texture: RID, color: Color, base_mipmap: number /*i64*/, mipmap_count: number /*i64*/, base_layer: number /*i64*/, layer_count: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        texture_clear(texture: RID, color: Color, base_mipmap: number /*i64*/, mipmap_count: number /*i64*/, base_layer: number /*i64*/, layer_count: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Resolves the [param from_texture] texture onto [param to_texture] with multisample antialiasing enabled. This must be used when rendering a framebuffer for MSAA to work. Returns [constant @GlobalScope.OK] if successful, [constant @GlobalScope.ERR_INVALID_PARAMETER] otherwise.  
          *      
@@ -9994,7 +10000,7 @@ declare module "godot" {
          *      
          *  **Note:** [param to_texture] texture must **not** be multisampled and must also be 2D (or a slice of a 3D/cubemap texture).  
          */
-        texture_resolve_multisample(from_texture: RID, to_texture: RID, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        texture_resolve_multisample(from_texture: RID, to_texture: RID, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Returns the data format used to create this texture. */
         texture_get_format(texture: RID): RDTextureFormat
@@ -10124,7 +10130,7 @@ declare module "godot" {
          *  - a draw list is currently active (created by [method draw_list_begin])  
          *  - a compute list is currently active (created by [method compute_list_begin])  
          */
-        buffer_update(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        buffer_update(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Clears the contents of the [param buffer], clearing [param size_bytes] bytes, starting at [param offset]. Always raises a memory barrier.  
          *  Prints an error if:  
@@ -10133,7 +10139,7 @@ declare module "godot" {
          *  - a draw list is currently active (created by [method draw_list_begin])  
          *  - a compute list is currently active (created by [method compute_list_begin])  
          */
-        buffer_clear(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): GodotError
+        buffer_clear(buffer: RID, offset: number /*i64*/, size_bytes: number /*i64*/, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Returns a copy of the data of the specified [param buffer], optionally [param offset_bytes] and [param size_bytes] can be set to copy only a portion of the buffer. */
         buffer_get_data(buffer: RID, offset_bytes: number /*i64*/ = 0, size_bytes: number /*i64*/ = 0): PackedByteArray
