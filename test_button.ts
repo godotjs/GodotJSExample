@@ -44,8 +44,8 @@ export default class TestNode extends Button {
     @signal()
     test_signal!: Signal; // signal field will automatically instantiated by GodotJS
 
-    constructor() {
-        super()
+    constructor(identifier?: any) {
+        super(identifier);
         console.log(MyColor);
         console.log("test constructor")
     }

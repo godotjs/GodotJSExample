@@ -6,6 +6,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_codehighlighter.html  
      */
     class CodeHighlighter extends SyntaxHighlighter {
+        constructor(identifier?: any)
         /** Sets the color for a keyword.  
          *  The keyword cannot contain any symbols except '_'.  
          */
@@ -119,6 +120,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionobject2d.html  
      */
     class CollisionObject2D extends Node2D {
+        constructor(identifier?: any)
         /** Accepts unhandled [InputEvent]s. [param shape_idx] is the child index of the clicked [Shape2D]. Connect to [signal input_event] to easily pick up these events.  
          *      
          *  **Note:** [method _input_event] requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
@@ -287,6 +289,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionobject3d.html  
      */
     class CollisionObject3D extends Node3D {
+        constructor(identifier?: any)
         /** Receives unhandled [InputEvent]s. [param position] is the location in world space of the mouse pointer on the surface of the shape with index [param shape_idx] and [param normal] is the normal vector of the surface at that point. Connect to the [signal input_event] signal to easily pick up these events.  
          *      
          *  **Note:** [method _input_event] requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
@@ -417,6 +420,7 @@ declare module "godot" {
         readonly mouse_exited: Signal //  => void
     }
     class CollisionObject3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
     }
     namespace CollisionPolygon2D {
         enum BuildMode {
@@ -432,6 +436,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon2d.html  
      */
     class CollisionPolygon2D extends Node2D {
+        constructor(identifier?: any)
         set_polygon(polygon: PackedVector2Array): void
         get_polygon(): PackedVector2Array
         set_build_mode(build_mode: CollisionPolygon2D.BuildMode): void
@@ -471,14 +476,17 @@ declare module "godot" {
         set one_way_collision_margin(value: number /*f64*/)
     }
     class CollisionPolygon2DEditor extends AbstractPolygon2DEditor {
+        constructor(identifier?: any)
     }
     class CollisionPolygon2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
+        constructor(identifier?: any)
     }
     /** A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon3d.html  
      */
     class CollisionPolygon3D extends Node3D {
+        constructor(identifier?: any)
         set_depth(depth: number /*f64*/): void
         get_depth(): number /*f64*/
         set_polygon(polygon: PackedVector2Array): void
@@ -509,12 +517,14 @@ declare module "godot" {
         set margin(value: number /*f64*/)
     }
     class CollisionPolygon3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
     }
     /** A node that provides a [Shape2D] to a [CollisionObject2D] parent.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape2d.html  
      */
     class CollisionShape2D extends Node2D {
+        constructor(identifier?: any)
         set_shape(shape: Shape2D): void
         get_shape(): Shape2D
         set_disabled(disabled: boolean): void
@@ -553,14 +563,17 @@ declare module "godot" {
         set debug_color(value: Color)
     }
     class CollisionShape2DEditor extends Control {
+        constructor(identifier?: any)
     }
     class CollisionShape2DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
     }
     /** A node that provides a [Shape3D] to a [CollisionObject3D] parent.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape3d.html  
      */
     class CollisionShape3D extends Node3D {
+        constructor(identifier?: any)
         /**  *Obsoleted.*  Use [signal Resource.changed] instead. */
         resource_changed(resource: Resource): void
         set_shape(shape: Shape3D): void
@@ -580,6 +593,7 @@ declare module "godot" {
         set disabled(value: boolean)
     }
     class CollisionShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
     }
     namespace ColorPicker {
         enum ColorModeType {
@@ -620,6 +634,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_colorpicker.html  
      */
     class ColorPicker extends VBoxContainer {
+        constructor(identifier?: any)
         set_pick_color(color: Color): void
         get_pick_color(): Color
         set_deferred_mode(mode: boolean): void
@@ -725,6 +740,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_colorpickerbutton.html  
      */
     class ColorPickerButton extends Button {
+        constructor(identifier?: any)
         set_pick_color(color: Color): void
         get_pick_color(): Color
         
@@ -763,6 +779,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_colorrect.html  
      */
     class ColorRect extends Control {
+        constructor(identifier?: any)
         set_color(color: Color): void
         get_color(): Color
         
@@ -775,18 +792,21 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedcubemap.html  
      */
     class CompressedCubemap extends CompressedTextureLayered {
+        constructor(identifier?: any)
     }
     /** An optionally compressed [CubemapArray].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedcubemaparray.html  
      */
     class CompressedCubemapArray extends CompressedTextureLayered {
+        constructor(identifier?: any)
     }
     /** Texture with 2 dimensions, optionally compressed.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture2d.html  
      */
     class CompressedTexture2D extends Texture2D {
+        constructor(identifier?: any)
         /** Loads the texture from the specified [param path]. */
         load(path: string): GodotError
         get_load_path(): string
@@ -800,12 +820,14 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture2darray.html  
      */
     class CompressedTexture2DArray extends CompressedTextureLayered {
+        constructor(identifier?: any)
     }
     /** Texture with 3 dimensions, optionally compressed.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture3d.html  
      */
     class CompressedTexture3D extends Texture3D {
+        constructor(identifier?: any)
         /** Loads the texture from the specified [param path]. */
         load(path: string): GodotError
         get_load_path(): string
@@ -819,6 +841,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexturelayered.html  
      */
     class CompressedTextureLayered extends TextureLayered {
+        constructor(identifier?: any)
         /** Loads the texture at [param path]. */
         load(path: string): GodotError
         get_load_path(): string
@@ -832,6 +855,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_concavepolygonshape2d.html  
      */
     class ConcavePolygonShape2D extends Shape2D {
+        constructor(identifier?: any)
         set_segments(segments: PackedVector2Array): void
         get_segments(): PackedVector2Array
         
@@ -844,6 +868,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_concavepolygonshape3d.html  
      */
     class ConcavePolygonShape3D extends Shape3D {
+        constructor(identifier?: any)
         /** Sets the faces of the trimesh shape from an array of vertices. The [param faces] array should be composed of triples such that each triple of vertices defines a triangle. */
         set_faces(faces: PackedVector3Array): void
         
@@ -892,6 +917,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_conetwistjoint3d.html  
      */
     class ConeTwistJoint3D extends Joint3D {
+        constructor(identifier?: any)
         /** Sets the value of the specified parameter. */
         set_param(param: ConeTwistJoint3D.Param, value: number /*f64*/): void
         
@@ -903,6 +929,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_configfile.html  
      */
     class ConfigFile extends RefCounted {
+        constructor(identifier?: any)
         /** Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed. */
         set_value(section: string, key: string, value: any): void
         
@@ -973,6 +1000,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_confirmationdialog.html  
      */
     class ConfirmationDialog extends AcceptDialog {
+        constructor(identifier?: any)
         /** Returns the cancel button.  
          *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
          */
@@ -985,11 +1013,14 @@ declare module "godot" {
         set cancel_button_text(value: string)
     }
     class ConnectDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly connected: Signal //  => void
     }
     class ConnectDialogBinds extends Object {
+        constructor(identifier?: any)
     }
     class ConnectionsDock extends VBoxContainer {
+        constructor(identifier?: any)
         update_tree(): void
     }
     /** Base class for all GUI containers.  
@@ -1002,6 +1033,7 @@ declare module "godot" {
         
         /** Notification for when sorting the children, it must be obeyed immediately. */
         static readonly NOTIFICATION_SORT_CHILDREN = 51
+        constructor(identifier?: any)
         
         /** Implement to return a list of allowed horizontal [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.  
          *      
@@ -1297,6 +1329,7 @@ declare module "godot" {
         
         /** Sent when control layout direction is changed. */
         static readonly NOTIFICATION_LAYOUT_DIRECTION_CHANGED = 49
+        constructor(identifier?: any)
         
         /** Virtual method to be implemented by the user. Returns whether the given [param point] is inside this control.  
          *  If not overridden, default behavior is checking if the point is within control's Rect.  
@@ -1960,18 +1993,23 @@ declare module "godot" {
         readonly theme_changed: Signal //  => void
     }
     class ControlEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
     }
     class ControlEditorPopupButton extends Button {
+        constructor(identifier?: any)
     }
     class ControlEditorPresetPicker extends MarginContainer {
+        constructor(identifier?: any)
     }
     class ControlEditorToolbar extends HBoxContainer {
+        constructor(identifier?: any)
     }
     /** A 2D convex polygon shape used for physics collision.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_convexpolygonshape2d.html  
      */
     class ConvexPolygonShape2D extends Shape2D {
+        constructor(identifier?: any)
         /** Based on the set of points provided, this assigns the [member points] property using the convex hull algorithm, removing all unneeded points. See [method Geometry2D.convex_hull] for details. */
         set_point_cloud(point_cloud: PackedVector2Array): void
         set_points(points: PackedVector2Array): void
@@ -1988,6 +2026,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_convexpolygonshape3d.html  
      */
     class ConvexPolygonShape3D extends Shape3D {
+        constructor(identifier?: any)
         set_points(points: PackedVector3Array): void
         get_points(): PackedVector3Array
         
@@ -1996,6 +2035,7 @@ declare module "godot" {
         set points(value: Array)
     }
     class CreateDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly create: Signal //  => void
         readonly favorites_updated: Signal //  => void
     }
@@ -2004,6 +2044,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_crypto.html  
      */
     class Crypto extends RefCounted {
+        constructor(identifier?: any)
         /** Generates a [PackedByteArray] of cryptographically secure random bytes with given [param size]. */
         generate_random_bytes(size: number /*i64*/): PackedByteArray
         
@@ -2049,6 +2090,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_cryptokey.html  
      */
     class CryptoKey extends Resource {
+        constructor(identifier?: any)
         /** Saves a key to the given [param path]. If [param public_only] is `true`, only the public key will be saved.  
          *      
          *  **Note:** [param path] should be a "*.pub" file if [param public_only] is `true`, a "*.key" file otherwise.  
@@ -2075,6 +2117,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_cubemap.html  
      */
     class Cubemap extends ImageTextureLayered {
+        constructor(identifier?: any)
         /** Creates a placeholder version of this resource ([PlaceholderCubemap]). */
         create_placeholder(): Resource
     }
@@ -2083,6 +2126,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_cubemaparray.html  
      */
     class CubemapArray extends ImageTextureLayered {
+        constructor(identifier?: any)
         /** Creates a placeholder version of this resource ([PlaceholderCubemapArray]). */
         create_placeholder(): Resource
     }
@@ -2103,6 +2147,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_curve.html  
      */
     class Curve extends Resource {
+        constructor(identifier?: any)
         get_point_count(): number /*i64*/
         set_point_count(count: number /*i64*/): void
         
@@ -2194,6 +2239,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_curve2d.html  
      */
     class Curve2D extends Resource {
+        constructor(identifier?: any)
         get_point_count(): number /*i64*/
         set_point_count(count: number /*i64*/): void
         
@@ -2292,6 +2338,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_curve3d.html  
      */
     class Curve3D extends Resource {
+        constructor(identifier?: any)
         get_point_count(): number /*i64*/
         set_point_count(count: number /*i64*/): void
         
@@ -2410,8 +2457,10 @@ declare module "godot" {
         set up_vector_enabled(value: boolean)
     }
     class CurveEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
     }
     class CurvePreviewGenerator extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     namespace CurveTexture {
         enum TextureMode {
@@ -2427,6 +2476,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_curvetexture.html  
      */
     class CurveTexture extends Texture2D {
+        constructor(identifier?: any)
         set_width(width: number /*i64*/): void
         set_curve(curve: Curve): void
         get_curve(): Curve
@@ -2451,6 +2501,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_curvexyztexture.html  
      */
     class CurveXYZTexture extends Texture2D {
+        constructor(identifier?: any)
         set_width(width: number /*i64*/): void
         set_curve_x(curve: Curve): void
         get_curve_x(): Curve
@@ -2481,6 +2532,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_cylindermesh.html  
      */
     class CylinderMesh extends PrimitiveMesh {
+        constructor(identifier?: any)
         set_top_radius(radius: number /*f64*/): void
         get_top_radius(): number /*f64*/
         set_bottom_radius(radius: number /*f64*/): void
@@ -2535,6 +2587,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_cylindershape3d.html  
      */
     class CylinderShape3D extends Shape3D {
+        constructor(identifier?: any)
         set_radius(radius: number /*f64*/): void
         get_radius(): number /*f64*/
         set_height(height: number /*f64*/): void
@@ -2553,6 +2606,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_dtlsserver.html  
      */
     class DTLSServer extends RefCounted {
+        constructor(identifier?: any)
         /** Setup the DTLS server to use the given [param server_options]. See [method TLSOptions.server]. */
         setup(server_options: TLSOptions): GodotError
         
@@ -2567,6 +2621,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_dampedspringjoint2d.html  
      */
     class DampedSpringJoint2D extends Joint2D {
+        constructor(identifier?: any)
         set_length(length: number /*f64*/): void
         get_length(): number /*f64*/
         set_rest_length(rest_length: number /*f64*/): void
@@ -2593,6 +2648,7 @@ declare module "godot" {
         set damping(value: number /*f64*/)
     }
     class DebugAdapterParser extends Object {
+        constructor(identifier?: any)
         req_initialize(params: Dictionary): Dictionary
         req_disconnect(params: Dictionary): Dictionary
         req_launch(params: Dictionary): Dictionary
@@ -2614,8 +2670,10 @@ declare module "godot" {
         ["req_godot/put_msg"]: (params: Dictionary) => Dictionary
     }
     class DebugAdapterServer extends EditorPlugin {
+        constructor(identifier?: any)
     }
     class DebuggerEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
     }
     namespace Decal {
         enum DecalTexture {
@@ -2640,6 +2698,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_decal.html  
      */
     class Decal extends VisualInstance3D {
+        constructor(identifier?: any)
         set_size(size: Vector3): void
         get_size(): Vector3
         
@@ -2728,16 +2787,22 @@ declare module "godot" {
         set cull_mask(value: number /*i64*/)
     }
     class DecalGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
     }
     class DefaultThemeEditorPreview extends ThemeEditorPreview {
+        constructor(identifier?: any)
     }
     class DependencyEditor extends AcceptDialog {
+        constructor(identifier?: any)
     }
     class DependencyEditorOwners extends AcceptDialog {
+        constructor(identifier?: any)
     }
     class DependencyErrorDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
     }
     class DependencyRemoveDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly resource_removed: Signal // obj: Object => void
         readonly file_removed: Signal // file: string => void
         readonly folder_removed: Signal // folder: string => void
@@ -2747,6 +2812,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_diraccess.html  
      */
     class DirAccess extends RefCounted {
+        constructor(identifier?: any)
         /** Creates a new [DirAccess] object and opens an existing directory of the filesystem. The [param path] argument can be within the project tree (`res://folder`), the user directory (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or `C:\tmp\folder`).  
          *  Returns `null` if opening the directory failed. You can use [method get_open_error] to check the error that occurred.  
          */
@@ -2905,6 +2971,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_directionallight2d.html  
      */
     class DirectionalLight2D extends Light2D {
+        constructor(identifier?: any)
         set_max_distance(pixels: number /*f64*/): void
         get_max_distance(): number /*f64*/
         
@@ -2943,6 +3010,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_directionallight3d.html  
      */
     class DirectionalLight3D extends Light3D {
+        constructor(identifier?: any)
         set_shadow_mode(mode: DirectionalLight3D.ShadowMode): void
         get_shadow_mode(): DirectionalLight3D.ShadowMode
         set_blend_splits(enabled: boolean): void
@@ -2963,11 +3031,14 @@ declare module "godot" {
         set sky_mode(value: number /*i64*/)
     }
     class DirectoryCreateDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly dir_created: Signal //  => void
     }
     class DynamicFontImportSettings extends ConfirmationDialog {
+        constructor(identifier?: any)
     }
     class DynamicFontImportSettingsData extends RefCounted {
+        constructor(identifier?: any)
     }
     namespace ENetConnection {
         enum CompressionMode {
@@ -3021,6 +3092,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_enetconnection.html  
      */
     class ENetConnection extends RefCounted {
+        constructor(identifier?: any)
         /** Create an ENetHost like [method create_host] which is also bound to the given [param bind_address] and [param bind_port]. */
         create_host_bound(bind_address: string, bind_port: number /*i64*/, max_peers: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): GodotError
         
@@ -3099,6 +3171,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_enetmultiplayerpeer.html  
      */
     class ENetMultiplayerPeer extends MultiplayerPeer {
+        constructor(identifier?: any)
         /** Create server that listens to connections via [param port]. The port needs to be an available, unused port between 0 and 65535. Note that ports below 1024 are privileged and may require elevated permissions depending on the platform. To change the interface the server listens on, use [method set_bind_ip]. The default IP is the wildcard `"*"`, which listens on all available interfaces. [param max_clients] is the maximum number of clients that are allowed at once, any number up to 4095 may be used, although the achievable number of simultaneous clients may be far lower and depends on the application. For additional details on the bandwidth parameters, see [method create_client]. Returns [constant OK] if a server was created, [constant ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already has an open connection (in which case you need to call [method MultiplayerPeer.close] first) or [constant ERR_CANT_CREATE] if the server could not be created. */
         create_server(port: number /*i64*/, max_clients: number /*i64*/ = 32, max_channels: number /*i64*/ = 0, in_bandwidth: number /*i64*/ = 0, out_bandwidth: number /*i64*/ = 0): GodotError
         
@@ -3219,6 +3292,7 @@ declare module "godot" {
         
         /** Mark the packet to be sent unreliable even if the packet is too big and needs fragmentation (increasing the chance of it being dropped). */
         static readonly FLAG_UNRELIABLE_FRAGMENT = 8
+        constructor(identifier?: any)
         
         /** Request a disconnection from a peer. An [constant ENetConnection.EVENT_DISCONNECT] will be generated during [method ENetConnection.service] once the disconnection is complete. */
         peer_disconnect(data: number /*i64*/ = 0): void
@@ -3273,12 +3347,15 @@ declare module "godot" {
         is_active(): boolean
     }
     class EditorAbout extends AcceptDialog {
+        constructor(identifier?: any)
         _version_button_pressed(): void
     }
     class EditorAssetLibrary extends PanelContainer {
+        constructor(identifier?: any)
         readonly install_asset: Signal // zip_path: string, name: string => void
     }
     class EditorAudioBus extends PanelContainer {
+        constructor(identifier?: any)
         update_bus(): void
         update_send(): void
         readonly duplicate_request: Signal //  => void
@@ -3288,23 +3365,28 @@ declare module "godot" {
         readonly dropped: Signal //  => void
     }
     class EditorAudioBuses extends VBoxContainer {
+        constructor(identifier?: any)
         _update_bus(_unnamed_arg0: number /*i64*/): void
         _update_sends(): void
         _select_layout(): void
     }
     class EditorAudioMeterNotches extends Control {
+        constructor(identifier?: any)
         add_notch(_unnamed_arg0: number /*f64*/, _unnamed_arg1: number /*f64*/, _unnamed_arg2: boolean): void
         _draw_audio_notches(): void
     }
     class EditorAudioStreamPreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     class EditorAutoloadSettings extends VBoxContainer {
+        constructor(identifier?: any)
         update_autoload(): void
         autoload_add(_unnamed_arg0: string, _unnamed_arg1: string): boolean
         autoload_remove(_unnamed_arg0: string): void
         readonly autoload_changed: Signal //  => void
     }
     class EditorBitmapPreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     namespace EditorBuildProfile {
         enum BuildOption {
@@ -3331,6 +3413,7 @@ declare module "godot" {
         }
     }
     class EditorBuildProfile extends RefCounted {
+        constructor(identifier?: any)
         set_disable_class(class_name: StringName, disable: boolean): void
         is_class_disabled(class_name: StringName): boolean
         set_disable_build_option(build_option: EditorBuildProfile.BuildOption, disable: boolean): void
@@ -3340,6 +3423,7 @@ declare module "godot" {
         load_from_file(path: string): GodotError
     }
     class EditorBuildProfileManager extends AcceptDialog {
+        constructor(identifier?: any)
         _update_selected_profile(): void
     }
     /** Godot editor's command palette.  
@@ -3347,6 +3431,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorcommandpalette.html  
      */
     class EditorCommandPalette extends ConfirmationDialog {
+        constructor(identifier?: any)
         /** Adds a custom command to EditorCommandPalette.  
          *  - [param command_name]: [String] (Name of the **Command**. This is displayed to the user.)  
          *  - [param key_name]: [String] (Name of the key for a particular **Command**. This is used to uniquely identify the **Command**.)  
@@ -3361,11 +3446,13 @@ declare module "godot" {
         remove_command(key_name: string): void
     }
     class EditorDebuggerInspector extends EditorInspector {
+        constructor(identifier?: any)
         readonly object_selected: Signal // id: number /*i64*/ => void
         readonly object_edited: Signal // id: number /*i64*/, property: string, : any /*value*/ => void
         readonly object_property_updated: Signal // id: number /*i64*/, property: string => void
     }
     class EditorDebuggerNode extends MarginContainer {
+        constructor(identifier?: any)
         live_debug_create_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
         live_debug_instantiate_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
         live_debug_remove_node(_unnamed_arg0: NodePath): void
@@ -3386,6 +3473,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggerplugin.html  
      */
     class EditorDebuggerPlugin extends RefCounted {
+        constructor(identifier?: any)
         /** Override this method to be notified whenever a new [EditorDebuggerSession] is created (the session may be inactive during this stage). */
         /* gdvirtual */ _setup_session(session_id: number /*i64*/): void
         
@@ -3405,6 +3493,7 @@ declare module "godot" {
         get_sessions(): Array
     }
     class EditorDebuggerRemoteObject extends Object {
+        constructor(identifier?: any)
         get_title(): string
         get_variant(_unnamed_arg0: StringName): any
         clear(): void
@@ -3416,6 +3505,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editordebuggersession.html  
      */
     class EditorDebuggerSession extends RefCounted {
+        constructor(identifier?: any)
         /** Sends the given [param message] to the attached remote instance, optionally passing additionally [param data]. See [EngineDebugger] for how to retrieve those messages. */
         send_message(message: string, data: Array = <any> {} /*compound.type from 28([object Object])*/): void
         
@@ -3450,23 +3540,28 @@ declare module "godot" {
         readonly continued: Signal //  => void
     }
     class EditorDebuggerTree extends Tree {
+        constructor(identifier?: any)
         readonly object_selected: Signal // object_id: number /*i64*/, debugger: number /*i64*/ => void
         readonly save_node: Signal // object_id: number /*i64*/, filename: string, debugger: number /*i64*/ => void
         readonly open: Signal //  => void
     }
     class EditorDirDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly dir_selected: Signal // dir: string => void
     }
     class EditorExport extends Node {
+        constructor(identifier?: any)
         readonly export_presets_updated: Signal //  => void
     }
     class EditorExportGDScript extends EditorExportPlugin {
+        constructor(identifier?: any)
     }
     /** Identifies a supported export platform, and internally provides the functionality of exporting to that platform.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatform.html  
      */
     class EditorExportPlatform extends RefCounted {
+        constructor(identifier?: any)
         /** Returns the name of the export operating system handled by this [EditorExportPlatform] class, as a friendly string. Possible return values are `Windows`, `Linux`, `macOS`, `Android`, `iOS`, and `Web`. */
         get_os_name(): string
     }
@@ -3475,48 +3570,56 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformandroid.html  
      */
     class EditorExportPlatformAndroid extends EditorExportPlatform {
+        constructor(identifier?: any)
     }
     /** Exporter for iOS.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformios.html  
      */
     class EditorExportPlatformIOS extends EditorExportPlatform {
+        constructor(identifier?: any)
     }
     /** Exporter for Linux/BSD.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformlinuxbsd.html  
      */
     class EditorExportPlatformLinuxBSD extends EditorExportPlatformPC {
+        constructor(identifier?: any)
     }
     /** Exporter for macOS.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformmacos.html  
      */
     class EditorExportPlatformMacOS extends EditorExportPlatform {
+        constructor(identifier?: any)
     }
     /** Base class for the desktop platform exporter (Windows and Linux/BSD).  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformpc.html  
      */
     class EditorExportPlatformPC extends EditorExportPlatform {
+        constructor(identifier?: any)
     }
     /** Exporter for the Web.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformweb.html  
      */
     class EditorExportPlatformWeb extends EditorExportPlatform {
+        constructor(identifier?: any)
     }
     /** Exporter for Windows.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplatformwindows.html  
      */
     class EditorExportPlatformWindows extends EditorExportPlatformPC {
+        constructor(identifier?: any)
     }
     /** A script that is executed when exporting the project.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorexportplugin.html  
      */
     class EditorExportPlugin extends RefCounted {
+        constructor(identifier?: any)
         /** Virtual method to be overridden by the user. Called for each exported file, providing arguments that can be used to identify the file. [param path] is the path of the file, [param type] is the [Resource] represented by the file (e.g. [PackedScene]) and [param features] is the list of features for the export.  
          *  Calling [method skip] inside this callback will make the file not included in the export.  
          */
@@ -3713,6 +3816,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfeatureprofile.html  
      */
     class EditorFeatureProfile extends RefCounted {
+        constructor(identifier?: any)
         /** If [param disable] is `true`, disables the class specified by [param class_name]. When disabled, the class won't appear in the Create New Node dialog. */
         set_disable_class(class_name: StringName, disable: boolean): void
         
@@ -3753,6 +3857,7 @@ declare module "godot" {
         load_from_file(path: string): GodotError
     }
     class EditorFeatureProfileManager extends AcceptDialog {
+        constructor(identifier?: any)
         readonly current_feature_profile_changed: Signal //  => void
     }
     namespace EditorFileDialog {
@@ -3795,6 +3900,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfiledialog.html  
      */
     class EditorFileDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         _cancel_pressed(): void
         
         /** Removes all filters except for "All Files (*)". */
@@ -3888,12 +3994,14 @@ declare module "godot" {
         readonly dir_selected: Signal // dir: string => void
     }
     class EditorFileServer extends Object {
+        constructor(identifier?: any)
     }
     /** Resource filesystem, as the editor sees it.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfilesystem.html  
      */
     class EditorFileSystem extends Node {
+        constructor(identifier?: any)
         /** Gets the root directory object. */
         get_filesystem(): EditorFileSystemDirectory
         
@@ -3947,6 +4055,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfilesystemdirectory.html  
      */
     class EditorFileSystemDirectory extends Object {
+        constructor(identifier?: any)
         /** Returns the number of subdirectories in this directory. */
         get_subdir_count(): number /*i64*/
         
@@ -3994,6 +4103,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorfilesystemimportformatsupportquery.html  
      */
     class EditorFileSystemImportFormatSupportQuery extends RefCounted {
+        constructor(identifier?: any)
         /** Return whether this importer is active. */
         /* gdvirtual */ _is_active(): boolean
         
@@ -4004,27 +4114,35 @@ declare module "godot" {
         /* gdvirtual */ _query(): boolean
     }
     class EditorFileSystemImportFormatSupportQueryFBX extends EditorFileSystemImportFormatSupportQuery {
+        constructor(identifier?: any)
     }
     class EditorFontPreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     class EditorGradientPreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     class EditorHelpBit extends MarginContainer {
+        constructor(identifier?: any)
         set_text(text: string): void
         readonly request_hide: Signal //  => void
     }
     class EditorHelpSearch extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly go_to_help: Signal //  => void
     }
     class EditorImagePreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     class EditorImportBlendRunner extends Node {
+        constructor(identifier?: any)
     }
     /** Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorimportplugin.html  
      */
     class EditorImportPlugin extends ResourceImporter {
+        constructor(identifier?: any)
         /** Gets the unique name of the importer. */
         /* gdvirtual */ _get_importer_name(): string
         
@@ -4074,6 +4192,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorinspector.html  
      */
     class EditorInspector extends ScrollContainer {
+        constructor(identifier?: any)
         _edit_request_change(_unnamed_arg0: Object, _unnamed_arg1: string): void
         
         /** Gets the path of the currently selected property. */
@@ -4113,14 +4232,17 @@ declare module "godot" {
         readonly restart_requested: Signal //  => void
     }
     class EditorInspectorCategory extends Control {
+        constructor(identifier?: any)
     }
     class EditorInspectorDefaultPlugin extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     /** Plugin for adding custom property editors on the inspector.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorinspectorplugin.html  
      */
     class EditorInspectorPlugin extends RefCounted {
+        constructor(identifier?: any)
         /** Returns `true` if this object can be handled by this plugin. */
         /* gdvirtual */ _can_handle(object: Object): boolean
         
@@ -4149,83 +4271,118 @@ declare module "godot" {
         add_property_editor_for_multiple_properties(label: string, properties: PackedStringArray, editor: Control): void
     }
     class EditorInspectorPlugin3DTexture extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginAnimationTrackKeyEdit extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginAudioStream extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginBitMap extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginBoneMap extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginControl extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginCurve extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginFontPreview extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginFontVariation extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginGradient extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginGradientTexture2D extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginInputEvent extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginLayeredTexture extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginMaterial extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginMesh extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginPackedScene extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginSkeleton extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginStyleBox extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginSubViewportPreview extends EditorInspectorPluginTexture {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginSystemFont extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginTexture extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginTextureRegion extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorPluginTileData extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorInspectorSection extends Container {
+        constructor(identifier?: any)
         setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: number /*i64*/): void
         get_vbox(): VBoxContainer
         unfold(): void
         fold(): void
     }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
+        constructor(identifier?: any)
     }
     class EditorJSONSyntaxHighlighter extends EditorSyntaxHighlighter {
+        constructor(identifier?: any)
     }
     class EditorLayoutsDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly name_confirmed: Signal // name: string => void
     }
     class EditorLocaleDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly locale_selected: Signal // locale: string => void
     }
     class EditorLog extends HBoxContainer {
+        constructor(identifier?: any)
     }
     class EditorMaterialPreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     class EditorMeshPreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     class EditorNativeShaderSourceVisualizer extends AcceptDialog {
+        constructor(identifier?: any)
         _inspect_shader(_unnamed_arg0: RID): void
     }
     class EditorNetworkProfiler extends VBoxContainer {
+        constructor(identifier?: any)
         readonly enable_profiling: Signal // enable: boolean => void
         readonly open_request: Signal // path: string => void
     }
     class EditorNode extends Node {
+        constructor(identifier?: any)
         push_item(object: Object, property: string = '', inspector_only: boolean = false): void
         set_edited_scene(_unnamed_arg0: Node): void
         open_request(_unnamed_arg0: string): void
@@ -4246,6 +4403,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editornode3dgizmo.html  
      */
     class EditorNode3DGizmo extends Node3DGizmo {
+        constructor(identifier?: any)
         /** Override this method to add all the gizmo elements whenever a gizmo update is requested. It's common to call [method clear] at the beginning of this method and then add visual elements depending on the node's properties. */
         /* gdvirtual */ _redraw(): void
         
@@ -4340,6 +4498,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editornode3dgizmoplugin.html  
      */
     class EditorNode3DGizmoPlugin extends Resource {
+        constructor(identifier?: any)
         /** Override this method to define which Node3D nodes have a gizmo from this plugin. Whenever a [Node3D] node is added to a scene this method is called, if it returns `true` the node gets a generic [EditorNode3DGizmo] assigned and is added to this plugin's list of active gizmos. */
         /* gdvirtual */ _has_gizmo(for_node_3d: Node3D): boolean
         
@@ -4424,16 +4583,20 @@ declare module "godot" {
         get_material(name: string, gizmo: EditorNode3DGizmo = <any> {} /*compound.type from nil*/): StandardMaterial3D
     }
     class EditorOBJImporter extends EditorSceneFormatImporter {
+        constructor(identifier?: any)
     }
     class EditorObjectSelector extends Button {
+        constructor(identifier?: any)
     }
     class EditorPackedScenePreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     /** Editor-only singleton that returns paths to various OS-specific data folders and files.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorpaths.html  
      */
     class EditorPaths extends Object {
+        constructor(identifier?: any)
         /** Returns the absolute path to the user's data folder. This folder should be used for  *persistent*  user data files such as installed export templates.  
          *  **Default paths per platform:**  
          *    
@@ -4470,6 +4633,7 @@ declare module "godot" {
         get_project_settings_dir(): string
     }
     class EditorPerformanceProfiler extends HSplitContainer {
+        constructor(identifier?: any)
     }
     namespace EditorPlugin {
         enum CustomControlContainer {
@@ -4553,6 +4717,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorplugin.html  
      */
     class EditorPlugin extends Node {
+        constructor(identifier?: any)
         /** Called when there is a root node in the current edited scene, [method _handles] is implemented and an [InputEvent] happens in the 2D viewport. Intercepts the [InputEvent], if `return true` [EditorPlugin] consumes the [param event], otherwise forwards [param event] to other Editor classes.  
          *  **Example:**  
          *    
@@ -4879,10 +5044,13 @@ declare module "godot" {
         readonly project_settings_changed: Signal //  => void
     }
     class EditorPluginCSG extends EditorPlugin {
+        constructor(identifier?: any)
     }
     class EditorPluginSettings extends VBoxContainer {
+        constructor(identifier?: any)
     }
     class EditorProfiler extends VBoxContainer {
+        constructor(identifier?: any)
         readonly enable_profiling: Signal // enable: boolean => void
         readonly break_request: Signal //  => void
     }
@@ -4891,6 +5059,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorproperty.html  
      */
     class EditorProperty extends Container {
+        constructor(identifier?: any)
         /** When this virtual function is called, you must update your editor. */
         /* gdvirtual */ _update_property(): void
         
@@ -4994,32 +5163,60 @@ declare module "godot" {
         readonly selected: Signal // path: string, focusable_idx: number /*i64*/ => void
     }
     class EditorPropertyCheck extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyColor extends EditorProperty {
+        constructor(identifier?: any)
     }
     class EditorPropertyDictionaryObject extends RefCounted {
+        constructor(identifier?: any)
     }
     class EditorPropertyEnum extends EditorProperty {
+        constructor(identifier?: any)
     }
     class EditorPropertyFloat extends EditorProperty {
+        constructor(identifier?: any)
     }
     class EditorPropertyInteger extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyLayers extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyLayersGrid extends Control {
+        constructor(identifier?: any)
+        readonly flag_changed: Signal // flag: number /*i64*/ => void
+        readonly rename_confirmed: Signal // layer_id: number /*i64*/, new_name: string => void
     }
     class EditorPropertyLocalizableString extends EditorProperty {
+        constructor(identifier?: any)
     }
     class EditorPropertyMultilineText extends EditorProperty {
+        constructor(identifier?: any)
     }
     class EditorPropertyNameProcessor extends Node {
+        constructor(identifier?: any)
     }
     class EditorPropertyPath extends EditorProperty {
+        constructor(identifier?: any)
     }
     class EditorPropertyResource extends EditorProperty {
+        constructor(identifier?: any)
     }
     class EditorPropertyText extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyVector2 extends EditorPropertyVectorN {
+        constructor(identifier?: any)
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
+        constructor(identifier?: any)
     }
     class EditorPropertyVectorN extends EditorProperty {
+        constructor(identifier?: any)
     }
     class EditorQuickOpen extends ConfirmationDialog {
+        constructor(identifier?: any)
         readonly quick_open: Signal //  => void
     }
     /** Plugin for adding custom converters from one resource format to another in the editor resource picker context menu; for example, converting a [StandardMaterial3D] to a [ShaderMaterial].  
@@ -5027,6 +5224,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourceconversionplugin.html  
      */
     class EditorResourceConversionPlugin extends RefCounted {
+        constructor(identifier?: any)
         /** Returns the class name of the target type of [Resource] that this plugin converts source resources to. */
         /* gdvirtual */ _converts_to(): string
         
@@ -5041,6 +5239,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourcepicker.html  
      */
     class EditorResourcePicker extends HBoxContainer {
+        constructor(identifier?: any)
         /** This virtual method is called when updating the context menu of [EditorResourcePicker]. Implement this method to override the "New ..." items with your own options. [param menu_node] is a reference to the [PopupMenu] node.  
          *      
          *  **Note:** Implement [method _handle_menu_selected] to handle these custom items.  
@@ -5092,6 +5291,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourcepreview.html  
      */
     class EditorResourcePreview extends Node {
+        constructor(identifier?: any)
         /** Queue a resource file located at [param path] for preview. Once the preview is ready, the [param receiver]'s [param receiver_func] will be called. The [param receiver_func] must take the following four arguments: [String] path, [Texture2D] preview, [Texture2D] thumbnail_preview, [Variant] userdata. [param userdata] can be anything, and will be returned when [param receiver_func] is called.  
          *      
          *  **Note:** If it was not possible to create the preview the [param receiver_func] will still be called, but the preview will be null.  
@@ -5121,6 +5321,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourcepreviewgenerator.html  
      */
     class EditorResourcePreviewGenerator extends RefCounted {
+        constructor(identifier?: any)
         /** Returns `true` if your generator supports the resource of type [param type]. */
         /* gdvirtual */ _handles(type: string): boolean
         
@@ -5153,6 +5354,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorresourcetooltipplugin.html  
      */
     class EditorResourceTooltipPlugin extends RefCounted {
+        constructor(identifier?: any)
         /** Return `true` if the plugin is going to handle the given [Resource] [param type]. */
         /* gdvirtual */ _handles(type: string): boolean
         
@@ -5172,10 +5374,12 @@ declare module "godot" {
         request_thumbnail(path: string, control: TextureRect): void
     }
     class EditorRunBar extends MarginContainer {
+        constructor(identifier?: any)
         readonly play_pressed: Signal //  => void
         readonly stop_pressed: Signal //  => void
     }
     class EditorRunNative extends HBoxContainer {
+        constructor(identifier?: any)
         readonly native_run: Signal // preset: any /*EditorExportPreset*/ => void
     }
     /** Imports scenes from third-parties' 3D files.  
@@ -5190,6 +5394,7 @@ declare module "godot" {
         static readonly IMPORT_USE_NAMED_SKIN_BINDS = 16
         static readonly IMPORT_DISCARD_MESHES_AND_MATERIALS = 32
         static readonly IMPORT_FORCE_DISABLE_MESH_COMPRESSION = 64
+        constructor(identifier?: any)
         /* gdvirtual */ _get_import_flags(): number /*i64*/
         /* gdvirtual */ _get_extensions(): PackedStringArray
         /* gdvirtual */ _import_scene(path: string, flags: number /*i64*/, options: Dictionary): Object
@@ -5201,25 +5406,31 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimporterblend.html  
      */
     class EditorSceneFormatImporterBlend extends EditorSceneFormatImporter {
+        constructor(identifier?: any)
     }
     class EditorSceneFormatImporterCollada extends EditorSceneFormatImporter {
+        constructor(identifier?: any)
     }
     class EditorSceneFormatImporterESCN extends EditorSceneFormatImporter {
+        constructor(identifier?: any)
     }
     /** Importer for the `.fbx` scene file format.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimporterfbx.html  
      */
     class EditorSceneFormatImporterFBX extends EditorSceneFormatImporter {
+        constructor(identifier?: any)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_editorsceneformatimportergltf.html */
     class EditorSceneFormatImporterGLTF extends EditorSceneFormatImporter {
+        constructor(identifier?: any)
     }
     /** Post-processes scenes after import.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorscenepostimport.html  
      */
     class EditorScenePostImport extends RefCounted {
+        constructor(identifier?: any)
         /** Called after the scene was imported. This method must return the modified version of the scene. */
         /* gdvirtual */ _post_import(scene: Node): Object
         
@@ -5243,6 +5454,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorscenepostimportplugin.html  
      */
     class EditorScenePostImportPlugin extends RefCounted {
+        constructor(identifier?: any)
         /** Override to add internal import options. These will appear in the 3D scene import dialog. Add options via [method add_import_option] and [method add_import_option_advanced]. */
         /* gdvirtual */ _get_internal_import_options(category: number /*i64*/): void
         
@@ -5277,6 +5489,7 @@ declare module "godot" {
         add_import_option_advanced(type: Variant.Type, name: string, default_value: any, hint: PropertyHint = 0, hint_string: string = '', usage_flags: number /*i64*/ = 6): void
     }
     class EditorSceneTabs extends MarginContainer {
+        constructor(identifier?: any)
         _tab_preview_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         readonly tab_changed: Signal // tab_index: number /*i64*/ => void
         readonly tab_closed: Signal // tab_index: number /*i64*/ => void
@@ -5286,6 +5499,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorscript.html  
      */
     class EditorScript extends RefCounted {
+        constructor(identifier?: any)
         /** This method is executed by the Editor when **File > Run** is used. */
         /* gdvirtual */ _run(): void
         
@@ -5307,6 +5521,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorscriptpicker.html  
      */
     class EditorScriptPicker extends EditorResourcePicker {
+        constructor(identifier?: any)
         set_script_owner(owner_node: Node): void
         get_script_owner(): Node
         
@@ -5315,12 +5530,14 @@ declare module "godot" {
         set script_owner(value: Node)
     }
     class EditorScriptPreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     /** Manages the SceneTree selection in the editor.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorselection.html  
      */
     class EditorSelection extends Object {
+        constructor(identifier?: any)
         /** Clear the selection. */
         clear(): void
         
@@ -5350,6 +5567,7 @@ declare module "godot" {
     class EditorSettings extends Resource {
         /** Emitted after any editor setting has changed. It's used by various editor plugins to update their visuals on theme changes or logic on configuration changes. */
         static readonly NOTIFICATION_EDITOR_SETTINGS_CHANGED = 10000
+        constructor(identifier?: any)
         
         /** Returns `true` if the setting specified by [param name] exists, `false` otherwise. */
         has_setting(name: string): boolean
@@ -5409,6 +5627,7 @@ declare module "godot" {
         readonly settings_changed: Signal //  => void
     }
     class EditorSettingsDialog extends AcceptDialog {
+        constructor(identifier?: any)
         _update_shortcuts(): void
         _settings_changed(): void
     }
@@ -5417,6 +5636,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorspinslider.html  
      */
     class EditorSpinSlider extends Range {
+        constructor(identifier?: any)
         set_label(label: string): void
         get_label(): string
         set_suffix(suffix: string): void
@@ -5465,6 +5685,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorsyntaxhighlighter.html  
      */
     class EditorSyntaxHighlighter extends SyntaxHighlighter {
+        constructor(identifier?: any)
         /** Virtual method which can be overridden to return the syntax highlighter name. */
         /* gdvirtual */ _get_name(): string
         
@@ -5473,14 +5694,19 @@ declare module "godot" {
         _get_edited_resource(): RefCounted
     }
     class EditorTexturePreviewPlugin extends EditorResourcePreviewGenerator {
+        constructor(identifier?: any)
     }
     class EditorTextureTooltipPlugin extends EditorResourceTooltipPlugin {
+        constructor(identifier?: any)
     }
     class EditorTheme extends Theme {
+        constructor(identifier?: any)
     }
     class EditorTitleBar extends HBoxContainer {
+        constructor(identifier?: any)
     }
     class EditorToaster extends HBoxContainer {
+        constructor(identifier?: any)
         _popup_str(message: string, severity: any /*EditorToaster.Severity*/, tooltip: string): void
     }
     /** Plugin for adding custom parsers to extract strings that are to be translated from custom files (.csv, .json etc.).  
@@ -5488,6 +5714,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editortranslationparserplugin.html  
      */
     class EditorTranslationParserPlugin extends RefCounted {
+        constructor(identifier?: any)
         /** Override this method to define a custom parsing logic to extract the translatable strings. */
         /* gdvirtual */ _parse_file(path: string, msgids: Array, msgids_context_plural: Array): void
         
@@ -5511,6 +5738,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorundoredomanager.html  
      */
     class EditorUndoRedoManager extends Object {
+        constructor(identifier?: any)
         /** Create a new action. After this is called, do all your calls to [method add_do_method], [method add_undo_method], [method add_do_property], and [method add_undo_property], then commit the action with [method commit_action].  
          *  The way actions are merged is dictated by the [param merge_mode] argument. See [enum UndoRedo.MergeMode] for details.  
          *  If [param custom_context] object is provided, it will be used for deducing target history (instead of using the first operation).  
@@ -5601,6 +5829,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_editorvcsinterface.html  
      */
     class EditorVCSInterface extends Object {
+        constructor(identifier?: any)
         /** Initializes the VCS plugin when called from the editor. Returns whether or not the plugin was successfully initialized. A VCS project is initialized at [param project_path]. */
         /* gdvirtual */ _initialize(project_path: string): boolean
         
@@ -5695,11 +5924,14 @@ declare module "godot" {
         popup_error(msg: string): void
     }
     class EditorValidationPanel extends PanelContainer {
+        constructor(identifier?: any)
     }
     class EditorVisualProfiler extends VBoxContainer {
+        constructor(identifier?: any)
         readonly enable_profiling: Signal // enable: boolean => void
     }
     class EditorZoomWidget extends HBoxContainer {
+        constructor(identifier?: any)
         set_zoom(zoom: number /*f64*/): void
         get_zoom(): number /*f64*/
         set_zoom_by_increments(increment: number /*i64*/, integer_only: boolean): void
@@ -5712,6 +5944,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_encodedobjectasid.html  
      */
     class EncodedObjectAsID extends RefCounted {
+        constructor(identifier?: any)
         set_object_id(id: number /*i64*/): void
         get_object_id(): number /*i64*/
         
@@ -5724,6 +5957,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_engineprofiler.html  
      */
     class EngineProfiler extends RefCounted {
+        constructor(identifier?: any)
         /** Called when the profiler is enabled/disabled, along with a set of [param options]. */
         /* gdvirtual */ _toggle(enable: boolean, options: Array): void
         
@@ -5827,6 +6061,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_environment.html  
      */
     class Environment extends Resource {
+        constructor(identifier?: any)
         set_background(mode: Environment.BGMode): void
         get_background(): Environment.BGMode
         set_sky(sky: Sky): void
@@ -6419,15 +6654,18 @@ declare module "godot" {
         set adjustment_color_correction(value: Texture2D | Texture3D)
     }
     class EventListenerLineEdit extends LineEdit {
+        constructor(identifier?: any)
         readonly event_changed: Signal // event: InputEvent => void
     }
     class ExportTemplateManager extends AcceptDialog {
+        constructor(identifier?: any)
     }
     /** A class that stores an expression you can execute.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_expression.html  
      */
     class Expression extends RefCounted {
+        constructor(identifier?: any)
         /** Parses the expression and returns an [enum Error] code.  
          *  You can optionally specify names of variables that may appear in the expression with [param input_names], so that you can bind them when it gets executed.  
          */
@@ -6445,6 +6683,7 @@ declare module "godot" {
         get_error_text(): string
     }
     class FBXImporterManager extends ConfirmationDialog {
+        constructor(identifier?: any)
     }
     namespace FastNoiseLite {
         enum NoiseType {
@@ -6542,6 +6781,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_fastnoiselite.html  
      */
     class FastNoiseLite extends Noise {
+        constructor(identifier?: any)
         set_noise_type(type: FastNoiseLite.NoiseType): void
         get_noise_type(): FastNoiseLite.NoiseType
         set_seed(seed: number /*i64*/): void
@@ -6753,6 +6993,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_fileaccess.html  
      */
     class FileAccess extends RefCounted {
+        constructor(identifier?: any)
         /** Creates a new [FileAccess] object and opens the file for writing or reading, depending on the flags.  
          *  Returns `null` if opening the file failed. You can use [method get_open_error] to check the error that occurred.  
          */
@@ -7051,6 +7292,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_filedialog.html  
      */
     class FileDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
         _cancel_pressed(): void
         
         /** Clear all the added filters in the dialog. */
@@ -7157,6 +7399,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_filesystemdock.html  
      */
     class FileSystemDock extends VBoxContainer {
+        constructor(identifier?: any)
         _update_tree(_unnamed_arg0: PackedStringArray, _unnamed_arg1: boolean, _unnamed_arg2: boolean, _unnamed_arg3: boolean): void
         _file_list_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         _tree_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
@@ -7197,17 +7440,21 @@ declare module "godot" {
         readonly display_mode_changed: Signal //  => void
     }
     class FileSystemList extends ItemList {
+        constructor(identifier?: any)
         readonly item_edited: Signal //  => void
     }
     class FindInFiles extends Node {
+        constructor(identifier?: any)
         readonly result_found: Signal // path: string, line_number: number /*i64*/, begin: number /*i64*/, end: number /*i64*/, text: string => void
         readonly finished: Signal //  => void
     }
     class FindInFilesDialog extends AcceptDialog {
+        constructor(identifier?: any)
         readonly find_requested: Signal //  => void
         readonly replace_requested: Signal //  => void
     }
     class FindInFilesPanel extends Control {
+        constructor(identifier?: any)
         _on_result_found(_unnamed_arg0: string, _unnamed_arg1: number /*i64*/, _unnamed_arg2: number /*i64*/, _unnamed_arg3: number /*i64*/, _unnamed_arg4: string): void
         _on_finished(): void
         _draw_result_text(_unnamed_arg0: Object, _unnamed_arg1: Rect2): void
@@ -7215,6 +7462,7 @@ declare module "godot" {
         readonly files_modified: Signal // paths: string => void
     }
     class FindReplaceBar extends HBoxContainer {
+        constructor(identifier?: any)
         _search_current(): boolean
         readonly error: Signal //  => void
     }
@@ -7235,6 +7483,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_flowcontainer.html  
      */
     class FlowContainer extends Container {
+        constructor(identifier?: any)
         /** Returns the current line count. */
         get_line_count(): number /*i64*/
         set_alignment(alignment: FlowContainer.AlignmentMode): void
@@ -7257,6 +7506,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_fogmaterial.html  
      */
     class FogMaterial extends Material {
+        constructor(identifier?: any)
         set_density(density: number /*f64*/): void
         get_density(): number /*f64*/
         set_albedo(albedo: Color): void
@@ -7298,12 +7548,14 @@ declare module "godot" {
         set density_texture(value: Texture3D)
     }
     class FogMaterialConversionPlugin extends EditorResourceConversionPlugin {
+        constructor(identifier?: any)
     }
     /** A region that contributes to the default volumetric fog from the world environment.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_fogvolume.html  
      */
     class FogVolume extends VisualInstance3D {
+        constructor(identifier?: any)
         set_size(size: Vector3): void
         get_size(): Vector3
         set_shape(shape: RenderingServer.FogVolumeShape): void
@@ -7329,12 +7581,14 @@ declare module "godot" {
         set material(value: FogMaterial | ShaderMaterial)
     }
     class FogVolumeGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
     }
     /** Abstract base class for fonts and font variations.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_font.html  
      */
     class Font extends Resource {
+        constructor(identifier?: any)
         set_fallbacks(fallbacks: Array): void
         get_fallbacks(): Array
         
@@ -7490,12 +7744,14 @@ declare module "godot" {
         set fallbacks(value: Array)
     }
     class FontEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
     }
     /** Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_fontfile.html  
      */
     class FontFile extends Font {
+        constructor(identifier?: any)
         /** Loads an AngelCode BMFont (.fnt, .font) bitmap font from file [param path].  
          *  **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.  
          */
@@ -7832,6 +8088,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_fontvariation.html  
      */
     class FontVariation extends Font {
+        constructor(identifier?: any)
         set_base_font(font: Font): void
         get_base_font(): Font
         set_variation_opentype(coords: Dictionary): void
@@ -7891,6 +8148,7 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gdextension.html */
     class GDExtension extends Resource {
+        constructor(identifier?: any)
         open_library(path: string, entry_symbol: string): GodotError
         close_library(): void
         is_library_open(): boolean
@@ -7899,6 +8157,7 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfaccessor.html */
     class GLTFAccessor extends Resource {
+        constructor(identifier?: any)
         get_buffer_view(): number /*i64*/
         set_buffer_view(buffer_view: number /*i64*/): void
         get_byte_offset(): number /*i64*/
@@ -7958,6 +8217,7 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfanimation.html */
     class GLTFAnimation extends Resource {
+        constructor(identifier?: any)
         get_loop(): boolean
         set_loop(loop: boolean): void
         get loop(): boolean
@@ -7965,6 +8225,7 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfbufferview.html */
     class GLTFBufferView extends Resource {
+        constructor(identifier?: any)
         get_buffer(): number /*i64*/
         set_buffer(buffer: number /*i64*/): void
         get_byte_offset(): number /*i64*/
@@ -7991,6 +8252,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfcamera.html  
      */
     class GLTFCamera extends Resource {
+        constructor(identifier?: any)
         /** Create a new GLTFCamera instance from the given Godot [Camera3D] node. */
         static from_node(camera_node: Camera3D): GLTFCamera
         
@@ -8050,6 +8312,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocument.html  
      */
     class GLTFDocument extends Resource {
+        constructor(identifier?: any)
         /** Takes a path to a GLTF file and imports the data at that file path to the given [GLTFState] object through the [param state] parameter.  
          *      
          *  **Note:** The [param base_path] tells [method append_from_file] where to find dependencies and can be empty.  
@@ -8114,6 +8377,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextension.html  
      */
     class GLTFDocumentExtension extends Resource {
+        constructor(identifier?: any)
         /** Part of the import process. This method is run first, before all other parts of the import process.  
          *  The return value is used to determine if this [GLTFDocumentExtension] instance should be used for importing a given GLTF file. If [constant OK], the import will use this [GLTFDocumentExtension] instance. If not overridden, [constant OK] is returned.  
          */
@@ -8212,18 +8476,23 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfdocumentextensionconvertimportermesh.html */
     class GLTFDocumentExtensionConvertImporterMesh extends GLTFDocumentExtension {
+        constructor(identifier?: any)
     }
     class GLTFDocumentExtensionPhysics extends GLTFDocumentExtension {
+        constructor(identifier?: any)
     }
     class GLTFDocumentExtensionTextureKTX extends GLTFDocumentExtension {
+        constructor(identifier?: any)
     }
     class GLTFDocumentExtensionTextureWebP extends GLTFDocumentExtension {
+        constructor(identifier?: any)
     }
     /** Represents a GLTF light.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltflight.html  
      */
     class GLTFLight extends Resource {
+        constructor(identifier?: any)
         /** Create a new GLTFLight instance from the given Godot [Light3D] node. */
         static from_node(light_node: Light3D): GLTFLight
         
@@ -8278,6 +8547,7 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfmesh.html */
     class GLTFMesh extends Resource {
+        constructor(identifier?: any)
         get_mesh(): ImporterMesh
         set_mesh(mesh: ImporterMesh): void
         get_blend_weights(): PackedFloat32Array
@@ -8296,6 +8566,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfnode.html  
      */
     class GLTFNode extends Resource {
+        constructor(identifier?: any)
         get_parent(): number /*i64*/
         set_parent(parent: number /*i64*/): void
         get_height(): number /*i64*/
@@ -8384,6 +8655,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfphysicsbody.html  
      */
     class GLTFPhysicsBody extends Resource {
+        constructor(identifier?: any)
         /** Create a new GLTFPhysicsBody instance from the given Godot [CollisionObject3D] node. */
         static from_node(body_node: CollisionObject3D): GLTFPhysicsBody
         
@@ -8439,6 +8711,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfphysicsshape.html  
      */
     class GLTFPhysicsShape extends Resource {
+        constructor(identifier?: any)
         /** Create a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node. */
         static from_node(shape_node: CollisionShape3D): GLTFPhysicsShape
         
@@ -8497,6 +8770,7 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfskeleton.html */
     class GLTFSkeleton extends Resource {
+        constructor(identifier?: any)
         get_joints(): PackedInt32Array
         set_joints(joints: PackedInt32Array): void
         get_roots(): PackedInt32Array
@@ -8523,6 +8797,7 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfskin.html */
     class GLTFSkin extends Resource {
+        constructor(identifier?: any)
         get_skin_root(): number /*i64*/
         set_skin_root(skin_root: number /*i64*/): void
         get_joints_original(): PackedInt32Array
@@ -8569,6 +8844,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltfspecgloss.html  
      */
     class GLTFSpecGloss extends Resource {
+        constructor(identifier?: any)
         get_diffuse_img(): Image
         set_diffuse_img(diffuse_img: Image): void
         get_diffuse_factor(): Color
@@ -8616,6 +8892,7 @@ declare module "godot" {
         
         /** Embeds textures compressed losslessly into the generated scene, matching old behavior. */
         static readonly HANDLE_BINARY_EMBED_AS_UNCOMPRESSED = 3
+        constructor(identifier?: any)
         
         /** Appends an extension to the list of extensions used by this GLTF file during serialization. If [param required] is true, the extension will also be added to the list of required extensions. Do not run this in [method GLTFDocumentExtension._export_post], as that stage is too late to add extensions. The final list is sorted alphabetically. */
         add_used_extension(extension_name: string, required: boolean): void
@@ -8816,6 +9093,7 @@ declare module "godot" {
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltftexture.html */
     class GLTFTexture extends Resource {
+        constructor(identifier?: any)
         get_src_image(): number /*i64*/
         set_src_image(src_image: number /*i64*/): void
         get_sampler(): number /*i64*/
@@ -8834,6 +9112,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gltftexturesampler.html  
      */
     class GLTFTextureSampler extends Resource {
+        constructor(identifier?: any)
         get_mag_filter(): number /*i64*/
         set_mag_filter(filter_mode: number /*i64*/): void
         get_min_filter(): number /*i64*/
@@ -8892,6 +9171,7 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles2d.html  
      */
     class GPUParticles2D extends Node2D {
+        constructor(identifier?: any)
         set_emitting(emitting: boolean): void
         set_amount(amount: number /*i64*/): void
         set_lifetime(secs: number /*f64*/): void
@@ -9074,244 +9354,6 @@ declare module "godot" {
         /** The number of subdivisions to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [member trail_sections]. Only effective if [member trail_enabled] is `true`. */
         get trail_section_subdivisions(): number /*i64*/
         set trail_section_subdivisions(value: number /*i64*/)
-        
-        /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted.  
-         *      
-         *  **Note:** Due to the particles being computed on the GPU there might be a delay before the signal gets emitted.  
-         */
-        readonly finished: Signal //  => void
-    }
-    class GPUParticles2DEditorPlugin extends EditorPlugin {
-    }
-    namespace GPUParticles3D {
-        enum DrawOrder {
-            /** Particles are drawn in the order emitted. */
-            DRAW_ORDER_INDEX = 0,
-            
-            /** Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front. */
-            DRAW_ORDER_LIFETIME = 1,
-            
-            /** Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front. */
-            DRAW_ORDER_REVERSE_LIFETIME = 2,
-            
-            /** Particles are drawn in order of depth. */
-            DRAW_ORDER_VIEW_DEPTH = 3,
-        }
-        enum EmitFlags {
-            /** Particle starts at the specified position. */
-            EMIT_FLAG_POSITION = 1,
-            
-            /** Particle starts with specified rotation and scale. */
-            EMIT_FLAG_ROTATION_SCALE = 2,
-            
-            /** Particle starts with the specified velocity vector, which defines the emission direction and speed. */
-            EMIT_FLAG_VELOCITY = 4,
-            
-            /** Particle starts with specified color. */
-            EMIT_FLAG_COLOR = 8,
-            
-            /** Particle starts with specified `CUSTOM` data. */
-            EMIT_FLAG_CUSTOM = 16,
-        }
-        enum TransformAlign {
-            TRANSFORM_ALIGN_DISABLED = 0,
-            TRANSFORM_ALIGN_Z_BILLBOARD = 1,
-            TRANSFORM_ALIGN_Y_TO_VELOCITY = 2,
-            TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY = 3,
-        }
-    }
-    /** A 3D particle emitter.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_gpuparticles3d.html  
-     */
-    class GPUParticles3D extends GeometryInstance3D {
-        /** Maximum number of draw passes supported. */
-        static readonly MAX_DRAW_PASSES = 4
-        set_emitting(emitting: boolean): void
-        set_amount(amount: number /*i64*/): void
-        set_lifetime(secs: number /*f64*/): void
-        set_one_shot(enable: boolean): void
-        set_pre_process_time(secs: number /*f64*/): void
-        set_explosiveness_ratio(ratio: number /*f64*/): void
-        set_randomness_ratio(ratio: number /*f64*/): void
-        set_visibility_aabb(aabb: AABB): void
-        set_use_local_coordinates(enable: boolean): void
-        set_fixed_fps(fps: number /*i64*/): void
-        set_fractional_delta(enable: boolean): void
-        set_interpolate(enable: boolean): void
-        set_process_material(material: Material): void
-        set_speed_scale(scale: number /*f64*/): void
-        set_collision_base_size(size: number /*f64*/): void
-        set_interp_to_end(interp: number /*f64*/): void
-        is_emitting(): boolean
-        get_amount(): number /*i64*/
-        get_lifetime(): number /*f64*/
-        get_one_shot(): boolean
-        get_pre_process_time(): number /*f64*/
-        get_explosiveness_ratio(): number /*f64*/
-        get_randomness_ratio(): number /*f64*/
-        get_visibility_aabb(): AABB
-        get_use_local_coordinates(): boolean
-        get_fixed_fps(): number /*i64*/
-        get_fractional_delta(): boolean
-        get_interpolate(): boolean
-        get_process_material(): Material
-        get_speed_scale(): number /*f64*/
-        get_collision_base_size(): number /*f64*/
-        get_interp_to_end(): number /*f64*/
-        set_draw_order(order: GPUParticles3D.DrawOrder): void
-        get_draw_order(): GPUParticles3D.DrawOrder
-        set_draw_passes(passes: number /*i64*/): void
-        
-        /** Sets the [Mesh] that is drawn at index [param pass]. */
-        set_draw_pass_mesh(pass: number /*i64*/, mesh: Mesh): void
-        get_draw_passes(): number /*i64*/
-        
-        /** Returns the [Mesh] that is drawn at index [param pass]. */
-        get_draw_pass_mesh(pass: number /*i64*/): Mesh
-        set_skin(skin: Skin): void
-        get_skin(): Skin
-        
-        /** Restarts the particle emission, clearing existing particles. */
-        restart(): void
-        
-        /** Returns the axis-aligned bounding box that contains all the particles that are active in the current frame. */
-        capture_aabb(): AABB
-        set_sub_emitter(path: NodePath): void
-        get_sub_emitter(): NodePath
-        
-        /** Emits a single particle. Whether [param xform], [param velocity], [param color] and [param custom] are applied depends on the value of [param flags]. See [enum EmitFlags]. */
-        emit_particle(xform: Transform3D, velocity: Vector3, color: Color, custom: Color, flags: number /*i64*/): void
-        set_trail_enabled(enabled: boolean): void
-        set_trail_lifetime(secs: number /*f64*/): void
-        is_trail_enabled(): boolean
-        get_trail_lifetime(): number /*f64*/
-        set_transform_align(align: GPUParticles3D.TransformAlign): void
-        get_transform_align(): GPUParticles3D.TransformAlign
-        
-        /** Sets this node's properties to match a given [CPUParticles3D] node. */
-        convert_from_particles(particles: Node): void
-        set_amount_ratio(ratio: number /*f64*/): void
-        get_amount_ratio(): number /*f64*/
-        
-        /** If `true`, particles are being emitted. [member emitting] can be used to start and stop particles from emitting. However, if [member one_shot] is `true` setting [member emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [signal finished] signal to be notified once all active particles finish processing. */
-        get emitting(): boolean
-        set emitting(value: boolean)
-        
-        /** The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [member amount_ratio] is decreased.  
-         *      
-         *  **Note:** Changing this value will cause the particle system to restart. To avoid this, change [member amount_ratio] instead.  
-         */
-        get amount(): number /*i64*/
-        set amount(value: number /*i64*/)
-        
-        /** The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [member amount], changing [member amount_ratio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [member amount_ratio] can be used to create effects that make the number of emitted particles vary over time.  
-         *      
-         *  **Note:** Reducing the [member amount_ratio] has no performance benefit, since resources need to be allocated and processed for the total [member amount] of particles regardless of the [member amount_ratio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [member amount_ratio] is set to `1` and change [member amount] to your liking instead.  
-         */
-        get amount_ratio(): number /*f64*/
-        set amount_ratio(value: number /*f64*/)
-        
-        /** Path to another [GPUParticles3D] node that will be used as a subemitter (see [member ParticleProcessMaterial.sub_emitter_mode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.  
-         *      
-         *  **Note:** When [member sub_emitter] is set, the target [GPUParticles3D] node will no longer emit particles on its own.  
-         */
-        get sub_emitter(): NodePath
-        set sub_emitter(value: NodePath)
-        
-        /** The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. */
-        get lifetime(): number /*f64*/
-        set lifetime(value: number /*f64*/)
-        
-        /** Causes all the particles in this node to interpolate towards the end of their lifetime.  
-         *      
-         *  **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.  
-         */
-        get interp_to_end(): number /*f64*/
-        set interp_to_end(value: number /*f64*/)
-        
-        /** If `true`, only the number of particles equal to [member amount] will be emitted. */
-        get one_shot(): boolean
-        set one_shot(value: boolean)
-        
-        /** Amount of time to preprocess the particles before animation starts. Lets you start the animation some time after particles have started emitting. */
-        get preprocess(): number /*f64*/
-        set preprocess(value: number /*f64*/)
-        
-        /** Speed scaling ratio. A value of `0` can be used to pause the particles. */
-        get speed_scale(): number /*f64*/
-        set speed_scale(value: number /*f64*/)
-        
-        /** Time ratio between each emission. If `0`, particles are emitted continuously. If `1`, all particles are emitted simultaneously. */
-        get explosiveness(): number /*f64*/
-        set explosiveness(value: number /*f64*/)
-        
-        /** Emission randomness ratio. */
-        get randomness(): number /*f64*/
-        set randomness(value: number /*f64*/)
-        
-        /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself. */
-        get fixed_fps(): number /*i64*/
-        set fixed_fps(value: number /*i64*/)
-        
-        /** Enables particle interpolation, which makes the particle movement smoother when their [member fixed_fps] is lower than the screen refresh rate. */
-        get interpolate(): boolean
-        set interpolate(value: boolean)
-        
-        /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
-        get fract_delta(): boolean
-        set fract_delta(value: boolean)
-        
-        /** The base diameter for particle collision in meters. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [member ParticleProcessMaterial.collision_mode] is [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].  
-         *      
-         *  **Note:** Particles always have a spherical collision shape.  
-         */
-        get collision_base_size(): number /*f64*/
-        set collision_base_size(value: number /*f64*/)
-        
-        /** The [AABB] that determines the node's region which needs to be visible on screen for the particle system to be active. [member GeometryInstance3D.extra_cull_margin] is added on each of the AABB's axes. Particle collisions and attraction will only occur within this area.  
-         *  Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.  
-         *      
-         *  **Note:** [member visibility_aabb] is overridden by [member GeometryInstance3D.custom_aabb] if that property is set to a non-default value.  
-         */
-        get visibility_aabb(): AABB
-        set visibility_aabb(value: AABB)
-        
-        /** If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [GPUParticles3D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [GPUParticles3D] node (and its parents) when it is moved or rotated. */
-        get local_coords(): boolean
-        set local_coords(value: boolean)
-        
-        /** Particle draw order. Uses [enum DrawOrder] values.  
-         *      
-         *  **Note:** [constant DRAW_ORDER_INDEX] is the only option that supports motion vectors for effects like TAA. It is suggested to use this draw order if the particles are opaque to fix ghosting artifacts.  
-         */
-        get draw_order(): number /*i64*/
-        set draw_order(value: number /*i64*/)
-        get transform_align(): number /*i64*/
-        set transform_align(value: number /*i64*/)
-        
-        /** If `true`, enables particle trails using a mesh skinning system. Designed to work with [RibbonTrailMesh] and [TubeTrailMesh].  
-         *      
-         *  **Note:** [member BaseMaterial3D.use_particle_trails] must also be enabled on the particle mesh's material. Otherwise, setting [member trail_enabled] to `true` will have no effect.  
-         *      
-         *  **Note:** Unlike [GPUParticles2D], the number of trail sections and subdivisions is set in the [RibbonTrailMesh] or the [TubeTrailMesh]'s properties.  
-         */
-        get trail_enabled(): boolean
-        set trail_enabled(value: boolean)
-        
-        /** The amount of time the particle's trail should represent (in seconds). Only effective if [member trail_enabled] is `true`. */
-        get trail_lifetime(): number /*f64*/
-        set trail_lifetime(value: number /*f64*/)
-        
-        /** [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial]. */
-        get process_material(): ShaderMaterial | ParticleProcessMaterial
-        set process_material(value: ShaderMaterial | ParticleProcessMaterial)
-        
-        /** The number of draw passes when rendering particles. */
-        get draw_passes(): number /*i64*/
-        set draw_passes(value: number /*i64*/)
-        get draw_skin(): Skin
-        set draw_skin(value: Skin)
         
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted.  
          *      
