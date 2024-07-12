@@ -710,7 +710,7 @@ declare module "godot" {
          *    
          *  If you need the child node to be added below a specific node in the list of children, use [method add_sibling] instead of this method.  
          *      
-         *  **Note:** If you want a child to be persisted to a [PackedScene], you must set [member owner] in addition to calling [method add_child]. This is typically relevant for [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]tool scripts[/url] and [url=$DOCS_URL/tutorials/plugins/editor/index.html]editor plugins[/url]. If [method add_child] is called without setting [member owner], the newly added [Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.  
+         *  **Note:** If you want a child to be persisted to a [PackedScene], you must set [member owner] in addition to calling [method add_child]. This is typically relevant for [url=https://docs.godotengine.org/en/4.2/tutorials/plugins/running_code_in_the_editor.html]tool scripts[/url] and [url=https://docs.godotengine.org/en/4.2/tutorials/plugins/editor/index.html]editor plugins[/url]. If [method add_child] is called without setting [member owner], the newly added [Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.  
          */
         add_child(node: Node, force_readable_name: boolean = false, internal: Node.InternalMode = 0): void
         
@@ -1050,7 +1050,7 @@ declare module "godot" {
          *  - `call_local`: if `true`, the method will also be called locally;  
          *  - `channel`: an [int] representing the channel to send the RPC on.  
          *      
-         *  **Note:** In GDScript, this method corresponds to the [annotation @GDScript.@rpc] annotation, with various parameters passed (`@rpc(any)`, `@rpc(authority)`...). See also the [url=$DOCS_URL/tutorials/networking/high_level_multiplayer.html]high-level multiplayer[/url] tutorial.  
+         *  **Note:** In GDScript, this method corresponds to the [annotation @GDScript.@rpc] annotation, with various parameters passed (`@rpc(any)`, `@rpc(authority)`...). See also the [url=https://docs.godotengine.org/en/4.2/tutorials/networking/high_level_multiplayer.html]high-level multiplayer[/url] tutorial.  
          */
         rpc_config(method: StringName, config: any): void
         set_editor_description(editor_description: string): void
@@ -2202,14 +2202,14 @@ declare module "godot" {
         
         /** Translates a [param message], using the translation catalogs configured in the Project Settings. Further [param context] can be specified to help with the translation.  
          *  If [method can_translate_messages] is `false`, or no translation is available, this method returns the [param message] without changes. See [method set_message_translation].  
-         *  For detailed examples, see [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].  
+         *  For detailed examples, see [url=https://docs.godotengine.org/en/4.2/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].  
          */
         tr(message: StringName, context: StringName = ''): string
         
         /** Translates a [param message] or [param plural_message], using the translation catalogs configured in the Project Settings. Further [param context] can be specified to help with the translation.  
          *  If [method can_translate_messages] is `false`, or no translation is available, this method returns [param message] or [param plural_message], without changes. See [method set_message_translation].  
          *  The [param n] is the number, or amount, of the message's subject. It is used by the translation system to fetch the correct plural form for the current language.  
-         *  For detailed examples, see [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].  
+         *  For detailed examples, see [url=https://docs.godotengine.org/en/4.2/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].  
          *      
          *  **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's recommended handling these cases with [method tr].  
          */
@@ -5249,7 +5249,7 @@ declare module "godot" {
         get canvas_instance_id(): int64
         set canvas_instance_id(value: int64)
         
-        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         
@@ -5286,7 +5286,7 @@ declare module "godot" {
         get position(): Vector3
         set position(value: Vector3)
         
-        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         
@@ -5335,7 +5335,7 @@ declare module "godot" {
         get to(): Vector2
         set to(value: Vector2)
         
-        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         
@@ -5390,7 +5390,7 @@ declare module "godot" {
         get to(): Vector3
         set to(value: Vector3)
         
-        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         
@@ -5413,6 +5413,671 @@ declare module "godot" {
         /** If `true`, the query will hit back faces with concave polygon shapes with back face enabled or heightmap shapes. */
         get hit_back_faces(): boolean
         set hit_back_faces(value: boolean)
+    }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsServer2D] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver2dextension.html  
+     */
+    class PhysicsServer2DExtension extends PhysicsServer2D {
+        constructor(identifier?: any)
+        /** Overridable version of [method PhysicsServer2D.world_boundary_shape_create]. */
+        /* gdvirtual */ _world_boundary_shape_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.separation_ray_shape_create]. */
+        /* gdvirtual */ _separation_ray_shape_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.segment_shape_create]. */
+        /* gdvirtual */ _segment_shape_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.circle_shape_create]. */
+        /* gdvirtual */ _circle_shape_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.rectangle_shape_create]. */
+        /* gdvirtual */ _rectangle_shape_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.capsule_shape_create]. */
+        /* gdvirtual */ _capsule_shape_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.convex_polygon_shape_create]. */
+        /* gdvirtual */ _convex_polygon_shape_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.concave_polygon_shape_create]. */
+        /* gdvirtual */ _concave_polygon_shape_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.shape_set_data]. */
+        /* gdvirtual */ _shape_set_data(shape: RID, data: any): void
+        
+        /** Should set the custom solver bias for the given [param shape]. It defines how much bodies are forced to separate on contact.  
+         *  Overridable version of [PhysicsServer2D]'s internal `shape_get_custom_solver_bias` method. Corresponds to [member Shape2D.custom_solver_bias].  
+         */
+        /* gdvirtual */ _shape_set_custom_solver_bias(shape: RID, bias: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.shape_get_type]. */
+        /* gdvirtual */ _shape_get_type(shape: RID): PhysicsServer2D.ShapeType
+        
+        /** Overridable version of [method PhysicsServer2D.shape_get_data]. */
+        /* gdvirtual */ _shape_get_data(shape: RID): void
+        
+        /** Should return the custom solver bias of the given [param shape], which defines how much bodies are forced to separate on contact when this shape is involved.  
+         *  Overridable version of [PhysicsServer2D]'s internal `shape_get_custom_solver_bias` method. Corresponds to [member Shape2D.custom_solver_bias].  
+         */
+        /* gdvirtual */ _shape_get_custom_solver_bias(shape: RID): float64
+        
+        /** Given two shapes and their parameters, should return `true` if a collision between the two would occur, with additional details passed in [param results].  
+         *  Overridable version of [PhysicsServer2D]'s internal `shape_collide` method. Corresponds to [method PhysicsDirectSpaceState2D.collide_shape].  
+         */
+        /* gdvirtual */ _shape_collide(shape_A: RID, xform_A: Transform2D, motion_A: Vector2, shape_B: RID, xform_B: Transform2D, motion_B: Vector2, results: int64, result_max: int64, result_count: int64): boolean
+        
+        /** Overridable version of [method PhysicsServer2D.space_create]. */
+        /* gdvirtual */ _space_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.space_set_active]. */
+        /* gdvirtual */ _space_set_active(space: RID, active: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.space_is_active]. */
+        /* gdvirtual */ _space_is_active(space: RID): boolean
+        
+        /** Overridable version of [method PhysicsServer2D.space_set_param]. */
+        /* gdvirtual */ _space_set_param(space: RID, param: PhysicsServer2D.SpaceParameter, value: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.space_get_param]. */
+        /* gdvirtual */ _space_get_param(space: RID, param: PhysicsServer2D.SpaceParameter): float64
+        
+        /** Overridable version of [method PhysicsServer2D.space_get_direct_state]. */
+        /* gdvirtual */ _space_get_direct_state(space: RID): PhysicsDirectSpaceState2D
+        
+        /** Used internally to allow the given [param space] to store contact points, up to [param max_contacts]. This is automatically set for the main [World2D]'s space when [member SceneTree.debug_collisions_hint] is `true`, or by checking "Visible Collision Shapes" in the editor. Only works in debug builds.  
+         *  Overridable version of [PhysicsServer2D]'s internal `space_set_debug_contacts` method.  
+         */
+        /* gdvirtual */ _space_set_debug_contacts(space: RID, max_contacts: int64): void
+        
+        /** Should return the positions of all contacts that have occurred during the last physics step in the given [param space]. See also [method _space_get_contact_count] and [method _space_set_debug_contacts].  
+         *  Overridable version of [PhysicsServer2D]'s internal `space_get_contacts` method.  
+         */
+        /* gdvirtual */ _space_get_contacts(space: RID): PackedVector2Array
+        
+        /** Should return how many contacts have occurred during the last physics step in the given [param space]. See also [method _space_get_contacts] and [method _space_set_debug_contacts].  
+         *  Overridable version of [PhysicsServer2D]'s internal `space_get_contact_count` method.  
+         */
+        /* gdvirtual */ _space_get_contact_count(space: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.area_create]. */
+        /* gdvirtual */ _area_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_space]. */
+        /* gdvirtual */ _area_set_space(area: RID, space: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_space]. */
+        /* gdvirtual */ _area_get_space(area: RID): RID
+        
+        /** Overridable version of [method PhysicsServer2D.area_add_shape]. */
+        /* gdvirtual */ _area_add_shape(area: RID, shape: RID, transform: Transform2D, disabled: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_shape]. */
+        /* gdvirtual */ _area_set_shape(area: RID, shape_idx: int64, shape: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_shape_transform]. */
+        /* gdvirtual */ _area_set_shape_transform(area: RID, shape_idx: int64, transform: Transform2D): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_shape_disabled]. */
+        /* gdvirtual */ _area_set_shape_disabled(area: RID, shape_idx: int64, disabled: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_shape_count]. */
+        /* gdvirtual */ _area_get_shape_count(area: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_shape]. */
+        /* gdvirtual */ _area_get_shape(area: RID, shape_idx: int64): RID
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_shape_transform]. */
+        /* gdvirtual */ _area_get_shape_transform(area: RID, shape_idx: int64): Transform2D
+        
+        /** Overridable version of [method PhysicsServer2D.area_remove_shape]. */
+        /* gdvirtual */ _area_remove_shape(area: RID, shape_idx: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_clear_shapes]. */
+        /* gdvirtual */ _area_clear_shapes(area: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_attach_object_instance_id]. */
+        /* gdvirtual */ _area_attach_object_instance_id(area: RID, id: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_object_instance_id]. */
+        /* gdvirtual */ _area_get_object_instance_id(area: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.area_attach_canvas_instance_id]. */
+        /* gdvirtual */ _area_attach_canvas_instance_id(area: RID, id: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_canvas_instance_id]. */
+        /* gdvirtual */ _area_get_canvas_instance_id(area: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_param]. */
+        /* gdvirtual */ _area_set_param(area: RID, param: PhysicsServer2D.AreaParameter, value: any): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_transform]. */
+        /* gdvirtual */ _area_set_transform(area: RID, transform: Transform2D): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_param]. */
+        /* gdvirtual */ _area_get_param(area: RID, param: PhysicsServer2D.AreaParameter): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_transform]. */
+        /* gdvirtual */ _area_get_transform(area: RID): Transform2D
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_collision_layer]. */
+        /* gdvirtual */ _area_set_collision_layer(area: RID, layer: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_collision_layer]. */
+        /* gdvirtual */ _area_get_collision_layer(area: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_collision_mask]. */
+        /* gdvirtual */ _area_set_collision_mask(area: RID, mask: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_get_collision_mask]. */
+        /* gdvirtual */ _area_get_collision_mask(area: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_monitorable]. */
+        /* gdvirtual */ _area_set_monitorable(area: RID, monitorable: boolean): void
+        
+        /** If set to `true`, allows the area with the given [RID] to detect mouse inputs when the mouse cursor is hovering on it.  
+         *  Overridable version of [PhysicsServer2D]'s internal `area_set_pickable` method. Corresponds to [member PhysicsBody2D.input_pickable].  
+         */
+        /* gdvirtual */ _area_set_pickable(area: RID, pickable: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_monitor_callback]. */
+        /* gdvirtual */ _area_set_monitor_callback(area: RID, callback: Callable): void
+        
+        /** Overridable version of [method PhysicsServer2D.area_set_area_monitor_callback]. */
+        /* gdvirtual */ _area_set_area_monitor_callback(area: RID, callback: Callable): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_create]. */
+        /* gdvirtual */ _body_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_space]. */
+        /* gdvirtual */ _body_set_space(body: RID, space: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_space]. */
+        /* gdvirtual */ _body_get_space(body: RID): RID
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_mode]. */
+        /* gdvirtual */ _body_set_mode(body: RID, mode: PhysicsServer2D.BodyMode): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_mode]. */
+        /* gdvirtual */ _body_get_mode(body: RID): PhysicsServer2D.BodyMode
+        
+        /** Overridable version of [method PhysicsServer2D.body_add_shape]. */
+        /* gdvirtual */ _body_add_shape(body: RID, shape: RID, transform: Transform2D, disabled: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_shape]. */
+        /* gdvirtual */ _body_set_shape(body: RID, shape_idx: int64, shape: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_shape_transform]. */
+        /* gdvirtual */ _body_set_shape_transform(body: RID, shape_idx: int64, transform: Transform2D): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_shape_count]. */
+        /* gdvirtual */ _body_get_shape_count(body: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_shape]. */
+        /* gdvirtual */ _body_get_shape(body: RID, shape_idx: int64): RID
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_shape_transform]. */
+        /* gdvirtual */ _body_get_shape_transform(body: RID, shape_idx: int64): Transform2D
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_shape_disabled]. */
+        /* gdvirtual */ _body_set_shape_disabled(body: RID, shape_idx: int64, disabled: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_shape_as_one_way_collision]. */
+        /* gdvirtual */ _body_set_shape_as_one_way_collision(body: RID, shape_idx: int64, enable: boolean, margin: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_remove_shape]. */
+        /* gdvirtual */ _body_remove_shape(body: RID, shape_idx: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_clear_shapes]. */
+        /* gdvirtual */ _body_clear_shapes(body: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_attach_object_instance_id]. */
+        /* gdvirtual */ _body_attach_object_instance_id(body: RID, id: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_object_instance_id]. */
+        /* gdvirtual */ _body_get_object_instance_id(body: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.body_attach_canvas_instance_id]. */
+        /* gdvirtual */ _body_attach_canvas_instance_id(body: RID, id: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_canvas_instance_id]. */
+        /* gdvirtual */ _body_get_canvas_instance_id(body: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_continuous_collision_detection_mode]. */
+        /* gdvirtual */ _body_set_continuous_collision_detection_mode(body: RID, mode: PhysicsServer2D.CCDMode): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_continuous_collision_detection_mode]. */
+        /* gdvirtual */ _body_get_continuous_collision_detection_mode(body: RID): PhysicsServer2D.CCDMode
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_collision_layer]. */
+        /* gdvirtual */ _body_set_collision_layer(body: RID, layer: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_collision_layer]. */
+        /* gdvirtual */ _body_get_collision_layer(body: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_collision_mask]. */
+        /* gdvirtual */ _body_set_collision_mask(body: RID, mask: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_collision_mask]. */
+        /* gdvirtual */ _body_get_collision_mask(body: RID): int64
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_collision_priority]. */
+        /* gdvirtual */ _body_set_collision_priority(body: RID, priority: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_collision_priority]. */
+        /* gdvirtual */ _body_get_collision_priority(body: RID): float64
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_param]. */
+        /* gdvirtual */ _body_set_param(body: RID, param: PhysicsServer2D.BodyParameter, value: any): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_param]. */
+        /* gdvirtual */ _body_get_param(body: RID, param: PhysicsServer2D.BodyParameter): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_reset_mass_properties]. */
+        /* gdvirtual */ _body_reset_mass_properties(body: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_state]. */
+        /* gdvirtual */ _body_set_state(body: RID, state: PhysicsServer2D.BodyState, value: any): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_state]. */
+        /* gdvirtual */ _body_get_state(body: RID, state: PhysicsServer2D.BodyState): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_apply_central_impulse]. */
+        /* gdvirtual */ _body_apply_central_impulse(body: RID, impulse: Vector2): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_apply_torque_impulse]. */
+        /* gdvirtual */ _body_apply_torque_impulse(body: RID, impulse: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_apply_impulse]. */
+        /* gdvirtual */ _body_apply_impulse(body: RID, impulse: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_apply_central_force]. */
+        /* gdvirtual */ _body_apply_central_force(body: RID, force: Vector2): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_apply_force]. */
+        /* gdvirtual */ _body_apply_force(body: RID, force: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_apply_torque]. */
+        /* gdvirtual */ _body_apply_torque(body: RID, torque: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_add_constant_central_force]. */
+        /* gdvirtual */ _body_add_constant_central_force(body: RID, force: Vector2): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_add_constant_force]. */
+        /* gdvirtual */ _body_add_constant_force(body: RID, force: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_add_constant_torque]. */
+        /* gdvirtual */ _body_add_constant_torque(body: RID, torque: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_constant_force]. */
+        /* gdvirtual */ _body_set_constant_force(body: RID, force: Vector2): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_constant_force]. */
+        /* gdvirtual */ _body_get_constant_force(body: RID): Vector2
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_constant_torque]. */
+        /* gdvirtual */ _body_set_constant_torque(body: RID, torque: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_constant_torque]. */
+        /* gdvirtual */ _body_get_constant_torque(body: RID): float64
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_axis_velocity]. */
+        /* gdvirtual */ _body_set_axis_velocity(body: RID, axis_velocity: Vector2): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_add_collision_exception]. */
+        /* gdvirtual */ _body_add_collision_exception(body: RID, excepted_body: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_remove_collision_exception]. */
+        /* gdvirtual */ _body_remove_collision_exception(body: RID, excepted_body: RID): void
+        
+        /** Returns the [RID]s of all bodies added as collision exceptions for the given [param body]. See also [method _body_add_collision_exception] and [method _body_remove_collision_exception].  
+         *  Overridable version of [PhysicsServer2D]'s internal `body_get_collision_exceptions` method. Corresponds to [method PhysicsBody2D.get_collision_exceptions].  
+         */
+        /* gdvirtual */ _body_get_collision_exceptions(body: RID): Array
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_max_contacts_reported]. */
+        /* gdvirtual */ _body_set_max_contacts_reported(body: RID, amount: int64): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_max_contacts_reported]. */
+        /* gdvirtual */ _body_get_max_contacts_reported(body: RID): int64
+        
+        /** Overridable version of [PhysicsServer2D]'s internal `body_set_contacts_reported_depth_threshold` method.  
+         *      
+         *  **Note:** This method is currently unused by Godot's default physics implementation.  
+         */
+        /* gdvirtual */ _body_set_contacts_reported_depth_threshold(body: RID, threshold: float64): void
+        
+        /** Overridable version of [PhysicsServer2D]'s internal `body_get_contacts_reported_depth_threshold` method.  
+         *      
+         *  **Note:** This method is currently unused by Godot's default physics implementation.  
+         */
+        /* gdvirtual */ _body_get_contacts_reported_depth_threshold(body: RID): float64
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_omit_force_integration]. */
+        /* gdvirtual */ _body_set_omit_force_integration(body: RID, enable: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_is_omitting_force_integration]. */
+        /* gdvirtual */ _body_is_omitting_force_integration(body: RID): boolean
+        
+        /** Assigns the [param body] to call the given [param callable] during the synchronization phase of the loop, before [method _step] is called. See also [method _sync].  
+         *  Overridable version of [PhysicsServer2D]'s internal `body_set_state_sync_callback` method.  
+         */
+        /* gdvirtual */ _body_set_state_sync_callback(body: RID, callable: Callable): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_set_force_integration_callback]. */
+        /* gdvirtual */ _body_set_force_integration_callback(body: RID, callable: Callable, userdata: any): void
+        
+        /** Given a [param body], a [param shape], and their respective parameters, this method should return `true` if a collision between the two would occur, with additional details passed in [param results].  
+         *  Overridable version of [PhysicsServer2D]'s internal `shape_collide` method. Corresponds to [method PhysicsDirectSpaceState2D.collide_shape].  
+         */
+        /* gdvirtual */ _body_collide_shape(body: RID, body_shape: int64, shape: RID, shape_xform: Transform2D, motion: Vector2, results: int64, result_max: int64, result_count: int64): boolean
+        
+        /** If set to `true`, allows the body with the given [RID] to detect mouse inputs when the mouse cursor is hovering on it.  
+         *  Overridable version of [PhysicsServer2D]'s internal `body_set_pickable` method. Corresponds to [member PhysicsBody2D.input_pickable].  
+         */
+        /* gdvirtual */ _body_set_pickable(body: RID, pickable: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.body_get_direct_state]. */
+        /* gdvirtual */ _body_get_direct_state(body: RID): PhysicsDirectBodyState2D
+        
+        /** Overridable version of [method PhysicsServer2D.body_test_motion]. Unlike the exposed implementation, this method does not receive all of the arguments inside a [PhysicsTestMotionParameters2D]. */
+        /* gdvirtual */ _body_test_motion(body: RID, from: Transform2D, motion: Vector2, margin: float64, collide_separation_ray: boolean, recovery_as_collision: boolean, result: int64): boolean
+        
+        /** Overridable version of [method PhysicsServer2D.joint_create]. */
+        /* gdvirtual */ _joint_create(): RID
+        
+        /** Overridable version of [method PhysicsServer2D.joint_clear]. */
+        /* gdvirtual */ _joint_clear(joint: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.joint_set_param]. */
+        /* gdvirtual */ _joint_set_param(joint: RID, param: PhysicsServer2D.JointParam, value: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.joint_get_param]. */
+        /* gdvirtual */ _joint_get_param(joint: RID, param: PhysicsServer2D.JointParam): float64
+        
+        /** Overridable version of [method PhysicsServer2D.joint_disable_collisions_between_bodies]. */
+        /* gdvirtual */ _joint_disable_collisions_between_bodies(joint: RID, disable: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.joint_is_disabled_collisions_between_bodies]. */
+        /* gdvirtual */ _joint_is_disabled_collisions_between_bodies(joint: RID): boolean
+        
+        /** Overridable version of [method PhysicsServer2D.joint_make_pin]. */
+        /* gdvirtual */ _joint_make_pin(joint: RID, anchor: Vector2, body_a: RID, body_b: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.joint_make_groove]. */
+        /* gdvirtual */ _joint_make_groove(joint: RID, a_groove1: Vector2, a_groove2: Vector2, b_anchor: Vector2, body_a: RID, body_b: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.joint_make_damped_spring]. */
+        /* gdvirtual */ _joint_make_damped_spring(joint: RID, anchor_a: Vector2, anchor_b: Vector2, body_a: RID, body_b: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.pin_joint_set_flag]. */
+        /* gdvirtual */ _pin_joint_set_flag(joint: RID, flag: PhysicsServer2D.PinJointFlag, enabled: boolean): void
+        
+        /** Overridable version of [method PhysicsServer2D.pin_joint_get_flag]. */
+        /* gdvirtual */ _pin_joint_get_flag(joint: RID, flag: PhysicsServer2D.PinJointFlag): boolean
+        
+        /** Overridable version of [method PhysicsServer2D.pin_joint_set_param]. */
+        /* gdvirtual */ _pin_joint_set_param(joint: RID, param: PhysicsServer2D.PinJointParam, value: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.pin_joint_get_param]. */
+        /* gdvirtual */ _pin_joint_get_param(joint: RID, param: PhysicsServer2D.PinJointParam): float64
+        
+        /** Overridable version of [method PhysicsServer2D.damped_spring_joint_set_param]. */
+        /* gdvirtual */ _damped_spring_joint_set_param(joint: RID, param: PhysicsServer2D.DampedSpringParam, value: float64): void
+        
+        /** Overridable version of [method PhysicsServer2D.damped_spring_joint_get_param]. */
+        /* gdvirtual */ _damped_spring_joint_get_param(joint: RID, param: PhysicsServer2D.DampedSpringParam): float64
+        
+        /** Overridable version of [method PhysicsServer2D.joint_get_type]. */
+        /* gdvirtual */ _joint_get_type(joint: RID): PhysicsServer2D.JointType
+        
+        /** Overridable version of [method PhysicsServer2D.free_rid]. */
+        /* gdvirtual */ _free_rid(rid: RID): void
+        
+        /** Overridable version of [method PhysicsServer2D.set_active]. */
+        /* gdvirtual */ _set_active(active: boolean): void
+        
+        /** Called when the main loop is initialized and creates a new instance of this physics server. See also [method MainLoop._initialize] and [method _finish].  
+         *  Overridable version of [PhysicsServer2D]'s internal `init` method.  
+         */
+        /* gdvirtual */ _init(): void
+        
+        /** Called every physics step to process the physics simulation. [param step] is the time elapsed since the last physics step, in seconds. It is usually the same as [method Node.get_physics_process_delta_time].  
+         *  Overridable version of [PhysicsServer2D]'s internal [code skip-lint]step` method.  
+         */
+        /* gdvirtual */ _step(step: float64): void
+        
+        /** Called to indicate that the physics server is synchronizing and cannot access physics states if running on a separate thread. See also [method _end_sync].  
+         *  Overridable version of [PhysicsServer2D]'s internal `sync` method.  
+         */
+        /* gdvirtual */ _sync(): void
+        
+        /** Called every physics step before [method _step] to process all remaining queries.  
+         *  Overridable version of [PhysicsServer2D]'s internal `flush_queries` method.  
+         */
+        /* gdvirtual */ _flush_queries(): void
+        
+        /** Called to indicate that the physics server has stopped synchronizing. It is in the loop's iteration/physics phase, and can access physics objects even if running on a separate thread. See also [method _sync].  
+         *  Overridable version of [PhysicsServer2D]'s internal `end_sync` method.  
+         */
+        /* gdvirtual */ _end_sync(): void
+        
+        /** Called when the main loop finalizes to shut down the physics server. See also [method MainLoop._finalize] and [method _init].  
+         *  Overridable version of [PhysicsServer2D]'s internal `finish` method.  
+         */
+        /* gdvirtual */ _finish(): void
+        
+        /** Overridable method that should return `true` when the physics server is processing queries. See also [method _flush_queries].  
+         *  Overridable version of [PhysicsServer2D]'s internal `is_flushing_queries` method.  
+         */
+        /* gdvirtual */ _is_flushing_queries(): boolean
+        
+        /** Overridable version of [method PhysicsServer2D.get_process_info]. */
+        /* gdvirtual */ _get_process_info(process_info: PhysicsServer2D.ProcessInfo): int64
+        
+        /** Returns `true` if the body with the given [RID] is being excluded from [method _body_test_motion]. See also [method Object.get_instance_id]. */
+        body_test_motion_is_excluding_body(body: RID): boolean
+        
+        /** Returns `true` if the object with the given instance ID is being excluded from [method _body_test_motion]. See also [method Object.get_instance_id]. */
+        body_test_motion_is_excluding_object(object: int64): boolean
+    }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsServer3D] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver3dextension.html  
+     */
+    class PhysicsServer3DExtension extends PhysicsServer3D {
+        constructor(identifier?: any)
+        /* gdvirtual */ _world_boundary_shape_create(): RID
+        /* gdvirtual */ _separation_ray_shape_create(): RID
+        /* gdvirtual */ _sphere_shape_create(): RID
+        /* gdvirtual */ _box_shape_create(): RID
+        /* gdvirtual */ _capsule_shape_create(): RID
+        /* gdvirtual */ _cylinder_shape_create(): RID
+        /* gdvirtual */ _convex_polygon_shape_create(): RID
+        /* gdvirtual */ _concave_polygon_shape_create(): RID
+        /* gdvirtual */ _heightmap_shape_create(): RID
+        /* gdvirtual */ _custom_shape_create(): RID
+        /* gdvirtual */ _shape_set_data(shape: RID, data: any): void
+        /* gdvirtual */ _shape_set_custom_solver_bias(shape: RID, bias: float64): void
+        /* gdvirtual */ _shape_set_margin(shape: RID, margin: float64): void
+        /* gdvirtual */ _shape_get_margin(shape: RID): float64
+        /* gdvirtual */ _shape_get_type(shape: RID): PhysicsServer3D.ShapeType
+        /* gdvirtual */ _shape_get_data(shape: RID): void
+        /* gdvirtual */ _shape_get_custom_solver_bias(shape: RID): float64
+        /* gdvirtual */ _space_create(): RID
+        /* gdvirtual */ _space_set_active(space: RID, active: boolean): void
+        /* gdvirtual */ _space_is_active(space: RID): boolean
+        /* gdvirtual */ _space_set_param(space: RID, param: PhysicsServer3D.SpaceParameter, value: float64): void
+        /* gdvirtual */ _space_get_param(space: RID, param: PhysicsServer3D.SpaceParameter): float64
+        /* gdvirtual */ _space_get_direct_state(space: RID): PhysicsDirectSpaceState3D
+        /* gdvirtual */ _space_set_debug_contacts(space: RID, max_contacts: int64): void
+        /* gdvirtual */ _space_get_contacts(space: RID): PackedVector3Array
+        /* gdvirtual */ _space_get_contact_count(space: RID): int64
+        /* gdvirtual */ _area_create(): RID
+        /* gdvirtual */ _area_set_space(area: RID, space: RID): void
+        /* gdvirtual */ _area_get_space(area: RID): RID
+        /* gdvirtual */ _area_add_shape(area: RID, shape: RID, transform: Transform3D, disabled: boolean): void
+        /* gdvirtual */ _area_set_shape(area: RID, shape_idx: int64, shape: RID): void
+        /* gdvirtual */ _area_set_shape_transform(area: RID, shape_idx: int64, transform: Transform3D): void
+        /* gdvirtual */ _area_set_shape_disabled(area: RID, shape_idx: int64, disabled: boolean): void
+        /* gdvirtual */ _area_get_shape_count(area: RID): int64
+        /* gdvirtual */ _area_get_shape(area: RID, shape_idx: int64): RID
+        /* gdvirtual */ _area_get_shape_transform(area: RID, shape_idx: int64): Transform3D
+        /* gdvirtual */ _area_remove_shape(area: RID, shape_idx: int64): void
+        /* gdvirtual */ _area_clear_shapes(area: RID): void
+        /* gdvirtual */ _area_attach_object_instance_id(area: RID, id: int64): void
+        /* gdvirtual */ _area_get_object_instance_id(area: RID): int64
+        /* gdvirtual */ _area_set_param(area: RID, param: PhysicsServer3D.AreaParameter, value: any): void
+        /* gdvirtual */ _area_set_transform(area: RID, transform: Transform3D): void
+        /* gdvirtual */ _area_get_param(area: RID, param: PhysicsServer3D.AreaParameter): void
+        /* gdvirtual */ _area_get_transform(area: RID): Transform3D
+        /* gdvirtual */ _area_set_collision_layer(area: RID, layer: int64): void
+        /* gdvirtual */ _area_get_collision_layer(area: RID): int64
+        /* gdvirtual */ _area_set_collision_mask(area: RID, mask: int64): void
+        /* gdvirtual */ _area_get_collision_mask(area: RID): int64
+        /* gdvirtual */ _area_set_monitorable(area: RID, monitorable: boolean): void
+        /* gdvirtual */ _area_set_ray_pickable(area: RID, enable: boolean): void
+        /* gdvirtual */ _area_set_monitor_callback(area: RID, callback: Callable): void
+        /* gdvirtual */ _area_set_area_monitor_callback(area: RID, callback: Callable): void
+        /* gdvirtual */ _body_create(): RID
+        /* gdvirtual */ _body_set_space(body: RID, space: RID): void
+        /* gdvirtual */ _body_get_space(body: RID): RID
+        /* gdvirtual */ _body_set_mode(body: RID, mode: PhysicsServer3D.BodyMode): void
+        /* gdvirtual */ _body_get_mode(body: RID): PhysicsServer3D.BodyMode
+        /* gdvirtual */ _body_add_shape(body: RID, shape: RID, transform: Transform3D, disabled: boolean): void
+        /* gdvirtual */ _body_set_shape(body: RID, shape_idx: int64, shape: RID): void
+        /* gdvirtual */ _body_set_shape_transform(body: RID, shape_idx: int64, transform: Transform3D): void
+        /* gdvirtual */ _body_set_shape_disabled(body: RID, shape_idx: int64, disabled: boolean): void
+        /* gdvirtual */ _body_get_shape_count(body: RID): int64
+        /* gdvirtual */ _body_get_shape(body: RID, shape_idx: int64): RID
+        /* gdvirtual */ _body_get_shape_transform(body: RID, shape_idx: int64): Transform3D
+        /* gdvirtual */ _body_remove_shape(body: RID, shape_idx: int64): void
+        /* gdvirtual */ _body_clear_shapes(body: RID): void
+        /* gdvirtual */ _body_attach_object_instance_id(body: RID, id: int64): void
+        /* gdvirtual */ _body_get_object_instance_id(body: RID): int64
+        /* gdvirtual */ _body_set_enable_continuous_collision_detection(body: RID, enable: boolean): void
+        /* gdvirtual */ _body_is_continuous_collision_detection_enabled(body: RID): boolean
+        /* gdvirtual */ _body_set_collision_layer(body: RID, layer: int64): void
+        /* gdvirtual */ _body_get_collision_layer(body: RID): int64
+        /* gdvirtual */ _body_set_collision_mask(body: RID, mask: int64): void
+        /* gdvirtual */ _body_get_collision_mask(body: RID): int64
+        /* gdvirtual */ _body_set_collision_priority(body: RID, priority: float64): void
+        /* gdvirtual */ _body_get_collision_priority(body: RID): float64
+        /* gdvirtual */ _body_set_user_flags(body: RID, flags: int64): void
+        /* gdvirtual */ _body_get_user_flags(body: RID): int64
+        /* gdvirtual */ _body_set_param(body: RID, param: PhysicsServer3D.BodyParameter, value: any): void
+        /* gdvirtual */ _body_get_param(body: RID, param: PhysicsServer3D.BodyParameter): void
+        /* gdvirtual */ _body_reset_mass_properties(body: RID): void
+        /* gdvirtual */ _body_set_state(body: RID, state: PhysicsServer3D.BodyState, value: any): void
+        /* gdvirtual */ _body_get_state(body: RID, state: PhysicsServer3D.BodyState): void
+        /* gdvirtual */ _body_apply_central_impulse(body: RID, impulse: Vector3): void
+        /* gdvirtual */ _body_apply_impulse(body: RID, impulse: Vector3, position: Vector3): void
+        /* gdvirtual */ _body_apply_torque_impulse(body: RID, impulse: Vector3): void
+        /* gdvirtual */ _body_apply_central_force(body: RID, force: Vector3): void
+        /* gdvirtual */ _body_apply_force(body: RID, force: Vector3, position: Vector3): void
+        /* gdvirtual */ _body_apply_torque(body: RID, torque: Vector3): void
+        /* gdvirtual */ _body_add_constant_central_force(body: RID, force: Vector3): void
+        /* gdvirtual */ _body_add_constant_force(body: RID, force: Vector3, position: Vector3): void
+        /* gdvirtual */ _body_add_constant_torque(body: RID, torque: Vector3): void
+        /* gdvirtual */ _body_set_constant_force(body: RID, force: Vector3): void
+        /* gdvirtual */ _body_get_constant_force(body: RID): Vector3
+        /* gdvirtual */ _body_set_constant_torque(body: RID, torque: Vector3): void
+        /* gdvirtual */ _body_get_constant_torque(body: RID): Vector3
+        /* gdvirtual */ _body_set_axis_velocity(body: RID, axis_velocity: Vector3): void
+        /* gdvirtual */ _body_set_axis_lock(body: RID, axis: PhysicsServer3D.BodyAxis, lock: boolean): void
+        /* gdvirtual */ _body_is_axis_locked(body: RID, axis: PhysicsServer3D.BodyAxis): boolean
+        /* gdvirtual */ _body_add_collision_exception(body: RID, excepted_body: RID): void
+        /* gdvirtual */ _body_remove_collision_exception(body: RID, excepted_body: RID): void
+        /* gdvirtual */ _body_get_collision_exceptions(body: RID): Array
+        /* gdvirtual */ _body_set_max_contacts_reported(body: RID, amount: int64): void
+        /* gdvirtual */ _body_get_max_contacts_reported(body: RID): int64
+        /* gdvirtual */ _body_set_contacts_reported_depth_threshold(body: RID, threshold: float64): void
+        /* gdvirtual */ _body_get_contacts_reported_depth_threshold(body: RID): float64
+        /* gdvirtual */ _body_set_omit_force_integration(body: RID, enable: boolean): void
+        /* gdvirtual */ _body_is_omitting_force_integration(body: RID): boolean
+        /* gdvirtual */ _body_set_state_sync_callback(body: RID, callable: Callable): void
+        /* gdvirtual */ _body_set_force_integration_callback(body: RID, callable: Callable, userdata: any): void
+        /* gdvirtual */ _body_set_ray_pickable(body: RID, enable: boolean): void
+        /* gdvirtual */ _body_test_motion(body: RID, from: Transform3D, motion: Vector3, margin: float64, max_collisions: int64, collide_separation_ray: boolean, recovery_as_collision: boolean, result: int64): boolean
+        /* gdvirtual */ _body_get_direct_state(body: RID): PhysicsDirectBodyState3D
+        /* gdvirtual */ _soft_body_create(): RID
+        /* gdvirtual */ _soft_body_update_rendering_server(body: RID, rendering_server_handler: PhysicsServer3DRenderingServerHandler): void
+        /* gdvirtual */ _soft_body_set_space(body: RID, space: RID): void
+        /* gdvirtual */ _soft_body_get_space(body: RID): RID
+        /* gdvirtual */ _soft_body_set_ray_pickable(body: RID, enable: boolean): void
+        /* gdvirtual */ _soft_body_set_collision_layer(body: RID, layer: int64): void
+        /* gdvirtual */ _soft_body_get_collision_layer(body: RID): int64
+        /* gdvirtual */ _soft_body_set_collision_mask(body: RID, mask: int64): void
+        /* gdvirtual */ _soft_body_get_collision_mask(body: RID): int64
+        /* gdvirtual */ _soft_body_add_collision_exception(body: RID, body_b: RID): void
+        /* gdvirtual */ _soft_body_remove_collision_exception(body: RID, body_b: RID): void
+        /* gdvirtual */ _soft_body_get_collision_exceptions(body: RID): Array
+        /* gdvirtual */ _soft_body_set_state(body: RID, state: PhysicsServer3D.BodyState, variant: any): void
+        /* gdvirtual */ _soft_body_get_state(body: RID, state: PhysicsServer3D.BodyState): void
+        /* gdvirtual */ _soft_body_set_transform(body: RID, transform: Transform3D): void
+        /* gdvirtual */ _soft_body_set_simulation_precision(body: RID, simulation_precision: int64): void
+        /* gdvirtual */ _soft_body_get_simulation_precision(body: RID): int64
+        /* gdvirtual */ _soft_body_set_total_mass(body: RID, total_mass: float64): void
+        /* gdvirtual */ _soft_body_get_total_mass(body: RID): float64
+        /* gdvirtual */ _soft_body_set_linear_stiffness(body: RID, linear_stiffness: float64): void
+        /* gdvirtual */ _soft_body_get_linear_stiffness(body: RID): float64
+        /* gdvirtual */ _soft_body_set_pressure_coefficient(body: RID, pressure_coefficient: float64): void
+        /* gdvirtual */ _soft_body_get_pressure_coefficient(body: RID): float64
+        /* gdvirtual */ _soft_body_set_damping_coefficient(body: RID, damping_coefficient: float64): void
+        /* gdvirtual */ _soft_body_get_damping_coefficient(body: RID): float64
+        /* gdvirtual */ _soft_body_set_drag_coefficient(body: RID, drag_coefficient: float64): void
+        /* gdvirtual */ _soft_body_get_drag_coefficient(body: RID): float64
+        /* gdvirtual */ _soft_body_set_mesh(body: RID, mesh: RID): void
+        /* gdvirtual */ _soft_body_get_bounds(body: RID): AABB
+        /* gdvirtual */ _soft_body_move_point(body: RID, point_index: int64, global_position: Vector3): void
+        /* gdvirtual */ _soft_body_get_point_global_position(body: RID, point_index: int64): Vector3
+        /* gdvirtual */ _soft_body_remove_all_pinned_points(body: RID): void
+        /* gdvirtual */ _soft_body_pin_point(body: RID, point_index: int64, pin: boolean): void
+        /* gdvirtual */ _soft_body_is_point_pinned(body: RID, point_index: int64): boolean
+        /* gdvirtual */ _joint_create(): RID
+        /* gdvirtual */ _joint_clear(joint: RID): void
+        /* gdvirtual */ _joint_make_pin(joint: RID, body_A: RID, local_A: Vector3, body_B: RID, local_B: Vector3): void
+        /* gdvirtual */ _pin_joint_set_param(joint: RID, param: PhysicsServer3D.PinJointParam, value: float64): void
+        /* gdvirtual */ _pin_joint_get_param(joint: RID, param: PhysicsServer3D.PinJointParam): float64
+        /* gdvirtual */ _pin_joint_set_local_a(joint: RID, local_A: Vector3): void
+        /* gdvirtual */ _pin_joint_get_local_a(joint: RID): Vector3
+        /* gdvirtual */ _pin_joint_set_local_b(joint: RID, local_B: Vector3): void
+        /* gdvirtual */ _pin_joint_get_local_b(joint: RID): Vector3
+        /* gdvirtual */ _joint_make_hinge(joint: RID, body_A: RID, hinge_A: Transform3D, body_B: RID, hinge_B: Transform3D): void
+        /* gdvirtual */ _joint_make_hinge_simple(joint: RID, body_A: RID, pivot_A: Vector3, axis_A: Vector3, body_B: RID, pivot_B: Vector3, axis_B: Vector3): void
+        /* gdvirtual */ _hinge_joint_set_param(joint: RID, param: PhysicsServer3D.HingeJointParam, value: float64): void
+        /* gdvirtual */ _hinge_joint_get_param(joint: RID, param: PhysicsServer3D.HingeJointParam): float64
+        /* gdvirtual */ _hinge_joint_set_flag(joint: RID, flag: PhysicsServer3D.HingeJointFlag, enabled: boolean): void
+        /* gdvirtual */ _hinge_joint_get_flag(joint: RID, flag: PhysicsServer3D.HingeJointFlag): boolean
+        /* gdvirtual */ _joint_make_slider(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
+        /* gdvirtual */ _slider_joint_set_param(joint: RID, param: PhysicsServer3D.SliderJointParam, value: float64): void
+        /* gdvirtual */ _slider_joint_get_param(joint: RID, param: PhysicsServer3D.SliderJointParam): float64
+        /* gdvirtual */ _joint_make_cone_twist(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
+        /* gdvirtual */ _cone_twist_joint_set_param(joint: RID, param: PhysicsServer3D.ConeTwistJointParam, value: float64): void
+        /* gdvirtual */ _cone_twist_joint_get_param(joint: RID, param: PhysicsServer3D.ConeTwistJointParam): float64
+        /* gdvirtual */ _joint_make_generic_6dof(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
+        /* gdvirtual */ _generic_6dof_joint_set_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam, value: float64): void
+        /* gdvirtual */ _generic_6dof_joint_get_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam): float64
+        /* gdvirtual */ _generic_6dof_joint_set_flag(joint: RID, axis: Vector3.Axis, flag: PhysicsServer3D.G6DOFJointAxisFlag, enable: boolean): void
+        /* gdvirtual */ _generic_6dof_joint_get_flag(joint: RID, axis: Vector3.Axis, flag: PhysicsServer3D.G6DOFJointAxisFlag): boolean
+        /* gdvirtual */ _joint_get_type(joint: RID): PhysicsServer3D.JointType
+        /* gdvirtual */ _joint_set_solver_priority(joint: RID, priority: int64): void
+        /* gdvirtual */ _joint_get_solver_priority(joint: RID): int64
+        /* gdvirtual */ _joint_disable_collisions_between_bodies(joint: RID, disable: boolean): void
+        /* gdvirtual */ _joint_is_disabled_collisions_between_bodies(joint: RID): boolean
+        /* gdvirtual */ _free_rid(rid: RID): void
+        /* gdvirtual */ _set_active(active: boolean): void
+        /* gdvirtual */ _init(): void
+        /* gdvirtual */ _step(step: float64): void
+        /* gdvirtual */ _sync(): void
+        /* gdvirtual */ _flush_queries(): void
+        /* gdvirtual */ _end_sync(): void
+        /* gdvirtual */ _finish(): void
+        /* gdvirtual */ _is_flushing_queries(): boolean
+        /* gdvirtual */ _get_process_info(process_info: PhysicsServer3D.ProcessInfo): int64
+        body_test_motion_is_excluding_body(body: RID): boolean
+        body_test_motion_is_excluding_object(object: int64): boolean
     }
     /** A class used to provide [method PhysicsServer3DExtension._soft_body_update_rendering_server] with a rendering handler for soft bodies.  
      *  	  
@@ -5469,7 +6134,7 @@ declare module "godot" {
         set_collide_with_areas(enable: boolean): void
         is_collide_with_areas_enabled(): boolean
         
-        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         
@@ -5532,7 +6197,7 @@ declare module "godot" {
         set_collide_with_areas(enable: boolean): void
         is_collide_with_areas_enabled(): boolean
         
-        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         
@@ -7823,7 +8488,7 @@ declare module "godot" {
         get target_position(): Vector2
         set target_position(value: Vector2)
         
-        /** The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         
@@ -7932,7 +8597,7 @@ declare module "godot" {
         get target_position(): Vector3
         set target_position(value: Vector3)
         
-        /** The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         

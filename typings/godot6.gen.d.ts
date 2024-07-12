@@ -8310,7 +8310,7 @@ declare module "godot" {
              *  **On Windows:** Multi-window full-screen mode has a 1px border of the [member ProjectSettings.rendering/environment/defaults/default_clear_color] color.  
              *  **On macOS:** A new desktop is used to display the running project.  
              *      
-             *  **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.  
+             *  **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=https://docs.godotengine.org/en/4.2/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.  
              */
             MODE_FULLSCREEN = 3,
             
@@ -8320,7 +8320,7 @@ declare module "godot" {
              *  **On macOS:** A new desktop is used to display the running project. Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.  
              *  **On Linux (X11):** Exclusive full screen mode bypasses compositor.  
              *      
-             *  **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.  
+             *  **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=https://docs.godotengine.org/en/4.2/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.  
              */
             MODE_EXCLUSIVE_FULLSCREEN = 4,
         }
