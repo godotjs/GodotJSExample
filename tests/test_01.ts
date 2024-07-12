@@ -1,4 +1,4 @@
-import { EditorPlugin, Node2D, Variant } from "godot";
+import { EditorPlugin, Node2D, Variant, Vector2 } from "godot";
 import { export_, onready, tool } from "../jsb/jsb.core";
 import Test01Inspector from "./test_01_inspector";
 import * as jsb from "godot-jsb";
@@ -13,6 +13,11 @@ export default class Test01 extends Node2D {
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	_process(delta: number): void {
+		for (let i = 0; i < 100; ++i) {
+			let v = new Vector2();
+			v.x = 1;
+			v.y = v.x * 2;
+		}
 	}
 
 	_enter_tree(): void {

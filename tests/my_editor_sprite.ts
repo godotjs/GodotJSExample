@@ -36,7 +36,7 @@ export default class MyEditorSprite extends Sprite2D {
     _process(delta: number) {
         const step = Math.PI * delta * (this._clockwise ? this._speed : -this._speed);
         // this.set_rotation(this.get_rotation() + step);
-        this.rotation += step;
+        this.rotation = (this.rotation + step) % (Math.PI * 2);
     }
 
     _get_configuration_warnings() {
