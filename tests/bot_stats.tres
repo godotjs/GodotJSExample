@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bbd30164eap6v"]
+
+[ext_resource type="Script" path="res://tests/bot_stats.ts" id="1_0r44d"]
+
+[resource]
+script = ExtResource("1_0r44d")
+health = 16
+strings = PackedStringArray("5554")
