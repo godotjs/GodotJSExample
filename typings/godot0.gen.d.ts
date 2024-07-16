@@ -1,7 +1,10 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    type byte = number
+    type int32 = number
     type int64 = number
+    type float32 = number
     type float64 = number
     type unresolved = any
     // // Singleton Class
@@ -479,48 +482,48 @@ declare module "godot" {
         static point_is_inside_triangle(point: Vector2, a: Vector2, b: Vector2, c: Vector2): boolean
         
         /** Returns `true` if [param polygon]'s vertices are ordered in clockwise order, otherwise returns `false`. */
-        static is_polygon_clockwise(polygon: PackedVector2Array): boolean
+        static is_polygon_clockwise(polygon: PackedVector2Array | Array<Vector2>): boolean
         
         /** Returns `true` if [param point] is inside [param polygon] or if it's located exactly  *on*  polygon's boundary, otherwise returns `false`. */
-        static is_point_in_polygon(point: Vector2, polygon: PackedVector2Array): boolean
+        static is_point_in_polygon(point: Vector2, polygon: PackedVector2Array | Array<Vector2>): boolean
         
         /** Triangulates the polygon specified by the points in [param polygon]. Returns a [PackedInt32Array] where each triangle consists of three consecutive point indices into [param polygon] (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). Output triangles will always be counter clockwise, and the contour will be flipped if it's clockwise. If the triangulation did not succeed, an empty [PackedInt32Array] is returned. */
-        static triangulate_polygon(polygon: PackedVector2Array): PackedInt32Array
+        static triangulate_polygon(polygon: PackedVector2Array | Array<Vector2>): PackedInt32Array
         
         /** Triangulates the area specified by discrete set of [param points] such that no point is inside the circumcircle of any resulting triangle. Returns a [PackedInt32Array] where each triangle consists of three consecutive point indices into [param points] (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not succeed, an empty [PackedInt32Array] is returned. */
-        static triangulate_delaunay(points: PackedVector2Array): PackedInt32Array
+        static triangulate_delaunay(points: PackedVector2Array | Array<Vector2>): PackedInt32Array
         
         /** Given an array of [Vector2]s, returns the convex hull as a list of points in counterclockwise order. The last point is the same as the first one. */
-        static convex_hull(points: PackedVector2Array): PackedVector2Array
+        static convex_hull(points: PackedVector2Array | Array<Vector2>): PackedVector2Array
         
         /** Decomposes the [param polygon] into multiple convex hulls and returns an array of [PackedVector2Array]. */
-        static decompose_polygon_in_convex(polygon: PackedVector2Array): Array
+        static decompose_polygon_in_convex(polygon: PackedVector2Array | Array<Vector2>): Array
         
         /** Merges (combines) [param polygon_a] and [param polygon_b] and returns an array of merged polygons. This performs [constant OPERATION_UNION] between polygons.  
          *  The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static merge_polygons(polygon_a: PackedVector2Array, polygon_b: PackedVector2Array): Array
+        static merge_polygons(polygon_a: PackedVector2Array | Array<Vector2>, polygon_b: PackedVector2Array | Array<Vector2>): Array
         
         /** Clips [param polygon_a] against [param polygon_b] and returns an array of clipped polygons. This performs [constant OPERATION_DIFFERENCE] between polygons. Returns an empty array if [param polygon_b] completely overlaps [param polygon_a].  
          *  If [param polygon_b] is enclosed by [param polygon_a], returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static clip_polygons(polygon_a: PackedVector2Array, polygon_b: PackedVector2Array): Array
+        static clip_polygons(polygon_a: PackedVector2Array | Array<Vector2>, polygon_b: PackedVector2Array | Array<Vector2>): Array
         
         /** Intersects [param polygon_a] with [param polygon_b] and returns an array of intersected polygons. This performs [constant OPERATION_INTERSECTION] between polygons. In other words, returns common area shared by polygons. Returns an empty array if no intersection occurs.  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static intersect_polygons(polygon_a: PackedVector2Array, polygon_b: PackedVector2Array): Array
+        static intersect_polygons(polygon_a: PackedVector2Array | Array<Vector2>, polygon_b: PackedVector2Array | Array<Vector2>): Array
         
         /** Mutually excludes common area defined by intersection of [param polygon_a] and [param polygon_b] (see [method intersect_polygons]) and returns an array of excluded polygons. This performs [constant OPERATION_XOR] between polygons. In other words, returns all but common area between polygons.  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static exclude_polygons(polygon_a: PackedVector2Array, polygon_b: PackedVector2Array): Array
+        static exclude_polygons(polygon_a: PackedVector2Array | Array<Vector2>, polygon_b: PackedVector2Array | Array<Vector2>): Array
         
         /** Clips [param polyline] against [param polygon] and returns an array of clipped polylines. This performs [constant OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape. */
-        static clip_polyline_with_polygon(polyline: PackedVector2Array, polygon: PackedVector2Array): Array
+        static clip_polyline_with_polygon(polyline: PackedVector2Array | Array<Vector2>, polygon: PackedVector2Array | Array<Vector2>): Array
         
         /** Intersects [param polyline] with [param polygon] and returns an array of intersected polylines. This performs [constant OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape. */
-        static intersect_polyline_with_polygon(polyline: PackedVector2Array, polygon: PackedVector2Array): Array
+        static intersect_polyline_with_polygon(polyline: PackedVector2Array | Array<Vector2>, polygon: PackedVector2Array | Array<Vector2>): Array
         
         /** Inflates or deflates [param polygon] by [param delta] units (pixels). If [param delta] is positive, makes the polygon grow outward. If [param delta] is negative, shrinks the polygon inward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty array if [param delta] is negative and the absolute value of it approximately exceeds the minimum bounding rectangle dimensions of the polygon.  
          *  Each polygon's vertices will be rounded as determined by [param join_type], see [enum PolyJoinType].  
@@ -529,17 +532,17 @@ declare module "godot" {
          *  **Note:** To translate the polygon's vertices specifically, multiply them to a [Transform2D]:  
          *    
          */
-        static offset_polygon(polygon: PackedVector2Array, delta: float64, join_type: Geometry2D.PolyJoinType = 0): Array
+        static offset_polygon(polygon: PackedVector2Array | Array<Vector2>, delta: float64, join_type: Geometry2D.PolyJoinType = 0): Array
         
         /** Inflates or deflates [param polyline] by [param delta] units (pixels), producing polygons. If [param delta] is positive, makes the polyline grow outward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. If [param delta] is negative, returns an empty array.  
          *  Each polygon's vertices will be rounded as determined by [param join_type], see [enum PolyJoinType].  
          *  Each polygon's endpoints will be rounded as determined by [param end_type], see [enum PolyEndType].  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static offset_polyline(polyline: PackedVector2Array, delta: float64, join_type: Geometry2D.PolyJoinType = 0, end_type: Geometry2D.PolyEndType = 3): Array
+        static offset_polyline(polyline: PackedVector2Array | Array<Vector2>, delta: float64, join_type: Geometry2D.PolyJoinType = 0, end_type: Geometry2D.PolyEndType = 3): Array
         
         /** Given an array of [Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a [PackedVector2Array] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [Vector2i]. */
-        static make_atlas(sizes: PackedVector2Array): Dictionary
+        static make_atlas(sizes: PackedVector2Array | Array<Vector2>): Dictionary
     }
     // // Singleton Class
     /** Provides methods for some common 3D geometric operations.  
@@ -589,7 +592,7 @@ declare module "godot" {
         static segment_intersects_convex(from: Vector3, to: Vector3, planes: Array): PackedVector3Array
         
         /** Clips the polygon defined by the points in [param points] against the [param plane] and returns the points of the clipped polygon. */
-        static clip_polygon(points: PackedVector3Array, plane: Plane): PackedVector3Array
+        static clip_polygon(points: PackedVector3Array | Array<Vector3>, plane: Plane): PackedVector3Array
     }
     // // Singleton Class
     namespace ResourceLoader {
@@ -865,7 +868,7 @@ declare module "godot" {
          *      
          *  **Note:** On Android, system commands such as `dumpsys` can only be run on a rooted device.  
          */
-        static execute(path: string, arguments_: PackedStringArray, output: Array = <any> {} /*compound.type from 28([object Object])*/, read_stderr: boolean = false, open_console: boolean = false): int64
+        static execute(path: string, arguments_: PackedStringArray | Array<string>, output: Array = <any> {} /*compound.type from 28([object Object])*/, read_stderr: boolean = false, open_console: boolean = false): int64
         
         /** Creates a new process that runs independently of Godot. It will not terminate if Godot terminates. The path specified in [param path] must exist and be executable file or macOS .app bundle. Platform path resolution will be used. The [param arguments] are used in the given order and separated by a space.  
          *  On Windows, if [param open_console] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.  
@@ -878,14 +881,14 @@ declare module "godot" {
          *      
          *  **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export or system .app bundle, system .app bundles will ignore arguments.  
          */
-        static create_process(path: string, arguments_: PackedStringArray, open_console: boolean = false): int64
+        static create_process(path: string, arguments_: PackedStringArray | Array<string>, open_console: boolean = false): int64
         
         /** Creates a new instance of Godot that runs independently. The [param arguments] are used in the given order and separated by a space.  
          *  If the process creation succeeds, the method will return the new process ID, which you can use to monitor the process (and potentially terminate it with [method kill]). If the process creation fails, the method will return `-1`.  
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
-        static create_instance(arguments_: PackedStringArray): int64
+        static create_instance(arguments_: PackedStringArray | Array<string>): int64
         
         /** Kill (terminate) the process identified by the given process ID ([param pid]), e.g. the one returned by [method execute] in non-blocking mode. See also [method crash].  
          *      
@@ -1016,7 +1019,7 @@ declare module "godot" {
          *      
          *  **Note:** If the project process crashes or is  *killed*  by the user (by sending `SIGKILL` instead of the usual `SIGTERM`), the project won't restart automatically.  
          */
-        static set_restart_on_exit(restart: boolean, arguments_: PackedStringArray = <any> {} /*compound.type from 34([object Object])*/): void
+        static set_restart_on_exit(restart: boolean, arguments_: PackedStringArray | Array<string> = <any> {} /*compound.type from 34([object Object])*/): void
         
         /** Returns `true` if the project will automatically restart when it exits for any reason, `false` otherwise. See also [method set_restart_on_exit] and [method get_restart_on_exit_arguments]. */
         static is_restart_on_exit_set(): boolean
@@ -1475,7 +1478,7 @@ declare module "godot" {
         static base64_to_variant(base64_str: string, allow_objects: boolean = false): any
         
         /** Returns a Base64-encoded string of a given [PackedByteArray]. */
-        static raw_to_base64(array: PackedByteArray): string
+        static raw_to_base64(array: PackedByteArray | Array<byte> | ArrayBuffer): string
         
         /** Returns a decoded [PackedByteArray] corresponding to the Base64-encoded string [param base64_str]. */
         static base64_to_raw(base64_str: string): PackedByteArray
@@ -2556,7 +2559,7 @@ declare module "godot" {
          *      
          *  **Note:** Browsers might ask the user for permission or block the download if multiple download requests are made in a quick succession.  
          */
-        static download_buffer(buffer: PackedByteArray, name: string, mime: string = 'application/octet-stream'): void
+        static download_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer, name: string, mime: string = 'application/octet-stream'): void
         
         /** Returns `true` if a new version of the progressive web app is waiting to be activated.  
          *      
@@ -3644,7 +3647,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
          */
-        static window_set_mouse_passthrough(region: PackedVector2Array, window_id: int64 = 0): void
+        static window_set_mouse_passthrough(region: PackedVector2Array | Array<Vector2>, window_id: int64 = 0): void
         
         /** Returns the screen the window specified by [param window_id] is currently positioned on. If the screen overlaps multiple displays, the screen where the window's center is located is returned. See also [method window_set_current_screen]. */
         static window_get_current_screen(window_id: int64 = 0): int64
@@ -3871,7 +3874,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static dialog_show(title: string, description: string, buttons: PackedStringArray, callback: Callable): Error
+        static dialog_show(title: string, description: string, buttons: PackedStringArray | Array<string>, callback: Callable): Error
         
         /** Shows a text input dialog which uses the operating system's native look-and-feel. [param callback] will be called with a [String] argument equal to the text field's contents when the dialog is closed for any reason.  
          *      
@@ -3894,7 +3897,7 @@ declare module "godot" {
          *      
          *  **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [method OS.get_granted_permissions] to get a list of saved bookmarks.  
          */
-        static file_dialog_show(title: string, current_directory: string, filename: string, show_hidden: boolean, mode: DisplayServer.FileDialogMode, filters: PackedStringArray, callback: Callable): Error
+        static file_dialog_show(title: string, current_directory: string, filename: string, show_hidden: boolean, mode: DisplayServer.FileDialogMode, filters: PackedStringArray | Array<string>, callback: Callable): Error
         
         /** Returns the number of keyboard layouts.  
          *      
@@ -5565,9 +5568,9 @@ declare module "godot" {
         
         /** Removes all surfaces from a mesh. */
         static mesh_clear(mesh: RID): void
-        static mesh_surface_update_vertex_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray): void
-        static mesh_surface_update_attribute_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray): void
-        static mesh_surface_update_skin_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray): void
+        static mesh_surface_update_vertex_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray | Array<byte> | ArrayBuffer): void
+        static mesh_surface_update_attribute_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray | Array<byte> | ArrayBuffer): void
+        static mesh_surface_update_skin_region(mesh: RID, surface: int64, offset: int64, data: PackedByteArray | Array<byte> | ArrayBuffer): void
         static mesh_set_shadow_mesh(mesh: RID, shadow_mesh: RID): void
         
         /** Creates a new multimesh on the RenderingServer and returns an [RID] handle. This RID will be used in all `multimesh_*` RenderingServer functions.  
@@ -5625,7 +5628,7 @@ declare module "godot" {
          *  The per-instance data size and expected data order is:  
          *    
          */
-        static multimesh_set_buffer(multimesh: RID, buffer: PackedFloat32Array): void
+        static multimesh_set_buffer(multimesh: RID, buffer: PackedFloat32Array | Array<float32>): void
         
         /** Returns the MultiMesh data (such as instance transforms, colors, etc). See [method multimesh_set_buffer] for a description of the returned data.  
          *      
@@ -5828,7 +5831,7 @@ declare module "godot" {
          *  **Note:** The equivalent node is [VoxelGI].  
          */
         static voxel_gi_create(): RID
-        static voxel_gi_allocate_data(voxel_gi: RID, to_cell_xform: Transform3D, aabb: AABB, octree_size: Vector3i, octree_cells: PackedByteArray, data_cells: PackedByteArray, distance_field: PackedByteArray, level_counts: PackedInt32Array): void
+        static voxel_gi_allocate_data(voxel_gi: RID, to_cell_xform: Transform3D, aabb: AABB, octree_size: Vector3i, octree_cells: PackedByteArray | Array<byte> | ArrayBuffer, data_cells: PackedByteArray | Array<byte> | ArrayBuffer, distance_field: PackedByteArray | Array<byte> | ArrayBuffer, level_counts: PackedInt32Array | Array<int32>): void
         static voxel_gi_get_octree_size(voxel_gi: RID): Vector3i
         static voxel_gi_get_octree_cells(voxel_gi: RID): PackedByteArray
         static voxel_gi_get_data_cells(voxel_gi: RID): PackedByteArray
@@ -5874,7 +5877,7 @@ declare module "godot" {
         static lightmap_set_textures(lightmap: RID, light: RID, uses_sh: boolean): void
         static lightmap_set_probe_bounds(lightmap: RID, bounds: AABB): void
         static lightmap_set_probe_interior(lightmap: RID, interior: boolean): void
-        static lightmap_set_probe_capture_data(lightmap: RID, points: PackedVector3Array, point_sh: PackedColorArray, tetrahedra: PackedInt32Array, bsp_tree: PackedInt32Array): void
+        static lightmap_set_probe_capture_data(lightmap: RID, points: PackedVector3Array | Array<Vector3>, point_sh: PackedColorArray | Array<Color>, tetrahedra: PackedInt32Array | Array<int32>, bsp_tree: PackedInt32Array | Array<int32>): void
         static lightmap_get_probe_capture_points(lightmap: RID): PackedVector3Array
         static lightmap_get_probe_capture_sh(lightmap: RID): PackedColorArray
         static lightmap_get_probe_capture_tetrahedra(lightmap: RID): PackedInt32Array
@@ -6056,7 +6059,7 @@ declare module "godot" {
         static occluder_create(): RID
         
         /** Sets the mesh data for the given occluder RID, which controls the shape of the occlusion culling that will be performed. */
-        static occluder_set_mesh(occluder: RID, vertices: PackedVector3Array, indices: PackedInt32Array): void
+        static occluder_set_mesh(occluder: RID, vertices: PackedVector3Array | Array<Vector3>, indices: PackedInt32Array | Array<int32>): void
         
         /** Creates a 3D camera and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `camera_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -6328,7 +6331,7 @@ declare module "godot" {
         static environment_set_ambient_light(env: RID, color: Color, ambient: RenderingServer.EnvironmentAmbientSource = 0, energy: float64 = 1, sky_contibution: float64 = 0, reflection_source: RenderingServer.EnvironmentReflectionSource = 0): void
         
         /** Configures glow for the specified environment RID. See `glow_*` properties in [Environment] for more information. */
-        static environment_set_glow(env: RID, enable: boolean, levels: PackedFloat32Array, intensity: float64, strength: float64, mix: float64, bloom_threshold: float64, blend_mode: RenderingServer.EnvironmentGlowBlendMode, hdr_bleed_threshold: float64, hdr_bleed_scale: float64, hdr_luminance_cap: float64, glow_map_strength: float64, glow_map: RID): void
+        static environment_set_glow(env: RID, enable: boolean, levels: PackedFloat32Array | Array<float32>, intensity: float64, strength: float64, mix: float64, bloom_threshold: float64, blend_mode: RenderingServer.EnvironmentGlowBlendMode, hdr_bleed_threshold: float64, hdr_bleed_scale: float64, hdr_luminance_cap: float64, glow_map_strength: float64, glow_map: RID): void
         
         /** Sets the variables to be used with the "tonemap" post-process effect. See [Environment] for more details. */
         static environment_set_tonemap(env: RID, tone_mapper: RenderingServer.EnvironmentToneMapper, exposure: float64, white: float64): void
@@ -6637,10 +6640,10 @@ declare module "godot" {
         static canvas_item_add_line(item: RID, from: Vector2, to: Vector2, color: Color, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a 2D polyline on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_polyline] and [method CanvasItem.draw_polyline_colors]. */
-        static canvas_item_add_polyline(item: RID, points: PackedVector2Array, colors: PackedColorArray, width: float64 = -1, antialiased: boolean = false): void
+        static canvas_item_add_polyline(item: RID, points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a 2D multiline on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_multiline] and [method CanvasItem.draw_multiline_colors]. */
-        static canvas_item_add_multiline(item: RID, points: PackedVector2Array, colors: PackedColorArray, width: float64 = -1): void
+        static canvas_item_add_multiline(item: RID, points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, width: float64 = -1): void
         
         /** Draws a rectangle on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_rect]. */
         static canvas_item_add_rect(item: RID, rect: Rect2, color: Color): void
@@ -6664,16 +6667,16 @@ declare module "godot" {
         static canvas_item_add_nine_patch(item: RID, rect: Rect2, source: Rect2, texture: RID, topleft: Vector2, bottomright: Vector2, x_axis_mode: RenderingServer.NinePatchAxisMode = 0, y_axis_mode: RenderingServer.NinePatchAxisMode = 0, draw_center: boolean = true, modulate: Color = new Color(1, 1, 1, 1)): void
         
         /** Draws a 2D primitive on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_primitive]. */
-        static canvas_item_add_primitive(item: RID, points: PackedVector2Array, colors: PackedColorArray, uvs: PackedVector2Array, texture: RID): void
+        static canvas_item_add_primitive(item: RID, points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, uvs: PackedVector2Array | Array<Vector2>, texture: RID): void
         
         /** Draws a 2D polygon on the [CanvasItem] pointed to by the [param item] [RID]. If you need more flexibility (such as being able to use bones), use [method canvas_item_add_triangle_array] instead. See also [method CanvasItem.draw_polygon]. */
-        static canvas_item_add_polygon(item: RID, points: PackedVector2Array, colors: PackedColorArray, uvs: PackedVector2Array = <any> {} /*compound.type from 35([object Object])*/, texture: RID = <any> {} /*compound.type from 23([object Object])*/): void
+        static canvas_item_add_polygon(item: RID, points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, uvs: PackedVector2Array | Array<Vector2> = <any> {} /*compound.type from 35([object Object])*/, texture: RID = <any> {} /*compound.type from 23([object Object])*/): void
         
         /** Draws a triangle array on the [CanvasItem] pointed to by the [param item] [RID]. This is internally used by [Line2D] and [StyleBoxFlat] for rendering. [method canvas_item_add_triangle_array] is highly flexible, but more complex to use than [method canvas_item_add_polygon].  
          *      
          *  **Note:** [param count] is unused and can be left unspecified.  
          */
-        static canvas_item_add_triangle_array(item: RID, indices: PackedInt32Array, points: PackedVector2Array, colors: PackedColorArray, uvs: PackedVector2Array = <any> {} /*compound.type from 35([object Object])*/, bones: PackedInt32Array = <any> {} /*compound.type from 30([object Object])*/, weights: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/, texture: RID = <any> {} /*compound.type from 23([object Object])*/, count: int64 = -1): void
+        static canvas_item_add_triangle_array(item: RID, indices: PackedInt32Array | Array<int32>, points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, uvs: PackedVector2Array | Array<Vector2> = <any> {} /*compound.type from 35([object Object])*/, bones: PackedInt32Array | Array<int32> = <any> {} /*compound.type from 30([object Object])*/, weights: PackedFloat32Array | Array<float32> = <any> {} /*compound.type from 32([object Object])*/, texture: RID = <any> {} /*compound.type from 23([object Object])*/, count: int64 = -1): void
         
         /** Draws a mesh created with [method mesh_create] with given [param transform], [param modulate] color, and [param texture]. This is used internally by [MeshInstance2D]. */
         static canvas_item_add_mesh(item: RID, mesh: RID, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, modulate: Color = new Color(1, 1, 1, 1), texture: RID = <any> {} /*compound.type from 23([object Object])*/): void
@@ -6828,7 +6831,7 @@ declare module "godot" {
         static canvas_occluder_polygon_create(): RID
         
         /** Sets the shape of the occluder polygon. */
-        static canvas_occluder_polygon_set_shape(occluder_polygon: RID, shape: PackedVector2Array, closed: boolean): void
+        static canvas_occluder_polygon_set_shape(occluder_polygon: RID, shape: PackedVector2Array | Array<Vector2>, closed: boolean): void
         
         /** Sets an occluder polygons cull mode. See [enum CanvasOccluderPolygonCullMode] constants. */
         static canvas_occluder_polygon_set_cull_mode(occluder_polygon: RID, mode: RenderingServer.CanvasOccluderPolygonCullMode): void
@@ -8993,7 +8996,7 @@ declare module "godot" {
         static obstacle_set_position(obstacle: RID, position: Vector2): void
         
         /** Sets the outline vertices for the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. */
-        static obstacle_set_vertices(obstacle: RID, vertices: PackedVector2Array): void
+        static obstacle_set_vertices(obstacle: RID, vertices: PackedVector2Array | Array<Vector2>): void
         
         /** Set the obstacles's `avoidance_layers` bitmask. */
         static obstacle_set_avoidance_layers(obstacle: RID, layers: int64): void
@@ -9397,7 +9400,7 @@ declare module "godot" {
         static obstacle_set_position(obstacle: RID, position: Vector3): void
         
         /** Sets the outline vertices for the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. */
-        static obstacle_set_vertices(obstacle: RID, vertices: PackedVector3Array): void
+        static obstacle_set_vertices(obstacle: RID, vertices: PackedVector3Array | Array<Vector3>): void
         
         /** Set the obstacles's `avoidance_layers` bitmask. */
         static obstacle_set_avoidance_layers(obstacle: RID, layers: int64): void

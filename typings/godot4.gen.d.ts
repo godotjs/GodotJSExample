@@ -1835,7 +1835,7 @@ declare module "godot" {
     class Polygon2D extends Node2D {
         constructor(identifier?: any)
         /** Adds a bone with the specified [param path] and [param weights]. */
-        add_bone(path: NodePath, weights: PackedFloat32Array): void
+        add_bone(path: NodePath, weights: PackedFloat32Array | Array<float32>): void
         
         /** Returns the number of bones in this [Polygon2D]. */
         get_bone_count(): int64
@@ -1856,7 +1856,7 @@ declare module "godot" {
         set_bone_path(index: int64, path: NodePath): void
         
         /** Sets the weight values for the specified bone. */
-        set_bone_weights(index: int64, weights: PackedFloat32Array): void
+        set_bone_weights(index: int64, weights: PackedFloat32Array | Array<float32>): void
         
         /** The polygon's fill color. If [member texture] is set, it will be multiplied by this color. It will also be the default color for vertices not set in [member vertex_colors]. */
         get color(): Color
@@ -1903,15 +1903,15 @@ declare module "godot" {
          *  **Note:** This returns a copy of the [PackedVector2Array] rather than a reference.  
          */
         get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array)
+        set polygon(value: PackedVector2Array | Array<Vector2>)
         
         /** Texture coordinates for each vertex of the polygon. There should be one UV value per polygon vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`. */
         get uv(): PackedVector2Array
-        set uv(value: PackedVector2Array)
+        set uv(value: PackedVector2Array | Array<Vector2>)
         
         /** Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients. There should be one per polygon vertex. If there are fewer, undefined vertices will use [member color]. */
         get vertex_colors(): PackedColorArray
-        set vertex_colors(value: PackedColorArray)
+        set vertex_colors(value: PackedColorArray | Array<Color>)
         
         /** The list of polygons, in case more than one is being represented. Every individual polygon is stored as a [PackedInt32Array] where each [int] is an index to a point in [member polygon]. If empty, this property will be ignored, and the resulting single polygon will be composed of all points in [member polygon], using the order they are stored in. */
         get polygons(): Array
@@ -1952,12 +1952,12 @@ declare module "godot" {
          *  The polygon must  *not*  have intersecting lines. Otherwise, triangulation will fail (with an error message printed).  
          */
         get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array)
+        set polygon(value: PackedVector2Array | Array<Vector2>)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_polygonpathfinder.html */
     class PolygonPathFinder extends Resource {
         constructor(identifier?: any)
-        setup(points: PackedVector2Array, connections: PackedInt32Array): void
+        setup(points: PackedVector2Array | Array<Vector2>, connections: PackedInt32Array | Array<int32>): void
         find_path(from: Vector2, to: Vector2): PackedVector2Array
         get_intersections(from: Vector2, to: Vector2): PackedVector2Array
         get_closest_point(point: Vector2): Vector2
@@ -2317,7 +2317,7 @@ declare module "godot" {
         /** Return whether the flag is overridden for all textures of this type. */
         static is_keeping_all_compressed_buffers(): boolean
         get _data(): PackedByteArray
-        set _data(value: PackedByteArray)
+        set _data(value: PackedByteArray | Array<byte> | ArrayBuffer)
         
         /** Allow overriding the texture size (for 2D only). */
         get size_override(): Vector2
@@ -2595,19 +2595,19 @@ declare module "godot" {
         
         /** Color attachments in order starting from 0. If this attachment is not used by the shader, pass ATTACHMENT_UNUSED to skip. */
         get color_attachments(): PackedInt32Array
-        set color_attachments(value: PackedInt32Array)
+        set color_attachments(value: PackedInt32Array | Array<int32>)
         
         /** Used for multipass framebuffers (more than one render pass). Converts an attachment to an input. Make sure to also supply it properly in the [RDUniform] for the uniform set. */
         get input_attachments(): PackedInt32Array
-        set input_attachments(value: PackedInt32Array)
+        set input_attachments(value: PackedInt32Array | Array<int32>)
         
         /** If the color attachments are multisampled, non-multisampled resolve attachments can be provided. */
         get resolve_attachments(): PackedInt32Array
-        set resolve_attachments(value: PackedInt32Array)
+        set resolve_attachments(value: PackedInt32Array | Array<int32>)
         
         /** Attachments to preserve in this pass (otherwise they are erased). */
         get preserve_attachments(): PackedInt32Array
-        set preserve_attachments(value: PackedInt32Array)
+        set preserve_attachments(value: PackedInt32Array | Array<int32>)
         
         /** Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this pass. */
         get depth_attachment(): int64
@@ -3656,15 +3656,6 @@ declare module "godot" {
         constructor(identifier?: any)
         rename(): void
     }
-    class RenderBufferCustomDataRD extends RefCounted {
-        constructor(identifier?: any)
-    }
-    class RenderBufferDataForwardClustered extends RenderBufferCustomDataRD {
-        constructor(identifier?: any)
-    }
-    class RenderBuffersGI extends RenderBufferCustomDataRD {
-        constructor(identifier?: any)
-    }
     /** Abstract scene buffers object, created for each viewport for which 3D rendering is done.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_renderscenebuffers.html  
@@ -3733,6 +3724,9 @@ declare module "godot" {
         
         /** Implement this in GDExtension to react to the debanding flag changing. */
         /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
+    }
+    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
+        constructor(identifier?: any)
     }
     /** Abstract render scene buffer implementation for the RenderingDevice based renderers.  
      *  	  
@@ -5273,7 +5267,7 @@ declare module "godot" {
          *      
          *  **Note:** The existing [param texture] requires the [constant TEXTURE_USAGE_CAN_UPDATE_BIT] to be updatable.  
          */
-        texture_update(texture: RID, layer: int64, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): Error
+        texture_update(texture: RID, layer: int64, data: PackedByteArray | Array<byte> | ArrayBuffer, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Returns the [param texture] data for the specified [param layer] as raw binary data. For 2D textures (which only have one layer), [param layer] must be `0`.  
          *      
@@ -5385,18 +5379,18 @@ declare module "godot" {
         /** It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        vertex_buffer_create(size_bytes: int64, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_as_storage: boolean = false): RID
+        vertex_buffer_create(size_bytes: int64, data: PackedByteArray | Array<byte> | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/, use_as_storage: boolean = false): RID
         
         /** Creates a new vertex format with the specified [param vertex_descriptions]. Returns a unique vertex format ID corresponding to the newly created vertex format. */
         vertex_format_create(vertex_descriptions: Array): int64
         
         /** Creates a vertex array based on the specified buffers. Optionally, [param offsets] (in bytes) may be defined for each buffer. */
-        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: Array, offsets: PackedInt64Array = <any> {} /*compound.type from 31([object Object])*/): RID
+        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: Array, offsets: PackedInt64Array | Array<int64> = <any> {} /*compound.type from 31([object Object])*/): RID
         
         /** Creates a new index buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        index_buffer_create(size_indices: int64, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, use_restart_indices: boolean = false): RID
+        index_buffer_create(size_indices: int64, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray | Array<byte> | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/, use_restart_indices: boolean = false): RID
         
         /** Creates a new index array. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
@@ -5421,7 +5415,7 @@ declare module "godot" {
         /** Creates a new shader instance from a binary compiled shader. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method. See also [method shader_compile_binary_from_spirv] and [method shader_create_from_spirv].  
          */
-        shader_create_from_bytecode(binary_data: PackedByteArray, placeholder_rid: RID = <any> {} /*compound.type from 23([object Object])*/): RID
+        shader_create_from_bytecode(binary_data: PackedByteArray | Array<byte> | ArrayBuffer, placeholder_rid: RID = <any> {} /*compound.type from 23([object Object])*/): RID
         
         /** Create a placeholder RID by allocating an RID without initializing it for use in [method shader_create_from_bytecode]. This allows you to create an RID for a shader and pass it around, but defer compiling the shader to a later time. */
         shader_create_placeholder(): RID
@@ -5432,17 +5426,17 @@ declare module "godot" {
         /** Creates a new uniform buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        uniform_buffer_create(size_bytes: int64, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
+        uniform_buffer_create(size_bytes: int64, data: PackedByteArray | Array<byte> | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): RID
         
         /** Creates a [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage buffer[/url] with the specified [param data] and [param usage]. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        storage_buffer_create(size_bytes: int64, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/, usage: RenderingDevice.StorageBufferUsage = 0): RID
+        storage_buffer_create(size_bytes: int64, data: PackedByteArray | Array<byte> | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/, usage: RenderingDevice.StorageBufferUsage = 0): RID
         
         /** Creates a new texture buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        texture_buffer_create(size_bytes: int64, format: RenderingDevice.DataFormat, data: PackedByteArray = <any> {} /*compound.type from 29([object Object])*/): RID
+        texture_buffer_create(size_bytes: int64, format: RenderingDevice.DataFormat, data: PackedByteArray | Array<byte> | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): RID
         
         /** Creates a new uniform set. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
@@ -5458,7 +5452,7 @@ declare module "godot" {
          *  - a draw list is currently active (created by [method draw_list_begin])  
          *  - a compute list is currently active (created by [method compute_list_begin])  
          */
-        buffer_update(buffer: RID, offset: int64, size_bytes: int64, data: PackedByteArray, post_barrier: RenderingDevice.BarrierMask = 32767): Error
+        buffer_update(buffer: RID, offset: int64, size_bytes: int64, data: PackedByteArray | Array<byte> | ArrayBuffer, post_barrier: RenderingDevice.BarrierMask = 32767): Error
         
         /** Clears the contents of the [param buffer], clearing [param size_bytes] bytes, starting at [param offset]. Always raises a memory barrier.  
          *  Prints an error if:  
@@ -5517,10 +5511,10 @@ declare module "godot" {
          *  A simple drawing operation might look like this (code is not a complete example):  
          *    
          */
-        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): int64
+        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Array<Color> = <any> {} /*compound.type from 37([object Object])*/, clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): int64
         
         /** Variant of [method draw_list_begin] with support for multiple splits. The [param splits] parameter determines how many splits are created. */
-        draw_list_begin_split(framebuffer: RID, splits: int64, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray = <any> {} /*compound.type from 37([object Object])*/, clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): PackedInt64Array
+        draw_list_begin_split(framebuffer: RID, splits: int64, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Array<Color> = <any> {} /*compound.type from 37([object Object])*/, clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): PackedInt64Array
         
         /** Sets blend constants for the specified [param draw_list] to [param color]. Blend constants are used only if the graphics pipeline is created with [constant DYNAMIC_STATE_BLEND_CONSTANTS] flag set. */
         draw_list_set_blend_constants(draw_list: int64, color: Color): void
@@ -5538,7 +5532,7 @@ declare module "godot" {
         draw_list_bind_index_array(draw_list: int64, index_array: RID): void
         
         /** Sets the push constant data to [param buffer] for the specified [param draw_list]. The shader determines how this binary data is used. The buffer's size in bytes must also be specified in [param size_bytes] (this can be obtained by calling the [method PackedByteArray.size] method on the passed [param buffer]). */
-        draw_list_set_push_constant(draw_list: int64, buffer: PackedByteArray, size_bytes: int64): void
+        draw_list_set_push_constant(draw_list: int64, buffer: PackedByteArray | Array<byte> | ArrayBuffer, size_bytes: int64): void
         
         /** Submits [param draw_list] for rendering on the GPU. This is the raster equivalent to [method compute_list_dispatch]. */
         draw_list_draw(draw_list: int64, use_indices: boolean, instances: int64, procedural_vertex_count: int64 = 0): void
@@ -5572,7 +5566,7 @@ declare module "godot" {
         compute_list_bind_compute_pipeline(compute_list: int64, compute_pipeline: RID): void
         
         /** Sets the push constant data to [param buffer] for the specified [param compute_list]. The shader determines how this binary data is used. The buffer's size in bytes must also be specified in [param size_bytes] (this can be obtained by calling the [method PackedByteArray.size] method on the passed [param buffer]). */
-        compute_list_set_push_constant(compute_list: int64, buffer: PackedByteArray, size_bytes: int64): void
+        compute_list_set_push_constant(compute_list: int64, buffer: PackedByteArray | Array<byte> | ArrayBuffer, size_bytes: int64): void
         
         /** Binds the [param uniform_set] to this [param compute_list]. Godot ensures that all textures in the uniform set have the correct Vulkan access masks. If Godot had to change access masks of textures, it will raise a Vulkan image memory barrier. */
         compute_list_bind_uniform_set(compute_list: int64, uniform_set: RID, set_index: int64): void
@@ -5926,7 +5920,7 @@ declare module "godot" {
     class ResourceImporterOggVorbis extends ResourceImporter {
         constructor(identifier?: any)
         /** This method loads audio data from a PackedByteArray buffer into an AudioStreamOggVorbis object. */
-        static load_from_buffer(buffer: PackedByteArray): AudioStreamOggVorbis
+        static load_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): AudioStreamOggVorbis
         
         /** This method loads audio data from a file into an AudioStreamOggVorbis object. The file path is provided as a string. */
         static load_from_file(path: string): AudioStreamOggVorbis
@@ -6163,7 +6157,7 @@ declare module "godot" {
         push_outline_color(color: Color): void
         
         /** Adds a [code skip-lint][p]` tag to the tag stack. */
-        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array = <any> {} /*compound.type from 32([object Object])*/): void
+        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array | Array<float32> = <any> {} /*compound.type from 32([object Object])*/): void
         
         /** Adds an [code skip-lint][indent]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
         push_indent(level: int64): void
@@ -6347,7 +6341,7 @@ declare module "godot" {
         get_paragraph_offset(paragraph: int64): float64
         
         /** Parses BBCode parameter [param expressions] into a dictionary. */
-        parse_expressions_for_values(expressions: PackedStringArray): Dictionary
+        parse_expressions_for_values(expressions: PackedStringArray | Array<string>): Dictionary
         
         /** Installs a custom effect. This can also be done in the RichTextLabel inspector using the [member custom_effects] property. [param effect] should be a valid [RichTextEffect].  
          *  Example RichTextEffect:  
@@ -7132,7 +7126,7 @@ declare module "godot" {
         get_authenticating_peers(): PackedInt32Array
         
         /** Sends the specified [param data] to the remote peer identified by [param id] as part of an authentication message. This can be used to authenticate peers, and control when [signal MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected peers). */
-        send_auth(id: int64, data: PackedByteArray): Error
+        send_auth(id: int64, data: PackedByteArray | Array<byte> | ArrayBuffer): Error
         
         /** Mark the authentication step as completed for the remote peer identified by [param id]. The [signal MultiplayerAPI.peer_connected] signal will be emitted for this peer once the remote side also completes the authentication. No further authentication messages are expected to be received from this peer.  
          *  If a peer disconnects before completing authentication, either due to a network issue, the [member auth_timeout] expiring, or manually calling [method disconnect_peer], the [signal peer_authentication_failed] signal will be emitted instead of [signal MultiplayerAPI.peer_disconnected].  
@@ -7140,7 +7134,7 @@ declare module "godot" {
         complete_auth(id: int64): Error
         
         /** Sends the given raw [param bytes] to a specific peer identified by [param id] (see [method MultiplayerPeer.set_target_peer]). Default ID is `0`, i.e. broadcast to all peers. */
-        send_bytes(bytes: PackedByteArray, id: int64 = 0, mode: MultiplayerPeer.TransferMode = 2, channel: int64 = 0): Error
+        send_bytes(bytes: PackedByteArray | Array<byte> | ArrayBuffer, id: int64 = 0, mode: MultiplayerPeer.TransferMode = 2, channel: int64 = 0): Error
         
         /** The root path to use for RPCs and replication. Instead of an absolute path, a relative path will be used to find the node upon which the RPC should be executed.  
          *  This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.  
@@ -7190,7 +7184,7 @@ declare module "godot" {
         readonly peer_authentication_failed: Signal // id: int64 => void
         
         /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] receives a [param packet] with custom data (see [method send_bytes]). ID is the peer ID of the peer that sent the packet. */
-        readonly peer_packet: Signal // id: int64, packet: PackedByteArray => void
+        readonly peer_packet: Signal // id: int64, packet: PackedByteArray | Array<byte> | ArrayBuffer => void
     }
     class SceneRPCInterface extends RefCounted {
         constructor(identifier?: any)
@@ -7626,7 +7620,7 @@ declare module "godot" {
         readonly node_changed: Signal //  => void
         readonly nodes_dragged: Signal //  => void
         readonly nodes_rearranged: Signal // paths: Array, to_path: NodePath, type: int64 => void
-        readonly files_dropped: Signal // files: PackedStringArray, to_path: NodePath, type: int64 => void
+        readonly files_dropped: Signal // files: PackedStringArray | Array<string>, to_path: NodePath, type: int64 => void
         readonly script_dropped: Signal // file: string, to_path: NodePath => void
         readonly rmb_pressed: Signal // position: Vector2 => void
         readonly open: Signal //  => void
@@ -7919,7 +7913,7 @@ declare module "godot" {
         /* gdvirtual */ _supports_documentation(): boolean
         /* gdvirtual */ _can_inherit_from_file(): boolean
         /* gdvirtual */ _find_function(class_name: string, function_name: string): int64
-        /* gdvirtual */ _make_function(class_name: string, function_name: string, function_args: PackedStringArray): string
+        /* gdvirtual */ _make_function(class_name: string, function_name: string, function_args: PackedStringArray | Array<string>): string
         /* gdvirtual */ _open_in_external_editor(script: Script, line: int64, column: int64): Error
         /* gdvirtual */ _overrides_external_editor(): boolean
         /* gdvirtual */ _complete_code(code: string, path: string, owner: Object): Dictionary
@@ -8250,10 +8244,6 @@ declare module "godot" {
         /** The [Shader] program used to render this material. */
         get shader(): Shader
         set shader(value: Shader)
-    }
-    class ShaderTextEditor extends CodeTextEditor {
-        constructor(identifier?: any)
-        readonly script_validated: Signal // valid: boolean => void
     }
     /** Abstract base class for 2D shapes used for physics collision.  
      *  	  
