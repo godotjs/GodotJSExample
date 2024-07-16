@@ -6,6 +6,7 @@ declare module "godot" {
     type int64 = number
     type float32 = number
     type float64 = number
+    type StringName = string
     type unresolved = any
     // // Singleton Class
     namespace Performance {
