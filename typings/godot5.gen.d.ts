@@ -1025,10 +1025,10 @@ declare module "godot" {
     class StreamPeer extends RefCounted {
         constructor(identifier?: any)
         /** Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum Error] code. */
-        put_data(data: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        put_data(data: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum Error] code and an integer, describing how much data was actually sent. */
-        put_partial_data(data: PackedByteArray | Array<byte> | ArrayBuffer): Array
+        put_partial_data(data: PackedByteArray | byte[] | ArrayBuffer): Array
         
         /** Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the [param bytes] argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [enum Error] code and a data array. */
         get_data(bytes: int64): Array
@@ -1160,7 +1160,7 @@ declare module "godot" {
         
         /** The underlying data buffer. Setting this value resets the cursor. */
         get data_array(): PackedByteArray
-        set data_array(value: PackedByteArray | Array<byte> | ArrayBuffer)
+        set data_array(value: PackedByteArray | byte[] | ArrayBuffer)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_streampeerextension.html */
     class StreamPeerExtension extends StreamPeer {
@@ -1660,10 +1660,10 @@ declare module "godot" {
         set_uv2(uv2: Vector2): void
         
         /** Specifies an array of bones to use for the  *next*  vertex. [param bones] must contain 4 integers. */
-        set_bones(bones: PackedInt32Array | Array<int32>): void
+        set_bones(bones: PackedInt32Array | int32[]): void
         
         /** Specifies weight values to use for the  *next*  vertex. [param weights] must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
-        set_weights(weights: PackedFloat32Array | Array<float32>): void
+        set_weights(weights: PackedFloat32Array | float32[]): void
         
         /** Sets the custom value on this vertex for [param channel_index].  
          *  [method set_custom_format] must be called first for this [param channel_index]. Formats which are not RGBA will ignore other color channels.  
@@ -1679,7 +1679,7 @@ declare module "godot" {
         /** Inserts a triangle fan made of array data into [Mesh] being constructed.  
          *  Requires the primitive type be set to [constant Mesh.PRIMITIVE_TRIANGLES].  
          */
-        add_triangle_fan(vertices: PackedVector3Array | Array<Vector3>, uvs: PackedVector2Array | Array<Vector2> = <any> {} /*compound.type from 35([object Object])*/, colors: PackedColorArray | Array<Color> = <any> {} /*compound.type from 37([object Object])*/, uv2s: PackedVector2Array | Array<Vector2> = <any> {} /*compound.type from 35([object Object])*/, normals: PackedVector3Array | Array<Vector3> = <any> {} /*compound.type from 36([object Object])*/, tangents: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        add_triangle_fan(vertices: PackedVector3Array | Vector3[], uvs: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, colors: PackedColorArray | Color[] = <any> {} /*compound.type from 37([object Object])*/, uv2s: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, normals: PackedVector3Array | Vector3[] = <any> {} /*compound.type from 36([object Object])*/, tangents: Array = <any> {} /*compound.type from 28([object Object])*/): void
         
         /** Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices. */
         add_index(index: int64): void
@@ -1792,7 +1792,7 @@ declare module "godot" {
         constructor(identifier?: any)
         /** Array of font family names to search, first matching font found is used. */
         get font_names(): PackedStringArray
-        set font_names(value: PackedStringArray | Array<string>)
+        set font_names(value: PackedStringArray | string[])
         
         /** If set to `true`, italic or oblique font is preferred. */
         get font_italic(): boolean
@@ -3068,7 +3068,7 @@ declare module "godot" {
         resize_object(key: any, size: Vector2, inline_align: InlineAlignment = 5, baseline: float64 = 0): boolean
         
         /** Aligns text to the given tab-stops. */
-        tab_align(tab_stops: PackedFloat32Array | Array<float32>): void
+        tab_align(tab_stops: PackedFloat32Array | float32[]): void
         
         /** Returns array of inline objects. */
         get_objects(): Array
@@ -3248,7 +3248,7 @@ declare module "godot" {
         resize_object(key: any, size: Vector2, inline_align: InlineAlignment = 5, baseline: float64 = 0): boolean
         
         /** Aligns paragraph to the given tab-stops. */
-        tab_align(tab_stops: PackedFloat32Array | Array<float32>): void
+        tab_align(tab_stops: PackedFloat32Array | float32[]): void
         
         /** Returns the size of the bounding box of the paragraph, without line breaks. */
         get_non_wrapped_size(): Vector2
@@ -3778,7 +3778,7 @@ declare module "godot" {
         create_font_linked_variation(font_rid: RID): RID
         
         /** Sets font source data, e.g contents of the dynamic font source file. */
-        font_set_data(font_rid: RID, data: PackedByteArray | Array<byte> | ArrayBuffer): void
+        font_set_data(font_rid: RID, data: PackedByteArray | byte[] | ArrayBuffer): void
         
         /** Sets an active face index in the TrueType / OpenType collection. */
         font_set_face_index(font_rid: RID, face_index: int64): void
@@ -3993,7 +3993,7 @@ declare module "godot" {
         font_get_texture_image(font_rid: RID, size: Vector2i, texture_index: int64): Image
         
         /** Sets array containing glyph packing data. */
-        font_set_texture_offsets(font_rid: RID, size: Vector2i, texture_index: int64, offset: PackedInt32Array | Array<int32>): void
+        font_set_texture_offsets(font_rid: RID, size: Vector2i, texture_index: int64, offset: PackedInt32Array | int32[]): void
         
         /** Returns array containing glyph packing data. */
         font_get_texture_offsets(font_rid: RID, size: Vector2i, texture_index: int64): PackedInt32Array
@@ -4266,7 +4266,7 @@ declare module "godot" {
         shaped_text_fit_to_width(shaped: RID, width: float64, justification_flags: TextServer.JustificationFlag = 3): float64
         
         /** Aligns shaped text to the given tab-stops. */
-        shaped_text_tab_align(shaped: RID, tab_stops: PackedFloat32Array | Array<float32>): float64
+        shaped_text_tab_align(shaped: RID, tab_stops: PackedFloat32Array | float32[]): float64
         
         /** Shapes buffer if it's not shaped. Returns `true` if the string is shaped successfully.  
          *      
@@ -4293,7 +4293,7 @@ declare module "godot" {
         shaped_text_get_range(shaped: RID): Vector2i
         
         /** Breaks text to the lines and columns. Returns character ranges for each segment. */
-        shaped_text_get_line_breaks_adv(shaped: RID, width: PackedFloat32Array | Array<float32>, start: int64 = 0, once: boolean = true, break_flags: TextServer.LineBreakFlag = 3): PackedInt32Array
+        shaped_text_get_line_breaks_adv(shaped: RID, width: PackedFloat32Array | float32[], start: int64 = 0, once: boolean = true, break_flags: TextServer.LineBreakFlag = 3): PackedInt32Array
         
         /** Breaks text to the lines and returns character ranges for each line. */
         shaped_text_get_line_breaks(shaped: RID, width: float64, start: int64 = 0, break_flags: TextServer.LineBreakFlag = 3): PackedInt32Array
@@ -4416,7 +4416,7 @@ declare module "godot" {
          *      
          *  **Note:** Always returns `-1` if the server does not support the [constant FEATURE_UNICODE_SECURITY] feature.  
          */
-        is_confusable(string_: string, dict: PackedStringArray | Array<string>): int64
+        is_confusable(string_: string, dict: PackedStringArray | string[]): int64
         
         /** Returns `true` if [param string] is likely to be an attempt at confusing the reader.  
          *      
@@ -4495,7 +4495,7 @@ declare module "godot" {
         /* gdvirtual */ _tag_to_name(tag: int64): string
         /* gdvirtual */ _create_font(): RID
         /* gdvirtual */ _create_font_linked_variation(font_rid: RID): RID
-        /* gdvirtual */ _font_set_data(font_rid: RID, data: PackedByteArray | Array<byte> | ArrayBuffer): void
+        /* gdvirtual */ _font_set_data(font_rid: RID, data: PackedByteArray | byte[] | ArrayBuffer): void
         /* gdvirtual */ _font_set_data_ptr(font_rid: RID, data_ptr: int64, data_size: int64): void
         /* gdvirtual */ _font_set_face_index(font_rid: RID, face_index: int64): void
         /* gdvirtual */ _font_get_face_index(font_rid: RID): int64
@@ -4561,7 +4561,7 @@ declare module "godot" {
         /* gdvirtual */ _font_remove_texture(font_rid: RID, size: Vector2i, texture_index: int64): void
         /* gdvirtual */ _font_set_texture_image(font_rid: RID, size: Vector2i, texture_index: int64, image: Image): void
         /* gdvirtual */ _font_get_texture_image(font_rid: RID, size: Vector2i, texture_index: int64): Image
-        /* gdvirtual */ _font_set_texture_offsets(font_rid: RID, size: Vector2i, texture_index: int64, offset: PackedInt32Array | Array<int32>): void
+        /* gdvirtual */ _font_set_texture_offsets(font_rid: RID, size: Vector2i, texture_index: int64, offset: PackedInt32Array | int32[]): void
         /* gdvirtual */ _font_get_texture_offsets(font_rid: RID, size: Vector2i, texture_index: int64): PackedInt32Array
         /* gdvirtual */ _font_get_glyph_list(font_rid: RID, size: Vector2i): PackedInt32Array
         /* gdvirtual */ _font_clear_glyphs(font_rid: RID, size: Vector2i): void
@@ -4635,7 +4635,7 @@ declare module "godot" {
         /* gdvirtual */ _shaped_text_substr(shaped: RID, start: int64, length: int64): RID
         /* gdvirtual */ _shaped_text_get_parent(shaped: RID): RID
         /* gdvirtual */ _shaped_text_fit_to_width(shaped: RID, width: float64, justification_flags: TextServer.JustificationFlag): float64
-        /* gdvirtual */ _shaped_text_tab_align(shaped: RID, tab_stops: PackedFloat32Array | Array<float32>): float64
+        /* gdvirtual */ _shaped_text_tab_align(shaped: RID, tab_stops: PackedFloat32Array | float32[]): float64
         /* gdvirtual */ _shaped_text_shape(shaped: RID): boolean
         /* gdvirtual */ _shaped_text_update_breaks(shaped: RID): boolean
         /* gdvirtual */ _shaped_text_update_justification_ops(shaped: RID): boolean
@@ -4644,7 +4644,7 @@ declare module "godot" {
         /* gdvirtual */ _shaped_text_sort_logical(shaped: RID): int64
         /* gdvirtual */ _shaped_text_get_glyph_count(shaped: RID): int64
         /* gdvirtual */ _shaped_text_get_range(shaped: RID): Vector2i
-        /* gdvirtual */ _shaped_text_get_line_breaks_adv(shaped: RID, width: PackedFloat32Array | Array<float32>, start: int64, once: boolean, break_flags: TextServer.LineBreakFlag): PackedInt32Array
+        /* gdvirtual */ _shaped_text_get_line_breaks_adv(shaped: RID, width: PackedFloat32Array | float32[], start: int64, once: boolean, break_flags: TextServer.LineBreakFlag): PackedInt32Array
         /* gdvirtual */ _shaped_text_get_line_breaks(shaped: RID, width: float64, start: int64, break_flags: TextServer.LineBreakFlag): PackedInt32Array
         /* gdvirtual */ _shaped_text_get_word_breaks(shaped: RID, grapheme_flags: TextServer.GraphemeFlag): PackedInt32Array
         /* gdvirtual */ _shaped_text_get_trim_pos(shaped: RID): int64
@@ -4681,7 +4681,7 @@ declare module "godot" {
         /* gdvirtual */ _is_valid_identifier(string_: string): boolean
         /* gdvirtual */ _string_get_word_breaks(string_: string, language: string, chars_per_line: int64): PackedInt32Array
         /* gdvirtual */ _string_get_character_breaks(string_: string, language: string): PackedInt32Array
-        /* gdvirtual */ _is_confusable(string_: string, dict: PackedStringArray | Array<string>): int64
+        /* gdvirtual */ _is_confusable(string_: string, dict: PackedStringArray | string[]): int64
         /* gdvirtual */ _spoof_check(string_: string): boolean
         /* gdvirtual */ _string_to_upper(string_: string, language: string): string
         /* gdvirtual */ _string_to_lower(string_: string, language: string): string
@@ -5631,7 +5631,7 @@ declare module "godot" {
         remove_collision_polygon(layer_id: int64, polygon_index: int64): void
         
         /** Sets the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
-        set_collision_polygon_points(layer_id: int64, polygon_index: int64, polygon: PackedVector2Array | Array<Vector2>): void
+        set_collision_polygon_points(layer_id: int64, polygon_index: int64, polygon: PackedVector2Array | Vector2[]): void
         
         /** Returns the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
         get_collision_polygon_points(layer_id: int64, polygon_index: int64): PackedVector2Array
@@ -6879,7 +6879,7 @@ declare module "godot" {
         /** Adds a message involving plural translation if nonexistent, followed by its translation.  
          *  An additional context could be used to specify the translation context or differentiate polysemic words.  
          */
-        add_plural_message(src_message: StringName, xlated_messages: PackedStringArray | Array<string>, context: StringName = ''): void
+        add_plural_message(src_message: StringName, xlated_messages: PackedStringArray | string[], context: StringName = ''): void
         
         /** Returns a message's translation. */
         get_message(src_message: StringName, context: StringName = ''): StringName
@@ -8375,7 +8375,7 @@ declare module "godot" {
         /* gdvirtual */ _get_mix_rate(): int64
         
         /** Render [param num_frames] audio frames (of [method _get_channels] floats each) from [param buffer], starting from index [param offset] in the array. Returns the number of audio frames rendered, or -1 on error. */
-        mix_audio(num_frames: int64, buffer: PackedFloat32Array | Array<float32> = <any> {} /*compound.type from 32([object Object])*/, offset: int64 = 0): int64
+        mix_audio(num_frames: int64, buffer: PackedFloat32Array | float32[] = <any> {} /*compound.type from 32([object Object])*/, offset: int64 = 0): int64
     }
     /** A control used for video playback.  
      *  	  

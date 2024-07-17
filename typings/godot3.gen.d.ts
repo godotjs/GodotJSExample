@@ -1216,7 +1216,7 @@ declare module "godot" {
         
         /** Aligns text to the given tab-stops. */
         get tab_stops(): PackedFloat32Array
-        set tab_stops(value: PackedFloat32Array | Array<float32>)
+        set tab_stops(value: PackedFloat32Array | float32[])
         
         /** The number of the lines ignored and not displayed from the start of the [member text] value. */
         get lines_skipped(): int64
@@ -2064,7 +2064,7 @@ declare module "godot" {
         
         /** The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the adjacent points in this array. */
         get points(): PackedVector2Array
-        set points(value: PackedVector2Array | Array<Vector2>)
+        set points(value: PackedVector2Array | Vector2[])
         
         /** If `true` and the polyline has more than 2 points, the last point and the first one will be connected by a segment.  
          *      
@@ -3177,13 +3177,13 @@ declare module "godot" {
         get_vertex_color(idx: int64): Color
         
         /** Sets the bones of the given vertex. */
-        set_vertex_bones(idx: int64, bones: PackedInt32Array | Array<int32>): void
+        set_vertex_bones(idx: int64, bones: PackedInt32Array | int32[]): void
         
         /** Returns the bones of the given vertex. */
         get_vertex_bones(idx: int64): PackedInt32Array
         
         /** Sets the bone weights of the given vertex. */
-        set_vertex_weights(idx: int64, weights: PackedFloat32Array | Array<float32>): void
+        set_vertex_weights(idx: int64, weights: PackedFloat32Array | float32[]): void
         
         /** Returns bone weights of the given vertex. */
         get_vertex_weights(idx: int64): PackedFloat32Array
@@ -3628,23 +3628,23 @@ declare module "godot" {
         get mesh(): Mesh
         set mesh(value: Mesh)
         get buffer(): PackedFloat32Array
-        set buffer(value: PackedFloat32Array | Array<float32>)
+        set buffer(value: PackedFloat32Array | float32[])
         
         /** See [method set_instance_transform]. */
         get transform_array(): PackedVector3Array
-        set transform_array(value: PackedVector3Array | Array<Vector3>)
+        set transform_array(value: PackedVector3Array | Vector3[])
         
         /** See [method set_instance_transform_2d]. */
         get transform_2d_array(): PackedVector2Array
-        set transform_2d_array(value: PackedVector2Array | Array<Vector2>)
+        set transform_2d_array(value: PackedVector2Array | Vector2[])
         
         /** See [method set_instance_color]. */
         get color_array(): PackedColorArray
-        set color_array(value: PackedColorArray | Array<Color>)
+        set color_array(value: PackedColorArray | Color[])
         
         /** See [method set_instance_custom_data]. */
         get custom_data_array(): PackedColorArray
-        set custom_data_array(value: PackedColorArray | Array<Color>)
+        set custom_data_array(value: PackedColorArray | Color[])
     }
     class MultiMeshEditor extends Control {
         constructor(identifier?: any)
@@ -3919,7 +3919,7 @@ declare module "godot" {
         /* gdvirtual */ _get_packet_script(): PackedByteArray
         
         /** Called when a packet needs to be sent by the [MultiplayerAPI], if [method _put_packet] isn't implemented. Use this when extending this class via GDScript. */
-        /* gdvirtual */ _put_packet_script(p_buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        /* gdvirtual */ _put_packet_script(p_buffer: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Called to get the channel over which the next available packet was received. See [method MultiplayerPeer.get_packet_channel]. */
         /* gdvirtual */ _get_packet_channel(): int64
@@ -3996,7 +3996,7 @@ declare module "godot" {
          */
         spawn(data: any = <any> {} /*compound.type from nil*/): Node
         get _spawnable_scenes(): PackedStringArray
-        set _spawnable_scenes(value: PackedStringArray | Array<string>)
+        set _spawnable_scenes(value: PackedStringArray | string[])
         
         /** Path to the spawn root. Spawnable scenes that are added as direct children are replicated to other peers. */
         get spawn_path(): NodePath
@@ -4717,7 +4717,7 @@ declare module "godot" {
         get_collision_mask_value(layer_number: int64): boolean
         
         /** Adds a polygon using the indices of the vertices you get when calling [method get_vertices]. */
-        add_polygon(polygon: PackedInt32Array | Array<int32>): void
+        add_polygon(polygon: PackedInt32Array | int32[]): void
         
         /** Returns the number of polygons in the navigation mesh. */
         get_polygon_count(): int64
@@ -4737,7 +4737,7 @@ declare module "godot" {
         /** Clears the internal arrays for vertices and polygon indices. */
         clear(): void
         get vertices(): PackedVector3Array
-        set vertices(value: PackedVector3Array | Array<Vector3>)
+        set vertices(value: PackedVector3Array | Vector3[])
         get polygons(): Array
         set polygons(value: Array)
         
@@ -4874,10 +4874,10 @@ declare module "godot" {
         has_data(): boolean
         
         /** Adds the outline points of a shape as traversable area. */
-        add_traversable_outline(shape_outline: PackedVector2Array | Array<Vector2>): void
+        add_traversable_outline(shape_outline: PackedVector2Array | Vector2[]): void
         
         /** Adds the outline points of a shape as obstructed area. */
-        add_obstruction_outline(shape_outline: PackedVector2Array | Array<Vector2>): void
+        add_obstruction_outline(shape_outline: PackedVector2Array | Vector2[]): void
         get traversable_outlines(): Array
         set traversable_outlines(value: Array)
         get obstruction_outlines(): Array
@@ -4902,11 +4902,11 @@ declare module "godot" {
         add_mesh_array(mesh_array: Array, xform: Transform3D): void
         
         /** Adds an array of vertex positions to the geometry data for navigation mesh baking to form triangulated faces. For each face the array must have three vertex positions in clockwise winding order. Since [NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [param xform]. */
-        add_faces(faces: PackedVector3Array | Array<Vector3>, xform: Transform3D): void
+        add_faces(faces: PackedVector3Array | Vector3[], xform: Transform3D): void
         get vertices(): PackedVector3Array
-        set vertices(value: PackedVector3Array | Array<Vector3>)
+        set vertices(value: PackedVector3Array | Vector3[])
         get indices(): PackedInt32Array
-        set indices(value: PackedInt32Array | Array<int32>)
+        set indices(value: PackedInt32Array | int32[])
     }
     /** 2D Obstacle used in navigation to constrain avoidance controlled agents outside or inside an area.  
      *  	  
@@ -4943,7 +4943,7 @@ declare module "godot" {
         
         /** The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or overlap. Should the vertices using obstacle be warped to a new position agent's can not predict this movement and may get trapped inside the obstacle. */
         get vertices(): PackedVector2Array
-        set vertices(value: PackedVector2Array | Array<Vector2>)
+        set vertices(value: PackedVector2Array | Vector2[])
         
         /** A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on the their avoidance mask will avoid this obstacle. */
         get avoidance_layers(): int64
@@ -4994,7 +4994,7 @@ declare module "godot" {
         
         /** The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or overlap. Should the vertices using obstacle be warped to a new position agent's can not predict this movement and may get trapped inside the obstacle. */
         get vertices(): PackedVector3Array
-        set vertices(value: PackedVector3Array | Array<Vector3>)
+        set vertices(value: PackedVector3Array | Vector3[])
         
         /** A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on the their avoidance mask will avoid this obstacle. */
         get avoidance_layers(): int64
@@ -5159,11 +5159,11 @@ declare module "godot" {
         
         /** The resulting path array from the navigation query. All path array positions are in global coordinates. Without customized query parameters this is the same path as returned by [method NavigationServer2D.map_get_path]. */
         get path(): PackedVector2Array
-        set path(value: PackedVector2Array | Array<Vector2>)
+        set path(value: PackedVector2Array | Vector2[])
         
         /** The type of navigation primitive (region or link) that each point of the path goes through. */
         get path_types(): PackedInt32Array
-        set path_types(value: PackedInt32Array | Array<int32>)
+        set path_types(value: PackedInt32Array | int32[])
         
         /** The [RID]s of the regions and links that each point of the path goes through. */
         get path_rids(): Array
@@ -5171,7 +5171,7 @@ declare module "godot" {
         
         /** The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes through. */
         get path_owner_ids(): PackedInt64Array
-        set path_owner_ids(value: PackedInt64Array | Array<int64>)
+        set path_owner_ids(value: PackedInt64Array | int64[])
     }
     namespace NavigationPathQueryResult3D {
         enum PathSegmentType {
@@ -5193,11 +5193,11 @@ declare module "godot" {
         
         /** The resulting path array from the navigation query. All path array positions are in global coordinates. Without customized query parameters this is the same path as returned by [method NavigationServer3D.map_get_path]. */
         get path(): PackedVector3Array
-        set path(value: PackedVector3Array | Array<Vector3>)
+        set path(value: PackedVector3Array | Vector3[])
         
         /** The type of navigation primitive (region or link) that each point of the path goes through. */
         get path_types(): PackedInt32Array
-        set path_types(value: PackedInt32Array | Array<int32>)
+        set path_types(value: PackedInt32Array | int32[])
         
         /** The [RID]s of the regions and links that each point of the path goes through. */
         get path_rids(): Array
@@ -5205,7 +5205,7 @@ declare module "godot" {
         
         /** The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes through. */
         get path_owner_ids(): PackedInt64Array
-        set path_owner_ids(value: PackedInt64Array | Array<int64>)
+        set path_owner_ids(value: PackedInt64Array | int64[])
     }
     namespace NavigationPolygon {
         enum ParsedGeometryType {
@@ -5244,7 +5244,7 @@ declare module "godot" {
     class NavigationPolygon extends Resource {
         constructor(identifier?: any)
         /** Adds a polygon using the indices of the vertices you get when calling [method get_vertices]. */
-        add_polygon(polygon: PackedInt32Array | Array<int32>): void
+        add_polygon(polygon: PackedInt32Array | int32[]): void
         
         /** Returns the count of all polygons. */
         get_polygon_count(): int64
@@ -5259,16 +5259,16 @@ declare module "godot" {
         get_navigation_mesh(): NavigationMesh
         
         /** Appends a [PackedVector2Array] that contains the vertices of an outline to the internal array that contains all the outlines. */
-        add_outline(outline: PackedVector2Array | Array<Vector2>): void
+        add_outline(outline: PackedVector2Array | Vector2[]): void
         
         /** Adds a [PackedVector2Array] that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position. */
-        add_outline_at_index(outline: PackedVector2Array | Array<Vector2>, index: int64): void
+        add_outline_at_index(outline: PackedVector2Array | Vector2[], index: int64): void
         
         /** Returns the number of outlines that were created in the editor or by script. */
         get_outline_count(): int64
         
         /** Changes an outline created in the editor or by script. You have to call [method make_polygons_from_outlines] for the polygons to update. */
-        set_outline(idx: int64, outline: PackedVector2Array | Array<Vector2>): void
+        set_outline(idx: int64, outline: PackedVector2Array | Vector2[]): void
         
         /** Returns a [PackedVector2Array] containing the vertices of an outline that was created in the editor or by script. */
         get_outline(idx: int64): PackedVector2Array
@@ -5293,7 +5293,7 @@ declare module "godot" {
         /** Clears the internal arrays for vertices and polygon indices. */
         clear(): void
         get vertices(): PackedVector2Array
-        set vertices(value: PackedVector2Array | Array<Vector2>)
+        set vertices(value: PackedVector2Array | Vector2[])
         get polygons(): Array
         set polygons(value: Array)
         get outlines(): Array
@@ -7338,7 +7338,7 @@ declare module "godot" {
          *  **Note:** The returned value is a copy of the underlying array, rather than a reference.  
          */
         get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array | Array<Vector2>)
+        set polygon(value: PackedVector2Array | Vector2[])
     }
     /** A [MultiplayerPeer] which is always connected and acts as a server.  
      *  	  
@@ -7362,7 +7362,7 @@ declare module "godot" {
         
         /** Contains the granule positions for each page in this packet sequence. */
         get granule_positions(): PackedInt64Array
-        set granule_positions(value: PackedInt64Array | Array<int64>)
+        set granule_positions(value: PackedInt64Array | int64[])
         
         /** Holds sample rate information about this sequence. Must be set by another class that actually understands the codec. */
         get sampling_rate(): float64
@@ -7471,7 +7471,7 @@ declare module "godot" {
         
         /** A collections of toplevel paths to which this action can be bound. */
         get toplevel_paths(): PackedStringArray
-        set toplevel_paths(value: PackedStringArray | Array<string>)
+        set toplevel_paths(value: PackedStringArray | string[])
     }
     /** Collection of [OpenXRActionSet] and [OpenXRInteractionProfile] resources for the OpenXR module.  
      *  	  
@@ -7694,7 +7694,7 @@ declare module "godot" {
         
         /** Paths that define the inputs or outputs bound on the device. */
         get paths(): PackedStringArray
-        set paths(value: PackedStringArray | Array<string>)
+        set paths(value: PackedStringArray | string[])
     }
     /** Suggested bindings object for OpenXR.  
      *  	  
@@ -8119,7 +8119,7 @@ declare module "godot" {
         /** Returns the size of the packed container (see [method Array.size] and [method Dictionary.size]). */
         size(): int64
         get __data__(): PackedByteArray
-        set __data__(value: PackedByteArray | Array<byte> | ArrayBuffer)
+        set __data__(value: PackedByteArray | byte[] | ArrayBuffer)
     }
     /** An internal class used by [PackedDataContainer] to pack nested arrays and dictionaries.  
      *  	  
@@ -8208,7 +8208,7 @@ declare module "godot" {
         get_packet(): PackedByteArray
         
         /** Sends a raw packet. */
-        put_packet(buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        put_packet(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Returns the error state of the last packet received (via [method get_packet] and [method get_var]). */
         get_packet_error(): Error

@@ -2528,7 +2528,7 @@ declare module "godot" {
      */
     class VoxelGIData extends Resource {
         constructor(identifier?: any)
-        allocate(to_cell_xform: Transform3D, aabb: AABB, octree_size: Vector3, octree_cells: PackedByteArray | Array<byte> | ArrayBuffer, data_cells: PackedByteArray | Array<byte> | ArrayBuffer, distance_field: PackedByteArray | Array<byte> | ArrayBuffer, level_counts: PackedInt32Array | Array<int32>): void
+        allocate(to_cell_xform: Transform3D, aabb: AABB, octree_size: Vector3, octree_cells: PackedByteArray | byte[] | ArrayBuffer, data_cells: PackedByteArray | byte[] | ArrayBuffer, distance_field: PackedByteArray | byte[] | ArrayBuffer, level_counts: PackedInt32Array | int32[]): void
         
         /** Returns the bounds of the baked voxel data as an [AABB], which should match [member VoxelGI.size] after being baked (which only contains the size as a [Vector3]).  
          *      
@@ -3498,7 +3498,7 @@ declare module "godot" {
          *  **Note:** This property is implemented on Linux (X11), macOS and Windows.  
          */
         get mouse_passthrough_polygon(): PackedVector2Array
-        set mouse_passthrough_polygon(value: PackedVector2Array | Array<Vector2>)
+        set mouse_passthrough_polygon(value: PackedVector2Array | Vector2[])
         
         /** If `true`, the window is visible. */
         get visible(): boolean
@@ -3583,7 +3583,7 @@ declare module "godot" {
          *  Example usage:  
          *    
          */
-        readonly files_dropped: Signal // files: PackedStringArray | Array<string> => void
+        readonly files_dropped: Signal // files: PackedStringArray | string[] => void
         
         /** Emitted when the mouse cursor enters the [Window]'s visible area, that is not occluded behind other [Control]s or windows, provided its [member Viewport.gui_disable_input] is `false` and regardless if it's currently focused or not. */
         readonly mouse_entered: Signal //  => void
@@ -3816,7 +3816,7 @@ declare module "godot" {
         open(file: string): Error
         
         /** Opens an XML raw [param buffer] for parsing. This method returns an error code. */
-        open_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        open_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
     }
     /** An anchor point in AR space.  
      *  	  
@@ -4345,7 +4345,7 @@ declare module "godot" {
         /** Write the given [param data] to the file.  
          *  Needs to be called after [method start_file].  
          */
-        write_file(data: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        write_file(data: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Stops writing to a file within the archive.  
          *  It will fail if there is no open file.  
@@ -5297,8 +5297,8 @@ declare module "godot" {
         static MULTIPLY(left: Vector2, right: Transform2D): Vector2
         static MULTIPLY(left: Transform2D, right: Rect2): Rect2
         static MULTIPLY(left: Rect2, right: Transform2D): Rect2
-        static MULTIPLY(left: Transform2D, right: PackedVector2Array | Array<Vector2>): PackedVector2Array
-        static MULTIPLY(left: PackedVector2Array | Array<Vector2>, right: Transform2D): PackedVector2Array
+        static MULTIPLY(left: Transform2D, right: PackedVector2Array | Vector2[]): PackedVector2Array
+        static MULTIPLY(left: PackedVector2Array | Vector2[], right: Transform2D): PackedVector2Array
         static EQUAL(left: Transform2D, right: Transform2D): boolean
         static NOT_EQUAL(left: Transform2D, right: Transform2D): boolean
         get x(): Vector2
@@ -6103,8 +6103,8 @@ declare module "godot" {
         static MULTIPLY(left: AABB, right: Transform3D): AABB
         static MULTIPLY(left: Transform3D, right: Plane): Plane
         static MULTIPLY(left: Plane, right: Transform3D): Plane
-        static MULTIPLY(left: Transform3D, right: PackedVector3Array | Array<Vector3>): PackedVector3Array
-        static MULTIPLY(left: PackedVector3Array | Array<Vector3>, right: Transform3D): PackedVector3Array
+        static MULTIPLY(left: Transform3D, right: PackedVector3Array | Vector3[]): PackedVector3Array
+        static MULTIPLY(left: PackedVector3Array | Vector3[], right: Transform3D): PackedVector3Array
         static EQUAL(left: Transform3D, right: Transform3D): boolean
         static NOT_EQUAL(left: Transform3D, right: Transform3D): boolean
         get basis(): Basis
@@ -7150,15 +7150,15 @@ declare module "godot" {
         constructor()
         constructor(from: Array)
         constructor(base: Array, type: int64, class_name: StringName, script: any)
-        constructor(from: PackedByteArray | Array<byte> | ArrayBuffer)
-        constructor(from: PackedInt32Array | Array<int32>)
-        constructor(from: PackedInt64Array | Array<int64>)
-        constructor(from: PackedFloat32Array | Array<float32>)
-        constructor(from: PackedFloat64Array | Array<float64>)
-        constructor(from: PackedStringArray | Array<string>)
-        constructor(from: PackedVector2Array | Array<Vector2>)
-        constructor(from: PackedVector3Array | Array<Vector3>)
-        constructor(from: PackedColorArray | Array<Color>)
+        constructor(from: PackedByteArray | byte[] | ArrayBuffer)
+        constructor(from: PackedInt32Array | int32[])
+        constructor(from: PackedInt64Array | int64[])
+        constructor(from: PackedFloat32Array | float32[])
+        constructor(from: PackedFloat64Array | float64[])
+        constructor(from: PackedStringArray | string[])
+        constructor(from: PackedVector2Array | Vector2[])
+        constructor(from: PackedVector3Array | Vector3[])
+        constructor(from: PackedColorArray | Color[])
         set_indexed(index: number, value: any)
         get_indexed(index: number): any
         
@@ -7431,7 +7431,7 @@ declare module "godot" {
      */
     class PackedByteArray {
         constructor()
-        constructor(from: PackedByteArray | Array<byte> | ArrayBuffer)
+        constructor(from: PackedByteArray | byte[] | ArrayBuffer)
         constructor(from: Array)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
@@ -7452,7 +7452,7 @@ declare module "godot" {
         append(value: int64): boolean
         
         /** Appends a [PackedByteArray] at the end of this array. */
-        append_array(array: PackedByteArray | Array<byte> | ArrayBuffer): void
+        append_array(array: PackedByteArray | byte[] | ArrayBuffer): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -7640,8 +7640,8 @@ declare module "godot" {
         
         /** Encodes a [Variant] at the index of [param byte_offset] bytes. A sufficient space must be allocated, depending on the encoded variant's size. If [param allow_objects] is `false`, [Object]-derived values are not permitted and will instead be serialized as ID-only. */
         encode_var(byte_offset: int64, value: any, allow_objects: boolean = false): int64
-        static EQUAL(left: PackedByteArray | Array<byte> | ArrayBuffer, right: PackedByteArray | Array<byte> | ArrayBuffer): boolean
-        static NOT_EQUAL(left: PackedByteArray | Array<byte> | ArrayBuffer, right: PackedByteArray | Array<byte> | ArrayBuffer): boolean
+        static EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
+        static NOT_EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
     }
     /** A packed array of 32-bit integers.  
      *  	  
@@ -7649,7 +7649,7 @@ declare module "godot" {
      */
     class PackedInt32Array {
         constructor()
-        constructor(from: PackedInt32Array | Array<int32>)
+        constructor(from: PackedInt32Array | int32[])
         constructor(from: Array)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
@@ -7670,7 +7670,7 @@ declare module "godot" {
         append(value: int64): boolean
         
         /** Appends a [PackedInt32Array] at the end of this array. */
-        append_array(array: PackedInt32Array | Array<int32>): void
+        append_array(array: PackedInt32Array | int32[]): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -7724,8 +7724,8 @@ declare module "godot" {
         
         /** Returns the number of times an element is in the array. */
         count(value: int64): int64
-        static EQUAL(left: PackedInt32Array | Array<int32>, right: PackedInt32Array | Array<int32>): boolean
-        static NOT_EQUAL(left: PackedInt32Array | Array<int32>, right: PackedInt32Array | Array<int32>): boolean
+        static EQUAL(left: PackedInt32Array | int32[], right: PackedInt32Array | int32[]): boolean
+        static NOT_EQUAL(left: PackedInt32Array | int32[], right: PackedInt32Array | int32[]): boolean
     }
     /** A packed array of 64-bit integers.  
      *  	  
@@ -7733,7 +7733,7 @@ declare module "godot" {
      */
     class PackedInt64Array {
         constructor()
-        constructor(from: PackedInt64Array | Array<int64>)
+        constructor(from: PackedInt64Array | int64[])
         constructor(from: Array)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
@@ -7754,7 +7754,7 @@ declare module "godot" {
         append(value: int64): boolean
         
         /** Appends a [PackedInt64Array] at the end of this array. */
-        append_array(array: PackedInt64Array | Array<int64>): void
+        append_array(array: PackedInt64Array | int64[]): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -7808,8 +7808,8 @@ declare module "godot" {
         
         /** Returns the number of times an element is in the array. */
         count(value: int64): int64
-        static EQUAL(left: PackedInt64Array | Array<int64>, right: PackedInt64Array | Array<int64>): boolean
-        static NOT_EQUAL(left: PackedInt64Array | Array<int64>, right: PackedInt64Array | Array<int64>): boolean
+        static EQUAL(left: PackedInt64Array | int64[], right: PackedInt64Array | int64[]): boolean
+        static NOT_EQUAL(left: PackedInt64Array | int64[], right: PackedInt64Array | int64[]): boolean
     }
     /** A packed array of 32-bit floating-point values.  
      *  	  
@@ -7817,7 +7817,7 @@ declare module "godot" {
      */
     class PackedFloat32Array {
         constructor()
-        constructor(from: PackedFloat32Array | Array<float32>)
+        constructor(from: PackedFloat32Array | float32[])
         constructor(from: Array)
         set_indexed(index: number, value: float64)
         get_indexed(index: number): float64
@@ -7838,7 +7838,7 @@ declare module "godot" {
         append(value: float64): boolean
         
         /** Appends a [PackedFloat32Array] at the end of this array. */
-        append_array(array: PackedFloat32Array | Array<float32>): void
+        append_array(array: PackedFloat32Array | float32[]): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -7909,8 +7909,8 @@ declare module "godot" {
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
         count(value: float64): int64
-        static EQUAL(left: PackedFloat32Array | Array<float32>, right: PackedFloat32Array | Array<float32>): boolean
-        static NOT_EQUAL(left: PackedFloat32Array | Array<float32>, right: PackedFloat32Array | Array<float32>): boolean
+        static EQUAL(left: PackedFloat32Array | float32[], right: PackedFloat32Array | float32[]): boolean
+        static NOT_EQUAL(left: PackedFloat32Array | float32[], right: PackedFloat32Array | float32[]): boolean
     }
     /** A packed array of 64-bit floating-point values.  
      *  	  
@@ -7918,7 +7918,7 @@ declare module "godot" {
      */
     class PackedFloat64Array {
         constructor()
-        constructor(from: PackedFloat64Array | Array<float64>)
+        constructor(from: PackedFloat64Array | float64[])
         constructor(from: Array)
         set_indexed(index: number, value: float64)
         get_indexed(index: number): float64
@@ -7939,7 +7939,7 @@ declare module "godot" {
         append(value: float64): boolean
         
         /** Appends a [PackedFloat64Array] at the end of this array. */
-        append_array(array: PackedFloat64Array | Array<float64>): void
+        append_array(array: PackedFloat64Array | float64[]): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -8010,8 +8010,8 @@ declare module "godot" {
          *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
         count(value: float64): int64
-        static EQUAL(left: PackedFloat64Array | Array<float64>, right: PackedFloat64Array | Array<float64>): boolean
-        static NOT_EQUAL(left: PackedFloat64Array | Array<float64>, right: PackedFloat64Array | Array<float64>): boolean
+        static EQUAL(left: PackedFloat64Array | float64[], right: PackedFloat64Array | float64[]): boolean
+        static NOT_EQUAL(left: PackedFloat64Array | float64[], right: PackedFloat64Array | float64[]): boolean
     }
     /** A packed array of [String]s.  
      *  	  
@@ -8019,7 +8019,7 @@ declare module "godot" {
      */
     class PackedStringArray {
         constructor()
-        constructor(from: PackedStringArray | Array<string>)
+        constructor(from: PackedStringArray | string[])
         constructor(from: Array)
         set_indexed(index: number, value: string)
         get_indexed(index: number): string
@@ -8040,7 +8040,7 @@ declare module "godot" {
         append(value: string): boolean
         
         /** Appends a [PackedStringArray] at the end of this array. */
-        append_array(array: PackedStringArray | Array<string>): void
+        append_array(array: PackedStringArray | string[]): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -8092,8 +8092,8 @@ declare module "godot" {
         
         /** Returns the number of times an element is in the array. */
         count(value: string): int64
-        static EQUAL(left: PackedStringArray | Array<string>, right: PackedStringArray | Array<string>): boolean
-        static NOT_EQUAL(left: PackedStringArray | Array<string>, right: PackedStringArray | Array<string>): boolean
+        static EQUAL(left: PackedStringArray | string[], right: PackedStringArray | string[]): boolean
+        static NOT_EQUAL(left: PackedStringArray | string[], right: PackedStringArray | string[]): boolean
     }
     /** A packed array of [Vector2]s.  
      *  	  
@@ -8101,7 +8101,7 @@ declare module "godot" {
      */
     class PackedVector2Array {
         constructor()
-        constructor(from: PackedVector2Array | Array<Vector2>)
+        constructor(from: PackedVector2Array | Vector2[])
         constructor(from: Array)
         set_indexed(index: number, value: Vector2)
         get_indexed(index: number): Vector2
@@ -8122,7 +8122,7 @@ declare module "godot" {
         append(value: Vector2): boolean
         
         /** Appends a [PackedVector2Array] at the end of this array. */
-        append_array(array: PackedVector2Array | Array<Vector2>): void
+        append_array(array: PackedVector2Array | Vector2[]): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -8191,8 +8191,8 @@ declare module "godot" {
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
         count(value: Vector2): int64
-        static EQUAL(left: PackedVector2Array | Array<Vector2>, right: PackedVector2Array | Array<Vector2>): boolean
-        static NOT_EQUAL(left: PackedVector2Array | Array<Vector2>, right: PackedVector2Array | Array<Vector2>): boolean
+        static EQUAL(left: PackedVector2Array | Vector2[], right: PackedVector2Array | Vector2[]): boolean
+        static NOT_EQUAL(left: PackedVector2Array | Vector2[], right: PackedVector2Array | Vector2[]): boolean
     }
     /** A packed array of [Vector3]s.  
      *  	  
@@ -8200,7 +8200,7 @@ declare module "godot" {
      */
     class PackedVector3Array {
         constructor()
-        constructor(from: PackedVector3Array | Array<Vector3>)
+        constructor(from: PackedVector3Array | Vector3[])
         constructor(from: Array)
         set_indexed(index: number, value: Vector3)
         get_indexed(index: number): Vector3
@@ -8221,7 +8221,7 @@ declare module "godot" {
         append(value: Vector3): boolean
         
         /** Appends a [PackedVector3Array] at the end of this array. */
-        append_array(array: PackedVector3Array | Array<Vector3>): void
+        append_array(array: PackedVector3Array | Vector3[]): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -8290,8 +8290,8 @@ declare module "godot" {
          *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
          */
         count(value: Vector3): int64
-        static EQUAL(left: PackedVector3Array | Array<Vector3>, right: PackedVector3Array | Array<Vector3>): boolean
-        static NOT_EQUAL(left: PackedVector3Array | Array<Vector3>, right: PackedVector3Array | Array<Vector3>): boolean
+        static EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
+        static NOT_EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
     }
     /** A packed array of [Color]s.  
      *  	  
@@ -8299,7 +8299,7 @@ declare module "godot" {
      */
     class PackedColorArray {
         constructor()
-        constructor(from: PackedColorArray | Array<Color>)
+        constructor(from: PackedColorArray | Color[])
         constructor(from: Array)
         set_indexed(index: number, value: Color)
         get_indexed(index: number): Color
@@ -8320,7 +8320,7 @@ declare module "godot" {
         append(value: Color): boolean
         
         /** Appends a [PackedColorArray] at the end of this array. */
-        append_array(array: PackedColorArray | Array<Color>): void
+        append_array(array: PackedColorArray | Color[]): void
         
         /** Removes an element from the array by index. */
         remove_at(index: int64): void
@@ -8372,8 +8372,8 @@ declare module "godot" {
         
         /** Returns the number of times an element is in the array. */
         count(value: Color): int64
-        static EQUAL(left: PackedColorArray | Array<Color>, right: PackedColorArray | Array<Color>): boolean
-        static NOT_EQUAL(left: PackedColorArray | Array<Color>, right: PackedColorArray | Array<Color>): boolean
+        static EQUAL(left: PackedColorArray | Color[], right: PackedColorArray | Color[]): boolean
+        static NOT_EQUAL(left: PackedColorArray | Color[], right: PackedColorArray | Color[]): boolean
     }
     enum Side {
         /** Left side, usually used for [Control] or [StyleBox]-derived classes. */

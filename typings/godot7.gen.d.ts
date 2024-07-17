@@ -1326,7 +1326,7 @@ declare module "godot" {
      *      
      *  **Note:** If you need object deserialization, see [method bytes_to_var_with_objects].  
      */
-    static function bytes_to_var(bytes: PackedByteArray | Array<byte> | ArrayBuffer): void
+    static function bytes_to_var(bytes: PackedByteArray | byte[] | ArrayBuffer): void
     
     /** Encodes a [Variant] value to a byte array. Encoding objects is allowed (and can potentially include executable code). Deserialization can be done with [method bytes_to_var_with_objects].  
      *      
@@ -1337,7 +1337,7 @@ declare module "godot" {
     /** Decodes a byte array back to a [Variant] value. Decoding objects is allowed.  
      *  **Warning:** Deserialized object can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats (remote code execution).  
      */
-    static function bytes_to_var_with_objects(bytes: PackedByteArray | Array<byte> | ArrayBuffer): void
+    static function bytes_to_var_with_objects(bytes: PackedByteArray | byte[] | ArrayBuffer): void
     
     /** Returns the integer hash of the passed [param variable].  
      *    

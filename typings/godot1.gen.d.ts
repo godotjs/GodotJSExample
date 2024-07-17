@@ -26,13 +26,13 @@ declare module "godot" {
     class AESContext extends RefCounted {
         constructor(identifier?: any)
         /** Start the AES context in the given [param mode]. A [param key] of either 16 or 32 bytes must always be provided, while an [param iv] (initialization vector) of exactly 16 bytes, is only needed when [param mode] is either [constant MODE_CBC_ENCRYPT] or [constant MODE_CBC_DECRYPT]. */
-        start(mode: AESContext.Mode, key: PackedByteArray | Array<byte> | ArrayBuffer, iv: PackedByteArray | Array<byte> | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): Error
+        start(mode: AESContext.Mode, key: PackedByteArray | byte[] | ArrayBuffer, iv: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): Error
         
         /** Run the desired operation for this AES context. Will return a [PackedByteArray] containing the result of encrypting (or decrypting) the given [param src]. See [method start] for mode of operation.  
          *      
          *  **Note:** The size of [param src] must be a multiple of 16. Apply some padding if needed.  
          */
-        update(src: PackedByteArray | Array<byte> | ArrayBuffer): PackedByteArray
+        update(src: PackedByteArray | byte[] | ArrayBuffer): PackedByteArray
         
         /** Get the current IV state for this context (IV gets updated when calling [method update]). You normally don't need this function.  
          *      
@@ -1565,7 +1565,7 @@ declare module "godot" {
         get auto_triangles(): boolean
         set auto_triangles(value: boolean)
         get triangles(): PackedInt32Array
-        set triangles(value: PackedInt32Array | Array<int32>)
+        set triangles(value: PackedInt32Array | int32[])
         
         /** The blend space's X and Y axes' lower limit for the points' position. See [method add_blend_point]. */
         get min_space(): Vector2
@@ -2647,9 +2647,9 @@ declare module "godot" {
         
         /** Removes all surfaces from this [ArrayMesh]. */
         clear_surfaces(): void
-        surface_update_vertex_region(surf_idx: int64, offset: int64, data: PackedByteArray | Array<byte> | ArrayBuffer): void
-        surface_update_attribute_region(surf_idx: int64, offset: int64, data: PackedByteArray | Array<byte> | ArrayBuffer): void
-        surface_update_skin_region(surf_idx: int64, offset: int64, data: PackedByteArray | Array<byte> | ArrayBuffer): void
+        surface_update_vertex_region(surf_idx: int64, offset: int64, data: PackedByteArray | byte[] | ArrayBuffer): void
+        surface_update_attribute_region(surf_idx: int64, offset: int64, data: PackedByteArray | byte[] | ArrayBuffer): void
+        surface_update_skin_region(surf_idx: int64, offset: int64, data: PackedByteArray | byte[] | ArrayBuffer): void
         
         /** Returns the length in vertices of the vertex array in the requested surface (see [method add_surface_from_arrays]). */
         surface_get_array_len(surf_idx: int64): int64
@@ -2678,7 +2678,7 @@ declare module "godot" {
         /** Performs a UV unwrap on the [ArrayMesh] to prepare the mesh for lightmapping. */
         lightmap_unwrap(transform: Transform3D, texel_size: float64): Error
         get _blend_shape_names(): PackedStringArray
-        set _blend_shape_names(value: PackedStringArray | Array<string>)
+        set _blend_shape_names(value: PackedStringArray | string[])
         get _surfaces(): Array
         set _surfaces(value: Array)
         
@@ -2701,21 +2701,21 @@ declare module "godot" {
     class ArrayOccluder3D extends Occluder3D {
         constructor(identifier?: any)
         /** Sets [member indices] and [member vertices], while updating the final occluder only once after both values are set. */
-        set_arrays(vertices: PackedVector3Array | Array<Vector3>, indices: PackedInt32Array | Array<int32>): void
+        set_arrays(vertices: PackedVector3Array | Vector3[], indices: PackedInt32Array | int32[]): void
         
         /** The occluder's vertex positions in local 3D coordinates.  
          *      
          *  **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [method set_arrays] instead to avoid updating the occluder twice when it's created.  
          */
         get vertices(): PackedVector3Array
-        set vertices(value: PackedVector3Array | Array<Vector3>)
+        set vertices(value: PackedVector3Array | Vector3[])
         
         /** The occluder's index position. Indices determine which points from the [member vertices] array should be drawn, and in which order.  
          *      
          *  **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [method set_arrays] instead to avoid updating the occluder twice when it's created.  
          */
         get indices(): PackedInt32Array
-        set indices(value: PackedInt32Array | Array<int32>)
+        set indices(value: PackedInt32Array | int32[])
     }
     namespace AspectRatioContainer {
         enum StretchMode {
@@ -3467,7 +3467,7 @@ declare module "godot" {
         can_push_buffer(amount: int64): boolean
         
         /** Pushes several audio data frames to the buffer. This is usually more efficient than [method push_frame] in C# and compiled languages via GDExtension, but [method push_buffer] may be  *less*  efficient in GDScript. */
-        push_buffer(frames: PackedVector2Array | Array<Vector2>): boolean
+        push_buffer(frames: PackedVector2Array | Vector2[]): boolean
         
         /** Returns the number of frames that can be pushed to the audio sample data buffer without overflowing it. If the result is `0`, the buffer is full. */
         get_frames_available(): int64
@@ -3492,7 +3492,7 @@ declare module "godot" {
          *    
          */
         get data(): PackedByteArray
-        set data(value: PackedByteArray | Array<byte> | ArrayBuffer)
+        set data(value: PackedByteArray | byte[] | ArrayBuffer)
         get bpm(): float64
         set bpm(value: float64)
         get beat_count(): int64
@@ -3522,7 +3522,7 @@ declare module "godot" {
     class AudioStreamOggVorbis extends AudioStream {
         constructor(identifier?: any)
         /** Creates a new AudioStreamOggVorbis instance from the given buffer. The buffer must contain Ogg Vorbis data. */
-        static load_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): AudioStreamOggVorbis
+        static load_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): AudioStreamOggVorbis
         
         /** Creates a new AudioStreamOggVorbis instance from the given file path. The file must be in Ogg Vorbis format. */
         static load_from_file(path: string): AudioStreamOggVorbis
@@ -4030,7 +4030,7 @@ declare module "godot" {
          *  **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8, subtract 128 from each byte.  
          */
         get data(): PackedByteArray
-        set data(value: PackedByteArray | Array<byte> | ArrayBuffer)
+        set data(value: PackedByteArray | byte[] | ArrayBuffer)
         
         /** Audio format. See [enum Format] constants for values. */
         get format(): int64
@@ -5345,15 +5345,15 @@ declare module "godot" {
         
         /** Sets the initial positions to spawn particles when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
         get emission_points(): PackedVector2Array
-        set emission_points(value: PackedVector2Array | Array<Vector2>)
+        set emission_points(value: PackedVector2Array | Vector2[])
         
         /** Sets the direction the particles will be emitted in when using [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
         get emission_normals(): PackedVector2Array
-        set emission_normals(value: PackedVector2Array | Array<Vector2>)
+        set emission_normals(value: PackedVector2Array | Vector2[])
         
         /** Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
         get emission_colors(): PackedColorArray
-        set emission_colors(value: PackedColorArray | Array<Color>)
+        set emission_colors(value: PackedColorArray | Color[])
         
         /** Unit vector specifying the particles' emission direction. */
         get direction(): Vector2
@@ -5573,18 +5573,18 @@ declare module "godot" {
         
         /** Sets the initial positions to spawn particles when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
         get emission_points(): PackedVector3Array
-        set emission_points(value: PackedVector3Array | Array<Vector3>)
+        set emission_points(value: PackedVector3Array | Vector3[])
         
         /** Sets the direction the particles will be emitted in when using [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
         get emission_normals(): PackedVector3Array
-        set emission_normals(value: PackedVector3Array | Array<Vector3>)
+        set emission_normals(value: PackedVector3Array | Vector3[])
         
         /** Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS].  
          *      
          *  **Note:** [member emission_colors] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member emission_colors] will have no visible effect.  
          */
         get emission_colors(): PackedColorArray
-        set emission_colors(value: PackedColorArray | Array<Color>)
+        set emission_colors(value: PackedColorArray | Color[])
         
         /** The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
         get emission_ring_axis(): Vector3
@@ -5785,7 +5785,7 @@ declare module "godot" {
          *  **Note:** If only 1 or 2 points are defined in [member polygon], no mesh will be generated.  
          */
         get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array | Array<Vector2>)
+        set polygon(value: PackedVector2Array | Vector2[])
         
         /** The [member mode] used to extrude the [member polygon]. */
         get mode(): int64
@@ -6682,12 +6682,12 @@ declare module "godot" {
         /** Draws interconnected line segments with a uniform [param color] and [param width] and optional antialiasing (supported only for positive [param width]). When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw disconnected lines, use [method draw_multiline] instead. See also [method draw_polygon].  
          *  If [param width] is negative, it will be ignored and the polyline will be drawn using [constant RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_polyline(points: PackedVector2Array | Array<Vector2>, color: Color, width: float64 = -1, antialiased: boolean = false): void
+        draw_polyline(points: PackedVector2Array | Vector2[], color: Color, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws interconnected line segments with a uniform [param width], point-by-point coloring, and optional antialiasing (supported only for positive [param width]). Colors assigned to line points match by index between [param points] and [param colors], i.e. each line segment is filled with a gradient between the colors of the endpoints. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw disconnected lines, use [method draw_multiline_colors] instead. See also [method draw_polygon].  
          *  If [param width] is negative, it will be ignored and the polyline will be drawn using [constant RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_polyline_colors(points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, width: float64 = -1, antialiased: boolean = false): void
+        draw_polyline_colors(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws an unfilled arc between the given angles with a uniform [param color] and [param width] and optional antialiasing (supported only for positive [param width]). The larger the value of [param point_count], the smoother the curve. See also [method draw_circle].  
          *  If [param width] is negative, it will be ignored and the arc will be drawn using [constant RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
@@ -6698,12 +6698,12 @@ declare module "godot" {
         /** Draws multiple disconnected lines with a uniform [param width] and [param color]. Each line is defined by two consecutive points from [param points] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw interconnected lines, use [method draw_polyline] instead.  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_multiline(points: PackedVector2Array | Array<Vector2>, color: Color, width: float64 = -1): void
+        draw_multiline(points: PackedVector2Array | Vector2[], color: Color, width: float64 = -1): void
         
         /** Draws multiple disconnected lines with a uniform [param width] and segment-by-segment coloring. Each segment is defined by two consecutive points from [param points] array and a corresponding color from [param colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and has `colors *` color. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw interconnected lines, use [method draw_polyline_colors] instead.  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
          */
-        draw_multiline_colors(points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, width: float64 = -1): void
+        draw_multiline_colors(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], width: float64 = -1): void
         
         /** Draws a rectangle. If [param filled] is `true`, the rectangle will be filled with the [param color] specified. If [param filled] is `false`, the rectangle will be drawn as a stroke with the [param color] and [param width] specified. See also [method draw_texture_rect].  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
@@ -6742,13 +6742,13 @@ declare module "godot" {
         draw_style_box(style_box: StyleBox, rect: Rect2): void
         
         /** Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle, and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn and an error message will be printed. See also [method draw_line], [method draw_polyline], [method draw_polygon], and [method draw_rect]. */
-        draw_primitive(points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, uvs: PackedVector2Array | Array<Vector2>, texture: Texture2D = <any> {} /*compound.type from nil*/): void
+        draw_primitive(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[], texture: Texture2D = <any> {} /*compound.type from nil*/): void
         
         /** Draws a solid polygon of any number of points, convex or concave. Unlike [method draw_colored_polygon], each point's color can be changed individually. See also [method draw_polyline] and [method draw_polyline_colors]. If you need more flexibility (such as being able to use bones), use [method RenderingServer.canvas_item_add_triangle_array] instead. */
-        draw_polygon(points: PackedVector2Array | Array<Vector2>, colors: PackedColorArray | Array<Color>, uvs: PackedVector2Array | Array<Vector2> = <any> {} /*compound.type from 35([object Object])*/, texture: Texture2D = <any> {} /*compound.type from nil*/): void
+        draw_polygon(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, texture: Texture2D = <any> {} /*compound.type from nil*/): void
         
         /** Draws a colored polygon of any number of points, convex or concave. Unlike [method draw_polygon], a single color must be specified for the whole polygon. */
-        draw_colored_polygon(points: PackedVector2Array | Array<Vector2>, color: Color, uvs: PackedVector2Array | Array<Vector2> = <any> {} /*compound.type from 35([object Object])*/, texture: Texture2D = <any> {} /*compound.type from nil*/): void
+        draw_colored_polygon(points: PackedVector2Array | Vector2[], color: Color, uvs: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, texture: Texture2D = <any> {} /*compound.type from nil*/): void
         
         /** Draws [param text] using the specified [param font] at the [param pos] (bottom-left corner using the baseline of the font). The text will have its color multiplied by [param modulate]. If [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.  
          *  **Example using the default project font:**  
@@ -7902,7 +7902,7 @@ declare module "godot" {
         
         /** Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently. */
         get line_length_guidelines(): PackedInt32Array
-        set line_length_guidelines(value: PackedInt32Array | Array<int32>)
+        set line_length_guidelines(value: PackedInt32Array | int32[])
         
         /** Sets if breakpoints should be drawn in the gutter. This gutter is shared with bookmarks and executing lines. */
         get gutters_draw_breakpoints_gutter(): boolean
@@ -7930,11 +7930,11 @@ declare module "godot" {
         
         /** Sets the string delimiters. All existing string delimiters will be removed. */
         get delimiter_strings(): PackedStringArray
-        set delimiter_strings(value: PackedStringArray | Array<string>)
+        set delimiter_strings(value: PackedStringArray | string[])
         
         /** Sets the comment delimiters. All existing comment delimiters will be removed. */
         get delimiter_comments(): PackedStringArray
-        set delimiter_comments(value: PackedStringArray | Array<string>)
+        set delimiter_comments(value: PackedStringArray | string[])
         
         /** Sets whether code completion is allowed. */
         get code_completion_enabled(): boolean
@@ -7942,7 +7942,7 @@ declare module "godot" {
         
         /** Sets prefixes that will trigger code completion. */
         get code_completion_prefixes(): PackedStringArray
-        set code_completion_prefixes(value: PackedStringArray | Array<string>)
+        set code_completion_prefixes(value: PackedStringArray | string[])
         
         /** Size of the tabulation indent (one [kbd]Tab[/kbd] press) in characters. If [member indent_use_spaces] is enabled the number of spaces to use. */
         get indent_size(): int64
@@ -7958,7 +7958,7 @@ declare module "godot" {
         
         /** Prefixes to trigger an automatic indent. */
         get indent_automatic_prefixes(): PackedStringArray
-        set indent_automatic_prefixes(value: PackedStringArray | Array<string>)
+        set indent_automatic_prefixes(value: PackedStringArray | string[])
         
         /** Sets whether brace pairs should be autocompleted. */
         get auto_brace_completion_enabled(): boolean
@@ -8394,7 +8394,7 @@ declare module "godot" {
          *  **Warning:** The returned value is a clone of the [PackedVector2Array], not a reference.  
          */
         get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array | Array<Vector2>)
+        set polygon(value: PackedVector2Array | Vector2[])
         
         /** If `true`, no collisions will be detected. */
         get disabled(): boolean
@@ -8438,7 +8438,7 @@ declare module "godot" {
          *  **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the class property.  
          */
         get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array | Array<Vector2>)
+        set polygon(value: PackedVector2Array | Vector2[])
         
         /** The collision margin for the generated [Shape3D]. See [member Shape3D.margin] for more details. */
         get margin(): float64
@@ -8728,7 +8728,7 @@ declare module "godot" {
         constructor(identifier?: any)
         /** The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of length divisible by two) is naturally divided into pairs (one pair for each segment); each pair consists of the starting point of a segment and the endpoint of a segment. */
         get segments(): PackedVector2Array
-        set segments(value: PackedVector2Array | Array<Vector2>)
+        set segments(value: PackedVector2Array | Vector2[])
     }
     /** A 3D trimesh shape used for physics collision.  
      *  	  
@@ -8737,7 +8737,7 @@ declare module "godot" {
     class ConcavePolygonShape3D extends Shape3D {
         constructor(identifier?: any)
         get data(): PackedVector3Array
-        set data(value: PackedVector3Array | Array<Vector3>)
+        set data(value: PackedVector3Array | Vector3[])
         
         /** If set to `true`, collisions occur on both sides of the concave shape faces. Otherwise they occur only along the face normals. */
         get backface_collision(): boolean
@@ -8830,7 +8830,7 @@ declare module "godot" {
         /** Loads the encrypted config file specified as a parameter, using the provided [param key] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        load_encrypted(path: string, key: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        load_encrypted(path: string, key: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Loads the encrypted config file specified as a parameter, using the provided [param password] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
@@ -8840,7 +8840,7 @@ declare module "godot" {
         /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param key] to encrypt it. The output file uses an INI-style structure.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          */
-        save_encrypted(path: string, key: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        save_encrypted(path: string, key: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param password] to encrypt it. The output file uses an INI-style structure.  
          *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  

@@ -20,13 +20,13 @@ declare module "godot" {
     class ConvexPolygonShape2D extends Shape2D {
         constructor(identifier?: any)
         /** Based on the set of points provided, this assigns the [member points] property using the convex hull algorithm, removing all unneeded points. See [method Geometry2D.convex_hull] for details. */
-        set_point_cloud(point_cloud: PackedVector2Array | Array<Vector2>): void
+        set_point_cloud(point_cloud: PackedVector2Array | Vector2[]): void
         
         /** The polygon's list of vertices that form a convex hull. Can be in either clockwise or counterclockwise order.  
          *  **Warning:** Only set this property to a list of points that actually form a convex hull. Use [method set_point_cloud] to generate the convex hull of an arbitrary set of points.  
          */
         get points(): PackedVector2Array
-        set points(value: PackedVector2Array | Array<Vector2>)
+        set points(value: PackedVector2Array | Vector2[])
     }
     /** A 3D convex polyhedron shape used for physics collision.  
      *  	  
@@ -62,32 +62,32 @@ declare module "godot" {
         generate_self_signed_certificate(key: CryptoKey, issuer_name: string = 'CN=myserver,O=myorganisation,C=IT', not_before: string = '20140101000000', not_after: string = '20340101000000'): X509Certificate
         
         /** Sign a given [param hash] of type [param hash_type] with the provided private [param key]. */
-        sign(hash_type: HashingContext.HashType, hash: PackedByteArray | Array<byte> | ArrayBuffer, key: CryptoKey): PackedByteArray
+        sign(hash_type: HashingContext.HashType, hash: PackedByteArray | byte[] | ArrayBuffer, key: CryptoKey): PackedByteArray
         
         /** Verify that a given [param signature] for [param hash] of type [param hash_type] against the provided public [param key]. */
-        verify(hash_type: HashingContext.HashType, hash: PackedByteArray | Array<byte> | ArrayBuffer, signature: PackedByteArray | Array<byte> | ArrayBuffer, key: CryptoKey): boolean
+        verify(hash_type: HashingContext.HashType, hash: PackedByteArray | byte[] | ArrayBuffer, signature: PackedByteArray | byte[] | ArrayBuffer, key: CryptoKey): boolean
         
         /** Encrypt the given [param plaintext] with the provided public [param key].  
          *      
          *  **Note:** The maximum size of accepted plaintext is limited by the key size.  
          */
-        encrypt(key: CryptoKey, plaintext: PackedByteArray | Array<byte> | ArrayBuffer): PackedByteArray
+        encrypt(key: CryptoKey, plaintext: PackedByteArray | byte[] | ArrayBuffer): PackedByteArray
         
         /** Decrypt the given [param ciphertext] with the provided private [param key].  
          *      
          *  **Note:** The maximum size of accepted ciphertext is limited by the key size.  
          */
-        decrypt(key: CryptoKey, ciphertext: PackedByteArray | Array<byte> | ArrayBuffer): PackedByteArray
+        decrypt(key: CryptoKey, ciphertext: PackedByteArray | byte[] | ArrayBuffer): PackedByteArray
         
         /** Generates an [url=https://en.wikipedia.org/wiki/HMAC]HMAC[/url] digest of [param msg] using [param key]. The [param hash_type] parameter is the hashing algorithm that is used for the inner and outer hashes.  
          *  Currently, only [constant HashingContext.HASH_SHA256] and [constant HashingContext.HASH_SHA1] are supported.  
          */
-        hmac_digest(hash_type: HashingContext.HashType, key: PackedByteArray | Array<byte> | ArrayBuffer, msg: PackedByteArray | Array<byte> | ArrayBuffer): PackedByteArray
+        hmac_digest(hash_type: HashingContext.HashType, key: PackedByteArray | byte[] | ArrayBuffer, msg: PackedByteArray | byte[] | ArrayBuffer): PackedByteArray
         
         /** Compares two [PackedByteArray]s for equality without leaking timing information in order to prevent timing attacks.  
          *  See [url=https://paragonie.com/blog/2015/11/preventing-timing-attacks-on-string-comparison-with-double-hmac-strategy]this blog post[/url] for more information.  
          */
-        constant_time_compare(trusted: PackedByteArray | Array<byte> | ArrayBuffer, received: PackedByteArray | Array<byte> | ArrayBuffer): boolean
+        constant_time_compare(trusted: PackedByteArray | byte[] | ArrayBuffer, received: PackedByteArray | byte[] | ArrayBuffer): boolean
     }
     /** A cryptographic key (RSA).  
      *  	  
@@ -1008,7 +1008,7 @@ declare module "godot" {
         channel_limit(limit: int64): void
         
         /** Queues a [param packet] to be sent to all peers associated with the host over the specified [param channel]. See [ENetPacketPeer] `FLAG_*` constants for available packet flags. */
-        broadcast(channel: int64, packet: PackedByteArray | Array<byte> | ArrayBuffer, flags: int64): void
+        broadcast(channel: int64, packet: PackedByteArray | byte[] | ArrayBuffer, flags: int64): void
         
         /** Sets the compression method used for network packets. These have different tradeoffs of compression speed versus bandwidth, you may need to test which one works best for your use case if you use compression at all.  
          *      
@@ -1049,7 +1049,7 @@ declare module "godot" {
          *  This is useful as it serves to establish entries in NAT routing tables on all devices between this bound instance and the public facing internet, allowing a prospective client's connection packets to be routed backward through the NAT device(s) between the public internet and this host.  
          *  This requires forward knowledge of a prospective client's address and communication port as seen by the public internet - after any NAT devices have handled their connection request. This information can be obtained by a [url=https://en.wikipedia.org/wiki/STUN]STUN[/url] service, and must be handed off to your host by an entity that is not the prospective client. This will never work for a client behind a Symmetric NAT due to the nature of the Symmetric NAT routing algorithm, as their IP and Port cannot be known beforehand.  
          */
-        socket_send(destination_address: string, destination_port: int64, packet: PackedByteArray | Array<byte> | ArrayBuffer): void
+        socket_send(destination_address: string, destination_port: int64, packet: PackedByteArray | byte[] | ArrayBuffer): void
     }
     /** A MultiplayerPeer implementation using the [url=http://enet.bespin.org/index.html]ENet[/url] library.  
      *  	  
@@ -1197,7 +1197,7 @@ declare module "godot" {
         reset(): void
         
         /** Queues a [param packet] to be sent over the specified [param channel]. See `FLAG_*` constants for available packet flags. */
-        send(channel: int64, packet: PackedByteArray | Array<byte> | ArrayBuffer, flags: int64): Error
+        send(channel: int64, packet: PackedByteArray | byte[] | ArrayBuffer, flags: int64): Error
         
         /** Configures throttle parameter for a peer.  
          *  Unreliable packets are dropped by ENet in response to the varying conditions of the Internet connection to the peer. The throttle represents a probability that an unreliable packet should not be dropped and thus sent by ENet to the peer. By measuring fluctuations in round trip times of reliable packets over the specified [param interval], ENet will either increase the probability by the amount specified in the [param acceleration] parameter, or decrease it by the amount specified in the [param deceleration] parameter (both are ratios to [constant PACKET_THROTTLE_SCALE]).  
@@ -1507,10 +1507,10 @@ declare module "godot" {
         /** Virtual method to be overridden by the user. Called for each exported file, providing arguments that can be used to identify the file. [param path] is the path of the file, [param type] is the [Resource] represented by the file (e.g. [PackedScene]) and [param features] is the list of features for the export.  
          *  Calling [method skip] inside this callback will make the file not included in the export.  
          */
-        /* gdvirtual */ _export_file(path: string, type: string, features: PackedStringArray | Array<string>): void
+        /* gdvirtual */ _export_file(path: string, type: string, features: PackedStringArray | string[]): void
         
         /** Virtual method to be overridden by the user. It is called when the export starts and provides all information about the export. [param features] is the list of features for the export, [param is_debug] is `true` for debug builds, [param path] is the target path for the exported project. [param flags] is only used when running a runnable profile, e.g. when using native run on Android. */
-        /* gdvirtual */ _export_begin(features: PackedStringArray | Array<string>, is_debug: boolean, path: string, flags: int64): void
+        /* gdvirtual */ _export_begin(features: PackedStringArray | string[], is_debug: boolean, path: string, flags: int64): void
         
         /** Virtual method to be overridden by the user. Called when the export is finished. */
         /* gdvirtual */ _export_end(): void
@@ -1518,7 +1518,7 @@ declare module "godot" {
         /** Return `true` if this plugin will customize resources based on the platform and features used.  
          *  When enabled, [method _get_customization_configuration_hash], [method _customize_resource] and [method _customize_scene] will be called and must be implemented.  
          */
-        /* gdvirtual */ _begin_customize_resources(platform: EditorExportPlatform, features: PackedStringArray | Array<string>): boolean
+        /* gdvirtual */ _begin_customize_resources(platform: EditorExportPlatform, features: PackedStringArray | string[]): boolean
         
         /** Customize a resource. If changes are made to it, return the same or a new resource. Otherwise, return `null`.  
          *  The  *path*  argument is only used when customizing an actual file, otherwise this means that this resource is part of another one and it will be empty.  
@@ -1527,7 +1527,7 @@ declare module "godot" {
         /* gdvirtual */ _customize_resource(resource: Resource, path: string): Resource
         
         /** Return true if this plugin will customize scenes based on the platform and features used. */
-        /* gdvirtual */ _begin_customize_scenes(platform: EditorExportPlatform, features: PackedStringArray | Array<string>): boolean
+        /* gdvirtual */ _begin_customize_scenes(platform: EditorExportPlatform, features: PackedStringArray | string[]): boolean
         
         /** Customize a scene. If changes are made to it, return the same or a new scene. Otherwise, return `null`. If a new scene is returned, it is up to you to dispose of the old one.  
          *  Implementing this method is required if [method _begin_customize_scenes] returns `true`.  
@@ -1620,7 +1620,7 @@ declare module "godot" {
          *  **Note:** In case of macOS exports, those shared objects will be added to `Frameworks` directory of app bundle.  
          *  In case of a directory code-sign will error if you place non code object in directory.  
          */
-        add_shared_object(path: string, tags: PackedStringArray | Array<string>, target: string): void
+        add_shared_object(path: string, tags: PackedStringArray | string[], target: string): void
         
         /** Adds a static lib from the given [param path] to the iOS project. */
         add_ios_project_static_lib(path: string): void
@@ -1628,7 +1628,7 @@ declare module "godot" {
         /** Adds a custom file to be exported. [param path] is the virtual path that can be used to load the file, [param file] is the binary data of the file.  
          *  When called inside [method _export_file] and [param remap] is `true`, the current file will not be exported, but instead remapped to this custom file. [param remap] is ignored when called in other places.  
          */
-        add_file(path: string, file: PackedByteArray | Array<byte> | ArrayBuffer, remap: boolean): void
+        add_file(path: string, file: PackedByteArray | byte[] | ArrayBuffer, remap: boolean): void
         
         /** Adds a static library (*.a) or dynamic library (*.dylib, *.framework) to Linking Phase in iOS's Xcode project. */
         add_ios_framework(path: string): void
@@ -1840,7 +1840,7 @@ declare module "godot" {
         
         /** The available file type filters. For example, this shows only `.png` and `.gd` files: `set_filters(PackedStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`. Multiple file types can also be specified in a single filter. `"*.png, *.jpg, *.jpeg ; Supported Images"` will show both PNG and JPEG files when selected. */
         get filters(): PackedStringArray
-        set filters(value: PackedStringArray | Array<string>)
+        set filters(value: PackedStringArray | string[])
         
         /** If `true`, hidden files and directories will be visible in the [EditorFileDialog]. This property is synchronized with [member EditorSettings.filesystem/file_dialog/show_hidden_files]. */
         get show_hidden_files(): boolean
@@ -1854,7 +1854,7 @@ declare module "godot" {
         readonly file_selected: Signal // path: string => void
         
         /** Emitted when multiple files are selected. */
-        readonly files_selected: Signal // paths: PackedStringArray | Array<string> => void
+        readonly files_selected: Signal // paths: PackedStringArray | string[] => void
         
         /** Emitted when a directory is selected. */
         readonly dir_selected: Signal // dir: string => void
@@ -1899,7 +1899,7 @@ declare module "godot" {
          *      
          *  **Note:** This function blocks until the import is finished. However, the main loop iteration, including timers and [method Node._process], will occur during the import process due to progress bar updates. Avoid calls to [method reimport_files] or [method scan] while an import is in progress.  
          */
-        reimport_files(files: PackedStringArray | Array<string>): void
+        reimport_files(files: PackedStringArray | string[]): void
         
         /** Emitted if the filesystem changed. */
         readonly filesystem_changed: Signal //  => void
@@ -1911,10 +1911,10 @@ declare module "godot" {
         readonly sources_changed: Signal // exist: boolean => void
         
         /** Emitted if a resource is reimported. */
-        readonly resources_reimported: Signal // resources: PackedStringArray | Array<string> => void
+        readonly resources_reimported: Signal // resources: PackedStringArray | string[] => void
         
         /** Emitted if at least one resource is reloaded when the filesystem is scanned. */
-        readonly resources_reload: Signal // resources: PackedStringArray | Array<string> => void
+        readonly resources_reload: Signal // resources: PackedStringArray | string[] => void
     }
     /** A directory for the resource filesystem.  
      *  	  
@@ -2134,7 +2134,7 @@ declare module "godot" {
         add_property_editor(property: string, editor: Control, add_to_end: boolean = false): void
         
         /** Adds an editor that allows modifying multiple properties. The [param editor] control must extend [EditorProperty]. */
-        add_property_editor_for_multiple_properties(label: string, properties: PackedStringArray | Array<string>, editor: Control): void
+        add_property_editor_for_multiple_properties(label: string, properties: PackedStringArray | string[], editor: Control): void
     }
     class EditorInspectorPlugin3DTexture extends EditorInspectorPlugin {
         constructor(identifier?: any)
@@ -2251,7 +2251,7 @@ declare module "godot" {
         _set_main_scene_state(_unnamed_arg0: Dictionary, _unnamed_arg1: Node): void
         _update_recent_scenes(): void
         readonly request_help_search: Signal //  => void
-        readonly script_add_function_request: Signal // obj: Object, function: string, args: PackedStringArray | Array<string> => void
+        readonly script_add_function_request: Signal // obj: Object, function: string, args: PackedStringArray | string[] => void
         readonly resource_saved: Signal // obj: Object => void
         readonly scene_saved: Signal // path: string => void
         readonly scene_changed: Signal //  => void
@@ -2308,16 +2308,16 @@ declare module "godot" {
         /** Override this method to commit a group of subgizmos being edited (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). This usually means creating an [UndoRedo] action for the change, using the current transforms as "do" and the [param restores] transforms as "undo".  
          *  If the [param cancel] argument is `true`, the [param restores] transforms should be directly set, without any [UndoRedo] action.  
          */
-        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array | Array<int32>, restores: Array, cancel: boolean): void
+        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array | int32[], restores: Array, cancel: boolean): void
         
         /** Adds lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this method during [method _redraw]. */
-        add_lines(lines: PackedVector3Array | Array<Vector3>, material: Material, billboard: boolean = false, modulate: Color = new Color(1, 1, 1, 1)): void
+        add_lines(lines: PackedVector3Array | Vector3[], material: Material, billboard: boolean = false, modulate: Color = new Color(1, 1, 1, 1)): void
         
         /** Adds a mesh to the gizmo with the specified [param material], local [param transform] and [param skeleton]. Call this method during [method _redraw]. */
         add_mesh(mesh: Mesh, material: Material = <any> {} /*compound.type from nil*/, transform: Transform3D = <any> {} /*compound.type from 18([object Object])*/, skeleton: SkinReference = <any> {} /*compound.type from nil*/): void
         
         /** Adds the specified [param segments] to the gizmo's collision shape for picking. Call this method during [method _redraw]. */
-        add_collision_segments(segments: PackedVector3Array | Array<Vector3>): void
+        add_collision_segments(segments: PackedVector3Array | Vector3[]): void
         
         /** Adds collision triangles to the gizmo for picking. A [TriangleMesh] can be generated from a regular [Mesh] too. Call this method during [method _redraw]. */
         add_collision_triangles(triangles: TriangleMesh): void
@@ -2329,7 +2329,7 @@ declare module "godot" {
          *  The [param secondary] argument marks the added handles as secondary, meaning they will normally have lower selection priority than regular handles. When the user is holding the shift key secondary handles will switch to have higher priority than regular handles. This change in priority can be used to place multiple handles at the same point while still giving the user control on their selection.  
          *  There are virtual methods which will be called upon editing of these handles. Call this method during [method _redraw].  
          */
-        add_handles(handles: PackedVector3Array | Array<Vector3>, material: Material, ids: PackedInt32Array | Array<int32>, billboard: boolean = false, secondary: boolean = false): void
+        add_handles(handles: PackedVector3Array | Vector3[], material: Material, ids: PackedInt32Array | int32[], billboard: boolean = false, secondary: boolean = false): void
         
         /** Sets the reference [Node3D] node for the gizmo. [param node] must inherit from [Node3D]. */
         set_node_3d(node: Node): void
@@ -2422,7 +2422,7 @@ declare module "godot" {
         /** Override this method to commit a group of subgizmos being edited (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). This usually means creating an [UndoRedo] action for the change, using the current transforms as "do" and the [param restores] transforms as "undo".  
          *  If the [param cancel] argument is `true`, the [param restores] transforms should be directly set, without any [UndoRedo] action. As with all subgizmo methods, transforms are given in local space respect to the gizmo's Node3D. Called for this plugin's active gizmos.  
          */
-        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array | Array<int32>, restores: Array, cancel: boolean): void
+        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array | int32[], restores: Array, cancel: boolean): void
         
         /** Creates an unshaded material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [method get_material] and used in [method EditorNode3DGizmo.add_mesh] and [method EditorNode3DGizmo.add_lines]. Should not be overridden. */
         create_material(name: string, color: Color, billboard: boolean = false, on_top: boolean = false, use_vertex_color: boolean = false): void
@@ -2976,7 +2976,7 @@ declare module "godot" {
         readonly property_changed: Signal // property: StringName, value: any, field: StringName, changing: boolean => void
         
         /** Emit it if you want multiple properties modified at the same time. Do not use if added via [method EditorInspectorPlugin._parse_property]. */
-        readonly multiple_properties_changed: Signal // properties: PackedStringArray | Array<string>, value: Array => void
+        readonly multiple_properties_changed: Signal // properties: PackedStringArray | string[], value: Array => void
         
         /** Emit it if you want to add this value as an animation key (check for keying being enabled first). */
         readonly property_keyed: Signal // property: StringName => void
@@ -3414,13 +3414,13 @@ declare module "godot" {
         get_project_metadata(section: string, key: string, default_: any = <any> {} /*compound.type from nil*/): any
         
         /** Sets the list of favorite files and directories for this project. */
-        set_favorites(dirs: PackedStringArray | Array<string>): void
+        set_favorites(dirs: PackedStringArray | string[]): void
         
         /** Returns the list of favorite files and directories for this project. */
         get_favorites(): PackedStringArray
         
         /** Sets the list of recently visited folders in the file dialog for this project. */
-        set_recent_dirs(dirs: PackedStringArray | Array<string>): void
+        set_recent_dirs(dirs: PackedStringArray | string[]): void
         
         /** Returns the list of recently visited folders in the file dialog for this project. */
         get_recent_dirs(): PackedStringArray
@@ -4286,7 +4286,7 @@ declare module "godot" {
         /** Parses the expression and returns an [enum Error] code.  
          *  You can optionally specify names of variables that may appear in the expression with [param input_names], so that you can bind them when it gets executed.  
          */
-        parse(expression: string, input_names: PackedStringArray | Array<string> = <any> {} /*compound.type from 34([object Object])*/): Error
+        parse(expression: string, input_names: PackedStringArray | string[] = <any> {} /*compound.type from 34([object Object])*/): Error
         
         /** Executes the expression that was previously parsed by [method parse] and returns the result. Before you use the returned object, you should check if the method failed by calling [method has_execute_failed].  
          *  If you defined input variables in [method parse], you can specify their values in the inputs array, in the same order.  
@@ -4579,7 +4579,7 @@ declare module "godot" {
          *  **Note:** The provided key must be 32 bytes long.  
          *  Returns `null` if opening the file failed. You can use [method get_open_error] to check the error that occurred.  
          */
-        static open_encrypted(path: string, mode_flags: FileAccess.ModeFlags, key: PackedByteArray | Array<byte> | ArrayBuffer): FileAccess
+        static open_encrypted(path: string, mode_flags: FileAccess.ModeFlags, key: PackedByteArray | byte[] | ArrayBuffer): FileAccess
         
         /** Creates a new [FileAccess] object and opens an encrypted file in write or read mode. You need to pass a password to encrypt/decrypt it.  
          *  Returns `null` if opening the file failed. You can use [method get_open_error] to check the error that occurred.  
@@ -4738,7 +4738,7 @@ declare module "godot" {
         store_real(value: float64): void
         
         /** Stores the given array of bytes in the file. */
-        store_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): void
+        store_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): void
         
         /** Appends [param line] to the file followed by a line return character (`\n`), encoding the text as UTF-8. */
         store_line(line: string): void
@@ -4746,7 +4746,7 @@ declare module "godot" {
         /** Store the given [PackedStringArray] in the file as a line formatted in the CSV (Comma-Separated Values) format. You can pass a different delimiter [param delim] to use other than the default `","` (comma). This delimiter must be one-character long.  
          *  Text will be encoded as UTF-8.  
          */
-        store_csv_line(values: PackedStringArray | Array<string>, delim: string = ','): void
+        store_csv_line(values: PackedStringArray | string[], delim: string = ','): void
         
         /** Appends [param string] to the file without a line return, encoding the text as UTF-8.  
          *      
@@ -4913,7 +4913,7 @@ declare module "godot" {
         
         /** The available file type filters. For example, this shows only `.png` and `.gd` files: `set_filters(PackedStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`. Multiple file types can also be specified in a single filter. `"*.png, *.jpg, *.jpeg ; Supported Images"` will show both PNG and JPEG files when selected. */
         get filters(): PackedStringArray
-        set filters(value: PackedStringArray | Array<string>)
+        set filters(value: PackedStringArray | string[])
         
         /** If `true`, the dialog will show hidden files. */
         get show_hidden_files(): boolean
@@ -4942,7 +4942,7 @@ declare module "godot" {
         readonly file_selected: Signal // path: string => void
         
         /** Emitted when the user selects multiple files. */
-        readonly files_selected: Signal // paths: PackedStringArray | Array<string> => void
+        readonly files_selected: Signal // paths: PackedStringArray | string[] => void
         
         /** Emitted when the user selects a directory. */
         readonly dir_selected: Signal // dir: string => void
@@ -4953,7 +4953,7 @@ declare module "godot" {
      */
     class FileSystemDock extends VBoxContainer {
         constructor(identifier?: any)
-        _update_tree(_unnamed_arg0: PackedStringArray | Array<string>, _unnamed_arg1: boolean, _unnamed_arg2: boolean, _unnamed_arg3: boolean): void
+        _update_tree(_unnamed_arg0: PackedStringArray | string[], _unnamed_arg1: boolean, _unnamed_arg2: boolean, _unnamed_arg3: boolean): void
         _file_list_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         _tree_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         _select_file(_unnamed_arg0: string, _unnamed_arg1: boolean): void
@@ -4972,7 +4972,7 @@ declare module "godot" {
         readonly inherit: Signal // file: string => void
         
         /** Emitted when the given scenes are being instantiated in the editor. */
-        readonly instantiate: Signal // files: PackedStringArray | Array<string> => void
+        readonly instantiate: Signal // files: PackedStringArray | string[] => void
         
         /** Emitted when an external [param resource] had its file removed. */
         readonly resource_removed: Signal // resource: Resource => void
@@ -5388,7 +5388,7 @@ declare module "godot" {
         get_texture_image(cache_index: int64, size: Vector2i, texture_index: int64): Image
         
         /** Sets array containing glyph packing data. */
-        set_texture_offsets(cache_index: int64, size: Vector2i, texture_index: int64, offset: PackedInt32Array | Array<int32>): void
+        set_texture_offsets(cache_index: int64, size: Vector2i, texture_index: int64, offset: PackedInt32Array | int32[]): void
         
         /** Returns a copy of the array containing glyph packing data. */
         get_texture_offsets(cache_index: int64, size: Vector2i, texture_index: int64): PackedInt32Array
@@ -5497,7 +5497,7 @@ declare module "godot" {
         
         /** Contents of the dynamic font source file. */
         get data(): PackedByteArray
-        set data(value: PackedByteArray | Array<byte> | ArrayBuffer)
+        set data(value: PackedByteArray | byte[] | ArrayBuffer)
         
         /** If set to `true`, generate mipmaps for the font textures. */
         get generate_mipmaps(): boolean
@@ -5649,9 +5649,9 @@ declare module "godot" {
         get type(): int64
         set type(value: int64)
         get min(): PackedFloat64Array
-        set min(value: PackedFloat64Array | Array<float64>)
+        set min(value: PackedFloat64Array | float64[])
         get max(): PackedFloat64Array
-        set max(value: PackedFloat64Array | Array<float64>)
+        set max(value: PackedFloat64Array | float64[])
         get sparse_count(): int64
         set sparse_count(value: int64)
         get sparse_indices_buffer_view(): int64
@@ -5751,7 +5751,7 @@ declare module "godot" {
          *      
          *  **Note:** The [param base_path] tells [method append_from_buffer] where to find dependencies and can be empty.  
          */
-        append_from_buffer(bytes: PackedByteArray | Array<byte> | ArrayBuffer, base_path: string, state: GLTFState, flags: int64 = 0): Error
+        append_from_buffer(bytes: PackedByteArray | byte[] | ArrayBuffer, base_path: string, state: GLTFState, flags: int64 = 0): Error
         
         /** Takes a Godot Engine scene node and exports it and its descendants to the given [GLTFState] object through the [param state] parameter. */
         append_from_scene(node: Node, state: GLTFState, flags: int64 = 0): Error
@@ -5803,7 +5803,7 @@ declare module "godot" {
         /** Part of the import process. This method is run first, before all other parts of the import process.  
          *  The return value is used to determine if this [GLTFDocumentExtension] instance should be used for importing a given GLTF file. If [constant OK], the import will use this [GLTFDocumentExtension] instance. If not overridden, [constant OK] is returned.  
          */
-        /* gdvirtual */ _import_preflight(state: GLTFState, extensions: PackedStringArray | Array<string>): Error
+        /* gdvirtual */ _import_preflight(state: GLTFState, extensions: PackedStringArray | string[]): Error
         
         /** Part of the import process. This method is run after [method _import_preflight] and before [method _parse_node_extensions].  
          *  Returns an array of the GLTF extensions supported by this GLTFDocumentExtension class. This is used to validate if a GLTF file with required extensions can be loaded.  
@@ -5818,7 +5818,7 @@ declare module "godot" {
         /** Part of the import process. This method is run after [method _parse_node_extensions] and before [method _parse_texture_json].  
          *  Runs when parsing image data from a GLTF file. The data could be sourced from a separate file, a URI, or a buffer, and then is passed as a byte array.  
          */
-        /* gdvirtual */ _parse_image_data(state: GLTFState, image_data: PackedByteArray | Array<byte> | ArrayBuffer, mime_type: string, ret_image: Image): Error
+        /* gdvirtual */ _parse_image_data(state: GLTFState, image_data: PackedByteArray | byte[] | ArrayBuffer, mime_type: string, ret_image: Image): Error
         
         /** Returns the file extension to use for saving image data into, for example, `".png"`. If defined, when this extension is used to handle images, and the images are saved to a separate file, the image bytes will be copied to a file with this extension. If this is set, there should be a [ResourceImporter] class able to import the file. If not defined or empty, Godot will save the image into a PNG file. */
         /* gdvirtual */ _get_image_file_extension(): string
@@ -5961,7 +5961,7 @@ declare module "godot" {
         get mesh(): Object
         set mesh(value: Object)
         get blend_weights(): PackedFloat32Array
-        set blend_weights(value: PackedFloat32Array | Array<float32>)
+        set blend_weights(value: PackedFloat32Array | float32[])
         get instance_materials(): Array
         set instance_materials(value: Array)
     }
@@ -6023,7 +6023,7 @@ declare module "godot" {
         
         /** The indices of the child nodes in the [GLTFState]. If this GLTF node has no children, this will be an empty array. */
         get children(): PackedInt32Array
-        set children(value: PackedInt32Array | Array<int32>)
+        set children(value: PackedInt32Array | int32[])
         
         /** If this GLTF node is a light, the index of the [GLTFLight] in the [GLTFState] that describes the light's properties. If -1, this node is not a light. */
         get light(): int64
@@ -6128,9 +6128,9 @@ declare module "godot" {
         get_bone_attachment_count(): int64
         get_bone_attachment(idx: int64): BoneAttachment3D
         get joints(): PackedInt32Array
-        set joints(value: PackedInt32Array | Array<int32>)
+        set joints(value: PackedInt32Array | int32[])
         get roots(): PackedInt32Array
-        set roots(value: PackedInt32Array | Array<int32>)
+        set roots(value: PackedInt32Array | int32[])
         get unique_names(): Array
         set unique_names(value: Array)
         get godot_bone_node(): Dictionary
@@ -6142,15 +6142,15 @@ declare module "godot" {
         get skin_root(): int64
         set skin_root(value: int64)
         get joints_original(): PackedInt32Array
-        set joints_original(value: PackedInt32Array | Array<int32>)
+        set joints_original(value: PackedInt32Array | int32[])
         get inverse_binds(): Array
         set inverse_binds(value: Array)
         get joints(): PackedInt32Array
-        set joints(value: PackedInt32Array | Array<int32>)
+        set joints(value: PackedInt32Array | int32[])
         get non_joints(): PackedInt32Array
-        set non_joints(value: PackedInt32Array | Array<int32>)
+        set non_joints(value: PackedInt32Array | int32[])
         get roots(): PackedInt32Array
-        set roots(value: PackedInt32Array | Array<int32>)
+        set roots(value: PackedInt32Array | int32[])
         get skeleton(): int64
         set skeleton(value: int64)
         get joint_i_to_bone_i(): Dictionary
@@ -6245,7 +6245,7 @@ declare module "godot" {
         get copyright(): string
         set copyright(value: string)
         get glb_data(): PackedByteArray
-        set glb_data(value: PackedByteArray | Array<byte> | ArrayBuffer)
+        set glb_data(value: PackedByteArray | byte[] | ArrayBuffer)
         get use_named_skin_binds(): boolean
         set use_named_skin_binds(value: boolean)
         get nodes(): Array
@@ -6275,7 +6275,7 @@ declare module "godot" {
         
         /** The root nodes of the GLTF file. Typically, a GLTF file will only have one scene, and therefore one root node. However, a GLTF file may have multiple scenes and therefore multiple root nodes, which will be generated as siblings of each other and as children of the root node of the generated Godot scene. */
         get root_nodes(): PackedInt32Array
-        set root_nodes(value: PackedInt32Array | Array<int32>)
+        set root_nodes(value: PackedInt32Array | int32[])
         get textures(): Array
         set textures(value: Array)
         get texture_samplers(): Array
@@ -7254,14 +7254,14 @@ declare module "godot" {
          *  **Note:** This property returns a copy, modifying the return value does not update the gradient. To update the gradient use [method set_offset] method (for updating offsets individually) or assign to this property directly (for bulk-updating all offsets at once).  
          */
         get offsets(): PackedFloat32Array
-        set offsets(value: PackedFloat32Array | Array<float32>)
+        set offsets(value: PackedFloat32Array | float32[])
         
         /** Gradient's colors returned as a [PackedColorArray].  
          *      
          *  **Note:** This property returns a copy, modifying the return value does not update the gradient. To update the gradient use [method set_color] method (for updating colors individually) or assign to this property directly (for bulk-updating all colors at once).  
          */
         get colors(): PackedColorArray
-        set colors(value: PackedColorArray | Array<Color>)
+        set colors(value: PackedColorArray | Color[])
     }
     class GradientEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -7962,10 +7962,10 @@ declare module "godot" {
     class HMACContext extends RefCounted {
         constructor(identifier?: any)
         /** Initializes the HMACContext. This method cannot be called again on the same HMACContext until [method finish] has been called. */
-        start(hash_type: HashingContext.HashType, key: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        start(hash_type: HashingContext.HashType, key: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Updates the message to be HMACed. This can be called multiple times before [method finish] is called to append [param data] to the message, but cannot be called until [method start] has been called. */
-        update(data: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        update(data: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Returns the resulting HMAC. If the HMAC failed, an empty [PackedByteArray] is returned. */
         finish(): PackedByteArray
@@ -8262,7 +8262,7 @@ declare module "godot" {
          *  Headers are HTTP request headers. For available HTTP methods, see [enum Method].  
          *  Sends the body data raw, as a byte array and does not encode it in any way.  
          */
-        request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray | Array<string>, body: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray | string[], body: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Sends a request to the connected host.  
          *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
@@ -8272,7 +8272,7 @@ declare module "godot" {
          *      
          *  **Note:** The [param body] parameter is ignored if [param method] is [constant HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [method String.uri_encode] for an example.  
          */
-        request(method: HTTPClient.Method, url: string, headers: PackedStringArray | Array<string>, body: string = ''): Error
+        request(method: HTTPClient.Method, url: string, headers: PackedStringArray | string[], body: string = ''): Error
         
         /** Closes the current connection, allowing reuse of this [HTTPClient]. */
         close(): void
@@ -8395,12 +8395,12 @@ declare module "godot" {
          *      
          *  **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.  
          */
-        request(url: string, custom_headers: PackedStringArray | Array<string> = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data: string = ''): Error
+        request(url: string, custom_headers: PackedStringArray | string[] = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data: string = ''): Error
         
         /** Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
          *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
          */
-        request_raw(url: string, custom_headers: PackedStringArray | Array<string> = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data_raw: PackedByteArray | Array<byte> | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): Error
+        request_raw(url: string, custom_headers: PackedStringArray | string[] = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data_raw: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): Error
         
         /** Cancels the current request. */
         cancel_request(): void
@@ -8419,7 +8419,7 @@ declare module "godot" {
          *  **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.  
          */
         get_body_size(): int64
-        _request_done(_unnamed_arg0: int64, _unnamed_arg1: int64, _unnamed_arg2: PackedStringArray | Array<string>, _unnamed_arg3: PackedByteArray | Array<byte> | ArrayBuffer): void
+        _request_done(_unnamed_arg0: int64, _unnamed_arg1: int64, _unnamed_arg2: PackedStringArray | string[], _unnamed_arg3: PackedByteArray | byte[] | ArrayBuffer): void
         
         /** Sets the proxy server for HTTP requests.  
          *  The proxy server is unset if [param host] is empty or [param port] is -1.  
@@ -8466,7 +8466,7 @@ declare module "godot" {
         set timeout(value: float64)
         
         /** Emitted when a request is completed. */
-        readonly request_completed: Signal // result: int64, response_code: int64, headers: PackedStringArray | Array<string>, body: PackedByteArray | Array<byte> | ArrayBuffer => void
+        readonly request_completed: Signal // result: int64, response_code: int64, headers: PackedStringArray | string[], body: PackedByteArray | byte[] | ArrayBuffer => void
     }
     namespace HashingContext {
         enum HashType {
@@ -8490,7 +8490,7 @@ declare module "godot" {
         start(type: HashingContext.HashType): Error
         
         /** Updates the computation with the given [param chunk] of data. */
-        update(chunk: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        update(chunk: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Closes the current context, and return the computed hash. */
         finish(): PackedByteArray
@@ -8511,7 +8511,7 @@ declare module "godot" {
         
         /** Height map data, pool array must be of [member map_width] * [member map_depth] size. */
         get map_data(): PackedFloat32Array
-        set map_data(value: PackedFloat32Array | Array<float32>)
+        set map_data(value: PackedFloat32Array | float32[])
     }
     namespace HingeJoint3D {
         enum Param {
@@ -8867,10 +8867,10 @@ declare module "godot" {
         static create(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format): Image
         
         /** Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If [param use_mipmaps] is `true` then loads mipmaps for this image from [param data]. See [method generate_mipmaps]. */
-        static create_from_data(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray | Array<byte> | ArrayBuffer): Image
+        static create_from_data(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray | byte[] | ArrayBuffer): Image
         
         /** Overwrites data of an existing [Image]. Non-static equivalent of [method create_from_data]. */
-        set_data(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray | Array<byte> | ArrayBuffer): void
+        set_data(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray | byte[] | ArrayBuffer): void
         
         /** Returns `true` if the image has no data. */
         is_empty(): boolean
@@ -9040,19 +9040,19 @@ declare module "godot" {
         adjust_bcs(brightness: float64, contrast: float64, saturation: float64): void
         
         /** Loads an image from the binary contents of a PNG file. */
-        load_png_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        load_png_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Loads an image from the binary contents of a JPEG file. */
-        load_jpg_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        load_jpg_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Loads an image from the binary contents of a WebP file. */
-        load_webp_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        load_webp_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Loads an image from the binary contents of a TGA file.  
          *      
          *  **Note:** This method is only available in engine builds with the TGA module enabled. By default, the TGA module is enabled, but it can be disabled at build-time using the `module_tga_enabled=no` SCons option.  
          */
-        load_tga_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        load_tga_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Loads an image from the binary contents of a BMP file.  
          *      
@@ -9060,7 +9060,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is only available in engine builds with the BMP module enabled. By default, the BMP module is enabled, but it can be disabled at build-time using the `module_bmp_enabled=no` SCons option.  
          */
-        load_bmp_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        load_bmp_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Loads an image from the binary contents of a [url=https://github.com/KhronosGroup/KTX-Software]KTX[/url] file. Unlike most image formats, KTX can store VRAM-compressed data and embed mipmaps.  
          *      
@@ -9068,7 +9068,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is only available in engine builds with the KTX module enabled. By default, the KTX module is enabled, but it can be disabled at build-time using the `module_ktx_enabled=no` SCons option.  
          */
-        load_ktx_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer): Error
+        load_ktx_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
         
         /** Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).  
          *      
@@ -9076,7 +9076,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
          */
-        load_svg_from_buffer(buffer: PackedByteArray | Array<byte> | ArrayBuffer, scale: float64 = 1): Error
+        load_svg_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer, scale: float64 = 1): Error
         
         /** Loads an image from the string contents of a SVG file (**.svg**).  
          *      
