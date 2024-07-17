@@ -1,4 +1,4 @@
-import { Error as GodotError, Array, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3 } from "godot";
+import { Error as GodotError, Array, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid } from "godot";
 import * as jsb from "godot-jsb";
 import { $wait, export_, export_enum, export_flags, onready, signal } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
@@ -63,11 +63,11 @@ export default class TestNode extends Button {
         CyclicClass1.call1();
 
         const stub = new Object();
-        console.assert(jsb.is_instance_valid(stub));
+        console.assert(is_instance_valid(stub));
         stub.free();
         // an `bad this` error will be thrown if you use it after `free`
         // stub.do_something();
-        console.assert(!jsb.is_instance_valid(stub));
+        console.assert(!is_instance_valid(stub));
         
         // access object properties with getset
         this.editor_description = "editor_description.1";
