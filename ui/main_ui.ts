@@ -25,5 +25,12 @@ export default class MainUI extends Node2D {
         } else {
             console.warn("Control/Label not found");
         }
+
+        console.trace("trace test");
+        console.debug("debug test");
+        console.info("info test");
+        console.log("log test");
+        console.warn("warn test");
+        console.error("error test");
     }
 }
