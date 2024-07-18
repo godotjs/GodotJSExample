@@ -1,6 +1,42 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** Mesh optimized for creating geometry manually.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_immediatemesh.html  
+     */
+    class ImmediateMesh extends Mesh {
+        constructor(identifier?: any)
+        /** Begin a new surface. */
+        surface_begin(primitive: Mesh.PrimitiveType, material: Material = undefined): void
+        
+        /** Set the color attribute that will be pushed with the next vertex. */
+        surface_set_color(color: Color): void
+        
+        /** Set the normal attribute that will be pushed with the next vertex. */
+        surface_set_normal(normal: Vector3): void
+        
+        /** Set the tangent attribute that will be pushed with the next vertex. */
+        surface_set_tangent(tangent: Plane): void
+        
+        /** Set the UV attribute that will be pushed with the next vertex. */
+        surface_set_uv(uv: Vector2): void
+        
+        /** Set the UV2 attribute that will be pushed with the next vertex. */
+        surface_set_uv2(uv2: Vector2): void
+        
+        /** Add a 3D vertex using the current attributes previously set. */
+        surface_add_vertex(vertex: Vector3): void
+        
+        /** Add a 2D vertex using the current attributes previously set. */
+        surface_add_vertex_2d(vertex: Vector2): void
+        
+        /** End and commit current surface. Note that surface being created will not be visible until this function is called. */
+        surface_end(): void
+        
+        /** Clear all surfaces. */
+        clear_surfaces(): void
+    }
     class ImportDefaultsEditor extends VBoxContainer {
         constructor(identifier?: any)
     }
@@ -44,7 +80,7 @@ declare module "godot" {
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
          */
-        add_surface(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array = <any> {} /*compound.type from 28([object Object])*/, lods: Dictionary = <any> {} /*compound.type from 27([object Object])*/, material: Material = <any> {} /*compound.type from nil*/, name: string = '', flags: int64 = 0): void
+        add_surface(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array = [], lods: Dictionary = new Dictionary(), material: Material = undefined, name: string = '', flags: int64 = 0): void
         
         /** Returns the number of surfaces that the mesh holds. */
         get_surface_count(): int64
@@ -93,7 +129,7 @@ declare module "godot" {
          *  This method caches the returned mesh, and subsequent calls will return the cached data until [method clear] is called.  
          *  If not yet cached and [param base_mesh] is provided, [param base_mesh] will be used and mutated.  
          */
-        get_mesh(base_mesh: ArrayMesh = <any> {} /*compound.type from nil*/): ArrayMesh
+        get_mesh(base_mesh: ArrayMesh = undefined): ArrayMesh
         
         /** Removes all surfaces and blend shapes from this [ImporterMesh]. */
         clear(): void
@@ -114,7 +150,7 @@ declare module "godot" {
         get skin(): Skin
         set skin(value: Skin)
         get skeleton_path(): NodePath
-        set skeleton_path(value: NodePath)
+        set skeleton_path(value: NodePath | string)
         get layer_mask(): int64
         set layer_mask(value: int64)
         get cast_shadow(): int64
@@ -626,7 +662,7 @@ declare module "godot" {
          *      
          *  **Note:** [method create_instance] is not thread-safe. Use [method Object.call_deferred] if calling from a thread.  
          */
-        create_instance(replace: boolean = false, custom_scene: PackedScene = <any> {} /*compound.type from nil*/): Node
+        create_instance(replace: boolean = false, custom_scene: PackedScene = undefined): Node
         
         /** Gets the path to the [PackedScene] resource file that is loaded by default when calling [method create_instance]. Not thread-safe. Use [method Object.call_deferred] if calling from a thread. */
         get_instance_path(): string
@@ -664,7 +700,7 @@ declare module "godot" {
          *  Specify an [param icon], or use `null` as the [param icon] for a list item with no icon.  
          *  If selectable is `true`, the list item will be selectable.  
          */
-        add_item(text: string, icon: Texture2D = <any> {} /*compound.type from nil*/, selectable: boolean = true): int64
+        add_item(text: string, icon: Texture2D = undefined, selectable: boolean = true): int64
         
         /** Adds an item to the item list with no text, only an icon. Returns the index of an added item. */
         add_icon_item(icon: Texture2D, selectable: boolean = true): int64
@@ -996,7 +1032,7 @@ declare module "godot" {
          *  - [param message]: A custom message about this error.  
          *  - [param id]: The request this error is a response to.  
          */
-        make_response_error(code: int64, message: string, id: any = <any> {} /*compound.type from nil*/): Dictionary
+        make_response_error(code: int64, message: string, id: any = <any> {}): Dictionary
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_javaclass.html */
     class JavaClass extends RefCounted {
@@ -1020,11 +1056,11 @@ declare module "godot" {
         
         /** The first body attached to the joint. Must derive from [PhysicsBody2D]. */
         get node_a(): NodePath
-        set node_a(value: NodePath)
+        set node_a(value: NodePath | string)
         
         /** The second body attached to the joint. Must derive from [PhysicsBody2D]. */
         get node_b(): NodePath
-        set node_b(value: NodePath)
+        set node_b(value: NodePath | string)
         
         /** When [member node_a] and [member node_b] move in different directions the [member bias] controls how fast the joint pulls them back to their original position. The lower the [member bias] the more the two bodies can pull on the joint.  
          *  When set to `0`, the default value from [member ProjectSettings.physics/2d/solver/default_constraint_bias] is used.  
@@ -1047,11 +1083,11 @@ declare module "godot" {
         
         /** The node attached to the first side (A) of the joint. */
         get node_a(): NodePath
-        set node_a(value: NodePath)
+        set node_a(value: NodePath | string)
         
         /** The node attached to the second side (B) of the joint. */
         get node_b(): NodePath
-        set node_b(value: NodePath)
+        set node_b(value: NodePath | string)
         
         /** The priority used to define which solver is executed first for multiple joints. The lower the value, the higher the priority. */
         get solver_priority(): int64
@@ -1944,7 +1980,7 @@ declare module "godot" {
     class LightmapGIData extends Resource {
         constructor(identifier?: any)
         /** Adds an object that is considered baked within this [LightmapGIData]. */
-        add_user(path: NodePath, uv_scale: Rect2, slice_index: int64, sub_instance: int64): void
+        add_user(path: NodePath | string, uv_scale: Rect2, slice_index: int64, sub_instance: int64): void
         
         /** Returns the number of objects that are considered baked within this [LightmapGIData]. */
         get_user_count(): int64
@@ -3297,7 +3333,7 @@ declare module "godot" {
         create_convex_collision(clean: boolean = true, simplify: boolean = false): void
         
         /** This helper creates a [StaticBody3D] child node with multiple [ConvexPolygonShape3D] collision shapes calculated from the mesh geometry via convex decomposition. The convex decomposition operation can be controlled with parameters from the optional [param settings]. */
-        create_multiple_convex_collisions(settings: MeshConvexDecompositionSettings = <any> {} /*compound.type from nil*/): void
+        create_multiple_convex_collisions(settings: MeshConvexDecompositionSettings = undefined): void
         
         /** Returns the number of blend shapes available. Produces an error if [member mesh] is `null`. */
         get_blend_shape_count(): int64
@@ -3324,7 +3360,7 @@ declare module "godot" {
         
         /** [NodePath] to the [Skeleton3D] associated with the instance. */
         get skeleton(): NodePath
-        set skeleton(value: NodePath)
+        set skeleton(value: NodePath | string)
     }
     class MeshInstance3DEditor extends Control {
         constructor(identifier?: any)
@@ -3722,7 +3758,7 @@ declare module "godot" {
          *      
          *  **Note:** Prefer using [method Node.rpc], [method Node.rpc_id], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.  
          */
-        rpc(peer: int64, object: Object, method: StringName, arguments_: Array = <any> {} /*compound.type from 28([object Object])*/): Error
+        rpc(peer: int64, object: Object, method: StringName, arguments_: Array = []): Error
         
         /** Notifies the MultiplayerAPI of a new [param configuration] for the given [param object]. This method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and a valid [NodePath] as [param configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [SceneMultiplayer]) for details on how they use it.  
          *      
@@ -3994,13 +4030,13 @@ declare module "godot" {
          *      
          *  **Note:** Spawnable scenes are spawned automatically. [method spawn] is only needed for custom spawns.  
          */
-        spawn(data: any = <any> {} /*compound.type from nil*/): Node
+        spawn(data: any = <any> {}): Node
         get _spawnable_scenes(): PackedStringArray
         set _spawnable_scenes(value: PackedStringArray | string[])
         
         /** Path to the spawn root. Spawnable scenes that are added as direct children are replicated to other peers. */
         get spawn_path(): NodePath
-        set spawn_path(value: NodePath)
+        set spawn_path(value: NodePath | string)
         
         /** Maximum nodes that is allowed to be spawned by this spawner. Includes both spawnable scenes and custom spawns.  
          *  When set to `0` (the default), there is no limit.  
@@ -4060,7 +4096,7 @@ declare module "godot" {
          *  If [member root_path] was spawned by a [MultiplayerSpawner], the node will be also be spawned and despawned based on this synchronizer visibility options.  
          */
         get root_path(): NodePath
-        set root_path(value: NodePath)
+        set root_path(value: NodePath | string)
         
         /** Time interval between synchronizations. When set to `0.0` (the default), synchronizations happen every network process frame. */
         get replication_interval(): float64
@@ -5883,7 +5919,7 @@ declare module "godot" {
         get_child(idx: int64, include_internal: boolean = false): Node
         
         /** Returns `true` if the [param path] points to a valid node. See also [method get_node]. */
-        has_node(path: NodePath): boolean
+        has_node(path: NodePath | string): boolean
         
         /** Fetches a node. The [NodePath] can either be a relative path (from this node), or an absolute path (from the [member SceneTree.root]) to a node. If [param path] does not point to a valid node, generates an error and returns `null`. Attempts to access methods on the return value will result in an  *"Attempt to call <method> on a null instance."*  error.  
          *      
@@ -5893,10 +5929,10 @@ declare module "godot" {
          *  The following calls will return a valid node:  
          *    
          */
-        get_node(path: NodePath): Node
+        get_node(path: NodePath | string): Node
         
         /** Fetches a node by [NodePath]. Similar to [method get_node], but does not generate an error if [param path] does not point to a valid node. */
-        get_node_or_null(path: NodePath): Node
+        get_node_or_null(path: NodePath | string): Node
         
         /** Returns this node's parent node, or `null` if the node doesn't have a parent. */
         get_parent(): Node
@@ -5929,7 +5965,7 @@ declare module "godot" {
         find_parent(pattern: string): Node
         
         /** Returns `true` if [param path] points to a valid node and its subnames point to a valid [Resource], e.g. `Area2D/CollisionShape2D:shape`. Properties that are not [Resource] types (such as nodes or other [Variant] types) are not considered. See also [method get_node_and_resource]. */
-        has_node_and_resource(path: NodePath): boolean
+        has_node_and_resource(path: NodePath | string): boolean
         
         /** Fetches a node and its most nested resource as specified by the [NodePath]'s subname. Returns an [Array] of size `3` where:  
          *  - Element `0` is the [Node], or `null` if not found;  
@@ -5938,7 +5974,7 @@ declare module "godot" {
          *  **Example:** Assume that the child's [member Sprite2D.texture] has been assigned a [AtlasTexture]:  
          *    
          */
-        get_node_and_resource(path: NodePath): Array
+        get_node_and_resource(path: NodePath | string): Array
         
         /** Returns `true` if this node is currently inside a [SceneTree]. See also [method get_tree]. */
         is_inside_tree(): boolean
@@ -6024,7 +6060,7 @@ declare module "godot" {
         /** Calls the given [param method] name, passing [param args] as arguments, on this node and all of its children, recursively.  
          *  If [param parent_first] is `true`, the method is called on this node first, then on all of its children. If `false`, the children's methods are called first.  
          */
-        propagate_call(method: StringName, args: Array = <any> {} /*compound.type from 28([object Object])*/, parent_first: boolean = false): void
+        propagate_call(method: StringName, args: Array = [], parent_first: boolean = false): void
         
         /** If set to `true`, enables physics (fixed framerate) processing. When a node is being processed, it will receive a [constant NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see [member Engine.physics_ticks_per_second] to change) interval (and the [method _physics_process] callback will be called if exists). Enabled automatically if [method _physics_process] is overridden. */
         set_physics_process(enable: boolean): void
@@ -6210,7 +6246,7 @@ declare module "godot" {
         /** Similar to [method call_thread_safe], but for notifications. */
         notify_thread_safe(what: int64): void
         get _import_path(): NodePath
-        set _import_path(value: NodePath)
+        set _import_path(value: NodePath | string)
         
         /** If `true`, the node can be accessed from any node sharing the same [member owner] or from the [member owner] itself, with special `%Name` syntax in [method get_node].  
          *      
@@ -6645,7 +6681,7 @@ declare module "godot" {
         
         /** Defines the visibility range parent for this node and its subtree. The visibility parent must be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and all of its visibility ancestors) is hidden by being closer to the camera than its own [member GeometryInstance3D.visibility_range_begin]. Nodes hidden via the [member Node3D.visible] property are essentially removed from the visibility dependency tree, so dependent instances will not take the hidden node or its ancestors into account. */
         get visibility_parent(): NodePath
-        set visibility_parent(value: NodePath)
+        set visibility_parent(value: NodePath | string)
         
         /** Emitted when node visibility changes. */
         readonly visibility_changed: Signal //  => void
@@ -6995,7 +7031,7 @@ declare module "godot" {
          *      
          *  **Note:** In C#, [param property_path] must be in snake_case when referring to built-in Godot properties. Prefer using the names exposed in the `PropertyName` class to avoid allocating a new [StringName] on each call.  
          */
-        set_indexed(property_path: NodePath, value: any): void
+        set_indexed(property_path: NodePath | string, value: any): void
         
         /** Gets the object's property indexed by the given [param property_path]. The path should be a [NodePath] relative to the current object and can use the colon character (`:`) to access nested properties.  
          *  **Examples:** `"position:x"` or `"material:next_pass:blend_mode"`.  
@@ -7005,7 +7041,7 @@ declare module "godot" {
          *      
          *  **Note:** This method does not support actual paths to nodes in the [SceneTree], only sub-property paths. In the context of nodes, use [method Node.get_node_and_resource] instead.  
          */
-        get_indexed(property_path: NodePath): any
+        get_indexed(property_path: NodePath | string): any
         
         /** Returns the object's property list as an [Array] of dictionaries. Each [Dictionary] contains the following entries:  
          *  - `name` is the property's name, as a [String];  
@@ -7086,7 +7122,7 @@ declare module "godot" {
          *      
          *  **Note:** Metadata that has a name starting with an underscore (`_`) is considered editor-only. Editor-only metadata is not displayed in the Inspector and should not be edited, although it can still be found by this method.  
          */
-        get_meta(name: StringName, default_: any = <any> {} /*compound.type from nil*/): any
+        get_meta(name: StringName, default_: any = <any> {}): any
         
         /** Returns `true` if a metadata entry is found with the given [param name]. See also [method get_meta], [method set_meta] and [method remove_meta].  
          *      
@@ -7102,7 +7138,7 @@ declare module "godot" {
         /** Adds a user-defined [param signal]. Optional arguments for the signal can be added as an [Array] of dictionaries, each defining a `name` [String] and a `type` [int] (see [enum Variant.Type]). See also [method has_user_signal].  
          *    
          */
-        add_user_signal(signal: string, arguments_: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        add_user_signal(signal: string, arguments_: Array = []): void
         
         /** Returns `true` if the given user-defined [param signal] name exists. Only signals added with [method add_user_signal] are included. */
         has_user_signal(signal: StringName): boolean
@@ -7668,7 +7704,7 @@ declare module "godot" {
         
         /** Set a [Skeleton3D] node for which the pose positions will be updated. */
         get hand_skeleton(): NodePath
-        set hand_skeleton(value: NodePath)
+        set hand_skeleton(value: NodePath | string)
     }
     /** Defines a binding between an [OpenXRAction] and an XR input or output.  
      *  	  
@@ -8250,7 +8286,7 @@ declare module "godot" {
         poll(): void
         
         /** Connects a [param packet_peer] beginning the DTLS handshake using the underlying [PacketPeerUDP] which must be connected (see [method PacketPeerUDP.connect_to_host]). You can optionally specify the [param client_options] to be used while verifying the TLS connections. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        connect_to_peer(packet_peer: PacketPeerUDP, hostname: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): Error
+        connect_to_peer(packet_peer: PacketPeerUDP, hostname: string, client_options: TLSOptions = undefined): Error
         
         /** Returns the status of the connection. See [enum Status] for values. */
         get_status(): PacketPeerDTLS.Status
@@ -8919,7 +8955,7 @@ declare module "godot" {
         
         /** The [NodePath] to the [Bone2D] that this [PhysicalBone2D] should simulate. */
         get bone2d_nodepath(): NodePath
-        set bone2d_nodepath(value: NodePath)
+        set bone2d_nodepath(value: NodePath | string)
         
         /** The index of the [Bone2D] that this [PhysicalBone2D] should simulate. */
         get bone2d_index(): int64
@@ -9121,7 +9157,7 @@ declare module "godot" {
          *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody2D.safe_margin] for more details).  
          *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
          */
-        test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = <any> {} /*compound.type from nil*/, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): boolean
+        test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = undefined, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): boolean
         
         /** Returns an array of nodes that were added as collision exceptions for this body. */
         get_collision_exceptions(): Array
@@ -9154,7 +9190,7 @@ declare module "godot" {
          *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
          *  [param max_collisions] allows to retrieve more than one collision result.  
          */
-        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = <any> {} /*compound.type from nil*/, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): boolean
+        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = undefined, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): boolean
         
         /** Returns an array of nodes that were added as collision exceptions for this body. */
         get_collision_exceptions(): Array

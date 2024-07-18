@@ -26,7 +26,7 @@ declare module "godot" {
     class AESContext extends RefCounted {
         constructor(identifier?: any)
         /** Start the AES context in the given [param mode]. A [param key] of either 16 or 32 bytes must always be provided, while an [param iv] (initialization vector) of exactly 16 bytes, is only needed when [param mode] is either [constant MODE_CBC_ENCRYPT] or [constant MODE_CBC_DECRYPT]. */
-        start(mode: AESContext.Mode, key: PackedByteArray | byte[] | ArrayBuffer, iv: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): Error
+        start(mode: AESContext.Mode, key: PackedByteArray | byte[] | ArrayBuffer, iv: PackedByteArray | byte[] | ArrayBuffer = []): Error
         
         /** Run the desired operation for this AES context. Will return a [PackedByteArray] containing the result of encrypting (or decrypting) the given [param src]. See [method start] for mode of operation.  
          *      
@@ -839,10 +839,10 @@ declare module "godot" {
         /** Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by `":"`.  
          *  For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.  
          */
-        track_set_path(track_idx: int64, path: NodePath): void
+        track_set_path(track_idx: int64, path: NodePath | string): void
         
         /** Returns the index of the specified track. If the track is not found, return -1. */
-        find_track(path: NodePath, type: Animation.TrackType): int64
+        find_track(path: NodePath | string, type: Animation.TrackType): int64
         
         /** Moves a track up. */
         track_move_up(track_idx: int64): void
@@ -1258,13 +1258,13 @@ declare module "godot" {
         
         /** The node from which node path references will travel. */
         get root_node(): NodePath
-        set root_node(value: NodePath)
+        set root_node(value: NodePath | string)
         
         /** The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. To specify a track that controls properties or bones, append its name after the path, separated by `":"`. For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.  
          *  If the track has type [constant Animation.TYPE_POSITION_3D], [constant Animation.TYPE_ROTATION_3D] or [constant Animation.TYPE_SCALE_3D] the transformation will be canceled visually, and the animation will appear to stay in place. See also [method get_root_motion_position], [method get_root_motion_rotation], [method get_root_motion_scale] and [RootMotionView].  
          */
         get root_motion_track(): NodePath
-        set root_motion_track(value: NodePath)
+        set root_motion_track(value: NodePath | string)
         
         /** The number of possible simultaneous sounds for each of the assigned AudioStreamPlayers.  
          *  For example, if this value is `32` and the animation has two audio tracks, the two [AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.  
@@ -1368,10 +1368,10 @@ declare module "godot" {
         find_input(name: string): int64
         
         /** Adds or removes a path for the filter. */
-        set_filter_path(path: NodePath, enable: boolean): void
+        set_filter_path(path: NodePath | string, enable: boolean): void
         
         /** Returns whether the given path is filtered. */
-        is_path_filtered(path: NodePath): boolean
+        is_path_filtered(path: NodePath | string): boolean
         
         /** Blend an animation by [param blend] amount (name must be valid in the linked [AnimationPlayer]). A [param time] and [param delta] may be passed, as well as whether [param seeked] happened.  
          *  A [param looped_flag] is used by internal processing immediately after the loop. See also [enum Animation.LoopedFlag].  
@@ -2116,7 +2116,7 @@ declare module "godot" {
         get_method_call_mode(): AnimationPlayer.AnimationMethodCallMode
         
         /** For backward compatibility. See [member AnimationMixer.root_node]. */
-        set_root(path: NodePath): void
+        set_root(path: NodePath | string): void
         
         /** For backward compatibility. See [member AnimationMixer.root_node]. */
         get_root(): NodePath
@@ -2249,11 +2249,11 @@ declare module "godot" {
         
         /** The path to the [Node] used to evaluate the [AnimationNode] [Expression] if one is not explicitly specified internally. */
         get advance_expression_base_node(): NodePath
-        set advance_expression_base_node(value: NodePath)
+        set advance_expression_base_node(value: NodePath | string)
         
         /** The path to the [AnimationPlayer] used for animating. */
         get anim_player(): NodePath
-        set anim_player(value: NodePath)
+        set anim_player(value: NodePath | string)
         
         /** Emitted when the [member anim_player] is changed. */
         readonly animation_player_changed: Signal //  => void
@@ -2551,7 +2551,7 @@ declare module "godot" {
         
         /** The [Node3D] which is used to specify the direction and origin of an area-specific wind force. The direction is opposite to the z-axis of the [Node3D]'s local transform, and its origin is the origin of the [Node3D]'s local transform. */
         get wind_source_path(): NodePath
-        set wind_source_path(value: NodePath)
+        set wind_source_path(value: NodePath | string)
         
         /** If `true`, the area's audio bus overrides the default audio bus. */
         get audio_bus_override(): boolean
@@ -2643,7 +2643,7 @@ declare module "godot" {
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
          */
-        add_surface_from_arrays(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array = <any> {} /*compound.type from 28([object Object])*/, lods: Dictionary = <any> {} /*compound.type from 27([object Object])*/, flags: Mesh.ArrayFormat = 0): void
+        add_surface_from_arrays(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array = [], lods: Dictionary = new Dictionary(), flags: Mesh.ArrayFormat = 0): void
         
         /** Removes all surfaces from this [ArrayMesh]. */
         clear_surfaces(): void
@@ -4984,7 +4984,7 @@ declare module "godot" {
         get_use_external_skeleton(): boolean
         
         /** Sets the [NodePath] to the external skeleton that the BoneAttachment3D node should use. See [method set_use_external_skeleton] to enable the external [Skeleton3D] node. */
-        set_external_skeleton(external_skeleton: NodePath): void
+        set_external_skeleton(external_skeleton: NodePath | string): void
         
         /** Returns the [NodePath] to the external [Skeleton3D] node, if one has been set. */
         get_external_skeleton(): NodePath
@@ -5805,7 +5805,7 @@ declare module "godot" {
         
         /** When [member mode] is [constant MODE_PATH], the location of the [Path3D] object used to extrude the [member polygon]. */
         get path_node(): NodePath
-        set path_node(value: NodePath)
+        set path_node(value: NodePath | string)
         
         /** When [member mode] is [constant MODE_PATH], this will determine if the interval should be by distance ([constant PATH_INTERVAL_DISTANCE]) or subdivision fractions ([constant PATH_INTERVAL_SUBDIVIDE]). */
         get path_interval_type(): int64
@@ -6742,13 +6742,13 @@ declare module "godot" {
         draw_style_box(style_box: StyleBox, rect: Rect2): void
         
         /** Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle, and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn and an error message will be printed. See also [method draw_line], [method draw_polyline], [method draw_polygon], and [method draw_rect]. */
-        draw_primitive(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[], texture: Texture2D = <any> {} /*compound.type from nil*/): void
+        draw_primitive(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[], texture: Texture2D = undefined): void
         
         /** Draws a solid polygon of any number of points, convex or concave. Unlike [method draw_colored_polygon], each point's color can be changed individually. See also [method draw_polyline] and [method draw_polyline_colors]. If you need more flexibility (such as being able to use bones), use [method RenderingServer.canvas_item_add_triangle_array] instead. */
-        draw_polygon(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, texture: Texture2D = <any> {} /*compound.type from nil*/): void
+        draw_polygon(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[] = [], texture: Texture2D = undefined): void
         
         /** Draws a colored polygon of any number of points, convex or concave. Unlike [method draw_polygon], a single color must be specified for the whole polygon. */
-        draw_colored_polygon(points: PackedVector2Array | Vector2[], color: Color, uvs: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, texture: Texture2D = <any> {} /*compound.type from nil*/): void
+        draw_colored_polygon(points: PackedVector2Array | Vector2[], color: Color, uvs: PackedVector2Array | Vector2[] = [], texture: Texture2D = undefined): void
         
         /** Draws [param text] using the specified [param font] at the [param pos] (bottom-left corner using the baseline of the font). The text will have its color multiplied by [param modulate]. If [param width] is greater than or equal to 0, the text will be clipped if it exceeds the specified width.  
          *  **Example using the default project font:**  
@@ -6773,7 +6773,7 @@ declare module "godot" {
         draw_char_outline(font: Font, pos: Vector2, char: string, font_size: int64 = 16, size: int64 = -1, modulate: Color = new Color(1, 1, 1, 1)): void
         
         /** Draws a [Mesh] in 2D, using the provided texture. See [MeshInstance2D] for related documentation. */
-        draw_mesh(mesh: Mesh, texture: Texture2D, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, modulate: Color = new Color(1, 1, 1, 1)): void
+        draw_mesh(mesh: Mesh, texture: Texture2D, transform: Transform2D = new Transform2D(), modulate: Color = new Color(1, 1, 1, 1)): void
         
         /** Draws a [MultiMesh] in 2D with the provided texture. See [MultiMeshInstance2D] for related documentation. */
         draw_multimesh(multimesh: MultiMesh, texture: Texture2D): void
@@ -6954,6 +6954,9 @@ declare module "godot" {
         readonly item_group_status_changed: Signal //  => void
     }
     class CanvasItemEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    class CanvasItemEditorSelectedItem extends Object {
         constructor(identifier?: any)
     }
     class CanvasItemEditorViewport extends Control {
@@ -7847,7 +7850,7 @@ declare module "godot" {
          *      
          *  **Note:** This list will replace all current candidates.  
          */
-        add_code_completion_option(type: CodeEdit.CodeCompletionKind, display_text: string, insert_text: string, text_color: Color = new Color(1, 1, 1, 1), icon: Resource = <any> {} /*compound.type from nil*/, value: any = <any> {} /*compound.type from nil*/, location: int64 = 1024): void
+        add_code_completion_option(type: CodeEdit.CodeCompletionKind, display_text: string, insert_text: string, text_color: Color = new Color(1, 1, 1, 1), icon: Resource = undefined, value: any = <any> {}, location: int64 = 1024): void
         
         /** Submits all completion options added with [method add_code_completion_option]. Will try to force the autocomplete menu to popup, if [param force] is `true`.  
          *      
@@ -8789,7 +8792,7 @@ declare module "godot" {
         set_value(section: string, key: string, value: any): void
         
         /** Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback [param default] value. If [param default] is not specified or set to `null`, an error is also raised. */
-        get_value(section: string, key: string, default_: any = <any> {} /*compound.type from nil*/): any
+        get_value(section: string, key: string, default_: any = <any> {}): any
         
         /** Returns `true` if the specified section exists. */
         has_section(section: string): boolean
@@ -9682,13 +9685,13 @@ declare module "godot" {
          *  If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.  
          */
         get focus_next(): NodePath
-        set focus_next(value: NodePath)
+        set focus_next(value: NodePath | string)
         
         /** Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a keyboard by default. You can change the key by editing the [member ProjectSettings.input/ui_focus_prev] input action.  
          *  If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.  
          */
         get focus_previous(): NodePath
-        set focus_previous(value: NodePath)
+        set focus_previous(value: NodePath | string)
         
         /** The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals. */
         get focus_mode(): int64

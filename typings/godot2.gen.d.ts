@@ -1022,7 +1022,7 @@ declare module "godot" {
         dtls_server_setup(server_options: TLSOptions): Error
         
         /** Configure this ENetHost to use the custom Godot extension allowing DTLS encryption for ENet clients. Call this before [method connect_to_host] to have ENet connect using DTLS validating the server certificate against [param hostname]. You can pass the optional [param client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        dtls_client_setup(hostname: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): Error
+        dtls_client_setup(hostname: string, client_options: TLSOptions = undefined): Error
         
         /** Configures the DTLS server to automatically drop new connections.  
          *      
@@ -1337,13 +1337,13 @@ declare module "godot" {
     }
     class EditorDebuggerNode extends MarginContainer {
         constructor(identifier?: any)
-        live_debug_create_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
-        live_debug_instantiate_node(_unnamed_arg0: NodePath, _unnamed_arg1: string, _unnamed_arg2: string): void
-        live_debug_remove_node(_unnamed_arg0: NodePath): void
-        live_debug_remove_and_keep_node(_unnamed_arg0: NodePath, _unnamed_arg1: int64): void
-        live_debug_restore_node(_unnamed_arg0: int64, _unnamed_arg1: NodePath, _unnamed_arg2: int64): void
-        live_debug_duplicate_node(_unnamed_arg0: NodePath, _unnamed_arg1: string): void
-        live_debug_reparent_node(_unnamed_arg0: NodePath, _unnamed_arg1: NodePath, _unnamed_arg2: string, _unnamed_arg3: int64): void
+        live_debug_create_node(_unnamed_arg0: NodePath | string, _unnamed_arg1: string, _unnamed_arg2: string): void
+        live_debug_instantiate_node(_unnamed_arg0: NodePath | string, _unnamed_arg1: string, _unnamed_arg2: string): void
+        live_debug_remove_node(_unnamed_arg0: NodePath | string): void
+        live_debug_remove_and_keep_node(_unnamed_arg0: NodePath | string, _unnamed_arg1: int64): void
+        live_debug_restore_node(_unnamed_arg0: int64, _unnamed_arg1: NodePath | string, _unnamed_arg2: int64): void
+        live_debug_duplicate_node(_unnamed_arg0: NodePath | string, _unnamed_arg1: string): void
+        live_debug_reparent_node(_unnamed_arg0: NodePath | string, _unnamed_arg1: NodePath | string, _unnamed_arg2: string, _unnamed_arg3: int64): void
         readonly goto_script_line: Signal //  => void
         readonly set_execution: Signal // : any /*script*/, line: int64 => void
         readonly clear_execution: Signal // : any /*script*/ => void
@@ -1391,10 +1391,10 @@ declare module "godot" {
     class EditorDebuggerSession extends RefCounted {
         constructor(identifier?: any)
         /** Sends the given [param message] to the attached remote instance, optionally passing additionally [param data]. See [EngineDebugger] for how to retrieve those messages. */
-        send_message(message: string, data: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        send_message(message: string, data: Array = []): void
         
         /** Toggle the given [param profiler] on the attached remote instance, optionally passing additionally [param data]. See [EngineProfiler] for more details. */
-        toggle_profiler(profiler: string, enable: boolean, data: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        toggle_profiler(profiler: string, enable: boolean, data: Array = []): void
         
         /** Returns `true` if the attached remote instance is currently in the debug loop. */
         is_breaked(): boolean
@@ -2051,7 +2051,7 @@ declare module "godot" {
         /* gdvirtual */ _import(source_file: string, save_path: string, options: Dictionary, platform_variants: Array, gen_files: Array): Error
         
         /** This function can only be called during the [method _import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [param custom_options]. Additionally, in cases where multiple importers can handle a file, the [param custom_importer] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [param generator_parameters] defines optional extra metadata which will be stored as [code skip-lint]generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data. */
-        append_import_external_resource(path: string, custom_options: Dictionary = <any> {} /*compound.type from 27([object Object])*/, custom_importer: string = '', generator_parameters: any = <any> {} /*compound.type from nil*/): Error
+        append_import_external_resource(path: string, custom_options: Dictionary = new Dictionary(), custom_importer: string = '', generator_parameters: any = <any> {}): Error
     }
     /** A control used to edit properties of an object.  
      *  	  
@@ -2208,6 +2208,13 @@ declare module "godot" {
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
+    class EditorInspectorSection extends Container {
+        constructor(identifier?: any)
+        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: int64): void
+        get_vbox(): VBoxContainer
+        unfold(): void
+        fold(): void
+    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
@@ -2314,7 +2321,7 @@ declare module "godot" {
         add_lines(lines: PackedVector3Array | Vector3[], material: Material, billboard: boolean = false, modulate: Color = new Color(1, 1, 1, 1)): void
         
         /** Adds a mesh to the gizmo with the specified [param material], local [param transform] and [param skeleton]. Call this method during [method _redraw]. */
-        add_mesh(mesh: Mesh, material: Material = <any> {} /*compound.type from nil*/, transform: Transform3D = <any> {} /*compound.type from 18([object Object])*/, skeleton: SkinReference = <any> {} /*compound.type from nil*/): void
+        add_mesh(mesh: Mesh, material: Material = undefined, transform: Transform3D = new Transform3D(), skeleton: SkinReference = undefined): void
         
         /** Adds the specified [param segments] to the gizmo's collision shape for picking. Call this method during [method _redraw]. */
         add_collision_segments(segments: PackedVector3Array | Vector3[]): void
@@ -2433,13 +2440,13 @@ declare module "godot" {
         /** Creates a handle material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [method get_material] and used in [method EditorNode3DGizmo.add_handles]. Should not be overridden.  
          *  You can optionally provide a texture to use instead of the default icon.  
          */
-        create_handle_material(name: string, billboard: boolean = false, texture: Texture2D = <any> {} /*compound.type from nil*/): void
+        create_handle_material(name: string, billboard: boolean = false, texture: Texture2D = undefined): void
         
         /** Adds a new material to the internal material list for the plugin. It can then be accessed with [method get_material]. Should not be overridden. */
         add_material(name: string, material: StandardMaterial3D): void
         
         /** Gets material from the internal list of materials. If an [EditorNode3DGizmo] is provided, it will try to get the corresponding variant (selected and/or editable). */
-        get_material(name: string, gizmo: EditorNode3DGizmo = <any> {} /*compound.type from nil*/): StandardMaterial3D
+        get_material(name: string, gizmo: EditorNode3DGizmo = undefined): StandardMaterial3D
     }
     class EditorOBJImporter extends EditorSceneFormatImporter {
         constructor(identifier?: any)
@@ -3010,11 +3017,28 @@ declare module "godot" {
     class EditorPropertyCheck extends EditorProperty {
         constructor(identifier?: any)
     }
+    class EditorPropertyColor extends EditorProperty {
+        constructor(identifier?: any)
+    }
     class EditorPropertyDictionaryObject extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyEnum extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyFloat extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyInteger extends EditorProperty {
         constructor(identifier?: any)
+    }
+    class EditorPropertyLayers extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyLayersGrid extends Control {
+        constructor(identifier?: any)
+        readonly flag_changed: Signal // flag: int64 => void
+        readonly rename_confirmed: Signal // layer_id: int64, new_name: string => void
     }
     class EditorPropertyLocalizableString extends EditorProperty {
         constructor(identifier?: any)
@@ -3032,6 +3056,9 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class EditorPropertyText extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyVector2 extends EditorPropertyVectorN {
         constructor(identifier?: any)
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
@@ -3411,7 +3438,7 @@ declare module "godot" {
         set_project_metadata(section: string, key: string, data: any): void
         
         /** Returns project-specific metadata for the [param section] and [param key] specified. If the metadata doesn't exist, [param default] will be returned instead. See also [method set_project_metadata]. */
-        get_project_metadata(section: string, key: string, default_: any = <any> {} /*compound.type from nil*/): any
+        get_project_metadata(section: string, key: string, default_: any = <any> {}): any
         
         /** Sets the list of favorite files and directories for this project. */
         set_favorites(dirs: PackedStringArray | string[]): void
@@ -3547,7 +3574,7 @@ declare module "godot" {
          *  If [param custom_context] object is provided, it will be used for deducing target history (instead of using the first operation).  
          *  The way undo operation are ordered in actions is dictated by [param backward_undo_ops]. When [param backward_undo_ops] is `false` undo option are ordered in the same order they were added. Which means the first operation to be added will be the first to be undone.  
          */
-        create_action(name: string, merge_mode: UndoRedo.MergeMode = 0, custom_context: Object = <any> {} /*compound.type from nil*/, backward_undo_ops: boolean = false): void
+        create_action(name: string, merge_mode: UndoRedo.MergeMode = 0, custom_context: Object = undefined, backward_undo_ops: boolean = false): void
         
         /** Commit the action. If [param execute] is true (default), all "do" methods/properties are called/set when this function is called. */
         commit_action(execute: boolean = true): void
@@ -4286,12 +4313,12 @@ declare module "godot" {
         /** Parses the expression and returns an [enum Error] code.  
          *  You can optionally specify names of variables that may appear in the expression with [param input_names], so that you can bind them when it gets executed.  
          */
-        parse(expression: string, input_names: PackedStringArray | string[] = <any> {} /*compound.type from 34([object Object])*/): Error
+        parse(expression: string, input_names: PackedStringArray | string[] = []): Error
         
         /** Executes the expression that was previously parsed by [method parse] and returns the result. Before you use the returned object, you should check if the method failed by calling [method has_execute_failed].  
          *  If you defined input variables in [method parse], you can specify their values in the inputs array, in the same order.  
          */
-        execute(inputs: Array = <any> {} /*compound.type from 28([object Object])*/, base_instance: Object = <any> {} /*compound.type from nil*/, show_error: boolean = true, const_calls_only: boolean = false): any
+        execute(inputs: Array = [], base_instance: Object = undefined, show_error: boolean = true, const_calls_only: boolean = false): any
         
         /** Returns `true` if [method execute] has failed. */
         has_execute_failed(): boolean
@@ -5119,7 +5146,7 @@ declare module "godot" {
     class Font extends Resource {
         constructor(identifier?: any)
         /** Returns [TextServer] RID of the font cache for specific variation. */
-        find_variation(variation_coordinates: Dictionary, face_index: int64 = 0, strength: float64 = 0, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, spacing_top: int64 = 0, spacing_bottom: int64 = 0, spacing_space: int64 = 0, spacing_glyph: int64 = 0): RID
+        find_variation(variation_coordinates: Dictionary, face_index: int64 = 0, strength: float64 = 0, transform: Transform2D = new Transform2D(), spacing_top: int64 = 0, spacing_bottom: int64 = 0, spacing_space: int64 = 0, spacing_glyph: int64 = 0): RID
         
         /** Returns [Array] of valid [Font] [RID]s, which can be passed to the [TextServer] methods. */
         get_rids(): Array
@@ -6406,7 +6433,7 @@ declare module "godot" {
          *  **Note:** When [member sub_emitter] is set, the target [GPUParticles2D] node will no longer emit particles on its own.  
          */
         get sub_emitter(): NodePath
-        set sub_emitter(value: NodePath)
+        set sub_emitter(value: NodePath | string)
         
         /** [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial]. */
         get process_material(): ShaderMaterial | ParticleProcessMaterial
@@ -6592,7 +6619,7 @@ declare module "godot" {
          *  **Note:** When [member sub_emitter] is set, the target [GPUParticles3D] node will no longer emit particles on its own.  
          */
         get sub_emitter(): NodePath
-        set sub_emitter(value: NodePath)
+        set sub_emitter(value: NodePath | string)
         
         /** The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. */
         get lifetime(): float64
@@ -7665,7 +7692,7 @@ declare module "godot" {
          *      
          *  **Note:** This method only sets properties of the slot. To create the slot itself, add a [Control]-derived child to the GraphNode.  
          */
-        set_slot(slot_index: int64, enable_left_port: boolean, type_left: int64, color_left: Color, enable_right_port: boolean, type_right: int64, color_right: Color, custom_icon_left: Texture2D = <any> {} /*compound.type from nil*/, custom_icon_right: Texture2D = <any> {} /*compound.type from nil*/, draw_stylebox: boolean = true): void
+        set_slot(slot_index: int64, enable_left_port: boolean, type_left: int64, color_left: Color, enable_right_port: boolean, type_right: int64, color_right: Color, custom_icon_left: Texture2D = undefined, custom_icon_right: Texture2D = undefined, draw_stylebox: boolean = true): void
         
         /** Disables the slot with the given [param slot_index]. This will remove the corresponding input and output port from the GraphNode. */
         clear_slot(slot_index: int64): void
@@ -8255,7 +8282,7 @@ declare module "godot" {
         /** Connects to a host. This needs to be done before any requests are sent.  
          *  If no [param port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS. You can pass the optional [param tls_options] parameter to customize the trusted certification authorities, or the common name verification when using HTTPS. See [method TLSOptions.client] and [method TLSOptions.client_unsafe].  
          */
-        connect_to_host(host: string, port: int64 = -1, tls_options: TLSOptions = <any> {} /*compound.type from nil*/): Error
+        connect_to_host(host: string, port: int64 = -1, tls_options: TLSOptions = undefined): Error
         
         /** Sends a raw request to the connected host.  
          *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
@@ -8395,12 +8422,12 @@ declare module "godot" {
          *      
          *  **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.  
          */
-        request(url: string, custom_headers: PackedStringArray | string[] = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data: string = ''): Error
+        request(url: string, custom_headers: PackedStringArray | string[] = [], method: HTTPClient.Method = 0, request_data: string = ''): Error
         
         /** Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
          *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
          */
-        request_raw(url: string, custom_headers: PackedStringArray | string[] = <any> {} /*compound.type from 34([object Object])*/, method: HTTPClient.Method = 0, request_data_raw: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): Error
+        request_raw(url: string, custom_headers: PackedStringArray | string[] = [], method: HTTPClient.Method = 0, request_data_raw: PackedByteArray | byte[] | ArrayBuffer = []): Error
         
         /** Cancels the current request. */
         cancel_request(): void
@@ -9180,41 +9207,5 @@ declare module "godot" {
         update_layer(image: Image, layer: int64): void
         get _images(): Array
         set _images(value: Array)
-    }
-    /** Mesh optimized for creating geometry manually.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_immediatemesh.html  
-     */
-    class ImmediateMesh extends Mesh {
-        constructor(identifier?: any)
-        /** Begin a new surface. */
-        surface_begin(primitive: Mesh.PrimitiveType, material: Material = <any> {} /*compound.type from nil*/): void
-        
-        /** Set the color attribute that will be pushed with the next vertex. */
-        surface_set_color(color: Color): void
-        
-        /** Set the normal attribute that will be pushed with the next vertex. */
-        surface_set_normal(normal: Vector3): void
-        
-        /** Set the tangent attribute that will be pushed with the next vertex. */
-        surface_set_tangent(tangent: Plane): void
-        
-        /** Set the UV attribute that will be pushed with the next vertex. */
-        surface_set_uv(uv: Vector2): void
-        
-        /** Set the UV2 attribute that will be pushed with the next vertex. */
-        surface_set_uv2(uv2: Vector2): void
-        
-        /** Add a 3D vertex using the current attributes previously set. */
-        surface_add_vertex(vertex: Vector3): void
-        
-        /** Add a 2D vertex using the current attributes previously set. */
-        surface_add_vertex_2d(vertex: Vector2): void
-        
-        /** End and commit current surface. Note that surface being created will not be visible until this function is called. */
-        surface_end(): void
-        
-        /** Clear all surfaces. */
-        clear_surfaces(): void
     }
 }

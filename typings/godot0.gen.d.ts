@@ -130,7 +130,7 @@ declare module "godot" {
          *  The debugger calls the callable to get the value of custom monitor. The callable must return a zero or positive integer or floating-point number.  
          *  Callables are called with arguments supplied in argument array.  
          */
-        static add_custom_monitor(id: StringName, callable: Callable, arguments_: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        static add_custom_monitor(id: StringName, callable: Callable, arguments_: Array = []): void
         
         /** Removes the custom monitor with given [param id]. Prints an error if the given [param id] is already absent. */
         static remove_custom_monitor(id: StringName): void
@@ -224,10 +224,10 @@ declare module "godot" {
          *  **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.  
          *  **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.  
          */
-        static parse_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, root_node: Node, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
+        static parse_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, root_node: Node, callback: Callable = new Callable()): void
         
         /** Bakes the provided [param navigation_mesh] with the data from the provided [param source_geometry_data]. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
+        static bake_from_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = new Callable()): void
     }
     // // Singleton Class
     /** Stores globally-accessible variables.  
@@ -251,7 +251,7 @@ declare module "godot" {
          *      
          *  **Note:** This method doesn't take potential feature overrides into account automatically. Use [method get_setting_with_override] to handle seamlessly.  
          */
-        static get_setting(name: string, default_value: any = <any> {} /*compound.type from nil*/): any
+        static get_setting(name: string, default_value: any = <any> {}): any
         
         /** Similar to [method get_setting], but applies feature tag overrides if any exists and is valid.  
          *  **Example:**  
@@ -629,7 +629,7 @@ declare module "godot" {
         /** Returns the status of a threaded loading operation started with [method load_threaded_request] for the resource at [param path]. See [enum ThreadLoadStatus] for possible return values.  
          *  An array variable can optionally be passed via [param progress], and will return a one-element array containing the percentage of completion of the threaded loading.  
          */
-        static load_threaded_get_status(path: string, progress: Array = <any> {} /*compound.type from 28([object Object])*/): ResourceLoader.ThreadLoadStatus
+        static load_threaded_get_status(path: string, progress: Array = []): ResourceLoader.ThreadLoadStatus
         
         /** Returns the resource loaded by [method load_threaded_request].  
          *  If this is called before the loading thread is done (i.e. [method load_threaded_get_status] is not [constant THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.  
@@ -869,7 +869,7 @@ declare module "godot" {
          *      
          *  **Note:** On Android, system commands such as `dumpsys` can only be run on a rooted device.  
          */
-        static execute(path: string, arguments_: PackedStringArray | string[], output: Array = <any> {} /*compound.type from 28([object Object])*/, read_stderr: boolean = false, open_console: boolean = false): int64
+        static execute(path: string, arguments_: PackedStringArray | string[], output: Array = [], read_stderr: boolean = false, open_console: boolean = false): int64
         
         /** Creates a new process that runs independently of Godot. It will not terminate if Godot terminates. The path specified in [param path] must exist and be executable file or macOS .app bundle. Platform path resolution will be used. The [param arguments] are used in the given order and separated by a space.  
          *  On Windows, if [param open_console] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.  
@@ -1020,7 +1020,7 @@ declare module "godot" {
          *      
          *  **Note:** If the project process crashes or is  *killed*  by the user (by sending `SIGKILL` instead of the usual `SIGTERM`), the project won't restart automatically.  
          */
-        static set_restart_on_exit(restart: boolean, arguments_: PackedStringArray | string[] = <any> {} /*compound.type from 34([object Object])*/): void
+        static set_restart_on_exit(restart: boolean, arguments_: PackedStringArray | string[] = []): void
         
         /** Returns `true` if the project will automatically restart when it exits for any reason, `false` otherwise. See also [method set_restart_on_exit] and [method get_restart_on_exit_arguments]. */
         static is_restart_on_exit_set(): boolean
@@ -1996,7 +1996,7 @@ declare module "godot" {
         static profiler_add_frame_data(name: StringName, data: Array): void
         
         /** Calls the `toggle` callable of the profiler with given [param name] and [param arguments]. Enables/Disables the same profiler depending on [param enable] argument. */
-        static profiler_enable(name: StringName, enable: boolean, arguments_: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        static profiler_enable(name: StringName, enable: boolean, arguments_: Array = []): void
         
         /** Registers a message capture with given [param name]. If [param name] is "my_message" then messages starting with "my_message:" will be called with the given callable.  
          *  Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.  
@@ -2412,12 +2412,12 @@ declare module "godot" {
         /** Pops up the [param dialog] in the editor UI with [method Window.popup_exclusive]. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method Window.set_unparent_when_invisible].  
          */
-        static popup_dialog(dialog: Window, rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
+        static popup_dialog(dialog: Window, rect: Rect2i = new Rect2i(0, 0, 0, 0)): void
         
         /** Pops up the [param dialog] in the editor UI with [method Window.popup_exclusive_centered]. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method Window.set_unparent_when_invisible].  
          */
-        static popup_dialog_centered(dialog: Window, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        static popup_dialog_centered(dialog: Window, minsize: Vector2i = Vector2i.ZERO): void
         
         /** Pops up the [param dialog] in the editor UI with [method Window.popup_exclusive_centered_ratio]. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method Window.set_unparent_when_invisible].  
@@ -2427,7 +2427,7 @@ declare module "godot" {
         /** Pops up the [param dialog] in the editor UI with [method Window.popup_exclusive_centered_clamped]. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method Window.set_unparent_when_invisible].  
          */
-        static popup_dialog_centered_clamped(dialog: Window, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: float64 = 0.75): void
+        static popup_dialog_centered_clamped(dialog: Window, minsize: Vector2i = Vector2i.ZERO, fallback_ratio: float64 = 0.75): void
         
         /** Returns the name of the currently activated feature profile. If the default profile is currently active, an empty string is returned instead.  
          *  In order to get a reference to the [EditorFeatureProfile], you must load the feature profile using [method EditorFeatureProfile.load_from_file].  
@@ -3005,7 +3005,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
+        static global_menu_add_item(menu_root: string, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new checkable item with text [param label] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3017,7 +3017,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_check_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
+        static global_menu_add_check_item(menu_root: string, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3029,7 +3029,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_icon_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
+        static global_menu_add_icon_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new checkable item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3041,7 +3041,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_icon_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
+        static global_menu_add_icon_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new radio-checkable item with text [param label] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3055,7 +3055,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_radio_check_item(menu_root: string, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
+        static global_menu_add_radio_check_item(menu_root: string, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new radio-checkable item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3069,7 +3069,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_icon_radio_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
+        static global_menu_add_icon_radio_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a new item with text [param label] to the global menu with ID [param menu_root].  
          *  Contrarily to normal binary items, multistate items can have more than two states, as defined by [param max_states]. Each press or activate of the item will increase the state by one. The default value is defined by [param default_state].  
@@ -3084,7 +3084,7 @@ declare module "godot" {
          *  **Supported system menu IDs:**  
          *    
          */
-        static global_menu_add_multistate_item(menu_root: string, label: string, max_states: int64, default_state: int64, callback: Callable = <any> {} /*compound.type from 25([object Object])*/, key_callback: Callable = <any> {} /*compound.type from 25([object Object])*/, tag: any = <any> {} /*compound.type from nil*/, accelerator: Key = 0, index: int64 = -1): int64
+        static global_menu_add_multistate_item(menu_root: string, label: string, max_states: int64, default_state: int64, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
         
         /** Adds a separator between items to the global menu with ID [param menu_root]. Separators also occupy an index.  
          *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
@@ -3842,7 +3842,7 @@ declare module "godot" {
          *      
          *  **Note:** This method is implemented on Android, iOS and Web.  
          */
-        static virtual_keyboard_show(existing_text: string, position: Rect2 = <any> {} /*compound.type from 7([object Object])*/, type: DisplayServer.VirtualKeyboardType = 0, max_length: int64 = -1, cursor_start: int64 = -1, cursor_end: int64 = -1): void
+        static virtual_keyboard_show(existing_text: string, position: Rect2 = new Rect2(0, 0, 0, 0), type: DisplayServer.VirtualKeyboardType = 0, max_length: int64 = -1, cursor_start: int64 = -1, cursor_end: int64 = -1): void
         
         /** Hides the virtual keyboard if it is shown, does nothing otherwise. */
         static virtual_keyboard_hide(): void
@@ -5534,7 +5534,7 @@ declare module "godot" {
         /** Returns the stride of the skin buffer for a mesh with given [param format]. */
         static mesh_surface_get_format_skin_stride(format: RenderingServer.ArrayFormat, vertex_count: int64): int64
         static mesh_add_surface(mesh: RID, surface: Dictionary): void
-        static mesh_add_surface_from_arrays(mesh: RID, primitive: RenderingServer.PrimitiveType, arrays: Array, blend_shapes: Array = <any> {} /*compound.type from 28([object Object])*/, lods: Dictionary = <any> {} /*compound.type from 27([object Object])*/, compress_format: RenderingServer.ArrayFormat = 0): void
+        static mesh_add_surface_from_arrays(mesh: RID, primitive: RenderingServer.PrimitiveType, arrays: Array, blend_shapes: Array = [], lods: Dictionary = new Dictionary(), compress_format: RenderingServer.ArrayFormat = 0): void
         
         /** Returns a mesh's blend shape count. */
         static mesh_get_blend_shape_count(mesh: RID): int64
@@ -6118,7 +6118,7 @@ declare module "godot" {
          *    
          *  Using this can result in significant optimization, especially on lower-end devices. However, it comes at the cost of having to manage your viewports manually. For further optimization, see [method viewport_set_render_direct_to_screen].  
          */
-        static viewport_attach_to_screen(viewport: RID, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/, screen: int64 = 0): void
+        static viewport_attach_to_screen(viewport: RID, rect: Rect2 = new Rect2(0, 0, 0, 0), screen: int64 = 0): void
         
         /** If `true`, render the contents of the viewport directly to screen. This allows a low-level optimization where you can skip drawing a viewport to the root viewport. While this optimization can result in a significant increase in speed (especially on older devices), it comes at a cost of usability. When this is enabled, you cannot read from the viewport or from the screen_texture. You also lose the benefit of certain window settings, such as the various stretch modes. Another consequence to be aware of is that in 2D the rendering happens in window coordinates, so if you have a viewport that is double the size of the window, and you set this, then only the portion that fits within the window will be drawn, no automatic scaling is possible, even if your game scene is significantly larger than the window size. */
         static viewport_set_render_direct_to_screen(viewport: RID, enabled: boolean): void
@@ -6541,17 +6541,17 @@ declare module "godot" {
         /** Returns an array of object IDs intersecting with the provided AABB. Only 3D nodes that inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D]. Use [method @GlobalScope.instance_from_id] to obtain the actual nodes. A scenario RID must be provided, which is available in the [World3D] you want to query. This forces an update for all resources queued to update.  
          *  **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.  
          */
-        static instances_cull_aabb(aabb: AABB, scenario: RID = <any> {} /*compound.type from 23([object Object])*/): PackedInt64Array
+        static instances_cull_aabb(aabb: AABB, scenario: RID = new RID()): PackedInt64Array
         
         /** Returns an array of object IDs intersecting with the provided 3D ray. Only 3D nodes that inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D]. Use [method @GlobalScope.instance_from_id] to obtain the actual nodes. A scenario RID must be provided, which is available in the [World3D] you want to query. This forces an update for all resources queued to update.  
          *  **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.  
          */
-        static instances_cull_ray(from: Vector3, to: Vector3, scenario: RID = <any> {} /*compound.type from 23([object Object])*/): PackedInt64Array
+        static instances_cull_ray(from: Vector3, to: Vector3, scenario: RID = new RID()): PackedInt64Array
         
         /** Returns an array of object IDs intersecting with the provided convex shape. Only 3D nodes that inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D]. Use [method @GlobalScope.instance_from_id] to obtain the actual nodes. A scenario RID must be provided, which is available in the [World3D] you want to query. This forces an update for all resources queued to update.  
          *  **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.  
          */
-        static instances_cull_convex(convex: Array, scenario: RID = <any> {} /*compound.type from 23([object Object])*/): PackedInt64Array
+        static instances_cull_convex(convex: Array, scenario: RID = new RID()): PackedInt64Array
         
         /** Bakes the material data of the Mesh passed in the [param base] parameter with optional [param material_overrides] to a set of [Image]s of size [param image_size]. Returns an array of [Image]s containing material properties as specified in [enum BakeChannels]. */
         static bake_render_uv2(base: RID, material_overrides: Array, image_size: Vector2i): Array
@@ -6626,7 +6626,7 @@ declare module "godot" {
         static canvas_item_set_distance_field_mode(item: RID, enabled: boolean): void
         
         /** If [param use_custom_rect] is `true`, sets the custom visibility rectangle (used for culling) to [param rect] for the canvas item specified by [param item]. Setting a custom visibility rect can reduce CPU load when drawing lots of 2D instances. If [param use_custom_rect] is `false`, automatically computes a visibility rectangle based on the canvas item's draw commands. */
-        static canvas_item_set_custom_rect(item: RID, use_custom_rect: boolean, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/): void
+        static canvas_item_set_custom_rect(item: RID, use_custom_rect: boolean, rect: Rect2 = new Rect2(0, 0, 0, 0)): void
         
         /** Multiplies the color of the canvas item specified by the [param item] RID, while affecting its children. See also [method canvas_item_set_self_modulate]. Equivalent to [member CanvasItem.modulate]. */
         static canvas_item_set_modulate(item: RID, color: Color): void
@@ -6671,19 +6671,19 @@ declare module "godot" {
         static canvas_item_add_primitive(item: RID, points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[], texture: RID): void
         
         /** Draws a 2D polygon on the [CanvasItem] pointed to by the [param item] [RID]. If you need more flexibility (such as being able to use bones), use [method canvas_item_add_triangle_array] instead. See also [method CanvasItem.draw_polygon]. */
-        static canvas_item_add_polygon(item: RID, points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, texture: RID = <any> {} /*compound.type from 23([object Object])*/): void
+        static canvas_item_add_polygon(item: RID, points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[] = [], texture: RID = new RID()): void
         
         /** Draws a triangle array on the [CanvasItem] pointed to by the [param item] [RID]. This is internally used by [Line2D] and [StyleBoxFlat] for rendering. [method canvas_item_add_triangle_array] is highly flexible, but more complex to use than [method canvas_item_add_polygon].  
          *      
          *  **Note:** [param count] is unused and can be left unspecified.  
          */
-        static canvas_item_add_triangle_array(item: RID, indices: PackedInt32Array | int32[], points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, bones: PackedInt32Array | int32[] = <any> {} /*compound.type from 30([object Object])*/, weights: PackedFloat32Array | float32[] = <any> {} /*compound.type from 32([object Object])*/, texture: RID = <any> {} /*compound.type from 23([object Object])*/, count: int64 = -1): void
+        static canvas_item_add_triangle_array(item: RID, indices: PackedInt32Array | int32[], points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], uvs: PackedVector2Array | Vector2[] = [], bones: PackedInt32Array | int32[] = [], weights: PackedFloat32Array | float32[] = [], texture: RID = new RID(), count: int64 = -1): void
         
         /** Draws a mesh created with [method mesh_create] with given [param transform], [param modulate] color, and [param texture]. This is used internally by [MeshInstance2D]. */
-        static canvas_item_add_mesh(item: RID, mesh: RID, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, modulate: Color = new Color(1, 1, 1, 1), texture: RID = <any> {} /*compound.type from 23([object Object])*/): void
+        static canvas_item_add_mesh(item: RID, mesh: RID, transform: Transform2D = new Transform2D(), modulate: Color = new Color(1, 1, 1, 1), texture: RID = new RID()): void
         
         /** Draws a 2D [MultiMesh] on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_multimesh]. */
-        static canvas_item_add_multimesh(item: RID, mesh: RID, texture: RID = <any> {} /*compound.type from 23([object Object])*/): void
+        static canvas_item_add_multimesh(item: RID, mesh: RID, texture: RID = new RID()): void
         
         /** Draws particles on the [CanvasItem] pointed to by the [param item] [RID]. */
         static canvas_item_add_particles(item: RID, particles: RID, texture: RID): void
@@ -7511,7 +7511,7 @@ declare module "godot" {
         static area_get_space(area: RID): RID
         
         /** Adds a shape to the area, with the given local transform. The shape (together with its [param transform] and [param disabled] properties) is added to an array of shapes, and the shapes of an area are usually referenced by their index in this array. */
-        static area_add_shape(area: RID, shape: RID, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, disabled: boolean = false): void
+        static area_add_shape(area: RID, shape: RID, transform: Transform2D = new Transform2D(), disabled: boolean = false): void
         
         /** Replaces the area's shape at the given index by another shape, while not affecting the `transform` and `disabled` properties at the same index. */
         static area_set_shape(area: RID, shape_idx: int64, shape: RID): void
@@ -7617,7 +7617,7 @@ declare module "godot" {
         static body_get_mode(body: RID): PhysicsServer2D.BodyMode
         
         /** Adds a shape to the area, with the given local transform. The shape (together with its [param transform] and [param disabled] properties) is added to an array of shapes, and the shapes of a body are usually referenced by their index in this array. */
-        static body_add_shape(body: RID, shape: RID, transform: Transform2D = <any> {} /*compound.type from 11([object Object])*/, disabled: boolean = false): void
+        static body_add_shape(body: RID, shape: RID, transform: Transform2D = new Transform2D(), disabled: boolean = false): void
         
         /** Replaces the body's shape at the given index by another shape, while not affecting the `transform`, `disabled`, and one-way collision properties at the same index. */
         static body_set_shape(body: RID, shape_idx: int64, shape: RID): void
@@ -7793,10 +7793,10 @@ declare module "godot" {
          *      
          *  **Note:** This callback is currently not called in Godot Physics.  
          */
-        static body_set_force_integration_callback(body: RID, callable: Callable, userdata: any = <any> {} /*compound.type from nil*/): void
+        static body_set_force_integration_callback(body: RID, callable: Callable, userdata: any = <any> {}): void
         
         /** Returns `true` if a collision would result from moving the body along a motion vector from a given point in space. See [PhysicsTestMotionParameters2D] for the available motion parameters. Optionally a [PhysicsTestMotionResult2D] object can be passed, which will be used to store the information about the resulting collision. */
-        static body_test_motion(body: RID, parameters: PhysicsTestMotionParameters2D, result: PhysicsTestMotionResult2D = <any> {} /*compound.type from nil*/): boolean
+        static body_test_motion(body: RID, parameters: PhysicsTestMotionParameters2D, result: PhysicsTestMotionResult2D = undefined): boolean
         
         /** Returns the [PhysicsDirectBodyState2D] of the body. Returns `null` if the body is destroyed or not assigned to a space. */
         static body_get_direct_state(body: RID): PhysicsDirectBodyState2D
@@ -7820,13 +7820,13 @@ declare module "godot" {
         static joint_is_disabled_collisions_between_bodies(joint: RID): boolean
         
         /** Makes the joint a pin joint. If [param body_b] is an empty [RID], then [param body_a] is pinned to the point [param anchor] (given in global coordinates); otherwise, [param body_a] is pinned to [param body_b] at the point [param anchor] (given in global coordinates). To set the parameters which are specific to the pin joint, see [method pin_joint_set_param]. */
-        static joint_make_pin(joint: RID, anchor: Vector2, body_a: RID, body_b: RID = <any> {} /*compound.type from 23([object Object])*/): void
+        static joint_make_pin(joint: RID, anchor: Vector2, body_a: RID, body_b: RID = new RID()): void
         
         /** Makes the joint a groove joint. */
-        static joint_make_groove(joint: RID, groove1_a: Vector2, groove2_a: Vector2, anchor_b: Vector2, body_a: RID = <any> {} /*compound.type from 23([object Object])*/, body_b: RID = <any> {} /*compound.type from 23([object Object])*/): void
+        static joint_make_groove(joint: RID, groove1_a: Vector2, groove2_a: Vector2, anchor_b: Vector2, body_a: RID = new RID(), body_b: RID = new RID()): void
         
         /** Makes the joint a damped spring joint, attached at the point [param anchor_a] (given in global coordinates) on the body [param body_a] and at the point [param anchor_b] (given in global coordinates) on the body [param body_b]. To set the parameters which are specific to the damped spring, see [method damped_spring_joint_set_param]. */
-        static joint_make_damped_spring(joint: RID, anchor_a: Vector2, anchor_b: Vector2, body_a: RID, body_b: RID = <any> {} /*compound.type from 23([object Object])*/): void
+        static joint_make_damped_spring(joint: RID, anchor_a: Vector2, anchor_b: Vector2, body_a: RID, body_b: RID = new RID()): void
         
         /** Sets a pin joint flag (see [enum PinJointFlag] constants). */
         static pin_joint_set_flag(joint: RID, flag: PhysicsServer2D.PinJointFlag, enabled: boolean): void
@@ -8348,7 +8348,7 @@ declare module "godot" {
         static area_get_space(area: RID): RID
         
         /** Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index. */
-        static area_add_shape(area: RID, shape: RID, transform: Transform3D = <any> {} /*compound.type from 18([object Object])*/, disabled: boolean = false): void
+        static area_add_shape(area: RID, shape: RID, transform: Transform3D = new Transform3D(), disabled: boolean = false): void
         
         /** Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID]. */
         static area_set_shape(area: RID, shape_idx: int64, shape: RID): void
@@ -8458,7 +8458,7 @@ declare module "godot" {
         static body_get_collision_priority(body: RID): float64
         
         /** Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index. */
-        static body_add_shape(body: RID, shape: RID, transform: Transform3D = <any> {} /*compound.type from 18([object Object])*/, disabled: boolean = false): void
+        static body_add_shape(body: RID, shape: RID, transform: Transform3D = new Transform3D(), disabled: boolean = false): void
         
         /** Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID]. */
         static body_set_shape(body: RID, shape_idx: int64, shape: RID): void
@@ -8603,13 +8603,13 @@ declare module "godot" {
          *  - `state` — [PhysicsDirectBodyState3D] used to retrieve and modify the body's state.  
          *  - [code skip-lint]userdata` — optional user data passed to [method body_set_force_integration_callback].  
          */
-        static body_set_force_integration_callback(body: RID, callable: Callable, userdata: any = <any> {} /*compound.type from nil*/): void
+        static body_set_force_integration_callback(body: RID, callable: Callable, userdata: any = <any> {}): void
         
         /** Sets the body pickable with rays if [param enable] is set. */
         static body_set_ray_pickable(body: RID, enable: boolean): void
         
         /** Returns `true` if a collision would result from moving along a motion vector from a given point in space. [PhysicsTestMotionParameters3D] is passed to set motion parameters. [PhysicsTestMotionResult3D] can be passed to return additional information. */
-        static body_test_motion(body: RID, parameters: PhysicsTestMotionParameters3D, result: PhysicsTestMotionResult3D = <any> {} /*compound.type from nil*/): boolean
+        static body_test_motion(body: RID, parameters: PhysicsTestMotionParameters3D, result: PhysicsTestMotionResult3D = undefined): boolean
         
         /** Returns the [PhysicsDirectBodyState3D] of the body. Returns `null` if the body is destroyed or removed from the physics space. */
         static body_get_direct_state(body: RID): PhysicsDirectBodyState3D
@@ -9007,13 +9007,13 @@ declare module "godot" {
          *  **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.  
          *  **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.  
          */
-        static parse_source_geometry_data(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, root_node: Node, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
+        static parse_source_geometry_data(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, root_node: Node, callback: Callable = new Callable()): void
         
         /** Bakes the provided [param navigation_polygon] with the data from the provided [param source_geometry_data]. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
+        static bake_from_source_geometry_data(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, callback: Callable = new Callable()): void
         
         /** Bakes the provided [param navigation_polygon] with the data from the provided [param source_geometry_data] as an async task running on a background thread. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data_async(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
+        static bake_from_source_geometry_data_async(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, callback: Callable = new Callable()): void
         
         /** Destroys the given RID. */
         static free_rid(rid: RID): void
@@ -9411,13 +9411,13 @@ declare module "godot" {
          *  **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.  
          *  **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.  
          */
-        static parse_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, root_node: Node, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
+        static parse_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, root_node: Node, callback: Callable = new Callable()): void
         
         /** Bakes the provided [param navigation_mesh] with the data from the provided [param source_geometry_data]. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
+        static bake_from_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = new Callable()): void
         
         /** Bakes the provided [param navigation_mesh] with the data from the provided [param source_geometry_data] as an async task running on a background thread. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data_async(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = <any> {} /*compound.type from 25([object Object])*/): void
+        static bake_from_source_geometry_data_async(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = new Callable()): void
         
         /** Destroys the given RID. */
         static free_rid(rid: RID): void

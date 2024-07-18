@@ -607,7 +607,7 @@ declare module "godot" {
         /** Returns a new, pre-configured [PhysicsRayQueryParameters2D] object. Use it to quickly create query parameters using the most common options.  
          *    
          */
-        static create(from: Vector2, to: Vector2, collision_mask: int64 = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters2D
+        static create(from: Vector2, to: Vector2, collision_mask: int64 = -1, exclude: Array = []): PhysicsRayQueryParameters2D
         
         /** The starting point of the ray being queried for, in global coordinates. */
         get from(): Vector2
@@ -646,7 +646,7 @@ declare module "godot" {
         /** Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create query parameters using the most common options.  
          *    
          */
-        static create(from: Vector3, to: Vector3, collision_mask: int64 = -1, exclude: Array = <any> {} /*compound.type from 28([object Object])*/): PhysicsRayQueryParameters3D
+        static create(from: Vector3, to: Vector3, collision_mask: int64 = -1, exclude: Array = []): PhysicsRayQueryParameters3D
         
         /** The starting point of the ray being queried for, in global coordinates. */
         get from(): Vector3
@@ -1835,7 +1835,7 @@ declare module "godot" {
     class Polygon2D extends Node2D {
         constructor(identifier?: any)
         /** Adds a bone with the specified [param path] and [param weights]. */
-        add_bone(path: NodePath, weights: PackedFloat32Array | float32[]): void
+        add_bone(path: NodePath | string, weights: PackedFloat32Array | float32[]): void
         
         /** Returns the number of bones in this [Polygon2D]. */
         get_bone_count(): int64
@@ -1853,7 +1853,7 @@ declare module "godot" {
         clear_bones(): void
         
         /** Sets the path to the node associated with the specified bone. */
-        set_bone_path(index: int64, path: NodePath): void
+        set_bone_path(index: int64, path: NodePath | string): void
         
         /** Sets the weight values for the specified bone. */
         set_bone_weights(index: int64, weights: PackedFloat32Array | float32[]): void
@@ -1888,7 +1888,7 @@ declare module "godot" {
         
         /** Path to a [Skeleton2D] node used for skeleton-based deformations of this polygon. If empty or invalid, skeletal deformations will not be used. */
         get skeleton(): NodePath
-        set skeleton(value: NodePath)
+        set skeleton(value: NodePath | string)
         
         /** If `true`, the polygon will be inverted, containing the area outside the defined points and extending to the [member invert_border]. */
         get invert_enabled(): boolean
@@ -3573,17 +3573,17 @@ declare module "godot" {
         /** Returns the substring of the match from the source string. Capturing groups can be retrieved by providing its group number as an integer or its string name (if it's a named group). The default value of 0 refers to the whole pattern.  
          *  Returns an empty string if the group did not match or doesn't exist.  
          */
-        get_string(name: any = <any> {} /*compound.type from nil*/): string
+        get_string(name: any = <any> {}): string
         
         /** Returns the starting position of the match within the source string. The starting position of capturing groups can be retrieved by providing its group number as an integer or its string name (if it's a named group). The default value of 0 refers to the whole pattern.  
          *  Returns -1 if the group did not match or doesn't exist.  
          */
-        get_start(name: any = <any> {} /*compound.type from nil*/): int64
+        get_start(name: any = <any> {}): int64
         
         /** Returns the end position of the match within the source string. The end position of capturing groups can be retrieved by providing its group number as an integer or its string name (if it's a named group). The default value of 0 refers to the whole pattern.  
          *  Returns -1 if the group did not match or doesn't exist.  
          */
-        get_end(name: any = <any> {} /*compound.type from nil*/): int64
+        get_end(name: any = <any> {}): int64
         
         /** The source string used with the search pattern to find this matching result. */
         get subject(): string
@@ -3605,7 +3605,7 @@ declare module "godot" {
         
         /** The [NodePath] to the remote node, relative to the RemoteTransform2D's position in the scene. */
         get remote_path(): NodePath
-        set remote_path(value: NodePath)
+        set remote_path(value: NodePath | string)
         
         /** If `true`, global coordinates are used. If `false`, local coordinates are used. */
         get use_global_coordinates(): boolean
@@ -3634,7 +3634,7 @@ declare module "godot" {
         
         /** The [NodePath] to the remote node, relative to the RemoteTransform3D's position in the scene. */
         get remote_path(): NodePath
-        set remote_path(value: NodePath)
+        set remote_path(value: NodePath | string)
         
         /** If `true`, global coordinates are used. If `false`, local coordinates are used. */
         get use_global_coordinates(): boolean
@@ -5244,7 +5244,7 @@ declare module "godot" {
          *      
          *  **Note:** Not to be confused with [method RenderingServer.texture_2d_create], which creates the Godot-specific [Texture2D] resource as opposed to the graphics API's own texture type.  
          */
-        texture_create(format: RDTextureFormat, view: RDTextureView, data: Array = <any> {} /*compound.type from 28([object Object])*/): RID
+        texture_create(format: RDTextureFormat, view: RDTextureView, data: Array = []): RID
         
         /** Creates a shared texture using the specified [param view] and the texture information from [param with_texture]. */
         texture_create_shared(view: RDTextureView, with_texture: RID): RID
@@ -5379,18 +5379,18 @@ declare module "godot" {
         /** It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        vertex_buffer_create(size_bytes: int64, data: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/, use_as_storage: boolean = false): RID
+        vertex_buffer_create(size_bytes: int64, data: PackedByteArray | byte[] | ArrayBuffer = [], use_as_storage: boolean = false): RID
         
         /** Creates a new vertex format with the specified [param vertex_descriptions]. Returns a unique vertex format ID corresponding to the newly created vertex format. */
         vertex_format_create(vertex_descriptions: Array): int64
         
         /** Creates a vertex array based on the specified buffers. Optionally, [param offsets] (in bytes) may be defined for each buffer. */
-        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: Array, offsets: PackedInt64Array | int64[] = <any> {} /*compound.type from 31([object Object])*/): RID
+        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: Array, offsets: PackedInt64Array | int64[] = []): RID
         
         /** Creates a new index buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        index_buffer_create(size_indices: int64, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/, use_restart_indices: boolean = false): RID
+        index_buffer_create(size_indices: int64, format: RenderingDevice.IndexBufferFormat, data: PackedByteArray | byte[] | ArrayBuffer = [], use_restart_indices: boolean = false): RID
         
         /** Creates a new index array. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
@@ -5415,7 +5415,7 @@ declare module "godot" {
         /** Creates a new shader instance from a binary compiled shader. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method. See also [method shader_compile_binary_from_spirv] and [method shader_create_from_spirv].  
          */
-        shader_create_from_bytecode(binary_data: PackedByteArray | byte[] | ArrayBuffer, placeholder_rid: RID = <any> {} /*compound.type from 23([object Object])*/): RID
+        shader_create_from_bytecode(binary_data: PackedByteArray | byte[] | ArrayBuffer, placeholder_rid: RID = new RID()): RID
         
         /** Create a placeholder RID by allocating an RID without initializing it for use in [method shader_create_from_bytecode]. This allows you to create an RID for a shader and pass it around, but defer compiling the shader to a later time. */
         shader_create_placeholder(): RID
@@ -5426,17 +5426,17 @@ declare module "godot" {
         /** Creates a new uniform buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        uniform_buffer_create(size_bytes: int64, data: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): RID
+        uniform_buffer_create(size_bytes: int64, data: PackedByteArray | byte[] | ArrayBuffer = []): RID
         
         /** Creates a [url=https://vkguide.dev/docs/chapter-4/storage_buffers/]storage buffer[/url] with the specified [param data] and [param usage]. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        storage_buffer_create(size_bytes: int64, data: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/, usage: RenderingDevice.StorageBufferUsage = 0): RID
+        storage_buffer_create(size_bytes: int64, data: PackedByteArray | byte[] | ArrayBuffer = [], usage: RenderingDevice.StorageBufferUsage = 0): RID
         
         /** Creates a new texture buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        texture_buffer_create(size_bytes: int64, format: RenderingDevice.DataFormat, data: PackedByteArray | byte[] | ArrayBuffer = <any> {} /*compound.type from 29([object Object])*/): RID
+        texture_buffer_create(size_bytes: int64, format: RenderingDevice.DataFormat, data: PackedByteArray | byte[] | ArrayBuffer = []): RID
         
         /** Creates a new uniform set. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
@@ -5469,7 +5469,7 @@ declare module "godot" {
         /** Creates a new render pipeline. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        render_pipeline_create(shader: RID, framebuffer_format: int64, vertex_format: int64, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: int64 = 0, specialization_constants: Array = <any> {} /*compound.type from 28([object Object])*/): RID
+        render_pipeline_create(shader: RID, framebuffer_format: int64, vertex_format: int64, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: int64 = 0, specialization_constants: Array = []): RID
         
         /** Returns `true` if the render pipeline specified by the [param render_pipeline] RID is valid, `false` otherwise. */
         render_pipeline_is_valid(render_pipeline: RID): boolean
@@ -5477,7 +5477,7 @@ declare module "godot" {
         /** Creates a new compute pipeline. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        compute_pipeline_create(shader: RID, specialization_constants: Array = <any> {} /*compound.type from 28([object Object])*/): RID
+        compute_pipeline_create(shader: RID, specialization_constants: Array = []): RID
         
         /** Returns `true` if the compute pipeline specified by the [param compute_pipeline] RID is valid, `false` otherwise. */
         compute_pipeline_is_valid(compute_pipeline: RID): boolean
@@ -5511,10 +5511,10 @@ declare module "godot" {
          *  A simple drawing operation might look like this (code is not a complete example):  
          *    
          */
-        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Color[] = <any> {} /*compound.type from 37([object Object])*/, clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): int64
+        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Color[] = [], clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = new Rect2(0, 0, 0, 0), storage_textures: Array = []): int64
         
         /** Variant of [method draw_list_begin] with support for multiple splits. The [param splits] parameter determines how many splits are created. */
-        draw_list_begin_split(framebuffer: RID, splits: int64, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Color[] = <any> {} /*compound.type from 37([object Object])*/, clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, storage_textures: Array = <any> {} /*compound.type from 28([object Object])*/): PackedInt64Array
+        draw_list_begin_split(framebuffer: RID, splits: int64, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Color[] = [], clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = new Rect2(0, 0, 0, 0), storage_textures: Array = []): PackedInt64Array
         
         /** Sets blend constants for the specified [param draw_list] to [param color]. Blend constants are used only if the graphics pipeline is created with [constant DYNAMIC_STATE_BLEND_CONSTANTS] flag set. */
         draw_list_set_blend_constants(draw_list: int64, color: Color): void
@@ -5541,7 +5541,7 @@ declare module "godot" {
          *      
          *  **Note:** The specified [param rect] is automatically intersected with the screen's dimensions, which means it cannot exceed the screen's dimensions.  
          */
-        draw_list_enable_scissor(draw_list: int64, rect: Rect2 = <any> {} /*compound.type from 7([object Object])*/): void
+        draw_list_enable_scissor(draw_list: int64, rect: Rect2 = new Rect2(0, 0, 0, 0)): void
         
         /** Removes and disables the scissor rectangle for the specified [param draw_list]. See also [method draw_list_enable_scissor]. */
         draw_list_disable_scissor(draw_list: int64): void
@@ -5668,12 +5668,12 @@ declare module "godot" {
     class ReparentDialog extends ConfirmationDialog {
         constructor(identifier?: any)
         _cancel(): void
-        readonly reparent: Signal // path: NodePath, keep_global_xform: boolean => void
+        readonly reparent: Signal // path: NodePath | string, keep_global_xform: boolean => void
     }
     class ReplicationEditor extends VBoxContainer {
         constructor(identifier?: any)
         _update_config(): void
-        _update_value(property: NodePath, column: int64, value: int64): void
+        _update_value(property: NodePath | string, column: int64, value: int64): void
     }
     /** Base class for serializable objects.  
      *  	  
@@ -6111,10 +6111,10 @@ declare module "godot" {
          *  If [param pad] is set, and the image is smaller than the size specified by [param width] and [param height], the image padding is added to match the size instead of upscaling.  
          *  If [param size_in_percent] is set, [param width] and [param height] values are percentages of the control width instead of pixels.  
          */
-        add_image(image: Texture2D, width: int64 = 0, height: int64 = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, key: any = <any> {} /*compound.type from nil*/, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        add_image(image: Texture2D, width: int64 = 0, height: int64 = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = new Rect2(0, 0, 0, 0), key: any = <any> {}, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
         
         /** Updates the existing images with the key [param key]. Only properties specified by [param mask] bits are updated. See [method add_image]. */
-        update_image(key: any, mask: RichTextLabel.ImageUpdateMask, image: Texture2D, width: int64 = 0, height: int64 = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = <any> {} /*compound.type from 7([object Object])*/, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        update_image(key: any, mask: RichTextLabel.ImageUpdateMask, image: Texture2D, width: int64 = 0, height: int64 = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = new Rect2(0, 0, 0, 0), pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
         
         /** Adds a newline tag to the tag stack. */
         newline(): void
@@ -6157,7 +6157,7 @@ declare module "godot" {
         push_outline_color(color: Color): void
         
         /** Adds a [code skip-lint][p]` tag to the tag stack. */
-        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array | float32[] = <any> {} /*compound.type from 32([object Object])*/): void
+        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array | float32[] = []): void
         
         /** Adds an [code skip-lint][indent]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
         push_indent(level: int64): void
@@ -6187,7 +6187,7 @@ declare module "godot" {
         push_table(columns: int64, inline_align: InlineAlignment = 0, align_to_row: int64 = -1): void
         
         /** Adds a [code skip-lint][dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text. */
-        push_dropcap(string_: string, font: Font, size: int64, dropcap_margins: Rect2 = <any> {} /*compound.type from 7([object Object])*/, color: Color = new Color(1, 1, 1, 1), outline_size: int64 = 0, outline_color: Color = new Color(0, 0, 0, 0)): void
+        push_dropcap(string_: string, font: Font, size: int64, dropcap_margins: Rect2 = new Rect2(0, 0, 0, 0), color: Color = new Color(1, 1, 1, 1), outline_size: int64 = 0, outline_color: Color = new Color(0, 0, 0, 0)): void
         
         /** Edits the selected column's expansion options. If [param expand] is `true`, the column expands in proportion to its expansion ratio versus the other columns' ratios.  
          *  For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively.  
@@ -7009,7 +7009,7 @@ declare module "godot" {
         constructor(identifier?: any)
         /** Path to an [AnimationMixer] node to use as a basis for root motion. */
         get animation_path(): NodePath
-        set animation_path(value: NodePath)
+        set animation_path(value: NodePath | string)
         
         /** The grid's color. */
         get color(): Color
@@ -7140,7 +7140,7 @@ declare module "godot" {
          *  This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.  
          */
         get root_path(): NodePath
-        set root_path(value: NodePath)
+        set root_path(value: NodePath | string)
         
         /** The callback to execute when when receiving authentication data sent via [method send_auth]. If the [Callable] is empty (default), peers will be automatically accepted as soon as they connect. */
         get auth_callback(): Callable
@@ -7214,48 +7214,48 @@ declare module "godot" {
          *      
          *  **Note:** For details on restrictions and limitations on property synchronization, see [MultiplayerSynchronizer].  
          */
-        add_property(path: NodePath, index: int64 = -1): void
+        add_property(path: NodePath | string, index: int64 = -1): void
         
         /** Returns whether the given [param path] is configured for synchronization. */
-        has_property(path: NodePath): boolean
+        has_property(path: NodePath | string): boolean
         
         /** Removes the property identified by the given [param path] from the configuration. */
-        remove_property(path: NodePath): void
+        remove_property(path: NodePath | string): void
         
         /** Finds the index of the given [param path]. */
-        property_get_index(path: NodePath): int64
+        property_get_index(path: NodePath | string): int64
         
         /** Returns whether the property identified by the given [param path] is configured to be synchronized on spawn. */
-        property_get_spawn(path: NodePath): boolean
+        property_get_spawn(path: NodePath | string): boolean
         
         /** Sets whether the property identified by the given [param path] is configured to be synchronized on spawn. */
-        property_set_spawn(path: NodePath, enabled: boolean): void
+        property_set_spawn(path: NodePath | string, enabled: boolean): void
         
         /** Returns the replication mode for the property identified by the given [param path]. See [enum ReplicationMode]. */
-        property_get_replication_mode(path: NodePath): SceneReplicationConfig.ReplicationMode
+        property_get_replication_mode(path: NodePath | string): SceneReplicationConfig.ReplicationMode
         
         /** Sets the synchronization mode for the property identified by the given [param path]. See [enum ReplicationMode]. */
-        property_set_replication_mode(path: NodePath, mode: SceneReplicationConfig.ReplicationMode): void
+        property_set_replication_mode(path: NodePath | string, mode: SceneReplicationConfig.ReplicationMode): void
         
         /** Returns whether the property identified by the given [param path] is configured to be synchronized on process.  
          *   *Deprecated.*  Use [method property_get_replication_mode] instead.  
          */
-        property_get_sync(path: NodePath): boolean
+        property_get_sync(path: NodePath | string): boolean
         
         /** Sets whether the property identified by the given [param path] is configured to be synchronized on process.  
          *   *Deprecated.*  Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ALWAYS] instead.  
          */
-        property_set_sync(path: NodePath, enabled: boolean): void
+        property_set_sync(path: NodePath | string, enabled: boolean): void
         
         /** Returns whether the property identified by the given [param path] is configured to be reliably synchronized when changes are detected on process.  
          *   *Deprecated.*  Use [method property_get_replication_mode] instead.  
          */
-        property_get_watch(path: NodePath): boolean
+        property_get_watch(path: NodePath | string): boolean
         
         /** Sets whether the property identified by the given [param path] is configured to be reliably synchronized when changes are detected on process.  
          *   *Deprecated.*  Use [method property_set_replication_mode] with [constant REPLICATION_MODE_ON_CHANGE] instead.  
          */
-        property_set_watch(path: NodePath, enabled: boolean): void
+        property_set_watch(path: NodePath | string, enabled: boolean): void
     }
     class SceneReplicationInterface extends RefCounted {
         constructor(identifier?: any)
@@ -7504,10 +7504,10 @@ declare module "godot" {
          *      
          *  **Note:** No [MultiplayerAPI] must be configured for the subpath containing [param root_path], nested custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for `"/root/Foo/Bar"` will cause an error.  
          */
-        set_multiplayer(multiplayer: MultiplayerAPI, root_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): void
+        set_multiplayer(multiplayer: MultiplayerAPI, root_path: NodePath | string = ''): void
         
         /** Searches for the [MultiplayerAPI] configured for the given path, if one does not exist it searches the parent paths until one is found. If the path is empty, or none is found, the default one is returned. See [method set_multiplayer]. */
-        get_multiplayer(for_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): MultiplayerAPI
+        get_multiplayer(for_path: NodePath | string = ''): MultiplayerAPI
         
         /** If `true`, the application automatically accepts quitting requests.  
          *  For mobile platforms, see [member quit_on_go_back].  
@@ -7595,7 +7595,7 @@ declare module "godot" {
     class SceneTreeDialog extends ConfirmationDialog {
         constructor(identifier?: any)
         _cancel(): void
-        readonly selected: Signal // path: NodePath => void
+        readonly selected: Signal // path: NodePath | string => void
     }
     class SceneTreeDock extends VBoxContainer {
         constructor(identifier?: any)
@@ -7619,9 +7619,9 @@ declare module "godot" {
         readonly node_prerename: Signal //  => void
         readonly node_changed: Signal //  => void
         readonly nodes_dragged: Signal //  => void
-        readonly nodes_rearranged: Signal // paths: Array, to_path: NodePath, type: int64 => void
-        readonly files_dropped: Signal // files: PackedStringArray | string[], to_path: NodePath, type: int64 => void
-        readonly script_dropped: Signal // file: string, to_path: NodePath => void
+        readonly nodes_rearranged: Signal // paths: Array, to_path: NodePath | string, type: int64 => void
+        readonly files_dropped: Signal // files: PackedStringArray | string[], to_path: NodePath | string, type: int64 => void
+        readonly script_dropped: Signal // file: string, to_path: NodePath | string => void
         readonly rmb_pressed: Signal // position: Vector2 => void
         readonly open: Signal //  => void
         readonly open_script: Signal //  => void
@@ -8734,7 +8734,7 @@ declare module "godot" {
         /** Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the physics world.  
          *  Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.  
          */
-        physical_bones_start_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        physical_bones_start_simulation(bones: Array = []): void
         
         /** Adds a collision exception to the physical bone.  
          *  Works just like the [RigidBody3D] node.  
@@ -8825,7 +8825,7 @@ declare module "godot" {
         
         /** Target node [NodePath] for the IK chain. If available, the node's current [Transform3D] is used instead of the [member target] property. */
         get target_node(): NodePath
-        set target_node(value: NodePath)
+        set target_node(value: NodePath | string)
         
         /** The minimum distance between bone and goal target. If the distance is below this value, the IK solver stops further iterations. */
         get min_distance(): float64
@@ -8889,7 +8889,7 @@ declare module "godot" {
     class SkeletonModification2DCCDIK extends SkeletonModification2D {
         constructor(identifier?: any)
         /** Sets the [Bone2D] node assigned to the CCDIK joint at [param joint_idx]. */
-        set_ccdik_joint_bone2d_node(joint_idx: int64, bone2d_nodepath: NodePath): void
+        set_ccdik_joint_bone2d_node(joint_idx: int64, bone2d_nodepath: NodePath | string): void
         
         /** Returns the [Bone2D] node assigned to the CCDIK joint at [param joint_idx]. */
         get_ccdik_joint_bone2d_node(joint_idx: int64): NodePath
@@ -8934,11 +8934,11 @@ declare module "godot" {
         
         /** The NodePath to the node that is the target for the CCDIK modification. This node is what the CCDIK chain will attempt to rotate the bone chain to. */
         get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath)
+        set target_nodepath(value: NodePath | string)
         
         /** The end position of the CCDIK chain. Typically, this should be a child of a [Bone2D] node attached to the final [Bone2D] in the CCDIK chain. */
         get tip_nodepath(): NodePath
-        set tip_nodepath(value: NodePath)
+        set tip_nodepath(value: NodePath | string)
         
         /** The number of CCDIK joints in the CCDIK modification. */
         get ccdik_data_chain_length(): int64
@@ -8951,7 +8951,7 @@ declare module "godot" {
     class SkeletonModification2DFABRIK extends SkeletonModification2D {
         constructor(identifier?: any)
         /** Sets the [Bone2D] node assigned to the FABRIK joint at [param joint_idx]. */
-        set_fabrik_joint_bone2d_node(joint_idx: int64, bone2d_nodepath: NodePath): void
+        set_fabrik_joint_bone2d_node(joint_idx: int64, bone2d_nodepath: NodePath | string): void
         
         /** Returns the [Bone2D] node assigned to the FABRIK joint at [param joint_idx]. */
         get_fabrik_joint_bone2d_node(joint_idx: int64): NodePath
@@ -8979,7 +8979,7 @@ declare module "godot" {
         
         /** The NodePath to the node that is the target for the FABRIK modification. This node is what the FABRIK chain will attempt to rotate the bone chain to. */
         get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath)
+        set target_nodepath(value: NodePath | string)
         
         /** The number of FABRIK joints in the FABRIK modification. */
         get fabrik_data_chain_length(): int64
@@ -9004,7 +9004,7 @@ declare module "godot" {
         get_collision_mask(): int64
         
         /** Sets the [Bone2D] node assigned to the Jiggle joint at [param joint_idx]. */
-        set_jiggle_joint_bone2d_node(joint_idx: int64, bone2d_node: NodePath): void
+        set_jiggle_joint_bone2d_node(joint_idx: int64, bone2d_node: NodePath | string): void
         
         /** Returns the [Bone2D] node assigned to the Jiggle joint at [param joint_idx]. */
         get_jiggle_joint_bone2d_node(joint_idx: int64): NodePath
@@ -9053,7 +9053,7 @@ declare module "godot" {
         
         /** The NodePath to the node that is the target for the Jiggle modification. This node is what the Jiggle chain will attempt to rotate the bone chain to. */
         get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath)
+        set target_nodepath(value: NodePath | string)
         
         /** The amount of Jiggle joints in the Jiggle modification. */
         get jiggle_data_chain_length(): int64
@@ -9123,11 +9123,11 @@ declare module "godot" {
         
         /** The [Bone2D] node that the modification will operate on. */
         get bone2d_node(): NodePath
-        set bone2d_node(value: NodePath)
+        set bone2d_node(value: NodePath | string)
         
         /** The NodePath to the node that is the target for the LookAt modification. This node is what the modification will rotate the [Bone2D] to. */
         get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath)
+        set target_nodepath(value: NodePath | string)
     }
     /** A modification that applies the transforms of [PhysicalBone2D] nodes to [Bone2D] nodes.  
      *  	  
@@ -9139,7 +9139,7 @@ declare module "godot" {
          *      
          *  **Note:** This is just the index used for this modification, not the bone index used in the [Skeleton2D].  
          */
-        set_physical_bone_node(joint_idx: int64, physicalbone2d_node: NodePath): void
+        set_physical_bone_node(joint_idx: int64, physicalbone2d_node: NodePath | string): void
         
         /** Returns the [PhysicalBone2D] node at [param joint_idx]. */
         get_physical_bone_node(joint_idx: int64): NodePath
@@ -9150,12 +9150,12 @@ declare module "godot" {
         /** Tell the [PhysicalBone2D] nodes to start simulating and interacting with the physics world.  
          *  Optionally, an array of bone names can be passed to this function, and that will cause only [PhysicalBone2D] nodes with those names to start simulating.  
          */
-        start_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        start_simulation(bones: Array = []): void
         
         /** Tell the [PhysicalBone2D] nodes to stop simulating and interacting with the physics world.  
          *  Optionally, an array of bone names can be passed to this function, and that will cause only [PhysicalBone2D] nodes with those names to stop simulating.  
          */
-        stop_simulation(bones: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        stop_simulation(bones: Array = []): void
         
         /** The number of [PhysicalBone2D] nodes linked in this modification. */
         get physical_bone_chain_length(): int64
@@ -9180,7 +9180,7 @@ declare module "godot" {
     class SkeletonModification2DTwoBoneIK extends SkeletonModification2D {
         constructor(identifier?: any)
         /** Sets the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
-        set_joint_one_bone2d_node(bone2d_node: NodePath): void
+        set_joint_one_bone2d_node(bone2d_node: NodePath | string): void
         
         /** Returns the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
         get_joint_one_bone2d_node(): NodePath
@@ -9192,7 +9192,7 @@ declare module "godot" {
         get_joint_one_bone_idx(): int64
         
         /** Sets the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
-        set_joint_two_bone2d_node(bone2d_node: NodePath): void
+        set_joint_two_bone2d_node(bone2d_node: NodePath | string): void
         
         /** Returns the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
         get_joint_two_bone2d_node(): NodePath
@@ -9205,7 +9205,7 @@ declare module "godot" {
         
         /** The NodePath to the node that is the target for the TwoBoneIK modification. This node is what the modification will use when bending the [Bone2D] nodes. */
         get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath)
+        set target_nodepath(value: NodePath | string)
         
         /** The minimum distance the target can be at. If the target is closer than this distance, the modification will solve as if it's at this minimum distance. When set to `0`, the modification will solve without distance constraints. */
         get target_minimum_distance(): float64

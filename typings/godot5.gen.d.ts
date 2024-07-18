@@ -409,7 +409,7 @@ declare module "godot" {
         get_point_transform(point_index: int64): Vector3
         
         /** Sets the pinned state of a surface vertex. When set to `true`, the optional [param attachment_path] can define a [Node3D] the pinned vertex will be attached to. */
-        set_point_pinned(point_index: int64, pinned: boolean, attachment_path: NodePath = <any> {} /*compound.type from 22([object Object])*/): void
+        set_point_pinned(point_index: int64, pinned: boolean, attachment_path: NodePath | string = ''): void
         
         /** Returns `true` if vertex is set to pinned. */
         is_point_pinned(point_index: int64): boolean
@@ -430,7 +430,7 @@ declare module "godot" {
         
         /** [NodePath] to a [CollisionObject3D] this SoftBody3D should avoid clipping. */
         get parent_collision_ignore(): NodePath
-        set parent_collision_ignore(value: NodePath)
+        set parent_collision_ignore(value: NodePath | string)
         
         /** Increasing this value will improve the resulting simulation, but can affect performance. Use with care. */
         get simulation_precision(): int64
@@ -1273,7 +1273,7 @@ declare module "godot" {
         accept_stream(stream: StreamPeer, server_options: TLSOptions): Error
         
         /** Connects to a peer using an underlying [StreamPeer] [param stream] and verifying the remote certificate is correctly signed for the given [param common_name]. You can pass the optional [param client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        connect_to_stream(stream: StreamPeer, common_name: string, client_options: TLSOptions = <any> {} /*compound.type from nil*/): Error
+        connect_to_stream(stream: StreamPeer, common_name: string, client_options: TLSOptions = undefined): Error
         
         /** Returns the status of the connection. See [enum Status] for values. */
         get_status(): StreamPeerTLS.Status
@@ -1679,7 +1679,7 @@ declare module "godot" {
         /** Inserts a triangle fan made of array data into [Mesh] being constructed.  
          *  Requires the primitive type be set to [constant Mesh.PRIMITIVE_TRIANGLES].  
          */
-        add_triangle_fan(vertices: PackedVector3Array | Vector3[], uvs: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, colors: PackedColorArray | Color[] = <any> {} /*compound.type from 37([object Object])*/, uv2s: PackedVector2Array | Vector2[] = <any> {} /*compound.type from 35([object Object])*/, normals: PackedVector3Array | Vector3[] = <any> {} /*compound.type from 36([object Object])*/, tangents: Array = <any> {} /*compound.type from 28([object Object])*/): void
+        add_triangle_fan(vertices: PackedVector3Array | Vector3[], uvs: PackedVector2Array | Vector2[] = [], colors: PackedColorArray | Color[] = [], uv2s: PackedVector2Array | Vector2[] = [], normals: PackedVector3Array | Vector3[] = [], tangents: Array = []): void
         
         /** Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices. */
         add_index(index: int64): void
@@ -1733,7 +1733,7 @@ declare module "godot" {
         /** Returns a constructed [ArrayMesh] from current information passed in. If an existing [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].  
          *  **FIXME:** Document possible values for [param flags], it changed in 4.0. Likely some combinations of [enum Mesh.ArrayFormat].  
          */
-        commit(existing: ArrayMesh = <any> {} /*compound.type from nil*/, flags: int64 = 0): ArrayMesh
+        commit(existing: ArrayMesh = undefined, flags: int64 = 0): ArrayMesh
         
         /** Commits the data to the same format used by [method ArrayMesh.add_surface_from_arrays]. This way you can further process the mesh data using the [ArrayMesh] API. */
         commit_to_arrays(): Array
@@ -1885,13 +1885,13 @@ declare module "godot" {
          *      
          *  **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.  
          */
-        static client(trusted_chain: X509Certificate = <any> {} /*compound.type from nil*/, common_name_override: string = ''): TLSOptions
+        static client(trusted_chain: X509Certificate = undefined, common_name_override: string = ''): TLSOptions
         
         /** Creates an **unsafe** TLS client configuration where certificate validation is optional. You can optionally provide a valid [param trusted_chain], but the common name of the certificates will never be checked. Using this configuration for purposes other than testing **is not recommended**.  
          *      
          *  **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.  
          */
-        static client_unsafe(trusted_chain: X509Certificate = <any> {} /*compound.type from nil*/): TLSOptions
+        static client_unsafe(trusted_chain: X509Certificate = undefined): TLSOptions
         
         /** Creates a TLS server configuration using the provided [param key] and [param certificate].  
          *      
@@ -2000,7 +2000,7 @@ declare module "godot" {
         remove_tab(tab_idx: int64): void
         
         /** Adds a new tab. */
-        add_tab(title: string = '', icon: Texture2D = <any> {} /*compound.type from nil*/): void
+        add_tab(title: string = '', icon: Texture2D = undefined): void
         
         /** Returns the index of the tab at local coordinates [param point]. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position. */
         get_tab_idx_at_point(point: Vector2): int64
@@ -3059,7 +3059,7 @@ declare module "godot" {
         set_bidi_override(override: Array): void
         
         /** Adds text span and font to draw it. */
-        add_string(text: string, font: Font, font_size: int64, language: string = '', meta: any = <any> {} /*compound.type from nil*/): boolean
+        add_string(text: string, font: Font, font_size: int64, language: string = '', meta: any = <any> {}): boolean
         
         /** Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters. */
         add_object(key: any, size: Vector2, inline_align: InlineAlignment = 5, length: int64 = 1, baseline: float64 = 0): boolean
@@ -3233,13 +3233,13 @@ declare module "godot" {
         set_bidi_override(override: Array): void
         
         /** Sets drop cap, overrides previously set drop cap. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text. */
-        set_dropcap(text: string, font: Font, font_size: int64, dropcap_margins: Rect2 = <any> {} /*compound.type from 7([object Object])*/, language: string = ''): boolean
+        set_dropcap(text: string, font: Font, font_size: int64, dropcap_margins: Rect2 = new Rect2(0, 0, 0, 0), language: string = ''): boolean
         
         /** Removes dropcap. */
         clear_dropcap(): void
         
         /** Adds text span and font to draw it. */
-        add_string(text: string, font: Font, font_size: int64, language: string = '', meta: any = <any> {} /*compound.type from nil*/): boolean
+        add_string(text: string, font: Font, font_size: int64, language: string = '', meta: any = <any> {}): boolean
         
         /** Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters. */
         add_object(key: any, size: Vector2, inline_align: InlineAlignment = 5, length: int64 = 1, baseline: float64 = 0): boolean
@@ -4239,7 +4239,7 @@ declare module "godot" {
         shaped_text_get_spacing(shaped: RID, spacing: TextServer.SpacingType): int64
         
         /** Adds text span and font to draw it to the text buffer. */
-        shaped_text_add_string(shaped: RID, text: string, fonts: Array, size: int64, opentype_features: Dictionary = <any> {} /*compound.type from 27([object Object])*/, language: string = '', meta: any = <any> {} /*compound.type from nil*/): boolean
+        shaped_text_add_string(shaped: RID, text: string, fonts: Array, size: int64, opentype_features: Dictionary = new Dictionary(), language: string = '', meta: any = <any> {}): boolean
         
         /** Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters. */
         shaped_text_add_object(shaped: RID, key: any, size: Vector2, inline_align: InlineAlignment = 5, length: int64 = 1, baseline: float64 = 0): boolean
@@ -4254,7 +4254,7 @@ declare module "godot" {
         shaped_get_span_meta(shaped: RID, index: int64): any
         
         /** Changes text span font, font size and OpenType features, without changing the text. */
-        shaped_set_span_update_font(shaped: RID, index: int64, fonts: Array, size: int64, opentype_features: Dictionary = <any> {} /*compound.type from 27([object Object])*/): void
+        shaped_set_span_update_font(shaped: RID, index: int64, fonts: Array, size: int64, opentype_features: Dictionary = new Dictionary()): void
         
         /** Returns text buffer for the substring of the text in the [param shaped] text buffer (including inline objects). */
         shaped_text_substr(shaped: RID, start: int64, length: int64): RID
@@ -5862,7 +5862,7 @@ declare module "godot" {
          *  If [param source_id] is set to `-1`, [param atlas_coords] to `Vector2i(-1, -1)` or [param alternative_tile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        set_cell(layer: int64, coords: Vector2i, source_id: int64 = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: int64 = 0): void
+        set_cell(layer: int64, coords: Vector2i, source_id: int64 = -1, atlas_coords: Vector2i = new Vector2i(-1, -1), alternative_tile: int64 = 0): void
         
         /** Erases the cell on layer [param layer] at coordinates [param coords].  
          *  If [param layer] is negative, the layers are accessed from the last one.  
@@ -5965,7 +5965,7 @@ declare module "godot" {
          *  A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_used_cells_by_id(layer: int64, source_id: int64 = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: int64 = -1): Array
+        get_used_cells_by_id(layer: int64, source_id: int64 = -1, atlas_coords: Vector2i = new Vector2i(-1, -1), alternative_tile: int64 = -1): Array
         
         /** Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers. */
         get_used_rect(): Rect2i
@@ -6034,7 +6034,7 @@ declare module "godot" {
     class TileMapPattern extends Resource {
         constructor(identifier?: any)
         /** Sets the tile identifiers for the cell at coordinates [param coords]. See [method TileMap.set_cell]. */
-        set_cell(coords: Vector2i, source_id: int64 = -1, atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, alternative_tile: int64 = -1): void
+        set_cell(coords: Vector2i, source_id: int64 = -1, atlas_coords: Vector2i = new Vector2i(-1, -1), alternative_tile: int64 = -1): void
         
         /** Returns whether the pattern has a tile at the given coordinates. */
         has_cell(coords: Vector2i): boolean
@@ -6484,7 +6484,7 @@ declare module "godot" {
         constructor(identifier?: any)
         
         /** Creates a new tile at coordinates [param atlas_coords] with the given [param size]. */
-        create_tile(atlas_coords: Vector2i, size: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        create_tile(atlas_coords: Vector2i, size: Vector2i = Vector2i.ONE): void
         
         /** Remove a tile and its alternative at coordinates [param atlas_coords]. */
         remove_tile(atlas_coords: Vector2i): void
@@ -6493,13 +6493,13 @@ declare module "godot" {
          *  If [param new_atlas_coords] is `Vector2i(-1, -1)`, keeps the tile's coordinates. If [param new_size] is `Vector2i(-1, -1)`, keeps the tile's size.  
          *  To avoid an error, first check if a move is possible using [method has_room_for_tile].  
          */
-        move_tile_in_atlas(atlas_coords: Vector2i, new_atlas_coords: Vector2i = <any> {} /*compound.type from 6([object Object])*/, new_size: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        move_tile_in_atlas(atlas_coords: Vector2i, new_atlas_coords: Vector2i = new Vector2i(-1, -1), new_size: Vector2i = new Vector2i(-1, -1)): void
         
         /** Returns the size of the tile (in the grid coordinates system) at coordinates [param atlas_coords]. */
         get_tile_size_in_atlas(atlas_coords: Vector2i): Vector2i
         
         /** Returns whether there is enough room in an atlas to create/modify a tile with the given properties. If [param ignored_tile] is provided, act as is the given tile was not present in the atlas. This may be used when you want to modify a tile's properties. */
-        has_room_for_tile(atlas_coords: Vector2i, size: Vector2i, animation_columns: int64, animation_separation: Vector2i, frames_count: int64, ignored_tile: Vector2i = <any> {} /*compound.type from 6([object Object])*/): boolean
+        has_room_for_tile(atlas_coords: Vector2i, size: Vector2i, animation_columns: int64, animation_separation: Vector2i, frames_count: int64, ignored_tile: Vector2i = new Vector2i(-1, -1)): boolean
         
         /** Returns an array of tiles coordinates ID that will be automatically removed when modifying one or several of those properties: [param texture], [param margins], [param separation] or [param texture_region_size]. This can be used to undo changes that would have caused tiles data loss. */
         get_tiles_to_be_removed_on_change(texture: Texture2D, margins: Vector2i, separation: Vector2i, texture_region_size: Vector2i): PackedVector2Array
@@ -6955,7 +6955,7 @@ declare module "godot" {
          *  If [param parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.  
          *  The new item will be the [param index]-th child of parent, or it will be the last child if there are not enough siblings.  
          */
-        create_item(parent: TreeItem = <any> {} /*compound.type from nil*/, index: int64 = -1): TreeItem
+        create_item(parent: TreeItem = undefined, index: int64 = -1): TreeItem
         
         /** Returns the tree's root item, or `null` if the tree is empty. */
         get_root(): TreeItem
@@ -7662,7 +7662,7 @@ declare module "godot" {
          *  **Example:** Moving an object twice from the same position, with different transition types:  
          *    
          */
-        tween_property(object: Object, property: NodePath, final_val: any, duration: float64): PropertyTweener
+        tween_property(object: Object, property: NodePath | string, final_val: any, duration: float64): PropertyTweener
         
         /** Creates and appends an [IntervalTweener]. This method can be used to create delays in the tween animation, as an alternative to using the delay in other [Tweener]s, or when there's no animation (in which case the [Tween] acts as a timer). [param time] is the length of the interval, in seconds.  
          *  **Example:** Creating an interval in code execution:  
@@ -8375,7 +8375,7 @@ declare module "godot" {
         /* gdvirtual */ _get_mix_rate(): int64
         
         /** Render [param num_frames] audio frames (of [method _get_channels] floats each) from [param buffer], starting from index [param offset] in the array. Returns the number of audio frames rendered, or -1 on error. */
-        mix_audio(num_frames: int64, buffer: PackedFloat32Array | float32[] = <any> {} /*compound.type from 32([object Object])*/, offset: int64 = 0): int64
+        mix_audio(num_frames: int64, buffer: PackedFloat32Array | float32[] = [], offset: int64 = 0): int64
     }
     /** A control used for video playback.  
      *  	  
@@ -9018,7 +9018,7 @@ declare module "godot" {
          *  **Note:** In the editor, this path is automatically updated when the target viewport or one of its ancestors is renamed or moved. At runtime, the path may not be able to automatically update due to the inability to determine the scene root.  
          */
         get viewport_path(): NodePath
-        set viewport_path(value: NodePath)
+        set viewport_path(value: NodePath | string)
     }
     namespace VisibleOnScreenEnabler2D {
         enum EnableMode {
@@ -9044,7 +9044,7 @@ declare module "godot" {
         
         /** The path to the target node, relative to the [VisibleOnScreenEnabler2D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler2D] is inside the scene tree) and every time the [VisibleOnScreenEnabler2D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
         get enable_node_path(): NodePath
-        set enable_node_path(value: NodePath)
+        set enable_node_path(value: NodePath | string)
     }
     namespace VisibleOnScreenEnabler3D {
         enum EnableMode {
@@ -9070,7 +9070,7 @@ declare module "godot" {
         
         /** The path to the target node, relative to the [VisibleOnScreenEnabler3D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler3D] is inside the scene tree) and every time the [VisibleOnScreenEnabler3D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
         get enable_node_path(): NodePath
-        set enable_node_path(value: NodePath)
+        set enable_node_path(value: NodePath | string)
     }
     /** A rectangular region of 2D space that detects whether it is visible on screen.  
      *  	  

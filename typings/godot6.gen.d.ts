@@ -49,7 +49,7 @@ declare module "godot" {
         _is_output_port_expanded(_unnamed_arg0: int64): boolean
         
         /** Sets the default [param value] for the selected input [param port]. */
-        set_input_port_default_value(port: int64, value: any, prev_value: any = <any> {} /*compound.type from nil*/): void
+        set_input_port_default_value(port: int64, value: any, prev_value: any = <any> {}): void
         
         /** Returns the default value of the input [param port]. */
         get_input_port_default_value(port: int64): any
@@ -2498,7 +2498,7 @@ declare module "godot" {
          *      
          *  **Note:** [GeometryInstance3D]s and [Light3D]s must be fully ready before [method bake] is called. If you are procedurally creating those and some meshes or lights are missing from your baked [VoxelGI], use `call_deferred("bake")` instead of calling [method bake] directly.  
          */
-        bake(from_node: Node = <any> {} /*compound.type from nil*/, create_visual_debug: boolean = false): void
+        bake(from_node: Node = undefined, create_visual_debug: boolean = false): void
         
         /** Calls [method bake] with `create_visual_debug` enabled. */
         debug_bake(): void
@@ -2688,15 +2688,15 @@ declare module "godot" {
         /** Initialize the multiplayer peer as a server (with unique ID of `1`). This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_server(channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
+        create_server(channels_config: Array = []): Error
         
         /** Initialize the multiplayer peer as a client with the given [param peer_id] (must be between 2 and 2147483647). In this mode, you should only call [method add_peer] once and with [param peer_id] of `1`. This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_client(peer_id: int64, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
+        create_client(peer_id: int64, channels_config: Array = []): Error
         
         /** Initialize the multiplayer peer as a mesh (i.e. all peers connect to each other) with the given [param peer_id] (must be between 1 and 2147483647). */
-        create_mesh(peer_id: int64, channels_config: Array = <any> {} /*compound.type from 28([object Object])*/): Error
+        create_mesh(peer_id: int64, channels_config: Array = []): Error
         
         /** Add a new peer to the mesh with the given [param peer_id]. The [WebRTCPeerConnection] must be in state [constant WebRTCPeerConnection.STATE_NEW].  
          *  Three channels will be created for reliable, unreliable, and ordered transport. The value of [param unreliable_lifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable and ordered channels (see [method WebRTCPeerConnection.create_data_channel]).  
@@ -2778,7 +2778,7 @@ declare module "godot" {
          *  Valid [param configuration] options are:  
          *    
          */
-        initialize(configuration: Dictionary = <any> {} /*compound.type from 27([object Object])*/): Error
+        initialize(configuration: Dictionary = new Dictionary()): Error
         
         /** Returns a new [WebRTCDataChannel] (or `null` on failure) with given [param label] and optionally configured via the [param options] dictionary. This method can only be called when the connection is in state [constant STATE_NEW].  
          *  There are two ways to create a working data channel: either call [method create_data_channel] on only one of the peer and listen to [signal data_channel_received] on the other, or call [method create_data_channel] on both peers, with the same values, and the `"negotiated"` option set to `true`.  
@@ -2787,7 +2787,7 @@ declare module "godot" {
          *      
          *  **Note:** You must keep a reference to channels created this way, or it will be closed.  
          */
-        create_data_channel(label: string, options: Dictionary = <any> {} /*compound.type from 27([object Object])*/): WebRTCDataChannel
+        create_data_channel(label: string, options: Dictionary = new Dictionary()): WebRTCDataChannel
         
         /** Creates a new SDP offer to start a WebRTC connection with a remote peer. At least one [WebRTCDataChannel] must have been created before calling this method.  
          *  If this functions returns [constant OK], [signal session_description_created] will be called when the session is ready to be sent.  
@@ -3407,7 +3407,7 @@ declare module "godot" {
         is_layout_rtl(): boolean
         
         /** Shows the [Window] and makes it transient (see [member transient]). If [param rect] is provided, it will be set as the [Window]'s size. Fails if called on the main window. */
-        popup(rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
+        popup(rect: Rect2i = new Rect2i(0, 0, 0, 0)): void
         
         /** Popups the [Window] with a position shifted by parent [Window]'s position. If the [Window] is embedded, has the same effect as [method popup]. */
         popup_on_parent(parent_rect: Rect2i): void
@@ -3416,7 +3416,7 @@ declare module "godot" {
          *      
          *  **Note:** Calling it with the default value of [param minsize] is equivalent to calling it with [member size].  
          */
-        popup_centered(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        popup_centered(minsize: Vector2i = Vector2i.ZERO): void
         
         /** If [Window] is embedded, popups the [Window] centered inside its embedder and sets its size as a [param ratio] of embedder's size.  
          *  If [Window] is a native window, popups the [Window] centered inside the screen of its parent [Window] and sets its size as a [param ratio] of the screen size.  
@@ -3427,12 +3427,12 @@ declare module "godot" {
          *      
          *  **Note:** Calling it with the default value of [param minsize] is equivalent to calling it with [member size].  
          */
-        popup_centered_clamped(minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: float64 = 0.75): void
+        popup_centered_clamped(minsize: Vector2i = Vector2i.ZERO, fallback_ratio: float64 = 0.75): void
         
         /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup] on it. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].  
          */
-        popup_exclusive(from_node: Node, rect: Rect2i = <any> {} /*compound.type from 8([object Object])*/): void
+        popup_exclusive(from_node: Node, rect: Rect2i = new Rect2i(0, 0, 0, 0)): void
         
         /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_on_parent] on it. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].  
@@ -3442,7 +3442,7 @@ declare module "godot" {
         /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_centered] on it. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].  
          */
-        popup_exclusive_centered(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/): void
+        popup_exclusive_centered(from_node: Node, minsize: Vector2i = Vector2i.ZERO): void
         
         /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_centered_ratio] on it. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].  
@@ -3452,7 +3452,7 @@ declare module "godot" {
         /** Attempts to parent this dialog to the last exclusive window relative to [param from_node], and then calls [method Window.popup_centered_clamped] on it. The dialog must have no current parent, otherwise the method fails.  
          *  See also [method set_unparent_when_invisible] and [method Node.get_last_exclusive_window].  
          */
-        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i = <any> {} /*compound.type from 6([object Object])*/, fallback_ratio: float64 = 0.75): void
+        popup_exclusive_centered_clamped(from_node: Node, minsize: Vector2i = Vector2i.ZERO, fallback_ratio: float64 = 0.75): void
         
         /** Set's the window's current mode.  
          *      
@@ -6866,7 +6866,7 @@ declare module "godot" {
      */
     class NodePath {
         constructor()
-        constructor(from: NodePath)
+        constructor(from: NodePath | string)
         constructor(from: string)
         
         /** Returns `true` if the node path is absolute (as opposed to relative), which means that it starts with a slash character (`/`). Absolute node paths can be used to access the root node (`"/root"`) or autoloads (e.g. `"/global"` if a "global" autoload was registered). */
@@ -6910,8 +6910,8 @@ declare module "godot" {
         
         /** Returns `true` if the node path is empty. */
         is_empty(): boolean
-        static EQUAL(left: NodePath, right: NodePath): boolean
-        static NOT_EQUAL(left: NodePath, right: NodePath): boolean
+        static EQUAL(left: NodePath | string, right: NodePath | string): boolean
+        static NOT_EQUAL(left: NodePath | string, right: NodePath | string): boolean
     }
     /** A handle for a [Resource]'s unique identifier.  
      *  	  
@@ -7132,7 +7132,7 @@ declare module "godot" {
         duplicate(deep: boolean = false): Dictionary
         
         /** Returns the corresponding value for the given [param key] in the dictionary. If the [param key] does not exist, returns [param default], or `null` if the parameter is omitted. */
-        get(key: any, default_: any = <any> {} /*compound.type from nil*/): void
+        get(key: any, default_: any = <any> {}): void
         
         /** Makes the dictionary read-only, i.e. disables modification of the dictionary's contents. Does not apply to nested content, e.g. content of nested dictionaries. */
         make_read_only(): void
@@ -7363,7 +7363,7 @@ declare module "godot" {
          *    
          *  See also [method map], [method filter], [method any] and [method all].  
          */
-        reduce(method: Callable, accum: any = <any> {} /*compound.type from nil*/): void
+        reduce(method: Callable, accum: any = <any> {}): void
         
         /** Calls the provided [Callable] on each element in the array and returns `true` if the [Callable] returns `true` for  *one or more*  elements in the array. If the [Callable] returns `false` for all elements in the array, this method returns `false`.  
          *  The callable's method should take one [Variant] parameter (the current array element) and return a boolean value.  
