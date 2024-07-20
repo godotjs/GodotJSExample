@@ -1,5 +1,5 @@
 // entry point (editor only)
-import { PackedStringArray } from "godot";
+import { OS, PackedStringArray } from "godot";
 
 export function auto_complete(pattern: string): PackedStringArray {
     let results = new PackedStringArray();
@@ -29,4 +29,18 @@ export function auto_complete(pattern: string): PackedStringArray {
         }
     }
     return results;
+}
+
+export function run_npm_install() {
+    if (OS.get_name() != "Windows") {
+        console.warn("package.json has been copied to the project, please run `npm install` manually in the project's root path.");
+        return;
+    }
+    
+    let pid = OS.create_process("npm.cmd", ["install"], true);
+    if (pid == -1) {
+        console.error("Failed to execute `npm install`, please ensure that node.js has been installed properly, and run it manually in the project root path.");
+    } else {
+        console.log("Started process: npm install");
+    }
 }
