@@ -1,6 +1,6 @@
 import { Error as GodotError, Array, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid } from "godot";
 import * as jsb from "godot-jsb";
-import { $wait, export_, export_enum, export_flags, onready, signal } from "./jsb/jsb.core";
+import { $wait, export_, export_enum, export_exp_easing, export_file, export_flags, export_multiline, export_range, export_range_i, onready, signal } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 
 enum MyColor {
@@ -38,8 +38,26 @@ export default class TestNode extends Button {
     @export_(Variant.Type.TYPE_STRING)
     hello = "hello";
 
+    @export_multiline()
+    ml_text = "hello\nworld";
+
     @export_(Variant.Type.TYPE_INT)
     int_value = 0;
+
+    @export_range(0, 100, 0.1)
+    float_range = 0;
+
+    @export_range_i(0, 100, 1)
+    int_range = 0;
+
+    @export_range_i(0, 100, 1, "suffix:px")
+    px_range = 0;
+
+    @export_file("*.svg")
+    svg_path = "";
+
+    @export_exp_easing("positive_only")
+    ev_val = 0;
 
     @signal()
     test_signal!: Signal; // signal field will automatically instantiated by GodotJS
