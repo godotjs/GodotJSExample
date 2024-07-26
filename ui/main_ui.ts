@@ -14,7 +14,7 @@ export default class MainUI extends Node2D {
         if (button) {
             button.test_signal.connect(jsb.callable(this, this.on_test), 0);
         }
-        
+
     }
 
     private on_test() {

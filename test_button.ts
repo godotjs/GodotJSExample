@@ -1,6 +1,6 @@
 import { Error as GodotError, Array, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid } from "godot";
 import * as jsb from "godot-jsb";
-import { $wait, export_, export_enum, export_exp_easing, export_file, export_flags, export_multiline, export_range, export_range_i, onready, signal } from "./jsb/jsb.core";
+import { $wait, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, onready, signal } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 
 enum MyColor {
@@ -55,6 +55,9 @@ export default class TestNode extends Button {
 
     @export_file("*.svg")
     svg_path = "";
+
+    @export_global_file("*.txt")
+    global_txt_path = "";
 
     @export_exp_easing("positive_only")
     ev_val = 0;
