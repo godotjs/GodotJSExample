@@ -1,4 +1,4 @@
-import { Input, Marker2D, Node, Node2D, NodePath, PackedScene, ResourceLoader, Signal, Sprite2D, Variant, Vector2 } from "godot";
+import { Input, Marker2D, Node, Node2D, NodePath, PackedScene, ResourceLoader, Signal, Signal0, Signal1, Sprite2D, Variant, Vector2 } from "godot";
 import { export_, signal } from "../jsb/jsb.core";
 import PiggyUI from "./piggy_ui";
 
@@ -8,10 +8,10 @@ export default class Shooter extends Sprite2D {
     speed: number = 0;
 
     @signal()
-    shot!: Signal;
+    shot!: Signal1<Vector2>;
 
     @signal()
-    moved!: Signal;
+    moved!: Signal1<number>;
 
     private _dirty = false;
     private _pos!: Vector2;

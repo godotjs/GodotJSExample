@@ -1,42 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** Mesh optimized for creating geometry manually.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_immediatemesh.html  
-     */
-    class ImmediateMesh extends Mesh {
-        constructor(identifier?: any)
-        /** Begin a new surface. */
-        surface_begin(primitive: Mesh.PrimitiveType, material: Material = undefined): void
-        
-        /** Set the color attribute that will be pushed with the next vertex. */
-        surface_set_color(color: Color): void
-        
-        /** Set the normal attribute that will be pushed with the next vertex. */
-        surface_set_normal(normal: Vector3): void
-        
-        /** Set the tangent attribute that will be pushed with the next vertex. */
-        surface_set_tangent(tangent: Plane): void
-        
-        /** Set the UV attribute that will be pushed with the next vertex. */
-        surface_set_uv(uv: Vector2): void
-        
-        /** Set the UV2 attribute that will be pushed with the next vertex. */
-        surface_set_uv2(uv2: Vector2): void
-        
-        /** Add a 3D vertex using the current attributes previously set. */
-        surface_add_vertex(vertex: Vector3): void
-        
-        /** Add a 2D vertex using the current attributes previously set. */
-        surface_add_vertex_2d(vertex: Vector2): void
-        
-        /** End and commit current surface. Note that surface being created will not be visible until this function is called. */
-        surface_end(): void
-        
-        /** Clear all surfaces. */
-        clear_surfaces(): void
-    }
     class ImportDefaultsEditor extends VBoxContainer {
         constructor(identifier?: any)
     }
@@ -642,7 +606,7 @@ declare module "godot" {
         edit_resource(_unnamed_arg0: Resource): void
         store_script_properties(_unnamed_arg0: Object): void
         apply_script_properties(_unnamed_arg0: Object): void
-        readonly request_help: Signal //  => void
+        readonly request_help: Signal0
     }
     class InstallGodotJSPresetConfirmationDialog extends ConfirmationDialog {
         constructor(identifier?: any)
@@ -919,21 +883,21 @@ declare module "godot" {
         /** Triggered when specified item has been selected.  
          *  [member allow_reselect] must be enabled to reselect an item.  
          */
-        readonly item_selected: Signal // index: int64 => void
+        readonly item_selected: Signal1<int64>
         
         /** Triggered when any mouse click is issued within the rect of the list but on empty space. */
-        readonly empty_clicked: Signal // at_position: Vector2, mouse_button_index: int64 => void
+        readonly empty_clicked: Signal2<Vector2, int64>
         
         /** Triggered when specified list item has been clicked with any mouse button.  
          *  The click position is also provided to allow appropriate popup of context menus at the correct location.  
          */
-        readonly item_clicked: Signal // index: int64, at_position: Vector2, mouse_button_index: int64 => void
+        readonly item_clicked: Signal3<int64, Vector2, int64>
         
         /** Triggered when a multiple selection is altered on a list allowing multiple selection. */
-        readonly multi_selected: Signal // index: int64, selected: boolean => void
+        readonly multi_selected: Signal2<int64, boolean>
         
         /** Triggered when specified list item is activated via double-clicking or by pressing [kbd]Enter[/kbd]. */
-        readonly item_activated: Signal // index: int64 => void
+        readonly item_activated: Signal1<int64>
     }
     /** Singleton that connects the engine with Android plugins to interface with native Android code.  
      *  	  
@@ -2487,13 +2451,13 @@ declare module "godot" {
         set structured_text_bidi_override_options(value: Array)
         
         /** Emitted when the text changes. */
-        readonly text_changed: Signal // new_text: string => void
+        readonly text_changed: Signal1<string>
         
         /** Emitted when appending text that overflows the [member max_length]. The appended text is truncated to fit [member max_length], and the part that couldn't fit is passed as the [param rejected_substring] argument. */
-        readonly text_change_rejected: Signal // rejected_substring: string => void
+        readonly text_change_rejected: Signal1<string>
         
         /** Emitted when the user presses [constant KEY_ENTER] on the [LineEdit]. */
-        readonly text_submitted: Signal // new_text: string => void
+        readonly text_submitted: Signal1<string>
     }
     namespace LinkButton {
         enum UnderlineMode {
@@ -2547,7 +2511,7 @@ declare module "godot" {
     class LocalizationEditor extends VBoxContainer {
         constructor(identifier?: any)
         update_translations(): void
-        readonly localization_changed: Signal //  => void
+        readonly localization_changed: Signal0
     }
     /** Abstract base class for the game's main loop.  
      *  	  
@@ -2618,7 +2582,7 @@ declare module "godot" {
         /* gdvirtual */ _finalize(): void
         
         /** Emitted when a user responds to a permission request. */
-        readonly on_request_permissions_result: Signal // permission: string, granted: boolean => void
+        readonly on_request_permissions_result: Signal2<string, boolean>
     }
     /** A container that keeps a margin around its child controls.  
      *  	  
@@ -2793,7 +2757,7 @@ declare module "godot" {
         set item_count(value: any /*Items,popup/item_*/)
         
         /** Emitted when the [PopupMenu] of this MenuButton is about to show. */
-        readonly about_to_popup: Signal //  => void
+        readonly about_to_popup: Signal0
     }
     namespace Mesh {
         enum PrimitiveType {
@@ -3295,7 +3259,7 @@ declare module "godot" {
         set texture(value: Texture2D)
         
         /** Emitted when the [member texture] is changed. */
-        readonly texture_changed: Signal //  => void
+        readonly texture_changed: Signal0
     }
     /** Node that instances meshes into a scenario.  
      *  	  
@@ -3703,7 +3667,7 @@ declare module "godot" {
         set texture(value: Texture2D)
         
         /** Emitted when the [member texture] is changed. */
-        readonly texture_changed: Signal //  => void
+        readonly texture_changed: Signal0
     }
     /** Node that instances a [MultiMesh].  
      *  	  
@@ -3789,19 +3753,19 @@ declare module "godot" {
         set multiplayer_peer(value: MultiplayerPeer)
         
         /** Emitted when this MultiplayerAPI's [member multiplayer_peer] connects with a new peer. ID is the peer ID of the new peer. Clients get notified when other clients connect to the same server. Upon connecting to a server, a client also receives this signal for the server (with ID being 1). */
-        readonly peer_connected: Signal // id: int64 => void
+        readonly peer_connected: Signal1<int64>
         
         /** Emitted when this MultiplayerAPI's [member multiplayer_peer] disconnects from a peer. Clients get notified when other clients disconnect from the same server. */
-        readonly peer_disconnected: Signal // id: int64 => void
+        readonly peer_disconnected: Signal1<int64>
         
         /** Emitted when this MultiplayerAPI's [member multiplayer_peer] successfully connected to a server. Only emitted on clients. */
-        readonly connected_to_server: Signal //  => void
+        readonly connected_to_server: Signal0
         
         /** Emitted when this MultiplayerAPI's [member multiplayer_peer] fails to establish a connection to a server. Only emitted on clients. */
-        readonly connection_failed: Signal //  => void
+        readonly connection_failed: Signal0
         
         /** Emitted when this MultiplayerAPI's [member multiplayer_peer] disconnects from server. Only emitted on clients. */
-        readonly server_disconnected: Signal //  => void
+        readonly server_disconnected: Signal0
     }
     /** Base class used for extending the [MultiplayerAPI].  
      *  	  
@@ -3838,7 +3802,7 @@ declare module "godot" {
     }
     class MultiplayerEditorDebugger extends EditorDebuggerPlugin {
         constructor(identifier?: any)
-        readonly open_request: Signal // path: string => void
+        readonly open_request: Signal1<string>
     }
     class MultiplayerEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -3928,10 +3892,10 @@ declare module "godot" {
         set transfer_channel(value: int64)
         
         /** Emitted when a remote peer connects. */
-        readonly peer_connected: Signal // id: int64 => void
+        readonly peer_connected: Signal1<int64>
         
         /** Emitted when a remote peer has disconnected. */
-        readonly peer_disconnected: Signal // id: int64 => void
+        readonly peer_disconnected: Signal1<int64>
     }
     /** Class that can be inherited to implement custom multiplayer API networking layers via GDExtension.  
      *  	  
@@ -4052,10 +4016,10 @@ declare module "godot" {
         set spawn_function(value: Callable)
         
         /** Emitted when a spawnable scene or custom spawn was despawned by the multiplayer authority. Only called on puppets. */
-        readonly despawned: Signal // node: Node => void
+        readonly despawned: Signal1<Node>
         
         /** Emitted when a spawnable scene or custom spawn was spawned by the multiplayer authority. Only called on puppets. */
-        readonly spawned: Signal // node: Node => void
+        readonly spawned: Signal1<Node>
     }
     namespace MultiplayerSynchronizer {
         enum VisibilityUpdateMode {
@@ -4119,13 +4083,13 @@ declare module "godot" {
         set public_visibility(value: boolean)
         
         /** Emitted when a new synchronization state is received by this synchronizer after the properties have been updated. */
-        readonly synchronized: Signal //  => void
+        readonly synchronized: Signal0
         
         /** Emitted when a new delta synchronization state is received by this synchronizer after the properties have been updated. */
-        readonly delta_synchronized: Signal //  => void
+        readonly delta_synchronized: Signal0
         
         /** Emitted when visibility of [param for_peer] is updated. See [method update_visibility]. */
-        readonly visibility_changed: Signal // for_peer: int64 => void
+        readonly visibility_changed: Signal1<int64>
     }
     /** A binary [Semaphore] for synchronization of multiple [Thread]s.  
      *  	  
@@ -4322,10 +4286,10 @@ declare module "godot" {
          *  - because navigation map has changed.  
          *  - because agent pushed further away from the current path segment than the [member path_max_distance].  
          */
-        readonly path_changed: Signal //  => void
+        readonly path_changed: Signal0
         
         /** Emitted once per loaded path when the agent's global position is the first time within [member target_desired_distance] to the [member target_position]. */
-        readonly target_reached: Signal //  => void
+        readonly target_reached: Signal0
         
         /** Notifies when a waypoint along the path has been reached.  
          *  The details dictionary may contain the following keys depending on the value of [member path_metadata_flags]:  
@@ -4334,7 +4298,7 @@ declare module "godot" {
          *  - `rid`: The [RID] of the containing navigation primitive (region or link).  
          *  - `owner`: The object which manages the containing navigation primitive (region or link).  
          */
-        readonly waypoint_reached: Signal // details: Dictionary => void
+        readonly waypoint_reached: Signal1<Dictionary>
         
         /** Notifies when a navigation link has been reached.  
          *  The details dictionary may contain the following keys depending on the value of [member path_metadata_flags]:  
@@ -4345,13 +4309,13 @@ declare module "godot" {
          *  - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink2D], it will contain the global position of the link's point the agent is entering.  
          *  - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink2D], it will contain the global position of the link's point which the agent is exiting.  
          */
-        readonly link_reached: Signal // details: Dictionary => void
+        readonly link_reached: Signal1<Dictionary>
         
         /** Emitted once per loaded path when the agent internal navigation path index reaches the last index of the loaded path array. The agent internal navigation path index can be received with [method get_current_navigation_path_index]. */
-        readonly navigation_finished: Signal //  => void
+        readonly navigation_finished: Signal0
         
         /** Notifies when the collision avoidance velocity is calculated. Emitted when [member velocity] is set. Only emitted when [member avoidance_enabled] is true. */
-        readonly velocity_computed: Signal // safe_velocity: Vector2 => void
+        readonly velocity_computed: Signal1<Vector2>
     }
     /** A 3D agent used to pathfind to a position while avoiding obstacles.  
      *  	  
@@ -4537,10 +4501,10 @@ declare module "godot" {
          *  - because navigation map has changed.  
          *  - because agent pushed further away from the current path segment than the [member path_max_distance].  
          */
-        readonly path_changed: Signal //  => void
+        readonly path_changed: Signal0
         
         /** Emitted once per loaded path when the agent's global position is the first time within [member target_desired_distance] to the [member target_position]. */
-        readonly target_reached: Signal //  => void
+        readonly target_reached: Signal0
         
         /** Notifies when a waypoint along the path has been reached.  
          *  The details dictionary may contain the following keys depending on the value of [member path_metadata_flags]:  
@@ -4549,7 +4513,7 @@ declare module "godot" {
          *  - `rid`: The [RID] of the containing navigation primitive (region or link).  
          *  - `owner`: The object which manages the containing navigation primitive (region or link).  
          */
-        readonly waypoint_reached: Signal // details: Dictionary => void
+        readonly waypoint_reached: Signal1<Dictionary>
         
         /** Notifies when a navigation link has been reached.  
          *  The details dictionary may contain the following keys depending on the value of [member path_metadata_flags]:  
@@ -4560,13 +4524,13 @@ declare module "godot" {
          *  - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink3D], it will contain the global position of the link's point the agent is entering.  
          *  - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will contain the global position of the link's point which the agent is exiting.  
          */
-        readonly link_reached: Signal // details: Dictionary => void
+        readonly link_reached: Signal1<Dictionary>
         
         /** Emitted once per loaded path when the agent internal navigation path index reaches the last index of the loaded path array. The agent internal navigation path index can be received with [method get_current_navigation_path_index]. */
-        readonly navigation_finished: Signal //  => void
+        readonly navigation_finished: Signal0
         
         /** Notifies when the collision avoidance velocity is calculated. Emitted when [member velocity] is set. Only emitted when [member avoidance_enabled] is true. */
-        readonly velocity_computed: Signal // safe_velocity: Vector3 => void
+        readonly velocity_computed: Signal1<Vector3>
     }
     /** A link between two positions on [NavigationRegion2D]s that agents can be routed through.  
      *  	  
@@ -5440,10 +5404,10 @@ declare module "godot" {
         set avoidance_layers(value: int64)
         
         /** Emitted when the used navigation polygon is replaced or changes to the internals of the current navigation polygon are committed. */
-        readonly navigation_polygon_changed: Signal //  => void
+        readonly navigation_polygon_changed: Signal0
         
         /** Emitted when a navigation polygon bake operation is completed. */
-        readonly bake_finished: Signal //  => void
+        readonly bake_finished: Signal0
     }
     /** A traversable 3D region that [NavigationAgent3D]s can use for pathfinding.  
      *  	  
@@ -5500,10 +5464,10 @@ declare module "godot" {
         set travel_cost(value: float64)
         
         /** Notifies when the [NavigationMesh] has changed. */
-        readonly navigation_mesh_changed: Signal //  => void
+        readonly navigation_mesh_changed: Signal0
         
         /** Notifies when the navigation mesh bake operation is completed. */
-        readonly bake_finished: Signal //  => void
+        readonly bake_finished: Signal0
     }
     class NavigationRegion3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -5547,7 +5511,7 @@ declare module "godot" {
         set axis_stretch_vertical(value: int64)
         
         /** Emitted when the node's texture changes. */
-        readonly texture_changed: Signal //  => void
+        readonly texture_changed: Signal0
     }
     namespace Node {
         enum ProcessMode {
@@ -6305,43 +6269,43 @@ declare module "godot" {
         set editor_description(value: string)
         
         /** Emitted when the node is considered ready, after [method _ready] is called. */
-        readonly ready: Signal //  => void
+        readonly ready: Signal0
         
         /** Emitted when the node's [member name] is changed, if the node is inside the tree. */
-        readonly renamed: Signal //  => void
+        readonly renamed: Signal0
         
         /** Emitted when the node enters the tree.  
          *  This signal is emitted  *after*  the related [constant NOTIFICATION_ENTER_TREE] notification.  
          */
-        readonly tree_entered: Signal //  => void
+        readonly tree_entered: Signal0
         
         /** Emitted when the node is just about to exit the tree. The node is still valid. As such, this is the right place for de-initialization (or a "destructor", if you will).  
          *  This signal is emitted  *after*  the node's [method _exit_tree], and  *before*  the related [constant NOTIFICATION_EXIT_TREE].  
          */
-        readonly tree_exiting: Signal //  => void
+        readonly tree_exiting: Signal0
         
         /** Emitted after the node exits the tree and is no longer active.  
          *  This signal is emitted  *after*  the related [constant NOTIFICATION_EXIT_TREE] notification.  
          */
-        readonly tree_exited: Signal //  => void
+        readonly tree_exited: Signal0
         
         /** Emitted when the child [param node] enters the [SceneTree], usually because this node entered the tree (see [signal tree_entered]), or [method add_child] has been called.  
          *  This signal is emitted  *after*  the child node's own [constant NOTIFICATION_ENTER_TREE] and [signal tree_entered].  
          */
-        readonly child_entered_tree: Signal // node: Node => void
+        readonly child_entered_tree: Signal1<Node>
         
         /** Emitted when the child [param node] is about to exit the [SceneTree], usually because this node is exiting the tree (see [signal tree_exiting]), or because the child [param node] is being removed or freed.  
          *  When this signal is received, the child [param node] is still accessible inside the tree. This signal is emitted  *after*  the child node's own [signal tree_exiting] and [constant NOTIFICATION_EXIT_TREE].  
          */
-        readonly child_exiting_tree: Signal // node: Node => void
+        readonly child_exiting_tree: Signal1<Node>
         
         /** Emitted when the list of children is changed. This happens when child nodes are added, moved or removed. */
-        readonly child_order_changed: Signal //  => void
+        readonly child_order_changed: Signal0
         
         /** Emitted when this node is being replaced by the [param node], see [method replace_by].  
          *  This signal is emitted  *after*  [param node] has been added as a child of the original parent node, but  *before*  all original child nodes have been reparented to [param node].  
          */
-        readonly replacing_by: Signal // node: Node => void
+        readonly replacing_by: Signal1<Node>
     }
     /** A 2D game object, inherited by all 2D-related nodes. Has a position, rotation, scale, and Z index.  
      *  	  
@@ -6684,7 +6648,7 @@ declare module "godot" {
         set visibility_parent(value: NodePath | string)
         
         /** Emitted when node visibility changes. */
-        readonly visibility_changed: Signal //  => void
+        readonly visibility_changed: Signal0
     }
     class Node3DEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -6694,9 +6658,9 @@ declare module "godot" {
         _set_subgizmo_selection(_unnamed_arg0: Object, _unnamed_arg1: Node3DGizmo, _unnamed_arg2: int64, _unnamed_arg3: Transform3D): void
         _clear_subgizmo_selection(_unnamed_arg0: Object): void
         _refresh_menu_icons(): void
-        readonly transform_key_request: Signal //  => void
-        readonly item_lock_status_changed: Signal //  => void
-        readonly item_group_status_changed: Signal //  => void
+        readonly transform_key_request: Signal0
+        readonly item_lock_status_changed: Signal0
+        readonly item_group_status_changed: Signal0
     }
     class Node3DEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -6704,8 +6668,8 @@ declare module "godot" {
     class Node3DEditorViewport extends Control {
         constructor(identifier?: any)
         update_transform_gizmo_view(): void
-        readonly toggle_maximize_view: Signal // viewport: Object => void
-        readonly clicked: Signal // viewport: Object => void
+        readonly toggle_maximize_view: Signal1<Object>
+        readonly clicked: Signal1<Object>
     }
     class Node3DEditorViewportContainer extends Container {
         constructor(identifier?: any)
@@ -7283,10 +7247,10 @@ declare module "godot" {
          *      
          *  **Note:** When this signal is emitted, the new script is not initialized yet. If you need to access the new script, defer connections to this signal with [constant CONNECT_DEFERRED].  
          */
-        readonly script_changed: Signal //  => void
+        readonly script_changed: Signal0
         
         /** Emitted when [method notify_property_list_changed] is called. */
-        readonly property_list_changed: Signal //  => void
+        readonly property_list_changed: Signal0
     }
     /** Occluder shape resource for use with occlusion culling in [OccluderInstance3D].  
      *  	  
@@ -7973,19 +7937,19 @@ declare module "godot" {
         set foveation_dynamic(value: boolean)
         
         /** Informs our OpenXR session has been started. */
-        readonly session_begun: Signal //  => void
+        readonly session_begun: Signal0
         
         /** Informs our OpenXR session is stopping. */
-        readonly session_stopping: Signal //  => void
+        readonly session_stopping: Signal0
         
         /** Informs our OpenXR session now has focus. */
-        readonly session_focussed: Signal //  => void
+        readonly session_focussed: Signal0
         
         /** Informs our OpenXR session is now visible (output is being sent to the HMD). */
-        readonly session_visible: Signal //  => void
+        readonly session_visible: Signal0
         
         /** Informs the user queued a recenter of the player position. */
-        readonly pose_recentered: Signal //  => void
+        readonly pose_recentered: Signal0
     }
     /** An optimized translation, used by default for CSV Translations.  
      *  	  
@@ -8113,10 +8077,10 @@ declare module "godot" {
         /** Emitted when the current item has been changed by the user. The index of the item selected is passed as argument.  
          *  [member allow_reselect] must be enabled to reselect an item.  
          */
-        readonly item_selected: Signal // index: int64 => void
+        readonly item_selected: Signal1<int64>
         
         /** Emitted when the user navigates to an item using the [member ProjectSettings.input/ui_up] or [member ProjectSettings.input/ui_down] input actions. The index of the item selected is passed as argument. */
-        readonly item_focused: Signal // index: int64 => void
+        readonly item_focused: Signal1<int64>
     }
     class OrphanResourcesDialog extends ConfirmationDialog {
         constructor(identifier?: any)
@@ -8830,7 +8794,7 @@ declare module "godot" {
         set curve(value: Curve3D)
         
         /** Emitted when the [member curve] changes. */
-        readonly curve_changed: Signal //  => void
+        readonly curve_changed: Signal0
     }
     class Path3DEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)

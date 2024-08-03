@@ -159,7 +159,7 @@ declare module "godot" {
          *      
          *  **Note:** This signal is not connected directly to editor to simplify the reference, instead it is passed on to editor through the [BoneMap].  
          */
-        readonly profile_updated: Signal //  => void
+        readonly profile_updated: Signal0
     }
     /** A humanoid [SkeletonProfile] preset.  
      *  	  
@@ -277,10 +277,10 @@ declare module "godot" {
         set ticks_on_borders(value: boolean)
         
         /** Emitted when dragging is started. */
-        readonly drag_started: Signal //  => void
+        readonly drag_started: Signal0
         
         /** Emitted when dragging stops. If [param value_changed] is true, [member Range.value] is different from the value when you started the dragging. */
-        readonly drag_ended: Signal // value_changed: boolean => void
+        readonly drag_ended: Signal1<boolean>
     }
     namespace SliderJoint3D {
         enum Param {
@@ -601,7 +601,7 @@ declare module "godot" {
         set vertical(value: boolean)
         
         /** Emitted when the dragger is dragged by user. */
-        readonly dragged: Signal // offset: int64 => void
+        readonly dragged: Signal1<int64>
     }
     class SplitContainerDragger extends Control {
         constructor(identifier?: any)
@@ -724,10 +724,10 @@ declare module "godot" {
         set region_filter_clip_enabled(value: boolean)
         
         /** Emitted when the [member frame] changes. */
-        readonly frame_changed: Signal //  => void
+        readonly frame_changed: Signal0
         
         /** Emitted when the [member texture] changes. */
-        readonly texture_changed: Signal //  => void
+        readonly texture_changed: Signal0
     }
     class Sprite2DEditor extends Control {
         constructor(identifier?: any)
@@ -771,10 +771,10 @@ declare module "godot" {
         set region_rect(value: Rect2)
         
         /** Emitted when the [member frame] changes. */
-        readonly frame_changed: Signal //  => void
+        readonly frame_changed: Signal0
         
         /** Emitted when the [member texture] changes. */
-        readonly texture_changed: Signal //  => void
+        readonly texture_changed: Signal0
     }
     namespace SpriteBase3D {
         enum DrawFlags {
@@ -1743,7 +1743,7 @@ declare module "godot" {
     }
     class SurfaceUpgradeTool extends Object {
         constructor(identifier?: any)
-        readonly upgrade_finished: Signal //  => void
+        readonly upgrade_finished: Signal0
     }
     /** Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit].  
      *  	  
@@ -2070,32 +2070,32 @@ declare module "godot" {
         set select_with_rmb(value: boolean)
         
         /** Emitted when a tab is selected via click, directional input, or script, even if it is the current tab. */
-        readonly tab_selected: Signal // tab: int64 => void
+        readonly tab_selected: Signal1<int64>
         
         /** Emitted when switching to another tab. */
-        readonly tab_changed: Signal // tab: int64 => void
+        readonly tab_changed: Signal1<int64>
         
         /** Emitted when a tab is clicked, even if it is the current tab. */
-        readonly tab_clicked: Signal // tab: int64 => void
+        readonly tab_clicked: Signal1<int64>
         
         /** Emitted when a tab is right-clicked. [member select_with_rmb] must be enabled. */
-        readonly tab_rmb_clicked: Signal // tab: int64 => void
+        readonly tab_rmb_clicked: Signal1<int64>
         
         /** Emitted when a tab's close button is pressed.  
          *      
          *  **Note:** Tabs are not removed automatically once the close button is pressed, this behavior needs to be programmed manually. For example:  
          *    
          */
-        readonly tab_close_pressed: Signal // tab: int64 => void
+        readonly tab_close_pressed: Signal1<int64>
         
         /** Emitted when a tab's right button is pressed. See [method set_tab_button_icon]. */
-        readonly tab_button_pressed: Signal // tab: int64 => void
+        readonly tab_button_pressed: Signal1<int64>
         
         /** Emitted when a tab is hovered by the mouse. */
-        readonly tab_hovered: Signal // tab: int64 => void
+        readonly tab_hovered: Signal1<int64>
         
         /** Emitted when the active tab is rearranged via mouse drag. See [member drag_to_rearrange_enabled]. */
-        readonly active_tab_rearranged: Signal // idx_to: int64 => void
+        readonly active_tab_rearranged: Signal1<int64>
     }
     /** A container that creates a tab for each child control, displaying only the active tab's control.  
      *  	  
@@ -2215,25 +2215,25 @@ declare module "godot" {
         set tab_focus_mode(value: int64)
         
         /** Emitted when the active tab is rearranged via mouse drag. See [member drag_to_rearrange_enabled]. */
-        readonly active_tab_rearranged: Signal // idx_to: int64 => void
+        readonly active_tab_rearranged: Signal1<int64>
         
         /** Emitted when switching to another tab. */
-        readonly tab_changed: Signal // tab: int64 => void
+        readonly tab_changed: Signal1<int64>
         
         /** Emitted when a tab is clicked, even if it is the current tab. */
-        readonly tab_clicked: Signal // tab: int64 => void
+        readonly tab_clicked: Signal1<int64>
         
         /** Emitted when a tab is hovered by the mouse. */
-        readonly tab_hovered: Signal // tab: int64 => void
+        readonly tab_hovered: Signal1<int64>
         
         /** Emitted when a tab is selected via click, directional input, or script, even if it is the current tab. */
-        readonly tab_selected: Signal // tab: int64 => void
+        readonly tab_selected: Signal1<int64>
         
         /** Emitted when the user clicks on the button icon on this tab. */
-        readonly tab_button_pressed: Signal // tab: int64 => void
+        readonly tab_button_pressed: Signal1<int64>
         
         /** Emitted when the [TabContainer]'s [Popup] button is clicked. See [method set_popup] for details. */
-        readonly pre_popup_pressed: Signal //  => void
+        readonly pre_popup_pressed: Signal0
     }
     namespace TextEdit {
         enum MenuItems {
@@ -3022,27 +3022,27 @@ declare module "godot" {
         set structured_text_bidi_override_options(value: Array)
         
         /** Emitted when [method clear] is called or [member text] is set. */
-        readonly text_set: Signal //  => void
+        readonly text_set: Signal0
         
         /** Emitted when the text changes. */
-        readonly text_changed: Signal //  => void
+        readonly text_changed: Signal0
         
         /** Emitted immediately when the text changes.  
          *  When text is added [param from_line] will be less than [param to_line]. On a remove [param to_line] will be less than [param from_line].  
          */
-        readonly lines_edited_from: Signal // from_line: int64, to_line: int64 => void
+        readonly lines_edited_from: Signal2<int64, int64>
         
         /** Emitted when the caret changes position. */
-        readonly caret_changed: Signal //  => void
+        readonly caret_changed: Signal0
         
         /** Emitted when a gutter is clicked. */
-        readonly gutter_clicked: Signal // line: int64, gutter: int64 => void
+        readonly gutter_clicked: Signal2<int64, int64>
         
         /** Emitted when a gutter is added. */
-        readonly gutter_added: Signal //  => void
+        readonly gutter_added: Signal0
         
         /** Emitted when a gutter is removed. */
-        readonly gutter_removed: Signal //  => void
+        readonly gutter_removed: Signal0
     }
     /** Holds a line of text.  
      *  	  
@@ -5503,7 +5503,7 @@ declare module "godot" {
     }
     class ThemeContext extends Object {
         constructor(identifier?: any)
-        readonly changed: Signal //  => void
+        readonly changed: Signal0
     }
     class ThemeEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -5513,7 +5513,7 @@ declare module "godot" {
     }
     class ThemeEditorPreview extends VBoxContainer {
         constructor(identifier?: any)
-        readonly control_picked: Signal // class_name: string => void
+        readonly control_picked: Signal1<string>
     }
     class ThemeItemEditorDialog extends AcceptDialog {
         constructor(identifier?: any)
@@ -5522,11 +5522,11 @@ declare module "godot" {
     }
     class ThemeItemImportTree extends VBoxContainer {
         constructor(identifier?: any)
-        readonly items_imported: Signal //  => void
+        readonly items_imported: Signal0
     }
     class ThemeTypeDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly type_selected: Signal // type_name: string => void
+        readonly type_selected: Signal1<string>
     }
     class ThemeTypeEditor extends MarginContainer {
         constructor(identifier?: any)
@@ -5592,7 +5592,7 @@ declare module "godot" {
     }
     class TileAtlasView extends Control {
         constructor(identifier?: any)
-        readonly transform_changed: Signal // zoom: float64, scroll: Vector2 => void
+        readonly transform_changed: Signal2<float64, Vector2>
     }
     /** Settings for a single tile in a [TileSet].  
      *  	  
@@ -5717,7 +5717,7 @@ declare module "godot" {
         set probability(value: float64)
         
         /** Emitted when any of the properties are changed. */
-        readonly changed: Signal //  => void
+        readonly changed: Signal0
     }
     namespace TileMap {
         enum VisibilityMode {
@@ -6010,7 +6010,7 @@ declare module "godot" {
         set navigation_visibility_mode(value: int64)
         
         /** Emitted when the [TileSet] of this TileMap changes. */
-        readonly changed: Signal //  => void
+        readonly changed: Signal0
     }
     class TileMapEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -6615,11 +6615,11 @@ declare module "godot" {
         constructor(identifier?: any)
         _set_selection_from_array(_unnamed_arg0: Array): void
         _check_outside_tiles(): void
-        readonly source_id_changed: Signal // source_id: int64 => void
+        readonly source_id_changed: Signal1<int64>
     }
     class TileSetAtlasSourceProxyObject extends Object {
         constructor(identifier?: any)
-        readonly changed: Signal // what: string => void
+        readonly changed: Signal1<string>
     }
     class TileSetEditor extends Control {
         constructor(identifier?: any)
@@ -6631,7 +6631,7 @@ declare module "godot" {
         constructor(identifier?: any)
         get id(): int64
         set id(value: int64)
-        readonly changed: Signal // what: string => void
+        readonly changed: Signal1<string>
     }
     /** Exposes a set of scenes as tiles for a [TileSet] resource.  
      *  	  
@@ -6677,7 +6677,7 @@ declare module "godot" {
     class TileSetScenesCollectionSourceEditor extends HBoxContainer {
         constructor(identifier?: any)
         _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
-        readonly source_id_changed: Signal // source_id: int64 => void
+        readonly source_id_changed: Signal1<int64>
     }
     /** Exposes a set of tiles for a [TileSet] resource.  
      *  	  
@@ -6772,7 +6772,7 @@ declare module "godot" {
         get time_left(): float64
         
         /** Emitted when the timer reaches 0. */
-        readonly timeout: Signal //  => void
+        readonly timeout: Signal0
     }
     /** Class representing a torus [PrimitiveMesh].  
      *  	  
@@ -6854,10 +6854,10 @@ declare module "godot" {
         set visibility_mode(value: int64)
         
         /** Emitted when the button is pressed (down). */
-        readonly pressed: Signal //  => void
+        readonly pressed: Signal0
         
         /** Emitted when the button is released (up). */
-        readonly released: Signal //  => void
+        readonly released: Signal0
     }
     /** A language translation that maps a collection of strings to their individual translations.  
      *  	  
@@ -7133,49 +7133,49 @@ declare module "godot" {
         set scroll_vertical_enabled(value: boolean)
         
         /** Emitted when an item is selected. */
-        readonly item_selected: Signal //  => void
+        readonly item_selected: Signal0
         
         /** Emitted when a cell is selected. */
-        readonly cell_selected: Signal //  => void
+        readonly cell_selected: Signal0
         
         /** Emitted instead of [signal item_selected] if [member select_mode] is set to [constant SELECT_MULTI]. */
-        readonly multi_selected: Signal // item: TreeItem, column: int64, selected: boolean => void
+        readonly multi_selected: Signal3<TreeItem, int64, boolean>
         
         /** Emitted when an item is selected with a mouse button. */
-        readonly item_mouse_selected: Signal // position: Vector2, mouse_button_index: int64 => void
+        readonly item_mouse_selected: Signal2<Vector2, int64>
         
         /** Emitted when a mouse button is clicked in the empty space of the tree. */
-        readonly empty_clicked: Signal // position: Vector2, mouse_button_index: int64 => void
+        readonly empty_clicked: Signal2<Vector2, int64>
         
         /** Emitted when an item is edited. */
-        readonly item_edited: Signal //  => void
+        readonly item_edited: Signal0
         
         /** Emitted when an item with [constant TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button. */
-        readonly custom_item_clicked: Signal // mouse_button_index: int64 => void
+        readonly custom_item_clicked: Signal1<int64>
         
         /** Emitted when an item's icon is double-clicked. For a signal that emits when any part of the item is double-clicked, see [signal item_activated]. */
-        readonly item_icon_double_clicked: Signal //  => void
+        readonly item_icon_double_clicked: Signal0
         
         /** Emitted when an item is collapsed by a click on the folding arrow. */
-        readonly item_collapsed: Signal // item: TreeItem => void
+        readonly item_collapsed: Signal1<TreeItem>
         
         /** Emitted when [method TreeItem.propagate_check] is called. Connect to this signal to process the items that are affected when [method TreeItem.propagate_check] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item. */
-        readonly check_propagated_to_item: Signal // item: TreeItem, column: int64 => void
+        readonly check_propagated_to_item: Signal2<TreeItem, int64>
         
         /** Emitted when a button on the tree was pressed (see [method TreeItem.add_button]). */
-        readonly button_clicked: Signal // item: TreeItem, column: int64, id: int64, mouse_button_index: int64 => void
+        readonly button_clicked: Signal4<TreeItem, int64, int64, int64>
         
         /** Emitted when a cell with the [constant TreeItem.CELL_MODE_CUSTOM] is clicked to be edited. */
-        readonly custom_popup_edited: Signal // arrow_clicked: boolean => void
+        readonly custom_popup_edited: Signal1<boolean>
         
         /** Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard). */
-        readonly item_activated: Signal //  => void
+        readonly item_activated: Signal0
         
         /** Emitted when a column's title is clicked with either [constant MOUSE_BUTTON_LEFT] or [constant MOUSE_BUTTON_RIGHT]. */
-        readonly column_title_clicked: Signal // column: int64, mouse_button_index: int64 => void
+        readonly column_title_clicked: Signal2<int64, int64>
         
         /** Emitted when a left mouse button click does not select any item. */
-        readonly nothing_selected: Signal //  => void
+        readonly nothing_selected: Signal0
     }
     namespace TreeItem {
         enum TreeCellMode {
@@ -7791,13 +7791,13 @@ declare module "godot" {
         static interpolate_value(initial_value: any, delta_value: any, elapsed_time: float64, duration: float64, trans_type: Tween.TransitionType, ease_type: Tween.EaseType): any
         
         /** Emitted when one step of the [Tween] is complete, providing the step index. One step is either a single [Tweener] or a group of [Tweener]s running in parallel. */
-        readonly step_finished: Signal // idx: int64 => void
+        readonly step_finished: Signal1<int64>
         
         /** Emitted when a full loop is complete (see [method set_loops]), providing the loop index. This signal is not emitted after the final loop, use [signal finished] instead for this case. */
-        readonly loop_finished: Signal // loop_count: int64 => void
+        readonly loop_finished: Signal1<int64>
         
         /** Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to infinite looping (see [method set_loops]). */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     /** Abstract class for all Tweeners used by [Tween].  
      *  	  
@@ -7806,7 +7806,7 @@ declare module "godot" {
     class Tweener extends RefCounted {
         constructor(identifier?: any)
         /** Emitted when the [Tweener] has just finished its job. */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     /** Helper class to implement a UDP server.  
      *  	  
@@ -8157,7 +8157,7 @@ declare module "godot" {
         undo(): boolean
         
         /** Called when [method undo] or [method redo] was called. */
-        readonly version_changed: Signal //  => void
+        readonly version_changed: Signal0
     }
     /** A container that arranges its child controls vertically.  
      *  	  
@@ -8458,7 +8458,7 @@ declare module "godot" {
         set bus(value: StringName)
         
         /** Emitted when playback is finished. */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     /** [VideoStream] resource for Ogg Theora videos.  
      *  	  
@@ -8996,10 +8996,10 @@ declare module "godot" {
         set canvas_cull_mask(value: int64)
         
         /** Emitted when the size of the viewport is changed, whether by resizing of window, or some other means. */
-        readonly size_changed: Signal //  => void
+        readonly size_changed: Signal0
         
         /** Emitted when a Control node grabs keyboard focus. */
-        readonly gui_focus_changed: Signal // node: Control => void
+        readonly gui_focus_changed: Signal1<Control>
     }
     class ViewportNavigationControl extends Control {
         constructor(identifier?: any)
@@ -9089,10 +9089,10 @@ declare module "godot" {
         set rect(value: Rect2)
         
         /** Emitted when the VisibleOnScreenNotifier2D enters the screen. */
-        readonly screen_entered: Signal //  => void
+        readonly screen_entered: Signal0
         
         /** Emitted when the VisibleOnScreenNotifier2D exits the screen. */
-        readonly screen_exited: Signal //  => void
+        readonly screen_exited: Signal0
     }
     /** A box-shaped region of 3D space that detects whether it is visible on screen.  
      *  	  
@@ -9111,10 +9111,10 @@ declare module "godot" {
         set aabb(value: AABB)
         
         /** Emitted when the [VisibleOnScreenNotifier3D] enters the screen. */
-        readonly screen_entered: Signal //  => void
+        readonly screen_entered: Signal0
         
         /** Emitted when the [VisibleOnScreenNotifier3D] exits the screen. */
-        readonly screen_exited: Signal //  => void
+        readonly screen_exited: Signal0
     }
     class VisibleOnScreenNotifier3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)

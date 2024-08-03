@@ -843,7 +843,7 @@ declare module "godot" {
         /* gdvirtual */ _area_set_monitorable(area: RID, monitorable: boolean): void
         
         /** If set to `true`, allows the area with the given [RID] to detect mouse inputs when the mouse cursor is hovering on it.  
-         *  Overridable version of [PhysicsServer2D]'s internal `area_set_pickable` method. Corresponds to [member PhysicsBody2D.input_pickable].  
+         *  Overridable version of [PhysicsServer2D]'s internal `area_set_pickable` method. Corresponds to [member CollisionObject2D.input_pickable].  
          */
         /* gdvirtual */ _area_set_pickable(area: RID, pickable: boolean): void
         
@@ -1040,7 +1040,7 @@ declare module "godot" {
         /* gdvirtual */ _body_collide_shape(body: RID, body_shape: int64, shape: RID, shape_xform: Transform2D, motion: Vector2, results: int64, result_max: int64, result_count: int64): boolean
         
         /** If set to `true`, allows the body with the given [RID] to detect mouse inputs when the mouse cursor is hovering on it.  
-         *  Overridable version of [PhysicsServer2D]'s internal `body_set_pickable` method. Corresponds to [member PhysicsBody2D.input_pickable].  
+         *  Overridable version of [PhysicsServer2D]'s internal `body_set_pickable` method. Corresponds to [member CollisionObject2D.input_pickable].  
          */
         /* gdvirtual */ _body_set_pickable(body: RID, pickable: boolean): void
         
@@ -1797,7 +1797,7 @@ declare module "godot" {
     }
     class PluginConfigDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly plugin_ready: Signal // script_path: string, activate_name: string => void
+        readonly plugin_ready: Signal2<string, string>
     }
     /** Positional 2D light source.  
      *  	  
@@ -1975,7 +1975,7 @@ declare module "godot" {
     class Popup extends Window {
         constructor(identifier?: any)
         /** Emitted when the popup is hidden. */
-        readonly popup_hide: Signal //  => void
+        readonly popup_hide: Signal0
     }
     /** A modal window used to display a list of options.  
      *  	  
@@ -2265,16 +2265,16 @@ declare module "godot" {
          *      
          *  **Note:** If [param id] is negative (either explicitly or due to overflow), this will return the corresponding index instead.  
          */
-        readonly id_pressed: Signal // id: int64 => void
+        readonly id_pressed: Signal1<int64>
         
         /** Emitted when the user navigated to an item of some [param id] using the [member ProjectSettings.input/ui_up] or [member ProjectSettings.input/ui_down] input action. */
-        readonly id_focused: Signal // id: int64 => void
+        readonly id_focused: Signal1<int64>
         
         /** Emitted when an item of some [param index] is pressed or its accelerator is activated. */
-        readonly index_pressed: Signal // index: int64 => void
+        readonly index_pressed: Signal1<int64>
         
         /** Emitted when any item is added, modified or removed. */
-        readonly menu_changed: Signal //  => void
+        readonly menu_changed: Signal0
     }
     /** A popup with a panel background.  
      *  	  
@@ -2506,7 +2506,7 @@ declare module "godot" {
     }
     class ProjectExportTextureFormatError extends HBoxContainer {
         constructor(identifier?: any)
-        readonly texture_format_enabled: Signal //  => void
+        readonly texture_format_enabled: Signal0
     }
     class ProjectSettingsEditor extends AcceptDialog {
         constructor(identifier?: any)
@@ -2515,7 +2515,7 @@ declare module "godot" {
     }
     class PropertySelector extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly selected: Signal // name: string => void
+        readonly selected: Signal1<string>
     }
     /** Interpolates an [Object]'s property over time.  
      *  	  
@@ -3180,10 +3180,10 @@ declare module "godot" {
          *      
          *  **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also emitted when [param value] is set directly via code.  
          */
-        readonly value_changed: Signal // value: float64 => void
+        readonly value_changed: Signal1<float64>
         
         /** Emitted when [member min_value], [member max_value], [member page], or [member step] change. */
-        readonly changed: Signal //  => void
+        readonly changed: Signal0
     }
     /** A ray in 2D space, used to find the first [CollisionObject2D] it intersects.  
      *  	  
@@ -5668,7 +5668,7 @@ declare module "godot" {
     class ReparentDialog extends ConfirmationDialog {
         constructor(identifier?: any)
         _cancel(): void
-        readonly reparent: Signal // path: NodePath | string, keep_global_xform: boolean => void
+        readonly reparent: Signal2<NodePath | string, boolean>
     }
     class ReplicationEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -5744,12 +5744,12 @@ declare module "godot" {
          *      
          *  **Note:** This signal is not emitted automatically for properties of custom resources. If necessary, a setter needs to be created to emit the signal.  
          */
-        readonly changed: Signal //  => void
+        readonly changed: Signal0
         
         /** Emitted by a newly duplicated resource with [member resource_local_to_scene] set to `true`.   
          *   *Deprecated.*  This signal is only emitted when the resource is created. Override [method _setup_local_to_scene] instead.  
          */
-        readonly setup_local_to_scene_requested: Signal //  => void
+        readonly setup_local_to_scene_requested: Signal0
     }
     class ResourceFormatImporterSaver extends ResourceFormatSaver {
         constructor(identifier?: any)
@@ -6479,16 +6479,16 @@ declare module "godot" {
          *  For example, the following method can be connected to [signal meta_clicked] to open clicked URLs using the user's default web browser:  
          *    
          */
-        readonly meta_clicked: Signal // meta: any => void
+        readonly meta_clicked: Signal1<any>
         
         /** Triggers when the mouse enters a meta tag. */
-        readonly meta_hover_started: Signal // meta: any => void
+        readonly meta_hover_started: Signal1<any>
         
         /** Triggers when the mouse exits a meta tag. */
-        readonly meta_hover_ended: Signal // meta: any => void
+        readonly meta_hover_ended: Signal1<any>
         
         /** Triggered when the document is fully loaded. */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     namespace RigidBody2D {
         enum FreezeMode {
@@ -6723,7 +6723,7 @@ declare module "godot" {
          *  [param body_shape_index] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap] used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
          *  [param local_shape_index] the index of the [Shape2D] of this RigidBody2D used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
          */
-        readonly body_shape_entered: Signal // body_rid: RID, body: Node, body_shape_index: int64, local_shape_index: int64 => void
+        readonly body_shape_entered: Signal4<RID, Node, int64, int64>
         
         /** Emitted when the collision between one of this RigidBody2D's [Shape2D]s and another [PhysicsBody2D] or [TileMap]'s [Shape2D]s ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
          *  [param body_rid] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the [PhysicsServer2D].  
@@ -6731,23 +6731,23 @@ declare module "godot" {
          *  [param body_shape_index] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap] used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
          *  [param local_shape_index] the index of the [Shape2D] of this RigidBody2D used by the [PhysicsServer2D]. Get the [CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
          */
-        readonly body_shape_exited: Signal // body_rid: RID, body: Node, body_shape_index: int64, local_shape_index: int64 => void
+        readonly body_shape_exited: Signal4<RID, Node, int64, int64>
         
         /** Emitted when a collision with another [PhysicsBody2D] or [TileMap] occurs. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
          *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
          */
-        readonly body_entered: Signal // body: Node => void
+        readonly body_entered: Signal1<Node>
         
         /** Emitted when the collision with another [PhysicsBody2D] or [TileMap] ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.  
          *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].  
          */
-        readonly body_exited: Signal // body: Node => void
+        readonly body_exited: Signal1<Node>
         
         /** Emitted when the physics engine changes the body's sleeping state.  
          *      
          *  **Note:** Changing the value [member sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is used.  
          */
-        readonly sleeping_state_changed: Signal //  => void
+        readonly sleeping_state_changed: Signal0
     }
     namespace RigidBody3D {
         enum FreezeMode {
@@ -6975,7 +6975,7 @@ declare module "godot" {
          *  [param body_shape_index] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
          *  [param local_shape_index] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
          */
-        readonly body_shape_entered: Signal // body_rid: RID, body: Node, body_shape_index: int64, local_shape_index: int64 => void
+        readonly body_shape_entered: Signal4<RID, Node, int64, int64>
         
         /** Emitted when the collision between one of this RigidBody3D's [Shape3D]s and another [PhysicsBody3D] or [GridMap]'s [Shape3D]s ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
          *  [param body_rid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by the [PhysicsServer3D]. [GridMap]s are detected if the Meshes have [Shape3D]s.  
@@ -6983,23 +6983,23 @@ declare module "godot" {
          *  [param body_shape_index] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.  
          *  [param local_shape_index] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.  
          */
-        readonly body_shape_exited: Signal // body_rid: RID, body: Node, body_shape_index: int64, local_shape_index: int64 => void
+        readonly body_shape_exited: Signal4<RID, Node, int64, int64>
         
         /** Emitted when a collision with another [PhysicsBody3D] or [GridMap] occurs. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
          *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
          */
-        readonly body_entered: Signal // body: Node => void
+        readonly body_entered: Signal1<Node>
         
         /** Emitted when the collision with another [PhysicsBody3D] or [GridMap] ends. Requires [member contact_monitor] to be set to `true` and [member max_contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.  
          *  [param body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].  
          */
-        readonly body_exited: Signal // body: Node => void
+        readonly body_exited: Signal1<Node>
         
         /** Emitted when the physics engine changes the body's sleeping state.  
          *      
          *  **Note:** Changing the value [member sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is used.  
          */
-        readonly sleeping_state_changed: Signal //  => void
+        readonly sleeping_state_changed: Signal0
     }
     /** Editor-only helper for setting up root motion in [AnimationMixer].  
      *  	  
@@ -7034,8 +7034,8 @@ declare module "godot" {
         register_command(p_text: string, p_callable: Callable, p_help: string): int64
         unregister_command(p_id: int64): void
         find_objects(p_keyword: string): PackedStringArray
-        readonly on_output: Signal //  => void
-        readonly on_clear: Signal //  => void
+        readonly on_output: Signal0
+        readonly on_clear: Signal0
     }
     class RsEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -7068,9 +7068,9 @@ declare module "godot" {
         set direction(value: Vector3)
         get is_moving(): boolean
         set is_moving(value: boolean)
-        readonly game_over: Signal //  => void
-        readonly damage_emitted: Signal // pos: Vector3, time: float64 => void
-        readonly info_updated: Signal // hp: float64, hp_max: float64, exp: float64, exp_max: float64, level: int64, crowd: int64 => void
+        readonly game_over: Signal0
+        readonly damage_emitted: Signal2<Vector3, float64>
+        readonly info_updated: Signal
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_rsoutputdevice.html */
     class RsOutputDevice extends RefCounted {
@@ -7090,7 +7090,7 @@ declare module "godot" {
         set shader(value: Shader)
         get texture(): Texture2D
         set texture(value: Texture2D)
-        readonly frame_changed: Signal //  => void
+        readonly frame_changed: Signal0
     }
     class RsTerrainGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -7178,13 +7178,13 @@ declare module "godot" {
         set max_delta_packet_size(value: int64)
         
         /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] connects to a new peer and a valid [member auth_callback] is set. In this case, the [signal MultiplayerAPI.peer_connected] will not be emitted until [method complete_auth] is called with given peer [param id]. While in this state, the peer will not be included in the list returned by [method MultiplayerAPI.get_peers] (but in the one returned by [method get_authenticating_peers]), and only authentication data will be sent or received. See [method send_auth] for sending authentication data. */
-        readonly peer_authenticating: Signal // id: int64 => void
+        readonly peer_authenticating: Signal1<int64>
         
         /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] disconnects from a peer for which authentication had not yet completed. See [signal peer_authenticating]. */
-        readonly peer_authentication_failed: Signal // id: int64 => void
+        readonly peer_authentication_failed: Signal1<int64>
         
         /** Emitted when this MultiplayerAPI's [member MultiplayerAPI.multiplayer_peer] receives a [param packet] with custom data (see [method send_bytes]). ID is the peer ID of the peer that sent the packet. */
-        readonly peer_packet: Signal // id: int64, packet: PackedByteArray | byte[] | ArrayBuffer => void
+        readonly peer_packet: Signal2<int64, PackedByteArray | byte[] | ArrayBuffer>
     }
     class SceneRPCInterface extends RefCounted {
         constructor(identifier?: any)
@@ -7363,7 +7363,7 @@ declare module "godot" {
     }
     class SceneTileProxyObject extends Object {
         constructor(identifier?: any)
-        readonly changed: Signal // what: string => void
+        readonly changed: Signal1<string>
     }
     namespace SceneTree {
         enum GroupCallFlags {
@@ -7569,33 +7569,33 @@ declare module "godot" {
         set multiplayer_poll(value: boolean)
         
         /** Emitted whenever the [SceneTree] hierarchy changed (children being moved or renamed, etc.). */
-        readonly tree_changed: Signal //  => void
+        readonly tree_changed: Signal0
         
         /** This signal is only emitted in the editor, it allows the editor to update the visibility of disabled nodes. Emitted whenever any node's [member Node.process_mode] is changed. */
-        readonly tree_process_mode_changed: Signal //  => void
+        readonly tree_process_mode_changed: Signal0
         
         /** Emitted whenever a node is added to the [SceneTree]. */
-        readonly node_added: Signal // node: Node => void
+        readonly node_added: Signal1<Node>
         
         /** Emitted whenever a node is removed from the [SceneTree]. */
-        readonly node_removed: Signal // node: Node => void
+        readonly node_removed: Signal1<Node>
         
         /** Emitted whenever a node is renamed. */
-        readonly node_renamed: Signal // node: Node => void
+        readonly node_renamed: Signal1<Node>
         
         /** Emitted when a node's configuration changed. Only emitted in `tool` mode. */
-        readonly node_configuration_warning_changed: Signal // node: Node => void
+        readonly node_configuration_warning_changed: Signal1<Node>
         
         /** Emitted immediately before [method Node._process] is called on every node in the [SceneTree]. */
-        readonly process_frame: Signal //  => void
+        readonly process_frame: Signal0
         
         /** Emitted immediately before [method Node._physics_process] is called on every node in the [SceneTree]. */
-        readonly physics_frame: Signal //  => void
+        readonly physics_frame: Signal0
     }
     class SceneTreeDialog extends ConfirmationDialog {
         constructor(identifier?: any)
         _cancel(): void
-        readonly selected: Signal // path: NodePath | string => void
+        readonly selected: Signal1<NodePath | string>
     }
     class SceneTreeDock extends VBoxContainer {
         constructor(identifier?: any)
@@ -7604,9 +7604,9 @@ declare module "godot" {
         instantiate(_unnamed_arg0: string): void
         get_tree_editor(): SceneTreeEditor
         replace_node(_unnamed_arg0: Node, _unnamed_arg1: Node, _unnamed_arg2: boolean, _unnamed_arg3: boolean): void
-        readonly remote_tree_selected: Signal //  => void
-        readonly add_node_used: Signal //  => void
-        readonly node_created: Signal // node: Node => void
+        readonly remote_tree_selected: Signal0
+        readonly add_node_used: Signal0
+        readonly node_created: Signal1<Node>
     }
     class SceneTreeEditor extends Control {
         constructor(identifier?: any)
@@ -7614,17 +7614,17 @@ declare module "godot" {
         _rename_node(_unnamed_arg0: Node, _unnamed_arg1: string): void
         _test_update_tree(): void
         update_tree(): void
-        readonly node_selected: Signal //  => void
-        readonly node_renamed: Signal //  => void
-        readonly node_prerename: Signal //  => void
-        readonly node_changed: Signal //  => void
-        readonly nodes_dragged: Signal //  => void
-        readonly nodes_rearranged: Signal // paths: Array, to_path: NodePath | string, type: int64 => void
-        readonly files_dropped: Signal // files: PackedStringArray | string[], to_path: NodePath | string, type: int64 => void
-        readonly script_dropped: Signal // file: string, to_path: NodePath | string => void
-        readonly rmb_pressed: Signal // position: Vector2 => void
-        readonly open: Signal //  => void
-        readonly open_script: Signal //  => void
+        readonly node_selected: Signal0
+        readonly node_renamed: Signal0
+        readonly node_prerename: Signal0
+        readonly node_changed: Signal0
+        readonly nodes_dragged: Signal0
+        readonly nodes_rearranged: Signal3<Array, NodePath | string, int64>
+        readonly files_dropped: Signal3<PackedStringArray | string[], NodePath | string, int64>
+        readonly script_dropped: Signal2<string, NodePath | string>
+        readonly rmb_pressed: Signal1<Vector2>
+        readonly open: Signal0
+        readonly open_script: Signal0
     }
     /** One-shot timer.  
      *  	  
@@ -7637,11 +7637,11 @@ declare module "godot" {
         set time_left(value: float64)
         
         /** Emitted when the timer reaches 0. */
-        readonly timeout: Signal //  => void
+        readonly timeout: Signal0
     }
     class ScreenSelect extends Button {
         constructor(identifier?: any)
-        readonly request_open_in_screen: Signal // screen: int64 => void
+        readonly request_open_in_screen: Signal1<int64>
     }
     /** A class stored as a resource.  
      *  	  
@@ -7705,7 +7705,7 @@ declare module "godot" {
         config(inherits: string, path: string, built_in_enabled: boolean = true, load_enabled: boolean = true): void
         
         /** Emitted when the user clicks the OK button. */
-        readonly script_created: Signal // script: Script => void
+        readonly script_created: Signal1<Script>
     }
     /** Godot editor's script editor.  
      *  	  
@@ -7755,10 +7755,10 @@ declare module "godot" {
         open_script_create_dialog(base_name: string, base_path: string): void
         
         /** Emitted when user changed active script. Argument is a freshly activated [Script]. */
-        readonly editor_script_changed: Signal // script: Script => void
+        readonly editor_script_changed: Signal1<Script>
         
         /** Emitted when editor is about to close the active script. Argument is a [Script] that is going to be closed. */
-        readonly script_close: Signal // script: Script => void
+        readonly script_close: Signal1<Script>
     }
     /** Base editor for editing scripts in the [ScriptEditor].  
      *  	  
@@ -7773,34 +7773,38 @@ declare module "godot" {
         add_syntax_highlighter(highlighter: EditorSyntaxHighlighter): void
         
         /** Emitted after script validation or when the edited resource has changed. */
-        readonly name_changed: Signal //  => void
+        readonly name_changed: Signal0
         
         /** Emitted after script validation. */
-        readonly edited_script_changed: Signal //  => void
+        readonly edited_script_changed: Signal0
         
         /** Emitted when the user requests contextual help. */
-        readonly request_help: Signal // topic: string => void
+        readonly request_help: Signal1<string>
         
         /** Emitted when the user requests to view a specific line of a script, similar to [signal go_to_method]. */
-        readonly request_open_script_at_line: Signal // script: Object, line: int64 => void
+        readonly request_open_script_at_line: Signal2<Object, int64>
         
         /** Emitted when the user contextual goto and the item is in the same script. */
-        readonly request_save_history: Signal //  => void
+        readonly request_save_history: Signal0
         
         /** Emitted when the user requests a specific documentation page. */
-        readonly go_to_help: Signal // what: string => void
+        readonly go_to_help: Signal1<string>
         
         /** Emitted when the user request to search text in the file system. */
-        readonly search_in_files_requested: Signal // text: string => void
+        readonly search_in_files_requested: Signal1<string>
         
         /** Emitted when the user request to find and replace text in the file system. */
-        readonly replace_in_files_requested: Signal // text: string => void
+        readonly replace_in_files_requested: Signal1<string>
         
         /** Emitted when the user requests to view a specific method of a script, similar to [signal request_open_script_at_line]. */
-        readonly go_to_method: Signal // script: Object, method: string => void
+        readonly go_to_method: Signal2<Object, string>
     }
     class ScriptEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
+    }
+    class ScriptEditorQuickOpen extends ConfirmationDialog {
+        constructor(identifier?: any)
+        readonly goto_line: Signal1<int64>
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptextension.html */
     class ScriptExtension extends Script {
@@ -7948,6 +7952,9 @@ declare module "godot" {
         /* gdvirtual */ _handles_global_class_type(type: string): boolean
         /* gdvirtual */ _get_global_class_name(path: string): Dictionary
     }
+    class ScriptTextEditor extends ScriptEditorBase {
+        constructor(identifier?: any)
+    }
     /** Abstract base class for scrollbars.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_scrollbar.html  
@@ -7959,7 +7966,7 @@ declare module "godot" {
         set custom_step(value: float64)
         
         /** Emitted when the scrollbar is being scrolled. */
-        readonly scrolling: Signal //  => void
+        readonly scrolling: Signal0
     }
     namespace ScrollContainer {
         enum ScrollMode {
@@ -8045,13 +8052,13 @@ declare module "godot" {
          *      
          *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
          */
-        readonly scroll_started: Signal //  => void
+        readonly scroll_started: Signal0
         
         /** Emitted when scrolling stops when dragging the scrollable area  *with a touch event* . This signal is  *not*  emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
          *      
          *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
          */
-        readonly scroll_ended: Signal //  => void
+        readonly scroll_ended: Signal0
     }
     class SectionedInspector extends HSplitContainer {
         constructor(identifier?: any)
@@ -8183,8 +8190,8 @@ declare module "godot" {
     class ShaderCreateDialog extends ConfirmationDialog {
         constructor(identifier?: any)
         config(path: string, built_in_enabled: boolean, load_enabled: boolean, _unnamed_arg3: int64 = 1, _unnamed_arg4: int64 = 1): void
-        readonly shader_created: Signal // shader: Shader => void
-        readonly shader_include_created: Signal // shader_include: ShaderInclude => void
+        readonly shader_created: Signal1<Shader>
+        readonly shader_include_created: Signal1<ShaderInclude>
     }
     class ShaderEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -8198,13 +8205,13 @@ declare module "godot" {
     class ShaderGlobalsEditor extends VBoxContainer {
         constructor(identifier?: any)
         _changed(): void
-        readonly globals_changed: Signal //  => void
+        readonly globals_changed: Signal0
     }
     class ShaderGlobalsEditorInterface extends Object {
         constructor(identifier?: any)
         _set_var(_unnamed_arg0: StringName, _unnamed_arg1: any, _unnamed_arg2: any): void
         _var_changed(): void
-        readonly var_changed: Signal //  => void
+        readonly var_changed: Signal0
     }
     /** A node used to override global shader parameters' values in a scene.  
      *  	  
@@ -8550,7 +8557,7 @@ declare module "godot" {
     }
     class SizeFlagPresetPicker extends ControlEditorPresetPicker {
         constructor(identifier?: any)
-        readonly size_flags_selected: Signal // size_flags: int64 => void
+        readonly size_flags_selected: Signal1<int64>
     }
     /** The parent of a hierarchy of [Bone2D]s, used to create a 2D skeletal animation.  
      *  	  
@@ -8590,7 +8597,7 @@ declare module "godot" {
         get_bone_local_pose_override(bone_idx: int64): Transform2D
         
         /** Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used internally within the skeleton. */
-        readonly bone_setup_changed: Signal //  => void
+        readonly bone_setup_changed: Signal0
     }
     class Skeleton2DEditor extends Control {
         constructor(identifier?: any)
@@ -8760,16 +8767,16 @@ declare module "godot" {
         set animate_physical_bones(value: boolean)
         
         /** Emitted when the pose is updated, after [constant NOTIFICATION_UPDATE_SKELETON] is received. */
-        readonly pose_updated: Signal //  => void
+        readonly pose_updated: Signal0
         
         /** This signal is emitted when one of the bones in the Skeleton3D node have changed their pose. This is used to inform nodes that rely on bone positions that one of the bones in the Skeleton3D have changed their transform/pose. */
-        readonly bone_pose_changed: Signal // bone_idx: int64 => void
+        readonly bone_pose_changed: Signal1<int64>
         
         /** Emitted when the bone at [param bone_idx] is toggled with [method set_bone_enabled]. Use [method is_bone_enabled] to check the new value. */
-        readonly bone_enabled_changed: Signal // bone_idx: int64 => void
+        readonly bone_enabled_changed: Signal1<int64>
         
         /** Emitted when the value of [member show_rest_only] changes. */
-        readonly show_rest_only_changed: Signal //  => void
+        readonly show_rest_only_changed: Signal0
     }
     class Skeleton3DEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)

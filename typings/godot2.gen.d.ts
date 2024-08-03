@@ -40,8 +40,8 @@ declare module "godot" {
     }
     class CreateDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly create: Signal //  => void
-        readonly favorites_updated: Signal //  => void
+        readonly create: Signal0
+        readonly favorites_updated: Signal0
     }
     /** Provides access to advanced cryptographic functionalities.  
      *  	  
@@ -225,7 +225,7 @@ declare module "godot" {
         set point_count(value: any /*Points,point_*/)
         
         /** Emitted when [member max_value] or [member min_value] is changed. */
-        readonly range_changed: Signal //  => void
+        readonly range_changed: Signal0
     }
     /** Describes a Bézier curve in 2D space.  
      *  	  
@@ -702,9 +702,9 @@ declare module "godot" {
     }
     class DependencyRemoveDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly resource_removed: Signal // obj: Object => void
-        readonly file_removed: Signal // file: string => void
-        readonly folder_removed: Signal // folder: string => void
+        readonly resource_removed: Signal1<Object>
+        readonly file_removed: Signal1<string>
+        readonly folder_removed: Signal1<string>
     }
     /** Provides methods for managing directories and their content.  
      *  	  
@@ -917,7 +917,7 @@ declare module "godot" {
     }
     class DirectoryCreateDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly dir_created: Signal //  => void
+        readonly dir_created: Signal0
     }
     class DynamicFontImportSettings extends ConfirmationDialog {
         constructor(identifier?: any)
@@ -1236,17 +1236,17 @@ declare module "godot" {
     }
     class EditorAssetLibrary extends PanelContainer {
         constructor(identifier?: any)
-        readonly install_asset: Signal // zip_path: string, name: string => void
+        readonly install_asset: Signal2<string, string>
     }
     class EditorAudioBus extends PanelContainer {
         constructor(identifier?: any)
         update_bus(): void
         update_send(): void
-        readonly duplicate_request: Signal //  => void
-        readonly delete_request: Signal //  => void
-        readonly vol_reset_request: Signal //  => void
-        readonly drop_end_request: Signal //  => void
-        readonly dropped: Signal //  => void
+        readonly duplicate_request: Signal0
+        readonly delete_request: Signal0
+        readonly vol_reset_request: Signal0
+        readonly drop_end_request: Signal0
+        readonly dropped: Signal0
     }
     class EditorAudioBuses extends VBoxContainer {
         constructor(identifier?: any)
@@ -1267,7 +1267,7 @@ declare module "godot" {
         update_autoload(): void
         autoload_add(_unnamed_arg0: string, _unnamed_arg1: string): boolean
         autoload_remove(_unnamed_arg0: string): void
-        readonly autoload_changed: Signal //  => void
+        readonly autoload_changed: Signal0
     }
     class EditorBitmapPreviewPlugin extends EditorResourcePreviewGenerator {
         constructor(identifier?: any)
@@ -1331,9 +1331,9 @@ declare module "godot" {
     }
     class EditorDebuggerInspector extends EditorInspector {
         constructor(identifier?: any)
-        readonly object_selected: Signal // id: int64 => void
-        readonly object_edited: Signal // id: int64, property: string, : any /*value*/ => void
-        readonly object_property_updated: Signal // id: int64, property: string => void
+        readonly object_selected: Signal1<int64>
+        readonly object_edited: Signal3<int64, string, any /*value*/>
+        readonly object_property_updated: Signal2<int64, string>
     }
     class EditorDebuggerNode extends MarginContainer {
         constructor(identifier?: any)
@@ -1344,13 +1344,13 @@ declare module "godot" {
         live_debug_restore_node(_unnamed_arg0: int64, _unnamed_arg1: NodePath | string, _unnamed_arg2: int64): void
         live_debug_duplicate_node(_unnamed_arg0: NodePath | string, _unnamed_arg1: string): void
         live_debug_reparent_node(_unnamed_arg0: NodePath | string, _unnamed_arg1: NodePath | string, _unnamed_arg2: string, _unnamed_arg3: int64): void
-        readonly goto_script_line: Signal //  => void
-        readonly set_execution: Signal // : any /*script*/, line: int64 => void
-        readonly clear_execution: Signal // : any /*script*/ => void
-        readonly breaked: Signal // reallydid: boolean, can_debug: boolean => void
-        readonly breakpoint_toggled: Signal // path: string, line: int64, enabled: boolean => void
-        readonly breakpoint_set_in_tree: Signal // : any /*script*/, line: int64, enabled: boolean, debugger: int64 => void
-        readonly breakpoints_cleared_in_tree: Signal // debugger: int64 => void
+        readonly goto_script_line: Signal0
+        readonly set_execution: Signal2<any /*script*/, int64>
+        readonly clear_execution: Signal1<any /*script*/>
+        readonly breaked: Signal2<boolean, boolean>
+        readonly breakpoint_toggled: Signal3<string, int64, boolean>
+        readonly breakpoint_set_in_tree: Signal4<any /*script*/, int64, boolean, int64>
+        readonly breakpoints_cleared_in_tree: Signal1<int64>
     }
     /** A base class to implement debugger plugins.  
      *  	  
@@ -1382,7 +1382,7 @@ declare module "godot" {
         get_variant(_unnamed_arg0: StringName): any
         clear(): void
         get_remote_object_id(): int64
-        readonly value_edited: Signal // object_id: int64, property: string, : any /*value*/ => void
+        readonly value_edited: Signal3<int64, string, any /*value*/>
     }
     /** A class to interact with the editor debugger.  
      *  	  
@@ -1412,30 +1412,30 @@ declare module "godot" {
         remove_session_tab(control: Control): void
         
         /** Emitted when a remote instance is attached to this session (i.e. the session becomes active). */
-        readonly started: Signal //  => void
+        readonly started: Signal0
         
         /** Emitted when a remote instance is detached from this session (i.e. the session becomes inactive). */
-        readonly stopped: Signal //  => void
+        readonly stopped: Signal0
         
         /** Emitted when the attached remote instance enters a break state. If [param can_debug] is `true`, the remote instance will enter the debug loop. */
-        readonly breaked: Signal // can_debug: boolean => void
+        readonly breaked: Signal1<boolean>
         
         /** Emitted when the attached remote instance exits a break state. */
-        readonly continued: Signal //  => void
+        readonly continued: Signal0
     }
     class EditorDebuggerTree extends Tree {
         constructor(identifier?: any)
-        readonly object_selected: Signal // object_id: int64, debugger: int64 => void
-        readonly save_node: Signal // object_id: int64, filename: string, debugger: int64 => void
-        readonly open: Signal //  => void
+        readonly object_selected: Signal2<int64, int64>
+        readonly save_node: Signal3<int64, string, int64>
+        readonly open: Signal0
     }
     class EditorDirDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly dir_selected: Signal // dir: string => void
+        readonly dir_selected: Signal1<string>
     }
     class EditorExport extends Node {
         constructor(identifier?: any)
-        readonly export_presets_updated: Signal //  => void
+        readonly export_presets_updated: Signal0
     }
     class EditorExportGDScript extends EditorExportPlugin {
         constructor(identifier?: any)
@@ -1742,7 +1742,7 @@ declare module "godot" {
     }
     class EditorFeatureProfileManager extends AcceptDialog {
         constructor(identifier?: any)
-        readonly current_feature_profile_changed: Signal //  => void
+        readonly current_feature_profile_changed: Signal0
     }
     namespace EditorFileDialog {
         enum FileMode {
@@ -1851,13 +1851,13 @@ declare module "godot" {
         set disable_overwrite_warning(value: boolean)
         
         /** Emitted when a file is selected. */
-        readonly file_selected: Signal // path: string => void
+        readonly file_selected: Signal1<string>
         
         /** Emitted when multiple files are selected. */
-        readonly files_selected: Signal // paths: PackedStringArray | string[] => void
+        readonly files_selected: Signal1<PackedStringArray | string[]>
         
         /** Emitted when a directory is selected. */
-        readonly dir_selected: Signal // dir: string => void
+        readonly dir_selected: Signal1<string>
     }
     class EditorFileServer extends Object {
         constructor(identifier?: any)
@@ -1902,19 +1902,19 @@ declare module "godot" {
         reimport_files(files: PackedStringArray | string[]): void
         
         /** Emitted if the filesystem changed. */
-        readonly filesystem_changed: Signal //  => void
+        readonly filesystem_changed: Signal0
         
         /** Emitted when the list of global script classes gets updated. */
-        readonly script_classes_updated: Signal //  => void
+        readonly script_classes_updated: Signal0
         
         /** Emitted if the source of any imported file changed. */
-        readonly sources_changed: Signal // exist: boolean => void
+        readonly sources_changed: Signal1<boolean>
         
         /** Emitted if a resource is reimported. */
-        readonly resources_reimported: Signal // resources: PackedStringArray | string[] => void
+        readonly resources_reimported: Signal1<PackedStringArray | string[]>
         
         /** Emitted if at least one resource is reloaded when the filesystem is scanned. */
-        readonly resources_reload: Signal // resources: PackedStringArray | string[] => void
+        readonly resources_reload: Signal1<PackedStringArray | string[]>
     }
     /** A directory for the resource filesystem.  
      *  	  
@@ -1991,11 +1991,11 @@ declare module "godot" {
     class EditorHelpBit extends MarginContainer {
         constructor(identifier?: any)
         set_text(text: string): void
-        readonly request_hide: Signal //  => void
+        readonly request_hide: Signal0
     }
     class EditorHelpSearch extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly go_to_help: Signal //  => void
+        readonly go_to_help: Signal0
     }
     class EditorImagePreviewPlugin extends EditorResourcePreviewGenerator {
         constructor(identifier?: any)
@@ -2068,34 +2068,34 @@ declare module "godot" {
         get_edited_object(): Object
         
         /** Emitted when a property is selected in the inspector. */
-        readonly property_selected: Signal // property: string => void
+        readonly property_selected: Signal1<string>
         
         /** Emitted when a property is keyed in the inspector. Properties can be keyed by clicking the "key" icon next to a property when the Animation panel is toggled. */
-        readonly property_keyed: Signal // property: string, value: any, advance: boolean => void
+        readonly property_keyed: Signal3<string, any, boolean>
         
         /** Emitted when a property is removed from the inspector. */
-        readonly property_deleted: Signal // property: string => void
+        readonly property_deleted: Signal1<string>
         
         /** Emitted when a resource is selected in the inspector. */
-        readonly resource_selected: Signal // resource: Resource, path: string => void
+        readonly resource_selected: Signal2<Resource, string>
         
         /** Emitted when the Edit button of an [Object] has been pressed in the inspector. This is mainly used in the remote scene tree Inspector. */
-        readonly object_id_selected: Signal // id: int64 => void
+        readonly object_id_selected: Signal1<int64>
         
         /** Emitted when a property is edited in the inspector. */
-        readonly property_edited: Signal // property: string => void
+        readonly property_edited: Signal1<string>
         
         /** Emitted when a boolean property is toggled in the inspector.  
          *      
          *  **Note:** This signal is never emitted if the internal `autoclear` property enabled. Since this property is always enabled in the editor inspector, this signal is never emitted by the editor itself.  
          */
-        readonly property_toggled: Signal // property: string, checked: boolean => void
+        readonly property_toggled: Signal2<string, boolean>
         
         /** Emitted when the object being edited by the inspector has changed. */
-        readonly edited_object_changed: Signal //  => void
+        readonly edited_object_changed: Signal0
         
         /** Emitted when a property that requires a restart to be applied is edited in the inspector. This is only used in the Project Settings and Editor Settings. */
-        readonly restart_requested: Signal //  => void
+        readonly restart_requested: Signal0
     }
     class EditorInspectorCategory extends Control {
         constructor(identifier?: any)
@@ -2208,13 +2208,6 @@ declare module "godot" {
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
-    class EditorInspectorSection extends Container {
-        constructor(identifier?: any)
-        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: int64): void
-        get_vbox(): VBoxContainer
-        unfold(): void
-        fold(): void
-    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
@@ -2223,11 +2216,11 @@ declare module "godot" {
     }
     class EditorLayoutsDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly name_confirmed: Signal // name: string => void
+        readonly name_confirmed: Signal1<string>
     }
     class EditorLocaleDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly locale_selected: Signal // locale: string => void
+        readonly locale_selected: Signal1<string>
     }
     class EditorLog extends HBoxContainer {
         constructor(identifier?: any)
@@ -2244,8 +2237,8 @@ declare module "godot" {
     }
     class EditorNetworkProfiler extends VBoxContainer {
         constructor(identifier?: any)
-        readonly enable_profiling: Signal // enable: boolean => void
-        readonly open_request: Signal // path: string => void
+        readonly enable_profiling: Signal1<boolean>
+        readonly open_request: Signal1<string>
     }
     class EditorNode extends Node {
         constructor(identifier?: any)
@@ -2257,12 +2250,12 @@ declare module "godot" {
         stop_child_process(_unnamed_arg0: int64): void
         _set_main_scene_state(_unnamed_arg0: Dictionary, _unnamed_arg1: Node): void
         _update_recent_scenes(): void
-        readonly request_help_search: Signal //  => void
-        readonly script_add_function_request: Signal // obj: Object, function: string, args: PackedStringArray | string[] => void
-        readonly resource_saved: Signal // obj: Object => void
-        readonly scene_saved: Signal // path: string => void
-        readonly scene_changed: Signal //  => void
-        readonly scene_closed: Signal // path: string => void
+        readonly request_help_search: Signal0
+        readonly script_add_function_request: Signal3<Object, string, PackedStringArray | string[]>
+        readonly resource_saved: Signal1<Object>
+        readonly scene_saved: Signal1<string>
+        readonly scene_changed: Signal0
+        readonly scene_closed: Signal1<string>
     }
     /** Gizmo for editing [Node3D] objects.  
      *  	  
@@ -2499,6 +2492,9 @@ declare module "godot" {
         get_project_settings_dir(): string
     }
     class EditorPerformanceProfiler extends HSplitContainer {
+        constructor(identifier?: any)
+    }
+    class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
         constructor(identifier?: any)
     }
     namespace EditorPlugin {
@@ -2893,21 +2889,21 @@ declare module "godot" {
         get_plugin_version(): string
         
         /** Emitted when the scene is changed in the editor. The argument will return the root node of the scene that has just become active. If this scene is new and empty, the argument will be `null`. */
-        readonly scene_changed: Signal // scene_root: Node => void
+        readonly scene_changed: Signal1<Node>
         
         /** Emitted when user closes a scene. The argument is file path to a closed scene. */
-        readonly scene_closed: Signal // filepath: string => void
+        readonly scene_closed: Signal1<string>
         
         /** Emitted when user changes the workspace (**2D**, **3D**, **Script**, **AssetLib**). Also works with custom screens defined by plugins. */
-        readonly main_screen_changed: Signal // screen_name: string => void
+        readonly main_screen_changed: Signal1<string>
         
         /** Emitted when the given [param resource] was saved on disc. */
-        readonly resource_saved: Signal // resource: Resource => void
+        readonly resource_saved: Signal1<Resource>
         
         /** Emitted when any project setting has changed.  
          *   *Deprecated.*  Use [signal ProjectSettings.settings_changed] instead.  
          */
-        readonly project_settings_changed: Signal //  => void
+        readonly project_settings_changed: Signal0
     }
     class EditorPluginCSG extends EditorPlugin {
         constructor(identifier?: any)
@@ -2917,8 +2913,8 @@ declare module "godot" {
     }
     class EditorProfiler extends VBoxContainer {
         constructor(identifier?: any)
-        readonly enable_profiling: Signal // enable: boolean => void
-        readonly break_request: Signal //  => void
+        readonly enable_profiling: Signal1<boolean>
+        readonly break_request: Signal0
     }
     /** Custom control for editing properties that can be added to the [EditorInspector].  
      *  	  
@@ -2980,65 +2976,48 @@ declare module "godot" {
         set deletable(value: boolean)
         
         /** Do not emit this manually, use the [method emit_changed] method instead. */
-        readonly property_changed: Signal // property: StringName, value: any, field: StringName, changing: boolean => void
+        readonly property_changed: Signal4<StringName, any, StringName, boolean>
         
         /** Emit it if you want multiple properties modified at the same time. Do not use if added via [method EditorInspectorPlugin._parse_property]. */
-        readonly multiple_properties_changed: Signal // properties: PackedStringArray | string[], value: Array => void
+        readonly multiple_properties_changed: Signal2<PackedStringArray | string[], Array>
         
         /** Emit it if you want to add this value as an animation key (check for keying being enabled first). */
-        readonly property_keyed: Signal // property: StringName => void
+        readonly property_keyed: Signal1<StringName>
         
         /** Emitted when a property was deleted. Used internally. */
-        readonly property_deleted: Signal // property: StringName => void
+        readonly property_deleted: Signal1<StringName>
         
         /** Emit it if you want to key a property with a single value. */
-        readonly property_keyed_with_value: Signal // property: StringName, value: any => void
+        readonly property_keyed_with_value: Signal2<StringName, any>
         
         /** Emitted when a property was checked. Used internally. */
-        readonly property_checked: Signal // property: StringName, checked: boolean => void
+        readonly property_checked: Signal2<StringName, boolean>
         
         /** Emit it if you want to mark (or unmark) the value of a property for being saved regardless of being equal to the default value.  
          *  The default value is the one the property will get when the node is just instantiated and can come from an ancestor scene in the inheritance/instantiation chain, a script or a builtin class.  
          */
-        readonly property_pinned: Signal // property: StringName, pinned: boolean => void
+        readonly property_pinned: Signal2<StringName, boolean>
         
         /** Emitted when the revertability (i.e., whether it has a non-default value and thus is displayed with a revert icon) of a property has changed. */
-        readonly property_can_revert_changed: Signal // property: StringName, can_revert: boolean => void
+        readonly property_can_revert_changed: Signal2<StringName, boolean>
         
         /** If you want a sub-resource to be edited, emit this signal with the resource. */
-        readonly resource_selected: Signal // path: string, resource: Resource => void
+        readonly resource_selected: Signal2<string, Resource>
         
         /** Used by sub-inspectors. Emit it if what was selected was an Object ID. */
-        readonly object_id_selected: Signal // property: StringName, id: int64 => void
+        readonly object_id_selected: Signal2<StringName, int64>
         
         /** Emitted when selected. Used internally. */
-        readonly selected: Signal // path: string, focusable_idx: int64 => void
+        readonly selected: Signal2<string, int64>
     }
     class EditorPropertyCheck extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyColor extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyDictionaryObject extends RefCounted {
         constructor(identifier?: any)
     }
-    class EditorPropertyEnum extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyFloat extends EditorProperty {
-        constructor(identifier?: any)
-    }
     class EditorPropertyInteger extends EditorProperty {
         constructor(identifier?: any)
-    }
-    class EditorPropertyLayers extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyLayersGrid extends Control {
-        constructor(identifier?: any)
-        readonly flag_changed: Signal // flag: int64 => void
-        readonly rename_confirmed: Signal // layer_id: int64, new_name: string => void
     }
     class EditorPropertyLocalizableString extends EditorProperty {
         constructor(identifier?: any)
@@ -3058,9 +3037,6 @@ declare module "godot" {
     class EditorPropertyText extends EditorProperty {
         constructor(identifier?: any)
     }
-    class EditorPropertyVector2 extends EditorPropertyVectorN {
-        constructor(identifier?: any)
-    }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
         constructor(identifier?: any)
     }
@@ -3069,7 +3045,7 @@ declare module "godot" {
     }
     class EditorQuickOpen extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly quick_open: Signal //  => void
+        readonly quick_open: Signal0
     }
     /** Plugin for adding custom converters from one resource format to another in the editor resource picker context menu; for example, converting a [StandardMaterial3D] to a [ShaderMaterial].  
      *  	  
@@ -3125,10 +3101,10 @@ declare module "godot" {
         set toggle_mode(value: boolean)
         
         /** Emitted when the resource value was set and user clicked to edit it. When [param inspect] is `true`, the signal was caused by the context menu "Edit" or "Inspect" option. */
-        readonly resource_selected: Signal // resource: Resource, inspect: boolean => void
+        readonly resource_selected: Signal2<Resource, boolean>
         
         /** Emitted when the value of the edited resource was changed. */
-        readonly resource_changed: Signal // resource: Resource => void
+        readonly resource_changed: Signal1<Resource>
     }
     /** A node used to generate previews of resources or files.  
      *  	  
@@ -3158,7 +3134,7 @@ declare module "godot" {
         check_for_invalidation(path: string): void
         
         /** Emitted if a preview was invalidated (changed). [param path] corresponds to the path of the preview. */
-        readonly preview_invalidated: Signal // path: string => void
+        readonly preview_invalidated: Signal1<string>
     }
     /** Custom generator of previews.  
      *  	  
@@ -3219,12 +3195,12 @@ declare module "godot" {
     }
     class EditorRunBar extends MarginContainer {
         constructor(identifier?: any)
-        readonly play_pressed: Signal //  => void
-        readonly stop_pressed: Signal //  => void
+        readonly play_pressed: Signal0
+        readonly stop_pressed: Signal0
     }
     class EditorRunNative extends HBoxContainer {
         constructor(identifier?: any)
-        readonly native_run: Signal // preset: any /*EditorExportPreset*/ => void
+        readonly native_run: Signal1<any /*EditorExportPreset*/>
     }
     /** Imports scenes from third-parties' 3D files.  
      *  	  
@@ -3335,8 +3311,8 @@ declare module "godot" {
     class EditorSceneTabs extends MarginContainer {
         constructor(identifier?: any)
         _tab_preview_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
-        readonly tab_changed: Signal // tab_index: int64 => void
-        readonly tab_closed: Signal // tab_index: int64 => void
+        readonly tab_changed: Signal1<int64>
+        readonly tab_closed: Signal1<int64>
     }
     /** Base script that can be used to add extension functions to the editor.  
      *  	  
@@ -3399,7 +3375,7 @@ declare module "godot" {
         _emit_change(): void
         
         /** Emitted when the selection changes. */
-        readonly selection_changed: Signal //  => void
+        readonly selection_changed: Signal0
     }
     /** Object that holds the project-independent editor settings.  
      *  	  
@@ -3465,7 +3441,7 @@ declare module "godot" {
         mark_setting_changed(setting: string): void
         
         /** Emitted after any editor setting has changed. */
-        readonly settings_changed: Signal //  => void
+        readonly settings_changed: Signal0
     }
     class EditorSettingsDialog extends AcceptDialog {
         constructor(identifier?: any)
@@ -3499,16 +3475,19 @@ declare module "godot" {
         set hide_slider(value: boolean)
         
         /** Emitted when the spinner/slider is grabbed. */
-        readonly grabbed: Signal //  => void
+        readonly grabbed: Signal0
         
         /** Emitted when the spinner/slider is ungrabbed. */
-        readonly ungrabbed: Signal //  => void
+        readonly ungrabbed: Signal0
         
         /** Emitted when the value form gains focus. */
-        readonly value_focus_entered: Signal //  => void
+        readonly value_focus_entered: Signal0
         
         /** Emitted when the value form loses focus. */
-        readonly value_focus_exited: Signal //  => void
+        readonly value_focus_exited: Signal0
+    }
+    class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
+        constructor(identifier?: any)
     }
     /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
      *  	  
@@ -3618,10 +3597,10 @@ declare module "godot" {
         get_history_undo_redo(id: int64): UndoRedo
         
         /** Emitted when the list of actions in any history has changed, either when an action is committed or a history is cleared. */
-        readonly history_changed: Signal //  => void
+        readonly history_changed: Signal0
         
         /** Emitted when the version of any history has changed as a result of undo or redo call. */
-        readonly version_changed: Signal //  => void
+        readonly version_changed: Signal0
     }
     namespace EditorVCSInterface {
         enum ChangeType {
@@ -3758,14 +3737,14 @@ declare module "godot" {
     }
     class EditorVisualProfiler extends VBoxContainer {
         constructor(identifier?: any)
-        readonly enable_profiling: Signal // enable: boolean => void
+        readonly enable_profiling: Signal1<boolean>
     }
     class EditorZoomWidget extends HBoxContainer {
         constructor(identifier?: any)
         set_zoom_by_increments(increment: int64, integer_only: boolean): void
         get zoom(): float64
         set zoom(value: float64)
-        readonly zoom_changed: Signal // zoom: float64 => void
+        readonly zoom_changed: Signal1<float64>
     }
     /** Holds a reference to an [Object]'s instance ID.  
      *  	  
@@ -4299,7 +4278,7 @@ declare module "godot" {
     }
     class EventListenerLineEdit extends LineEdit {
         constructor(identifier?: any)
-        readonly event_changed: Signal // event: InputEvent => void
+        readonly event_changed: Signal1<InputEvent>
     }
     class ExportTemplateManager extends AcceptDialog {
         constructor(identifier?: any)
@@ -4966,13 +4945,13 @@ declare module "godot" {
         set current_path(value: string)
         
         /** Emitted when the user selects a file by double-clicking it or pressing the **OK** button. */
-        readonly file_selected: Signal // path: string => void
+        readonly file_selected: Signal1<string>
         
         /** Emitted when the user selects multiple files. */
-        readonly files_selected: Signal // paths: PackedStringArray | string[] => void
+        readonly files_selected: Signal1<PackedStringArray | string[]>
         
         /** Emitted when the user selects a directory. */
-        readonly dir_selected: Signal // dir: string => void
+        readonly dir_selected: Signal1<string>
     }
     /** Godot editor's dock for managing files in the project.  
      *  	  
@@ -4996,55 +4975,55 @@ declare module "godot" {
         remove_resource_tooltip_plugin(plugin: EditorResourceTooltipPlugin): void
         
         /** Emitted when a new scene is created that inherits the scene at [param file] path. */
-        readonly inherit: Signal // file: string => void
+        readonly inherit: Signal1<string>
         
         /** Emitted when the given scenes are being instantiated in the editor. */
-        readonly instantiate: Signal // files: PackedStringArray | string[] => void
+        readonly instantiate: Signal1<PackedStringArray | string[]>
         
         /** Emitted when an external [param resource] had its file removed. */
-        readonly resource_removed: Signal // resource: Resource => void
+        readonly resource_removed: Signal1<Resource>
         
         /** Emitted when the given [param file] was removed. */
-        readonly file_removed: Signal // file: string => void
+        readonly file_removed: Signal1<string>
         
         /** Emitted when the given [param folder] was removed. */
-        readonly folder_removed: Signal // folder: string => void
+        readonly folder_removed: Signal1<string>
         
         /** Emitted when a file is moved from [param old_file] path to [param new_file] path. */
-        readonly files_moved: Signal // old_file: string, new_file: string => void
+        readonly files_moved: Signal2<string, string>
         
         /** Emitted when a folder is moved from [param old_folder] path to [param new_folder] path. */
-        readonly folder_moved: Signal // old_folder: string, new_folder: string => void
+        readonly folder_moved: Signal2<string, string>
         
         /** Emitted when the user switches file display mode or split mode. */
-        readonly display_mode_changed: Signal //  => void
+        readonly display_mode_changed: Signal0
     }
     class FileSystemList extends ItemList {
         constructor(identifier?: any)
-        readonly item_edited: Signal //  => void
+        readonly item_edited: Signal0
     }
     class FindInFiles extends Node {
         constructor(identifier?: any)
-        readonly result_found: Signal // path: string, line_number: int64, begin: int64, end: int64, text: string => void
-        readonly finished: Signal //  => void
+        readonly result_found: Signal5<string, int64, int64, int64, string>
+        readonly finished: Signal0
     }
     class FindInFilesDialog extends AcceptDialog {
         constructor(identifier?: any)
-        readonly find_requested: Signal //  => void
-        readonly replace_requested: Signal //  => void
+        readonly find_requested: Signal0
+        readonly replace_requested: Signal0
     }
     class FindInFilesPanel extends Control {
         constructor(identifier?: any)
         _on_result_found(_unnamed_arg0: string, _unnamed_arg1: int64, _unnamed_arg2: int64, _unnamed_arg3: int64, _unnamed_arg4: string): void
         _on_finished(): void
         _draw_result_text(_unnamed_arg0: Object, _unnamed_arg1: Rect2): void
-        readonly result_selected: Signal // path: string, line_number: int64, begin: int64, end: int64 => void
-        readonly files_modified: Signal // paths: string => void
+        readonly result_selected: Signal4<string, int64, int64, int64>
+        readonly files_modified: Signal1<string>
     }
     class FindReplaceBar extends HBoxContainer {
         constructor(identifier?: any)
         _search_current(): boolean
-        readonly error: Signal //  => void
+        readonly error: Signal0
     }
     namespace FlowContainer {
         enum AlignmentMode {
@@ -6533,7 +6512,7 @@ declare module "godot" {
          *      
          *  **Note:** Due to the particles being computed on the GPU there might be a delay before the signal gets emitted.  
          */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     class GPUParticles2DEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -6719,7 +6698,7 @@ declare module "godot" {
          *      
          *  **Note:** Due to the particles being computed on the GPU there might be a delay before the signal gets emitted.  
          */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     class GPUParticles3DEditor extends GPUParticles3DEditorBase {
         constructor(identifier?: any)
@@ -7207,6 +7186,9 @@ declare module "godot" {
     class GodotPhysicsServer3D extends PhysicsServer3D {
         constructor(identifier?: any)
     }
+    class GotoLineDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
+    }
     namespace Gradient {
         enum InterpolationMode {
             /** Linear interpolation. */
@@ -7567,54 +7549,54 @@ declare module "godot" {
         set show_arrange_button(value: boolean)
         
         /** Emitted to the GraphEdit when the connection between the [param from_port] of the [param from_node] [GraphNode] and the [param to_port] of the [param to_node] [GraphNode] is attempted to be created. */
-        readonly connection_request: Signal // from_node: StringName, from_port: int64, to_node: StringName, to_port: int64 => void
+        readonly connection_request: Signal4<StringName, int64, StringName, int64>
         
         /** Emitted to the GraphEdit when the connection between [param from_port] of [param from_node] [GraphNode] and [param to_port] of [param to_node] [GraphNode] is attempted to be removed. */
-        readonly disconnection_request: Signal // from_node: StringName, from_port: int64, to_node: StringName, to_port: int64 => void
+        readonly disconnection_request: Signal4<StringName, int64, StringName, int64>
         
         /** Emitted when user drags a connection from an output port into the empty space of the graph. */
-        readonly connection_to_empty: Signal // from_node: StringName, from_port: int64, release_position: Vector2 => void
+        readonly connection_to_empty: Signal3<StringName, int64, Vector2>
         
         /** Emitted when user drags a connection from an input port into the empty space of the graph. */
-        readonly connection_from_empty: Signal // to_node: StringName, to_port: int64, release_position: Vector2 => void
+        readonly connection_from_empty: Signal3<StringName, int64, Vector2>
         
         /** Emitted at the beginning of a connection drag. */
-        readonly connection_drag_started: Signal // from_node: StringName, from_port: int64, is_output: boolean => void
+        readonly connection_drag_started: Signal3<StringName, int64, boolean>
         
         /** Emitted at the end of a connection drag. */
-        readonly connection_drag_ended: Signal //  => void
+        readonly connection_drag_ended: Signal0
         
         /** Emitted when this [GraphEdit] captures a `ui_copy` action ([kbd]Ctrl + C[/kbd] by default). In general, this signal indicates that the selected [GraphElement]s should be copied. */
-        readonly copy_nodes_request: Signal //  => void
+        readonly copy_nodes_request: Signal0
         
         /** Emitted when this [GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In general, this signal indicates that previously copied [GraphElement]s should be pasted. */
-        readonly paste_nodes_request: Signal //  => void
+        readonly paste_nodes_request: Signal0
         
         /** Emitted when this [GraphEdit] captures a `ui_graph_duplicate` action ([kbd]Ctrl + D[/kbd] by default). In general, this signal indicates that the selected [GraphElement]s should be duplicated. */
-        readonly duplicate_nodes_request: Signal //  => void
+        readonly duplicate_nodes_request: Signal0
         
         /** Emitted when this [GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by default).  
          *  [param nodes] is an array of node names that should be removed. These usually include all selected nodes.  
          */
-        readonly delete_nodes_request: Signal // nodes: Array => void
+        readonly delete_nodes_request: Signal1<Array>
         
         /** Emitted when the given [GraphElement] node is selected. */
-        readonly node_selected: Signal // node: Node => void
+        readonly node_selected: Signal1<Node>
         
         /** Emitted when the given [GraphElement] node is deselected. */
-        readonly node_deselected: Signal // node: Node => void
+        readonly node_deselected: Signal1<Node>
         
         /** Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [param position] is the position of the mouse pointer when the signal is sent. */
-        readonly popup_request: Signal // position: Vector2 => void
+        readonly popup_request: Signal1<Vector2>
         
         /** Emitted at the beginning of a [GraphElement]'s movement. */
-        readonly begin_node_move: Signal //  => void
+        readonly begin_node_move: Signal0
         
         /** Emitted at the end of a [GraphElement]'s movement. */
-        readonly end_node_move: Signal //  => void
+        readonly end_node_move: Signal0
         
         /** Emitted when the scroll offset is changed by the user. It will not be emitted when changed in code. */
-        readonly scroll_offset_changed: Signal // offset: Vector2 => void
+        readonly scroll_offset_changed: Signal1<Vector2>
     }
     class GraphEditFilter extends Control {
         constructor(identifier?: any)
@@ -7652,25 +7634,25 @@ declare module "godot" {
         set selected(value: boolean)
         
         /** Emitted when the GraphElement is selected. */
-        readonly node_selected: Signal //  => void
+        readonly node_selected: Signal0
         
         /** Emitted when the GraphElement is deselected. */
-        readonly node_deselected: Signal //  => void
+        readonly node_deselected: Signal0
         
         /** Emitted when displaying the GraphElement over other ones is requested. Happens on focusing (clicking into) the GraphElement. */
-        readonly raise_request: Signal //  => void
+        readonly raise_request: Signal0
         
         /** Emitted when removing the GraphElement is requested. */
-        readonly delete_request: Signal //  => void
+        readonly delete_request: Signal0
         
         /** Emitted when resizing the GraphElement is requested. Happens on dragging the resizer handle (see [member resizable]). */
-        readonly resize_request: Signal // new_minsize: Vector2 => void
+        readonly resize_request: Signal1<Vector2>
         
         /** Emitted when the GraphElement is dragged. */
-        readonly dragged: Signal // from: Vector2, to: Vector2 => void
+        readonly dragged: Signal2<Vector2, Vector2>
         
         /** Emitted when the GraphElement is moved. */
-        readonly position_offset_changed: Signal //  => void
+        readonly position_offset_changed: Signal0
     }
     /** A container with connection ports, representing a node in a [GraphEdit].  
      *  	  
@@ -7777,7 +7759,7 @@ declare module "godot" {
         set title(value: string)
         
         /** Emitted when any GraphNode's slot is updated. */
-        readonly slot_updated: Signal // slot_index: int64 => void
+        readonly slot_updated: Signal1<int64>
     }
     /** A container that arranges its child controls in a grid layout.  
      *  	  
@@ -7928,10 +7910,10 @@ declare module "godot" {
         set bake_navigation(value: boolean)
         
         /** Emitted when [member cell_size] changes. */
-        readonly cell_size_changed: Signal // cell_size: Vector3 => void
+        readonly cell_size_changed: Signal1<Vector3>
         
         /** Emitted when the [MeshLibrary] of this GridMap changes. */
-        readonly changed: Signal //  => void
+        readonly changed: Signal0
     }
     class GridMapEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -7961,7 +7943,7 @@ declare module "godot" {
         _add_group(_unnamed_arg0: string): void
         _rename_group_item(_unnamed_arg0: string, _unnamed_arg1: string): void
         _group_selected(): void
-        readonly group_edited: Signal //  => void
+        readonly group_edited: Signal0
     }
     class GroupsEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -8493,7 +8475,7 @@ declare module "godot" {
         set timeout(value: float64)
         
         /** Emitted when a request is completed. */
-        readonly request_completed: Signal // result: int64, response_code: int64, headers: PackedStringArray | string[], body: PackedByteArray | byte[] | ArrayBuffer => void
+        readonly request_completed: Signal4<int64, int64, PackedStringArray | string[], PackedByteArray | byte[] | ArrayBuffer>
     }
     namespace HashingContext {
         enum HashType {
@@ -9207,5 +9189,41 @@ declare module "godot" {
         update_layer(image: Image, layer: int64): void
         get _images(): Array
         set _images(value: Array)
+    }
+    /** Mesh optimized for creating geometry manually.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_immediatemesh.html  
+     */
+    class ImmediateMesh extends Mesh {
+        constructor(identifier?: any)
+        /** Begin a new surface. */
+        surface_begin(primitive: Mesh.PrimitiveType, material: Material = undefined): void
+        
+        /** Set the color attribute that will be pushed with the next vertex. */
+        surface_set_color(color: Color): void
+        
+        /** Set the normal attribute that will be pushed with the next vertex. */
+        surface_set_normal(normal: Vector3): void
+        
+        /** Set the tangent attribute that will be pushed with the next vertex. */
+        surface_set_tangent(tangent: Plane): void
+        
+        /** Set the UV attribute that will be pushed with the next vertex. */
+        surface_set_uv(uv: Vector2): void
+        
+        /** Set the UV2 attribute that will be pushed with the next vertex. */
+        surface_set_uv2(uv2: Vector2): void
+        
+        /** Add a 3D vertex using the current attributes previously set. */
+        surface_add_vertex(vertex: Vector3): void
+        
+        /** Add a 2D vertex using the current attributes previously set. */
+        surface_add_vertex_2d(vertex: Vector2): void
+        
+        /** End and commit current surface. Note that surface being created will not be visible until this function is called. */
+        surface_end(): void
+        
+        /** Clear all surfaces. */
+        clear_surfaces(): void
     }
 }

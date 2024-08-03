@@ -1,11 +1,11 @@
-import { Area2D, NodePath, Signal, Sprite2D, Variant, Vector2 } from "godot";
+import { Area2D, NodePath, Signal, Signal0, Sprite2D, Variant, Vector2 } from "godot";
 import { export_, signal } from "../jsb/jsb.core";
 
 export default class Arrow extends Sprite2D {
     private _pos!: Vector2;
     
     @signal()
-    die!: Signal;
+    die!: Signal0;
 
     @export_(Variant.Type.TYPE_FLOAT)
     speed = 0;

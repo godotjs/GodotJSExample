@@ -990,7 +990,7 @@ declare module "godot" {
         set input_name(value: StringName)
         
         /** Emitted when input is changed via [member input_name]. */
-        readonly input_type_changed: Signal //  => void
+        readonly input_type_changed: Signal0
     }
     /** A scalar integer constant to be used within the visual shader graph.  
      *  	  
@@ -2827,15 +2827,15 @@ declare module "godot" {
         get_signaling_state(): WebRTCPeerConnection.SignalingState
         
         /** Emitted after a successful call to [method create_offer] or [method set_remote_description] (when it generates an answer). The parameters are meant to be passed to [method set_local_description] on this object, and sent to the remote peer over the signaling server. */
-        readonly session_description_created: Signal // type: string, sdp: string => void
+        readonly session_description_created: Signal2<string, string>
         
         /** Emitted when a new ICE candidate has been created. The three parameters are meant to be passed to the remote peer over the signaling server. */
-        readonly ice_candidate_created: Signal // media: string, index: int64, name: string => void
+        readonly ice_candidate_created: Signal3<string, int64, string>
         
         /** Emitted when a new in-band channel is received, i.e. when the channel was created with `negotiated: false` (default).  
          *  The object will be an instance of [WebRTCDataChannel]. You must keep a reference of it or it will be closed automatically. See [method create_data_channel].  
          */
-        readonly data_channel_received: Signal // channel: WebRTCDataChannel => void
+        readonly data_channel_received: Signal1<WebRTCDataChannel>
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_webrtcpeerconnectionextension.html */
     class WebRTCPeerConnectionExtension extends WebRTCPeerConnection {
@@ -2950,64 +2950,64 @@ declare module "godot" {
         get visibility_state(): string
         
         /** Emitted by [method is_session_supported] to indicate if the given [param session_mode] is supported or not. */
-        readonly session_supported: Signal // session_mode: string, supported: boolean => void
+        readonly session_supported: Signal2<string, boolean>
         
         /** Emitted by [method XRInterface.initialize] if the session is successfully started.  
          *  At this point, it's safe to do `get_viewport().use_xr = true` to instruct Godot to start rendering to the XR device.  
          */
-        readonly session_started: Signal //  => void
+        readonly session_started: Signal0
         
         /** Emitted when the user ends the WebXR session (which can be done using UI from the browser or device).  
          *  At this point, you should do `get_viewport().use_xr = false` to instruct Godot to resume rendering to the screen.  
          */
-        readonly session_ended: Signal //  => void
+        readonly session_ended: Signal0
         
         /** Emitted by [method XRInterface.initialize] if the session fails to start.  
          *  [param message] may optionally contain an error message from WebXR, or an empty string if no message is available.  
          */
-        readonly session_failed: Signal // message: string => void
+        readonly session_failed: Signal1<string>
         
         /** Emitted when one of the input source has started its "primary action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly selectstart: Signal // input_source_id: int64 => void
+        readonly selectstart: Signal1<int64>
         
         /** Emitted after one of the input sources has finished its "primary action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly select: Signal // input_source_id: int64 => void
+        readonly select: Signal1<int64>
         
         /** Emitted when one of the input sources has finished its "primary action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly selectend: Signal // input_source_id: int64 => void
+        readonly selectend: Signal1<int64>
         
         /** Emitted when one of the input sources has started its "primary squeeze action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly squeezestart: Signal // input_source_id: int64 => void
+        readonly squeezestart: Signal1<int64>
         
         /** Emitted after one of the input sources has finished its "primary squeeze action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly squeeze: Signal // input_source_id: int64 => void
+        readonly squeeze: Signal1<int64>
         
         /** Emitted when one of the input sources has finished its "primary squeeze action".  
          *  Use [method get_input_source_tracker] and [method get_input_source_target_ray_mode] to get more information about the input source.  
          */
-        readonly squeezeend: Signal // input_source_id: int64 => void
+        readonly squeezeend: Signal1<int64>
         
         /** Emitted when [member visibility_state] has changed. */
-        readonly visibility_state_changed: Signal //  => void
+        readonly visibility_state_changed: Signal0
         
         /** Emitted to indicate that the reference space has been reset or reconfigured.  
          *  When (or whether) this is emitted depends on the user's browser or device, but may include when the user has changed the dimensions of their play space (which you may be able to access via [method XRInterface.get_play_area]) or pressed/held a button to recenter their position.  
          *  See [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace/reset_event]WebXR's XRReferenceSpace reset event[/url] for more information.  
          */
-        readonly reference_space_reset: Signal //  => void
+        readonly reference_space_reset: Signal0
         
         /** Emitted after the display's refresh rate has changed. */
-        readonly display_refresh_rate_changed: Signal //  => void
+        readonly display_refresh_rate_changed: Signal0
     }
     namespace Window {
         enum Mode {
@@ -3576,57 +3576,57 @@ declare module "godot" {
         set theme_type_variation(value: string)
         
         /** Emitted when the [Window] is currently focused and receives any input, passing the received event as an argument. The event's position, if present, is in the embedder's coordinate system. */
-        readonly window_input: Signal // event: InputEvent => void
+        readonly window_input: Signal1<InputEvent>
         
         /** Emitted when files are dragged from the OS file manager and dropped in the game window. The argument is a list of file paths.  
          *  Note that this method only works with native windows, i.e. the main window and [Window]-derived nodes when [member Viewport.gui_embed_subwindows] is disabled in the main viewport.  
          *  Example usage:  
          *    
          */
-        readonly files_dropped: Signal // files: PackedStringArray | string[] => void
+        readonly files_dropped: Signal1<PackedStringArray | string[]>
         
         /** Emitted when the mouse cursor enters the [Window]'s visible area, that is not occluded behind other [Control]s or windows, provided its [member Viewport.gui_disable_input] is `false` and regardless if it's currently focused or not. */
-        readonly mouse_entered: Signal //  => void
+        readonly mouse_entered: Signal0
         
         /** Emitted when the mouse cursor leaves the [Window]'s visible area, that is not occluded behind other [Control]s or windows, provided its [member Viewport.gui_disable_input] is `false` and regardless if it's currently focused or not. */
-        readonly mouse_exited: Signal //  => void
+        readonly mouse_exited: Signal0
         
         /** Emitted when the [Window] gains focus. */
-        readonly focus_entered: Signal //  => void
+        readonly focus_entered: Signal0
         
         /** Emitted when the [Window] loses its focus. */
-        readonly focus_exited: Signal //  => void
+        readonly focus_exited: Signal0
         
         /** Emitted when the [Window]'s close button is pressed or when [member popup_window] is enabled and user clicks outside the window.  
          *  This signal can be used to handle window closing, e.g. by connecting it to [method hide].  
          */
-        readonly close_requested: Signal //  => void
+        readonly close_requested: Signal0
         
         /** Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right after [constant Node.NOTIFICATION_WM_GO_BACK_REQUEST]. */
-        readonly go_back_requested: Signal //  => void
+        readonly go_back_requested: Signal0
         
         /** Emitted when [Window] is made visible or disappears. */
-        readonly visibility_changed: Signal //  => void
+        readonly visibility_changed: Signal0
         
         /** Emitted right after [method popup] call, before the [Window] appears or does anything. */
-        readonly about_to_popup: Signal //  => void
+        readonly about_to_popup: Signal0
         
         /** Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent. */
-        readonly theme_changed: Signal //  => void
+        readonly theme_changed: Signal0
         
         /** Emitted when the [Window]'s DPI changes as a result of OS-level changes (e.g. moving the window from a Retina display to a lower resolution one).  
          *      
          *  **Note:** Only implemented on macOS.  
          */
-        readonly dpi_changed: Signal //  => void
+        readonly dpi_changed: Signal0
         
         /** Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen mode, or extend-to-title flag is changed. */
-        readonly titlebar_changed: Signal //  => void
+        readonly titlebar_changed: Signal0
     }
     class WindowWrapper extends MarginContainer {
         constructor(identifier?: any)
-        readonly window_visibility_changed: Signal // visible: boolean => void
-        readonly window_close_requested: Signal //  => void
+        readonly window_visibility_changed: Signal1<boolean>
+        readonly window_close_requested: Signal0
     }
     /** A resource that holds all components of a 2D world, such as a canvas and a physics space.  
      *  	  
@@ -3859,16 +3859,16 @@ declare module "godot" {
         get_tracker_hand(): XRPositionalTracker.TrackerHand
         
         /** Emitted when a button on this controller is pressed. */
-        readonly button_pressed: Signal // name: string => void
+        readonly button_pressed: Signal1<string>
         
         /** Emitted when a button on this controller is released. */
-        readonly button_released: Signal // name: string => void
+        readonly button_released: Signal1<string>
         
         /** Emitted when a trigger or similar input on this controller changes value. */
-        readonly input_float_changed: Signal // name: string, value: float64 => void
+        readonly input_float_changed: Signal2<string, float64>
         
         /** Emitted when a thumbstick or thumbpad on this controller is moved. */
-        readonly input_vector2_changed: Signal // name: string, value: Vector2 => void
+        readonly input_vector2_changed: Signal2<string, Vector2>
     }
     namespace XRInterface {
         enum Capabilities {
@@ -4037,7 +4037,7 @@ declare module "godot" {
         set ar_is_anchor_detection_enabled(value: boolean)
         
         /** Emitted when the play area is changed. This can be a result of the player resetting the boundary or entering a new play area, the player changing the play area mode, the world scale changing or the player resetting their headset orientation. */
-        readonly play_area_changed: Signal // mode: int64 => void
+        readonly play_area_changed: Signal1<int64>
     }
     /** Base class for XR interface extensions (plugins).  
      *  	  
@@ -4178,7 +4178,7 @@ declare module "godot" {
         set pose(value: string)
         
         /** Emitted when the [member tracker] starts or stops receiving updated tracking data for the [member pose] being tracked. The [param tracking] argument indicates whether the tracker is getting updated tracking data. */
-        readonly tracking_changed: Signal // tracking: boolean => void
+        readonly tracking_changed: Signal1<boolean>
     }
     /** The origin point in AR/VR.  
      *  	  
@@ -4294,25 +4294,25 @@ declare module "godot" {
         set hand(value: int64)
         
         /** Emitted when the state of a pose tracked by this tracker changes. */
-        readonly pose_changed: Signal // pose: XRPose => void
+        readonly pose_changed: Signal1<XRPose>
         
         /** Emitted when a pose tracked by this tracker stops getting updated tracking data. */
-        readonly pose_lost_tracking: Signal // pose: XRPose => void
+        readonly pose_lost_tracking: Signal1<XRPose>
         
         /** Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs to be mapped to buttons. */
-        readonly button_pressed: Signal // name: string => void
+        readonly button_pressed: Signal1<string>
         
         /** Emitted when a button on this tracker is released. */
-        readonly button_released: Signal // name: string => void
+        readonly button_released: Signal1<string>
         
         /** Emitted when a trigger or similar input on this tracker changes value. */
-        readonly input_float_changed: Signal // name: string, value: float64 => void
+        readonly input_float_changed: Signal2<string, float64>
         
         /** Emitted when a thumbstick or thumbpad on this tracker moves. */
-        readonly input_vector2_changed: Signal // name: string, vector: Vector2 => void
+        readonly input_vector2_changed: Signal2<string, Vector2>
         
         /** Emitted when the profile of our tracker changes. */
-        readonly profile_changed: Signal // role: string => void
+        readonly profile_changed: Signal1<string>
     }
     namespace ZIPPacker {
         enum ZipAppend {
@@ -6937,9 +6937,9 @@ declare module "godot" {
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_callable.html  
      */
-    class Callable {
+    class Callable implements AnyCallable {
         constructor()
-        constructor(from: Callable)
+        constructor(from: AnyCallable)
         constructor(object: Object, method: StringName)
         
         /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
@@ -6982,14 +6982,14 @@ declare module "godot" {
          *      
          *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
          */
-        bindv(arguments_: Array): Callable
+        bindv(arguments_: Array): AnyCallable
         
         /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
          *      
          *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
          *    
          */
-        unbind(argcount: int64): Callable
+        unbind(argcount: int64): AnyCallable
         
         /** Calls the method represented by this [Callable]. Arguments can be passed and should match the method's signature. */
         call(...vargargs: any[]): void
@@ -7012,17 +7012,17 @@ declare module "godot" {
          *      
          *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
          */
-        bind(...vargargs: any[]): Callable
-        static EQUAL(left: Callable, right: Callable): boolean
-        static NOT_EQUAL(left: Callable, right: Callable): boolean
+        bind(...vargargs: any[]): AnyCallable
+        static EQUAL(left: AnyCallable, right: AnyCallable): boolean
+        static NOT_EQUAL(left: AnyCallable, right: AnyCallable): boolean
     }
     /** A built-in type representing a signal of an [Object].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_signal.html  
      */
-    class Signal {
+    class Signal implements AnySignal {
         constructor()
-        constructor(from: Signal)
+        constructor(from: AnySignal)
         constructor(object: Object, signal: StringName)
         
         /** Returns `true` if the signal's name does not exist in its object, or the object is not valid. */
@@ -7041,13 +7041,13 @@ declare module "godot" {
          *  A signal can only be connected once to the same [Callable]. If the signal is already connected, returns [constant ERR_INVALID_PARAMETER] and pushes an error message, unless the signal is connected with [constant Object.CONNECT_REFERENCE_COUNTED]. To prevent this, use [method is_connected] first to check for existing connections.  
          *    
          */
-        connect(callable: Callable, flags: int64 = 0): int64
+        connect(callable: AnyCallable, flags: int64 = 0): int64
         
         /** Disconnects this signal from the specified [Callable]. If the connection does not exist, generates an error. Use [method is_connected] to make sure that the connection exists. */
-        disconnect(callable: Callable): void
+        disconnect(callable: AnyCallable): void
         
         /** Returns `true` if the specified [Callable] is connected to this signal. */
-        is_connected(callable: Callable): boolean
+        is_connected(callable: AnyCallable): boolean
         
         /** Returns an [Array] of connections for this signal. Each connection is represented as a [Dictionary] that contains three entries:  
          *  - `signal` is a reference to this signal;  
@@ -7058,8 +7058,8 @@ declare module "godot" {
         
         /** Emits this signal. All [Callable]s connected to this signal will be triggered. This method supports a variable number of arguments, so parameters can be passed as a comma separated list. */
         emit(...vargargs: any[]): void
-        static EQUAL(left: Signal, right: Signal): boolean
-        static NOT_EQUAL(left: Signal, right: Signal): boolean
+        static EQUAL(left: AnySignal, right: AnySignal): boolean
+        static NOT_EQUAL(left: AnySignal, right: AnySignal): boolean
     }
     /** A built-in data structure that holds key-value pairs.  
      *  	  

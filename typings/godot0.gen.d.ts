@@ -178,10 +178,10 @@ declare module "godot" {
         static get_primary_interface(): TextServer
         
         /** Emitted when a new interface has been added. */
-        static readonly interface_added: Signal // interface_name: StringName => void
+        static readonly interface_added: Signal1<StringName>
         
         /** Emitted when an interface is removed. */
-        static readonly interface_removed: Signal // interface_name: StringName => void
+        static readonly interface_removed: Signal1<StringName>
     }
     // // Singleton Class
     /** A singleton for managing [PhysicsServer2D] implementations.  
@@ -333,7 +333,7 @@ declare module "godot" {
         static save_custom(file: string): Error
         
         /** Emitted when any setting is changed, up to once per process frame. */
-        static readonly settings_changed: Signal //  => void
+        static readonly settings_changed: Signal0
     }
     // // Singleton Class
     namespace IP {
@@ -1917,7 +1917,7 @@ declare module "godot" {
         set use_accumulated_input(value: boolean)
         
         /** Emitted when a joypad device has been connected or disconnected. */
-        static readonly joy_connection_changed: Signal // device: int64, connected: boolean => void
+        static readonly joy_connection_changed: Signal2<int64, boolean>
     }
     // // Singleton Class
     /** A singleton that manages all [InputEventAction]s.  
@@ -2206,7 +2206,7 @@ declare module "godot" {
         static get_extension(path: string): GDExtension
         
         /** Emitted after the editor has automatically reloaded any extensions. */
-        static readonly extensions_reloaded: Signal //  => void
+        static readonly extensions_reloaded: Signal0
     }
     // // Singleton Class
     /** A singleton that manages the unique identifiers of all resources within a project.  
@@ -2333,7 +2333,7 @@ declare module "godot" {
         set fallback_stylebox(value: StyleBox)
         
         /** Emitted when one of the fallback values had been changed. Use it to refresh the look of controls that may rely on the fallback theme items. */
-        static readonly fallback_changed: Signal //  => void
+        static readonly fallback_changed: Signal0
     }
     // // Singleton Class
     /** Godot editor's interface.  
@@ -2583,7 +2583,7 @@ declare module "godot" {
         static force_fs_sync(): void
         
         /** Emitted when an update for this progressive web app has been detected but is waiting to be activated because a previous version is active. See [method pwa_update] to force the update to take place immediately. */
-        static readonly pwa_update_available: Signal //  => void
+        static readonly pwa_update_available: Signal0
     }
     // // Singleton Class
     namespace DisplayServer {
@@ -6982,10 +6982,10 @@ declare module "godot" {
         set render_loop_enabled(value: boolean)
         
         /** Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports. */
-        static readonly frame_pre_draw: Signal //  => void
+        static readonly frame_pre_draw: Signal0
         
         /** Emitted at the end of the frame, after the RenderingServer has finished updating all the Viewports. */
-        static readonly frame_post_draw: Signal //  => void
+        static readonly frame_post_draw: Signal0
     }
     // // Singleton Class
     namespace AudioServer {
@@ -7157,10 +7157,10 @@ declare module "godot" {
         set playback_speed_scale(value: float64)
         
         /** Emitted when an audio bus is added, deleted, or moved. */
-        static readonly bus_layout_changed: Signal //  => void
+        static readonly bus_layout_changed: Signal0
         
         /** Emitted when the audio bus at [param bus_index] is renamed from [param old_name] to [param new_name]. */
-        static readonly bus_renamed: Signal // bus_index: int64, old_name: StringName, new_name: StringName => void
+        static readonly bus_renamed: Signal3<int64, StringName, StringName>
     }
     // // Singleton Class
     namespace PhysicsServer2D {
@@ -9025,10 +9025,10 @@ declare module "godot" {
         static get_debug_enabled(): boolean
         
         /** Emitted when a navigation map is updated, when a region moves or is modified. */
-        static readonly map_changed: Signal // map: RID => void
+        static readonly map_changed: Signal1<RID>
         
         /** Emitted when navigation debug settings are changed. Only available in debug builds. */
-        static readonly navigation_debug_changed: Signal //  => void
+        static readonly navigation_debug_changed: Signal0
     }
     // // Singleton Class
     namespace NavigationServer3D {
@@ -9435,13 +9435,13 @@ declare module "godot" {
         static get_process_info(process_info: NavigationServer3D.ProcessInfo): int64
         
         /** Emitted when a navigation map is updated, when a region moves or is modified. */
-        static readonly map_changed: Signal // map: RID => void
+        static readonly map_changed: Signal1<RID>
         
         /** Emitted when navigation debug settings are changed. Only available in debug builds. */
-        static readonly navigation_debug_changed: Signal //  => void
+        static readonly navigation_debug_changed: Signal0
         
         /** Emitted when avoidance debug settings are changed. Only available in debug builds. */
-        static readonly avoidance_debug_changed: Signal //  => void
+        static readonly avoidance_debug_changed: Signal0
     }
     // // Singleton Class
     namespace XRServer {
@@ -9544,19 +9544,19 @@ declare module "godot" {
         set primary_interface(value: Object)
         
         /** Emitted when a new interface has been added. */
-        static readonly interface_added: Signal // interface_name: StringName => void
+        static readonly interface_added: Signal1<StringName>
         
         /** Emitted when an interface is removed. */
-        static readonly interface_removed: Signal // interface_name: StringName => void
+        static readonly interface_removed: Signal1<StringName>
         
         /** Emitted when a new tracker has been added. If you don't use a fixed number of controllers or if you're using [XRAnchor3D]s for an AR solution, it is important to react to this signal to add the appropriate [XRController3D] or [XRAnchor3D] nodes related to this new tracker. */
-        static readonly tracker_added: Signal // tracker_name: StringName, type: int64 => void
+        static readonly tracker_added: Signal2<StringName, int64>
         
         /** Emitted when an existing tracker has been updated. This can happen if the user switches controllers. */
-        static readonly tracker_updated: Signal // tracker_name: StringName, type: int64 => void
+        static readonly tracker_updated: Signal2<StringName, int64>
         
         /** Emitted when a tracker is removed. You should remove any [XRController3D] or [XRAnchor3D] points if applicable. This is not mandatory, the nodes simply become inactive and will be made active again when a new tracker becomes available (i.e. a new controller is switched on that takes the place of the previous one). */
-        static readonly tracker_removed: Signal // tracker_name: StringName, type: int64 => void
+        static readonly tracker_removed: Signal2<StringName, int64>
     }
     // // Singleton Class
     namespace CameraServer {
@@ -9595,9 +9595,9 @@ declare module "godot" {
         static remove_feed(feed: CameraFeed): void
         
         /** Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in). */
-        static readonly camera_feed_added: Signal // id: int64 => void
+        static readonly camera_feed_added: Signal1<int64>
         
         /** Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged). */
-        static readonly camera_feed_removed: Signal // id: int64 => void
+        static readonly camera_feed_removed: Signal1<int64>
     }
 }

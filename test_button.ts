@@ -1,4 +1,4 @@
-import { Error as GodotError, Array, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid } from "godot";
+import { Error as GodotError, Array, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid, Signal1 } from "godot";
 import * as jsb from "godot-jsb";
 import { $wait, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, onready, signal } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
@@ -63,7 +63,7 @@ export default class TestNode extends Button {
     ev_val = 0;
 
     @signal()
-    test_signal!: Signal; // signal field will automatically instantiated by GodotJS
+    test_signal!: Signal1<number>; // signal field will automatically instantiated by GodotJS
 
     constructor(identifier?: any) {
         super(identifier);

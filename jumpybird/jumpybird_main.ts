@@ -1,4 +1,4 @@
-import { Area2D, Input, Node, Node2D, NodePath, PackedScene, ResourceLoader, Sprite2D, Vector2 } from "godot";
+import { Area2D, Input, Node, Node2D, NodePath, PackedScene, ResourceLoader, RID, Sprite2D, Vector2 } from "godot";
 import * as jsb from "godot-jsb";
 import JumpyBirdPipe from "./jumpybird_pipe";
 
@@ -63,7 +63,7 @@ export default class JumpyBirdMain extends Node {
         // this.jump();
     }
 
-    private on_area_shape_entered(area: Area2D) {
+    private on_area_shape_entered() {
         console.log("hit");
         this.end_game();
     }

@@ -475,27 +475,27 @@ declare module "godot" {
         set dialog_autowrap(value: boolean)
         
         /** Emitted when the dialog is accepted, i.e. the OK button is pressed. */
-        readonly confirmed: Signal //  => void
+        readonly confirmed: Signal0
         
         /** Emitted when the dialog is closed or the button created with [method add_cancel_button] is pressed. */
-        readonly canceled: Signal //  => void
+        readonly canceled: Signal0
         
         /** Emitted when a custom button is pressed. See [method add_button]. */
-        readonly custom_action: Signal // action: StringName => void
+        readonly custom_action: Signal1<StringName>
     }
     class ActionMapEditor extends Control {
         constructor(identifier?: any)
-        readonly action_added: Signal // name: string => void
-        readonly action_edited: Signal // name: string, new_action: Dictionary => void
-        readonly action_removed: Signal // name: string => void
-        readonly action_renamed: Signal // old_name: string, new_name: string => void
-        readonly action_reordered: Signal // action_name: string, relative_to: string, before: boolean => void
-        readonly filter_focused: Signal //  => void
-        readonly filter_unfocused: Signal //  => void
+        readonly action_added: Signal1<string>
+        readonly action_edited: Signal2<string, Dictionary>
+        readonly action_removed: Signal1<string>
+        readonly action_renamed: Signal2<string, string>
+        readonly action_reordered: Signal3<string, string, boolean>
+        readonly filter_focused: Signal0
+        readonly filter_unfocused: Signal0
     }
     class AnchorPresetPicker extends ControlEditorPresetPicker {
         constructor(identifier?: any)
-        readonly anchors_preset_selected: Signal // preset: int64 => void
+        readonly anchors_preset_selected: Signal1<int64>
     }
     /** A 2D physics body that can't be moved by external forces. When moved manually, it affects other bodies in its path.  
      *  	  
@@ -599,19 +599,19 @@ declare module "godot" {
         set flip_v(value: boolean)
         
         /** Emitted when [member sprite_frames] changes. */
-        readonly sprite_frames_changed: Signal //  => void
+        readonly sprite_frames_changed: Signal0
         
         /** Emitted when [member animation] changes. */
-        readonly animation_changed: Signal //  => void
+        readonly animation_changed: Signal0
         
         /** Emitted when [member frame] changes. */
-        readonly frame_changed: Signal //  => void
+        readonly frame_changed: Signal0
         
         /** Emitted when the animation loops. */
-        readonly animation_looped: Signal //  => void
+        readonly animation_looped: Signal0
         
         /** Emitted when the animation reaches the end, or the start if it is played in reverse. When the animation finishes, it pauses the playback. */
-        readonly animation_finished: Signal //  => void
+        readonly animation_finished: Signal0
     }
     /** 2D sprite node in 3D world, that can use multiple 2D textures for animation.  
      *  	  
@@ -680,19 +680,19 @@ declare module "godot" {
         set speed_scale(value: float64)
         
         /** Emitted when [member sprite_frames] changes. */
-        readonly sprite_frames_changed: Signal //  => void
+        readonly sprite_frames_changed: Signal0
         
         /** Emitted when [member animation] changes. */
-        readonly animation_changed: Signal //  => void
+        readonly animation_changed: Signal0
         
         /** Emitted when [member frame] changes. */
-        readonly frame_changed: Signal //  => void
+        readonly frame_changed: Signal0
         
         /** Emitted when the animation loops. */
-        readonly animation_looped: Signal //  => void
+        readonly animation_looped: Signal0
         
         /** Emitted when the animation reaches the end, or the start if it is played in reverse. When the animation finishes, it pauses the playback. */
-        readonly animation_finished: Signal //  => void
+        readonly animation_finished: Signal0
     }
     /** Proxy texture for simple frame-based animations.  
      *  	  
@@ -1058,16 +1058,16 @@ declare module "godot" {
         _update_hidden_tracks_after(_unnamed_arg0: int64): void
         _update_locked_tracks_after(_unnamed_arg0: int64): void
         _bezier_track_insert_key(_unnamed_arg0: int64, _unnamed_arg1: float64, _unnamed_arg2: float64, _unnamed_arg3: Vector2, _unnamed_arg4: Vector2, _unnamed_arg5: any /*Animation.HandleMode*/): void
-        readonly timeline_changed: Signal // position: float64 => void
-        readonly remove_request: Signal // track: int64 => void
-        readonly insert_key: Signal // offset: float64 => void
-        readonly select_key: Signal // index: int64, single: boolean, track: int64 => void
-        readonly clear_selection: Signal //  => void
-        readonly close_request: Signal //  => void
-        readonly move_selection_begin: Signal //  => void
-        readonly move_selection: Signal // offset: float64 => void
-        readonly move_selection_commit: Signal //  => void
-        readonly move_selection_cancel: Signal //  => void
+        readonly timeline_changed: Signal1<float64>
+        readonly remove_request: Signal1<int64>
+        readonly insert_key: Signal1<float64>
+        readonly select_key: Signal3<int64, boolean, int64>
+        readonly clear_selection: Signal0
+        readonly close_request: Signal0
+        readonly move_selection_begin: Signal0
+        readonly move_selection: Signal1<float64>
+        readonly move_selection_commit: Signal0
+        readonly move_selection_cancel: Signal0
     }
     /** Container for [Animation] resources.  
      *  	  
@@ -1096,23 +1096,23 @@ declare module "godot" {
         set _data(value: Dictionary)
         
         /** Emitted when an [Animation] is added, under the key [param name]. */
-        readonly animation_added: Signal // name: StringName => void
+        readonly animation_added: Signal1<StringName>
         
         /** Emitted when an [Animation] stored with the key [param name] is removed. */
-        readonly animation_removed: Signal // name: StringName => void
+        readonly animation_removed: Signal1<StringName>
         
         /** Emitted when the key for an [Animation] is changed, from [param name] to [param to_name]. */
-        readonly animation_renamed: Signal // name: StringName, to_name: StringName => void
+        readonly animation_renamed: Signal2<StringName, StringName>
         
         /** Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have changed paths. [param name] is the key of the animation that was changed.  
          *  See also [signal Resource.changed], which this acts as a relay for.  
          */
-        readonly animation_changed: Signal // name: StringName => void
+        readonly animation_changed: Signal1<StringName>
     }
     class AnimationLibraryEditor extends AcceptDialog {
         constructor(identifier?: any)
         _update_editor(mixer: Object): void
-        readonly update_editor: Signal //  => void
+        readonly update_editor: Signal0
     }
     namespace AnimationMixer {
         enum AnimationCallbackModeProcess {
@@ -1281,25 +1281,25 @@ declare module "godot" {
         set callback_mode_method(value: int64)
         
         /** Editor only. Notifies when the property have been updated to update dummy [AnimationPlayer] in animation player editor. */
-        readonly mixer_updated: Signal //  => void
+        readonly mixer_updated: Signal0
         
         /** Notifies when an animation list is changed. */
-        readonly animation_list_changed: Signal //  => void
+        readonly animation_list_changed: Signal0
         
         /** Notifies when the animation libraries have changed. */
-        readonly animation_libraries_updated: Signal //  => void
+        readonly animation_libraries_updated: Signal0
         
         /** Notifies when an animation finished playing.  
          *      
          *  **Note:** This signal is not emitted if an animation is looping.  
          */
-        readonly animation_finished: Signal // anim_name: StringName => void
+        readonly animation_finished: Signal1<StringName>
         
         /** Notifies when an animation starts playing. */
-        readonly animation_started: Signal // anim_name: StringName => void
+        readonly animation_started: Signal1<StringName>
         
         /** Notifies when the caches have been cleared, either automatically, or manually via [method clear_caches]. */
-        readonly caches_cleared: Signal //  => void
+        readonly caches_cleared: Signal0
     }
     namespace AnimationNode {
         enum FilterAction {
@@ -1397,13 +1397,13 @@ declare module "godot" {
         set filters(value: Array)
         
         /** Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes changes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], [AnimationNodeBlendTree] and [AnimationNodeTransition]. */
-        readonly tree_changed: Signal //  => void
+        readonly tree_changed: Signal0
         
         /** Emitted by nodes that inherit from this class and that have an internal tree when one of their animation node names changes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and [AnimationNodeBlendTree]. */
-        readonly animation_node_renamed: Signal // object_id: int64, old_name: string, new_name: string => void
+        readonly animation_node_renamed: Signal3<int64, string, string>
         
         /** Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes removes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and [AnimationNodeBlendTree]. */
-        readonly animation_node_removed: Signal // object_id: int64, name: string => void
+        readonly animation_node_removed: Signal2<int64, string>
     }
     /** Blends two animations additively inside of an [AnimationNodeBlendTree].  
      *  	  
@@ -1598,7 +1598,7 @@ declare module "godot" {
         set sync(value: boolean)
         
         /** Emitted every time the blend space's triangles are created, removed, or when one of their vertices changes position. */
-        readonly triangles_updated: Signal //  => void
+        readonly triangles_updated: Signal0
     }
     class AnimationNodeBlendSpace2DEditor extends AnimationTreeNodeEditorPlugin {
         constructor(identifier?: any)
@@ -1662,7 +1662,7 @@ declare module "godot" {
         set graph_offset(value: Vector2)
         
         /** Emitted when the input port information is changed. */
-        readonly node_changed: Signal // node_name: StringName => void
+        readonly node_changed: Signal1<StringName>
     }
     class AnimationNodeBlendTreeEditor extends AnimationTreeNodeEditorPlugin {
         constructor(identifier?: any)
@@ -1945,7 +1945,7 @@ declare module "godot" {
         set advance_expression(value: string)
         
         /** Emitted when [member advance_condition] is changed. */
-        readonly advance_condition_changed: Signal //  => void
+        readonly advance_condition_changed: Signal0
     }
     /** Blends two animations subtractively inside of an [AnimationNodeBlendTree].  
      *  	  
@@ -2160,20 +2160,20 @@ declare module "godot" {
         set movie_quit_on_finish(value: boolean)
         
         /** Emitted when [member current_animation] changes. */
-        readonly current_animation_changed: Signal // name: string => void
+        readonly current_animation_changed: Signal1<string>
         
         /** Emitted when a queued animation plays after the previous animation finished. See also [method AnimationPlayer.queue].  
          *      
          *  **Note:** The signal is not emitted when the animation is changed via [method AnimationPlayer.play] or by an [AnimationTree].  
          */
-        readonly animation_changed: Signal // old_name: StringName, new_name: StringName => void
+        readonly animation_changed: Signal2<StringName, StringName>
     }
     class AnimationPlayerEditor extends VBoxContainer {
         constructor(identifier?: any)
         _animation_player_changed(_unnamed_arg0: Object): void
         _start_onion_skinning(): void
         _stop_onion_skinning(): void
-        readonly animation_selected: Signal // name: string => void
+        readonly animation_selected: Signal1<string>
     }
     class AnimationPlayerEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -2188,11 +2188,11 @@ declare module "godot" {
     class AnimationTimelineEdit extends Range {
         constructor(identifier?: any)
         update_values(): void
-        readonly zoom_changed: Signal //  => void
-        readonly name_limit_changed: Signal //  => void
-        readonly timeline_changed: Signal // position: float64, timeline_only: boolean => void
-        readonly track_added: Signal // track: int64 => void
-        readonly length_changed: Signal // size: float64 => void
+        readonly zoom_changed: Signal0
+        readonly name_limit_changed: Signal0
+        readonly timeline_changed: Signal2<float64, boolean>
+        readonly track_added: Signal1<int64>
+        readonly length_changed: Signal1<float64>
     }
     class AnimationTrackEditDefaultPlugin extends AnimationTrackEditPlugin {
         constructor(identifier?: any)
@@ -2209,10 +2209,10 @@ declare module "godot" {
         _select_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: int64, _unnamed_arg2: float64): void
         _clear_selection(_unnamed_arg0: boolean): void
         _bezier_track_set_key_handle_mode(animation: Animation, track_idx: int64, key_idx: int64, key_handle_mode: any /*Animation.HandleMode*/, key_handle_set_mode: any /*Animation.HandleSetMode*/ = 0): void
-        readonly timeline_changed: Signal // position: float64, timeline_only: boolean => void
-        readonly keying_changed: Signal //  => void
-        readonly animation_len_changed: Signal // len: float64 => void
-        readonly animation_step_changed: Signal // step: float64 => void
+        readonly timeline_changed: Signal2<float64, boolean>
+        readonly keying_changed: Signal0
+        readonly animation_len_changed: Signal1<float64>
+        readonly animation_step_changed: Signal1<float64>
     }
     class AnimationTrackKeyEditEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -2256,7 +2256,7 @@ declare module "godot" {
         set anim_player(value: NodePath | string)
         
         /** Emitted when the [member anim_player] is changed. */
-        readonly animation_player_changed: Signal //  => void
+        readonly animation_player_changed: Signal0
     }
     class AnimationTreeEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -2395,36 +2395,36 @@ declare module "godot" {
          *  **Example of getting the** [CollisionShape2D] **node from the shape index:**  
          *    
          */
-        readonly body_shape_entered: Signal // body_rid: RID, body: Node2D, body_shape_index: int64, local_shape_index: int64 => void
+        readonly body_shape_entered: Signal4<RID, Node2D, int64, int64>
         
         /** Emitted when a [Shape2D] of the received [param body] exits a shape of this area. [param body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [member monitoring] to be set to `true`.  
          *  See also [signal body_shape_entered].  
          */
-        readonly body_shape_exited: Signal // body_rid: RID, body: Node2D, body_shape_index: int64, local_shape_index: int64 => void
+        readonly body_shape_exited: Signal4<RID, Node2D, int64, int64>
         
         /** Emitted when the received [param body] enters this area. [param body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [member monitoring] to be set to `true`. */
-        readonly body_entered: Signal // body: Node2D => void
+        readonly body_entered: Signal1<Node2D>
         
         /** Emitted when the received [param body] exits this area. [param body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [member monitoring] to be set to `true`. */
-        readonly body_exited: Signal // body: Node2D => void
+        readonly body_exited: Signal1<Node2D>
         
         /** Emitted when a [Shape2D] of the received [param area] enters a shape of this area. Requires [member monitoring] to be set to `true`.  
          *  [param local_shape_index] and [param area_shape_index] contain indices of the interacting shapes from this area and the other area, respectively. [param area_rid] contains the [RID] of the other area. These values can be used with the [PhysicsServer2D].  
          *  **Example of getting the** [CollisionShape2D] **node from the shape index:**  
          *    
          */
-        readonly area_shape_entered: Signal // area_rid: RID, area: Area2D, area_shape_index: int64, local_shape_index: int64 => void
+        readonly area_shape_entered: Signal4<RID, Area2D, int64, int64>
         
         /** Emitted when a [Shape2D] of the received [param area] exits a shape of this area. Requires [member monitoring] to be set to `true`.  
          *  See also [signal area_shape_entered].  
          */
-        readonly area_shape_exited: Signal // area_rid: RID, area: Area2D, area_shape_index: int64, local_shape_index: int64 => void
+        readonly area_shape_exited: Signal4<RID, Area2D, int64, int64>
         
         /** Emitted when the received [param area] enters this area. Requires [member monitoring] to be set to `true`. */
-        readonly area_entered: Signal // area: Area2D => void
+        readonly area_entered: Signal1<Area2D>
         
         /** Emitted when the received [param area] exits this area. Requires [member monitoring] to be set to `true`. */
-        readonly area_exited: Signal // area: Area2D => void
+        readonly area_exited: Signal1<Area2D>
     }
     namespace Area3D {
         enum SpaceOverride {
@@ -2582,36 +2582,36 @@ declare module "godot" {
          *  **Example of getting the** [CollisionShape3D] **node from the shape index:**  
          *    
          */
-        readonly body_shape_entered: Signal // body_rid: RID, body: Node3D, body_shape_index: int64, local_shape_index: int64 => void
+        readonly body_shape_entered: Signal4<RID, Node3D, int64, int64>
         
         /** Emitted when a [Shape3D] of the received [param body] exits a shape of this area. [param body] can be a [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured. Requires [member monitoring] to be set to `true`.  
          *  See also [signal body_shape_entered].  
          */
-        readonly body_shape_exited: Signal // body_rid: RID, body: Node3D, body_shape_index: int64, local_shape_index: int64 => void
+        readonly body_shape_exited: Signal4<RID, Node3D, int64, int64>
         
         /** Emitted when the received [param body] enters this area. [param body] can be a [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured. Requires [member monitoring] to be set to `true`. */
-        readonly body_entered: Signal // body: Node3D => void
+        readonly body_entered: Signal1<Node3D>
         
         /** Emitted when the received [param body] exits this area. [param body] can be a [PhysicsBody3D] or a [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured. Requires [member monitoring] to be set to `true`. */
-        readonly body_exited: Signal // body: Node3D => void
+        readonly body_exited: Signal1<Node3D>
         
         /** Emitted when a [Shape3D] of the received [param area] enters a shape of this area. Requires [member monitoring] to be set to `true`.  
          *  [param local_shape_index] and [param area_shape_index] contain indices of the interacting shapes from this area and the other area, respectively. [param area_rid] contains the [RID] of the other area. These values can be used with the [PhysicsServer3D].  
          *  **Example of getting the** [CollisionShape3D] **node from the shape index:**  
          *    
          */
-        readonly area_shape_entered: Signal // area_rid: RID, area: Area3D, area_shape_index: int64, local_shape_index: int64 => void
+        readonly area_shape_entered: Signal4<RID, Area3D, int64, int64>
         
         /** Emitted when a [Shape3D] of the received [param area] exits a shape of this area. Requires [member monitoring] to be set to `true`.  
          *  See also [signal area_shape_entered].  
          */
-        readonly area_shape_exited: Signal // area_rid: RID, area: Area3D, area_shape_index: int64, local_shape_index: int64 => void
+        readonly area_shape_exited: Signal4<RID, Area3D, int64, int64>
         
         /** Emitted when the received [param area] enters this area. Requires [member monitoring] to be set to `true`. */
-        readonly area_entered: Signal // area: Area3D => void
+        readonly area_entered: Signal1<Area3D>
         
         /** Emitted when the received [param area] exits this area. Requires [member monitoring] to be set to `true`. */
-        readonly area_exited: Signal // area: Area3D => void
+        readonly area_exited: Signal1<Area3D>
     }
     /** [Mesh] type that provides utility for constructing a surface from arrays.  
      *  	  
@@ -2796,7 +2796,7 @@ declare module "godot" {
     }
     class AtlasTileProxyObject extends Object {
         constructor(identifier?: any)
-        readonly changed: Signal // what: string => void
+        readonly changed: Signal1<string>
     }
     /** Stores information about the audio buses.  
      *  	  
@@ -3694,7 +3694,7 @@ declare module "godot" {
         set bus(value: StringName)
         
         /** Emitted when the audio stops playing. */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     /** Plays positional sound in 2D space.  
      *  	  
@@ -3773,7 +3773,7 @@ declare module "godot" {
         set area_mask(value: int64)
         
         /** Emitted when the audio stops playing. */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     namespace AudioStreamPlayer3D {
         enum AttenuationModel {
@@ -3909,7 +3909,7 @@ declare module "godot" {
         set doppler_tracking(value: int64)
         
         /** Emitted when the audio stops playing. */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     class AudioStreamPlayer3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -3928,7 +3928,7 @@ declare module "godot" {
         constructor(identifier?: any)
         _update_emit(_unnamed_arg0: int64): void
         generate_preview(stream: AudioStream): any /*AudioStreamPreview*/
-        readonly preview_updated: Signal // obj_id: int64 => void
+        readonly preview_updated: Signal1<int64>
     }
     namespace AudioStreamRandomizer {
         enum PlaybackMode {
@@ -4195,16 +4195,16 @@ declare module "godot" {
         /** Emitted when the button is toggled or pressed. This is on [signal button_down] if [member action_mode] is [constant ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.  
          *  If you need to know the button's pressed state (and [member toggle_mode] is active), use [signal toggled] instead.  
          */
-        readonly pressed: Signal //  => void
+        readonly pressed: Signal0
         
         /** Emitted when the button stops being held down. */
-        readonly button_up: Signal //  => void
+        readonly button_up: Signal0
         
         /** Emitted when the button starts being held down. */
-        readonly button_down: Signal //  => void
+        readonly button_down: Signal0
         
         /** Emitted when the button was just toggled between pressed and normal states (only if [member toggle_mode] is active). The new state is contained in the [param toggled_on] argument. */
-        readonly toggled: Signal // toggled_on: boolean => void
+        readonly toggled: Signal1<boolean>
     }
     namespace BaseMaterial3D {
         enum TextureParam {
@@ -5027,10 +5027,10 @@ declare module "godot" {
         set profile(value: SkeletonProfile)
         
         /** This signal is emitted when change the key value in the [BoneMap]. This is used to validate mapping and to update [BoneMap] editor. */
-        readonly bone_map_updated: Signal //  => void
+        readonly bone_map_updated: Signal0
         
         /** This signal is emitted when change the value in profile or change the reference of profile. This is used to update key names in the [BoneMap] and to redraw the [BoneMap] editor. */
-        readonly profile_updated: Signal //  => void
+        readonly profile_updated: Signal0
     }
     class BoneMapEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -5177,7 +5177,7 @@ declare module "godot" {
         set allow_unpress(value: boolean)
         
         /** Emitted when one of the buttons of the group is pressed. */
-        readonly pressed: Signal // button: BaseButton => void
+        readonly pressed: Signal1<BaseButton>
     }
     namespace CPUParticles2D {
         enum DrawOrder {
@@ -5396,7 +5396,7 @@ declare module "godot" {
         set color_initial_ramp(value: Gradient)
         
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted. */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     class CPUParticles2DEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -5656,7 +5656,7 @@ declare module "godot" {
         set color_initial_ramp(value: Gradient)
         
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted. */
-        readonly finished: Signal //  => void
+        readonly finished: Signal0
     }
     class CPUParticles3DEditor extends GPUParticles3DEditorBase {
         constructor(identifier?: any)
@@ -6933,16 +6933,16 @@ declare module "godot" {
          *      
          *  **Note:** Deferred connections do not allow drawing through the `draw_*` methods.  
          */
-        readonly draw: Signal //  => void
+        readonly draw: Signal0
         
         /** Emitted when the visibility (hidden/visible) changes. */
-        readonly visibility_changed: Signal //  => void
+        readonly visibility_changed: Signal0
         
         /** Emitted when becoming hidden. */
-        readonly hidden: Signal //  => void
+        readonly hidden: Signal0
         
         /** Emitted when the item's [Rect2] boundaries (position or size) have changed, or when an action is taking place that may have impacted these boundaries (e.g. changing [member Sprite2D.texture]). */
-        readonly item_rect_changed: Signal //  => void
+        readonly item_rect_changed: Signal0
     }
     class CanvasItemEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -6950,13 +6950,10 @@ declare module "godot" {
         update_viewport(): void
         center_at(position: Vector2): void
         _set_owner_for_node_and_children(_unnamed_arg0: Node, _unnamed_arg1: Node): void
-        readonly item_lock_status_changed: Signal //  => void
-        readonly item_group_status_changed: Signal //  => void
+        readonly item_lock_status_changed: Signal0
+        readonly item_group_status_changed: Signal0
     }
     class CanvasItemEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class CanvasItemEditorSelectedItem extends Object {
         constructor(identifier?: any)
     }
     class CanvasItemEditorViewport extends Control {
@@ -7096,7 +7093,7 @@ declare module "godot" {
         set follow_viewport_scale(value: float64)
         
         /** Emitted when visibility of the layer is changed. See [member visible]. */
-        readonly visibility_changed: Signal //  => void
+        readonly visibility_changed: Signal0
     }
     /** A node that applies a color tint to a canvas.  
      *  	  
@@ -7976,16 +7973,16 @@ declare module "godot" {
         set auto_brace_completion_pairs(value: Dictionary)
         
         /** Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a removed is emitted at the old line. */
-        readonly breakpoint_toggled: Signal // line: int64 => void
+        readonly breakpoint_toggled: Signal1<int64>
         
         /** Emitted when the user requests code completion. */
-        readonly code_completion_requested: Signal //  => void
+        readonly code_completion_requested: Signal0
         
         /** Emitted when the user has clicked on a valid symbol. */
-        readonly symbol_lookup: Signal // symbol: string, line: int64, column: int64 => void
+        readonly symbol_lookup: Signal3<string, int64, int64>
         
         /** Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [method set_symbol_lookup_word_as_valid]. */
-        readonly symbol_validate: Signal // symbol: string => void
+        readonly symbol_validate: Signal1<string>
     }
     /** A syntax highlighter intended for code.  
      *  	  
@@ -8070,6 +8067,13 @@ declare module "godot" {
         /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
         get color_regions(): Dictionary
         set color_regions(value: Dictionary)
+    }
+    class CodeTextEditor extends VBoxContainer {
+        constructor(identifier?: any)
+        readonly validate_script: Signal0
+        readonly load_theme_settings: Signal0
+        readonly show_errors_panel: Signal0
+        readonly show_warnings_panel: Signal0
     }
     namespace CollisionObject2D {
         enum DisableMode {
@@ -8210,25 +8214,25 @@ declare module "godot" {
         set input_pickable(value: boolean)
         
         /** Emitted when an input event occurs. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. See [method _input_event] for details. */
-        readonly input_event: Signal // viewport: Node, event: InputEvent, shape_idx: int64 => void
+        readonly input_event: Signal3<Node, InputEvent, int64>
         
         /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
          *      
          *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
          */
-        readonly mouse_entered: Signal //  => void
+        readonly mouse_entered: Signal0
         
         /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
          *      
          *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
          */
-        readonly mouse_exited: Signal //  => void
+        readonly mouse_exited: Signal0
         
         /** Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_entered: Signal // shape_idx: int64 => void
+        readonly mouse_shape_entered: Signal1<int64>
         
         /** Emitted when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_exited: Signal // shape_idx: int64 => void
+        readonly mouse_shape_exited: Signal1<int64>
     }
     namespace CollisionObject3D {
         enum DisableMode {
@@ -8355,19 +8359,19 @@ declare module "godot" {
         set input_capture_on_drag(value: boolean)
         
         /** Emitted when the object receives an unhandled [InputEvent]. [param position] is the location in world space of the mouse pointer on the surface of the shape with index [param shape_idx] and [param normal] is the normal vector of the surface at that point. */
-        readonly input_event: Signal // camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int64 => void
+        readonly input_event: Signal5<Node, InputEvent, Vector3, Vector3, int64>
         
         /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
          *      
          *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small. This signal may also not be emitted if another [CollisionObject3D] is overlapping the [CollisionObject3D] in question.  
          */
-        readonly mouse_entered: Signal //  => void
+        readonly mouse_entered: Signal0
         
         /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
          *      
          *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small. This signal may also not be emitted if another [CollisionObject3D] is overlapping the [CollisionObject3D] in question.  
          */
-        readonly mouse_exited: Signal //  => void
+        readonly mouse_exited: Signal0
     }
     class CollisionObject3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -8620,13 +8624,13 @@ declare module "godot" {
         set presets_visible(value: boolean)
         
         /** Emitted when the color is changed. */
-        readonly color_changed: Signal // color: Color => void
+        readonly color_changed: Signal1<Color>
         
         /** Emitted when a preset is added. */
-        readonly preset_added: Signal // color: Color => void
+        readonly preset_added: Signal1<Color>
         
         /** Emitted when a preset is removed. */
-        readonly preset_removed: Signal // color: Color => void
+        readonly preset_removed: Signal1<Color>
     }
     /** A button that brings up a [ColorPicker] when pressed.  
      *  	  
@@ -8654,13 +8658,13 @@ declare module "godot" {
         set edit_alpha(value: boolean)
         
         /** Emitted when the color changes. */
-        readonly color_changed: Signal // color: Color => void
+        readonly color_changed: Signal1<Color>
         
         /** Emitted when the [ColorPicker] is closed. */
-        readonly popup_closed: Signal //  => void
+        readonly popup_closed: Signal0
         
         /** Emitted when the [ColorPicker] is created (the button is pressed for the first time). */
-        readonly picker_created: Signal //  => void
+        readonly picker_created: Signal0
     }
     /** A control that displays a solid color rectangle.  
      *  	  
@@ -8870,9 +8874,12 @@ declare module "godot" {
     }
     class ConnectDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        readonly connected: Signal //  => void
+        readonly connected: Signal0
     }
     class ConnectDialogBinds extends Object {
+        constructor(identifier?: any)
+    }
+    class ConnectionInfoDialog extends AcceptDialog {
         constructor(identifier?: any)
     }
     class ConnectionsDock extends VBoxContainer {
@@ -8910,10 +8917,10 @@ declare module "godot" {
         fit_child_in_rect(child: Control, rect: Rect2): void
         
         /** Emitted when children are going to be sorted. */
-        readonly pre_sort_children: Signal //  => void
+        readonly pre_sort_children: Signal0
         
         /** Emitted when sorting the children is needed. */
-        readonly sort_children: Signal //  => void
+        readonly sort_children: Signal0
     }
     namespace Control {
         enum FocusMode {
@@ -9736,16 +9743,16 @@ declare module "godot" {
         set theme_type_variation(value: string)
         
         /** Emitted when the control changes size. */
-        readonly resized: Signal //  => void
+        readonly resized: Signal0
         
         /** Emitted when the node receives an [InputEvent]. */
-        readonly gui_input: Signal // event: InputEvent => void
+        readonly gui_input: Signal1<InputEvent>
         
         /** Emitted when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
          *      
          *  **Note:** [member CanvasItem.z_index] doesn't affect, which Control receives the signal.  
          */
-        readonly mouse_entered: Signal //  => void
+        readonly mouse_entered: Signal0
         
         /** Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
          *      
@@ -9754,21 +9761,21 @@ declare module "godot" {
          *  **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:  
          *    
          */
-        readonly mouse_exited: Signal //  => void
+        readonly mouse_exited: Signal0
         
         /** Emitted when the node gains focus. */
-        readonly focus_entered: Signal //  => void
+        readonly focus_entered: Signal0
         
         /** Emitted when the node loses focus. */
-        readonly focus_exited: Signal //  => void
+        readonly focus_exited: Signal0
         
         /** Emitted when one of the size flags changes. See [member size_flags_horizontal] and [member size_flags_vertical]. */
-        readonly size_flags_changed: Signal //  => void
+        readonly size_flags_changed: Signal0
         
         /** Emitted when the node's minimum size changes. */
-        readonly minimum_size_changed: Signal //  => void
+        readonly minimum_size_changed: Signal0
         
         /** Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent. */
-        readonly theme_changed: Signal //  => void
+        readonly theme_changed: Signal0
     }
 }
