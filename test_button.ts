@@ -127,7 +127,7 @@ export default class TestNode extends Button {
         
         // test variant static method with default arguments
         const basis = Basis.looking_at(new Vector3(1, 2, 0), Vector3.UP);
-        console.log("Basis.looking_at(new Vector3(1, 2, 0), Vector3.UP)", basis.x, basis.y, basis.y);
+        console.log("Basis.looking_at(new Vector3(1, 2, 0), Vector3.UP)", basis.x, basis.y, basis.z);
 
         let err = ResourceLoader.load_threaded_request("res://piggy/background.png", "", true, ResourceLoader.CacheMode.CACHE_MODE_IGNORE);
         console.log(
