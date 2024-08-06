@@ -1,4 +1,4 @@
-import { Error as GodotError, Array, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid, Signal1 } from "godot";
+import { Error as GodotError, Array, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid, Signal1, Control, CanvasItem } from "godot";
 import * as jsb from "godot-jsb";
 import { $wait, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, onready, signal } from "./jsb/jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
@@ -72,7 +72,16 @@ export default class TestNode extends Button {
     }
 
     _notification(what: number) {
-        console.log("test _notification", what)
+        if (what == Control.NOTIFICATION_MOUSE_ENTER || what == Control.NOTIFICATION_MOUSE_EXIT) { // 41 42
+        } else if (what == Control.NOTIFICATION_MOUSE_ENTER_SELF || what == Control.NOTIFICATION_MOUSE_EXIT_SELF) { // 60 61
+        } else if (what == Control.NOTIFICATION_FOCUS_ENTER || what == Control.NOTIFICATION_FOCUS_EXIT) { // 43 44
+        } else if (what == Node.NOTIFICATION_WM_WINDOW_FOCUS_IN || what == Node.NOTIFICATION_WM_WINDOW_FOCUS_OUT) { // 1004 1005
+        } else if (what == Node.NOTIFICATION_WM_MOUSE_ENTER || what == Node.NOTIFICATION_WM_MOUSE_EXIT) { // 1002 1003
+        } else if (what == Node.NOTIFICATION_APPLICATION_FOCUS_IN || what == Node.NOTIFICATION_APPLICATION_FOCUS_OUT) { // 2016 2017
+        } else if (what == CanvasItem.NOTIFICATION_DRAW) { // 30
+        } else {
+            console.log("test _notification", what)
+        }
     }
 
     _ready() {
