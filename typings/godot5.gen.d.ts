@@ -1,366 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** A resource that holds a stack of [SkeletonModification2D]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodificationstack2d.html  
-     */
-    class SkeletonModificationStack2D extends Resource {
-        constructor(identifier?: any)
-        /** Sets up the modification stack so it can execute. This function should be called by [Skeleton2D] and shouldn't be manually called unless you know what you are doing. */
-        setup(): void
-        
-        /** Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as the passed-in [param execution_mode], starting from index `0` to [member modification_count].  
-         *      
-         *  **Note:** The order of the modifications can matter depending on the modifications. For example, modifications on a spine should operate before modifications on the arms in order to get proper results.  
-         */
-        execute(delta: float64, execution_mode: int64): void
-        
-        /** Enables all [SkeletonModification2D]s in the stack. */
-        enable_all_modifications(enabled: boolean): void
-        
-        /** Returns the [SkeletonModification2D] at the passed-in index, [param mod_idx]. */
-        get_modification(mod_idx: int64): SkeletonModification2D
-        
-        /** Adds the passed-in [SkeletonModification2D] to the stack. */
-        add_modification(modification: SkeletonModification2D): void
-        
-        /** Deletes the [SkeletonModification2D] at the index position [param mod_idx], if it exists. */
-        delete_modification(mod_idx: int64): void
-        
-        /** Sets the modification at [param mod_idx] to the passed-in modification, [param modification]. */
-        set_modification(mod_idx: int64, modification: SkeletonModification2D): void
-        
-        /** Returns a boolean that indicates whether the modification stack is setup and can execute. */
-        get_is_setup(): boolean
-        
-        /** Returns the [Skeleton2D] node that the SkeletonModificationStack2D is bound to. */
-        get_skeleton(): Skeleton2D
-        
-        /** If `true`, the modification's in the stack will be called. This is handled automatically through the [Skeleton2D] node. */
-        get enabled(): boolean
-        set enabled(value: boolean)
-        
-        /** The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses. */
-        get strength(): float64
-        set strength(value: float64)
-        
-        /** The number of modifications in the stack. */
-        get modification_count(): any /*Modifications,modifications/*/
-        set modification_count(value: any /*Modifications,modifications/*/)
-    }
-    namespace SkeletonProfile {
-        enum TailDirection {
-            /** Direction to the average coordinates of bone children. */
-            TAIL_DIRECTION_AVERAGE_CHILDREN = 0,
-            
-            /** Direction to the coordinates of specified bone child. */
-            TAIL_DIRECTION_SPECIFIC_CHILD = 1,
-            
-            /** Direction is not calculated. */
-            TAIL_DIRECTION_END = 2,
-        }
-    }
-    /** Base class for a profile of a virtual skeleton used as a target for retargeting.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonprofile.html  
-     */
-    class SkeletonProfile extends Resource {
-        constructor(identifier?: any)
-        /** Returns the name of the group at [param group_idx] that will be the drawing group in the [BoneMap] editor. */
-        get_group_name(group_idx: int64): StringName
-        
-        /** Sets the name of the group at [param group_idx] that will be the drawing group in the [BoneMap] editor. */
-        set_group_name(group_idx: int64, group_name: StringName): void
-        
-        /** Returns the texture of the group at [param group_idx] that will be the drawing group background image in the [BoneMap] editor. */
-        get_texture(group_idx: int64): Texture2D
-        
-        /** Sets the texture of the group at [param group_idx] that will be the drawing group background image in the [BoneMap] editor. */
-        set_texture(group_idx: int64, texture: Texture2D): void
-        
-        /** Returns the bone index that matches [param bone_name] as its name. */
-        find_bone(bone_name: StringName): int64
-        
-        /** Returns the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].  
-         *  In the retargeting process, the returned bone name is the bone name of the target skeleton.  
-         */
-        get_bone_name(bone_idx: int64): StringName
-        
-        /** Sets the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].  
-         *  In the retargeting process, the setting bone name is the bone name of the target skeleton.  
-         */
-        set_bone_name(bone_idx: int64, bone_name: StringName): void
-        
-        /** Returns the name of the bone which is the parent to the bone at [param bone_idx]. The result is empty if the bone has no parent. */
-        get_bone_parent(bone_idx: int64): StringName
-        
-        /** Sets the bone with name [param bone_parent] as the parent of the bone at [param bone_idx]. If an empty string is passed, then the bone has no parent. */
-        set_bone_parent(bone_idx: int64, bone_parent: StringName): void
-        
-        /** Returns the tail direction of the bone at [param bone_idx]. */
-        get_tail_direction(bone_idx: int64): SkeletonProfile.TailDirection
-        
-        /** Sets the tail direction of the bone at [param bone_idx].  
-         *      
-         *  **Note:** This only specifies the method of calculation. The actual coordinates required should be stored in an external skeleton, so the calculation itself needs to be done externally.  
-         */
-        set_tail_direction(bone_idx: int64, tail_direction: SkeletonProfile.TailDirection): void
-        
-        /** Returns the name of the bone which is the tail of the bone at [param bone_idx]. */
-        get_bone_tail(bone_idx: int64): StringName
-        
-        /** Sets the bone with name [param bone_tail] as the tail of the bone at [param bone_idx]. */
-        set_bone_tail(bone_idx: int64, bone_tail: StringName): void
-        
-        /** Returns the reference pose transform for bone [param bone_idx]. */
-        get_reference_pose(bone_idx: int64): Transform3D
-        
-        /** Sets the reference pose transform for bone [param bone_idx]. */
-        set_reference_pose(bone_idx: int64, bone_name: Transform3D): void
-        
-        /** Returns the offset of the bone at [param bone_idx] that will be the button position in the [BoneMap] editor.  
-         *  This is the offset with origin at the top left corner of the square.  
-         */
-        get_handle_offset(bone_idx: int64): Vector2
-        
-        /** Sets the offset of the bone at [param bone_idx] that will be the button position in the [BoneMap] editor.  
-         *  This is the offset with origin at the top left corner of the square.  
-         */
-        set_handle_offset(bone_idx: int64, handle_offset: Vector2): void
-        
-        /** Returns the group of the bone at [param bone_idx]. */
-        get_group(bone_idx: int64): StringName
-        
-        /** Sets the group of the bone at [param bone_idx]. */
-        set_group(bone_idx: int64, group: StringName): void
-        
-        /** A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of the parent of hips that exists at the world origin. */
-        get root_bone(): StringName
-        set root_bone(value: StringName)
-        
-        /** A bone name which will use model's height as the coefficient for normalization. For example, [SkeletonProfileHumanoid] defines it as `Hips`. */
-        get scale_base_bone(): StringName
-        set scale_base_bone(value: StringName)
-        
-        /** The amount of groups of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 4 groups.  
-         *  This property exists to separate the bone list into several sections in the editor.  
-         */
-        get group_size(): any /*Groups,groups/*/
-        set group_size(value: any /*Groups,groups/*/)
-        
-        /** The amount of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 56 bones.  
-         *  The size of elements in [BoneMap] updates when changing this property in it's assigned [SkeletonProfile].  
-         */
-        get bone_size(): any /*Bones,bones/*/
-        set bone_size(value: any /*Bones,bones/*/)
-        
-        /** This signal is emitted when change the value in profile. This is used to update key name in the [BoneMap] and to redraw the [BoneMap] editor.  
-         *      
-         *  **Note:** This signal is not connected directly to editor to simplify the reference, instead it is passed on to editor through the [BoneMap].  
-         */
-        readonly profile_updated: Signal0
-    }
-    /** A humanoid [SkeletonProfile] preset.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonprofilehumanoid.html  
-     */
-    class SkeletonProfileHumanoid extends SkeletonProfile {
-        constructor(identifier?: any)
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skin.html */
-    class Skin extends Resource {
-        constructor(identifier?: any)
-        set_bind_count(bind_count: int64): void
-        get_bind_count(): int64
-        add_bind(bone: int64, pose: Transform3D): void
-        add_named_bind(name: string, pose: Transform3D): void
-        set_bind_pose(bind_index: int64, pose: Transform3D): void
-        get_bind_pose(bind_index: int64): Transform3D
-        set_bind_name(bind_index: int64, name: StringName): void
-        get_bind_name(bind_index: int64): StringName
-        set_bind_bone(bind_index: int64, bone: int64): void
-        get_bind_bone(bind_index: int64): int64
-        clear_binds(): void
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skinreference.html */
-    class SkinReference extends RefCounted {
-        constructor(identifier?: any)
-        get_skeleton(): RID
-        get_skin(): Skin
-    }
-    namespace Sky {
-        enum RadianceSize {
-            /** Radiance texture size is 32×32 pixels. */
-            RADIANCE_SIZE_32 = 0,
-            
-            /** Radiance texture size is 64×64 pixels. */
-            RADIANCE_SIZE_64 = 1,
-            
-            /** Radiance texture size is 128×128 pixels. */
-            RADIANCE_SIZE_128 = 2,
-            
-            /** Radiance texture size is 256×256 pixels. */
-            RADIANCE_SIZE_256 = 3,
-            
-            /** Radiance texture size is 512×512 pixels. */
-            RADIANCE_SIZE_512 = 4,
-            
-            /** Radiance texture size is 1024×1024 pixels. */
-            RADIANCE_SIZE_1024 = 5,
-            
-            /** Radiance texture size is 2048×2048 pixels. */
-            RADIANCE_SIZE_2048 = 6,
-            
-            /** Represents the size of the [enum RadianceSize] enum. */
-            RADIANCE_SIZE_MAX = 7,
-        }
-        enum ProcessMode {
-            /** Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [constant PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [constant PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [constant PROCESS_MODE_QUALITY]. */
-            PROCESS_MODE_AUTOMATIC = 0,
-            
-            /** Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [constant PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [member ProjectSettings.rendering/reflections/sky_reflections/ggx_samples]. */
-            PROCESS_MODE_QUALITY = 1,
-            
-            /** Uses the same high quality importance sampling to process the radiance map as [constant PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by [member ProjectSettings.rendering/reflections/sky_reflections/roughness_layers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly. */
-            PROCESS_MODE_INCREMENTAL = 2,
-            
-            /** Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [member ProjectSettings.rendering/reflections/sky_reflections/fast_filter_high_quality].  
-             *      
-             *  **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [member radiance_size] must be set to [constant RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size is ignored.  
-             */
-            PROCESS_MODE_REALTIME = 3,
-        }
-    }
-    /** Defines a 3D environment's background by using a [Material].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_sky.html  
-     */
-    class Sky extends Resource {
-        constructor(identifier?: any)
-        /** [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial], [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader. */
-        get sky_material(): ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial
-        set sky_material(value: ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial)
-        
-        /** Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options. */
-        get process_mode(): int64
-        set process_mode(value: int64)
-        
-        /** The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting from the [Sky] will be.  
-         *  See [enum RadianceSize] constants for values.  
-         *      
-         *  **Note:** Some hardware will have trouble with higher radiance sizes, especially [constant RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.  
-         */
-        get radiance_size(): int64
-        set radiance_size(value: int64)
-    }
-    /** Abstract base class for sliders.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_slider.html  
-     */
-    class Slider extends Range {
-        constructor(identifier?: any)
-        /** If `true`, the slider can be interacted with. If `false`, the value can be changed only by code. */
-        get editable(): boolean
-        set editable(value: boolean)
-        
-        /** If `true`, the value can be changed using the mouse wheel. */
-        get scrollable(): boolean
-        set scrollable(value: boolean)
-        
-        /** Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers. */
-        get tick_count(): int64
-        set tick_count(value: int64)
-        
-        /** If `true`, the slider will display ticks for minimum and maximum values. */
-        get ticks_on_borders(): boolean
-        set ticks_on_borders(value: boolean)
-        
-        /** Emitted when dragging is started. */
-        readonly drag_started: Signal0
-        
-        /** Emitted when dragging stops. If [param value_changed] is true, [member Range.value] is different from the value when you started the dragging. */
-        readonly drag_ended: Signal1<boolean>
-    }
-    namespace SliderJoint3D {
-        enum Param {
-            /** The maximum difference between the pivot points on their X axis before damping happens. */
-            PARAM_LINEAR_LIMIT_UPPER = 0,
-            
-            /** The minimum difference between the pivot points on their X axis before damping happens. */
-            PARAM_LINEAR_LIMIT_LOWER = 1,
-            
-            /** A factor applied to the movement across the slider axis once the limits get surpassed. The lower, the slower the movement. */
-            PARAM_LINEAR_LIMIT_SOFTNESS = 2,
-            
-            /** The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost. */
-            PARAM_LINEAR_LIMIT_RESTITUTION = 3,
-            
-            /** The amount of damping once the slider limits are surpassed. */
-            PARAM_LINEAR_LIMIT_DAMPING = 4,
-            
-            /** A factor applied to the movement across the slider axis as long as the slider is in the limits. The lower, the slower the movement. */
-            PARAM_LINEAR_MOTION_SOFTNESS = 5,
-            
-            /** The amount of restitution inside the slider limits. */
-            PARAM_LINEAR_MOTION_RESTITUTION = 6,
-            
-            /** The amount of damping inside the slider limits. */
-            PARAM_LINEAR_MOTION_DAMPING = 7,
-            
-            /** A factor applied to the movement across axes orthogonal to the slider. */
-            PARAM_LINEAR_ORTHOGONAL_SOFTNESS = 8,
-            
-            /** The amount of restitution when movement is across axes orthogonal to the slider. */
-            PARAM_LINEAR_ORTHOGONAL_RESTITUTION = 9,
-            
-            /** The amount of damping when movement is across axes orthogonal to the slider. */
-            PARAM_LINEAR_ORTHOGONAL_DAMPING = 10,
-            
-            /** The upper limit of rotation in the slider. */
-            PARAM_ANGULAR_LIMIT_UPPER = 11,
-            
-            /** The lower limit of rotation in the slider. */
-            PARAM_ANGULAR_LIMIT_LOWER = 12,
-            
-            /** A factor applied to the all rotation once the limit is surpassed. */
-            PARAM_ANGULAR_LIMIT_SOFTNESS = 13,
-            
-            /** The amount of restitution of the rotation when the limit is surpassed. */
-            PARAM_ANGULAR_LIMIT_RESTITUTION = 14,
-            
-            /** The amount of damping of the rotation when the limit is surpassed. */
-            PARAM_ANGULAR_LIMIT_DAMPING = 15,
-            
-            /** A factor applied to the all rotation in the limits. */
-            PARAM_ANGULAR_MOTION_SOFTNESS = 16,
-            
-            /** The amount of restitution of the rotation in the limits. */
-            PARAM_ANGULAR_MOTION_RESTITUTION = 17,
-            
-            /** The amount of damping of the rotation in the limits. */
-            PARAM_ANGULAR_MOTION_DAMPING = 18,
-            
-            /** A factor applied to the all rotation across axes orthogonal to the slider. */
-            PARAM_ANGULAR_ORTHOGONAL_SOFTNESS = 19,
-            
-            /** The amount of restitution of the rotation across axes orthogonal to the slider. */
-            PARAM_ANGULAR_ORTHOGONAL_RESTITUTION = 20,
-            
-            /** The amount of damping of the rotation across axes orthogonal to the slider. */
-            PARAM_ANGULAR_ORTHOGONAL_DAMPING = 21,
-            
-            /** Represents the size of the [enum Param] enum. */
-            PARAM_MAX = 22,
-        }
-    }
-    /** A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_sliderjoint3d.html  
-     */
-    class SliderJoint3D extends Joint3D {
-        constructor(identifier?: any)
-    }
     class SnapDialog extends ConfirmationDialog {
         constructor(identifier?: any)
     }
@@ -816,6 +456,12 @@ declare module "godot" {
      */
     class SpriteBase3D extends GeometryInstance3D {
         constructor(identifier?: any)
+        /** If `true`, the specified flag will be enabled. See [enum SpriteBase3D.DrawFlags] for a list of flags. */
+        set_draw_flag(flag: SpriteBase3D.DrawFlags, enabled: boolean): void
+        
+        /** Returns the value of the specified flag. */
+        get_draw_flag(flag: SpriteBase3D.DrawFlags): boolean
+        
         /** Returns the rectangle representing this sprite. */
         get_item_rect(): Rect2
         
@@ -1300,8 +946,14 @@ declare module "godot" {
         /** Returns the minimum size that this stylebox can be shrunk to. */
         get_minimum_size(): Vector2
         
+        /** Sets the default value of the specified [enum Side] to [param offset] pixels. */
+        set_content_margin(margin: Side, offset: float64): void
+        
         /** Sets the default margin to [param offset] pixels for all sides. */
         set_content_margin_all(offset: float64): void
+        
+        /** Returns the default margin of the specified [enum Side]. */
+        get_content_margin(margin: Side): float64
         
         /** Returns the content margin offset for the specified [enum Side].  
          *  Positive values reduce size inwards, unlike [Control]'s margin values.  
@@ -1344,11 +996,29 @@ declare module "godot" {
         /** Returns the smallest border width out of all four borders. */
         get_border_width_min(): int64
         
+        /** Sets the specified [enum Side]'s border width to [param width] pixels. */
+        set_border_width(margin: Side, width: int64): void
+        
+        /** Returns the specified [enum Side]'s border width. */
+        get_border_width(margin: Side): int64
+        
         /** Sets the corner radius to [param radius] pixels for all corners. */
         set_corner_radius_all(radius: int64): void
         
+        /** Sets the corner radius to [param radius] pixels for the given [param corner]. See [enum Corner] for possible values. */
+        set_corner_radius(corner: Corner, radius: int64): void
+        
+        /** Returns the given [param corner]'s radius. See [enum Corner] for possible values. */
+        get_corner_radius(corner: Corner): int64
+        
+        /** Sets the expand margin to [param size] pixels for the specified [enum Side]. */
+        set_expand_margin(margin: Side, size: float64): void
+        
         /** Sets the expand margin to [param size] pixels for all sides. */
         set_expand_margin_all(size: float64): void
+        
+        /** Returns the size of the specified [enum Side]'s expand margin. */
+        get_expand_margin(margin: Side): float64
         
         /** The background color of the stylebox. */
         get bg_color(): Color
@@ -1450,11 +1120,23 @@ declare module "godot" {
      */
     class StyleBoxTexture extends StyleBox {
         constructor(identifier?: any)
+        /** Sets the margin to [param size] pixels for the specified [enum Side]. */
+        set_texture_margin(margin: Side, size: float64): void
+        
         /** Sets the margin to [param size] pixels for all sides. */
         set_texture_margin_all(size: float64): void
         
+        /** Returns the margin size of the specified [enum Side]. */
+        get_texture_margin(margin: Side): float64
+        
+        /** Sets the expand margin to [param size] pixels for the specified [enum Side]. */
+        set_expand_margin(margin: Side, size: float64): void
+        
         /** Sets the expand margin to [param size] pixels for all sides. */
         set_expand_margin_all(size: float64): void
+        
+        /** Returns the expand margin size of the specified [enum Side]. */
+        get_expand_margin(margin: Side): float64
         
         /** The texture to use when drawing this style box. */
         get texture(): Texture2D
@@ -5043,6 +4725,12 @@ declare module "godot" {
      */
     class TextureProgressBar extends Range {
         constructor(identifier?: any)
+        /** Sets the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
+        set_stretch_margin(margin: Side, value: int64): void
+        
+        /** Returns the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
+        get_stretch_margin(margin: Side): int64
+        
         /** The fill direction. See [enum FillMode] for possible values. */
         get fill_mode(): int64
         set fill_mode(value: int64)
@@ -5751,15 +5439,6 @@ declare module "godot" {
          *  **Note:** If the properties of [param tile_data] object should change over time, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.  
          */
         /* gdvirtual */ _tile_data_runtime_update(layer: int64, coords: Vector2i, tile_data: TileData): void
-        
-        /** See [method set_layer_navigation_map]. */
-        set_navigation_map(layer: int64, map: RID): void
-        
-        /** See [method get_layer_navigation_map]. */
-        get_navigation_map(layer: int64): RID
-        
-        /**  *Deprecated.*  See [method notify_runtime_tile_data_update] and [method update_internals]. */
-        force_update(layer: int64 = -1): void
         
         /** Returns the number of layers in the TileMap. */
         get_layers_count(): int64
@@ -8717,21 +8396,6 @@ declare module "godot" {
          */
         push_input(event: InputEvent, in_local_coords: boolean = false): void
         
-        /** Triggers the given [InputEvent] in this [Viewport]. This can be used to pass input events between viewports, or to locally apply inputs that were sent over the network or saved to a file.  
-         *  If [param in_local_coords] is `false`, the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [param in_local_coords] is `true`, the event's position is in viewport coordinates.  
-         *  While this method serves a similar purpose as [method Input.parse_input_event], it does not remap the specified [param event] based on project settings like [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse].  
-         *  Calling this method will propagate calls to child nodes for following methods in the given order:  
-         *  - [method Node._shortcut_input]  
-         *  - [method Node._unhandled_key_input]  
-         *  - [method Node._unhandled_input]  
-         *  If an earlier method marks the input as handled via [method set_input_as_handled], any later method in this list will not be called.  
-         *  If none of the methods handle the event and [member physics_object_picking] is `true`, the event is used for physics object picking.  
-         *      
-         *  **Note:** This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.  
-         *   *Deprecated.*  Use [method push_input] instead.  
-         */
-        push_unhandled_input(event: InputEvent, in_local_coords: boolean = false): void
-        
         /** Returns the currently active 2D camera. Returns null if there are no active cameras. */
         get_camera_2d(): Camera2D
         
@@ -8765,6 +8429,12 @@ declare module "godot" {
         gui_get_focus_owner(): Control
         _gui_remove_focus_for_window(_unnamed_arg0: Node): void
         _post_gui_grab_click_focus(): void
+        
+        /** Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible. */
+        set_positional_shadow_atlas_quadrant_subdiv(quadrant: int64, subdiv: Viewport.PositionalShadowAtlasQuadrantSubdiv): void
+        
+        /** Returns the [enum PositionalShadowAtlasQuadrantSubdiv] of the specified quadrant. */
+        get_positional_shadow_atlas_quadrant_subdiv(quadrant: int64): Viewport.PositionalShadowAtlasQuadrantSubdiv
         
         /** Stops the input from propagating further down the [SceneTree].  
          *      
@@ -9309,5 +8979,265 @@ declare module "godot" {
         /** The offset vector of the whole graph. */
         get graph_offset(): Vector2
         set graph_offset(value: Vector2)
+    }
+    class VisualShaderConversionPlugin extends EditorResourceConversionPlugin {
+        constructor(identifier?: any)
+    }
+    namespace VisualShaderNode {
+        enum PortType {
+            /** Floating-point scalar. Translated to [code skip-lint]float` type in shader code. */
+            PORT_TYPE_SCALAR = 0,
+            
+            /** Integer scalar. Translated to [code skip-lint]int` type in shader code. */
+            PORT_TYPE_SCALAR_INT = 1,
+            
+            /** Unsigned integer scalar. Translated to [code skip-lint]uint` type in shader code. */
+            PORT_TYPE_SCALAR_UINT = 2,
+            
+            /** 2D vector of floating-point values. Translated to [code skip-lint]vec2` type in shader code. */
+            PORT_TYPE_VECTOR_2D = 3,
+            
+            /** 3D vector of floating-point values. Translated to [code skip-lint]vec3` type in shader code. */
+            PORT_TYPE_VECTOR_3D = 4,
+            
+            /** 4D vector of floating-point values. Translated to [code skip-lint]vec4` type in shader code. */
+            PORT_TYPE_VECTOR_4D = 5,
+            
+            /** Boolean type. Translated to [code skip-lint]bool` type in shader code. */
+            PORT_TYPE_BOOLEAN = 6,
+            
+            /** Transform type. Translated to [code skip-lint]mat4` type in shader code. */
+            PORT_TYPE_TRANSFORM = 7,
+            
+            /** Sampler type. Translated to reference of sampler uniform in shader code. Can only be used for input ports in non-uniform nodes. */
+            PORT_TYPE_SAMPLER = 8,
+            
+            /** Represents the size of the [enum PortType] enum. */
+            PORT_TYPE_MAX = 9,
+        }
+    }
+    /** Base class for [VisualShader] nodes. Not related to scene nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernode.html  
+     */
+    class VisualShaderNode extends Resource {
+        constructor(identifier?: any)
+        /** Returns the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph. */
+        get_default_input_port(type: VisualShaderNode.PortType): int64
+        _set_output_port_expanded(port: int64, _unnamed_arg1: boolean): void
+        _is_output_port_expanded(_unnamed_arg0: int64): boolean
+        
+        /** Sets the default [param value] for the selected input [param port]. */
+        set_input_port_default_value(port: int64, value: any, prev_value: any = <any> {}): void
+        
+        /** Returns the default value of the input [param port]. */
+        get_input_port_default_value(port: int64): any
+        
+        /** Removes the default value of the input [param port]. */
+        remove_input_port_default_value(port: int64): void
+        
+        /** Clears the default input ports value. */
+        clear_default_input_values(): void
+        
+        /** Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview. */
+        get output_port_for_preview(): int64
+        set output_port_for_preview(value: int64)
+        get default_input_values(): Array
+        set default_input_values(value: Array)
+        get expanded_output_ports(): Array
+        set expanded_output_ports(value: Array)
+    }
+    namespace VisualShaderNodeBillboard {
+        enum BillboardType {
+            /** Billboarding is disabled and the node does nothing. */
+            BILLBOARD_TYPE_DISABLED = 0,
+            
+            /** A standard billboarding algorithm is enabled. */
+            BILLBOARD_TYPE_ENABLED = 1,
+            
+            /** A billboarding algorithm to rotate around Y-axis is enabled. */
+            BILLBOARD_TYPE_FIXED_Y = 2,
+            
+            /** A billboarding algorithm designed to use on particles is enabled. */
+            BILLBOARD_TYPE_PARTICLES = 3,
+            
+            /** Represents the size of the [enum BillboardType] enum. */
+            BILLBOARD_TYPE_MAX = 4,
+        }
+    }
+    /** A node that controls how the object faces the camera to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebillboard.html  
+     */
+    class VisualShaderNodeBillboard extends VisualShaderNode {
+        constructor(identifier?: any)
+        /** Controls how the object faces the camera. See [enum BillboardType]. */
+        get billboard_type(): int64
+        set billboard_type(value: int64)
+        
+        /** If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. */
+        get keep_scale(): boolean
+        set keep_scale(value: boolean)
+    }
+    /** A boolean constant to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebooleanconstant.html  
+     */
+    class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
+        constructor(identifier?: any)
+        /** A boolean constant which represents a state of this node. */
+        get constant(): boolean
+        set constant(value: boolean)
+    }
+    /** A boolean parameter to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebooleanparameter.html  
+     */
+    class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
+        constructor(identifier?: any)
+        /** Enables usage of the [member default_value]. */
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
+        
+        /** A default value to be assigned within the shader. */
+        get default_value(): boolean
+        set default_value(value: boolean)
+    }
+    namespace VisualShaderNodeClamp {
+        enum OpType {
+            /** A floating-point scalar. */
+            OP_TYPE_FLOAT = 0,
+            
+            /** An integer scalar. */
+            OP_TYPE_INT = 1,
+            
+            /** An unsigned integer scalar. */
+            OP_TYPE_UINT = 2,
+            
+            /** A 2D vector type. */
+            OP_TYPE_VECTOR_2D = 3,
+            
+            /** A 3D vector type. */
+            OP_TYPE_VECTOR_3D = 4,
+            
+            /** A 4D vector type. */
+            OP_TYPE_VECTOR_4D = 5,
+            
+            /** Represents the size of the [enum OpType] enum. */
+            OP_TYPE_MAX = 6,
+        }
+    }
+    /** Clamps a value within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodeclamp.html  
+     */
+    class VisualShaderNodeClamp extends VisualShaderNode {
+        constructor(identifier?: any)
+        /** A type of operands and returned value. */
+        get op_type(): int64
+        set op_type(value: int64)
+    }
+    /** A [Color] constant to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorconstant.html  
+     */
+    class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
+        constructor(identifier?: any)
+        /** A [Color] constant which represents a state of this node. */
+        get constant(): Color
+        set constant(value: Color)
+    }
+    namespace VisualShaderNodeColorFunc {
+        enum Function {
+            /** Converts the color to grayscale using the following formula:  
+             *    
+             */
+            FUNC_GRAYSCALE = 0,
+            
+            /** Converts HSV vector to RGB equivalent. */
+            FUNC_HSV2RGB = 1,
+            
+            /** Converts RGB vector to HSV equivalent. */
+            FUNC_RGB2HSV = 2,
+            
+            /** Applies sepia tone effect using the following formula:  
+             *    
+             */
+            FUNC_SEPIA = 3,
+            
+            /** Represents the size of the [enum Function] enum. */
+            FUNC_MAX = 4,
+        }
+    }
+    /** A [Color] function to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorfunc.html  
+     */
+    class VisualShaderNodeColorFunc extends VisualShaderNode {
+        constructor(identifier?: any)
+        /** A function to be applied to the input color. See [enum Function] for options. */
+        get function(): int64
+        set function(value: int64)
+    }
+    namespace VisualShaderNodeColorOp {
+        enum Operator {
+            /** Produce a screen effect with the following formula:  
+             *    
+             */
+            OP_SCREEN = 0,
+            
+            /** Produce a difference effect with the following formula:  
+             *    
+             */
+            OP_DIFFERENCE = 1,
+            
+            /** Produce a darken effect with the following formula:  
+             *    
+             */
+            OP_DARKEN = 2,
+            
+            /** Produce a lighten effect with the following formula:  
+             *    
+             */
+            OP_LIGHTEN = 3,
+            
+            /** Produce an overlay effect with the following formula:  
+             *    
+             */
+            OP_OVERLAY = 4,
+            
+            /** Produce a dodge effect with the following formula:  
+             *    
+             */
+            OP_DODGE = 5,
+            
+            /** Produce a burn effect with the following formula:  
+             *    
+             */
+            OP_BURN = 6,
+            
+            /** Produce a soft light effect with the following formula:  
+             *    
+             */
+            OP_SOFT_LIGHT = 7,
+            
+            /** Produce a hard light effect with the following formula:  
+             *    
+             */
+            OP_HARD_LIGHT = 8,
+            
+            /** Represents the size of the [enum Operator] enum. */
+            OP_MAX = 9,
+        }
+    }
+    /** A [Color] operator to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorop.html  
+     */
+    class VisualShaderNodeColorOp extends VisualShaderNode {
+        constructor(identifier?: any)
+        /** An operator to be applied to the inputs. See [enum Operator] for options. */
+        get operator(): int64
+        set operator(value: int64)
     }
 }

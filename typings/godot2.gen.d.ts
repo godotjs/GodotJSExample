@@ -635,6 +635,20 @@ declare module "godot" {
      */
     class Decal extends VisualInstance3D {
         constructor(identifier?: any)
+        /** Sets the [Texture2D] associated with the specified [enum DecalTexture]. This is a convenience method, in most cases you should access the texture directly.  
+         *  For example, instead of `$Decal.set_texture(Decal.TEXTURE_ALBEDO, albedo_tex)`, use `$Decal.texture_albedo = albedo_tex`.  
+         *  One case where this is better than accessing the texture directly is when you want to copy one Decal's textures to another. For example:  
+         *    
+         */
+        set_texture(type: Decal.DecalTexture, texture: Texture2D): void
+        
+        /** Returns the [Texture2D] associated with the specified [enum DecalTexture]. This is a convenience method, in most cases you should access the texture directly.  
+         *  For example, instead of `albedo_tex = $Decal.get_texture(Decal.TEXTURE_ALBEDO)`, use `albedo_tex = $Decal.texture_albedo`.  
+         *  One case where this is better than accessing the texture directly is when you want to copy one Decal's textures to another. For example:  
+         *    
+         */
+        get_texture(type: Decal.DecalTexture): Texture2D
+        
         /** Sets the size of the [AABB] used by the decal. All dimensions must be set to a value greater than zero (they will be clamped to `0.001` if this is not the case). The AABB goes from `-size/2` to `size/2`.  
          *      
          *  **Note:** To improve culling efficiency of "hard surface" decals, set their [member upper_fade] and [member lower_fade] to `0.0` and set the Y component of the [member size] as low as possible. This will reduce the decals' AABB size without affecting their appearance.  
@@ -3866,6 +3880,12 @@ declare module "godot" {
      */
     class Environment extends Resource {
         constructor(identifier?: any)
+        /** Sets the intensity of the glow level [param idx]. A value above `0.0` enables the level. Each level relies on the previous level. This means that enabling higher glow levels will slow down the glow effect rendering, even if previous levels aren't enabled. */
+        set_glow_level(idx: int64, intensity: float64): void
+        
+        /** Returns the intensity of the glow level [param idx]. */
+        get_glow_level(idx: int64): float64
+        
         /** The background mode. See [enum BGMode] for possible values. */
         get background_mode(): int64
         set background_mode(value: int64)
@@ -5588,6 +5608,9 @@ declare module "godot" {
      */
     class FontVariation extends Font {
         constructor(identifier?: any)
+        /** Sets the spacing for [param spacing] (see [enum TextServer.SpacingType]) to [param value] in pixels (not relative to the font size). */
+        set_spacing(spacing: TextServer.SpacingType, value: int64): void
+        
         /** Base font used to create a variation. If not set, default [Theme] font is used. */
         get base_font(): Font
         set base_font(value: Font)
@@ -5638,6 +5661,46 @@ declare module "godot" {
         is_library_open(): boolean
         get_minimum_library_initialization_level(): GDExtension.InitializationLevel
         initialize_library(level: GDExtension.InitializationLevel): void
+    }
+    class GDScriptLanguageServer extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gdscripttextdocument.html */
+    class GDScriptTextDocument extends RefCounted {
+        constructor(identifier?: any)
+        didOpen(_unnamed_arg0: any): void
+        didClose(_unnamed_arg0: any): void
+        didChange(_unnamed_arg0: any): void
+        willSaveWaitUntil(_unnamed_arg0: any): void
+        didSave(_unnamed_arg0: any): void
+        nativeSymbol(_unnamed_arg0: Dictionary): any
+        documentSymbol(_unnamed_arg0: Dictionary): Array
+        completion(_unnamed_arg0: Dictionary): Array
+        resolve(_unnamed_arg0: Dictionary): Dictionary
+        rename(_unnamed_arg0: Dictionary): Dictionary
+        prepareRename(_unnamed_arg0: Dictionary): any
+        references(_unnamed_arg0: Dictionary): Array
+        foldingRange(_unnamed_arg0: Dictionary): Array
+        codeLens(_unnamed_arg0: Dictionary): Array
+        documentLink(_unnamed_arg0: Dictionary): Array
+        colorPresentation(_unnamed_arg0: Dictionary): Array
+        hover(_unnamed_arg0: Dictionary): any
+        definition(_unnamed_arg0: Dictionary): Array
+        declaration(_unnamed_arg0: Dictionary): any
+        signatureHelp(_unnamed_arg0: Dictionary): any
+        show_native_symbol_in_editor(_unnamed_arg0: string): void
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gdscriptworkspace.html */
+    class GDScriptWorkspace extends RefCounted {
+        constructor(identifier?: any)
+        apply_new_signal(_unnamed_arg0: Object, _unnamed_arg1: string, _unnamed_arg2: PackedStringArray | string[]): void
+        didDeleteFiles(_unnamed_arg0: Dictionary): void
+        parse_script(path: string, content: string): Error
+        parse_local_script(path: string): Error
+        get_file_path(uri: string): string
+        get_file_uri(path: string): string
+        publish_diagnostics(path: string): void
+        generate_script_api(path: string): Dictionary
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfaccessor.html */
     class GLTFAccessor extends Resource {
@@ -6563,6 +6626,12 @@ declare module "godot" {
         static readonly MAX_DRAW_PASSES = 4
         constructor(identifier?: any)
         
+        /** Sets the [Mesh] that is drawn at index [param pass]. */
+        set_draw_pass_mesh(pass: int64, mesh: Mesh): void
+        
+        /** Returns the [Mesh] that is drawn at index [param pass]. */
+        get_draw_pass_mesh(pass: int64): Mesh
+        
         /** Restarts the particle emission, clearing existing particles. */
         restart(): void
         
@@ -7014,6 +7083,18 @@ declare module "godot" {
      */
     class Generic6DOFJoint3D extends Joint3D {
         constructor(identifier?: any)
+        set_param_x(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_x(param: Generic6DOFJoint3D.Param): float64
+        set_param_y(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_y(param: Generic6DOFJoint3D.Param): float64
+        set_param_z(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_z(param: Generic6DOFJoint3D.Param): float64
+        set_flag_x(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_x(flag: Generic6DOFJoint3D.Flag): boolean
+        set_flag_y(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_y(flag: Generic6DOFJoint3D.Flag): boolean
+        set_flag_z(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_z(flag: Generic6DOFJoint3D.Flag): boolean
     }
     namespace GeometryInstance3D {
         enum ShadowCastingSetting {
@@ -7828,9 +7909,6 @@ declare module "godot" {
         map_to_local(map_position: Vector3i): Vector3
         _update_octants_callback(): void
         
-        /**  *Obsoleted.*  Use [signal Resource.changed] instead. */
-        resource_changed(resource: Resource): void
-        
         /** Clear all cells. */
         clear(): void
         
@@ -8566,6 +8644,17 @@ declare module "godot" {
      */
     class HingeJoint3D extends Joint3D {
         constructor(identifier?: any)
+        /** Sets the value of the specified parameter. */
+        set_param(param: HingeJoint3D.Param, value: float64): void
+        
+        /** Returns the value of the specified parameter. */
+        get_param(param: HingeJoint3D.Param): float64
+        
+        /** If `true`, enables the specified flag. */
+        set_flag(flag: HingeJoint3D.Flag, enabled: boolean): void
+        
+        /** Returns the value of the specified flag. */
+        get_flag(flag: HingeJoint3D.Flag): boolean
     }
     class HistoryDock extends VBoxContainer {
         constructor(identifier?: any)
@@ -9128,102 +9217,5 @@ declare module "godot" {
         
         /** Remove this format loader from the engine. */
         remove_format_loader(): void
-    }
-    /** A [Texture2D] based on an [Image].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_imagetexture.html  
-     */
-    class ImageTexture extends Texture2D {
-        constructor(identifier?: any)
-        /** Creates a new [ImageTexture] and initializes it by allocating and setting the data from an [Image]. */
-        static create_from_image(image: Image): ImageTexture
-        
-        /** Returns the format of the texture, one of [enum Image.Format]. */
-        get_format(): Image.Format
-        
-        /** Replaces the texture's data with a new [Image]. This will re-allocate new memory for the texture.  
-         *  If you want to update the image, but don't need to change its parameters (format, size), use [method update] instead for better performance.  
-         */
-        set_image(image: Image): void
-        
-        /** Replaces the texture's data with a new [Image].  
-         *      
-         *  **Note:** The texture has to be created using [method create_from_image] or initialized first with the [method set_image] method before it can be updated. The new image dimensions, format, and mipmaps configuration should match the existing texture's image configuration.  
-         *  Use this method over [method set_image] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.  
-         */
-        update(image: Image): void
-        
-        /** Resizes the texture to the specified dimensions. */
-        set_size_override(size: Vector2i): void
-    }
-    /** Texture with 3 dimensions.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_imagetexture3d.html  
-     */
-    class ImageTexture3D extends Texture3D {
-        constructor(identifier?: any)
-        /** Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth]. See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then generate mipmaps for the [ImageTexture3D]. */
-        create(format: Image.Format, width: int64, height: int64, depth: int64, use_mipmaps: boolean, data: Array): Error
-        
-        /** Replaces the texture's existing data with the layers specified in [param data]. The size of [param data] must match the parameters that were used for [method create]. In other words, the texture cannot be resized or have its format changed by calling [method update]. */
-        update(data: Array): void
-        get _images(): Array
-        set _images(value: Array)
-    }
-    /** Base class for texture types which contain the data of multiple [ImageTexture]s. Each image is of the same size and format.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_imagetexturelayered.html  
-     */
-    class ImageTextureLayered extends TextureLayered {
-        constructor(identifier?: any)
-        /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images  *must*  have the same width, height, image format and mipmapping setting.  
-         *  Each [Image] represents one `layer`.  
-         */
-        create_from_images(images: Array): Error
-        
-        /** Replaces the existing [Image] data at the given [param layer] with this new image.  
-         *  The given [Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.  
-         *  If the image format is unsupported, it will be decompressed and converted to a similar and supported [enum Image.Format].  
-         *  The update is immediate: it's synchronized with drawing.  
-         */
-        update_layer(image: Image, layer: int64): void
-        get _images(): Array
-        set _images(value: Array)
-    }
-    /** Mesh optimized for creating geometry manually.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_immediatemesh.html  
-     */
-    class ImmediateMesh extends Mesh {
-        constructor(identifier?: any)
-        /** Begin a new surface. */
-        surface_begin(primitive: Mesh.PrimitiveType, material: Material = undefined): void
-        
-        /** Set the color attribute that will be pushed with the next vertex. */
-        surface_set_color(color: Color): void
-        
-        /** Set the normal attribute that will be pushed with the next vertex. */
-        surface_set_normal(normal: Vector3): void
-        
-        /** Set the tangent attribute that will be pushed with the next vertex. */
-        surface_set_tangent(tangent: Plane): void
-        
-        /** Set the UV attribute that will be pushed with the next vertex. */
-        surface_set_uv(uv: Vector2): void
-        
-        /** Set the UV2 attribute that will be pushed with the next vertex. */
-        surface_set_uv2(uv2: Vector2): void
-        
-        /** Add a 3D vertex using the current attributes previously set. */
-        surface_add_vertex(vertex: Vector3): void
-        
-        /** Add a 2D vertex using the current attributes previously set. */
-        surface_add_vertex_2d(vertex: Vector2): void
-        
-        /** End and commit current surface. Note that surface being created will not be visible until this function is called. */
-        surface_end(): void
-        
-        /** Clear all surfaces. */
-        clear_surfaces(): void
     }
 }

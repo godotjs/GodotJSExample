@@ -1,6 +1,103 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A [Texture2D] based on an [Image].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_imagetexture.html  
+     */
+    class ImageTexture extends Texture2D {
+        constructor(identifier?: any)
+        /** Creates a new [ImageTexture] and initializes it by allocating and setting the data from an [Image]. */
+        static create_from_image(image: Image): ImageTexture
+        
+        /** Returns the format of the texture, one of [enum Image.Format]. */
+        get_format(): Image.Format
+        
+        /** Replaces the texture's data with a new [Image]. This will re-allocate new memory for the texture.  
+         *  If you want to update the image, but don't need to change its parameters (format, size), use [method update] instead for better performance.  
+         */
+        set_image(image: Image): void
+        
+        /** Replaces the texture's data with a new [Image].  
+         *      
+         *  **Note:** The texture has to be created using [method create_from_image] or initialized first with the [method set_image] method before it can be updated. The new image dimensions, format, and mipmaps configuration should match the existing texture's image configuration.  
+         *  Use this method over [method set_image] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.  
+         */
+        update(image: Image): void
+        
+        /** Resizes the texture to the specified dimensions. */
+        set_size_override(size: Vector2i): void
+    }
+    /** Texture with 3 dimensions.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_imagetexture3d.html  
+     */
+    class ImageTexture3D extends Texture3D {
+        constructor(identifier?: any)
+        /** Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth]. See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then generate mipmaps for the [ImageTexture3D]. */
+        create(format: Image.Format, width: int64, height: int64, depth: int64, use_mipmaps: boolean, data: Array): Error
+        
+        /** Replaces the texture's existing data with the layers specified in [param data]. The size of [param data] must match the parameters that were used for [method create]. In other words, the texture cannot be resized or have its format changed by calling [method update]. */
+        update(data: Array): void
+        get _images(): Array
+        set _images(value: Array)
+    }
+    /** Base class for texture types which contain the data of multiple [ImageTexture]s. Each image is of the same size and format.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_imagetexturelayered.html  
+     */
+    class ImageTextureLayered extends TextureLayered {
+        constructor(identifier?: any)
+        /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images  *must*  have the same width, height, image format and mipmapping setting.  
+         *  Each [Image] represents one `layer`.  
+         */
+        create_from_images(images: Array): Error
+        
+        /** Replaces the existing [Image] data at the given [param layer] with this new image.  
+         *  The given [Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.  
+         *  If the image format is unsupported, it will be decompressed and converted to a similar and supported [enum Image.Format].  
+         *  The update is immediate: it's synchronized with drawing.  
+         */
+        update_layer(image: Image, layer: int64): void
+        get _images(): Array
+        set _images(value: Array)
+    }
+    /** Mesh optimized for creating geometry manually.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_immediatemesh.html  
+     */
+    class ImmediateMesh extends Mesh {
+        constructor(identifier?: any)
+        /** Begin a new surface. */
+        surface_begin(primitive: Mesh.PrimitiveType, material: Material = undefined): void
+        
+        /** Set the color attribute that will be pushed with the next vertex. */
+        surface_set_color(color: Color): void
+        
+        /** Set the normal attribute that will be pushed with the next vertex. */
+        surface_set_normal(normal: Vector3): void
+        
+        /** Set the tangent attribute that will be pushed with the next vertex. */
+        surface_set_tangent(tangent: Plane): void
+        
+        /** Set the UV attribute that will be pushed with the next vertex. */
+        surface_set_uv(uv: Vector2): void
+        
+        /** Set the UV2 attribute that will be pushed with the next vertex. */
+        surface_set_uv2(uv2: Vector2): void
+        
+        /** Add a 3D vertex using the current attributes previously set. */
+        surface_add_vertex(vertex: Vector3): void
+        
+        /** Add a 2D vertex using the current attributes previously set. */
+        surface_add_vertex_2d(vertex: Vector2): void
+        
+        /** End and commit current surface. Note that surface being created will not be visible until this function is called. */
+        surface_end(): void
+        
+        /** Clear all surfaces. */
+        clear_surfaces(): void
+    }
     class ImportDefaultsEditor extends VBoxContainer {
         constructor(identifier?: any)
     }
@@ -1305,6 +1402,12 @@ declare module "godot" {
      */
     class Label3D extends GeometryInstance3D {
         constructor(identifier?: any)
+        /** If `true`, the specified flag will be enabled. See [enum Label3D.DrawFlags] for a list of flags. */
+        set_draw_flag(flag: Label3D.DrawFlags, enabled: boolean): void
+        
+        /** Returns the value of the specified flag. */
+        get_draw_flag(flag: Label3D.DrawFlags): boolean
+        
         /** Returns a [TriangleMesh] with the label's vertices following its current configuration (such as its [member pixel_size]). */
         generate_triangle_mesh(): TriangleMesh
         
@@ -1665,6 +1768,12 @@ declare module "godot" {
      */
     class Light3D extends VisualInstance3D {
         constructor(identifier?: any)
+        /** Sets the value of the specified [enum Light3D.Param] parameter. */
+        set_param(param: Light3D.Param, value: float64): void
+        
+        /** Returns the value of the specified [enum Light3D.Param] parameter. */
+        get_param(param: Light3D.Param): float64
+        
         /** Returns the [Color] of an idealized blackbody at the given [member light_temperature]. This value is calculated internally based on the [member light_temperature]. This [Color] is multiplied by [member light_color] before being sent to the [RenderingServer]. */
         get_correlated_color(): Color
         
@@ -1964,14 +2073,6 @@ declare module "godot" {
         set user_data(value: Array)
         get probe_data(): Dictionary
         set probe_data(value: Dictionary)
-        
-        /** The lightmap atlas texture generated by the lightmapper.  
-         *   *Deprecated.*  The lightmap atlas can now have multiple textures. See [member lightmap_textures].  
-         */
-        get light_texture(): TextureLayered
-        set light_texture(value: TextureLayered)
-        get light_textures(): Array
-        set light_textures(value: Array)
     }
     class LightmapGIEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -3629,22 +3730,6 @@ declare module "godot" {
         set mesh(value: Mesh)
         get buffer(): PackedFloat32Array
         set buffer(value: PackedFloat32Array | float32[])
-        
-        /** See [method set_instance_transform]. */
-        get transform_array(): PackedVector3Array
-        set transform_array(value: PackedVector3Array | Vector3[])
-        
-        /** See [method set_instance_transform_2d]. */
-        get transform_2d_array(): PackedVector2Array
-        set transform_2d_array(value: PackedVector2Array | Vector2[])
-        
-        /** See [method set_instance_color]. */
-        get color_array(): PackedColorArray
-        set color_array(value: PackedColorArray | Color[])
-        
-        /** See [method set_instance_custom_data]. */
-        get custom_data_array(): PackedColorArray
-        set custom_data_array(value: PackedColorArray | Color[])
     }
     class MultiMeshEditor extends Control {
         constructor(identifier?: any)
@@ -5279,11 +5364,6 @@ declare module "godot" {
         /** Clears the array of the outlines, but it doesn't clear the vertices and the polygons that were created by them. */
         clear_outlines(): void
         
-        /** Creates polygons from the outlines added in the editor or by script.  
-         *   *Deprecated.*  This function is deprecated, and might be removed in a future release. Use [method NavigationServer2D.parse_source_geometry_data] and [method NavigationServer2D.bake_from_source_geometry_data] instead.  
-         */
-        make_polygons_from_outlines(): void
-        
         /** Based on [param value], enables or disables the specified layer in the [member parsed_collision_mask], given a [param layer_number] between 1 and 32. */
         set_parsed_collision_mask_value(layer_number: int64, value: boolean): void
         
@@ -5490,6 +5570,12 @@ declare module "godot" {
      */
     class NinePatchRect extends Control {
         constructor(identifier?: any)
+        /** Sets the size of the margin on the specified [enum Side] to [param value] pixels. */
+        set_patch_margin(margin: Side, value: int64): void
+        
+        /** Returns the size of the margin on the specified [enum Side]. */
+        get_patch_margin(margin: Side): int64
+        
         /** The node's texture resource. */
         get texture(): Texture2D
         set texture(value: Texture2D)
@@ -7391,566 +7477,6 @@ declare module "godot" {
         get omni_shadow_mode(): int64
         set omni_shadow_mode(value: int64)
     }
-    /** Makes the OpenXR API available for GDExtension.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxrapiextension.html  
-     */
-    class OpenXRAPIExtension extends RefCounted {
-        constructor(identifier?: any)
-        /** Returns the [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrInstance.html]XrInstance[/url] created during the initialization of the OpenXR API. */
-        get_instance(): int64
-        
-        /** Returns the id of the system, which is a [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSystemId.html]XrSystemId[/url] cast to an integer. */
-        get_system_id(): int64
-        
-        /** Returns the OpenXR session, which is an [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSession.html]XrSession[/url] cast to an integer. */
-        get_session(): int64
-        
-        /** Creates a [Transform3D] from an [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrPosef.html]XrPosef[/url]. */
-        transform_from_pose(pose: int64): Transform3D
-        
-        /** Returns `true` if the provided [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] (cast to an integer) is successful. Otherwise returns `false` and prints the [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] converted to a string, with the specified additional information. */
-        xr_result(result: int64, format: string, args: Array): boolean
-        
-        /** Returns `true` if OpenXR is enabled. */
-        static openxr_is_enabled(check_run_in_editor: boolean): boolean
-        
-        /** Returns the function pointer of the OpenXR function with the specified name, cast to an integer. If the function with the given name does not exist, the method returns `0`.  
-         *      
-         *  **Note:** `openxr/util.h` contains utility macros for acquiring OpenXR functions, e.g. `GDEXTENSION_INIT_XR_FUNC_V(xrCreateAction)`.  
-         */
-        get_instance_proc_addr(name: string): int64
-        
-        /** Returns an error string for the given [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url]. */
-        get_error_string(result: int64): string
-        
-        /** Returns the name of the specified swapchain format. */
-        get_swapchain_format_name(swapchain_format: int64): string
-        
-        /** Returns `true` if OpenXR is initialized. */
-        is_initialized(): boolean
-        
-        /** Returns `true` if OpenXR is running ([url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/xrBeginSession.html]xrBeginSession[/url] was successfully called and the swapchains were created). */
-        is_running(): boolean
-        
-        /** Returns the play space, which is an [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSpace.html]XrSpace[/url] cast to an integer. */
-        get_play_space(): int64
-        
-        /** Returns the timing for the next frame. */
-        get_next_frame_time(): int64
-        
-        /** Returns `true` if OpenXR is initialized for rendering with an XR viewport. */
-        can_render(): boolean
-    }
-    namespace OpenXRAction {
-        enum ActionType {
-            /** This action provides a boolean value. */
-            OPENXR_ACTION_BOOL = 0,
-            
-            /** This action provides a float value between `0.0` and `1.0` for any analog input such as triggers. */
-            OPENXR_ACTION_FLOAT = 1,
-            
-            /** This action provides a [Vector2] value and can be bound to embedded trackpads and joysticks. */
-            OPENXR_ACTION_VECTOR2 = 2,
-            OPENXR_ACTION_POSE = 3,
-        }
-    }
-    /** An OpenXR action.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxraction.html  
-     */
-    class OpenXRAction extends Resource {
-        constructor(identifier?: any)
-        /** The localized description of this action. */
-        get localized_name(): string
-        set localized_name(value: string)
-        
-        /** The type of action. */
-        get action_type(): int64
-        set action_type(value: int64)
-        
-        /** A collections of toplevel paths to which this action can be bound. */
-        get toplevel_paths(): PackedStringArray
-        set toplevel_paths(value: PackedStringArray | string[])
-    }
-    /** Collection of [OpenXRActionSet] and [OpenXRInteractionProfile] resources for the OpenXR module.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxractionmap.html  
-     */
-    class OpenXRActionMap extends Resource {
-        constructor(identifier?: any)
-        /** Retrieve the number of actions sets in our action map. */
-        get_action_set_count(): int64
-        
-        /** Retrieve an action set by name. */
-        find_action_set(name: string): OpenXRActionSet
-        
-        /** Retrieve the action set at this index. */
-        get_action_set(idx: int64): OpenXRActionSet
-        
-        /** Add an action set. */
-        add_action_set(action_set: OpenXRActionSet): void
-        
-        /** Remove an action set. */
-        remove_action_set(action_set: OpenXRActionSet): void
-        
-        /** Retrieve the number of interaction profiles in our action map. */
-        get_interaction_profile_count(): int64
-        
-        /** Find an interaction profile by its name (path). */
-        find_interaction_profile(name: string): OpenXRInteractionProfile
-        
-        /** Get the interaction profile at this index. */
-        get_interaction_profile(idx: int64): OpenXRInteractionProfile
-        
-        /** Add an interaction profile. */
-        add_interaction_profile(interaction_profile: OpenXRInteractionProfile): void
-        
-        /** Remove an interaction profile. */
-        remove_interaction_profile(interaction_profile: OpenXRInteractionProfile): void
-        
-        /** Setup this action set with our default actions. */
-        create_default_action_sets(): void
-        
-        /** Collection of [OpenXRActionSet]s that are part of this action map. */
-        get action_sets(): OpenXRActionSet
-        set action_sets(value: OpenXRActionSet)
-        
-        /** Collection of [OpenXRInteractionProfile]s that are part of this action map. */
-        get interaction_profiles(): OpenXRInteractionProfile
-        set interaction_profiles(value: OpenXRInteractionProfile)
-    }
-    /** Collection of [OpenXRAction] resources that make up an action set.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxractionset.html  
-     */
-    class OpenXRActionSet extends Resource {
-        constructor(identifier?: any)
-        /** Retrieve the number of actions in our action set. */
-        get_action_count(): int64
-        
-        /** Add an action to this action set. */
-        add_action(action: OpenXRAction): void
-        
-        /** Remove an action from this action set. */
-        remove_action(action: OpenXRAction): void
-        
-        /** The localized name of this action set. */
-        get localized_name(): string
-        set localized_name(value: string)
-        
-        /** The priority for this action set. */
-        get priority(): int64
-        set priority(value: int64)
-        
-        /** Collection of actions for this action set. */
-        get actions(): OpenXRAction
-        set actions(value: OpenXRAction)
-    }
-    /** Allows clients to implement OpenXR extensions with GDExtension.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxrextensionwrapperextension.html  
-     */
-    class OpenXRExtensionWrapperExtension extends Object {
-        constructor(identifier?: any)
-        /** Returns a [Dictionary] of OpenXR extensions related to this extension. The [Dictionary] should contain the name of the extension, mapped to a `bool *` cast to an integer:  
-         *  - If the `bool *` is a `nullptr` this extension is mandatory.  
-         *  - If the `bool *` points to a boolean, the boolean will be updated to `true` if the extension is enabled.  
-         */
-        /* gdvirtual */ _get_requested_extensions(): Dictionary
-        
-        /** Adds additional data structures when interogating OpenXR system abilities. */
-        /* gdvirtual */ _set_system_properties_and_get_next_pointer(next_pointer: int64): int64
-        
-        /** Adds additional data structures when the OpenXR instance is created. */
-        /* gdvirtual */ _set_instance_create_info_and_get_next_pointer(next_pointer: int64): int64
-        
-        /** Adds additional data structures when the OpenXR session is created. */
-        /* gdvirtual */ _set_session_create_and_get_next_pointer(next_pointer: int64): int64
-        
-        /** Adds additional data structures when creating OpenXR swapchains. */
-        /* gdvirtual */ _set_swapchain_create_info_and_get_next_pointer(next_pointer: int64): int64
-        
-        /** Allows extensions to register additional controller metadata. This function is called even when the OpenXR API is not constructed as the metadata needs to be available to the editor.  
-         *  Extensions should also provide metadata regardless of whether they are supported on the host system. The controller data is used to setup action maps for users who may have access to the relevant hardware.  
-         */
-        /* gdvirtual */ _on_register_metadata(): void
-        
-        /** Called before the OpenXR instance is created. */
-        /* gdvirtual */ _on_before_instance_created(): void
-        
-        /** Called right after the OpenXR instance is created. */
-        /* gdvirtual */ _on_instance_created(instance: int64): void
-        
-        /** Called right before the OpenXR instance is destroyed. */
-        /* gdvirtual */ _on_instance_destroyed(): void
-        
-        /** Called right after the OpenXR session is created. */
-        /* gdvirtual */ _on_session_created(session: int64): void
-        
-        /** Called as part of the OpenXR process handling. This happens right before general and physics processing steps of the main loop. During this step controller data is queried and made available to game logic. */
-        /* gdvirtual */ _on_process(): void
-        
-        /** Called right before the XR viewports begin their rendering step. */
-        /* gdvirtual */ _on_pre_render(): void
-        
-        /** Called right before the OpenXR session is destroyed. */
-        /* gdvirtual */ _on_session_destroyed(): void
-        
-        /** Called when the OpenXR session state is changed to idle. */
-        /* gdvirtual */ _on_state_idle(): void
-        
-        /** Called when the OpenXR session state is changed to ready. This means OpenXR is ready to set up the session. */
-        /* gdvirtual */ _on_state_ready(): void
-        
-        /** Called when the OpenXR session state is changed to synchronized. OpenXR also returns to this state when the application loses focus. */
-        /* gdvirtual */ _on_state_synchronized(): void
-        
-        /** Called when the OpenXR session state is changed to visible. This means OpenXR is now ready to receive frames. */
-        /* gdvirtual */ _on_state_visible(): void
-        
-        /** Called when the OpenXR session state is changed to focused. This state is the active state when the game runs. */
-        /* gdvirtual */ _on_state_focused(): void
-        
-        /** Called when the OpenXR session state is changed to stopping. */
-        /* gdvirtual */ _on_state_stopping(): void
-        
-        /** Called when the OpenXR session state is changed to loss pending. */
-        /* gdvirtual */ _on_state_loss_pending(): void
-        
-        /** Called when the OpenXR session state is changed to exiting. */
-        /* gdvirtual */ _on_state_exiting(): void
-        
-        /** Called when there is an OpenXR event to process. When implementing, return `true` if the event was handled, return `false` otherwise. */
-        /* gdvirtual */ _on_event_polled(event: int64): boolean
-        
-        /** Returns the created [OpenXRAPIExtension], which can be used to access the OpenXR API. */
-        get_openxr_api(): OpenXRAPIExtension
-        
-        /** Registers the extension. This should happen at core module initialization level. */
-        register_extension_wrapper(): void
-    }
-    namespace OpenXRHand {
-        enum Hands {
-            /** Tracking the player's left hand. */
-            HAND_LEFT = 0,
-            
-            /** Tracking the player's right hand. */
-            HAND_RIGHT = 1,
-            
-            /** Maximum supported hands. */
-            HAND_MAX = 2,
-        }
-        enum MotionRange {
-            /** When player grips, hand skeleton will form a full fist. */
-            MOTION_RANGE_UNOBSTRUCTED = 0,
-            
-            /** When player grips, hand skeleton conforms to the controller the player is holding. */
-            MOTION_RANGE_CONFORM_TO_CONTROLLER = 1,
-            
-            /** Maximum supported motion ranges. */
-            MOTION_RANGE_MAX = 2,
-        }
-    }
-    /** Node supporting finger tracking in OpenXR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxrhand.html  
-     */
-    class OpenXRHand extends Node3D {
-        constructor(identifier?: any)
-        /** Specifies whether this node tracks the left or right hand of the player. */
-        get hand(): int64
-        set hand(value: int64)
-        
-        /** Set the motion range (if supported) limiting the hand motion. */
-        get motion_range(): int64
-        set motion_range(value: int64)
-        
-        /** Set a [Skeleton3D] node for which the pose positions will be updated. */
-        get hand_skeleton(): NodePath
-        set hand_skeleton(value: NodePath | string)
-    }
-    /** Defines a binding between an [OpenXRAction] and an XR input or output.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxripbinding.html  
-     */
-    class OpenXRIPBinding extends Resource {
-        constructor(identifier?: any)
-        /** Get the number of input/output paths in this binding. */
-        get_path_count(): int64
-        
-        /** Returns `true` if this input/output path is part of this binding. */
-        has_path(path: string): boolean
-        
-        /** Add an input/output path to this binding. */
-        add_path(path: string): void
-        
-        /** Removes this input/output path from this binding. */
-        remove_path(path: string): void
-        
-        /** [OpenXRAction] that is bound to these paths. */
-        get action(): OpenXRAction
-        set action(value: OpenXRAction)
-        
-        /** Paths that define the inputs or outputs bound on the device. */
-        get paths(): PackedStringArray
-        set paths(value: PackedStringArray | string[])
-    }
-    /** Suggested bindings object for OpenXR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxrinteractionprofile.html  
-     */
-    class OpenXRInteractionProfile extends Resource {
-        constructor(identifier?: any)
-        /** Get the number of bindings in this interaction profile. */
-        get_binding_count(): int64
-        
-        /** Retrieve the binding at this index. */
-        get_binding(index: int64): OpenXRIPBinding
-        
-        /** The interaction profile path identifying the XR device. */
-        get interaction_profile_path(): string
-        set interaction_profile_path(value: string)
-        
-        /** Action bindings for this interaction profile. */
-        get bindings(): OpenXRIPBinding
-        set bindings(value: OpenXRIPBinding)
-    }
-    /** Meta class registering supported devices in OpenXR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxrinteractionprofilemetadata.html  
-     */
-    class OpenXRInteractionProfileMetadata extends Object {
-        constructor(identifier?: any)
-        /** Allows for renaming old interaction profile paths to new paths to maintain backwards compatibility with older action maps. */
-        register_profile_rename(old_name: string, new_name: string): void
-        
-        /** Registers a top level path to which profiles can be bound. For instance `/user/hand/left` refers to the bind point for the player's left hand. Extensions can register additional top level paths, for instance a haptic vest extension might register `/user/body/vest`.  
-         *  [param display_name] is the name shown to the user. [param openxr_path] is the top level path being registered. [param openxr_extension_name] is optional and ensures the top level path is only used if the specified extension is available/enabled.  
-         *  When a top level path ends up being bound by OpenXR, a [XRPositionalTracker] is instantiated to manage the state of the device.  
-         */
-        register_top_level_path(display_name: string, openxr_path: string, openxr_extension_name: string): void
-        
-        /** Registers an interaction profile using its OpenXR designation (e.g. `/interaction_profiles/khr/simple_controller` is the profile for OpenXR's simple controller profile).  
-         *  [param display_name] is the description shown to the user. [param openxr_path] is the interaction profile path being registered. [param openxr_extension_name] optionally restricts this profile to the given extension being enabled/available. If the extension is not available, the profile and all related entries used in an action map are filtered out.  
-         */
-        register_interaction_profile(display_name: string, openxr_path: string, openxr_extension_name: string): void
-        
-        /** Registers an input/output path for the given [param interaction_profile]. The profile should previously have been registered using [method register_interaction_profile]. [param display_name] is the description shown to the user. [param toplevel_path] specifies the bind path this input/output can be bound to (e.g. `/user/hand/left` or `/user/hand/right`). [param openxr_path] is the action input/output being registered (e.g. `/user/hand/left/input/aim/pose`). [param openxr_extension_name] restricts this input/output to an enabled/available extension, this doesn't need to repeat the extension on the profile but relates to overlapping extension (e.g. `XR_EXT_palm_pose` that introduces `…/input/palm_ext/pose` input paths). [param action_type] defines the type of input or output provided by OpenXR. */
-        register_io_path(interaction_profile: string, display_name: string, toplevel_path: string, openxr_path: string, openxr_extension_name: string, action_type: OpenXRAction.ActionType): void
-    }
-    namespace OpenXRInterface {
-        enum Hand {
-            /** Left hand. */
-            HAND_LEFT = 0,
-            
-            /** Right hand. */
-            HAND_RIGHT = 1,
-            
-            /** Maximum value for the hand enum. */
-            HAND_MAX = 2,
-        }
-        enum HandMotionRange {
-            HAND_MOTION_RANGE_UNOBSTRUCTED = 0,
-            HAND_MOTION_RANGE_CONFORM_TO_CONTROLLER = 1,
-            HAND_MOTION_RANGE_MAX = 2,
-        }
-        enum HandJoints {
-            /** Palm joint. */
-            HAND_JOINT_PALM = 0,
-            
-            /** Wrist joint. */
-            HAND_JOINT_WRIST = 1,
-            
-            /** Thumb metacarpal joint. */
-            HAND_JOINT_THUMB_METACARPAL = 2,
-            
-            /** Thumb proximal joint. */
-            HAND_JOINT_THUMB_PROXIMAL = 3,
-            
-            /** Thumb distal joint. */
-            HAND_JOINT_THUMB_DISTAL = 4,
-            
-            /** Thumb tip joint. */
-            HAND_JOINT_THUMB_TIP = 5,
-            
-            /** Index metacarpal joint. */
-            HAND_JOINT_INDEX_METACARPAL = 6,
-            
-            /** Index proximal joint. */
-            HAND_JOINT_INDEX_PROXIMAL = 7,
-            
-            /** Index intermediate joint. */
-            HAND_JOINT_INDEX_INTERMEDIATE = 8,
-            
-            /** Index distal joint. */
-            HAND_JOINT_INDEX_DISTAL = 9,
-            
-            /** Index tip joint. */
-            HAND_JOINT_INDEX_TIP = 10,
-            
-            /** Middle metacarpal joint. */
-            HAND_JOINT_MIDDLE_METACARPAL = 11,
-            
-            /** Middle proximal joint. */
-            HAND_JOINT_MIDDLE_PROXIMAL = 12,
-            
-            /** Middle intermediate joint. */
-            HAND_JOINT_MIDDLE_INTERMEDIATE = 13,
-            
-            /** Middle distal joint. */
-            HAND_JOINT_MIDDLE_DISTAL = 14,
-            
-            /** Middle tip joint. */
-            HAND_JOINT_MIDDLE_TIP = 15,
-            
-            /** Ring metacarpal joint. */
-            HAND_JOINT_RING_METACARPAL = 16,
-            
-            /** Ring proximal joint. */
-            HAND_JOINT_RING_PROXIMAL = 17,
-            
-            /** Ring intermediate joint. */
-            HAND_JOINT_RING_INTERMEDIATE = 18,
-            
-            /** Ring distal joint. */
-            HAND_JOINT_RING_DISTAL = 19,
-            
-            /** Ring tip joint. */
-            HAND_JOINT_RING_TIP = 20,
-            
-            /** Little metacarpal joint. */
-            HAND_JOINT_LITTLE_METACARPAL = 21,
-            
-            /** Little proximal joint. */
-            HAND_JOINT_LITTLE_PROXIMAL = 22,
-            
-            /** Little intermediate joint. */
-            HAND_JOINT_LITTLE_INTERMEDIATE = 23,
-            
-            /** Little distal joint. */
-            HAND_JOINT_LITTLE_DISTAL = 24,
-            
-            /** Little tip joint. */
-            HAND_JOINT_LITTLE_TIP = 25,
-            
-            /** Maximum value for the hand joint enum. */
-            HAND_JOINT_MAX = 26,
-        }
-        enum HandJointFlags {
-            /** No flags are set. */
-            HAND_JOINT_NONE = 0,
-            
-            /** If set, the orientation data is valid, otherwise, the orientation data is unreliable and should not be used. */
-            HAND_JOINT_ORIENTATION_VALID = 1,
-            
-            /** If set, the orientation data comes from tracking data, otherwise, the orientation data contains predicted data. */
-            HAND_JOINT_ORIENTATION_TRACKED = 2,
-            
-            /** If set, the positional data is valid, otherwise, the positional data is unreliable and should not be used. */
-            HAND_JOINT_POSITION_VALID = 4,
-            
-            /** If set, the positional data comes from tracking data, otherwise, the positional data contains predicted data. */
-            HAND_JOINT_POSITION_TRACKED = 8,
-            
-            /** If set, our linear velocity data is valid, otherwise, the linear velocity data is unreliable and should not be used. */
-            HAND_JOINT_LINEAR_VELOCITY_VALID = 16,
-            
-            /** If set, our angular velocity data is valid, otherwise, the angular velocity data is unreliable and should not be used. */
-            HAND_JOINT_ANGULAR_VELOCITY_VALID = 32,
-        }
-    }
-    /** Our OpenXR interface.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_openxrinterface.html  
-     */
-    class OpenXRInterface extends XRInterface {
-        constructor(identifier?: any)
-        /** Returns `true` if OpenXR's foveation extension is supported, the interface must be initialized before this returns a valid value.  
-         *      
-         *  **Note:** This feature is only available on the compatibility renderer and currently only available on some stand alone headsets. For Vulkan set [member Viewport.vrs_mode] to `VRS_XR` on desktop.  
-         */
-        is_foveation_supported(): boolean
-        
-        /** Returns `true` if the given action set is active. */
-        is_action_set_active(name: string): boolean
-        
-        /** Sets the given action set as active or inactive. */
-        set_action_set_active(name: string, active: boolean): void
-        
-        /** Returns a list of action sets registered with Godot (loaded from the action map at runtime). */
-        get_action_sets(): Array
-        
-        /** Returns display refresh rates supported by the current HMD. Only returned if this feature is supported by the OpenXR runtime and after the interface has been initialized. */
-        get_available_display_refresh_rates(): Array
-        
-        /** If handtracking is enabled and motion range is supported, sets the currently configured motion range for [param hand] to [param motion_range]. */
-        set_motion_range(hand: OpenXRInterface.Hand, motion_range: OpenXRInterface.HandMotionRange): void
-        
-        /** If handtracking is enabled and motion range is supported, gets the currently configured motion range for [param hand]. */
-        get_motion_range(hand: OpenXRInterface.Hand): OpenXRInterface.HandMotionRange
-        
-        /** If handtracking is enabled, returns flags that inform us of the validity of the tracking data. */
-        get_hand_joint_flags(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): OpenXRInterface.HandJointFlags
-        
-        /** If handtracking is enabled, returns the rotation of a joint ([param joint]) of a hand ([param hand]) as provided by OpenXR. */
-        get_hand_joint_rotation(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): Quaternion
-        
-        /** If handtracking is enabled, returns the position of a joint ([param joint]) of a hand ([param hand]) as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied! */
-        get_hand_joint_position(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): Vector3
-        
-        /** If handtracking is enabled, returns the radius of a joint ([param joint]) of a hand ([param hand]) as provided by OpenXR. This is without worldscale applied! */
-        get_hand_joint_radius(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): float64
-        
-        /** If handtracking is enabled, returns the linear velocity of a joint ([param joint]) of a hand ([param hand]) as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied! */
-        get_hand_joint_linear_velocity(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): Vector3
-        
-        /** If handtracking is enabled, returns the angular velocity of a joint ([param joint]) of a hand ([param hand]) as provided by OpenXR. This is relative to [XROrigin3D]! */
-        get_hand_joint_angular_velocity(hand: OpenXRInterface.Hand, joint: OpenXRInterface.HandJoints): Vector3
-        
-        /** Returns `true` if OpenXR's hand tracking is supported and enabled.  
-         *      
-         *  **Note:** This only returns a valid value after OpenXR has been initialized.  
-         */
-        is_hand_tracking_supported(): boolean
-        
-        /** Returns the capabilities of the eye gaze interaction extension.  
-         *      
-         *  **Note:** This only returns a valid value after OpenXR has been initialized.  
-         */
-        is_eye_gaze_interaction_supported(): boolean
-        
-        /** The display refresh rate for the current HMD. Only functional if this feature is supported by the OpenXR runtime and after the interface has been initialized. */
-        get display_refresh_rate(): float64
-        set display_refresh_rate(value: float64)
-        
-        /** The render size multiplier for the current HMD. Must be set before the interface has been initialized. */
-        get render_target_size_multiplier(): float64
-        set render_target_size_multiplier(value: float64)
-        
-        /** Set foveation level from 0 (off) to 3 (high), the interface must be initialized before this is accessible. */
-        get foveation_level(): int64
-        set foveation_level(value: int64)
-        
-        /** Enable dynamic foveation adjustment, the interface must be initialized before this is accessible. If enabled foveation will automatically adjusted between low and [member foveation_level]. */
-        get foveation_dynamic(): boolean
-        set foveation_dynamic(value: boolean)
-        
-        /** Informs our OpenXR session has been started. */
-        readonly session_begun: Signal0
-        
-        /** Informs our OpenXR session is stopping. */
-        readonly session_stopping: Signal0
-        
-        /** Informs our OpenXR session now has focus. */
-        readonly session_focussed: Signal0
-        
-        /** Informs our OpenXR session is now visible (output is being sent to the HMD). */
-        readonly session_visible: Signal0
-        
-        /** Informs the user queued a recenter of the player position. */
-        readonly pose_recentered: Signal0
-    }
     /** An optimized translation, used by default for CSV Translations.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_optimizedtranslation.html  
@@ -8562,6 +8088,30 @@ declare module "godot" {
      */
     class ParticleProcessMaterial extends Material {
         constructor(identifier?: any)
+        /** Sets the minimum value range for the given parameter. */
+        set_param_min(param: ParticleProcessMaterial.Parameter, value: float64): void
+        
+        /** Returns the minimum value range for the given parameter. */
+        get_param_min(param: ParticleProcessMaterial.Parameter): float64
+        
+        /** Sets the maximum value range for the given parameter. */
+        set_param_max(param: ParticleProcessMaterial.Parameter, value: float64): void
+        
+        /** Returns the maximum value range for the given parameter. */
+        get_param_max(param: ParticleProcessMaterial.Parameter): float64
+        
+        /** Sets the [Texture2D] for the specified [enum Parameter]. */
+        set_param_texture(param: ParticleProcessMaterial.Parameter, texture: Texture2D): void
+        
+        /** Returns the [Texture2D] used by the specified parameter. */
+        get_param_texture(param: ParticleProcessMaterial.Parameter): Texture2D
+        
+        /** If `true`, enables the specified particle flag. See [enum ParticleFlags] for options. */
+        set_particle_flag(particle_flag: ParticleProcessMaterial.ParticleFlags, enable: boolean): void
+        
+        /** Returns `true` if the specified particle flag is enabled. See [enum ParticleFlags] for options. */
+        get_particle_flag(particle_flag: ParticleProcessMaterial.ParticleFlags): boolean
+        
         /** Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime * (1.0 - randf() * lifetime_randomness)`. For example, a [member lifetime_randomness] of `0.4` scales the lifetime between `0.6` to `1.0` of its original value. */
         get lifetime_randomness(): float64
         set lifetime_randomness(value: float64)
@@ -9156,6 +8706,12 @@ declare module "godot" {
          */
         test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = undefined, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): boolean
         
+        /** Locks or unlocks the specified linear or rotational [param axis] depending on the value of [param lock]. */
+        set_axis_lock(axis: PhysicsServer3D.BodyAxis, lock: boolean): void
+        
+        /** Returns `true` if the specified linear or rotational [param axis] is locked. */
+        get_axis_lock(axis: PhysicsServer3D.BodyAxis): boolean
+        
         /** Returns an array of nodes that were added as collision exceptions for this body. */
         get_collision_exceptions(): Array
         
@@ -9326,5 +8882,362 @@ declare module "godot" {
         /** The body's transformation matrix. */
         get transform(): Transform2D
         set transform(value: Transform2D)
+    }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState2D] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate2dextension.html  
+     */
+    class PhysicsDirectBodyState2DExtension extends PhysicsDirectBodyState2D {
+        constructor(identifier?: any)
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_gravity] and its respective getter. */
+        /* gdvirtual */ _get_total_gravity(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_linear_damp] and its respective getter. */
+        /* gdvirtual */ _get_total_linear_damp(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_angular_damp] and its respective getter. */
+        /* gdvirtual */ _get_total_angular_damp(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass] and its respective getter. */
+        /* gdvirtual */ _get_center_of_mass(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass_local] and its respective getter. */
+        /* gdvirtual */ _get_center_of_mass_local(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_mass] and its respective getter. */
+        /* gdvirtual */ _get_inverse_mass(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_inertia] and its respective getter. */
+        /* gdvirtual */ _get_inverse_inertia(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective setter. */
+        /* gdvirtual */ _set_linear_velocity(velocity: Vector2): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective getter. */
+        /* gdvirtual */ _get_linear_velocity(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective setter. */
+        /* gdvirtual */ _set_angular_velocity(velocity: float64): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective getter. */
+        /* gdvirtual */ _get_angular_velocity(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective setter. */
+        /* gdvirtual */ _set_transform(transform: Transform2D): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective getter. */
+        /* gdvirtual */ _get_transform(): Transform2D
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_velocity_at_local_position]. */
+        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector2): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_impulse]. */
+        /* gdvirtual */ _apply_central_impulse(impulse: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_impulse]. */
+        /* gdvirtual */ _apply_impulse(impulse: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque_impulse]. */
+        /* gdvirtual */ _apply_torque_impulse(impulse: float64): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_force]. */
+        /* gdvirtual */ _apply_central_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_force]. */
+        /* gdvirtual */ _apply_force(force: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque]. */
+        /* gdvirtual */ _apply_torque(torque: float64): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_central_force]. */
+        /* gdvirtual */ _add_constant_central_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_force]. */
+        /* gdvirtual */ _add_constant_force(force: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_torque]. */
+        /* gdvirtual */ _add_constant_torque(torque: float64): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_force]. */
+        /* gdvirtual */ _set_constant_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_force]. */
+        /* gdvirtual */ _get_constant_force(): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_torque]. */
+        /* gdvirtual */ _set_constant_torque(torque: float64): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_torque]. */
+        /* gdvirtual */ _get_constant_torque(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective setter. */
+        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective getter. */
+        /* gdvirtual */ _is_sleeping(): boolean
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_count]. */
+        /* gdvirtual */ _get_contact_count(): int64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_position]. */
+        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_normal]. */
+        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_shape]. */
+        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_velocity_at_position]. */
+        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider]. */
+        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_position]. */
+        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_id]. */
+        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_object]. */
+        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_shape]. */
+        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_velocity_at_position]. */
+        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_impulse]. */
+        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.step] and its respective getter. */
+        /* gdvirtual */ _get_step(): float64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.integrate_forces]. */
+        /* gdvirtual */ _integrate_forces(): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_space_state]. */
+        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState2D
+    }
+    /** Provides direct access to a physics body in the [PhysicsServer3D].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate3d.html  
+     */
+    class PhysicsDirectBodyState3D extends Object {
+        constructor(identifier?: any)
+        /** Returns the body's velocity at the given relative position, including both translation and rotation. */
+        get_velocity_at_local_position(local_position: Vector3): Vector3
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
+         */
+        apply_central_impulse(impulse: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
+         */
+        apply_torque_impulse(impulse: Vector3): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
+         */
+        apply_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
+         */
+        apply_torque(torque: Vector3): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
+         */
+        add_constant_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`. */
+        add_constant_torque(torque: Vector3): void
+        
+        /** Sets the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        set_constant_force(force: Vector3): void
+        
+        /** Returns the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        get_constant_force(): Vector3
+        
+        /** Sets the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        set_constant_torque(torque: Vector3): void
+        
+        /** Returns the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        get_constant_torque(): Vector3
+        
+        /** Returns the number of contacts this body has with other bodies.  
+         *      
+         *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody3D.contact_monitor].  
+         */
+        get_contact_count(): int64
+        
+        /** Returns the position of the contact point on the body in the global coordinate system. */
+        get_contact_local_position(contact_idx: int64): Vector3
+        
+        /** Returns the local normal at the contact point. */
+        get_contact_local_normal(contact_idx: int64): Vector3
+        
+        /** Impulse created by the contact. */
+        get_contact_impulse(contact_idx: int64): Vector3
+        
+        /** Returns the local shape index of the collision. */
+        get_contact_local_shape(contact_idx: int64): int64
+        
+        /** Returns the linear velocity vector at the body's contact point. */
+        get_contact_local_velocity_at_position(contact_idx: int64): Vector3
+        
+        /** Returns the collider's [RID]. */
+        get_contact_collider(contact_idx: int64): RID
+        
+        /** Returns the position of the contact point on the collider in the global coordinate system. */
+        get_contact_collider_position(contact_idx: int64): Vector3
+        
+        /** Returns the collider's object id. */
+        get_contact_collider_id(contact_idx: int64): int64
+        
+        /** Returns the collider object. */
+        get_contact_collider_object(contact_idx: int64): Object
+        
+        /** Returns the collider's shape index. */
+        get_contact_collider_shape(contact_idx: int64): int64
+        
+        /** Returns the linear velocity vector at the collider's contact point. */
+        get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
+        
+        /** Calls the built-in force integration code. */
+        integrate_forces(): void
+        
+        /** Returns the current state of the space, useful for queries. */
+        get_space_state(): PhysicsDirectSpaceState3D
+        
+        /** The timestep (delta) used for the simulation. */
+        get step(): float64
+        
+        /** The inverse of the mass of the body. */
+        get inverse_mass(): float64
+        
+        /** The rate at which the body stops rotating, if there are not any other forces moving it. */
+        get total_angular_damp(): float64
+        
+        /** The rate at which the body stops moving, if there are not any other forces moving it. */
+        get total_linear_damp(): float64
+        
+        /** The inverse of the inertia of the body. */
+        get inverse_inertia(): Vector3
+        
+        /** The inverse of the inertia tensor of the body. */
+        get inverse_inertia_tensor(): Basis
+        
+        /** The total gravity vector being currently applied to this body. */
+        get total_gravity(): Vector3
+        
+        /** The body's center of mass position relative to the body's center in the global coordinate system. */
+        get center_of_mass(): Vector3
+        
+        /** The body's center of mass position in the body's local coordinate system. */
+        get center_of_mass_local(): Vector3
+        get principal_inertia_axes(): Basis
+        
+        /** The body's rotational velocity in  *radians*  per second. */
+        get angular_velocity(): Vector3
+        set angular_velocity(value: Vector3)
+        
+        /** The body's linear velocity in units per second. */
+        get linear_velocity(): Vector3
+        set linear_velocity(value: Vector3)
+        
+        /** If `true`, this body is currently sleeping (not active). */
+        get sleeping(): boolean
+        set sleeping(value: boolean)
+        
+        /** The body's transformation matrix. */
+        get transform(): Transform3D
+        set transform(value: Transform3D)
+    }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState3D] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate3dextension.html  
+     */
+    class PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
+        constructor(identifier?: any)
+        /* gdvirtual */ _get_total_gravity(): Vector3
+        /* gdvirtual */ _get_total_linear_damp(): float64
+        /* gdvirtual */ _get_total_angular_damp(): float64
+        /* gdvirtual */ _get_center_of_mass(): Vector3
+        /* gdvirtual */ _get_center_of_mass_local(): Vector3
+        /* gdvirtual */ _get_principal_inertia_axes(): Basis
+        /* gdvirtual */ _get_inverse_mass(): float64
+        /* gdvirtual */ _get_inverse_inertia(): Vector3
+        /* gdvirtual */ _get_inverse_inertia_tensor(): Basis
+        /* gdvirtual */ _set_linear_velocity(velocity: Vector3): void
+        /* gdvirtual */ _get_linear_velocity(): Vector3
+        /* gdvirtual */ _set_angular_velocity(velocity: Vector3): void
+        /* gdvirtual */ _get_angular_velocity(): Vector3
+        /* gdvirtual */ _set_transform(transform: Transform3D): void
+        /* gdvirtual */ _get_transform(): Transform3D
+        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector3): Vector3
+        /* gdvirtual */ _apply_central_impulse(impulse: Vector3): void
+        /* gdvirtual */ _apply_impulse(impulse: Vector3, position: Vector3): void
+        /* gdvirtual */ _apply_torque_impulse(impulse: Vector3): void
+        /* gdvirtual */ _apply_central_force(force: Vector3): void
+        /* gdvirtual */ _apply_force(force: Vector3, position: Vector3): void
+        /* gdvirtual */ _apply_torque(torque: Vector3): void
+        /* gdvirtual */ _add_constant_central_force(force: Vector3): void
+        /* gdvirtual */ _add_constant_force(force: Vector3, position: Vector3): void
+        /* gdvirtual */ _add_constant_torque(torque: Vector3): void
+        /* gdvirtual */ _set_constant_force(force: Vector3): void
+        /* gdvirtual */ _get_constant_force(): Vector3
+        /* gdvirtual */ _set_constant_torque(torque: Vector3): void
+        /* gdvirtual */ _get_constant_torque(): Vector3
+        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
+        /* gdvirtual */ _is_sleeping(): boolean
+        /* gdvirtual */ _get_contact_count(): int64
+        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
+        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
+        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_step(): float64
+        /* gdvirtual */ _integrate_forces(): void
+        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState3D
     }
 }

@@ -703,6 +703,20 @@ declare module "godot" {
         static readonly MAX_FRAMES = 256
         constructor(identifier?: any)
         
+        /** Assigns a [Texture2D] to the given frame. Frame IDs start at 0, so the first frame has ID 0, and the last frame of the animation has ID [member frames] - 1.  
+         *  You can define any number of textures up to [constant MAX_FRAMES], but keep in mind that only frames from 0 to [member frames] - 1 will be part of the animation.  
+         */
+        set_frame_texture(frame: int64, texture: Texture2D): void
+        
+        /** Returns the given frame's [Texture2D]. */
+        get_frame_texture(frame: int64): Texture2D
+        
+        /** Sets the duration of any given [param frame]. The final duration is affected by the [member speed_scale]. If set to `0`, the frame is skipped during playback. */
+        set_frame_duration(frame: int64, duration: float64): void
+        
+        /** Returns the given [param frame]'s duration, in seconds. */
+        get_frame_duration(frame: int64): float64
+        
         /** Number of frames to use in the animation. While you can create the frames independently with [method set_frame_texture], you need to set this value for the animation to take new frames into account. The maximum number of frames is [constant MAX_FRAMES]. */
         get frames(): int64
         set frames(value: int64)
@@ -1477,14 +1491,24 @@ declare module "godot" {
         /** Adds a new point that represents a [param node] on the virtual axis at a given position set by [param pos]. You can insert it at a specific index using the [param at_index] argument. If you use the default value for [param at_index], the point is inserted at the end of the blend points array. */
         add_blend_point(node: AnimationRootNode, pos: float64, at_index: int64 = -1): void
         
+        /** Updates the position of the point at index [param point] on the blend axis. */
+        set_blend_point_position(point: int64, pos: float64): void
+        
+        /** Returns the position of the point at index [param point]. */
+        get_blend_point_position(point: int64): float64
+        
         /** Changes the [AnimationNode] referenced by the point at index [param point]. */
         set_blend_point_node(point: int64, node: AnimationRootNode): void
+        
+        /** Returns the [AnimationNode] referenced by the point at index [param point]. */
+        get_blend_point_node(point: int64): AnimationRootNode
         
         /** Removes the point at index [param point] from the blend axis. */
         remove_blend_point(point: int64): void
         
         /** Returns the number of points on the blend axis. */
         get_blend_point_count(): int64
+        _add_blend_point(index: int64, node: AnimationRootNode): void
         
         /** The blend space's axis's lower limit for the points' position. See [method add_blend_point]. */
         get min_space(): float64
@@ -1539,8 +1563,17 @@ declare module "godot" {
         /** Adds a new point that represents a [param node] at the position set by [param pos]. You can insert it at a specific index using the [param at_index] argument. If you use the default value for [param at_index], the point is inserted at the end of the blend points array. */
         add_blend_point(node: AnimationRootNode, pos: Vector2, at_index: int64 = -1): void
         
+        /** Updates the position of the point at index [param point] on the blend axis. */
+        set_blend_point_position(point: int64, pos: Vector2): void
+        
+        /** Returns the position of the point at index [param point]. */
+        get_blend_point_position(point: int64): Vector2
+        
         /** Changes the [AnimationNode] referenced by the point at index [param point]. */
         set_blend_point_node(point: int64, node: AnimationRootNode): void
+        
+        /** Returns the [AnimationRootNode] referenced by the point at index [param point]. */
+        get_blend_point_node(point: int64): AnimationRootNode
         
         /** Removes the point at index [param point] from the blend space. */
         remove_blend_point(point: int64): void
@@ -1559,6 +1592,7 @@ declare module "godot" {
         
         /** Returns the number of triangles in the blend space. */
         get_triangle_count(): int64
+        _add_blend_point(index: int64, node: AnimationRootNode): void
         _update_triangles(): void
         
         /** If `true`, the blend space is triangulated automatically. The mesh updates every time you add or remove points with [method add_blend_point] and [method remove_blend_point]. */
@@ -2014,25 +2048,6 @@ declare module "godot" {
         get input_count(): any /*Inputs,input_*/
         set input_count(value: any /*Inputs,input_*/)
     }
-    namespace AnimationPlayer {
-        enum AnimationProcessCallback {
-            /** For backward compatibility. See [constant AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]. */
-            ANIMATION_PROCESS_PHYSICS = 0,
-            
-            /** For backward compatibility. See [constant AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE]. */
-            ANIMATION_PROCESS_IDLE = 1,
-            
-            /** For backward compatibility. See [constant AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL]. */
-            ANIMATION_PROCESS_MANUAL = 2,
-        }
-        enum AnimationMethodCallMode {
-            /** For backward compatibility. See [constant AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_DEFERRED]. */
-            ANIMATION_METHOD_CALL_DEFERRED = 0,
-            
-            /** For backward compatibility. See [constant AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE]. */
-            ANIMATION_METHOD_CALL_IMMEDIATE = 1,
-        }
-    }
     /** A node used for animation playback.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_animationplayer.html  
@@ -2102,24 +2117,6 @@ declare module "godot" {
          *  **Note:** Seeking to the end of the animation doesn't emit [signal AnimationMixer.animation_finished]. If you want to skip animation and emit the signal, use [method AnimationMixer.advance].  
          */
         seek(seconds: float64, update: boolean = false, update_only: boolean = false): void
-        
-        /** For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess]. */
-        set_process_callback(mode: AnimationPlayer.AnimationProcessCallback): void
-        
-        /** For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess]. */
-        get_process_callback(): AnimationPlayer.AnimationProcessCallback
-        
-        /** For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeMethod]. */
-        set_method_call_mode(mode: AnimationPlayer.AnimationMethodCallMode): void
-        
-        /** For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeMethod]. */
-        get_method_call_mode(): AnimationPlayer.AnimationMethodCallMode
-        
-        /** For backward compatibility. See [member AnimationMixer.root_node]. */
-        set_root(path: NodePath | string): void
-        
-        /** For backward compatibility. See [member AnimationMixer.root_node]. */
-        get_root(): NodePath
         
         /** The key of the currently playing animation. If no animation is playing, the property's value is an empty string. Changing this value does not restart the animation. See [method play] for more information on playing animations.  
          *      
@@ -2217,18 +2214,6 @@ declare module "godot" {
     class AnimationTrackKeyEditEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
-    namespace AnimationTree {
-        enum AnimationProcessCallback {
-            /** For backward compatibility. See [constant AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]. */
-            ANIMATION_PROCESS_PHYSICS = 0,
-            
-            /** For backward compatibility. See [constant AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE]. */
-            ANIMATION_PROCESS_IDLE = 1,
-            
-            /** For backward compatibility. See [constant AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL]. */
-            ANIMATION_PROCESS_MANUAL = 2,
-        }
-    }
     /** A node used for advanced animation transitions in an [AnimationPlayer].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_animationtree.html  
@@ -2236,12 +2221,6 @@ declare module "godot" {
     class AnimationTree extends AnimationMixer {
         constructor(identifier?: any)
         _update_properties(): void
-        
-        /** For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess]. */
-        set_process_callback(mode: AnimationTree.AnimationProcessCallback): void
-        
-        /** For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess]. */
-        get_process_callback(): AnimationTree.AnimationProcessCallback
         
         /** The root animation node of this [AnimationTree]. See [AnimationRootNode]. */
         get tree_root(): AnimationRootNode
@@ -2879,6 +2858,19 @@ declare module "godot" {
      */
     class AudioEffectChorus extends AudioEffect {
         constructor(identifier?: any)
+        set_voice_delay_ms(voice_idx: int64, delay_ms: float64): void
+        get_voice_delay_ms(voice_idx: int64): float64
+        set_voice_rate_hz(voice_idx: int64, rate_hz: float64): void
+        get_voice_rate_hz(voice_idx: int64): float64
+        set_voice_depth_ms(voice_idx: int64, depth_ms: float64): void
+        get_voice_depth_ms(voice_idx: int64): float64
+        set_voice_level_db(voice_idx: int64, level_db: float64): void
+        get_voice_level_db(voice_idx: int64): float64
+        set_voice_cutoff_hz(voice_idx: int64, cutoff_hz: float64): void
+        get_voice_cutoff_hz(voice_idx: int64): float64
+        set_voice_pan(voice_idx: int64, pan: float64): void
+        get_voice_pan(voice_idx: int64): float64
+        
         /** The number of voices in the effect. */
         get voice_count(): int64
         set voice_count(value: int64)
@@ -4566,6 +4558,24 @@ declare module "godot" {
      */
     class BaseMaterial3D extends Material {
         constructor(identifier?: any)
+        /** If `true`, enables the specified flag. Flags are optional behavior that can be turned on and off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by setting the corresponding member to `true`. See [enum Flags] enumerator for options. */
+        set_flag(flag: BaseMaterial3D.Flags, enable: boolean): void
+        
+        /** Returns `true`, if the specified flag is enabled. See [enum Flags] enumerator for options. */
+        get_flag(flag: BaseMaterial3D.Flags): boolean
+        
+        /** If `true`, enables the specified [enum Feature]. Many features that are available in [BaseMaterial3D]s need to be enabled before use. This way the cost for using the feature is only incurred when specified. Features can also be enabled by setting the corresponding member to `true`. */
+        set_feature(feature: BaseMaterial3D.Feature, enable: boolean): void
+        
+        /** Returns `true`, if the specified [enum Feature] is enabled. */
+        get_feature(feature: BaseMaterial3D.Feature): boolean
+        
+        /** Sets the texture for the slot specified by [param param]. See [enum TextureParam] for available slots. */
+        set_texture(param: BaseMaterial3D.TextureParam, texture: Texture2D): void
+        
+        /** Returns the [Texture2D] associated with the specified [enum TextureParam]. */
+        get_texture(param: BaseMaterial3D.TextureParam): Texture2D
+        
         /** The material's transparency mode. Some transparency modes will disable shadow casting. Any transparency mode other than [constant TRANSPARENCY_DISABLED] has a greater performance impact compared to opaque rendering. See also [member blend_mode]. */
         get transparency(): int64
         set transparency(value: int64)
@@ -5272,6 +5282,30 @@ declare module "godot" {
         /** Restarts the particle emitter. */
         restart(): void
         
+        /** Sets the minimum value for the given parameter. */
+        set_param_min(param: CPUParticles2D.Parameter, value: float64): void
+        
+        /** Returns the minimum value range for the given parameter. */
+        get_param_min(param: CPUParticles2D.Parameter): float64
+        
+        /** Sets the maximum value for the given parameter. */
+        set_param_max(param: CPUParticles2D.Parameter, value: float64): void
+        
+        /** Returns the maximum value range for the given parameter. */
+        get_param_max(param: CPUParticles2D.Parameter): float64
+        
+        /** Sets the [Curve] of the parameter specified by [enum Parameter]. */
+        set_param_curve(param: CPUParticles2D.Parameter, curve: Curve): void
+        
+        /** Returns the [Curve] of the parameter specified by [enum Parameter]. */
+        get_param_curve(param: CPUParticles2D.Parameter): Curve
+        
+        /** Enables or disables the given flag (see [enum ParticleFlags] for options). */
+        set_particle_flag(particle_flag: CPUParticles2D.ParticleFlags, enable: boolean): void
+        
+        /** Returns the enabled state of the given flag (see [enum ParticleFlags] for options). */
+        get_particle_flag(particle_flag: CPUParticles2D.ParticleFlags): boolean
+        
         /** Sets this node's properties to match a given [GPUParticles2D] node with an assigned [ParticleProcessMaterial]. */
         convert_from_particles(particles: Node): void
         
@@ -5499,6 +5533,30 @@ declare module "godot" {
         constructor(identifier?: any)
         /** Restarts the particle emitter. */
         restart(): void
+        
+        /** Sets the minimum value for the given parameter. */
+        set_param_min(param: CPUParticles3D.Parameter, value: float64): void
+        
+        /** Returns the minimum value range for the given parameter. */
+        get_param_min(param: CPUParticles3D.Parameter): float64
+        
+        /** Sets the maximum value for the given parameter. */
+        set_param_max(param: CPUParticles3D.Parameter, value: float64): void
+        
+        /** Returns the maximum value range for the given parameter. */
+        get_param_max(param: CPUParticles3D.Parameter): float64
+        
+        /** Sets the [Curve] of the parameter specified by [enum Parameter]. */
+        set_param_curve(param: CPUParticles3D.Parameter, curve: Curve): void
+        
+        /** Returns the [Curve] of the parameter specified by [enum Parameter]. */
+        get_param_curve(param: CPUParticles3D.Parameter): Curve
+        
+        /** Enables or disables the given particle flag (see [enum ParticleFlags] for options). */
+        set_particle_flag(particle_flag: CPUParticles3D.ParticleFlags, enable: boolean): void
+        
+        /** Returns the enabled state of the given particle flag (see [enum ParticleFlags] for options). */
+        get_particle_flag(particle_flag: CPUParticles3D.ParticleFlags): boolean
         
         /** Sets this node's properties to match a given [GPUParticles3D] node with an assigned [ParticleProcessMaterial]. */
         convert_from_particles(particles: Node): void
@@ -6027,6 +6085,18 @@ declare module "godot" {
         /** Returns `true` if this [Camera2D] is the active camera (see [method Viewport.get_camera_2d]). */
         is_current(): boolean
         _make_current(_unnamed_arg0: Object): void
+        
+        /** Sets the camera limit for the specified [enum Side]. See also [member limit_bottom], [member limit_top], [member limit_left], and [member limit_right]. */
+        set_limit(margin: Side, limit: int64): void
+        
+        /** Returns the camera limit for the specified [enum Side]. See also [member limit_bottom], [member limit_top], [member limit_left], and [member limit_right]. */
+        get_limit(margin: Side): int64
+        
+        /** Sets the specified [enum Side]'s margin. See also [member drag_bottom_margin], [member drag_top_margin], [member drag_left_margin], and [member drag_right_margin]. */
+        set_drag_margin(margin: Side, drag_margin: float64): void
+        
+        /** Returns the specified [enum Side]'s margin. See also [member drag_bottom_margin], [member drag_top_margin], [member drag_left_margin], and [member drag_right_margin]. */
+        get_drag_margin(margin: Side): float64
         
         /** Returns this camera's target position, in global coordinates.  
          *      
@@ -8498,9 +8568,6 @@ declare module "godot" {
      */
     class CollisionShape3D extends Node3D {
         constructor(identifier?: any)
-        /**  *Obsoleted.*  Use [signal Resource.changed] instead. */
-        resource_changed(resource: Resource): void
-        
         /** Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings geometry. */
         make_convex_from_siblings(): void
         
@@ -8785,6 +8852,11 @@ declare module "godot" {
      */
     class ConeTwistJoint3D extends Joint3D {
         constructor(identifier?: any)
+        /** Sets the value of the specified parameter. */
+        set_param(param: ConeTwistJoint3D.Param, value: float64): void
+        
+        /** Returns the value of the specified parameter. */
+        get_param(param: ConeTwistJoint3D.Param): float64
     }
     /** Helper class to handle INI-style files.  
      *  	  
@@ -9289,12 +9361,22 @@ declare module "godot" {
         
         /** Sets both anchor preset and offset preset. See [method set_anchors_preset] and [method set_offsets_preset]. */
         set_anchors_and_offsets_preset(preset: Control.LayoutPreset, resize_mode: Control.LayoutPresetMode = 0, margin: int64 = 0): void
+        _set_anchor(side: Side, anchor: float64): void
         
         /** Sets the anchor for the specified [enum Side] to [param anchor]. A setter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top].  
          *  If [param keep_offset] is `true`, offsets aren't updated after this operation.  
          *  If [param push_opposite_anchor] is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If [param push_opposite_anchor] was `false`, the left anchor would get value 0.5.  
          */
         set_anchor(side: Side, anchor: float64, keep_offset: boolean = false, push_opposite_anchor: boolean = true): void
+        
+        /** Returns the anchor for the specified [enum Side]. A getter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top]. */
+        get_anchor(side: Side): float64
+        
+        /** Sets the offset for the specified [enum Side] to [param offset]. A setter method for [member offset_bottom], [member offset_left], [member offset_right] and [member offset_top]. */
+        set_offset(side: Side, offset: float64): void
+        
+        /** Returns the offset for the specified [enum Side]. A getter method for [member offset_bottom], [member offset_left], [member offset_right] and [member offset_top]. */
+        get_offset(offset: Side): float64
         
         /** Works the same as [method set_anchor], but instead of `keep_offset` argument and automatic update of offset, it allows to set the offset yourself (see [method set_offset]). */
         set_anchor_and_offset(side: Side, anchor: float64, offset: float64, push_opposite_anchor: boolean = false): void
@@ -9555,6 +9637,15 @@ declare module "godot" {
         
         /** Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape]. */
         get_cursor_shape(position: Vector2 = Vector2.ZERO): Control.CursorShape
+        
+        /** Sets the focus neighbor for the specified [enum Side] to the [Control] at [param neighbor] node path. A setter method for [member focus_neighbor_bottom], [member focus_neighbor_left], [member focus_neighbor_right] and [member focus_neighbor_top]. */
+        set_focus_neighbor(side: Side, neighbor: NodePath | string): void
+        
+        /** Returns the focus neighbor for the specified [enum Side]. A getter method for [member focus_neighbor_bottom], [member focus_neighbor_left], [member focus_neighbor_right] and [member focus_neighbor_top].  
+         *      
+         *  **Note:** To find the next [Control] on the specific [enum Side], even if a neighbor is not assigned, use [method find_valid_focus_neighbor].  
+         */
+        get_focus_neighbor(side: Side): NodePath
         
         /** Forces drag and bypasses [method _get_drag_data] and [method set_drag_preview] by passing [param data] and [param preview]. Drag will start even if the mouse is neither over nor pressed on this control.  
          *  The methods [method _can_drop_data] and [method _drop_data] must be implemented on controls that want to receive drop data.  

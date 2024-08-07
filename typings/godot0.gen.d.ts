@@ -208,28 +208,6 @@ declare module "godot" {
         static set_default_server(name: string, priority: int64): void
     }
     // // Singleton Class
-    /** Helper class for creating and clearing navigation meshes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_navigationmeshgenerator.html  
-     */
-    class NavigationMeshGenerator extends Object {
-        /** The bake function is deprecated due to core threading changes. To upgrade existing code, first create a [NavigationMeshSourceGeometryData3D] resource. Use this resource with [method parse_source_geometry_data] to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with [method bake_from_source_geometry_data] to bake a navigation mesh. */
-        static bake(navigation_mesh: NavigationMesh, root_node: Node): void
-        
-        /** Removes all polygons and vertices from the provided [param navigation_mesh] resource. */
-        static clear(navigation_mesh: NavigationMesh): void
-        
-        /** Parses the [SceneTree] for source geometry according to the properties of [param navigation_mesh]. Updates the provided [param source_geometry_data] resource with the resulting data. The resource can then be used to bake a navigation mesh with [method bake_from_source_geometry_data]. After the process is finished the optional [param callback] will be called.  
-         *      
-         *  **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.  
-         *  **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.  
-         */
-        static parse_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, root_node: Node, callback: Callable = new Callable()): void
-        
-        /** Bakes the provided [param navigation_mesh] with the data from the provided [param source_geometry_data]. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = new Callable()): void
-    }
-    // // Singleton Class
     /** Stores globally-accessible variables.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_projectsettings.html  
@@ -9210,11 +9188,6 @@ declare module "godot" {
         /** Sets the navigation mesh for the region. */
         static region_set_navigation_mesh(region: RID, navigation_mesh: NavigationMesh): void
         
-        /** Bakes the [param navigation_mesh] with bake source geometry collected starting from the [param root_node].  
-         *   *Deprecated.*  This function is deprecated due to core threading changes. To upgrade existing code, first create a [NavigationMeshSourceGeometryData3D] resource. Use this resource with [method parse_source_geometry_data] to parse the SceneTree for nodes that should contribute to the navigation mesh baking. The SceneTree parsing needs to happen on the main thread. After the parsing is finished use the resource with [method bake_from_source_geometry_data] to bake a navigation mesh.  
-         */
-        static region_bake_navigation_mesh(navigation_mesh: NavigationMesh, root_node: Node): void
-        
         /** Returns how many connections this [param region] has with other regions in the map. */
         static region_get_connections_count(region: RID): int64
         
@@ -9599,5 +9572,18 @@ declare module "godot" {
         
         /** Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged). */
         static readonly camera_feed_removed: Signal1<int64>
+    }
+    // // Singleton Class
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_gdscriptlanguageprotocol.html */
+    class GDScriptLanguageProtocol extends JSONRPC {
+        static initialize(params: Dictionary): Dictionary
+        static initialized(params: any): void
+        static on_client_connected(): Error
+        static on_client_disconnected(_unnamed_arg0: int64): void
+        static notify_client(method: string, params: any = <any> {}, client_id: int64 = -1): void
+        static is_smart_resolve_enabled(): boolean
+        static get_text_document(): GDScriptTextDocument
+        static get_workspace(): GDScriptWorkspace
+        static is_initialized(): boolean
     }
 }

@@ -1,363 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState2D] implementations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate2dextension.html  
-     */
-    class PhysicsDirectBodyState2DExtension extends PhysicsDirectBodyState2D {
-        constructor(identifier?: any)
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_gravity] and its respective getter. */
-        /* gdvirtual */ _get_total_gravity(): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_linear_damp] and its respective getter. */
-        /* gdvirtual */ _get_total_linear_damp(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_angular_damp] and its respective getter. */
-        /* gdvirtual */ _get_total_angular_damp(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass] and its respective getter. */
-        /* gdvirtual */ _get_center_of_mass(): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass_local] and its respective getter. */
-        /* gdvirtual */ _get_center_of_mass_local(): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_mass] and its respective getter. */
-        /* gdvirtual */ _get_inverse_mass(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_inertia] and its respective getter. */
-        /* gdvirtual */ _get_inverse_inertia(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective setter. */
-        /* gdvirtual */ _set_linear_velocity(velocity: Vector2): void
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective getter. */
-        /* gdvirtual */ _get_linear_velocity(): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective setter. */
-        /* gdvirtual */ _set_angular_velocity(velocity: float64): void
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective getter. */
-        /* gdvirtual */ _get_angular_velocity(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective setter. */
-        /* gdvirtual */ _set_transform(transform: Transform2D): void
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective getter. */
-        /* gdvirtual */ _get_transform(): Transform2D
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_velocity_at_local_position]. */
-        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector2): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_impulse]. */
-        /* gdvirtual */ _apply_central_impulse(impulse: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_impulse]. */
-        /* gdvirtual */ _apply_impulse(impulse: Vector2, position: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque_impulse]. */
-        /* gdvirtual */ _apply_torque_impulse(impulse: float64): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_force]. */
-        /* gdvirtual */ _apply_central_force(force: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_force]. */
-        /* gdvirtual */ _apply_force(force: Vector2, position: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque]. */
-        /* gdvirtual */ _apply_torque(torque: float64): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_central_force]. */
-        /* gdvirtual */ _add_constant_central_force(force: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_force]. */
-        /* gdvirtual */ _add_constant_force(force: Vector2, position: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_torque]. */
-        /* gdvirtual */ _add_constant_torque(torque: float64): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_force]. */
-        /* gdvirtual */ _set_constant_force(force: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_force]. */
-        /* gdvirtual */ _get_constant_force(): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_torque]. */
-        /* gdvirtual */ _set_constant_torque(torque: float64): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_torque]. */
-        /* gdvirtual */ _get_constant_torque(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective setter. */
-        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective getter. */
-        /* gdvirtual */ _is_sleeping(): boolean
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_count]. */
-        /* gdvirtual */ _get_contact_count(): int64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_position]. */
-        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_normal]. */
-        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_shape]. */
-        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_velocity_at_position]. */
-        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider]. */
-        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_position]. */
-        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_id]. */
-        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_object]. */
-        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_shape]. */
-        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_velocity_at_position]. */
-        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_impulse]. */
-        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.step] and its respective getter. */
-        /* gdvirtual */ _get_step(): float64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.integrate_forces]. */
-        /* gdvirtual */ _integrate_forces(): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_space_state]. */
-        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState2D
-    }
-    /** Provides direct access to a physics body in the [PhysicsServer3D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate3d.html  
-     */
-    class PhysicsDirectBodyState3D extends Object {
-        constructor(identifier?: any)
-        /** Returns the body's velocity at the given relative position, including both translation and rotation. */
-        get_velocity_at_local_position(local_position: Vector3): Vector3
-        
-        /** Applies a directional impulse without affecting rotation.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
-         */
-        apply_central_impulse(impulse: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Applies a positioned impulse to the body.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Applies a rotational impulse to the body without affecting the position.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *      
-         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
-         */
-        apply_torque_impulse(impulse: Vector3): void
-        
-        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
-         *  This is equivalent to using [method apply_force] at the body's center of mass.  
-         */
-        apply_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
-         *      
-         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
-         */
-        apply_torque(torque: Vector3): void
-        
-        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
-         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
-         */
-        add_constant_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`. */
-        add_constant_torque(torque: Vector3): void
-        
-        /** Sets the body's total constant positional forces applied during each physics update.  
-         *  See [method add_constant_force] and [method add_constant_central_force].  
-         */
-        set_constant_force(force: Vector3): void
-        
-        /** Returns the body's total constant positional forces applied during each physics update.  
-         *  See [method add_constant_force] and [method add_constant_central_force].  
-         */
-        get_constant_force(): Vector3
-        
-        /** Sets the body's total constant rotational forces applied during each physics update.  
-         *  See [method add_constant_torque].  
-         */
-        set_constant_torque(torque: Vector3): void
-        
-        /** Returns the body's total constant rotational forces applied during each physics update.  
-         *  See [method add_constant_torque].  
-         */
-        get_constant_torque(): Vector3
-        
-        /** Returns the number of contacts this body has with other bodies.  
-         *      
-         *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody3D.contact_monitor].  
-         */
-        get_contact_count(): int64
-        
-        /** Returns the position of the contact point on the body in the global coordinate system. */
-        get_contact_local_position(contact_idx: int64): Vector3
-        
-        /** Returns the local normal at the contact point. */
-        get_contact_local_normal(contact_idx: int64): Vector3
-        
-        /** Impulse created by the contact. */
-        get_contact_impulse(contact_idx: int64): Vector3
-        
-        /** Returns the local shape index of the collision. */
-        get_contact_local_shape(contact_idx: int64): int64
-        
-        /** Returns the linear velocity vector at the body's contact point. */
-        get_contact_local_velocity_at_position(contact_idx: int64): Vector3
-        
-        /** Returns the collider's [RID]. */
-        get_contact_collider(contact_idx: int64): RID
-        
-        /** Returns the position of the contact point on the collider in the global coordinate system. */
-        get_contact_collider_position(contact_idx: int64): Vector3
-        
-        /** Returns the collider's object id. */
-        get_contact_collider_id(contact_idx: int64): int64
-        
-        /** Returns the collider object. */
-        get_contact_collider_object(contact_idx: int64): Object
-        
-        /** Returns the collider's shape index. */
-        get_contact_collider_shape(contact_idx: int64): int64
-        
-        /** Returns the linear velocity vector at the collider's contact point. */
-        get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
-        
-        /** Calls the built-in force integration code. */
-        integrate_forces(): void
-        
-        /** Returns the current state of the space, useful for queries. */
-        get_space_state(): PhysicsDirectSpaceState3D
-        
-        /** The timestep (delta) used for the simulation. */
-        get step(): float64
-        
-        /** The inverse of the mass of the body. */
-        get inverse_mass(): float64
-        
-        /** The rate at which the body stops rotating, if there are not any other forces moving it. */
-        get total_angular_damp(): float64
-        
-        /** The rate at which the body stops moving, if there are not any other forces moving it. */
-        get total_linear_damp(): float64
-        
-        /** The inverse of the inertia of the body. */
-        get inverse_inertia(): Vector3
-        
-        /** The inverse of the inertia tensor of the body. */
-        get inverse_inertia_tensor(): Basis
-        
-        /** The total gravity vector being currently applied to this body. */
-        get total_gravity(): Vector3
-        
-        /** The body's center of mass position relative to the body's center in the global coordinate system. */
-        get center_of_mass(): Vector3
-        
-        /** The body's center of mass position in the body's local coordinate system. */
-        get center_of_mass_local(): Vector3
-        get principal_inertia_axes(): Basis
-        
-        /** The body's rotational velocity in  *radians*  per second. */
-        get angular_velocity(): Vector3
-        set angular_velocity(value: Vector3)
-        
-        /** The body's linear velocity in units per second. */
-        get linear_velocity(): Vector3
-        set linear_velocity(value: Vector3)
-        
-        /** If `true`, this body is currently sleeping (not active). */
-        get sleeping(): boolean
-        set sleeping(value: boolean)
-        
-        /** The body's transformation matrix. */
-        get transform(): Transform3D
-        set transform(value: Transform3D)
-    }
-    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState3D] implementations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate3dextension.html  
-     */
-    class PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
-        constructor(identifier?: any)
-        /* gdvirtual */ _get_total_gravity(): Vector3
-        /* gdvirtual */ _get_total_linear_damp(): float64
-        /* gdvirtual */ _get_total_angular_damp(): float64
-        /* gdvirtual */ _get_center_of_mass(): Vector3
-        /* gdvirtual */ _get_center_of_mass_local(): Vector3
-        /* gdvirtual */ _get_principal_inertia_axes(): Basis
-        /* gdvirtual */ _get_inverse_mass(): float64
-        /* gdvirtual */ _get_inverse_inertia(): Vector3
-        /* gdvirtual */ _get_inverse_inertia_tensor(): Basis
-        /* gdvirtual */ _set_linear_velocity(velocity: Vector3): void
-        /* gdvirtual */ _get_linear_velocity(): Vector3
-        /* gdvirtual */ _set_angular_velocity(velocity: Vector3): void
-        /* gdvirtual */ _get_angular_velocity(): Vector3
-        /* gdvirtual */ _set_transform(transform: Transform3D): void
-        /* gdvirtual */ _get_transform(): Transform3D
-        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector3): Vector3
-        /* gdvirtual */ _apply_central_impulse(impulse: Vector3): void
-        /* gdvirtual */ _apply_impulse(impulse: Vector3, position: Vector3): void
-        /* gdvirtual */ _apply_torque_impulse(impulse: Vector3): void
-        /* gdvirtual */ _apply_central_force(force: Vector3): void
-        /* gdvirtual */ _apply_force(force: Vector3, position: Vector3): void
-        /* gdvirtual */ _apply_torque(torque: Vector3): void
-        /* gdvirtual */ _add_constant_central_force(force: Vector3): void
-        /* gdvirtual */ _add_constant_force(force: Vector3, position: Vector3): void
-        /* gdvirtual */ _add_constant_torque(torque: Vector3): void
-        /* gdvirtual */ _set_constant_force(force: Vector3): void
-        /* gdvirtual */ _get_constant_force(): Vector3
-        /* gdvirtual */ _set_constant_torque(torque: Vector3): void
-        /* gdvirtual */ _get_constant_torque(): Vector3
-        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
-        /* gdvirtual */ _is_sleeping(): boolean
-        /* gdvirtual */ _get_contact_count(): int64
-        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
-        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
-        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
-        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
-        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
-        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_step(): float64
-        /* gdvirtual */ _integrate_forces(): void
-        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState3D
-    }
     /** Provides direct access to a physics space in the [PhysicsServer2D].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectspacestate2d.html  
@@ -1684,6 +1327,11 @@ declare module "godot" {
      */
     class PinJoint3D extends Joint3D {
         constructor(identifier?: any)
+        /** Sets the value of the specified parameter. */
+        set_param(param: PinJoint3D.Param, value: float64): void
+        
+        /** Returns the value of the specified parameter. */
+        get_param(param: PinJoint3D.Param): float64
     }
     /** A [Cubemap] without image data.  
      *  	  
@@ -2954,6 +2602,17 @@ declare module "godot" {
      */
     class RDShaderSPIRV extends Resource {
         constructor(identifier?: any)
+        /** Sets the SPIR-V [param bytecode] for the given shader [param stage]. Equivalent to setting one of [member bytecode_compute], [member bytecode_fragment], [member bytecode_tesselation_control], [member bytecode_tesselation_evaluation], [member bytecode_vertex]. */
+        set_stage_bytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray | byte[] | ArrayBuffer): void
+        
+        /** Equivalent to getting one of [member bytecode_compute], [member bytecode_fragment], [member bytecode_tesselation_control], [member bytecode_tesselation_evaluation], [member bytecode_vertex]. */
+        get_stage_bytecode(stage: RenderingDevice.ShaderStage): PackedByteArray
+        
+        /** Sets the compilation error message for the given shader [param stage] to [param compile_error]. Equivalent to setting one of [member compile_error_compute], [member compile_error_fragment], [member compile_error_tesselation_control], [member compile_error_tesselation_evaluation], [member compile_error_vertex]. */
+        set_stage_compile_error(stage: RenderingDevice.ShaderStage, compile_error: string): void
+        
+        /** Returns the compilation error message for the given shader [param stage]. Equivalent to getting one of [member compile_error_compute], [member compile_error_fragment], [member compile_error_tesselation_control], [member compile_error_tesselation_evaluation], [member compile_error_vertex]. */
+        get_stage_compile_error(stage: RenderingDevice.ShaderStage): string
     }
     /** Shader source code (used by [RenderingDevice]).  
      *  	  
@@ -2961,6 +2620,12 @@ declare module "godot" {
      */
     class RDShaderSource extends RefCounted {
         constructor(identifier?: any)
+        /** Sets [param source] code for the specified shader [param stage]. Equivalent to setting one of [member source_compute], [member source_fragment], [member source_tesselation_control], [member source_tesselation_evaluation] or [member source_vertex]. */
+        set_stage_source(stage: RenderingDevice.ShaderStage, source: string): void
+        
+        /** Returns source code for the specified shader [param stage]. Equivalent to getting one of [member source_compute], [member source_fragment], [member source_tesselation_control], [member source_tesselation_evaluation] or [member source_vertex]. */
+        get_stage_source(stage: RenderingDevice.ShaderStage): string
+        
         /** The language the shader is written in. */
         get language(): int64
         set language(value: int64)
@@ -7910,9 +7575,6 @@ declare module "godot" {
         /* gdvirtual */ _validate(script: string, path: string, validate_functions: boolean, validate_errors: boolean, validate_warnings: boolean, validate_safe_lines: boolean): Dictionary
         /* gdvirtual */ _validate_path(path: string): string
         /* gdvirtual */ _create_script(): Object
-        
-        /**  *Deprecated.*  This method is not called by the engine. */
-        /* gdvirtual */ _has_named_classes(): boolean
         /* gdvirtual */ _supports_builtin_mode(): boolean
         /* gdvirtual */ _supports_documentation(): boolean
         /* gdvirtual */ _can_inherit_from_file(): boolean
@@ -8423,9 +8085,6 @@ declare module "godot" {
      */
     class ShapeCast3D extends Node3D {
         constructor(identifier?: any)
-        /**  *Obsoleted.*  Use [signal Resource.changed] instead. */
-        resource_changed(resource: Resource): void
-        
         /** Returns whether any object is intersecting with the shape's vector (considering the vector length). */
         is_colliding(): boolean
         
@@ -9225,5 +8884,367 @@ declare module "godot" {
         /** If `true`, the bones in the modification will blend outward as opposed to inwards when contracting. If `false`, the bones will bend inwards when contracting. */
         get flip_bend_direction(): boolean
         set flip_bend_direction(value: boolean)
+    }
+    /** A resource that holds a stack of [SkeletonModification2D]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodificationstack2d.html  
+     */
+    class SkeletonModificationStack2D extends Resource {
+        constructor(identifier?: any)
+        /** Sets up the modification stack so it can execute. This function should be called by [Skeleton2D] and shouldn't be manually called unless you know what you are doing. */
+        setup(): void
+        
+        /** Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as the passed-in [param execution_mode], starting from index `0` to [member modification_count].  
+         *      
+         *  **Note:** The order of the modifications can matter depending on the modifications. For example, modifications on a spine should operate before modifications on the arms in order to get proper results.  
+         */
+        execute(delta: float64, execution_mode: int64): void
+        
+        /** Enables all [SkeletonModification2D]s in the stack. */
+        enable_all_modifications(enabled: boolean): void
+        
+        /** Returns the [SkeletonModification2D] at the passed-in index, [param mod_idx]. */
+        get_modification(mod_idx: int64): SkeletonModification2D
+        
+        /** Adds the passed-in [SkeletonModification2D] to the stack. */
+        add_modification(modification: SkeletonModification2D): void
+        
+        /** Deletes the [SkeletonModification2D] at the index position [param mod_idx], if it exists. */
+        delete_modification(mod_idx: int64): void
+        
+        /** Sets the modification at [param mod_idx] to the passed-in modification, [param modification]. */
+        set_modification(mod_idx: int64, modification: SkeletonModification2D): void
+        
+        /** Returns a boolean that indicates whether the modification stack is setup and can execute. */
+        get_is_setup(): boolean
+        
+        /** Returns the [Skeleton2D] node that the SkeletonModificationStack2D is bound to. */
+        get_skeleton(): Skeleton2D
+        
+        /** If `true`, the modification's in the stack will be called. This is handled automatically through the [Skeleton2D] node. */
+        get enabled(): boolean
+        set enabled(value: boolean)
+        
+        /** The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses. */
+        get strength(): float64
+        set strength(value: float64)
+        
+        /** The number of modifications in the stack. */
+        get modification_count(): any /*Modifications,modifications/*/
+        set modification_count(value: any /*Modifications,modifications/*/)
+    }
+    namespace SkeletonProfile {
+        enum TailDirection {
+            /** Direction to the average coordinates of bone children. */
+            TAIL_DIRECTION_AVERAGE_CHILDREN = 0,
+            
+            /** Direction to the coordinates of specified bone child. */
+            TAIL_DIRECTION_SPECIFIC_CHILD = 1,
+            
+            /** Direction is not calculated. */
+            TAIL_DIRECTION_END = 2,
+        }
+    }
+    /** Base class for a profile of a virtual skeleton used as a target for retargeting.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonprofile.html  
+     */
+    class SkeletonProfile extends Resource {
+        constructor(identifier?: any)
+        /** Returns the name of the group at [param group_idx] that will be the drawing group in the [BoneMap] editor. */
+        get_group_name(group_idx: int64): StringName
+        
+        /** Sets the name of the group at [param group_idx] that will be the drawing group in the [BoneMap] editor. */
+        set_group_name(group_idx: int64, group_name: StringName): void
+        
+        /** Returns the texture of the group at [param group_idx] that will be the drawing group background image in the [BoneMap] editor. */
+        get_texture(group_idx: int64): Texture2D
+        
+        /** Sets the texture of the group at [param group_idx] that will be the drawing group background image in the [BoneMap] editor. */
+        set_texture(group_idx: int64, texture: Texture2D): void
+        
+        /** Returns the bone index that matches [param bone_name] as its name. */
+        find_bone(bone_name: StringName): int64
+        
+        /** Returns the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].  
+         *  In the retargeting process, the returned bone name is the bone name of the target skeleton.  
+         */
+        get_bone_name(bone_idx: int64): StringName
+        
+        /** Sets the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].  
+         *  In the retargeting process, the setting bone name is the bone name of the target skeleton.  
+         */
+        set_bone_name(bone_idx: int64, bone_name: StringName): void
+        
+        /** Returns the name of the bone which is the parent to the bone at [param bone_idx]. The result is empty if the bone has no parent. */
+        get_bone_parent(bone_idx: int64): StringName
+        
+        /** Sets the bone with name [param bone_parent] as the parent of the bone at [param bone_idx]. If an empty string is passed, then the bone has no parent. */
+        set_bone_parent(bone_idx: int64, bone_parent: StringName): void
+        
+        /** Returns the tail direction of the bone at [param bone_idx]. */
+        get_tail_direction(bone_idx: int64): SkeletonProfile.TailDirection
+        
+        /** Sets the tail direction of the bone at [param bone_idx].  
+         *      
+         *  **Note:** This only specifies the method of calculation. The actual coordinates required should be stored in an external skeleton, so the calculation itself needs to be done externally.  
+         */
+        set_tail_direction(bone_idx: int64, tail_direction: SkeletonProfile.TailDirection): void
+        
+        /** Returns the name of the bone which is the tail of the bone at [param bone_idx]. */
+        get_bone_tail(bone_idx: int64): StringName
+        
+        /** Sets the bone with name [param bone_tail] as the tail of the bone at [param bone_idx]. */
+        set_bone_tail(bone_idx: int64, bone_tail: StringName): void
+        
+        /** Returns the reference pose transform for bone [param bone_idx]. */
+        get_reference_pose(bone_idx: int64): Transform3D
+        
+        /** Sets the reference pose transform for bone [param bone_idx]. */
+        set_reference_pose(bone_idx: int64, bone_name: Transform3D): void
+        
+        /** Returns the offset of the bone at [param bone_idx] that will be the button position in the [BoneMap] editor.  
+         *  This is the offset with origin at the top left corner of the square.  
+         */
+        get_handle_offset(bone_idx: int64): Vector2
+        
+        /** Sets the offset of the bone at [param bone_idx] that will be the button position in the [BoneMap] editor.  
+         *  This is the offset with origin at the top left corner of the square.  
+         */
+        set_handle_offset(bone_idx: int64, handle_offset: Vector2): void
+        
+        /** Returns the group of the bone at [param bone_idx]. */
+        get_group(bone_idx: int64): StringName
+        
+        /** Sets the group of the bone at [param bone_idx]. */
+        set_group(bone_idx: int64, group: StringName): void
+        
+        /** A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of the parent of hips that exists at the world origin. */
+        get root_bone(): StringName
+        set root_bone(value: StringName)
+        
+        /** A bone name which will use model's height as the coefficient for normalization. For example, [SkeletonProfileHumanoid] defines it as `Hips`. */
+        get scale_base_bone(): StringName
+        set scale_base_bone(value: StringName)
+        
+        /** The amount of groups of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 4 groups.  
+         *  This property exists to separate the bone list into several sections in the editor.  
+         */
+        get group_size(): any /*Groups,groups/*/
+        set group_size(value: any /*Groups,groups/*/)
+        
+        /** The amount of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 56 bones.  
+         *  The size of elements in [BoneMap] updates when changing this property in it's assigned [SkeletonProfile].  
+         */
+        get bone_size(): any /*Bones,bones/*/
+        set bone_size(value: any /*Bones,bones/*/)
+        
+        /** This signal is emitted when change the value in profile. This is used to update key name in the [BoneMap] and to redraw the [BoneMap] editor.  
+         *      
+         *  **Note:** This signal is not connected directly to editor to simplify the reference, instead it is passed on to editor through the [BoneMap].  
+         */
+        readonly profile_updated: Signal0
+    }
+    /** A humanoid [SkeletonProfile] preset.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonprofilehumanoid.html  
+     */
+    class SkeletonProfileHumanoid extends SkeletonProfile {
+        constructor(identifier?: any)
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_skin.html */
+    class Skin extends Resource {
+        constructor(identifier?: any)
+        set_bind_count(bind_count: int64): void
+        get_bind_count(): int64
+        add_bind(bone: int64, pose: Transform3D): void
+        add_named_bind(name: string, pose: Transform3D): void
+        set_bind_pose(bind_index: int64, pose: Transform3D): void
+        get_bind_pose(bind_index: int64): Transform3D
+        set_bind_name(bind_index: int64, name: StringName): void
+        get_bind_name(bind_index: int64): StringName
+        set_bind_bone(bind_index: int64, bone: int64): void
+        get_bind_bone(bind_index: int64): int64
+        clear_binds(): void
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_skinreference.html */
+    class SkinReference extends RefCounted {
+        constructor(identifier?: any)
+        get_skeleton(): RID
+        get_skin(): Skin
+    }
+    namespace Sky {
+        enum RadianceSize {
+            /** Radiance texture size is 32×32 pixels. */
+            RADIANCE_SIZE_32 = 0,
+            
+            /** Radiance texture size is 64×64 pixels. */
+            RADIANCE_SIZE_64 = 1,
+            
+            /** Radiance texture size is 128×128 pixels. */
+            RADIANCE_SIZE_128 = 2,
+            
+            /** Radiance texture size is 256×256 pixels. */
+            RADIANCE_SIZE_256 = 3,
+            
+            /** Radiance texture size is 512×512 pixels. */
+            RADIANCE_SIZE_512 = 4,
+            
+            /** Radiance texture size is 1024×1024 pixels. */
+            RADIANCE_SIZE_1024 = 5,
+            
+            /** Radiance texture size is 2048×2048 pixels. */
+            RADIANCE_SIZE_2048 = 6,
+            
+            /** Represents the size of the [enum RadianceSize] enum. */
+            RADIANCE_SIZE_MAX = 7,
+        }
+        enum ProcessMode {
+            /** Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [constant PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [constant PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [constant PROCESS_MODE_QUALITY]. */
+            PROCESS_MODE_AUTOMATIC = 0,
+            
+            /** Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [constant PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [member ProjectSettings.rendering/reflections/sky_reflections/ggx_samples]. */
+            PROCESS_MODE_QUALITY = 1,
+            
+            /** Uses the same high quality importance sampling to process the radiance map as [constant PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by [member ProjectSettings.rendering/reflections/sky_reflections/roughness_layers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly. */
+            PROCESS_MODE_INCREMENTAL = 2,
+            
+            /** Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [member ProjectSettings.rendering/reflections/sky_reflections/fast_filter_high_quality].  
+             *      
+             *  **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [member radiance_size] must be set to [constant RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size is ignored.  
+             */
+            PROCESS_MODE_REALTIME = 3,
+        }
+    }
+    /** Defines a 3D environment's background by using a [Material].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_sky.html  
+     */
+    class Sky extends Resource {
+        constructor(identifier?: any)
+        /** [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial], [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader. */
+        get sky_material(): ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial
+        set sky_material(value: ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial)
+        
+        /** Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options. */
+        get process_mode(): int64
+        set process_mode(value: int64)
+        
+        /** The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting from the [Sky] will be.  
+         *  See [enum RadianceSize] constants for values.  
+         *      
+         *  **Note:** Some hardware will have trouble with higher radiance sizes, especially [constant RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.  
+         */
+        get radiance_size(): int64
+        set radiance_size(value: int64)
+    }
+    /** Abstract base class for sliders.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_slider.html  
+     */
+    class Slider extends Range {
+        constructor(identifier?: any)
+        /** If `true`, the slider can be interacted with. If `false`, the value can be changed only by code. */
+        get editable(): boolean
+        set editable(value: boolean)
+        
+        /** If `true`, the value can be changed using the mouse wheel. */
+        get scrollable(): boolean
+        set scrollable(value: boolean)
+        
+        /** Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers. */
+        get tick_count(): int64
+        set tick_count(value: int64)
+        
+        /** If `true`, the slider will display ticks for minimum and maximum values. */
+        get ticks_on_borders(): boolean
+        set ticks_on_borders(value: boolean)
+        
+        /** Emitted when dragging is started. */
+        readonly drag_started: Signal0
+        
+        /** Emitted when dragging stops. If [param value_changed] is true, [member Range.value] is different from the value when you started the dragging. */
+        readonly drag_ended: Signal1<boolean>
+    }
+    namespace SliderJoint3D {
+        enum Param {
+            /** The maximum difference between the pivot points on their X axis before damping happens. */
+            PARAM_LINEAR_LIMIT_UPPER = 0,
+            
+            /** The minimum difference between the pivot points on their X axis before damping happens. */
+            PARAM_LINEAR_LIMIT_LOWER = 1,
+            
+            /** A factor applied to the movement across the slider axis once the limits get surpassed. The lower, the slower the movement. */
+            PARAM_LINEAR_LIMIT_SOFTNESS = 2,
+            
+            /** The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost. */
+            PARAM_LINEAR_LIMIT_RESTITUTION = 3,
+            
+            /** The amount of damping once the slider limits are surpassed. */
+            PARAM_LINEAR_LIMIT_DAMPING = 4,
+            
+            /** A factor applied to the movement across the slider axis as long as the slider is in the limits. The lower, the slower the movement. */
+            PARAM_LINEAR_MOTION_SOFTNESS = 5,
+            
+            /** The amount of restitution inside the slider limits. */
+            PARAM_LINEAR_MOTION_RESTITUTION = 6,
+            
+            /** The amount of damping inside the slider limits. */
+            PARAM_LINEAR_MOTION_DAMPING = 7,
+            
+            /** A factor applied to the movement across axes orthogonal to the slider. */
+            PARAM_LINEAR_ORTHOGONAL_SOFTNESS = 8,
+            
+            /** The amount of restitution when movement is across axes orthogonal to the slider. */
+            PARAM_LINEAR_ORTHOGONAL_RESTITUTION = 9,
+            
+            /** The amount of damping when movement is across axes orthogonal to the slider. */
+            PARAM_LINEAR_ORTHOGONAL_DAMPING = 10,
+            
+            /** The upper limit of rotation in the slider. */
+            PARAM_ANGULAR_LIMIT_UPPER = 11,
+            
+            /** The lower limit of rotation in the slider. */
+            PARAM_ANGULAR_LIMIT_LOWER = 12,
+            
+            /** A factor applied to the all rotation once the limit is surpassed. */
+            PARAM_ANGULAR_LIMIT_SOFTNESS = 13,
+            
+            /** The amount of restitution of the rotation when the limit is surpassed. */
+            PARAM_ANGULAR_LIMIT_RESTITUTION = 14,
+            
+            /** The amount of damping of the rotation when the limit is surpassed. */
+            PARAM_ANGULAR_LIMIT_DAMPING = 15,
+            
+            /** A factor applied to the all rotation in the limits. */
+            PARAM_ANGULAR_MOTION_SOFTNESS = 16,
+            
+            /** The amount of restitution of the rotation in the limits. */
+            PARAM_ANGULAR_MOTION_RESTITUTION = 17,
+            
+            /** The amount of damping of the rotation in the limits. */
+            PARAM_ANGULAR_MOTION_DAMPING = 18,
+            
+            /** A factor applied to the all rotation across axes orthogonal to the slider. */
+            PARAM_ANGULAR_ORTHOGONAL_SOFTNESS = 19,
+            
+            /** The amount of restitution of the rotation across axes orthogonal to the slider. */
+            PARAM_ANGULAR_ORTHOGONAL_RESTITUTION = 20,
+            
+            /** The amount of damping of the rotation across axes orthogonal to the slider. */
+            PARAM_ANGULAR_ORTHOGONAL_DAMPING = 21,
+            
+            /** Represents the size of the [enum Param] enum. */
+            PARAM_MAX = 22,
+        }
+    }
+    /** A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_sliderjoint3d.html  
+     */
+    class SliderJoint3D extends Joint3D {
+        constructor(identifier?: any)
+        set_param(param: SliderJoint3D.Param, value: float64): void
+        get_param(param: SliderJoint3D.Param): float64
     }
 }

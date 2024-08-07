@@ -1,266 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    class VisualShaderConversionPlugin extends EditorResourceConversionPlugin {
-        constructor(identifier?: any)
-    }
-    namespace VisualShaderNode {
-        enum PortType {
-            /** Floating-point scalar. Translated to [code skip-lint]float` type in shader code. */
-            PORT_TYPE_SCALAR = 0,
-            
-            /** Integer scalar. Translated to [code skip-lint]int` type in shader code. */
-            PORT_TYPE_SCALAR_INT = 1,
-            
-            /** Unsigned integer scalar. Translated to [code skip-lint]uint` type in shader code. */
-            PORT_TYPE_SCALAR_UINT = 2,
-            
-            /** 2D vector of floating-point values. Translated to [code skip-lint]vec2` type in shader code. */
-            PORT_TYPE_VECTOR_2D = 3,
-            
-            /** 3D vector of floating-point values. Translated to [code skip-lint]vec3` type in shader code. */
-            PORT_TYPE_VECTOR_3D = 4,
-            
-            /** 4D vector of floating-point values. Translated to [code skip-lint]vec4` type in shader code. */
-            PORT_TYPE_VECTOR_4D = 5,
-            
-            /** Boolean type. Translated to [code skip-lint]bool` type in shader code. */
-            PORT_TYPE_BOOLEAN = 6,
-            
-            /** Transform type. Translated to [code skip-lint]mat4` type in shader code. */
-            PORT_TYPE_TRANSFORM = 7,
-            
-            /** Sampler type. Translated to reference of sampler uniform in shader code. Can only be used for input ports in non-uniform nodes. */
-            PORT_TYPE_SAMPLER = 8,
-            
-            /** Represents the size of the [enum PortType] enum. */
-            PORT_TYPE_MAX = 9,
-        }
-    }
-    /** Base class for [VisualShader] nodes. Not related to scene nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernode.html  
-     */
-    class VisualShaderNode extends Resource {
-        constructor(identifier?: any)
-        /** Returns the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph. */
-        get_default_input_port(type: VisualShaderNode.PortType): int64
-        _set_output_port_expanded(port: int64, _unnamed_arg1: boolean): void
-        _is_output_port_expanded(_unnamed_arg0: int64): boolean
-        
-        /** Sets the default [param value] for the selected input [param port]. */
-        set_input_port_default_value(port: int64, value: any, prev_value: any = <any> {}): void
-        
-        /** Returns the default value of the input [param port]. */
-        get_input_port_default_value(port: int64): any
-        
-        /** Removes the default value of the input [param port]. */
-        remove_input_port_default_value(port: int64): void
-        
-        /** Clears the default input ports value. */
-        clear_default_input_values(): void
-        
-        /** Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview. */
-        get output_port_for_preview(): int64
-        set output_port_for_preview(value: int64)
-        get default_input_values(): Array
-        set default_input_values(value: Array)
-        get expanded_output_ports(): Array
-        set expanded_output_ports(value: Array)
-    }
-    namespace VisualShaderNodeBillboard {
-        enum BillboardType {
-            /** Billboarding is disabled and the node does nothing. */
-            BILLBOARD_TYPE_DISABLED = 0,
-            
-            /** A standard billboarding algorithm is enabled. */
-            BILLBOARD_TYPE_ENABLED = 1,
-            
-            /** A billboarding algorithm to rotate around Y-axis is enabled. */
-            BILLBOARD_TYPE_FIXED_Y = 2,
-            
-            /** A billboarding algorithm designed to use on particles is enabled. */
-            BILLBOARD_TYPE_PARTICLES = 3,
-            
-            /** Represents the size of the [enum BillboardType] enum. */
-            BILLBOARD_TYPE_MAX = 4,
-        }
-    }
-    /** A node that controls how the object faces the camera to be used within the visual shader graph.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebillboard.html  
-     */
-    class VisualShaderNodeBillboard extends VisualShaderNode {
-        constructor(identifier?: any)
-        /** Controls how the object faces the camera. See [enum BillboardType]. */
-        get billboard_type(): int64
-        set billboard_type(value: int64)
-        
-        /** If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. */
-        get keep_scale(): boolean
-        set keep_scale(value: boolean)
-    }
-    /** A boolean constant to be used within the visual shader graph.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebooleanconstant.html  
-     */
-    class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
-        constructor(identifier?: any)
-        /** A boolean constant which represents a state of this node. */
-        get constant(): boolean
-        set constant(value: boolean)
-    }
-    /** A boolean parameter to be used within the visual shader graph.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebooleanparameter.html  
-     */
-    class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
-        constructor(identifier?: any)
-        /** Enables usage of the [member default_value]. */
-        get default_value_enabled(): boolean
-        set default_value_enabled(value: boolean)
-        
-        /** A default value to be assigned within the shader. */
-        get default_value(): boolean
-        set default_value(value: boolean)
-    }
-    namespace VisualShaderNodeClamp {
-        enum OpType {
-            /** A floating-point scalar. */
-            OP_TYPE_FLOAT = 0,
-            
-            /** An integer scalar. */
-            OP_TYPE_INT = 1,
-            
-            /** An unsigned integer scalar. */
-            OP_TYPE_UINT = 2,
-            
-            /** A 2D vector type. */
-            OP_TYPE_VECTOR_2D = 3,
-            
-            /** A 3D vector type. */
-            OP_TYPE_VECTOR_3D = 4,
-            
-            /** A 4D vector type. */
-            OP_TYPE_VECTOR_4D = 5,
-            
-            /** Represents the size of the [enum OpType] enum. */
-            OP_TYPE_MAX = 6,
-        }
-    }
-    /** Clamps a value within the visual shader graph.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodeclamp.html  
-     */
-    class VisualShaderNodeClamp extends VisualShaderNode {
-        constructor(identifier?: any)
-        /** A type of operands and returned value. */
-        get op_type(): int64
-        set op_type(value: int64)
-    }
-    /** A [Color] constant to be used within the visual shader graph.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorconstant.html  
-     */
-    class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
-        constructor(identifier?: any)
-        /** A [Color] constant which represents a state of this node. */
-        get constant(): Color
-        set constant(value: Color)
-    }
-    namespace VisualShaderNodeColorFunc {
-        enum Function {
-            /** Converts the color to grayscale using the following formula:  
-             *    
-             */
-            FUNC_GRAYSCALE = 0,
-            
-            /** Converts HSV vector to RGB equivalent. */
-            FUNC_HSV2RGB = 1,
-            
-            /** Converts RGB vector to HSV equivalent. */
-            FUNC_RGB2HSV = 2,
-            
-            /** Applies sepia tone effect using the following formula:  
-             *    
-             */
-            FUNC_SEPIA = 3,
-            
-            /** Represents the size of the [enum Function] enum. */
-            FUNC_MAX = 4,
-        }
-    }
-    /** A [Color] function to be used within the visual shader graph.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorfunc.html  
-     */
-    class VisualShaderNodeColorFunc extends VisualShaderNode {
-        constructor(identifier?: any)
-        /** A function to be applied to the input color. See [enum Function] for options. */
-        get function(): int64
-        set function(value: int64)
-    }
-    namespace VisualShaderNodeColorOp {
-        enum Operator {
-            /** Produce a screen effect with the following formula:  
-             *    
-             */
-            OP_SCREEN = 0,
-            
-            /** Produce a difference effect with the following formula:  
-             *    
-             */
-            OP_DIFFERENCE = 1,
-            
-            /** Produce a darken effect with the following formula:  
-             *    
-             */
-            OP_DARKEN = 2,
-            
-            /** Produce a lighten effect with the following formula:  
-             *    
-             */
-            OP_LIGHTEN = 3,
-            
-            /** Produce an overlay effect with the following formula:  
-             *    
-             */
-            OP_OVERLAY = 4,
-            
-            /** Produce a dodge effect with the following formula:  
-             *    
-             */
-            OP_DODGE = 5,
-            
-            /** Produce a burn effect with the following formula:  
-             *    
-             */
-            OP_BURN = 6,
-            
-            /** Produce a soft light effect with the following formula:  
-             *    
-             */
-            OP_SOFT_LIGHT = 7,
-            
-            /** Produce a hard light effect with the following formula:  
-             *    
-             */
-            OP_HARD_LIGHT = 8,
-            
-            /** Represents the size of the [enum Operator] enum. */
-            OP_MAX = 9,
-        }
-    }
-    /** A [Color] operator to be used within the visual shader graph.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorop.html  
-     */
-    class VisualShaderNodeColorOp extends VisualShaderNode {
-        constructor(identifier?: any)
-        /** An operator to be applied to the inputs. See [enum Operator] for options. */
-        get operator(): int64
-        set operator(value: int64)
-    }
     /** A [Color] parameter to be used within the visual shader graph.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorparameter.html  
@@ -2852,6 +2592,175 @@ declare module "godot" {
         /* gdvirtual */ _poll(): Error
         /* gdvirtual */ _close(): void
     }
+    /** Base class for WebSocket server and client.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_websocketmultiplayerpeer.html  
+     */
+    class WebSocketMultiplayerPeer extends MultiplayerPeer {
+        constructor(identifier?: any)
+        /** Starts a new multiplayer client connecting to the given [param url]. TLS certificates will be verified against the hostname when connecting using the `wss://` protocol. You can pass the optional [param tls_client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe].  
+         *      
+         *  **Note:** It is recommended to specify the scheme part of the URL, i.e. the [param url] should start with either `ws://` or `wss://`.  
+         */
+        create_client(url: string, tls_client_options: TLSOptions = undefined): Error
+        
+        /** Starts a new multiplayer server listening on the given [param port]. You can optionally specify a [param bind_address], and provide valid [param tls_server_options] to use TLS. See [method TLSOptions.server]. */
+        create_server(port: int64, bind_address: string = '*', tls_server_options: TLSOptions = undefined): Error
+        
+        /** Returns the [WebSocketPeer] associated to the given [param peer_id]. */
+        get_peer(peer_id: int64): WebSocketPeer
+        
+        /** Returns the IP address of the given peer. */
+        get_peer_address(id: int64): string
+        
+        /** Returns the remote port of the given peer. */
+        get_peer_port(id: int64): int64
+        
+        /** The supported WebSocket sub-protocols. See [member WebSocketPeer.supported_protocols] for more details. */
+        get supported_protocols(): PackedStringArray
+        set supported_protocols(value: PackedStringArray | string[])
+        
+        /** The extra headers to use during handshake. See [member WebSocketPeer.handshake_headers] for more details. */
+        get handshake_headers(): PackedStringArray
+        set handshake_headers(value: PackedStringArray | string[])
+        
+        /** The inbound buffer size for connected peers. See [member WebSocketPeer.inbound_buffer_size] for more details. */
+        get inbound_buffer_size(): int64
+        set inbound_buffer_size(value: int64)
+        
+        /** The outbound buffer size for connected peers. See [member WebSocketPeer.outbound_buffer_size] for more details. */
+        get outbound_buffer_size(): int64
+        set outbound_buffer_size(value: int64)
+        
+        /** The maximum time each peer can stay in a connecting state before being dropped. */
+        get handshake_timeout(): float64
+        set handshake_timeout(value: float64)
+        
+        /** The maximum number of queued packets for connected peers. See [member WebSocketPeer.max_queued_packets] for more details. */
+        get max_queued_packets(): int64
+        set max_queued_packets(value: int64)
+    }
+    namespace WebSocketPeer {
+        enum WriteMode {
+            /** Specifies that WebSockets messages should be transferred as text payload (only valid UTF-8 is allowed). */
+            WRITE_MODE_TEXT = 0,
+            
+            /** Specifies that WebSockets messages should be transferred as binary payload (any byte combination is allowed). */
+            WRITE_MODE_BINARY = 1,
+        }
+        enum State {
+            /** Socket has been created. The connection is not yet open. */
+            STATE_CONNECTING = 0,
+            
+            /** The connection is open and ready to communicate. */
+            STATE_OPEN = 1,
+            
+            /** The connection is in the process of closing. This means a close request has been sent to the remote peer but confirmation has not been received. */
+            STATE_CLOSING = 2,
+            
+            /** The connection is closed or couldn't be opened. */
+            STATE_CLOSED = 3,
+        }
+    }
+    /** A WebSocket connection.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_websocketpeer.html  
+     */
+    class WebSocketPeer extends PacketPeer {
+        constructor(identifier?: any)
+        /** Connects to the given URL. TLS certificates will be verified against the hostname when connecting using the `wss://` protocol. You can pass the optional [param tls_client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe].  
+         *      
+         *  **Note:** To avoid mixed content warnings or errors in Web, you may have to use a [param url] that starts with `wss://` (secure) instead of `ws://`. When doing so, make sure to use the fully qualified domain name that matches the one defined in the server's TLS certificate. Do not connect directly via the IP address for `wss://` connections, as it won't match with the TLS certificate.  
+         */
+        connect_to_url(url: string, tls_client_options: TLSOptions = undefined): Error
+        
+        /** Accepts a peer connection performing the HTTP handshake as a WebSocket server. The [param stream] must be a valid TCP stream retrieved via [method TCPServer.take_connection], or a TLS stream accepted via [method StreamPeerTLS.accept_stream].  
+         *      
+         *  **Note:** Not supported in Web exports due to browsers' restrictions.  
+         */
+        accept_stream(stream: StreamPeer): Error
+        
+        /** Sends the given [param message] using the desired [param write_mode]. When sending a [String], prefer using [method send_text]. */
+        send(message: PackedByteArray | byte[] | ArrayBuffer, write_mode: WebSocketPeer.WriteMode = 1): Error
+        
+        /** Sends the given [param message] using WebSocket text mode. Prefer this method over [method PacketPeer.put_packet] when interacting with third-party text-based API (e.g. when using [JSON] formatted messages). */
+        send_text(message: string): Error
+        
+        /** Returns `true` if the last received packet was sent as a text payload. See [enum WriteMode]. */
+        was_string_packet(): boolean
+        
+        /** Updates the connection state and receive incoming packets. Call this function regularly to keep it in a clean state. */
+        poll(): void
+        
+        /** Closes this WebSocket connection. [param code] is the status code for the closure (see RFC 6455 section 7.4 for a list of valid status codes). [param reason] is the human readable reason for closing the connection (can be any UTF-8 string that's smaller than 123 bytes). If [param code] is negative, the connection will be closed immediately without notifying the remote peer.  
+         *      
+         *  **Note:** To achieve a clean close, you will need to keep polling until [constant STATE_CLOSED] is reached.  
+         *      
+         *  **Note:** The Web export might not support all status codes. Please refer to browser-specific documentation for more details.  
+         */
+        close(code: int64 = 1000, reason: string = ''): void
+        
+        /** Returns the IP address of the connected peer.  
+         *      
+         *  **Note:** Not available in the Web export.  
+         */
+        get_connected_host(): string
+        
+        /** Returns the remote port of the connected peer.  
+         *      
+         *  **Note:** Not available in the Web export.  
+         */
+        get_connected_port(): int64
+        
+        /** Returns the selected WebSocket sub-protocol for this connection or an empty string if the sub-protocol has not been selected yet. */
+        get_selected_protocol(): string
+        
+        /** Returns the URL requested by this peer. The URL is derived from the `url` passed to [method connect_to_url] or from the HTTP headers when acting as server (i.e. when using [method accept_stream]). */
+        get_requested_url(): string
+        
+        /** Disable Nagle's algorithm on the underling TCP socket (default). See [method StreamPeerTCP.set_no_delay] for more information.  
+         *      
+         *  **Note:** Not available in the Web export.  
+         */
+        set_no_delay(enabled: boolean): void
+        
+        /** Returns the current amount of data in the outbound websocket buffer.     
+         *  **Note:** Web exports use WebSocket.bufferedAmount, while other platforms use an internal buffer.  
+         */
+        get_current_outbound_buffered_amount(): int64
+        
+        /** Returns the ready state of the connection. See [enum State]. */
+        get_ready_state(): WebSocketPeer.State
+        
+        /** Returns the received WebSocket close frame status code, or `-1` when the connection was not cleanly closed. Only call this method when [method get_ready_state] returns [constant STATE_CLOSED]. */
+        get_close_code(): int64
+        
+        /** Returns the received WebSocket close frame status reason string. Only call this method when [method get_ready_state] returns [constant STATE_CLOSED]. */
+        get_close_reason(): string
+        
+        /** The WebSocket sub-protocols allowed during the WebSocket handshake. */
+        get supported_protocols(): PackedStringArray
+        set supported_protocols(value: PackedStringArray | string[])
+        
+        /** The extra HTTP headers to be sent during the WebSocket handshake.  
+         *      
+         *  **Note:** Not supported in Web exports due to browsers' restrictions.  
+         */
+        get handshake_headers(): PackedStringArray
+        set handshake_headers(value: PackedStringArray | string[])
+        
+        /** The size of the input buffer in bytes (roughly the maximum amount of memory that will be allocated for the inbound packets). */
+        get inbound_buffer_size(): int64
+        set inbound_buffer_size(value: int64)
+        
+        /** The size of the input buffer in bytes (roughly the maximum amount of memory that will be allocated for the outbound packets). */
+        get outbound_buffer_size(): int64
+        set outbound_buffer_size(value: int64)
+        
+        /** The maximum amount of packets that will be allowed in the queues (both inbound and outbound). */
+        get max_queued_packets(): int64
+        set max_queued_packets(value: int64)
+    }
     namespace WebXRInterface {
         enum TargetRayMode {
             /** We don't know the the target ray mode. */
@@ -3182,6 +3091,12 @@ declare module "godot" {
         
         /** Returns the window's size including its border. */
         get_size_with_decorations(): Vector2i
+        
+        /** Sets a specified window flag. */
+        set_flag(flag: Window.Flags, enabled: boolean): void
+        
+        /** Returns `true` if the [param flag] is set. */
+        get_flag(flag: Window.Flags): boolean
         
         /** Returns `true` if the window can be maximized (the maximize button is enabled). */
         is_maximize_allowed(): boolean
@@ -9231,5 +9146,106 @@ declare module "godot" {
          *  - **Windows** and **macOS:** Up to 128 buttons.  
          */
         JOY_BUTTON_MAX = 128,
+    }
+    enum JoyAxis {
+        /** An invalid game controller axis. */
+        JOY_AXIS_INVALID = -1,
+        
+        /** Game controller left joystick x-axis. */
+        JOY_AXIS_LEFT_X = 0,
+        
+        /** Game controller left joystick y-axis. */
+        JOY_AXIS_LEFT_Y = 1,
+        
+        /** Game controller right joystick x-axis. */
+        JOY_AXIS_RIGHT_X = 2,
+        
+        /** Game controller right joystick y-axis. */
+        JOY_AXIS_RIGHT_Y = 3,
+        
+        /** Game controller left trigger axis. */
+        JOY_AXIS_TRIGGER_LEFT = 4,
+        
+        /** Game controller right trigger axis. */
+        JOY_AXIS_TRIGGER_RIGHT = 5,
+        
+        /** The number of SDL game controller axes. */
+        JOY_AXIS_SDL_MAX = 6,
+        
+        /** The maximum number of game controller axes: OpenVR supports up to 5 Joysticks making a total of 10 axes. */
+        JOY_AXIS_MAX = 10,
+    }
+    enum MIDIMessage {
+        /** Does not correspond to any MIDI message. This is the default value of [member InputEventMIDI.message]. */
+        MIDI_MESSAGE_NONE = 0,
+        
+        /** MIDI message sent when a note is released.  
+         *      
+         *  **Note:** Not all MIDI devices send this message; some may send [constant MIDI_MESSAGE_NOTE_ON] with [member InputEventMIDI.velocity] set to `0`.  
+         */
+        MIDI_MESSAGE_NOTE_OFF = 8,
+        
+        /** MIDI message sent when a note is pressed. */
+        MIDI_MESSAGE_NOTE_ON = 9,
+        
+        /** MIDI message sent to indicate a change in pressure while a note is being pressed down, also called aftertouch. */
+        MIDI_MESSAGE_AFTERTOUCH = 10,
+        
+        /** MIDI message sent when a controller value changes. In a MIDI device, a controller is any input that doesn't play notes. These may include sliders for volume, balance, and panning, as well as switches and pedals. See the [url=https://en.wikipedia.org/wiki/General_MIDI#Controller_events]General MIDI specification[/url] for a small list. */
+        MIDI_MESSAGE_CONTROL_CHANGE = 11,
+        
+        /** MIDI message sent when the MIDI device changes its current instrument (also called  *program*  or  *preset* ). */
+        MIDI_MESSAGE_PROGRAM_CHANGE = 12,
+        
+        /** MIDI message sent to indicate a change in pressure for the whole channel. Some MIDI devices may send this instead of [constant MIDI_MESSAGE_AFTERTOUCH]. */
+        MIDI_MESSAGE_CHANNEL_PRESSURE = 13,
+        
+        /** MIDI message sent when the value of the pitch bender changes, usually a wheel on the MIDI device. */
+        MIDI_MESSAGE_PITCH_BEND = 14,
+        
+        /** MIDI system exclusive (SysEx) message. This type of message is not standardized and it's highly dependent on the MIDI device sending it.  
+         *      
+         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
+         */
+        MIDI_MESSAGE_SYSTEM_EXCLUSIVE = 240,
+        
+        /** MIDI message sent every quarter frame to keep connected MIDI devices synchronized. Related to [constant MIDI_MESSAGE_TIMING_CLOCK].  
+         *      
+         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
+         */
+        MIDI_MESSAGE_QUARTER_FRAME = 241,
+        
+        /** MIDI message sent to jump onto a new position in the current sequence or song.  
+         *      
+         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
+         */
+        MIDI_MESSAGE_SONG_POSITION_POINTER = 242,
+        
+        /** MIDI message sent to select a sequence or song to play.  
+         *      
+         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
+         */
+        MIDI_MESSAGE_SONG_SELECT = 243,
+        
+        /** MIDI message sent to request a tuning calibration. Used on analog synthesizers. Most modern MIDI devices do not need this message. */
+        MIDI_MESSAGE_TUNE_REQUEST = 246,
+        
+        /** MIDI message sent 24 times after [constant MIDI_MESSAGE_QUARTER_FRAME], to keep connected MIDI devices synchronized. */
+        MIDI_MESSAGE_TIMING_CLOCK = 248,
+        
+        /** MIDI message sent to start the current sequence or song from the beginning. */
+        MIDI_MESSAGE_START = 250,
+        
+        /** MIDI message sent to resume from the point the current sequence or song was paused. */
+        MIDI_MESSAGE_CONTINUE = 251,
+        
+        /** MIDI message sent to pause the current sequence or song. */
+        MIDI_MESSAGE_STOP = 252,
+        
+        /** MIDI message sent repeatedly while the MIDI device is idle, to tell the receiver that the connection is alive. Most MIDI devices do not send this message. */
+        MIDI_MESSAGE_ACTIVE_SENSING = 254,
+        
+        /** MIDI message sent to reset a MIDI device to its default state, as if it was just turned on. It should not be sent when the MIDI device is being turned on. */
+        MIDI_MESSAGE_SYSTEM_RESET = 255,
     }
 }
