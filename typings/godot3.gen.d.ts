@@ -1,6 +1,1231 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    class GridMapEditor extends VBoxContainer {
+        constructor(identifier?: any)
+        _configure(): void
+        _set_selection(_unnamed_arg0: boolean, _unnamed_arg1: Vector3, _unnamed_arg2: Vector3): void
+    }
+    class GridMapEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** A physics joint that restricts the movement of two 2D physics bodies to a fixed axis.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_groovejoint2d.html  
+     */
+    class GrooveJoint2D extends Joint2D {
+        constructor(identifier?: any)
+        /** The groove's length. The groove is from the joint's origin towards [member length] along the joint's local Y axis. */
+        get length(): float64
+        set length(value: float64)
+        
+        /** The body B's initial anchor position defined by the joint's origin and a local offset [member initial_offset] along the joint's Y axis (along the groove). */
+        get initial_offset(): float64
+        set initial_offset(value: float64)
+    }
+    class GroupDialog extends AcceptDialog {
+        constructor(identifier?: any)
+        _delete_group_item(_unnamed_arg0: string): void
+        _add_group(_unnamed_arg0: string): void
+        _rename_group_item(_unnamed_arg0: string, _unnamed_arg1: string): void
+        _group_selected(): void
+        readonly group_edited: Signal0
+    }
+    class GroupsEditor extends VBoxContainer {
+        constructor(identifier?: any)
+        update_tree(): void
+        _group_selected(): void
+    }
+    /** A container that arranges its child controls horizontally.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hboxcontainer.html  
+     */
+    class HBoxContainer extends BoxContainer {
+        constructor(identifier?: any)
+    }
+    /** A container that arranges its child controls horizontally and wraps them around at the borders.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hflowcontainer.html  
+     */
+    class HFlowContainer extends FlowContainer {
+        constructor(identifier?: any)
+    }
+    /** Used to create an HMAC for a message using a key.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hmaccontext.html  
+     */
+    class HMACContext extends RefCounted {
+        constructor(identifier?: any)
+        /** Initializes the HMACContext. This method cannot be called again on the same HMACContext until [method finish] has been called. */
+        start(hash_type: HashingContext.HashType, key: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Updates the message to be HMACed. This can be called multiple times before [method finish] is called to append [param data] to the message, but cannot be called until [method start] has been called. */
+        update(data: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Returns the resulting HMAC. If the HMAC failed, an empty [PackedByteArray] is returned. */
+        finish(): PackedByteArray
+    }
+    /** A horizontal scrollbar that goes from left (min) to right (max).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hscrollbar.html  
+     */
+    class HScrollBar extends ScrollBar {
+        constructor(identifier?: any)
+    }
+    /** A horizontal line used for separating other controls.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hseparator.html  
+     */
+    class HSeparator extends Separator {
+        constructor(identifier?: any)
+    }
+    /** A horizontal slider that goes from left (min) to right (max).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hslider.html  
+     */
+    class HSlider extends Slider {
+        constructor(identifier?: any)
+    }
+    /** A container that splits two child controls horizontally and provides a grabber for adjusting the split ratio.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hsplitcontainer.html  
+     */
+    class HSplitContainer extends SplitContainer {
+        constructor(identifier?: any)
+    }
+    namespace HTTPClient {
+        enum Method {
+            /** HTTP GET method. The GET method requests a representation of the specified resource. Requests using GET should only retrieve data. */
+            METHOD_GET = 0,
+            
+            /** HTTP HEAD method. The HEAD method asks for a response identical to that of a GET request, but without the response body. This is useful to request metadata like HTTP headers or to check if a resource exists. */
+            METHOD_HEAD = 1,
+            
+            /** HTTP POST method. The POST method is used to submit an entity to the specified resource, often causing a change in state or side effects on the server. This is often used for forms and submitting data or uploading files. */
+            METHOD_POST = 2,
+            
+            /** HTTP PUT method. The PUT method asks to replace all current representations of the target resource with the request payload. (You can think of POST as "create or update" and PUT as "update", although many services tend to not make a clear distinction or change their meaning). */
+            METHOD_PUT = 3,
+            
+            /** HTTP DELETE method. The DELETE method requests to delete the specified resource. */
+            METHOD_DELETE = 4,
+            
+            /** HTTP OPTIONS method. The OPTIONS method asks for a description of the communication options for the target resource. Rarely used. */
+            METHOD_OPTIONS = 5,
+            
+            /** HTTP TRACE method. The TRACE method performs a message loop-back test along the path to the target resource. Returns the entire HTTP request received in the response body. Rarely used. */
+            METHOD_TRACE = 6,
+            
+            /** HTTP CONNECT method. The CONNECT method establishes a tunnel to the server identified by the target resource. Rarely used. */
+            METHOD_CONNECT = 7,
+            
+            /** HTTP PATCH method. The PATCH method is used to apply partial modifications to a resource. */
+            METHOD_PATCH = 8,
+            
+            /** Represents the size of the [enum Method] enum. */
+            METHOD_MAX = 9,
+        }
+        enum Status {
+            /** Status: Disconnected from the server. */
+            STATUS_DISCONNECTED = 0,
+            
+            /** Status: Currently resolving the hostname for the given URL into an IP. */
+            STATUS_RESOLVING = 1,
+            
+            /** Status: DNS failure: Can't resolve the hostname for the given URL. */
+            STATUS_CANT_RESOLVE = 2,
+            
+            /** Status: Currently connecting to server. */
+            STATUS_CONNECTING = 3,
+            
+            /** Status: Can't connect to the server. */
+            STATUS_CANT_CONNECT = 4,
+            
+            /** Status: Connection established. */
+            STATUS_CONNECTED = 5,
+            
+            /** Status: Currently sending request. */
+            STATUS_REQUESTING = 6,
+            
+            /** Status: HTTP body received. */
+            STATUS_BODY = 7,
+            
+            /** Status: Error in HTTP connection. */
+            STATUS_CONNECTION_ERROR = 8,
+            
+            /** Status: Error in TLS handshake. */
+            STATUS_TLS_HANDSHAKE_ERROR = 9,
+        }
+        enum ResponseCode {
+            /** HTTP status code `100 Continue`. Interim response that indicates everything so far is OK and that the client should continue with the request (or ignore this status if already finished). */
+            RESPONSE_CONTINUE = 100,
+            
+            /** HTTP status code `101 Switching Protocol`. Sent in response to an `Upgrade` request header by the client. Indicates the protocol the server is switching to. */
+            RESPONSE_SWITCHING_PROTOCOLS = 101,
+            
+            /** HTTP status code `102 Processing` (WebDAV). Indicates that the server has received and is processing the request, but no response is available yet. */
+            RESPONSE_PROCESSING = 102,
+            
+            /** HTTP status code `200 OK`. The request has succeeded. Default response for successful requests. Meaning varies depending on the request. GET: The resource has been fetched and is transmitted in the message body. HEAD: The entity headers are in the message body. POST: The resource describing the result of the action is transmitted in the message body. TRACE: The message body contains the request message as received by the server. */
+            RESPONSE_OK = 200,
+            
+            /** HTTP status code `201 Created`. The request has succeeded and a new resource has been created as a result of it. This is typically the response sent after a PUT request. */
+            RESPONSE_CREATED = 201,
+            
+            /** HTTP status code `202 Accepted`. The request has been received but not yet acted upon. It is non-committal, meaning that there is no way in HTTP to later send an asynchronous response indicating the outcome of processing the request. It is intended for cases where another process or server handles the request, or for batch processing. */
+            RESPONSE_ACCEPTED = 202,
+            
+            /** HTTP status code `203 Non-Authoritative Information`. This response code means returned meta-information set is not exact set as available from the origin server, but collected from a local or a third party copy. Except this condition, 200 OK response should be preferred instead of this response. */
+            RESPONSE_NON_AUTHORITATIVE_INFORMATION = 203,
+            
+            /** HTTP status code `204 No Content`. There is no content to send for this request, but the headers may be useful. The user-agent may update its cached headers for this resource with the new ones. */
+            RESPONSE_NO_CONTENT = 204,
+            
+            /** HTTP status code `205 Reset Content`. The server has fulfilled the request and desires that the client resets the "document view" that caused the request to be sent to its original state as received from the origin server. */
+            RESPONSE_RESET_CONTENT = 205,
+            
+            /** HTTP status code `206 Partial Content`. This response code is used because of a range header sent by the client to separate download into multiple streams. */
+            RESPONSE_PARTIAL_CONTENT = 206,
+            
+            /** HTTP status code `207 Multi-Status` (WebDAV). A Multi-Status response conveys information about multiple resources in situations where multiple status codes might be appropriate. */
+            RESPONSE_MULTI_STATUS = 207,
+            
+            /** HTTP status code `208 Already Reported` (WebDAV). Used inside a DAV: propstat response element to avoid enumerating the internal members of multiple bindings to the same collection repeatedly. */
+            RESPONSE_ALREADY_REPORTED = 208,
+            
+            /** HTTP status code `226 IM Used` (WebDAV). The server has fulfilled a GET request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance. */
+            RESPONSE_IM_USED = 226,
+            
+            /** HTTP status code `300 Multiple Choice`. The request has more than one possible responses and there is no standardized way to choose one of the responses. User-agent or user should choose one of them. */
+            RESPONSE_MULTIPLE_CHOICES = 300,
+            
+            /** HTTP status code `301 Moved Permanently`. Redirection. This response code means the URI of requested resource has been changed. The new URI is usually included in the response. */
+            RESPONSE_MOVED_PERMANENTLY = 301,
+            
+            /** HTTP status code `302 Found`. Temporary redirection. This response code means the URI of requested resource has been changed temporarily. New changes in the URI might be made in the future. Therefore, this same URI should be used by the client in future requests. */
+            RESPONSE_FOUND = 302,
+            
+            /** HTTP status code `303 See Other`. The server is redirecting the user agent to a different resource, as indicated by a URI in the Location header field, which is intended to provide an indirect response to the original request. */
+            RESPONSE_SEE_OTHER = 303,
+            
+            /** HTTP status code `304 Not Modified`. A conditional GET or HEAD request has been received and would have resulted in a 200 OK response if it were not for the fact that the condition evaluated to `false`. */
+            RESPONSE_NOT_MODIFIED = 304,
+            
+            /**  *Deprecated.*  HTTP status code `305 Use Proxy`. */
+            RESPONSE_USE_PROXY = 305,
+            
+            /**  *Deprecated.*  HTTP status code `306 Switch Proxy`. */
+            RESPONSE_SWITCH_PROXY = 306,
+            
+            /** HTTP status code `307 Temporary Redirect`. The target resource resides temporarily under a different URI and the user agent MUST NOT change the request method if it performs an automatic redirection to that URI. */
+            RESPONSE_TEMPORARY_REDIRECT = 307,
+            
+            /** HTTP status code `308 Permanent Redirect`. The target resource has been assigned a new permanent URI and any future references to this resource ought to use one of the enclosed URIs. */
+            RESPONSE_PERMANENT_REDIRECT = 308,
+            
+            /** HTTP status code `400 Bad Request`. The request was invalid. The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, invalid request contents, or deceptive request routing). */
+            RESPONSE_BAD_REQUEST = 400,
+            
+            /** HTTP status code `401 Unauthorized`. Credentials required. The request has not been applied because it lacks valid authentication credentials for the target resource. */
+            RESPONSE_UNAUTHORIZED = 401,
+            
+            /** HTTP status code `402 Payment Required`. This response code is reserved for future use. Initial aim for creating this code was using it for digital payment systems, however this is not currently used. */
+            RESPONSE_PAYMENT_REQUIRED = 402,
+            
+            /** HTTP status code `403 Forbidden`. The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike `401`, the client's identity is known to the server. */
+            RESPONSE_FORBIDDEN = 403,
+            
+            /** HTTP status code `404 Not Found`. The server can not find requested resource. Either the URL is not recognized or the endpoint is valid but the resource itself does not exist. May also be sent instead of 403 to hide existence of a resource if the client is not authorized. */
+            RESPONSE_NOT_FOUND = 404,
+            
+            /** HTTP status code `405 Method Not Allowed`. The request's HTTP method is known by the server but has been disabled and cannot be used. For example, an API may forbid DELETE-ing a resource. The two mandatory methods, GET and HEAD, must never be disabled and should not return this error code. */
+            RESPONSE_METHOD_NOT_ALLOWED = 405,
+            
+            /** HTTP status code `406 Not Acceptable`. The target resource does not have a current representation that would be acceptable to the user agent, according to the proactive negotiation header fields received in the request. Used when negotiation content. */
+            RESPONSE_NOT_ACCEPTABLE = 406,
+            
+            /** HTTP status code `407 Proxy Authentication Required`. Similar to 401 Unauthorized, but it indicates that the client needs to authenticate itself in order to use a proxy. */
+            RESPONSE_PROXY_AUTHENTICATION_REQUIRED = 407,
+            
+            /** HTTP status code `408 Request Timeout`. The server did not receive a complete request message within the time that it was prepared to wait. */
+            RESPONSE_REQUEST_TIMEOUT = 408,
+            
+            /** HTTP status code `409 Conflict`. The request could not be completed due to a conflict with the current state of the target resource. This code is used in situations where the user might be able to resolve the conflict and resubmit the request. */
+            RESPONSE_CONFLICT = 409,
+            
+            /** HTTP status code `410 Gone`. The target resource is no longer available at the origin server and this condition is likely permanent. */
+            RESPONSE_GONE = 410,
+            
+            /** HTTP status code `411 Length Required`. The server refuses to accept the request without a defined Content-Length header. */
+            RESPONSE_LENGTH_REQUIRED = 411,
+            
+            /** HTTP status code `412 Precondition Failed`. One or more conditions given in the request header fields evaluated to `false` when tested on the server. */
+            RESPONSE_PRECONDITION_FAILED = 412,
+            
+            /** HTTP status code `413 Entity Too Large`. The server is refusing to process a request because the request payload is larger than the server is willing or able to process. */
+            RESPONSE_REQUEST_ENTITY_TOO_LARGE = 413,
+            
+            /** HTTP status code `414 Request-URI Too Long`. The server is refusing to service the request because the request-target is longer than the server is willing to interpret. */
+            RESPONSE_REQUEST_URI_TOO_LONG = 414,
+            
+            /** HTTP status code `415 Unsupported Media Type`. The origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource. */
+            RESPONSE_UNSUPPORTED_MEDIA_TYPE = 415,
+            
+            /** HTTP status code `416 Requested Range Not Satisfiable`. None of the ranges in the request's Range header field overlap the current extent of the selected resource or the set of ranges requested has been rejected due to invalid ranges or an excessive request of small or overlapping ranges. */
+            RESPONSE_REQUESTED_RANGE_NOT_SATISFIABLE = 416,
+            
+            /** HTTP status code `417 Expectation Failed`. The expectation given in the request's Expect header field could not be met by at least one of the inbound servers. */
+            RESPONSE_EXPECTATION_FAILED = 417,
+            
+            /** HTTP status code `418 I'm A Teapot`. Any attempt to brew coffee with a teapot should result in the error code "418 I'm a teapot". The resulting entity body MAY be short and stout. */
+            RESPONSE_IM_A_TEAPOT = 418,
+            
+            /** HTTP status code `421 Misdirected Request`. The request was directed at a server that is not able to produce a response. This can be sent by a server that is not configured to produce responses for the combination of scheme and authority that are included in the request URI. */
+            RESPONSE_MISDIRECTED_REQUEST = 421,
+            
+            /** HTTP status code `422 Unprocessable Entity` (WebDAV). The server understands the content type of the request entity (hence a 415 Unsupported Media Type status code is inappropriate), and the syntax of the request entity is correct (thus a 400 Bad Request status code is inappropriate) but was unable to process the contained instructions. */
+            RESPONSE_UNPROCESSABLE_ENTITY = 422,
+            
+            /** HTTP status code `423 Locked` (WebDAV). The source or destination resource of a method is locked. */
+            RESPONSE_LOCKED = 423,
+            
+            /** HTTP status code `424 Failed Dependency` (WebDAV). The method could not be performed on the resource because the requested action depended on another action and that action failed. */
+            RESPONSE_FAILED_DEPENDENCY = 424,
+            
+            /** HTTP status code `426 Upgrade Required`. The server refuses to perform the request using the current protocol but might be willing to do so after the client upgrades to a different protocol. */
+            RESPONSE_UPGRADE_REQUIRED = 426,
+            
+            /** HTTP status code `428 Precondition Required`. The origin server requires the request to be conditional. */
+            RESPONSE_PRECONDITION_REQUIRED = 428,
+            
+            /** HTTP status code `429 Too Many Requests`. The user has sent too many requests in a given amount of time (see "rate limiting"). Back off and increase time between requests or try again later. */
+            RESPONSE_TOO_MANY_REQUESTS = 429,
+            
+            /** HTTP status code `431 Request Header Fields Too Large`. The server is unwilling to process the request because its header fields are too large. The request MAY be resubmitted after reducing the size of the request header fields. */
+            RESPONSE_REQUEST_HEADER_FIELDS_TOO_LARGE = 431,
+            
+            /** HTTP status code `451 Response Unavailable For Legal Reasons`. The server is denying access to the resource as a consequence of a legal demand. */
+            RESPONSE_UNAVAILABLE_FOR_LEGAL_REASONS = 451,
+            
+            /** HTTP status code `500 Internal Server Error`. The server encountered an unexpected condition that prevented it from fulfilling the request. */
+            RESPONSE_INTERNAL_SERVER_ERROR = 500,
+            
+            /** HTTP status code `501 Not Implemented`. The server does not support the functionality required to fulfill the request. */
+            RESPONSE_NOT_IMPLEMENTED = 501,
+            
+            /** HTTP status code `502 Bad Gateway`. The server, while acting as a gateway or proxy, received an invalid response from an inbound server it accessed while attempting to fulfill the request. Usually returned by load balancers or proxies. */
+            RESPONSE_BAD_GATEWAY = 502,
+            
+            /** HTTP status code `503 Service Unavailable`. The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay. Try again later. */
+            RESPONSE_SERVICE_UNAVAILABLE = 503,
+            
+            /** HTTP status code `504 Gateway Timeout`. The server, while acting as a gateway or proxy, did not receive a timely response from an upstream server it needed to access in order to complete the request. Usually returned by load balancers or proxies. */
+            RESPONSE_GATEWAY_TIMEOUT = 504,
+            
+            /** HTTP status code `505 HTTP Version Not Supported`. The server does not support, or refuses to support, the major version of HTTP that was used in the request message. */
+            RESPONSE_HTTP_VERSION_NOT_SUPPORTED = 505,
+            
+            /** HTTP status code `506 Variant Also Negotiates`. The server has an internal configuration error: the chosen variant resource is configured to engage in transparent content negotiation itself, and is therefore not a proper end point in the negotiation process. */
+            RESPONSE_VARIANT_ALSO_NEGOTIATES = 506,
+            
+            /** HTTP status code `507 Insufficient Storage`. The method could not be performed on the resource because the server is unable to store the representation needed to successfully complete the request. */
+            RESPONSE_INSUFFICIENT_STORAGE = 507,
+            
+            /** HTTP status code `508 Loop Detected`. The server terminated an operation because it encountered an infinite loop while processing a request with "Depth: infinity". This status indicates that the entire operation failed. */
+            RESPONSE_LOOP_DETECTED = 508,
+            
+            /** HTTP status code `510 Not Extended`. The policy for accessing the resource has not been met in the request. The server should send back all the information necessary for the client to issue an extended request. */
+            RESPONSE_NOT_EXTENDED = 510,
+            
+            /** HTTP status code `511 Network Authentication Required`. The client needs to authenticate to gain network access. */
+            RESPONSE_NETWORK_AUTH_REQUIRED = 511,
+        }
+    }
+    /** Low-level hyper-text transfer protocol client.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_httpclient.html  
+     */
+    class HTTPClient extends RefCounted {
+        constructor(identifier?: any)
+        /** Connects to a host. This needs to be done before any requests are sent.  
+         *  If no [param port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS. You can pass the optional [param tls_options] parameter to customize the trusted certification authorities, or the common name verification when using HTTPS. See [method TLSOptions.client] and [method TLSOptions.client_unsafe].  
+         */
+        connect_to_host(host: string, port: int64 = -1, tls_options: TLSOptions = undefined): Error
+        
+        /** Sends a raw request to the connected host.  
+         *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
+         *  Headers are HTTP request headers. For available HTTP methods, see [enum Method].  
+         *  Sends the body data raw, as a byte array and does not encode it in any way.  
+         */
+        request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray | string[], body: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Sends a request to the connected host.  
+         *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
+         *  Headers are HTTP request headers. For available HTTP methods, see [enum Method].  
+         *  To create a POST request with query strings to push to the server, do:  
+         *    
+         *      
+         *  **Note:** The [param body] parameter is ignored if [param method] is [constant HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [method String.uri_encode] for an example.  
+         */
+        request(method: HTTPClient.Method, url: string, headers: PackedStringArray | string[], body: string = ''): Error
+        
+        /** Closes the current connection, allowing reuse of this [HTTPClient]. */
+        close(): void
+        
+        /** If `true`, this [HTTPClient] has a response available. */
+        has_response(): boolean
+        
+        /** If `true`, this [HTTPClient] has a response that is chunked. */
+        is_response_chunked(): boolean
+        
+        /** Returns the response's HTTP status code. */
+        get_response_code(): int64
+        
+        /** Returns the response headers. */
+        get_response_headers(): PackedStringArray
+        
+        /** Returns all response headers as a Dictionary of structure `{ "key": "value1; value2" }` where the case-sensitivity of the keys and values is kept like the server delivers it. A value is a simple String, this string can have more than one value where "; " is used as separator.  
+         *  **Example:**  
+         *    
+         */
+        get_response_headers_as_dictionary(): Dictionary
+        
+        /** Returns the response's body length.  
+         *      
+         *  **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.  
+         *      
+         *  **Note:** This function always returns `-1` on the Web platform due to browsers limitations.  
+         */
+        get_response_body_length(): int64
+        
+        /** Reads one chunk from the response. */
+        read_response_body_chunk(): PackedByteArray
+        
+        /** Returns a [enum Status] constant. Need to call [method poll] in order to get status updates. */
+        get_status(): HTTPClient.Status
+        
+        /** This needs to be called in order to have any request processed. Check results with [method get_status]. */
+        poll(): Error
+        
+        /** Sets the proxy server for HTTP requests.  
+         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
+         */
+        set_http_proxy(host: string, port: int64): void
+        
+        /** Sets the proxy server for HTTPS requests.  
+         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
+         */
+        set_https_proxy(host: string, port: int64): void
+        
+        /** Generates a GET/POST application/x-www-form-urlencoded style query string from a provided dictionary, e.g.:  
+         *    
+         *  Furthermore, if a key has a `null` value, only the key itself is added, without equal sign and value. If the value is an array, for each value in it a pair with the same key is added.  
+         *    
+         */
+        query_string_from_dict(fields: Dictionary): string
+        
+        /** If `true`, execution will block until all data is read from the response. */
+        get blocking_mode_enabled(): boolean
+        set blocking_mode_enabled(value: boolean)
+        
+        /** The connection to use for this client. */
+        get connection(): StreamPeer
+        set connection(value: StreamPeer)
+        
+        /** The size of the buffer used and maximum bytes to read per iteration. See [method read_response_body_chunk]. */
+        get read_chunk_size(): int64
+        set read_chunk_size(value: int64)
+    }
+    namespace HTTPRequest {
+        enum Result {
+            /** Request successful. */
+            RESULT_SUCCESS = 0,
+            RESULT_CHUNKED_BODY_SIZE_MISMATCH = 1,
+            
+            /** Request failed while connecting. */
+            RESULT_CANT_CONNECT = 2,
+            
+            /** Request failed while resolving. */
+            RESULT_CANT_RESOLVE = 3,
+            
+            /** Request failed due to connection (read/write) error. */
+            RESULT_CONNECTION_ERROR = 4,
+            
+            /** Request failed on TLS handshake. */
+            RESULT_TLS_HANDSHAKE_ERROR = 5,
+            
+            /** Request does not have a response (yet). */
+            RESULT_NO_RESPONSE = 6,
+            
+            /** Request exceeded its maximum size limit, see [member body_size_limit]. */
+            RESULT_BODY_SIZE_LIMIT_EXCEEDED = 7,
+            RESULT_BODY_DECOMPRESS_FAILED = 8,
+            
+            /** Request failed (currently unused). */
+            RESULT_REQUEST_FAILED = 9,
+            
+            /** HTTPRequest couldn't open the download file. */
+            RESULT_DOWNLOAD_FILE_CANT_OPEN = 10,
+            
+            /** HTTPRequest couldn't write to the download file. */
+            RESULT_DOWNLOAD_FILE_WRITE_ERROR = 11,
+            
+            /** Request reached its maximum redirect limit, see [member max_redirects]. */
+            RESULT_REDIRECT_LIMIT_REACHED = 12,
+            
+            /** Request failed due to a timeout. If you expect requests to take a long time, try increasing the value of [member timeout] or setting it to `0.0` to remove the timeout completely. */
+            RESULT_TIMEOUT = 13,
+        }
+    }
+    /** A node with the ability to send HTTP(S) requests.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_httprequest.html  
+     */
+    class HTTPRequest extends Node {
+        constructor(identifier?: any)
+        /** Creates request on the underlying [HTTPClient]. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
+         *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
+         *      
+         *  **Note:** When [param method] is [constant HTTPClient.METHOD_GET], the payload sent via [param request_data] might be ignored by the server or even cause the server to reject the request (check [url=https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1]RFC 7231 section 4.3.1[/url] for more details). As a workaround, you can send data as a query string in the URL (see [method String.uri_encode] for an example).  
+         *      
+         *  **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.  
+         */
+        request(url: string, custom_headers: PackedStringArray | string[] = [], method: HTTPClient.Method = 0, request_data: string = ''): Error
+        
+        /** Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
+         *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
+         */
+        request_raw(url: string, custom_headers: PackedStringArray | string[] = [], method: HTTPClient.Method = 0, request_data_raw: PackedByteArray | byte[] | ArrayBuffer = []): Error
+        
+        /** Cancels the current request. */
+        cancel_request(): void
+        
+        /** Sets the [TLSOptions] to be used when connecting to an HTTPS server. See [method TLSOptions.client]. */
+        set_tls_options(client_options: TLSOptions): void
+        
+        /** Returns the current status of the underlying [HTTPClient]. See [enum HTTPClient.Status]. */
+        get_http_client_status(): HTTPClient.Status
+        
+        /** Returns the number of bytes this HTTPRequest downloaded. */
+        get_downloaded_bytes(): int64
+        
+        /** Returns the response body length.  
+         *      
+         *  **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.  
+         */
+        get_body_size(): int64
+        _request_done(_unnamed_arg0: int64, _unnamed_arg1: int64, _unnamed_arg2: PackedStringArray | string[], _unnamed_arg3: PackedByteArray | byte[] | ArrayBuffer): void
+        
+        /** Sets the proxy server for HTTP requests.  
+         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
+         */
+        set_http_proxy(host: string, port: int64): void
+        
+        /** Sets the proxy server for HTTPS requests.  
+         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
+         */
+        set_https_proxy(host: string, port: int64): void
+        
+        /** The file to download into. Will output any received file into it. */
+        get download_file(): string
+        set download_file(value: string)
+        
+        /** The size of the buffer used and maximum bytes to read per iteration. See [member HTTPClient.read_chunk_size].  
+         *  Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory usage at the cost of download speeds.  
+         */
+        get download_chunk_size(): int64
+        set download_chunk_size(value: int64)
+        
+        /** If `true`, multithreading is used to improve performance. */
+        get use_threads(): boolean
+        set use_threads(value: boolean)
+        
+        /** If `true`, this header will be added to each request: `Accept-Encoding: gzip, deflate` telling servers that it's okay to compress response bodies.  
+         *  Any Response body declaring a `Content-Encoding` of either `gzip` or `deflate` will then be automatically decompressed, and the uncompressed bytes will be delivered via [signal request_completed].  
+         *  If the user has specified their own `Accept-Encoding` header, then no header will be added regardless of [member accept_gzip].  
+         *  If `false` no header will be added, and no decompression will be performed on response bodies. The raw bytes of the response body will be returned via [signal request_completed].  
+         */
+        get accept_gzip(): boolean
+        set accept_gzip(value: boolean)
+        
+        /** Maximum allowed size for response bodies. If the response body is compressed, this will be used as the maximum allowed size for the decompressed body. */
+        get body_size_limit(): int64
+        set body_size_limit(value: int64)
+        
+        /** Maximum number of allowed redirects. */
+        get max_redirects(): int64
+        set max_redirects(value: int64)
+        
+        /** The duration to wait in seconds before a request times out. If [member timeout] is set to `0.0` then the request will never time out. For simple requests, such as communication with a REST API, it is recommended that [member timeout] is set to a value suitable for the server response time (e.g. between `1.0` and `10.0`). This will help prevent unwanted timeouts caused by variation in server response times while still allowing the application to detect when a request has timed out. For larger requests such as file downloads it is suggested the [member timeout] be set to `0.0`, disabling the timeout functionality. This will help to prevent large transfers from failing due to exceeding the timeout value. */
+        get timeout(): float64
+        set timeout(value: float64)
+        
+        /** Emitted when a request is completed. */
+        readonly request_completed: Signal4<int64, int64, PackedStringArray | string[], PackedByteArray | byte[] | ArrayBuffer>
+    }
+    namespace HashingContext {
+        enum HashType {
+            /** Hashing algorithm: MD5. */
+            HASH_MD5 = 0,
+            
+            /** Hashing algorithm: SHA-1. */
+            HASH_SHA1 = 1,
+            
+            /** Hashing algorithm: SHA-256. */
+            HASH_SHA256 = 2,
+        }
+    }
+    /** Provides functionality for computing cryptographic hashes chunk by chunk.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hashingcontext.html  
+     */
+    class HashingContext extends RefCounted {
+        constructor(identifier?: any)
+        /** Starts a new hash computation of the given [param type] (e.g. [constant HASH_SHA256] to start computation of a SHA-256). */
+        start(type: HashingContext.HashType): Error
+        
+        /** Updates the computation with the given [param chunk] of data. */
+        update(chunk: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Closes the current context, and return the computed hash. */
+        finish(): PackedByteArray
+    }
+    /** A 3D height map shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_heightmapshape3d.html  
+     */
+    class HeightMapShape3D extends Shape3D {
+        constructor(identifier?: any)
+        /** Number of vertices in the width of the height map. Changing this will resize the [member map_data]. */
+        get map_width(): int64
+        set map_width(value: int64)
+        
+        /** Number of vertices in the depth of the height map. Changing this will resize the [member map_data]. */
+        get map_depth(): int64
+        set map_depth(value: int64)
+        
+        /** Height map data, pool array must be of [member map_width] * [member map_depth] size. */
+        get map_data(): PackedFloat32Array
+        set map_data(value: PackedFloat32Array | float32[])
+    }
+    namespace HingeJoint3D {
+        enum Param {
+            /** The speed with which the two bodies get pulled together when they move in different directions. */
+            PARAM_BIAS = 0,
+            
+            /** The maximum rotation. Only active if [member angular_limit/enable] is `true`. */
+            PARAM_LIMIT_UPPER = 1,
+            
+            /** The minimum rotation. Only active if [member angular_limit/enable] is `true`. */
+            PARAM_LIMIT_LOWER = 2,
+            
+            /** The speed with which the rotation across the axis perpendicular to the hinge gets corrected. */
+            PARAM_LIMIT_BIAS = 3,
+            PARAM_LIMIT_SOFTNESS = 4,
+            
+            /** The lower this value, the more the rotation gets slowed down. */
+            PARAM_LIMIT_RELAXATION = 5,
+            
+            /** Target speed for the motor. */
+            PARAM_MOTOR_TARGET_VELOCITY = 6,
+            
+            /** Maximum acceleration for the motor. */
+            PARAM_MOTOR_MAX_IMPULSE = 7,
+            
+            /** Represents the size of the [enum Param] enum. */
+            PARAM_MAX = 8,
+        }
+        enum Flag {
+            /** If `true`, the hinges maximum and minimum rotation, defined by [member angular_limit/lower] and [member angular_limit/upper] has effects. */
+            FLAG_USE_LIMIT = 0,
+            
+            /** When activated, a motor turns the hinge. */
+            FLAG_ENABLE_MOTOR = 1,
+            
+            /** Represents the size of the [enum Flag] enum. */
+            FLAG_MAX = 2,
+        }
+    }
+    /** A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_hingejoint3d.html  
+     */
+    class HingeJoint3D extends Joint3D {
+        constructor(identifier?: any)
+        /** Sets the value of the specified parameter. */
+        set_param(param: HingeJoint3D.Param, value: float64): void
+        
+        /** Returns the value of the specified parameter. */
+        get_param(param: HingeJoint3D.Param): float64
+        
+        /** If `true`, enables the specified flag. */
+        set_flag(flag: HingeJoint3D.Flag, enabled: boolean): void
+        
+        /** Returns the value of the specified flag. */
+        get_flag(flag: HingeJoint3D.Flag): boolean
+    }
+    class HistoryDock extends VBoxContainer {
+        constructor(identifier?: any)
+    }
+    namespace Image {
+        enum Format {
+            /** Texture format with a single 8-bit depth representing luminance. */
+            FORMAT_L8 = 0,
+            
+            /** OpenGL texture format with two values, luminance and alpha each stored with 8 bits. */
+            FORMAT_LA8 = 1,
+            
+            /** OpenGL texture format `RED` with a single component and a bitdepth of 8. */
+            FORMAT_R8 = 2,
+            
+            /** OpenGL texture format `RG` with two components and a bitdepth of 8 for each. */
+            FORMAT_RG8 = 3,
+            
+            /** OpenGL texture format `RGB` with three components, each with a bitdepth of 8.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_RGB8 = 4,
+            
+            /** OpenGL texture format `RGBA` with four components, each with a bitdepth of 8.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_RGBA8 = 5,
+            
+            /** OpenGL texture format `RGBA` with four components, each with a bitdepth of 4. */
+            FORMAT_RGBA4444 = 6,
+            
+            /** OpenGL texture format `RGB` with three components. Red and blue have a bitdepth of 5, and green has a bitdepth of 6. */
+            FORMAT_RGB565 = 7,
+            
+            /** OpenGL texture format `GL_R32F` where there's one component, a 32-bit floating-point value. */
+            FORMAT_RF = 8,
+            
+            /** OpenGL texture format `GL_RG32F` where there are two components, each a 32-bit floating-point values. */
+            FORMAT_RGF = 9,
+            
+            /** OpenGL texture format `GL_RGB32F` where there are three components, each a 32-bit floating-point values. */
+            FORMAT_RGBF = 10,
+            
+            /** OpenGL texture format `GL_RGBA32F` where there are four components, each a 32-bit floating-point values. */
+            FORMAT_RGBAF = 11,
+            
+            /** OpenGL texture format `GL_R16F` where there's one component, a 16-bit "half-precision" floating-point value. */
+            FORMAT_RH = 12,
+            
+            /** OpenGL texture format `GL_RG16F` where there are two components, each a 16-bit "half-precision" floating-point value. */
+            FORMAT_RGH = 13,
+            
+            /** OpenGL texture format `GL_RGB16F` where there are three components, each a 16-bit "half-precision" floating-point value. */
+            FORMAT_RGBH = 14,
+            
+            /** OpenGL texture format `GL_RGBA16F` where there are four components, each a 16-bit "half-precision" floating-point value. */
+            FORMAT_RGBAH = 15,
+            
+            /** A special OpenGL texture format where the three color components have 9 bits of precision and all three share a single 5-bit exponent. */
+            FORMAT_RGBE9995 = 16,
+            
+            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that uses Block Compression 1, and is the smallest variation of S3TC, only providing 1 bit of alpha and color data being premultiplied with alpha.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_DXT1 = 17,
+            
+            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that uses Block Compression 2, and color data is interpreted as not having been premultiplied by alpha. Well suited for images with sharp alpha transitions between translucent and opaque areas.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_DXT3 = 18,
+            
+            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also known as Block Compression 3 or BC3 that contains 64 bits of alpha channel data followed by 64 bits of DXT1-encoded color data. Color data is not premultiplied by alpha, same as DXT3. DXT5 generally produces superior results for transparent gradients compared to DXT3.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_DXT5 = 19,
+            
+            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], normalizing the red channel data using the same compression algorithm that DXT5 uses for the alpha channel. */
+            FORMAT_RGTC_R = 20,
+            
+            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], normalizing the red and green channel data using the same compression algorithm that DXT5 uses for the alpha channel. */
+            FORMAT_RGTC_RG = 21,
+            
+            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with unsigned normalized RGBA components.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_BPTC_RGBA = 22,
+            
+            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with signed floating-point RGB components. */
+            FORMAT_BPTC_RGBF = 23,
+            
+            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with unsigned floating-point RGB components. */
+            FORMAT_BPTC_RGBFU = 24,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC1]Ericsson Texture Compression format 1[/url], also referred to as "ETC1", and is part of the OpenGL ES graphics standard. This format cannot store an alpha channel. */
+            FORMAT_ETC = 25,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`R11_EAC` variant), which provides one channel of unsigned data. */
+            FORMAT_ETC2_R11 = 26,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`SIGNED_R11_EAC` variant), which provides one channel of signed data. */
+            FORMAT_ETC2_R11S = 27,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RG11_EAC` variant), which provides two channels of unsigned data. */
+            FORMAT_ETC2_RG11 = 28,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`SIGNED_RG11_EAC` variant), which provides two channels of signed data. */
+            FORMAT_ETC2_RG11S = 29,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGB8` variant), which is a follow-up of ETC1 and compresses RGB888 data.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_ETC2_RGB8 = 30,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGBA8`variant), which compresses RGBA8888 data with full alpha support.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_ETC2_RGBA8 = 31,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGB8_PUNCHTHROUGH_ALPHA1` variant), which compresses RGBA data to make alpha either fully transparent or fully opaque.  
+             *      
+             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
+             */
+            FORMAT_ETC2_RGB8A1 = 32,
+            
+            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGBA8` variant), which compresses RA data and interprets it as two channels (red and green). See also [constant FORMAT_ETC2_RGBA8]. */
+            FORMAT_ETC2_RA_AS_RG = 33,
+            
+            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also known as Block Compression 3 or BC3, which compresses RA data and interprets it as two channels (red and green). See also [constant FORMAT_DXT5]. */
+            FORMAT_DXT5_RA_AS_RG = 34,
+            
+            /** [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable Texture Compression[/url]. This implements the 4x4 (high quality) mode. */
+            FORMAT_ASTC_4x4 = 35,
+            
+            /** Same format as [constant FORMAT_ASTC_4x4], but with the hint to let the GPU know it is used for HDR. */
+            FORMAT_ASTC_4x4_HDR = 36,
+            
+            /** [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable Texture Compression[/url]. This implements the 8x8 (low quality) mode. */
+            FORMAT_ASTC_8x8 = 37,
+            
+            /** Same format as [constant FORMAT_ASTC_8x8], but with the hint to let the GPU know it is used for HDR. */
+            FORMAT_ASTC_8x8_HDR = 38,
+            
+            /** Represents the size of the [enum Format] enum. */
+            FORMAT_MAX = 39,
+        }
+        enum Interpolation {
+            /** Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated. */
+            INTERPOLATE_NEAREST = 0,
+            
+            /** Performs bilinear interpolation. If the image is resized, it will be blurry. This mode is faster than [constant INTERPOLATE_CUBIC], but it results in lower quality. */
+            INTERPOLATE_BILINEAR = 1,
+            
+            /** Performs cubic interpolation. If the image is resized, it will be blurry. This mode often gives better results compared to [constant INTERPOLATE_BILINEAR], at the cost of being slower. */
+            INTERPOLATE_CUBIC = 2,
+            
+            /** Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates between them.  
+             *  It's slower than [constant INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer aliasing artifacts.  
+             *  If the image does not have mipmaps, they will be generated and used internally, but no mipmaps will be generated on the resulting image.  
+             *      
+             *  **Note:** If you intend to scale multiple copies of the original image, it's better to call [method generate_mipmaps]] on it in advance, to avoid wasting processing power in generating them again and again.  
+             *  On the other hand, if the image already has mipmaps, they will be used, and a new set will be generated for the resulting image.  
+             */
+            INTERPOLATE_TRILINEAR = 3,
+            
+            /** Performs Lanczos interpolation. This is the slowest image resizing mode, but it typically gives the best results, especially when downscaling images. */
+            INTERPOLATE_LANCZOS = 4,
+        }
+        enum AlphaMode {
+            /** Image does not have alpha. */
+            ALPHA_NONE = 0,
+            
+            /** Image stores alpha in a single bit. */
+            ALPHA_BIT = 1,
+            
+            /** Image uses alpha. */
+            ALPHA_BLEND = 2,
+        }
+        enum CompressMode {
+            /** Use S3TC compression. */
+            COMPRESS_S3TC = 0,
+            
+            /** Use ETC compression. */
+            COMPRESS_ETC = 1,
+            
+            /** Use ETC2 compression. */
+            COMPRESS_ETC2 = 2,
+            
+            /** Use BPTC compression. */
+            COMPRESS_BPTC = 3,
+            
+            /** Use ASTC compression. */
+            COMPRESS_ASTC = 4,
+            
+            /** Represents the size of the [enum CompressMode] enum. */
+            COMPRESS_MAX = 5,
+        }
+        enum UsedChannels {
+            /** The image only uses one channel for luminance (grayscale). */
+            USED_CHANNELS_L = 0,
+            
+            /** The image uses two channels for luminance and alpha, respectively. */
+            USED_CHANNELS_LA = 1,
+            
+            /** The image only uses the red channel. */
+            USED_CHANNELS_R = 2,
+            
+            /** The image uses two channels for red and green. */
+            USED_CHANNELS_RG = 3,
+            
+            /** The image uses three channels for red, green, and blue. */
+            USED_CHANNELS_RGB = 4,
+            
+            /** The image uses four channels for red, green, blue, and alpha. */
+            USED_CHANNELS_RGBA = 5,
+        }
+        enum CompressSource {
+            /** Source texture (before compression) is a regular texture. Default for all textures. */
+            COMPRESS_SOURCE_GENERIC = 0,
+            
+            /** Source texture (before compression) is in sRGB space. */
+            COMPRESS_SOURCE_SRGB = 1,
+            
+            /** Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels). */
+            COMPRESS_SOURCE_NORMAL = 2,
+        }
+        enum ASTCFormat {
+            /** Hint to indicate that the high quality 4x4 ASTC compression format should be used. */
+            ASTC_FORMAT_4x4 = 0,
+            
+            /** Hint to indicate that the low quality 8x8 ASTC compression format should be used. */
+            ASTC_FORMAT_8x8 = 1,
+        }
+    }
+    /** Image datatype.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_image.html  
+     */
+    class Image extends Resource {
+        /** The maximal width allowed for [Image] resources. */
+        static readonly MAX_WIDTH = 16777216
+        
+        /** The maximal height allowed for [Image] resources. */
+        static readonly MAX_HEIGHT = 16777216
+        constructor(identifier?: any)
+        
+        /** Returns the image's width. */
+        get_width(): int64
+        
+        /** Returns the image's height. */
+        get_height(): int64
+        
+        /** Returns the image's size (width and height). */
+        get_size(): Vector2i
+        
+        /** Returns `true` if the image has generated mipmaps. */
+        has_mipmaps(): boolean
+        
+        /** Returns the image's format. See [enum Format] constants. */
+        get_format(): Image.Format
+        
+        /** Returns a copy of the image's raw data. */
+        get_data(): PackedByteArray
+        
+        /** Converts the image's format. See [enum Format] constants. */
+        convert(format: Image.Format): void
+        
+        /** Returns the number of mipmap levels or 0 if the image has no mipmaps. The largest main level image is not counted as a mipmap level by this method, so if you want to include it you can add 1 to this count. */
+        get_mipmap_count(): int64
+        
+        /** Returns the offset where the image's mipmap with index [param mipmap] is stored in the [member data] dictionary. */
+        get_mipmap_offset(mipmap: int64): int64
+        
+        /** Resizes the image to the nearest power of 2 for the width and height. If [param square] is `true` then set width and height to be the same. New pixels are calculated using the [param interpolation] mode defined via [enum Interpolation] constants. */
+        resize_to_po2(square: boolean = false, interpolation: Image.Interpolation = 1): void
+        
+        /** Resizes the image to the given [param width] and [param height]. New pixels are calculated using the [param interpolation] mode defined via [enum Interpolation] constants. */
+        resize(width: int64, height: int64, interpolation: Image.Interpolation = 1): void
+        
+        /** Shrinks the image by a factor of 2 on each axis (this divides the pixel count by 4). */
+        shrink_x2(): void
+        
+        /** Crops the image to the given [param width] and [param height]. If the specified size is larger than the current size, the extra area is filled with black pixels. */
+        crop(width: int64, height: int64): void
+        
+        /** Flips the image horizontally. */
+        flip_x(): void
+        
+        /** Flips the image vertically. */
+        flip_y(): void
+        
+        /** Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`. Enabling [param renormalize] when generating mipmaps for normal map textures will make sure all resulting vector values are normalized.  
+         *  It is possible to check if the image has mipmaps by calling [method has_mipmaps] or [method get_mipmap_count]. Calling [method generate_mipmaps] on an image that already has mipmaps will replace existing mipmaps in the image.  
+         */
+        generate_mipmaps(renormalize: boolean = false): Error
+        
+        /** Removes the image's mipmaps. */
+        clear_mipmaps(): void
+        
+        /** Creates an empty image of given size and format. See [enum Format] constants. If [param use_mipmaps] is `true`, then generate mipmaps for this image. See the [method generate_mipmaps]. */
+        static create(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format): Image
+        
+        /** Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If [param use_mipmaps] is `true` then loads mipmaps for this image from [param data]. See [method generate_mipmaps]. */
+        static create_from_data(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray | byte[] | ArrayBuffer): Image
+        
+        /** Overwrites data of an existing [Image]. Non-static equivalent of [method create_from_data]. */
+        set_data(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray | byte[] | ArrayBuffer): void
+        
+        /** Returns `true` if the image has no data. */
+        is_empty(): boolean
+        
+        /** Loads an image from file [param path]. See [url=https://docs.godotengine.org/en/4.2/tutorials/assets_pipeline/importing_images.html#supported-image-formats]Supported image formats[/url] for a list of supported image formats and limitations.  
+         *  **Warning:** This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the `user://` directory, and may not work in exported projects.  
+         *  See also [ImageTexture] description for usage examples.  
+         */
+        load(path: string): Error
+        
+        /** Creates a new [Image] and loads data from the specified file. */
+        static load_from_file(path: string): Image
+        
+        /** Saves the image as a PNG file to the file at [param path]. */
+        save_png(path: string): Error
+        
+        /** Saves the image as a PNG file to a byte array. */
+        save_png_to_buffer(): PackedByteArray
+        
+        /** Saves the image as a JPEG file to [param path] with the specified [param quality] between `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the cost of larger file sizes. Recommended [param quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.  
+         *      
+         *  **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the image will still be saved, but the resulting JPEG file won't contain the alpha channel.  
+         */
+        save_jpg(path: string, quality: float64 = 0.75): Error
+        
+        /** Saves the image as a JPEG file to a byte array with the specified [param quality] between `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the cost of larger byte array sizes (and therefore memory usage). Recommended [param quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.  
+         *      
+         *  **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the image will still be saved, but the resulting byte array won't contain the alpha channel.  
+         */
+        save_jpg_to_buffer(quality: float64 = 0.75): PackedByteArray
+        
+        /** Saves the image as an EXR file to [param path]. If [param grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return [constant ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.  
+         *      
+         *  **Note:** The TinyEXR module is disabled in non-editor builds, which means [method save_exr] will return [constant ERR_UNAVAILABLE] when it is called from an exported project.  
+         */
+        save_exr(path: string, grayscale: boolean = false): Error
+        
+        /** Saves the image as an EXR file to a byte array. If [param grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return an empty byte array if Godot was compiled without the TinyEXR module.  
+         *      
+         *  **Note:** The TinyEXR module is disabled in non-editor builds, which means [method save_exr] will return an empty byte array when it is called from an exported project.  
+         */
+        save_exr_to_buffer(grayscale: boolean = false): PackedByteArray
+        
+        /** Saves the image as a WebP (Web Picture) file to the file at [param path]. By default it will save lossless. If [param lossy] is true, the image will be saved lossy, using the [param quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.  
+         *      
+         *  **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.  
+         */
+        save_webp(path: string, lossy: boolean = false, quality: float64 = 0.75): Error
+        
+        /** Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless. If [param lossy] is true, the image will be saved lossy, using the [param quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.  
+         *      
+         *  **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.  
+         */
+        save_webp_to_buffer(lossy: boolean = false, quality: float64 = 0.75): PackedByteArray
+        
+        /** Returns [constant ALPHA_BLEND] if the image has data for alpha values. Returns [constant ALPHA_BIT] if all the alpha values are stored in a single bit. Returns [constant ALPHA_NONE] if no data for alpha values is found. */
+        detect_alpha(): Image.AlphaMode
+        
+        /** Returns `true` if all the image's pixels have an alpha value of 0. Returns `false` if any pixel has an alpha value higher than 0. */
+        is_invisible(): boolean
+        
+        /** Returns the color channels used by this image, as one of the [enum UsedChannels] constants. If the image is compressed, the original [param source] must be specified. */
+        detect_used_channels(source: Image.CompressSource = 0): Image.UsedChannels
+        
+        /** Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.  
+         *  The [param source] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.  
+         *  For ASTC compression, the [param astc_format] parameter must be supplied.  
+         */
+        compress(mode: Image.CompressMode, source: Image.CompressSource = 0, astc_format: Image.ASTCFormat = 0): Error
+        
+        /** Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.  
+         *  This is an alternative to [method compress] that lets the user supply the channels used in order for the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this argument is ignored.  
+         *  For ASTC compression, the [param astc_format] parameter must be supplied.  
+         */
+        compress_from_channels(mode: Image.CompressMode, channels: Image.UsedChannels, astc_format: Image.ASTCFormat = 0): Error
+        
+        /** Decompresses the image if it is VRAM compressed in a supported format. Returns [constant OK] if the format is supported, otherwise [constant ERR_UNAVAILABLE].  
+         *      
+         *  **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2 are not supported.  
+         */
+        decompress(): Error
+        
+        /** Returns `true` if the image is compressed. */
+        is_compressed(): boolean
+        
+        /** Rotates the image in the specified [param direction] by `90` degrees. The width and height of the image must be greater than `1`. If the width and height are not equal, the image will be resized. */
+        rotate_90(direction: ClockDirection): void
+        
+        /** Rotates the image by `180` degrees. The width and height of the image must be greater than `1`. */
+        rotate_180(): void
+        
+        /** Blends low-alpha pixels with nearby pixels. */
+        fix_alpha_edges(): void
+        
+        /** Multiplies color values with alpha values. Resulting color values for a pixel are `(color * alpha)/256`. See also [member CanvasItemMaterial.blend_mode]. */
+        premultiply_alpha(): void
+        
+        /** Converts the raw data from the sRGB colorspace to a linear scale. */
+        srgb_to_linear(): void
+        
+        /** Converts the image's data to represent coordinates on a 3D plane. This is used when the image represents a normal map. A normal map can add lots of detail to a 3D surface without increasing the polygon count. */
+        normal_map_to_xy(): void
+        
+        /** Converts a standard RGBE (Red Green Blue Exponent) image to an sRGB image. */
+        rgbe_to_srgb(): Image
+        
+        /** Converts a bump map to a normal map. A bump map provides a height offset per-pixel, while a normal map provides a normal direction per pixel. */
+        bump_map_to_normal_map(bump_scale: float64 = 1): void
+        
+        /** Compute image metrics on the current image and the compared image.  
+         *  The dictionary contains `max`, `mean`, `mean_squared`, `root_mean_squared` and `peak_snr`.  
+         */
+        compute_image_metrics(compared_image: Image, use_luma: boolean): Dictionary
+        
+        /** Copies [param src_rect] from [param src] image to this image at coordinates [param dst], clipped accordingly to both image bounds. This image and [param src] image **must** have the same format. [param src_rect] with non-positive size is treated as empty. */
+        blit_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
+        
+        /** Blits [param src_rect] area from [param src] image to this image at the coordinates given by [param dst], clipped accordingly to both image bounds. [param src] pixel is copied onto [param dst] if the corresponding [param mask] pixel's alpha value is not 0. This image and [param src] image **must** have the same format. [param src] image and [param mask] image **must** have the same size (width and height) but they can have different formats. [param src_rect] with non-positive size is treated as empty. */
+        blit_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
+        
+        /** Alpha-blends [param src_rect] from [param src] image to this image at coordinates [param dst], clipped accordingly to both image bounds. This image and [param src] image **must** have the same format. [param src_rect] with non-positive size is treated as empty. */
+        blend_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
+        
+        /** Alpha-blends [param src_rect] from [param src] image to this image using [param mask] image at coordinates [param dst], clipped accordingly to both image bounds. Alpha channels are required for both [param src] and [param mask]. [param dst] pixels and [param src] pixels will blend if the corresponding mask pixel's alpha value is not 0. This image and [param src] image **must** have the same format. [param src] image and [param mask] image **must** have the same size (width and height) but they can have different formats. [param src_rect] with non-positive size is treated as empty. */
+        blend_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
+        
+        /** Fills the image with [param color]. */
+        fill(color: Color): void
+        
+        /** Fills [param rect] with [param color]. */
+        fill_rect(rect: Rect2i, color: Color): void
+        
+        /** Returns a [Rect2i] enclosing the visible portion of the image, considering each pixel with a non-zero alpha channel as visible. */
+        get_used_rect(): Rect2i
+        
+        /** Returns a new [Image] that is a copy of this [Image]'s area specified with [param region]. */
+        get_region(region: Rect2i): Image
+        
+        /** Copies [param src] image to this image. */
+        copy_from(src: Image): void
+        
+        /** Returns the color of the pixel at [param point].  
+         *  This is the same as [method get_pixel], but with a [Vector2i] argument instead of two integer arguments.  
+         */
+        get_pixelv(point: Vector2i): Color
+        
+        /** Returns the color of the pixel at `(x, y)`.  
+         *  This is the same as [method get_pixelv], but with two integer arguments instead of a [Vector2i] argument.  
+         */
+        get_pixel(x: int64, y: int64): Color
+        
+        /** Sets the [Color] of the pixel at [param point] to [param color].  
+         *  **Example:**  
+         *    
+         *  This is the same as [method set_pixel], but with a [Vector2i] argument instead of two integer arguments.  
+         */
+        set_pixelv(point: Vector2i, color: Color): void
+        
+        /** Sets the [Color] of the pixel at `(x, y)` to [param color].  
+         *  **Example:**  
+         *    
+         *  This is the same as [method set_pixelv], but with a two integer arguments instead of a [Vector2i] argument.  
+         */
+        set_pixel(x: int64, y: int64, color: Color): void
+        
+        /** Adjusts this image's [param brightness], [param contrast], and [param saturation] by the given values. Does not work if the image is compressed (see [method is_compressed]). */
+        adjust_bcs(brightness: float64, contrast: float64, saturation: float64): void
+        
+        /** Loads an image from the binary contents of a PNG file. */
+        load_png_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Loads an image from the binary contents of a JPEG file. */
+        load_jpg_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Loads an image from the binary contents of a WebP file. */
+        load_webp_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Loads an image from the binary contents of a TGA file.  
+         *      
+         *  **Note:** This method is only available in engine builds with the TGA module enabled. By default, the TGA module is enabled, but it can be disabled at build-time using the `module_tga_enabled=no` SCons option.  
+         */
+        load_tga_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Loads an image from the binary contents of a BMP file.  
+         *      
+         *  **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.  
+         *      
+         *  **Note:** This method is only available in engine builds with the BMP module enabled. By default, the BMP module is enabled, but it can be disabled at build-time using the `module_bmp_enabled=no` SCons option.  
+         */
+        load_bmp_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Loads an image from the binary contents of a [url=https://github.com/KhronosGroup/KTX-Software]KTX[/url] file. Unlike most image formats, KTX can store VRAM-compressed data and embed mipmaps.  
+         *      
+         *  **Note:** Godot's libktx implementation only supports 2D images. Cubemaps, texture arrays, and de-padding are not supported.  
+         *      
+         *  **Note:** This method is only available in engine builds with the KTX module enabled. By default, the KTX module is enabled, but it can be disabled at build-time using the `module_ktx_enabled=no` SCons option.  
+         */
+        load_ktx_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).  
+         *      
+         *  **Note:** Beware when using compressed SVG files (like **.svgz**), they need to be `decompressed` before loading.  
+         *      
+         *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
+         */
+        load_svg_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer, scale: float64 = 1): Error
+        
+        /** Loads an image from the string contents of a SVG file (**.svg**).  
+         *      
+         *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
+         */
+        load_svg_from_string(svg_str: string, scale: float64 = 1): Error
+        
+        /** Holds all the image's color data in a given format. See [enum Format] constants. */
+        get data(): Dictionary
+        set data(value: Dictionary)
+    }
+    namespace ImageFormatLoader {
+        enum LoaderFlags {
+            FLAG_NONE = 0,
+            FLAG_FORCE_LINEAR = 1,
+            FLAG_CONVERT_COLORS = 2,
+        }
+    }
+    /** Base class to add support for specific image formats.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_imageformatloader.html  
+     */
+    class ImageFormatLoader extends RefCounted {
+        constructor(identifier?: any)
+    }
+    /** Base class for creating [ImageFormatLoader] extensions (adding support for extra image formats).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_imageformatloaderextension.html  
+     */
+    class ImageFormatLoaderExtension extends ImageFormatLoader {
+        constructor(identifier?: any)
+        /** Returns the list of file extensions for this image format. Files with the given extensions will be treated as image file and loaded using this class. */
+        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
+        
+        /** Loads the content of [param fileaccess] into the provided [param image]. */
+        /* gdvirtual */ _load_image(image: Image, fileaccess: FileAccess, flags: ImageFormatLoader.LoaderFlags, scale: float64): Error
+        
+        /** Add this format loader to the engine, allowing it to recognize the file extensions returned by [method _get_recognized_extensions]. */
+        add_format_loader(): void
+        
+        /** Remove this format loader from the engine. */
+        remove_format_loader(): void
+    }
     /** A [Texture2D] based on an [Image].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_imagetexture.html  
@@ -1423,6 +2648,22 @@ declare module "godot" {
         get billboard(): int64
         set billboard(value: int64)
         
+        /** If `true`, the [Light3D] in the [Environment] has effects on the label. */
+        get shaded(): boolean
+        set shaded(value: boolean)
+        
+        /** If `true`, text can be seen from the back as well, if `false`, it is invisible when looking at it from behind. */
+        get double_sided(): boolean
+        set double_sided(value: boolean)
+        
+        /** If `true`, depth testing is disabled and the object will be drawn in render order. */
+        get no_depth_test(): boolean
+        set no_depth_test(value: boolean)
+        
+        /** If `true`, the label is rendered at the same size regardless of distance. */
+        get fixed_size(): boolean
+        set fixed_size(value: boolean)
+        
         /** The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values. */
         get alpha_cut(): int64
         set alpha_cut(value: int64)
@@ -1777,6 +3018,19 @@ declare module "godot" {
         /** Returns the [Color] of an idealized blackbody at the given [member light_temperature]. This value is calculated internally based on the [member light_temperature]. This [Color] is multiplied by [member light_color] before being sent to the [RenderingServer]. */
         get_correlated_color(): Color
         
+        /** Used by positional lights ([OmniLight3D] and [SpotLight3D]) when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is `true`. Sets the intensity of the light source measured in Lumens. Lumens are a measure of luminous flux, which is the total amount of visible light emitted by a light source per unit of time.  
+         *  For [SpotLight3D]s, we assume that the area outside the visible cone is surrounded by a perfect light absorbing material. Accordingly, the apparent brightness of the cone area does not change as the cone increases and decreases in size.  
+         *  A typical household lightbulb can range from around 600 lumens to 1,200 lumens, a candle is about 13 lumens, while a streetlight can be approximately 60,000 lumens.  
+         */
+        get light_intensity_lumens(): float64
+        set light_intensity_lumens(value: float64)
+        
+        /** Used by [DirectionalLight3D]s when [member ProjectSettings.rendering/lights_and_shadows/use_physical_light_units] is `true`. Sets the intensity of the light source measured in Lux. Lux is a measure of luminous flux per unit area, it is equal to one lumen per square meter. Lux is the measure of how much light hits a surface at a given time.  
+         *  On a clear sunny day a surface in direct sunlight may be approximately 100,000 lux, a typical room in a home may be approximately 50 lux, while the moonlit ground may be approximately 0.1 lux.  
+         */
+        get light_intensity_lux(): float64
+        set light_intensity_lux(value: float64)
+        
         /** Sets the color temperature of the light source, measured in Kelvin. This is used to calculate a correlated color temperature which tints the [member light_color].  
          *  The sun on a cloudy day is approximately 6500 Kelvin, on a clear day it is between 5500 to 6000 Kelvin, and on a clear day at sunrise or sunset it ranges to around 1850 Kelvin.  
          */
@@ -1787,6 +3041,24 @@ declare module "godot" {
         get light_color(): Color
         set light_color(value: Color)
         
+        /** The light's strength multiplier (this is not a physical unit). For [OmniLight3D] and [SpotLight3D], changing this value will only change the light color's intensity, not the light's radius. */
+        get light_energy(): float64
+        set light_energy(value: float64)
+        
+        /** Secondary multiplier used with indirect light (light bounces). Used with [VoxelGI] and SDFGI (see [member Environment.sdfgi_enabled]).  
+         *      
+         *  **Note:** This property is ignored if [member light_energy] is equal to `0.0`, as the light won't be present at all in the GI shader.  
+         */
+        get light_indirect_energy(): float64
+        set light_indirect_energy(value: float64)
+        
+        /** Secondary multiplier multiplied with [member light_energy] then used with the [Environment]'s volumetric fog (if enabled). If set to `0.0`, computing volumetric fog will be skipped for this light, which can improve performance for large amounts of lights when volumetric fog is enabled.  
+         *      
+         *  **Note:** To prevent short-lived dynamic light effects from poorly interacting with volumetric fog, lights used in those effects should have [member light_volumetric_fog_energy] set to `0.0` unless [member Environment.volumetric_fog_temporal_reprojection_enabled] is disabled (or unless the reprojection amount is significantly lowered).  
+         */
+        get light_volumetric_fog_energy(): float64
+        set light_volumetric_fog_energy(value: float64)
+        
         /** [Texture2D] projected by light. [member shadow_enabled] must be on for the projector to work. Light projectors make the light appear as if it is shining through a colored but transparent object, almost like light shining through stained-glass.  
          *      
          *  **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for light projector textures is set globally with [member ProjectSettings.rendering/textures/light_projectors/filter].  
@@ -1796,9 +3068,31 @@ declare module "godot" {
         get light_projector(): Texture2D
         set light_projector(value: Texture2D)
         
+        /** The size of the light in Godot units. Only available for [OmniLight3D]s and [SpotLight3D]s. Increasing this value will make the light fade out slower and shadows appear blurrier (also called percentage-closer soft shadows, or PCSS). This can be used to simulate area lights to an extent. Increasing this value above `0.0` for lights with shadows enabled will have a noticeable performance cost due to PCSS.  
+         *      
+         *  **Note:** [member light_size] is not affected by [member Node3D.scale] (the light's scale or its parent's scale).  
+         *      
+         *  **Note:** PCSS for positional lights is only supported in the Forward+ and Mobile rendering methods, not Compatibility.  
+         */
+        get light_size(): float64
+        set light_size(value: float64)
+        
+        /** The light's angular size in degrees. Increasing this will make shadows softer at greater distances (also called percentage-closer soft shadows, or PCSS). Only available for [DirectionalLight3D]s. For reference, the Sun from the Earth is approximately `0.5`. Increasing this value above `0.0` for lights with shadows enabled will have a noticeable performance cost due to PCSS.  
+         *      
+         *  **Note:** [member light_angular_distance] is not affected by [member Node3D.scale] (the light's scale or its parent's scale).  
+         *      
+         *  **Note:** PCSS for directional lights is only supported in the Forward+ rendering method, not Mobile or Compatibility.  
+         */
+        get light_angular_distance(): float64
+        set light_angular_distance(value: float64)
+        
         /** If `true`, the light's effect is reversed, darkening areas and casting bright shadows. */
         get light_negative(): boolean
         set light_negative(value: boolean)
+        
+        /** The intensity of the specular blob in objects affected by the light. At `0`, the light becomes a pure diffuse light. When not baking emission, this can be used to avoid unrealistic reflections when placing lights above an emissive surface. */
+        get light_specular(): float64
+        set light_specular(value: float64)
         
         /** The light's bake mode. This will affect the global illumination techniques that have an effect on the light's rendering. See [enum BakeMode].  
          *      
@@ -1815,9 +3109,27 @@ declare module "godot" {
         get shadow_enabled(): boolean
         set shadow_enabled(value: boolean)
         
+        /** Used to adjust shadow appearance. Too small a value results in self-shadowing ("shadow acne"), while too large a value causes shadows to separate from casters ("peter-panning"). Adjust as needed. */
+        get shadow_bias(): float64
+        set shadow_bias(value: float64)
+        
+        /** Offsets the lookup into the shadow map by the object's normal. This can be used to reduce self-shadowing artifacts without using [member shadow_bias]. In practice, this value should be tweaked along with [member shadow_bias] to reduce artifacts as much as possible. */
+        get shadow_normal_bias(): float64
+        set shadow_normal_bias(value: float64)
+        
         /** If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the mesh to use double-sided shadows with [constant GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED]. */
         get shadow_reverse_cull_face(): boolean
         set shadow_reverse_cull_face(value: boolean)
+        get shadow_transmittance_bias(): float64
+        set shadow_transmittance_bias(value: float64)
+        
+        /** The opacity to use when rendering the light's shadow map. Values lower than `1.0` make the light appear through shadows. This can be used to fake global illumination at a low performance cost. */
+        get shadow_opacity(): float64
+        set shadow_opacity(value: float64)
+        
+        /** Blurs the edges of the shadow. Can be used to hide pixel artifacts in low-resolution shadow maps. A high value can impact performance, make shadows appear grainy and can cause other unwanted artifacts. Try to keep as near default as possible. */
+        get shadow_blur(): float64
+        set shadow_blur(value: float64)
         
         /** If `true`, the light will smoothly fade away when far from the active [Camera3D] starting at [member distance_fade_begin]. This acts as a form of level of detail (LOD). The light will fade out over [member distance_fade_begin] + [member distance_fade_length], after which it will be culled and not sent to the shader at all. Use this to reduce the number of active lights in a scene and thus improve performance.  
          *      
@@ -5588,6 +6900,22 @@ declare module "godot" {
         get region_rect(): Rect2
         set region_rect(value: Rect2)
         
+        /** The width of the 9-slice's left column. A margin of 16 means the 9-slice's left corners and side will have a width of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders. */
+        get patch_margin_left(): int64
+        set patch_margin_left(value: int64)
+        
+        /** The height of the 9-slice's top row. A margin of 16 means the 9-slice's top corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders. */
+        get patch_margin_top(): int64
+        set patch_margin_top(value: int64)
+        
+        /** The width of the 9-slice's right column. A margin of 16 means the 9-slice's right corners and side will have a width of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders. */
+        get patch_margin_right(): int64
+        set patch_margin_right(value: int64)
+        
+        /** The height of the 9-slice's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders. */
+        get patch_margin_bottom(): int64
+        set patch_margin_bottom(value: int64)
+        
         /** The stretch mode to use for horizontal stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values. */
         get axis_stretch_horizontal(): int64
         set axis_stretch_horizontal(value: int64)
@@ -7473,6 +8801,20 @@ declare module "godot" {
      */
     class OmniLight3D extends Light3D {
         constructor(identifier?: any)
+        /** The light's radius. Note that the effectively lit area may appear to be smaller depending on the [member omni_attenuation] in use. No matter the [member omni_attenuation] in use, the light will never reach anything outside this radius.  
+         *      
+         *  **Note:** [member omni_range] is not affected by [member Node3D.scale] (the light's scale or its parent's scale).  
+         */
+        get omni_range(): float64
+        set omni_range(value: float64)
+        
+        /** The light's attenuation (drop-off) curve. A number of presets are available in the **Inspector** by right-clicking the curve. Zero and negative values are allowed but can produce unusual effects.  
+         *      
+         *  **Note:** Very high [member omni_attenuation] values (typically above 10) can impact performance negatively if the light is made to use a larger [member omni_range] to compensate. This is because culling opportunities will become less common and shading costs will be increased (as the light will cover more pixels on screen while resulting in the same amount of brightness). To improve performance, use the lowest [member omni_attenuation] value possible for the visuals you're trying to achieve.  
+         */
+        get omni_attenuation(): float64
+        set omni_attenuation(value: float64)
+        
         /** See [enum ShadowMode]. */
         get omni_shadow_mode(): int64
         set omni_shadow_mode(value: int64)
@@ -7872,1372 +9214,5 @@ declare module "godot" {
         
         /** Removes the interface identified by [param interface_name] from the multicast group specified by [param multicast_address]. */
         leave_multicast_group(multicast_address: string, interface_name: string): Error
-    }
-    /** A GUI control that displays a [StyleBox].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_panel.html  
-     */
-    class Panel extends Control {
-        constructor(identifier?: any)
-    }
-    /** A container that keeps its child controls within the area of a [StyleBox].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_panelcontainer.html  
-     */
-    class PanelContainer extends Container {
-        constructor(identifier?: any)
-    }
-    /** A material that provides a special texture to a [Sky], usually an HDR panorama.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_panoramaskymaterial.html  
-     */
-    class PanoramaSkyMaterial extends Material {
-        constructor(identifier?: any)
-        /** [Texture2D] to be applied to the [PanoramaSkyMaterial]. */
-        get panorama(): Texture2D
-        set panorama(value: Texture2D)
-        
-        /** A boolean value to determine if the background texture should be filtered or not. */
-        get filter(): boolean
-        set filter(value: boolean)
-    }
-    class PanoramaSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
-        constructor(identifier?: any)
-    }
-    /** A node used to create a parallax scrolling background.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_parallaxbackground.html  
-     */
-    class ParallaxBackground extends CanvasLayer {
-        constructor(identifier?: any)
-        _camera_moved(_unnamed_arg0: Transform2D, _unnamed_arg1: Vector2): void
-        
-        /** The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but can be used to manually manage scrolling when no camera is present. */
-        get scroll_offset(): Vector2
-        set scroll_offset(value: Vector2)
-        
-        /** The base position offset for all [ParallaxLayer] children. */
-        get scroll_base_offset(): Vector2
-        set scroll_base_offset(value: Vector2)
-        
-        /** The base motion scale for all [ParallaxLayer] children. */
-        get scroll_base_scale(): Vector2
-        set scroll_base_scale(value: Vector2)
-        
-        /** Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [member scroll_limit_end] to work. */
-        get scroll_limit_begin(): Vector2
-        set scroll_limit_begin(value: Vector2)
-        
-        /** Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [member scroll_limit_begin] to work. */
-        get scroll_limit_end(): Vector2
-        set scroll_limit_end(value: Vector2)
-        
-        /** If `true`, elements in [ParallaxLayer] child aren't affected by the zoom level of the camera. */
-        get scroll_ignore_camera_zoom(): boolean
-        set scroll_ignore_camera_zoom(value: boolean)
-    }
-    /** A parallax scrolling layer to be used with [ParallaxBackground].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_parallaxlayer.html  
-     */
-    class ParallaxLayer extends Node2D {
-        constructor(identifier?: any)
-        /** Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll. */
-        get motion_scale(): Vector2
-        set motion_scale(value: Vector2)
-        
-        /** The ParallaxLayer's offset relative to the parent ParallaxBackground's [member ParallaxBackground.scroll_offset]. */
-        get motion_offset(): Vector2
-        set motion_offset(value: Vector2)
-        
-        /** The interval, in pixels, at which the [ParallaxLayer] is drawn repeatedly. Useful for creating an infinitely scrolling background. If an axis is set to `0`, the [ParallaxLayer] will be drawn only once along that direction.  
-         *      
-         *  **Note:** If you want the repetition to pixel-perfect match a [Texture2D] displayed by a child node, you should account for any scale applied to the texture when defining this interval. For example, if you use a child [Sprite2D] scaled to `0.5` to display a 600x600 texture, and want this sprite to be repeated continuously horizontally, you should set the mirroring to `Vector2(300, 0)`.  
-         *      
-         *  **Note:** If the length of the viewport axis is bigger than twice the repeated axis size, it will not repeat infinitely, as the parallax layer only draws 2 instances of the layer at any given time. The visibility window is calculated from the parent [ParallaxBackground]'s position, not the layer's own position. So, if you use mirroring, **do not** change the [ParallaxLayer] position relative to its parent. Instead, if you need to adjust the background's position, set the [member CanvasLayer.offset] property in the parent [ParallaxBackground].  
-         *      
-         *  **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.  
-         */
-        get motion_mirroring(): Vector2
-        set motion_mirroring(value: Vector2)
-    }
-    namespace ParticleProcessMaterial {
-        enum Parameter {
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set initial velocity properties. */
-            PARAM_INITIAL_LINEAR_VELOCITY = 0,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set angular velocity properties. */
-            PARAM_ANGULAR_VELOCITY = 1,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set orbital velocity properties. */
-            PARAM_ORBIT_VELOCITY = 2,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set linear acceleration properties. */
-            PARAM_LINEAR_ACCEL = 3,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set radial acceleration properties. */
-            PARAM_RADIAL_ACCEL = 4,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set tangential acceleration properties. */
-            PARAM_TANGENTIAL_ACCEL = 5,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set damping properties. */
-            PARAM_DAMPING = 6,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set angle properties. */
-            PARAM_ANGLE = 7,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set scale properties. */
-            PARAM_SCALE = 8,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set hue variation properties. */
-            PARAM_HUE_VARIATION = 9,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set animation speed properties. */
-            PARAM_ANIM_SPEED = 10,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set animation offset properties. */
-            PARAM_ANIM_OFFSET = 11,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set radial velocity properties. */
-            PARAM_RADIAL_VELOCITY = 15,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set directional velocity properties. */
-            PARAM_DIRECTIONAL_VELOCITY = 16,
-            
-            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set scale over velocity properties. */
-            PARAM_SCALE_OVER_VELOCITY = 17,
-            
-            /** Represents the size of the [enum Parameter] enum. */
-            PARAM_MAX = 18,
-            
-            /** Use with [method set_param_min] and [method set_param_max] to set the turbulence minimum und maximum influence on each particles velocity. */
-            PARAM_TURB_VEL_INFLUENCE = 13,
-            
-            /** Use with [method set_param_min] and [method set_param_max] to set the turbulence minimum and maximum displacement of the particles spawn position. */
-            PARAM_TURB_INIT_DISPLACEMENT = 14,
-            
-            /** Use with [method set_param_texture] to set the turbulence influence over the particles life time. */
-            PARAM_TURB_INFLUENCE_OVER_LIFE = 12,
-        }
-        enum ParticleFlags {
-            /** Use with [method set_particle_flag] to set [member particle_flag_align_y]. */
-            PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY = 0,
-            
-            /** Use with [method set_particle_flag] to set [member particle_flag_rotate_y]. */
-            PARTICLE_FLAG_ROTATE_Y = 1,
-            
-            /** Use with [method set_particle_flag] to set [member particle_flag_disable_z]. */
-            PARTICLE_FLAG_DISABLE_Z = 2,
-            PARTICLE_FLAG_DAMPING_AS_FRICTION = 3,
-            
-            /** Represents the size of the [enum ParticleFlags] enum. */
-            PARTICLE_FLAG_MAX = 4,
-        }
-        enum EmissionShape {
-            /** All particles will be emitted from a single point. */
-            EMISSION_SHAPE_POINT = 0,
-            
-            /** Particles will be emitted in the volume of a sphere. */
-            EMISSION_SHAPE_SPHERE = 1,
-            
-            /** Particles will be emitted on the surface of a sphere. */
-            EMISSION_SHAPE_SPHERE_SURFACE = 2,
-            
-            /** Particles will be emitted in the volume of a box. */
-            EMISSION_SHAPE_BOX = 3,
-            
-            /** Particles will be emitted at a position determined by sampling a random point on the [member emission_point_texture]. Particle color will be modulated by [member emission_color_texture]. */
-            EMISSION_SHAPE_POINTS = 4,
-            
-            /** Particles will be emitted at a position determined by sampling a random point on the [member emission_point_texture]. Particle velocity and rotation will be set based on [member emission_normal_texture]. Particle color will be modulated by [member emission_color_texture]. */
-            EMISSION_SHAPE_DIRECTED_POINTS = 5,
-            
-            /** Particles will be emitted in a ring or cylinder. */
-            EMISSION_SHAPE_RING = 6,
-            
-            /** Represents the size of the [enum EmissionShape] enum. */
-            EMISSION_SHAPE_MAX = 7,
-        }
-        enum SubEmitterMode {
-            SUB_EMITTER_DISABLED = 0,
-            SUB_EMITTER_CONSTANT = 1,
-            SUB_EMITTER_AT_END = 2,
-            SUB_EMITTER_AT_COLLISION = 3,
-            
-            /** Represents the size of the [enum SubEmitterMode] enum. */
-            SUB_EMITTER_MAX = 4,
-        }
-        enum CollisionMode {
-            /** No collision for particles. Particles will go through [GPUParticlesCollision3D] nodes. */
-            COLLISION_DISABLED = 0,
-            
-            /** [RigidBody3D]-style collision for particles using [GPUParticlesCollision3D] nodes. */
-            COLLISION_RIGID = 1,
-            
-            /** Hide particles instantly when colliding with a [GPUParticlesCollision3D] node. This can be combined with a subemitter that uses the [constant COLLISION_RIGID] collision mode to "replace" the parent particle with the subemitter on impact. */
-            COLLISION_HIDE_ON_CONTACT = 2,
-            
-            /** Represents the size of the [enum CollisionMode] enum. */
-            COLLISION_MAX = 3,
-        }
-    }
-    /** Holds a particle configuration for [GPUParticles2D] or [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_particleprocessmaterial.html  
-     */
-    class ParticleProcessMaterial extends Material {
-        constructor(identifier?: any)
-        /** Sets the minimum value range for the given parameter. */
-        set_param_min(param: ParticleProcessMaterial.Parameter, value: float64): void
-        
-        /** Returns the minimum value range for the given parameter. */
-        get_param_min(param: ParticleProcessMaterial.Parameter): float64
-        
-        /** Sets the maximum value range for the given parameter. */
-        set_param_max(param: ParticleProcessMaterial.Parameter, value: float64): void
-        
-        /** Returns the maximum value range for the given parameter. */
-        get_param_max(param: ParticleProcessMaterial.Parameter): float64
-        
-        /** Sets the [Texture2D] for the specified [enum Parameter]. */
-        set_param_texture(param: ParticleProcessMaterial.Parameter, texture: Texture2D): void
-        
-        /** Returns the [Texture2D] used by the specified parameter. */
-        get_param_texture(param: ParticleProcessMaterial.Parameter): Texture2D
-        
-        /** If `true`, enables the specified particle flag. See [enum ParticleFlags] for options. */
-        set_particle_flag(particle_flag: ParticleProcessMaterial.ParticleFlags, enable: boolean): void
-        
-        /** Returns `true` if the specified particle flag is enabled. See [enum ParticleFlags] for options. */
-        get_particle_flag(particle_flag: ParticleProcessMaterial.ParticleFlags): boolean
-        
-        /** Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime * (1.0 - randf() * lifetime_randomness)`. For example, a [member lifetime_randomness] of `0.4` scales the lifetime between `0.6` to `1.0` of its original value. */
-        get lifetime_randomness(): float64
-        set lifetime_randomness(value: float64)
-        
-        /** The offset for the [member emission_shape], in local space. */
-        get emission_shape_offset(): Vector3
-        set emission_shape_offset(value: Vector3)
-        
-        /** The scale of the [member emission_shape], in local space. */
-        get emission_shape_scale(): Vector3
-        set emission_shape_scale(value: Vector3)
-        
-        /** Particles will be emitted inside this region. Use [enum EmissionShape] constants for values. */
-        get emission_shape(): int64
-        set emission_shape(value: int64)
-        
-        /** The sphere's radius if [member emission_shape] is set to [constant EMISSION_SHAPE_SPHERE]. */
-        get emission_sphere_radius(): float64
-        set emission_sphere_radius(value: float64)
-        
-        /** The box's extents if [member emission_shape] is set to [constant EMISSION_SHAPE_BOX]. */
-        get emission_box_extents(): Vector3
-        set emission_box_extents(value: Vector3)
-        
-        /** Particles will be emitted at positions determined by sampling this texture at a random position. Used with [constant EMISSION_SHAPE_POINTS] and [constant EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar. */
-        get emission_point_texture(): Texture2D
-        set emission_point_texture(value: Texture2D)
-        
-        /** Particle velocity and rotation will be set by sampling this texture at the same point as the [member emission_point_texture]. Used only in [constant EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar. */
-        get emission_normal_texture(): Texture2D
-        set emission_normal_texture(value: Texture2D)
-        
-        /** Particle color will be modulated by color determined by sampling this texture at the same point as the [member emission_point_texture].  
-         *      
-         *  **Note:** [member emission_color_texture] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member emission_color_texture] will have no visible effect.  
-         */
-        get emission_color_texture(): Texture2D
-        set emission_color_texture(value: Texture2D)
-        
-        /** The number of emission points if [member emission_shape] is set to [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
-        get emission_point_count(): int64
-        set emission_point_count(value: int64)
-        
-        /** The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_axis(): Vector3
-        set emission_ring_axis(value: Vector3)
-        
-        /** The height of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_height(): float64
-        set emission_ring_height(value: float64)
-        
-        /** The radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_radius(): float64
-        set emission_ring_radius(value: float64)
-        
-        /** The inner radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
-        get emission_ring_inner_radius(): float64
-        set emission_ring_inner_radius(value: float64)
-        
-        /** Percentage of the velocity of the respective [GPUParticles2D] or [GPUParticles3D] inherited by each particle when spawning. */
-        get inherit_velocity_ratio(): float64
-        set inherit_velocity_ratio(value: float64)
-        
-        /** A pivot point used to calculate radial and orbital velocity of particles. */
-        get velocity_pivot(): Vector3
-        set velocity_pivot(value: Vector3)
-        
-        /** Unit vector specifying the particles' emission direction. */
-        get direction(): Vector3
-        set direction(value: Vector3)
-        
-        /** Each particle's initial direction range from `+spread` to `-spread` degrees. */
-        get spread(): float64
-        set spread(value: float64)
-        
-        /** Amount of [member spread] along the Y axis. */
-        get flatness(): float64
-        set flatness(value: float64)
-        
-        /** A [CurveTexture] that defines the maximum velocity of a particle during its lifetime. */
-        get velocity_limit_curve(): CurveTexture
-        set velocity_limit_curve(value: CurveTexture)
-        
-        /** Gravity applied to every particle. */
-        get gravity(): Vector3
-        set gravity(value: Vector3)
-        
-        /** If `true`, interaction with particle attractors is enabled. In 3D, attraction only occurs within the area defined by the [GPUParticles3D] node's [member GPUParticles3D.visibility_aabb]. */
-        get attractor_interaction_enabled(): boolean
-        set attractor_interaction_enabled(value: boolean)
-        
-        /** Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.  
-         *      
-         *  **Note:** [member color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color] will have no visible effect.  
-         */
-        get color(): Color
-        set color(value: Color)
-        
-        /** Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied with [member color]).  
-         *      
-         *  **Note:** [member color_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_ramp] will have no visible effect.  
-         */
-        get color_ramp(): GradientTexture1D
-        set color_ramp(value: GradientTexture1D)
-        
-        /** Each particle's initial color will vary along this [GradientTexture1D] (multiplied with [member color]).  
-         *      
-         *  **Note:** [member color_initial_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_initial_ramp] will have no visible effect.  
-         */
-        get color_initial_ramp(): GradientTexture1D
-        set color_initial_ramp(value: GradientTexture1D)
-        
-        /** The alpha value of each particle's color will be multiplied by this [CurveTexture] over its lifetime. */
-        get alpha_curve(): CurveTexture
-        set alpha_curve(value: CurveTexture)
-        
-        /** Each particle's color will be multiplied by this [CurveTexture] over its lifetime.  
-         *      
-         *  **Note:** This property won't have a visible effect unless the render material is marked as unshaded.  
-         */
-        get emission_curve(): CurveTexture
-        set emission_curve(value: CurveTexture)
-        
-        /** If `true`, enables turbulence for the particle system. Turbulence can be used to vary particle movement according to its position (based on a 3D noise pattern). In 3D, [GPUParticlesAttractorVectorField3D] with [NoiseTexture3D] can be used as an alternative to turbulence that works in world space and with multiple particle systems reacting in the same way.  
-         *      
-         *  **Note:** Enabling turbulence has a high performance cost on the GPU. Only enable turbulence on a few particle systems at once at most, and consider disabling it when targeting mobile/web platforms.  
-         */
-        get turbulence_enabled(): boolean
-        set turbulence_enabled(value: boolean)
-        
-        /** The turbulence noise strength. Increasing this will result in a stronger, more contrasting, flow pattern. */
-        get turbulence_noise_strength(): float64
-        set turbulence_noise_strength(value: float64)
-        
-        /** This value controls the overall scale/frequency of the turbulence noise pattern.  
-         *  A small scale will result in smaller features with more detail while a high scale will result in smoother noise with larger features.  
-         */
-        get turbulence_noise_scale(): float64
-        set turbulence_noise_scale(value: float64)
-        
-        /** A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.  
-         *  The default value of `Vector3(0, 0, 0)` turns off the scrolling.  
-         */
-        get turbulence_noise_speed(): Vector3
-        set turbulence_noise_speed(value: Vector3)
-        
-        /** The in-place rate of change of the turbulence field. This defines how quickly the noise pattern varies over time.  
-         *  A value of 0.0 will result in a fixed pattern.  
-         */
-        get turbulence_noise_speed_random(): float64
-        set turbulence_noise_speed_random(value: float64)
-        
-        /** The particles' collision mode.  
-         *      
-         *  **Note:** 3D Particles can only collide with [GPUParticlesCollision3D] nodes, not [PhysicsBody3D] nodes. To make particles collide with various objects, you can add [GPUParticlesCollision3D] nodes as children of [PhysicsBody3D] nodes. In 3D, collisions only occur within the area defined by the [GPUParticles3D] node's [member GPUParticles3D.visibility_aabb].  
-         *      
-         *  **Note:** 2D Particles can only collide with [LightOccluder2D] nodes, not [PhysicsBody2D] nodes.  
-         */
-        get collision_mode(): int64
-        set collision_mode(value: int64)
-        
-        /** The particles' friction. Values range from `0` (frictionless) to `1` (maximum friction). Only effective if [member collision_mode] is [constant COLLISION_RIGID]. */
-        get collision_friction(): float64
-        set collision_friction(value: float64)
-        
-        /** The particles' bounciness. Values range from `0` (no bounce) to `1` (full bounciness). Only effective if [member collision_mode] is [constant COLLISION_RIGID]. */
-        get collision_bounce(): float64
-        set collision_bounce(value: float64)
-        
-        /** If `true`, [member GPUParticles3D.collision_base_size] is multiplied by the particle's effective scale (see [member scale_min], [member scale_max], [member scale_curve], and [member scale_over_velocity_curve]). */
-        get collision_use_scale(): boolean
-        set collision_use_scale(value: boolean)
-        
-        /** The particle subemitter mode (see [member GPUParticles2D.sub_emitter] and [member GPUParticles3D.sub_emitter]). */
-        get sub_emitter_mode(): int64
-        set sub_emitter_mode(value: int64)
-        
-        /** The frequency at which particles should be emitted from the subemitter node. One particle will be spawned every [member sub_emitter_frequency] seconds.  
-         *      
-         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
-         */
-        get sub_emitter_frequency(): float64
-        set sub_emitter_frequency(value: float64)
-        
-        /** The amount of particles to spawn from the subemitter node when the particle expires.  
-         *      
-         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
-         */
-        get sub_emitter_amount_at_end(): int64
-        set sub_emitter_amount_at_end(value: int64)
-        
-        /** The amount of particles to spawn from the subemitter node when a collision occurs. When combined with [constant COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to achieve effects such as raindrops hitting the ground.  
-         *      
-         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
-         */
-        get sub_emitter_amount_at_collision(): int64
-        set sub_emitter_amount_at_collision(value: int64)
-        
-        /** If `true`, the subemitter inherits the parent particle's velocity when it spawns. */
-        get sub_emitter_keep_velocity(): boolean
-        set sub_emitter_keep_velocity(value: boolean)
-    }
-    class ParticleProcessMaterialConversionPlugin extends EditorResourceConversionPlugin {
-        constructor(identifier?: any)
-    }
-    /** Contains a [Curve2D] path for [PathFollow2D] nodes to follow.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_path2d.html  
-     */
-    class Path2D extends Node2D {
-        constructor(identifier?: any)
-        /** A [Curve2D] describing the path. */
-        get curve(): Curve2D
-        set curve(value: Curve2D)
-    }
-    class Path2DEditor extends HBoxContainer {
-        constructor(identifier?: any)
-    }
-    class Path2DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** Contains a [Curve3D] path for [PathFollow3D] nodes to follow.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_path3d.html  
-     */
-    class Path3D extends Node3D {
-        constructor(identifier?: any)
-        /** A [Curve3D] describing the path. */
-        get curve(): Curve3D
-        set curve(value: Curve3D)
-        
-        /** Emitted when the [member curve] changes. */
-        readonly curve_changed: Signal0
-    }
-    class Path3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class Path3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** Point sampler for a [Path2D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_pathfollow2d.html  
-     */
-    class PathFollow2D extends Node2D {
-        constructor(identifier?: any)
-        /** The distance along the path, in pixels. Changing this value sets this node's position to a point within the path. */
-        get progress(): float64
-        set progress(value: float64)
-        
-        /** The distance along the path as a number in the range 0.0 (for the first vertex) to 1.0 (for the last). This is just another way of expressing the progress within the path, as the offset supplied is multiplied internally by the path's length. */
-        get progress_ratio(): float64
-        set progress_ratio(value: float64)
-        
-        /** The node's offset along the curve. */
-        get h_offset(): float64
-        set h_offset(value: float64)
-        
-        /** The node's offset perpendicular to the curve. */
-        get v_offset(): float64
-        set v_offset(value: float64)
-        
-        /** If `true`, this node rotates to follow the path, with the +X direction facing forward on the path. */
-        get rotates(): boolean
-        set rotates(value: boolean)
-        
-        /** If `true`, the position between two cached points is interpolated cubically, and linearly otherwise.  
-         *  The points along the [Curve2D] of the [Path2D] are precomputed before use, for faster calculations. The point at the requested offset is then calculated interpolating between two adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached points may not follow the curve closely enough.  
-         *  There are two answers to this problem: either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.  
-         */
-        get cubic_interp(): boolean
-        set cubic_interp(value: boolean)
-        
-        /** If `true`, any offset outside the path's length will wrap around, instead of stopping at the ends. Use it for cyclic paths. */
-        get loop(): boolean
-        set loop(value: boolean)
-    }
-    namespace PathFollow3D {
-        enum RotationMode {
-            /** Forbids the PathFollow3D to rotate. */
-            ROTATION_NONE = 0,
-            
-            /** Allows the PathFollow3D to rotate in the Y axis only. */
-            ROTATION_Y = 1,
-            
-            /** Allows the PathFollow3D to rotate in both the X, and Y axes. */
-            ROTATION_XY = 2,
-            
-            /** Allows the PathFollow3D to rotate in any axis. */
-            ROTATION_XYZ = 3,
-            
-            /** Uses the up vector information in a [Curve3D] to enforce orientation. This rotation mode requires the [Path3D]'s [member Curve3D.up_vector_enabled] property to be set to `true`. */
-            ROTATION_ORIENTED = 4,
-        }
-    }
-    /** Point sampler for a [Path3D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_pathfollow3d.html  
-     */
-    class PathFollow3D extends Node3D {
-        constructor(identifier?: any)
-        /** Correct the [param transform]. [param rotation_mode] implicitly specifies how posture (forward, up and sideway direction) is calculated. */
-        static correct_posture(transform: Transform3D, rotation_mode: PathFollow3D.RotationMode): Transform3D
-        
-        /** The distance from the first vertex, measured in 3D units along the path. Changing this value sets this node's position to a point within the path. */
-        get progress(): float64
-        set progress(value: float64)
-        
-        /** The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last. This is just another way of expressing the progress within the path, as the progress supplied is multiplied internally by the path's length. */
-        get progress_ratio(): float64
-        set progress_ratio(value: float64)
-        
-        /** The node's offset along the curve. */
-        get h_offset(): float64
-        set h_offset(value: float64)
-        
-        /** The node's offset perpendicular to the curve. */
-        get v_offset(): float64
-        set v_offset(value: float64)
-        
-        /** Allows or forbids rotation on one or more axes, depending on the [enum RotationMode] constants being used. */
-        get rotation_mode(): int64
-        set rotation_mode(value: int64)
-        
-        /** If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also [constant Vector3.FORWARD] and [constant Vector3.MODEL_FRONT]. */
-        get use_model_front(): boolean
-        set use_model_front(value: boolean)
-        
-        /** If `true`, the position between two cached points is interpolated cubically, and linearly otherwise.  
-         *  The points along the [Curve3D] of the [Path3D] are precomputed before use, for faster calculations. The point at the requested offset is then calculated interpolating between two adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached points may not follow the curve closely enough.  
-         *  There are two answers to this problem: either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.  
-         */
-        get cubic_interp(): boolean
-        set cubic_interp(value: boolean)
-        
-        /** If `true`, any offset outside the path's length will wrap around, instead of stopping at the ends. Use it for cyclic paths. */
-        get loop(): boolean
-        set loop(value: boolean)
-        
-        /** If `true`, the tilt property of [Curve3D] takes effect. */
-        get tilt_enabled(): boolean
-        set tilt_enabled(value: boolean)
-    }
-    /** A [RigidBody2D]-derived node used to make [Bone2D]s in a [Skeleton2D] react to physics.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicalbone2d.html  
-     */
-    class PhysicalBone2D extends RigidBody2D {
-        constructor(identifier?: any)
-        /** Returns the first [Joint2D] child node, if one exists. This is mainly a helper function to make it easier to get the [Joint2D] that the [PhysicalBone2D] is autoconfiguring. */
-        get_joint(): Joint2D
-        
-        /** Returns a boolean that indicates whether the [PhysicalBone2D] is running and simulating using the Godot 2D physics engine. When `true`, the PhysicalBone2D node is using physics. */
-        is_simulating_physics(): boolean
-        
-        /** The [NodePath] to the [Bone2D] that this [PhysicalBone2D] should simulate. */
-        get bone2d_nodepath(): NodePath
-        set bone2d_nodepath(value: NodePath | string)
-        
-        /** The index of the [Bone2D] that this [PhysicalBone2D] should simulate. */
-        get bone2d_index(): int64
-        set bone2d_index(value: int64)
-        
-        /** If `true`, the [PhysicalBone2D] will automatically configure the first [Joint2D] child node. The automatic configuration is limited to setting up the node properties and positioning the [Joint2D]. */
-        get auto_configure_joint(): boolean
-        set auto_configure_joint(value: boolean)
-        
-        /** If `true`, the [PhysicalBone2D] will start simulating using physics. If `false`, the [PhysicalBone2D] will follow the transform of the [Bone2D] node.  
-         *      
-         *  **Note:** To have the [Bone2D]s visually follow the [PhysicalBone2D], use a [SkeletonModification2DPhysicalBones] modification on the [Skeleton2D] node with the [Bone2D] nodes.  
-         */
-        get simulate_physics(): boolean
-        set simulate_physics(value: boolean)
-        
-        /** If `true`, the [PhysicalBone2D] will keep the transform of the bone it is bound to when simulating physics. */
-        get follow_bone_when_simulating(): boolean
-        set follow_bone_when_simulating(value: boolean)
-    }
-    namespace PhysicalBone3D {
-        enum DampMode {
-            /** In this mode, the body's damping value is added to any value set in areas or the default value. */
-            DAMP_MODE_COMBINE = 0,
-            
-            /** In this mode, the body's damping value replaces any value set in areas or the default value. */
-            DAMP_MODE_REPLACE = 1,
-        }
-        enum JointType {
-            JOINT_TYPE_NONE = 0,
-            JOINT_TYPE_PIN = 1,
-            JOINT_TYPE_CONE = 2,
-            JOINT_TYPE_HINGE = 3,
-            JOINT_TYPE_SLIDER = 4,
-            JOINT_TYPE_6DOF = 5,
-        }
-    }
-    /** A physics body used to make bones in a [Skeleton3D] react to physics.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicalbone3d.html  
-     */
-    class PhysicalBone3D extends PhysicsBody3D {
-        constructor(identifier?: any)
-        /** Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [member custom_integrator] property allows you to disable the default behavior and do fully custom force integration for a body. */
-        /* gdvirtual */ _integrate_forces(state: PhysicsDirectBodyState3D): void
-        apply_central_impulse(impulse: Vector3): void
-        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
-        get_simulate_physics(): boolean
-        is_simulating_physics(): boolean
-        get_bone_id(): int64
-        
-        /** Sets the joint type. See [enum JointType] for possible values. */
-        get joint_type(): int64
-        set joint_type(value: int64)
-        
-        /** Sets the joint's transform. */
-        get joint_offset(): Transform3D
-        set joint_offset(value: Transform3D)
-        
-        /** Sets the joint's rotation in radians. */
-        get joint_rotation(): Vector3
-        set joint_rotation(value: Vector3)
-        
-        /** Sets the body's transform. */
-        get body_offset(): Transform3D
-        set body_offset(value: Transform3D)
-        
-        /** The body's mass. */
-        get mass(): float64
-        set mass(value: float64)
-        
-        /** The body's friction, from `0` (frictionless) to `1` (max friction). */
-        get friction(): float64
-        set friction(value: float64)
-        
-        /** The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).  
-         *      
-         *  **Note:** Even with [member bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [PhysicalBone3D] that preserves all its energy over time, set [member bounce] to `1.0`, [member linear_damp_mode] to [constant DAMP_MODE_REPLACE], [member linear_damp] to `0.0`, [member angular_damp_mode] to [constant DAMP_MODE_REPLACE], and [member angular_damp] to `0.0`.  
-         */
-        get bounce(): float64
-        set bounce(value: float64)
-        
-        /** This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce the body's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object. */
-        get gravity_scale(): float64
-        set gravity_scale(value: float64)
-        
-        /** If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [method _integrate_forces] function, if defined. */
-        get custom_integrator(): boolean
-        set custom_integrator(value: boolean)
-        
-        /** Defines how [member linear_damp] is applied. See [enum DampMode] for possible values. */
-        get linear_damp_mode(): int64
-        set linear_damp_mode(value: int64)
-        
-        /** Damps the body's movement. By default, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member linear_damp_mode], you can set [member linear_damp] to be added to or to replace the body's damping value.  
-         *  See [member ProjectSettings.physics/3d/default_linear_damp] for more details about damping.  
-         */
-        get linear_damp(): float64
-        set linear_damp(value: float64)
-        
-        /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
-        get angular_damp_mode(): int64
-        set angular_damp_mode(value: int64)
-        
-        /** Damps the body's rotation. By default, the body will use the **Default Angular Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member angular_damp_mode], you can set [member angular_damp] to be added to or to replace the body's damping value.  
-         *  See [member ProjectSettings.physics/3d/default_angular_damp] for more details about damping.  
-         */
-        get angular_damp(): float64
-        set angular_damp(value: float64)
-        
-        /** The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state. */
-        get linear_velocity(): Vector3
-        set linear_velocity(value: Vector3)
-        
-        /** The PhysicalBone3D's rotational velocity in  *radians*  per second. */
-        get angular_velocity(): Vector3
-        set angular_velocity(value: Vector3)
-        
-        /** If `true`, the body is deactivated when there is no movement, so it will not take part in the simulation until it is awakened by an external force. */
-        get can_sleep(): boolean
-        set can_sleep(value: boolean)
-    }
-    class PhysicalBone3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class PhysicalBone3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** A material that defines a sky for a [Sky] resource by a set of physical properties.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicalskymaterial.html  
-     */
-    class PhysicalSkyMaterial extends Material {
-        constructor(identifier?: any)
-        /** Controls the strength of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. Rayleigh scattering results from light colliding with small particles. It is responsible for the blue color of the sky. */
-        get rayleigh_coefficient(): float64
-        set rayleigh_coefficient(value: float64)
-        
-        /** Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a corresponding blue sunset. */
-        get rayleigh_color(): Color
-        set rayleigh_color(value: Color)
-        
-        /** Controls the strength of [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] for the sky. Mie scattering results from light colliding with larger particles (like water). On earth, Mie scattering results in a whitish color around the sun and horizon. */
-        get mie_coefficient(): float64
-        set mie_coefficient(value: float64)
-        
-        /** Controls the direction of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url]. A value of `1` means that when light hits a particle it's passing through straight forward. A value of `-1` means that all light is scatter backwards. */
-        get mie_eccentricity(): float64
-        set mie_eccentricity(value: float64)
-        
-        /** Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] effect. While not physically accurate, this allows for the creation of alien-looking planets. */
-        get mie_color(): Color
-        set mie_color(value: Color)
-        
-        /** Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while a low turbidity results in a clearer atmosphere. */
-        get turbidity(): float64
-        set turbidity(value: float64)
-        
-        /** Sets the size of the sun disk. Default value is based on Sol's perceived size from Earth. */
-        get sun_disk_scale(): float64
-        set sun_disk_scale(value: float64)
-        
-        /** Modulates the [Color] on the bottom half of the sky to represent the ground. */
-        get ground_color(): Color
-        set ground_color(value: Color)
-        
-        /** The sky's overall brightness multiplier. Higher values result in a brighter sky. */
-        get energy_multiplier(): float64
-        set energy_multiplier(value: float64)
-        
-        /** If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky. */
-        get use_debanding(): boolean
-        set use_debanding(value: boolean)
-        
-        /** [Texture2D] for the night sky. This is added to the sky, so if it is bright enough, it may be visible during the day. */
-        get night_sky(): Texture2D
-        set night_sky(value: Texture2D)
-    }
-    class PhysicalSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
-        constructor(identifier?: any)
-    }
-    /** Abstract base class for 2D game objects affected by physics.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsbody2d.html  
-     */
-    class PhysicsBody2D extends CollisionObject2D {
-        constructor(identifier?: any)
-        /** Moves the body along the vector [param motion]. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
-         *  Returns a [KinematicCollision2D], which contains information about the collision when stopped, or when touching another body along the motion.  
-         *  If [param test_only] is `true`, the body does not move but the would-be collision information is given.  
-         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody2D.safe_margin] for more details).  
-         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [CharacterBody2D] for improving floor detection during floor snapping.  
-         */
-        move_and_collide(motion: Vector2, test_only: boolean = false, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): KinematicCollision2D
-        
-        /** Checks for collisions without moving the body. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
-         *  Virtually sets the node's position, scale and rotation to that of the given [Transform2D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
-         *  [param collision] is an optional object of type [KinematicCollision2D], which contains additional information about the collision when stopped, or when touching another body along the motion.  
-         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody2D.safe_margin] for more details).  
-         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
-         */
-        test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = undefined, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): boolean
-        
-        /** Returns an array of nodes that were added as collision exceptions for this body. */
-        get_collision_exceptions(): Array
-        
-        /** Adds a body to the list of bodies that this body can't collide with. */
-        add_collision_exception_with(body: Node): void
-        
-        /** Removes a body from the list of bodies that this body can't collide with. */
-        remove_collision_exception_with(body: Node): void
-    }
-    /** Abstract base class for 3D game objects affected by physics.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsbody3d.html  
-     */
-    class PhysicsBody3D extends CollisionObject3D {
-        constructor(identifier?: any)
-        /** Moves the body along the vector [param motion]. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
-         *  The body will stop if it collides. Returns a [KinematicCollision3D], which contains information about the collision when stopped, or when touching another body along the motion.  
-         *  If [param test_only] is `true`, the body does not move but the would-be collision information is given.  
-         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody3D.safe_margin] for more details).  
-         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.  
-         *  [param max_collisions] allows to retrieve more than one collision result.  
-         */
-        move_and_collide(motion: Vector3, test_only: boolean = false, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): KinematicCollision3D
-        
-        /** Checks for collisions without moving the body. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
-         *  Virtually sets the node's position, scale and rotation to that of the given [Transform3D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
-         *  [param collision] is an optional object of type [KinematicCollision3D], which contains additional information about the collision when stopped, or when touching another body along the motion.  
-         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody3D.safe_margin] for more details).  
-         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
-         *  [param max_collisions] allows to retrieve more than one collision result.  
-         */
-        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = undefined, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): boolean
-        
-        /** Locks or unlocks the specified linear or rotational [param axis] depending on the value of [param lock]. */
-        set_axis_lock(axis: PhysicsServer3D.BodyAxis, lock: boolean): void
-        
-        /** Returns `true` if the specified linear or rotational [param axis] is locked. */
-        get_axis_lock(axis: PhysicsServer3D.BodyAxis): boolean
-        
-        /** Returns an array of nodes that were added as collision exceptions for this body. */
-        get_collision_exceptions(): Array
-        
-        /** Adds a body to the list of bodies that this body can't collide with. */
-        add_collision_exception_with(body: Node): void
-        
-        /** Removes a body from the list of bodies that this body can't collide with. */
-        remove_collision_exception_with(body: Node): void
-    }
-    /** Provides direct access to a physics body in the [PhysicsServer2D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate2d.html  
-     */
-    class PhysicsDirectBodyState2D extends Object {
-        constructor(identifier?: any)
-        /** Returns the body's velocity at the given relative position, including both translation and rotation. */
-        get_velocity_at_local_position(local_position: Vector2): Vector2
-        
-        /** Applies a directional impulse without affecting rotation.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
-         */
-        apply_central_impulse(impulse: Vector2): void
-        
-        /** Applies a rotational impulse to the body without affecting the position.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *      
-         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inverse_inertia].  
-         */
-        apply_torque_impulse(impulse: float64): void
-        
-        /** Applies a positioned impulse to the body.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        apply_impulse(impulse: Vector2, position: Vector2 = Vector2.ZERO): void
-        
-        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
-         *  This is equivalent to using [method apply_force] at the body's center of mass.  
-         */
-        apply_central_force(force: Vector2 = Vector2.ZERO): void
-        
-        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        apply_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
-        
-        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
-         *      
-         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inverse_inertia].  
-         */
-        apply_torque(torque: float64): void
-        
-        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
-         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
-         */
-        add_constant_central_force(force: Vector2 = Vector2.ZERO): void
-        
-        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        add_constant_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
-        
-        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = 0`. */
-        add_constant_torque(torque: float64): void
-        
-        /** Sets the body's total constant positional forces applied during each physics update.  
-         *  See [method add_constant_force] and [method add_constant_central_force].  
-         */
-        set_constant_force(force: Vector2): void
-        
-        /** Returns the body's total constant positional forces applied during each physics update.  
-         *  See [method add_constant_force] and [method add_constant_central_force].  
-         */
-        get_constant_force(): Vector2
-        
-        /** Sets the body's total constant rotational forces applied during each physics update.  
-         *  See [method add_constant_torque].  
-         */
-        set_constant_torque(torque: float64): void
-        
-        /** Returns the body's total constant rotational forces applied during each physics update.  
-         *  See [method add_constant_torque].  
-         */
-        get_constant_torque(): float64
-        
-        /** Returns the number of contacts this body has with other bodies.  
-         *      
-         *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody2D.contact_monitor].  
-         */
-        get_contact_count(): int64
-        
-        /** Returns the position of the contact point on the body in the global coordinate system. */
-        get_contact_local_position(contact_idx: int64): Vector2
-        
-        /** Returns the local normal at the contact point. */
-        get_contact_local_normal(contact_idx: int64): Vector2
-        
-        /** Returns the local shape index of the collision. */
-        get_contact_local_shape(contact_idx: int64): int64
-        
-        /** Returns the velocity vector at the body's contact point. */
-        get_contact_local_velocity_at_position(contact_idx: int64): Vector2
-        
-        /** Returns the collider's [RID]. */
-        get_contact_collider(contact_idx: int64): RID
-        
-        /** Returns the position of the contact point on the collider in the global coordinate system. */
-        get_contact_collider_position(contact_idx: int64): Vector2
-        
-        /** Returns the collider's object id. */
-        get_contact_collider_id(contact_idx: int64): int64
-        
-        /** Returns the collider object. This depends on how it was created (will return a scene node if such was used to create it). */
-        get_contact_collider_object(contact_idx: int64): Object
-        
-        /** Returns the collider's shape index. */
-        get_contact_collider_shape(contact_idx: int64): int64
-        
-        /** Returns the velocity vector at the collider's contact point. */
-        get_contact_collider_velocity_at_position(contact_idx: int64): Vector2
-        
-        /** Returns the impulse created by the contact. */
-        get_contact_impulse(contact_idx: int64): Vector2
-        
-        /** Calls the built-in force integration code. */
-        integrate_forces(): void
-        
-        /** Returns the current state of the space, useful for queries. */
-        get_space_state(): PhysicsDirectSpaceState2D
-        
-        /** The timestep (delta) used for the simulation. */
-        get step(): float64
-        
-        /** The inverse of the mass of the body. */
-        get inverse_mass(): float64
-        
-        /** The inverse of the inertia of the body. */
-        get inverse_inertia(): float64
-        
-        /** The rate at which the body stops rotating, if there are not any other forces moving it. */
-        get total_angular_damp(): float64
-        
-        /** The rate at which the body stops moving, if there are not any other forces moving it. */
-        get total_linear_damp(): float64
-        
-        /** The total gravity vector being currently applied to this body. */
-        get total_gravity(): Vector2
-        
-        /** The body's center of mass position relative to the body's center in the global coordinate system. */
-        get center_of_mass(): Vector2
-        
-        /** The body's center of mass position in the body's local coordinate system. */
-        get center_of_mass_local(): Vector2
-        
-        /** The body's rotational velocity in  *radians*  per second. */
-        get angular_velocity(): float64
-        set angular_velocity(value: float64)
-        
-        /** The body's linear velocity in pixels per second. */
-        get linear_velocity(): Vector2
-        set linear_velocity(value: Vector2)
-        
-        /** If `true`, this body is currently sleeping (not active). */
-        get sleeping(): boolean
-        set sleeping(value: boolean)
-        
-        /** The body's transformation matrix. */
-        get transform(): Transform2D
-        set transform(value: Transform2D)
-    }
-    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState2D] implementations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate2dextension.html  
-     */
-    class PhysicsDirectBodyState2DExtension extends PhysicsDirectBodyState2D {
-        constructor(identifier?: any)
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_gravity] and its respective getter. */
-        /* gdvirtual */ _get_total_gravity(): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_linear_damp] and its respective getter. */
-        /* gdvirtual */ _get_total_linear_damp(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_angular_damp] and its respective getter. */
-        /* gdvirtual */ _get_total_angular_damp(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass] and its respective getter. */
-        /* gdvirtual */ _get_center_of_mass(): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass_local] and its respective getter. */
-        /* gdvirtual */ _get_center_of_mass_local(): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_mass] and its respective getter. */
-        /* gdvirtual */ _get_inverse_mass(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_inertia] and its respective getter. */
-        /* gdvirtual */ _get_inverse_inertia(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective setter. */
-        /* gdvirtual */ _set_linear_velocity(velocity: Vector2): void
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective getter. */
-        /* gdvirtual */ _get_linear_velocity(): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective setter. */
-        /* gdvirtual */ _set_angular_velocity(velocity: float64): void
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective getter. */
-        /* gdvirtual */ _get_angular_velocity(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective setter. */
-        /* gdvirtual */ _set_transform(transform: Transform2D): void
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective getter. */
-        /* gdvirtual */ _get_transform(): Transform2D
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_velocity_at_local_position]. */
-        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector2): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_impulse]. */
-        /* gdvirtual */ _apply_central_impulse(impulse: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_impulse]. */
-        /* gdvirtual */ _apply_impulse(impulse: Vector2, position: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque_impulse]. */
-        /* gdvirtual */ _apply_torque_impulse(impulse: float64): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_force]. */
-        /* gdvirtual */ _apply_central_force(force: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_force]. */
-        /* gdvirtual */ _apply_force(force: Vector2, position: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque]. */
-        /* gdvirtual */ _apply_torque(torque: float64): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_central_force]. */
-        /* gdvirtual */ _add_constant_central_force(force: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_force]. */
-        /* gdvirtual */ _add_constant_force(force: Vector2, position: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_torque]. */
-        /* gdvirtual */ _add_constant_torque(torque: float64): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_force]. */
-        /* gdvirtual */ _set_constant_force(force: Vector2): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_force]. */
-        /* gdvirtual */ _get_constant_force(): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_torque]. */
-        /* gdvirtual */ _set_constant_torque(torque: float64): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_torque]. */
-        /* gdvirtual */ _get_constant_torque(): float64
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective setter. */
-        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective getter. */
-        /* gdvirtual */ _is_sleeping(): boolean
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_count]. */
-        /* gdvirtual */ _get_contact_count(): int64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_position]. */
-        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_normal]. */
-        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_shape]. */
-        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_velocity_at_position]. */
-        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider]. */
-        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_position]. */
-        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_id]. */
-        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_object]. */
-        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_shape]. */
-        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_velocity_at_position]. */
-        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector2
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_impulse]. */
-        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector2
-        
-        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.step] and its respective getter. */
-        /* gdvirtual */ _get_step(): float64
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.integrate_forces]. */
-        /* gdvirtual */ _integrate_forces(): void
-        
-        /** Overridable version of [method PhysicsDirectBodyState2D.get_space_state]. */
-        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState2D
-    }
-    /** Provides direct access to a physics body in the [PhysicsServer3D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate3d.html  
-     */
-    class PhysicsDirectBodyState3D extends Object {
-        constructor(identifier?: any)
-        /** Returns the body's velocity at the given relative position, including both translation and rotation. */
-        get_velocity_at_local_position(local_position: Vector3): Vector3
-        
-        /** Applies a directional impulse without affecting rotation.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
-         */
-        apply_central_impulse(impulse: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Applies a positioned impulse to the body.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Applies a rotational impulse to the body without affecting the position.  
-         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
-         *      
-         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
-         */
-        apply_torque_impulse(impulse: Vector3): void
-        
-        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
-         *  This is equivalent to using [method apply_force] at the body's center of mass.  
-         */
-        apply_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
-         *      
-         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
-         */
-        apply_torque(torque: Vector3): void
-        
-        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
-         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
-         */
-        add_constant_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
-         *  [param position] is the offset from the body origin in global coordinates.  
-         */
-        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
-        
-        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`. */
-        add_constant_torque(torque: Vector3): void
-        
-        /** Sets the body's total constant positional forces applied during each physics update.  
-         *  See [method add_constant_force] and [method add_constant_central_force].  
-         */
-        set_constant_force(force: Vector3): void
-        
-        /** Returns the body's total constant positional forces applied during each physics update.  
-         *  See [method add_constant_force] and [method add_constant_central_force].  
-         */
-        get_constant_force(): Vector3
-        
-        /** Sets the body's total constant rotational forces applied during each physics update.  
-         *  See [method add_constant_torque].  
-         */
-        set_constant_torque(torque: Vector3): void
-        
-        /** Returns the body's total constant rotational forces applied during each physics update.  
-         *  See [method add_constant_torque].  
-         */
-        get_constant_torque(): Vector3
-        
-        /** Returns the number of contacts this body has with other bodies.  
-         *      
-         *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody3D.contact_monitor].  
-         */
-        get_contact_count(): int64
-        
-        /** Returns the position of the contact point on the body in the global coordinate system. */
-        get_contact_local_position(contact_idx: int64): Vector3
-        
-        /** Returns the local normal at the contact point. */
-        get_contact_local_normal(contact_idx: int64): Vector3
-        
-        /** Impulse created by the contact. */
-        get_contact_impulse(contact_idx: int64): Vector3
-        
-        /** Returns the local shape index of the collision. */
-        get_contact_local_shape(contact_idx: int64): int64
-        
-        /** Returns the linear velocity vector at the body's contact point. */
-        get_contact_local_velocity_at_position(contact_idx: int64): Vector3
-        
-        /** Returns the collider's [RID]. */
-        get_contact_collider(contact_idx: int64): RID
-        
-        /** Returns the position of the contact point on the collider in the global coordinate system. */
-        get_contact_collider_position(contact_idx: int64): Vector3
-        
-        /** Returns the collider's object id. */
-        get_contact_collider_id(contact_idx: int64): int64
-        
-        /** Returns the collider object. */
-        get_contact_collider_object(contact_idx: int64): Object
-        
-        /** Returns the collider's shape index. */
-        get_contact_collider_shape(contact_idx: int64): int64
-        
-        /** Returns the linear velocity vector at the collider's contact point. */
-        get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
-        
-        /** Calls the built-in force integration code. */
-        integrate_forces(): void
-        
-        /** Returns the current state of the space, useful for queries. */
-        get_space_state(): PhysicsDirectSpaceState3D
-        
-        /** The timestep (delta) used for the simulation. */
-        get step(): float64
-        
-        /** The inverse of the mass of the body. */
-        get inverse_mass(): float64
-        
-        /** The rate at which the body stops rotating, if there are not any other forces moving it. */
-        get total_angular_damp(): float64
-        
-        /** The rate at which the body stops moving, if there are not any other forces moving it. */
-        get total_linear_damp(): float64
-        
-        /** The inverse of the inertia of the body. */
-        get inverse_inertia(): Vector3
-        
-        /** The inverse of the inertia tensor of the body. */
-        get inverse_inertia_tensor(): Basis
-        
-        /** The total gravity vector being currently applied to this body. */
-        get total_gravity(): Vector3
-        
-        /** The body's center of mass position relative to the body's center in the global coordinate system. */
-        get center_of_mass(): Vector3
-        
-        /** The body's center of mass position in the body's local coordinate system. */
-        get center_of_mass_local(): Vector3
-        get principal_inertia_axes(): Basis
-        
-        /** The body's rotational velocity in  *radians*  per second. */
-        get angular_velocity(): Vector3
-        set angular_velocity(value: Vector3)
-        
-        /** The body's linear velocity in units per second. */
-        get linear_velocity(): Vector3
-        set linear_velocity(value: Vector3)
-        
-        /** If `true`, this body is currently sleeping (not active). */
-        get sleeping(): boolean
-        set sleeping(value: boolean)
-        
-        /** The body's transformation matrix. */
-        get transform(): Transform3D
-        set transform(value: Transform3D)
-    }
-    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState3D] implementations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate3dextension.html  
-     */
-    class PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
-        constructor(identifier?: any)
-        /* gdvirtual */ _get_total_gravity(): Vector3
-        /* gdvirtual */ _get_total_linear_damp(): float64
-        /* gdvirtual */ _get_total_angular_damp(): float64
-        /* gdvirtual */ _get_center_of_mass(): Vector3
-        /* gdvirtual */ _get_center_of_mass_local(): Vector3
-        /* gdvirtual */ _get_principal_inertia_axes(): Basis
-        /* gdvirtual */ _get_inverse_mass(): float64
-        /* gdvirtual */ _get_inverse_inertia(): Vector3
-        /* gdvirtual */ _get_inverse_inertia_tensor(): Basis
-        /* gdvirtual */ _set_linear_velocity(velocity: Vector3): void
-        /* gdvirtual */ _get_linear_velocity(): Vector3
-        /* gdvirtual */ _set_angular_velocity(velocity: Vector3): void
-        /* gdvirtual */ _get_angular_velocity(): Vector3
-        /* gdvirtual */ _set_transform(transform: Transform3D): void
-        /* gdvirtual */ _get_transform(): Transform3D
-        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector3): Vector3
-        /* gdvirtual */ _apply_central_impulse(impulse: Vector3): void
-        /* gdvirtual */ _apply_impulse(impulse: Vector3, position: Vector3): void
-        /* gdvirtual */ _apply_torque_impulse(impulse: Vector3): void
-        /* gdvirtual */ _apply_central_force(force: Vector3): void
-        /* gdvirtual */ _apply_force(force: Vector3, position: Vector3): void
-        /* gdvirtual */ _apply_torque(torque: Vector3): void
-        /* gdvirtual */ _add_constant_central_force(force: Vector3): void
-        /* gdvirtual */ _add_constant_force(force: Vector3, position: Vector3): void
-        /* gdvirtual */ _add_constant_torque(torque: Vector3): void
-        /* gdvirtual */ _set_constant_force(force: Vector3): void
-        /* gdvirtual */ _get_constant_force(): Vector3
-        /* gdvirtual */ _set_constant_torque(torque: Vector3): void
-        /* gdvirtual */ _get_constant_torque(): Vector3
-        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
-        /* gdvirtual */ _is_sleeping(): boolean
-        /* gdvirtual */ _get_contact_count(): int64
-        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
-        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
-        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
-        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
-        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
-        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
-        /* gdvirtual */ _get_step(): float64
-        /* gdvirtual */ _integrate_forces(): void
-        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState3D
     }
 }

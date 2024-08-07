@@ -1,6 +1,1784 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** Abstract class for all Tweeners used by [Tween].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tweener.html  
+     */
+    class Tweener extends RefCounted {
+        constructor(identifier?: any)
+        /** Emitted when the [Tweener] has just finished its job. */
+        readonly finished: Signal0
+    }
+    /** Helper class to implement a UDP server.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_udpserver.html  
+     */
+    class UDPServer extends RefCounted {
+        constructor(identifier?: any)
+        /** Starts the server by opening a UDP socket listening on the given [param port]. You can optionally specify a [param bind_address] to only listen for packets sent to that address. See also [method PacketPeerUDP.bind]. */
+        listen(port: int64, bind_address: string = '*'): Error
+        
+        /** Call this method at regular intervals (e.g. inside [method Node._process]) to process new packets. And packet from known address/port pair will be delivered to the appropriate [PacketPeerUDP], any packet received from an unknown address/port pair will be added as a pending connection (see [method is_connection_available], [method take_connection]). The maximum number of pending connection is defined via [member max_pending_connections]. */
+        poll(): Error
+        
+        /** Returns `true` if a packet with a new address/port combination was received on the socket. */
+        is_connection_available(): boolean
+        
+        /** Returns the local port this server is listening to. */
+        get_local_port(): int64
+        
+        /** Returns `true` if the socket is open and listening on a port. */
+        is_listening(): boolean
+        
+        /** Returns the first pending connection (connected to the appropriate address/port). Will return `null` if no new connection is available. See also [method is_connection_available], [method PacketPeerUDP.connect_to_host]. */
+        take_connection(): PacketPeerUDP
+        
+        /** Stops the server, closing the UDP socket if open. Will close all connected [PacketPeerUDP] accepted via [method take_connection] (remote peers will not be notified). */
+        stop(): void
+        
+        /** Define the maximum number of pending connections, during [method poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected). */
+        get max_pending_connections(): int64
+        set max_pending_connections(value: int64)
+    }
+    namespace UPNP {
+        enum UPNPResult {
+            /** UPNP command or discovery was successful. */
+            UPNP_RESULT_SUCCESS = 0,
+            
+            /** Not authorized to use the command on the [UPNPDevice]. May be returned when the user disabled UPNP on their router. */
+            UPNP_RESULT_NOT_AUTHORIZED = 1,
+            
+            /** No port mapping was found for the given port, protocol combination on the given [UPNPDevice]. */
+            UPNP_RESULT_PORT_MAPPING_NOT_FOUND = 2,
+            
+            /** Inconsistent parameters. */
+            UPNP_RESULT_INCONSISTENT_PARAMETERS = 3,
+            
+            /** No such entry in array. May be returned if a given port, protocol combination is not found on an [UPNPDevice]. */
+            UPNP_RESULT_NO_SUCH_ENTRY_IN_ARRAY = 4,
+            
+            /** The action failed. */
+            UPNP_RESULT_ACTION_FAILED = 5,
+            
+            /** The [UPNPDevice] does not allow wildcard values for the source IP address. */
+            UPNP_RESULT_SRC_IP_WILDCARD_NOT_PERMITTED = 6,
+            
+            /** The [UPNPDevice] does not allow wildcard values for the external port. */
+            UPNP_RESULT_EXT_PORT_WILDCARD_NOT_PERMITTED = 7,
+            
+            /** The [UPNPDevice] does not allow wildcard values for the internal port. */
+            UPNP_RESULT_INT_PORT_WILDCARD_NOT_PERMITTED = 8,
+            
+            /** The remote host value must be a wildcard. */
+            UPNP_RESULT_REMOTE_HOST_MUST_BE_WILDCARD = 9,
+            
+            /** The external port value must be a wildcard. */
+            UPNP_RESULT_EXT_PORT_MUST_BE_WILDCARD = 10,
+            
+            /** No port maps are available. May also be returned if port mapping functionality is not available. */
+            UPNP_RESULT_NO_PORT_MAPS_AVAILABLE = 11,
+            
+            /** Conflict with other mechanism. May be returned instead of [constant UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING] if a port mapping conflicts with an existing one. */
+            UPNP_RESULT_CONFLICT_WITH_OTHER_MECHANISM = 12,
+            
+            /** Conflict with an existing port mapping. */
+            UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING = 13,
+            
+            /** External and internal port values must be the same. */
+            UPNP_RESULT_SAME_PORT_VALUES_REQUIRED = 14,
+            
+            /** Only permanent leases are supported. Do not use the `duration` parameter when adding port mappings. */
+            UPNP_RESULT_ONLY_PERMANENT_LEASE_SUPPORTED = 15,
+            
+            /** Invalid gateway. */
+            UPNP_RESULT_INVALID_GATEWAY = 16,
+            
+            /** Invalid port. */
+            UPNP_RESULT_INVALID_PORT = 17,
+            
+            /** Invalid protocol. */
+            UPNP_RESULT_INVALID_PROTOCOL = 18,
+            
+            /** Invalid duration. */
+            UPNP_RESULT_INVALID_DURATION = 19,
+            
+            /** Invalid arguments. */
+            UPNP_RESULT_INVALID_ARGS = 20,
+            
+            /** Invalid response. */
+            UPNP_RESULT_INVALID_RESPONSE = 21,
+            
+            /** Invalid parameter. */
+            UPNP_RESULT_INVALID_PARAM = 22,
+            
+            /** HTTP error. */
+            UPNP_RESULT_HTTP_ERROR = 23,
+            
+            /** Socket error. */
+            UPNP_RESULT_SOCKET_ERROR = 24,
+            
+            /** Error allocating memory. */
+            UPNP_RESULT_MEM_ALLOC_ERROR = 25,
+            
+            /** No gateway available. You may need to call [method discover] first, or discovery didn't detect any valid IGDs (InternetGatewayDevices). */
+            UPNP_RESULT_NO_GATEWAY = 26,
+            
+            /** No devices available. You may need to call [method discover] first, or discovery didn't detect any valid [UPNPDevice]s. */
+            UPNP_RESULT_NO_DEVICES = 27,
+            
+            /** Unknown error. */
+            UPNP_RESULT_UNKNOWN_ERROR = 28,
+        }
+    }
+    /** Universal Plug and Play (UPnP) functions for network device discovery, querying and port forwarding.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_upnp.html  
+     */
+    class UPNP extends RefCounted {
+        constructor(identifier?: any)
+        /** Returns the number of discovered [UPNPDevice]s. */
+        get_device_count(): int64
+        
+        /** Returns the [UPNPDevice] at the given [param index]. */
+        get_device(index: int64): UPNPDevice
+        
+        /** Adds the given [UPNPDevice] to the list of discovered devices. */
+        add_device(device: UPNPDevice): void
+        
+        /** Sets the device at [param index] from the list of discovered devices to [param device]. */
+        set_device(index: int64, device: UPNPDevice): void
+        
+        /** Removes the device at [param index] from the list of discovered devices. */
+        remove_device(index: int64): void
+        
+        /** Clears the list of discovered devices. */
+        clear_devices(): void
+        
+        /** Returns the default gateway. That is the first discovered [UPNPDevice] that is also a valid IGD (InternetGatewayDevice). */
+        get_gateway(): UPNPDevice
+        
+        /** Discovers local [UPNPDevice]s. Clears the list of previously discovered devices.  
+         *  Filters for IGD (InternetGatewayDevice) type devices by default, as those manage port forwarding. [param timeout] is the time to wait for responses in milliseconds. [param ttl] is the time-to-live; only touch this if you know what you're doing.  
+         *  See [enum UPNPResult] for possible return values.  
+         */
+        discover(timeout: int64 = 2000, ttl: int64 = 2, device_filter: string = 'InternetGatewayDevice'): int64
+        
+        /** Returns the external [IP] address of the default gateway (see [method get_gateway]) as string. Returns an empty string on error. */
+        query_external_address(): string
+        
+        /** Adds a mapping to forward the external [param port] (between 1 and 65535, although recommended to use port 1024 or above) on the default gateway (see [method get_gateway]) to the [param port_internal] on the local machine for the given protocol [param proto] (either `"TCP"` or `"UDP"`, with UDP being the default). If a port mapping for the given port and protocol combination already exists on that gateway device, this method tries to overwrite it. If that is not desired, you can retrieve the gateway manually with [method get_gateway] and call [method add_port_mapping] on it, if any. Note that forwarding a well-known port (below 1024) with UPnP may fail depending on the device.  
+         *  Depending on the gateway device, if a mapping for that port already exists, it will either be updated or it will refuse this command due to that conflict, especially if the existing mapping for that port wasn't created via UPnP or points to a different network address (or device) than this one.  
+         *  If [param port_internal] is `0` (the default), the same port number is used for both the external and the internal port (the [param port] value).  
+         *  The description ([param desc]) is shown in some routers management UIs and can be used to point out which application added the mapping.  
+         *  The mapping's lease [param duration] can be limited by specifying a duration in seconds. The default of `0` means no duration, i.e. a permanent lease and notably some devices only support these permanent leases. Note that whether permanent or not, this is only a request and the gateway may still decide at any point to remove the mapping (which usually happens on a reboot of the gateway, when its external IP address changes, or on some models when it detects a port mapping has become inactive, i.e. had no traffic for multiple minutes). If not `0` (permanent), the allowed range according to spec is between `120` (2 minutes) and `86400` seconds (24 hours).  
+         *  See [enum UPNPResult] for possible return values.  
+         */
+        add_port_mapping(port: int64, port_internal: int64 = 0, desc: string = '', proto: string = 'UDP', duration: int64 = 0): int64
+        
+        /** Deletes the port mapping for the given port and protocol combination on the default gateway (see [method get_gateway]) if one exists. [param port] must be a valid port between 1 and 65535, [param proto] can be either `"TCP"` or `"UDP"`. May be refused for mappings pointing to addresses other than this one, for well-known ports (below 1024), or for mappings not added via UPnP. See [enum UPNPResult] for possible return values. */
+        delete_port_mapping(port: int64, proto: string = 'UDP'): int64
+        
+        /** Multicast interface to use for discovery. Uses the default multicast interface if empty. */
+        get discover_multicast_if(): string
+        set discover_multicast_if(value: string)
+        
+        /** If `0`, the local port to use for discovery is chosen automatically by the system. If `1`, discovery will be done from the source port 1900 (same as destination port). Otherwise, the value will be used as the port. */
+        get discover_local_port(): int64
+        set discover_local_port(value: int64)
+        
+        /** If `true`, IPv6 is used for [UPNPDevice] discovery. */
+        get discover_ipv6(): boolean
+        set discover_ipv6(value: boolean)
+    }
+    namespace UPNPDevice {
+        enum IGDStatus {
+            /** OK. */
+            IGD_STATUS_OK = 0,
+            
+            /** HTTP error. */
+            IGD_STATUS_HTTP_ERROR = 1,
+            
+            /** Empty HTTP response. */
+            IGD_STATUS_HTTP_EMPTY = 2,
+            
+            /** Returned response contained no URLs. */
+            IGD_STATUS_NO_URLS = 3,
+            
+            /** Not a valid IGD. */
+            IGD_STATUS_NO_IGD = 4,
+            
+            /** Disconnected. */
+            IGD_STATUS_DISCONNECTED = 5,
+            
+            /** Unknown device. */
+            IGD_STATUS_UNKNOWN_DEVICE = 6,
+            
+            /** Invalid control. */
+            IGD_STATUS_INVALID_CONTROL = 7,
+            
+            /** Memory allocation error. */
+            IGD_STATUS_MALLOC_ERROR = 8,
+            
+            /** Unknown error. */
+            IGD_STATUS_UNKNOWN_ERROR = 9,
+        }
+    }
+    /** Universal Plug and Play (UPnP) device.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_upnpdevice.html  
+     */
+    class UPNPDevice extends RefCounted {
+        constructor(identifier?: any)
+        /** Returns `true` if this is a valid IGD (InternetGatewayDevice) which potentially supports port forwarding. */
+        is_valid_gateway(): boolean
+        
+        /** Returns the external IP address of this [UPNPDevice] or an empty string. */
+        query_external_address(): string
+        
+        /** Adds a port mapping to forward the given external port on this [UPNPDevice] for the given protocol to the local machine. See [method UPNP.add_port_mapping]. */
+        add_port_mapping(port: int64, port_internal: int64 = 0, desc: string = '', proto: string = 'UDP', duration: int64 = 0): int64
+        
+        /** Deletes the port mapping identified by the given port and protocol combination on this device. See [method UPNP.delete_port_mapping]. */
+        delete_port_mapping(port: int64, proto: string = 'UDP'): int64
+        
+        /** URL to the device description. */
+        get description_url(): string
+        set description_url(value: string)
+        
+        /** Service type. */
+        get service_type(): string
+        set service_type(value: string)
+        
+        /** IDG control URL. */
+        get igd_control_url(): string
+        set igd_control_url(value: string)
+        
+        /** IGD service type. */
+        get igd_service_type(): string
+        set igd_service_type(value: string)
+        
+        /** Address of the local machine in the network connecting it to this [UPNPDevice]. */
+        get igd_our_addr(): string
+        set igd_our_addr(value: string)
+        
+        /** IGD status. See [enum IGDStatus]. */
+        get igd_status(): int64
+        set igd_status(value: int64)
+    }
+    namespace UndoRedo {
+        enum MergeMode {
+            /** Makes "do"/"undo" operations stay in separate actions. */
+            MERGE_DISABLE = 0,
+            
+            /** Makes so that the action's "undo" operations are from the first action created and the "do" operations are from the last subsequent action with the same name. */
+            MERGE_ENDS = 1,
+            
+            /** Makes subsequent actions with the same name be merged into one. */
+            MERGE_ALL = 2,
+        }
+    }
+    /** Provides a high-level interface for implementing undo and redo operations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_undoredo.html  
+     */
+    class UndoRedo extends Object {
+        constructor(identifier?: any)
+        /** Create a new action. After this is called, do all your calls to [method add_do_method], [method add_undo_method], [method add_do_property], and [method add_undo_property], then commit the action with [method commit_action].  
+         *  The way actions are merged is dictated by [param merge_mode]. See [enum MergeMode] for details.  
+         *  The way undo operation are ordered in actions is dictated by [param backward_undo_ops]. When [param backward_undo_ops] is `false` undo option are ordered in the same order they were added. Which means the first operation to be added will be the first to be undone.  
+         */
+        create_action(name: string, merge_mode: UndoRedo.MergeMode = 0, backward_undo_ops: boolean = false): void
+        
+        /** Commit the action. If [param execute] is `true` (which it is by default), all "do" methods/properties are called/set when this function is called. */
+        commit_action(execute: boolean = true): void
+        
+        /** Returns `true` if the [UndoRedo] is currently committing the action, i.e. running its "do" method or property change (see [method commit_action]). */
+        is_committing_action(): boolean
+        
+        /** Register a [Callable] that will be called when the action is committed. */
+        add_do_method(callable: Callable): void
+        
+        /** Register a [Callable] that will be called when the action is undone. */
+        add_undo_method(callable: Callable): void
+        
+        /** Register a [param property] that would change its value to [param value] when the action is committed. */
+        add_do_property(object: Object, property: StringName, value: any): void
+        
+        /** Register a [param property] that would change its value to [param value] when the action is undone. */
+        add_undo_property(object: Object, property: StringName, value: any): void
+        
+        /** Register a reference for "do" that will be erased if the "do" history is lost. This is useful mostly for new nodes created for the "do" call. Do not use for resources.  
+         *    
+         */
+        add_do_reference(object: Object): void
+        
+        /** Register a reference for "undo" that will be erased if the "undo" history is lost. This is useful mostly for nodes removed with the "do" call (not the "undo" call!).  
+         *    
+         */
+        add_undo_reference(object: Object): void
+        
+        /** Marks the next "do" and "undo" operations to be processed even if the action gets merged with another in the [constant MERGE_ENDS] mode. Return to normal operation using [method end_force_keep_in_merge_ends]. */
+        start_force_keep_in_merge_ends(): void
+        
+        /** Stops marking operations as to be processed even if the action gets merged with another in the [constant MERGE_ENDS] mode. See [method start_force_keep_in_merge_ends]. */
+        end_force_keep_in_merge_ends(): void
+        
+        /** Returns how many elements are in the history. */
+        get_history_count(): int64
+        
+        /** Gets the index of the current action. */
+        get_current_action(): int64
+        
+        /** Gets the action name from its index. */
+        get_action_name(id: int64): string
+        
+        /** Clear the undo/redo history and associated references.  
+         *  Passing `false` to [param increase_version] will prevent the version number from increasing when the history is cleared.  
+         */
+        clear_history(increase_version: boolean = true): void
+        
+        /** Gets the name of the current action, equivalent to `get_action_name(get_current_action())`. */
+        get_current_action_name(): string
+        
+        /** Returns `true` if an "undo" action is available. */
+        has_undo(): boolean
+        
+        /** Returns `true` if a "redo" action is available. */
+        has_redo(): boolean
+        
+        /** Gets the version. Every time a new action is committed, the [UndoRedo]'s version number is increased automatically.  
+         *  This is useful mostly to check if something changed from a saved version.  
+         */
+        get_version(): int64
+        
+        /** Redo the last action. */
+        redo(): boolean
+        
+        /** Undo the last action. */
+        undo(): boolean
+        
+        /** Called when [method undo] or [method redo] was called. */
+        readonly version_changed: Signal0
+    }
+    /** A container that arranges its child controls vertically.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vboxcontainer.html  
+     */
+    class VBoxContainer extends BoxContainer {
+        constructor(identifier?: any)
+    }
+    /** A container that arranges its child controls vertically and wraps them around at the borders.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vflowcontainer.html  
+     */
+    class VFlowContainer extends FlowContainer {
+        constructor(identifier?: any)
+    }
+    /** A vertical scrollbar that goes from top (min) to bottom (max).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vscrollbar.html  
+     */
+    class VScrollBar extends ScrollBar {
+        constructor(identifier?: any)
+    }
+    /** A vertical line used for separating other controls.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vseparator.html  
+     */
+    class VSeparator extends Separator {
+        constructor(identifier?: any)
+    }
+    /** A vertical slider that goes from bottom (min) to top (max).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vslider.html  
+     */
+    class VSlider extends Slider {
+        constructor(identifier?: any)
+    }
+    /** A container that splits two child controls vertically and provides a grabber for adjusting the split ratio.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vsplitcontainer.html  
+     */
+    class VSplitContainer extends SplitContainer {
+        constructor(identifier?: any)
+    }
+    /** A 3D physics body that simulates the behavior of a car.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vehiclebody3d.html  
+     */
+    class VehicleBody3D extends RigidBody3D {
+        constructor(identifier?: any)
+        /** Accelerates the vehicle by applying an engine force. The vehicle is only sped up if the wheels that have [member VehicleWheel3D.use_as_traction] set to `true` and are in contact with a surface. The [member RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.  
+         *      
+         *  **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.  
+         *  A negative value will result in the vehicle reversing.  
+         */
+        get engine_force(): float64
+        set engine_force(value: float64)
+        
+        /** Slows down the vehicle by applying a braking force. The vehicle is only slowed down if the wheels are in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [member RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking. */
+        get brake(): float64
+        set brake(value: float64)
+        
+        /** The steering angle for the vehicle. Setting this to a non-zero value will result in the vehicle turning when it's moving. Wheels that have [member VehicleWheel3D.use_as_steering] set to `true` will automatically be rotated.  
+         *      
+         *  **Note:** This property is edited in the inspector in degrees. In code the property is set in radians.  
+         */
+        get steering(): float64
+        set steering(value: float64)
+    }
+    /** A 3D physics body for a [VehicleBody3D] that simulates the behavior of a wheel.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_vehiclewheel3d.html  
+     */
+    class VehicleWheel3D extends Node3D {
+        constructor(identifier?: any)
+        /** Returns `true` if this wheel is in contact with a surface. */
+        is_in_contact(): boolean
+        
+        /** Returns the contacting body node if valid in the tree, as [Node3D]. At the moment, [GridMap] is not supported so the node will be always of type [PhysicsBody3D].  
+         *  Returns `null` if the wheel is not in contact with a surface, or the contact body is not a [PhysicsBody3D].  
+         */
+        get_contact_body(): Node3D
+        
+        /** Returns a value between 0.0 and 1.0 that indicates whether this wheel is skidding. 0.0 is skidding (the wheel has lost grip, e.g. icy terrain), 1.0 means not skidding (the wheel has full grip, e.g. dry asphalt road). */
+        get_skidinfo(): float64
+        
+        /** Returns the rotational speed of the wheel in revolutions per minute. */
+        get_rpm(): float64
+        
+        /** Accelerates the wheel by applying an engine force. The wheel is only sped up if it is in contact with a surface. The [member RigidBody3D.mass] of the vehicle has an effect on the acceleration of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 50 range for acceleration.  
+         *      
+         *  **Note:** The simulation does not take the effect of gears into account, you will need to add logic for this if you wish to simulate gears.  
+         *  A negative value will result in the wheel reversing.  
+         */
+        get engine_force(): float64
+        set engine_force(value: float64)
+        
+        /** Slows down the wheel by applying a braking force. The wheel is only slowed down if it is in contact with a surface. The force you need to apply to adequately slow down your vehicle depends on the [member RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in the 25 - 30 range for hard braking. */
+        get brake(): float64
+        set brake(value: float64)
+        
+        /** The steering angle for the wheel, in radians. Setting this to a non-zero value will result in the vehicle turning when it's moving. */
+        get steering(): float64
+        set steering(value: float64)
+        
+        /** If `true`, this wheel transfers engine force to the ground to propel the vehicle forward. This value is used in conjunction with [member VehicleBody3D.engine_force] and ignored if you are using the per-wheel [member engine_force] value instead. */
+        get use_as_traction(): boolean
+        set use_as_traction(value: boolean)
+        
+        /** If `true`, this wheel will be turned when the car steers. This value is used in conjunction with [member VehicleBody3D.steering] and ignored if you are using the per-wheel [member steering] value instead. */
+        get use_as_steering(): boolean
+        set use_as_steering(value: boolean)
+        
+        /** This value affects the roll of your vehicle. If set to 1.0 for all wheels, your vehicle will resist body roll, while a value of 0.0 will be prone to rolling over. */
+        get wheel_roll_influence(): float64
+        set wheel_roll_influence(value: float64)
+        
+        /** The radius of the wheel in meters. */
+        get wheel_radius(): float64
+        set wheel_radius(value: float64)
+        
+        /** This is the distance in meters the wheel is lowered from its origin point. Don't set this to 0.0 and move the wheel into position, instead move the origin point of your wheel (the gizmo in Godot) to the position the wheel will take when bottoming out, then use the rest length to move the wheel down to the position it should be in when the car is in rest. */
+        get wheel_rest_length(): float64
+        set wheel_rest_length(value: float64)
+        
+        /** This determines how much grip this wheel has. It is combined with the friction setting of the surface the wheel is in contact with. 0.0 means no grip, 1.0 is normal grip. For a drift car setup, try setting the grip of the rear wheels slightly lower than the front wheels, or use a lower value to simulate tire wear.  
+         *  It's best to set this to 1.0 when starting out.  
+         */
+        get wheel_friction_slip(): float64
+        set wheel_friction_slip(value: float64)
+        
+        /** This is the distance the suspension can travel. As Godot units are equivalent to meters, keep this setting relatively low. Try a value between 0.1 and 0.3 depending on the type of car. */
+        get suspension_travel(): float64
+        set suspension_travel(value: float64)
+        
+        /** This value defines the stiffness of the suspension. Use a value lower than 50 for an off-road car, a value between 50 and 100 for a race car and try something around 200 for something like a Formula 1 car. */
+        get suspension_stiffness(): float64
+        set suspension_stiffness(value: float64)
+        
+        /** The maximum force the spring can resist. This value should be higher than a quarter of the [member RigidBody3D.mass] of the [VehicleBody3D] or the spring will not carry the weight of the vehicle. Good results are often obtained by a value that is about 3× to 4× this number. */
+        get suspension_max_force(): float64
+        set suspension_max_force(value: float64)
+        
+        /** The damping applied to the spring when the spring is being compressed. This value should be between 0.0 (no damping) and 1.0. A value of 0.0 means the car will keep bouncing as the spring keeps its energy. A good value for this is around 0.3 for a normal car, 0.5 for a race car. */
+        get damping_compression(): float64
+        set damping_compression(value: float64)
+        
+        /** The damping applied to the spring when relaxing. This value should be between 0.0 (no damping) and 1.0. This value should always be slightly higher than the [member damping_compression] property. For a [member damping_compression] value of 0.3, try a relaxation value of 0.5. */
+        get damping_relaxation(): float64
+        set damping_relaxation(value: float64)
+    }
+    class VehicleWheel3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    class VersionControlEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** Base resource for video streams.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_videostream.html  
+     */
+    class VideoStream extends Resource {
+        constructor(identifier?: any)
+        /** Called when the video starts playing, to initialize and return a subclass of [VideoStreamPlayback]. */
+        /* gdvirtual */ _instantiate_playback(): VideoStreamPlayback
+        
+        /** The video file path or URI that this [VideoStream] resource handles.  
+         *  For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv` extension.  
+         */
+        get file(): string
+        set file(value: string)
+    }
+    /** Internal class used by [VideoStream] to manage playback state when played from a [VideoStreamPlayer].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_videostreamplayback.html  
+     */
+    class VideoStreamPlayback extends Resource {
+        constructor(identifier?: any)
+        /** Stops playback. May be called multiple times before [method _play], or in response to [method VideoStreamPlayer.stop]. [method _is_playing] should return false once stopped. */
+        /* gdvirtual */ _stop(): void
+        
+        /** Called in response to [member VideoStreamPlayer.autoplay] or [method VideoStreamPlayer.play]. Note that manual playback may also invoke [method _stop] multiple times before this method is called. [method _is_playing] should return true once playing. */
+        /* gdvirtual */ _play(): void
+        
+        /** Returns the playback state, as determined by calls to [method _play] and [method _stop]. */
+        /* gdvirtual */ _is_playing(): boolean
+        
+        /** Set the paused status of video playback. [method _is_paused] must return [param paused]. Called in response to the [member VideoStreamPlayer.paused] setter. */
+        /* gdvirtual */ _set_paused(paused: boolean): void
+        
+        /** Returns the paused status, as set by [method _set_paused]. */
+        /* gdvirtual */ _is_paused(): boolean
+        
+        /** Returns the video duration in seconds, if known, or 0 if unknown. */
+        /* gdvirtual */ _get_length(): float64
+        
+        /** Return the current playback timestamp. Called in response to the [member VideoStreamPlayer.stream_position] getter. */
+        /* gdvirtual */ _get_playback_position(): float64
+        
+        /** Seeks to [param time] seconds. Called in response to the [member VideoStreamPlayer.stream_position] setter. */
+        /* gdvirtual */ _seek(time: float64): void
+        
+        /** Select the audio track [param idx]. Called when playback starts, and in response to the [member VideoStreamPlayer.audio_track] setter. */
+        /* gdvirtual */ _set_audio_track(idx: int64): void
+        
+        /** Allocates a [Texture2D] in which decoded video frames will be drawn. */
+        /* gdvirtual */ _get_texture(): Texture2D
+        
+        /** Ticks video playback for [param delta] seconds. Called every frame as long as [method _is_paused] and [method _is_playing] return true. */
+        /* gdvirtual */ _update(delta: float64): void
+        
+        /** Returns the number of audio channels. */
+        /* gdvirtual */ _get_channels(): int64
+        
+        /** Returns the audio sample rate used for mixing. */
+        /* gdvirtual */ _get_mix_rate(): int64
+        
+        /** Render [param num_frames] audio frames (of [method _get_channels] floats each) from [param buffer], starting from index [param offset] in the array. Returns the number of audio frames rendered, or -1 on error. */
+        mix_audio(num_frames: int64, buffer: PackedFloat32Array | float32[] = [], offset: int64 = 0): int64
+    }
+    /** A control used for video playback.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_videostreamplayer.html  
+     */
+    class VideoStreamPlayer extends Control {
+        constructor(identifier?: any)
+        /** Starts the video playback from the beginning. If the video is paused, this will not unpause the video. */
+        play(): void
+        
+        /** Stops the video playback and sets the stream position to 0.  
+         *      
+         *  **Note:** Although the stream position will be set to 0, the first frame of the video stream won't become the current frame.  
+         */
+        stop(): void
+        
+        /** Returns `true` if the video is playing.  
+         *      
+         *  **Note:** The video is still considered playing if paused during playback.  
+         */
+        is_playing(): boolean
+        
+        /** Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned. */
+        get_stream_name(): string
+        
+        /** The length of the current stream, in seconds.  
+         *      
+         *  **Note:** For [VideoStreamTheora] streams (the built-in format supported by Godot), this value will always be zero, as getting the stream length is not implemented yet. The feature may be supported by video formats implemented by a GDExtension add-on.  
+         */
+        get_stream_length(): float64
+        
+        /** Returns the current frame as a [Texture2D]. */
+        get_video_texture(): Texture2D
+        
+        /** The embedded audio track to play. */
+        get audio_track(): int64
+        set audio_track(value: int64)
+        
+        /** The assigned video stream. See description for supported formats. */
+        get stream(): VideoStream
+        set stream(value: VideoStream)
+        
+        /** Audio volume in dB. */
+        get volume_db(): float64
+        set volume_db(value: float64)
+        
+        /** Audio volume as a linear value. */
+        get volume(): float64
+        set volume(value: float64)
+        
+        /** If `true`, playback starts when the scene loads. */
+        get autoplay(): boolean
+        set autoplay(value: boolean)
+        
+        /** If `true`, the video is paused. */
+        get paused(): boolean
+        set paused(value: boolean)
+        
+        /** If `true`, the video scales to the control size. Otherwise, the control minimum size will be automatically adjusted to match the video stream's dimensions. */
+        get expand(): boolean
+        set expand(value: boolean)
+        
+        /** If `true`, the video restarts when it reaches its end. */
+        get loop(): boolean
+        set loop(value: boolean)
+        
+        /** Amount of time in milliseconds to store in buffer while playing. */
+        get buffering_msec(): int64
+        set buffering_msec(value: int64)
+        
+        /** The current position of the stream, in seconds.  
+         *      
+         *  **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDExtension add-on.  
+         */
+        get stream_position(): float64
+        set stream_position(value: float64)
+        
+        /** Audio bus to use for sound playback. */
+        get bus(): StringName
+        set bus(value: StringName)
+        
+        /** Emitted when playback is finished. */
+        readonly finished: Signal0
+    }
+    /** [VideoStream] resource for Ogg Theora videos.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_videostreamtheora.html  
+     */
+    class VideoStreamTheora extends VideoStream {
+        constructor(identifier?: any)
+    }
+    class ViewPanner extends RefCounted {
+        constructor(identifier?: any)
+    }
+    namespace Viewport {
+        enum PositionalShadowAtlasQuadrantSubdiv {
+            /** This quadrant will not be used. */
+            SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED = 0,
+            
+            /** This quadrant will only be used by one shadow map. */
+            SHADOW_ATLAS_QUADRANT_SUBDIV_1 = 1,
+            
+            /** This quadrant will be split in 4 and used by up to 4 shadow maps. */
+            SHADOW_ATLAS_QUADRANT_SUBDIV_4 = 2,
+            
+            /** This quadrant will be split 16 ways and used by up to 16 shadow maps. */
+            SHADOW_ATLAS_QUADRANT_SUBDIV_16 = 3,
+            
+            /** This quadrant will be split 64 ways and used by up to 64 shadow maps. */
+            SHADOW_ATLAS_QUADRANT_SUBDIV_64 = 4,
+            
+            /** This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [member positional_shadow_atlas_size] is very high, the shadows in this quadrant will be very low resolution. */
+            SHADOW_ATLAS_QUADRANT_SUBDIV_256 = 5,
+            
+            /** This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [member positional_shadow_atlas_size] is very high, the shadows in this quadrant will be very low resolution. */
+            SHADOW_ATLAS_QUADRANT_SUBDIV_1024 = 6,
+            
+            /** Represents the size of the [enum PositionalShadowAtlasQuadrantSubdiv] enum. */
+            SHADOW_ATLAS_QUADRANT_SUBDIV_MAX = 7,
+        }
+        enum Scaling3DMode {
+            /** Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [member scaling_3d_scale]. Values less than `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling. */
+            SCALING_3D_MODE_BILINEAR = 0,
+            
+            /** Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [member scaling_3d_scale]. Values less than `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling. */
+            SCALING_3D_MODE_FSR = 1,
+            
+            /** Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [member Viewport.scaling_3d_scale]. Values less than `1.0` will be result in the viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA solution. */
+            SCALING_3D_MODE_FSR2 = 2,
+            
+            /** Represents the size of the [enum Scaling3DMode] enum. */
+            SCALING_3D_MODE_MAX = 3,
+        }
+        enum MSAA {
+            /** Multisample antialiasing mode disabled. This is the default value, and is also the fastest setting. */
+            MSAA_DISABLED = 0,
+            
+            /** Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce aliasing noticeably, but 4× MSAA still looks substantially better. */
+            MSAA_2X = 1,
+            
+            /** Use 4× Multisample Antialiasing. This has a significant performance cost, and is generally a good compromise between performance and quality. */
+            MSAA_4X = 2,
+            
+            /** Use 8× Multisample Antialiasing. This has a very high performance cost. The difference between 4× and 8× MSAA may not always be visible in real gameplay conditions. Likely unsupported on low-end and older hardware. */
+            MSAA_8X = 3,
+            
+            /** Represents the size of the [enum MSAA] enum. */
+            MSAA_MAX = 4,
+        }
+        enum ScreenSpaceAA {
+            /** Do not perform any antialiasing in the full screen post-process. */
+            SCREEN_SPACE_AA_DISABLED = 0,
+            
+            /** Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K. */
+            SCREEN_SPACE_AA_FXAA = 1,
+            
+            /** Represents the size of the [enum ScreenSpaceAA] enum. */
+            SCREEN_SPACE_AA_MAX = 2,
+        }
+        enum RenderInfo {
+            /** Amount of objects in frame. */
+            RENDER_INFO_OBJECTS_IN_FRAME = 0,
+            
+            /** Amount of vertices in frame. */
+            RENDER_INFO_PRIMITIVES_IN_FRAME = 1,
+            
+            /** Amount of draw calls in frame. */
+            RENDER_INFO_DRAW_CALLS_IN_FRAME = 2,
+            
+            /** Represents the size of the [enum RenderInfo] enum. */
+            RENDER_INFO_MAX = 3,
+        }
+        enum RenderInfoType {
+            RENDER_INFO_TYPE_VISIBLE = 0,
+            RENDER_INFO_TYPE_SHADOW = 1,
+            RENDER_INFO_TYPE_MAX = 2,
+        }
+        enum DebugDraw {
+            /** Objects are displayed normally. */
+            DEBUG_DRAW_DISABLED = 0,
+            
+            /** Objects are displayed without light information. */
+            DEBUG_DRAW_UNSHADED = 1,
+            DEBUG_DRAW_LIGHTING = 2,
+            
+            /** Objects are displayed semi-transparent with additive blending so you can see where they are drawing over top of one another. A higher overdraw means you are wasting performance on drawing pixels that are being hidden behind others. */
+            DEBUG_DRAW_OVERDRAW = 3,
+            
+            /** Objects are displayed in wireframe style. */
+            DEBUG_DRAW_WIREFRAME = 4,
+            DEBUG_DRAW_NORMAL_BUFFER = 5,
+            
+            /** Objects are displayed with only the albedo value from [VoxelGI]s. */
+            DEBUG_DRAW_VOXEL_GI_ALBEDO = 6,
+            
+            /** Objects are displayed with only the lighting value from [VoxelGI]s. */
+            DEBUG_DRAW_VOXEL_GI_LIGHTING = 7,
+            
+            /** Objects are displayed with only the emission color from [VoxelGI]s. */
+            DEBUG_DRAW_VOXEL_GI_EMISSION = 8,
+            
+            /** Draws the shadow atlas that stores shadows from [OmniLight3D]s and [SpotLight3D]s in the upper left quadrant of the [Viewport]. */
+            DEBUG_DRAW_SHADOW_ATLAS = 9,
+            
+            /** Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left quadrant of the [Viewport]. */
+            DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS = 10,
+            DEBUG_DRAW_SCENE_LUMINANCE = 11,
+            
+            /** Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [member Environment.ssao_enabled] set in your [WorldEnvironment]. */
+            DEBUG_DRAW_SSAO = 12,
+            
+            /** Draws the screen-space indirect lighting texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [member Environment.ssil_enabled] set in your [WorldEnvironment]. */
+            DEBUG_DRAW_SSIL = 13,
+            
+            /** Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you can see where the splits are. In order, they will be colored red, green, blue, and yellow. */
+            DEBUG_DRAW_PSSM_SPLITS = 14,
+            
+            /** Draws the decal atlas used by [Decal]s and light projector textures in the upper left quadrant of the [Viewport]. */
+            DEBUG_DRAW_DECAL_ATLAS = 15,
+            DEBUG_DRAW_SDFGI = 16,
+            DEBUG_DRAW_SDFGI_PROBES = 17,
+            DEBUG_DRAW_GI_BUFFER = 18,
+            DEBUG_DRAW_DISABLE_LOD = 19,
+            DEBUG_DRAW_CLUSTER_OMNI_LIGHTS = 20,
+            DEBUG_DRAW_CLUSTER_SPOT_LIGHTS = 21,
+            DEBUG_DRAW_CLUSTER_DECALS = 22,
+            DEBUG_DRAW_CLUSTER_REFLECTION_PROBES = 23,
+            DEBUG_DRAW_OCCLUDERS = 24,
+            DEBUG_DRAW_MOTION_VECTORS = 25,
+            
+            /** Draws the internal resolution buffer of the scene before post-processing is applied. */
+            DEBUG_DRAW_INTERNAL_BUFFER = 26,
+        }
+        enum DefaultCanvasItemTextureFilter {
+            /** The texture filter reads from the nearest pixel only. This makes the texture look pixelated from up close, and grainy from a distance (due to mipmaps not being sampled). */
+            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST = 0,
+            
+            /** The texture filter blends between the nearest 4 pixels. This makes the texture look smooth from up close, and grainy from a distance (due to mipmaps not being sampled). */
+            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR = 1,
+            
+            /** The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or uses the nearest mipmap if [member ProjectSettings.rendering/textures/default_filters/use_nearest_mipmap_filter] is `true`). This makes the texture look smooth from up close, and smooth from a distance.  
+             *  Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.  
+             */
+            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS = 2,
+            
+            /** The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or uses the nearest mipmap if [member ProjectSettings.rendering/textures/default_filters/use_nearest_mipmap_filter] is `true`). This makes the texture look pixelated from up close, and smooth from a distance.  
+             *  Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.  
+             */
+            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS = 3,
+            
+            /** Max value for [enum DefaultCanvasItemTextureFilter] enum. */
+            DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_MAX = 4,
+        }
+        enum DefaultCanvasItemTextureRepeat {
+            /** Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will be clamped to the edge of the texture, resulting in a stretched out look at the borders of the texture. */
+            DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_DISABLED = 0,
+            
+            /** Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of the linear filtering modes, this can result in artifacts at the edges of a texture when the sampler filters across the edges of the texture. */
+            DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_ENABLED = 1,
+            
+            /** Flip the texture when repeating so that the edge lines up instead of abruptly changing. */
+            DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MIRROR = 2,
+            
+            /** Max value for [enum DefaultCanvasItemTextureRepeat] enum. */
+            DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MAX = 3,
+        }
+        enum SDFOversize {
+            SDF_OVERSIZE_100_PERCENT = 0,
+            SDF_OVERSIZE_120_PERCENT = 1,
+            SDF_OVERSIZE_150_PERCENT = 2,
+            SDF_OVERSIZE_200_PERCENT = 3,
+            SDF_OVERSIZE_MAX = 4,
+        }
+        enum SDFScale {
+            SDF_SCALE_100_PERCENT = 0,
+            SDF_SCALE_50_PERCENT = 1,
+            SDF_SCALE_25_PERCENT = 2,
+            SDF_SCALE_MAX = 3,
+        }
+        enum VRSMode {
+            /** VRS is disabled. */
+            VRS_DISABLED = 0,
+            
+            /** VRS uses a texture. Note, for stereoscopic use a texture atlas with a texture for each view. */
+            VRS_TEXTURE = 1,
+            
+            /** VRS texture is supplied by the primary [XRInterface]. */
+            VRS_XR = 2,
+            
+            /** Represents the size of the [enum VRSMode] enum. */
+            VRS_MAX = 3,
+        }
+    }
+    /** Abstract base class for viewports. Encapsulates drawing and interaction with a game world.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_viewport.html  
+     */
+    class Viewport extends Node {
+        constructor(identifier?: any)
+        /** Returns the first valid [World2D] for this viewport, searching the [member world_2d] property of itself and any Viewport ancestor. */
+        find_world_2d(): World2D
+        
+        /** Returns the transform from the viewport's coordinate system to the embedder's coordinate system. */
+        get_final_transform(): Transform2D
+        
+        /** Returns the transform from the Viewport's coordinates to the screen coordinates of the containing window manager window. */
+        get_screen_transform(): Transform2D
+        
+        /** Returns the visible rectangle in global screen coordinates. */
+        get_visible_rect(): Rect2
+        
+        /** Returns rendering statistics of the given type. See [enum RenderInfoType] and [enum RenderInfo] for options. */
+        get_render_info(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): int64
+        
+        /** Returns the viewport's texture.  
+         *      
+         *  **Note:** When trying to store the current texture (e.g. in a file), it might be completely black or outdated if used too early, especially when used in e.g. [method Node._ready]. To make sure the texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.  
+         *    
+         */
+        get_texture(): ViewportTexture
+        
+        /** Returns the viewport's RID from the [RenderingServer]. */
+        get_viewport_rid(): RID
+        
+        /** Helper method which calls the `set_text()` method on the currently focused [Control], provided that it is defined (e.g. if the focused Control is [Button] or [LineEdit]). */
+        push_text_input(text: string): void
+        
+        /** Triggers the given [param event] in this [Viewport]. This can be used to pass an [InputEvent] between viewports, or to locally apply inputs that were sent over the network or saved to a file.  
+         *  If [param in_local_coords] is `false`, the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [param in_local_coords] is `true`, the event's position is in viewport coordinates.  
+         *  While this method serves a similar purpose as [method Input.parse_input_event], it does not remap the specified [param event] based on project settings like [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse].  
+         *  Calling this method will propagate calls to child nodes for following methods in the given order:  
+         *  - [method Node._input]  
+         *  - [method Control._gui_input] for [Control] nodes  
+         *  - [method Node._shortcut_input]  
+         *  - [method Node._unhandled_key_input]  
+         *  - [method Node._unhandled_input]  
+         *  If an earlier method marks the input as handled via [method set_input_as_handled], any later method in this list will not be called.  
+         *  If none of the methods handle the event and [member physics_object_picking] is `true`, the event is used for physics object picking.  
+         */
+        push_input(event: InputEvent, in_local_coords: boolean = false): void
+        
+        /** Returns the currently active 2D camera. Returns null if there are no active cameras. */
+        get_camera_2d(): Camera2D
+        
+        /** Returns the mouse's position in this [Viewport] using the coordinate system of this [Viewport]. */
+        get_mouse_position(): Vector2
+        
+        /** Moves the mouse pointer to the specified position in this [Viewport] using the coordinate system of this [Viewport].  
+         *      
+         *  **Note:** [method warp_mouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.  
+         */
+        warp_mouse(position: Vector2): void
+        
+        /** Force instantly updating the display based on the current mouse cursor position. This includes updating the mouse cursor shape and sending necessary [signal Control.mouse_entered], [signal CollisionObject2D.mouse_entered], [signal CollisionObject3D.mouse_entered] and [signal Window.mouse_entered] signals and their respective `mouse_exited` counterparts. */
+        update_mouse_cursor_state(): void
+        
+        /** Returns the drag data from the GUI, that was previously returned by [method Control._get_drag_data]. */
+        gui_get_drag_data(): any
+        
+        /** Returns `true` if the viewport is currently performing a drag operation.  
+         *  Alternative to [constant Node.NOTIFICATION_DRAG_BEGIN] and [constant Node.NOTIFICATION_DRAG_END] when you prefer polling the value.  
+         */
+        gui_is_dragging(): boolean
+        
+        /** Returns `true` if the drag operation is successful. */
+        gui_is_drag_successful(): boolean
+        
+        /** Removes the focus from the currently focused [Control] within this viewport. If no [Control] has the focus, does nothing. */
+        gui_release_focus(): void
+        
+        /** Returns the [Control] having the focus within this viewport. If no [Control] has the focus, returns null. */
+        gui_get_focus_owner(): Control
+        _gui_remove_focus_for_window(_unnamed_arg0: Node): void
+        _post_gui_grab_click_focus(): void
+        
+        /** Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible. */
+        set_positional_shadow_atlas_quadrant_subdiv(quadrant: int64, subdiv: Viewport.PositionalShadowAtlasQuadrantSubdiv): void
+        
+        /** Returns the [enum PositionalShadowAtlasQuadrantSubdiv] of the specified quadrant. */
+        get_positional_shadow_atlas_quadrant_subdiv(quadrant: int64): Viewport.PositionalShadowAtlasQuadrantSubdiv
+        
+        /** Stops the input from propagating further down the [SceneTree].  
+         *      
+         *  **Note:** This does not affect the methods in [Input], only the way events are propagated.  
+         */
+        set_input_as_handled(): void
+        
+        /** Returns whether the current [InputEvent] has been handled. Input events are not handled until [method set_input_as_handled] has been called during the lifetime of an [InputEvent].  
+         *  This is usually done as part of input handling methods like [method Node._input], [method Control._gui_input] or others, as well as in corresponding signal handlers.  
+         *  If [member handle_input_locally] is set to `false`, this method will try finding the first parent viewport that is set to handle input locally, and return its value for [method is_input_handled] instead.  
+         */
+        is_input_handled(): boolean
+        
+        /** Returns a list of the visible embedded [Window]s inside the viewport.  
+         *      
+         *  **Note:** [Window]s inside other viewports will not be listed.  
+         */
+        get_embedded_subwindows(): Array
+        
+        /** Set/clear individual bits on the rendering layer mask. This simplifies editing this [Viewport]'s layers. */
+        set_canvas_cull_mask_bit(layer: int64, enable: boolean): void
+        
+        /** Returns an individual bit on the rendering layer mask. */
+        get_canvas_cull_mask_bit(layer: int64): boolean
+        _process_picking(): void
+        
+        /** Returns the first valid [World3D] for this viewport, searching the [member world_3d] property of itself and any Viewport ancestor. */
+        find_world_3d(): World3D
+        
+        /** Returns the currently active 3D camera. */
+        get_camera_3d(): Camera3D
+        
+        /** Disable 3D rendering (but keep 2D rendering). */
+        get disable_3d(): boolean
+        set disable_3d(value: boolean)
+        
+        /** If `true`, the viewport will use the primary XR interface to render XR output. When applicable this can result in a stereoscopic image and the resulting render being output to a headset. */
+        get use_xr(): boolean
+        set use_xr(value: boolean)
+        
+        /** If `true`, the viewport will use a unique copy of the [World3D] defined in [member world_3d]. */
+        get own_world_3d(): boolean
+        set own_world_3d(value: boolean)
+        
+        /** The custom [World3D] which can be used as 3D environment source. */
+        get world_3d(): World3D
+        set world_3d(value: World3D)
+        
+        /** The custom [World2D] which can be used as 2D environment source. */
+        get world_2d(): World2D
+        set world_2d(value: World2D)
+        
+        /** If `true`, the viewport should render its background as transparent. */
+        get transparent_bg(): boolean
+        set transparent_bg(value: boolean)
+        
+        /** If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this is instead done by the first parent viewport that is set to handle input locally.  
+         *  A [SubViewportContainer] will automatically set this property to `false` for the [Viewport] contained inside of it.  
+         *  See also [method set_input_as_handled] and [method is_input_handled].  
+         */
+        get handle_input_locally(): boolean
+        set handle_input_locally(value: boolean)
+        get snap_2d_transforms_to_pixel(): boolean
+        set snap_2d_transforms_to_pixel(value: boolean)
+        get snap_2d_vertices_to_pixel(): boolean
+        set snap_2d_vertices_to_pixel(value: boolean)
+        
+        /** The multisample anti-aliasing mode for 2D/Canvas rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. This has no effect on shader-induced aliasing or texture aliasing. */
+        get msaa_2d(): int64
+        set msaa_2d(value: int64)
+        
+        /** The multisample anti-aliasing mode for 3D rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [member scaling_3d_mode] for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing. */
+        get msaa_3d(): int64
+        set msaa_3d(value: int64)
+        
+        /** Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry. */
+        get screen_space_aa(): int64
+        set screen_space_aa(value: int64)
+        
+        /** Enables Temporal Anti-Aliasing for this viewport. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion.  
+         *      
+         *  **Note:** The implementation is not complete yet, some visual instances such as particles and skinned meshes may show artifacts.  
+         */
+        get use_taa(): boolean
+        set use_taa(value: boolean)
+        
+        /** If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is  *not*  affected by debanding unless the [member Environment.background_mode] is [constant Environment.BG_CANVAS]. See also [member ProjectSettings.rendering/anti_aliasing/quality/use_debanding].  
+         *  In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.  
+         */
+        get use_debanding(): boolean
+        set use_debanding(value: boolean)
+        
+        /** If `true`, [OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this viewport. For the root viewport, [member ProjectSettings.rendering/occlusion_culling/use_occlusion_culling] must be set to `true` instead.  
+         *      
+         *  **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if you actually plan to use it, and think whether your scene can actually benefit from occlusion culling. Large, open scenes with few or no objects blocking the view will generally not benefit much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility ranges ([member GeometryInstance3D.visibility_range_begin] and [member GeometryInstance3D.visibility_range_end]) compared to occlusion culling.  
+         *      
+         *  **Note:** Due to memory constraints, occlusion culling is not supported by default in Web export templates. It can be enabled by compiling custom Web export templates with `module_raycast_enabled=yes`.  
+         */
+        get use_occlusion_culling(): boolean
+        set use_occlusion_culling(value: boolean)
+        
+        /** The automatic LOD bias to use for meshes rendered within the [Viewport] (this is analogous to [member ReflectionProbe.mesh_lod_threshold]). Higher values will use less detailed versions of meshes that have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [member mesh_lod_threshold] to improve performance at the cost of geometry detail.  
+         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/mesh_lod/lod_change/threshold_pixels] project setting.  
+         *      
+         *  **Note:** [member mesh_lod_threshold] does not affect [GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).  
+         */
+        get mesh_lod_threshold(): float64
+        set mesh_lod_threshold(value: float64)
+        
+        /** The overlay mode for test rendered geometry in debug purposes. */
+        get debug_draw(): int64
+        set debug_draw(value: int64)
+        
+        /** If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients.  
+         *      
+         *  **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.  
+         */
+        get use_hdr_2d(): boolean
+        set use_hdr_2d(value: boolean)
+        
+        /** Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.  
+         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/mode] project setting.  
+         */
+        get scaling_3d_mode(): int64
+        set scaling_3d_mode(value: int64)
+        
+        /** Scales the 3D render buffer based on the viewport size uses an image filter specified in [member ProjectSettings.rendering/scaling_3d/mode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [member ProjectSettings.rendering/anti_aliasing/quality/msaa_3d] for multi-sample antialiasing, which is significantly cheaper but only smooths the edges of polygons.  
+         *  When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.  
+         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/scale] project setting.  
+         */
+        get scaling_3d_scale(): float64
+        set scaling_3d_scale(value: float64)
+        
+        /** Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).  
+         *  Enabling temporal antialiasing ([member use_taa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([member screen_space_aa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this value.  
+         *      
+         *  **Note:** If [member scaling_3d_scale] is lower than `1.0` (exclusive), [member texture_mipmap_bias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `log2(scaling_3d_scale) + mipmap_bias`.  
+         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/textures/default_filters/texture_mipmap_bias] project setting.  
+         */
+        get texture_mipmap_bias(): float64
+        set texture_mipmap_bias(value: float64)
+        
+        /** Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference.  
+         *  To control this property on the root viewport, set the [member ProjectSettings.rendering/scaling_3d/fsr_sharpness] project setting.  
+         */
+        get fsr_sharpness(): float64
+        set fsr_sharpness(value: float64)
+        
+        /** The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not support VRS this property is ignored. */
+        get vrs_mode(): int64
+        set vrs_mode(value: int64)
+        
+        /** Texture to use when [member vrs_mode] is set to [constant Viewport.VRS_TEXTURE].  
+         *  The texture  *must*  use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:  
+         *    
+         */
+        get vrs_texture(): Texture2D
+        set vrs_texture(value: Texture2D)
+        
+        /** Sets the default filter mode used by [CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options. */
+        get canvas_item_default_texture_filter(): int64
+        set canvas_item_default_texture_filter(value: int64)
+        
+        /** Sets the default repeat mode used by [CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options. */
+        get canvas_item_default_texture_repeat(): int64
+        set canvas_item_default_texture_repeat(value: int64)
+        
+        /** If `true`, the viewport will process 2D audio streams. */
+        get audio_listener_enable_2d(): boolean
+        set audio_listener_enable_2d(value: boolean)
+        
+        /** If `true`, the viewport will process 3D audio streams. */
+        get audio_listener_enable_3d(): boolean
+        set audio_listener_enable_3d(value: boolean)
+        
+        /** If `true`, the objects rendered by viewport become subjects of mouse picking process.  
+         *      
+         *  **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected in a non-deterministic order, which can be different in each picking process.  
+         */
+        get physics_object_picking(): boolean
+        set physics_object_picking(value: boolean)
+        
+        /** If `true`, objects receive mouse picking events sorted primarily by their [member CanvasItem.z_index] and secondarily by their position in the scene tree. If `false`, the order is undetermined.  
+         *      
+         *  **Note:** This setting is disabled by default because of its potential expensive computational cost.  
+         *      
+         *  **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64 simultaneously pickable objects, it is not guaranteed that the object with the highest [member CanvasItem.z_index] receives the picking event.  
+         */
+        get physics_object_picking_sort(): boolean
+        set physics_object_picking_sort(value: boolean)
+        
+        /** If `true`, the viewport will not receive input events. */
+        get gui_disable_input(): boolean
+        set gui_disable_input(value: boolean)
+        
+        /** If `true`, the GUI controls on the viewport will lay pixel perfectly. */
+        get gui_snap_controls_to_pixels(): boolean
+        set gui_snap_controls_to_pixels(value: boolean)
+        
+        /** If `true`, sub-windows (popups and dialogs) will be embedded inside application window as control-like nodes. If `false`, they will appear as separate windows handled by the operating system. */
+        get gui_embed_subwindows(): boolean
+        set gui_embed_subwindows(value: boolean)
+        get sdf_oversize(): int64
+        set sdf_oversize(value: int64)
+        get sdf_scale(): int64
+        set sdf_scale(value: int64)
+        
+        /** The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the nearest power of 2.  
+         *      
+         *  **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).  
+         */
+        get positional_shadow_atlas_size(): int64
+        set positional_shadow_atlas_size(value: int64)
+        
+        /** Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices. */
+        get positional_shadow_atlas_16_bits(): boolean
+        set positional_shadow_atlas_16_bits(value: boolean)
+        
+        /** The subdivision amount of the first quadrant on the shadow atlas. */
+        get positional_shadow_atlas_quad_0(): int64
+        set positional_shadow_atlas_quad_0(value: int64)
+        
+        /** The subdivision amount of the second quadrant on the shadow atlas. */
+        get positional_shadow_atlas_quad_1(): int64
+        set positional_shadow_atlas_quad_1(value: int64)
+        
+        /** The subdivision amount of the third quadrant on the shadow atlas. */
+        get positional_shadow_atlas_quad_2(): int64
+        set positional_shadow_atlas_quad_2(value: int64)
+        
+        /** The subdivision amount of the fourth quadrant on the shadow atlas. */
+        get positional_shadow_atlas_quad_3(): int64
+        set positional_shadow_atlas_quad_3(value: int64)
+        
+        /** The canvas transform of the viewport, useful for changing the on-screen positions of all child [CanvasItem]s. This is relative to the global canvas transform of the viewport. */
+        get canvas_transform(): Transform2D
+        set canvas_transform(value: Transform2D)
+        
+        /** The global canvas transform of the viewport. The canvas transform is relative to this. */
+        get global_canvas_transform(): Transform2D
+        set global_canvas_transform(value: Transform2D)
+        
+        /** The rendering layers in which this [Viewport] renders [CanvasItem] nodes. */
+        get canvas_cull_mask(): int64
+        set canvas_cull_mask(value: int64)
+        
+        /** Emitted when the size of the viewport is changed, whether by resizing of window, or some other means. */
+        readonly size_changed: Signal0
+        
+        /** Emitted when a Control node grabs keyboard focus. */
+        readonly gui_focus_changed: Signal1<Control>
+    }
+    class ViewportNavigationControl extends Control {
+        constructor(identifier?: any)
+    }
+    class ViewportRotationControl extends Control {
+        constructor(identifier?: any)
+    }
+    /** Provides the content of a [Viewport] as a dynamic texture.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_viewporttexture.html  
+     */
+    class ViewportTexture extends Texture2D {
+        constructor(identifier?: any)
+        /** The path to the [Viewport] node to display. This is relative to the scene root, not to the node that uses the texture.  
+         *      
+         *  **Note:** In the editor, this path is automatically updated when the target viewport or one of its ancestors is renamed or moved. At runtime, the path may not be able to automatically update due to the inability to determine the scene root.  
+         */
+        get viewport_path(): NodePath
+        set viewport_path(value: NodePath | string)
+    }
+    namespace VisibleOnScreenEnabler2D {
+        enum EnableMode {
+            /** Corresponds to [constant Node.PROCESS_MODE_INHERIT]. */
+            ENABLE_MODE_INHERIT = 0,
+            
+            /** Corresponds to [constant Node.PROCESS_MODE_ALWAYS]. */
+            ENABLE_MODE_ALWAYS = 1,
+            
+            /** Corresponds to [constant Node.PROCESS_MODE_WHEN_PAUSED]. */
+            ENABLE_MODE_WHEN_PAUSED = 2,
+        }
+    }
+    /** A rectangular region of 2D space that, when visible on screen, enables a target node.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visibleonscreenenabler2d.html  
+     */
+    class VisibleOnScreenEnabler2D extends VisibleOnScreenNotifier2D {
+        constructor(identifier?: any)
+        /** Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED]. */
+        get enable_mode(): int64
+        set enable_mode(value: int64)
+        
+        /** The path to the target node, relative to the [VisibleOnScreenEnabler2D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler2D] is inside the scene tree) and every time the [VisibleOnScreenEnabler2D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
+        get enable_node_path(): NodePath
+        set enable_node_path(value: NodePath | string)
+    }
+    namespace VisibleOnScreenEnabler3D {
+        enum EnableMode {
+            /** Corresponds to [constant Node.PROCESS_MODE_INHERIT]. */
+            ENABLE_MODE_INHERIT = 0,
+            
+            /** Corresponds to [constant Node.PROCESS_MODE_ALWAYS]. */
+            ENABLE_MODE_ALWAYS = 1,
+            
+            /** Corresponds to [constant Node.PROCESS_MODE_WHEN_PAUSED]. */
+            ENABLE_MODE_WHEN_PAUSED = 2,
+        }
+    }
+    /** A box-shaped region of 3D space that, when visible on screen, enables a target node.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visibleonscreenenabler3d.html  
+     */
+    class VisibleOnScreenEnabler3D extends VisibleOnScreenNotifier3D {
+        constructor(identifier?: any)
+        /** Determines how the target node is enabled. Corresponds to [enum Node.ProcessMode]. When the node is disabled, it always uses [constant Node.PROCESS_MODE_DISABLED]. */
+        get enable_mode(): int64
+        set enable_mode(value: int64)
+        
+        /** The path to the target node, relative to the [VisibleOnScreenEnabler3D]. The target node is cached; it's only assigned when setting this property (if the [VisibleOnScreenEnabler3D] is inside the scene tree) and every time the [VisibleOnScreenEnabler3D] enters the scene tree. If the path is invalid, an error will be printed in the editor and no node will be affected. */
+        get enable_node_path(): NodePath
+        set enable_node_path(value: NodePath | string)
+    }
+    /** A rectangular region of 2D space that detects whether it is visible on screen.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visibleonscreennotifier2d.html  
+     */
+    class VisibleOnScreenNotifier2D extends Node2D {
+        constructor(identifier?: any)
+        /** If `true`, the bounding rectangle is on the screen.  
+         *      
+         *  **Note:** It takes one frame for the [VisibleOnScreenNotifier2D]'s visibility to be determined once added to the scene tree, so this method will always return `false` right after it is instantiated, before the draw pass.  
+         */
+        is_on_screen(): boolean
+        
+        /** The VisibleOnScreenNotifier2D's bounding rectangle. */
+        get rect(): Rect2
+        set rect(value: Rect2)
+        
+        /** Emitted when the VisibleOnScreenNotifier2D enters the screen. */
+        readonly screen_entered: Signal0
+        
+        /** Emitted when the VisibleOnScreenNotifier2D exits the screen. */
+        readonly screen_exited: Signal0
+    }
+    /** A box-shaped region of 3D space that detects whether it is visible on screen.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visibleonscreennotifier3d.html  
+     */
+    class VisibleOnScreenNotifier3D extends VisualInstance3D {
+        constructor(identifier?: any)
+        /** Returns `true` if the bounding box is on the screen.  
+         *      
+         *  **Note:** It takes one frame for the [VisibleOnScreenNotifier3D]'s visibility to be assessed once added to the scene tree, so this method will always return `false` right after it is instantiated.  
+         */
+        is_on_screen(): boolean
+        
+        /** The [VisibleOnScreenNotifier3D]'s bounding box. */
+        get aabb(): AABB
+        set aabb(value: AABB)
+        
+        /** Emitted when the [VisibleOnScreenNotifier3D] enters the screen. */
+        readonly screen_entered: Signal0
+        
+        /** Emitted when the [VisibleOnScreenNotifier3D] exits the screen. */
+        readonly screen_exited: Signal0
+    }
+    class VisibleOnScreenNotifier3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    /** Parent of all visual 3D nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualinstance3d.html  
+     */
+    class VisualInstance3D extends Node3D {
+        constructor(identifier?: any)
+        /* gdvirtual */ _get_aabb(): AABB
+        
+        /** Sets the resource that is instantiated by this [VisualInstance3D], which changes how the engine handles the [VisualInstance3D] under the hood. Equivalent to [method RenderingServer.instance_set_base]. */
+        set_base(base: RID): void
+        
+        /** Returns the RID of the resource associated with this [VisualInstance3D]. For example, if the Node is a [MeshInstance3D], this will return the RID of the associated [Mesh]. */
+        get_base(): RID
+        
+        /** Returns the RID of this instance. This RID is the same as the RID returned by [method RenderingServer.instance_create]. This RID is needed if you want to call [RenderingServer] functions directly on this [VisualInstance3D]. */
+        get_instance(): RID
+        
+        /** Based on [param value], enables or disables the specified layer in the [member layers], given a [param layer_number] between 1 and 20. */
+        set_layer_mask_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member layers] is enabled, given a [param layer_number] between 1 and 20. */
+        get_layer_mask_value(layer_number: int64): boolean
+        
+        /** Returns the [AABB] (also known as the bounding box) for this [VisualInstance3D]. */
+        get_aabb(): AABB
+        
+        /** The render layer(s) this [VisualInstance3D] is drawn on.  
+         *  This object will only be visible for [Camera3D]s whose cull mask includes any of the render layers this [VisualInstance3D] is set to.  
+         *  For [Light3D]s, this can be used to control which [VisualInstance3D]s are affected by a specific light. For [GPUParticles3D], this can be used to control which particles are effected by a specific attractor. For [Decal]s, this can be used to control which [VisualInstance3D]s are affected by a specific decal.  
+         *  To adjust [member layers] more easily using a script, use [method get_layer_mask_value] and [method set_layer_mask_value].  
+         *      
+         *  **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [member GeometryInstance3D.gi_mode] to [constant GeometryInstance3D.GI_MODE_DISABLED] for meshes and [member Light3D.light_bake_mode] to [constant Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.  
+         */
+        get layers(): int64
+        set layers(value: int64)
+        
+        /** The amount by which the depth of this [VisualInstance3D] will be adjusted when sorting by depth. Uses the same units as the engine (which are typically meters). Adjusting it to a higher value will make the [VisualInstance3D] reliably draw on top of other [VisualInstance3D]s that are otherwise positioned at the same spot. To ensure it always draws on top of other objects around it (not positioned at the same spot), set the value to be greater than the distance between this [VisualInstance3D] and the other nearby [VisualInstance3D]s. */
+        get sorting_offset(): float64
+        set sorting_offset(value: float64)
+        
+        /** If `true`, the object is sorted based on the [AABB] center. The object will be sorted based on the global position otherwise.  
+         *  The [AABB] center based sorting is generally more accurate for 3D models. The position based sorting instead allows to better control the drawing order when working with [GPUParticles3D] and [CPUParticles3D].  
+         */
+        get sorting_use_aabb_center(): boolean
+        set sorting_use_aabb_center(value: boolean)
+    }
+    namespace VisualShader {
+        enum Type {
+            /** A vertex shader, operating on vertices. */
+            TYPE_VERTEX = 0,
+            
+            /** A fragment shader, operating on fragments (pixels). */
+            TYPE_FRAGMENT = 1,
+            
+            /** A shader for light calculations. */
+            TYPE_LIGHT = 2,
+            
+            /** A function for the "start" stage of particle shader. */
+            TYPE_START = 3,
+            
+            /** A function for the "process" stage of particle shader. */
+            TYPE_PROCESS = 4,
+            
+            /** A function for the "collide" stage (particle collision handler) of particle shader. */
+            TYPE_COLLIDE = 5,
+            
+            /** A function for the "start" stage of particle shader, with customized output. */
+            TYPE_START_CUSTOM = 6,
+            
+            /** A function for the "process" stage of particle shader, with customized output. */
+            TYPE_PROCESS_CUSTOM = 7,
+            
+            /** A shader for 3D environment's sky. */
+            TYPE_SKY = 8,
+            
+            /** A compute shader that runs for each froxel of the volumetric fog map. */
+            TYPE_FOG = 9,
+            
+            /** Represents the size of the [enum Type] enum. */
+            TYPE_MAX = 10,
+        }
+        enum VaryingMode {
+            /** Varying is passed from `Vertex` function to `Fragment` and `Light` functions. */
+            VARYING_MODE_VERTEX_TO_FRAG_LIGHT = 0,
+            
+            /** Varying is passed from `Fragment` function to `Light` function. */
+            VARYING_MODE_FRAG_TO_LIGHT = 1,
+            
+            /** Represents the size of the [enum VaryingMode] enum. */
+            VARYING_MODE_MAX = 2,
+        }
+        enum VaryingType {
+            /** Varying is of type [float]. */
+            VARYING_TYPE_FLOAT = 0,
+            
+            /** Varying is of type [int]. */
+            VARYING_TYPE_INT = 1,
+            
+            /** Varying is of type unsigned [int]. */
+            VARYING_TYPE_UINT = 2,
+            
+            /** Varying is of type [Vector2]. */
+            VARYING_TYPE_VECTOR_2D = 3,
+            
+            /** Varying is of type [Vector3]. */
+            VARYING_TYPE_VECTOR_3D = 4,
+            
+            /** Varying is of type [Vector4]. */
+            VARYING_TYPE_VECTOR_4D = 5,
+            
+            /** Varying is of type [bool]. */
+            VARYING_TYPE_BOOLEAN = 6,
+            
+            /** Varying is of type [Transform3D]. */
+            VARYING_TYPE_TRANSFORM = 7,
+            
+            /** Represents the size of the [enum VaryingType] enum. */
+            VARYING_TYPE_MAX = 8,
+        }
+    }
+    /** A custom shader program with a visual editor.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshader.html  
+     */
+    class VisualShader extends Shader {
+        /** Denotes invalid [VisualShader] node. */
+        static readonly NODE_ID_INVALID = -1
+        
+        /** Denotes output node of [VisualShader]. */
+        static readonly NODE_ID_OUTPUT = 0
+        constructor(identifier?: any)
+        
+        /** Sets the mode of this shader. */
+        set_mode(mode: Shader.Mode): void
+        
+        /** Adds the specified [param node] to the shader. */
+        add_node(type: VisualShader.Type, node: VisualShaderNode, position: Vector2, id: int64): void
+        
+        /** Returns the shader node instance with specified [param type] and [param id]. */
+        get_node(type: VisualShader.Type, id: int64): VisualShaderNode
+        
+        /** Sets the position of the specified node. */
+        set_node_position(type: VisualShader.Type, id: int64, position: Vector2): void
+        
+        /** Returns the position of the specified node within the shader graph. */
+        get_node_position(type: VisualShader.Type, id: int64): Vector2
+        
+        /** Returns the list of all nodes in the shader with the specified type. */
+        get_node_list(type: VisualShader.Type): PackedInt32Array
+        
+        /** Returns next valid node ID that can be added to the shader graph. */
+        get_valid_node_id(type: VisualShader.Type): int64
+        
+        /** Removes the specified node from the shader. */
+        remove_node(type: VisualShader.Type, id: int64): void
+        
+        /** Replaces the specified node with a node of new class type. */
+        replace_node(type: VisualShader.Type, id: int64, new_class: StringName): void
+        
+        /** Returns `true` if the specified node and port connection exist. */
+        is_node_connection(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): boolean
+        
+        /** Returns `true` if the specified nodes and ports can be connected together. */
+        can_connect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): boolean
+        
+        /** Connects the specified nodes and ports. */
+        connect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): Error
+        
+        /** Connects the specified nodes and ports. */
+        disconnect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): void
+        
+        /** Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly. */
+        connect_nodes_forced(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): void
+        
+        /** Returns the list of connected nodes with the specified type. */
+        get_node_connections(type: VisualShader.Type): Array
+        
+        /** Adds a new varying value node to the shader. */
+        add_varying(name: string, mode: VisualShader.VaryingMode, type: VisualShader.VaryingType): void
+        
+        /** Removes a varying value node with the given [param name]. Prints an error if a node with this name is not found. */
+        remove_varying(name: string): void
+        
+        /** Returns `true` if the shader has a varying with the given [param name]. */
+        has_varying(name: string): boolean
+        _update_shader(): void
+        
+        /** The offset vector of the whole graph. */
+        get graph_offset(): Vector2
+        set graph_offset(value: Vector2)
+    }
+    class VisualShaderConversionPlugin extends EditorResourceConversionPlugin {
+        constructor(identifier?: any)
+    }
+    namespace VisualShaderNode {
+        enum PortType {
+            /** Floating-point scalar. Translated to [code skip-lint]float` type in shader code. */
+            PORT_TYPE_SCALAR = 0,
+            
+            /** Integer scalar. Translated to [code skip-lint]int` type in shader code. */
+            PORT_TYPE_SCALAR_INT = 1,
+            
+            /** Unsigned integer scalar. Translated to [code skip-lint]uint` type in shader code. */
+            PORT_TYPE_SCALAR_UINT = 2,
+            
+            /** 2D vector of floating-point values. Translated to [code skip-lint]vec2` type in shader code. */
+            PORT_TYPE_VECTOR_2D = 3,
+            
+            /** 3D vector of floating-point values. Translated to [code skip-lint]vec3` type in shader code. */
+            PORT_TYPE_VECTOR_3D = 4,
+            
+            /** 4D vector of floating-point values. Translated to [code skip-lint]vec4` type in shader code. */
+            PORT_TYPE_VECTOR_4D = 5,
+            
+            /** Boolean type. Translated to [code skip-lint]bool` type in shader code. */
+            PORT_TYPE_BOOLEAN = 6,
+            
+            /** Transform type. Translated to [code skip-lint]mat4` type in shader code. */
+            PORT_TYPE_TRANSFORM = 7,
+            
+            /** Sampler type. Translated to reference of sampler uniform in shader code. Can only be used for input ports in non-uniform nodes. */
+            PORT_TYPE_SAMPLER = 8,
+            
+            /** Represents the size of the [enum PortType] enum. */
+            PORT_TYPE_MAX = 9,
+        }
+    }
+    /** Base class for [VisualShader] nodes. Not related to scene nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernode.html  
+     */
+    class VisualShaderNode extends Resource {
+        constructor(identifier?: any)
+        /** Returns the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph. */
+        get_default_input_port(type: VisualShaderNode.PortType): int64
+        _set_output_port_expanded(port: int64, _unnamed_arg1: boolean): void
+        _is_output_port_expanded(_unnamed_arg0: int64): boolean
+        
+        /** Sets the default [param value] for the selected input [param port]. */
+        set_input_port_default_value(port: int64, value: any, prev_value: any = <any> {}): void
+        
+        /** Returns the default value of the input [param port]. */
+        get_input_port_default_value(port: int64): any
+        
+        /** Removes the default value of the input [param port]. */
+        remove_input_port_default_value(port: int64): void
+        
+        /** Clears the default input ports value. */
+        clear_default_input_values(): void
+        
+        /** Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview. */
+        get output_port_for_preview(): int64
+        set output_port_for_preview(value: int64)
+        get default_input_values(): Array
+        set default_input_values(value: Array)
+        get expanded_output_ports(): Array
+        set expanded_output_ports(value: Array)
+    }
+    namespace VisualShaderNodeBillboard {
+        enum BillboardType {
+            /** Billboarding is disabled and the node does nothing. */
+            BILLBOARD_TYPE_DISABLED = 0,
+            
+            /** A standard billboarding algorithm is enabled. */
+            BILLBOARD_TYPE_ENABLED = 1,
+            
+            /** A billboarding algorithm to rotate around Y-axis is enabled. */
+            BILLBOARD_TYPE_FIXED_Y = 2,
+            
+            /** A billboarding algorithm designed to use on particles is enabled. */
+            BILLBOARD_TYPE_PARTICLES = 3,
+            
+            /** Represents the size of the [enum BillboardType] enum. */
+            BILLBOARD_TYPE_MAX = 4,
+        }
+    }
+    /** A node that controls how the object faces the camera to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebillboard.html  
+     */
+    class VisualShaderNodeBillboard extends VisualShaderNode {
+        constructor(identifier?: any)
+        /** Controls how the object faces the camera. See [enum BillboardType]. */
+        get billboard_type(): int64
+        set billboard_type(value: int64)
+        
+        /** If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. */
+        get keep_scale(): boolean
+        set keep_scale(value: boolean)
+    }
+    /** A boolean constant to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebooleanconstant.html  
+     */
+    class VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
+        constructor(identifier?: any)
+        /** A boolean constant which represents a state of this node. */
+        get constant(): boolean
+        set constant(value: boolean)
+    }
+    /** A boolean parameter to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodebooleanparameter.html  
+     */
+    class VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
+        constructor(identifier?: any)
+        /** Enables usage of the [member default_value]. */
+        get default_value_enabled(): boolean
+        set default_value_enabled(value: boolean)
+        
+        /** A default value to be assigned within the shader. */
+        get default_value(): boolean
+        set default_value(value: boolean)
+    }
+    namespace VisualShaderNodeClamp {
+        enum OpType {
+            /** A floating-point scalar. */
+            OP_TYPE_FLOAT = 0,
+            
+            /** An integer scalar. */
+            OP_TYPE_INT = 1,
+            
+            /** An unsigned integer scalar. */
+            OP_TYPE_UINT = 2,
+            
+            /** A 2D vector type. */
+            OP_TYPE_VECTOR_2D = 3,
+            
+            /** A 3D vector type. */
+            OP_TYPE_VECTOR_3D = 4,
+            
+            /** A 4D vector type. */
+            OP_TYPE_VECTOR_4D = 5,
+            
+            /** Represents the size of the [enum OpType] enum. */
+            OP_TYPE_MAX = 6,
+        }
+    }
+    /** Clamps a value within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodeclamp.html  
+     */
+    class VisualShaderNodeClamp extends VisualShaderNode {
+        constructor(identifier?: any)
+        /** A type of operands and returned value. */
+        get op_type(): int64
+        set op_type(value: int64)
+    }
+    /** A [Color] constant to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorconstant.html  
+     */
+    class VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
+        constructor(identifier?: any)
+        /** A [Color] constant which represents a state of this node. */
+        get constant(): Color
+        set constant(value: Color)
+    }
+    namespace VisualShaderNodeColorFunc {
+        enum Function {
+            /** Converts the color to grayscale using the following formula:  
+             *    
+             */
+            FUNC_GRAYSCALE = 0,
+            
+            /** Converts HSV vector to RGB equivalent. */
+            FUNC_HSV2RGB = 1,
+            
+            /** Converts RGB vector to HSV equivalent. */
+            FUNC_RGB2HSV = 2,
+            
+            /** Applies sepia tone effect using the following formula:  
+             *    
+             */
+            FUNC_SEPIA = 3,
+            
+            /** Represents the size of the [enum Function] enum. */
+            FUNC_MAX = 4,
+        }
+    }
+    /** A [Color] function to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorfunc.html  
+     */
+    class VisualShaderNodeColorFunc extends VisualShaderNode {
+        constructor(identifier?: any)
+        /** A function to be applied to the input color. See [enum Function] for options. */
+        get function(): int64
+        set function(value: int64)
+    }
+    namespace VisualShaderNodeColorOp {
+        enum Operator {
+            /** Produce a screen effect with the following formula:  
+             *    
+             */
+            OP_SCREEN = 0,
+            
+            /** Produce a difference effect with the following formula:  
+             *    
+             */
+            OP_DIFFERENCE = 1,
+            
+            /** Produce a darken effect with the following formula:  
+             *    
+             */
+            OP_DARKEN = 2,
+            
+            /** Produce a lighten effect with the following formula:  
+             *    
+             */
+            OP_LIGHTEN = 3,
+            
+            /** Produce an overlay effect with the following formula:  
+             *    
+             */
+            OP_OVERLAY = 4,
+            
+            /** Produce a dodge effect with the following formula:  
+             *    
+             */
+            OP_DODGE = 5,
+            
+            /** Produce a burn effect with the following formula:  
+             *    
+             */
+            OP_BURN = 6,
+            
+            /** Produce a soft light effect with the following formula:  
+             *    
+             */
+            OP_SOFT_LIGHT = 7,
+            
+            /** Produce a hard light effect with the following formula:  
+             *    
+             */
+            OP_HARD_LIGHT = 8,
+            
+            /** Represents the size of the [enum Operator] enum. */
+            OP_MAX = 9,
+        }
+    }
+    /** A [Color] operator to be used within the visual shader graph.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorop.html  
+     */
+    class VisualShaderNodeColorOp extends VisualShaderNode {
+        constructor(identifier?: any)
+        /** An operator to be applied to the inputs. See [enum Operator] for options. */
+        get operator(): int64
+        set operator(value: int64)
+    }
     /** A [Color] parameter to be used within the visual shader graph.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_visualshadernodecolorparameter.html  
@@ -3436,6 +5214,53 @@ declare module "godot" {
          */
         get exclusive(): boolean
         set exclusive(value: boolean)
+        
+        /** If `true`, the window can't be resized. Minimize and maximize buttons are disabled. */
+        get unresizable(): boolean
+        set unresizable(value: boolean)
+        
+        /** If `true`, the window will have no borders. */
+        get borderless(): boolean
+        set borderless(value: boolean)
+        
+        /** If `true`, the window will be on top of all other windows. Does not work if [member transient] is enabled. */
+        get always_on_top(): boolean
+        set always_on_top(value: boolean)
+        
+        /** If `true`, the [Window]'s background can be transparent. This is best used with embedded windows.  
+         *      
+         *  **Note:** Transparency support is implemented on Linux, macOS and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.  
+         *      
+         *  **Note:** This property has no effect if either [member ProjectSettings.display/window/per_pixel_transparency/allowed], or the window's [member Viewport.transparent_bg] is set to `false`.  
+         */
+        get transparent(): boolean
+        set transparent(value: boolean)
+        
+        /** If `true`, the [Window] can't be focused nor interacted with. It can still be visible. */
+        get unfocusable(): boolean
+        set unfocusable(value: boolean)
+        
+        /** If `true`, the [Window] will be considered a popup. Popups are sub-windows that don't show as separate windows in system's window manager's window list and will send close request when anything is clicked outside of them (unless [member exclusive] is enabled). */
+        get popup_window(): boolean
+        set popup_window(value: boolean)
+        
+        /** If `true`, the [Window] contents is expanded to the full size of the window, window title bar is transparent.  
+         *      
+         *  **Note:** This property is implemented only on macOS.  
+         *      
+         *  **Note:** This property only works with native windows.  
+         */
+        get extend_to_title(): boolean
+        set extend_to_title(value: boolean)
+        
+        /** If `true`, all mouse events will be passed to the underlying window of the same application. See also [member mouse_passthrough_polygon].  
+         *      
+         *  **Note:** This property is implemented on Linux (X11), macOS and Windows.  
+         *      
+         *  **Note:** This property only works with native windows.  
+         */
+        get mouse_passthrough(): boolean
+        set mouse_passthrough(value: boolean)
         
         /** If non-zero, the [Window] can't be resized to be smaller than this size.  
          *      
@@ -7557,1695 +9382,5 @@ declare module "godot" {
         encode_var(byte_offset: int64, value: any, allow_objects: boolean = false): int64
         static EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
         static NOT_EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
-    }
-    /** A packed array of 32-bit integers.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedint32array.html  
-     */
-    class PackedInt32Array {
-        constructor()
-        constructor(from: PackedInt32Array | int32[])
-        constructor(from: Array)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the integer at the given index. */
-        set(index: int64, value: int64): void
-        
-        /** Appends a value to the array. */
-        push_back(value: int64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: int64): boolean
-        
-        /** Appends a [PackedInt32Array] at the end of this array. */
-        append_array(array: PackedInt32Array | int32[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new integer at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: int64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: int64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: int64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedInt32Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedInt32Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedInt32Array
-        
-        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 4 bytes.  
-         *  The size of the new array will be `int32_array.size() * 4`.  
-         */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: int64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedInt32Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: int64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: int64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: int64): int64
-        static EQUAL(left: PackedInt32Array | int32[], right: PackedInt32Array | int32[]): boolean
-        static NOT_EQUAL(left: PackedInt32Array | int32[], right: PackedInt32Array | int32[]): boolean
-    }
-    /** A packed array of 64-bit integers.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedint64array.html  
-     */
-    class PackedInt64Array {
-        constructor()
-        constructor(from: PackedInt64Array | int64[])
-        constructor(from: Array)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the integer at the given index. */
-        set(index: int64, value: int64): void
-        
-        /** Appends a value to the array. */
-        push_back(value: int64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: int64): boolean
-        
-        /** Appends a [PackedInt64Array] at the end of this array. */
-        append_array(array: PackedInt64Array | int64[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new integer at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: int64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: int64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: int64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedInt64Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedInt64Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedInt64Array
-        
-        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 8 bytes.  
-         *  The size of the new array will be `int64_array.size() * 8`.  
-         */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: int64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedInt64Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: int64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: int64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: int64): int64
-        static EQUAL(left: PackedInt64Array | int64[], right: PackedInt64Array | int64[]): boolean
-        static NOT_EQUAL(left: PackedInt64Array | int64[], right: PackedInt64Array | int64[]): boolean
-    }
-    /** A packed array of 32-bit floating-point values.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedfloat32array.html  
-     */
-    class PackedFloat32Array {
-        constructor()
-        constructor(from: PackedFloat32Array | float32[])
-        constructor(from: Array)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the float at the given index. */
-        set(index: int64, value: float64): void
-        
-        /** Appends an element at the end of the array. */
-        push_back(value: float64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: float64): boolean
-        
-        /** Appends a [PackedFloat32Array] at the end of this array. */
-        append_array(array: PackedFloat32Array | float32[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: float64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: float64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: float64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedFloat32Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedFloat32Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedFloat32Array
-        
-        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 4 bytes.  
-         *  The size of the new array will be `float32_array.size() * 4`.  
-         */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: float64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedFloat32Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: float64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: float64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: float64): int64
-        static EQUAL(left: PackedFloat32Array | float32[], right: PackedFloat32Array | float32[]): boolean
-        static NOT_EQUAL(left: PackedFloat32Array | float32[], right: PackedFloat32Array | float32[]): boolean
-    }
-    /** A packed array of 64-bit floating-point values.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedfloat64array.html  
-     */
-    class PackedFloat64Array {
-        constructor()
-        constructor(from: PackedFloat64Array | float64[])
-        constructor(from: Array)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the float at the given index. */
-        set(index: int64, value: float64): void
-        
-        /** Appends an element at the end of the array. */
-        push_back(value: float64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: float64): boolean
-        
-        /** Appends a [PackedFloat64Array] at the end of this array. */
-        append_array(array: PackedFloat64Array | float64[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: float64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: float64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: float64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedFloat64Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedFloat64Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedFloat64Array
-        
-        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 8 bytes.  
-         *  The size of the new array will be `float64_array.size() * 8`.  
-         */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: float64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedFloat64Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: float64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: float64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: float64): int64
-        static EQUAL(left: PackedFloat64Array | float64[], right: PackedFloat64Array | float64[]): boolean
-        static NOT_EQUAL(left: PackedFloat64Array | float64[], right: PackedFloat64Array | float64[]): boolean
-    }
-    /** A packed array of [String]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedstringarray.html  
-     */
-    class PackedStringArray {
-        constructor()
-        constructor(from: PackedStringArray | string[])
-        constructor(from: Array)
-        set_indexed(index: number, value: string)
-        get_indexed(index: number): string
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [String] at the given index. */
-        set(index: int64, value: string): void
-        
-        /** Appends a string element at end of the array. */
-        push_back(value: string): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: string): boolean
-        
-        /** Appends a [PackedStringArray] at the end of this array. */
-        append_array(array: PackedStringArray | string[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: string): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: string): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: string): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedStringArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedStringArray].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedStringArray
-        
-        /** Returns a [PackedByteArray] with each string encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: string, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedStringArray
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: string, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: string, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: string): int64
-        static EQUAL(left: PackedStringArray | string[], right: PackedStringArray | string[]): boolean
-        static NOT_EQUAL(left: PackedStringArray | string[], right: PackedStringArray | string[]): boolean
-    }
-    /** A packed array of [Vector2]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedvector2array.html  
-     */
-    class PackedVector2Array {
-        constructor()
-        constructor(from: PackedVector2Array | Vector2[])
-        constructor(from: Array)
-        set_indexed(index: number, value: Vector2)
-        get_indexed(index: number): Vector2
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [Vector2] at the given index. */
-        set(index: int64, value: Vector2): void
-        
-        /** Inserts a [Vector2] at the end. */
-        push_back(value: Vector2): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: Vector2): boolean
-        
-        /** Appends a [PackedVector2Array] at the end of this array. */
-        append_array(array: PackedVector2Array | Vector2[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: Vector2): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: Vector2): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: Vector2): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedVector2Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedVector2Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedVector2Array
-        
-        /** Returns a [PackedByteArray] with each vector encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: Vector2, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedVector2Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: Vector2, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: Vector2, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: Vector2): int64
-        static EQUAL(left: PackedVector2Array | Vector2[], right: PackedVector2Array | Vector2[]): boolean
-        static NOT_EQUAL(left: PackedVector2Array | Vector2[], right: PackedVector2Array | Vector2[]): boolean
-    }
-    /** A packed array of [Vector3]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedvector3array.html  
-     */
-    class PackedVector3Array {
-        constructor()
-        constructor(from: PackedVector3Array | Vector3[])
-        constructor(from: Array)
-        set_indexed(index: number, value: Vector3)
-        get_indexed(index: number): Vector3
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [Vector3] at the given index. */
-        set(index: int64, value: Vector3): void
-        
-        /** Inserts a [Vector3] at the end. */
-        push_back(value: Vector3): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: Vector3): boolean
-        
-        /** Appends a [PackedVector3Array] at the end of this array. */
-        append_array(array: PackedVector3Array | Vector3[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: Vector3): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: Vector3): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: Vector3): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedVector3Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedVector3Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedVector3Array
-        
-        /** Returns a [PackedByteArray] with each vector encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: Vector3, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedVector3Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: Vector3, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: Vector3, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: Vector3): int64
-        static EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
-        static NOT_EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
-    }
-    /** A packed array of [Color]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedcolorarray.html  
-     */
-    class PackedColorArray {
-        constructor()
-        constructor(from: PackedColorArray | Color[])
-        constructor(from: Array)
-        set_indexed(index: number, value: Color)
-        get_indexed(index: number): Color
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [Color] at the given index. */
-        set(index: int64, value: Color): void
-        
-        /** Appends a value to the array. */
-        push_back(value: Color): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: Color): boolean
-        
-        /** Appends a [PackedColorArray] at the end of this array. */
-        append_array(array: PackedColorArray | Color[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: Color): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: Color): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: Color): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedColorArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedColorArray].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedColorArray
-        
-        /** Returns a [PackedByteArray] with each color encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: Color, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedColorArray
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: Color, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: Color, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: Color): int64
-        static EQUAL(left: PackedColorArray | Color[], right: PackedColorArray | Color[]): boolean
-        static NOT_EQUAL(left: PackedColorArray | Color[], right: PackedColorArray | Color[]): boolean
-    }
-    enum Side {
-        /** Left side, usually used for [Control] or [StyleBox]-derived classes. */
-        SIDE_LEFT = 0,
-        
-        /** Top side, usually used for [Control] or [StyleBox]-derived classes. */
-        SIDE_TOP = 1,
-        
-        /** Right side, usually used for [Control] or [StyleBox]-derived classes. */
-        SIDE_RIGHT = 2,
-        
-        /** Bottom side, usually used for [Control] or [StyleBox]-derived classes. */
-        SIDE_BOTTOM = 3,
-    }
-    enum Corner {
-        /** Top-left corner. */
-        CORNER_TOP_LEFT = 0,
-        
-        /** Top-right corner. */
-        CORNER_TOP_RIGHT = 1,
-        
-        /** Bottom-right corner. */
-        CORNER_BOTTOM_RIGHT = 2,
-        
-        /** Bottom-left corner. */
-        CORNER_BOTTOM_LEFT = 3,
-    }
-    enum Orientation {
-        /** General vertical alignment, usually used for [Separator], [ScrollBar], [Slider], etc. */
-        VERTICAL = 1,
-        
-        /** General horizontal alignment, usually used for [Separator], [ScrollBar], [Slider], etc. */
-        HORIZONTAL = 0,
-    }
-    enum ClockDirection {
-        /** Clockwise rotation. Used by some methods (e.g. [method Image.rotate_90]). */
-        CLOCKWISE = 0,
-        
-        /** Counter-clockwise rotation. Used by some methods (e.g. [method Image.rotate_90]). */
-        COUNTERCLOCKWISE = 1,
-    }
-    enum HorizontalAlignment {
-        /** Horizontal left alignment, usually for text-derived classes. */
-        HORIZONTAL_ALIGNMENT_LEFT = 0,
-        
-        /** Horizontal center alignment, usually for text-derived classes. */
-        HORIZONTAL_ALIGNMENT_CENTER = 1,
-        
-        /** Horizontal right alignment, usually for text-derived classes. */
-        HORIZONTAL_ALIGNMENT_RIGHT = 2,
-        
-        /** Expand row to fit width, usually for text-derived classes. */
-        HORIZONTAL_ALIGNMENT_FILL = 3,
-    }
-    enum VerticalAlignment {
-        /** Vertical top alignment, usually for text-derived classes. */
-        VERTICAL_ALIGNMENT_TOP = 0,
-        
-        /** Vertical center alignment, usually for text-derived classes. */
-        VERTICAL_ALIGNMENT_CENTER = 1,
-        
-        /** Vertical bottom alignment, usually for text-derived classes. */
-        VERTICAL_ALIGNMENT_BOTTOM = 2,
-        
-        /** Expand rows to fit height, usually for text-derived classes. */
-        VERTICAL_ALIGNMENT_FILL = 3,
-    }
-    enum InlineAlignment {
-        /** Aligns the top of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
-        INLINE_ALIGNMENT_TOP_TO = 0,
-        
-        /** Aligns the center of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
-        INLINE_ALIGNMENT_CENTER_TO = 1,
-        
-        /** Aligns the baseline (user defined) of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
-        INLINE_ALIGNMENT_BASELINE_TO = 3,
-        
-        /** Aligns the bottom of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
-        INLINE_ALIGNMENT_BOTTOM_TO = 2,
-        
-        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the top of the text. */
-        INLINE_ALIGNMENT_TO_TOP = 0,
-        
-        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the center of the text. */
-        INLINE_ALIGNMENT_TO_CENTER = 4,
-        
-        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the baseline of the text. */
-        INLINE_ALIGNMENT_TO_BASELINE = 8,
-        
-        /** Aligns inline object (e.g. image, table) to the bottom of the text. */
-        INLINE_ALIGNMENT_TO_BOTTOM = 12,
-        
-        /** Aligns top of the inline object (e.g. image, table) to the top of the text. Equivalent to `INLINE_ALIGNMENT_TOP_TO | INLINE_ALIGNMENT_TO_TOP`. */
-        INLINE_ALIGNMENT_TOP = 0,
-        
-        /** Aligns center of the inline object (e.g. image, table) to the center of the text. Equivalent to `INLINE_ALIGNMENT_CENTER_TO | INLINE_ALIGNMENT_TO_CENTER`. */
-        INLINE_ALIGNMENT_CENTER = 5,
-        
-        /** Aligns bottom of the inline object (e.g. image, table) to the bottom of the text. Equivalent to `INLINE_ALIGNMENT_BOTTOM_TO | INLINE_ALIGNMENT_TO_BOTTOM`. */
-        INLINE_ALIGNMENT_BOTTOM = 14,
-        
-        /** A bit mask for `INLINE_ALIGNMENT_*_TO` alignment constants. */
-        INLINE_ALIGNMENT_IMAGE_MASK = 3,
-        
-        /** A bit mask for `INLINE_ALIGNMENT_TO_*` alignment constants. */
-        INLINE_ALIGNMENT_TEXT_MASK = 12,
-    }
-    enum EulerOrder {
-        /** Specifies that Euler angles should be in XYZ order. When composing, the order is X, Y, Z. When decomposing, the order is reversed, first Z, then Y, and X last. */
-        EULER_ORDER_XYZ = 0,
-        
-        /** Specifies that Euler angles should be in XZY order. When composing, the order is X, Z, Y. When decomposing, the order is reversed, first Y, then Z, and X last. */
-        EULER_ORDER_XZY = 1,
-        
-        /** Specifies that Euler angles should be in YXZ order. When composing, the order is Y, X, Z. When decomposing, the order is reversed, first Z, then X, and Y last. */
-        EULER_ORDER_YXZ = 2,
-        
-        /** Specifies that Euler angles should be in YZX order. When composing, the order is Y, Z, X. When decomposing, the order is reversed, first X, then Z, and Y last. */
-        EULER_ORDER_YZX = 3,
-        
-        /** Specifies that Euler angles should be in ZXY order. When composing, the order is Z, X, Y. When decomposing, the order is reversed, first Y, then X, and Z last. */
-        EULER_ORDER_ZXY = 4,
-        
-        /** Specifies that Euler angles should be in ZYX order. When composing, the order is Z, Y, X. When decomposing, the order is reversed, first X, then Y, and Z last. */
-        EULER_ORDER_ZYX = 5,
-    }
-    enum Key {
-        /** Enum value which doesn't correspond to any key. This is used to initialize [enum Key] properties with a generic state. */
-        KEY_NONE = 0,
-        
-        /** Keycodes with this bit applied are non-printable. */
-        KEY_SPECIAL = 4194304,
-        
-        /** Escape key. */
-        KEY_ESCAPE = 4194305,
-        
-        /** Tab key. */
-        KEY_TAB = 4194306,
-        
-        /** Shift + Tab key. */
-        KEY_BACKTAB = 4194307,
-        
-        /** Backspace key. */
-        KEY_BACKSPACE = 4194308,
-        
-        /** Return key (on the main keyboard). */
-        KEY_ENTER = 4194309,
-        
-        /** Enter key on the numeric keypad. */
-        KEY_KP_ENTER = 4194310,
-        
-        /** Insert key. */
-        KEY_INSERT = 4194311,
-        
-        /** Delete key. */
-        KEY_DELETE = 4194312,
-        
-        /** Pause key. */
-        KEY_PAUSE = 4194313,
-        
-        /** Print Screen key. */
-        KEY_PRINT = 4194314,
-        
-        /** System Request key. */
-        KEY_SYSREQ = 4194315,
-        
-        /** Clear key. */
-        KEY_CLEAR = 4194316,
-        
-        /** Home key. */
-        KEY_HOME = 4194317,
-        
-        /** End key. */
-        KEY_END = 4194318,
-        
-        /** Left arrow key. */
-        KEY_LEFT = 4194319,
-        
-        /** Up arrow key. */
-        KEY_UP = 4194320,
-        
-        /** Right arrow key. */
-        KEY_RIGHT = 4194321,
-        
-        /** Down arrow key. */
-        KEY_DOWN = 4194322,
-        
-        /** Page Up key. */
-        KEY_PAGEUP = 4194323,
-        
-        /** Page Down key. */
-        KEY_PAGEDOWN = 4194324,
-        
-        /** Shift key. */
-        KEY_SHIFT = 4194325,
-        
-        /** Control key. */
-        KEY_CTRL = 4194326,
-        
-        /** Meta key. */
-        KEY_META = 4194327,
-        
-        /** Alt key. */
-        KEY_ALT = 4194328,
-        
-        /** Caps Lock key. */
-        KEY_CAPSLOCK = 4194329,
-        
-        /** Num Lock key. */
-        KEY_NUMLOCK = 4194330,
-        
-        /** Scroll Lock key. */
-        KEY_SCROLLLOCK = 4194331,
-        
-        /** F1 key. */
-        KEY_F1 = 4194332,
-        
-        /** F2 key. */
-        KEY_F2 = 4194333,
-        
-        /** F3 key. */
-        KEY_F3 = 4194334,
-        
-        /** F4 key. */
-        KEY_F4 = 4194335,
-        
-        /** F5 key. */
-        KEY_F5 = 4194336,
-        
-        /** F6 key. */
-        KEY_F6 = 4194337,
-        
-        /** F7 key. */
-        KEY_F7 = 4194338,
-        
-        /** F8 key. */
-        KEY_F8 = 4194339,
-        
-        /** F9 key. */
-        KEY_F9 = 4194340,
-        
-        /** F10 key. */
-        KEY_F10 = 4194341,
-        
-        /** F11 key. */
-        KEY_F11 = 4194342,
-        
-        /** F12 key. */
-        KEY_F12 = 4194343,
-        
-        /** F13 key. */
-        KEY_F13 = 4194344,
-        
-        /** F14 key. */
-        KEY_F14 = 4194345,
-        
-        /** F15 key. */
-        KEY_F15 = 4194346,
-        
-        /** F16 key. */
-        KEY_F16 = 4194347,
-        
-        /** F17 key. */
-        KEY_F17 = 4194348,
-        
-        /** F18 key. */
-        KEY_F18 = 4194349,
-        
-        /** F19 key. */
-        KEY_F19 = 4194350,
-        
-        /** F20 key. */
-        KEY_F20 = 4194351,
-        
-        /** F21 key. */
-        KEY_F21 = 4194352,
-        
-        /** F22 key. */
-        KEY_F22 = 4194353,
-        
-        /** F23 key. */
-        KEY_F23 = 4194354,
-        
-        /** F24 key. */
-        KEY_F24 = 4194355,
-        
-        /** F25 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F25 = 4194356,
-        
-        /** F26 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F26 = 4194357,
-        
-        /** F27 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F27 = 4194358,
-        
-        /** F28 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F28 = 4194359,
-        
-        /** F29 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F29 = 4194360,
-        
-        /** F30 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F30 = 4194361,
-        
-        /** F31 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F31 = 4194362,
-        
-        /** F32 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F32 = 4194363,
-        
-        /** F33 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F33 = 4194364,
-        
-        /** F34 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F34 = 4194365,
-        
-        /** F35 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F35 = 4194366,
-        
-        /** Multiply (*) key on the numeric keypad. */
-        KEY_KP_MULTIPLY = 4194433,
-        
-        /** Divide (/) key on the numeric keypad. */
-        KEY_KP_DIVIDE = 4194434,
-        
-        /** Subtract (-) key on the numeric keypad. */
-        KEY_KP_SUBTRACT = 4194435,
-        
-        /** Period (.) key on the numeric keypad. */
-        KEY_KP_PERIOD = 4194436,
-        
-        /** Add (+) key on the numeric keypad. */
-        KEY_KP_ADD = 4194437,
-        
-        /** Number 0 on the numeric keypad. */
-        KEY_KP_0 = 4194438,
-        
-        /** Number 1 on the numeric keypad. */
-        KEY_KP_1 = 4194439,
-        
-        /** Number 2 on the numeric keypad. */
-        KEY_KP_2 = 4194440,
-        
-        /** Number 3 on the numeric keypad. */
-        KEY_KP_3 = 4194441,
-        
-        /** Number 4 on the numeric keypad. */
-        KEY_KP_4 = 4194442,
-        
-        /** Number 5 on the numeric keypad. */
-        KEY_KP_5 = 4194443,
-        
-        /** Number 6 on the numeric keypad. */
-        KEY_KP_6 = 4194444,
-        
-        /** Number 7 on the numeric keypad. */
-        KEY_KP_7 = 4194445,
-        
-        /** Number 8 on the numeric keypad. */
-        KEY_KP_8 = 4194446,
-        
-        /** Number 9 on the numeric keypad. */
-        KEY_KP_9 = 4194447,
-        
-        /** Context menu key. */
-        KEY_MENU = 4194370,
-        
-        /** Hyper key. (On Linux/X11 only). */
-        KEY_HYPER = 4194371,
-        
-        /** Help key. */
-        KEY_HELP = 4194373,
-        
-        /** Media back key. Not to be confused with the Back button on an Android device. */
-        KEY_BACK = 4194376,
-        
-        /** Media forward key. */
-        KEY_FORWARD = 4194377,
-        
-        /** Media stop key. */
-        KEY_STOP = 4194378,
-        
-        /** Media refresh key. */
-        KEY_REFRESH = 4194379,
-        
-        /** Volume down key. */
-        KEY_VOLUMEDOWN = 4194380,
-        
-        /** Mute volume key. */
-        KEY_VOLUMEMUTE = 4194381,
-        
-        /** Volume up key. */
-        KEY_VOLUMEUP = 4194382,
-        
-        /** Media play key. */
-        KEY_MEDIAPLAY = 4194388,
-        
-        /** Media stop key. */
-        KEY_MEDIASTOP = 4194389,
-        
-        /** Previous song key. */
-        KEY_MEDIAPREVIOUS = 4194390,
-        
-        /** Next song key. */
-        KEY_MEDIANEXT = 4194391,
-        
-        /** Media record key. */
-        KEY_MEDIARECORD = 4194392,
-        
-        /** Home page key. */
-        KEY_HOMEPAGE = 4194393,
-        
-        /** Favorites key. */
-        KEY_FAVORITES = 4194394,
-        
-        /** Search key. */
-        KEY_SEARCH = 4194395,
-        
-        /** Standby key. */
-        KEY_STANDBY = 4194396,
-        
-        /** Open URL / Launch Browser key. */
-        KEY_OPENURL = 4194397,
-        
-        /** Launch Mail key. */
-        KEY_LAUNCHMAIL = 4194398,
-        
-        /** Launch Media key. */
-        KEY_LAUNCHMEDIA = 4194399,
-        
-        /** Launch Shortcut 0 key. */
-        KEY_LAUNCH0 = 4194400,
-        
-        /** Launch Shortcut 1 key. */
-        KEY_LAUNCH1 = 4194401,
-        
-        /** Launch Shortcut 2 key. */
-        KEY_LAUNCH2 = 4194402,
-        
-        /** Launch Shortcut 3 key. */
-        KEY_LAUNCH3 = 4194403,
-        
-        /** Launch Shortcut 4 key. */
-        KEY_LAUNCH4 = 4194404,
-        
-        /** Launch Shortcut 5 key. */
-        KEY_LAUNCH5 = 4194405,
-        
-        /** Launch Shortcut 6 key. */
-        KEY_LAUNCH6 = 4194406,
-        
-        /** Launch Shortcut 7 key. */
-        KEY_LAUNCH7 = 4194407,
-        
-        /** Launch Shortcut 8 key. */
-        KEY_LAUNCH8 = 4194408,
-        
-        /** Launch Shortcut 9 key. */
-        KEY_LAUNCH9 = 4194409,
-        
-        /** Launch Shortcut A key. */
-        KEY_LAUNCHA = 4194410,
-        
-        /** Launch Shortcut B key. */
-        KEY_LAUNCHB = 4194411,
-        
-        /** Launch Shortcut C key. */
-        KEY_LAUNCHC = 4194412,
-        
-        /** Launch Shortcut D key. */
-        KEY_LAUNCHD = 4194413,
-        
-        /** Launch Shortcut E key. */
-        KEY_LAUNCHE = 4194414,
-        
-        /** Launch Shortcut F key. */
-        KEY_LAUNCHF = 4194415,
-        
-        /** "Globe" key on Mac / iPad keyboard. */
-        KEY_GLOBE = 4194416,
-        
-        /** "On-screen keyboard" key on iPad keyboard. */
-        KEY_KEYBOARD = 4194417,
-        
-        /** 英数 key on Mac keyboard. */
-        KEY_JIS_EISU = 4194418,
-        
-        /** かな key on Mac keyboard. */
-        KEY_JIS_KANA = 4194419,
-        
-        /** Unknown key. */
-        KEY_UNKNOWN = 8388607,
-        
-        /** Space key. */
-        KEY_SPACE = 32,
-        
-        /** ! key. */
-        KEY_EXCLAM = 33,
-        
-        /** " key. */
-        KEY_QUOTEDBL = 34,
-        
-        /** # key. */
-        KEY_NUMBERSIGN = 35,
-        
-        /** $ key. */
-        KEY_DOLLAR = 36,
-        
-        /** % key. */
-        KEY_PERCENT = 37,
-        
-        /** & key. */
-        KEY_AMPERSAND = 38,
-        
-        /** ' key. */
-        KEY_APOSTROPHE = 39,
-        
-        /** ( key. */
-        KEY_PARENLEFT = 40,
-        
-        /** ) key. */
-        KEY_PARENRIGHT = 41,
-        
-        /** * key. */
-        KEY_ASTERISK = 42,
-        
-        /** + key. */
-        KEY_PLUS = 43,
-        
-        /** , key. */
-        KEY_COMMA = 44,
-        
-        /** - key. */
-        KEY_MINUS = 45,
-        
-        /** . key. */
-        KEY_PERIOD = 46,
-        
-        /** / key. */
-        KEY_SLASH = 47,
-        
-        /** Number 0 key. */
-        KEY_0 = 48,
-        
-        /** Number 1 key. */
-        KEY_1 = 49,
-        
-        /** Number 2 key. */
-        KEY_2 = 50,
-        
-        /** Number 3 key. */
-        KEY_3 = 51,
-        
-        /** Number 4 key. */
-        KEY_4 = 52,
-        
-        /** Number 5 key. */
-        KEY_5 = 53,
-        
-        /** Number 6 key. */
-        KEY_6 = 54,
-        
-        /** Number 7 key. */
-        KEY_7 = 55,
-        
-        /** Number 8 key. */
-        KEY_8 = 56,
-        
-        /** Number 9 key. */
-        KEY_9 = 57,
-        
-        /** : key. */
-        KEY_COLON = 58,
-        
-        /** ; key. */
-        KEY_SEMICOLON = 59,
-        
-        /** < key. */
-        KEY_LESS = 60,
-        
-        /** = key. */
-        KEY_EQUAL = 61,
-        
-        /** > key. */
-        KEY_GREATER = 62,
-        
-        /** ? key. */
-        KEY_QUESTION = 63,
-        
-        /** @ key. */
-        KEY_AT = 64,
-        
-        /** A key. */
-        KEY_A = 65,
-        
-        /** B key. */
-        KEY_B = 66,
-        
-        /** C key. */
-        KEY_C = 67,
-        
-        /** D key. */
-        KEY_D = 68,
-        
-        /** E key. */
-        KEY_E = 69,
-        
-        /** F key. */
-        KEY_F = 70,
-        
-        /** G key. */
-        KEY_G = 71,
-        
-        /** H key. */
-        KEY_H = 72,
-        
-        /** I key. */
-        KEY_I = 73,
-        
-        /** J key. */
-        KEY_J = 74,
-        
-        /** K key. */
-        KEY_K = 75,
-        
-        /** L key. */
-        KEY_L = 76,
-        
-        /** M key. */
-        KEY_M = 77,
-        
-        /** N key. */
-        KEY_N = 78,
-        
-        /** O key. */
-        KEY_O = 79,
-        
-        /** P key. */
-        KEY_P = 80,
-        
-        /** Q key. */
-        KEY_Q = 81,
-        
-        /** R key. */
-        KEY_R = 82,
-        
-        /** S key. */
-        KEY_S = 83,
-        
-        /** T key. */
-        KEY_T = 84,
-        
-        /** U key. */
-        KEY_U = 85,
-        
-        /** V key. */
-        KEY_V = 86,
-        
-        /** W key. */
-        KEY_W = 87,
-        
-        /** X key. */
-        KEY_X = 88,
-        
-        /** Y key. */
-        KEY_Y = 89,
-        
-        /** Z key. */
-        KEY_Z = 90,
-        
-        /** [ key. */
-        KEY_BRACKETLEFT = 91,
-        
-        /** \ key. */
-        KEY_BACKSLASH = 92,
-        
-        /** ] key. */
-        KEY_BRACKETRIGHT = 93,
-        
-        /** ^ key. */
-        KEY_ASCIICIRCUM = 94,
-        
-        /** _ key. */
-        KEY_UNDERSCORE = 95,
-        
-        /** ` key. */
-        KEY_QUOTELEFT = 96,
-        
-        /** { key. */
-        KEY_BRACELEFT = 123,
-        
-        /** | key. */
-        KEY_BAR = 124,
-        
-        /** } key. */
-        KEY_BRACERIGHT = 125,
-        
-        /** ~ key. */
-        KEY_ASCIITILDE = 126,
-        
-        /** ¥ key. */
-        KEY_YEN = 165,
-        
-        /** § key. */
-        KEY_SECTION = 167,
-    }
-    enum KeyModifierMask {
-        /** Key Code mask. */
-        KEY_CODE_MASK = 8388607,
-        
-        /** Modifier key mask. */
-        KEY_MODIFIER_MASK = 532676608,
-        
-        /** Automatically remapped to [constant KEY_META] on macOS and [constant KEY_CTRL] on other platforms, this mask is never set in the actual events, and should be used for key mapping only. */
-        KEY_MASK_CMD_OR_CTRL = 16777216,
-        
-        /** Shift key mask. */
-        KEY_MASK_SHIFT = 33554432,
-        
-        /** Alt or Option (on macOS) key mask. */
-        KEY_MASK_ALT = 67108864,
-        
-        /** Command (on macOS) or Meta/Windows key mask. */
-        KEY_MASK_META = 134217728,
-        
-        /** Control key mask. */
-        KEY_MASK_CTRL = 268435456,
-        
-        /** Keypad key mask. */
-        KEY_MASK_KPAD = 536870912,
-        
-        /** Group Switch key mask. */
-        KEY_MASK_GROUP_SWITCH = 1073741824,
-    }
-    enum MouseButton {
-        /** Enum value which doesn't correspond to any mouse button. This is used to initialize [enum MouseButton] properties with a generic state. */
-        MOUSE_BUTTON_NONE = 0,
-        
-        /** Primary mouse button, usually assigned to the left button. */
-        MOUSE_BUTTON_LEFT = 1,
-        
-        /** Secondary mouse button, usually assigned to the right button. */
-        MOUSE_BUTTON_RIGHT = 2,
-        
-        /** Middle mouse button. */
-        MOUSE_BUTTON_MIDDLE = 3,
-        
-        /** Mouse wheel scrolling up. */
-        MOUSE_BUTTON_WHEEL_UP = 4,
-        
-        /** Mouse wheel scrolling down. */
-        MOUSE_BUTTON_WHEEL_DOWN = 5,
-        
-        /** Mouse wheel left button (only present on some mice). */
-        MOUSE_BUTTON_WHEEL_LEFT = 6,
-        
-        /** Mouse wheel right button (only present on some mice). */
-        MOUSE_BUTTON_WHEEL_RIGHT = 7,
-        
-        /** Extra mouse button 1. This is sometimes present, usually to the sides of the mouse. */
-        MOUSE_BUTTON_XBUTTON1 = 8,
-        
-        /** Extra mouse button 2. This is sometimes present, usually to the sides of the mouse. */
-        MOUSE_BUTTON_XBUTTON2 = 9,
-    }
-    enum MouseButtonMask {
-        /** Primary mouse button mask, usually for the left button. */
-        MOUSE_BUTTON_MASK_LEFT = 1,
-        
-        /** Secondary mouse button mask, usually for the right button. */
-        MOUSE_BUTTON_MASK_RIGHT = 2,
-        
-        /** Middle mouse button mask. */
-        MOUSE_BUTTON_MASK_MIDDLE = 4,
-        
-        /** Extra mouse button 1 mask. */
-        MOUSE_BUTTON_MASK_MB_XBUTTON1 = 128,
-        
-        /** Extra mouse button 2 mask. */
-        MOUSE_BUTTON_MASK_MB_XBUTTON2 = 256,
-    }
-    enum JoyButton {
-        /** An invalid game controller button. */
-        JOY_BUTTON_INVALID = -1,
-        
-        /** Game controller SDL button A. Corresponds to the bottom action button: Sony Cross, Xbox A, Nintendo B. */
-        JOY_BUTTON_A = 0,
-        
-        /** Game controller SDL button B. Corresponds to the right action button: Sony Circle, Xbox B, Nintendo A. */
-        JOY_BUTTON_B = 1,
-        
-        /** Game controller SDL button X. Corresponds to the left action button: Sony Square, Xbox X, Nintendo Y. */
-        JOY_BUTTON_X = 2,
-        
-        /** Game controller SDL button Y. Corresponds to the top action button: Sony Triangle, Xbox Y, Nintendo X. */
-        JOY_BUTTON_Y = 3,
-        
-        /** Game controller SDL back button. Corresponds to the Sony Select, Xbox Back, Nintendo - button. */
-        JOY_BUTTON_BACK = 4,
-        
-        /** Game controller SDL guide button. Corresponds to the Sony PS, Xbox Home button. */
-        JOY_BUTTON_GUIDE = 5,
-        
-        /** Game controller SDL start button. Corresponds to the Sony Options, Xbox Menu, Nintendo + button. */
-        JOY_BUTTON_START = 6,
-        
-        /** Game controller SDL left stick button. Corresponds to the Sony L3, Xbox L/LS button. */
-        JOY_BUTTON_LEFT_STICK = 7,
-        
-        /** Game controller SDL right stick button. Corresponds to the Sony R3, Xbox R/RS button. */
-        JOY_BUTTON_RIGHT_STICK = 8,
-        
-        /** Game controller SDL left shoulder button. Corresponds to the Sony L1, Xbox LB button. */
-        JOY_BUTTON_LEFT_SHOULDER = 9,
-        
-        /** Game controller SDL right shoulder button. Corresponds to the Sony R1, Xbox RB button. */
-        JOY_BUTTON_RIGHT_SHOULDER = 10,
-        
-        /** Game controller D-pad up button. */
-        JOY_BUTTON_DPAD_UP = 11,
-        
-        /** Game controller D-pad down button. */
-        JOY_BUTTON_DPAD_DOWN = 12,
-        
-        /** Game controller D-pad left button. */
-        JOY_BUTTON_DPAD_LEFT = 13,
-        
-        /** Game controller D-pad right button. */
-        JOY_BUTTON_DPAD_RIGHT = 14,
-        
-        /** Game controller SDL miscellaneous button. Corresponds to Xbox share button, PS5 microphone button, Nintendo Switch capture button. */
-        JOY_BUTTON_MISC1 = 15,
-        
-        /** Game controller SDL paddle 1 button. */
-        JOY_BUTTON_PADDLE1 = 16,
-        
-        /** Game controller SDL paddle 2 button. */
-        JOY_BUTTON_PADDLE2 = 17,
-        
-        /** Game controller SDL paddle 3 button. */
-        JOY_BUTTON_PADDLE3 = 18,
-        
-        /** Game controller SDL paddle 4 button. */
-        JOY_BUTTON_PADDLE4 = 19,
-        
-        /** Game controller SDL touchpad button. */
-        JOY_BUTTON_TOUCHPAD = 20,
-        
-        /** The number of SDL game controller buttons. */
-        JOY_BUTTON_SDL_MAX = 21,
-        
-        /** The maximum number of game controller buttons supported by the engine. The actual limit may be lower on specific platforms:  
-         *  - **Android:** Up to 36 buttons.  
-         *  - **Linux:** Up to 80 buttons.  
-         *  - **Windows** and **macOS:** Up to 128 buttons.  
-         */
-        JOY_BUTTON_MAX = 128,
-    }
-    enum JoyAxis {
-        /** An invalid game controller axis. */
-        JOY_AXIS_INVALID = -1,
-        
-        /** Game controller left joystick x-axis. */
-        JOY_AXIS_LEFT_X = 0,
-        
-        /** Game controller left joystick y-axis. */
-        JOY_AXIS_LEFT_Y = 1,
-        
-        /** Game controller right joystick x-axis. */
-        JOY_AXIS_RIGHT_X = 2,
-        
-        /** Game controller right joystick y-axis. */
-        JOY_AXIS_RIGHT_Y = 3,
-        
-        /** Game controller left trigger axis. */
-        JOY_AXIS_TRIGGER_LEFT = 4,
-        
-        /** Game controller right trigger axis. */
-        JOY_AXIS_TRIGGER_RIGHT = 5,
-        
-        /** The number of SDL game controller axes. */
-        JOY_AXIS_SDL_MAX = 6,
-        
-        /** The maximum number of game controller axes: OpenVR supports up to 5 Joysticks making a total of 10 axes. */
-        JOY_AXIS_MAX = 10,
-    }
-    enum MIDIMessage {
-        /** Does not correspond to any MIDI message. This is the default value of [member InputEventMIDI.message]. */
-        MIDI_MESSAGE_NONE = 0,
-        
-        /** MIDI message sent when a note is released.  
-         *      
-         *  **Note:** Not all MIDI devices send this message; some may send [constant MIDI_MESSAGE_NOTE_ON] with [member InputEventMIDI.velocity] set to `0`.  
-         */
-        MIDI_MESSAGE_NOTE_OFF = 8,
-        
-        /** MIDI message sent when a note is pressed. */
-        MIDI_MESSAGE_NOTE_ON = 9,
-        
-        /** MIDI message sent to indicate a change in pressure while a note is being pressed down, also called aftertouch. */
-        MIDI_MESSAGE_AFTERTOUCH = 10,
-        
-        /** MIDI message sent when a controller value changes. In a MIDI device, a controller is any input that doesn't play notes. These may include sliders for volume, balance, and panning, as well as switches and pedals. See the [url=https://en.wikipedia.org/wiki/General_MIDI#Controller_events]General MIDI specification[/url] for a small list. */
-        MIDI_MESSAGE_CONTROL_CHANGE = 11,
-        
-        /** MIDI message sent when the MIDI device changes its current instrument (also called  *program*  or  *preset* ). */
-        MIDI_MESSAGE_PROGRAM_CHANGE = 12,
-        
-        /** MIDI message sent to indicate a change in pressure for the whole channel. Some MIDI devices may send this instead of [constant MIDI_MESSAGE_AFTERTOUCH]. */
-        MIDI_MESSAGE_CHANNEL_PRESSURE = 13,
-        
-        /** MIDI message sent when the value of the pitch bender changes, usually a wheel on the MIDI device. */
-        MIDI_MESSAGE_PITCH_BEND = 14,
-        
-        /** MIDI system exclusive (SysEx) message. This type of message is not standardized and it's highly dependent on the MIDI device sending it.  
-         *      
-         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
-         */
-        MIDI_MESSAGE_SYSTEM_EXCLUSIVE = 240,
-        
-        /** MIDI message sent every quarter frame to keep connected MIDI devices synchronized. Related to [constant MIDI_MESSAGE_TIMING_CLOCK].  
-         *      
-         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
-         */
-        MIDI_MESSAGE_QUARTER_FRAME = 241,
-        
-        /** MIDI message sent to jump onto a new position in the current sequence or song.  
-         *      
-         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
-         */
-        MIDI_MESSAGE_SONG_POSITION_POINTER = 242,
-        
-        /** MIDI message sent to select a sequence or song to play.  
-         *      
-         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
-         */
-        MIDI_MESSAGE_SONG_SELECT = 243,
-        
-        /** MIDI message sent to request a tuning calibration. Used on analog synthesizers. Most modern MIDI devices do not need this message. */
-        MIDI_MESSAGE_TUNE_REQUEST = 246,
-        
-        /** MIDI message sent 24 times after [constant MIDI_MESSAGE_QUARTER_FRAME], to keep connected MIDI devices synchronized. */
-        MIDI_MESSAGE_TIMING_CLOCK = 248,
-        
-        /** MIDI message sent to start the current sequence or song from the beginning. */
-        MIDI_MESSAGE_START = 250,
-        
-        /** MIDI message sent to resume from the point the current sequence or song was paused. */
-        MIDI_MESSAGE_CONTINUE = 251,
-        
-        /** MIDI message sent to pause the current sequence or song. */
-        MIDI_MESSAGE_STOP = 252,
-        
-        /** MIDI message sent repeatedly while the MIDI device is idle, to tell the receiver that the connection is alive. Most MIDI devices do not send this message. */
-        MIDI_MESSAGE_ACTIVE_SENSING = 254,
-        
-        /** MIDI message sent to reset a MIDI device to its default state, as if it was just turned on. It should not be sent when the MIDI device is being turned on. */
-        MIDI_MESSAGE_SYSTEM_RESET = 255,
     }
 }

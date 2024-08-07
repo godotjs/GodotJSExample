@@ -4611,6 +4611,10 @@ declare module "godot" {
         get depth_draw_mode(): int64
         set depth_draw_mode(value: int64)
         
+        /** If `true`, depth testing is disabled and the object will be drawn in render order. */
+        get no_depth_test(): boolean
+        set no_depth_test(value: boolean)
+        
         /** Sets whether the shading takes place, per-pixel, per-vertex or unshaded. Per-vertex lighting is faster, making it the best choice for mobile applications, however it looks considerably worse than per-pixel. Unshaded rendering is the fastest, but disables all interactions with lights.  
          *      
          *  **Note:** Setting the shading mode vertex shading currently has no effect, as vertex shading is not implemented yet.  
@@ -4629,12 +4633,51 @@ declare module "godot" {
         get specular_mode(): int64
         set specular_mode(value: int64)
         
+        /** If `true`, the object receives no ambient light. */
+        get disable_ambient_light(): boolean
+        set disable_ambient_light(value: boolean)
+        
+        /** If `true`, the object will not be affected by fog (neither volumetric nor depth fog). This is useful for unshaded or transparent materials (e.g. particles), which without this setting will be affected even if fully transparent. */
+        get disable_fog(): boolean
+        set disable_fog(value: boolean)
+        
+        /** If `true`, the vertex color is used as albedo color. */
+        get vertex_color_use_as_albedo(): boolean
+        set vertex_color_use_as_albedo(value: boolean)
+        
+        /** If `true`, vertex colors are considered to be stored in sRGB color space and are converted to linear color space during rendering. If `false`, vertex colors are considered to be stored in linear color space and are rendered as-is. See also [member albedo_texture_force_srgb].  
+         *      
+         *  **Note:** Only effective when using the Forward+ and Mobile rendering methods, not Compatibility.  
+         */
+        get vertex_color_is_srgb(): boolean
+        set vertex_color_is_srgb(value: boolean)
+        
         /** The material's base color.  
          *      
          *  **Note:** If [member detail_enabled] is `true` and a [member detail_albedo] texture is specified, [member albedo_color] will  *not*  modulate the detail texture. This can be used to color partial areas of a material by not specifying an albedo texture and using a transparent [member detail_albedo] texture instead.  
          */
         get albedo_color(): Color
         set albedo_color(value: Color)
+        
+        /** Texture to multiply by [member albedo_color]. Used for basic texturing of objects.  
+         *  If the texture appears unexpectedly too dark or too bright, check [member albedo_texture_force_srgb].  
+         */
+        get albedo_texture(): Texture2D
+        set albedo_texture(value: Texture2D)
+        
+        /** If `true`, forces a conversion of the [member albedo_texture] from sRGB color space to linear color space. See also [member vertex_color_is_srgb].  
+         *  This should only be enabled when needed (typically when using a [ViewportTexture] as [member albedo_texture]). If [member albedo_texture_force_srgb] is `true` when it shouldn't be, the texture will appear to be too dark. If [member albedo_texture_force_srgb] is `false` when it shouldn't be, the texture will appear to be too bright.  
+         */
+        get albedo_texture_force_srgb(): boolean
+        set albedo_texture_force_srgb(value: boolean)
+        
+        /** Enables multichannel signed distance field rendering shader. Use [member msdf_pixel_range] and [member msdf_outline_size] to configure MSDF parameters. */
+        get albedo_texture_msdf(): boolean
+        set albedo_texture_msdf(value: boolean)
+        
+        /** The Occlusion/Roughness/Metallic texture to use. This is a more efficient replacement of [member ao_texture], [member roughness_texture] and [member metallic_texture] in [ORMMaterial3D]. Ambient occlusion is stored in the red channel. Roughness map is stored in the green channel. Metallic map is stored in the blue channel. The alpha channel is ignored. */
+        get orm_texture(): Texture2D
+        set orm_texture(value: Texture2D)
         
         /** A high value makes the material appear more like a metal. Non-metals use their albedo as the diffuse color and add diffuse to the specular reflection. With non-metals, the reflection appears on top of the albedo color. Metals use their albedo as a multiplier to the specular reflection and set the diffuse color to black resulting in a tinted reflection. Materials work better when fully metal or fully non-metal, values between `0` and `1` should only be used for blending between metal and non-metal sections. To alter the amount of reflection use [member roughness]. */
         get metallic(): float64
@@ -4647,6 +4690,10 @@ declare module "godot" {
         get metallic_specular(): float64
         set metallic_specular(value: float64)
         
+        /** Texture used to specify metallic for an object. This is multiplied by [member metallic]. */
+        get metallic_texture(): Texture2D
+        set metallic_texture(value: Texture2D)
+        
         /** Specifies the channel of the [member metallic_texture] in which the metallic information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
         get metallic_texture_channel(): int64
         set metallic_texture_channel(value: int64)
@@ -4655,9 +4702,17 @@ declare module "godot" {
         get roughness(): float64
         set roughness(value: float64)
         
+        /** Texture used to control the roughness per-pixel. Multiplied by [member roughness]. */
+        get roughness_texture(): Texture2D
+        set roughness_texture(value: Texture2D)
+        
         /** Specifies the channel of the [member roughness_texture] in which the roughness information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
         get roughness_texture_channel(): int64
         set roughness_texture_channel(value: int64)
+        
+        /** If `true`, the body emits light. Emitting light makes the object appear brighter. The object can also cast light on other objects if a [VoxelGI], SDFGI, or [LightmapGI] is used and this object is used in baked lighting. */
+        get emission_enabled(): boolean
+        set emission_enabled(value: boolean)
         
         /** The emitted light's color. See [member emission_enabled]. */
         get emission(): Color
@@ -4675,9 +4730,39 @@ declare module "godot" {
         get emission_operator(): int64
         set emission_operator(value: int64)
         
+        /** Use `UV2` to read from the [member emission_texture]. */
+        get emission_on_uv2(): boolean
+        set emission_on_uv2(value: boolean)
+        
+        /** Texture that specifies how much surface emits light at a given point. */
+        get emission_texture(): Texture2D
+        set emission_texture(value: Texture2D)
+        
+        /** If `true`, normal mapping is enabled. This has a slight performance cost, especially on mobile GPUs. */
+        get normal_enabled(): boolean
+        set normal_enabled(value: boolean)
+        
         /** The strength of the normal map's effect. */
         get normal_scale(): float64
         set normal_scale(value: float64)
+        
+        /** Texture used to specify the normal at a given pixel. The [member normal_texture] only uses the red and green channels; the blue and alpha channels are ignored. The normal read from [member normal_texture] is oriented around the surface normal provided by the [Mesh].  
+         *      
+         *  **Note:** The mesh must have both normals and tangents defined in its vertex data. Otherwise, the normal map won't render correctly and will only appear to darken the whole surface. If creating geometry with [SurfaceTool], you can use [method SurfaceTool.generate_normals] and [method SurfaceTool.generate_tangents] to automatically generate normals and tangents respectively.  
+         *      
+         *  **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.  
+         *      
+         *  **Note:** If [member detail_enabled] is `true`, the [member detail_albedo] texture is drawn  *below*  the [member normal_texture]. To display a normal map  *above*  the [member detail_albedo] texture, use [member detail_normal] instead.  
+         */
+        get normal_texture(): Texture2D
+        set normal_texture(value: Texture2D)
+        
+        /** If `true`, rim effect is enabled. Rim lighting increases the brightness at glancing angles on an object.  
+         *      
+         *  **Note:** Rim lighting is not visible if the material's [member shading_mode] is [constant SHADING_MODE_UNSHADED].  
+         */
+        get rim_enabled(): boolean
+        set rim_enabled(value: boolean)
         
         /** Sets the strength of the rim lighting effect. */
         get rim(): float64
@@ -4687,6 +4772,17 @@ declare module "godot" {
         get rim_tint(): float64
         set rim_tint(value: float64)
         
+        /** Texture used to set the strength of the rim lighting effect per-pixel. Multiplied by [member rim]. */
+        get rim_texture(): Texture2D
+        set rim_texture(value: Texture2D)
+        
+        /** If `true`, clearcoat rendering is enabled. Adds a secondary transparent pass to the lighting calculation resulting in an added specular blob. This makes materials appear as if they have a clear layer on them that can be either glossy or rough.  
+         *      
+         *  **Note:** Clearcoat rendering is not visible if the material's [member shading_mode] is [constant SHADING_MODE_UNSHADED].  
+         */
+        get clearcoat_enabled(): boolean
+        set clearcoat_enabled(value: boolean)
+        
         /** Sets the strength of the clearcoat effect. Setting to `0` looks the same as disabling the clearcoat effect. */
         get clearcoat(): float64
         set clearcoat(value: float64)
@@ -4695,17 +4791,55 @@ declare module "godot" {
         get clearcoat_roughness(): float64
         set clearcoat_roughness(value: float64)
         
+        /** Texture that defines the strength of the clearcoat effect and the glossiness of the clearcoat. Strength is specified in the red channel while glossiness is specified in the green channel. */
+        get clearcoat_texture(): Texture2D
+        set clearcoat_texture(value: Texture2D)
+        
+        /** If `true`, anisotropy is enabled. Anisotropy changes the shape of the specular blob and aligns it to tangent space. This is useful for brushed aluminium and hair reflections.  
+         *      
+         *  **Note:** Mesh tangents are needed for anisotropy to work. If the mesh does not contain tangents, the anisotropy effect will appear broken.  
+         *      
+         *  **Note:** Material anisotropy should not to be confused with anisotropic texture filtering, which can be enabled by setting [member texture_filter] to [constant TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC].  
+         */
+        get anisotropy_enabled(): boolean
+        set anisotropy_enabled(value: boolean)
+        
         /** The strength of the anisotropy effect. This is multiplied by [member anisotropy_flowmap]'s alpha channel if a texture is defined there and the texture contains an alpha channel. */
         get anisotropy(): float64
         set anisotropy(value: float64)
+        
+        /** Texture that offsets the tangent map for anisotropy calculations and optionally controls the anisotropy effect (if an alpha channel is present). The flowmap texture is expected to be a derivative map, with the red channel representing distortion on the X axis and green channel representing distortion on the Y axis. Values below 0.5 will result in negative distortion, whereas values above 0.5 will result in positive distortion.  
+         *  If present, the texture's alpha channel will be used to multiply the strength of the [member anisotropy] effect. Fully opaque pixels will keep the anisotropy effect's original strength while fully transparent pixels will disable the anisotropy effect entirely. The flowmap texture's blue channel is ignored.  
+         */
+        get anisotropy_flowmap(): Texture2D
+        set anisotropy_flowmap(value: Texture2D)
+        
+        /** If `true`, ambient occlusion is enabled. Ambient occlusion darkens areas based on the [member ao_texture]. */
+        get ao_enabled(): boolean
+        set ao_enabled(value: boolean)
         
         /** Amount that ambient occlusion affects lighting from lights. If `0`, ambient occlusion only affects ambient light. If `1`, ambient occlusion affects lights just as much as it affects ambient light. This can be used to impact the strength of the ambient occlusion effect, but typically looks unrealistic. */
         get ao_light_affect(): float64
         set ao_light_affect(value: float64)
         
+        /** Texture that defines the amount of ambient occlusion for a given point on the object. */
+        get ao_texture(): Texture2D
+        set ao_texture(value: Texture2D)
+        
+        /** If `true`, use `UV2` coordinates to look up from the [member ao_texture]. */
+        get ao_on_uv2(): boolean
+        set ao_on_uv2(value: boolean)
+        
         /** Specifies the channel of the [member ao_texture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
         get ao_texture_channel(): int64
         set ao_texture_channel(value: int64)
+        
+        /** If `true`, height mapping is enabled (also called "parallax mapping" or "depth mapping"). See also [member normal_enabled]. Height mapping is a demanding feature on the GPU, so it should only be used on materials where it makes a significant visual difference.  
+         *      
+         *  **Note:** Height mapping is not supported if triplanar mapping is used on the same material. The value of [member heightmap_enabled] will be ignored if [member uv1_triplanar] is enabled.  
+         */
+        get heightmap_enabled(): boolean
+        set heightmap_enabled(value: boolean)
         
         /** The heightmap scale to use for the parallax effect (see [member heightmap_enabled]). The default value is tuned so that the highest point (value = 255) appears to be 5 cm higher than the lowest point (value = 0). Higher values result in a deeper appearance, but may result in artifacts appearing when looking at the material from oblique angles, especially when the camera moves. Negative values can be used to invert the parallax effect, but this is different from inverting the texture using [member heightmap_flip_texture] as the material will also appear to be "closer" to the camera. In most cases, [member heightmap_scale] should be kept to a positive value.  
          *      
@@ -4740,13 +4874,47 @@ declare module "godot" {
         get heightmap_flip_binormal(): boolean
         set heightmap_flip_binormal(value: boolean)
         
+        /** The texture to use as a height map. See also [member heightmap_enabled].  
+         *  For best results, the texture should be normalized (with [member heightmap_scale] reduced to compensate). In [url=https://gimp.org]GIMP[/url], this can be done using **Colors > Auto > Equalize**. If the texture only uses a small part of its available range, the parallax effect may look strange, especially when the camera moves.  
+         *      
+         *  **Note:** To reduce memory usage and improve loading times, you may be able to use a lower-resolution heightmap texture as most heightmaps are only comprised of low-frequency data.  
+         */
+        get heightmap_texture(): Texture2D
+        set heightmap_texture(value: Texture2D)
+        
+        /** If `true`, interprets the height map texture as a depth map, with brighter values appearing to be "lower" in altitude compared to darker values.  
+         *  This can be enabled for compatibility with some materials authored for Godot 3.x. This is not necessary if the Invert import option was used to invert the depth map in Godot 3.x, in which case [member heightmap_flip_texture] should remain `false`.  
+         */
+        get heightmap_flip_texture(): boolean
+        set heightmap_flip_texture(value: boolean)
+        
+        /** If `true`, subsurface scattering is enabled. Emulates light that penetrates an object's surface, is scattered, and then emerges. Subsurface scattering quality is controlled by [member ProjectSettings.rendering/environment/subsurface_scattering/subsurface_scattering_quality]. */
+        get subsurf_scatter_enabled(): boolean
+        set subsurf_scatter_enabled(value: boolean)
+        
         /** The strength of the subsurface scattering effect. The depth of the effect is also controlled by [member ProjectSettings.rendering/environment/subsurface_scattering/subsurface_scattering_scale], which is set globally. */
         get subsurf_scatter_strength(): float64
         set subsurf_scatter_strength(value: float64)
         
+        /** If `true`, subsurface scattering will use a special mode optimized for the color and density of human skin, such as boosting the intensity of the red channel in subsurface scattering. */
+        get subsurf_scatter_skin_mode(): boolean
+        set subsurf_scatter_skin_mode(value: boolean)
+        
+        /** Texture used to control the subsurface scattering strength. Stored in the red texture channel. Multiplied by [member subsurf_scatter_strength]. */
+        get subsurf_scatter_texture(): Texture2D
+        set subsurf_scatter_texture(value: Texture2D)
+        
+        /** If `true`, enables subsurface scattering transmittance. Only effective if [member subsurf_scatter_enabled] is `true`. See also [member backlight_enabled]. */
+        get subsurf_scatter_transmittance_enabled(): boolean
+        set subsurf_scatter_transmittance_enabled(value: boolean)
+        
         /** The color to multiply the subsurface scattering transmittance effect with. Ignored if [member subsurf_scatter_skin_mode] is `true`. */
         get subsurf_scatter_transmittance_color(): Color
         set subsurf_scatter_transmittance_color(value: Color)
+        
+        /** The texture to use for multiplying the intensity of the subsurface scattering transmittance intensity. See also [member subsurf_scatter_texture]. Ignored if [member subsurf_scatter_skin_mode] is `true`. */
+        get subsurf_scatter_transmittance_texture(): Texture2D
+        set subsurf_scatter_transmittance_texture(value: Texture2D)
         
         /** The depth of the subsurface scattering transmittance effect. */
         get subsurf_scatter_transmittance_depth(): float64
@@ -4756,17 +4924,41 @@ declare module "godot" {
         get subsurf_scatter_transmittance_boost(): float64
         set subsurf_scatter_transmittance_boost(value: float64)
         
+        /** If `true`, the backlight effect is enabled. See also [member subsurf_scatter_transmittance_enabled]. */
+        get backlight_enabled(): boolean
+        set backlight_enabled(value: boolean)
+        
         /** The color used by the backlight effect. Represents the light passing through an object. */
         get backlight(): Color
         set backlight(value: Color)
+        
+        /** Texture used to control the backlight effect per-pixel. Added to [member backlight]. */
+        get backlight_texture(): Texture2D
+        set backlight_texture(value: Texture2D)
+        
+        /** If `true`, the refraction effect is enabled. Distorts transparency based on light from behind the object. */
+        get refraction_enabled(): boolean
+        set refraction_enabled(value: boolean)
         
         /** The strength of the refraction effect. */
         get refraction_scale(): float64
         set refraction_scale(value: float64)
         
+        /** Texture that controls the strength of the refraction per-pixel. Multiplied by [member refraction_scale]. */
+        get refraction_texture(): Texture2D
+        set refraction_texture(value: Texture2D)
+        
         /** Specifies the channel of the [member refraction_texture] in which the refraction information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored refraction in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use. */
         get refraction_texture_channel(): int64
         set refraction_texture_channel(value: int64)
+        
+        /** If `true`, enables the detail overlay. Detail is a second texture that gets mixed over the surface of the object based on [member detail_mask] and [member detail_albedo]'s alpha channel. This can be used to add variation to objects, or to blend between two different albedo/normal textures. */
+        get detail_enabled(): boolean
+        set detail_enabled(value: boolean)
+        
+        /** Texture used to specify how the detail textures get blended with the base textures. [member detail_mask] can be used together with [member detail_albedo]'s alpha channel (if any). */
+        get detail_mask(): Texture2D
+        set detail_mask(value: Texture2D)
         
         /** Specifies how the [member detail_albedo] should blend with the current `ALBEDO`. See [enum BlendMode] for options. */
         get detail_blend_mode(): int64
@@ -4776,6 +4968,20 @@ declare module "godot" {
         get detail_uv_layer(): int64
         set detail_uv_layer(value: int64)
         
+        /** Texture that specifies the color of the detail overlay. [member detail_albedo]'s alpha channel is used as a mask, even when the material is opaque. To use a dedicated texture as a mask, see [member detail_mask].  
+         *      
+         *  **Note:** [member detail_albedo] is  *not*  modulated by [member albedo_color].  
+         */
+        get detail_albedo(): Texture2D
+        set detail_albedo(value: Texture2D)
+        
+        /** Texture that specifies the per-pixel normal of the detail overlay. The [member detail_normal] texture only uses the red and green channels; the blue and alpha channels are ignored. The normal read from [member detail_normal] is oriented around the surface normal provided by the [Mesh].  
+         *      
+         *  **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.  
+         */
+        get detail_normal(): Texture2D
+        set detail_normal(value: Texture2D)
+        
         /** How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The Z component is used when [member uv1_triplanar] is enabled, but it is not used anywhere else. */
         get uv1_scale(): Vector3
         set uv1_scale(value: Vector3)
@@ -4784,12 +4990,20 @@ declare module "godot" {
         get uv1_offset(): Vector3
         set uv1_offset(value: Vector3)
         
+        /** If `true`, instead of using `UV` textures will use a triplanar texture lookup to determine how to apply textures. Triplanar uses the orientation of the object's surface to blend between texture coordinates. It reads from the source texture 3 times, once for each axis and then blends between the results based on how closely the pixel aligns with each axis. This is often used for natural features to get a realistic blend of materials. Because triplanar texturing requires many more texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp texturing. */
+        get uv1_triplanar(): boolean
+        set uv1_triplanar(value: boolean)
+        
         /** A lower number blends the texture more softly while a higher number blends the texture more sharply.  
          *      
          *  **Note:** [member uv1_triplanar_sharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.  
          */
         get uv1_triplanar_sharpness(): float64
         set uv1_triplanar_sharpness(value: float64)
+        
+        /** If `true`, triplanar mapping for `UV` is calculated in world space rather than object local space. See also [member uv1_triplanar]. */
+        get uv1_world_triplanar(): boolean
+        set uv1_world_triplanar(value: boolean)
         
         /** How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function. The Z component is used when [member uv2_triplanar] is enabled, but it is not used anywhere else. */
         get uv2_scale(): Vector3
@@ -4799,12 +5013,20 @@ declare module "godot" {
         get uv2_offset(): Vector3
         set uv2_offset(value: Vector3)
         
+        /** If `true`, instead of using `UV2` textures will use a triplanar texture lookup to determine how to apply textures. Triplanar uses the orientation of the object's surface to blend between texture coordinates. It reads from the source texture 3 times, once for each axis and then blends between the results based on how closely the pixel aligns with each axis. This is often used for natural features to get a realistic blend of materials. Because triplanar texturing requires many more texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp texturing. */
+        get uv2_triplanar(): boolean
+        set uv2_triplanar(value: boolean)
+        
         /** A lower number blends the texture more softly while a higher number blends the texture more sharply.  
          *      
          *  **Note:** [member uv2_triplanar_sharpness] is clamped between `0.0` and `150.0` (inclusive) as values outside that range can look broken depending on the mesh.  
          */
         get uv2_triplanar_sharpness(): float64
         set uv2_triplanar_sharpness(value: float64)
+        
+        /** If `true`, triplanar mapping for `UV2` is calculated in world space rather than object local space. See also [member uv2_triplanar]. */
+        get uv2_world_triplanar(): boolean
+        set uv2_world_triplanar(value: boolean)
         
         /** Filter flags for the texture. See [enum TextureFilter] for options.  
          *      
@@ -4813,12 +5035,28 @@ declare module "godot" {
         get texture_filter(): int64
         set texture_filter(value: int64)
         
+        /** Repeat flags for the texture. See [enum TextureFilter] for options. */
+        get texture_repeat(): boolean
+        set texture_repeat(value: boolean)
+        
+        /** If `true`, the object receives no shadow that would otherwise be cast onto it. */
+        get disable_receive_shadows(): boolean
+        set disable_receive_shadows(value: boolean)
+        
+        /** If `true`, enables the "shadow to opacity" render mode where lighting modifies the alpha so shadowed areas are opaque and non-shadowed areas are transparent. Useful for overlaying shadows onto a camera feed in AR. */
+        get shadow_to_opacity(): boolean
+        set shadow_to_opacity(value: boolean)
+        
         /** Controls how the object faces the camera. See [enum BillboardMode].  
          *      
          *  **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.  
          */
         get billboard_mode(): int64
         set billboard_mode(value: int64)
+        
+        /** If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding. Only applies when [member billboard_mode] is not [constant BILLBOARD_DISABLED]. */
+        get billboard_keep_scale(): boolean
+        set billboard_keep_scale(value: boolean)
         
         /** The number of horizontal frames in the particle sprite sheet. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member billboard_mode]. */
         get particles_anim_h_frames(): int64
@@ -4843,9 +5081,24 @@ declare module "godot" {
         get grow_amount(): float64
         set grow_amount(value: float64)
         
+        /** If `true`, the object is rendered at the same size regardless of distance. */
+        get fixed_size(): boolean
+        set fixed_size(value: boolean)
+        
+        /** If `true`, render point size can be changed.  
+         *      
+         *  **Note:** This is only effective for objects whose geometry is point-based rather than triangle-based. See also [member point_size].  
+         */
+        get use_point_size(): boolean
+        set use_point_size(value: boolean)
+        
         /** The point size in pixels. See [member use_point_size]. */
         get point_size(): float64
         set point_size(value: float64)
+        
+        /** If `true`, enables parts of the shader required for [GPUParticles3D] trails to function. This also requires using a mesh with appropriate skinning, such as [RibbonTrailMesh] or [TubeTrailMesh]. Enabling this feature outside of materials used in [GPUParticles3D] meshes will break material rendering. */
+        get use_particle_trails(): boolean
+        set use_particle_trails(value: boolean)
         
         /** If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel based on its distance to another object. */
         get proximity_fade_enabled(): boolean
@@ -5389,6 +5642,10 @@ declare module "godot" {
         get emission_colors(): PackedColorArray
         set emission_colors(value: PackedColorArray | Color[])
         
+        /** Align Y axis of particle with the direction of its velocity. */
+        get particle_flag_align_y(): boolean
+        set particle_flag_align_y(value: boolean)
+        
         /** Unit vector specifying the particles' emission direction. */
         get direction(): Vector2
         set direction(value: Vector2)
@@ -5400,6 +5657,110 @@ declare module "godot" {
         /** Gravity applied to every particle. */
         get gravity(): Vector2
         set gravity(value: Vector2)
+        
+        /** Minimum equivalent of [member initial_velocity_max]. */
+        get initial_velocity_min(): float64
+        set initial_velocity_min(value: float64)
+        
+        /** Maximum initial velocity magnitude for each particle. Direction comes from [member direction] and [member spread]. */
+        get initial_velocity_max(): float64
+        set initial_velocity_max(value: float64)
+        
+        /** Minimum equivalent of [member angular_velocity_max]. */
+        get angular_velocity_min(): float64
+        set angular_velocity_min(value: float64)
+        
+        /** Maximum initial angular velocity (rotation speed) applied to each particle in  *degrees*  per second. */
+        get angular_velocity_max(): float64
+        set angular_velocity_max(value: float64)
+        
+        /** Each particle's angular velocity will vary along this [Curve]. */
+        get angular_velocity_curve(): Curve
+        set angular_velocity_curve(value: Curve)
+        
+        /** Minimum equivalent of [member orbit_velocity_max]. */
+        get orbit_velocity_min(): float64
+        set orbit_velocity_min(value: float64)
+        
+        /** Maximum orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second. */
+        get orbit_velocity_max(): float64
+        set orbit_velocity_max(value: float64)
+        
+        /** Each particle's orbital velocity will vary along this [Curve]. */
+        get orbit_velocity_curve(): Curve
+        set orbit_velocity_curve(value: Curve)
+        
+        /** Minimum equivalent of [member linear_accel_max]. */
+        get linear_accel_min(): float64
+        set linear_accel_min(value: float64)
+        
+        /** Maximum linear acceleration applied to each particle in the direction of motion. */
+        get linear_accel_max(): float64
+        set linear_accel_max(value: float64)
+        
+        /** Each particle's linear acceleration will vary along this [Curve]. */
+        get linear_accel_curve(): Curve
+        set linear_accel_curve(value: Curve)
+        
+        /** Minimum equivalent of [member radial_accel_max]. */
+        get radial_accel_min(): float64
+        set radial_accel_min(value: float64)
+        
+        /** Maximum radial acceleration applied to each particle. Makes particle accelerate away from the origin or towards it if negative. */
+        get radial_accel_max(): float64
+        set radial_accel_max(value: float64)
+        
+        /** Each particle's radial acceleration will vary along this [Curve]. */
+        get radial_accel_curve(): Curve
+        set radial_accel_curve(value: Curve)
+        
+        /** Minimum equivalent of [member tangential_accel_max]. */
+        get tangential_accel_min(): float64
+        set tangential_accel_min(value: float64)
+        
+        /** Maximum tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion. */
+        get tangential_accel_max(): float64
+        set tangential_accel_max(value: float64)
+        
+        /** Each particle's tangential acceleration will vary along this [Curve]. */
+        get tangential_accel_curve(): Curve
+        set tangential_accel_curve(value: Curve)
+        
+        /** Minimum equivalent of [member damping_max]. */
+        get damping_min(): float64
+        set damping_min(value: float64)
+        
+        /** The maximum rate at which particles lose velocity. For example value of `100` means that the particle will go from `100` velocity to `0` in `1` second. */
+        get damping_max(): float64
+        set damping_max(value: float64)
+        
+        /** Damping will vary along this [Curve]. */
+        get damping_curve(): Curve
+        set damping_curve(value: Curve)
+        
+        /** Minimum equivalent of [member angle_max]. */
+        get angle_min(): float64
+        set angle_min(value: float64)
+        
+        /** Maximum initial rotation applied to each particle, in degrees. */
+        get angle_max(): float64
+        set angle_max(value: float64)
+        
+        /** Each particle's rotation will be animated along this [Curve]. */
+        get angle_curve(): Curve
+        set angle_curve(value: Curve)
+        
+        /** Minimum equivalent of [member scale_amount_max]. */
+        get scale_amount_min(): float64
+        set scale_amount_min(value: float64)
+        
+        /** Maximum initial scale applied to each particle. */
+        get scale_amount_max(): float64
+        set scale_amount_max(value: float64)
+        
+        /** Each particle's scale will vary along this [Curve]. */
+        get scale_amount_curve(): Curve
+        set scale_amount_curve(value: Curve)
         
         /** If `true`, the scale curve will be split into x and y components. See [member scale_curve_x] and [member scale_curve_y]. */
         get split_scale(): boolean
@@ -5428,6 +5789,44 @@ declare module "godot" {
         /** Each particle's initial color will vary along this [GradientTexture1D] (multiplied with [member color]). */
         get color_initial_ramp(): Gradient
         set color_initial_ramp(value: Gradient)
+        
+        /** Minimum equivalent of [member hue_variation_max]. */
+        get hue_variation_min(): float64
+        set hue_variation_min(value: float64)
+        
+        /** Maximum initial hue variation applied to each particle. It will shift the particle color's hue. */
+        get hue_variation_max(): float64
+        set hue_variation_max(value: float64)
+        
+        /** Each particle's hue will vary along this [Curve]. */
+        get hue_variation_curve(): Curve
+        set hue_variation_curve(value: Curve)
+        
+        /** Minimum equivalent of [member anim_speed_max]. */
+        get anim_speed_min(): float64
+        set anim_speed_min(value: float64)
+        
+        /** Maximum particle animation speed. Animation speed of `1` means that the particles will make full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.  
+         *  With animation speed greater than `1`, remember to enable [member CanvasItemMaterial.particles_anim_loop] property if you want the animation to repeat.  
+         */
+        get anim_speed_max(): float64
+        set anim_speed_max(value: float64)
+        
+        /** Each particle's animation speed will vary along this [Curve]. */
+        get anim_speed_curve(): Curve
+        set anim_speed_curve(value: Curve)
+        
+        /** Minimum equivalent of [member anim_offset_max]. */
+        get anim_offset_min(): float64
+        set anim_offset_min(value: float64)
+        
+        /** Maximum animation offset that corresponds to frame index in the texture. `0` is the first frame, `1` is the last one. See [member CanvasItemMaterial.particles_animation]. */
+        get anim_offset_max(): float64
+        set anim_offset_max(value: float64)
+        
+        /** Each particle's animation offset will vary along this [Curve]. */
+        get anim_offset_curve(): Curve
+        set anim_offset_curve(value: Curve)
         
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted. */
         readonly finished: Signal0
@@ -5660,6 +6059,18 @@ declare module "godot" {
         get emission_ring_inner_radius(): float64
         set emission_ring_inner_radius(value: float64)
         
+        /** Align Y axis of particle with the direction of its velocity. */
+        get particle_flag_align_y(): boolean
+        set particle_flag_align_y(value: boolean)
+        
+        /** If `true`, particles rotate around Y axis by [member angle_min]. */
+        get particle_flag_rotate_y(): boolean
+        set particle_flag_rotate_y(value: boolean)
+        
+        /** If `true`, particles will not move on the Z axis. */
+        get particle_flag_disable_z(): boolean
+        set particle_flag_disable_z(value: boolean)
+        
         /** Unit vector specifying the particles' emission direction. */
         get direction(): Vector3
         set direction(value: Vector3)
@@ -5675,6 +6086,110 @@ declare module "godot" {
         /** Gravity applied to every particle. */
         get gravity(): Vector3
         set gravity(value: Vector3)
+        
+        /** Minimum value of the initial velocity. */
+        get initial_velocity_min(): float64
+        set initial_velocity_min(value: float64)
+        
+        /** Maximum value of the initial velocity. */
+        get initial_velocity_max(): float64
+        set initial_velocity_max(value: float64)
+        
+        /** Minimum initial angular velocity (rotation speed) applied to each particle in  *degrees*  per second. */
+        get angular_velocity_min(): float64
+        set angular_velocity_min(value: float64)
+        
+        /** Maximum initial angular velocity (rotation speed) applied to each particle in  *degrees*  per second. */
+        get angular_velocity_max(): float64
+        set angular_velocity_max(value: float64)
+        
+        /** Each particle's angular velocity (rotation speed) will vary along this [Curve] over its lifetime. */
+        get angular_velocity_curve(): Curve
+        set angular_velocity_curve(value: Curve)
+        
+        /** Minimum orbit velocity. */
+        get orbit_velocity_min(): float64
+        set orbit_velocity_min(value: float64)
+        
+        /** Maximum orbit velocity. */
+        get orbit_velocity_max(): float64
+        set orbit_velocity_max(value: float64)
+        
+        /** Each particle's orbital velocity will vary along this [Curve]. */
+        get orbit_velocity_curve(): Curve
+        set orbit_velocity_curve(value: Curve)
+        
+        /** Minimum linear acceleration. */
+        get linear_accel_min(): float64
+        set linear_accel_min(value: float64)
+        
+        /** Maximum linear acceleration. */
+        get linear_accel_max(): float64
+        set linear_accel_max(value: float64)
+        
+        /** Each particle's linear acceleration will vary along this [Curve]. */
+        get linear_accel_curve(): Curve
+        set linear_accel_curve(value: Curve)
+        
+        /** Minimum radial acceleration. */
+        get radial_accel_min(): float64
+        set radial_accel_min(value: float64)
+        
+        /** Maximum radial acceleration. */
+        get radial_accel_max(): float64
+        set radial_accel_max(value: float64)
+        
+        /** Each particle's radial acceleration will vary along this [Curve]. */
+        get radial_accel_curve(): Curve
+        set radial_accel_curve(value: Curve)
+        
+        /** Minimum tangent acceleration. */
+        get tangential_accel_min(): float64
+        set tangential_accel_min(value: float64)
+        
+        /** Maximum tangent acceleration. */
+        get tangential_accel_max(): float64
+        set tangential_accel_max(value: float64)
+        
+        /** Each particle's tangential acceleration will vary along this [Curve]. */
+        get tangential_accel_curve(): Curve
+        set tangential_accel_curve(value: Curve)
+        
+        /** Minimum damping. */
+        get damping_min(): float64
+        set damping_min(value: float64)
+        
+        /** Maximum damping. */
+        get damping_max(): float64
+        set damping_max(value: float64)
+        
+        /** Damping will vary along this [Curve]. */
+        get damping_curve(): Curve
+        set damping_curve(value: Curve)
+        
+        /** Minimum angle. */
+        get angle_min(): float64
+        set angle_min(value: float64)
+        
+        /** Maximum angle. */
+        get angle_max(): float64
+        set angle_max(value: float64)
+        
+        /** Each particle's rotation will be animated along this [Curve]. */
+        get angle_curve(): Curve
+        set angle_curve(value: Curve)
+        
+        /** Minimum scale. */
+        get scale_amount_min(): float64
+        set scale_amount_min(value: float64)
+        
+        /** Maximum scale. */
+        get scale_amount_max(): float64
+        set scale_amount_max(value: float64)
+        
+        /** Each particle's scale will vary along this [Curve]. */
+        get scale_amount_curve(): Curve
+        set scale_amount_curve(value: Curve)
         
         /** If set to `true`, three different scale curves can be specified, one per scale axis. */
         get split_scale(): boolean
@@ -5712,6 +6227,42 @@ declare module "godot" {
          */
         get color_initial_ramp(): Gradient
         set color_initial_ramp(value: Gradient)
+        
+        /** Minimum hue variation. */
+        get hue_variation_min(): float64
+        set hue_variation_min(value: float64)
+        
+        /** Maximum hue variation. */
+        get hue_variation_max(): float64
+        set hue_variation_max(value: float64)
+        
+        /** Each particle's hue will vary along this [Curve]. */
+        get hue_variation_curve(): Curve
+        set hue_variation_curve(value: Curve)
+        
+        /** Minimum particle animation speed. */
+        get anim_speed_min(): float64
+        set anim_speed_min(value: float64)
+        
+        /** Maximum particle animation speed. */
+        get anim_speed_max(): float64
+        set anim_speed_max(value: float64)
+        
+        /** Each particle's animation speed will vary along this [Curve]. */
+        get anim_speed_curve(): Curve
+        set anim_speed_curve(value: Curve)
+        
+        /** Minimum animation offset. */
+        get anim_offset_min(): float64
+        set anim_offset_min(value: float64)
+        
+        /** Maximum animation offset. */
+        get anim_offset_max(): float64
+        set anim_offset_max(value: float64)
+        
+        /** Each particle's animation offset will vary along this [Curve]. */
+        get anim_offset_curve(): Curve
+        set anim_offset_curve(value: Curve)
         
         /** Emitted when all active particles have finished processing. When [member one_shot] is disabled, particles will process continuously, so this is never emitted. */
         readonly finished: Signal0
@@ -6155,6 +6706,22 @@ declare module "godot" {
         get process_callback(): int64
         set process_callback(value: int64)
         
+        /** Left scroll limit in pixels. The camera stops moving when reaching this value, but [member offset] can push the view past the limit. */
+        get limit_left(): int64
+        set limit_left(value: int64)
+        
+        /** Top scroll limit in pixels. The camera stops moving when reaching this value, but [member offset] can push the view past the limit. */
+        get limit_top(): int64
+        set limit_top(value: int64)
+        
+        /** Right scroll limit in pixels. The camera stops moving when reaching this value, but [member offset] can push the view past the limit. */
+        get limit_right(): int64
+        set limit_right(value: int64)
+        
+        /** Bottom scroll limit in pixels. The camera stops moving when reaching this value, but [member offset] can push the view past the limit. */
+        get limit_bottom(): int64
+        set limit_bottom(value: int64)
+        
         /** If `true`, the camera smoothly stops when reaches its limits.  
          *  This property has no effect if [member position_smoothing_enabled] is `false`.  
          *      
@@ -6203,6 +6770,22 @@ declare module "godot" {
          */
         get drag_vertical_offset(): float64
         set drag_vertical_offset(value: float64)
+        
+        /** Left margin needed to drag the camera. A value of `1` makes the camera move only when reaching the left edge of the screen. */
+        get drag_left_margin(): float64
+        set drag_left_margin(value: float64)
+        
+        /** Top margin needed to drag the camera. A value of `1` makes the camera move only when reaching the top edge of the screen. */
+        get drag_top_margin(): float64
+        set drag_top_margin(value: float64)
+        
+        /** Right margin needed to drag the camera. A value of `1` makes the camera move only when reaching the right edge of the screen. */
+        get drag_right_margin(): float64
+        set drag_right_margin(value: float64)
+        
+        /** Bottom margin needed to drag the camera. A value of `1` makes the camera move only when reaching the bottom edge of the screen. */
+        get drag_bottom_margin(): float64
+        set drag_bottom_margin(value: float64)
         
         /** If `true`, draws the camera's screen rectangle in the editor. */
         get editor_draw_screen(): boolean
@@ -8698,1175 +9281,5 @@ declare module "godot" {
         
         /** Emitted when a preset is removed. */
         readonly preset_removed: Signal1<Color>
-    }
-    /** A button that brings up a [ColorPicker] when pressed.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_colorpickerbutton.html  
-     */
-    class ColorPickerButton extends Button {
-        constructor(identifier?: any)
-        /** Returns the [ColorPicker] that this node toggles.  
-         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
-         */
-        get_picker(): ColorPicker
-        
-        /** Returns the control's [PopupPanel] which allows you to connect to popup signals. This allows you to handle events when the ColorPicker is shown or hidden.  
-         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.  
-         */
-        get_popup(): PopupPanel
-        _about_to_popup(): void
-        
-        /** The currently selected color. */
-        get color(): Color
-        set color(value: Color)
-        
-        /** If `true`, the alpha channel in the displayed [ColorPicker] will be visible. */
-        get edit_alpha(): boolean
-        set edit_alpha(value: boolean)
-        
-        /** Emitted when the color changes. */
-        readonly color_changed: Signal1<Color>
-        
-        /** Emitted when the [ColorPicker] is closed. */
-        readonly popup_closed: Signal0
-        
-        /** Emitted when the [ColorPicker] is created (the button is pressed for the first time). */
-        readonly picker_created: Signal0
-    }
-    /** A control that displays a solid color rectangle.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_colorrect.html  
-     */
-    class ColorRect extends Control {
-        constructor(identifier?: any)
-        /** The fill color of the rectangle. */
-        get color(): Color
-        set color(value: Color)
-    }
-    /** An optionally compressed [Cubemap].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedcubemap.html  
-     */
-    class CompressedCubemap extends CompressedTextureLayered {
-        constructor(identifier?: any)
-    }
-    /** An optionally compressed [CubemapArray].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedcubemaparray.html  
-     */
-    class CompressedCubemapArray extends CompressedTextureLayered {
-        constructor(identifier?: any)
-    }
-    /** Texture with 2 dimensions, optionally compressed.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture2d.html  
-     */
-    class CompressedTexture2D extends Texture2D {
-        constructor(identifier?: any)
-        /** The [CompressedTexture2D]'s file path to a `.ctex` file. */
-        get load_path(): string
-        set load_path(value: string)
-    }
-    /** Array of 2-dimensional textures, optionally compressed.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture2darray.html  
-     */
-    class CompressedTexture2DArray extends CompressedTextureLayered {
-        constructor(identifier?: any)
-    }
-    /** Texture with 3 dimensions, optionally compressed.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture3d.html  
-     */
-    class CompressedTexture3D extends Texture3D {
-        constructor(identifier?: any)
-        /** The [CompressedTexture3D]'s file path to a `.ctex3d` file. */
-        get load_path(): string
-        set load_path(value: string)
-    }
-    /** Base class for texture arrays that can optionally be compressed.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexturelayered.html  
-     */
-    class CompressedTextureLayered extends TextureLayered {
-        constructor(identifier?: any)
-        /** The path the texture should be loaded from. */
-        get load_path(): string
-        set load_path(value: string)
-    }
-    /** A 2D polyline shape used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_concavepolygonshape2d.html  
-     */
-    class ConcavePolygonShape2D extends Shape2D {
-        constructor(identifier?: any)
-        /** The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of length divisible by two) is naturally divided into pairs (one pair for each segment); each pair consists of the starting point of a segment and the endpoint of a segment. */
-        get segments(): PackedVector2Array
-        set segments(value: PackedVector2Array | Vector2[])
-    }
-    /** A 3D trimesh shape used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_concavepolygonshape3d.html  
-     */
-    class ConcavePolygonShape3D extends Shape3D {
-        constructor(identifier?: any)
-        get data(): PackedVector3Array
-        set data(value: PackedVector3Array | Vector3[])
-        
-        /** If set to `true`, collisions occur on both sides of the concave shape faces. Otherwise they occur only along the face normals. */
-        get backface_collision(): boolean
-        set backface_collision(value: boolean)
-    }
-    namespace ConeTwistJoint3D {
-        enum Param {
-            /** Swing is rotation from side to side, around the axis perpendicular to the twist axis.  
-             *  The swing span defines, how much rotation will not get corrected along the swing axis.  
-             *  Could be defined as looseness in the [ConeTwistJoint3D].  
-             *  If below 0.05, this behavior is locked.  
-             */
-            PARAM_SWING_SPAN = 0,
-            
-            /** Twist is the rotation around the twist axis, this value defined how far the joint can twist.  
-             *  Twist is locked if below 0.05.  
-             */
-            PARAM_TWIST_SPAN = 1,
-            
-            /** The speed with which the swing or twist will take place.  
-             *  The higher, the faster.  
-             */
-            PARAM_BIAS = 2,
-            
-            /** The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint. */
-            PARAM_SOFTNESS = 3,
-            
-            /** Defines, how fast the swing- and twist-speed-difference on both sides gets synced. */
-            PARAM_RELAXATION = 4,
-            
-            /** Represents the size of the [enum Param] enum. */
-            PARAM_MAX = 5,
-        }
-    }
-    /** A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_conetwistjoint3d.html  
-     */
-    class ConeTwistJoint3D extends Joint3D {
-        constructor(identifier?: any)
-        /** Sets the value of the specified parameter. */
-        set_param(param: ConeTwistJoint3D.Param, value: float64): void
-        
-        /** Returns the value of the specified parameter. */
-        get_param(param: ConeTwistJoint3D.Param): float64
-    }
-    /** Helper class to handle INI-style files.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_configfile.html  
-     */
-    class ConfigFile extends RefCounted {
-        constructor(identifier?: any)
-        /** Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed. */
-        set_value(section: string, key: string, value: any): void
-        
-        /** Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback [param default] value. If [param default] is not specified or set to `null`, an error is also raised. */
-        get_value(section: string, key: string, default_: any = <any> {}): any
-        
-        /** Returns `true` if the specified section exists. */
-        has_section(section: string): boolean
-        
-        /** Returns `true` if the specified section-key pair exists. */
-        has_section_key(section: string, key: string): boolean
-        
-        /** Returns an array of all defined section identifiers. */
-        get_sections(): PackedStringArray
-        
-        /** Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist. */
-        get_section_keys(section: string): PackedStringArray
-        
-        /** Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist. */
-        erase_section(section: string): void
-        
-        /** Deletes the specified key in a section. Raises an error if either the section or the key do not exist. */
-        erase_section_key(section: string, key: string): void
-        
-        /** Loads the config file specified as a parameter. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
-         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
-         */
-        load(path: string): Error
-        
-        /** Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.  
-         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
-         */
-        parse(data: string): Error
-        
-        /** Saves the contents of the [ConfigFile] object to the file specified as a parameter. The output file uses an INI-style structure.  
-         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
-         */
-        save(path: string): Error
-        
-        /** Obtain the text version of this config file (the same text that would be written to a file). */
-        encode_to_text(): string
-        
-        /** Loads the encrypted config file specified as a parameter, using the provided [param key] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
-         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
-         */
-        load_encrypted(path: string, key: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Loads the encrypted config file specified as a parameter, using the provided [param password] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
-         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
-         */
-        load_encrypted_pass(path: string, password: string): Error
-        
-        /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param key] to encrypt it. The output file uses an INI-style structure.  
-         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
-         */
-        save_encrypted(path: string, key: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param password] to encrypt it. The output file uses an INI-style structure.  
-         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
-         */
-        save_encrypted_pass(path: string, password: string): Error
-        
-        /** Removes the entire contents of the config. */
-        clear(): void
-    }
-    /** A dialog used for confirmation of actions.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_confirmationdialog.html  
-     */
-    class ConfirmationDialog extends AcceptDialog {
-        constructor(identifier?: any)
-        /** Returns the cancel button.  
-         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
-         */
-        get_cancel_button(): Button
-        
-        /** The text displayed by the cancel button (see [method get_cancel_button]). */
-        get cancel_button_text(): string
-        set cancel_button_text(value: string)
-    }
-    class ConnectDialog extends ConfirmationDialog {
-        constructor(identifier?: any)
-        readonly connected: Signal0
-    }
-    class ConnectDialogBinds extends Object {
-        constructor(identifier?: any)
-    }
-    class ConnectionInfoDialog extends AcceptDialog {
-        constructor(identifier?: any)
-    }
-    class ConnectionsDock extends VBoxContainer {
-        constructor(identifier?: any)
-        update_tree(): void
-    }
-    /** Base class for all GUI containers.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_container.html  
-     */
-    class Container extends Control {
-        /** Notification just before children are going to be sorted, in case there's something to process beforehand. */
-        static readonly NOTIFICATION_PRE_SORT_CHILDREN = 50
-        
-        /** Notification for when sorting the children, it must be obeyed immediately. */
-        static readonly NOTIFICATION_SORT_CHILDREN = 51
-        constructor(identifier?: any)
-        
-        /** Implement to return a list of allowed horizontal [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.  
-         *      
-         *  **Note:** Having no size flags is equal to having [constant Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.  
-         */
-        /* gdvirtual */ _get_allowed_size_flags_horizontal(): PackedInt32Array
-        
-        /** Implement to return a list of allowed vertical [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.  
-         *      
-         *  **Note:** Having no size flags is equal to having [constant Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.  
-         */
-        /* gdvirtual */ _get_allowed_size_flags_vertical(): PackedInt32Array
-        
-        /** Queue resort of the contained children. This is called automatically anyway, but can be called upon request. */
-        queue_sort(): void
-        
-        /** Fit a child control in a given rect. This is mainly a helper for creating custom container classes. */
-        fit_child_in_rect(child: Control, rect: Rect2): void
-        
-        /** Emitted when children are going to be sorted. */
-        readonly pre_sort_children: Signal0
-        
-        /** Emitted when sorting the children is needed. */
-        readonly sort_children: Signal0
-    }
-    namespace Control {
-        enum FocusMode {
-            /** The node cannot grab focus. Use with [member focus_mode]. */
-            FOCUS_NONE = 0,
-            
-            /** The node can only grab focus on mouse clicks. Use with [member focus_mode]. */
-            FOCUS_CLICK = 1,
-            
-            /** The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or using the D-pad buttons on a gamepad. Use with [member focus_mode]. */
-            FOCUS_ALL = 2,
-        }
-        enum CursorShape {
-            /** Show the system's arrow mouse cursor when the user hovers the node. Use with [member mouse_default_cursor_shape]. */
-            CURSOR_ARROW = 0,
-            
-            /** Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a shape similar to "I". It tells the user they can highlight or insert text. */
-            CURSOR_IBEAM = 1,
-            
-            /** Show the system's pointing hand mouse cursor when the user hovers the node. */
-            CURSOR_POINTING_HAND = 2,
-            
-            /** Show the system's cross mouse cursor when the user hovers the node. */
-            CURSOR_CROSS = 3,
-            
-            /** Show the system's wait mouse cursor when the user hovers the node. Often an hourglass. */
-            CURSOR_WAIT = 4,
-            
-            /** Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a small hourglass. */
-            CURSOR_BUSY = 5,
-            
-            /** Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user hovers the node. It tells the user they're currently dragging an item, like a node in the Scene dock. */
-            CURSOR_DRAG = 6,
-            
-            /** Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It tells the user they can drop an item they're currently grabbing, like a node in the Scene dock. */
-            CURSOR_CAN_DROP = 7,
-            
-            /** Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed circle. */
-            CURSOR_FORBIDDEN = 8,
-            
-            /** Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed vertical arrow. It tells the user they can resize the window or the panel vertically. */
-            CURSOR_VSIZE = 9,
-            
-            /** Show the system's horizontal resize mouse cursor when the user hovers the node. A double-headed horizontal arrow. It tells the user they can resize the window or the panel horizontally. */
-            CURSOR_HSIZE = 10,
-            
-            /** Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically. */
-            CURSOR_BDIAGSIZE = 11,
-            
-            /** Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the top left to the bottom right, the opposite of [constant CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally and vertically. */
-            CURSOR_FDIAGSIZE = 12,
-            
-            /** Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed arrows at a 90 degree angle. It tells the user they can move a UI element freely. */
-            CURSOR_MOVE = 13,
-            
-            /** Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's the same as [constant CURSOR_VSIZE]. */
-            CURSOR_VSPLIT = 14,
-            
-            /** Show the system's horizontal split mouse cursor when the user hovers the node. On Windows, it's the same as [constant CURSOR_HSIZE]. */
-            CURSOR_HSPLIT = 15,
-            
-            /** Show the system's help mouse cursor when the user hovers the node, a question mark. */
-            CURSOR_HELP = 16,
-        }
-        enum LayoutPreset {
-            /** Snap all 4 anchors to the top-left of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_TOP_LEFT = 0,
-            
-            /** Snap all 4 anchors to the top-right of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_TOP_RIGHT = 1,
-            
-            /** Snap all 4 anchors to the bottom-left of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_BOTTOM_LEFT = 2,
-            
-            /** Snap all 4 anchors to the bottom-right of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_BOTTOM_RIGHT = 3,
-            
-            /** Snap all 4 anchors to the center of the left edge of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_CENTER_LEFT = 4,
-            
-            /** Snap all 4 anchors to the center of the top edge of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_CENTER_TOP = 5,
-            
-            /** Snap all 4 anchors to the center of the right edge of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_CENTER_RIGHT = 6,
-            
-            /** Snap all 4 anchors to the center of the bottom edge of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_CENTER_BOTTOM = 7,
-            
-            /** Snap all 4 anchors to the center of the parent control's bounds. Use with [method set_anchors_preset]. */
-            PRESET_CENTER = 8,
-            
-            /** Snap all 4 anchors to the left edge of the parent control. The left offset becomes relative to the left edge and the top offset relative to the top left corner of the node's parent. Use with [method set_anchors_preset]. */
-            PRESET_LEFT_WIDE = 9,
-            
-            /** Snap all 4 anchors to the top edge of the parent control. The left offset becomes relative to the top left corner, the top offset relative to the top edge, and the right offset relative to the top right corner of the node's parent. Use with [method set_anchors_preset]. */
-            PRESET_TOP_WIDE = 10,
-            
-            /** Snap all 4 anchors to the right edge of the parent control. The right offset becomes relative to the right edge and the top offset relative to the top right corner of the node's parent. Use with [method set_anchors_preset]. */
-            PRESET_RIGHT_WIDE = 11,
-            
-            /** Snap all 4 anchors to the bottom edge of the parent control. The left offset becomes relative to the bottom left corner, the bottom offset relative to the bottom edge, and the right offset relative to the bottom right corner of the node's parent. Use with [method set_anchors_preset]. */
-            PRESET_BOTTOM_WIDE = 12,
-            
-            /** Snap all 4 anchors to a vertical line that cuts the parent control in half. Use with [method set_anchors_preset]. */
-            PRESET_VCENTER_WIDE = 13,
-            
-            /** Snap all 4 anchors to a horizontal line that cuts the parent control in half. Use with [method set_anchors_preset]. */
-            PRESET_HCENTER_WIDE = 14,
-            
-            /** Snap all 4 anchors to the respective corners of the parent control. Set all 4 offsets to 0 after you applied this preset and the [Control] will fit its parent control. Use with [method set_anchors_preset]. */
-            PRESET_FULL_RECT = 15,
-        }
-        enum LayoutPresetMode {
-            /** The control will be resized to its minimum size. */
-            PRESET_MODE_MINSIZE = 0,
-            
-            /** The control's width will not change. */
-            PRESET_MODE_KEEP_WIDTH = 1,
-            
-            /** The control's height will not change. */
-            PRESET_MODE_KEEP_HEIGHT = 2,
-            
-            /** The control's size will not change. */
-            PRESET_MODE_KEEP_SIZE = 3,
-        }
-        enum SizeFlags {
-            /** Tells the parent [Container] to align the node with its start, either the top or the left edge. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical].  
-             *      
-             *  **Note:** Setting this flag is equal to not having any size flags.  
-             */
-            SIZE_SHRINK_BEGIN = 0,
-            
-            /** Tells the parent [Container] to expand the bounds of this node to fill all the available space without pushing any other node. It is mutually exclusive with shrink size flags. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
-            SIZE_FILL = 1,
-            
-            /** Tells the parent [Container] to let this node take all the available space on the axis you flag. If multiple neighboring nodes are set to expand, they'll share the space based on their stretch ratio. See [member size_flags_stretch_ratio]. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
-            SIZE_EXPAND = 2,
-            
-            /** Sets the node's size flags to both fill and expand. See [constant SIZE_FILL] and [constant SIZE_EXPAND] for more information. */
-            SIZE_EXPAND_FILL = 3,
-            
-            /** Tells the parent [Container] to center the node in the available space. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
-            SIZE_SHRINK_CENTER = 4,
-            
-            /** Tells the parent [Container] to align the node with its end, either the bottom or the right edge. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
-            SIZE_SHRINK_END = 8,
-        }
-        enum MouseFilter {
-            /** The control will receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. And the control will receive the [signal mouse_entered] and [signal mouse_exited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls. */
-            MOUSE_FILTER_STOP = 0,
-            
-            /** The control will receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. And the control will receive the [signal mouse_entered] and [signal mouse_exited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [method Node._shortcut_input] for further processing. */
-            MOUSE_FILTER_PASS = 1,
-            
-            /** The control will not receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. The control will also not receive the [signal mouse_entered] nor [signal mouse_exited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.  
-             *      
-             *  **Note:** If the control has received [signal mouse_entered] but not [signal mouse_exited], changing the [member mouse_filter] to [constant MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to be emitted.  
-             */
-            MOUSE_FILTER_IGNORE = 2,
-        }
-        enum GrowDirection {
-            /** The control will grow to the left or top to make up if its minimum size is changed to be greater than its current size on the respective axis. */
-            GROW_DIRECTION_BEGIN = 0,
-            
-            /** The control will grow to the right or bottom to make up if its minimum size is changed to be greater than its current size on the respective axis. */
-            GROW_DIRECTION_END = 1,
-            
-            /** The control will grow in both directions equally to make up if its minimum size is changed to be greater than its current size. */
-            GROW_DIRECTION_BOTH = 2,
-        }
-        enum Anchor {
-            /** Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it with one of the `anchor_*` member variables, like [member anchor_left]. To change all 4 anchors at once, use [method set_anchors_preset]. */
-            ANCHOR_BEGIN = 0,
-            
-            /** Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use it with one of the `anchor_*` member variables, like [member anchor_left]. To change all 4 anchors at once, use [method set_anchors_preset]. */
-            ANCHOR_END = 1,
-        }
-        enum LayoutDirection {
-            /** Automatic layout direction, determined from the parent control layout direction. */
-            LAYOUT_DIRECTION_INHERITED = 0,
-            
-            /** Automatic layout direction, determined from the current locale. */
-            LAYOUT_DIRECTION_LOCALE = 1,
-            
-            /** Left-to-right layout direction. */
-            LAYOUT_DIRECTION_LTR = 2,
-            
-            /** Right-to-left layout direction. */
-            LAYOUT_DIRECTION_RTL = 3,
-        }
-        enum TextDirection {
-            /** Text writing direction is the same as layout direction. */
-            TEXT_DIRECTION_INHERITED = 3,
-            
-            /** Automatic text writing direction, determined from the current locale and text content. */
-            TEXT_DIRECTION_AUTO = 0,
-            
-            /** Left-to-right text writing direction. */
-            TEXT_DIRECTION_LTR = 1,
-            
-            /** Right-to-left text writing direction. */
-            TEXT_DIRECTION_RTL = 2,
-        }
-    }
-    /** Base class for all GUI controls. Adapts its position and size based on its parent control.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_control.html  
-     */
-    class Control extends CanvasItem {
-        /** Sent when the node changes size. Use [member size] to get the new size. */
-        static readonly NOTIFICATION_RESIZED = 40
-        
-        /** Sent when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
-         *      
-         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
-         *  See also [constant NOTIFICATION_MOUSE_ENTER_SELF].  
-         */
-        static readonly NOTIFICATION_MOUSE_ENTER = 41
-        
-        /** Sent when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
-         *      
-         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
-         *  See also [constant NOTIFICATION_MOUSE_EXIT_SELF].  
-         */
-        static readonly NOTIFICATION_MOUSE_EXIT = 42
-        
-        /** Sent when the mouse cursor enters the control's visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
-         *      
-         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
-         *  See also [constant NOTIFICATION_MOUSE_ENTER].  
-         */
-        static readonly NOTIFICATION_MOUSE_ENTER_SELF = 60
-        
-        /** Sent when the mouse cursor leaves the control's visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
-         *      
-         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
-         *  See also [constant NOTIFICATION_MOUSE_EXIT].  
-         */
-        static readonly NOTIFICATION_MOUSE_EXIT_SELF = 61
-        
-        /** Sent when the node grabs focus. */
-        static readonly NOTIFICATION_FOCUS_ENTER = 43
-        
-        /** Sent when the node loses focus. */
-        static readonly NOTIFICATION_FOCUS_EXIT = 44
-        
-        /** Sent when the node needs to refresh its theme items. This happens in one of the following cases:  
-         *  - The [member theme] property is changed on this node or any of its ancestors.  
-         *  - The [member theme_type_variation] property is changed on this node.  
-         *  - One of the node's theme property overrides is changed.  
-         *  - The node enters the scene tree.  
-         *      
-         *  **Note:** As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.  
-         */
-        static readonly NOTIFICATION_THEME_CHANGED = 45
-        
-        /** Sent when this node is inside a [ScrollContainer] which has begun being scrolled when dragging the scrollable area  *with a touch event* . This notification is  *not*  sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
-         *      
-         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
-         */
-        static readonly NOTIFICATION_SCROLL_BEGIN = 47
-        
-        /** Sent when this node is inside a [ScrollContainer] which has stopped being scrolled when dragging the scrollable area  *with a touch event* . This notification is  *not*  sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
-         *      
-         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
-         */
-        static readonly NOTIFICATION_SCROLL_END = 48
-        
-        /** Sent when control layout direction is changed. */
-        static readonly NOTIFICATION_LAYOUT_DIRECTION_CHANGED = 49
-        constructor(identifier?: any)
-        
-        /** Virtual method to be implemented by the user. Returns whether the given [param point] is inside this control.  
-         *  If not overridden, default behavior is checking if the point is within control's Rect.  
-         *      
-         *  **Note:** If you want to check if a point is inside the control, you can use `Rect2(Vector2.ZERO, size).has_point(point)`.  
-         */
-        /* gdvirtual */ _has_point(point: Vector2): boolean
-        
-        /** User defined BiDi algorithm override function.  
-         *  Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right order. Ranges should cover full source [param text] without overlaps. BiDi algorithm will be used on each range separately.  
-         */
-        /* gdvirtual */ _structured_text_parser(args: Array, text: string): Array
-        
-        /** Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [member custom_minimum_size] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).  
-         *  If not overridden, defaults to [constant Vector2.ZERO].  
-         *      
-         *  **Note:** This method will not be called when the script is attached to a [Control] node that already overrides its minimum size (e.g. [Label], [Button], [PanelContainer] etc.). It can only be used with most basic GUI nodes, like [Control], [Container], [Panel] etc.  
-         */
-        /* gdvirtual */ _get_minimum_size(): Vector2
-        
-        /** Virtual method to be implemented by the user. Returns the tooltip text for the position [param at_position] in control's local coordinates, which will typically appear when the cursor is resting over this control. See [method get_tooltip].  
-         *      
-         *  **Note:** If this method returns an empty [String], no tooltip is displayed.  
-         */
-        /* gdvirtual */ _get_tooltip(at_position: Vector2): string
-        
-        /** Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data should implement [method _can_drop_data] and [method _drop_data]. [param at_position] is local to this control. Drag may be forced with [method force_drag].  
-         *  A preview that will follow the mouse that should represent the data can be set with [method set_drag_preview]. A good time to set the preview is in this method.  
-         *    
-         */
-        /* gdvirtual */ _get_drag_data(at_position: Vector2): void
-        
-        /** Godot calls this method to test if [param data] from a control's [method _get_drag_data] can be dropped at [param at_position]. [param at_position] is local to this control.  
-         *  This method should only be used to test the data. Process the data in [method _drop_data].  
-         *    
-         */
-        /* gdvirtual */ _can_drop_data(at_position: Vector2, data: any): boolean
-        
-        /** Godot calls this method to pass you the [param data] from a control's [method _get_drag_data] result. Godot first calls [method _can_drop_data] to test if [param data] is allowed to drop at [param at_position] where [param at_position] is local to this control.  
-         *    
-         */
-        /* gdvirtual */ _drop_data(at_position: Vector2, data: any): void
-        
-        /** Virtual method to be implemented by the user. Returns a [Control] node that should be used as a tooltip instead of the default one. The [param for_text] includes the contents of the [member tooltip_text] property.  
-         *  The returned node must be of type [Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance). When `null` or a non-Control node is returned, the default tooltip will be used instead.  
-         *  The returned node will be added as child to a [PopupPanel], so you should only provide the contents of that panel. That [PopupPanel] can be themed using [method Theme.set_stylebox] for the type `"TooltipPanel"` (see [member tooltip_text] for an example).  
-         *      
-         *  **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [member custom_minimum_size] to some non-zero value.  
-         *      
-         *  **Note:** The node (and any relevant children) should be [member CanvasItem.visible] when returned, otherwise, the viewport that instantiates it will not be able to calculate its minimum size reliably.  
-         *  **Example of usage with a custom-constructed node:**  
-         *    
-         *  **Example of usage with a custom scene instance:**  
-         *    
-         */
-        /* gdvirtual */ _make_custom_tooltip(for_text: string): Object
-        
-        /** Virtual method to be implemented by the user. Use this method to process and accept inputs on UI elements. See [method accept_event].  
-         *  **Example usage for clicking a control:**  
-         *    
-         *  The event won't trigger if:  
-         *  * clicking outside the control (see [method _has_point]);  
-         *  * control has [member mouse_filter] set to [constant MOUSE_FILTER_IGNORE];  
-         *  * control is obstructed by another [Control] on top of it, which doesn't have [member mouse_filter] set to [constant MOUSE_FILTER_IGNORE];  
-         *  * control's parent has [member mouse_filter] set to [constant MOUSE_FILTER_STOP] or has accepted the event;  
-         *  * it happens outside the parent's rectangle and the parent has either [member clip_contents] enabled.  
-         *      
-         *  **Note:** Event position is relative to the control origin.  
-         */
-        /* gdvirtual */ _gui_input(event: InputEvent): void
-        
-        /** Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [method Node._unhandled_input] or [method Node._unhandled_key_input].  
-         *      
-         *  **Note:** This does not affect the methods in [Input], only the way events are propagated.  
-         */
-        accept_event(): void
-        
-        /** Returns the minimum size for this control. See [member custom_minimum_size]. */
-        get_minimum_size(): Vector2
-        
-        /** Returns combined minimum size from [member custom_minimum_size] and [method get_minimum_size]. */
-        get_combined_minimum_size(): Vector2
-        
-        /** Sets the anchors to a [param preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.  
-         *  If [param keep_offsets] is `true`, control's position will also be updated.  
-         */
-        set_anchors_preset(preset: Control.LayoutPreset, keep_offsets: boolean = false): void
-        
-        /** Sets the offsets to a [param preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.  
-         *  Use parameter [param resize_mode] with constants from [enum Control.LayoutPresetMode] to better determine the resulting size of the [Control]. Constant size will be ignored if used with presets that change size, e.g. [constant PRESET_LEFT_WIDE].  
-         *  Use parameter [param margin] to determine the gap between the [Control] and the edges.  
-         */
-        set_offsets_preset(preset: Control.LayoutPreset, resize_mode: Control.LayoutPresetMode = 0, margin: int64 = 0): void
-        
-        /** Sets both anchor preset and offset preset. See [method set_anchors_preset] and [method set_offsets_preset]. */
-        set_anchors_and_offsets_preset(preset: Control.LayoutPreset, resize_mode: Control.LayoutPresetMode = 0, margin: int64 = 0): void
-        _set_anchor(side: Side, anchor: float64): void
-        
-        /** Sets the anchor for the specified [enum Side] to [param anchor]. A setter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top].  
-         *  If [param keep_offset] is `true`, offsets aren't updated after this operation.  
-         *  If [param push_opposite_anchor] is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If [param push_opposite_anchor] was `false`, the left anchor would get value 0.5.  
-         */
-        set_anchor(side: Side, anchor: float64, keep_offset: boolean = false, push_opposite_anchor: boolean = true): void
-        
-        /** Returns the anchor for the specified [enum Side]. A getter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top]. */
-        get_anchor(side: Side): float64
-        
-        /** Sets the offset for the specified [enum Side] to [param offset]. A setter method for [member offset_bottom], [member offset_left], [member offset_right] and [member offset_top]. */
-        set_offset(side: Side, offset: float64): void
-        
-        /** Returns the offset for the specified [enum Side]. A getter method for [member offset_bottom], [member offset_left], [member offset_right] and [member offset_top]. */
-        get_offset(offset: Side): float64
-        
-        /** Works the same as [method set_anchor], but instead of `keep_offset` argument and automatic update of offset, it allows to set the offset yourself (see [method set_offset]). */
-        set_anchor_and_offset(side: Side, anchor: float64, offset: float64, push_opposite_anchor: boolean = false): void
-        
-        /** Sets [member offset_left] and [member offset_top] at the same time. Equivalent of changing [member position]. */
-        set_begin(position: Vector2): void
-        
-        /** Sets [member offset_right] and [member offset_bottom] at the same time. */
-        set_end(position: Vector2): void
-        
-        /** Sets the [member position] to given [param position].  
-         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
-         */
-        set_position(position: Vector2, keep_offsets: boolean = false): void
-        
-        /** Sets the size (see [member size]).  
-         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
-         */
-        set_size(size: Vector2, keep_offsets: boolean = false): void
-        
-        /** Resets the size to [method get_combined_minimum_size]. This is equivalent to calling `set_size(Vector2())` (or any size below the minimum). */
-        reset_size(): void
-        
-        /** Sets the [member global_position] to given [param position].  
-         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
-         */
-        set_global_position(position: Vector2, keep_offsets: boolean = false): void
-        
-        /** Returns [member offset_left] and [member offset_top]. See also [member position]. */
-        get_begin(): Vector2
-        
-        /** Returns [member offset_right] and [member offset_bottom]. */
-        get_end(): Vector2
-        
-        /** Returns the width/height occupied in the parent control. */
-        get_parent_area_size(): Vector2
-        
-        /** Returns the position of this [Control] in global screen coordinates (i.e. taking window position into account). Mostly useful for editor plugins.  
-         *  Equals to [member global_position] if the window is embedded (see [member Viewport.gui_embed_subwindows]).  
-         *  **Example usage for showing a popup:**  
-         *    
-         */
-        get_screen_position(): Vector2
-        
-        /** Returns the position and size of the control in the coordinate system of the containing node. See [member position], [member scale] and [member size].  
-         *      
-         *  **Note:** If [member rotation] is not the default rotation, the resulting size is not meaningful.  
-         *      
-         *  **Note:** Setting [member Viewport.gui_snap_controls_to_pixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [Rect2].  
-         */
-        get_rect(): Rect2
-        
-        /** Returns the position and size of the control relative to the containing canvas. See [member global_position] and [member size].  
-         *      
-         *  **Note:** If the node itself or any parent [CanvasItem] between the node and the canvas have a non default rotation or skew, the resulting size is likely not meaningful.  
-         *      
-         *  **Note:** Setting [member Viewport.gui_snap_controls_to_pixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [Rect2].  
-         */
-        get_global_rect(): Rect2
-        
-        /** Returns `true` if this is the current focused control. See [member focus_mode]. */
-        has_focus(): boolean
-        
-        /** Steal the focus from another control and become the focused control (see [member focus_mode]).  
-         *      
-         *  **Note:** Using this method together with [method Callable.call_deferred] makes it more reliable, especially when called inside [method Node._ready].  
-         */
-        grab_focus(): void
-        
-        /** Give up the focus. No other control will be able to receive input. */
-        release_focus(): void
-        
-        /** Finds the previous (above in the tree) [Control] that can receive the focus. */
-        find_prev_valid_focus(): Control
-        
-        /** Finds the next (below in the tree) [Control] that can receive the focus. */
-        find_next_valid_focus(): Control
-        
-        /** Finds the next [Control] that can receive the focus on the specified [enum Side].  
-         *      
-         *  **Note:** This is different from [method get_focus_neighbor], which returns the path of a specified focus neighbor.  
-         */
-        find_valid_focus_neighbor(side: Side): Control
-        
-        /** Prevents `*_theme_*_override` methods from emitting [constant NOTIFICATION_THEME_CHANGED] until [method end_bulk_theme_override] is called. */
-        begin_bulk_theme_override(): void
-        
-        /** Ends a bulk theme override update. See [method begin_bulk_theme_override]. */
-        end_bulk_theme_override(): void
-        
-        /** Creates a local override for a theme icon with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_icon_override].  
-         *  See also [method get_theme_icon].  
-         */
-        add_theme_icon_override(name: StringName, texture: Texture2D): void
-        
-        /** Creates a local override for a theme [StyleBox] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_stylebox_override].  
-         *  See also [method get_theme_stylebox].  
-         *  **Example of modifying a property in a StyleBox by duplicating it:**  
-         *    
-         */
-        add_theme_stylebox_override(name: StringName, stylebox: StyleBox): void
-        
-        /** Creates a local override for a theme [Font] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_override].  
-         *  See also [method get_theme_font].  
-         */
-        add_theme_font_override(name: StringName, font: Font): void
-        
-        /** Creates a local override for a theme font size with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_size_override].  
-         *  See also [method get_theme_font_size].  
-         */
-        add_theme_font_size_override(name: StringName, font_size: int64): void
-        
-        /** Creates a local override for a theme [Color] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_color_override].  
-         *  See also [method get_theme_color].  
-         *  **Example of overriding a label's color and resetting it later:**  
-         *    
-         */
-        add_theme_color_override(name: StringName, color: Color): void
-        
-        /** Creates a local override for a theme constant with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_constant_override].  
-         *  See also [method get_theme_constant].  
-         */
-        add_theme_constant_override(name: StringName, constant: int64): void
-        
-        /** Removes a local override for a theme icon with the specified [param name] previously added by [method add_theme_icon_override] or via the Inspector dock. */
-        remove_theme_icon_override(name: StringName): void
-        
-        /** Removes a local override for a theme [StyleBox] with the specified [param name] previously added by [method add_theme_stylebox_override] or via the Inspector dock. */
-        remove_theme_stylebox_override(name: StringName): void
-        
-        /** Removes a local override for a theme [Font] with the specified [param name] previously added by [method add_theme_font_override] or via the Inspector dock. */
-        remove_theme_font_override(name: StringName): void
-        
-        /** Removes a local override for a theme font size with the specified [param name] previously added by [method add_theme_font_size_override] or via the Inspector dock. */
-        remove_theme_font_size_override(name: StringName): void
-        
-        /** Removes a local override for a theme [Color] with the specified [param name] previously added by [method add_theme_color_override] or via the Inspector dock. */
-        remove_theme_color_override(name: StringName): void
-        
-        /** Removes a local override for a theme constant with the specified [param name] previously added by [method add_theme_constant_override] or via the Inspector dock. */
-        remove_theme_constant_override(name: StringName): void
-        
-        /** Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        get_theme_icon(name: StringName, theme_type: StringName = ''): Texture2D
-        
-        /** Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        get_theme_stylebox(name: StringName, theme_type: StringName = ''): StyleBox
-        
-        /** Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        get_theme_font(name: StringName, theme_type: StringName = ''): Font
-        
-        /** Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        get_theme_font_size(name: StringName, theme_type: StringName = ''): int64
-        
-        /** Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item with the specified [param name] and [param theme_type]. If [param theme_type] is omitted the class name of the current control is used as the type, or [member theme_type_variation] if it is defined. If the type is a class name its parent classes are also checked, in order of inheritance. If the type is a variation its base types are checked, in order of dependency, then the control's class name and its parent classes are checked.  
-         *  For the current control its local overrides are considered first (see [method add_theme_color_override]), then its assigned [member theme]. After the current control, each parent control and its assigned [member theme] are considered; controls without a [member theme] assigned are skipped. If no matching [Theme] is found in the tree, the custom project [Theme] (see [member ProjectSettings.gui/theme/custom]) and the default [Theme] are used (see [ThemeDB]).  
-         *    
-         */
-        get_theme_color(name: StringName, theme_type: StringName = ''): Color
-        
-        /** Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        get_theme_constant(name: StringName, theme_type: StringName = ''): int64
-        
-        /** Returns `true` if there is a local override for a theme icon with the specified [param name] in this [Control] node.  
-         *  See [method add_theme_icon_override].  
-         */
-        has_theme_icon_override(name: StringName): boolean
-        
-        /** Returns `true` if there is a local override for a theme [StyleBox] with the specified [param name] in this [Control] node.  
-         *  See [method add_theme_stylebox_override].  
-         */
-        has_theme_stylebox_override(name: StringName): boolean
-        
-        /** Returns `true` if there is a local override for a theme [Font] with the specified [param name] in this [Control] node.  
-         *  See [method add_theme_font_override].  
-         */
-        has_theme_font_override(name: StringName): boolean
-        
-        /** Returns `true` if there is a local override for a theme font size with the specified [param name] in this [Control] node.  
-         *  See [method add_theme_font_size_override].  
-         */
-        has_theme_font_size_override(name: StringName): boolean
-        
-        /** Returns `true` if there is a local override for a theme [Color] with the specified [param name] in this [Control] node.  
-         *  See [method add_theme_color_override].  
-         */
-        has_theme_color_override(name: StringName): boolean
-        
-        /** Returns `true` if there is a local override for a theme constant with the specified [param name] in this [Control] node.  
-         *  See [method add_theme_constant_override].  
-         */
-        has_theme_constant_override(name: StringName): boolean
-        
-        /** Returns `true` if there is a matching [Theme] in the tree that has an icon item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        has_theme_icon(name: StringName, theme_type: StringName = ''): boolean
-        
-        /** Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        has_theme_stylebox(name: StringName, theme_type: StringName = ''): boolean
-        
-        /** Returns `true` if there is a matching [Theme] in the tree that has a font item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        has_theme_font(name: StringName, theme_type: StringName = ''): boolean
-        
-        /** Returns `true` if there is a matching [Theme] in the tree that has a font size item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        has_theme_font_size(name: StringName, theme_type: StringName = ''): boolean
-        
-        /** Returns `true` if there is a matching [Theme] in the tree that has a color item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        has_theme_color(name: StringName, theme_type: StringName = ''): boolean
-        
-        /** Returns `true` if there is a matching [Theme] in the tree that has a constant item with the specified [param name] and [param theme_type].  
-         *  See [method get_theme_color] for details.  
-         */
-        has_theme_constant(name: StringName, theme_type: StringName = ''): boolean
-        
-        /** Returns the default base scale value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_base_scale] value.  
-         *  See [method get_theme_color] for details.  
-         */
-        get_theme_default_base_scale(): float64
-        
-        /** Returns the default font from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font] value.  
-         *  See [method get_theme_color] for details.  
-         */
-        get_theme_default_font(): Font
-        
-        /** Returns the default font size value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font_size] value.  
-         *  See [method get_theme_color] for details.  
-         */
-        get_theme_default_font_size(): int64
-        
-        /** Returns the parent control node. */
-        get_parent_control(): Control
-        
-        /** Returns the tooltip text for the position [param at_position] in control's local coordinates, which will typically appear when the cursor is resting over this control. By default, it returns [member tooltip_text].  
-         *  This method can be overridden to customize its behavior. See [method _get_tooltip].  
-         *      
-         *  **Note:** If this method returns an empty [String], no tooltip is displayed.  
-         */
-        get_tooltip(at_position: Vector2 = Vector2.ZERO): string
-        
-        /** Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape]. */
-        get_cursor_shape(position: Vector2 = Vector2.ZERO): Control.CursorShape
-        
-        /** Sets the focus neighbor for the specified [enum Side] to the [Control] at [param neighbor] node path. A setter method for [member focus_neighbor_bottom], [member focus_neighbor_left], [member focus_neighbor_right] and [member focus_neighbor_top]. */
-        set_focus_neighbor(side: Side, neighbor: NodePath | string): void
-        
-        /** Returns the focus neighbor for the specified [enum Side]. A getter method for [member focus_neighbor_bottom], [member focus_neighbor_left], [member focus_neighbor_right] and [member focus_neighbor_top].  
-         *      
-         *  **Note:** To find the next [Control] on the specific [enum Side], even if a neighbor is not assigned, use [method find_valid_focus_neighbor].  
-         */
-        get_focus_neighbor(side: Side): NodePath
-        
-        /** Forces drag and bypasses [method _get_drag_data] and [method set_drag_preview] by passing [param data] and [param preview]. Drag will start even if the mouse is neither over nor pressed on this control.  
-         *  The methods [method _can_drop_data] and [method _drop_data] must be implemented on controls that want to receive drop data.  
-         */
-        force_drag(data: any, preview: Control): void
-        
-        /** Creates an [InputEventMouseButton] that attempts to click the control. If the event is received, the control acquires focus.  
-         *    
-         */
-        grab_click_focus(): void
-        
-        /** Forwards the handling of this control's [method _get_drag_data],  [method _can_drop_data] and [method _drop_data] virtual functions to delegate callables.  
-         *  For each argument, if not empty, the delegate callable is used, otherwise the local (virtual) function is used.  
-         *  The function format for each callable should be exactly the same as the virtual functions described above.  
-         */
-        set_drag_forwarding(drag_func: Callable, can_drop_func: Callable, drop_func: Callable): void
-        
-        /** Shows the given control at the mouse pointer. A good time to call this method is in [method _get_drag_data]. The control must not be in the scene tree. You should not free the control, and you should not keep a reference to the control beyond the duration of the drag. It will be deleted automatically after the drag has ended.  
-         *    
-         */
-        set_drag_preview(control: Control): void
-        
-        /** Returns `true` if a drag operation is successful. Alternative to [method Viewport.gui_is_drag_successful].  
-         *  Best used with [constant Node.NOTIFICATION_DRAG_END].  
-         */
-        is_drag_successful(): boolean
-        
-        /** Moves the mouse cursor to [param position], relative to [member position] of this [Control].  
-         *      
-         *  **Note:** [method warp_mouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.  
-         */
-        warp_mouse(position: Vector2): void
-        
-        /** Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [method get_minimum_size] when the return value is changed. Setting [member custom_minimum_size] directly calls this method automatically. */
-        update_minimum_size(): void
-        
-        /** Returns `true` if layout is right-to-left. */
-        is_layout_rtl(): boolean
-        
-        /** Enables whether rendering of [CanvasItem] based children should be clipped to this control's rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle will not be rendered and won't receive input. */
-        get clip_contents(): boolean
-        set clip_contents(value: boolean)
-        
-        /** The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes. */
-        get custom_minimum_size(): Vector2
-        set custom_minimum_size(value: Vector2)
-        
-        /** Controls layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew). */
-        get layout_direction(): int64
-        set layout_direction(value: int64)
-        get layout_mode(): int64
-        set layout_mode(value: int64)
-        get anchors_preset(): int64
-        set anchors_preset(value: int64)
-        
-        /** Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size. */
-        get grow_horizontal(): int64
-        set grow_horizontal(value: int64)
-        
-        /** Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size. */
-        get grow_vertical(): int64
-        set grow_vertical(value: int64)
-        
-        /** The size of the node's bounding rectangle, in the node's coordinate system. [Container] nodes update this property automatically. */
-        get size(): Vector2
-        set size(value: Vector2)
-        
-        /** The node's position, relative to its containing node. It corresponds to the rectangle's top-left corner. The property is not affected by [member pivot_offset]. */
-        get position(): Vector2
-        set position(value: Vector2)
-        
-        /** The node's global position, relative to the world (usually to the [CanvasLayer]). */
-        get global_position(): Vector2
-        set global_position(value: Vector2)
-        
-        /** The node's rotation around its pivot, in radians. See [member pivot_offset] to change the pivot's position.  
-         *      
-         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
-         */
-        get rotation(): float64
-        set rotation(value: float64)
-        
-        /** Helper property to access [member rotation] in degrees instead of radians. */
-        get rotation_degrees(): float64
-        set rotation_degrees(value: float64)
-        
-        /** The node's scale, relative to its [member size]. Change this property to scale the node around its [member pivot_offset]. The Control's [member tooltip_text] will also scale according to this value.  
-         *      
-         *  **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [url=https://docs.godotengine.org/en/4.2/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of scaling Controls individually.  
-         *      
-         *  **Note:** [member FontFile.oversampling] does  *not*  take [Control] [member scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
-         *      
-         *  **Note:** If the Control node is a child of a [Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [member scale] property.  
-         */
-        get scale(): Vector2
-        set scale(value: Vector2)
-        
-        /** By default, the node's pivot is its top-left corner. When you change its [member rotation] or [member scale], it will rotate or scale around this pivot. Set this property to [member size] / 2 to pivot around the Control's center. */
-        get pivot_offset(): Vector2
-        set pivot_offset(value: Vector2)
-        
-        /** Tells the parent [Container] nodes how they should resize and place the node on the X axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does. */
-        get size_flags_horizontal(): int64
-        set size_flags_horizontal(value: int64)
-        
-        /** Tells the parent [Container] nodes how they should resize and place the node on the Y axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does. */
-        get size_flags_vertical(): int64
-        set size_flags_vertical(value: int64)
-        
-        /** If the node and at least one of its neighbors uses the [constant SIZE_EXPAND] size flag, the parent [Container] will let it take more or less space depending on this property. If this node has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available space. */
-        get size_flags_stretch_ratio(): float64
-        set size_flags_stretch_ratio(value: float64)
-        
-        /** Toggles if any text should automatically change to its translated version depending on the current locale.  
-         *  Also decides if the node's strings should be parsed for POT generation.  
-         */
-        get auto_translate(): boolean
-        set auto_translate(value: boolean)
-        
-        /** If `true`, automatically converts code line numbers, list indices, [SpinBox] and [ProgressBar] values from the Western Arabic (0..9) to the numeral systems used in current locale.  
-         *      
-         *  **Note:** Numbers within the text are not automatically converted, it can be done manually, using [method TextServer.format_number].  
-         */
-        get localize_numeral_system(): boolean
-        set localize_numeral_system(value: boolean)
-        
-        /** The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the [member mouse_filter] property is not [constant MOUSE_FILTER_IGNORE]. The time required for the tooltip to appear can be changed with the [member ProjectSettings.gui/timers/tooltip_delay_sec] option. See also [method get_tooltip].  
-         *  The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding [method _make_custom_tooltip]. The default tooltip includes a [PopupPanel] and [Label] whose theme properties can be customized using [Theme] methods with the `"TooltipPanel"` and `"TooltipLabel"` respectively. For example:  
-         *    
-         */
-        get tooltip_text(): string
-        set tooltip_text(value: string)
-        
-        /** Tells Godot which node it should give focus to if the user presses [kbd]Tab[/kbd] on a keyboard by default. You can change the key by editing the [member ProjectSettings.input/ui_focus_next] input action.  
-         *  If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.  
-         */
-        get focus_next(): NodePath
-        set focus_next(value: NodePath | string)
-        
-        /** Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a keyboard by default. You can change the key by editing the [member ProjectSettings.input/ui_focus_prev] input action.  
-         *  If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.  
-         */
-        get focus_previous(): NodePath
-        set focus_previous(value: NodePath | string)
-        
-        /** The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals. */
-        get focus_mode(): int64
-        set focus_mode(value: int64)
-        
-        /** Controls whether the control will be able to receive mouse button input events through [method _gui_input] and how these events should be handled. Also controls whether the control can receive the [signal mouse_entered], and [signal mouse_exited] signals. See the constants to learn what each does. */
-        get mouse_filter(): int64
-        set mouse_filter(value: int64)
-        
-        /** When enabled, scroll wheel events processed by [method _gui_input] will be passed to the parent control even if [member mouse_filter] is set to [constant MOUSE_FILTER_STOP]. As it defaults to true, this allows nested scrollable containers to work out of the box.  
-         *  You should disable it on the root of your UI if you do not want scroll events to go to the [method Node._unhandled_input] processing.  
-         */
-        get mouse_force_pass_scroll_events(): boolean
-        set mouse_force_pass_scroll_events(value: boolean)
-        
-        /** The default cursor shape for this control. Useful for Godot plugins and applications or games that use the system's mouse cursors.  
-         *      
-         *  **Note:** On Linux, shapes may vary depending on the cursor theme of the system.  
-         */
-        get mouse_default_cursor_shape(): int64
-        set mouse_default_cursor_shape(value: int64)
-        
-        /** The [Node] which must be a parent of the focused [Control] for the shortcut to be activated. If `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused. */
-        get shortcut_context(): Object
-        set shortcut_context(value: Object)
-        
-        /** The [Theme] resource this node and all its [Control] and [Window] children use. If a child node has its own [Theme] resource set, theme items are merged with child's definitions having higher priority.  
-         *      
-         *  **Note:** [Window] styles will have no effect unless the window is embedded.  
-         */
-        get theme(): Theme
-        set theme(value: Theme)
-        
-        /** The name of a theme type variation used by this [Control] to look up its own theme items. When empty, the class name of the node is used (e.g. [code skip-lint]Button` for the [Button] control), as well as the class names of all parent classes (in order of inheritance).  
-         *  When set, this property gives the highest priority to the type of the specified name. This type can in turn extend another type, forming a dependency chain. See [method Theme.set_type_variation]. If the theme item cannot be found using this type or its base types, lookup falls back on the class names.  
-         *      
-         *  **Note:** To look up [Control]'s own items use various `get_theme_*` methods without specifying `theme_type`.  
-         *      
-         *  **Note:** Theme items are looked for in the tree order, from branch to root, where each [Control] node is checked for its [member theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.  
-         */
-        get theme_type_variation(): string
-        set theme_type_variation(value: string)
-        
-        /** Emitted when the control changes size. */
-        readonly resized: Signal0
-        
-        /** Emitted when the node receives an [InputEvent]. */
-        readonly gui_input: Signal1<InputEvent>
-        
-        /** Emitted when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
-         *      
-         *  **Note:** [member CanvasItem.z_index] doesn't affect, which Control receives the signal.  
-         */
-        readonly mouse_entered: Signal0
-        
-        /** Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
-         *      
-         *  **Note:** [member CanvasItem.z_index] doesn't affect, which Control receives the signal.  
-         *      
-         *  **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:  
-         *    
-         */
-        readonly mouse_exited: Signal0
-        
-        /** Emitted when the node gains focus. */
-        readonly focus_entered: Signal0
-        
-        /** Emitted when the node loses focus. */
-        readonly focus_exited: Signal0
-        
-        /** Emitted when one of the size flags changes. See [member size_flags_horizontal] and [member size_flags_vertical]. */
-        readonly size_flags_changed: Signal0
-        
-        /** Emitted when the node's minimum size changes. */
-        readonly minimum_size_changed: Signal0
-        
-        /** Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent. */
-        readonly theme_changed: Signal0
     }
 }

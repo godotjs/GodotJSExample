@@ -1,6 +1,1656 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A GUI control that displays a [StyleBox].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_panel.html  
+     */
+    class Panel extends Control {
+        constructor(identifier?: any)
+    }
+    /** A container that keeps its child controls within the area of a [StyleBox].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_panelcontainer.html  
+     */
+    class PanelContainer extends Container {
+        constructor(identifier?: any)
+    }
+    /** A material that provides a special texture to a [Sky], usually an HDR panorama.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_panoramaskymaterial.html  
+     */
+    class PanoramaSkyMaterial extends Material {
+        constructor(identifier?: any)
+        /** [Texture2D] to be applied to the [PanoramaSkyMaterial]. */
+        get panorama(): Texture2D
+        set panorama(value: Texture2D)
+        
+        /** A boolean value to determine if the background texture should be filtered or not. */
+        get filter(): boolean
+        set filter(value: boolean)
+    }
+    class PanoramaSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
+        constructor(identifier?: any)
+    }
+    /** A node used to create a parallax scrolling background.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_parallaxbackground.html  
+     */
+    class ParallaxBackground extends CanvasLayer {
+        constructor(identifier?: any)
+        _camera_moved(_unnamed_arg0: Transform2D, _unnamed_arg1: Vector2): void
+        
+        /** The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but can be used to manually manage scrolling when no camera is present. */
+        get scroll_offset(): Vector2
+        set scroll_offset(value: Vector2)
+        
+        /** The base position offset for all [ParallaxLayer] children. */
+        get scroll_base_offset(): Vector2
+        set scroll_base_offset(value: Vector2)
+        
+        /** The base motion scale for all [ParallaxLayer] children. */
+        get scroll_base_scale(): Vector2
+        set scroll_base_scale(value: Vector2)
+        
+        /** Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [member scroll_limit_end] to work. */
+        get scroll_limit_begin(): Vector2
+        set scroll_limit_begin(value: Vector2)
+        
+        /** Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [member scroll_limit_begin] to work. */
+        get scroll_limit_end(): Vector2
+        set scroll_limit_end(value: Vector2)
+        
+        /** If `true`, elements in [ParallaxLayer] child aren't affected by the zoom level of the camera. */
+        get scroll_ignore_camera_zoom(): boolean
+        set scroll_ignore_camera_zoom(value: boolean)
+    }
+    /** A parallax scrolling layer to be used with [ParallaxBackground].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_parallaxlayer.html  
+     */
+    class ParallaxLayer extends Node2D {
+        constructor(identifier?: any)
+        /** Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll. */
+        get motion_scale(): Vector2
+        set motion_scale(value: Vector2)
+        
+        /** The ParallaxLayer's offset relative to the parent ParallaxBackground's [member ParallaxBackground.scroll_offset]. */
+        get motion_offset(): Vector2
+        set motion_offset(value: Vector2)
+        
+        /** The interval, in pixels, at which the [ParallaxLayer] is drawn repeatedly. Useful for creating an infinitely scrolling background. If an axis is set to `0`, the [ParallaxLayer] will be drawn only once along that direction.  
+         *      
+         *  **Note:** If you want the repetition to pixel-perfect match a [Texture2D] displayed by a child node, you should account for any scale applied to the texture when defining this interval. For example, if you use a child [Sprite2D] scaled to `0.5` to display a 600x600 texture, and want this sprite to be repeated continuously horizontally, you should set the mirroring to `Vector2(300, 0)`.  
+         *      
+         *  **Note:** If the length of the viewport axis is bigger than twice the repeated axis size, it will not repeat infinitely, as the parallax layer only draws 2 instances of the layer at any given time. The visibility window is calculated from the parent [ParallaxBackground]'s position, not the layer's own position. So, if you use mirroring, **do not** change the [ParallaxLayer] position relative to its parent. Instead, if you need to adjust the background's position, set the [member CanvasLayer.offset] property in the parent [ParallaxBackground].  
+         *      
+         *  **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.  
+         */
+        get motion_mirroring(): Vector2
+        set motion_mirroring(value: Vector2)
+    }
+    namespace ParticleProcessMaterial {
+        enum Parameter {
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set initial velocity properties. */
+            PARAM_INITIAL_LINEAR_VELOCITY = 0,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set angular velocity properties. */
+            PARAM_ANGULAR_VELOCITY = 1,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set orbital velocity properties. */
+            PARAM_ORBIT_VELOCITY = 2,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set linear acceleration properties. */
+            PARAM_LINEAR_ACCEL = 3,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set radial acceleration properties. */
+            PARAM_RADIAL_ACCEL = 4,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set tangential acceleration properties. */
+            PARAM_TANGENTIAL_ACCEL = 5,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set damping properties. */
+            PARAM_DAMPING = 6,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set angle properties. */
+            PARAM_ANGLE = 7,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set scale properties. */
+            PARAM_SCALE = 8,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set hue variation properties. */
+            PARAM_HUE_VARIATION = 9,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set animation speed properties. */
+            PARAM_ANIM_SPEED = 10,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set animation offset properties. */
+            PARAM_ANIM_OFFSET = 11,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set radial velocity properties. */
+            PARAM_RADIAL_VELOCITY = 15,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set directional velocity properties. */
+            PARAM_DIRECTIONAL_VELOCITY = 16,
+            
+            /** Use with [method set_param_min], [method set_param_max], and [method set_param_texture] to set scale over velocity properties. */
+            PARAM_SCALE_OVER_VELOCITY = 17,
+            
+            /** Represents the size of the [enum Parameter] enum. */
+            PARAM_MAX = 18,
+            
+            /** Use with [method set_param_min] and [method set_param_max] to set the turbulence minimum und maximum influence on each particles velocity. */
+            PARAM_TURB_VEL_INFLUENCE = 13,
+            
+            /** Use with [method set_param_min] and [method set_param_max] to set the turbulence minimum and maximum displacement of the particles spawn position. */
+            PARAM_TURB_INIT_DISPLACEMENT = 14,
+            
+            /** Use with [method set_param_texture] to set the turbulence influence over the particles life time. */
+            PARAM_TURB_INFLUENCE_OVER_LIFE = 12,
+        }
+        enum ParticleFlags {
+            /** Use with [method set_particle_flag] to set [member particle_flag_align_y]. */
+            PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY = 0,
+            
+            /** Use with [method set_particle_flag] to set [member particle_flag_rotate_y]. */
+            PARTICLE_FLAG_ROTATE_Y = 1,
+            
+            /** Use with [method set_particle_flag] to set [member particle_flag_disable_z]. */
+            PARTICLE_FLAG_DISABLE_Z = 2,
+            PARTICLE_FLAG_DAMPING_AS_FRICTION = 3,
+            
+            /** Represents the size of the [enum ParticleFlags] enum. */
+            PARTICLE_FLAG_MAX = 4,
+        }
+        enum EmissionShape {
+            /** All particles will be emitted from a single point. */
+            EMISSION_SHAPE_POINT = 0,
+            
+            /** Particles will be emitted in the volume of a sphere. */
+            EMISSION_SHAPE_SPHERE = 1,
+            
+            /** Particles will be emitted on the surface of a sphere. */
+            EMISSION_SHAPE_SPHERE_SURFACE = 2,
+            
+            /** Particles will be emitted in the volume of a box. */
+            EMISSION_SHAPE_BOX = 3,
+            
+            /** Particles will be emitted at a position determined by sampling a random point on the [member emission_point_texture]. Particle color will be modulated by [member emission_color_texture]. */
+            EMISSION_SHAPE_POINTS = 4,
+            
+            /** Particles will be emitted at a position determined by sampling a random point on the [member emission_point_texture]. Particle velocity and rotation will be set based on [member emission_normal_texture]. Particle color will be modulated by [member emission_color_texture]. */
+            EMISSION_SHAPE_DIRECTED_POINTS = 5,
+            
+            /** Particles will be emitted in a ring or cylinder. */
+            EMISSION_SHAPE_RING = 6,
+            
+            /** Represents the size of the [enum EmissionShape] enum. */
+            EMISSION_SHAPE_MAX = 7,
+        }
+        enum SubEmitterMode {
+            SUB_EMITTER_DISABLED = 0,
+            SUB_EMITTER_CONSTANT = 1,
+            SUB_EMITTER_AT_END = 2,
+            SUB_EMITTER_AT_COLLISION = 3,
+            
+            /** Represents the size of the [enum SubEmitterMode] enum. */
+            SUB_EMITTER_MAX = 4,
+        }
+        enum CollisionMode {
+            /** No collision for particles. Particles will go through [GPUParticlesCollision3D] nodes. */
+            COLLISION_DISABLED = 0,
+            
+            /** [RigidBody3D]-style collision for particles using [GPUParticlesCollision3D] nodes. */
+            COLLISION_RIGID = 1,
+            
+            /** Hide particles instantly when colliding with a [GPUParticlesCollision3D] node. This can be combined with a subemitter that uses the [constant COLLISION_RIGID] collision mode to "replace" the parent particle with the subemitter on impact. */
+            COLLISION_HIDE_ON_CONTACT = 2,
+            
+            /** Represents the size of the [enum CollisionMode] enum. */
+            COLLISION_MAX = 3,
+        }
+    }
+    /** Holds a particle configuration for [GPUParticles2D] or [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_particleprocessmaterial.html  
+     */
+    class ParticleProcessMaterial extends Material {
+        constructor(identifier?: any)
+        /** Sets the minimum value range for the given parameter. */
+        set_param_min(param: ParticleProcessMaterial.Parameter, value: float64): void
+        
+        /** Returns the minimum value range for the given parameter. */
+        get_param_min(param: ParticleProcessMaterial.Parameter): float64
+        
+        /** Sets the maximum value range for the given parameter. */
+        set_param_max(param: ParticleProcessMaterial.Parameter, value: float64): void
+        
+        /** Returns the maximum value range for the given parameter. */
+        get_param_max(param: ParticleProcessMaterial.Parameter): float64
+        
+        /** Sets the [Texture2D] for the specified [enum Parameter]. */
+        set_param_texture(param: ParticleProcessMaterial.Parameter, texture: Texture2D): void
+        
+        /** Returns the [Texture2D] used by the specified parameter. */
+        get_param_texture(param: ParticleProcessMaterial.Parameter): Texture2D
+        
+        /** If `true`, enables the specified particle flag. See [enum ParticleFlags] for options. */
+        set_particle_flag(particle_flag: ParticleProcessMaterial.ParticleFlags, enable: boolean): void
+        
+        /** Returns `true` if the specified particle flag is enabled. See [enum ParticleFlags] for options. */
+        get_particle_flag(particle_flag: ParticleProcessMaterial.ParticleFlags): boolean
+        
+        /** Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime * (1.0 - randf() * lifetime_randomness)`. For example, a [member lifetime_randomness] of `0.4` scales the lifetime between `0.6` to `1.0` of its original value. */
+        get lifetime_randomness(): float64
+        set lifetime_randomness(value: float64)
+        
+        /** Align Y axis of particle with the direction of its velocity. */
+        get particle_flag_align_y(): boolean
+        set particle_flag_align_y(value: boolean)
+        
+        /** If `true`, particles rotate around Y axis by [member angle_min]. */
+        get particle_flag_rotate_y(): boolean
+        set particle_flag_rotate_y(value: boolean)
+        
+        /** If `true`, particles will not move on the z axis. */
+        get particle_flag_disable_z(): boolean
+        set particle_flag_disable_z(value: boolean)
+        
+        /** Changes the behavior of the damping properties from a linear deceleration to a deceleration based on speed percentage. */
+        get particle_flag_damping_as_friction(): boolean
+        set particle_flag_damping_as_friction(value: boolean)
+        
+        /** The offset for the [member emission_shape], in local space. */
+        get emission_shape_offset(): Vector3
+        set emission_shape_offset(value: Vector3)
+        
+        /** The scale of the [member emission_shape], in local space. */
+        get emission_shape_scale(): Vector3
+        set emission_shape_scale(value: Vector3)
+        
+        /** Particles will be emitted inside this region. Use [enum EmissionShape] constants for values. */
+        get emission_shape(): int64
+        set emission_shape(value: int64)
+        
+        /** The sphere's radius if [member emission_shape] is set to [constant EMISSION_SHAPE_SPHERE]. */
+        get emission_sphere_radius(): float64
+        set emission_sphere_radius(value: float64)
+        
+        /** The box's extents if [member emission_shape] is set to [constant EMISSION_SHAPE_BOX]. */
+        get emission_box_extents(): Vector3
+        set emission_box_extents(value: Vector3)
+        
+        /** Particles will be emitted at positions determined by sampling this texture at a random position. Used with [constant EMISSION_SHAPE_POINTS] and [constant EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar. */
+        get emission_point_texture(): Texture2D
+        set emission_point_texture(value: Texture2D)
+        
+        /** Particle velocity and rotation will be set by sampling this texture at the same point as the [member emission_point_texture]. Used only in [constant EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar. */
+        get emission_normal_texture(): Texture2D
+        set emission_normal_texture(value: Texture2D)
+        
+        /** Particle color will be modulated by color determined by sampling this texture at the same point as the [member emission_point_texture].  
+         *      
+         *  **Note:** [member emission_color_texture] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member emission_color_texture] will have no visible effect.  
+         */
+        get emission_color_texture(): Texture2D
+        set emission_color_texture(value: Texture2D)
+        
+        /** The number of emission points if [member emission_shape] is set to [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS]. */
+        get emission_point_count(): int64
+        set emission_point_count(value: int64)
+        
+        /** The axis of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
+        get emission_ring_axis(): Vector3
+        set emission_ring_axis(value: Vector3)
+        
+        /** The height of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
+        get emission_ring_height(): float64
+        set emission_ring_height(value: float64)
+        
+        /** The radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
+        get emission_ring_radius(): float64
+        set emission_ring_radius(value: float64)
+        
+        /** The inner radius of the ring when using the emitter [constant EMISSION_SHAPE_RING]. */
+        get emission_ring_inner_radius(): float64
+        set emission_ring_inner_radius(value: float64)
+        
+        /** Minimum equivalent of [member angle_max]. */
+        get angle_min(): float64
+        set angle_min(value: float64)
+        
+        /** Maximum initial rotation applied to each particle, in degrees.  
+         *  Only applied when [member particle_flag_disable_z] or [member particle_flag_rotate_y] are `true` or the [BaseMaterial3D] being used to draw the particle is using [constant BaseMaterial3D.BILLBOARD_PARTICLES].  
+         */
+        get angle_max(): float64
+        set angle_max(value: float64)
+        
+        /** Each particle's rotation will be animated along this [CurveTexture]. */
+        get angle_curve(): CurveTexture
+        set angle_curve(value: CurveTexture)
+        
+        /** Percentage of the velocity of the respective [GPUParticles2D] or [GPUParticles3D] inherited by each particle when spawning. */
+        get inherit_velocity_ratio(): float64
+        set inherit_velocity_ratio(value: float64)
+        
+        /** A pivot point used to calculate radial and orbital velocity of particles. */
+        get velocity_pivot(): Vector3
+        set velocity_pivot(value: Vector3)
+        
+        /** Unit vector specifying the particles' emission direction. */
+        get direction(): Vector3
+        set direction(value: Vector3)
+        
+        /** Each particle's initial direction range from `+spread` to `-spread` degrees. */
+        get spread(): float64
+        set spread(value: float64)
+        
+        /** Amount of [member spread] along the Y axis. */
+        get flatness(): float64
+        set flatness(value: float64)
+        
+        /** Minimum equivalent of [member initial_velocity_max]. */
+        get initial_velocity_min(): float64
+        set initial_velocity_min(value: float64)
+        
+        /** Maximum initial velocity magnitude for each particle. Direction comes from [member direction] and [member spread]. */
+        get initial_velocity_max(): float64
+        set initial_velocity_max(value: float64)
+        
+        /** Minimum equivalent of [member angular_velocity_max]. */
+        get angular_velocity_min(): float64
+        set angular_velocity_min(value: float64)
+        
+        /** Maximum initial angular velocity (rotation speed) applied to each particle in  *degrees*  per second.  
+         *  Only applied when [member particle_flag_disable_z] or [member particle_flag_rotate_y] are `true` or the [BaseMaterial3D] being used to draw the particle is using [constant BaseMaterial3D.BILLBOARD_PARTICLES].  
+         */
+        get angular_velocity_max(): float64
+        set angular_velocity_max(value: float64)
+        
+        /** Each particle's angular velocity (rotation speed) will vary along this [CurveTexture] over its lifetime. */
+        get angular_velocity_curve(): CurveTexture
+        set angular_velocity_curve(value: CurveTexture)
+        
+        /** Minimum directional velocity value, which is multiplied by [member directional_velocity_curve].  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get directional_velocity_min(): float64
+        set directional_velocity_min(value: float64)
+        
+        /** Maximum directional velocity value, which is multiplied by [member directional_velocity_curve].  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get directional_velocity_max(): float64
+        set directional_velocity_max(value: float64)
+        
+        /** A curve that specifies the velocity along each of the axes of the particle system along its lifetime.  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get directional_velocity_curve(): CurveXYZTexture
+        set directional_velocity_curve(value: CurveXYZTexture)
+        
+        /** Minimum equivalent of [member orbit_velocity_max].  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get orbit_velocity_min(): float64
+        set orbit_velocity_min(value: float64)
+        
+        /** Maximum orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second.  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get orbit_velocity_max(): float64
+        set orbit_velocity_max(value: float64)
+        
+        /** Each particle's orbital velocity will vary along this [CurveTexture].  
+         *      
+         *  **Note:** For 3D orbital velocity, use a [CurveXYZTexture].  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get orbit_velocity_curve(): CurveTexture | CurveXYZTexture
+        set orbit_velocity_curve(value: CurveTexture | CurveXYZTexture)
+        
+        /** Minimum radial velocity applied to each particle. Makes particles move away from the [member velocity_pivot], or toward it if negative.  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get radial_velocity_min(): float64
+        set radial_velocity_min(value: float64)
+        
+        /** Maximum radial velocity applied to each particle. Makes particles move away from the [member velocity_pivot], or toward it if negative.  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get radial_velocity_max(): float64
+        set radial_velocity_max(value: float64)
+        
+        /** A [CurveTexture] that defines the velocity over the particle's lifetime away (or toward) the [member velocity_pivot].  
+         *      
+         *  **Note:** Animated velocities will not be affected by damping, use [member velocity_limit_curve] instead.  
+         */
+        get radial_velocity_curve(): CurveTexture
+        set radial_velocity_curve(value: CurveTexture)
+        
+        /** A [CurveTexture] that defines the maximum velocity of a particle during its lifetime. */
+        get velocity_limit_curve(): CurveTexture
+        set velocity_limit_curve(value: CurveTexture)
+        
+        /** Gravity applied to every particle. */
+        get gravity(): Vector3
+        set gravity(value: Vector3)
+        
+        /** Minimum equivalent of [member linear_accel_max]. */
+        get linear_accel_min(): float64
+        set linear_accel_min(value: float64)
+        
+        /** Maximum linear acceleration applied to each particle in the direction of motion. */
+        get linear_accel_max(): float64
+        set linear_accel_max(value: float64)
+        
+        /** Each particle's linear acceleration will vary along this [CurveTexture]. */
+        get linear_accel_curve(): CurveTexture
+        set linear_accel_curve(value: CurveTexture)
+        
+        /** Minimum equivalent of [member radial_accel_max]. */
+        get radial_accel_min(): float64
+        set radial_accel_min(value: float64)
+        
+        /** Maximum radial acceleration applied to each particle. Makes particle accelerate away from the origin or towards it if negative. */
+        get radial_accel_max(): float64
+        set radial_accel_max(value: float64)
+        
+        /** Each particle's radial acceleration will vary along this [CurveTexture]. */
+        get radial_accel_curve(): CurveTexture
+        set radial_accel_curve(value: CurveTexture)
+        
+        /** Minimum equivalent of [member tangential_accel_max]. */
+        get tangential_accel_min(): float64
+        set tangential_accel_min(value: float64)
+        
+        /** Maximum tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion. */
+        get tangential_accel_max(): float64
+        set tangential_accel_max(value: float64)
+        
+        /** Each particle's tangential acceleration will vary along this [CurveTexture]. */
+        get tangential_accel_curve(): CurveTexture
+        set tangential_accel_curve(value: CurveTexture)
+        
+        /** Minimum equivalent of [member damping_max]. */
+        get damping_min(): float64
+        set damping_min(value: float64)
+        
+        /** The maximum rate at which particles lose velocity. For example value of `100` means that the particle will go from `100` velocity to `0` in `1` second. */
+        get damping_max(): float64
+        set damping_max(value: float64)
+        
+        /** Damping will vary along this [CurveTexture]. */
+        get damping_curve(): CurveTexture
+        set damping_curve(value: CurveTexture)
+        
+        /** If `true`, interaction with particle attractors is enabled. In 3D, attraction only occurs within the area defined by the [GPUParticles3D] node's [member GPUParticles3D.visibility_aabb]. */
+        get attractor_interaction_enabled(): boolean
+        set attractor_interaction_enabled(value: boolean)
+        
+        /** Minimum equivalent of [member scale_max]. */
+        get scale_min(): float64
+        set scale_min(value: float64)
+        
+        /** Maximum initial scale applied to each particle. */
+        get scale_max(): float64
+        set scale_max(value: float64)
+        
+        /** Each particle's scale will vary along this [CurveTexture]. If a [CurveXYZTexture] is supplied instead, the scale will be separated per-axis. */
+        get scale_curve(): CurveTexture | CurveXYZTexture
+        set scale_curve(value: CurveTexture | CurveXYZTexture)
+        
+        /** Minimum velocity value reference for [member scale_over_velocity_curve].  
+         *  [member scale_over_velocity_curve] will be interpolated between [member scale_over_velocity_min] and [member scale_over_velocity_max].  
+         */
+        get scale_over_velocity_min(): float64
+        set scale_over_velocity_min(value: float64)
+        
+        /** Maximum velocity value reference for [member scale_over_velocity_curve].  
+         *  [member scale_over_velocity_curve] will be interpolated between [member scale_over_velocity_min] and [member scale_over_velocity_max].  
+         */
+        get scale_over_velocity_max(): float64
+        set scale_over_velocity_max(value: float64)
+        
+        /** Either a [CurveTexture] or a [CurveXYZTexture] that scales each particle based on its velocity. */
+        get scale_over_velocity_curve(): CurveTexture | CurveXYZTexture
+        set scale_over_velocity_curve(value: CurveTexture | CurveXYZTexture)
+        
+        /** Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.  
+         *      
+         *  **Note:** [member color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color] will have no visible effect.  
+         */
+        get color(): Color
+        set color(value: Color)
+        
+        /** Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied with [member color]).  
+         *      
+         *  **Note:** [member color_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_ramp] will have no visible effect.  
+         */
+        get color_ramp(): GradientTexture1D
+        set color_ramp(value: GradientTexture1D)
+        
+        /** Each particle's initial color will vary along this [GradientTexture1D] (multiplied with [member color]).  
+         *      
+         *  **Note:** [member color_initial_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo]  *must*  be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [member color_initial_ramp] will have no visible effect.  
+         */
+        get color_initial_ramp(): GradientTexture1D
+        set color_initial_ramp(value: GradientTexture1D)
+        
+        /** The alpha value of each particle's color will be multiplied by this [CurveTexture] over its lifetime. */
+        get alpha_curve(): CurveTexture
+        set alpha_curve(value: CurveTexture)
+        
+        /** Each particle's color will be multiplied by this [CurveTexture] over its lifetime.  
+         *      
+         *  **Note:** This property won't have a visible effect unless the render material is marked as unshaded.  
+         */
+        get emission_curve(): CurveTexture
+        set emission_curve(value: CurveTexture)
+        
+        /** Minimum equivalent of [member hue_variation_max]. */
+        get hue_variation_min(): float64
+        set hue_variation_min(value: float64)
+        
+        /** Maximum initial hue variation applied to each particle. It will shift the particle color's hue. */
+        get hue_variation_max(): float64
+        set hue_variation_max(value: float64)
+        
+        /** Each particle's hue will vary along this [CurveTexture]. */
+        get hue_variation_curve(): CurveTexture
+        set hue_variation_curve(value: CurveTexture)
+        
+        /** Minimum equivalent of [member anim_speed_max]. */
+        get anim_speed_min(): float64
+        set anim_speed_min(value: float64)
+        
+        /** Maximum particle animation speed. Animation speed of `1` means that the particles will make full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.  
+         *  With animation speed greater than `1`, remember to enable [member CanvasItemMaterial.particles_anim_loop] property if you want the animation to repeat.  
+         */
+        get anim_speed_max(): float64
+        set anim_speed_max(value: float64)
+        
+        /** Each particle's animation speed will vary along this [CurveTexture]. */
+        get anim_speed_curve(): CurveTexture
+        set anim_speed_curve(value: CurveTexture)
+        
+        /** Minimum equivalent of [member anim_offset_max]. */
+        get anim_offset_min(): float64
+        set anim_offset_min(value: float64)
+        
+        /** Maximum animation offset that corresponds to frame index in the texture. `0` is the first frame, `1` is the last one. See [member CanvasItemMaterial.particles_animation]. */
+        get anim_offset_max(): float64
+        set anim_offset_max(value: float64)
+        
+        /** Each particle's animation offset will vary along this [CurveTexture]. */
+        get anim_offset_curve(): CurveTexture
+        set anim_offset_curve(value: CurveTexture)
+        
+        /** If `true`, enables turbulence for the particle system. Turbulence can be used to vary particle movement according to its position (based on a 3D noise pattern). In 3D, [GPUParticlesAttractorVectorField3D] with [NoiseTexture3D] can be used as an alternative to turbulence that works in world space and with multiple particle systems reacting in the same way.  
+         *      
+         *  **Note:** Enabling turbulence has a high performance cost on the GPU. Only enable turbulence on a few particle systems at once at most, and consider disabling it when targeting mobile/web platforms.  
+         */
+        get turbulence_enabled(): boolean
+        set turbulence_enabled(value: boolean)
+        
+        /** The turbulence noise strength. Increasing this will result in a stronger, more contrasting, flow pattern. */
+        get turbulence_noise_strength(): float64
+        set turbulence_noise_strength(value: float64)
+        
+        /** This value controls the overall scale/frequency of the turbulence noise pattern.  
+         *  A small scale will result in smaller features with more detail while a high scale will result in smoother noise with larger features.  
+         */
+        get turbulence_noise_scale(): float64
+        set turbulence_noise_scale(value: float64)
+        
+        /** A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.  
+         *  The default value of `Vector3(0, 0, 0)` turns off the scrolling.  
+         */
+        get turbulence_noise_speed(): Vector3
+        set turbulence_noise_speed(value: Vector3)
+        
+        /** The in-place rate of change of the turbulence field. This defines how quickly the noise pattern varies over time.  
+         *  A value of 0.0 will result in a fixed pattern.  
+         */
+        get turbulence_noise_speed_random(): float64
+        set turbulence_noise_speed_random(value: float64)
+        
+        /** Minimum turbulence influence on each particle.  
+         *  The actual amount of turbulence influence on each particle is calculated as a random value between [member turbulence_influence_min] and [member turbulence_influence_max] and multiplied by the amount of turbulence influence from [member turbulence_influence_over_life].  
+         */
+        get turbulence_influence_min(): float64
+        set turbulence_influence_min(value: float64)
+        
+        /** Maximum turbulence influence on each particle.  
+         *  The actual amount of turbulence influence on each particle is calculated as a random value between [member turbulence_influence_min] and [member turbulence_influence_max] and multiplied by the amount of turbulence influence from [member turbulence_influence_over_life].  
+         */
+        get turbulence_influence_max(): float64
+        set turbulence_influence_max(value: float64)
+        
+        /** Minimum displacement of each particle's spawn position by the turbulence.  
+         *  The actual amount of displacement will be a factor of the underlying turbulence multiplied by a random value between [member turbulence_initial_displacement_min] and [member turbulence_initial_displacement_max].  
+         */
+        get turbulence_initial_displacement_min(): float64
+        set turbulence_initial_displacement_min(value: float64)
+        
+        /** Maximum displacement of each particle's spawn position by the turbulence.  
+         *  The actual amount of displacement will be a factor of the underlying turbulence multiplied by a random value between [member turbulence_initial_displacement_min] and [member turbulence_initial_displacement_max].  
+         */
+        get turbulence_initial_displacement_max(): float64
+        set turbulence_initial_displacement_max(value: float64)
+        
+        /** Each particle's amount of turbulence will be influenced along this [CurveTexture] over its life time. */
+        get turbulence_influence_over_life(): CurveTexture
+        set turbulence_influence_over_life(value: CurveTexture)
+        
+        /** The particles' collision mode.  
+         *      
+         *  **Note:** 3D Particles can only collide with [GPUParticlesCollision3D] nodes, not [PhysicsBody3D] nodes. To make particles collide with various objects, you can add [GPUParticlesCollision3D] nodes as children of [PhysicsBody3D] nodes. In 3D, collisions only occur within the area defined by the [GPUParticles3D] node's [member GPUParticles3D.visibility_aabb].  
+         *      
+         *  **Note:** 2D Particles can only collide with [LightOccluder2D] nodes, not [PhysicsBody2D] nodes.  
+         */
+        get collision_mode(): int64
+        set collision_mode(value: int64)
+        
+        /** The particles' friction. Values range from `0` (frictionless) to `1` (maximum friction). Only effective if [member collision_mode] is [constant COLLISION_RIGID]. */
+        get collision_friction(): float64
+        set collision_friction(value: float64)
+        
+        /** The particles' bounciness. Values range from `0` (no bounce) to `1` (full bounciness). Only effective if [member collision_mode] is [constant COLLISION_RIGID]. */
+        get collision_bounce(): float64
+        set collision_bounce(value: float64)
+        
+        /** If `true`, [member GPUParticles3D.collision_base_size] is multiplied by the particle's effective scale (see [member scale_min], [member scale_max], [member scale_curve], and [member scale_over_velocity_curve]). */
+        get collision_use_scale(): boolean
+        set collision_use_scale(value: boolean)
+        
+        /** The particle subemitter mode (see [member GPUParticles2D.sub_emitter] and [member GPUParticles3D.sub_emitter]). */
+        get sub_emitter_mode(): int64
+        set sub_emitter_mode(value: int64)
+        
+        /** The frequency at which particles should be emitted from the subemitter node. One particle will be spawned every [member sub_emitter_frequency] seconds.  
+         *      
+         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
+         */
+        get sub_emitter_frequency(): float64
+        set sub_emitter_frequency(value: float64)
+        
+        /** The amount of particles to spawn from the subemitter node when the particle expires.  
+         *      
+         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
+         */
+        get sub_emitter_amount_at_end(): int64
+        set sub_emitter_amount_at_end(value: int64)
+        
+        /** The amount of particles to spawn from the subemitter node when a collision occurs. When combined with [constant COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to achieve effects such as raindrops hitting the ground.  
+         *      
+         *  **Note:** This value shouldn't exceed [member GPUParticles2D.amount] or [member GPUParticles3D.amount] defined on the  *subemitter node*  (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.  
+         */
+        get sub_emitter_amount_at_collision(): int64
+        set sub_emitter_amount_at_collision(value: int64)
+        
+        /** If `true`, the subemitter inherits the parent particle's velocity when it spawns. */
+        get sub_emitter_keep_velocity(): boolean
+        set sub_emitter_keep_velocity(value: boolean)
+    }
+    class ParticleProcessMaterialConversionPlugin extends EditorResourceConversionPlugin {
+        constructor(identifier?: any)
+    }
+    /** Contains a [Curve2D] path for [PathFollow2D] nodes to follow.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_path2d.html  
+     */
+    class Path2D extends Node2D {
+        constructor(identifier?: any)
+        /** A [Curve2D] describing the path. */
+        get curve(): Curve2D
+        set curve(value: Curve2D)
+    }
+    class Path2DEditor extends HBoxContainer {
+        constructor(identifier?: any)
+    }
+    class Path2DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** Contains a [Curve3D] path for [PathFollow3D] nodes to follow.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_path3d.html  
+     */
+    class Path3D extends Node3D {
+        constructor(identifier?: any)
+        /** A [Curve3D] describing the path. */
+        get curve(): Curve3D
+        set curve(value: Curve3D)
+        
+        /** Emitted when the [member curve] changes. */
+        readonly curve_changed: Signal0
+    }
+    class Path3DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    class Path3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    /** Point sampler for a [Path2D].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_pathfollow2d.html  
+     */
+    class PathFollow2D extends Node2D {
+        constructor(identifier?: any)
+        /** The distance along the path, in pixels. Changing this value sets this node's position to a point within the path. */
+        get progress(): float64
+        set progress(value: float64)
+        
+        /** The distance along the path as a number in the range 0.0 (for the first vertex) to 1.0 (for the last). This is just another way of expressing the progress within the path, as the offset supplied is multiplied internally by the path's length. */
+        get progress_ratio(): float64
+        set progress_ratio(value: float64)
+        
+        /** The node's offset along the curve. */
+        get h_offset(): float64
+        set h_offset(value: float64)
+        
+        /** The node's offset perpendicular to the curve. */
+        get v_offset(): float64
+        set v_offset(value: float64)
+        
+        /** If `true`, this node rotates to follow the path, with the +X direction facing forward on the path. */
+        get rotates(): boolean
+        set rotates(value: boolean)
+        
+        /** If `true`, the position between two cached points is interpolated cubically, and linearly otherwise.  
+         *  The points along the [Curve2D] of the [Path2D] are precomputed before use, for faster calculations. The point at the requested offset is then calculated interpolating between two adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached points may not follow the curve closely enough.  
+         *  There are two answers to this problem: either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.  
+         */
+        get cubic_interp(): boolean
+        set cubic_interp(value: boolean)
+        
+        /** If `true`, any offset outside the path's length will wrap around, instead of stopping at the ends. Use it for cyclic paths. */
+        get loop(): boolean
+        set loop(value: boolean)
+    }
+    namespace PathFollow3D {
+        enum RotationMode {
+            /** Forbids the PathFollow3D to rotate. */
+            ROTATION_NONE = 0,
+            
+            /** Allows the PathFollow3D to rotate in the Y axis only. */
+            ROTATION_Y = 1,
+            
+            /** Allows the PathFollow3D to rotate in both the X, and Y axes. */
+            ROTATION_XY = 2,
+            
+            /** Allows the PathFollow3D to rotate in any axis. */
+            ROTATION_XYZ = 3,
+            
+            /** Uses the up vector information in a [Curve3D] to enforce orientation. This rotation mode requires the [Path3D]'s [member Curve3D.up_vector_enabled] property to be set to `true`. */
+            ROTATION_ORIENTED = 4,
+        }
+    }
+    /** Point sampler for a [Path3D].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_pathfollow3d.html  
+     */
+    class PathFollow3D extends Node3D {
+        constructor(identifier?: any)
+        /** Correct the [param transform]. [param rotation_mode] implicitly specifies how posture (forward, up and sideway direction) is calculated. */
+        static correct_posture(transform: Transform3D, rotation_mode: PathFollow3D.RotationMode): Transform3D
+        
+        /** The distance from the first vertex, measured in 3D units along the path. Changing this value sets this node's position to a point within the path. */
+        get progress(): float64
+        set progress(value: float64)
+        
+        /** The distance from the first vertex, considering 0.0 as the first vertex and 1.0 as the last. This is just another way of expressing the progress within the path, as the progress supplied is multiplied internally by the path's length. */
+        get progress_ratio(): float64
+        set progress_ratio(value: float64)
+        
+        /** The node's offset along the curve. */
+        get h_offset(): float64
+        set h_offset(value: float64)
+        
+        /** The node's offset perpendicular to the curve. */
+        get v_offset(): float64
+        set v_offset(value: float64)
+        
+        /** Allows or forbids rotation on one or more axes, depending on the [enum RotationMode] constants being used. */
+        get rotation_mode(): int64
+        set rotation_mode(value: int64)
+        
+        /** If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also [constant Vector3.FORWARD] and [constant Vector3.MODEL_FRONT]. */
+        get use_model_front(): boolean
+        set use_model_front(value: boolean)
+        
+        /** If `true`, the position between two cached points is interpolated cubically, and linearly otherwise.  
+         *  The points along the [Curve3D] of the [Path3D] are precomputed before use, for faster calculations. The point at the requested offset is then calculated interpolating between two adjacent cached points. This may present a problem if the curve makes sharp turns, as the cached points may not follow the curve closely enough.  
+         *  There are two answers to this problem: either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.  
+         */
+        get cubic_interp(): boolean
+        set cubic_interp(value: boolean)
+        
+        /** If `true`, any offset outside the path's length will wrap around, instead of stopping at the ends. Use it for cyclic paths. */
+        get loop(): boolean
+        set loop(value: boolean)
+        
+        /** If `true`, the tilt property of [Curve3D] takes effect. */
+        get tilt_enabled(): boolean
+        set tilt_enabled(value: boolean)
+    }
+    /** A [RigidBody2D]-derived node used to make [Bone2D]s in a [Skeleton2D] react to physics.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicalbone2d.html  
+     */
+    class PhysicalBone2D extends RigidBody2D {
+        constructor(identifier?: any)
+        /** Returns the first [Joint2D] child node, if one exists. This is mainly a helper function to make it easier to get the [Joint2D] that the [PhysicalBone2D] is autoconfiguring. */
+        get_joint(): Joint2D
+        
+        /** Returns a boolean that indicates whether the [PhysicalBone2D] is running and simulating using the Godot 2D physics engine. When `true`, the PhysicalBone2D node is using physics. */
+        is_simulating_physics(): boolean
+        
+        /** The [NodePath] to the [Bone2D] that this [PhysicalBone2D] should simulate. */
+        get bone2d_nodepath(): NodePath
+        set bone2d_nodepath(value: NodePath | string)
+        
+        /** The index of the [Bone2D] that this [PhysicalBone2D] should simulate. */
+        get bone2d_index(): int64
+        set bone2d_index(value: int64)
+        
+        /** If `true`, the [PhysicalBone2D] will automatically configure the first [Joint2D] child node. The automatic configuration is limited to setting up the node properties and positioning the [Joint2D]. */
+        get auto_configure_joint(): boolean
+        set auto_configure_joint(value: boolean)
+        
+        /** If `true`, the [PhysicalBone2D] will start simulating using physics. If `false`, the [PhysicalBone2D] will follow the transform of the [Bone2D] node.  
+         *      
+         *  **Note:** To have the [Bone2D]s visually follow the [PhysicalBone2D], use a [SkeletonModification2DPhysicalBones] modification on the [Skeleton2D] node with the [Bone2D] nodes.  
+         */
+        get simulate_physics(): boolean
+        set simulate_physics(value: boolean)
+        
+        /** If `true`, the [PhysicalBone2D] will keep the transform of the bone it is bound to when simulating physics. */
+        get follow_bone_when_simulating(): boolean
+        set follow_bone_when_simulating(value: boolean)
+    }
+    namespace PhysicalBone3D {
+        enum DampMode {
+            /** In this mode, the body's damping value is added to any value set in areas or the default value. */
+            DAMP_MODE_COMBINE = 0,
+            
+            /** In this mode, the body's damping value replaces any value set in areas or the default value. */
+            DAMP_MODE_REPLACE = 1,
+        }
+        enum JointType {
+            JOINT_TYPE_NONE = 0,
+            JOINT_TYPE_PIN = 1,
+            JOINT_TYPE_CONE = 2,
+            JOINT_TYPE_HINGE = 3,
+            JOINT_TYPE_SLIDER = 4,
+            JOINT_TYPE_6DOF = 5,
+        }
+    }
+    /** A physics body used to make bones in a [Skeleton3D] react to physics.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicalbone3d.html  
+     */
+    class PhysicalBone3D extends PhysicsBody3D {
+        constructor(identifier?: any)
+        /** Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [member custom_integrator] property allows you to disable the default behavior and do fully custom force integration for a body. */
+        /* gdvirtual */ _integrate_forces(state: PhysicsDirectBodyState3D): void
+        apply_central_impulse(impulse: Vector3): void
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        get_simulate_physics(): boolean
+        is_simulating_physics(): boolean
+        get_bone_id(): int64
+        
+        /** Sets the joint type. See [enum JointType] for possible values. */
+        get joint_type(): int64
+        set joint_type(value: int64)
+        
+        /** Sets the joint's transform. */
+        get joint_offset(): Transform3D
+        set joint_offset(value: Transform3D)
+        
+        /** Sets the joint's rotation in radians. */
+        get joint_rotation(): Vector3
+        set joint_rotation(value: Vector3)
+        
+        /** Sets the body's transform. */
+        get body_offset(): Transform3D
+        set body_offset(value: Transform3D)
+        
+        /** The body's mass. */
+        get mass(): float64
+        set mass(value: float64)
+        
+        /** The body's friction, from `0` (frictionless) to `1` (max friction). */
+        get friction(): float64
+        set friction(value: float64)
+        
+        /** The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).  
+         *      
+         *  **Note:** Even with [member bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [PhysicalBone3D] that preserves all its energy over time, set [member bounce] to `1.0`, [member linear_damp_mode] to [constant DAMP_MODE_REPLACE], [member linear_damp] to `0.0`, [member angular_damp_mode] to [constant DAMP_MODE_REPLACE], and [member angular_damp] to `0.0`.  
+         */
+        get bounce(): float64
+        set bounce(value: float64)
+        
+        /** This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce the body's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object. */
+        get gravity_scale(): float64
+        set gravity_scale(value: float64)
+        
+        /** If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [method _integrate_forces] function, if defined. */
+        get custom_integrator(): boolean
+        set custom_integrator(value: boolean)
+        
+        /** Defines how [member linear_damp] is applied. See [enum DampMode] for possible values. */
+        get linear_damp_mode(): int64
+        set linear_damp_mode(value: int64)
+        
+        /** Damps the body's movement. By default, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member linear_damp_mode], you can set [member linear_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/3d/default_linear_damp] for more details about damping.  
+         */
+        get linear_damp(): float64
+        set linear_damp(value: float64)
+        
+        /** Defines how [member angular_damp] is applied. See [enum DampMode] for possible values. */
+        get angular_damp_mode(): int64
+        set angular_damp_mode(value: int64)
+        
+        /** Damps the body's rotation. By default, the body will use the **Default Angular Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is in. Depending on [member angular_damp_mode], you can set [member angular_damp] to be added to or to replace the body's damping value.  
+         *  See [member ProjectSettings.physics/3d/default_angular_damp] for more details about damping.  
+         */
+        get angular_damp(): float64
+        set angular_damp(value: float64)
+        
+        /** The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state. */
+        get linear_velocity(): Vector3
+        set linear_velocity(value: Vector3)
+        
+        /** The PhysicalBone3D's rotational velocity in  *radians*  per second. */
+        get angular_velocity(): Vector3
+        set angular_velocity(value: Vector3)
+        
+        /** If `true`, the body is deactivated when there is no movement, so it will not take part in the simulation until it is awakened by an external force. */
+        get can_sleep(): boolean
+        set can_sleep(value: boolean)
+    }
+    class PhysicalBone3DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    class PhysicalBone3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    /** A material that defines a sky for a [Sky] resource by a set of physical properties.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicalskymaterial.html  
+     */
+    class PhysicalSkyMaterial extends Material {
+        constructor(identifier?: any)
+        /** Controls the strength of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. Rayleigh scattering results from light colliding with small particles. It is responsible for the blue color of the sky. */
+        get rayleigh_coefficient(): float64
+        set rayleigh_coefficient(value: float64)
+        
+        /** Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh scattering[/url]. While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a corresponding blue sunset. */
+        get rayleigh_color(): Color
+        set rayleigh_color(value: Color)
+        
+        /** Controls the strength of [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] for the sky. Mie scattering results from light colliding with larger particles (like water). On earth, Mie scattering results in a whitish color around the sun and horizon. */
+        get mie_coefficient(): float64
+        set mie_coefficient(value: float64)
+        
+        /** Controls the direction of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url]. A value of `1` means that when light hits a particle it's passing through straight forward. A value of `-1` means that all light is scatter backwards. */
+        get mie_eccentricity(): float64
+        set mie_eccentricity(value: float64)
+        
+        /** Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url] effect. While not physically accurate, this allows for the creation of alien-looking planets. */
+        get mie_color(): Color
+        set mie_color(value: Color)
+        
+        /** Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while a low turbidity results in a clearer atmosphere. */
+        get turbidity(): float64
+        set turbidity(value: float64)
+        
+        /** Sets the size of the sun disk. Default value is based on Sol's perceived size from Earth. */
+        get sun_disk_scale(): float64
+        set sun_disk_scale(value: float64)
+        
+        /** Modulates the [Color] on the bottom half of the sky to represent the ground. */
+        get ground_color(): Color
+        set ground_color(value: Color)
+        
+        /** The sky's overall brightness multiplier. Higher values result in a brighter sky. */
+        get energy_multiplier(): float64
+        set energy_multiplier(value: float64)
+        
+        /** If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky. */
+        get use_debanding(): boolean
+        set use_debanding(value: boolean)
+        
+        /** [Texture2D] for the night sky. This is added to the sky, so if it is bright enough, it may be visible during the day. */
+        get night_sky(): Texture2D
+        set night_sky(value: Texture2D)
+    }
+    class PhysicalSkyMaterialConversionPlugin extends EditorResourceConversionPlugin {
+        constructor(identifier?: any)
+    }
+    /** Abstract base class for 2D game objects affected by physics.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsbody2d.html  
+     */
+    class PhysicsBody2D extends CollisionObject2D {
+        constructor(identifier?: any)
+        /** Moves the body along the vector [param motion]. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
+         *  Returns a [KinematicCollision2D], which contains information about the collision when stopped, or when touching another body along the motion.  
+         *  If [param test_only] is `true`, the body does not move but the would-be collision information is given.  
+         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody2D.safe_margin] for more details).  
+         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [CharacterBody2D] for improving floor detection during floor snapping.  
+         */
+        move_and_collide(motion: Vector2, test_only: boolean = false, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): KinematicCollision2D
+        
+        /** Checks for collisions without moving the body. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
+         *  Virtually sets the node's position, scale and rotation to that of the given [Transform2D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
+         *  [param collision] is an optional object of type [KinematicCollision2D], which contains additional information about the collision when stopped, or when touching another body along the motion.  
+         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody2D.safe_margin] for more details).  
+         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
+         */
+        test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = undefined, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): boolean
+        
+        /** Returns an array of nodes that were added as collision exceptions for this body. */
+        get_collision_exceptions(): Array
+        
+        /** Adds a body to the list of bodies that this body can't collide with. */
+        add_collision_exception_with(body: Node): void
+        
+        /** Removes a body from the list of bodies that this body can't collide with. */
+        remove_collision_exception_with(body: Node): void
+    }
+    /** Abstract base class for 3D game objects affected by physics.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsbody3d.html  
+     */
+    class PhysicsBody3D extends CollisionObject3D {
+        constructor(identifier?: any)
+        /** Moves the body along the vector [param motion]. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
+         *  The body will stop if it collides. Returns a [KinematicCollision3D], which contains information about the collision when stopped, or when touching another body along the motion.  
+         *  If [param test_only] is `true`, the body does not move but the would-be collision information is given.  
+         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody3D.safe_margin] for more details).  
+         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.  
+         *  [param max_collisions] allows to retrieve more than one collision result.  
+         */
+        move_and_collide(motion: Vector3, test_only: boolean = false, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): KinematicCollision3D
+        
+        /** Checks for collisions without moving the body. In order to be frame rate independent in [method Node._physics_process] or [method Node._process], [param motion] should be computed using `delta`.  
+         *  Virtually sets the node's position, scale and rotation to that of the given [Transform3D], then tries to move the body along the vector [param motion]. Returns `true` if a collision would stop the body from moving along the whole path.  
+         *  [param collision] is an optional object of type [KinematicCollision3D], which contains additional information about the collision when stopped, or when touching another body along the motion.  
+         *  [param safe_margin] is the extra margin used for collision recovery (see [member CharacterBody3D.safe_margin] for more details).  
+         *  If [param recovery_as_collision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would  *touch*  any other bodies.  
+         *  [param max_collisions] allows to retrieve more than one collision result.  
+         */
+        test_move(from: Transform3D, motion: Vector3, collision: KinematicCollision3D = undefined, safe_margin: float64 = 0.001, recovery_as_collision: boolean = false, max_collisions: int64 = 1): boolean
+        
+        /** Locks or unlocks the specified linear or rotational [param axis] depending on the value of [param lock]. */
+        set_axis_lock(axis: PhysicsServer3D.BodyAxis, lock: boolean): void
+        
+        /** Returns `true` if the specified linear or rotational [param axis] is locked. */
+        get_axis_lock(axis: PhysicsServer3D.BodyAxis): boolean
+        
+        /** Returns an array of nodes that were added as collision exceptions for this body. */
+        get_collision_exceptions(): Array
+        
+        /** Adds a body to the list of bodies that this body can't collide with. */
+        add_collision_exception_with(body: Node): void
+        
+        /** Removes a body from the list of bodies that this body can't collide with. */
+        remove_collision_exception_with(body: Node): void
+        
+        /** Lock the body's linear movement in the X axis. */
+        get axis_lock_linear_x(): boolean
+        set axis_lock_linear_x(value: boolean)
+        
+        /** Lock the body's linear movement in the Y axis. */
+        get axis_lock_linear_y(): boolean
+        set axis_lock_linear_y(value: boolean)
+        
+        /** Lock the body's linear movement in the Z axis. */
+        get axis_lock_linear_z(): boolean
+        set axis_lock_linear_z(value: boolean)
+        
+        /** Lock the body's rotation in the X axis. */
+        get axis_lock_angular_x(): boolean
+        set axis_lock_angular_x(value: boolean)
+        
+        /** Lock the body's rotation in the Y axis. */
+        get axis_lock_angular_y(): boolean
+        set axis_lock_angular_y(value: boolean)
+        
+        /** Lock the body's rotation in the Z axis. */
+        get axis_lock_angular_z(): boolean
+        set axis_lock_angular_z(value: boolean)
+    }
+    /** Provides direct access to a physics body in the [PhysicsServer2D].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate2d.html  
+     */
+    class PhysicsDirectBodyState2D extends Object {
+        constructor(identifier?: any)
+        /** Returns the body's velocity at the given relative position, including both translation and rotation. */
+        get_velocity_at_local_position(local_position: Vector2): Vector2
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
+         */
+        apply_central_impulse(impulse: Vector2): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inverse_inertia].  
+         */
+        apply_torque_impulse(impulse: float64): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_impulse(impulse: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
+         */
+        apply_central_force(force: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [member inverse_inertia].  
+         */
+        apply_torque(torque: float64): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
+         */
+        add_constant_central_force(force: Vector2 = Vector2.ZERO): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        add_constant_force(force: Vector2, position: Vector2 = Vector2.ZERO): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = 0`. */
+        add_constant_torque(torque: float64): void
+        
+        /** Sets the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        set_constant_force(force: Vector2): void
+        
+        /** Returns the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        get_constant_force(): Vector2
+        
+        /** Sets the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        set_constant_torque(torque: float64): void
+        
+        /** Returns the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        get_constant_torque(): float64
+        
+        /** Returns the number of contacts this body has with other bodies.  
+         *      
+         *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody2D.contact_monitor].  
+         */
+        get_contact_count(): int64
+        
+        /** Returns the position of the contact point on the body in the global coordinate system. */
+        get_contact_local_position(contact_idx: int64): Vector2
+        
+        /** Returns the local normal at the contact point. */
+        get_contact_local_normal(contact_idx: int64): Vector2
+        
+        /** Returns the local shape index of the collision. */
+        get_contact_local_shape(contact_idx: int64): int64
+        
+        /** Returns the velocity vector at the body's contact point. */
+        get_contact_local_velocity_at_position(contact_idx: int64): Vector2
+        
+        /** Returns the collider's [RID]. */
+        get_contact_collider(contact_idx: int64): RID
+        
+        /** Returns the position of the contact point on the collider in the global coordinate system. */
+        get_contact_collider_position(contact_idx: int64): Vector2
+        
+        /** Returns the collider's object id. */
+        get_contact_collider_id(contact_idx: int64): int64
+        
+        /** Returns the collider object. This depends on how it was created (will return a scene node if such was used to create it). */
+        get_contact_collider_object(contact_idx: int64): Object
+        
+        /** Returns the collider's shape index. */
+        get_contact_collider_shape(contact_idx: int64): int64
+        
+        /** Returns the velocity vector at the collider's contact point. */
+        get_contact_collider_velocity_at_position(contact_idx: int64): Vector2
+        
+        /** Returns the impulse created by the contact. */
+        get_contact_impulse(contact_idx: int64): Vector2
+        
+        /** Calls the built-in force integration code. */
+        integrate_forces(): void
+        
+        /** Returns the current state of the space, useful for queries. */
+        get_space_state(): PhysicsDirectSpaceState2D
+        
+        /** The timestep (delta) used for the simulation. */
+        get step(): float64
+        
+        /** The inverse of the mass of the body. */
+        get inverse_mass(): float64
+        
+        /** The inverse of the inertia of the body. */
+        get inverse_inertia(): float64
+        
+        /** The rate at which the body stops rotating, if there are not any other forces moving it. */
+        get total_angular_damp(): float64
+        
+        /** The rate at which the body stops moving, if there are not any other forces moving it. */
+        get total_linear_damp(): float64
+        
+        /** The total gravity vector being currently applied to this body. */
+        get total_gravity(): Vector2
+        
+        /** The body's center of mass position relative to the body's center in the global coordinate system. */
+        get center_of_mass(): Vector2
+        
+        /** The body's center of mass position in the body's local coordinate system. */
+        get center_of_mass_local(): Vector2
+        
+        /** The body's rotational velocity in  *radians*  per second. */
+        get angular_velocity(): float64
+        set angular_velocity(value: float64)
+        
+        /** The body's linear velocity in pixels per second. */
+        get linear_velocity(): Vector2
+        set linear_velocity(value: Vector2)
+        
+        /** If `true`, this body is currently sleeping (not active). */
+        get sleeping(): boolean
+        set sleeping(value: boolean)
+        
+        /** The body's transformation matrix. */
+        get transform(): Transform2D
+        set transform(value: Transform2D)
+    }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState2D] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate2dextension.html  
+     */
+    class PhysicsDirectBodyState2DExtension extends PhysicsDirectBodyState2D {
+        constructor(identifier?: any)
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_gravity] and its respective getter. */
+        /* gdvirtual */ _get_total_gravity(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_linear_damp] and its respective getter. */
+        /* gdvirtual */ _get_total_linear_damp(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.total_angular_damp] and its respective getter. */
+        /* gdvirtual */ _get_total_angular_damp(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass] and its respective getter. */
+        /* gdvirtual */ _get_center_of_mass(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.center_of_mass_local] and its respective getter. */
+        /* gdvirtual */ _get_center_of_mass_local(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_mass] and its respective getter. */
+        /* gdvirtual */ _get_inverse_mass(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.inverse_inertia] and its respective getter. */
+        /* gdvirtual */ _get_inverse_inertia(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective setter. */
+        /* gdvirtual */ _set_linear_velocity(velocity: Vector2): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.linear_velocity] and its respective getter. */
+        /* gdvirtual */ _get_linear_velocity(): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective setter. */
+        /* gdvirtual */ _set_angular_velocity(velocity: float64): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.angular_velocity] and its respective getter. */
+        /* gdvirtual */ _get_angular_velocity(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective setter. */
+        /* gdvirtual */ _set_transform(transform: Transform2D): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.transform] and its respective getter. */
+        /* gdvirtual */ _get_transform(): Transform2D
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_velocity_at_local_position]. */
+        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector2): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_impulse]. */
+        /* gdvirtual */ _apply_central_impulse(impulse: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_impulse]. */
+        /* gdvirtual */ _apply_impulse(impulse: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque_impulse]. */
+        /* gdvirtual */ _apply_torque_impulse(impulse: float64): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_central_force]. */
+        /* gdvirtual */ _apply_central_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_force]. */
+        /* gdvirtual */ _apply_force(force: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.apply_torque]. */
+        /* gdvirtual */ _apply_torque(torque: float64): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_central_force]. */
+        /* gdvirtual */ _add_constant_central_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_force]. */
+        /* gdvirtual */ _add_constant_force(force: Vector2, position: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.add_constant_torque]. */
+        /* gdvirtual */ _add_constant_torque(torque: float64): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_force]. */
+        /* gdvirtual */ _set_constant_force(force: Vector2): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_force]. */
+        /* gdvirtual */ _get_constant_force(): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.set_constant_torque]. */
+        /* gdvirtual */ _set_constant_torque(torque: float64): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_constant_torque]. */
+        /* gdvirtual */ _get_constant_torque(): float64
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective setter. */
+        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.sleeping] and its respective getter. */
+        /* gdvirtual */ _is_sleeping(): boolean
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_count]. */
+        /* gdvirtual */ _get_contact_count(): int64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_position]. */
+        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_normal]. */
+        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_shape]. */
+        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_local_velocity_at_position]. */
+        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider]. */
+        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_position]. */
+        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_id]. */
+        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_object]. */
+        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_shape]. */
+        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_collider_velocity_at_position]. */
+        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector2
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_contact_impulse]. */
+        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector2
+        
+        /** Implement to override the behavior of [member PhysicsDirectBodyState2D.step] and its respective getter. */
+        /* gdvirtual */ _get_step(): float64
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.integrate_forces]. */
+        /* gdvirtual */ _integrate_forces(): void
+        
+        /** Overridable version of [method PhysicsDirectBodyState2D.get_space_state]. */
+        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState2D
+    }
+    /** Provides direct access to a physics body in the [PhysicsServer3D].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate3d.html  
+     */
+    class PhysicsDirectBodyState3D extends Object {
+        constructor(identifier?: any)
+        /** Returns the body's velocity at the given relative position, including both translation and rotation. */
+        get_velocity_at_local_position(local_position: Vector3): Vector3
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method apply_impulse] at the body's center of mass.  
+         */
+        apply_central_impulse(impulse: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_impulse(impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
+         */
+        apply_torque_impulse(impulse: Vector3): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method apply_force] at the body's center of mass.  
+         */
+        apply_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        apply_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.  
+         *      
+         *  **Note:** [member inverse_inertia] is required for this to work. To have [member inverse_inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [member inverse_inertia].  
+         */
+        apply_torque(torque: Vector3): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  This is equivalent to using [method add_constant_force] at the body's center of mass.  
+         */
+        add_constant_central_force(force: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        add_constant_force(force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`. */
+        add_constant_torque(torque: Vector3): void
+        
+        /** Sets the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        set_constant_force(force: Vector3): void
+        
+        /** Returns the body's total constant positional forces applied during each physics update.  
+         *  See [method add_constant_force] and [method add_constant_central_force].  
+         */
+        get_constant_force(): Vector3
+        
+        /** Sets the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        set_constant_torque(torque: Vector3): void
+        
+        /** Returns the body's total constant rotational forces applied during each physics update.  
+         *  See [method add_constant_torque].  
+         */
+        get_constant_torque(): Vector3
+        
+        /** Returns the number of contacts this body has with other bodies.  
+         *      
+         *  **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [member RigidBody3D.contact_monitor].  
+         */
+        get_contact_count(): int64
+        
+        /** Returns the position of the contact point on the body in the global coordinate system. */
+        get_contact_local_position(contact_idx: int64): Vector3
+        
+        /** Returns the local normal at the contact point. */
+        get_contact_local_normal(contact_idx: int64): Vector3
+        
+        /** Impulse created by the contact. */
+        get_contact_impulse(contact_idx: int64): Vector3
+        
+        /** Returns the local shape index of the collision. */
+        get_contact_local_shape(contact_idx: int64): int64
+        
+        /** Returns the linear velocity vector at the body's contact point. */
+        get_contact_local_velocity_at_position(contact_idx: int64): Vector3
+        
+        /** Returns the collider's [RID]. */
+        get_contact_collider(contact_idx: int64): RID
+        
+        /** Returns the position of the contact point on the collider in the global coordinate system. */
+        get_contact_collider_position(contact_idx: int64): Vector3
+        
+        /** Returns the collider's object id. */
+        get_contact_collider_id(contact_idx: int64): int64
+        
+        /** Returns the collider object. */
+        get_contact_collider_object(contact_idx: int64): Object
+        
+        /** Returns the collider's shape index. */
+        get_contact_collider_shape(contact_idx: int64): int64
+        
+        /** Returns the linear velocity vector at the collider's contact point. */
+        get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
+        
+        /** Calls the built-in force integration code. */
+        integrate_forces(): void
+        
+        /** Returns the current state of the space, useful for queries. */
+        get_space_state(): PhysicsDirectSpaceState3D
+        
+        /** The timestep (delta) used for the simulation. */
+        get step(): float64
+        
+        /** The inverse of the mass of the body. */
+        get inverse_mass(): float64
+        
+        /** The rate at which the body stops rotating, if there are not any other forces moving it. */
+        get total_angular_damp(): float64
+        
+        /** The rate at which the body stops moving, if there are not any other forces moving it. */
+        get total_linear_damp(): float64
+        
+        /** The inverse of the inertia of the body. */
+        get inverse_inertia(): Vector3
+        
+        /** The inverse of the inertia tensor of the body. */
+        get inverse_inertia_tensor(): Basis
+        
+        /** The total gravity vector being currently applied to this body. */
+        get total_gravity(): Vector3
+        
+        /** The body's center of mass position relative to the body's center in the global coordinate system. */
+        get center_of_mass(): Vector3
+        
+        /** The body's center of mass position in the body's local coordinate system. */
+        get center_of_mass_local(): Vector3
+        get principal_inertia_axes(): Basis
+        
+        /** The body's rotational velocity in  *radians*  per second. */
+        get angular_velocity(): Vector3
+        set angular_velocity(value: Vector3)
+        
+        /** The body's linear velocity in units per second. */
+        get linear_velocity(): Vector3
+        set linear_velocity(value: Vector3)
+        
+        /** If `true`, this body is currently sleeping (not active). */
+        get sleeping(): boolean
+        set sleeping(value: boolean)
+        
+        /** The body's transformation matrix. */
+        get transform(): Transform3D
+        set transform(value: Transform3D)
+    }
+    /** Provides virtual methods that can be overridden to create custom [PhysicsDirectBodyState3D] implementations.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectbodystate3dextension.html  
+     */
+    class PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
+        constructor(identifier?: any)
+        /* gdvirtual */ _get_total_gravity(): Vector3
+        /* gdvirtual */ _get_total_linear_damp(): float64
+        /* gdvirtual */ _get_total_angular_damp(): float64
+        /* gdvirtual */ _get_center_of_mass(): Vector3
+        /* gdvirtual */ _get_center_of_mass_local(): Vector3
+        /* gdvirtual */ _get_principal_inertia_axes(): Basis
+        /* gdvirtual */ _get_inverse_mass(): float64
+        /* gdvirtual */ _get_inverse_inertia(): Vector3
+        /* gdvirtual */ _get_inverse_inertia_tensor(): Basis
+        /* gdvirtual */ _set_linear_velocity(velocity: Vector3): void
+        /* gdvirtual */ _get_linear_velocity(): Vector3
+        /* gdvirtual */ _set_angular_velocity(velocity: Vector3): void
+        /* gdvirtual */ _get_angular_velocity(): Vector3
+        /* gdvirtual */ _set_transform(transform: Transform3D): void
+        /* gdvirtual */ _get_transform(): Transform3D
+        /* gdvirtual */ _get_velocity_at_local_position(local_position: Vector3): Vector3
+        /* gdvirtual */ _apply_central_impulse(impulse: Vector3): void
+        /* gdvirtual */ _apply_impulse(impulse: Vector3, position: Vector3): void
+        /* gdvirtual */ _apply_torque_impulse(impulse: Vector3): void
+        /* gdvirtual */ _apply_central_force(force: Vector3): void
+        /* gdvirtual */ _apply_force(force: Vector3, position: Vector3): void
+        /* gdvirtual */ _apply_torque(torque: Vector3): void
+        /* gdvirtual */ _add_constant_central_force(force: Vector3): void
+        /* gdvirtual */ _add_constant_force(force: Vector3, position: Vector3): void
+        /* gdvirtual */ _add_constant_torque(torque: Vector3): void
+        /* gdvirtual */ _set_constant_force(force: Vector3): void
+        /* gdvirtual */ _get_constant_force(): Vector3
+        /* gdvirtual */ _set_constant_torque(torque: Vector3): void
+        /* gdvirtual */ _get_constant_torque(): Vector3
+        /* gdvirtual */ _set_sleep_state(enabled: boolean): void
+        /* gdvirtual */ _is_sleeping(): boolean
+        /* gdvirtual */ _get_contact_count(): int64
+        /* gdvirtual */ _get_contact_local_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_local_normal(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_impulse(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_local_shape(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_local_velocity_at_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_collider(contact_idx: int64): RID
+        /* gdvirtual */ _get_contact_collider_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_contact_collider_id(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_collider_object(contact_idx: int64): Object
+        /* gdvirtual */ _get_contact_collider_shape(contact_idx: int64): int64
+        /* gdvirtual */ _get_contact_collider_velocity_at_position(contact_idx: int64): Vector3
+        /* gdvirtual */ _get_step(): float64
+        /* gdvirtual */ _integrate_forces(): void
+        /* gdvirtual */ _get_space_state(): PhysicsDirectSpaceState3D
+    }
     /** Provides direct access to a physics space in the [PhysicsServer2D].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsdirectspacestate2d.html  
@@ -2613,6 +4263,46 @@ declare module "godot" {
         
         /** Returns the compilation error message for the given shader [param stage]. Equivalent to getting one of [member compile_error_compute], [member compile_error_fragment], [member compile_error_tesselation_control], [member compile_error_tesselation_evaluation], [member compile_error_vertex]. */
         get_stage_compile_error(stage: RenderingDevice.ShaderStage): string
+        
+        /** The SPIR-V bytecode for the vertex shader stage. */
+        get bytecode_vertex(): PackedByteArray
+        set bytecode_vertex(value: PackedByteArray | byte[] | ArrayBuffer)
+        
+        /** The SPIR-V bytecode for the fragment shader stage. */
+        get bytecode_fragment(): PackedByteArray
+        set bytecode_fragment(value: PackedByteArray | byte[] | ArrayBuffer)
+        
+        /** The SPIR-V bytecode for the tessellation control shader stage. */
+        get bytecode_tesselation_control(): PackedByteArray
+        set bytecode_tesselation_control(value: PackedByteArray | byte[] | ArrayBuffer)
+        
+        /** The SPIR-V bytecode for the tessellation evaluation shader stage. */
+        get bytecode_tesselation_evaluation(): PackedByteArray
+        set bytecode_tesselation_evaluation(value: PackedByteArray | byte[] | ArrayBuffer)
+        
+        /** The SPIR-V bytecode for the compute shader stage. */
+        get bytecode_compute(): PackedByteArray
+        set bytecode_compute(value: PackedByteArray | byte[] | ArrayBuffer)
+        
+        /** The compilation error message for the vertex shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful. */
+        get compile_error_vertex(): string
+        set compile_error_vertex(value: string)
+        
+        /** The compilation error message for the fragment shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful. */
+        get compile_error_fragment(): string
+        set compile_error_fragment(value: string)
+        
+        /** The compilation error message for the tessellation control shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful. */
+        get compile_error_tesselation_control(): string
+        set compile_error_tesselation_control(value: string)
+        
+        /** The compilation error message for the tessellation evaluation shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful. */
+        get compile_error_tesselation_evaluation(): string
+        set compile_error_tesselation_evaluation(value: string)
+        
+        /** The compilation error message for the compute shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful. */
+        get compile_error_compute(): string
+        set compile_error_compute(value: string)
     }
     /** Shader source code (used by [RenderingDevice]).  
      *  	  
@@ -2625,6 +4315,26 @@ declare module "godot" {
         
         /** Returns source code for the specified shader [param stage]. Equivalent to getting one of [member source_compute], [member source_fragment], [member source_tesselation_control], [member source_tesselation_evaluation] or [member source_vertex]. */
         get_stage_source(stage: RenderingDevice.ShaderStage): string
+        
+        /** Source code for the shader's vertex stage. */
+        get source_vertex(): string
+        set source_vertex(value: string)
+        
+        /** Source code for the shader's fragment stage. */
+        get source_fragment(): string
+        set source_fragment(value: string)
+        
+        /** Source code for the shader's tessellation control stage. */
+        get source_tesselation_control(): string
+        set source_tesselation_control(value: string)
+        
+        /** Source code for the shader's tessellation evaluation stage. */
+        get source_tesselation_evaluation(): string
+        set source_tesselation_evaluation(value: string)
+        
+        /** Source code for the shader's compute stage. */
+        get source_compute(): string
+        set source_compute(value: string)
         
         /** The language the shader is written in. */
         get language(): int64
@@ -7511,1740 +9221,5 @@ declare module "godot" {
         /* gdvirtual */ _get_members(): Array
         /* gdvirtual */ _is_placeholder_fallback_enabled(): boolean
         /* gdvirtual */ _get_rpc_config(): void
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptlanguage.html */
-    class ScriptLanguage extends Object {
-        constructor(identifier?: any)
-    }
-    namespace ScriptLanguageExtension {
-        enum LookupResultType {
-            LOOKUP_RESULT_SCRIPT_LOCATION = 0,
-            LOOKUP_RESULT_CLASS = 1,
-            LOOKUP_RESULT_CLASS_CONSTANT = 2,
-            LOOKUP_RESULT_CLASS_PROPERTY = 3,
-            LOOKUP_RESULT_CLASS_METHOD = 4,
-            LOOKUP_RESULT_CLASS_SIGNAL = 5,
-            LOOKUP_RESULT_CLASS_ENUM = 6,
-            LOOKUP_RESULT_CLASS_TBD_GLOBALSCOPE = 7,
-            LOOKUP_RESULT_CLASS_ANNOTATION = 8,
-            LOOKUP_RESULT_MAX = 9,
-        }
-        enum CodeCompletionLocation {
-            /** The option is local to the location of the code completion query - e.g. a local variable. Subsequent value of location represent options from the outer class, the exact value represent how far they are (in terms of inner classes). */
-            LOCATION_LOCAL = 0,
-            
-            /** The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1 for the parent, 2 for the grandparent, etc) to store the depth of an option in the class or a parent class. */
-            LOCATION_PARENT_MASK = 256,
-            
-            /** The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons). */
-            LOCATION_OTHER_USER_CODE = 512,
-            
-            /** The option is from other engine code, not covered by the other enum constants - e.g. built-in classes. */
-            LOCATION_OTHER = 1024,
-        }
-        enum CodeCompletionKind {
-            CODE_COMPLETION_KIND_CLASS = 0,
-            CODE_COMPLETION_KIND_FUNCTION = 1,
-            CODE_COMPLETION_KIND_SIGNAL = 2,
-            CODE_COMPLETION_KIND_VARIABLE = 3,
-            CODE_COMPLETION_KIND_MEMBER = 4,
-            CODE_COMPLETION_KIND_ENUM = 5,
-            CODE_COMPLETION_KIND_CONSTANT = 6,
-            CODE_COMPLETION_KIND_NODE_PATH = 7,
-            CODE_COMPLETION_KIND_FILE_PATH = 8,
-            CODE_COMPLETION_KIND_PLAIN_TEXT = 9,
-            CODE_COMPLETION_KIND_MAX = 10,
-        }
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptlanguageextension.html */
-    class ScriptLanguageExtension extends ScriptLanguage {
-        constructor(identifier?: any)
-        /* gdvirtual */ _get_name(): string
-        /* gdvirtual */ _init(): void
-        /* gdvirtual */ _get_type(): string
-        /* gdvirtual */ _get_extension(): string
-        /* gdvirtual */ _finish(): void
-        /* gdvirtual */ _get_reserved_words(): PackedStringArray
-        /* gdvirtual */ _is_control_flow_keyword(keyword: string): boolean
-        /* gdvirtual */ _get_comment_delimiters(): PackedStringArray
-        /* gdvirtual */ _get_doc_comment_delimiters(): PackedStringArray
-        /* gdvirtual */ _get_string_delimiters(): PackedStringArray
-        /* gdvirtual */ _make_template(template: string, class_name: string, base_class_name: string): Script
-        /* gdvirtual */ _get_built_in_templates(object: StringName): Array
-        /* gdvirtual */ _is_using_templates(): boolean
-        /* gdvirtual */ _validate(script: string, path: string, validate_functions: boolean, validate_errors: boolean, validate_warnings: boolean, validate_safe_lines: boolean): Dictionary
-        /* gdvirtual */ _validate_path(path: string): string
-        /* gdvirtual */ _create_script(): Object
-        /* gdvirtual */ _supports_builtin_mode(): boolean
-        /* gdvirtual */ _supports_documentation(): boolean
-        /* gdvirtual */ _can_inherit_from_file(): boolean
-        /* gdvirtual */ _find_function(class_name: string, function_name: string): int64
-        /* gdvirtual */ _make_function(class_name: string, function_name: string, function_args: PackedStringArray | string[]): string
-        /* gdvirtual */ _open_in_external_editor(script: Script, line: int64, column: int64): Error
-        /* gdvirtual */ _overrides_external_editor(): boolean
-        /* gdvirtual */ _complete_code(code: string, path: string, owner: Object): Dictionary
-        /* gdvirtual */ _lookup_code(code: string, symbol: string, path: string, owner: Object): Dictionary
-        /* gdvirtual */ _auto_indent_code(code: string, from_line: int64, to_line: int64): string
-        /* gdvirtual */ _add_global_constant(name: StringName, value: any): void
-        /* gdvirtual */ _add_named_global_constant(name: StringName, value: any): void
-        /* gdvirtual */ _remove_named_global_constant(name: StringName): void
-        /* gdvirtual */ _thread_enter(): void
-        /* gdvirtual */ _thread_exit(): void
-        /* gdvirtual */ _debug_get_error(): string
-        /* gdvirtual */ _debug_get_stack_level_count(): int64
-        /* gdvirtual */ _debug_get_stack_level_line(level: int64): int64
-        /* gdvirtual */ _debug_get_stack_level_function(level: int64): string
-        /* gdvirtual */ _debug_get_stack_level_locals(level: int64, max_subitems: int64, max_depth: int64): Dictionary
-        /* gdvirtual */ _debug_get_stack_level_members(level: int64, max_subitems: int64, max_depth: int64): Dictionary
-        /* gdvirtual */ _debug_get_stack_level_instance(level: int64): int64
-        /* gdvirtual */ _debug_get_globals(max_subitems: int64, max_depth: int64): Dictionary
-        /* gdvirtual */ _debug_parse_stack_level_expression(level: int64, expression: string, max_subitems: int64, max_depth: int64): string
-        /* gdvirtual */ _debug_get_current_stack_info(): Array
-        /* gdvirtual */ _reload_all_scripts(): void
-        /* gdvirtual */ _reload_tool_script(script: Script, soft_reload: boolean): void
-        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
-        /* gdvirtual */ _get_public_functions(): Array
-        /* gdvirtual */ _get_public_constants(): Dictionary
-        /* gdvirtual */ _get_public_annotations(): Array
-        /* gdvirtual */ _profiling_start(): void
-        /* gdvirtual */ _profiling_stop(): void
-        /* gdvirtual */ _profiling_get_accumulated_data(info_array: int64, info_max: int64): int64
-        /* gdvirtual */ _profiling_get_frame_data(info_array: int64, info_max: int64): int64
-        /* gdvirtual */ _frame(): void
-        /* gdvirtual */ _handles_global_class_type(type: string): boolean
-        /* gdvirtual */ _get_global_class_name(path: string): Dictionary
-    }
-    class ScriptTextEditor extends ScriptEditorBase {
-        constructor(identifier?: any)
-    }
-    /** Abstract base class for scrollbars.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_scrollbar.html  
-     */
-    class ScrollBar extends Range {
-        constructor(identifier?: any)
-        /** Overrides the step used when clicking increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
-        get custom_step(): float64
-        set custom_step(value: float64)
-        
-        /** Emitted when the scrollbar is being scrolled. */
-        readonly scrolling: Signal0
-    }
-    namespace ScrollContainer {
-        enum ScrollMode {
-            /** Scrolling disabled, scrollbar will be invisible. */
-            SCROLL_MODE_DISABLED = 0,
-            
-            /** Scrolling enabled, scrollbar will be visible only if necessary, i.e. container's content is bigger than the container. */
-            SCROLL_MODE_AUTO = 1,
-            
-            /** Scrolling enabled, scrollbar will be always visible. */
-            SCROLL_MODE_SHOW_ALWAYS = 2,
-            
-            /** Scrolling enabled, scrollbar will be hidden. */
-            SCROLL_MODE_SHOW_NEVER = 3,
-        }
-    }
-    /** A container used to provide scrollbars to a child control when needed.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_scrollcontainer.html  
-     */
-    class ScrollContainer extends Container {
-        constructor(identifier?: any)
-        _update_scrollbar_position(): void
-        
-        /** Returns the horizontal scrollbar [HScrollBar] of this [ScrollContainer].  
-         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable or hide a scrollbar, you can use [member horizontal_scroll_mode].  
-         */
-        get_h_scroll_bar(): HScrollBar
-        
-        /** Returns the vertical scrollbar [VScrollBar] of this [ScrollContainer].  
-         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable or hide a scrollbar, you can use [member vertical_scroll_mode].  
-         */
-        get_v_scroll_bar(): VScrollBar
-        
-        /** Ensures the given [param control] is visible (must be a direct or indirect child of the ScrollContainer). Used by [member follow_focus].  
-         *      
-         *  **Note:** This will not work on a node that was just added during the same frame. If you want to scroll to a newly added child, you must wait until the next frame using [signal SceneTree.process_frame]:  
-         *    
-         */
-        ensure_control_visible(control: Control): void
-        
-        /** If `true`, the ScrollContainer will automatically scroll to focused children (including indirect children) to make sure they are fully visible. */
-        get follow_focus(): boolean
-        set follow_focus(value: boolean)
-        
-        /** The current horizontal scroll value.  
-         *      
-         *  **Note:** If you are setting this value in the [method Node._ready] function or earlier, it needs to be wrapped with [method Object.set_deferred], since scroll bar's [member Range.max_value] is not initialized yet.  
-         *    
-         */
-        get scroll_horizontal(): int64
-        set scroll_horizontal(value: int64)
-        
-        /** The current vertical scroll value.  
-         *      
-         *  **Note:** Setting it early needs to be deferred, just like in [member scroll_horizontal].  
-         *    
-         */
-        get scroll_vertical(): int64
-        set scroll_vertical(value: int64)
-        
-        /** Overrides the [member ScrollBar.custom_step] used when clicking the internal scroll bar's horizontal increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
-        get scroll_horizontal_custom_step(): float64
-        set scroll_horizontal_custom_step(value: float64)
-        
-        /** Overrides the [member ScrollBar.custom_step] used when clicking the internal scroll bar's vertical increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused. */
-        get scroll_vertical_custom_step(): float64
-        set scroll_vertical_custom_step(value: float64)
-        
-        /** Controls whether horizontal scrollbar can be used and when it should be visible. See [enum ScrollMode] for options. */
-        get horizontal_scroll_mode(): int64
-        set horizontal_scroll_mode(value: int64)
-        
-        /** Controls whether vertical scrollbar can be used and when it should be visible. See [enum ScrollMode] for options. */
-        get vertical_scroll_mode(): int64
-        set vertical_scroll_mode(value: int64)
-        
-        /** Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive. */
-        get scroll_deadzone(): int64
-        set scroll_deadzone(value: int64)
-        
-        /** Emitted when scrolling starts when dragging the scrollable area w *ith a touch event* . This signal is  *not*  emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
-         *      
-         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
-         */
-        readonly scroll_started: Signal0
-        
-        /** Emitted when scrolling stops when dragging the scrollable area  *with a touch event* . This signal is  *not*  emitted when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
-         *      
-         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
-         */
-        readonly scroll_ended: Signal0
-    }
-    class SectionedInspector extends HSplitContainer {
-        constructor(identifier?: any)
-        update_category_list(): void
-    }
-    class SectionedInspectorFilter extends Object {
-        constructor(identifier?: any)
-    }
-    /** A 2D line segment shape used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_segmentshape2d.html  
-     */
-    class SegmentShape2D extends Shape2D {
-        constructor(identifier?: any)
-        /** The segment's first point position. */
-        get a(): Vector2
-        set a(value: Vector2)
-        
-        /** The segment's second point position. */
-        get b(): Vector2
-        set b(value: Vector2)
-    }
-    /** A synchronization mechanism used to control access to a shared resource by [Thread]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_semaphore.html  
-     */
-    class Semaphore extends RefCounted {
-        constructor(identifier?: any)
-        /** Waits for the [Semaphore], if its value is zero, blocks until non-zero. */
-        wait(): void
-        
-        /** Like [method wait], but won't block, so if the value is zero, fails immediately and returns `false`. If non-zero, it returns `true` to report success. */
-        try_wait(): boolean
-        
-        /** Lowers the [Semaphore], allowing one more thread in. */
-        post(): void
-    }
-    /** A 2D ray shape used for physics collision that tries to separate itself from any collider.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_separationrayshape2d.html  
-     */
-    class SeparationRayShape2D extends Shape2D {
-        constructor(identifier?: any)
-        /** The ray's length. */
-        get length(): float64
-        set length(value: float64)
-        
-        /** If `false` (default), the shape always separates and returns a normal along its own direction.  
-         *  If `true`, the shape can return the correct normal and separate in any direction, allowing sliding motion on slopes.  
-         */
-        get slide_on_slope(): boolean
-        set slide_on_slope(value: boolean)
-    }
-    /** A 3D ray shape used for physics collision that tries to separate itself from any collider.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_separationrayshape3d.html  
-     */
-    class SeparationRayShape3D extends Shape3D {
-        constructor(identifier?: any)
-        /** The ray's length. */
-        get length(): float64
-        set length(value: float64)
-        
-        /** If `false` (default), the shape always separates and returns a normal along its own direction.  
-         *  If `true`, the shape can return the correct normal and separate in any direction, allowing sliding motion on slopes.  
-         */
-        get slide_on_slope(): boolean
-        set slide_on_slope(value: boolean)
-    }
-    /** Abstract base class for separators.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_separator.html  
-     */
-    class Separator extends Control {
-        constructor(identifier?: any)
-    }
-    namespace Shader {
-        enum Mode {
-            /** Mode used to draw all 3D objects. */
-            MODE_SPATIAL = 0,
-            
-            /** Mode used to draw all 2D objects. */
-            MODE_CANVAS_ITEM = 1,
-            
-            /** Mode used to calculate particle information on a per-particle basis. Not used for drawing. */
-            MODE_PARTICLES = 2,
-            
-            /** Mode used for drawing skies. Only works with shaders attached to [Sky] objects. */
-            MODE_SKY = 3,
-            
-            /** Mode used for setting the color and density of volumetric fog effect. */
-            MODE_FOG = 4,
-        }
-    }
-    /** A shader implemented in the Godot shading language.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shader.html  
-     */
-    class Shader extends Resource {
-        constructor(identifier?: any)
-        /** Returns the shader mode for the shader. */
-        get_mode(): Shader.Mode
-        
-        /** Sets the default texture to be used with a texture uniform. The default is used if a texture is not set in the [ShaderMaterial].  
-         *      
-         *  **Note:** [param name] must match the name of the uniform in the code exactly.  
-         *      
-         *  **Note:** If the sampler array is used use [param index] to access the specified texture.  
-         */
-        set_default_texture_parameter(name: StringName, texture: Texture2D, index: int64 = 0): void
-        
-        /** Returns the texture that is set as default for the specified parameter.  
-         *      
-         *  **Note:** [param name] must match the name of the uniform in the code exactly.  
-         *      
-         *  **Note:** If the sampler array is used use [param index] to access the specified texture.  
-         */
-        get_default_texture_parameter(name: StringName, index: int64 = 0): Texture2D
-        
-        /** Get the list of shader uniforms that can be assigned to a [ShaderMaterial], for use with [method ShaderMaterial.set_shader_parameter] and [method ShaderMaterial.get_shader_parameter]. The parameters returned are contained in dictionaries in a similar format to the ones returned by [method Object.get_property_list].  
-         *  If argument [param get_groups] is true, parameter grouping hints will be provided.  
-         */
-        get_shader_uniform_list(get_groups: boolean = false): Array
-        
-        /** Returns the shader's code as the user has written it, not the full generated code used internally. */
-        get code(): string
-        set code(value: string)
-    }
-    class ShaderCreateDialog extends ConfirmationDialog {
-        constructor(identifier?: any)
-        config(path: string, built_in_enabled: boolean, load_enabled: boolean, _unnamed_arg3: int64 = 1, _unnamed_arg4: int64 = 1): void
-        readonly shader_created: Signal1<Shader>
-        readonly shader_include_created: Signal1<ShaderInclude>
-    }
-    class ShaderEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class ShaderFileEditor extends PanelContainer {
-        constructor(identifier?: any)
-    }
-    class ShaderFileEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class ShaderGlobalsEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        _changed(): void
-        readonly globals_changed: Signal0
-    }
-    class ShaderGlobalsEditorInterface extends Object {
-        constructor(identifier?: any)
-        _set_var(_unnamed_arg0: StringName, _unnamed_arg1: any, _unnamed_arg2: any): void
-        _var_changed(): void
-        readonly var_changed: Signal0
-    }
-    /** A node used to override global shader parameters' values in a scene.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shaderglobalsoverride.html  
-     */
-    class ShaderGlobalsOverride extends Node {
-        constructor(identifier?: any)
-        _activate(): void
-    }
-    /** A snippet of shader code to be included in a [Shader] with `#include`.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shaderinclude.html  
-     */
-    class ShaderInclude extends Resource {
-        constructor(identifier?: any)
-        /** Returns the code of the shader include file. The returned text is what the user has written, not the full generated code used internally. */
-        get code(): string
-        set code(value: string)
-    }
-    /** A material defined by a custom [Shader] program and the values of its shader parameters.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shadermaterial.html  
-     */
-    class ShaderMaterial extends Material {
-        constructor(identifier?: any)
-        /** Changes the value set for this material of a uniform in the shader.  
-         *      
-         *  **Note:** [param param] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).  
-         *      
-         *  **Note:** Changes to the shader uniform will be effective on all instances using this [ShaderMaterial]. To prevent this, use per-instance uniforms with [method GeometryInstance3D.set_instance_shader_parameter] or duplicate the [ShaderMaterial] resource using [method Resource.duplicate]. Per-instance uniforms allow for better shader reuse and are therefore faster, so they should be preferred over duplicating the [ShaderMaterial] when possible.  
-         */
-        set_shader_parameter(param: StringName, value: any): void
-        
-        /** Returns the current value set for this material of a uniform in the shader. */
-        get_shader_parameter(param: StringName): any
-        
-        /** The [Shader] program used to render this material. */
-        get shader(): Shader
-        set shader(value: Shader)
-    }
-    /** Abstract base class for 2D shapes used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shape2d.html  
-     */
-    class Shape2D extends Resource {
-        constructor(identifier?: any)
-        /** Returns `true` if this shape is colliding with another.  
-         *  This method needs the transformation matrix for this shape ([param local_xform]), the shape to check collisions with ([param with_shape]), and the transformation matrix of that shape ([param shape_xform]).  
-         */
-        collide(local_xform: Transform2D, with_shape: Shape2D, shape_xform: Transform2D): boolean
-        
-        /** Returns whether this shape would collide with another, if a given movement was applied.  
-         *  This method needs the transformation matrix for this shape ([param local_xform]), the movement to test on this shape ([param local_motion]), the shape to check collisions with ([param with_shape]), the transformation matrix of that shape ([param shape_xform]), and the movement to test onto the other object ([param shape_motion]).  
-         */
-        collide_with_motion(local_xform: Transform2D, local_motion: Vector2, with_shape: Shape2D, shape_xform: Transform2D, shape_motion: Vector2): boolean
-        
-        /** Returns a list of contact point pairs where this shape touches another.  
-         *  If there are no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of [param with_shape].  
-         *  A collision pair A, B can be used to calculate the collision normal with `(B - A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically used to separate shapes, particularly in collision solvers.  
-         *  This method needs the transformation matrix for this shape ([param local_xform]), the shape to check collisions with ([param with_shape]), and the transformation matrix of that shape ([param shape_xform]).  
-         */
-        collide_and_get_contacts(local_xform: Transform2D, with_shape: Shape2D, shape_xform: Transform2D): PackedVector2Array
-        
-        /** Returns a list of contact point pairs where this shape would touch another, if a given movement was applied.  
-         *  If there would be no collisions, the returned list is empty. Otherwise, the returned list contains contact points arranged in pairs, with entries alternating between points on the boundary of this shape and points on the boundary of [param with_shape].  
-         *  A collision pair A, B can be used to calculate the collision normal with `(B - A).normalized()`, and the collision depth with `(B - A).length()`. This information is typically used to separate shapes, particularly in collision solvers.  
-         *  This method needs the transformation matrix for this shape ([param local_xform]), the movement to test on this shape ([param local_motion]), the shape to check collisions with ([param with_shape]), the transformation matrix of that shape ([param shape_xform]), and the movement to test onto the other object ([param shape_motion]).  
-         */
-        collide_with_motion_and_get_contacts(local_xform: Transform2D, local_motion: Vector2, with_shape: Shape2D, shape_xform: Transform2D, shape_motion: Vector2): PackedVector2Array
-        
-        /** Draws a solid shape onto a [CanvasItem] with the [RenderingServer] API filled with the specified [param color]. The exact drawing method is specific for each shape and cannot be configured. */
-        draw(canvas_item: RID, color: Color): void
-        
-        /** Returns a [Rect2] representing the shapes boundary. */
-        get_rect(): Rect2
-        
-        /** The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.  
-         *  When set to `0`, the default value from [member ProjectSettings.physics/2d/solver/default_contact_bias] is used.  
-         */
-        get custom_solver_bias(): float64
-        set custom_solver_bias(value: float64)
-    }
-    /** Abstract base class for 3D shapes used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shape3d.html  
-     */
-    class Shape3D extends Resource {
-        constructor(identifier?: any)
-        /** Returns the [ArrayMesh] used to draw the debug collision for this [Shape3D]. */
-        get_debug_mesh(): ArrayMesh
-        
-        /** The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.  
-         *  When set to `0`, the default value from [member ProjectSettings.physics/3d/solver/default_contact_bias] is used.  
-         */
-        get custom_solver_bias(): float64
-        set custom_solver_bias(value: float64)
-        
-        /** The collision margin for the shape. This is not used in Godot Physics.  
-         *  Collision margins allow collision detection to be more efficient by adding an extra shell around shapes. Collision algorithms are more expensive when objects overlap by more than their margin, so a higher value for margins is better for performance, at the cost of accuracy around edges as it makes them less sharp.  
-         */
-        get margin(): float64
-        set margin(value: float64)
-    }
-    /** A 2D shape that sweeps a region of space to detect [CollisionObject2D]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shapecast2d.html  
-     */
-    class ShapeCast2D extends Node2D {
-        constructor(identifier?: any)
-        /** Returns whether any object is intersecting with the shape's vector (considering the vector length). */
-        is_colliding(): boolean
-        
-        /** The number of collisions detected at the point of impact. Use this to iterate over multiple collisions as provided by [method get_collider], [method get_collider_shape], [method get_collision_point], and [method get_collision_normal] methods. */
-        get_collision_count(): int64
-        
-        /** Updates the collision information for the shape immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the shape or its parent has changed state.  
-         *      
-         *  **Note:** `enabled == true` is not required for this to work.  
-         */
-        force_shapecast_update(): void
-        
-        /** Returns the collided [Object] of one of the multiple collisions at [param index], or `null` if no object is intersecting the shape (i.e. [method is_colliding] returns `false`). */
-        get_collider(index: int64): Object
-        
-        /** Returns the [RID] of the collided object of one of the multiple collisions at [param index]. */
-        get_collider_rid(index: int64): RID
-        
-        /** Returns the shape ID of the colliding shape of one of the multiple collisions at [param index], or `0` if no object is intersecting the shape (i.e. [method is_colliding] returns `false`). */
-        get_collider_shape(index: int64): int64
-        
-        /** Returns the collision point of one of the multiple collisions at [param index] where the shape intersects the colliding object.  
-         *      
-         *  **Note:** this point is in the **global** coordinate system.  
-         */
-        get_collision_point(index: int64): Vector2
-        
-        /** Returns the normal of one of the multiple collisions at [param index] of the intersecting object. */
-        get_collision_normal(index: int64): Vector2
-        
-        /** The fraction from the [ShapeCast2D]'s origin to its [member target_position] (between 0 and 1) of how far the shape can move without triggering a collision. */
-        get_closest_collision_safe_fraction(): float64
-        
-        /** The fraction from the [ShapeCast2D]'s origin to its [member target_position] (between 0 and 1) of how far the shape must move to trigger a collision. */
-        get_closest_collision_unsafe_fraction(): float64
-        
-        /** Adds a collision exception so the shape does not report collisions with the specified [RID]. */
-        add_exception_rid(rid: RID): void
-        
-        /** Adds a collision exception so the shape does not report collisions with the specified [CollisionObject2D] node. */
-        add_exception(node: CollisionObject2D): void
-        
-        /** Removes a collision exception so the shape does report collisions with the specified [RID]. */
-        remove_exception_rid(rid: RID): void
-        
-        /** Removes a collision exception so the shape does report collisions with the specified [CollisionObject2D] node. */
-        remove_exception(node: CollisionObject2D): void
-        
-        /** Removes all collision exceptions for this shape. */
-        clear_exceptions(): void
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: int64): boolean
-        
-        /** If `true`, collisions will be reported. */
-        get enabled(): boolean
-        set enabled(value: boolean)
-        
-        /** The [Shape2D]-derived shape to be used for collision queries. */
-        get shape(): Shape2D
-        set shape(value: Shape2D)
-        
-        /** If `true`, the parent node will be excluded from collision detection. */
-        get exclude_parent(): boolean
-        set exclude_parent(value: boolean)
-        
-        /** The shape's destination point, relative to this node's `position`. */
-        get target_position(): Vector2
-        set target_position(value: Vector2)
-        
-        /** The collision margin for the shape. A larger margin helps detecting collisions more consistently, at the cost of precision. */
-        get margin(): float64
-        set margin(value: float64)
-        
-        /** The number of intersections can be limited with this parameter, to reduce the processing time. */
-        get max_results(): int64
-        set max_results(value: int64)
-        
-        /** The shape's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. */
-        get collision_mask(): int64
-        set collision_mask(value: int64)
-        
-        /** Returns the complete collision information from the collision sweep. The data returned is the same as in the [method PhysicsDirectSpaceState2D.get_rest_info] method. */
-        get collision_result(): Array
-        
-        /** If `true`, collisions with [Area2D]s will be reported. */
-        get collide_with_areas(): boolean
-        set collide_with_areas(value: boolean)
-        
-        /** If `true`, collisions with [PhysicsBody2D]s will be reported. */
-        get collide_with_bodies(): boolean
-        set collide_with_bodies(value: boolean)
-    }
-    /** A 3D shape that sweeps a region of space to detect [CollisionObject3D]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shapecast3d.html  
-     */
-    class ShapeCast3D extends Node3D {
-        constructor(identifier?: any)
-        /** Returns whether any object is intersecting with the shape's vector (considering the vector length). */
-        is_colliding(): boolean
-        
-        /** The number of collisions detected at the point of impact. Use this to iterate over multiple collisions as provided by [method get_collider], [method get_collider_shape], [method get_collision_point], and [method get_collision_normal] methods. */
-        get_collision_count(): int64
-        
-        /** Updates the collision information for the shape immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the shape or its parent has changed state.  
-         *      
-         *  **Note:** `enabled == true` is not required for this to work.  
-         */
-        force_shapecast_update(): void
-        
-        /** Returns the collided [Object] of one of the multiple collisions at [param index], or `null` if no object is intersecting the shape (i.e. [method is_colliding] returns `false`). */
-        get_collider(index: int64): Object
-        
-        /** Returns the [RID] of the collided object of one of the multiple collisions at [param index]. */
-        get_collider_rid(index: int64): RID
-        
-        /** Returns the shape ID of the colliding shape of one of the multiple collisions at [param index], or `0` if no object is intersecting the shape (i.e. [method is_colliding] returns `false`). */
-        get_collider_shape(index: int64): int64
-        
-        /** Returns the collision point of one of the multiple collisions at [param index] where the shape intersects the colliding object.  
-         *      
-         *  **Note:** this point is in the **global** coordinate system.  
-         */
-        get_collision_point(index: int64): Vector3
-        
-        /** Returns the normal of one of the multiple collisions at [param index] of the intersecting object. */
-        get_collision_normal(index: int64): Vector3
-        
-        /** The fraction from the [ShapeCast3D]'s origin to its [member target_position] (between 0 and 1) of how far the shape can move without triggering a collision. */
-        get_closest_collision_safe_fraction(): float64
-        
-        /** The fraction from the [ShapeCast3D]'s origin to its [member target_position] (between 0 and 1) of how far the shape must move to trigger a collision. */
-        get_closest_collision_unsafe_fraction(): float64
-        
-        /** Adds a collision exception so the shape does not report collisions with the specified [RID]. */
-        add_exception_rid(rid: RID): void
-        
-        /** Adds a collision exception so the shape does not report collisions with the specified [CollisionObject3D] node. */
-        add_exception(node: CollisionObject3D): void
-        
-        /** Removes a collision exception so the shape does report collisions with the specified [RID]. */
-        remove_exception_rid(rid: RID): void
-        
-        /** Removes a collision exception so the shape does report collisions with the specified [CollisionObject3D] node. */
-        remove_exception(node: CollisionObject3D): void
-        
-        /** Removes all collision exceptions for this [ShapeCast3D]. */
-        clear_exceptions(): void
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: int64): boolean
-        
-        /** If `true`, collisions will be reported. */
-        get enabled(): boolean
-        set enabled(value: boolean)
-        
-        /** The [Shape3D]-derived shape to be used for collision queries. */
-        get shape(): Shape3D
-        set shape(value: Shape3D)
-        
-        /** If `true`, the parent node will be excluded from collision detection. */
-        get exclude_parent(): boolean
-        set exclude_parent(value: boolean)
-        
-        /** The shape's destination point, relative to this node's `position`. */
-        get target_position(): Vector3
-        set target_position(value: Vector3)
-        
-        /** The collision margin for the shape. A larger margin helps detecting collisions more consistently, at the cost of precision. */
-        get margin(): float64
-        set margin(value: float64)
-        
-        /** The number of intersections can be limited with this parameter, to reduce the processing time. */
-        get max_results(): int64
-        set max_results(value: int64)
-        
-        /** The shape's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): int64
-        set collision_mask(value: int64)
-        
-        /** Returns the complete collision information from the collision sweep. The data returned is the same as in the [method PhysicsDirectSpaceState3D.get_rest_info] method. */
-        get collision_result(): Array
-        
-        /** If `true`, collisions with [Area3D]s will be reported. */
-        get collide_with_areas(): boolean
-        set collide_with_areas(value: boolean)
-        
-        /** If `true`, collisions with [PhysicsBody3D]s will be reported. */
-        get collide_with_bodies(): boolean
-        set collide_with_bodies(value: boolean)
-        
-        /** The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [ShapeCast3D] is colliding with something.  
-         *  If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [member ProjectSettings.debug/shapes/collision/shape_color] is used.  
-         */
-        get debug_shape_custom_color(): Color
-        set debug_shape_custom_color(value: Color)
-    }
-    class ShapeCast3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** A shortcut for binding input.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_shortcut.html  
-     */
-    class Shortcut extends Resource {
-        constructor(identifier?: any)
-        /** Returns whether [member events] contains an [InputEvent] which is valid. */
-        has_valid_event(): boolean
-        
-        /** Returns whether any [InputEvent] in [member events] equals [param event]. */
-        matches_event(event: InputEvent): boolean
-        
-        /** Returns the shortcut's first valid [InputEvent] as a [String]. */
-        get_as_text(): string
-        
-        /** The shortcut's [InputEvent] array.  
-         *  Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent], including an [InputEventAction].  
-         */
-        get events(): Array
-        set events(value: Array)
-    }
-    class ShortcutBin extends Node {
-        constructor(identifier?: any)
-    }
-    class SizeFlagPresetPicker extends ControlEditorPresetPicker {
-        constructor(identifier?: any)
-        readonly size_flags_selected: Signal1<int64>
-    }
-    /** The parent of a hierarchy of [Bone2D]s, used to create a 2D skeletal animation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeleton2d.html  
-     */
-    class Skeleton2D extends Node2D {
-        constructor(identifier?: any)
-        _update_bone_setup(): void
-        _update_transform(): void
-        
-        /** Returns the number of [Bone2D] nodes in the node hierarchy parented by Skeleton2D. */
-        get_bone_count(): int64
-        
-        /** Returns a [Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is identified by the parameter [param idx]. Bones are indexed by descending the node hierarchy from top to bottom, adding the children of each branch before moving to the next sibling. */
-        get_bone(idx: int64): Bone2D
-        
-        /** Returns the [RID] of a Skeleton2D instance. */
-        get_skeleton(): RID
-        
-        /** Sets the [SkeletonModificationStack2D] attached to this skeleton. */
-        set_modification_stack(modification_stack: SkeletonModificationStack2D): void
-        
-        /** Returns the [SkeletonModificationStack2D] attached to this skeleton, if one exists. */
-        get_modification_stack(): SkeletonModificationStack2D
-        
-        /** Executes all the modifications on the [SkeletonModificationStack2D], if the Skeleton2D has one assigned. */
-        execute_modifications(delta: float64, execution_mode: int64): void
-        
-        /** Sets the local pose transform, [param override_pose], for the bone at [param bone_idx].  
-         *  [param strength] is the interpolation strength that will be used when applying the pose, and [param persistent] determines if the applied pose will remain.  
-         *      
-         *  **Note:** The pose transform needs to be a local transform relative to the [Bone2D] node at [param bone_idx]!  
-         */
-        set_bone_local_pose_override(bone_idx: int64, override_pose: Transform2D, strength: float64, persistent: boolean): void
-        
-        /** Returns the local pose override transform for [param bone_idx]. */
-        get_bone_local_pose_override(bone_idx: int64): Transform2D
-        
-        /** Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used internally within the skeleton. */
-        readonly bone_setup_changed: Signal0
-    }
-    class Skeleton2DEditor extends Control {
-        constructor(identifier?: any)
-    }
-    class Skeleton2DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A node containing a bone hierarchy, used to create a 3D skeletal animation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeleton3d.html  
-     */
-    class Skeleton3D extends Node3D {
-        /** Notification received when this skeleton's pose needs to be updated.  
-         *  This notification is received  *before*  the related [signal pose_updated] signal.  
-         */
-        static readonly NOTIFICATION_UPDATE_SKELETON = 50
-        constructor(identifier?: any)
-        
-        /** Adds a bone, with name [param name]. [method get_bone_count] will become the bone index. */
-        add_bone(name: string): void
-        
-        /** Returns the bone index that matches [param name] as its name. */
-        find_bone(name: string): int64
-        
-        /** Returns the name of the bone at index [param bone_idx]. */
-        get_bone_name(bone_idx: int64): string
-        set_bone_name(bone_idx: int64, name: string): void
-        
-        /** Returns the bone index which is the parent of the bone at [param bone_idx]. If -1, then bone has no parent.  
-         *      
-         *  **Note:** The parent bone returned will always be less than [param bone_idx].  
-         */
-        get_bone_parent(bone_idx: int64): int64
-        
-        /** Sets the bone index [param parent_idx] as the parent of the bone at [param bone_idx]. If -1, then bone has no parent.  
-         *      
-         *  **Note:** [param parent_idx] must be less than [param bone_idx].  
-         */
-        set_bone_parent(bone_idx: int64, parent_idx: int64): void
-        
-        /** Returns the number of bones in the skeleton. */
-        get_bone_count(): int64
-        
-        /** Returns the number of times the bone hierarchy has changed within this skeleton, including renames.  
-         *  The Skeleton version is not serialized: only use within a single instance of Skeleton3D.  
-         *  Use for invalidating caches in IK solvers and other nodes which process bones.  
-         */
-        get_version(): int64
-        
-        /** Unparents the bone at [param bone_idx] and sets its rest position to that of its parent prior to being reset. */
-        unparent_bone_and_rest(bone_idx: int64): void
-        
-        /** Returns an array containing the bone indexes of all the child node of the passed in bone, [param bone_idx]. */
-        get_bone_children(bone_idx: int64): PackedInt32Array
-        
-        /** Returns an array with all of the bones that are parentless. Another way to look at this is that it returns the indexes of all the bones that are not dependent or modified by other bones in the Skeleton. */
-        get_parentless_bones(): PackedInt32Array
-        
-        /** Returns the rest transform for a bone [param bone_idx]. */
-        get_bone_rest(bone_idx: int64): Transform3D
-        
-        /** Sets the rest transform for bone [param bone_idx]. */
-        set_bone_rest(bone_idx: int64, rest: Transform3D): void
-        
-        /** Returns the global rest transform for [param bone_idx]. */
-        get_bone_global_rest(bone_idx: int64): Transform3D
-        create_skin_from_rest_transforms(): Skin
-        
-        /** Binds the given Skin to the Skeleton. */
-        register_skin(skin: Skin): SkinReference
-        
-        /** Returns all bones in the skeleton to their rest poses. */
-        localize_rests(): void
-        
-        /** Clear all the bones in this skeleton. */
-        clear_bones(): void
-        
-        /** Returns the pose transform of the specified bone. */
-        get_bone_pose(bone_idx: int64): Transform3D
-        
-        /** Sets the pose position of the bone at [param bone_idx] to [param position]. [param position] is a [Vector3] describing a position local to the [Skeleton3D] node. */
-        set_bone_pose_position(bone_idx: int64, position: Vector3): void
-        
-        /** Sets the pose rotation of the bone at [param bone_idx] to [param rotation]. [param rotation] is a [Quaternion] describing a rotation in the bone's local coordinate space with respect to the rotation of any parent bones. */
-        set_bone_pose_rotation(bone_idx: int64, rotation: Quaternion): void
-        
-        /** Sets the pose scale of the bone at [param bone_idx] to [param scale]. */
-        set_bone_pose_scale(bone_idx: int64, scale: Vector3): void
-        
-        /** Returns the pose position of the bone at [param bone_idx]. The returned [Vector3] is in the local coordinate space of the [Skeleton3D] node. */
-        get_bone_pose_position(bone_idx: int64): Vector3
-        
-        /** Returns the pose rotation of the bone at [param bone_idx]. The returned [Quaternion] is local to the bone with respect to the rotation of any parent bones. */
-        get_bone_pose_rotation(bone_idx: int64): Quaternion
-        
-        /** Returns the pose scale of the bone at [param bone_idx]. */
-        get_bone_pose_scale(bone_idx: int64): Vector3
-        
-        /** Sets the bone pose to rest for [param bone_idx]. */
-        reset_bone_pose(bone_idx: int64): void
-        
-        /** Sets all bone poses to rests. */
-        reset_bone_poses(): void
-        
-        /** Returns whether the bone pose for the bone at [param bone_idx] is enabled. */
-        is_bone_enabled(bone_idx: int64): boolean
-        
-        /** Disables the pose for the bone at [param bone_idx] if `false`, enables the bone pose if `true`. */
-        set_bone_enabled(bone_idx: int64, enabled: boolean = true): void
-        
-        /** Removes the global pose override on all bones in the skeleton. */
-        clear_bones_global_pose_override(): void
-        
-        /** Sets the global pose transform, [param pose], for the bone at [param bone_idx].  
-         *  [param amount] is the interpolation strength that will be used when applying the pose, and [param persistent] determines if the applied pose will remain.  
-         *      
-         *  **Note:** The pose transform needs to be a global pose! To convert a world transform from a [Node3D] to a global bone pose, multiply the [method Transform3D.affine_inverse] of the node's [member Node3D.global_transform] by the desired world transform.  
-         */
-        set_bone_global_pose_override(bone_idx: int64, pose: Transform3D, amount: float64, persistent: boolean = false): void
-        
-        /** Returns the global pose override transform for [param bone_idx]. */
-        get_bone_global_pose_override(bone_idx: int64): Transform3D
-        
-        /** Returns the overall transform of the specified bone, with respect to the skeleton. Being relative to the skeleton frame, this is not the actual "global" transform of the bone. */
-        get_bone_global_pose(bone_idx: int64): Transform3D
-        
-        /** Returns the overall transform of the specified bone, with respect to the skeleton, but without any global pose overrides. Being relative to the skeleton frame, this is not the actual "global" transform of the bone. */
-        get_bone_global_pose_no_override(bone_idx: int64): Transform3D
-        
-        /** Force updates the bone transforms/poses for all bones in the skeleton.  
-         *   *Deprecated.*  Do not use.  
-         */
-        force_update_all_bone_transforms(): void
-        
-        /** Force updates the bone transform for the bone at [param bone_idx] and all of its children. */
-        force_update_bone_child_transform(bone_idx: int64): void
-        
-        /** Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating. */
-        physical_bones_stop_simulation(): void
-        
-        /** Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the physics world.  
-         *  Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.  
-         */
-        physical_bones_start_simulation(bones: Array = []): void
-        
-        /** Adds a collision exception to the physical bone.  
-         *  Works just like the [RigidBody3D] node.  
-         */
-        physical_bones_add_collision_exception(exception: RID): void
-        
-        /** Removes a collision exception to the physical bone.  
-         *  Works just like the [RigidBody3D] node.  
-         */
-        physical_bones_remove_collision_exception(exception: RID): void
-        
-        /** Multiplies the 3D position track animation.  
-         *      
-         *  **Note:** Unless this value is `1.0`, the key value in animation will not match the actual position value.  
-         */
-        get motion_scale(): float64
-        set motion_scale(value: float64)
-        
-        /** If `true`, forces the bones in their default rest pose, regardless of their values. In the editor, this also prevents the bones from being edited. */
-        get show_rest_only(): boolean
-        set show_rest_only(value: boolean)
-        get animate_physical_bones(): boolean
-        set animate_physical_bones(value: boolean)
-        
-        /** Emitted when the pose is updated, after [constant NOTIFICATION_UPDATE_SKELETON] is received. */
-        readonly pose_updated: Signal0
-        
-        /** This signal is emitted when one of the bones in the Skeleton3D node have changed their pose. This is used to inform nodes that rely on bone positions that one of the bones in the Skeleton3D have changed their transform/pose. */
-        readonly bone_pose_changed: Signal1<int64>
-        
-        /** Emitted when the bone at [param bone_idx] is toggled with [method set_bone_enabled]. Use [method is_bone_enabled] to check the new value. */
-        readonly bone_enabled_changed: Signal1<int64>
-        
-        /** Emitted when the value of [member show_rest_only] changes. */
-        readonly show_rest_only_changed: Signal0
-    }
-    class Skeleton3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class Skeleton3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** A node used to rotate all bones of a [Skeleton3D] bone chain a way that places the end bone at a desired 3D position.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonik3d.html  
-     */
-    class SkeletonIK3D extends Node {
-        constructor(identifier?: any)
-        /** Returns the parent [Skeleton3D] Node that was present when SkeletonIK entered the [SceneTree]. Returns null if the parent node was not a [Skeleton3D] Node when SkeletonIK3D entered the [SceneTree]. */
-        get_parent_skeleton(): Skeleton3D
-        
-        /** Returns `true` if SkeletonIK is applying IK effects on continues frames to the [Skeleton3D] bones. Returns `false` if SkeletonIK is stopped or [method start] was used with the `one_time` parameter set to `true`. */
-        is_running(): boolean
-        
-        /** Starts applying IK effects on each frame to the [Skeleton3D] bones but will only take effect starting on the next frame. If [param one_time] is `true`, this will take effect immediately but also reset on the next frame. */
-        start(one_time: boolean = false): void
-        
-        /** Stops applying IK effects on each frame to the [Skeleton3D] bones and also calls [method Skeleton3D.clear_bones_global_pose_override] to remove existing overrides on all bones. */
-        stop(): void
-        
-        /** The name of the current root bone, the first bone in the IK chain. */
-        get root_bone(): StringName
-        set root_bone(value: StringName)
-        
-        /** The name of the current tip bone, the last bone in the IK chain placed at the [member target] transform (or [member target_node] if defined). */
-        get tip_bone(): StringName
-        set tip_bone(value: StringName)
-        
-        /** Interpolation value for how much the IK results are applied to the current skeleton bone chain. A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0` will visually disable the SkeletonIK. A value at or below `0.01` also calls [method Skeleton3D.clear_bones_global_pose_override]. */
-        get interpolation(): float64
-        set interpolation(value: float64)
-        
-        /** First target of the IK chain where the tip bone is placed and, if [member override_tip_basis] is `true`, how the tip bone is rotated. If a [member target_node] path is available the nodes transform is used instead and this property is ignored. */
-        get target(): Transform3D
-        set target(value: Transform3D)
-        
-        /** If `true` overwrites the rotation of the tip bone with the rotation of the [member target] (or [member target_node] if defined). */
-        get override_tip_basis(): boolean
-        set override_tip_basis(value: boolean)
-        
-        /** If `true`, instructs the IK solver to consider the secondary magnet target (pole target) when calculating the bone chain. Use the magnet position (pole target) to control the bending of the IK chain. */
-        get use_magnet(): boolean
-        set use_magnet(value: boolean)
-        
-        /** Secondary target position (first is [member target] property or [member target_node]) for the IK chain. Use magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain has more than 2 bones. The middle chain bone position will be linearly interpolated with the magnet position. */
-        get magnet(): Vector3
-        set magnet(value: Vector3)
-        
-        /** Target node [NodePath] for the IK chain. If available, the node's current [Transform3D] is used instead of the [member target] property. */
-        get target_node(): NodePath
-        set target_node(value: NodePath | string)
-        
-        /** The minimum distance between bone and goal target. If the distance is below this value, the IK solver stops further iterations. */
-        get min_distance(): float64
-        set min_distance(value: float64)
-        
-        /** Number of iteration loops used by the IK solver to produce more accurate (and elegant) bone chain results. */
-        get max_iterations(): int64
-        set max_iterations(value: int64)
-    }
-    class SkeletonIK3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** Base class for resources that operate on [Bone2D]s in a [Skeleton2D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodification2d.html  
-     */
-    class SkeletonModification2D extends Resource {
-        constructor(identifier?: any)
-        /** Executes the given modification. This is where the modification performs whatever function it is designed to do. */
-        /* gdvirtual */ _execute(delta: float64): void
-        
-        /** Called when the modification is setup. This is where the modification performs initialization. */
-        /* gdvirtual */ _setup_modification(modification_stack: SkeletonModificationStack2D): void
-        
-        /** Used for drawing **editor-only** modification gizmos. This function will only be called in the Godot editor and can be overridden to draw custom gizmos.  
-         *      
-         *  **Note:** You will need to use the Skeleton2D from [method SkeletonModificationStack2D.get_skeleton] and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.  
-         */
-        /* gdvirtual */ _draw_editor_gizmo(): void
-        
-        /** Returns the [SkeletonModificationStack2D] that this modification is bound to. Through the modification stack, you can access the Skeleton2D the modification is operating on. */
-        get_modification_stack(): SkeletonModificationStack2D
-        
-        /** Manually allows you to set the setup state of the modification. This function should only rarely be used, as the [SkeletonModificationStack2D] the modification is bound to should handle setting the modification up. */
-        set_is_setup(is_setup: boolean): void
-        
-        /** Returns whether this modification has been successfully setup or not. */
-        get_is_setup(): boolean
-        
-        /** Takes an angle and clamps it so it is within the passed-in [param min] and [param max] range. [param invert] will inversely clamp the angle, clamping it to the range outside of the given bounds. */
-        clamp_angle(angle: float64, min: float64, max: float64, invert: boolean): float64
-        
-        /** Sets whether this modification will call [method _draw_editor_gizmo] in the Godot editor to draw modification-specific gizmos. */
-        set_editor_draw_gizmo(draw_gizmo: boolean): void
-        
-        /** Returns whether this modification will call [method _draw_editor_gizmo] in the Godot editor to draw modification-specific gizmos. */
-        get_editor_draw_gizmo(): boolean
-        
-        /** If `true`, the modification's [method _execute] function will be called by the [SkeletonModificationStack2D]. */
-        get enabled(): boolean
-        set enabled(value: boolean)
-        
-        /** The execution mode for the modification. This tells the modification stack when to execute the modification. Some modifications have settings that are only available in certain execution modes. */
-        get execution_mode(): int64
-        set execution_mode(value: int64)
-    }
-    /** A modification that uses CCDIK to manipulate a series of bones to reach a target in 2D.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodification2dccdik.html  
-     */
-    class SkeletonModification2DCCDIK extends SkeletonModification2D {
-        constructor(identifier?: any)
-        /** Sets the [Bone2D] node assigned to the CCDIK joint at [param joint_idx]. */
-        set_ccdik_joint_bone2d_node(joint_idx: int64, bone2d_nodepath: NodePath | string): void
-        
-        /** Returns the [Bone2D] node assigned to the CCDIK joint at [param joint_idx]. */
-        get_ccdik_joint_bone2d_node(joint_idx: int64): NodePath
-        
-        /** Sets the bone index, [param bone_idx], of the CCDIK joint at [param joint_idx]. When possible, this will also update the `bone2d_node` of the CCDIK joint based on data provided by the linked skeleton. */
-        set_ccdik_joint_bone_index(joint_idx: int64, bone_idx: int64): void
-        
-        /** Returns the index of the [Bone2D] node assigned to the CCDIK joint at [param joint_idx]. */
-        get_ccdik_joint_bone_index(joint_idx: int64): int64
-        
-        /** Sets whether the joint at [param joint_idx] is set to rotate from the joint, `true`, or to rotate from the tip, `false`. */
-        set_ccdik_joint_rotate_from_joint(joint_idx: int64, rotate_from_joint: boolean): void
-        
-        /** Returns whether the joint at [param joint_idx] is set to rotate from the joint, `true`, or to rotate from the tip, `false`. The default is to rotate from the tip. */
-        get_ccdik_joint_rotate_from_joint(joint_idx: int64): boolean
-        
-        /** Determines whether angle constraints on the CCDIK joint at [param joint_idx] are enabled. When `true`, constraints will be enabled and taken into account when solving. */
-        set_ccdik_joint_enable_constraint(joint_idx: int64, enable_constraint: boolean): void
-        
-        /** Returns whether angle constraints on the CCDIK joint at [param joint_idx] are enabled. */
-        get_ccdik_joint_enable_constraint(joint_idx: int64): boolean
-        
-        /** Sets the minimum angle constraint for the joint at [param joint_idx]. */
-        set_ccdik_joint_constraint_angle_min(joint_idx: int64, angle_min: float64): void
-        
-        /** Returns the minimum angle constraint for the joint at [param joint_idx]. */
-        get_ccdik_joint_constraint_angle_min(joint_idx: int64): float64
-        
-        /** Sets the maximum angle constraint for the joint at [param joint_idx]. */
-        set_ccdik_joint_constraint_angle_max(joint_idx: int64, angle_max: float64): void
-        
-        /** Returns the maximum angle constraint for the joint at [param joint_idx]. */
-        get_ccdik_joint_constraint_angle_max(joint_idx: int64): float64
-        
-        /** Sets whether the CCDIK joint at [param joint_idx] uses an inverted joint constraint.  
-         *  An inverted joint constraint only constraints the CCDIK joint to the angles  *outside of*  the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.  
-         */
-        set_ccdik_joint_constraint_angle_invert(joint_idx: int64, invert: boolean): void
-        
-        /** Returns whether the CCDIK joint at [param joint_idx] uses an inverted joint constraint. See [method set_ccdik_joint_constraint_angle_invert] for details. */
-        get_ccdik_joint_constraint_angle_invert(joint_idx: int64): boolean
-        
-        /** The NodePath to the node that is the target for the CCDIK modification. This node is what the CCDIK chain will attempt to rotate the bone chain to. */
-        get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath | string)
-        
-        /** The end position of the CCDIK chain. Typically, this should be a child of a [Bone2D] node attached to the final [Bone2D] in the CCDIK chain. */
-        get tip_nodepath(): NodePath
-        set tip_nodepath(value: NodePath | string)
-        
-        /** The number of CCDIK joints in the CCDIK modification. */
-        get ccdik_data_chain_length(): int64
-        set ccdik_data_chain_length(value: int64)
-    }
-    /** A modification that uses FABRIK to manipulate a series of [Bone2D] nodes to reach a target.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodification2dfabrik.html  
-     */
-    class SkeletonModification2DFABRIK extends SkeletonModification2D {
-        constructor(identifier?: any)
-        /** Sets the [Bone2D] node assigned to the FABRIK joint at [param joint_idx]. */
-        set_fabrik_joint_bone2d_node(joint_idx: int64, bone2d_nodepath: NodePath | string): void
-        
-        /** Returns the [Bone2D] node assigned to the FABRIK joint at [param joint_idx]. */
-        get_fabrik_joint_bone2d_node(joint_idx: int64): NodePath
-        
-        /** Sets the bone index, [param bone_idx], of the FABRIK joint at [param joint_idx]. When possible, this will also update the `bone2d_node` of the FABRIK joint based on data provided by the linked skeleton. */
-        set_fabrik_joint_bone_index(joint_idx: int64, bone_idx: int64): void
-        
-        /** Returns the index of the [Bone2D] node assigned to the FABRIK joint at [param joint_idx]. */
-        get_fabrik_joint_bone_index(joint_idx: int64): int64
-        
-        /** Sets the magnet position vector for the joint at [param joint_idx]. */
-        set_fabrik_joint_magnet_position(joint_idx: int64, magnet_position: Vector2): void
-        
-        /** Returns the magnet position vector for the joint at [param joint_idx]. */
-        get_fabrik_joint_magnet_position(joint_idx: int64): Vector2
-        
-        /** Sets whether the joint at [param joint_idx] will use the target node's rotation rather than letting FABRIK rotate the node.  
-         *      
-         *  **Note:** This option only works for the tip/final joint in the chain. For all other nodes, this option will be ignored.  
-         */
-        set_fabrik_joint_use_target_rotation(joint_idx: int64, use_target_rotation: boolean): void
-        
-        /** Returns whether the joint is using the target's rotation rather than allowing FABRIK to rotate the joint. This option only applies to the tip/final joint in the chain. */
-        get_fabrik_joint_use_target_rotation(joint_idx: int64): boolean
-        
-        /** The NodePath to the node that is the target for the FABRIK modification. This node is what the FABRIK chain will attempt to rotate the bone chain to. */
-        get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath | string)
-        
-        /** The number of FABRIK joints in the FABRIK modification. */
-        get fabrik_data_chain_length(): int64
-        set fabrik_data_chain_length(value: int64)
-    }
-    /** A modification that jiggles [Bone2D] nodes as they move towards a target.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodification2djiggle.html  
-     */
-    class SkeletonModification2DJiggle extends SkeletonModification2D {
-        constructor(identifier?: any)
-        /** If `true`, the Jiggle modifier will take colliders into account, keeping them from entering into these collision objects. */
-        set_use_colliders(use_colliders: boolean): void
-        
-        /** Returns whether the jiggle modifier is taking physics colliders into account when solving. */
-        get_use_colliders(): boolean
-        
-        /** Sets the collision mask that the Jiggle modifier will use when reacting to colliders, if the Jiggle modifier is set to take colliders into account. */
-        set_collision_mask(collision_mask: int64): void
-        
-        /** Returns the collision mask used by the Jiggle modifier when collisions are enabled. */
-        get_collision_mask(): int64
-        
-        /** Sets the [Bone2D] node assigned to the Jiggle joint at [param joint_idx]. */
-        set_jiggle_joint_bone2d_node(joint_idx: int64, bone2d_node: NodePath | string): void
-        
-        /** Returns the [Bone2D] node assigned to the Jiggle joint at [param joint_idx]. */
-        get_jiggle_joint_bone2d_node(joint_idx: int64): NodePath
-        
-        /** Sets the bone index, [param bone_idx], of the Jiggle joint at [param joint_idx]. When possible, this will also update the `bone2d_node` of the Jiggle joint based on data provided by the linked skeleton. */
-        set_jiggle_joint_bone_index(joint_idx: int64, bone_idx: int64): void
-        
-        /** Returns the index of the [Bone2D] node assigned to the Jiggle joint at [param joint_idx]. */
-        get_jiggle_joint_bone_index(joint_idx: int64): int64
-        
-        /** Sets whether the Jiggle joint at [param joint_idx] should override the default Jiggle joint settings. Setting this to `true` will make the joint use its own settings rather than the default ones attached to the modification. */
-        set_jiggle_joint_override(joint_idx: int64, override: boolean): void
-        
-        /** Returns a boolean that indicates whether the joint at [param joint_idx] is overriding the default Jiggle joint data defined in the modification. */
-        get_jiggle_joint_override(joint_idx: int64): boolean
-        
-        /** Sets the of stiffness of the Jiggle joint at [param joint_idx]. */
-        set_jiggle_joint_stiffness(joint_idx: int64, stiffness: float64): void
-        
-        /** Returns the stiffness of the Jiggle joint at [param joint_idx]. */
-        get_jiggle_joint_stiffness(joint_idx: int64): float64
-        
-        /** Sets the of mass of the Jiggle joint at [param joint_idx]. */
-        set_jiggle_joint_mass(joint_idx: int64, mass: float64): void
-        
-        /** Returns the amount of mass of the jiggle joint at [param joint_idx]. */
-        get_jiggle_joint_mass(joint_idx: int64): float64
-        
-        /** Sets the amount of damping of the Jiggle joint at [param joint_idx]. */
-        set_jiggle_joint_damping(joint_idx: int64, damping: float64): void
-        
-        /** Returns the amount of damping of the Jiggle joint at [param joint_idx]. */
-        get_jiggle_joint_damping(joint_idx: int64): float64
-        
-        /** Sets whether the Jiggle joint at [param joint_idx] should use gravity. */
-        set_jiggle_joint_use_gravity(joint_idx: int64, use_gravity: boolean): void
-        
-        /** Returns a boolean that indicates whether the joint at [param joint_idx] is using gravity or not. */
-        get_jiggle_joint_use_gravity(joint_idx: int64): boolean
-        
-        /** Sets the gravity vector of the Jiggle joint at [param joint_idx]. */
-        set_jiggle_joint_gravity(joint_idx: int64, gravity: Vector2): void
-        
-        /** Returns a [Vector2] representing the amount of gravity the Jiggle joint at [param joint_idx] is influenced by. */
-        get_jiggle_joint_gravity(joint_idx: int64): Vector2
-        
-        /** The NodePath to the node that is the target for the Jiggle modification. This node is what the Jiggle chain will attempt to rotate the bone chain to. */
-        get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath | string)
-        
-        /** The amount of Jiggle joints in the Jiggle modification. */
-        get jiggle_data_chain_length(): int64
-        set jiggle_data_chain_length(value: int64)
-        
-        /** The default amount of stiffness assigned to the Jiggle joints, if they are not overridden. Higher values act more like springs, quickly moving into the correct position. */
-        get stiffness(): float64
-        set stiffness(value: float64)
-        
-        /** The default amount of mass assigned to the Jiggle joints, if they are not overridden. Higher values lead to faster movements and more overshooting. */
-        get mass(): float64
-        set mass(value: float64)
-        
-        /** The default amount of damping applied to the Jiggle joints, if they are not overridden. Higher values lead to more of the calculated velocity being applied. */
-        get damping(): float64
-        set damping(value: float64)
-        
-        /** Whether the gravity vector, [member gravity], should be applied to the Jiggle joints, assuming they are not overriding the default settings. */
-        get use_gravity(): boolean
-        set use_gravity(value: boolean)
-        
-        /** The default amount of gravity applied to the Jiggle joints, if they are not overridden. */
-        get gravity(): Vector2
-        set gravity(value: Vector2)
-    }
-    /** A modification that rotates a [Bone2D] node to look at a target.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodification2dlookat.html  
-     */
-    class SkeletonModification2DLookAt extends SkeletonModification2D {
-        constructor(identifier?: any)
-        /** Sets the amount of additional rotation that is to be applied after executing the modification. This allows for offsetting the results by the inputted rotation amount. */
-        set_additional_rotation(rotation: float64): void
-        
-        /** Returns the amount of additional rotation that is applied after the LookAt modification executes. */
-        get_additional_rotation(): float64
-        
-        /** Sets whether this modification will use constraints or not. When `true`, constraints will be applied when solving the LookAt modification. */
-        set_enable_constraint(enable_constraint: boolean): void
-        
-        /** Returns `true` if the LookAt modification is using constraints. */
-        get_enable_constraint(): boolean
-        
-        /** Sets the constraint's minimum allowed angle. */
-        set_constraint_angle_min(angle_min: float64): void
-        
-        /** Returns the constraint's minimum allowed angle. */
-        get_constraint_angle_min(): float64
-        
-        /** Sets the constraint's maximum allowed angle. */
-        set_constraint_angle_max(angle_max: float64): void
-        
-        /** Returns the constraint's maximum allowed angle. */
-        get_constraint_angle_max(): float64
-        
-        /** When `true`, the modification will use an inverted joint constraint.  
-         *  An inverted joint constraint only constraints the [Bone2D] to the angles  *outside of*  the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.  
-         */
-        set_constraint_angle_invert(invert: boolean): void
-        
-        /** Returns whether the constraints to this modification are inverted or not. */
-        get_constraint_angle_invert(): boolean
-        
-        /** The index of the [Bone2D] node that the modification will operate on. */
-        get bone_index(): int64
-        set bone_index(value: int64)
-        
-        /** The [Bone2D] node that the modification will operate on. */
-        get bone2d_node(): NodePath
-        set bone2d_node(value: NodePath | string)
-        
-        /** The NodePath to the node that is the target for the LookAt modification. This node is what the modification will rotate the [Bone2D] to. */
-        get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath | string)
-    }
-    /** A modification that applies the transforms of [PhysicalBone2D] nodes to [Bone2D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodification2dphysicalbones.html  
-     */
-    class SkeletonModification2DPhysicalBones extends SkeletonModification2D {
-        constructor(identifier?: any)
-        /** Sets the [PhysicalBone2D] node at [param joint_idx].  
-         *      
-         *  **Note:** This is just the index used for this modification, not the bone index used in the [Skeleton2D].  
-         */
-        set_physical_bone_node(joint_idx: int64, physicalbone2d_node: NodePath | string): void
-        
-        /** Returns the [PhysicalBone2D] node at [param joint_idx]. */
-        get_physical_bone_node(joint_idx: int64): NodePath
-        
-        /** Empties the list of [PhysicalBone2D] nodes and populates it with all [PhysicalBone2D] nodes that are children of the [Skeleton2D]. */
-        fetch_physical_bones(): void
-        
-        /** Tell the [PhysicalBone2D] nodes to start simulating and interacting with the physics world.  
-         *  Optionally, an array of bone names can be passed to this function, and that will cause only [PhysicalBone2D] nodes with those names to start simulating.  
-         */
-        start_simulation(bones: Array = []): void
-        
-        /** Tell the [PhysicalBone2D] nodes to stop simulating and interacting with the physics world.  
-         *  Optionally, an array of bone names can be passed to this function, and that will cause only [PhysicalBone2D] nodes with those names to stop simulating.  
-         */
-        stop_simulation(bones: Array = []): void
-        
-        /** The number of [PhysicalBone2D] nodes linked in this modification. */
-        get physical_bone_chain_length(): int64
-        set physical_bone_chain_length(value: int64)
-    }
-    /** A modification that holds and executes a [SkeletonModificationStack2D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodification2dstackholder.html  
-     */
-    class SkeletonModification2DStackHolder extends SkeletonModification2D {
-        constructor(identifier?: any)
-        /** Sets the [SkeletonModificationStack2D] that this modification is holding. This modification stack will then be executed when this modification is executed. */
-        set_held_modification_stack(held_modification_stack: SkeletonModificationStack2D): void
-        
-        /** Returns the [SkeletonModificationStack2D] that this modification is holding. */
-        get_held_modification_stack(): SkeletonModificationStack2D
-    }
-    /** A modification that rotates two bones using the law of cosines to reach the target.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodification2dtwoboneik.html  
-     */
-    class SkeletonModification2DTwoBoneIK extends SkeletonModification2D {
-        constructor(identifier?: any)
-        /** Sets the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
-        set_joint_one_bone2d_node(bone2d_node: NodePath | string): void
-        
-        /** Returns the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
-        get_joint_one_bone2d_node(): NodePath
-        
-        /** Sets the index of the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
-        set_joint_one_bone_idx(bone_idx: int64): void
-        
-        /** Returns the index of the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification. */
-        get_joint_one_bone_idx(): int64
-        
-        /** Sets the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
-        set_joint_two_bone2d_node(bone2d_node: NodePath | string): void
-        
-        /** Returns the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
-        get_joint_two_bone2d_node(): NodePath
-        
-        /** Sets the index of the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
-        set_joint_two_bone_idx(bone_idx: int64): void
-        
-        /** Returns the index of the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification. */
-        get_joint_two_bone_idx(): int64
-        
-        /** The NodePath to the node that is the target for the TwoBoneIK modification. This node is what the modification will use when bending the [Bone2D] nodes. */
-        get target_nodepath(): NodePath
-        set target_nodepath(value: NodePath | string)
-        
-        /** The minimum distance the target can be at. If the target is closer than this distance, the modification will solve as if it's at this minimum distance. When set to `0`, the modification will solve without distance constraints. */
-        get target_minimum_distance(): float64
-        set target_minimum_distance(value: float64)
-        
-        /** The maximum distance the target can be at. If the target is farther than this distance, the modification will solve as if it's at this maximum distance. When set to `0`, the modification will solve without distance constraints. */
-        get target_maximum_distance(): float64
-        set target_maximum_distance(value: float64)
-        
-        /** If `true`, the bones in the modification will blend outward as opposed to inwards when contracting. If `false`, the bones will bend inwards when contracting. */
-        get flip_bend_direction(): boolean
-        set flip_bend_direction(value: boolean)
-    }
-    /** A resource that holds a stack of [SkeletonModification2D]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonmodificationstack2d.html  
-     */
-    class SkeletonModificationStack2D extends Resource {
-        constructor(identifier?: any)
-        /** Sets up the modification stack so it can execute. This function should be called by [Skeleton2D] and shouldn't be manually called unless you know what you are doing. */
-        setup(): void
-        
-        /** Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as the passed-in [param execution_mode], starting from index `0` to [member modification_count].  
-         *      
-         *  **Note:** The order of the modifications can matter depending on the modifications. For example, modifications on a spine should operate before modifications on the arms in order to get proper results.  
-         */
-        execute(delta: float64, execution_mode: int64): void
-        
-        /** Enables all [SkeletonModification2D]s in the stack. */
-        enable_all_modifications(enabled: boolean): void
-        
-        /** Returns the [SkeletonModification2D] at the passed-in index, [param mod_idx]. */
-        get_modification(mod_idx: int64): SkeletonModification2D
-        
-        /** Adds the passed-in [SkeletonModification2D] to the stack. */
-        add_modification(modification: SkeletonModification2D): void
-        
-        /** Deletes the [SkeletonModification2D] at the index position [param mod_idx], if it exists. */
-        delete_modification(mod_idx: int64): void
-        
-        /** Sets the modification at [param mod_idx] to the passed-in modification, [param modification]. */
-        set_modification(mod_idx: int64, modification: SkeletonModification2D): void
-        
-        /** Returns a boolean that indicates whether the modification stack is setup and can execute. */
-        get_is_setup(): boolean
-        
-        /** Returns the [Skeleton2D] node that the SkeletonModificationStack2D is bound to. */
-        get_skeleton(): Skeleton2D
-        
-        /** If `true`, the modification's in the stack will be called. This is handled automatically through the [Skeleton2D] node. */
-        get enabled(): boolean
-        set enabled(value: boolean)
-        
-        /** The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses. */
-        get strength(): float64
-        set strength(value: float64)
-        
-        /** The number of modifications in the stack. */
-        get modification_count(): any /*Modifications,modifications/*/
-        set modification_count(value: any /*Modifications,modifications/*/)
-    }
-    namespace SkeletonProfile {
-        enum TailDirection {
-            /** Direction to the average coordinates of bone children. */
-            TAIL_DIRECTION_AVERAGE_CHILDREN = 0,
-            
-            /** Direction to the coordinates of specified bone child. */
-            TAIL_DIRECTION_SPECIFIC_CHILD = 1,
-            
-            /** Direction is not calculated. */
-            TAIL_DIRECTION_END = 2,
-        }
-    }
-    /** Base class for a profile of a virtual skeleton used as a target for retargeting.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonprofile.html  
-     */
-    class SkeletonProfile extends Resource {
-        constructor(identifier?: any)
-        /** Returns the name of the group at [param group_idx] that will be the drawing group in the [BoneMap] editor. */
-        get_group_name(group_idx: int64): StringName
-        
-        /** Sets the name of the group at [param group_idx] that will be the drawing group in the [BoneMap] editor. */
-        set_group_name(group_idx: int64, group_name: StringName): void
-        
-        /** Returns the texture of the group at [param group_idx] that will be the drawing group background image in the [BoneMap] editor. */
-        get_texture(group_idx: int64): Texture2D
-        
-        /** Sets the texture of the group at [param group_idx] that will be the drawing group background image in the [BoneMap] editor. */
-        set_texture(group_idx: int64, texture: Texture2D): void
-        
-        /** Returns the bone index that matches [param bone_name] as its name. */
-        find_bone(bone_name: StringName): int64
-        
-        /** Returns the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].  
-         *  In the retargeting process, the returned bone name is the bone name of the target skeleton.  
-         */
-        get_bone_name(bone_idx: int64): StringName
-        
-        /** Sets the name of the bone at [param bone_idx] that will be the key name in the [BoneMap].  
-         *  In the retargeting process, the setting bone name is the bone name of the target skeleton.  
-         */
-        set_bone_name(bone_idx: int64, bone_name: StringName): void
-        
-        /** Returns the name of the bone which is the parent to the bone at [param bone_idx]. The result is empty if the bone has no parent. */
-        get_bone_parent(bone_idx: int64): StringName
-        
-        /** Sets the bone with name [param bone_parent] as the parent of the bone at [param bone_idx]. If an empty string is passed, then the bone has no parent. */
-        set_bone_parent(bone_idx: int64, bone_parent: StringName): void
-        
-        /** Returns the tail direction of the bone at [param bone_idx]. */
-        get_tail_direction(bone_idx: int64): SkeletonProfile.TailDirection
-        
-        /** Sets the tail direction of the bone at [param bone_idx].  
-         *      
-         *  **Note:** This only specifies the method of calculation. The actual coordinates required should be stored in an external skeleton, so the calculation itself needs to be done externally.  
-         */
-        set_tail_direction(bone_idx: int64, tail_direction: SkeletonProfile.TailDirection): void
-        
-        /** Returns the name of the bone which is the tail of the bone at [param bone_idx]. */
-        get_bone_tail(bone_idx: int64): StringName
-        
-        /** Sets the bone with name [param bone_tail] as the tail of the bone at [param bone_idx]. */
-        set_bone_tail(bone_idx: int64, bone_tail: StringName): void
-        
-        /** Returns the reference pose transform for bone [param bone_idx]. */
-        get_reference_pose(bone_idx: int64): Transform3D
-        
-        /** Sets the reference pose transform for bone [param bone_idx]. */
-        set_reference_pose(bone_idx: int64, bone_name: Transform3D): void
-        
-        /** Returns the offset of the bone at [param bone_idx] that will be the button position in the [BoneMap] editor.  
-         *  This is the offset with origin at the top left corner of the square.  
-         */
-        get_handle_offset(bone_idx: int64): Vector2
-        
-        /** Sets the offset of the bone at [param bone_idx] that will be the button position in the [BoneMap] editor.  
-         *  This is the offset with origin at the top left corner of the square.  
-         */
-        set_handle_offset(bone_idx: int64, handle_offset: Vector2): void
-        
-        /** Returns the group of the bone at [param bone_idx]. */
-        get_group(bone_idx: int64): StringName
-        
-        /** Sets the group of the bone at [param bone_idx]. */
-        set_group(bone_idx: int64, group: StringName): void
-        
-        /** A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of the parent of hips that exists at the world origin. */
-        get root_bone(): StringName
-        set root_bone(value: StringName)
-        
-        /** A bone name which will use model's height as the coefficient for normalization. For example, [SkeletonProfileHumanoid] defines it as `Hips`. */
-        get scale_base_bone(): StringName
-        set scale_base_bone(value: StringName)
-        
-        /** The amount of groups of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 4 groups.  
-         *  This property exists to separate the bone list into several sections in the editor.  
-         */
-        get group_size(): any /*Groups,groups/*/
-        set group_size(value: any /*Groups,groups/*/)
-        
-        /** The amount of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 56 bones.  
-         *  The size of elements in [BoneMap] updates when changing this property in it's assigned [SkeletonProfile].  
-         */
-        get bone_size(): any /*Bones,bones/*/
-        set bone_size(value: any /*Bones,bones/*/)
-        
-        /** This signal is emitted when change the value in profile. This is used to update key name in the [BoneMap] and to redraw the [BoneMap] editor.  
-         *      
-         *  **Note:** This signal is not connected directly to editor to simplify the reference, instead it is passed on to editor through the [BoneMap].  
-         */
-        readonly profile_updated: Signal0
-    }
-    /** A humanoid [SkeletonProfile] preset.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_skeletonprofilehumanoid.html  
-     */
-    class SkeletonProfileHumanoid extends SkeletonProfile {
-        constructor(identifier?: any)
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skin.html */
-    class Skin extends Resource {
-        constructor(identifier?: any)
-        set_bind_count(bind_count: int64): void
-        get_bind_count(): int64
-        add_bind(bone: int64, pose: Transform3D): void
-        add_named_bind(name: string, pose: Transform3D): void
-        set_bind_pose(bind_index: int64, pose: Transform3D): void
-        get_bind_pose(bind_index: int64): Transform3D
-        set_bind_name(bind_index: int64, name: StringName): void
-        get_bind_name(bind_index: int64): StringName
-        set_bind_bone(bind_index: int64, bone: int64): void
-        get_bind_bone(bind_index: int64): int64
-        clear_binds(): void
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_skinreference.html */
-    class SkinReference extends RefCounted {
-        constructor(identifier?: any)
-        get_skeleton(): RID
-        get_skin(): Skin
-    }
-    namespace Sky {
-        enum RadianceSize {
-            /** Radiance texture size is 32×32 pixels. */
-            RADIANCE_SIZE_32 = 0,
-            
-            /** Radiance texture size is 64×64 pixels. */
-            RADIANCE_SIZE_64 = 1,
-            
-            /** Radiance texture size is 128×128 pixels. */
-            RADIANCE_SIZE_128 = 2,
-            
-            /** Radiance texture size is 256×256 pixels. */
-            RADIANCE_SIZE_256 = 3,
-            
-            /** Radiance texture size is 512×512 pixels. */
-            RADIANCE_SIZE_512 = 4,
-            
-            /** Radiance texture size is 1024×1024 pixels. */
-            RADIANCE_SIZE_1024 = 5,
-            
-            /** Radiance texture size is 2048×2048 pixels. */
-            RADIANCE_SIZE_2048 = 6,
-            
-            /** Represents the size of the [enum RadianceSize] enum. */
-            RADIANCE_SIZE_MAX = 7,
-        }
-        enum ProcessMode {
-            /** Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [constant PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [constant PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [constant PROCESS_MODE_QUALITY]. */
-            PROCESS_MODE_AUTOMATIC = 0,
-            
-            /** Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [constant PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [member ProjectSettings.rendering/reflections/sky_reflections/ggx_samples]. */
-            PROCESS_MODE_QUALITY = 1,
-            
-            /** Uses the same high quality importance sampling to process the radiance map as [constant PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by [member ProjectSettings.rendering/reflections/sky_reflections/roughness_layers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly. */
-            PROCESS_MODE_INCREMENTAL = 2,
-            
-            /** Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [member ProjectSettings.rendering/reflections/sky_reflections/fast_filter_high_quality].  
-             *      
-             *  **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [member radiance_size] must be set to [constant RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size is ignored.  
-             */
-            PROCESS_MODE_REALTIME = 3,
-        }
-    }
-    /** Defines a 3D environment's background by using a [Material].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_sky.html  
-     */
-    class Sky extends Resource {
-        constructor(identifier?: any)
-        /** [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial], [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader. */
-        get sky_material(): ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial
-        set sky_material(value: ShaderMaterial | PanoramaSkyMaterial | ProceduralSkyMaterial | PhysicalSkyMaterial)
-        
-        /** Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options. */
-        get process_mode(): int64
-        set process_mode(value: int64)
-        
-        /** The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting from the [Sky] will be.  
-         *  See [enum RadianceSize] constants for values.  
-         *      
-         *  **Note:** Some hardware will have trouble with higher radiance sizes, especially [constant RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.  
-         */
-        get radiance_size(): int64
-        set radiance_size(value: int64)
-    }
-    /** Abstract base class for sliders.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_slider.html  
-     */
-    class Slider extends Range {
-        constructor(identifier?: any)
-        /** If `true`, the slider can be interacted with. If `false`, the value can be changed only by code. */
-        get editable(): boolean
-        set editable(value: boolean)
-        
-        /** If `true`, the value can be changed using the mouse wheel. */
-        get scrollable(): boolean
-        set scrollable(value: boolean)
-        
-        /** Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers. */
-        get tick_count(): int64
-        set tick_count(value: int64)
-        
-        /** If `true`, the slider will display ticks for minimum and maximum values. */
-        get ticks_on_borders(): boolean
-        set ticks_on_borders(value: boolean)
-        
-        /** Emitted when dragging is started. */
-        readonly drag_started: Signal0
-        
-        /** Emitted when dragging stops. If [param value_changed] is true, [member Range.value] is different from the value when you started the dragging. */
-        readonly drag_ended: Signal1<boolean>
-    }
-    namespace SliderJoint3D {
-        enum Param {
-            /** The maximum difference between the pivot points on their X axis before damping happens. */
-            PARAM_LINEAR_LIMIT_UPPER = 0,
-            
-            /** The minimum difference between the pivot points on their X axis before damping happens. */
-            PARAM_LINEAR_LIMIT_LOWER = 1,
-            
-            /** A factor applied to the movement across the slider axis once the limits get surpassed. The lower, the slower the movement. */
-            PARAM_LINEAR_LIMIT_SOFTNESS = 2,
-            
-            /** The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost. */
-            PARAM_LINEAR_LIMIT_RESTITUTION = 3,
-            
-            /** The amount of damping once the slider limits are surpassed. */
-            PARAM_LINEAR_LIMIT_DAMPING = 4,
-            
-            /** A factor applied to the movement across the slider axis as long as the slider is in the limits. The lower, the slower the movement. */
-            PARAM_LINEAR_MOTION_SOFTNESS = 5,
-            
-            /** The amount of restitution inside the slider limits. */
-            PARAM_LINEAR_MOTION_RESTITUTION = 6,
-            
-            /** The amount of damping inside the slider limits. */
-            PARAM_LINEAR_MOTION_DAMPING = 7,
-            
-            /** A factor applied to the movement across axes orthogonal to the slider. */
-            PARAM_LINEAR_ORTHOGONAL_SOFTNESS = 8,
-            
-            /** The amount of restitution when movement is across axes orthogonal to the slider. */
-            PARAM_LINEAR_ORTHOGONAL_RESTITUTION = 9,
-            
-            /** The amount of damping when movement is across axes orthogonal to the slider. */
-            PARAM_LINEAR_ORTHOGONAL_DAMPING = 10,
-            
-            /** The upper limit of rotation in the slider. */
-            PARAM_ANGULAR_LIMIT_UPPER = 11,
-            
-            /** The lower limit of rotation in the slider. */
-            PARAM_ANGULAR_LIMIT_LOWER = 12,
-            
-            /** A factor applied to the all rotation once the limit is surpassed. */
-            PARAM_ANGULAR_LIMIT_SOFTNESS = 13,
-            
-            /** The amount of restitution of the rotation when the limit is surpassed. */
-            PARAM_ANGULAR_LIMIT_RESTITUTION = 14,
-            
-            /** The amount of damping of the rotation when the limit is surpassed. */
-            PARAM_ANGULAR_LIMIT_DAMPING = 15,
-            
-            /** A factor applied to the all rotation in the limits. */
-            PARAM_ANGULAR_MOTION_SOFTNESS = 16,
-            
-            /** The amount of restitution of the rotation in the limits. */
-            PARAM_ANGULAR_MOTION_RESTITUTION = 17,
-            
-            /** The amount of damping of the rotation in the limits. */
-            PARAM_ANGULAR_MOTION_DAMPING = 18,
-            
-            /** A factor applied to the all rotation across axes orthogonal to the slider. */
-            PARAM_ANGULAR_ORTHOGONAL_SOFTNESS = 19,
-            
-            /** The amount of restitution of the rotation across axes orthogonal to the slider. */
-            PARAM_ANGULAR_ORTHOGONAL_RESTITUTION = 20,
-            
-            /** The amount of damping of the rotation across axes orthogonal to the slider. */
-            PARAM_ANGULAR_ORTHOGONAL_DAMPING = 21,
-            
-            /** Represents the size of the [enum Param] enum. */
-            PARAM_MAX = 22,
-        }
-    }
-    /** A physics joint that restricts the movement of a 3D physics body along an axis relative to another physics body.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_sliderjoint3d.html  
-     */
-    class SliderJoint3D extends Joint3D {
-        constructor(identifier?: any)
-        set_param(param: SliderJoint3D.Param, value: float64): void
-        get_param(param: SliderJoint3D.Param): float64
     }
 }

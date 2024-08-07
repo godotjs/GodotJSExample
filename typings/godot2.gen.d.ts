@@ -1,6 +1,1260 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A button that brings up a [ColorPicker] when pressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_colorpickerbutton.html  
+     */
+    class ColorPickerButton extends Button {
+        constructor(identifier?: any)
+        /** Returns the [ColorPicker] that this node toggles.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
+         */
+        get_picker(): ColorPicker
+        
+        /** Returns the control's [PopupPanel] which allows you to connect to popup signals. This allows you to handle events when the ColorPicker is shown or hidden.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.  
+         */
+        get_popup(): PopupPanel
+        _about_to_popup(): void
+        
+        /** The currently selected color. */
+        get color(): Color
+        set color(value: Color)
+        
+        /** If `true`, the alpha channel in the displayed [ColorPicker] will be visible. */
+        get edit_alpha(): boolean
+        set edit_alpha(value: boolean)
+        
+        /** Emitted when the color changes. */
+        readonly color_changed: Signal1<Color>
+        
+        /** Emitted when the [ColorPicker] is closed. */
+        readonly popup_closed: Signal0
+        
+        /** Emitted when the [ColorPicker] is created (the button is pressed for the first time). */
+        readonly picker_created: Signal0
+    }
+    /** A control that displays a solid color rectangle.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_colorrect.html  
+     */
+    class ColorRect extends Control {
+        constructor(identifier?: any)
+        /** The fill color of the rectangle. */
+        get color(): Color
+        set color(value: Color)
+    }
+    /** An optionally compressed [Cubemap].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedcubemap.html  
+     */
+    class CompressedCubemap extends CompressedTextureLayered {
+        constructor(identifier?: any)
+    }
+    /** An optionally compressed [CubemapArray].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedcubemaparray.html  
+     */
+    class CompressedCubemapArray extends CompressedTextureLayered {
+        constructor(identifier?: any)
+    }
+    /** Texture with 2 dimensions, optionally compressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture2d.html  
+     */
+    class CompressedTexture2D extends Texture2D {
+        constructor(identifier?: any)
+        /** The [CompressedTexture2D]'s file path to a `.ctex` file. */
+        get load_path(): string
+        set load_path(value: string)
+    }
+    /** Array of 2-dimensional textures, optionally compressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture2darray.html  
+     */
+    class CompressedTexture2DArray extends CompressedTextureLayered {
+        constructor(identifier?: any)
+    }
+    /** Texture with 3 dimensions, optionally compressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexture3d.html  
+     */
+    class CompressedTexture3D extends Texture3D {
+        constructor(identifier?: any)
+        /** The [CompressedTexture3D]'s file path to a `.ctex3d` file. */
+        get load_path(): string
+        set load_path(value: string)
+    }
+    /** Base class for texture arrays that can optionally be compressed.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_compressedtexturelayered.html  
+     */
+    class CompressedTextureLayered extends TextureLayered {
+        constructor(identifier?: any)
+        /** The path the texture should be loaded from. */
+        get load_path(): string
+        set load_path(value: string)
+    }
+    /** A 2D polyline shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_concavepolygonshape2d.html  
+     */
+    class ConcavePolygonShape2D extends Shape2D {
+        constructor(identifier?: any)
+        /** The array of points that make up the [ConcavePolygonShape2D]'s line segments. The array (of length divisible by two) is naturally divided into pairs (one pair for each segment); each pair consists of the starting point of a segment and the endpoint of a segment. */
+        get segments(): PackedVector2Array
+        set segments(value: PackedVector2Array | Vector2[])
+    }
+    /** A 3D trimesh shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_concavepolygonshape3d.html  
+     */
+    class ConcavePolygonShape3D extends Shape3D {
+        constructor(identifier?: any)
+        get data(): PackedVector3Array
+        set data(value: PackedVector3Array | Vector3[])
+        
+        /** If set to `true`, collisions occur on both sides of the concave shape faces. Otherwise they occur only along the face normals. */
+        get backface_collision(): boolean
+        set backface_collision(value: boolean)
+    }
+    namespace ConeTwistJoint3D {
+        enum Param {
+            /** Swing is rotation from side to side, around the axis perpendicular to the twist axis.  
+             *  The swing span defines, how much rotation will not get corrected along the swing axis.  
+             *  Could be defined as looseness in the [ConeTwistJoint3D].  
+             *  If below 0.05, this behavior is locked.  
+             */
+            PARAM_SWING_SPAN = 0,
+            
+            /** Twist is the rotation around the twist axis, this value defined how far the joint can twist.  
+             *  Twist is locked if below 0.05.  
+             */
+            PARAM_TWIST_SPAN = 1,
+            
+            /** The speed with which the swing or twist will take place.  
+             *  The higher, the faster.  
+             */
+            PARAM_BIAS = 2,
+            
+            /** The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint. */
+            PARAM_SOFTNESS = 3,
+            
+            /** Defines, how fast the swing- and twist-speed-difference on both sides gets synced. */
+            PARAM_RELAXATION = 4,
+            
+            /** Represents the size of the [enum Param] enum. */
+            PARAM_MAX = 5,
+        }
+    }
+    /** A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_conetwistjoint3d.html  
+     */
+    class ConeTwistJoint3D extends Joint3D {
+        constructor(identifier?: any)
+        /** Sets the value of the specified parameter. */
+        set_param(param: ConeTwistJoint3D.Param, value: float64): void
+        
+        /** Returns the value of the specified parameter. */
+        get_param(param: ConeTwistJoint3D.Param): float64
+        
+        /** Swing is rotation from side to side, around the axis perpendicular to the twist axis.  
+         *  The swing span defines, how much rotation will not get corrected along the swing axis.  
+         *  Could be defined as looseness in the [ConeTwistJoint3D].  
+         *  If below 0.05, this behavior is locked.  
+         */
+        get swing_span(): float64
+        set swing_span(value: float64)
+        
+        /** Twist is the rotation around the twist axis, this value defined how far the joint can twist.  
+         *  Twist is locked if below 0.05.  
+         */
+        get twist_span(): float64
+        set twist_span(value: float64)
+        
+        /** The speed with which the swing or twist will take place.  
+         *  The higher, the faster.  
+         */
+        get bias(): float64
+        set bias(value: float64)
+        
+        /** The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint. */
+        get softness(): float64
+        set softness(value: float64)
+        
+        /** Defines, how fast the swing- and twist-speed-difference on both sides gets synced. */
+        get relaxation(): float64
+        set relaxation(value: float64)
+    }
+    /** Helper class to handle INI-style files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_configfile.html  
+     */
+    class ConfigFile extends RefCounted {
+        constructor(identifier?: any)
+        /** Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed. */
+        set_value(section: string, key: string, value: any): void
+        
+        /** Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback [param default] value. If [param default] is not specified or set to `null`, an error is also raised. */
+        get_value(section: string, key: string, default_: any = <any> {}): any
+        
+        /** Returns `true` if the specified section exists. */
+        has_section(section: string): boolean
+        
+        /** Returns `true` if the specified section-key pair exists. */
+        has_section_key(section: string, key: string): boolean
+        
+        /** Returns an array of all defined section identifiers. */
+        get_sections(): PackedStringArray
+        
+        /** Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist. */
+        get_section_keys(section: string): PackedStringArray
+        
+        /** Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist. */
+        erase_section(section: string): void
+        
+        /** Deletes the specified key in a section. Raises an error if either the section or the key do not exist. */
+        erase_section_key(section: string, key: string): void
+        
+        /** Loads the config file specified as a parameter. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        load(path: string): Error
+        
+        /** Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        parse(data: string): Error
+        
+        /** Saves the contents of the [ConfigFile] object to the file specified as a parameter. The output file uses an INI-style structure.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        save(path: string): Error
+        
+        /** Obtain the text version of this config file (the same text that would be written to a file). */
+        encode_to_text(): string
+        
+        /** Loads the encrypted config file specified as a parameter, using the provided [param key] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        load_encrypted(path: string, key: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Loads the encrypted config file specified as a parameter, using the provided [param password] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        load_encrypted_pass(path: string, password: string): Error
+        
+        /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param key] to encrypt it. The output file uses an INI-style structure.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        save_encrypted(path: string, key: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [param password] to encrypt it. The output file uses an INI-style structure.  
+         *  Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
+         */
+        save_encrypted_pass(path: string, password: string): Error
+        
+        /** Removes the entire contents of the config. */
+        clear(): void
+    }
+    /** A dialog used for confirmation of actions.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_confirmationdialog.html  
+     */
+    class ConfirmationDialog extends AcceptDialog {
+        constructor(identifier?: any)
+        /** Returns the cancel button.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
+         */
+        get_cancel_button(): Button
+        
+        /** The text displayed by the cancel button (see [method get_cancel_button]). */
+        get cancel_button_text(): string
+        set cancel_button_text(value: string)
+    }
+    class ConnectDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
+        readonly connected: Signal0
+    }
+    class ConnectDialogBinds extends Object {
+        constructor(identifier?: any)
+    }
+    class ConnectionInfoDialog extends AcceptDialog {
+        constructor(identifier?: any)
+    }
+    class ConnectionsDock extends VBoxContainer {
+        constructor(identifier?: any)
+        update_tree(): void
+    }
+    /** Base class for all GUI containers.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_container.html  
+     */
+    class Container extends Control {
+        /** Notification just before children are going to be sorted, in case there's something to process beforehand. */
+        static readonly NOTIFICATION_PRE_SORT_CHILDREN = 50
+        
+        /** Notification for when sorting the children, it must be obeyed immediately. */
+        static readonly NOTIFICATION_SORT_CHILDREN = 51
+        constructor(identifier?: any)
+        
+        /** Implement to return a list of allowed horizontal [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.  
+         *      
+         *  **Note:** Having no size flags is equal to having [constant Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.  
+         */
+        /* gdvirtual */ _get_allowed_size_flags_horizontal(): PackedInt32Array
+        
+        /** Implement to return a list of allowed vertical [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the Inspector dock.  
+         *      
+         *  **Note:** Having no size flags is equal to having [constant Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.  
+         */
+        /* gdvirtual */ _get_allowed_size_flags_vertical(): PackedInt32Array
+        
+        /** Queue resort of the contained children. This is called automatically anyway, but can be called upon request. */
+        queue_sort(): void
+        
+        /** Fit a child control in a given rect. This is mainly a helper for creating custom container classes. */
+        fit_child_in_rect(child: Control, rect: Rect2): void
+        
+        /** Emitted when children are going to be sorted. */
+        readonly pre_sort_children: Signal0
+        
+        /** Emitted when sorting the children is needed. */
+        readonly sort_children: Signal0
+    }
+    namespace Control {
+        enum FocusMode {
+            /** The node cannot grab focus. Use with [member focus_mode]. */
+            FOCUS_NONE = 0,
+            
+            /** The node can only grab focus on mouse clicks. Use with [member focus_mode]. */
+            FOCUS_CLICK = 1,
+            
+            /** The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or using the D-pad buttons on a gamepad. Use with [member focus_mode]. */
+            FOCUS_ALL = 2,
+        }
+        enum CursorShape {
+            /** Show the system's arrow mouse cursor when the user hovers the node. Use with [member mouse_default_cursor_shape]. */
+            CURSOR_ARROW = 0,
+            
+            /** Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a shape similar to "I". It tells the user they can highlight or insert text. */
+            CURSOR_IBEAM = 1,
+            
+            /** Show the system's pointing hand mouse cursor when the user hovers the node. */
+            CURSOR_POINTING_HAND = 2,
+            
+            /** Show the system's cross mouse cursor when the user hovers the node. */
+            CURSOR_CROSS = 3,
+            
+            /** Show the system's wait mouse cursor when the user hovers the node. Often an hourglass. */
+            CURSOR_WAIT = 4,
+            
+            /** Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a small hourglass. */
+            CURSOR_BUSY = 5,
+            
+            /** Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user hovers the node. It tells the user they're currently dragging an item, like a node in the Scene dock. */
+            CURSOR_DRAG = 6,
+            
+            /** Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It tells the user they can drop an item they're currently grabbing, like a node in the Scene dock. */
+            CURSOR_CAN_DROP = 7,
+            
+            /** Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed circle. */
+            CURSOR_FORBIDDEN = 8,
+            
+            /** Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed vertical arrow. It tells the user they can resize the window or the panel vertically. */
+            CURSOR_VSIZE = 9,
+            
+            /** Show the system's horizontal resize mouse cursor when the user hovers the node. A double-headed horizontal arrow. It tells the user they can resize the window or the panel horizontally. */
+            CURSOR_HSIZE = 10,
+            
+            /** Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically. */
+            CURSOR_BDIAGSIZE = 11,
+            
+            /** Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the top left to the bottom right, the opposite of [constant CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally and vertically. */
+            CURSOR_FDIAGSIZE = 12,
+            
+            /** Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed arrows at a 90 degree angle. It tells the user they can move a UI element freely. */
+            CURSOR_MOVE = 13,
+            
+            /** Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's the same as [constant CURSOR_VSIZE]. */
+            CURSOR_VSPLIT = 14,
+            
+            /** Show the system's horizontal split mouse cursor when the user hovers the node. On Windows, it's the same as [constant CURSOR_HSIZE]. */
+            CURSOR_HSPLIT = 15,
+            
+            /** Show the system's help mouse cursor when the user hovers the node, a question mark. */
+            CURSOR_HELP = 16,
+        }
+        enum LayoutPreset {
+            /** Snap all 4 anchors to the top-left of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_TOP_LEFT = 0,
+            
+            /** Snap all 4 anchors to the top-right of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_TOP_RIGHT = 1,
+            
+            /** Snap all 4 anchors to the bottom-left of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_BOTTOM_LEFT = 2,
+            
+            /** Snap all 4 anchors to the bottom-right of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_BOTTOM_RIGHT = 3,
+            
+            /** Snap all 4 anchors to the center of the left edge of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER_LEFT = 4,
+            
+            /** Snap all 4 anchors to the center of the top edge of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER_TOP = 5,
+            
+            /** Snap all 4 anchors to the center of the right edge of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER_RIGHT = 6,
+            
+            /** Snap all 4 anchors to the center of the bottom edge of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER_BOTTOM = 7,
+            
+            /** Snap all 4 anchors to the center of the parent control's bounds. Use with [method set_anchors_preset]. */
+            PRESET_CENTER = 8,
+            
+            /** Snap all 4 anchors to the left edge of the parent control. The left offset becomes relative to the left edge and the top offset relative to the top left corner of the node's parent. Use with [method set_anchors_preset]. */
+            PRESET_LEFT_WIDE = 9,
+            
+            /** Snap all 4 anchors to the top edge of the parent control. The left offset becomes relative to the top left corner, the top offset relative to the top edge, and the right offset relative to the top right corner of the node's parent. Use with [method set_anchors_preset]. */
+            PRESET_TOP_WIDE = 10,
+            
+            /** Snap all 4 anchors to the right edge of the parent control. The right offset becomes relative to the right edge and the top offset relative to the top right corner of the node's parent. Use with [method set_anchors_preset]. */
+            PRESET_RIGHT_WIDE = 11,
+            
+            /** Snap all 4 anchors to the bottom edge of the parent control. The left offset becomes relative to the bottom left corner, the bottom offset relative to the bottom edge, and the right offset relative to the bottom right corner of the node's parent. Use with [method set_anchors_preset]. */
+            PRESET_BOTTOM_WIDE = 12,
+            
+            /** Snap all 4 anchors to a vertical line that cuts the parent control in half. Use with [method set_anchors_preset]. */
+            PRESET_VCENTER_WIDE = 13,
+            
+            /** Snap all 4 anchors to a horizontal line that cuts the parent control in half. Use with [method set_anchors_preset]. */
+            PRESET_HCENTER_WIDE = 14,
+            
+            /** Snap all 4 anchors to the respective corners of the parent control. Set all 4 offsets to 0 after you applied this preset and the [Control] will fit its parent control. Use with [method set_anchors_preset]. */
+            PRESET_FULL_RECT = 15,
+        }
+        enum LayoutPresetMode {
+            /** The control will be resized to its minimum size. */
+            PRESET_MODE_MINSIZE = 0,
+            
+            /** The control's width will not change. */
+            PRESET_MODE_KEEP_WIDTH = 1,
+            
+            /** The control's height will not change. */
+            PRESET_MODE_KEEP_HEIGHT = 2,
+            
+            /** The control's size will not change. */
+            PRESET_MODE_KEEP_SIZE = 3,
+        }
+        enum SizeFlags {
+            /** Tells the parent [Container] to align the node with its start, either the top or the left edge. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical].  
+             *      
+             *  **Note:** Setting this flag is equal to not having any size flags.  
+             */
+            SIZE_SHRINK_BEGIN = 0,
+            
+            /** Tells the parent [Container] to expand the bounds of this node to fill all the available space without pushing any other node. It is mutually exclusive with shrink size flags. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
+            SIZE_FILL = 1,
+            
+            /** Tells the parent [Container] to let this node take all the available space on the axis you flag. If multiple neighboring nodes are set to expand, they'll share the space based on their stretch ratio. See [member size_flags_stretch_ratio]. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
+            SIZE_EXPAND = 2,
+            
+            /** Sets the node's size flags to both fill and expand. See [constant SIZE_FILL] and [constant SIZE_EXPAND] for more information. */
+            SIZE_EXPAND_FILL = 3,
+            
+            /** Tells the parent [Container] to center the node in the available space. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
+            SIZE_SHRINK_CENTER = 4,
+            
+            /** Tells the parent [Container] to align the node with its end, either the bottom or the right edge. It is mutually exclusive with [constant SIZE_FILL] and other shrink size flags, but can be used with [constant SIZE_EXPAND] in some containers. Use with [member size_flags_horizontal] and [member size_flags_vertical]. */
+            SIZE_SHRINK_END = 8,
+        }
+        enum MouseFilter {
+            /** The control will receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. And the control will receive the [signal mouse_entered] and [signal mouse_exited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls. */
+            MOUSE_FILTER_STOP = 0,
+            
+            /** The control will receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. And the control will receive the [signal mouse_entered] and [signal mouse_exited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. If no control handled it, the event will be passed to [method Node._shortcut_input] for further processing. */
+            MOUSE_FILTER_PASS = 1,
+            
+            /** The control will not receive mouse movement input events and mouse button input events if clicked on through [method _gui_input]. The control will also not receive the [signal mouse_entered] nor [signal mouse_exited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.  
+             *      
+             *  **Note:** If the control has received [signal mouse_entered] but not [signal mouse_exited], changing the [member mouse_filter] to [constant MOUSE_FILTER_IGNORE] will cause [signal mouse_exited] to be emitted.  
+             */
+            MOUSE_FILTER_IGNORE = 2,
+        }
+        enum GrowDirection {
+            /** The control will grow to the left or top to make up if its minimum size is changed to be greater than its current size on the respective axis. */
+            GROW_DIRECTION_BEGIN = 0,
+            
+            /** The control will grow to the right or bottom to make up if its minimum size is changed to be greater than its current size on the respective axis. */
+            GROW_DIRECTION_END = 1,
+            
+            /** The control will grow in both directions equally to make up if its minimum size is changed to be greater than its current size. */
+            GROW_DIRECTION_BOTH = 2,
+        }
+        enum Anchor {
+            /** Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it with one of the `anchor_*` member variables, like [member anchor_left]. To change all 4 anchors at once, use [method set_anchors_preset]. */
+            ANCHOR_BEGIN = 0,
+            
+            /** Snaps one of the 4 anchor's sides to the end of the node's `Rect`, in the bottom right. Use it with one of the `anchor_*` member variables, like [member anchor_left]. To change all 4 anchors at once, use [method set_anchors_preset]. */
+            ANCHOR_END = 1,
+        }
+        enum LayoutDirection {
+            /** Automatic layout direction, determined from the parent control layout direction. */
+            LAYOUT_DIRECTION_INHERITED = 0,
+            
+            /** Automatic layout direction, determined from the current locale. */
+            LAYOUT_DIRECTION_LOCALE = 1,
+            
+            /** Left-to-right layout direction. */
+            LAYOUT_DIRECTION_LTR = 2,
+            
+            /** Right-to-left layout direction. */
+            LAYOUT_DIRECTION_RTL = 3,
+        }
+        enum TextDirection {
+            /** Text writing direction is the same as layout direction. */
+            TEXT_DIRECTION_INHERITED = 3,
+            
+            /** Automatic text writing direction, determined from the current locale and text content. */
+            TEXT_DIRECTION_AUTO = 0,
+            
+            /** Left-to-right text writing direction. */
+            TEXT_DIRECTION_LTR = 1,
+            
+            /** Right-to-left text writing direction. */
+            TEXT_DIRECTION_RTL = 2,
+        }
+    }
+    /** Base class for all GUI controls. Adapts its position and size based on its parent control.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_control.html  
+     */
+    class Control extends CanvasItem {
+        /** Sent when the node changes size. Use [member size] to get the new size. */
+        static readonly NOTIFICATION_RESIZED = 40
+        
+        /** Sent when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
+         *  See also [constant NOTIFICATION_MOUSE_ENTER_SELF].  
+         */
+        static readonly NOTIFICATION_MOUSE_ENTER = 41
+        
+        /** Sent when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
+         *  See also [constant NOTIFICATION_MOUSE_EXIT_SELF].  
+         */
+        static readonly NOTIFICATION_MOUSE_EXIT = 42
+        
+        /** Sent when the mouse cursor enters the control's visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
+         *  See also [constant NOTIFICATION_MOUSE_ENTER].  
+         */
+        static readonly NOTIFICATION_MOUSE_ENTER_SELF = 60
+        
+        /** Sent when the mouse cursor leaves the control's visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect which Control receives the notification.  
+         *  See also [constant NOTIFICATION_MOUSE_EXIT].  
+         */
+        static readonly NOTIFICATION_MOUSE_EXIT_SELF = 61
+        
+        /** Sent when the node grabs focus. */
+        static readonly NOTIFICATION_FOCUS_ENTER = 43
+        
+        /** Sent when the node loses focus. */
+        static readonly NOTIFICATION_FOCUS_EXIT = 44
+        
+        /** Sent when the node needs to refresh its theme items. This happens in one of the following cases:  
+         *  - The [member theme] property is changed on this node or any of its ancestors.  
+         *  - The [member theme_type_variation] property is changed on this node.  
+         *  - One of the node's theme property overrides is changed.  
+         *  - The node enters the scene tree.  
+         *      
+         *  **Note:** As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.  
+         */
+        static readonly NOTIFICATION_THEME_CHANGED = 45
+        
+        /** Sent when this node is inside a [ScrollContainer] which has begun being scrolled when dragging the scrollable area  *with a touch event* . This notification is  *not*  sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+         *      
+         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
+         */
+        static readonly NOTIFICATION_SCROLL_BEGIN = 47
+        
+        /** Sent when this node is inside a [ScrollContainer] which has stopped being scrolled when dragging the scrollable area  *with a touch event* . This notification is  *not*  sent when scrolling by dragging the scrollbar, scrolling with the mouse wheel or scrolling with keyboard/gamepad events.  
+         *      
+         *  **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse] is enabled.  
+         */
+        static readonly NOTIFICATION_SCROLL_END = 48
+        
+        /** Sent when control layout direction is changed. */
+        static readonly NOTIFICATION_LAYOUT_DIRECTION_CHANGED = 49
+        constructor(identifier?: any)
+        
+        /** Virtual method to be implemented by the user. Returns whether the given [param point] is inside this control.  
+         *  If not overridden, default behavior is checking if the point is within control's Rect.  
+         *      
+         *  **Note:** If you want to check if a point is inside the control, you can use `Rect2(Vector2.ZERO, size).has_point(point)`.  
+         */
+        /* gdvirtual */ _has_point(point: Vector2): boolean
+        
+        /** User defined BiDi algorithm override function.  
+         *  Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right order. Ranges should cover full source [param text] without overlaps. BiDi algorithm will be used on each range separately.  
+         */
+        /* gdvirtual */ _structured_text_parser(args: Array, text: string): Array
+        
+        /** Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [member custom_minimum_size] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).  
+         *  If not overridden, defaults to [constant Vector2.ZERO].  
+         *      
+         *  **Note:** This method will not be called when the script is attached to a [Control] node that already overrides its minimum size (e.g. [Label], [Button], [PanelContainer] etc.). It can only be used with most basic GUI nodes, like [Control], [Container], [Panel] etc.  
+         */
+        /* gdvirtual */ _get_minimum_size(): Vector2
+        
+        /** Virtual method to be implemented by the user. Returns the tooltip text for the position [param at_position] in control's local coordinates, which will typically appear when the cursor is resting over this control. See [method get_tooltip].  
+         *      
+         *  **Note:** If this method returns an empty [String], no tooltip is displayed.  
+         */
+        /* gdvirtual */ _get_tooltip(at_position: Vector2): string
+        
+        /** Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns `null` if there is no data to drag. Controls that want to receive drop data should implement [method _can_drop_data] and [method _drop_data]. [param at_position] is local to this control. Drag may be forced with [method force_drag].  
+         *  A preview that will follow the mouse that should represent the data can be set with [method set_drag_preview]. A good time to set the preview is in this method.  
+         *    
+         */
+        /* gdvirtual */ _get_drag_data(at_position: Vector2): void
+        
+        /** Godot calls this method to test if [param data] from a control's [method _get_drag_data] can be dropped at [param at_position]. [param at_position] is local to this control.  
+         *  This method should only be used to test the data. Process the data in [method _drop_data].  
+         *    
+         */
+        /* gdvirtual */ _can_drop_data(at_position: Vector2, data: any): boolean
+        
+        /** Godot calls this method to pass you the [param data] from a control's [method _get_drag_data] result. Godot first calls [method _can_drop_data] to test if [param data] is allowed to drop at [param at_position] where [param at_position] is local to this control.  
+         *    
+         */
+        /* gdvirtual */ _drop_data(at_position: Vector2, data: any): void
+        
+        /** Virtual method to be implemented by the user. Returns a [Control] node that should be used as a tooltip instead of the default one. The [param for_text] includes the contents of the [member tooltip_text] property.  
+         *  The returned node must be of type [Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance). When `null` or a non-Control node is returned, the default tooltip will be used instead.  
+         *  The returned node will be added as child to a [PopupPanel], so you should only provide the contents of that panel. That [PopupPanel] can be themed using [method Theme.set_stylebox] for the type `"TooltipPanel"` (see [member tooltip_text] for an example).  
+         *      
+         *  **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [member custom_minimum_size] to some non-zero value.  
+         *      
+         *  **Note:** The node (and any relevant children) should be [member CanvasItem.visible] when returned, otherwise, the viewport that instantiates it will not be able to calculate its minimum size reliably.  
+         *  **Example of usage with a custom-constructed node:**  
+         *    
+         *  **Example of usage with a custom scene instance:**  
+         *    
+         */
+        /* gdvirtual */ _make_custom_tooltip(for_text: string): Object
+        
+        /** Virtual method to be implemented by the user. Use this method to process and accept inputs on UI elements. See [method accept_event].  
+         *  **Example usage for clicking a control:**  
+         *    
+         *  The event won't trigger if:  
+         *  * clicking outside the control (see [method _has_point]);  
+         *  * control has [member mouse_filter] set to [constant MOUSE_FILTER_IGNORE];  
+         *  * control is obstructed by another [Control] on top of it, which doesn't have [member mouse_filter] set to [constant MOUSE_FILTER_IGNORE];  
+         *  * control's parent has [member mouse_filter] set to [constant MOUSE_FILTER_STOP] or has accepted the event;  
+         *  * it happens outside the parent's rectangle and the parent has either [member clip_contents] enabled.  
+         *      
+         *  **Note:** Event position is relative to the control origin.  
+         */
+        /* gdvirtual */ _gui_input(event: InputEvent): void
+        
+        /** Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [method Node._unhandled_input] or [method Node._unhandled_key_input].  
+         *      
+         *  **Note:** This does not affect the methods in [Input], only the way events are propagated.  
+         */
+        accept_event(): void
+        
+        /** Returns the minimum size for this control. See [member custom_minimum_size]. */
+        get_minimum_size(): Vector2
+        
+        /** Returns combined minimum size from [member custom_minimum_size] and [method get_minimum_size]. */
+        get_combined_minimum_size(): Vector2
+        
+        /** Sets the anchors to a [param preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.  
+         *  If [param keep_offsets] is `true`, control's position will also be updated.  
+         */
+        set_anchors_preset(preset: Control.LayoutPreset, keep_offsets: boolean = false): void
+        
+        /** Sets the offsets to a [param preset] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.  
+         *  Use parameter [param resize_mode] with constants from [enum Control.LayoutPresetMode] to better determine the resulting size of the [Control]. Constant size will be ignored if used with presets that change size, e.g. [constant PRESET_LEFT_WIDE].  
+         *  Use parameter [param margin] to determine the gap between the [Control] and the edges.  
+         */
+        set_offsets_preset(preset: Control.LayoutPreset, resize_mode: Control.LayoutPresetMode = 0, margin: int64 = 0): void
+        
+        /** Sets both anchor preset and offset preset. See [method set_anchors_preset] and [method set_offsets_preset]. */
+        set_anchors_and_offsets_preset(preset: Control.LayoutPreset, resize_mode: Control.LayoutPresetMode = 0, margin: int64 = 0): void
+        _set_anchor(side: Side, anchor: float64): void
+        
+        /** Sets the anchor for the specified [enum Side] to [param anchor]. A setter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top].  
+         *  If [param keep_offset] is `true`, offsets aren't updated after this operation.  
+         *  If [param push_opposite_anchor] is `true` and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If [param push_opposite_anchor] was `false`, the left anchor would get value 0.5.  
+         */
+        set_anchor(side: Side, anchor: float64, keep_offset: boolean = false, push_opposite_anchor: boolean = true): void
+        
+        /** Returns the anchor for the specified [enum Side]. A getter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top]. */
+        get_anchor(side: Side): float64
+        
+        /** Sets the offset for the specified [enum Side] to [param offset]. A setter method for [member offset_bottom], [member offset_left], [member offset_right] and [member offset_top]. */
+        set_offset(side: Side, offset: float64): void
+        
+        /** Returns the offset for the specified [enum Side]. A getter method for [member offset_bottom], [member offset_left], [member offset_right] and [member offset_top]. */
+        get_offset(offset: Side): float64
+        
+        /** Works the same as [method set_anchor], but instead of `keep_offset` argument and automatic update of offset, it allows to set the offset yourself (see [method set_offset]). */
+        set_anchor_and_offset(side: Side, anchor: float64, offset: float64, push_opposite_anchor: boolean = false): void
+        
+        /** Sets [member offset_left] and [member offset_top] at the same time. Equivalent of changing [member position]. */
+        set_begin(position: Vector2): void
+        
+        /** Sets [member offset_right] and [member offset_bottom] at the same time. */
+        set_end(position: Vector2): void
+        
+        /** Sets the [member position] to given [param position].  
+         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
+         */
+        set_position(position: Vector2, keep_offsets: boolean = false): void
+        
+        /** Sets the size (see [member size]).  
+         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
+         */
+        set_size(size: Vector2, keep_offsets: boolean = false): void
+        
+        /** Resets the size to [method get_combined_minimum_size]. This is equivalent to calling `set_size(Vector2())` (or any size below the minimum). */
+        reset_size(): void
+        
+        /** Sets the [member global_position] to given [param position].  
+         *  If [param keep_offsets] is `true`, control's anchors will be updated instead of offsets.  
+         */
+        set_global_position(position: Vector2, keep_offsets: boolean = false): void
+        
+        /** Returns [member offset_left] and [member offset_top]. See also [member position]. */
+        get_begin(): Vector2
+        
+        /** Returns [member offset_right] and [member offset_bottom]. */
+        get_end(): Vector2
+        
+        /** Returns the width/height occupied in the parent control. */
+        get_parent_area_size(): Vector2
+        
+        /** Returns the position of this [Control] in global screen coordinates (i.e. taking window position into account). Mostly useful for editor plugins.  
+         *  Equals to [member global_position] if the window is embedded (see [member Viewport.gui_embed_subwindows]).  
+         *  **Example usage for showing a popup:**  
+         *    
+         */
+        get_screen_position(): Vector2
+        
+        /** Returns the position and size of the control in the coordinate system of the containing node. See [member position], [member scale] and [member size].  
+         *      
+         *  **Note:** If [member rotation] is not the default rotation, the resulting size is not meaningful.  
+         *      
+         *  **Note:** Setting [member Viewport.gui_snap_controls_to_pixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [Rect2].  
+         */
+        get_rect(): Rect2
+        
+        /** Returns the position and size of the control relative to the containing canvas. See [member global_position] and [member size].  
+         *      
+         *  **Note:** If the node itself or any parent [CanvasItem] between the node and the canvas have a non default rotation or skew, the resulting size is likely not meaningful.  
+         *      
+         *  **Note:** Setting [member Viewport.gui_snap_controls_to_pixels] to `true` can lead to rounding inaccuracies between the displayed control and the returned [Rect2].  
+         */
+        get_global_rect(): Rect2
+        
+        /** Returns `true` if this is the current focused control. See [member focus_mode]. */
+        has_focus(): boolean
+        
+        /** Steal the focus from another control and become the focused control (see [member focus_mode]).  
+         *      
+         *  **Note:** Using this method together with [method Callable.call_deferred] makes it more reliable, especially when called inside [method Node._ready].  
+         */
+        grab_focus(): void
+        
+        /** Give up the focus. No other control will be able to receive input. */
+        release_focus(): void
+        
+        /** Finds the previous (above in the tree) [Control] that can receive the focus. */
+        find_prev_valid_focus(): Control
+        
+        /** Finds the next (below in the tree) [Control] that can receive the focus. */
+        find_next_valid_focus(): Control
+        
+        /** Finds the next [Control] that can receive the focus on the specified [enum Side].  
+         *      
+         *  **Note:** This is different from [method get_focus_neighbor], which returns the path of a specified focus neighbor.  
+         */
+        find_valid_focus_neighbor(side: Side): Control
+        
+        /** Prevents `*_theme_*_override` methods from emitting [constant NOTIFICATION_THEME_CHANGED] until [method end_bulk_theme_override] is called. */
+        begin_bulk_theme_override(): void
+        
+        /** Ends a bulk theme override update. See [method begin_bulk_theme_override]. */
+        end_bulk_theme_override(): void
+        
+        /** Creates a local override for a theme icon with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_icon_override].  
+         *  See also [method get_theme_icon].  
+         */
+        add_theme_icon_override(name: StringName, texture: Texture2D): void
+        
+        /** Creates a local override for a theme [StyleBox] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_stylebox_override].  
+         *  See also [method get_theme_stylebox].  
+         *  **Example of modifying a property in a StyleBox by duplicating it:**  
+         *    
+         */
+        add_theme_stylebox_override(name: StringName, stylebox: StyleBox): void
+        
+        /** Creates a local override for a theme [Font] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_override].  
+         *  See also [method get_theme_font].  
+         */
+        add_theme_font_override(name: StringName, font: Font): void
+        
+        /** Creates a local override for a theme font size with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_font_size_override].  
+         *  See also [method get_theme_font_size].  
+         */
+        add_theme_font_size_override(name: StringName, font_size: int64): void
+        
+        /** Creates a local override for a theme [Color] with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_color_override].  
+         *  See also [method get_theme_color].  
+         *  **Example of overriding a label's color and resetting it later:**  
+         *    
+         */
+        add_theme_color_override(name: StringName, color: Color): void
+        
+        /** Creates a local override for a theme constant with the specified [param name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [method remove_theme_constant_override].  
+         *  See also [method get_theme_constant].  
+         */
+        add_theme_constant_override(name: StringName, constant: int64): void
+        
+        /** Removes a local override for a theme icon with the specified [param name] previously added by [method add_theme_icon_override] or via the Inspector dock. */
+        remove_theme_icon_override(name: StringName): void
+        
+        /** Removes a local override for a theme [StyleBox] with the specified [param name] previously added by [method add_theme_stylebox_override] or via the Inspector dock. */
+        remove_theme_stylebox_override(name: StringName): void
+        
+        /** Removes a local override for a theme [Font] with the specified [param name] previously added by [method add_theme_font_override] or via the Inspector dock. */
+        remove_theme_font_override(name: StringName): void
+        
+        /** Removes a local override for a theme font size with the specified [param name] previously added by [method add_theme_font_size_override] or via the Inspector dock. */
+        remove_theme_font_size_override(name: StringName): void
+        
+        /** Removes a local override for a theme [Color] with the specified [param name] previously added by [method add_theme_color_override] or via the Inspector dock. */
+        remove_theme_color_override(name: StringName): void
+        
+        /** Removes a local override for a theme constant with the specified [param name] previously added by [method add_theme_constant_override] or via the Inspector dock. */
+        remove_theme_constant_override(name: StringName): void
+        
+        /** Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_icon(name: StringName, theme_type: StringName = ''): Texture2D
+        
+        /** Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_stylebox(name: StringName, theme_type: StringName = ''): StyleBox
+        
+        /** Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_font(name: StringName, theme_type: StringName = ''): Font
+        
+        /** Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_font_size(name: StringName, theme_type: StringName = ''): int64
+        
+        /** Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item with the specified [param name] and [param theme_type]. If [param theme_type] is omitted the class name of the current control is used as the type, or [member theme_type_variation] if it is defined. If the type is a class name its parent classes are also checked, in order of inheritance. If the type is a variation its base types are checked, in order of dependency, then the control's class name and its parent classes are checked.  
+         *  For the current control its local overrides are considered first (see [method add_theme_color_override]), then its assigned [member theme]. After the current control, each parent control and its assigned [member theme] are considered; controls without a [member theme] assigned are skipped. If no matching [Theme] is found in the tree, the custom project [Theme] (see [member ProjectSettings.gui/theme/custom]) and the default [Theme] are used (see [ThemeDB]).  
+         *    
+         */
+        get_theme_color(name: StringName, theme_type: StringName = ''): Color
+        
+        /** Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_constant(name: StringName, theme_type: StringName = ''): int64
+        
+        /** Returns `true` if there is a local override for a theme icon with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_icon_override].  
+         */
+        has_theme_icon_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme [StyleBox] with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_stylebox_override].  
+         */
+        has_theme_stylebox_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme [Font] with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_font_override].  
+         */
+        has_theme_font_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme font size with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_font_size_override].  
+         */
+        has_theme_font_size_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme [Color] with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_color_override].  
+         */
+        has_theme_color_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a local override for a theme constant with the specified [param name] in this [Control] node.  
+         *  See [method add_theme_constant_override].  
+         */
+        has_theme_constant_override(name: StringName): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has an icon item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_icon(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_stylebox(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a font item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_font(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a font size item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_font_size(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a color item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_color(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns `true` if there is a matching [Theme] in the tree that has a constant item with the specified [param name] and [param theme_type].  
+         *  See [method get_theme_color] for details.  
+         */
+        has_theme_constant(name: StringName, theme_type: StringName = ''): boolean
+        
+        /** Returns the default base scale value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_base_scale] value.  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_default_base_scale(): float64
+        
+        /** Returns the default font from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font] value.  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_default_font(): Font
+        
+        /** Returns the default font size value from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font_size] value.  
+         *  See [method get_theme_color] for details.  
+         */
+        get_theme_default_font_size(): int64
+        
+        /** Returns the parent control node. */
+        get_parent_control(): Control
+        
+        /** Returns the tooltip text for the position [param at_position] in control's local coordinates, which will typically appear when the cursor is resting over this control. By default, it returns [member tooltip_text].  
+         *  This method can be overridden to customize its behavior. See [method _get_tooltip].  
+         *      
+         *  **Note:** If this method returns an empty [String], no tooltip is displayed.  
+         */
+        get_tooltip(at_position: Vector2 = Vector2.ZERO): string
+        
+        /** Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape]. */
+        get_cursor_shape(position: Vector2 = Vector2.ZERO): Control.CursorShape
+        
+        /** Sets the focus neighbor for the specified [enum Side] to the [Control] at [param neighbor] node path. A setter method for [member focus_neighbor_bottom], [member focus_neighbor_left], [member focus_neighbor_right] and [member focus_neighbor_top]. */
+        set_focus_neighbor(side: Side, neighbor: NodePath | string): void
+        
+        /** Returns the focus neighbor for the specified [enum Side]. A getter method for [member focus_neighbor_bottom], [member focus_neighbor_left], [member focus_neighbor_right] and [member focus_neighbor_top].  
+         *      
+         *  **Note:** To find the next [Control] on the specific [enum Side], even if a neighbor is not assigned, use [method find_valid_focus_neighbor].  
+         */
+        get_focus_neighbor(side: Side): NodePath
+        
+        /** Forces drag and bypasses [method _get_drag_data] and [method set_drag_preview] by passing [param data] and [param preview]. Drag will start even if the mouse is neither over nor pressed on this control.  
+         *  The methods [method _can_drop_data] and [method _drop_data] must be implemented on controls that want to receive drop data.  
+         */
+        force_drag(data: any, preview: Control): void
+        
+        /** Creates an [InputEventMouseButton] that attempts to click the control. If the event is received, the control acquires focus.  
+         *    
+         */
+        grab_click_focus(): void
+        
+        /** Forwards the handling of this control's [method _get_drag_data],  [method _can_drop_data] and [method _drop_data] virtual functions to delegate callables.  
+         *  For each argument, if not empty, the delegate callable is used, otherwise the local (virtual) function is used.  
+         *  The function format for each callable should be exactly the same as the virtual functions described above.  
+         */
+        set_drag_forwarding(drag_func: Callable, can_drop_func: Callable, drop_func: Callable): void
+        
+        /** Shows the given control at the mouse pointer. A good time to call this method is in [method _get_drag_data]. The control must not be in the scene tree. You should not free the control, and you should not keep a reference to the control beyond the duration of the drag. It will be deleted automatically after the drag has ended.  
+         *    
+         */
+        set_drag_preview(control: Control): void
+        
+        /** Returns `true` if a drag operation is successful. Alternative to [method Viewport.gui_is_drag_successful].  
+         *  Best used with [constant Node.NOTIFICATION_DRAG_END].  
+         */
+        is_drag_successful(): boolean
+        
+        /** Moves the mouse cursor to [param position], relative to [member position] of this [Control].  
+         *      
+         *  **Note:** [method warp_mouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.  
+         */
+        warp_mouse(position: Vector2): void
+        
+        /** Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [method get_minimum_size] when the return value is changed. Setting [member custom_minimum_size] directly calls this method automatically. */
+        update_minimum_size(): void
+        
+        /** Returns `true` if layout is right-to-left. */
+        is_layout_rtl(): boolean
+        
+        /** Enables whether rendering of [CanvasItem] based children should be clipped to this control's rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle will not be rendered and won't receive input. */
+        get clip_contents(): boolean
+        set clip_contents(value: boolean)
+        
+        /** The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes. */
+        get custom_minimum_size(): Vector2
+        set custom_minimum_size(value: Vector2)
+        
+        /** Controls layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew). */
+        get layout_direction(): int64
+        set layout_direction(value: int64)
+        get layout_mode(): int64
+        set layout_mode(value: int64)
+        get anchors_preset(): int64
+        set anchors_preset(value: int64)
+        
+        /** Anchors the left edge of the node to the origin, the center or the end of its parent control. It changes how the left offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience. */
+        get anchor_left(): float64
+        set anchor_left(value: float64)
+        
+        /** Anchors the top edge of the node to the origin, the center or the end of its parent control. It changes how the top offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience. */
+        get anchor_top(): float64
+        set anchor_top(value: float64)
+        
+        /** Anchors the right edge of the node to the origin, the center or the end of its parent control. It changes how the right offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience. */
+        get anchor_right(): float64
+        set anchor_right(value: float64)
+        
+        /** Anchors the bottom edge of the node to the origin, the center, or the end of its parent control. It changes how the bottom offset updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience. */
+        get anchor_bottom(): float64
+        set anchor_bottom(value: float64)
+        
+        /** Distance between the node's left edge and its parent control, based on [member anchor_left].  
+         *  Offsets are often controlled by one or multiple parent [Container] nodes, so you should not modify them manually if your node is a direct child of a [Container]. Offsets update automatically when you move or resize the node.  
+         */
+        get offset_left(): int64
+        set offset_left(value: int64)
+        
+        /** Distance between the node's top edge and its parent control, based on [member anchor_top].  
+         *  Offsets are often controlled by one or multiple parent [Container] nodes, so you should not modify them manually if your node is a direct child of a [Container]. Offsets update automatically when you move or resize the node.  
+         */
+        get offset_top(): int64
+        set offset_top(value: int64)
+        
+        /** Distance between the node's right edge and its parent control, based on [member anchor_right].  
+         *  Offsets are often controlled by one or multiple parent [Container] nodes, so you should not modify them manually if your node is a direct child of a [Container]. Offsets update automatically when you move or resize the node.  
+         */
+        get offset_right(): int64
+        set offset_right(value: int64)
+        
+        /** Distance between the node's bottom edge and its parent control, based on [member anchor_bottom].  
+         *  Offsets are often controlled by one or multiple parent [Container] nodes, so you should not modify them manually if your node is a direct child of a [Container]. Offsets update automatically when you move or resize the node.  
+         */
+        get offset_bottom(): int64
+        set offset_bottom(value: int64)
+        
+        /** Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size. */
+        get grow_horizontal(): int64
+        set grow_horizontal(value: int64)
+        
+        /** Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size. */
+        get grow_vertical(): int64
+        set grow_vertical(value: int64)
+        
+        /** The size of the node's bounding rectangle, in the node's coordinate system. [Container] nodes update this property automatically. */
+        get size(): Vector2
+        set size(value: Vector2)
+        
+        /** The node's position, relative to its containing node. It corresponds to the rectangle's top-left corner. The property is not affected by [member pivot_offset]. */
+        get position(): Vector2
+        set position(value: Vector2)
+        
+        /** The node's global position, relative to the world (usually to the [CanvasLayer]). */
+        get global_position(): Vector2
+        set global_position(value: Vector2)
+        
+        /** The node's rotation around its pivot, in radians. See [member pivot_offset] to change the pivot's position.  
+         *      
+         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
+         */
+        get rotation(): float64
+        set rotation(value: float64)
+        
+        /** Helper property to access [member rotation] in degrees instead of radians. */
+        get rotation_degrees(): float64
+        set rotation_degrees(value: float64)
+        
+        /** The node's scale, relative to its [member size]. Change this property to scale the node around its [member pivot_offset]. The Control's [member tooltip_text] will also scale according to this value.  
+         *      
+         *  **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [url=https://docs.godotengine.org/en/4.2/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of scaling Controls individually.  
+         *      
+         *  **Note:** [member FontFile.oversampling] does  *not*  take [Control] [member scale] into account. This means that scaling up/down will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated. To ensure text remains crisp regardless of scale, you can enable MSDF font rendering by enabling [member ProjectSettings.gui/theme/default_font_multichannel_signed_distance_field] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [member SystemFont.multichannel_signed_distance_field] can be enabled in the inspector.  
+         *      
+         *  **Note:** If the Control node is a child of a [Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [member scale] property.  
+         */
+        get scale(): Vector2
+        set scale(value: Vector2)
+        
+        /** By default, the node's pivot is its top-left corner. When you change its [member rotation] or [member scale], it will rotate or scale around this pivot. Set this property to [member size] / 2 to pivot around the Control's center. */
+        get pivot_offset(): Vector2
+        set pivot_offset(value: Vector2)
+        
+        /** Tells the parent [Container] nodes how they should resize and place the node on the X axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does. */
+        get size_flags_horizontal(): int64
+        set size_flags_horizontal(value: int64)
+        
+        /** Tells the parent [Container] nodes how they should resize and place the node on the Y axis. Use a combination of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does. */
+        get size_flags_vertical(): int64
+        set size_flags_vertical(value: int64)
+        
+        /** If the node and at least one of its neighbors uses the [constant SIZE_EXPAND] size flag, the parent [Container] will let it take more or less space depending on this property. If this node has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available space. */
+        get size_flags_stretch_ratio(): float64
+        set size_flags_stretch_ratio(value: float64)
+        
+        /** Toggles if any text should automatically change to its translated version depending on the current locale.  
+         *  Also decides if the node's strings should be parsed for POT generation.  
+         */
+        get auto_translate(): boolean
+        set auto_translate(value: boolean)
+        
+        /** If `true`, automatically converts code line numbers, list indices, [SpinBox] and [ProgressBar] values from the Western Arabic (0..9) to the numeral systems used in current locale.  
+         *      
+         *  **Note:** Numbers within the text are not automatically converted, it can be done manually, using [method TextServer.format_number].  
+         */
+        get localize_numeral_system(): boolean
+        set localize_numeral_system(value: boolean)
+        
+        /** The default tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the [member mouse_filter] property is not [constant MOUSE_FILTER_IGNORE]. The time required for the tooltip to appear can be changed with the [member ProjectSettings.gui/timers/tooltip_delay_sec] option. See also [method get_tooltip].  
+         *  The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding [method _make_custom_tooltip]. The default tooltip includes a [PopupPanel] and [Label] whose theme properties can be customized using [Theme] methods with the `"TooltipPanel"` and `"TooltipLabel"` respectively. For example:  
+         *    
+         */
+        get tooltip_text(): string
+        set tooltip_text(value: string)
+        
+        /** Tells Godot which node it should give focus to if the user presses the left arrow on the keyboard or left on a gamepad by default. You can change the key by editing the [member ProjectSettings.input/ui_left] input action. The node must be a [Control]. If this property is not set, Godot will give focus to the closest [Control] to the left of this one. */
+        get focus_neighbor_left(): NodePath
+        set focus_neighbor_left(value: NodePath | string)
+        
+        /** Tells Godot which node it should give focus to if the user presses the top arrow on the keyboard or top on a gamepad by default. You can change the key by editing the [member ProjectSettings.input/ui_up] input action. The node must be a [Control]. If this property is not set, Godot will give focus to the closest [Control] to the top of this one. */
+        get focus_neighbor_top(): NodePath
+        set focus_neighbor_top(value: NodePath | string)
+        
+        /** Tells Godot which node it should give focus to if the user presses the right arrow on the keyboard or right on a gamepad by default. You can change the key by editing the [member ProjectSettings.input/ui_right] input action. The node must be a [Control]. If this property is not set, Godot will give focus to the closest [Control] to the right of this one. */
+        get focus_neighbor_right(): NodePath
+        set focus_neighbor_right(value: NodePath | string)
+        
+        /** Tells Godot which node it should give focus to if the user presses the down arrow on the keyboard or down on a gamepad by default. You can change the key by editing the [member ProjectSettings.input/ui_down] input action. The node must be a [Control]. If this property is not set, Godot will give focus to the closest [Control] to the bottom of this one. */
+        get focus_neighbor_bottom(): NodePath
+        set focus_neighbor_bottom(value: NodePath | string)
+        
+        /** Tells Godot which node it should give focus to if the user presses [kbd]Tab[/kbd] on a keyboard by default. You can change the key by editing the [member ProjectSettings.input/ui_focus_next] input action.  
+         *  If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.  
+         */
+        get focus_next(): NodePath
+        set focus_next(value: NodePath | string)
+        
+        /** Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a keyboard by default. You can change the key by editing the [member ProjectSettings.input/ui_focus_prev] input action.  
+         *  If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.  
+         */
+        get focus_previous(): NodePath
+        set focus_previous(value: NodePath | string)
+        
+        /** The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals. */
+        get focus_mode(): int64
+        set focus_mode(value: int64)
+        
+        /** Controls whether the control will be able to receive mouse button input events through [method _gui_input] and how these events should be handled. Also controls whether the control can receive the [signal mouse_entered], and [signal mouse_exited] signals. See the constants to learn what each does. */
+        get mouse_filter(): int64
+        set mouse_filter(value: int64)
+        
+        /** When enabled, scroll wheel events processed by [method _gui_input] will be passed to the parent control even if [member mouse_filter] is set to [constant MOUSE_FILTER_STOP]. As it defaults to true, this allows nested scrollable containers to work out of the box.  
+         *  You should disable it on the root of your UI if you do not want scroll events to go to the [method Node._unhandled_input] processing.  
+         */
+        get mouse_force_pass_scroll_events(): boolean
+        set mouse_force_pass_scroll_events(value: boolean)
+        
+        /** The default cursor shape for this control. Useful for Godot plugins and applications or games that use the system's mouse cursors.  
+         *      
+         *  **Note:** On Linux, shapes may vary depending on the cursor theme of the system.  
+         */
+        get mouse_default_cursor_shape(): int64
+        set mouse_default_cursor_shape(value: int64)
+        
+        /** The [Node] which must be a parent of the focused [Control] for the shortcut to be activated. If `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused. */
+        get shortcut_context(): Object
+        set shortcut_context(value: Object)
+        
+        /** The [Theme] resource this node and all its [Control] and [Window] children use. If a child node has its own [Theme] resource set, theme items are merged with child's definitions having higher priority.  
+         *      
+         *  **Note:** [Window] styles will have no effect unless the window is embedded.  
+         */
+        get theme(): Theme
+        set theme(value: Theme)
+        
+        /** The name of a theme type variation used by this [Control] to look up its own theme items. When empty, the class name of the node is used (e.g. [code skip-lint]Button` for the [Button] control), as well as the class names of all parent classes (in order of inheritance).  
+         *  When set, this property gives the highest priority to the type of the specified name. This type can in turn extend another type, forming a dependency chain. See [method Theme.set_type_variation]. If the theme item cannot be found using this type or its base types, lookup falls back on the class names.  
+         *      
+         *  **Note:** To look up [Control]'s own items use various `get_theme_*` methods without specifying `theme_type`.  
+         *      
+         *  **Note:** Theme items are looked for in the tree order, from branch to root, where each [Control] node is checked for its [member theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.  
+         */
+        get theme_type_variation(): string
+        set theme_type_variation(value: string)
+        
+        /** Emitted when the control changes size. */
+        readonly resized: Signal0
+        
+        /** Emitted when the node receives an [InputEvent]. */
+        readonly gui_input: Signal1<InputEvent>
+        
+        /** Emitted when the mouse cursor enters the control's (or any child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect, which Control receives the signal.  
+         */
+        readonly mouse_entered: Signal0
+        
+        /** Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that is not occluded behind other Controls or Windows, provided its [member mouse_filter] lets the event reach it and regardless if it's currently focused or not.  
+         *      
+         *  **Note:** [member CanvasItem.z_index] doesn't affect, which Control receives the signal.  
+         *      
+         *  **Note:** If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:  
+         *    
+         */
+        readonly mouse_exited: Signal0
+        
+        /** Emitted when the node gains focus. */
+        readonly focus_entered: Signal0
+        
+        /** Emitted when the node loses focus. */
+        readonly focus_exited: Signal0
+        
+        /** Emitted when one of the size flags changes. See [member size_flags_horizontal] and [member size_flags_vertical]. */
+        readonly size_flags_changed: Signal0
+        
+        /** Emitted when the node's minimum size changes. */
+        readonly minimum_size_changed: Signal0
+        
+        /** Emitted when the [constant NOTIFICATION_THEME_CHANGED] notification is sent. */
+        readonly theme_changed: Signal0
+    }
     class ControlEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
@@ -656,6 +1910,38 @@ declare module "godot" {
         get size(): Vector3
         set size(value: Vector3)
         
+        /** [Texture2D] with the base [Color] of the Decal. Either this or the [member texture_emission] must be set for the Decal to be visible. Use the alpha channel like a mask to smoothly blend the edges of the decal with the underlying object.  
+         *      
+         *  **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for [Decal] textures is set globally with [member ProjectSettings.rendering/textures/decals/filter].  
+         */
+        get texture_albedo(): Texture2D
+        set texture_albedo(value: Texture2D)
+        
+        /** [Texture2D] with the per-pixel normal map for the decal. Use this to add extra detail to decals.  
+         *      
+         *  **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for [Decal] textures is set globally with [member ProjectSettings.rendering/textures/decals/filter].  
+         *      
+         *  **Note:** Setting this texture alone will not result in a visible decal, as [member texture_albedo] must also be set. To create a normal-only decal, load an albedo texture into [member texture_albedo] and set [member albedo_mix] to `0.0`. The albedo texture's alpha channel will be used to determine where the underlying surface's normal map should be overridden (and its intensity).  
+         */
+        get texture_normal(): Texture2D
+        set texture_normal(value: Texture2D)
+        
+        /** [Texture2D] storing ambient occlusion, roughness, and metallic for the decal. Use this to add extra detail to decals.  
+         *      
+         *  **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for [Decal] textures is set globally with [member ProjectSettings.rendering/textures/decals/filter].  
+         *      
+         *  **Note:** Setting this texture alone will not result in a visible decal, as [member texture_albedo] must also be set. To create an ORM-only decal, load an albedo texture into [member texture_albedo] and set [member albedo_mix] to `0.0`. The albedo texture's alpha channel will be used to determine where the underlying surface's ORM map should be overridden (and its intensity).  
+         */
+        get texture_orm(): Texture2D
+        set texture_orm(value: Texture2D)
+        
+        /** [Texture2D] with the emission [Color] of the Decal. Either this or the [member texture_albedo] must be set for the Decal to be visible. Use the alpha channel like a mask to smoothly blend the edges of the decal with the underlying object.  
+         *      
+         *  **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for [Decal] textures is set globally with [member ProjectSettings.rendering/textures/decals/filter].  
+         */
+        get texture_emission(): Texture2D
+        set texture_emission(value: Texture2D)
+        
         /** Energy multiplier for the emission texture. This will make the decal emit light at a higher or lower intensity, independently of the albedo color. See also [member modulate]. */
         get emission_energy(): float64
         set emission_energy(value: float64)
@@ -921,9 +2207,33 @@ declare module "godot" {
         get directional_shadow_mode(): int64
         set directional_shadow_mode(value: int64)
         
+        /** The distance from camera to shadow split 1. Relative to [member directional_shadow_max_distance]. Only used when [member directional_shadow_mode] is [constant SHADOW_PARALLEL_2_SPLITS] or [constant SHADOW_PARALLEL_4_SPLITS]. */
+        get directional_shadow_split_1(): float64
+        set directional_shadow_split_1(value: float64)
+        
+        /** The distance from shadow split 1 to split 2. Relative to [member directional_shadow_max_distance]. Only used when [member directional_shadow_mode] is [constant SHADOW_PARALLEL_4_SPLITS]. */
+        get directional_shadow_split_2(): float64
+        set directional_shadow_split_2(value: float64)
+        
+        /** The distance from shadow split 2 to split 3. Relative to [member directional_shadow_max_distance]. Only used when [member directional_shadow_mode] is [constant SHADOW_PARALLEL_4_SPLITS]. */
+        get directional_shadow_split_3(): float64
+        set directional_shadow_split_3(value: float64)
+        
         /** If `true`, shadow detail is sacrificed in exchange for smoother transitions between splits. Enabling shadow blend splitting also has a moderate performance cost. This is ignored when [member directional_shadow_mode] is [constant SHADOW_ORTHOGONAL]. */
         get directional_shadow_blend_splits(): boolean
         set directional_shadow_blend_splits(value: boolean)
+        
+        /** Proportion of [member directional_shadow_max_distance] at which point the shadow starts to fade. At [member directional_shadow_max_distance], the shadow will disappear. The default value is a balance between smooth fading and distant shadow visibility. If the camera moves fast and the [member directional_shadow_max_distance] is low, consider lowering [member directional_shadow_fade_start] below `0.8` to make shadow transitions less noticeable. On the other hand, if you tuned [member directional_shadow_max_distance] to cover the entire scene, you can set [member directional_shadow_fade_start] to `1.0` to prevent the shadow from fading in the distance (it will suddenly cut off instead). */
+        get directional_shadow_fade_start(): float64
+        set directional_shadow_fade_start(value: float64)
+        
+        /** The maximum distance for shadow splits. Increasing this value will make directional shadows visible from further away, at the cost of lower overall shadow detail and performance (since more objects need to be included in the directional shadow rendering). */
+        get directional_shadow_max_distance(): float64
+        set directional_shadow_max_distance(value: float64)
+        
+        /** Sets the size of the directional shadow pancake. The pancake offsets the start of the shadow's camera frustum to provide a higher effective depth resolution for the shadow. However, a high pancake size can cause artifacts in the shadows of large objects that are close to the edge of the frustum. Reducing the pancake size can help. Setting the size to `0` turns off the pancaking effect. */
+        get directional_shadow_pancake_size(): float64
+        set directional_shadow_pancake_size(value: float64)
         
         /** Set whether this [DirectionalLight3D] is visible in the sky, in the scene, or both in the sky and in the scene. See [enum SkyMode] for options. */
         get sky_mode(): int64
@@ -5644,6 +6954,22 @@ declare module "godot" {
         /** A set of OpenType feature tags. More info: [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature tags[/url]. */
         get opentype_features(): Dictionary
         set opentype_features(value: Dictionary)
+        
+        /** Extra spacing between graphical glyphs. */
+        get spacing_glyph(): int64
+        set spacing_glyph(value: int64)
+        
+        /** Extra width of the space glyphs. */
+        get spacing_space(): int64
+        set spacing_space(value: int64)
+        
+        /** Extra spacing at the top of the line in pixels. */
+        get spacing_top(): int64
+        set spacing_top(value: int64)
+        
+        /** Extra spacing at the bottom of the line in pixels. */
+        get spacing_bottom(): int64
+        set spacing_bottom(value: int64)
     }
     namespace GDExtension {
         enum InitializationLevel {
@@ -6760,6 +8086,22 @@ declare module "godot" {
         /** The number of draw passes when rendering particles. */
         get draw_passes(): int64
         set draw_passes(value: int64)
+        
+        /** [Mesh] that is drawn for the first draw pass. */
+        get draw_pass_1(): Mesh
+        set draw_pass_1(value: Mesh)
+        
+        /** [Mesh] that is drawn for the second draw pass. */
+        get draw_pass_2(): Mesh
+        set draw_pass_2(value: Mesh)
+        
+        /** [Mesh] that is drawn for the third draw pass. */
+        get draw_pass_3(): Mesh
+        set draw_pass_3(value: Mesh)
+        
+        /** [Mesh] that is drawn for the fourth draw pass. */
+        get draw_pass_4(): Mesh
+        set draw_pass_4(value: Mesh)
         get draw_skin(): Skin
         set draw_skin(value: Skin)
         
@@ -7992,1230 +9334,5 @@ declare module "godot" {
         
         /** Emitted when the [MeshLibrary] of this GridMap changes. */
         readonly changed: Signal0
-    }
-    class GridMapEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        _configure(): void
-        _set_selection(_unnamed_arg0: boolean, _unnamed_arg1: Vector3, _unnamed_arg2: Vector3): void
-    }
-    class GridMapEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A physics joint that restricts the movement of two 2D physics bodies to a fixed axis.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_groovejoint2d.html  
-     */
-    class GrooveJoint2D extends Joint2D {
-        constructor(identifier?: any)
-        /** The groove's length. The groove is from the joint's origin towards [member length] along the joint's local Y axis. */
-        get length(): float64
-        set length(value: float64)
-        
-        /** The body B's initial anchor position defined by the joint's origin and a local offset [member initial_offset] along the joint's Y axis (along the groove). */
-        get initial_offset(): float64
-        set initial_offset(value: float64)
-    }
-    class GroupDialog extends AcceptDialog {
-        constructor(identifier?: any)
-        _delete_group_item(_unnamed_arg0: string): void
-        _add_group(_unnamed_arg0: string): void
-        _rename_group_item(_unnamed_arg0: string, _unnamed_arg1: string): void
-        _group_selected(): void
-        readonly group_edited: Signal0
-    }
-    class GroupsEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        update_tree(): void
-        _group_selected(): void
-    }
-    /** A container that arranges its child controls horizontally.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hboxcontainer.html  
-     */
-    class HBoxContainer extends BoxContainer {
-        constructor(identifier?: any)
-    }
-    /** A container that arranges its child controls horizontally and wraps them around at the borders.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hflowcontainer.html  
-     */
-    class HFlowContainer extends FlowContainer {
-        constructor(identifier?: any)
-    }
-    /** Used to create an HMAC for a message using a key.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hmaccontext.html  
-     */
-    class HMACContext extends RefCounted {
-        constructor(identifier?: any)
-        /** Initializes the HMACContext. This method cannot be called again on the same HMACContext until [method finish] has been called. */
-        start(hash_type: HashingContext.HashType, key: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Updates the message to be HMACed. This can be called multiple times before [method finish] is called to append [param data] to the message, but cannot be called until [method start] has been called. */
-        update(data: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Returns the resulting HMAC. If the HMAC failed, an empty [PackedByteArray] is returned. */
-        finish(): PackedByteArray
-    }
-    /** A horizontal scrollbar that goes from left (min) to right (max).  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hscrollbar.html  
-     */
-    class HScrollBar extends ScrollBar {
-        constructor(identifier?: any)
-    }
-    /** A horizontal line used for separating other controls.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hseparator.html  
-     */
-    class HSeparator extends Separator {
-        constructor(identifier?: any)
-    }
-    /** A horizontal slider that goes from left (min) to right (max).  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hslider.html  
-     */
-    class HSlider extends Slider {
-        constructor(identifier?: any)
-    }
-    /** A container that splits two child controls horizontally and provides a grabber for adjusting the split ratio.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hsplitcontainer.html  
-     */
-    class HSplitContainer extends SplitContainer {
-        constructor(identifier?: any)
-    }
-    namespace HTTPClient {
-        enum Method {
-            /** HTTP GET method. The GET method requests a representation of the specified resource. Requests using GET should only retrieve data. */
-            METHOD_GET = 0,
-            
-            /** HTTP HEAD method. The HEAD method asks for a response identical to that of a GET request, but without the response body. This is useful to request metadata like HTTP headers or to check if a resource exists. */
-            METHOD_HEAD = 1,
-            
-            /** HTTP POST method. The POST method is used to submit an entity to the specified resource, often causing a change in state or side effects on the server. This is often used for forms and submitting data or uploading files. */
-            METHOD_POST = 2,
-            
-            /** HTTP PUT method. The PUT method asks to replace all current representations of the target resource with the request payload. (You can think of POST as "create or update" and PUT as "update", although many services tend to not make a clear distinction or change their meaning). */
-            METHOD_PUT = 3,
-            
-            /** HTTP DELETE method. The DELETE method requests to delete the specified resource. */
-            METHOD_DELETE = 4,
-            
-            /** HTTP OPTIONS method. The OPTIONS method asks for a description of the communication options for the target resource. Rarely used. */
-            METHOD_OPTIONS = 5,
-            
-            /** HTTP TRACE method. The TRACE method performs a message loop-back test along the path to the target resource. Returns the entire HTTP request received in the response body. Rarely used. */
-            METHOD_TRACE = 6,
-            
-            /** HTTP CONNECT method. The CONNECT method establishes a tunnel to the server identified by the target resource. Rarely used. */
-            METHOD_CONNECT = 7,
-            
-            /** HTTP PATCH method. The PATCH method is used to apply partial modifications to a resource. */
-            METHOD_PATCH = 8,
-            
-            /** Represents the size of the [enum Method] enum. */
-            METHOD_MAX = 9,
-        }
-        enum Status {
-            /** Status: Disconnected from the server. */
-            STATUS_DISCONNECTED = 0,
-            
-            /** Status: Currently resolving the hostname for the given URL into an IP. */
-            STATUS_RESOLVING = 1,
-            
-            /** Status: DNS failure: Can't resolve the hostname for the given URL. */
-            STATUS_CANT_RESOLVE = 2,
-            
-            /** Status: Currently connecting to server. */
-            STATUS_CONNECTING = 3,
-            
-            /** Status: Can't connect to the server. */
-            STATUS_CANT_CONNECT = 4,
-            
-            /** Status: Connection established. */
-            STATUS_CONNECTED = 5,
-            
-            /** Status: Currently sending request. */
-            STATUS_REQUESTING = 6,
-            
-            /** Status: HTTP body received. */
-            STATUS_BODY = 7,
-            
-            /** Status: Error in HTTP connection. */
-            STATUS_CONNECTION_ERROR = 8,
-            
-            /** Status: Error in TLS handshake. */
-            STATUS_TLS_HANDSHAKE_ERROR = 9,
-        }
-        enum ResponseCode {
-            /** HTTP status code `100 Continue`. Interim response that indicates everything so far is OK and that the client should continue with the request (or ignore this status if already finished). */
-            RESPONSE_CONTINUE = 100,
-            
-            /** HTTP status code `101 Switching Protocol`. Sent in response to an `Upgrade` request header by the client. Indicates the protocol the server is switching to. */
-            RESPONSE_SWITCHING_PROTOCOLS = 101,
-            
-            /** HTTP status code `102 Processing` (WebDAV). Indicates that the server has received and is processing the request, but no response is available yet. */
-            RESPONSE_PROCESSING = 102,
-            
-            /** HTTP status code `200 OK`. The request has succeeded. Default response for successful requests. Meaning varies depending on the request. GET: The resource has been fetched and is transmitted in the message body. HEAD: The entity headers are in the message body. POST: The resource describing the result of the action is transmitted in the message body. TRACE: The message body contains the request message as received by the server. */
-            RESPONSE_OK = 200,
-            
-            /** HTTP status code `201 Created`. The request has succeeded and a new resource has been created as a result of it. This is typically the response sent after a PUT request. */
-            RESPONSE_CREATED = 201,
-            
-            /** HTTP status code `202 Accepted`. The request has been received but not yet acted upon. It is non-committal, meaning that there is no way in HTTP to later send an asynchronous response indicating the outcome of processing the request. It is intended for cases where another process or server handles the request, or for batch processing. */
-            RESPONSE_ACCEPTED = 202,
-            
-            /** HTTP status code `203 Non-Authoritative Information`. This response code means returned meta-information set is not exact set as available from the origin server, but collected from a local or a third party copy. Except this condition, 200 OK response should be preferred instead of this response. */
-            RESPONSE_NON_AUTHORITATIVE_INFORMATION = 203,
-            
-            /** HTTP status code `204 No Content`. There is no content to send for this request, but the headers may be useful. The user-agent may update its cached headers for this resource with the new ones. */
-            RESPONSE_NO_CONTENT = 204,
-            
-            /** HTTP status code `205 Reset Content`. The server has fulfilled the request and desires that the client resets the "document view" that caused the request to be sent to its original state as received from the origin server. */
-            RESPONSE_RESET_CONTENT = 205,
-            
-            /** HTTP status code `206 Partial Content`. This response code is used because of a range header sent by the client to separate download into multiple streams. */
-            RESPONSE_PARTIAL_CONTENT = 206,
-            
-            /** HTTP status code `207 Multi-Status` (WebDAV). A Multi-Status response conveys information about multiple resources in situations where multiple status codes might be appropriate. */
-            RESPONSE_MULTI_STATUS = 207,
-            
-            /** HTTP status code `208 Already Reported` (WebDAV). Used inside a DAV: propstat response element to avoid enumerating the internal members of multiple bindings to the same collection repeatedly. */
-            RESPONSE_ALREADY_REPORTED = 208,
-            
-            /** HTTP status code `226 IM Used` (WebDAV). The server has fulfilled a GET request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance. */
-            RESPONSE_IM_USED = 226,
-            
-            /** HTTP status code `300 Multiple Choice`. The request has more than one possible responses and there is no standardized way to choose one of the responses. User-agent or user should choose one of them. */
-            RESPONSE_MULTIPLE_CHOICES = 300,
-            
-            /** HTTP status code `301 Moved Permanently`. Redirection. This response code means the URI of requested resource has been changed. The new URI is usually included in the response. */
-            RESPONSE_MOVED_PERMANENTLY = 301,
-            
-            /** HTTP status code `302 Found`. Temporary redirection. This response code means the URI of requested resource has been changed temporarily. New changes in the URI might be made in the future. Therefore, this same URI should be used by the client in future requests. */
-            RESPONSE_FOUND = 302,
-            
-            /** HTTP status code `303 See Other`. The server is redirecting the user agent to a different resource, as indicated by a URI in the Location header field, which is intended to provide an indirect response to the original request. */
-            RESPONSE_SEE_OTHER = 303,
-            
-            /** HTTP status code `304 Not Modified`. A conditional GET or HEAD request has been received and would have resulted in a 200 OK response if it were not for the fact that the condition evaluated to `false`. */
-            RESPONSE_NOT_MODIFIED = 304,
-            
-            /**  *Deprecated.*  HTTP status code `305 Use Proxy`. */
-            RESPONSE_USE_PROXY = 305,
-            
-            /**  *Deprecated.*  HTTP status code `306 Switch Proxy`. */
-            RESPONSE_SWITCH_PROXY = 306,
-            
-            /** HTTP status code `307 Temporary Redirect`. The target resource resides temporarily under a different URI and the user agent MUST NOT change the request method if it performs an automatic redirection to that URI. */
-            RESPONSE_TEMPORARY_REDIRECT = 307,
-            
-            /** HTTP status code `308 Permanent Redirect`. The target resource has been assigned a new permanent URI and any future references to this resource ought to use one of the enclosed URIs. */
-            RESPONSE_PERMANENT_REDIRECT = 308,
-            
-            /** HTTP status code `400 Bad Request`. The request was invalid. The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, invalid request contents, or deceptive request routing). */
-            RESPONSE_BAD_REQUEST = 400,
-            
-            /** HTTP status code `401 Unauthorized`. Credentials required. The request has not been applied because it lacks valid authentication credentials for the target resource. */
-            RESPONSE_UNAUTHORIZED = 401,
-            
-            /** HTTP status code `402 Payment Required`. This response code is reserved for future use. Initial aim for creating this code was using it for digital payment systems, however this is not currently used. */
-            RESPONSE_PAYMENT_REQUIRED = 402,
-            
-            /** HTTP status code `403 Forbidden`. The client does not have access rights to the content, i.e. they are unauthorized, so server is rejecting to give proper response. Unlike `401`, the client's identity is known to the server. */
-            RESPONSE_FORBIDDEN = 403,
-            
-            /** HTTP status code `404 Not Found`. The server can not find requested resource. Either the URL is not recognized or the endpoint is valid but the resource itself does not exist. May also be sent instead of 403 to hide existence of a resource if the client is not authorized. */
-            RESPONSE_NOT_FOUND = 404,
-            
-            /** HTTP status code `405 Method Not Allowed`. The request's HTTP method is known by the server but has been disabled and cannot be used. For example, an API may forbid DELETE-ing a resource. The two mandatory methods, GET and HEAD, must never be disabled and should not return this error code. */
-            RESPONSE_METHOD_NOT_ALLOWED = 405,
-            
-            /** HTTP status code `406 Not Acceptable`. The target resource does not have a current representation that would be acceptable to the user agent, according to the proactive negotiation header fields received in the request. Used when negotiation content. */
-            RESPONSE_NOT_ACCEPTABLE = 406,
-            
-            /** HTTP status code `407 Proxy Authentication Required`. Similar to 401 Unauthorized, but it indicates that the client needs to authenticate itself in order to use a proxy. */
-            RESPONSE_PROXY_AUTHENTICATION_REQUIRED = 407,
-            
-            /** HTTP status code `408 Request Timeout`. The server did not receive a complete request message within the time that it was prepared to wait. */
-            RESPONSE_REQUEST_TIMEOUT = 408,
-            
-            /** HTTP status code `409 Conflict`. The request could not be completed due to a conflict with the current state of the target resource. This code is used in situations where the user might be able to resolve the conflict and resubmit the request. */
-            RESPONSE_CONFLICT = 409,
-            
-            /** HTTP status code `410 Gone`. The target resource is no longer available at the origin server and this condition is likely permanent. */
-            RESPONSE_GONE = 410,
-            
-            /** HTTP status code `411 Length Required`. The server refuses to accept the request without a defined Content-Length header. */
-            RESPONSE_LENGTH_REQUIRED = 411,
-            
-            /** HTTP status code `412 Precondition Failed`. One or more conditions given in the request header fields evaluated to `false` when tested on the server. */
-            RESPONSE_PRECONDITION_FAILED = 412,
-            
-            /** HTTP status code `413 Entity Too Large`. The server is refusing to process a request because the request payload is larger than the server is willing or able to process. */
-            RESPONSE_REQUEST_ENTITY_TOO_LARGE = 413,
-            
-            /** HTTP status code `414 Request-URI Too Long`. The server is refusing to service the request because the request-target is longer than the server is willing to interpret. */
-            RESPONSE_REQUEST_URI_TOO_LONG = 414,
-            
-            /** HTTP status code `415 Unsupported Media Type`. The origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource. */
-            RESPONSE_UNSUPPORTED_MEDIA_TYPE = 415,
-            
-            /** HTTP status code `416 Requested Range Not Satisfiable`. None of the ranges in the request's Range header field overlap the current extent of the selected resource or the set of ranges requested has been rejected due to invalid ranges or an excessive request of small or overlapping ranges. */
-            RESPONSE_REQUESTED_RANGE_NOT_SATISFIABLE = 416,
-            
-            /** HTTP status code `417 Expectation Failed`. The expectation given in the request's Expect header field could not be met by at least one of the inbound servers. */
-            RESPONSE_EXPECTATION_FAILED = 417,
-            
-            /** HTTP status code `418 I'm A Teapot`. Any attempt to brew coffee with a teapot should result in the error code "418 I'm a teapot". The resulting entity body MAY be short and stout. */
-            RESPONSE_IM_A_TEAPOT = 418,
-            
-            /** HTTP status code `421 Misdirected Request`. The request was directed at a server that is not able to produce a response. This can be sent by a server that is not configured to produce responses for the combination of scheme and authority that are included in the request URI. */
-            RESPONSE_MISDIRECTED_REQUEST = 421,
-            
-            /** HTTP status code `422 Unprocessable Entity` (WebDAV). The server understands the content type of the request entity (hence a 415 Unsupported Media Type status code is inappropriate), and the syntax of the request entity is correct (thus a 400 Bad Request status code is inappropriate) but was unable to process the contained instructions. */
-            RESPONSE_UNPROCESSABLE_ENTITY = 422,
-            
-            /** HTTP status code `423 Locked` (WebDAV). The source or destination resource of a method is locked. */
-            RESPONSE_LOCKED = 423,
-            
-            /** HTTP status code `424 Failed Dependency` (WebDAV). The method could not be performed on the resource because the requested action depended on another action and that action failed. */
-            RESPONSE_FAILED_DEPENDENCY = 424,
-            
-            /** HTTP status code `426 Upgrade Required`. The server refuses to perform the request using the current protocol but might be willing to do so after the client upgrades to a different protocol. */
-            RESPONSE_UPGRADE_REQUIRED = 426,
-            
-            /** HTTP status code `428 Precondition Required`. The origin server requires the request to be conditional. */
-            RESPONSE_PRECONDITION_REQUIRED = 428,
-            
-            /** HTTP status code `429 Too Many Requests`. The user has sent too many requests in a given amount of time (see "rate limiting"). Back off and increase time between requests or try again later. */
-            RESPONSE_TOO_MANY_REQUESTS = 429,
-            
-            /** HTTP status code `431 Request Header Fields Too Large`. The server is unwilling to process the request because its header fields are too large. The request MAY be resubmitted after reducing the size of the request header fields. */
-            RESPONSE_REQUEST_HEADER_FIELDS_TOO_LARGE = 431,
-            
-            /** HTTP status code `451 Response Unavailable For Legal Reasons`. The server is denying access to the resource as a consequence of a legal demand. */
-            RESPONSE_UNAVAILABLE_FOR_LEGAL_REASONS = 451,
-            
-            /** HTTP status code `500 Internal Server Error`. The server encountered an unexpected condition that prevented it from fulfilling the request. */
-            RESPONSE_INTERNAL_SERVER_ERROR = 500,
-            
-            /** HTTP status code `501 Not Implemented`. The server does not support the functionality required to fulfill the request. */
-            RESPONSE_NOT_IMPLEMENTED = 501,
-            
-            /** HTTP status code `502 Bad Gateway`. The server, while acting as a gateway or proxy, received an invalid response from an inbound server it accessed while attempting to fulfill the request. Usually returned by load balancers or proxies. */
-            RESPONSE_BAD_GATEWAY = 502,
-            
-            /** HTTP status code `503 Service Unavailable`. The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay. Try again later. */
-            RESPONSE_SERVICE_UNAVAILABLE = 503,
-            
-            /** HTTP status code `504 Gateway Timeout`. The server, while acting as a gateway or proxy, did not receive a timely response from an upstream server it needed to access in order to complete the request. Usually returned by load balancers or proxies. */
-            RESPONSE_GATEWAY_TIMEOUT = 504,
-            
-            /** HTTP status code `505 HTTP Version Not Supported`. The server does not support, or refuses to support, the major version of HTTP that was used in the request message. */
-            RESPONSE_HTTP_VERSION_NOT_SUPPORTED = 505,
-            
-            /** HTTP status code `506 Variant Also Negotiates`. The server has an internal configuration error: the chosen variant resource is configured to engage in transparent content negotiation itself, and is therefore not a proper end point in the negotiation process. */
-            RESPONSE_VARIANT_ALSO_NEGOTIATES = 506,
-            
-            /** HTTP status code `507 Insufficient Storage`. The method could not be performed on the resource because the server is unable to store the representation needed to successfully complete the request. */
-            RESPONSE_INSUFFICIENT_STORAGE = 507,
-            
-            /** HTTP status code `508 Loop Detected`. The server terminated an operation because it encountered an infinite loop while processing a request with "Depth: infinity". This status indicates that the entire operation failed. */
-            RESPONSE_LOOP_DETECTED = 508,
-            
-            /** HTTP status code `510 Not Extended`. The policy for accessing the resource has not been met in the request. The server should send back all the information necessary for the client to issue an extended request. */
-            RESPONSE_NOT_EXTENDED = 510,
-            
-            /** HTTP status code `511 Network Authentication Required`. The client needs to authenticate to gain network access. */
-            RESPONSE_NETWORK_AUTH_REQUIRED = 511,
-        }
-    }
-    /** Low-level hyper-text transfer protocol client.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_httpclient.html  
-     */
-    class HTTPClient extends RefCounted {
-        constructor(identifier?: any)
-        /** Connects to a host. This needs to be done before any requests are sent.  
-         *  If no [param port] is specified (or `-1` is used), it is automatically set to 80 for HTTP and 443 for HTTPS. You can pass the optional [param tls_options] parameter to customize the trusted certification authorities, or the common name verification when using HTTPS. See [method TLSOptions.client] and [method TLSOptions.client_unsafe].  
-         */
-        connect_to_host(host: string, port: int64 = -1, tls_options: TLSOptions = undefined): Error
-        
-        /** Sends a raw request to the connected host.  
-         *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
-         *  Headers are HTTP request headers. For available HTTP methods, see [enum Method].  
-         *  Sends the body data raw, as a byte array and does not encode it in any way.  
-         */
-        request_raw(method: HTTPClient.Method, url: string, headers: PackedStringArray | string[], body: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Sends a request to the connected host.  
-         *  The URL parameter is usually just the part after the host, so for `https://somehost.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy server, it should be an absolute URL. For [constant HTTPClient.METHOD_OPTIONS] requests, `*` is also allowed. For [constant HTTPClient.METHOD_CONNECT] requests, it should be the authority component (`host:port`).  
-         *  Headers are HTTP request headers. For available HTTP methods, see [enum Method].  
-         *  To create a POST request with query strings to push to the server, do:  
-         *    
-         *      
-         *  **Note:** The [param body] parameter is ignored if [param method] is [constant HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [method String.uri_encode] for an example.  
-         */
-        request(method: HTTPClient.Method, url: string, headers: PackedStringArray | string[], body: string = ''): Error
-        
-        /** Closes the current connection, allowing reuse of this [HTTPClient]. */
-        close(): void
-        
-        /** If `true`, this [HTTPClient] has a response available. */
-        has_response(): boolean
-        
-        /** If `true`, this [HTTPClient] has a response that is chunked. */
-        is_response_chunked(): boolean
-        
-        /** Returns the response's HTTP status code. */
-        get_response_code(): int64
-        
-        /** Returns the response headers. */
-        get_response_headers(): PackedStringArray
-        
-        /** Returns all response headers as a Dictionary of structure `{ "key": "value1; value2" }` where the case-sensitivity of the keys and values is kept like the server delivers it. A value is a simple String, this string can have more than one value where "; " is used as separator.  
-         *  **Example:**  
-         *    
-         */
-        get_response_headers_as_dictionary(): Dictionary
-        
-        /** Returns the response's body length.  
-         *      
-         *  **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.  
-         *      
-         *  **Note:** This function always returns `-1` on the Web platform due to browsers limitations.  
-         */
-        get_response_body_length(): int64
-        
-        /** Reads one chunk from the response. */
-        read_response_body_chunk(): PackedByteArray
-        
-        /** Returns a [enum Status] constant. Need to call [method poll] in order to get status updates. */
-        get_status(): HTTPClient.Status
-        
-        /** This needs to be called in order to have any request processed. Check results with [method get_status]. */
-        poll(): Error
-        
-        /** Sets the proxy server for HTTP requests.  
-         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
-         */
-        set_http_proxy(host: string, port: int64): void
-        
-        /** Sets the proxy server for HTTPS requests.  
-         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
-         */
-        set_https_proxy(host: string, port: int64): void
-        
-        /** Generates a GET/POST application/x-www-form-urlencoded style query string from a provided dictionary, e.g.:  
-         *    
-         *  Furthermore, if a key has a `null` value, only the key itself is added, without equal sign and value. If the value is an array, for each value in it a pair with the same key is added.  
-         *    
-         */
-        query_string_from_dict(fields: Dictionary): string
-        
-        /** If `true`, execution will block until all data is read from the response. */
-        get blocking_mode_enabled(): boolean
-        set blocking_mode_enabled(value: boolean)
-        
-        /** The connection to use for this client. */
-        get connection(): StreamPeer
-        set connection(value: StreamPeer)
-        
-        /** The size of the buffer used and maximum bytes to read per iteration. See [method read_response_body_chunk]. */
-        get read_chunk_size(): int64
-        set read_chunk_size(value: int64)
-    }
-    namespace HTTPRequest {
-        enum Result {
-            /** Request successful. */
-            RESULT_SUCCESS = 0,
-            RESULT_CHUNKED_BODY_SIZE_MISMATCH = 1,
-            
-            /** Request failed while connecting. */
-            RESULT_CANT_CONNECT = 2,
-            
-            /** Request failed while resolving. */
-            RESULT_CANT_RESOLVE = 3,
-            
-            /** Request failed due to connection (read/write) error. */
-            RESULT_CONNECTION_ERROR = 4,
-            
-            /** Request failed on TLS handshake. */
-            RESULT_TLS_HANDSHAKE_ERROR = 5,
-            
-            /** Request does not have a response (yet). */
-            RESULT_NO_RESPONSE = 6,
-            
-            /** Request exceeded its maximum size limit, see [member body_size_limit]. */
-            RESULT_BODY_SIZE_LIMIT_EXCEEDED = 7,
-            RESULT_BODY_DECOMPRESS_FAILED = 8,
-            
-            /** Request failed (currently unused). */
-            RESULT_REQUEST_FAILED = 9,
-            
-            /** HTTPRequest couldn't open the download file. */
-            RESULT_DOWNLOAD_FILE_CANT_OPEN = 10,
-            
-            /** HTTPRequest couldn't write to the download file. */
-            RESULT_DOWNLOAD_FILE_WRITE_ERROR = 11,
-            
-            /** Request reached its maximum redirect limit, see [member max_redirects]. */
-            RESULT_REDIRECT_LIMIT_REACHED = 12,
-            
-            /** Request failed due to a timeout. If you expect requests to take a long time, try increasing the value of [member timeout] or setting it to `0.0` to remove the timeout completely. */
-            RESULT_TIMEOUT = 13,
-        }
-    }
-    /** A node with the ability to send HTTP(S) requests.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_httprequest.html  
-     */
-    class HTTPRequest extends Node {
-        constructor(identifier?: any)
-        /** Creates request on the underlying [HTTPClient]. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
-         *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
-         *      
-         *  **Note:** When [param method] is [constant HTTPClient.METHOD_GET], the payload sent via [param request_data] might be ignored by the server or even cause the server to reject the request (check [url=https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1]RFC 7231 section 4.3.1[/url] for more details). As a workaround, you can send data as a query string in the URL (see [method String.uri_encode] for an example).  
-         *      
-         *  **Note:** It's recommended to use transport encryption (TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.  
-         */
-        request(url: string, custom_headers: PackedStringArray | string[] = [], method: HTTPClient.Method = 0, request_data: string = ''): Error
-        
-        /** Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].  
-         *  Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.  
-         */
-        request_raw(url: string, custom_headers: PackedStringArray | string[] = [], method: HTTPClient.Method = 0, request_data_raw: PackedByteArray | byte[] | ArrayBuffer = []): Error
-        
-        /** Cancels the current request. */
-        cancel_request(): void
-        
-        /** Sets the [TLSOptions] to be used when connecting to an HTTPS server. See [method TLSOptions.client]. */
-        set_tls_options(client_options: TLSOptions): void
-        
-        /** Returns the current status of the underlying [HTTPClient]. See [enum HTTPClient.Status]. */
-        get_http_client_status(): HTTPClient.Status
-        
-        /** Returns the number of bytes this HTTPRequest downloaded. */
-        get_downloaded_bytes(): int64
-        
-        /** Returns the response body length.  
-         *      
-         *  **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.  
-         */
-        get_body_size(): int64
-        _request_done(_unnamed_arg0: int64, _unnamed_arg1: int64, _unnamed_arg2: PackedStringArray | string[], _unnamed_arg3: PackedByteArray | byte[] | ArrayBuffer): void
-        
-        /** Sets the proxy server for HTTP requests.  
-         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
-         */
-        set_http_proxy(host: string, port: int64): void
-        
-        /** Sets the proxy server for HTTPS requests.  
-         *  The proxy server is unset if [param host] is empty or [param port] is -1.  
-         */
-        set_https_proxy(host: string, port: int64): void
-        
-        /** The file to download into. Will output any received file into it. */
-        get download_file(): string
-        set download_file(value: string)
-        
-        /** The size of the buffer used and maximum bytes to read per iteration. See [member HTTPClient.read_chunk_size].  
-         *  Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory usage at the cost of download speeds.  
-         */
-        get download_chunk_size(): int64
-        set download_chunk_size(value: int64)
-        
-        /** If `true`, multithreading is used to improve performance. */
-        get use_threads(): boolean
-        set use_threads(value: boolean)
-        
-        /** If `true`, this header will be added to each request: `Accept-Encoding: gzip, deflate` telling servers that it's okay to compress response bodies.  
-         *  Any Response body declaring a `Content-Encoding` of either `gzip` or `deflate` will then be automatically decompressed, and the uncompressed bytes will be delivered via [signal request_completed].  
-         *  If the user has specified their own `Accept-Encoding` header, then no header will be added regardless of [member accept_gzip].  
-         *  If `false` no header will be added, and no decompression will be performed on response bodies. The raw bytes of the response body will be returned via [signal request_completed].  
-         */
-        get accept_gzip(): boolean
-        set accept_gzip(value: boolean)
-        
-        /** Maximum allowed size for response bodies. If the response body is compressed, this will be used as the maximum allowed size for the decompressed body. */
-        get body_size_limit(): int64
-        set body_size_limit(value: int64)
-        
-        /** Maximum number of allowed redirects. */
-        get max_redirects(): int64
-        set max_redirects(value: int64)
-        
-        /** The duration to wait in seconds before a request times out. If [member timeout] is set to `0.0` then the request will never time out. For simple requests, such as communication with a REST API, it is recommended that [member timeout] is set to a value suitable for the server response time (e.g. between `1.0` and `10.0`). This will help prevent unwanted timeouts caused by variation in server response times while still allowing the application to detect when a request has timed out. For larger requests such as file downloads it is suggested the [member timeout] be set to `0.0`, disabling the timeout functionality. This will help to prevent large transfers from failing due to exceeding the timeout value. */
-        get timeout(): float64
-        set timeout(value: float64)
-        
-        /** Emitted when a request is completed. */
-        readonly request_completed: Signal4<int64, int64, PackedStringArray | string[], PackedByteArray | byte[] | ArrayBuffer>
-    }
-    namespace HashingContext {
-        enum HashType {
-            /** Hashing algorithm: MD5. */
-            HASH_MD5 = 0,
-            
-            /** Hashing algorithm: SHA-1. */
-            HASH_SHA1 = 1,
-            
-            /** Hashing algorithm: SHA-256. */
-            HASH_SHA256 = 2,
-        }
-    }
-    /** Provides functionality for computing cryptographic hashes chunk by chunk.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hashingcontext.html  
-     */
-    class HashingContext extends RefCounted {
-        constructor(identifier?: any)
-        /** Starts a new hash computation of the given [param type] (e.g. [constant HASH_SHA256] to start computation of a SHA-256). */
-        start(type: HashingContext.HashType): Error
-        
-        /** Updates the computation with the given [param chunk] of data. */
-        update(chunk: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Closes the current context, and return the computed hash. */
-        finish(): PackedByteArray
-    }
-    /** A 3D height map shape used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_heightmapshape3d.html  
-     */
-    class HeightMapShape3D extends Shape3D {
-        constructor(identifier?: any)
-        /** Number of vertices in the width of the height map. Changing this will resize the [member map_data]. */
-        get map_width(): int64
-        set map_width(value: int64)
-        
-        /** Number of vertices in the depth of the height map. Changing this will resize the [member map_data]. */
-        get map_depth(): int64
-        set map_depth(value: int64)
-        
-        /** Height map data, pool array must be of [member map_width] * [member map_depth] size. */
-        get map_data(): PackedFloat32Array
-        set map_data(value: PackedFloat32Array | float32[])
-    }
-    namespace HingeJoint3D {
-        enum Param {
-            /** The speed with which the two bodies get pulled together when they move in different directions. */
-            PARAM_BIAS = 0,
-            
-            /** The maximum rotation. Only active if [member angular_limit/enable] is `true`. */
-            PARAM_LIMIT_UPPER = 1,
-            
-            /** The minimum rotation. Only active if [member angular_limit/enable] is `true`. */
-            PARAM_LIMIT_LOWER = 2,
-            
-            /** The speed with which the rotation across the axis perpendicular to the hinge gets corrected. */
-            PARAM_LIMIT_BIAS = 3,
-            PARAM_LIMIT_SOFTNESS = 4,
-            
-            /** The lower this value, the more the rotation gets slowed down. */
-            PARAM_LIMIT_RELAXATION = 5,
-            
-            /** Target speed for the motor. */
-            PARAM_MOTOR_TARGET_VELOCITY = 6,
-            
-            /** Maximum acceleration for the motor. */
-            PARAM_MOTOR_MAX_IMPULSE = 7,
-            
-            /** Represents the size of the [enum Param] enum. */
-            PARAM_MAX = 8,
-        }
-        enum Flag {
-            /** If `true`, the hinges maximum and minimum rotation, defined by [member angular_limit/lower] and [member angular_limit/upper] has effects. */
-            FLAG_USE_LIMIT = 0,
-            
-            /** When activated, a motor turns the hinge. */
-            FLAG_ENABLE_MOTOR = 1,
-            
-            /** Represents the size of the [enum Flag] enum. */
-            FLAG_MAX = 2,
-        }
-    }
-    /** A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_hingejoint3d.html  
-     */
-    class HingeJoint3D extends Joint3D {
-        constructor(identifier?: any)
-        /** Sets the value of the specified parameter. */
-        set_param(param: HingeJoint3D.Param, value: float64): void
-        
-        /** Returns the value of the specified parameter. */
-        get_param(param: HingeJoint3D.Param): float64
-        
-        /** If `true`, enables the specified flag. */
-        set_flag(flag: HingeJoint3D.Flag, enabled: boolean): void
-        
-        /** Returns the value of the specified flag. */
-        get_flag(flag: HingeJoint3D.Flag): boolean
-    }
-    class HistoryDock extends VBoxContainer {
-        constructor(identifier?: any)
-    }
-    namespace Image {
-        enum Format {
-            /** Texture format with a single 8-bit depth representing luminance. */
-            FORMAT_L8 = 0,
-            
-            /** OpenGL texture format with two values, luminance and alpha each stored with 8 bits. */
-            FORMAT_LA8 = 1,
-            
-            /** OpenGL texture format `RED` with a single component and a bitdepth of 8. */
-            FORMAT_R8 = 2,
-            
-            /** OpenGL texture format `RG` with two components and a bitdepth of 8 for each. */
-            FORMAT_RG8 = 3,
-            
-            /** OpenGL texture format `RGB` with three components, each with a bitdepth of 8.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_RGB8 = 4,
-            
-            /** OpenGL texture format `RGBA` with four components, each with a bitdepth of 8.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_RGBA8 = 5,
-            
-            /** OpenGL texture format `RGBA` with four components, each with a bitdepth of 4. */
-            FORMAT_RGBA4444 = 6,
-            
-            /** OpenGL texture format `RGB` with three components. Red and blue have a bitdepth of 5, and green has a bitdepth of 6. */
-            FORMAT_RGB565 = 7,
-            
-            /** OpenGL texture format `GL_R32F` where there's one component, a 32-bit floating-point value. */
-            FORMAT_RF = 8,
-            
-            /** OpenGL texture format `GL_RG32F` where there are two components, each a 32-bit floating-point values. */
-            FORMAT_RGF = 9,
-            
-            /** OpenGL texture format `GL_RGB32F` where there are three components, each a 32-bit floating-point values. */
-            FORMAT_RGBF = 10,
-            
-            /** OpenGL texture format `GL_RGBA32F` where there are four components, each a 32-bit floating-point values. */
-            FORMAT_RGBAF = 11,
-            
-            /** OpenGL texture format `GL_R16F` where there's one component, a 16-bit "half-precision" floating-point value. */
-            FORMAT_RH = 12,
-            
-            /** OpenGL texture format `GL_RG16F` where there are two components, each a 16-bit "half-precision" floating-point value. */
-            FORMAT_RGH = 13,
-            
-            /** OpenGL texture format `GL_RGB16F` where there are three components, each a 16-bit "half-precision" floating-point value. */
-            FORMAT_RGBH = 14,
-            
-            /** OpenGL texture format `GL_RGBA16F` where there are four components, each a 16-bit "half-precision" floating-point value. */
-            FORMAT_RGBAH = 15,
-            
-            /** A special OpenGL texture format where the three color components have 9 bits of precision and all three share a single 5-bit exponent. */
-            FORMAT_RGBE9995 = 16,
-            
-            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that uses Block Compression 1, and is the smallest variation of S3TC, only providing 1 bit of alpha and color data being premultiplied with alpha.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_DXT1 = 17,
-            
-            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that uses Block Compression 2, and color data is interpreted as not having been premultiplied by alpha. Well suited for images with sharp alpha transitions between translucent and opaque areas.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_DXT3 = 18,
-            
-            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also known as Block Compression 3 or BC3 that contains 64 bits of alpha channel data followed by 64 bits of DXT1-encoded color data. Color data is not premultiplied by alpha, same as DXT3. DXT5 generally produces superior results for transparent gradients compared to DXT3.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_DXT5 = 19,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], normalizing the red channel data using the same compression algorithm that DXT5 uses for the alpha channel. */
-            FORMAT_RGTC_R = 20,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], normalizing the red and green channel data using the same compression algorithm that DXT5 uses for the alpha channel. */
-            FORMAT_RGTC_RG = 21,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with unsigned normalized RGBA components.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_BPTC_RGBA = 22,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with signed floating-point RGB components. */
-            FORMAT_BPTC_RGBF = 23,
-            
-            /** Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with unsigned floating-point RGB components. */
-            FORMAT_BPTC_RGBFU = 24,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC1]Ericsson Texture Compression format 1[/url], also referred to as "ETC1", and is part of the OpenGL ES graphics standard. This format cannot store an alpha channel. */
-            FORMAT_ETC = 25,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`R11_EAC` variant), which provides one channel of unsigned data. */
-            FORMAT_ETC2_R11 = 26,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`SIGNED_R11_EAC` variant), which provides one channel of signed data. */
-            FORMAT_ETC2_R11S = 27,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RG11_EAC` variant), which provides two channels of unsigned data. */
-            FORMAT_ETC2_RG11 = 28,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`SIGNED_RG11_EAC` variant), which provides two channels of signed data. */
-            FORMAT_ETC2_RG11S = 29,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGB8` variant), which is a follow-up of ETC1 and compresses RGB888 data.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_ETC2_RGB8 = 30,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGBA8`variant), which compresses RGBA8888 data with full alpha support.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_ETC2_RGBA8 = 31,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGB8_PUNCHTHROUGH_ALPHA1` variant), which compresses RGBA data to make alpha either fully transparent or fully opaque.  
-             *      
-             *  **Note:** When creating an [ImageTexture], an sRGB to linear color space conversion is performed.  
-             */
-            FORMAT_ETC2_RGB8A1 = 32,
-            
-            /** [url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (`RGBA8` variant), which compresses RA data and interprets it as two channels (red and green). See also [constant FORMAT_ETC2_RGBA8]. */
-            FORMAT_ETC2_RA_AS_RG = 33,
-            
-            /** The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also known as Block Compression 3 or BC3, which compresses RA data and interprets it as two channels (red and green). See also [constant FORMAT_DXT5]. */
-            FORMAT_DXT5_RA_AS_RG = 34,
-            
-            /** [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable Texture Compression[/url]. This implements the 4x4 (high quality) mode. */
-            FORMAT_ASTC_4x4 = 35,
-            
-            /** Same format as [constant FORMAT_ASTC_4x4], but with the hint to let the GPU know it is used for HDR. */
-            FORMAT_ASTC_4x4_HDR = 36,
-            
-            /** [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable Texture Compression[/url]. This implements the 8x8 (low quality) mode. */
-            FORMAT_ASTC_8x8 = 37,
-            
-            /** Same format as [constant FORMAT_ASTC_8x8], but with the hint to let the GPU know it is used for HDR. */
-            FORMAT_ASTC_8x8_HDR = 38,
-            
-            /** Represents the size of the [enum Format] enum. */
-            FORMAT_MAX = 39,
-        }
-        enum Interpolation {
-            /** Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated. */
-            INTERPOLATE_NEAREST = 0,
-            
-            /** Performs bilinear interpolation. If the image is resized, it will be blurry. This mode is faster than [constant INTERPOLATE_CUBIC], but it results in lower quality. */
-            INTERPOLATE_BILINEAR = 1,
-            
-            /** Performs cubic interpolation. If the image is resized, it will be blurry. This mode often gives better results compared to [constant INTERPOLATE_BILINEAR], at the cost of being slower. */
-            INTERPOLATE_CUBIC = 2,
-            
-            /** Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates between them.  
-             *  It's slower than [constant INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer aliasing artifacts.  
-             *  If the image does not have mipmaps, they will be generated and used internally, but no mipmaps will be generated on the resulting image.  
-             *      
-             *  **Note:** If you intend to scale multiple copies of the original image, it's better to call [method generate_mipmaps]] on it in advance, to avoid wasting processing power in generating them again and again.  
-             *  On the other hand, if the image already has mipmaps, they will be used, and a new set will be generated for the resulting image.  
-             */
-            INTERPOLATE_TRILINEAR = 3,
-            
-            /** Performs Lanczos interpolation. This is the slowest image resizing mode, but it typically gives the best results, especially when downscaling images. */
-            INTERPOLATE_LANCZOS = 4,
-        }
-        enum AlphaMode {
-            /** Image does not have alpha. */
-            ALPHA_NONE = 0,
-            
-            /** Image stores alpha in a single bit. */
-            ALPHA_BIT = 1,
-            
-            /** Image uses alpha. */
-            ALPHA_BLEND = 2,
-        }
-        enum CompressMode {
-            /** Use S3TC compression. */
-            COMPRESS_S3TC = 0,
-            
-            /** Use ETC compression. */
-            COMPRESS_ETC = 1,
-            
-            /** Use ETC2 compression. */
-            COMPRESS_ETC2 = 2,
-            
-            /** Use BPTC compression. */
-            COMPRESS_BPTC = 3,
-            
-            /** Use ASTC compression. */
-            COMPRESS_ASTC = 4,
-            
-            /** Represents the size of the [enum CompressMode] enum. */
-            COMPRESS_MAX = 5,
-        }
-        enum UsedChannels {
-            /** The image only uses one channel for luminance (grayscale). */
-            USED_CHANNELS_L = 0,
-            
-            /** The image uses two channels for luminance and alpha, respectively. */
-            USED_CHANNELS_LA = 1,
-            
-            /** The image only uses the red channel. */
-            USED_CHANNELS_R = 2,
-            
-            /** The image uses two channels for red and green. */
-            USED_CHANNELS_RG = 3,
-            
-            /** The image uses three channels for red, green, and blue. */
-            USED_CHANNELS_RGB = 4,
-            
-            /** The image uses four channels for red, green, blue, and alpha. */
-            USED_CHANNELS_RGBA = 5,
-        }
-        enum CompressSource {
-            /** Source texture (before compression) is a regular texture. Default for all textures. */
-            COMPRESS_SOURCE_GENERIC = 0,
-            
-            /** Source texture (before compression) is in sRGB space. */
-            COMPRESS_SOURCE_SRGB = 1,
-            
-            /** Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels). */
-            COMPRESS_SOURCE_NORMAL = 2,
-        }
-        enum ASTCFormat {
-            /** Hint to indicate that the high quality 4x4 ASTC compression format should be used. */
-            ASTC_FORMAT_4x4 = 0,
-            
-            /** Hint to indicate that the low quality 8x8 ASTC compression format should be used. */
-            ASTC_FORMAT_8x8 = 1,
-        }
-    }
-    /** Image datatype.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_image.html  
-     */
-    class Image extends Resource {
-        /** The maximal width allowed for [Image] resources. */
-        static readonly MAX_WIDTH = 16777216
-        
-        /** The maximal height allowed for [Image] resources. */
-        static readonly MAX_HEIGHT = 16777216
-        constructor(identifier?: any)
-        
-        /** Returns the image's width. */
-        get_width(): int64
-        
-        /** Returns the image's height. */
-        get_height(): int64
-        
-        /** Returns the image's size (width and height). */
-        get_size(): Vector2i
-        
-        /** Returns `true` if the image has generated mipmaps. */
-        has_mipmaps(): boolean
-        
-        /** Returns the image's format. See [enum Format] constants. */
-        get_format(): Image.Format
-        
-        /** Returns a copy of the image's raw data. */
-        get_data(): PackedByteArray
-        
-        /** Converts the image's format. See [enum Format] constants. */
-        convert(format: Image.Format): void
-        
-        /** Returns the number of mipmap levels or 0 if the image has no mipmaps. The largest main level image is not counted as a mipmap level by this method, so if you want to include it you can add 1 to this count. */
-        get_mipmap_count(): int64
-        
-        /** Returns the offset where the image's mipmap with index [param mipmap] is stored in the [member data] dictionary. */
-        get_mipmap_offset(mipmap: int64): int64
-        
-        /** Resizes the image to the nearest power of 2 for the width and height. If [param square] is `true` then set width and height to be the same. New pixels are calculated using the [param interpolation] mode defined via [enum Interpolation] constants. */
-        resize_to_po2(square: boolean = false, interpolation: Image.Interpolation = 1): void
-        
-        /** Resizes the image to the given [param width] and [param height]. New pixels are calculated using the [param interpolation] mode defined via [enum Interpolation] constants. */
-        resize(width: int64, height: int64, interpolation: Image.Interpolation = 1): void
-        
-        /** Shrinks the image by a factor of 2 on each axis (this divides the pixel count by 4). */
-        shrink_x2(): void
-        
-        /** Crops the image to the given [param width] and [param height]. If the specified size is larger than the current size, the extra area is filled with black pixels. */
-        crop(width: int64, height: int64): void
-        
-        /** Flips the image horizontally. */
-        flip_x(): void
-        
-        /** Flips the image vertically. */
-        flip_y(): void
-        
-        /** Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`. Enabling [param renormalize] when generating mipmaps for normal map textures will make sure all resulting vector values are normalized.  
-         *  It is possible to check if the image has mipmaps by calling [method has_mipmaps] or [method get_mipmap_count]. Calling [method generate_mipmaps] on an image that already has mipmaps will replace existing mipmaps in the image.  
-         */
-        generate_mipmaps(renormalize: boolean = false): Error
-        
-        /** Removes the image's mipmaps. */
-        clear_mipmaps(): void
-        
-        /** Creates an empty image of given size and format. See [enum Format] constants. If [param use_mipmaps] is `true`, then generate mipmaps for this image. See the [method generate_mipmaps]. */
-        static create(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format): Image
-        
-        /** Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If [param use_mipmaps] is `true` then loads mipmaps for this image from [param data]. See [method generate_mipmaps]. */
-        static create_from_data(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray | byte[] | ArrayBuffer): Image
-        
-        /** Overwrites data of an existing [Image]. Non-static equivalent of [method create_from_data]. */
-        set_data(width: int64, height: int64, use_mipmaps: boolean, format: Image.Format, data: PackedByteArray | byte[] | ArrayBuffer): void
-        
-        /** Returns `true` if the image has no data. */
-        is_empty(): boolean
-        
-        /** Loads an image from file [param path]. See [url=https://docs.godotengine.org/en/4.2/tutorials/assets_pipeline/importing_images.html#supported-image-formats]Supported image formats[/url] for a list of supported image formats and limitations.  
-         *  **Warning:** This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the `user://` directory, and may not work in exported projects.  
-         *  See also [ImageTexture] description for usage examples.  
-         */
-        load(path: string): Error
-        
-        /** Creates a new [Image] and loads data from the specified file. */
-        static load_from_file(path: string): Image
-        
-        /** Saves the image as a PNG file to the file at [param path]. */
-        save_png(path: string): Error
-        
-        /** Saves the image as a PNG file to a byte array. */
-        save_png_to_buffer(): PackedByteArray
-        
-        /** Saves the image as a JPEG file to [param path] with the specified [param quality] between `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the cost of larger file sizes. Recommended [param quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.  
-         *      
-         *  **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the image will still be saved, but the resulting JPEG file won't contain the alpha channel.  
-         */
-        save_jpg(path: string, quality: float64 = 0.75): Error
-        
-        /** Saves the image as a JPEG file to a byte array with the specified [param quality] between `0.01` and `1.0` (inclusive). Higher [param quality] values result in better-looking output at the cost of larger byte array sizes (and therefore memory usage). Recommended [param quality] values are between `0.75` and `0.90`. Even at quality `1.00`, JPEG compression remains lossy.  
-         *      
-         *  **Note:** JPEG does not save an alpha channel. If the [Image] contains an alpha channel, the image will still be saved, but the resulting byte array won't contain the alpha channel.  
-         */
-        save_jpg_to_buffer(quality: float64 = 0.75): PackedByteArray
-        
-        /** Saves the image as an EXR file to [param path]. If [param grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return [constant ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.  
-         *      
-         *  **Note:** The TinyEXR module is disabled in non-editor builds, which means [method save_exr] will return [constant ERR_UNAVAILABLE] when it is called from an exported project.  
-         */
-        save_exr(path: string, grayscale: boolean = false): Error
-        
-        /** Saves the image as an EXR file to a byte array. If [param grayscale] is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return an empty byte array if Godot was compiled without the TinyEXR module.  
-         *      
-         *  **Note:** The TinyEXR module is disabled in non-editor builds, which means [method save_exr] will return an empty byte array when it is called from an exported project.  
-         */
-        save_exr_to_buffer(grayscale: boolean = false): PackedByteArray
-        
-        /** Saves the image as a WebP (Web Picture) file to the file at [param path]. By default it will save lossless. If [param lossy] is true, the image will be saved lossy, using the [param quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.  
-         *      
-         *  **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.  
-         */
-        save_webp(path: string, lossy: boolean = false, quality: float64 = 0.75): Error
-        
-        /** Saves the image as a WebP (Web Picture) file to a byte array. By default it will save lossless. If [param lossy] is true, the image will be saved lossy, using the [param quality] setting between 0.0 and 1.0 (inclusive). Lossless WebP offers more efficient compression than PNG.  
-         *      
-         *  **Note:** The WebP format is limited to a size of 16383×16383 pixels, while PNG can save larger images.  
-         */
-        save_webp_to_buffer(lossy: boolean = false, quality: float64 = 0.75): PackedByteArray
-        
-        /** Returns [constant ALPHA_BLEND] if the image has data for alpha values. Returns [constant ALPHA_BIT] if all the alpha values are stored in a single bit. Returns [constant ALPHA_NONE] if no data for alpha values is found. */
-        detect_alpha(): Image.AlphaMode
-        
-        /** Returns `true` if all the image's pixels have an alpha value of 0. Returns `false` if any pixel has an alpha value higher than 0. */
-        is_invisible(): boolean
-        
-        /** Returns the color channels used by this image, as one of the [enum UsedChannels] constants. If the image is compressed, the original [param source] must be specified. */
-        detect_used_channels(source: Image.CompressSource = 0): Image.UsedChannels
-        
-        /** Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.  
-         *  The [param source] parameter helps to pick the best compression method for DXT and ETC2 formats. It is ignored for ASTC compression.  
-         *  For ASTC compression, the [param astc_format] parameter must be supplied.  
-         */
-        compress(mode: Image.CompressMode, source: Image.CompressSource = 0, astc_format: Image.ASTCFormat = 0): Error
-        
-        /** Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available.  
-         *  This is an alternative to [method compress] that lets the user supply the channels used in order for the compressor to pick the best DXT and ETC2 formats. For other formats (non DXT or ETC2), this argument is ignored.  
-         *  For ASTC compression, the [param astc_format] parameter must be supplied.  
-         */
-        compress_from_channels(mode: Image.CompressMode, channels: Image.UsedChannels, astc_format: Image.ASTCFormat = 0): Error
-        
-        /** Decompresses the image if it is VRAM compressed in a supported format. Returns [constant OK] if the format is supported, otherwise [constant ERR_UNAVAILABLE].  
-         *      
-         *  **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2 are not supported.  
-         */
-        decompress(): Error
-        
-        /** Returns `true` if the image is compressed. */
-        is_compressed(): boolean
-        
-        /** Rotates the image in the specified [param direction] by `90` degrees. The width and height of the image must be greater than `1`. If the width and height are not equal, the image will be resized. */
-        rotate_90(direction: ClockDirection): void
-        
-        /** Rotates the image by `180` degrees. The width and height of the image must be greater than `1`. */
-        rotate_180(): void
-        
-        /** Blends low-alpha pixels with nearby pixels. */
-        fix_alpha_edges(): void
-        
-        /** Multiplies color values with alpha values. Resulting color values for a pixel are `(color * alpha)/256`. See also [member CanvasItemMaterial.blend_mode]. */
-        premultiply_alpha(): void
-        
-        /** Converts the raw data from the sRGB colorspace to a linear scale. */
-        srgb_to_linear(): void
-        
-        /** Converts the image's data to represent coordinates on a 3D plane. This is used when the image represents a normal map. A normal map can add lots of detail to a 3D surface without increasing the polygon count. */
-        normal_map_to_xy(): void
-        
-        /** Converts a standard RGBE (Red Green Blue Exponent) image to an sRGB image. */
-        rgbe_to_srgb(): Image
-        
-        /** Converts a bump map to a normal map. A bump map provides a height offset per-pixel, while a normal map provides a normal direction per pixel. */
-        bump_map_to_normal_map(bump_scale: float64 = 1): void
-        
-        /** Compute image metrics on the current image and the compared image.  
-         *  The dictionary contains `max`, `mean`, `mean_squared`, `root_mean_squared` and `peak_snr`.  
-         */
-        compute_image_metrics(compared_image: Image, use_luma: boolean): Dictionary
-        
-        /** Copies [param src_rect] from [param src] image to this image at coordinates [param dst], clipped accordingly to both image bounds. This image and [param src] image **must** have the same format. [param src_rect] with non-positive size is treated as empty. */
-        blit_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
-        
-        /** Blits [param src_rect] area from [param src] image to this image at the coordinates given by [param dst], clipped accordingly to both image bounds. [param src] pixel is copied onto [param dst] if the corresponding [param mask] pixel's alpha value is not 0. This image and [param src] image **must** have the same format. [param src] image and [param mask] image **must** have the same size (width and height) but they can have different formats. [param src_rect] with non-positive size is treated as empty. */
-        blit_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
-        
-        /** Alpha-blends [param src_rect] from [param src] image to this image at coordinates [param dst], clipped accordingly to both image bounds. This image and [param src] image **must** have the same format. [param src_rect] with non-positive size is treated as empty. */
-        blend_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
-        
-        /** Alpha-blends [param src_rect] from [param src] image to this image using [param mask] image at coordinates [param dst], clipped accordingly to both image bounds. Alpha channels are required for both [param src] and [param mask]. [param dst] pixels and [param src] pixels will blend if the corresponding mask pixel's alpha value is not 0. This image and [param src] image **must** have the same format. [param src] image and [param mask] image **must** have the same size (width and height) but they can have different formats. [param src_rect] with non-positive size is treated as empty. */
-        blend_rect_mask(src: Image, mask: Image, src_rect: Rect2i, dst: Vector2i): void
-        
-        /** Fills the image with [param color]. */
-        fill(color: Color): void
-        
-        /** Fills [param rect] with [param color]. */
-        fill_rect(rect: Rect2i, color: Color): void
-        
-        /** Returns a [Rect2i] enclosing the visible portion of the image, considering each pixel with a non-zero alpha channel as visible. */
-        get_used_rect(): Rect2i
-        
-        /** Returns a new [Image] that is a copy of this [Image]'s area specified with [param region]. */
-        get_region(region: Rect2i): Image
-        
-        /** Copies [param src] image to this image. */
-        copy_from(src: Image): void
-        
-        /** Returns the color of the pixel at [param point].  
-         *  This is the same as [method get_pixel], but with a [Vector2i] argument instead of two integer arguments.  
-         */
-        get_pixelv(point: Vector2i): Color
-        
-        /** Returns the color of the pixel at `(x, y)`.  
-         *  This is the same as [method get_pixelv], but with two integer arguments instead of a [Vector2i] argument.  
-         */
-        get_pixel(x: int64, y: int64): Color
-        
-        /** Sets the [Color] of the pixel at [param point] to [param color].  
-         *  **Example:**  
-         *    
-         *  This is the same as [method set_pixel], but with a [Vector2i] argument instead of two integer arguments.  
-         */
-        set_pixelv(point: Vector2i, color: Color): void
-        
-        /** Sets the [Color] of the pixel at `(x, y)` to [param color].  
-         *  **Example:**  
-         *    
-         *  This is the same as [method set_pixelv], but with a two integer arguments instead of a [Vector2i] argument.  
-         */
-        set_pixel(x: int64, y: int64, color: Color): void
-        
-        /** Adjusts this image's [param brightness], [param contrast], and [param saturation] by the given values. Does not work if the image is compressed (see [method is_compressed]). */
-        adjust_bcs(brightness: float64, contrast: float64, saturation: float64): void
-        
-        /** Loads an image from the binary contents of a PNG file. */
-        load_png_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Loads an image from the binary contents of a JPEG file. */
-        load_jpg_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Loads an image from the binary contents of a WebP file. */
-        load_webp_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Loads an image from the binary contents of a TGA file.  
-         *      
-         *  **Note:** This method is only available in engine builds with the TGA module enabled. By default, the TGA module is enabled, but it can be disabled at build-time using the `module_tga_enabled=no` SCons option.  
-         */
-        load_tga_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Loads an image from the binary contents of a BMP file.  
-         *      
-         *  **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.  
-         *      
-         *  **Note:** This method is only available in engine builds with the BMP module enabled. By default, the BMP module is enabled, but it can be disabled at build-time using the `module_bmp_enabled=no` SCons option.  
-         */
-        load_bmp_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Loads an image from the binary contents of a [url=https://github.com/KhronosGroup/KTX-Software]KTX[/url] file. Unlike most image formats, KTX can store VRAM-compressed data and embed mipmaps.  
-         *      
-         *  **Note:** Godot's libktx implementation only supports 2D images. Cubemaps, texture arrays, and de-padding are not supported.  
-         *      
-         *  **Note:** This method is only available in engine builds with the KTX module enabled. By default, the KTX module is enabled, but it can be disabled at build-time using the `module_ktx_enabled=no` SCons option.  
-         */
-        load_ktx_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Loads an image from the UTF-8 binary contents of an **uncompressed** SVG file (**.svg**).  
-         *      
-         *  **Note:** Beware when using compressed SVG files (like **.svgz**), they need to be `decompressed` before loading.  
-         *      
-         *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
-         */
-        load_svg_from_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer, scale: float64 = 1): Error
-        
-        /** Loads an image from the string contents of a SVG file (**.svg**).  
-         *      
-         *  **Note:** This method is only available in engine builds with the SVG module enabled. By default, the SVG module is enabled, but it can be disabled at build-time using the `module_svg_enabled=no` SCons option.  
-         */
-        load_svg_from_string(svg_str: string, scale: float64 = 1): Error
-        
-        /** Holds all the image's color data in a given format. See [enum Format] constants. */
-        get data(): Dictionary
-        set data(value: Dictionary)
-    }
-    namespace ImageFormatLoader {
-        enum LoaderFlags {
-            FLAG_NONE = 0,
-            FLAG_FORCE_LINEAR = 1,
-            FLAG_CONVERT_COLORS = 2,
-        }
-    }
-    /** Base class to add support for specific image formats.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_imageformatloader.html  
-     */
-    class ImageFormatLoader extends RefCounted {
-        constructor(identifier?: any)
-    }
-    /** Base class for creating [ImageFormatLoader] extensions (adding support for extra image formats).  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_imageformatloaderextension.html  
-     */
-    class ImageFormatLoaderExtension extends ImageFormatLoader {
-        constructor(identifier?: any)
-        /** Returns the list of file extensions for this image format. Files with the given extensions will be treated as image file and loaded using this class. */
-        /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
-        
-        /** Loads the content of [param fileaccess] into the provided [param image]. */
-        /* gdvirtual */ _load_image(image: Image, fileaccess: FileAccess, flags: ImageFormatLoader.LoaderFlags, scale: float64): Error
-        
-        /** Add this format loader to the engine, allowing it to recognize the file extensions returned by [method _get_recognized_extensions]. */
-        add_format_loader(): void
-        
-        /** Remove this format loader from the engine. */
-        remove_format_loader(): void
     }
 }

@@ -1,6 +1,1696 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A packed array of 32-bit integers.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedint32array.html  
+     */
+    class PackedInt32Array {
+        constructor()
+        constructor(from: PackedInt32Array | int32[])
+        constructor(from: Array)
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the integer at the given index. */
+        set(index: int64, value: int64): void
+        
+        /** Appends a value to the array. */
+        push_back(value: int64): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: int64): boolean
+        
+        /** Appends a [PackedInt32Array] at the end of this array. */
+        append_array(array: PackedInt32Array | int32[]): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new integer at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: int64): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: int64): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value]. */
+        has(value: int64): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedInt32Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedInt32Array].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedInt32Array
+        
+        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 4 bytes.  
+         *  The size of the new array will be `int32_array.size() * 4`.  
+         */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order. */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         */
+        bsearch(value: int64, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedInt32Array
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
+        find(value: int64, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
+        rfind(value: int64, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array. */
+        count(value: int64): int64
+        static EQUAL(left: PackedInt32Array | int32[], right: PackedInt32Array | int32[]): boolean
+        static NOT_EQUAL(left: PackedInt32Array | int32[], right: PackedInt32Array | int32[]): boolean
+    }
+    /** A packed array of 64-bit integers.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedint64array.html  
+     */
+    class PackedInt64Array {
+        constructor()
+        constructor(from: PackedInt64Array | int64[])
+        constructor(from: Array)
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the integer at the given index. */
+        set(index: int64, value: int64): void
+        
+        /** Appends a value to the array. */
+        push_back(value: int64): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: int64): boolean
+        
+        /** Appends a [PackedInt64Array] at the end of this array. */
+        append_array(array: PackedInt64Array | int64[]): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new integer at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: int64): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: int64): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value]. */
+        has(value: int64): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedInt64Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedInt64Array].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedInt64Array
+        
+        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 8 bytes.  
+         *  The size of the new array will be `int64_array.size() * 8`.  
+         */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order. */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         */
+        bsearch(value: int64, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedInt64Array
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
+        find(value: int64, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
+        rfind(value: int64, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array. */
+        count(value: int64): int64
+        static EQUAL(left: PackedInt64Array | int64[], right: PackedInt64Array | int64[]): boolean
+        static NOT_EQUAL(left: PackedInt64Array | int64[], right: PackedInt64Array | int64[]): boolean
+    }
+    /** A packed array of 32-bit floating-point values.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedfloat32array.html  
+     */
+    class PackedFloat32Array {
+        constructor()
+        constructor(from: PackedFloat32Array | float32[])
+        constructor(from: Array)
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the float at the given index. */
+        set(index: int64, value: float64): void
+        
+        /** Appends an element at the end of the array. */
+        push_back(value: float64): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: float64): boolean
+        
+        /** Appends a [PackedFloat32Array] at the end of this array. */
+        append_array(array: PackedFloat32Array | float32[]): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: float64): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: float64): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value].  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        has(value: float64): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedFloat32Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedFloat32Array].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedFloat32Array
+        
+        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 4 bytes.  
+         *  The size of the new array will be `float32_array.size() * 4`.  
+         */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        bsearch(value: float64, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedFloat32Array
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        find(value: float64, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        rfind(value: float64, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        count(value: float64): int64
+        static EQUAL(left: PackedFloat32Array | float32[], right: PackedFloat32Array | float32[]): boolean
+        static NOT_EQUAL(left: PackedFloat32Array | float32[], right: PackedFloat32Array | float32[]): boolean
+    }
+    /** A packed array of 64-bit floating-point values.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedfloat64array.html  
+     */
+    class PackedFloat64Array {
+        constructor()
+        constructor(from: PackedFloat64Array | float64[])
+        constructor(from: Array)
+        set_indexed(index: number, value: float64)
+        get_indexed(index: number): float64
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the float at the given index. */
+        set(index: int64, value: float64): void
+        
+        /** Appends an element at the end of the array. */
+        push_back(value: float64): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: float64): boolean
+        
+        /** Appends a [PackedFloat64Array] at the end of this array. */
+        append_array(array: PackedFloat64Array | float64[]): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: float64): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: float64): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value].  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        has(value: float64): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedFloat64Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedFloat64Array].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedFloat64Array
+        
+        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 8 bytes.  
+         *  The size of the new array will be `float64_array.size() * 8`.  
+         */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        bsearch(value: float64, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedFloat64Array
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        find(value: float64, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        rfind(value: float64, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array.  
+         *      
+         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        count(value: float64): int64
+        static EQUAL(left: PackedFloat64Array | float64[], right: PackedFloat64Array | float64[]): boolean
+        static NOT_EQUAL(left: PackedFloat64Array | float64[], right: PackedFloat64Array | float64[]): boolean
+    }
+    /** A packed array of [String]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedstringarray.html  
+     */
+    class PackedStringArray {
+        constructor()
+        constructor(from: PackedStringArray | string[])
+        constructor(from: Array)
+        set_indexed(index: number, value: string)
+        get_indexed(index: number): string
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the [String] at the given index. */
+        set(index: int64, value: string): void
+        
+        /** Appends a string element at end of the array. */
+        push_back(value: string): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: string): boolean
+        
+        /** Appends a [PackedStringArray] at the end of this array. */
+        append_array(array: PackedStringArray | string[]): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: string): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: string): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value]. */
+        has(value: string): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedStringArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedStringArray].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedStringArray
+        
+        /** Returns a [PackedByteArray] with each string encoded as bytes. */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order. */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         */
+        bsearch(value: string, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedStringArray
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
+        find(value: string, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
+        rfind(value: string, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array. */
+        count(value: string): int64
+        static EQUAL(left: PackedStringArray | string[], right: PackedStringArray | string[]): boolean
+        static NOT_EQUAL(left: PackedStringArray | string[], right: PackedStringArray | string[]): boolean
+    }
+    /** A packed array of [Vector2]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedvector2array.html  
+     */
+    class PackedVector2Array {
+        constructor()
+        constructor(from: PackedVector2Array | Vector2[])
+        constructor(from: Array)
+        set_indexed(index: number, value: Vector2)
+        get_indexed(index: number): Vector2
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the [Vector2] at the given index. */
+        set(index: int64, value: Vector2): void
+        
+        /** Inserts a [Vector2] at the end. */
+        push_back(value: Vector2): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: Vector2): boolean
+        
+        /** Appends a [PackedVector2Array] at the end of this array. */
+        append_array(array: PackedVector2Array | Vector2[]): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: Vector2): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: Vector2): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value].  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        has(value: Vector2): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedVector2Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedVector2Array].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedVector2Array
+        
+        /** Returns a [PackedByteArray] with each vector encoded as bytes. */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        bsearch(value: Vector2, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedVector2Array
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        find(value: Vector2, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        rfind(value: Vector2, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        count(value: Vector2): int64
+        static EQUAL(left: PackedVector2Array | Vector2[], right: PackedVector2Array | Vector2[]): boolean
+        static NOT_EQUAL(left: PackedVector2Array | Vector2[], right: PackedVector2Array | Vector2[]): boolean
+    }
+    /** A packed array of [Vector3]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedvector3array.html  
+     */
+    class PackedVector3Array {
+        constructor()
+        constructor(from: PackedVector3Array | Vector3[])
+        constructor(from: Array)
+        set_indexed(index: number, value: Vector3)
+        get_indexed(index: number): Vector3
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the [Vector3] at the given index. */
+        set(index: int64, value: Vector3): void
+        
+        /** Inserts a [Vector3] at the end. */
+        push_back(value: Vector3): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: Vector3): boolean
+        
+        /** Appends a [PackedVector3Array] at the end of this array. */
+        append_array(array: PackedVector3Array | Vector3[]): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: Vector3): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: Vector3): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value].  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        has(value: Vector3): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedVector3Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedVector3Array].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedVector3Array
+        
+        /** Returns a [PackedByteArray] with each vector encoded as bytes. */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        bsearch(value: Vector3, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedVector3Array
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        find(value: Vector3, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        rfind(value: Vector3, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        count(value: Vector3): int64
+        static EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
+        static NOT_EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
+    }
+    /** A packed array of [Color]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedcolorarray.html  
+     */
+    class PackedColorArray {
+        constructor()
+        constructor(from: PackedColorArray | Color[])
+        constructor(from: Array)
+        set_indexed(index: number, value: Color)
+        get_indexed(index: number): Color
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the [Color] at the given index. */
+        set(index: int64, value: Color): void
+        
+        /** Appends a value to the array. */
+        push_back(value: Color): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: Color): boolean
+        
+        /** Appends a [PackedColorArray] at the end of this array. */
+        append_array(array: PackedColorArray | Color[]): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: Color): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: Color): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value]. */
+        has(value: Color): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedColorArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedColorArray].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedColorArray
+        
+        /** Returns a [PackedByteArray] with each color encoded as bytes. */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order. */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         */
+        bsearch(value: Color, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedColorArray
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
+        find(value: Color, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
+        rfind(value: Color, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array. */
+        count(value: Color): int64
+        static EQUAL(left: PackedColorArray | Color[], right: PackedColorArray | Color[]): boolean
+        static NOT_EQUAL(left: PackedColorArray | Color[], right: PackedColorArray | Color[]): boolean
+    }
+    enum Side {
+        /** Left side, usually used for [Control] or [StyleBox]-derived classes. */
+        SIDE_LEFT = 0,
+        
+        /** Top side, usually used for [Control] or [StyleBox]-derived classes. */
+        SIDE_TOP = 1,
+        
+        /** Right side, usually used for [Control] or [StyleBox]-derived classes. */
+        SIDE_RIGHT = 2,
+        
+        /** Bottom side, usually used for [Control] or [StyleBox]-derived classes. */
+        SIDE_BOTTOM = 3,
+    }
+    enum Corner {
+        /** Top-left corner. */
+        CORNER_TOP_LEFT = 0,
+        
+        /** Top-right corner. */
+        CORNER_TOP_RIGHT = 1,
+        
+        /** Bottom-right corner. */
+        CORNER_BOTTOM_RIGHT = 2,
+        
+        /** Bottom-left corner. */
+        CORNER_BOTTOM_LEFT = 3,
+    }
+    enum Orientation {
+        /** General vertical alignment, usually used for [Separator], [ScrollBar], [Slider], etc. */
+        VERTICAL = 1,
+        
+        /** General horizontal alignment, usually used for [Separator], [ScrollBar], [Slider], etc. */
+        HORIZONTAL = 0,
+    }
+    enum ClockDirection {
+        /** Clockwise rotation. Used by some methods (e.g. [method Image.rotate_90]). */
+        CLOCKWISE = 0,
+        
+        /** Counter-clockwise rotation. Used by some methods (e.g. [method Image.rotate_90]). */
+        COUNTERCLOCKWISE = 1,
+    }
+    enum HorizontalAlignment {
+        /** Horizontal left alignment, usually for text-derived classes. */
+        HORIZONTAL_ALIGNMENT_LEFT = 0,
+        
+        /** Horizontal center alignment, usually for text-derived classes. */
+        HORIZONTAL_ALIGNMENT_CENTER = 1,
+        
+        /** Horizontal right alignment, usually for text-derived classes. */
+        HORIZONTAL_ALIGNMENT_RIGHT = 2,
+        
+        /** Expand row to fit width, usually for text-derived classes. */
+        HORIZONTAL_ALIGNMENT_FILL = 3,
+    }
+    enum VerticalAlignment {
+        /** Vertical top alignment, usually for text-derived classes. */
+        VERTICAL_ALIGNMENT_TOP = 0,
+        
+        /** Vertical center alignment, usually for text-derived classes. */
+        VERTICAL_ALIGNMENT_CENTER = 1,
+        
+        /** Vertical bottom alignment, usually for text-derived classes. */
+        VERTICAL_ALIGNMENT_BOTTOM = 2,
+        
+        /** Expand rows to fit height, usually for text-derived classes. */
+        VERTICAL_ALIGNMENT_FILL = 3,
+    }
+    enum InlineAlignment {
+        /** Aligns the top of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
+        INLINE_ALIGNMENT_TOP_TO = 0,
+        
+        /** Aligns the center of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
+        INLINE_ALIGNMENT_CENTER_TO = 1,
+        
+        /** Aligns the baseline (user defined) of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
+        INLINE_ALIGNMENT_BASELINE_TO = 3,
+        
+        /** Aligns the bottom of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
+        INLINE_ALIGNMENT_BOTTOM_TO = 2,
+        
+        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the top of the text. */
+        INLINE_ALIGNMENT_TO_TOP = 0,
+        
+        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the center of the text. */
+        INLINE_ALIGNMENT_TO_CENTER = 4,
+        
+        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the baseline of the text. */
+        INLINE_ALIGNMENT_TO_BASELINE = 8,
+        
+        /** Aligns inline object (e.g. image, table) to the bottom of the text. */
+        INLINE_ALIGNMENT_TO_BOTTOM = 12,
+        
+        /** Aligns top of the inline object (e.g. image, table) to the top of the text. Equivalent to `INLINE_ALIGNMENT_TOP_TO | INLINE_ALIGNMENT_TO_TOP`. */
+        INLINE_ALIGNMENT_TOP = 0,
+        
+        /** Aligns center of the inline object (e.g. image, table) to the center of the text. Equivalent to `INLINE_ALIGNMENT_CENTER_TO | INLINE_ALIGNMENT_TO_CENTER`. */
+        INLINE_ALIGNMENT_CENTER = 5,
+        
+        /** Aligns bottom of the inline object (e.g. image, table) to the bottom of the text. Equivalent to `INLINE_ALIGNMENT_BOTTOM_TO | INLINE_ALIGNMENT_TO_BOTTOM`. */
+        INLINE_ALIGNMENT_BOTTOM = 14,
+        
+        /** A bit mask for `INLINE_ALIGNMENT_*_TO` alignment constants. */
+        INLINE_ALIGNMENT_IMAGE_MASK = 3,
+        
+        /** A bit mask for `INLINE_ALIGNMENT_TO_*` alignment constants. */
+        INLINE_ALIGNMENT_TEXT_MASK = 12,
+    }
+    enum EulerOrder {
+        /** Specifies that Euler angles should be in XYZ order. When composing, the order is X, Y, Z. When decomposing, the order is reversed, first Z, then Y, and X last. */
+        EULER_ORDER_XYZ = 0,
+        
+        /** Specifies that Euler angles should be in XZY order. When composing, the order is X, Z, Y. When decomposing, the order is reversed, first Y, then Z, and X last. */
+        EULER_ORDER_XZY = 1,
+        
+        /** Specifies that Euler angles should be in YXZ order. When composing, the order is Y, X, Z. When decomposing, the order is reversed, first Z, then X, and Y last. */
+        EULER_ORDER_YXZ = 2,
+        
+        /** Specifies that Euler angles should be in YZX order. When composing, the order is Y, Z, X. When decomposing, the order is reversed, first X, then Z, and Y last. */
+        EULER_ORDER_YZX = 3,
+        
+        /** Specifies that Euler angles should be in ZXY order. When composing, the order is Z, X, Y. When decomposing, the order is reversed, first Y, then X, and Z last. */
+        EULER_ORDER_ZXY = 4,
+        
+        /** Specifies that Euler angles should be in ZYX order. When composing, the order is Z, Y, X. When decomposing, the order is reversed, first X, then Y, and Z last. */
+        EULER_ORDER_ZYX = 5,
+    }
+    enum Key {
+        /** Enum value which doesn't correspond to any key. This is used to initialize [enum Key] properties with a generic state. */
+        KEY_NONE = 0,
+        
+        /** Keycodes with this bit applied are non-printable. */
+        KEY_SPECIAL = 4194304,
+        
+        /** Escape key. */
+        KEY_ESCAPE = 4194305,
+        
+        /** Tab key. */
+        KEY_TAB = 4194306,
+        
+        /** Shift + Tab key. */
+        KEY_BACKTAB = 4194307,
+        
+        /** Backspace key. */
+        KEY_BACKSPACE = 4194308,
+        
+        /** Return key (on the main keyboard). */
+        KEY_ENTER = 4194309,
+        
+        /** Enter key on the numeric keypad. */
+        KEY_KP_ENTER = 4194310,
+        
+        /** Insert key. */
+        KEY_INSERT = 4194311,
+        
+        /** Delete key. */
+        KEY_DELETE = 4194312,
+        
+        /** Pause key. */
+        KEY_PAUSE = 4194313,
+        
+        /** Print Screen key. */
+        KEY_PRINT = 4194314,
+        
+        /** System Request key. */
+        KEY_SYSREQ = 4194315,
+        
+        /** Clear key. */
+        KEY_CLEAR = 4194316,
+        
+        /** Home key. */
+        KEY_HOME = 4194317,
+        
+        /** End key. */
+        KEY_END = 4194318,
+        
+        /** Left arrow key. */
+        KEY_LEFT = 4194319,
+        
+        /** Up arrow key. */
+        KEY_UP = 4194320,
+        
+        /** Right arrow key. */
+        KEY_RIGHT = 4194321,
+        
+        /** Down arrow key. */
+        KEY_DOWN = 4194322,
+        
+        /** Page Up key. */
+        KEY_PAGEUP = 4194323,
+        
+        /** Page Down key. */
+        KEY_PAGEDOWN = 4194324,
+        
+        /** Shift key. */
+        KEY_SHIFT = 4194325,
+        
+        /** Control key. */
+        KEY_CTRL = 4194326,
+        
+        /** Meta key. */
+        KEY_META = 4194327,
+        
+        /** Alt key. */
+        KEY_ALT = 4194328,
+        
+        /** Caps Lock key. */
+        KEY_CAPSLOCK = 4194329,
+        
+        /** Num Lock key. */
+        KEY_NUMLOCK = 4194330,
+        
+        /** Scroll Lock key. */
+        KEY_SCROLLLOCK = 4194331,
+        
+        /** F1 key. */
+        KEY_F1 = 4194332,
+        
+        /** F2 key. */
+        KEY_F2 = 4194333,
+        
+        /** F3 key. */
+        KEY_F3 = 4194334,
+        
+        /** F4 key. */
+        KEY_F4 = 4194335,
+        
+        /** F5 key. */
+        KEY_F5 = 4194336,
+        
+        /** F6 key. */
+        KEY_F6 = 4194337,
+        
+        /** F7 key. */
+        KEY_F7 = 4194338,
+        
+        /** F8 key. */
+        KEY_F8 = 4194339,
+        
+        /** F9 key. */
+        KEY_F9 = 4194340,
+        
+        /** F10 key. */
+        KEY_F10 = 4194341,
+        
+        /** F11 key. */
+        KEY_F11 = 4194342,
+        
+        /** F12 key. */
+        KEY_F12 = 4194343,
+        
+        /** F13 key. */
+        KEY_F13 = 4194344,
+        
+        /** F14 key. */
+        KEY_F14 = 4194345,
+        
+        /** F15 key. */
+        KEY_F15 = 4194346,
+        
+        /** F16 key. */
+        KEY_F16 = 4194347,
+        
+        /** F17 key. */
+        KEY_F17 = 4194348,
+        
+        /** F18 key. */
+        KEY_F18 = 4194349,
+        
+        /** F19 key. */
+        KEY_F19 = 4194350,
+        
+        /** F20 key. */
+        KEY_F20 = 4194351,
+        
+        /** F21 key. */
+        KEY_F21 = 4194352,
+        
+        /** F22 key. */
+        KEY_F22 = 4194353,
+        
+        /** F23 key. */
+        KEY_F23 = 4194354,
+        
+        /** F24 key. */
+        KEY_F24 = 4194355,
+        
+        /** F25 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F25 = 4194356,
+        
+        /** F26 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F26 = 4194357,
+        
+        /** F27 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F27 = 4194358,
+        
+        /** F28 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F28 = 4194359,
+        
+        /** F29 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F29 = 4194360,
+        
+        /** F30 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F30 = 4194361,
+        
+        /** F31 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F31 = 4194362,
+        
+        /** F32 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F32 = 4194363,
+        
+        /** F33 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F33 = 4194364,
+        
+        /** F34 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F34 = 4194365,
+        
+        /** F35 key. Only supported on macOS and Linux due to a Windows limitation. */
+        KEY_F35 = 4194366,
+        
+        /** Multiply (*) key on the numeric keypad. */
+        KEY_KP_MULTIPLY = 4194433,
+        
+        /** Divide (/) key on the numeric keypad. */
+        KEY_KP_DIVIDE = 4194434,
+        
+        /** Subtract (-) key on the numeric keypad. */
+        KEY_KP_SUBTRACT = 4194435,
+        
+        /** Period (.) key on the numeric keypad. */
+        KEY_KP_PERIOD = 4194436,
+        
+        /** Add (+) key on the numeric keypad. */
+        KEY_KP_ADD = 4194437,
+        
+        /** Number 0 on the numeric keypad. */
+        KEY_KP_0 = 4194438,
+        
+        /** Number 1 on the numeric keypad. */
+        KEY_KP_1 = 4194439,
+        
+        /** Number 2 on the numeric keypad. */
+        KEY_KP_2 = 4194440,
+        
+        /** Number 3 on the numeric keypad. */
+        KEY_KP_3 = 4194441,
+        
+        /** Number 4 on the numeric keypad. */
+        KEY_KP_4 = 4194442,
+        
+        /** Number 5 on the numeric keypad. */
+        KEY_KP_5 = 4194443,
+        
+        /** Number 6 on the numeric keypad. */
+        KEY_KP_6 = 4194444,
+        
+        /** Number 7 on the numeric keypad. */
+        KEY_KP_7 = 4194445,
+        
+        /** Number 8 on the numeric keypad. */
+        KEY_KP_8 = 4194446,
+        
+        /** Number 9 on the numeric keypad. */
+        KEY_KP_9 = 4194447,
+        
+        /** Context menu key. */
+        KEY_MENU = 4194370,
+        
+        /** Hyper key. (On Linux/X11 only). */
+        KEY_HYPER = 4194371,
+        
+        /** Help key. */
+        KEY_HELP = 4194373,
+        
+        /** Media back key. Not to be confused with the Back button on an Android device. */
+        KEY_BACK = 4194376,
+        
+        /** Media forward key. */
+        KEY_FORWARD = 4194377,
+        
+        /** Media stop key. */
+        KEY_STOP = 4194378,
+        
+        /** Media refresh key. */
+        KEY_REFRESH = 4194379,
+        
+        /** Volume down key. */
+        KEY_VOLUMEDOWN = 4194380,
+        
+        /** Mute volume key. */
+        KEY_VOLUMEMUTE = 4194381,
+        
+        /** Volume up key. */
+        KEY_VOLUMEUP = 4194382,
+        
+        /** Media play key. */
+        KEY_MEDIAPLAY = 4194388,
+        
+        /** Media stop key. */
+        KEY_MEDIASTOP = 4194389,
+        
+        /** Previous song key. */
+        KEY_MEDIAPREVIOUS = 4194390,
+        
+        /** Next song key. */
+        KEY_MEDIANEXT = 4194391,
+        
+        /** Media record key. */
+        KEY_MEDIARECORD = 4194392,
+        
+        /** Home page key. */
+        KEY_HOMEPAGE = 4194393,
+        
+        /** Favorites key. */
+        KEY_FAVORITES = 4194394,
+        
+        /** Search key. */
+        KEY_SEARCH = 4194395,
+        
+        /** Standby key. */
+        KEY_STANDBY = 4194396,
+        
+        /** Open URL / Launch Browser key. */
+        KEY_OPENURL = 4194397,
+        
+        /** Launch Mail key. */
+        KEY_LAUNCHMAIL = 4194398,
+        
+        /** Launch Media key. */
+        KEY_LAUNCHMEDIA = 4194399,
+        
+        /** Launch Shortcut 0 key. */
+        KEY_LAUNCH0 = 4194400,
+        
+        /** Launch Shortcut 1 key. */
+        KEY_LAUNCH1 = 4194401,
+        
+        /** Launch Shortcut 2 key. */
+        KEY_LAUNCH2 = 4194402,
+        
+        /** Launch Shortcut 3 key. */
+        KEY_LAUNCH3 = 4194403,
+        
+        /** Launch Shortcut 4 key. */
+        KEY_LAUNCH4 = 4194404,
+        
+        /** Launch Shortcut 5 key. */
+        KEY_LAUNCH5 = 4194405,
+        
+        /** Launch Shortcut 6 key. */
+        KEY_LAUNCH6 = 4194406,
+        
+        /** Launch Shortcut 7 key. */
+        KEY_LAUNCH7 = 4194407,
+        
+        /** Launch Shortcut 8 key. */
+        KEY_LAUNCH8 = 4194408,
+        
+        /** Launch Shortcut 9 key. */
+        KEY_LAUNCH9 = 4194409,
+        
+        /** Launch Shortcut A key. */
+        KEY_LAUNCHA = 4194410,
+        
+        /** Launch Shortcut B key. */
+        KEY_LAUNCHB = 4194411,
+        
+        /** Launch Shortcut C key. */
+        KEY_LAUNCHC = 4194412,
+        
+        /** Launch Shortcut D key. */
+        KEY_LAUNCHD = 4194413,
+        
+        /** Launch Shortcut E key. */
+        KEY_LAUNCHE = 4194414,
+        
+        /** Launch Shortcut F key. */
+        KEY_LAUNCHF = 4194415,
+        
+        /** "Globe" key on Mac / iPad keyboard. */
+        KEY_GLOBE = 4194416,
+        
+        /** "On-screen keyboard" key on iPad keyboard. */
+        KEY_KEYBOARD = 4194417,
+        
+        /** 英数 key on Mac keyboard. */
+        KEY_JIS_EISU = 4194418,
+        
+        /** かな key on Mac keyboard. */
+        KEY_JIS_KANA = 4194419,
+        
+        /** Unknown key. */
+        KEY_UNKNOWN = 8388607,
+        
+        /** Space key. */
+        KEY_SPACE = 32,
+        
+        /** ! key. */
+        KEY_EXCLAM = 33,
+        
+        /** " key. */
+        KEY_QUOTEDBL = 34,
+        
+        /** # key. */
+        KEY_NUMBERSIGN = 35,
+        
+        /** $ key. */
+        KEY_DOLLAR = 36,
+        
+        /** % key. */
+        KEY_PERCENT = 37,
+        
+        /** & key. */
+        KEY_AMPERSAND = 38,
+        
+        /** ' key. */
+        KEY_APOSTROPHE = 39,
+        
+        /** ( key. */
+        KEY_PARENLEFT = 40,
+        
+        /** ) key. */
+        KEY_PARENRIGHT = 41,
+        
+        /** * key. */
+        KEY_ASTERISK = 42,
+        
+        /** + key. */
+        KEY_PLUS = 43,
+        
+        /** , key. */
+        KEY_COMMA = 44,
+        
+        /** - key. */
+        KEY_MINUS = 45,
+        
+        /** . key. */
+        KEY_PERIOD = 46,
+        
+        /** / key. */
+        KEY_SLASH = 47,
+        
+        /** Number 0 key. */
+        KEY_0 = 48,
+        
+        /** Number 1 key. */
+        KEY_1 = 49,
+        
+        /** Number 2 key. */
+        KEY_2 = 50,
+        
+        /** Number 3 key. */
+        KEY_3 = 51,
+        
+        /** Number 4 key. */
+        KEY_4 = 52,
+        
+        /** Number 5 key. */
+        KEY_5 = 53,
+        
+        /** Number 6 key. */
+        KEY_6 = 54,
+        
+        /** Number 7 key. */
+        KEY_7 = 55,
+        
+        /** Number 8 key. */
+        KEY_8 = 56,
+        
+        /** Number 9 key. */
+        KEY_9 = 57,
+        
+        /** : key. */
+        KEY_COLON = 58,
+        
+        /** ; key. */
+        KEY_SEMICOLON = 59,
+        
+        /** < key. */
+        KEY_LESS = 60,
+        
+        /** = key. */
+        KEY_EQUAL = 61,
+        
+        /** > key. */
+        KEY_GREATER = 62,
+        
+        /** ? key. */
+        KEY_QUESTION = 63,
+        
+        /** @ key. */
+        KEY_AT = 64,
+        
+        /** A key. */
+        KEY_A = 65,
+        
+        /** B key. */
+        KEY_B = 66,
+        
+        /** C key. */
+        KEY_C = 67,
+        
+        /** D key. */
+        KEY_D = 68,
+        
+        /** E key. */
+        KEY_E = 69,
+        
+        /** F key. */
+        KEY_F = 70,
+        
+        /** G key. */
+        KEY_G = 71,
+        
+        /** H key. */
+        KEY_H = 72,
+        
+        /** I key. */
+        KEY_I = 73,
+        
+        /** J key. */
+        KEY_J = 74,
+        
+        /** K key. */
+        KEY_K = 75,
+        
+        /** L key. */
+        KEY_L = 76,
+        
+        /** M key. */
+        KEY_M = 77,
+        
+        /** N key. */
+        KEY_N = 78,
+        
+        /** O key. */
+        KEY_O = 79,
+        
+        /** P key. */
+        KEY_P = 80,
+        
+        /** Q key. */
+        KEY_Q = 81,
+        
+        /** R key. */
+        KEY_R = 82,
+        
+        /** S key. */
+        KEY_S = 83,
+        
+        /** T key. */
+        KEY_T = 84,
+        
+        /** U key. */
+        KEY_U = 85,
+        
+        /** V key. */
+        KEY_V = 86,
+        
+        /** W key. */
+        KEY_W = 87,
+        
+        /** X key. */
+        KEY_X = 88,
+        
+        /** Y key. */
+        KEY_Y = 89,
+        
+        /** Z key. */
+        KEY_Z = 90,
+        
+        /** [ key. */
+        KEY_BRACKETLEFT = 91,
+        
+        /** \ key. */
+        KEY_BACKSLASH = 92,
+        
+        /** ] key. */
+        KEY_BRACKETRIGHT = 93,
+        
+        /** ^ key. */
+        KEY_ASCIICIRCUM = 94,
+        
+        /** _ key. */
+        KEY_UNDERSCORE = 95,
+        
+        /** ` key. */
+        KEY_QUOTELEFT = 96,
+        
+        /** { key. */
+        KEY_BRACELEFT = 123,
+        
+        /** | key. */
+        KEY_BAR = 124,
+        
+        /** } key. */
+        KEY_BRACERIGHT = 125,
+        
+        /** ~ key. */
+        KEY_ASCIITILDE = 126,
+        
+        /** ¥ key. */
+        KEY_YEN = 165,
+        
+        /** § key. */
+        KEY_SECTION = 167,
+    }
+    enum KeyModifierMask {
+        /** Key Code mask. */
+        KEY_CODE_MASK = 8388607,
+        
+        /** Modifier key mask. */
+        KEY_MODIFIER_MASK = 532676608,
+        
+        /** Automatically remapped to [constant KEY_META] on macOS and [constant KEY_CTRL] on other platforms, this mask is never set in the actual events, and should be used for key mapping only. */
+        KEY_MASK_CMD_OR_CTRL = 16777216,
+        
+        /** Shift key mask. */
+        KEY_MASK_SHIFT = 33554432,
+        
+        /** Alt or Option (on macOS) key mask. */
+        KEY_MASK_ALT = 67108864,
+        
+        /** Command (on macOS) or Meta/Windows key mask. */
+        KEY_MASK_META = 134217728,
+        
+        /** Control key mask. */
+        KEY_MASK_CTRL = 268435456,
+        
+        /** Keypad key mask. */
+        KEY_MASK_KPAD = 536870912,
+        
+        /** Group Switch key mask. */
+        KEY_MASK_GROUP_SWITCH = 1073741824,
+    }
+    enum MouseButton {
+        /** Enum value which doesn't correspond to any mouse button. This is used to initialize [enum MouseButton] properties with a generic state. */
+        MOUSE_BUTTON_NONE = 0,
+        
+        /** Primary mouse button, usually assigned to the left button. */
+        MOUSE_BUTTON_LEFT = 1,
+        
+        /** Secondary mouse button, usually assigned to the right button. */
+        MOUSE_BUTTON_RIGHT = 2,
+        
+        /** Middle mouse button. */
+        MOUSE_BUTTON_MIDDLE = 3,
+        
+        /** Mouse wheel scrolling up. */
+        MOUSE_BUTTON_WHEEL_UP = 4,
+        
+        /** Mouse wheel scrolling down. */
+        MOUSE_BUTTON_WHEEL_DOWN = 5,
+        
+        /** Mouse wheel left button (only present on some mice). */
+        MOUSE_BUTTON_WHEEL_LEFT = 6,
+        
+        /** Mouse wheel right button (only present on some mice). */
+        MOUSE_BUTTON_WHEEL_RIGHT = 7,
+        
+        /** Extra mouse button 1. This is sometimes present, usually to the sides of the mouse. */
+        MOUSE_BUTTON_XBUTTON1 = 8,
+        
+        /** Extra mouse button 2. This is sometimes present, usually to the sides of the mouse. */
+        MOUSE_BUTTON_XBUTTON2 = 9,
+    }
+    enum MouseButtonMask {
+        /** Primary mouse button mask, usually for the left button. */
+        MOUSE_BUTTON_MASK_LEFT = 1,
+        
+        /** Secondary mouse button mask, usually for the right button. */
+        MOUSE_BUTTON_MASK_RIGHT = 2,
+        
+        /** Middle mouse button mask. */
+        MOUSE_BUTTON_MASK_MIDDLE = 4,
+        
+        /** Extra mouse button 1 mask. */
+        MOUSE_BUTTON_MASK_MB_XBUTTON1 = 128,
+        
+        /** Extra mouse button 2 mask. */
+        MOUSE_BUTTON_MASK_MB_XBUTTON2 = 256,
+    }
+    enum JoyButton {
+        /** An invalid game controller button. */
+        JOY_BUTTON_INVALID = -1,
+        
+        /** Game controller SDL button A. Corresponds to the bottom action button: Sony Cross, Xbox A, Nintendo B. */
+        JOY_BUTTON_A = 0,
+        
+        /** Game controller SDL button B. Corresponds to the right action button: Sony Circle, Xbox B, Nintendo A. */
+        JOY_BUTTON_B = 1,
+        
+        /** Game controller SDL button X. Corresponds to the left action button: Sony Square, Xbox X, Nintendo Y. */
+        JOY_BUTTON_X = 2,
+        
+        /** Game controller SDL button Y. Corresponds to the top action button: Sony Triangle, Xbox Y, Nintendo X. */
+        JOY_BUTTON_Y = 3,
+        
+        /** Game controller SDL back button. Corresponds to the Sony Select, Xbox Back, Nintendo - button. */
+        JOY_BUTTON_BACK = 4,
+        
+        /** Game controller SDL guide button. Corresponds to the Sony PS, Xbox Home button. */
+        JOY_BUTTON_GUIDE = 5,
+        
+        /** Game controller SDL start button. Corresponds to the Sony Options, Xbox Menu, Nintendo + button. */
+        JOY_BUTTON_START = 6,
+        
+        /** Game controller SDL left stick button. Corresponds to the Sony L3, Xbox L/LS button. */
+        JOY_BUTTON_LEFT_STICK = 7,
+        
+        /** Game controller SDL right stick button. Corresponds to the Sony R3, Xbox R/RS button. */
+        JOY_BUTTON_RIGHT_STICK = 8,
+        
+        /** Game controller SDL left shoulder button. Corresponds to the Sony L1, Xbox LB button. */
+        JOY_BUTTON_LEFT_SHOULDER = 9,
+        
+        /** Game controller SDL right shoulder button. Corresponds to the Sony R1, Xbox RB button. */
+        JOY_BUTTON_RIGHT_SHOULDER = 10,
+        
+        /** Game controller D-pad up button. */
+        JOY_BUTTON_DPAD_UP = 11,
+        
+        /** Game controller D-pad down button. */
+        JOY_BUTTON_DPAD_DOWN = 12,
+        
+        /** Game controller D-pad left button. */
+        JOY_BUTTON_DPAD_LEFT = 13,
+        
+        /** Game controller D-pad right button. */
+        JOY_BUTTON_DPAD_RIGHT = 14,
+        
+        /** Game controller SDL miscellaneous button. Corresponds to Xbox share button, PS5 microphone button, Nintendo Switch capture button. */
+        JOY_BUTTON_MISC1 = 15,
+        
+        /** Game controller SDL paddle 1 button. */
+        JOY_BUTTON_PADDLE1 = 16,
+        
+        /** Game controller SDL paddle 2 button. */
+        JOY_BUTTON_PADDLE2 = 17,
+        
+        /** Game controller SDL paddle 3 button. */
+        JOY_BUTTON_PADDLE3 = 18,
+        
+        /** Game controller SDL paddle 4 button. */
+        JOY_BUTTON_PADDLE4 = 19,
+        
+        /** Game controller SDL touchpad button. */
+        JOY_BUTTON_TOUCHPAD = 20,
+        
+        /** The number of SDL game controller buttons. */
+        JOY_BUTTON_SDL_MAX = 21,
+        
+        /** The maximum number of game controller buttons supported by the engine. The actual limit may be lower on specific platforms:  
+         *  - **Android:** Up to 36 buttons.  
+         *  - **Linux:** Up to 80 buttons.  
+         *  - **Windows** and **macOS:** Up to 128 buttons.  
+         */
+        JOY_BUTTON_MAX = 128,
+    }
+    enum JoyAxis {
+        /** An invalid game controller axis. */
+        JOY_AXIS_INVALID = -1,
+        
+        /** Game controller left joystick x-axis. */
+        JOY_AXIS_LEFT_X = 0,
+        
+        /** Game controller left joystick y-axis. */
+        JOY_AXIS_LEFT_Y = 1,
+        
+        /** Game controller right joystick x-axis. */
+        JOY_AXIS_RIGHT_X = 2,
+        
+        /** Game controller right joystick y-axis. */
+        JOY_AXIS_RIGHT_Y = 3,
+        
+        /** Game controller left trigger axis. */
+        JOY_AXIS_TRIGGER_LEFT = 4,
+        
+        /** Game controller right trigger axis. */
+        JOY_AXIS_TRIGGER_RIGHT = 5,
+        
+        /** The number of SDL game controller axes. */
+        JOY_AXIS_SDL_MAX = 6,
+        
+        /** The maximum number of game controller axes: OpenVR supports up to 5 Joysticks making a total of 10 axes. */
+        JOY_AXIS_MAX = 10,
+    }
+    enum MIDIMessage {
+        /** Does not correspond to any MIDI message. This is the default value of [member InputEventMIDI.message]. */
+        MIDI_MESSAGE_NONE = 0,
+        
+        /** MIDI message sent when a note is released.  
+         *      
+         *  **Note:** Not all MIDI devices send this message; some may send [constant MIDI_MESSAGE_NOTE_ON] with [member InputEventMIDI.velocity] set to `0`.  
+         */
+        MIDI_MESSAGE_NOTE_OFF = 8,
+        
+        /** MIDI message sent when a note is pressed. */
+        MIDI_MESSAGE_NOTE_ON = 9,
+        
+        /** MIDI message sent to indicate a change in pressure while a note is being pressed down, also called aftertouch. */
+        MIDI_MESSAGE_AFTERTOUCH = 10,
+        
+        /** MIDI message sent when a controller value changes. In a MIDI device, a controller is any input that doesn't play notes. These may include sliders for volume, balance, and panning, as well as switches and pedals. See the [url=https://en.wikipedia.org/wiki/General_MIDI#Controller_events]General MIDI specification[/url] for a small list. */
+        MIDI_MESSAGE_CONTROL_CHANGE = 11,
+        
+        /** MIDI message sent when the MIDI device changes its current instrument (also called  *program*  or  *preset* ). */
+        MIDI_MESSAGE_PROGRAM_CHANGE = 12,
+        
+        /** MIDI message sent to indicate a change in pressure for the whole channel. Some MIDI devices may send this instead of [constant MIDI_MESSAGE_AFTERTOUCH]. */
+        MIDI_MESSAGE_CHANNEL_PRESSURE = 13,
+        
+        /** MIDI message sent when the value of the pitch bender changes, usually a wheel on the MIDI device. */
+        MIDI_MESSAGE_PITCH_BEND = 14,
+        
+        /** MIDI system exclusive (SysEx) message. This type of message is not standardized and it's highly dependent on the MIDI device sending it.  
+         *      
+         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
+         */
+        MIDI_MESSAGE_SYSTEM_EXCLUSIVE = 240,
+        
+        /** MIDI message sent every quarter frame to keep connected MIDI devices synchronized. Related to [constant MIDI_MESSAGE_TIMING_CLOCK].  
+         *      
+         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
+         */
+        MIDI_MESSAGE_QUARTER_FRAME = 241,
+        
+        /** MIDI message sent to jump onto a new position in the current sequence or song.  
+         *      
+         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
+         */
+        MIDI_MESSAGE_SONG_POSITION_POINTER = 242,
+        
+        /** MIDI message sent to select a sequence or song to play.  
+         *      
+         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
+         */
+        MIDI_MESSAGE_SONG_SELECT = 243,
+        
+        /** MIDI message sent to request a tuning calibration. Used on analog synthesizers. Most modern MIDI devices do not need this message. */
+        MIDI_MESSAGE_TUNE_REQUEST = 246,
+        
+        /** MIDI message sent 24 times after [constant MIDI_MESSAGE_QUARTER_FRAME], to keep connected MIDI devices synchronized. */
+        MIDI_MESSAGE_TIMING_CLOCK = 248,
+        
+        /** MIDI message sent to start the current sequence or song from the beginning. */
+        MIDI_MESSAGE_START = 250,
+        
+        /** MIDI message sent to resume from the point the current sequence or song was paused. */
+        MIDI_MESSAGE_CONTINUE = 251,
+        
+        /** MIDI message sent to pause the current sequence or song. */
+        MIDI_MESSAGE_STOP = 252,
+        
+        /** MIDI message sent repeatedly while the MIDI device is idle, to tell the receiver that the connection is alive. Most MIDI devices do not send this message. */
+        MIDI_MESSAGE_ACTIVE_SENSING = 254,
+        
+        /** MIDI message sent to reset a MIDI device to its default state, as if it was just turned on. It should not be sent when the MIDI device is being turned on. */
+        MIDI_MESSAGE_SYSTEM_RESET = 255,
+    }
     enum Error {
         /** Methods that return [enum Error] return [constant OK] when no error occurred.  
          *  Since [constant OK] has value 0, and all other error constants are positive integers, it can also be used in boolean checks.  
