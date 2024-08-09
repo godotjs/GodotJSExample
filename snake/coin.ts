@@ -4,6 +4,8 @@ import { kBlockSize } from "./constants";
 export default class Coin extends Sprite2D {
     private _x: number = 0;
     private _y: number = 0;
+    
+    // use cached Vector2 to avoid unnecessary garbages
     private _cached_pos!: Vector2;
 
     _ready() {

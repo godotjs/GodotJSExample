@@ -18,6 +18,8 @@ export default class AudioGeneratorDemo extends Node {
     player!: AudioStreamPlayer;
 
     private playback!: AudioStreamGeneratorPlayback;
+
+    // use cached Vector2 to avoid unnecessary garbages 
     private cached_frame = new Vector2();
     private frame_index = 0;
 
@@ -36,9 +38,15 @@ export default class AudioGeneratorDemo extends Node {
         let to_fill = this.playback.get_frames_available();
         while (to_fill > 0) {
             this.frame_index = (this.frame_index + 1) % song[0].length;
+
             this.cached_frame.x = song[0][this.frame_index];
             this.cached_frame.y = song[1][this.frame_index];
             this.playback.push_frame(this.cached_frame); // Audio frames are stereo.
+
+            // IT'S FINE to directly use `new` here if PERFORMANCE is NOT critically affected in practice :P
+            // (but always be cautious especially in a `_process` call, it's similar with gc alloc in Unity)
+            // this.playback.push_frame(new Vector2(song[0][this.frame_index], song[1][this.frame_index]));
+            
             --to_fill;
         }
     }
