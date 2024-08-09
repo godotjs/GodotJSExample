@@ -5100,9 +5100,6 @@ declare module "godot" {
         /** Implement this in GDExtension to react to the debanding flag changing. */
         /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
     }
-    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
-        constructor(identifier?: any)
-    }
     /** Abstract render scene buffer implementation for the RenderingDevice based renderers.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_renderscenebuffersrd.html  
