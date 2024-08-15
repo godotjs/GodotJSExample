@@ -1,5 +1,5 @@
 import { EditorScript } from "godot";
-import { tool } from "../jsb/jsb.core";
+import { tool } from "jsb.core";
 
 @tool()
 export default class MyEditorScript1 extends EditorScript {

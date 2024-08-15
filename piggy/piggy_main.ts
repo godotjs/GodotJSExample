@@ -1,6 +1,6 @@
 import { Node, Node2D, NodePath, PackedScene, ResourceLoader, ShaderMaterial, Sprite2D, Vector2 } from "godot";
 import * as jsb from "godot-jsb";
-import { onready } from "../jsb/jsb.core";
+import { onready } from "jsb.core";
 import Arrow from "./arrow";
 import Shooter from "./shooter";
 

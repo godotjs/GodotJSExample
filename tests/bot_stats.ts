@@ -1,5 +1,5 @@
 import { PackedStringArray, Resource, Variant } from "godot";
-import { export_ } from "../jsb/jsb.core";
+import { export_ } from "jsb.core";
 
 export default class BotStats extends Resource {
     @export_(Variant.Type.TYPE_INT)

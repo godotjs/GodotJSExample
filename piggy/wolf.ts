@@ -1,6 +1,6 @@
 import { Area2D, Node2D, NodePath } from "godot";
 import * as jsb from "godot-jsb";
-import { onready } from "../jsb/jsb.core";
+import { onready } from "jsb.core";
 
 export default class Wolf extends Node2D {
     _ready() {

@@ -1,5 +1,5 @@
-import { GArray, GDictionary, EditorScript } from "godot";
-import { tool } from "../jsb/jsb.core";
+import { GDictionary, GArray, EditorScript } from "godot";
+import { tool } from "jsb.core";
 
 @tool()
 export default class TestDictionary extends EditorScript {

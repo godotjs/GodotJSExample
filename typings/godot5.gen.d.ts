@@ -1,6 +1,158 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** Godot editor's popup dialog for creating new [Script] files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_scriptcreatedialog.html  
+     */
+    class ScriptCreateDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
+        /** Prefills required fields to configure the ScriptCreateDialog for use. */
+        config(inherits: string, path: string, built_in_enabled: boolean = true, load_enabled: boolean = true): void
+        
+        /** Emitted when the user clicks the OK button. */
+        readonly script_created: Signal1<Script>
+    }
+    /** Godot editor's script editor.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_scripteditor.html  
+     */
+    class ScriptEditor extends PanelContainer {
+        constructor(identifier?: any)
+        _close_docs_tab(): void
+        _close_all_tabs(): void
+        _close_other_tabs(): void
+        _goto_script_line2(_unnamed_arg0: int64): void
+        _copy_script_path(): void
+        _help_class_open(_unnamed_arg0: string): void
+        _help_tab_goto(_unnamed_arg0: string, _unnamed_arg1: string): boolean
+        _live_auto_reload_running_scripts(): void
+        _update_members_overview(): void
+        _update_recent_scripts(): void
+        
+        /** Returns the [ScriptEditorBase] object that the user is currently editing. */
+        get_current_editor(): ScriptEditorBase
+        
+        /** Returns an array with all [ScriptEditorBase] objects which are currently open in editor. */
+        get_open_script_editors(): GArray
+        
+        /** Registers the [EditorSyntaxHighlighter] to the editor, the [EditorSyntaxHighlighter] will be available on all open scripts.  
+         *      
+         *  **Note:** Does not apply to scripts that are already opened.  
+         */
+        register_syntax_highlighter(syntax_highlighter: EditorSyntaxHighlighter): void
+        
+        /** Unregisters the [EditorSyntaxHighlighter] from the editor.  
+         *      
+         *  **Note:** The [EditorSyntaxHighlighter] will still be applied to scripts that are already opened.  
+         */
+        unregister_syntax_highlighter(syntax_highlighter: EditorSyntaxHighlighter): void
+        
+        /** Goes to the specified line in the current script. */
+        goto_line(line_number: int64): void
+        
+        /** Returns a [Script] that is currently active in editor. */
+        get_current_script(): Script
+        
+        /** Returns an array with all [Script] objects which are currently open in editor. */
+        get_open_scripts(): GArray
+        
+        /** Opens the script create dialog. The script will extend [param base_name]. The file extension can be omitted from [param base_path]. It will be added based on the selected scripting language. */
+        open_script_create_dialog(base_name: string, base_path: string): void
+        
+        /** Emitted when user changed active script. Argument is a freshly activated [Script]. */
+        readonly editor_script_changed: Signal1<Script>
+        
+        /** Emitted when editor is about to close the active script. Argument is a [Script] that is going to be closed. */
+        readonly script_close: Signal1<Script>
+    }
+    /** Base editor for editing scripts in the [ScriptEditor].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_scripteditorbase.html  
+     */
+    class ScriptEditorBase extends VBoxContainer {
+        constructor(identifier?: any)
+        /** Returns the underlying [Control] used for editing scripts. For text scripts, this is a [CodeEdit]. */
+        get_base_editor(): Control
+        
+        /** Adds a [EditorSyntaxHighlighter] to the open script. */
+        add_syntax_highlighter(highlighter: EditorSyntaxHighlighter): void
+        
+        /** Emitted after script validation or when the edited resource has changed. */
+        readonly name_changed: Signal0
+        
+        /** Emitted after script validation. */
+        readonly edited_script_changed: Signal0
+        
+        /** Emitted when the user requests contextual help. */
+        readonly request_help: Signal1<string>
+        
+        /** Emitted when the user requests to view a specific line of a script, similar to [signal go_to_method]. */
+        readonly request_open_script_at_line: Signal2<Object, int64>
+        
+        /** Emitted when the user contextual goto and the item is in the same script. */
+        readonly request_save_history: Signal0
+        
+        /** Emitted when the user requests a specific documentation page. */
+        readonly go_to_help: Signal1<string>
+        
+        /** Emitted when the user request to search text in the file system. */
+        readonly search_in_files_requested: Signal1<string>
+        
+        /** Emitted when the user request to find and replace text in the file system. */
+        readonly replace_in_files_requested: Signal1<string>
+        
+        /** Emitted when the user requests to view a specific method of a script, similar to [signal request_open_script_at_line]. */
+        readonly go_to_method: Signal2<Object, string>
+    }
+    class ScriptEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    class ScriptEditorQuickOpen extends ConfirmationDialog {
+        constructor(identifier?: any)
+        readonly goto_line: Signal1<int64>
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptextension.html */
+    class ScriptExtension extends Script {
+        constructor(identifier?: any)
+        /* gdvirtual */ _editor_can_reload_from_file(): boolean
+        /* gdvirtual */ _placeholder_erased(placeholder: int64): void
+        /* gdvirtual */ _can_instantiate(): boolean
+        /* gdvirtual */ _get_base_script(): Script
+        /* gdvirtual */ _get_global_name(): StringName
+        /* gdvirtual */ _inherits_script(script: Script): boolean
+        /* gdvirtual */ _get_instance_base_type(): StringName
+        /* gdvirtual */ _instance_create(for_object: Object): int64
+        /* gdvirtual */ _placeholder_instance_create(for_object: Object): int64
+        /* gdvirtual */ _instance_has(object: Object): boolean
+        /* gdvirtual */ _has_source_code(): boolean
+        /* gdvirtual */ _get_source_code(): string
+        /* gdvirtual */ _set_source_code(code: string): void
+        /* gdvirtual */ _reload(keep_state: boolean): Error
+        /* gdvirtual */ _get_documentation(): GArray
+        /* gdvirtual */ _get_class_icon_path(): string
+        /* gdvirtual */ _has_method(method: StringName): boolean
+        /* gdvirtual */ _has_static_method(method: StringName): boolean
+        /* gdvirtual */ _get_method_info(method: StringName): GDictionary
+        /* gdvirtual */ _is_tool(): boolean
+        /* gdvirtual */ _is_valid(): boolean
+        
+        /** Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated. */
+        /* gdvirtual */ _is_abstract(): boolean
+        /* gdvirtual */ _get_language(): ScriptLanguage
+        /* gdvirtual */ _has_script_signal(signal: StringName): boolean
+        /* gdvirtual */ _get_script_signal_list(): GArray
+        /* gdvirtual */ _has_property_default_value(property: StringName): boolean
+        /* gdvirtual */ _get_property_default_value(property: StringName): void
+        /* gdvirtual */ _update_exports(): void
+        /* gdvirtual */ _get_script_method_list(): GArray
+        /* gdvirtual */ _get_script_property_list(): GArray
+        /* gdvirtual */ _get_member_line(member: StringName): int64
+        /* gdvirtual */ _get_constants(): GDictionary
+        /* gdvirtual */ _get_members(): GArray
+        /* gdvirtual */ _is_placeholder_fallback_enabled(): boolean
+        /* gdvirtual */ _get_rpc_config(): void
+    }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptlanguage.html */
     class ScriptLanguage extends Object {
         constructor(identifier?: any)
@@ -9136,271 +9288,5 @@ declare module "godot" {
         /** The custom minimum height. */
         get custom_minimum_height(): int64
         set custom_minimum_height(value: int64)
-    }
-    /** Internal mesh type.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_trianglemesh.html  
-     */
-    class TriangleMesh extends RefCounted {
-        constructor(identifier?: any)
-    }
-    /** Represents a straight tube-shaped [PrimitiveMesh] with variable width.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tubetrailmesh.html  
-     */
-    class TubeTrailMesh extends PrimitiveMesh {
-        constructor(identifier?: any)
-        /** The baseline radius of the tube. The radius of a particular section ring is obtained by multiplying this radius by the value of the [member curve] at the given distance. */
-        get radius(): float64
-        set radius(value: float64)
-        
-        /** The number of sides on the tube. For example, a value of `5` means the tube will be pentagonal. Higher values result in a more detailed tube at the cost of performance. */
-        get radial_steps(): int64
-        set radial_steps(value: int64)
-        
-        /** The total number of sections on the tube. */
-        get sections(): int64
-        set sections(value: int64)
-        
-        /** The length of a section of the tube. */
-        get section_length(): float64
-        set section_length(value: float64)
-        
-        /** The number of rings in a section. The [member curve] is sampled on each ring to determine its radius. Higher values result in a more detailed tube at the cost of performance. */
-        get section_rings(): int64
-        set section_rings(value: int64)
-        
-        /** If `true`, generates a cap at the top of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
-        get cap_top(): boolean
-        set cap_top(value: boolean)
-        
-        /** If `true`, generates a cap at the bottom of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
-        get cap_bottom(): boolean
-        set cap_bottom(value: boolean)
-        
-        /** Determines the radius of the tube along its length. The radius of a particular section ring is obtained by multiplying the baseline [member radius] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. */
-        get curve(): Curve
-        set curve(value: Curve)
-    }
-    namespace Tween {
-        enum TweenProcessMode {
-            /** The [Tween] updates after each physics frame (see [method Node._physics_process]). */
-            TWEEN_PROCESS_PHYSICS = 0,
-            
-            /** The [Tween] updates after each process frame (see [method Node._process]). */
-            TWEEN_PROCESS_IDLE = 1,
-        }
-        enum TweenPauseMode {
-            /** If the [Tween] has a bound node, it will process when that node can process (see [member Node.process_mode]). Otherwise it's the same as [constant TWEEN_PAUSE_STOP]. */
-            TWEEN_PAUSE_BOUND = 0,
-            
-            /** If [SceneTree] is paused, the [Tween] will also pause. */
-            TWEEN_PAUSE_STOP = 1,
-            
-            /** The [Tween] will process regardless of whether [SceneTree] is paused. */
-            TWEEN_PAUSE_PROCESS = 2,
-        }
-        enum TransitionType {
-            /** The animation is interpolated linearly. */
-            TRANS_LINEAR = 0,
-            
-            /** The animation is interpolated using a sine function. */
-            TRANS_SINE = 1,
-            
-            /** The animation is interpolated with a quintic (to the power of 5) function. */
-            TRANS_QUINT = 2,
-            
-            /** The animation is interpolated with a quartic (to the power of 4) function. */
-            TRANS_QUART = 3,
-            
-            /** The animation is interpolated with a quadratic (to the power of 2) function. */
-            TRANS_QUAD = 4,
-            
-            /** The animation is interpolated with an exponential (to the power of x) function. */
-            TRANS_EXPO = 5,
-            
-            /** The animation is interpolated with elasticity, wiggling around the edges. */
-            TRANS_ELASTIC = 6,
-            
-            /** The animation is interpolated with a cubic (to the power of 3) function. */
-            TRANS_CUBIC = 7,
-            
-            /** The animation is interpolated with a function using square roots. */
-            TRANS_CIRC = 8,
-            
-            /** The animation is interpolated by bouncing at the end. */
-            TRANS_BOUNCE = 9,
-            
-            /** The animation is interpolated backing out at ends. */
-            TRANS_BACK = 10,
-            
-            /** The animation is interpolated like a spring towards the end. */
-            TRANS_SPRING = 11,
-        }
-        enum EaseType {
-            /** The interpolation starts slowly and speeds up towards the end. */
-            EASE_IN = 0,
-            
-            /** The interpolation starts quickly and slows down towards the end. */
-            EASE_OUT = 1,
-            
-            /** A combination of [constant EASE_IN] and [constant EASE_OUT]. The interpolation is slowest at both ends. */
-            EASE_IN_OUT = 2,
-            
-            /** A combination of [constant EASE_IN] and [constant EASE_OUT]. The interpolation is fastest at both ends. */
-            EASE_OUT_IN = 3,
-        }
-    }
-    /** Lightweight object used for general-purpose animation via script, using [Tweener]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_tween.html  
-     */
-    class Tween extends RefCounted {
-        constructor(identifier?: any)
-        /** Creates and appends a [PropertyTweener]. This method tweens a [param property] of an [param object] between an initial value and [param final_val] in a span of time equal to [param duration], in seconds. The initial value by default is the property's value at the time the tweening of the [PropertyTweener] starts.  
-         *  **Example:**  
-         *    
-         *  will move the sprite to position (100, 200) and then to (200, 300). If you use [method PropertyTweener.from] or [method PropertyTweener.from_current], the starting position will be overwritten by the given value instead. See other methods in [PropertyTweener] to see how the tweening can be tweaked further.  
-         *      
-         *  **Note:** You can find the correct property name by hovering over the property in the Inspector. You can also provide the components of a property directly by using `"property:component"` (eg. `position:x`), where it would only apply to that particular component.  
-         *  **Example:** Moving an object twice from the same position, with different transition types:  
-         *    
-         */
-        tween_property(object: Object, property: NodePath | string, final_val: any, duration: float64): PropertyTweener
-        
-        /** Creates and appends an [IntervalTweener]. This method can be used to create delays in the tween animation, as an alternative to using the delay in other [Tweener]s, or when there's no animation (in which case the [Tween] acts as a timer). [param time] is the length of the interval, in seconds.  
-         *  **Example:** Creating an interval in code execution:  
-         *    
-         *  **Example:** Creating an object that moves back and forth and jumps every few seconds:  
-         *    
-         */
-        tween_interval(time: float64): IntervalTweener
-        
-        /** Creates and appends a [CallbackTweener]. This method can be used to call an arbitrary method in any object. Use [method Callable.bind] to bind additional arguments for the call.  
-         *  **Example:** Object that keeps shooting every 1 second:  
-         *    
-         *  **Example:** Turning a sprite red and then blue, with 2 second delay:  
-         *    
-         */
-        tween_callback(callback: Callable): CallbackTweener
-        
-        /** Creates and appends a [MethodTweener]. This method is similar to a combination of [method tween_callback] and [method tween_property]. It calls a method over time with a tweened value provided as an argument. The value is tweened between [param from] and [param to] over the time specified by [param duration], in seconds. Use [method Callable.bind] to bind additional arguments for the call. You can use [method MethodTweener.set_ease] and [method MethodTweener.set_trans] to tweak the easing and transition of the value or [method MethodTweener.set_delay] to delay the tweening.  
-         *  **Example:** Making a 3D object look from one point to another point:  
-         *    
-         *  **Example:** Setting the text of a [Label], using an intermediate method and after a delay:  
-         *    
-         */
-        tween_method(method: Callable, from: any, to: any, duration: float64): MethodTweener
-        
-        /** Processes the [Tween] by the given [param delta] value, in seconds. This is mostly useful for manual control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately, by setting [param delta] longer than the whole duration of the [Tween] animation.  
-         *  Returns `true` if the [Tween] still has [Tweener]s that haven't finished.  
-         */
-        custom_step(delta: float64): boolean
-        
-        /** Stops the tweening and resets the [Tween] to its initial state. This will not remove any appended [Tweener]s.  
-         *      
-         *  **Note:** If a Tween is stopped and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [method SceneTree.get_processed_tweens].  
-         */
-        stop(): void
-        
-        /** Pauses the tweening. The animation can be resumed by using [method play].  
-         *      
-         *  **Note:** If a Tween is paused and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [method SceneTree.get_processed_tweens].  
-         */
-        pause(): void
-        
-        /** Resumes a paused or stopped [Tween]. */
-        play(): void
-        
-        /** Aborts all tweening operations and invalidates the [Tween]. */
-        kill(): void
-        
-        /** Returns the total time in seconds the [Tween] has been animating (i.e. the time since it started, not counting pauses etc.). The time is affected by [method set_speed_scale], and [method stop] will reset it to `0`.  
-         *      
-         *  **Note:** As it results from accumulating frame deltas, the time returned after the [Tween] has finished animating will be slightly greater than the actual [Tween] duration.  
-         */
-        get_total_elapsed_time(): float64
-        
-        /** Returns whether the [Tween] is currently running, i.e. it wasn't paused and it's not finished. */
-        is_running(): boolean
-        
-        /** Returns whether the [Tween] is valid. A valid [Tween] is a [Tween] contained by the scene tree (i.e. the array from [method SceneTree.get_processed_tweens] will contain this [Tween]). A [Tween] might become invalid when it has finished tweening, is killed, or when created with `Tween.new()`. Invalid [Tween]s can't have [Tweener]s appended. */
-        is_valid(): boolean
-        
-        /** Binds this [Tween] with the given [param node]. [Tween]s are processed directly by the [SceneTree], so they run independently of the animated nodes. When you bind a [Node] with the [Tween], the [Tween] will halt the animation when the object is not inside tree and the [Tween] will be automatically killed when the bound object is freed. Also [constant TWEEN_PAUSE_BOUND] will make the pausing behavior dependent on the bound node.  
-         *  For a shorter way to create and bind a [Tween], you can use [method Node.create_tween].  
-         */
-        bind_node(node: Node): Tween
-        
-        /** Determines whether the [Tween] should run after process frames (see [method Node._process]) or physics frames (see [method Node._physics_process]).  
-         *  Default value is [constant TWEEN_PROCESS_IDLE].  
-         */
-        set_process_mode(mode: Tween.TweenProcessMode): Tween
-        
-        /** Determines the behavior of the [Tween] when the [SceneTree] is paused. Check [enum TweenPauseMode] for options.  
-         *  Default value is [constant TWEEN_PAUSE_BOUND].  
-         */
-        set_pause_mode(mode: Tween.TweenPauseMode): Tween
-        
-        /** If [param parallel] is `true`, the [Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.  
-         *      
-         *  **Note:** Just like with [method parallel], the tweener added right before this method will also be part of the parallel step.  
-         *    
-         */
-        set_parallel(parallel: boolean = true): Tween
-        
-        /** Sets the number of times the tweening sequence will be repeated, i.e. `set_loops(2)` will run the animation twice.  
-         *  Calling this method without arguments will make the [Tween] run infinitely, until either it is killed with [method kill], the [Tween]'s bound node is freed, or all the animated objects have been freed (which makes further animation impossible).  
-         *  **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [Tween]'s lifetime depends on some node, always use [method bind_node].  
-         */
-        set_loops(loops: int64 = 0): Tween
-        
-        /** Returns the number of remaining loops for this [Tween] (see [method set_loops]). A return value of `-1` indicates an infinitely looping [Tween], and a return value of `0` indicates that the [Tween] has already finished. */
-        get_loops_left(): int64
-        
-        /** Scales the speed of tweening. This affects all [Tweener]s and their delays. */
-        set_speed_scale(speed: float64): Tween
-        
-        /** Sets the default transition type for [PropertyTweener]s and [MethodTweener]s animated by this [Tween].  
-         *  If not specified, the default value is [constant TRANS_LINEAR].  
-         */
-        set_trans(trans: Tween.TransitionType): Tween
-        
-        /** Sets the default ease type for [PropertyTweener]s and [MethodTweener]s animated by this [Tween].  
-         *  If not specified, the default value is [constant EASE_IN_OUT].  
-         */
-        set_ease(ease: Tween.EaseType): Tween
-        
-        /** Makes the next [Tweener] run parallelly to the previous one.  
-         *  **Example:**  
-         *    
-         *  All [Tweener]s in the example will run at the same time.  
-         *  You can make the [Tween] parallel by default by using [method set_parallel].  
-         */
-        parallel(): Tween
-        
-        /** Used to chain two [Tweener]s after [method set_parallel] is called with `true`.  
-         *    
-         */
-        chain(): Tween
-        
-        /** This method can be used for manual interpolation of a value, when you don't want [Tween] to do animating for you. It's similar to [method @GlobalScope.lerp], but with support for custom transition and easing.  
-         *  [param initial_value] is the starting value of the interpolation.  
-         *  [param delta_value] is the change of the value in the interpolation, i.e. it's equal to `final_value - initial_value`.  
-         *  [param elapsed_time] is the time in seconds that passed after the interpolation started and it's used to control the position of the interpolation. E.g. when it's equal to half of the [param duration], the interpolated value will be halfway between initial and final values. This value can also be greater than [param duration] or lower than 0, which will extrapolate the value.  
-         *  [param duration] is the total time of the interpolation.  
-         *      
-         *  **Note:** If [param duration] is equal to `0`, the method will always return the final value, regardless of [param elapsed_time] provided.  
-         */
-        static interpolate_value(initial_value: any, delta_value: any, elapsed_time: float64, duration: float64, trans_type: Tween.TransitionType, ease_type: Tween.EaseType): any
-        
-        /** Emitted when one step of the [Tween] is complete, providing the step index. One step is either a single [Tweener] or a group of [Tweener]s running in parallel. */
-        readonly step_finished: Signal1<int64>
-        
-        /** Emitted when a full loop is complete (see [method set_loops]), providing the loop index. This signal is not emitted after the final loop, use [signal finished] instead for this case. */
-        readonly loop_finished: Signal1<int64>
-        
-        /** Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to infinite looping (see [method set_loops]). */
-        readonly finished: Signal0
     }
 }

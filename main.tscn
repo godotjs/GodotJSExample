@@ -55,7 +55,7 @@ speed = 123
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 position = Vector2(386, 134)
-rotation = 6.06892
+rotation = 4.62625
 texture = ExtResource("4_2050k")
 script = ExtResource("5_l2t80")
 speed = 0.25

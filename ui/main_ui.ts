@@ -1,7 +1,7 @@
 import { Label, Node2D, NodePath, randf, Variant, Vector2 } from "godot";
 import * as jsb from "godot-jsb";
 import TestNode from "../test_button";
-import { export_, seconds } from "../jsb/jsb.core";
+import { export_, seconds } from "jsb.core";
 
 export default class MainUI extends Node2D {
     private _pc = 0;

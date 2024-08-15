@@ -1,6 +1,157 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A container that arranges its child controls in a grid layout.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gridcontainer.html  
+     */
+    class GridContainer extends Container {
+        constructor(identifier?: any)
+        /** The number of columns in the [GridContainer]. If modified, [GridContainer] reorders its Control-derived children to accommodate the new layout. */
+        get columns(): int64
+        set columns(value: int64)
+    }
+    /** Node for 3D tile-based maps.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_gridmap.html  
+     */
+    class GridMap extends Node3D {
+        /** Invalid cell item that can be used in [method set_cell_item] to clear cells (or represent an empty cell in [method get_cell_item]). */
+        static readonly INVALID_CELL_ITEM = -1
+        constructor(identifier?: any)
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
+        set_collision_mask_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_mask_value(layer_number: int64): boolean
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
+        set_collision_layer_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_layer_value(layer_number: int64): boolean
+        
+        /** Sets the [RID] of the navigation map this GridMap node should use for its cell baked navigation meshes. */
+        set_navigation_map(navigation_map: RID): void
+        
+        /** Returns the [RID] of the navigation map this GridMap node uses for its cell baked navigation meshes.  
+         *  This function returns always the map set on the GridMap node and not the map on the NavigationServer. If the map is changed directly with the NavigationServer API the GridMap node will not be aware of the map change.  
+         */
+        get_navigation_map(): RID
+        
+        /** Sets the mesh index for the cell referenced by its grid coordinates.  
+         *  A negative item index such as [constant INVALID_CELL_ITEM] will clear the cell.  
+         *  Optionally, the item's orientation can be passed. For valid orientation values, see [method get_orthogonal_index_from_basis].  
+         */
+        set_cell_item(position: Vector3i, item: int64, orientation: int64 = 0): void
+        
+        /** The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty, [constant INVALID_CELL_ITEM] will be returned. */
+        get_cell_item(position: Vector3i): int64
+        
+        /** The orientation of the cell at the given grid coordinates. `-1` is returned if the cell is empty. */
+        get_cell_item_orientation(position: Vector3i): int64
+        
+        /** Returns the basis that gives the specified cell its orientation. */
+        get_cell_item_basis(position: Vector3i): Basis
+        
+        /** Returns one of 24 possible rotations that lie along the vectors (x,y,z) with each component being either -1, 0, or 1. For further details, refer to the Godot source code. */
+        get_basis_with_orthogonal_index(index: int64): Basis
+        
+        /** This function considers a discretization of rotations into 24 points on unit sphere, lying along the vectors (x,y,z) with each component being either -1, 0, or 1, and returns the index (in the range from 0 to 23) of the point best representing the orientation of the object. For further details, refer to the Godot source code. */
+        get_orthogonal_index_from_basis(basis: Basis): int64
+        
+        /** Returns the map coordinates of the cell containing the given [param local_position]. If [param local_position] is in global coordinates, consider using [method Node3D.to_local] before passing it to this method. See also [method map_to_local]. */
+        local_to_map(local_position: Vector3): Vector3i
+        
+        /** Returns the position of a grid cell in the GridMap's local coordinate space. To convert the returned value into global coordinates, use [method Node3D.to_global]. See also [method map_to_local]. */
+        map_to_local(map_position: Vector3i): Vector3
+        _update_octants_callback(): void
+        
+        /** Clear all cells. */
+        clear(): void
+        
+        /** Returns an array of [Vector3] with the non-empty cell coordinates in the grid map. */
+        get_used_cells(): GArray
+        
+        /** Returns an array of all cells with the given item index specified in [param item]. */
+        get_used_cells_by_item(item: int64): GArray
+        
+        /** Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in the grid. The transforms are specified in local space. */
+        get_meshes(): GArray
+        
+        /** Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist within the current GridMap. */
+        get_bake_meshes(): GArray
+        
+        /** Returns [RID] of a baked mesh with the given [param idx]. */
+        get_bake_mesh_instance(idx: int64): RID
+        
+        /** Clears all baked meshes. See [method make_baked_meshes]. */
+        clear_baked_meshes(): void
+        
+        /** Bakes lightmap data for all meshes in the assigned [MeshLibrary]. */
+        make_baked_meshes(gen_lightmap_uv: boolean = false, lightmap_uv_texel_size: float64 = 0.1): void
+        
+        /** The assigned [MeshLibrary]. */
+        get mesh_library(): MeshLibrary
+        set mesh_library(value: MeshLibrary)
+        
+        /** Overrides the default friction and bounce physics properties for the whole [GridMap]. */
+        get physics_material(): PhysicsMaterial
+        set physics_material(value: PhysicsMaterial)
+        
+        /** The dimensions of the grid's cells.  
+         *  This does not affect the size of the meshes. See [member cell_scale].  
+         */
+        get cell_size(): Vector3
+        set cell_size(value: Vector3)
+        
+        /** The size of each octant measured in number of cells. This applies to all three axis. */
+        get cell_octant_size(): int64
+        set cell_octant_size(value: int64)
+        
+        /** If `true`, grid items are centered on the X axis. */
+        get cell_center_x(): boolean
+        set cell_center_x(value: boolean)
+        
+        /** If `true`, grid items are centered on the Y axis. */
+        get cell_center_y(): boolean
+        set cell_center_y(value: boolean)
+        
+        /** If `true`, grid items are centered on the Z axis. */
+        get cell_center_z(): boolean
+        set cell_center_z(value: boolean)
+        
+        /** The scale of the cell items.  
+         *  This does not affect the size of the grid cells themselves, only the items in them. This can be used to make cell items overlap their neighbors.  
+         */
+        get cell_scale(): float64
+        set cell_scale(value: float64)
+        
+        /** The physics layers this GridMap is in.  
+         *  GridMaps act as static bodies, meaning they aren't affected by gravity or other forces. They only affect other physics bodies that collide with them.  
+         */
+        get collision_layer(): int64
+        set collision_layer(value: int64)
+        
+        /** The physics layers this GridMap detects collisions in. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        get collision_mask(): int64
+        set collision_mask(value: int64)
+        
+        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
+        get collision_priority(): float64
+        set collision_priority(value: float64)
+        
+        /** If `true`, this GridMap creates a navigation region for each cell that uses a [member mesh_library] item with a navigation mesh. The created navigation region will use the navigation layers bitmask assigned to the [MeshLibrary]'s item. */
+        get bake_navigation(): boolean
+        set bake_navigation(value: boolean)
+        
+        /** Emitted when [member cell_size] changes. */
+        readonly cell_size_changed: Signal1<Vector3>
+        
+        /** Emitted when the [MeshLibrary] of this GridMap changes. */
+        readonly changed: Signal0
+    }
     class GridMapEditor extends VBoxContainer {
         constructor(identifier?: any)
         _configure(): void
@@ -9051,168 +9202,5 @@ declare module "godot" {
     }
     class PackedSceneEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
-    }
-    class PackedSceneEditorTranslationParserPlugin extends EditorTranslationParserPlugin {
-        constructor(identifier?: any)
-    }
-    /** Abstraction and base class for packet-based protocols.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packetpeer.html  
-     */
-    class PacketPeer extends RefCounted {
-        constructor(identifier?: any)
-        /** Gets a Variant. If [param allow_objects] is `true`, decoding objects is allowed.  
-         *  Internally, this uses the same decoding mechanism as the [method @GlobalScope.bytes_to_var] method.  
-         *  **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.  
-         */
-        get_var(allow_objects: boolean = false): any
-        
-        /** Sends a [Variant] as a packet. If [param full_objects] is `true`, encoding objects is allowed (and can potentially include code).  
-         *  Internally, this uses the same encoding mechanism as the [method @GlobalScope.var_to_bytes] method.  
-         */
-        put_var(var_: any, full_objects: boolean = false): Error
-        
-        /** Gets a raw packet. */
-        get_packet(): PackedByteArray
-        
-        /** Sends a raw packet. */
-        put_packet(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
-        
-        /** Returns the error state of the last packet received (via [method get_packet] and [method get_var]). */
-        get_packet_error(): Error
-        
-        /** Returns the number of packets currently available in the ring-buffer. */
-        get_available_packet_count(): int64
-        
-        /** Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier memory allocations.  
-         *  The [method put_var] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than [member encode_buffer_max_size], the method will error out with [constant ERR_OUT_OF_MEMORY].  
-         */
-        get encode_buffer_max_size(): int64
-        set encode_buffer_max_size(value: int64)
-    }
-    namespace PacketPeerDTLS {
-        enum Status {
-            /** A status representing a [PacketPeerDTLS] that is disconnected. */
-            STATUS_DISCONNECTED = 0,
-            
-            /** A status representing a [PacketPeerDTLS] that is currently performing the handshake with a remote peer. */
-            STATUS_HANDSHAKING = 1,
-            
-            /** A status representing a [PacketPeerDTLS] that is connected to a remote peer. */
-            STATUS_CONNECTED = 2,
-            
-            /** A status representing a [PacketPeerDTLS] in a generic error state. */
-            STATUS_ERROR = 3,
-            
-            /** An error status that shows a mismatch in the DTLS certificate domain presented by the host and the domain requested for validation. */
-            STATUS_ERROR_HOSTNAME_MISMATCH = 4,
-        }
-    }
-    /** DTLS packet peer.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerdtls.html  
-     */
-    class PacketPeerDTLS extends PacketPeer {
-        constructor(identifier?: any)
-        /** Poll the connection to check for incoming packets. Call this frequently to update the status and keep the connection working. */
-        poll(): void
-        
-        /** Connects a [param packet_peer] beginning the DTLS handshake using the underlying [PacketPeerUDP] which must be connected (see [method PacketPeerUDP.connect_to_host]). You can optionally specify the [param client_options] to be used while verifying the TLS connections. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        connect_to_peer(packet_peer: PacketPeerUDP, hostname: string, client_options: TLSOptions = undefined): Error
-        
-        /** Returns the status of the connection. See [enum Status] for values. */
-        get_status(): PacketPeerDTLS.Status
-        
-        /** Disconnects this peer, terminating the DTLS session. */
-        disconnect_from_peer(): void
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerextension.html */
-    class PacketPeerExtension extends PacketPeer {
-        constructor(identifier?: any)
-        /* gdvirtual */ _get_packet(r_buffer: int64, r_buffer_size: int64): Error
-        /* gdvirtual */ _put_packet(p_buffer: int64, p_buffer_size: int64): Error
-        /* gdvirtual */ _get_available_packet_count(): int64
-        /* gdvirtual */ _get_max_packet_size(): int64
-    }
-    /** Wrapper to use a PacketPeer over a StreamPeer.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerstream.html  
-     */
-    class PacketPeerStream extends PacketPeer {
-        constructor(identifier?: any)
-        get input_buffer_max_size(): int64
-        set input_buffer_max_size(value: int64)
-        get output_buffer_max_size(): int64
-        set output_buffer_max_size(value: int64)
-        
-        /** The wrapped [StreamPeer] object. */
-        get stream_peer(): StreamPeer
-        set stream_peer(value: StreamPeer)
-    }
-    /** UDP packet peer.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerudp.html  
-     */
-    class PacketPeerUDP extends PacketPeer {
-        constructor(identifier?: any)
-        /** Binds this [PacketPeerUDP] to the specified [param port] and [param bind_address] with a buffer size [param recv_buf_size], allowing it to receive incoming packets.  
-         *  If [param bind_address] is set to `"*"` (default), the peer will be bound on all available addresses (both IPv4 and IPv6).  
-         *  If [param bind_address] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound to all available addresses matching that IP type.  
-         *  If [param bind_address] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only be bound to the interface with that addresses (or fail if no interface with the given address exists).  
-         */
-        bind(port: int64, bind_address: string = '*', recv_buf_size: int64 = 65536): Error
-        
-        /** Closes the [PacketPeerUDP]'s underlying UDP socket. */
-        close(): void
-        
-        /** Waits for a packet to arrive on the bound address. See [method bind].  
-         *      
-         *  **Note:** [method wait] can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:  
-         *    
-         */
-        wait(): Error
-        
-        /** Returns whether this [PacketPeerUDP] is bound to an address and can receive packets. */
-        is_bound(): boolean
-        
-        /** Calling this method connects this UDP peer to the given [param host]/[param port] pair. UDP is in reality connectionless, so this option only means that incoming packets from different addresses are automatically discarded, and that outgoing packets are always sent to the connected address (future calls to [method set_dest_address] are not allowed). This method does not send any data to the remote peer, to do that, use [method PacketPeer.put_var] or [method PacketPeer.put_packet] as usual. See also [UDPServer].  
-         *      
-         *  **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your application is transferring sensitive information.  
-         */
-        connect_to_host(host: string, port: int64): Error
-        
-        /** Returns `true` if the UDP socket is open and has been connected to a remote address. See [method connect_to_host]. */
-        is_socket_connected(): boolean
-        
-        /** Returns the IP of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]). */
-        get_packet_ip(): string
-        
-        /** Returns the port of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]). */
-        get_packet_port(): int64
-        
-        /** Returns the local port to which this peer is bound. */
-        get_local_port(): int64
-        
-        /** Sets the destination address and port for sending packets and variables. A hostname will be resolved using DNS if needed.  
-         *      
-         *  **Note:** [method set_broadcast_enabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).  
-         */
-        set_dest_address(host: string, port: int64): Error
-        
-        /** Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255", 4343)`. This option is disabled by default.  
-         *      
-         *  **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and this option to be enabled to receive broadcast packets too.  
-         */
-        set_broadcast_enabled(enabled: boolean): void
-        
-        /** Joins the multicast group specified by [param multicast_address] using the interface identified by [param interface_name].  
-         *  You can join the same multicast group with multiple interfaces. Use [method IP.get_local_interfaces] to know which are available.  
-         *      
-         *  **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for multicast to work.  
-         */
-        join_multicast_group(multicast_address: string, interface_name: string): Error
-        
-        /** Removes the interface identified by [param interface_name] from the multicast group specified by [param multicast_address]. */
-        leave_multicast_group(multicast_address: string, interface_name: string): Error
     }
 }

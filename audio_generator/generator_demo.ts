@@ -1,5 +1,5 @@
 import { AudioStreamGenerator, AudioStreamGeneratorPlayback, AudioStreamPlayer, Node, Vector2 } from "godot";
-import { onready } from "../jsb/jsb.core";
+import { onready } from "jsb.core";
 
 const zzfxm = require("libs/zzfxm");
 

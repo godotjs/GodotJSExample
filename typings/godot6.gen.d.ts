@@ -1,6 +1,272 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** Internal mesh type.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_trianglemesh.html  
+     */
+    class TriangleMesh extends RefCounted {
+        constructor(identifier?: any)
+    }
+    /** Represents a straight tube-shaped [PrimitiveMesh] with variable width.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tubetrailmesh.html  
+     */
+    class TubeTrailMesh extends PrimitiveMesh {
+        constructor(identifier?: any)
+        /** The baseline radius of the tube. The radius of a particular section ring is obtained by multiplying this radius by the value of the [member curve] at the given distance. */
+        get radius(): float64
+        set radius(value: float64)
+        
+        /** The number of sides on the tube. For example, a value of `5` means the tube will be pentagonal. Higher values result in a more detailed tube at the cost of performance. */
+        get radial_steps(): int64
+        set radial_steps(value: int64)
+        
+        /** The total number of sections on the tube. */
+        get sections(): int64
+        set sections(value: int64)
+        
+        /** The length of a section of the tube. */
+        get section_length(): float64
+        set section_length(value: float64)
+        
+        /** The number of rings in a section. The [member curve] is sampled on each ring to determine its radius. Higher values result in a more detailed tube at the cost of performance. */
+        get section_rings(): int64
+        set section_rings(value: int64)
+        
+        /** If `true`, generates a cap at the top of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
+        get cap_top(): boolean
+        set cap_top(value: boolean)
+        
+        /** If `true`, generates a cap at the bottom of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
+        get cap_bottom(): boolean
+        set cap_bottom(value: boolean)
+        
+        /** Determines the radius of the tube along its length. The radius of a particular section ring is obtained by multiplying the baseline [member radius] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. */
+        get curve(): Curve
+        set curve(value: Curve)
+    }
+    namespace Tween {
+        enum TweenProcessMode {
+            /** The [Tween] updates after each physics frame (see [method Node._physics_process]). */
+            TWEEN_PROCESS_PHYSICS = 0,
+            
+            /** The [Tween] updates after each process frame (see [method Node._process]). */
+            TWEEN_PROCESS_IDLE = 1,
+        }
+        enum TweenPauseMode {
+            /** If the [Tween] has a bound node, it will process when that node can process (see [member Node.process_mode]). Otherwise it's the same as [constant TWEEN_PAUSE_STOP]. */
+            TWEEN_PAUSE_BOUND = 0,
+            
+            /** If [SceneTree] is paused, the [Tween] will also pause. */
+            TWEEN_PAUSE_STOP = 1,
+            
+            /** The [Tween] will process regardless of whether [SceneTree] is paused. */
+            TWEEN_PAUSE_PROCESS = 2,
+        }
+        enum TransitionType {
+            /** The animation is interpolated linearly. */
+            TRANS_LINEAR = 0,
+            
+            /** The animation is interpolated using a sine function. */
+            TRANS_SINE = 1,
+            
+            /** The animation is interpolated with a quintic (to the power of 5) function. */
+            TRANS_QUINT = 2,
+            
+            /** The animation is interpolated with a quartic (to the power of 4) function. */
+            TRANS_QUART = 3,
+            
+            /** The animation is interpolated with a quadratic (to the power of 2) function. */
+            TRANS_QUAD = 4,
+            
+            /** The animation is interpolated with an exponential (to the power of x) function. */
+            TRANS_EXPO = 5,
+            
+            /** The animation is interpolated with elasticity, wiggling around the edges. */
+            TRANS_ELASTIC = 6,
+            
+            /** The animation is interpolated with a cubic (to the power of 3) function. */
+            TRANS_CUBIC = 7,
+            
+            /** The animation is interpolated with a function using square roots. */
+            TRANS_CIRC = 8,
+            
+            /** The animation is interpolated by bouncing at the end. */
+            TRANS_BOUNCE = 9,
+            
+            /** The animation is interpolated backing out at ends. */
+            TRANS_BACK = 10,
+            
+            /** The animation is interpolated like a spring towards the end. */
+            TRANS_SPRING = 11,
+        }
+        enum EaseType {
+            /** The interpolation starts slowly and speeds up towards the end. */
+            EASE_IN = 0,
+            
+            /** The interpolation starts quickly and slows down towards the end. */
+            EASE_OUT = 1,
+            
+            /** A combination of [constant EASE_IN] and [constant EASE_OUT]. The interpolation is slowest at both ends. */
+            EASE_IN_OUT = 2,
+            
+            /** A combination of [constant EASE_IN] and [constant EASE_OUT]. The interpolation is fastest at both ends. */
+            EASE_OUT_IN = 3,
+        }
+    }
+    /** Lightweight object used for general-purpose animation via script, using [Tweener]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_tween.html  
+     */
+    class Tween extends RefCounted {
+        constructor(identifier?: any)
+        /** Creates and appends a [PropertyTweener]. This method tweens a [param property] of an [param object] between an initial value and [param final_val] in a span of time equal to [param duration], in seconds. The initial value by default is the property's value at the time the tweening of the [PropertyTweener] starts.  
+         *  **Example:**  
+         *    
+         *  will move the sprite to position (100, 200) and then to (200, 300). If you use [method PropertyTweener.from] or [method PropertyTweener.from_current], the starting position will be overwritten by the given value instead. See other methods in [PropertyTweener] to see how the tweening can be tweaked further.  
+         *      
+         *  **Note:** You can find the correct property name by hovering over the property in the Inspector. You can also provide the components of a property directly by using `"property:component"` (eg. `position:x`), where it would only apply to that particular component.  
+         *  **Example:** Moving an object twice from the same position, with different transition types:  
+         *    
+         */
+        tween_property(object: Object, property: NodePath | string, final_val: any, duration: float64): PropertyTweener
+        
+        /** Creates and appends an [IntervalTweener]. This method can be used to create delays in the tween animation, as an alternative to using the delay in other [Tweener]s, or when there's no animation (in which case the [Tween] acts as a timer). [param time] is the length of the interval, in seconds.  
+         *  **Example:** Creating an interval in code execution:  
+         *    
+         *  **Example:** Creating an object that moves back and forth and jumps every few seconds:  
+         *    
+         */
+        tween_interval(time: float64): IntervalTweener
+        
+        /** Creates and appends a [CallbackTweener]. This method can be used to call an arbitrary method in any object. Use [method Callable.bind] to bind additional arguments for the call.  
+         *  **Example:** Object that keeps shooting every 1 second:  
+         *    
+         *  **Example:** Turning a sprite red and then blue, with 2 second delay:  
+         *    
+         */
+        tween_callback(callback: Callable): CallbackTweener
+        
+        /** Creates and appends a [MethodTweener]. This method is similar to a combination of [method tween_callback] and [method tween_property]. It calls a method over time with a tweened value provided as an argument. The value is tweened between [param from] and [param to] over the time specified by [param duration], in seconds. Use [method Callable.bind] to bind additional arguments for the call. You can use [method MethodTweener.set_ease] and [method MethodTweener.set_trans] to tweak the easing and transition of the value or [method MethodTweener.set_delay] to delay the tweening.  
+         *  **Example:** Making a 3D object look from one point to another point:  
+         *    
+         *  **Example:** Setting the text of a [Label], using an intermediate method and after a delay:  
+         *    
+         */
+        tween_method(method: Callable, from: any, to: any, duration: float64): MethodTweener
+        
+        /** Processes the [Tween] by the given [param delta] value, in seconds. This is mostly useful for manual control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately, by setting [param delta] longer than the whole duration of the [Tween] animation.  
+         *  Returns `true` if the [Tween] still has [Tweener]s that haven't finished.  
+         */
+        custom_step(delta: float64): boolean
+        
+        /** Stops the tweening and resets the [Tween] to its initial state. This will not remove any appended [Tweener]s.  
+         *      
+         *  **Note:** If a Tween is stopped and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [method SceneTree.get_processed_tweens].  
+         */
+        stop(): void
+        
+        /** Pauses the tweening. The animation can be resumed by using [method play].  
+         *      
+         *  **Note:** If a Tween is paused and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [method SceneTree.get_processed_tweens].  
+         */
+        pause(): void
+        
+        /** Resumes a paused or stopped [Tween]. */
+        play(): void
+        
+        /** Aborts all tweening operations and invalidates the [Tween]. */
+        kill(): void
+        
+        /** Returns the total time in seconds the [Tween] has been animating (i.e. the time since it started, not counting pauses etc.). The time is affected by [method set_speed_scale], and [method stop] will reset it to `0`.  
+         *      
+         *  **Note:** As it results from accumulating frame deltas, the time returned after the [Tween] has finished animating will be slightly greater than the actual [Tween] duration.  
+         */
+        get_total_elapsed_time(): float64
+        
+        /** Returns whether the [Tween] is currently running, i.e. it wasn't paused and it's not finished. */
+        is_running(): boolean
+        
+        /** Returns whether the [Tween] is valid. A valid [Tween] is a [Tween] contained by the scene tree (i.e. the array from [method SceneTree.get_processed_tweens] will contain this [Tween]). A [Tween] might become invalid when it has finished tweening, is killed, or when created with `Tween.new()`. Invalid [Tween]s can't have [Tweener]s appended. */
+        is_valid(): boolean
+        
+        /** Binds this [Tween] with the given [param node]. [Tween]s are processed directly by the [SceneTree], so they run independently of the animated nodes. When you bind a [Node] with the [Tween], the [Tween] will halt the animation when the object is not inside tree and the [Tween] will be automatically killed when the bound object is freed. Also [constant TWEEN_PAUSE_BOUND] will make the pausing behavior dependent on the bound node.  
+         *  For a shorter way to create and bind a [Tween], you can use [method Node.create_tween].  
+         */
+        bind_node(node: Node): Tween
+        
+        /** Determines whether the [Tween] should run after process frames (see [method Node._process]) or physics frames (see [method Node._physics_process]).  
+         *  Default value is [constant TWEEN_PROCESS_IDLE].  
+         */
+        set_process_mode(mode: Tween.TweenProcessMode): Tween
+        
+        /** Determines the behavior of the [Tween] when the [SceneTree] is paused. Check [enum TweenPauseMode] for options.  
+         *  Default value is [constant TWEEN_PAUSE_BOUND].  
+         */
+        set_pause_mode(mode: Tween.TweenPauseMode): Tween
+        
+        /** If [param parallel] is `true`, the [Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.  
+         *      
+         *  **Note:** Just like with [method parallel], the tweener added right before this method will also be part of the parallel step.  
+         *    
+         */
+        set_parallel(parallel: boolean = true): Tween
+        
+        /** Sets the number of times the tweening sequence will be repeated, i.e. `set_loops(2)` will run the animation twice.  
+         *  Calling this method without arguments will make the [Tween] run infinitely, until either it is killed with [method kill], the [Tween]'s bound node is freed, or all the animated objects have been freed (which makes further animation impossible).  
+         *  **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [Tween]'s lifetime depends on some node, always use [method bind_node].  
+         */
+        set_loops(loops: int64 = 0): Tween
+        
+        /** Returns the number of remaining loops for this [Tween] (see [method set_loops]). A return value of `-1` indicates an infinitely looping [Tween], and a return value of `0` indicates that the [Tween] has already finished. */
+        get_loops_left(): int64
+        
+        /** Scales the speed of tweening. This affects all [Tweener]s and their delays. */
+        set_speed_scale(speed: float64): Tween
+        
+        /** Sets the default transition type for [PropertyTweener]s and [MethodTweener]s animated by this [Tween].  
+         *  If not specified, the default value is [constant TRANS_LINEAR].  
+         */
+        set_trans(trans: Tween.TransitionType): Tween
+        
+        /** Sets the default ease type for [PropertyTweener]s and [MethodTweener]s animated by this [Tween].  
+         *  If not specified, the default value is [constant EASE_IN_OUT].  
+         */
+        set_ease(ease: Tween.EaseType): Tween
+        
+        /** Makes the next [Tweener] run parallelly to the previous one.  
+         *  **Example:**  
+         *    
+         *  All [Tweener]s in the example will run at the same time.  
+         *  You can make the [Tween] parallel by default by using [method set_parallel].  
+         */
+        parallel(): Tween
+        
+        /** Used to chain two [Tweener]s after [method set_parallel] is called with `true`.  
+         *    
+         */
+        chain(): Tween
+        
+        /** This method can be used for manual interpolation of a value, when you don't want [Tween] to do animating for you. It's similar to [method @GlobalScope.lerp], but with support for custom transition and easing.  
+         *  [param initial_value] is the starting value of the interpolation.  
+         *  [param delta_value] is the change of the value in the interpolation, i.e. it's equal to `final_value - initial_value`.  
+         *  [param elapsed_time] is the time in seconds that passed after the interpolation started and it's used to control the position of the interpolation. E.g. when it's equal to half of the [param duration], the interpolated value will be halfway between initial and final values. This value can also be greater than [param duration] or lower than 0, which will extrapolate the value.  
+         *  [param duration] is the total time of the interpolation.  
+         *      
+         *  **Note:** If [param duration] is equal to `0`, the method will always return the final value, regardless of [param elapsed_time] provided.  
+         */
+        static interpolate_value(initial_value: any, delta_value: any, elapsed_time: float64, duration: float64, trans_type: Tween.TransitionType, ease_type: Tween.EaseType): any
+        
+        /** Emitted when one step of the [Tween] is complete, providing the step index. One step is either a single [Tweener] or a group of [Tweener]s running in parallel. */
+        readonly step_finished: Signal1<int64>
+        
+        /** Emitted when a full loop is complete (see [method set_loops]), providing the loop index. This signal is not emitted after the final loop, use [signal finished] instead for this case. */
+        readonly loop_finished: Signal1<int64>
+        
+        /** Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to infinite looping (see [method set_loops]). */
+        readonly finished: Signal0
+    }
     /** Abstract class for all Tweeners used by [Tween].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_tweener.html  
@@ -9160,223 +9426,5 @@ declare module "godot" {
         static LESS_EQUAL(left: GArray, right: GArray): boolean
         static GREATER(left: GArray, right: GArray): boolean
         static GREATER_EQUAL(left: GArray, right: GArray): boolean
-    }
-    /** A packed array of bytes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedbytearray.html  
-     */
-    class PackedByteArray {
-        constructor()
-        constructor(from: PackedByteArray | byte[] | ArrayBuffer)
-        constructor(from: GArray)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the byte at the given index. */
-        set(index: int64, value: int64): void
-        
-        /** Appends an element at the end of the array. */
-        push_back(value: int64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: int64): boolean
-        
-        /** Appends a [PackedByteArray] at the end of this array. */
-        append_array(array: PackedByteArray | byte[] | ArrayBuffer): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: int64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: int64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: int64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedByteArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedByteArray].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: int64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedByteArray
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: int64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: int64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: int64): int64
-        
-        /** Converts ASCII/Latin-1 encoded array to [String]. Fast alternative to [method get_string_from_utf8] if the content is ASCII/Latin-1 only. Unlike the UTF-8 function this function maps every byte to a character in the array. Multibyte sequences will not be interpreted correctly. For parsing user input always use [method get_string_from_utf8]. This is the inverse of [method String.to_ascii_buffer]. */
-        get_string_from_ascii(): string
-        
-        /** Converts UTF-8 encoded array to [String]. Slower than [method get_string_from_ascii] but supports UTF-8 encoded data. Use this function if you are unsure about the source of the data. For user input this function should always be preferred. Returns empty string if source array is not valid UTF-8 string. This is the inverse of [method String.to_utf8_buffer]. */
-        get_string_from_utf8(): string
-        
-        /** Converts UTF-16 encoded array to [String]. If the BOM is missing, system endianness is assumed. Returns empty string if source array is not valid UTF-16 string. This is the inverse of [method String.to_utf16_buffer]. */
-        get_string_from_utf16(): string
-        
-        /** Converts UTF-32 encoded array to [String]. System endianness is assumed. Returns empty string if source array is not valid UTF-32 string. This is the inverse of [method String.to_utf32_buffer]. */
-        get_string_from_utf32(): string
-        
-        /** Converts wide character (`wchar_t`, UTF-16 on Windows, UTF-32 on other platforms) encoded array to [String]. Returns empty string if source array is not valid wide string. This is the inverse of [method String.to_wchar_buffer]. */
-        get_string_from_wchar(): string
-        
-        /** Returns a hexadecimal representation of this array as a [String].  
-         *    
-         */
-        hex_encode(): string
-        
-        /** Returns a new [PackedByteArray] with the data compressed. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants. */
-        compress(compression_mode: int64 = 0): PackedByteArray
-        
-        /** Returns a new [PackedByteArray] with the data decompressed. Set [param buffer_size] to the size of the uncompressed data. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants.  
-         *      
-         *  **Note:** Decompression is not guaranteed to work with data not compressed by Godot, for example if data compressed with the deflate compression mode lacks a checksum or header.  
-         */
-        decompress(buffer_size: int64, compression_mode: int64 = 0): PackedByteArray
-        
-        /** Returns a new [PackedByteArray] with the data decompressed. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants. **This method only accepts brotli, gzip, and deflate compression modes.**  
-         *  This method is potentially slower than [method decompress], as it may have to re-allocate its output buffer multiple times while decompressing, whereas [method decompress] knows it's output buffer size from the beginning.  
-         *  GZIP has a maximal compression ratio of 1032:1, meaning it's very possible for a small compressed payload to decompress to a potentially very large output. To guard against this, you may provide a maximum size this function is allowed to allocate in bytes via [param max_output_size]. Passing -1 will allow for unbounded output. If any positive value is passed, and the decompression exceeds that amount in bytes, then an error will be returned.  
-         *      
-         *  **Note:** Decompression is not guaranteed to work with data not compressed by Godot, for example if data compressed with the deflate compression mode lacks a checksum or header.  
-         */
-        decompress_dynamic(max_output_size: int64, compression_mode: int64 = 0): PackedByteArray
-        
-        /** Decodes a 8-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u8(byte_offset: int64): int64
-        
-        /** Decodes a 8-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s8(byte_offset: int64): int64
-        
-        /** Decodes a 16-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u16(byte_offset: int64): int64
-        
-        /** Decodes a 16-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s16(byte_offset: int64): int64
-        
-        /** Decodes a 32-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u32(byte_offset: int64): int64
-        
-        /** Decodes a 32-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s32(byte_offset: int64): int64
-        
-        /** Decodes a 64-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u64(byte_offset: int64): int64
-        
-        /** Decodes a 64-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s64(byte_offset: int64): int64
-        
-        /** Decodes a 16-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_half(byte_offset: int64): float64
-        
-        /** Decodes a 32-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_float(byte_offset: int64): float64
-        
-        /** Decodes a 64-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_double(byte_offset: int64): float64
-        
-        /** Returns `true` if a valid [Variant] value can be decoded at the [param byte_offset]. Returns `false` otherwise or when the value is [Object]-derived and [param allow_objects] is `false`. */
-        has_encoded_var(byte_offset: int64, allow_objects: boolean = false): boolean
-        
-        /** Decodes a [Variant] from the bytes starting at [param byte_offset]. Returns `null` if a valid variant can't be decoded or the value is [Object]-derived and [param allow_objects] is `false`. */
-        decode_var(byte_offset: int64, allow_objects: boolean = false): void
-        
-        /** Decodes a size of a [Variant] from the bytes starting at [param byte_offset]. Requires at least 4 bytes of data starting at the offset, otherwise fails. */
-        decode_var_size(byte_offset: int64, allow_objects: boolean = false): int64
-        
-        /** Returns a copy of the data converted to a [PackedInt32Array], where each block of 4 bytes has been converted to a signed 32-bit integer (C++ `int32_t`).  
-         *  The size of the input array must be a multiple of 4 (size of 32-bit integer). The size of the new array will be `byte_array.size() / 4`.  
-         *  If the original data can't be converted to signed 32-bit integers, the resulting data is undefined.  
-         */
-        to_int32_array(): PackedInt32Array
-        
-        /** Returns a copy of the data converted to a [PackedInt64Array], where each block of 8 bytes has been converted to a signed 64-bit integer (C++ `int64_t`, Godot [int]).  
-         *  The size of the input array must be a multiple of 8 (size of 64-bit integer). The size of the new array will be `byte_array.size() / 8`.  
-         *  If the original data can't be converted to signed 64-bit integers, the resulting data is undefined.  
-         */
-        to_int64_array(): PackedInt64Array
-        
-        /** Returns a copy of the data converted to a [PackedFloat32Array], where each block of 4 bytes has been converted to a 32-bit float (C++ [code skip-lint]float`).  
-         *  The size of the input array must be a multiple of 4 (size of 32-bit float). The size of the new array will be `byte_array.size() / 4`.  
-         *  If the original data can't be converted to 32-bit floats, the resulting data is undefined.  
-         */
-        to_float32_array(): PackedFloat32Array
-        
-        /** Returns a copy of the data converted to a [PackedFloat64Array], where each block of 8 bytes has been converted to a 64-bit float (C++ `double`, Godot [float]).  
-         *  The size of the input array must be a multiple of 8 (size of 64-bit double). The size of the new array will be `byte_array.size() / 8`.  
-         *  If the original data can't be converted to 64-bit floats, the resulting data is undefined.  
-         */
-        to_float64_array(): PackedFloat64Array
-        
-        /** Encodes a 8-bit unsigned integer number (byte) at the index of [param byte_offset] bytes. The array must have at least 1 byte of space, starting at the offset. */
-        encode_u8(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 8-bit signed integer number (signed byte) at the index of [param byte_offset] bytes. The array must have at least 1 byte of space, starting at the offset. */
-        encode_s8(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 16-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_u16(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 16-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_s16(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 32-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_u32(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 32-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_s32(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 64-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of space, starting at the offset. */
-        encode_u64(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 64-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of space, starting at the offset. */
-        encode_s64(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 16-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_half(byte_offset: int64, value: float64): void
-        
-        /** Encodes a 32-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_float(byte_offset: int64, value: float64): void
-        
-        /** Encodes a 64-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of allocated space, starting at the offset. */
-        encode_double(byte_offset: int64, value: float64): void
-        
-        /** Encodes a [Variant] at the index of [param byte_offset] bytes. A sufficient space must be allocated, depending on the encoded variant's size. If [param allow_objects] is `false`, [Object]-derived values are not permitted and will instead be serialized as ID-only. */
-        encode_var(byte_offset: int64, value: any, allow_objects: boolean = false): int64
-        static EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
-        static NOT_EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
     }
 }

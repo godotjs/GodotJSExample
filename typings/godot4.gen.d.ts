@@ -1,6 +1,169 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    class PackedSceneEditorTranslationParserPlugin extends EditorTranslationParserPlugin {
+        constructor(identifier?: any)
+    }
+    /** Abstraction and base class for packet-based protocols.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packetpeer.html  
+     */
+    class PacketPeer extends RefCounted {
+        constructor(identifier?: any)
+        /** Gets a Variant. If [param allow_objects] is `true`, decoding objects is allowed.  
+         *  Internally, this uses the same decoding mechanism as the [method @GlobalScope.bytes_to_var] method.  
+         *  **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.  
+         */
+        get_var(allow_objects: boolean = false): any
+        
+        /** Sends a [Variant] as a packet. If [param full_objects] is `true`, encoding objects is allowed (and can potentially include code).  
+         *  Internally, this uses the same encoding mechanism as the [method @GlobalScope.var_to_bytes] method.  
+         */
+        put_var(var_: any, full_objects: boolean = false): Error
+        
+        /** Gets a raw packet. */
+        get_packet(): PackedByteArray
+        
+        /** Sends a raw packet. */
+        put_packet(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
+        
+        /** Returns the error state of the last packet received (via [method get_packet] and [method get_var]). */
+        get_packet_error(): Error
+        
+        /** Returns the number of packets currently available in the ring-buffer. */
+        get_available_packet_count(): int64
+        
+        /** Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier memory allocations.  
+         *  The [method put_var] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than [member encode_buffer_max_size], the method will error out with [constant ERR_OUT_OF_MEMORY].  
+         */
+        get encode_buffer_max_size(): int64
+        set encode_buffer_max_size(value: int64)
+    }
+    namespace PacketPeerDTLS {
+        enum Status {
+            /** A status representing a [PacketPeerDTLS] that is disconnected. */
+            STATUS_DISCONNECTED = 0,
+            
+            /** A status representing a [PacketPeerDTLS] that is currently performing the handshake with a remote peer. */
+            STATUS_HANDSHAKING = 1,
+            
+            /** A status representing a [PacketPeerDTLS] that is connected to a remote peer. */
+            STATUS_CONNECTED = 2,
+            
+            /** A status representing a [PacketPeerDTLS] in a generic error state. */
+            STATUS_ERROR = 3,
+            
+            /** An error status that shows a mismatch in the DTLS certificate domain presented by the host and the domain requested for validation. */
+            STATUS_ERROR_HOSTNAME_MISMATCH = 4,
+        }
+    }
+    /** DTLS packet peer.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerdtls.html  
+     */
+    class PacketPeerDTLS extends PacketPeer {
+        constructor(identifier?: any)
+        /** Poll the connection to check for incoming packets. Call this frequently to update the status and keep the connection working. */
+        poll(): void
+        
+        /** Connects a [param packet_peer] beginning the DTLS handshake using the underlying [PacketPeerUDP] which must be connected (see [method PacketPeerUDP.connect_to_host]). You can optionally specify the [param client_options] to be used while verifying the TLS connections. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
+        connect_to_peer(packet_peer: PacketPeerUDP, hostname: string, client_options: TLSOptions = undefined): Error
+        
+        /** Returns the status of the connection. See [enum Status] for values. */
+        get_status(): PacketPeerDTLS.Status
+        
+        /** Disconnects this peer, terminating the DTLS session. */
+        disconnect_from_peer(): void
+    }
+    /** @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerextension.html */
+    class PacketPeerExtension extends PacketPeer {
+        constructor(identifier?: any)
+        /* gdvirtual */ _get_packet(r_buffer: int64, r_buffer_size: int64): Error
+        /* gdvirtual */ _put_packet(p_buffer: int64, p_buffer_size: int64): Error
+        /* gdvirtual */ _get_available_packet_count(): int64
+        /* gdvirtual */ _get_max_packet_size(): int64
+    }
+    /** Wrapper to use a PacketPeer over a StreamPeer.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerstream.html  
+     */
+    class PacketPeerStream extends PacketPeer {
+        constructor(identifier?: any)
+        get input_buffer_max_size(): int64
+        set input_buffer_max_size(value: int64)
+        get output_buffer_max_size(): int64
+        set output_buffer_max_size(value: int64)
+        
+        /** The wrapped [StreamPeer] object. */
+        get stream_peer(): StreamPeer
+        set stream_peer(value: StreamPeer)
+    }
+    /** UDP packet peer.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packetpeerudp.html  
+     */
+    class PacketPeerUDP extends PacketPeer {
+        constructor(identifier?: any)
+        /** Binds this [PacketPeerUDP] to the specified [param port] and [param bind_address] with a buffer size [param recv_buf_size], allowing it to receive incoming packets.  
+         *  If [param bind_address] is set to `"*"` (default), the peer will be bound on all available addresses (both IPv4 and IPv6).  
+         *  If [param bind_address] is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound to all available addresses matching that IP type.  
+         *  If [param bind_address] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only be bound to the interface with that addresses (or fail if no interface with the given address exists).  
+         */
+        bind(port: int64, bind_address: string = '*', recv_buf_size: int64 = 65536): Error
+        
+        /** Closes the [PacketPeerUDP]'s underlying UDP socket. */
+        close(): void
+        
+        /** Waits for a packet to arrive on the bound address. See [method bind].  
+         *      
+         *  **Note:** [method wait] can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:  
+         *    
+         */
+        wait(): Error
+        
+        /** Returns whether this [PacketPeerUDP] is bound to an address and can receive packets. */
+        is_bound(): boolean
+        
+        /** Calling this method connects this UDP peer to the given [param host]/[param port] pair. UDP is in reality connectionless, so this option only means that incoming packets from different addresses are automatically discarded, and that outgoing packets are always sent to the connected address (future calls to [method set_dest_address] are not allowed). This method does not send any data to the remote peer, to do that, use [method PacketPeer.put_var] or [method PacketPeer.put_packet] as usual. See also [UDPServer].  
+         *      
+         *  **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your application is transferring sensitive information.  
+         */
+        connect_to_host(host: string, port: int64): Error
+        
+        /** Returns `true` if the UDP socket is open and has been connected to a remote address. See [method connect_to_host]. */
+        is_socket_connected(): boolean
+        
+        /** Returns the IP of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]). */
+        get_packet_ip(): string
+        
+        /** Returns the port of the remote peer that sent the last packet(that was received with [method PacketPeer.get_packet] or [method PacketPeer.get_var]). */
+        get_packet_port(): int64
+        
+        /** Returns the local port to which this peer is bound. */
+        get_local_port(): int64
+        
+        /** Sets the destination address and port for sending packets and variables. A hostname will be resolved using DNS if needed.  
+         *      
+         *  **Note:** [method set_broadcast_enabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).  
+         */
+        set_dest_address(host: string, port: int64): Error
+        
+        /** Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255", 4343)`. This option is disabled by default.  
+         *      
+         *  **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and this option to be enabled to receive broadcast packets too.  
+         */
+        set_broadcast_enabled(enabled: boolean): void
+        
+        /** Joins the multicast group specified by [param multicast_address] using the interface identified by [param interface_name].  
+         *  You can join the same multicast group with multiple interfaces. Use [method IP.get_local_interfaces] to know which are available.  
+         *      
+         *  **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for multicast to work.  
+         */
+        join_multicast_group(multicast_address: string, interface_name: string): Error
+        
+        /** Removes the interface identified by [param interface_name] from the multicast group specified by [param multicast_address]. */
+        leave_multicast_group(multicast_address: string, interface_name: string): Error
+    }
     /** A GUI control that displays a [StyleBox].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_panel.html  
@@ -9069,157 +9232,5 @@ declare module "godot" {
         /** The script source code or an empty string if source code is not available. When set, does not reload the class implementation automatically. */
         get source_code(): string
         set source_code(value: string)
-    }
-    /** Godot editor's popup dialog for creating new [Script] files.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_scriptcreatedialog.html  
-     */
-    class ScriptCreateDialog extends ConfirmationDialog {
-        constructor(identifier?: any)
-        /** Prefills required fields to configure the ScriptCreateDialog for use. */
-        config(inherits: string, path: string, built_in_enabled: boolean = true, load_enabled: boolean = true): void
-        
-        /** Emitted when the user clicks the OK button. */
-        readonly script_created: Signal1<Script>
-    }
-    /** Godot editor's script editor.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_scripteditor.html  
-     */
-    class ScriptEditor extends PanelContainer {
-        constructor(identifier?: any)
-        _close_docs_tab(): void
-        _close_all_tabs(): void
-        _close_other_tabs(): void
-        _goto_script_line2(_unnamed_arg0: int64): void
-        _copy_script_path(): void
-        _help_class_open(_unnamed_arg0: string): void
-        _help_tab_goto(_unnamed_arg0: string, _unnamed_arg1: string): boolean
-        _live_auto_reload_running_scripts(): void
-        _update_members_overview(): void
-        _update_recent_scripts(): void
-        
-        /** Returns the [ScriptEditorBase] object that the user is currently editing. */
-        get_current_editor(): ScriptEditorBase
-        
-        /** Returns an array with all [ScriptEditorBase] objects which are currently open in editor. */
-        get_open_script_editors(): GArray
-        
-        /** Registers the [EditorSyntaxHighlighter] to the editor, the [EditorSyntaxHighlighter] will be available on all open scripts.  
-         *      
-         *  **Note:** Does not apply to scripts that are already opened.  
-         */
-        register_syntax_highlighter(syntax_highlighter: EditorSyntaxHighlighter): void
-        
-        /** Unregisters the [EditorSyntaxHighlighter] from the editor.  
-         *      
-         *  **Note:** The [EditorSyntaxHighlighter] will still be applied to scripts that are already opened.  
-         */
-        unregister_syntax_highlighter(syntax_highlighter: EditorSyntaxHighlighter): void
-        
-        /** Goes to the specified line in the current script. */
-        goto_line(line_number: int64): void
-        
-        /** Returns a [Script] that is currently active in editor. */
-        get_current_script(): Script
-        
-        /** Returns an array with all [Script] objects which are currently open in editor. */
-        get_open_scripts(): GArray
-        
-        /** Opens the script create dialog. The script will extend [param base_name]. The file extension can be omitted from [param base_path]. It will be added based on the selected scripting language. */
-        open_script_create_dialog(base_name: string, base_path: string): void
-        
-        /** Emitted when user changed active script. Argument is a freshly activated [Script]. */
-        readonly editor_script_changed: Signal1<Script>
-        
-        /** Emitted when editor is about to close the active script. Argument is a [Script] that is going to be closed. */
-        readonly script_close: Signal1<Script>
-    }
-    /** Base editor for editing scripts in the [ScriptEditor].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_scripteditorbase.html  
-     */
-    class ScriptEditorBase extends VBoxContainer {
-        constructor(identifier?: any)
-        /** Returns the underlying [Control] used for editing scripts. For text scripts, this is a [CodeEdit]. */
-        get_base_editor(): Control
-        
-        /** Adds a [EditorSyntaxHighlighter] to the open script. */
-        add_syntax_highlighter(highlighter: EditorSyntaxHighlighter): void
-        
-        /** Emitted after script validation or when the edited resource has changed. */
-        readonly name_changed: Signal0
-        
-        /** Emitted after script validation. */
-        readonly edited_script_changed: Signal0
-        
-        /** Emitted when the user requests contextual help. */
-        readonly request_help: Signal1<string>
-        
-        /** Emitted when the user requests to view a specific line of a script, similar to [signal go_to_method]. */
-        readonly request_open_script_at_line: Signal2<Object, int64>
-        
-        /** Emitted when the user contextual goto and the item is in the same script. */
-        readonly request_save_history: Signal0
-        
-        /** Emitted when the user requests a specific documentation page. */
-        readonly go_to_help: Signal1<string>
-        
-        /** Emitted when the user request to search text in the file system. */
-        readonly search_in_files_requested: Signal1<string>
-        
-        /** Emitted when the user request to find and replace text in the file system. */
-        readonly replace_in_files_requested: Signal1<string>
-        
-        /** Emitted when the user requests to view a specific method of a script, similar to [signal request_open_script_at_line]. */
-        readonly go_to_method: Signal2<Object, string>
-    }
-    class ScriptEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class ScriptEditorQuickOpen extends ConfirmationDialog {
-        constructor(identifier?: any)
-        readonly goto_line: Signal1<int64>
-    }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_scriptextension.html */
-    class ScriptExtension extends Script {
-        constructor(identifier?: any)
-        /* gdvirtual */ _editor_can_reload_from_file(): boolean
-        /* gdvirtual */ _placeholder_erased(placeholder: int64): void
-        /* gdvirtual */ _can_instantiate(): boolean
-        /* gdvirtual */ _get_base_script(): Script
-        /* gdvirtual */ _get_global_name(): StringName
-        /* gdvirtual */ _inherits_script(script: Script): boolean
-        /* gdvirtual */ _get_instance_base_type(): StringName
-        /* gdvirtual */ _instance_create(for_object: Object): int64
-        /* gdvirtual */ _placeholder_instance_create(for_object: Object): int64
-        /* gdvirtual */ _instance_has(object: Object): boolean
-        /* gdvirtual */ _has_source_code(): boolean
-        /* gdvirtual */ _get_source_code(): string
-        /* gdvirtual */ _set_source_code(code: string): void
-        /* gdvirtual */ _reload(keep_state: boolean): Error
-        /* gdvirtual */ _get_documentation(): GArray
-        /* gdvirtual */ _get_class_icon_path(): string
-        /* gdvirtual */ _has_method(method: StringName): boolean
-        /* gdvirtual */ _has_static_method(method: StringName): boolean
-        /* gdvirtual */ _get_method_info(method: StringName): GDictionary
-        /* gdvirtual */ _is_tool(): boolean
-        /* gdvirtual */ _is_valid(): boolean
-        
-        /** Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated. */
-        /* gdvirtual */ _is_abstract(): boolean
-        /* gdvirtual */ _get_language(): ScriptLanguage
-        /* gdvirtual */ _has_script_signal(signal: StringName): boolean
-        /* gdvirtual */ _get_script_signal_list(): GArray
-        /* gdvirtual */ _has_property_default_value(property: StringName): boolean
-        /* gdvirtual */ _get_property_default_value(property: StringName): void
-        /* gdvirtual */ _update_exports(): void
-        /* gdvirtual */ _get_script_method_list(): GArray
-        /* gdvirtual */ _get_script_property_list(): GArray
-        /* gdvirtual */ _get_member_line(member: StringName): int64
-        /* gdvirtual */ _get_constants(): GDictionary
-        /* gdvirtual */ _get_members(): GArray
-        /* gdvirtual */ _is_placeholder_fallback_enabled(): boolean
-        /* gdvirtual */ _get_rpc_config(): void
     }
 }

@@ -3303,6 +3303,9 @@ declare module "godot" {
         /** Query support. Return false if import must not continue. */
         /* gdvirtual */ _query(): boolean
     }
+    class EditorFileSystemImportFormatSupportQueryBlend extends EditorFileSystemImportFormatSupportQuery {
+        constructor(identifier?: any)
+    }
     class EditorFileSystemImportFormatSupportQueryFBX extends EditorFileSystemImportFormatSupportQuery {
         constructor(identifier?: any)
     }
@@ -3531,6 +3534,13 @@ declare module "godot" {
     }
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
+    }
+    class EditorInspectorSection extends Container {
+        constructor(identifier?: any)
+        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, _unnamed_arg5: int64): void
+        get_vbox(): VBoxContainer
+        unfold(): void
+        fold(): void
     }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
@@ -4337,11 +4347,28 @@ declare module "godot" {
     class EditorPropertyCheck extends EditorProperty {
         constructor(identifier?: any)
     }
+    class EditorPropertyColor extends EditorProperty {
+        constructor(identifier?: any)
+    }
     class EditorPropertyDictionaryObject extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyEnum extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyFloat extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyInteger extends EditorProperty {
         constructor(identifier?: any)
+    }
+    class EditorPropertyLayers extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyLayersGrid extends Control {
+        constructor(identifier?: any)
+        readonly flag_changed: Signal1<int64>
+        readonly rename_confirmed: Signal2<int64, string>
     }
     class EditorPropertyLocalizableString extends EditorProperty {
         constructor(identifier?: any)
@@ -4359,6 +4386,9 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class EditorPropertyText extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyVector2 extends EditorPropertyVectorN {
         constructor(identifier?: any)
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
@@ -9189,156 +9219,5 @@ declare module "godot" {
         
         /** Emitted when any GraphNode's slot is updated. */
         readonly slot_updated: Signal1<int64>
-    }
-    /** A container that arranges its child controls in a grid layout.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_gridcontainer.html  
-     */
-    class GridContainer extends Container {
-        constructor(identifier?: any)
-        /** The number of columns in the [GridContainer]. If modified, [GridContainer] reorders its Control-derived children to accommodate the new layout. */
-        get columns(): int64
-        set columns(value: int64)
-    }
-    /** Node for 3D tile-based maps.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_gridmap.html  
-     */
-    class GridMap extends Node3D {
-        /** Invalid cell item that can be used in [method set_cell_item] to clear cells (or represent an empty cell in [method get_cell_item]). */
-        static readonly INVALID_CELL_ITEM = -1
-        constructor(identifier?: any)
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: int64): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: int64): boolean
-        
-        /** Sets the [RID] of the navigation map this GridMap node should use for its cell baked navigation meshes. */
-        set_navigation_map(navigation_map: RID): void
-        
-        /** Returns the [RID] of the navigation map this GridMap node uses for its cell baked navigation meshes.  
-         *  This function returns always the map set on the GridMap node and not the map on the NavigationServer. If the map is changed directly with the NavigationServer API the GridMap node will not be aware of the map change.  
-         */
-        get_navigation_map(): RID
-        
-        /** Sets the mesh index for the cell referenced by its grid coordinates.  
-         *  A negative item index such as [constant INVALID_CELL_ITEM] will clear the cell.  
-         *  Optionally, the item's orientation can be passed. For valid orientation values, see [method get_orthogonal_index_from_basis].  
-         */
-        set_cell_item(position: Vector3i, item: int64, orientation: int64 = 0): void
-        
-        /** The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty, [constant INVALID_CELL_ITEM] will be returned. */
-        get_cell_item(position: Vector3i): int64
-        
-        /** The orientation of the cell at the given grid coordinates. `-1` is returned if the cell is empty. */
-        get_cell_item_orientation(position: Vector3i): int64
-        
-        /** Returns the basis that gives the specified cell its orientation. */
-        get_cell_item_basis(position: Vector3i): Basis
-        
-        /** Returns one of 24 possible rotations that lie along the vectors (x,y,z) with each component being either -1, 0, or 1. For further details, refer to the Godot source code. */
-        get_basis_with_orthogonal_index(index: int64): Basis
-        
-        /** This function considers a discretization of rotations into 24 points on unit sphere, lying along the vectors (x,y,z) with each component being either -1, 0, or 1, and returns the index (in the range from 0 to 23) of the point best representing the orientation of the object. For further details, refer to the Godot source code. */
-        get_orthogonal_index_from_basis(basis: Basis): int64
-        
-        /** Returns the map coordinates of the cell containing the given [param local_position]. If [param local_position] is in global coordinates, consider using [method Node3D.to_local] before passing it to this method. See also [method map_to_local]. */
-        local_to_map(local_position: Vector3): Vector3i
-        
-        /** Returns the position of a grid cell in the GridMap's local coordinate space. To convert the returned value into global coordinates, use [method Node3D.to_global]. See also [method map_to_local]. */
-        map_to_local(map_position: Vector3i): Vector3
-        _update_octants_callback(): void
-        
-        /** Clear all cells. */
-        clear(): void
-        
-        /** Returns an array of [Vector3] with the non-empty cell coordinates in the grid map. */
-        get_used_cells(): GArray
-        
-        /** Returns an array of all cells with the given item index specified in [param item]. */
-        get_used_cells_by_item(item: int64): GArray
-        
-        /** Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in the grid. The transforms are specified in local space. */
-        get_meshes(): GArray
-        
-        /** Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist within the current GridMap. */
-        get_bake_meshes(): GArray
-        
-        /** Returns [RID] of a baked mesh with the given [param idx]. */
-        get_bake_mesh_instance(idx: int64): RID
-        
-        /** Clears all baked meshes. See [method make_baked_meshes]. */
-        clear_baked_meshes(): void
-        
-        /** Bakes lightmap data for all meshes in the assigned [MeshLibrary]. */
-        make_baked_meshes(gen_lightmap_uv: boolean = false, lightmap_uv_texel_size: float64 = 0.1): void
-        
-        /** The assigned [MeshLibrary]. */
-        get mesh_library(): MeshLibrary
-        set mesh_library(value: MeshLibrary)
-        
-        /** Overrides the default friction and bounce physics properties for the whole [GridMap]. */
-        get physics_material(): PhysicsMaterial
-        set physics_material(value: PhysicsMaterial)
-        
-        /** The dimensions of the grid's cells.  
-         *  This does not affect the size of the meshes. See [member cell_scale].  
-         */
-        get cell_size(): Vector3
-        set cell_size(value: Vector3)
-        
-        /** The size of each octant measured in number of cells. This applies to all three axis. */
-        get cell_octant_size(): int64
-        set cell_octant_size(value: int64)
-        
-        /** If `true`, grid items are centered on the X axis. */
-        get cell_center_x(): boolean
-        set cell_center_x(value: boolean)
-        
-        /** If `true`, grid items are centered on the Y axis. */
-        get cell_center_y(): boolean
-        set cell_center_y(value: boolean)
-        
-        /** If `true`, grid items are centered on the Z axis. */
-        get cell_center_z(): boolean
-        set cell_center_z(value: boolean)
-        
-        /** The scale of the cell items.  
-         *  This does not affect the size of the grid cells themselves, only the items in them. This can be used to make cell items overlap their neighbors.  
-         */
-        get cell_scale(): float64
-        set cell_scale(value: float64)
-        
-        /** The physics layers this GridMap is in.  
-         *  GridMaps act as static bodies, meaning they aren't affected by gravity or other forces. They only affect other physics bodies that collide with them.  
-         */
-        get collision_layer(): int64
-        set collision_layer(value: int64)
-        
-        /** The physics layers this GridMap detects collisions in. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): int64
-        set collision_mask(value: int64)
-        
-        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        get collision_priority(): float64
-        set collision_priority(value: float64)
-        
-        /** If `true`, this GridMap creates a navigation region for each cell that uses a [member mesh_library] item with a navigation mesh. The created navigation region will use the navigation layers bitmask assigned to the [MeshLibrary]'s item. */
-        get bake_navigation(): boolean
-        set bake_navigation(value: boolean)
-        
-        /** Emitted when [member cell_size] changes. */
-        readonly cell_size_changed: Signal1<Vector3>
-        
-        /** Emitted when the [MeshLibrary] of this GridMap changes. */
-        readonly changed: Signal0
     }
 }

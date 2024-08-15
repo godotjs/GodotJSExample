@@ -1,6 +1,224 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A packed array of bytes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.2/classes/class_packedbytearray.html  
+     */
+    class PackedByteArray {
+        constructor()
+        constructor(from: PackedByteArray | byte[] | ArrayBuffer)
+        constructor(from: GArray)
+        set_indexed(index: number, value: int64)
+        get_indexed(index: number): int64
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the byte at the given index. */
+        set(index: int64, value: int64): void
+        
+        /** Appends an element at the end of the array. */
+        push_back(value: int64): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: int64): boolean
+        
+        /** Appends a [PackedByteArray] at the end of this array. */
+        append_array(array: PackedByteArray | byte[] | ArrayBuffer): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: int64): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: int64): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value]. */
+        has(value: int64): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedByteArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedByteArray].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order. */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         */
+        bsearch(value: int64, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedByteArray
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
+        find(value: int64, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
+        rfind(value: int64, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array. */
+        count(value: int64): int64
+        
+        /** Converts ASCII/Latin-1 encoded array to [String]. Fast alternative to [method get_string_from_utf8] if the content is ASCII/Latin-1 only. Unlike the UTF-8 function this function maps every byte to a character in the array. Multibyte sequences will not be interpreted correctly. For parsing user input always use [method get_string_from_utf8]. This is the inverse of [method String.to_ascii_buffer]. */
+        get_string_from_ascii(): string
+        
+        /** Converts UTF-8 encoded array to [String]. Slower than [method get_string_from_ascii] but supports UTF-8 encoded data. Use this function if you are unsure about the source of the data. For user input this function should always be preferred. Returns empty string if source array is not valid UTF-8 string. This is the inverse of [method String.to_utf8_buffer]. */
+        get_string_from_utf8(): string
+        
+        /** Converts UTF-16 encoded array to [String]. If the BOM is missing, system endianness is assumed. Returns empty string if source array is not valid UTF-16 string. This is the inverse of [method String.to_utf16_buffer]. */
+        get_string_from_utf16(): string
+        
+        /** Converts UTF-32 encoded array to [String]. System endianness is assumed. Returns empty string if source array is not valid UTF-32 string. This is the inverse of [method String.to_utf32_buffer]. */
+        get_string_from_utf32(): string
+        
+        /** Converts wide character (`wchar_t`, UTF-16 on Windows, UTF-32 on other platforms) encoded array to [String]. Returns empty string if source array is not valid wide string. This is the inverse of [method String.to_wchar_buffer]. */
+        get_string_from_wchar(): string
+        
+        /** Returns a hexadecimal representation of this array as a [String].  
+         *    
+         */
+        hex_encode(): string
+        
+        /** Returns a new [PackedByteArray] with the data compressed. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants. */
+        compress(compression_mode: int64 = 0): PackedByteArray
+        
+        /** Returns a new [PackedByteArray] with the data decompressed. Set [param buffer_size] to the size of the uncompressed data. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants.  
+         *      
+         *  **Note:** Decompression is not guaranteed to work with data not compressed by Godot, for example if data compressed with the deflate compression mode lacks a checksum or header.  
+         */
+        decompress(buffer_size: int64, compression_mode: int64 = 0): PackedByteArray
+        
+        /** Returns a new [PackedByteArray] with the data decompressed. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants. **This method only accepts brotli, gzip, and deflate compression modes.**  
+         *  This method is potentially slower than [method decompress], as it may have to re-allocate its output buffer multiple times while decompressing, whereas [method decompress] knows it's output buffer size from the beginning.  
+         *  GZIP has a maximal compression ratio of 1032:1, meaning it's very possible for a small compressed payload to decompress to a potentially very large output. To guard against this, you may provide a maximum size this function is allowed to allocate in bytes via [param max_output_size]. Passing -1 will allow for unbounded output. If any positive value is passed, and the decompression exceeds that amount in bytes, then an error will be returned.  
+         *      
+         *  **Note:** Decompression is not guaranteed to work with data not compressed by Godot, for example if data compressed with the deflate compression mode lacks a checksum or header.  
+         */
+        decompress_dynamic(max_output_size: int64, compression_mode: int64 = 0): PackedByteArray
+        
+        /** Decodes a 8-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
+        decode_u8(byte_offset: int64): int64
+        
+        /** Decodes a 8-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
+        decode_s8(byte_offset: int64): int64
+        
+        /** Decodes a 16-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
+        decode_u16(byte_offset: int64): int64
+        
+        /** Decodes a 16-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
+        decode_s16(byte_offset: int64): int64
+        
+        /** Decodes a 32-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
+        decode_u32(byte_offset: int64): int64
+        
+        /** Decodes a 32-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
+        decode_s32(byte_offset: int64): int64
+        
+        /** Decodes a 64-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
+        decode_u64(byte_offset: int64): int64
+        
+        /** Decodes a 64-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
+        decode_s64(byte_offset: int64): int64
+        
+        /** Decodes a 16-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
+        decode_half(byte_offset: int64): float64
+        
+        /** Decodes a 32-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
+        decode_float(byte_offset: int64): float64
+        
+        /** Decodes a 64-bit floating point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
+        decode_double(byte_offset: int64): float64
+        
+        /** Returns `true` if a valid [Variant] value can be decoded at the [param byte_offset]. Returns `false` otherwise or when the value is [Object]-derived and [param allow_objects] is `false`. */
+        has_encoded_var(byte_offset: int64, allow_objects: boolean = false): boolean
+        
+        /** Decodes a [Variant] from the bytes starting at [param byte_offset]. Returns `null` if a valid variant can't be decoded or the value is [Object]-derived and [param allow_objects] is `false`. */
+        decode_var(byte_offset: int64, allow_objects: boolean = false): void
+        
+        /** Decodes a size of a [Variant] from the bytes starting at [param byte_offset]. Requires at least 4 bytes of data starting at the offset, otherwise fails. */
+        decode_var_size(byte_offset: int64, allow_objects: boolean = false): int64
+        
+        /** Returns a copy of the data converted to a [PackedInt32Array], where each block of 4 bytes has been converted to a signed 32-bit integer (C++ `int32_t`).  
+         *  The size of the input array must be a multiple of 4 (size of 32-bit integer). The size of the new array will be `byte_array.size() / 4`.  
+         *  If the original data can't be converted to signed 32-bit integers, the resulting data is undefined.  
+         */
+        to_int32_array(): PackedInt32Array
+        
+        /** Returns a copy of the data converted to a [PackedInt64Array], where each block of 8 bytes has been converted to a signed 64-bit integer (C++ `int64_t`, Godot [int]).  
+         *  The size of the input array must be a multiple of 8 (size of 64-bit integer). The size of the new array will be `byte_array.size() / 8`.  
+         *  If the original data can't be converted to signed 64-bit integers, the resulting data is undefined.  
+         */
+        to_int64_array(): PackedInt64Array
+        
+        /** Returns a copy of the data converted to a [PackedFloat32Array], where each block of 4 bytes has been converted to a 32-bit float (C++ [code skip-lint]float`).  
+         *  The size of the input array must be a multiple of 4 (size of 32-bit float). The size of the new array will be `byte_array.size() / 4`.  
+         *  If the original data can't be converted to 32-bit floats, the resulting data is undefined.  
+         */
+        to_float32_array(): PackedFloat32Array
+        
+        /** Returns a copy of the data converted to a [PackedFloat64Array], where each block of 8 bytes has been converted to a 64-bit float (C++ `double`, Godot [float]).  
+         *  The size of the input array must be a multiple of 8 (size of 64-bit double). The size of the new array will be `byte_array.size() / 8`.  
+         *  If the original data can't be converted to 64-bit floats, the resulting data is undefined.  
+         */
+        to_float64_array(): PackedFloat64Array
+        
+        /** Encodes a 8-bit unsigned integer number (byte) at the index of [param byte_offset] bytes. The array must have at least 1 byte of space, starting at the offset. */
+        encode_u8(byte_offset: int64, value: int64): void
+        
+        /** Encodes a 8-bit signed integer number (signed byte) at the index of [param byte_offset] bytes. The array must have at least 1 byte of space, starting at the offset. */
+        encode_s8(byte_offset: int64, value: int64): void
+        
+        /** Encodes a 16-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
+        encode_u16(byte_offset: int64, value: int64): void
+        
+        /** Encodes a 16-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
+        encode_s16(byte_offset: int64, value: int64): void
+        
+        /** Encodes a 32-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
+        encode_u32(byte_offset: int64, value: int64): void
+        
+        /** Encodes a 32-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
+        encode_s32(byte_offset: int64, value: int64): void
+        
+        /** Encodes a 64-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of space, starting at the offset. */
+        encode_u64(byte_offset: int64, value: int64): void
+        
+        /** Encodes a 64-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of space, starting at the offset. */
+        encode_s64(byte_offset: int64, value: int64): void
+        
+        /** Encodes a 16-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
+        encode_half(byte_offset: int64, value: float64): void
+        
+        /** Encodes a 32-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
+        encode_float(byte_offset: int64, value: float64): void
+        
+        /** Encodes a 64-bit floating point number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of allocated space, starting at the offset. */
+        encode_double(byte_offset: int64, value: float64): void
+        
+        /** Encodes a [Variant] at the index of [param byte_offset] bytes. A sufficient space must be allocated, depending on the encoded variant's size. If [param allow_objects] is `false`, [Object]-derived values are not permitted and will instead be serialized as ID-only. */
+        encode_var(byte_offset: int64, value: any, allow_objects: boolean = false): int64
+        static EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
+        static NOT_EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
+    }
     /** A packed array of 32-bit integers.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.2/classes/class_packedint32array.html  

@@ -2,7 +2,7 @@ import { Engine, Input, Label, Node, Node2D, NodePath, PackedScene, ResourceLoad
 import SnakeBody from "./snake_body";
 import { kBlockSize, kHeight, kWidth, SnakeDirection } from "./constants";
 import Coin from "./coin";
-import { export_ } from "../jsb/jsb.core";
+import { export_ } from "jsb.core";
 
 const kSnakeBodyAssetPath = "res://snake/snake_body.tscn";
 const kCoinAssetPath = "res://snake/coin.tscn";
