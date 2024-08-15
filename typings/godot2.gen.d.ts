@@ -606,7 +606,7 @@ declare module "godot" {
         /** User defined BiDi algorithm override function.  
          *  Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right order. Ranges should cover full source [param text] without overlaps. BiDi algorithm will be used on each range separately.  
          */
-        /* gdvirtual */ _structured_text_parser(args: Array, text: string): Array
+        /* gdvirtual */ _structured_text_parser(args: GArray, text: string): GArray
         
         /** Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [member custom_minimum_size] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).  
          *  If not overridden, defaults to [constant Vector2.ZERO].  
@@ -1289,8 +1289,8 @@ declare module "godot" {
     class ConvexPolygonShape3D extends Shape3D {
         constructor(identifier?: any)
         /** The list of 3D points forming the convex polygon shape. */
-        get points(): Array
-        set points(value: Array)
+        get points(): GArray
+        set points(value: GArray)
     }
     class CreateDialog extends ConfirmationDialog {
         constructor(identifier?: any)
@@ -1839,25 +1839,25 @@ declare module "godot" {
     }
     class DebugAdapterParser extends Object {
         constructor(identifier?: any)
-        req_initialize(params: Dictionary): Dictionary
-        req_disconnect(params: Dictionary): Dictionary
-        req_launch(params: Dictionary): Dictionary
-        req_attach(params: Dictionary): Dictionary
-        req_restart(params: Dictionary): Dictionary
-        req_terminate(params: Dictionary): Dictionary
-        req_configurationDone(params: Dictionary): Dictionary
-        req_pause(params: Dictionary): Dictionary
-        req_continue(params: Dictionary): Dictionary
-        req_threads(params: Dictionary): Dictionary
-        req_stackTrace(params: Dictionary): Dictionary
-        req_setBreakpoints(params: Dictionary): Dictionary
-        req_breakpointLocations(params: Dictionary): Dictionary
-        req_scopes(params: Dictionary): Dictionary
-        req_variables(params: Dictionary): Dictionary
-        req_next(params: Dictionary): Dictionary
-        req_stepIn(params: Dictionary): Dictionary
-        req_evaluate(params: Dictionary): Dictionary
-        ["req_godot/put_msg"]: (params: Dictionary) => Dictionary
+        req_initialize(params: GDictionary): GDictionary
+        req_disconnect(params: GDictionary): GDictionary
+        req_launch(params: GDictionary): GDictionary
+        req_attach(params: GDictionary): GDictionary
+        req_restart(params: GDictionary): GDictionary
+        req_terminate(params: GDictionary): GDictionary
+        req_configurationDone(params: GDictionary): GDictionary
+        req_pause(params: GDictionary): GDictionary
+        req_continue(params: GDictionary): GDictionary
+        req_threads(params: GDictionary): GDictionary
+        req_stackTrace(params: GDictionary): GDictionary
+        req_setBreakpoints(params: GDictionary): GDictionary
+        req_breakpointLocations(params: GDictionary): GDictionary
+        req_scopes(params: GDictionary): GDictionary
+        req_variables(params: GDictionary): GDictionary
+        req_next(params: GDictionary): GDictionary
+        req_stepIn(params: GDictionary): GDictionary
+        req_evaluate(params: GDictionary): GDictionary
+        ["req_godot/put_msg"]: (params: GDictionary) => GDictionary
     }
     class DebugAdapterServer extends EditorPlugin {
         constructor(identifier?: any)
@@ -2320,7 +2320,7 @@ declare module "godot" {
         /** Waits for events on the host specified and shuttles packets between the host and its peers. The returned [Array] will have 4 elements. An [enum EventType], the [ENetPacketPeer] which generated the event, the event associated data (if any), the event associated channel (if any). If the generated event is [constant EVENT_RECEIVE], the received packet will be queued to the associated [ENetPacketPeer].  
          *  Call this function regularly to handle connections, disconnections, and to receive new packets.  
          */
-        service(timeout: int64 = 0): Array
+        service(timeout: int64 = 0): GArray
         
         /** Sends any queued packets on the host specified to its designated peers. */
         flush(): void
@@ -2367,7 +2367,7 @@ declare module "godot" {
          *      
          *  **Note:** This list might include some peers that are not fully connected or are still being disconnected.  
          */
-        get_peers(): Array
+        get_peers(): GArray
         
         /** Sends a [param packet] toward a destination from the address and port currently bound by this ENetConnection instance.   
          *  This is useful as it serves to establish entries in NAT routing tables on all devices between this bound instance and the public facing internet, allowing a prospective client's connection packets to be routed backward through the NAT device(s) between the public internet and this host.  
@@ -2689,7 +2689,7 @@ declare module "godot" {
         /* gdvirtual */ _has_capture(capture: string): boolean
         
         /** Override this method to process incoming messages. The [param session_id] is the ID of the [EditorDebuggerSession] that received the message (which you can retrieve via [method get_session]). */
-        /* gdvirtual */ _capture(message: string, data: Array, session_id: int64): boolean
+        /* gdvirtual */ _capture(message: string, data: GArray, session_id: int64): boolean
         
         /** Returns the [EditorDebuggerSession] with the given [param id]. */
         get_session(id: int64): EditorDebuggerSession
@@ -2698,7 +2698,7 @@ declare module "godot" {
          *      
          *  **Note:** Sessions in the array may be inactive, check their state via [method EditorDebuggerSession.is_active].  
          */
-        get_sessions(): Array
+        get_sessions(): GArray
     }
     class EditorDebuggerRemoteObject extends Object {
         constructor(identifier?: any)
@@ -2715,10 +2715,10 @@ declare module "godot" {
     class EditorDebuggerSession extends RefCounted {
         constructor(identifier?: any)
         /** Sends the given [param message] to the attached remote instance, optionally passing additionally [param data]. See [EngineDebugger] for how to retrieve those messages. */
-        send_message(message: string, data: Array = []): void
+        send_message(message: string, data: GArray = []): void
         
         /** Toggle the given [param profiler] on the attached remote instance, optionally passing additionally [param data]. See [EngineProfiler] for more details. */
-        toggle_profiler(profiler: string, enable: boolean, data: Array = []): void
+        toggle_profiler(profiler: string, enable: boolean, data: GArray = []): void
         
         /** Returns `true` if the attached remote instance is currently in the debug loop. */
         is_breaked(): boolean
@@ -2875,7 +2875,7 @@ declare module "godot" {
          *  - `default_value`: The default value for this option.  
          *  - `update_visibility`: An optional boolean value. If set to `true`, the preset will emit [signal Object.property_list_changed] when the option is changed.  
          */
-        /* gdvirtual */ _get_export_options(platform: EditorExportPlatform): Array
+        /* gdvirtual */ _get_export_options(platform: EditorExportPlatform): GArray
         
         /** Return `true`, if the result of [method _get_export_options] has changed and the export options of preset corresponding to [param platform] should be updated. */
         /* gdvirtual */ _should_update_export_options(platform: EditorExportPlatform): boolean
@@ -3349,7 +3349,7 @@ declare module "godot" {
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
         
         /** Gets the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: `name`, `default_value`, `property_hint` (optional), `hint_string` (optional), `usage` (optional). */
-        /* gdvirtual */ _get_import_options(path: string, preset_index: int64): Array
+        /* gdvirtual */ _get_import_options(path: string, preset_index: int64): GArray
         
         /** Gets the extension used to save this resource in the `.godot/imported` directory (see [member ProjectSettings.application/config/use_hidden_project_data_directory]). */
         /* gdvirtual */ _get_save_extension(): string
@@ -3367,15 +3367,15 @@ declare module "godot" {
          *    
          *  Returns `true` to make all options always visible.  
          */
-        /* gdvirtual */ _get_option_visibility(path: string, option_name: StringName, options: Dictionary): boolean
+        /* gdvirtual */ _get_option_visibility(path: string, option_name: StringName, options: GDictionary): boolean
         
         /** Imports [param source_file] into [param save_path] with the import [param options] specified. The [param platform_variants] and [param gen_files] arrays will be modified by this function.  
          *  This method must be overridden to do the actual importing work. See this class' description for an example of overriding this method.  
          */
-        /* gdvirtual */ _import(source_file: string, save_path: string, options: Dictionary, platform_variants: Array, gen_files: Array): Error
+        /* gdvirtual */ _import(source_file: string, save_path: string, options: GDictionary, platform_variants: GArray, gen_files: GArray): Error
         
         /** This function can only be called during the [method _import] callback and it allows manually importing resources from it. This is useful when the imported file generates external resources that require importing (as example, images). Custom parameters for the ".import" file can be passed via the [param custom_options]. Additionally, in cases where multiple importers can handle a file, the [param custom_importer] ca be specified to force a specific one. This function performs a resource import and returns immediately with a success or error code. [param generator_parameters] defines optional extra metadata which will be stored as [code skip-lint]generator_parameters` in the `remap` section of the `.import` file, for example to store a md5 hash of the source data. */
-        append_import_external_resource(path: string, custom_options: Dictionary = new Dictionary(), custom_importer: string = '', generator_parameters: any = <any> {}): Error
+        append_import_external_resource(path: string, custom_options: GDictionary = new GDictionary(), custom_importer: string = '', generator_parameters: any = <any> {}): Error
     }
     /** A control used to edit properties of an object.  
      *  	  
@@ -3572,7 +3572,7 @@ declare module "godot" {
         edit_foreign_resource(_unnamed_arg0: Resource): void
         is_resource_read_only(_unnamed_arg0: Resource, _unnamed_arg1: boolean): boolean
         stop_child_process(_unnamed_arg0: int64): void
-        _set_main_scene_state(_unnamed_arg0: Dictionary, _unnamed_arg1: Node): void
+        _set_main_scene_state(_unnamed_arg0: GDictionary, _unnamed_arg1: Node): void
         _update_recent_scenes(): void
         readonly request_help_search: Signal0
         readonly script_add_function_request: Signal3<Object, string, PackedStringArray | string[]>
@@ -3621,7 +3621,7 @@ declare module "godot" {
         /* gdvirtual */ _subgizmos_intersect_ray(camera: Camera3D, point: Vector2): int64
         
         /** Override this method to allow selecting subgizmos using mouse drag box selection. Given a [param camera] and a [param frustum], this method should return which subgizmos are contained within the frustum. The [param frustum] argument consists of an array with all the [Plane]s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [method _get_subgizmo_transform] or [method _commit_subgizmos]. */
-        /* gdvirtual */ _subgizmos_intersect_frustum(camera: Camera3D, frustum: Array): PackedInt32Array
+        /* gdvirtual */ _subgizmos_intersect_frustum(camera: Camera3D, frustum: GArray): PackedInt32Array
         
         /** Override this method to update the node properties during subgizmo editing (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). The [param transform] is given in the [Node3D]'s local coordinate system. */
         /* gdvirtual */ _set_subgizmo_transform(id: int64, transform: Transform3D): void
@@ -3632,7 +3632,7 @@ declare module "godot" {
         /** Override this method to commit a group of subgizmos being edited (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). This usually means creating an [UndoRedo] action for the change, using the current transforms as "do" and the [param restores] transforms as "undo".  
          *  If the [param cancel] argument is `true`, the [param restores] transforms should be directly set, without any [UndoRedo] action.  
          */
-        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array | int32[], restores: Array, cancel: boolean): void
+        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array | int32[], restores: GArray, cancel: boolean): void
         
         /** Adds lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this method during [method _redraw]. */
         add_lines(lines: PackedVector3Array | Vector3[], material: Material, billboard: boolean = false, modulate: Color = new Color(1, 1, 1, 1)): void
@@ -3735,7 +3735,7 @@ declare module "godot" {
         /* gdvirtual */ _subgizmos_intersect_ray(gizmo: EditorNode3DGizmo, camera: Camera3D, screen_pos: Vector2): int64
         
         /** Override this method to allow selecting subgizmos using mouse drag box selection. Given a [param camera] and [param frustum_planes], this method should return which subgizmos are contained within the frustums. The [param frustum_planes] argument consists of an array with all the [Plane]s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, these identifiers can have any non-negative value and will be used in other virtual methods like [method _get_subgizmo_transform] or [method _commit_subgizmos]. Called for this plugin's active gizmos. */
-        /* gdvirtual */ _subgizmos_intersect_frustum(gizmo: EditorNode3DGizmo, camera: Camera3D, frustum_planes: Array): PackedInt32Array
+        /* gdvirtual */ _subgizmos_intersect_frustum(gizmo: EditorNode3DGizmo, camera: Camera3D, frustum_planes: GArray): PackedInt32Array
         
         /** Override this method to return the current transform of a subgizmo. As with all subgizmo methods, the transform should be in local space respect to the gizmo's Node3D. This transform will be requested at the start of an edit and used in the `restore` argument in [method _commit_subgizmos]. Called for this plugin's active gizmos. */
         /* gdvirtual */ _get_subgizmo_transform(gizmo: EditorNode3DGizmo, subgizmo_id: int64): Transform3D
@@ -3746,7 +3746,7 @@ declare module "godot" {
         /** Override this method to commit a group of subgizmos being edited (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). This usually means creating an [UndoRedo] action for the change, using the current transforms as "do" and the [param restores] transforms as "undo".  
          *  If the [param cancel] argument is `true`, the [param restores] transforms should be directly set, without any [UndoRedo] action. As with all subgizmo methods, transforms are given in local space respect to the gizmo's Node3D. Called for this plugin's active gizmos.  
          */
-        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array | int32[], restores: Array, cancel: boolean): void
+        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array | int32[], restores: GArray, cancel: boolean): void
         
         /** Creates an unshaded material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [method get_material] and used in [method EditorNode3DGizmo.add_mesh] and [method EditorNode3DGizmo.add_lines]. Should not be overridden. */
         create_material(name: string, color: Color, billboard: boolean = false, on_top: boolean = false, use_vertex_color: boolean = false): void
@@ -3985,14 +3985,14 @@ declare module "godot" {
          *  **Note:** You must implement [method _get_plugin_name] for the state to be stored and restored correctly.  
          *    
          */
-        /* gdvirtual */ _get_state(): Dictionary
+        /* gdvirtual */ _get_state(): GDictionary
         
         /** Restore the state saved by [method _get_state]. This method is called when the current scene tab is changed in the editor.  
          *      
          *  **Note:** Your plugin must implement [method _get_plugin_name], otherwise it will not be recognized and this method will not be called.  
          *    
          */
-        /* gdvirtual */ _set_state(state: Dictionary): void
+        /* gdvirtual */ _set_state(state: GDictionary): void
         
         /** Clear all the state and reset the object being edited to zero. This ensures your plugin does not keep editing a currently existing node, or a node from the wrong scene. */
         /* gdvirtual */ _clear(): void
@@ -4303,7 +4303,7 @@ declare module "godot" {
         readonly property_changed: Signal4<StringName, any, StringName, boolean>
         
         /** Emit it if you want multiple properties modified at the same time. Do not use if added via [method EditorInspectorPlugin._parse_property]. */
-        readonly multiple_properties_changed: Signal2<PackedStringArray | string[], Array>
+        readonly multiple_properties_changed: Signal2<PackedStringArray | string[], GArray>
         
         /** Emit it if you want to add this value as an animation key (check for keying being enabled first). */
         readonly property_keyed: Signal1<StringName>
@@ -4474,14 +4474,14 @@ declare module "godot" {
          *  Care must be taken because this function is always called from a thread (not the main thread).  
          *  [param metadata] dictionary can be modified to store file-specific metadata that can be used in [method EditorResourceTooltipPlugin._make_tooltip_for_path] (like image size, sample length etc.).  
          */
-        /* gdvirtual */ _generate(resource: Resource, size: Vector2i, metadata: Dictionary): Texture2D
+        /* gdvirtual */ _generate(resource: Resource, size: Vector2i, metadata: GDictionary): Texture2D
         
         /** Generate a preview directly from a path with the specified size. Implementing this is optional, as default code will load and call [method _generate].  
          *  Returning an empty texture is an OK way to fail and let another generator take care.  
          *  Care must be taken because this function is always called from a thread (not the main thread).  
          *  [param metadata] dictionary can be modified to store file-specific metadata that can be used in [method EditorResourceTooltipPlugin._make_tooltip_for_path] (like image size, sample length etc.).  
          */
-        /* gdvirtual */ _generate_from_path(path: string, size: Vector2i, metadata: Dictionary): Texture2D
+        /* gdvirtual */ _generate_from_path(path: string, size: Vector2i, metadata: GDictionary): Texture2D
         
         /** If this function returns `true`, the generator will automatically generate the small previews from the normal preview texture generated by the methods [method _generate] or [method _generate_from_path].  
          *  By default, it returns `false`.  
@@ -4511,7 +4511,7 @@ declare module "godot" {
          *  **Note:** If you decide to discard the [param base], make sure to call [method Node.queue_free], because it's not freed automatically.  
          *    
          */
-        /* gdvirtual */ _make_tooltip_for_path(path: string, metadata: Dictionary, base: Control): Control
+        /* gdvirtual */ _make_tooltip_for_path(path: string, metadata: GDictionary, base: Control): Control
         _thumbnail_ready(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
         
         /** Requests a thumbnail for the given [TextureRect]. The thumbnail is created asynchronously by [EditorResourcePreview] and automatically set when available. */
@@ -4541,7 +4541,7 @@ declare module "godot" {
         constructor(identifier?: any)
         /* gdvirtual */ _get_import_flags(): int64
         /* gdvirtual */ _get_extensions(): PackedStringArray
-        /* gdvirtual */ _import_scene(path: string, flags: int64, options: Dictionary): Object
+        /* gdvirtual */ _import_scene(path: string, flags: int64, options: GDictionary): Object
         /* gdvirtual */ _get_import_options(path: string): void
         /* gdvirtual */ _get_option_visibility(path: string, for_animation: boolean, option: string): void
     }
@@ -4692,10 +4692,10 @@ declare module "godot" {
         remove_node(node: Node): void
         
         /** Gets the list of selected nodes. */
-        get_selected_nodes(): Array
+        get_selected_nodes(): GArray
         
         /** Gets the list of selected nodes, optimized for transform operations (i.e. moving them, rotating, etc). This list avoids situations where a node is selected and also child/grandchild. */
-        get_transformable_selected_nodes(): Array
+        get_transformable_selected_nodes(): GArray
         _emit_change(): void
         
         /** Emitted when the selection changes. */
@@ -4732,7 +4732,7 @@ declare module "godot" {
          *  **Example:**  
          *    
          */
-        add_property_info(info: Dictionary): void
+        add_property_info(info: GDictionary): void
         
         /** Sets project-specific metadata with the [param section], [param key] and [param data] specified. This metadata is stored outside the project folder and therefore won't be checked into version control. See also [method get_project_metadata]. */
         set_project_metadata(section: string, key: string, data: any): void
@@ -4753,7 +4753,7 @@ declare module "godot" {
         get_recent_dirs(): PackedStringArray
         
         /** Overrides the built-in editor action [param name] with the input actions defined in [param actions_list]. */
-        set_builtin_action_override(name: string, actions_list: Array): void
+        set_builtin_action_override(name: string, actions_list: GArray): void
         
         /** Checks if any settings with the prefix [param setting_prefix] exist in the set of changed settings. See also [method get_changed_settings]. */
         check_changed_settings_in_group(setting_prefix: string): boolean
@@ -4849,7 +4849,7 @@ declare module "godot" {
     class EditorTranslationParserPlugin extends RefCounted {
         constructor(identifier?: any)
         /** Override this method to define a custom parsing logic to extract the translatable strings. */
-        /* gdvirtual */ _parse_file(path: string, msgids: Array, msgids_context_plural: Array): void
+        /* gdvirtual */ _parse_file(path: string, msgids: GArray, msgids_context_plural: GArray): void
         
         /** Gets the list of file extensions to associate with this parser, e.g. `["csv"]`. */
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
@@ -4970,7 +4970,7 @@ declare module "godot" {
         /* gdvirtual */ _set_credentials(username: string, password: string, ssh_public_key_path: string, ssh_private_key_path: string, ssh_passphrase: string): void
         
         /** Returns an [Array] of [Dictionary] items (see [method create_status_file]), each containing the status data of every modified file in the project folder. */
-        /* gdvirtual */ _get_modified_files_data(): Array
+        /* gdvirtual */ _get_modified_files_data(): GArray
         
         /** Stages the file present at [param file_path] to the staged area. */
         /* gdvirtual */ _stage_file(file_path: string): void
@@ -4985,7 +4985,7 @@ declare module "godot" {
         /* gdvirtual */ _commit(msg: string): void
         
         /** Returns an array of [Dictionary] items (see [method create_diff_file], [method create_diff_hunk], [method create_diff_line], [method add_line_diffs_into_diff_hunk] and [method add_diff_hunks_into_diff_file]), each containing information about a diff. If [param identifier] is a file path, returns a file diff, and if it is a commit identifier, then returns a commit diff. */
-        /* gdvirtual */ _get_diff(identifier: string, area: int64): Array
+        /* gdvirtual */ _get_diff(identifier: string, area: int64): GArray
         
         /** Shuts down VCS plugin instance. Called when the user either closes the editor or shuts down the VCS plugin through the editor UI. */
         /* gdvirtual */ _shut_down(): boolean
@@ -4994,13 +4994,13 @@ declare module "godot" {
         /* gdvirtual */ _get_vcs_name(): string
         
         /** Returns an [Array] of [Dictionary] items (see [method create_commit]), each containing the data for a past commit. */
-        /* gdvirtual */ _get_previous_commits(max_commits: int64): Array
+        /* gdvirtual */ _get_previous_commits(max_commits: int64): GArray
         
         /** Gets an instance of an [Array] of [String]s containing available branch names in the VCS. */
-        /* gdvirtual */ _get_branch_list(): Array
+        /* gdvirtual */ _get_branch_list(): GArray
         
         /** Returns an [Array] of [String]s, each containing the name of a remote configured in the VCS. */
-        /* gdvirtual */ _get_remotes(): Array
+        /* gdvirtual */ _get_remotes(): GArray
         
         /** Creates a new branch named [param branch_name] in the VCS. */
         /* gdvirtual */ _create_branch(branch_name: string): void
@@ -5030,28 +5030,28 @@ declare module "godot" {
         /* gdvirtual */ _fetch(remote: string): void
         
         /** Returns an [Array] of [Dictionary] items (see [method create_diff_hunk]), each containing a line diff between a file at [param file_path] and the [param text] which is passed in. */
-        /* gdvirtual */ _get_line_diff(file_path: string, text: string): Array
+        /* gdvirtual */ _get_line_diff(file_path: string, text: string): GArray
         
         /** Helper function to create a [Dictionary] for storing a line diff. [param new_line_no] is the line number in the new file (can be `-1` if the line is deleted). [param old_line_no] is the line number in the old file (can be `-1` if the line is added). [param content] is the diff text. [param status] is a single character string which stores the line origin. */
-        create_diff_line(new_line_no: int64, old_line_no: int64, content: string, status: string): Dictionary
+        create_diff_line(new_line_no: int64, old_line_no: int64, content: string, status: string): GDictionary
         
         /** Helper function to create a [Dictionary] for storing diff hunk data. [param old_start] is the starting line number in old file. [param new_start] is the starting line number in new file. [param old_lines] is the number of lines in the old file. [param new_lines] is the number of lines in the new file. */
-        create_diff_hunk(old_start: int64, new_start: int64, old_lines: int64, new_lines: int64): Dictionary
+        create_diff_hunk(old_start: int64, new_start: int64, old_lines: int64, new_lines: int64): GDictionary
         
         /** Helper function to create a [Dictionary] for storing old and new diff file paths. */
-        create_diff_file(new_file: string, old_file: string): Dictionary
+        create_diff_file(new_file: string, old_file: string): GDictionary
         
         /** Helper function to create a commit [Dictionary] item. [param msg] is the commit message of the commit. [param author] is a single human-readable string containing all the author's details, e.g. the email and name configured in the VCS. [param id] is the identifier of the commit, in whichever format your VCS may provide an identifier to commits. [param unix_timestamp] is the UTC Unix timestamp of when the commit was created. [param offset_minutes] is the timezone offset in minutes, recorded from the system timezone where the commit was created. */
-        create_commit(msg: string, author: string, id: string, unix_timestamp: int64, offset_minutes: int64): Dictionary
+        create_commit(msg: string, author: string, id: string, unix_timestamp: int64, offset_minutes: int64): GDictionary
         
         /** Helper function to create a [Dictionary] used by editor to read the status of a file. */
-        create_status_file(file_path: string, change_type: EditorVCSInterface.ChangeType, area: EditorVCSInterface.TreeArea): Dictionary
+        create_status_file(file_path: string, change_type: EditorVCSInterface.ChangeType, area: EditorVCSInterface.TreeArea): GDictionary
         
         /** Helper function to add an array of [param diff_hunks] into a [param diff_file]. */
-        add_diff_hunks_into_diff_file(diff_file: Dictionary, diff_hunks: Array): Dictionary
+        add_diff_hunks_into_diff_file(diff_file: GDictionary, diff_hunks: GArray): GDictionary
         
         /** Helper function to add an array of [param line_diffs] into a [param diff_hunk]. */
-        add_line_diffs_into_diff_hunk(diff_hunk: Dictionary, line_diffs: Array): Dictionary
+        add_line_diffs_into_diff_hunk(diff_hunk: GDictionary, line_diffs: GArray): GDictionary
         
         /** Pops up an error message in the editor which is shown as coming from the underlying VCS. Use this to show VCS specific error messages. */
         popup_error(msg: string): void
@@ -5087,10 +5087,10 @@ declare module "godot" {
     class EngineProfiler extends RefCounted {
         constructor(identifier?: any)
         /** Called when the profiler is enabled/disabled, along with a set of [param options]. */
-        /* gdvirtual */ _toggle(enable: boolean, options: Array): void
+        /* gdvirtual */ _toggle(enable: boolean, options: GArray): void
         
         /** Called when data is added to profiler using [method EngineDebugger.profiler_add_frame_data]. */
-        /* gdvirtual */ _add_frame(data: Array): void
+        /* gdvirtual */ _add_frame(data: GArray): void
         
         /** Called once every engine iteration when the profiler is active with information about the current frame. All time values are in seconds. Lower values represent faster processing times and are therefore considered better. */
         /* gdvirtual */ _tick(frame_time: float64, process_time: float64, physics_time: float64, physics_frame_time: float64): void
@@ -5627,7 +5627,7 @@ declare module "godot" {
         /** Executes the expression that was previously parsed by [method parse] and returns the result. Before you use the returned object, you should check if the method failed by calling [method has_execute_failed].  
          *  If you defined input variables in [method parse], you can specify their values in the inputs array, in the same order.  
          */
-        execute(inputs: Array = [], base_instance: Object = undefined, show_error: boolean = true, const_calls_only: boolean = false): any
+        execute(inputs: GArray = [], base_instance: Object = undefined, show_error: boolean = true, const_calls_only: boolean = false): any
         
         /** Returns `true` if [method execute] has failed. */
         has_execute_failed(): boolean
@@ -6455,10 +6455,10 @@ declare module "godot" {
     class Font extends Resource {
         constructor(identifier?: any)
         /** Returns [TextServer] RID of the font cache for specific variation. */
-        find_variation(variation_coordinates: Dictionary, face_index: int64 = 0, strength: float64 = 0, transform: Transform2D = new Transform2D(), spacing_top: int64 = 0, spacing_bottom: int64 = 0, spacing_space: int64 = 0, spacing_glyph: int64 = 0): RID
+        find_variation(variation_coordinates: GDictionary, face_index: int64 = 0, strength: float64 = 0, transform: Transform2D = new Transform2D(), spacing_top: int64 = 0, spacing_bottom: int64 = 0, spacing_space: int64 = 0, spacing_glyph: int64 = 0): RID
         
         /** Returns [Array] of valid [Font] [RID]s, which can be passed to the [TextServer] methods. */
-        get_rids(): Array
+        get_rids(): GArray
         
         /** Returns the total average font height (ascent plus descent) in pixels.  
          *      
@@ -6497,7 +6497,7 @@ declare module "godot" {
         get_font_style_name(): string
         
         /** Returns [Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.). */
-        get_ot_name_strings(): Dictionary
+        get_ot_name_strings(): GDictionary
         
         /** Returns font style flags, see [enum TextServer.FontStyle]. */
         get_font_style(): TextServer.FontStyle
@@ -6512,7 +6512,7 @@ declare module "godot" {
         get_spacing(spacing: TextServer.SpacingType): int64
         
         /** Returns a set of OpenType feature tags. More info: [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature tags[/url]. */
-        get_opentype_features(): Dictionary
+        get_opentype_features(): GDictionary
         
         /** Sets LRU cache capacity for `draw_*` methods. */
         set_cache_capacity(single_line: int64, multi_line: int64): void
@@ -6585,7 +6585,7 @@ declare module "godot" {
         is_script_supported(script: string): boolean
         
         /** Returns list of OpenType features supported by font. */
-        get_supported_feature_list(): Dictionary
+        get_supported_feature_list(): GDictionary
         
         /** Returns list of supported [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]variation coordinates[/url], each coordinate is returned as `tag: Vector3i(min_value,max_value,default_value)`.  
          *  Font variations allow for continuous change of glyph characteristics along some given design axis, such as weight, width or slant.  
@@ -6594,7 +6594,7 @@ declare module "godot" {
          *      
          *  **Note:** To set and get variation coordinates of a [FontVariation], use [member FontVariation.variation_opentype].  
          */
-        get_supported_variation_list(): Dictionary
+        get_supported_variation_list(): GDictionary
         
         /** Returns number of faces in the TrueType / OpenType collection. */
         get_face_count(): int64
@@ -6602,8 +6602,8 @@ declare module "godot" {
         /** Array of fallback [Font]s to use as a substitute if a glyph is not found in this current [Font].  
          *  If this array is empty in a [FontVariation], the [member FontVariation.base_font]'s fallbacks are used instead.  
          */
-        get fallbacks(): Array
-        set fallbacks(value: Array)
+        get fallbacks(): GArray
+        set fallbacks(value: GArray)
     }
     class FontEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -6634,7 +6634,7 @@ declare module "godot" {
         remove_cache(cache_index: int64): void
         
         /** Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size. */
-        get_size_cache_list(cache_index: int64): Array
+        get_size_cache_list(cache_index: int64): GArray
         
         /** Removes all font sizes from the cache entry */
         clear_size_cache(cache_index: int64): void
@@ -6643,10 +6643,10 @@ declare module "godot" {
         remove_size_cache(cache_index: int64, size: Vector2i): void
         
         /** Sets variation coordinates for the specified font cache entry. See [method Font.get_supported_variation_list] for more info. */
-        set_variation_coordinates(cache_index: int64, variation_coordinates: Dictionary): void
+        set_variation_coordinates(cache_index: int64, variation_coordinates: GDictionary): void
         
         /** Returns variation coordinates for the specified font cache entry. See [method Font.get_supported_variation_list] for more info. */
-        get_variation_coordinates(cache_index: int64): Dictionary
+        get_variation_coordinates(cache_index: int64): GDictionary
         
         /** Sets embolden strength, if is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness. */
         set_embolden(cache_index: int64, strength: float64): void
@@ -6781,7 +6781,7 @@ declare module "godot" {
         get_glyph_texture_idx(cache_index: int64, size: Vector2i, glyph: int64): int64
         
         /** Returns list of the kerning overrides. */
-        get_kerning_list(cache_index: int64, size: int64): Array
+        get_kerning_list(cache_index: int64, size: int64): GArray
         
         /** Removes all kerning overrides. */
         clear_kerning_map(cache_index: int64, size: int64): void
@@ -6909,8 +6909,8 @@ declare module "godot" {
         set fixed_size_scale_mode(value: int64)
         
         /** Font OpenType feature set override. */
-        get opentype_feature_overrides(): Dictionary
-        set opentype_feature_overrides(value: Dictionary)
+        get opentype_feature_overrides(): GDictionary
+        set opentype_feature_overrides(value: GDictionary)
     }
     /** A variation of a font with additional settings.  
      *  	  
@@ -6931,8 +6931,8 @@ declare module "godot" {
          *      
          *  **Note:** To get available variation axes of a font, use [method Font.get_supported_variation_list].  
          */
-        get variation_opentype(): Dictionary
-        set variation_opentype(value: Dictionary)
+        get variation_opentype(): GDictionary
+        set variation_opentype(value: GDictionary)
         
         /** Active face index in the TrueType / OpenType collection file. */
         get variation_face_index(): int64
@@ -6952,8 +6952,8 @@ declare module "godot" {
         set variation_transform(value: Transform2D)
         
         /** A set of OpenType feature tags. More info: [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature tags[/url]. */
-        get opentype_features(): Dictionary
-        set opentype_features(value: Dictionary)
+        get opentype_features(): GDictionary
+        set opentype_features(value: GDictionary)
         
         /** Extra spacing between graphical glyphs. */
         get spacing_glyph(): int64
@@ -6999,34 +6999,34 @@ declare module "godot" {
         didChange(_unnamed_arg0: any): void
         willSaveWaitUntil(_unnamed_arg0: any): void
         didSave(_unnamed_arg0: any): void
-        nativeSymbol(_unnamed_arg0: Dictionary): any
-        documentSymbol(_unnamed_arg0: Dictionary): Array
-        completion(_unnamed_arg0: Dictionary): Array
-        resolve(_unnamed_arg0: Dictionary): Dictionary
-        rename(_unnamed_arg0: Dictionary): Dictionary
-        prepareRename(_unnamed_arg0: Dictionary): any
-        references(_unnamed_arg0: Dictionary): Array
-        foldingRange(_unnamed_arg0: Dictionary): Array
-        codeLens(_unnamed_arg0: Dictionary): Array
-        documentLink(_unnamed_arg0: Dictionary): Array
-        colorPresentation(_unnamed_arg0: Dictionary): Array
-        hover(_unnamed_arg0: Dictionary): any
-        definition(_unnamed_arg0: Dictionary): Array
-        declaration(_unnamed_arg0: Dictionary): any
-        signatureHelp(_unnamed_arg0: Dictionary): any
+        nativeSymbol(_unnamed_arg0: GDictionary): any
+        documentSymbol(_unnamed_arg0: GDictionary): GArray
+        completion(_unnamed_arg0: GDictionary): GArray
+        resolve(_unnamed_arg0: GDictionary): GDictionary
+        rename(_unnamed_arg0: GDictionary): GDictionary
+        prepareRename(_unnamed_arg0: GDictionary): any
+        references(_unnamed_arg0: GDictionary): GArray
+        foldingRange(_unnamed_arg0: GDictionary): GArray
+        codeLens(_unnamed_arg0: GDictionary): GArray
+        documentLink(_unnamed_arg0: GDictionary): GArray
+        colorPresentation(_unnamed_arg0: GDictionary): GArray
+        hover(_unnamed_arg0: GDictionary): any
+        definition(_unnamed_arg0: GDictionary): GArray
+        declaration(_unnamed_arg0: GDictionary): any
+        signatureHelp(_unnamed_arg0: GDictionary): any
         show_native_symbol_in_editor(_unnamed_arg0: string): void
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gdscriptworkspace.html */
     class GDScriptWorkspace extends RefCounted {
         constructor(identifier?: any)
         apply_new_signal(_unnamed_arg0: Object, _unnamed_arg1: string, _unnamed_arg2: PackedStringArray | string[]): void
-        didDeleteFiles(_unnamed_arg0: Dictionary): void
+        didDeleteFiles(_unnamed_arg0: GDictionary): void
         parse_script(path: string, content: string): Error
         parse_local_script(path: string): Error
         get_file_path(uri: string): string
         get_file_uri(path: string): string
         publish_diagnostics(path: string): void
-        generate_script_api(path: string): Dictionary
+        generate_script_api(path: string): GDictionary
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfaccessor.html */
     class GLTFAccessor extends Resource {
@@ -7093,10 +7093,10 @@ declare module "godot" {
         to_node(): Camera3D
         
         /** Creates a new GLTFCamera instance by parsing the given [Dictionary]. */
-        static from_dictionary(dictionary: Dictionary): GLTFCamera
+        static from_dictionary(dictionary: GDictionary): GLTFCamera
         
         /** Serializes this GLTFCamera instance into a [Dictionary]. */
-        to_dictionary(): Dictionary
+        to_dictionary(): GDictionary
         
         /** Whether or not the camera is in perspective mode. If false, the camera is in orthographic/orthogonal mode. This maps to GLTF's camera `type` property. See [member Camera3D.projection] and the GLTF spec for more information. */
         get perspective(): boolean
@@ -7208,7 +7208,7 @@ declare module "godot" {
         /** Part of the import process. This method is run after [method _get_supported_extensions] and before [method _import_post_parse].  
          *  Runs when parsing the node extensions of a GLTFNode. This method can be used to process the extension JSON data into a format that can be used by [method _generate_scene_node]. The return value should be a member of the [enum Error] enum.  
          */
-        /* gdvirtual */ _parse_node_extensions(state: GLTFState, gltf_node: GLTFNode, extensions: Dictionary): Error
+        /* gdvirtual */ _parse_node_extensions(state: GLTFState, gltf_node: GLTFNode, extensions: GDictionary): Error
         
         /** Part of the import process. This method is run after [method _parse_node_extensions] and before [method _parse_texture_json].  
          *  Runs when parsing image data from a GLTF file. The data could be sourced from a separate file, a URI, or a buffer, and then is passed as a byte array.  
@@ -7221,7 +7221,7 @@ declare module "godot" {
         /** Part of the import process. This method is run after [method _parse_image_data] and before [method _generate_scene_node].  
          *  Runs when parsing the texture JSON from the GLTF textures array. This can be used to set the source image index to use as the texture.  
          */
-        /* gdvirtual */ _parse_texture_json(state: GLTFState, texture_json: Dictionary, ret_gltf_texture: GLTFTexture): Error
+        /* gdvirtual */ _parse_texture_json(state: GLTFState, texture_json: GDictionary, ret_gltf_texture: GLTFTexture): Error
         
         /** Part of the import process. This method is run after [method _import_post_parse] and before [method _import_node].  
          *  Runs when generating a Godot scene node from a GLTFNode. The returned node will be added to the scene tree. Multiple nodes can be generated in this step if they are added as a child of the returned node.  
@@ -7238,7 +7238,7 @@ declare module "godot" {
         /** Part of the import process. This method is run after [method _generate_scene_node] and before [method _import_post].  
          *  This method can be used to make modifications to each of the generated Godot scene nodes.  
          */
-        /* gdvirtual */ _import_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node): Error
+        /* gdvirtual */ _import_node(state: GLTFState, gltf_node: GLTFNode, json: GDictionary, node: Node): Error
         
         /** Part of the import process. This method is run last, after all other parts of the import process.  
          *  This method can be used to modify the final Godot scene generated by the import process.  
@@ -7269,7 +7269,7 @@ declare module "godot" {
          *  This method is run when embedding images in the GLTF file. When images are saved separately, [method _save_image_at_path] runs instead. Note that these methods only run when this [GLTFDocumentExtension] is selected as the image exporter.  
          *  This method must set the image MIME type in the [param image_dict] with the `"mimeType"` key. For example, for a PNG image, it would be set to `"image/png"`. The return value must be a [PackedByteArray] containing the image data.  
          */
-        /* gdvirtual */ _serialize_image_to_bytes(state: GLTFState, image: Image, image_dict: Dictionary, image_format: string, lossy_quality: float64): PackedByteArray
+        /* gdvirtual */ _serialize_image_to_bytes(state: GLTFState, image: Image, image_dict: GDictionary, image_format: string, lossy_quality: float64): PackedByteArray
         
         /** Part of the export process. This method is run after [method _get_saveable_image_formats] and before [method _serialize_texture_json].  
          *  This method is run when saving images separately from the GLTF file. When images are embedded, [method _serialize_image_to_bytes] runs instead. Note that these methods only run when this [GLTFDocumentExtension] is selected as the image exporter.  
@@ -7279,12 +7279,12 @@ declare module "godot" {
         /** Part of the export process. This method is run after [method _save_image_at_path] or [method _serialize_image_to_bytes], and before [method _export_node]. Note that this method only runs when this [GLTFDocumentExtension] is selected as the image exporter.  
          *  This method can be used to set up the extensions for the texture JSON by editing [param texture_json]. The extension must also be added as used extension with [method GLTFState.add_used_extension], be sure to set `required` to `true` if you are not providing a fallback.  
          */
-        /* gdvirtual */ _serialize_texture_json(state: GLTFState, texture_json: Dictionary, gltf_texture: GLTFTexture, image_format: string): Error
+        /* gdvirtual */ _serialize_texture_json(state: GLTFState, texture_json: GDictionary, gltf_texture: GLTFTexture, image_format: string): Error
         
         /** Part of the export process. This method is run after [method _get_saveable_image_formats] and before [method _export_post]. If this [GLTFDocumentExtension] is used for exporting images, this runs after [method _serialize_texture_json].  
          *  This method can be used to modify the final JSON of each node.  
          */
-        /* gdvirtual */ _export_node(state: GLTFState, gltf_node: GLTFNode, json: Dictionary, node: Node): Error
+        /* gdvirtual */ _export_node(state: GLTFState, gltf_node: GLTFNode, json: GDictionary, node: Node): Error
         
         /** Part of the export process. This method is run last, after all other parts of the export process.  
          *  This method can be used to modify the final JSON of the generated GLTF file.  
@@ -7317,10 +7317,10 @@ declare module "godot" {
         to_node(): Light3D
         
         /** Creates a new GLTFLight instance by parsing the given [Dictionary]. */
-        static from_dictionary(dictionary: Dictionary): GLTFLight
+        static from_dictionary(dictionary: GDictionary): GLTFLight
         
         /** Serializes this GLTFLight instance into a [Dictionary]. */
-        to_dictionary(): Dictionary
+        to_dictionary(): GDictionary
         
         /** The [Color] of the light. Defaults to white. A black color causes the light to have no effect. */
         get color(): Color
@@ -7357,8 +7357,8 @@ declare module "godot" {
         set mesh(value: Object)
         get blend_weights(): PackedFloat32Array
         set blend_weights(value: PackedFloat32Array | float32[])
-        get instance_materials(): Array
-        set instance_materials(value: Array)
+        get instance_materials(): GArray
+        set instance_materials(value: GArray)
     }
     /** GLTF node class.  
      *  	  
@@ -7437,10 +7437,10 @@ declare module "godot" {
         to_node(): CollisionObject3D
         
         /** Creates a new GLTFPhysicsBody instance by parsing the given [Dictionary]. */
-        static from_dictionary(dictionary: Dictionary): GLTFPhysicsBody
+        static from_dictionary(dictionary: GDictionary): GLTFPhysicsBody
         
         /** Serializes this GLTFPhysicsBody instance into a [Dictionary]. */
-        to_dictionary(): Dictionary
+        to_dictionary(): GDictionary
         
         /** The type of the body. When importing, this controls what type of [CollisionObject3D] node Godot should generate. Valid values are "static", "kinematic", "character", "rigid", "vehicle", and "trigger". */
         get body_type(): string
@@ -7481,10 +7481,10 @@ declare module "godot" {
         to_node(cache_shapes: boolean = false): CollisionShape3D
         
         /** Creates a new GLTFPhysicsShape instance by parsing the given [Dictionary]. */
-        static from_dictionary(dictionary: Dictionary): GLTFPhysicsShape
+        static from_dictionary(dictionary: GDictionary): GLTFPhysicsShape
         
         /** Serializes this GLTFPhysicsShape instance into a [Dictionary]. */
-        to_dictionary(): Dictionary
+        to_dictionary(): GDictionary
         
         /** The type of shape this shape represents. Valid values are "box", "capsule", "cylinder", "sphere", "hull", and "trimesh". */
         get shape_type(): string
@@ -7526,10 +7526,10 @@ declare module "godot" {
         set joints(value: PackedInt32Array | int32[])
         get roots(): PackedInt32Array
         set roots(value: PackedInt32Array | int32[])
-        get unique_names(): Array
-        set unique_names(value: Array)
-        get godot_bone_node(): Dictionary
-        set godot_bone_node(value: Dictionary)
+        get unique_names(): GArray
+        set unique_names(value: GArray)
+        get godot_bone_node(): GDictionary
+        set godot_bone_node(value: GDictionary)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gltfskin.html */
     class GLTFSkin extends Resource {
@@ -7538,8 +7538,8 @@ declare module "godot" {
         set skin_root(value: int64)
         get joints_original(): PackedInt32Array
         set joints_original(value: PackedInt32Array | int32[])
-        get inverse_binds(): Array
-        set inverse_binds(value: Array)
+        get inverse_binds(): GArray
+        set inverse_binds(value: GArray)
         get joints(): PackedInt32Array
         set joints(value: PackedInt32Array | int32[])
         get non_joints(): PackedInt32Array
@@ -7548,10 +7548,10 @@ declare module "godot" {
         set roots(value: PackedInt32Array | int32[])
         get skeleton(): int64
         set skeleton(value: int64)
-        get joint_i_to_bone_i(): Dictionary
-        set joint_i_to_bone_i(value: Dictionary)
-        get joint_i_to_name(): Dictionary
-        set joint_i_to_name(value: Dictionary)
+        get joint_i_to_bone_i(): GDictionary
+        set joint_i_to_bone_i(value: GDictionary)
+        get joint_i_to_name(): GDictionary
+        set joint_i_to_name(value: GDictionary)
         get godot_skin(): Skin
         set godot_skin(value: Skin)
     }
@@ -7629,8 +7629,8 @@ declare module "godot" {
          *  The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the GLTF file), and the second argument can be anything you want.  
          */
         set_additional_data(extension_name: StringName, additional_data: any): void
-        get json(): Dictionary
-        set json(value: Dictionary)
+        get json(): GDictionary
+        set json(value: GDictionary)
         get major_version(): int64
         set major_version(value: int64)
         get minor_version(): int64
@@ -7643,18 +7643,18 @@ declare module "godot" {
         set glb_data(value: PackedByteArray | byte[] | ArrayBuffer)
         get use_named_skin_binds(): boolean
         set use_named_skin_binds(value: boolean)
-        get nodes(): Array
-        set nodes(value: Array)
-        get buffers(): Array
-        set buffers(value: Array)
-        get buffer_views(): Array
-        set buffer_views(value: Array)
-        get accessors(): Array
-        set accessors(value: Array)
-        get meshes(): Array
-        set meshes(value: Array)
-        get materials(): Array
-        set materials(value: Array)
+        get nodes(): GArray
+        set nodes(value: GArray)
+        get buffers(): GArray
+        set buffers(value: GArray)
+        get buffer_views(): GArray
+        set buffer_views(value: GArray)
+        get accessors(): GArray
+        set accessors(value: GArray)
+        get meshes(): GArray
+        set meshes(value: GArray)
+        get materials(): GArray
+        set materials(value: GArray)
         
         /** The name of the scene. When importing, if not specified, this will be the file name. When exporting, if specified, the scene name will be saved to the GLTF file. */
         get scene_name(): string
@@ -7671,28 +7671,28 @@ declare module "godot" {
         /** The root nodes of the GLTF file. Typically, a GLTF file will only have one scene, and therefore one root node. However, a GLTF file may have multiple scenes and therefore multiple root nodes, which will be generated as siblings of each other and as children of the root node of the generated Godot scene. */
         get root_nodes(): PackedInt32Array
         set root_nodes(value: PackedInt32Array | int32[])
-        get textures(): Array
-        set textures(value: Array)
-        get texture_samplers(): Array
-        set texture_samplers(value: Array)
-        get images(): Array
-        set images(value: Array)
-        get skins(): Array
-        set skins(value: Array)
-        get cameras(): Array
-        set cameras(value: Array)
-        get lights(): Array
-        set lights(value: Array)
-        get unique_names(): Array
-        set unique_names(value: Array)
-        get unique_animation_names(): Array
-        set unique_animation_names(value: Array)
-        get skeletons(): Array
-        set skeletons(value: Array)
+        get textures(): GArray
+        set textures(value: GArray)
+        get texture_samplers(): GArray
+        set texture_samplers(value: GArray)
+        get images(): GArray
+        set images(value: GArray)
+        get skins(): GArray
+        set skins(value: GArray)
+        get cameras(): GArray
+        set cameras(value: GArray)
+        get lights(): GArray
+        set lights(value: GArray)
+        get unique_names(): GArray
+        set unique_names(value: GArray)
+        get unique_animation_names(): GArray
+        set unique_animation_names(value: GArray)
+        get skeletons(): GArray
+        set skeletons(value: GArray)
         get create_animations(): boolean
         set create_animations(value: boolean)
-        get animations(): Array
-        set animations(value: Array)
+        get animations(): GArray
+        set animations(value: GArray)
         get handle_binary_image(): int64
         set handle_binary_image(value: int64)
     }
@@ -8597,6 +8597,12 @@ declare module "godot" {
     class Gizmo3DHelper extends RefCounted {
         constructor(identifier?: any)
     }
+    class GodotJSDockedPanel extends MarginContainer {
+        constructor(identifier?: any)
+    }
+    class GodotJSStatisticsViewer extends VBoxContainer {
+        constructor(identifier?: any)
+    }
     class GodotNavigationServer2D extends NavigationServer2D {
         constructor(identifier?: any)
     }
@@ -8830,7 +8836,7 @@ declare module "godot" {
         set_connection_activity(from_node: StringName, from_port: int64, to_node: StringName, to_port: int64, amount: float64): void
         
         /** Returns an Array containing the list of connections. A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`. */
-        get_connection_list(): Array
+        get_connection_list(): GArray
         
         /** Removes all connections between nodes. */
         clear_connections(): void
@@ -9001,7 +9007,7 @@ declare module "godot" {
         /** Emitted when this [GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by default).  
          *  [param nodes] is an array of node names that should be removed. These usually include all selected nodes.  
          */
-        readonly delete_nodes_request: Signal1<Array>
+        readonly delete_nodes_request: Signal1<GArray>
         
         /** Emitted when the given [GraphElement] node is selected. */
         readonly node_selected: Signal1<Node>
@@ -9255,16 +9261,16 @@ declare module "godot" {
         clear(): void
         
         /** Returns an array of [Vector3] with the non-empty cell coordinates in the grid map. */
-        get_used_cells(): Array
+        get_used_cells(): GArray
         
         /** Returns an array of all cells with the given item index specified in [param item]. */
-        get_used_cells_by_item(item: int64): Array
+        get_used_cells_by_item(item: int64): GArray
         
         /** Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in the grid. The transforms are specified in local space. */
-        get_meshes(): Array
+        get_meshes(): GArray
         
         /** Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist within the current GridMap. */
-        get_bake_meshes(): Array
+        get_bake_meshes(): GArray
         
         /** Returns [RID] of a baked mesh with the given [param idx]. */
         get_bake_mesh_instance(idx: int64): RID

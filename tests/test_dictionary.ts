@@ -1,10 +1,10 @@
-import { Array, Dictionary, EditorScript } from "godot";
+import { GArray, GDictionary, EditorScript } from "godot";
 import { tool } from "../jsb/jsb.core";
 
 @tool()
 export default class TestDictionary extends EditorScript {
     _run() {
-        let d = new Dictionary();
+        let d = new GDictionary();
 
         d.set_keyed("field.1", "value.1");
         d.set_keyed("field.2", 2);
@@ -21,7 +21,7 @@ export default class TestDictionary extends EditorScript {
             console.log("GodotDictionary:", kv.key, kv.value);
         }
 
-        let a = new Array();
+        let a = new GArray();
         // a.append(1);
         // a.append("hi");
         // a.append(3.1415926);

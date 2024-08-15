@@ -373,7 +373,7 @@ declare module "godot" {
         get_point_path(from_id: Vector2i, to_id: Vector2i): PackedVector2Array
         
         /** Returns an array with the IDs of the points that form the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path. */
-        get_id_path(from_id: Vector2i, to_id: Vector2i): Array
+        get_id_path(from_id: Vector2i, to_id: Vector2i): GArray
         
         /** The region of grid cells available for pathfinding. If changed, [method update] needs to be called before finding the next path. */
         get region(): Rect2i
@@ -486,7 +486,7 @@ declare module "godot" {
     class ActionMapEditor extends Control {
         constructor(identifier?: any)
         readonly action_added: Signal1<string>
-        readonly action_edited: Signal2<string, Dictionary>
+        readonly action_edited: Signal2<string, GDictionary>
         readonly action_removed: Signal1<string>
         readonly action_renamed: Signal2<string, string>
         readonly action_reordered: Signal3<string, string, boolean>
@@ -967,7 +967,7 @@ declare module "godot" {
         method_track_get_name(track_idx: int64, key_idx: int64): StringName
         
         /** Returns the arguments values to be called on a method track for a given key in a given track. */
-        method_track_get_params(track_idx: int64, key_idx: int64): Array
+        method_track_get_params(track_idx: int64, key_idx: int64): GArray
         
         /** Inserts a Bezier Track key at the given [param time] in seconds. The [param track_idx] must be the index of a Bezier Track.  
          *  [param in_handle] is the left-side weight of the added Bezier curve point, [param out_handle] is the right-side one, while [param value] is the actual value at this point.  
@@ -1105,9 +1105,9 @@ declare module "godot" {
         get_animation(name: StringName): Animation
         
         /** Returns the keys for the [Animation]s stored in the library. */
-        get_animation_list(): Array
-        get _data(): Dictionary
-        set _data(value: Dictionary)
+        get_animation_list(): GArray
+        get _data(): GDictionary
+        set _data(value: GDictionary)
         
         /** Emitted when an [Animation] is added, under the key [param name]. */
         readonly animation_added: Signal1<StringName>
@@ -1174,7 +1174,7 @@ declare module "godot" {
         get_animation_library(name: StringName): AnimationLibrary
         
         /** Returns the list of stored library keys. */
-        get_animation_library_list(): Array
+        get_animation_library_list(): GArray
         
         /** Returns `true` if the [AnimationPlayer] stores an [Animation] with key [param name]. */
         has_animation(name: StringName): boolean
@@ -1337,10 +1337,10 @@ declare module "godot" {
     class AnimationNode extends Resource {
         constructor(identifier?: any)
         /** When inheriting from [AnimationRootNode], implement this virtual method to return all child animation nodes in order as a `name: node` dictionary. */
-        /* gdvirtual */ _get_child_nodes(): Dictionary
+        /* gdvirtual */ _get_child_nodes(): GDictionary
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to return a list of the properties on this animation node. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees. Format is similar to [method Object.get_property_list]. */
-        /* gdvirtual */ _get_parameter_list(): Array
+        /* gdvirtual */ _get_parameter_list(): GArray
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to return a child animation node by its [param name]. */
         /* gdvirtual */ _get_child_by_name(name: StringName): AnimationNode
@@ -1407,8 +1407,8 @@ declare module "godot" {
         /** If `true`, filtering is enabled. */
         get filter_enabled(): boolean
         set filter_enabled(value: boolean)
-        get filters(): Array
-        set filters(value: Array)
+        get filters(): GArray
+        set filters(value: GArray)
         
         /** Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes changes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], [AnimationNodeBlendTree] and [AnimationNodeTransition]. */
         readonly tree_changed: Signal0
@@ -1914,7 +1914,7 @@ declare module "godot" {
         get_fading_from_node(): StringName
         
         /** Returns the current travel path as computed internally by the A* algorithm. */
-        get_travel_path(): Array
+        get_travel_path(): GArray
     }
     namespace AnimationNodeStateMachineTransition {
         enum SwitchMode {
@@ -2273,12 +2273,12 @@ declare module "godot" {
         /** Returns a list of intersecting [PhysicsBody2D]s and [TileMap]s. The overlapping body's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_bodies(): Array
+        get_overlapping_bodies(): GArray
         
         /** Returns a list of intersecting [Area2D]s. The overlapping area's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_areas(): Array
+        get_overlapping_areas(): GArray
         
         /** Returns `true` if intersecting any [PhysicsBody2D]s or [TileMap]s, otherwise returns `false`. The overlapping body's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) the list of overlapping bodies is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
@@ -2432,12 +2432,12 @@ declare module "godot" {
         /** Returns a list of intersecting [PhysicsBody3D]s and [GridMap]s. The overlapping body's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_bodies(): Array
+        get_overlapping_bodies(): GArray
         
         /** Returns a list of intersecting [Area3D]s. The overlapping area's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_areas(): Array
+        get_overlapping_areas(): GArray
         
         /** Returns `true` if intersecting any [PhysicsBody3D]s or [GridMap]s, otherwise returns `false`. The overlapping body's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) the list of overlapping bodies is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
@@ -2622,7 +2622,7 @@ declare module "godot" {
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
          */
-        add_surface_from_arrays(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array = [], lods: Dictionary = new Dictionary(), flags: Mesh.ArrayFormat = 0): void
+        add_surface_from_arrays(primitive: Mesh.PrimitiveType, arrays: GArray, blend_shapes: GArray = [], lods: GDictionary = new GDictionary(), flags: Mesh.ArrayFormat = 0): void
         
         /** Removes all surfaces from this [ArrayMesh]. */
         clear_surfaces(): void
@@ -2658,8 +2658,8 @@ declare module "godot" {
         lightmap_unwrap(transform: Transform3D, texel_size: float64): Error
         get _blend_shape_names(): PackedStringArray
         set _blend_shape_names(value: PackedStringArray | string[])
-        get _surfaces(): Array
-        set _surfaces(value: Array)
+        get _surfaces(): GArray
+        set _surfaces(value: GArray)
         
         /** Sets the blend shape mode to one of [enum Mesh.BlendShapeMode]. */
         get blend_shape_mode(): int64
@@ -5181,9 +5181,9 @@ declare module "godot" {
          *    
          *  [param epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [param epsilon] corresponds to more points in the polygons.  
          */
-        opaque_to_polygons(rect: Rect2i, epsilon: float64 = 2): Array
-        get data(): Dictionary
-        set data(value: Dictionary)
+        opaque_to_polygons(rect: Rect2i, epsilon: float64 = 2): GArray
+        get data(): GDictionary
+        set data(value: GDictionary)
     }
     class BitMapEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -5433,7 +5433,7 @@ declare module "godot" {
         get_pressed_button(): BaseButton
         
         /** Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see [member BaseButton.button_group]). */
-        get_buttons(): Array
+        get_buttons(): GArray
         
         /** If `true`, it is possible to unpress all buttons in this [ButtonGroup]. */
         get allow_unpress(): boolean
@@ -6502,7 +6502,7 @@ declare module "godot" {
         get_collision_layer_value(layer_number: int64): boolean
         
         /** Returns an [Array] with two elements, the first is the [Transform3D] of this node and the second is the root [Mesh] of this node. Only works when this node is the root shape. */
-        get_meshes(): Array
+        get_meshes(): GArray
         
         /** The operation that is performed on this shape. This is ignored for the first CSG child node as the operation is between this node and the previous child of this nodes parent. */
         get operation(): int64
@@ -6881,7 +6881,7 @@ declare module "godot" {
         get_camera_projection(): Projection
         
         /** Returns the camera's frustum planes in world space units as an array of [Plane]s in the following order: near, far, left, top, right, bottom. Not to be confused with [member frustum_offset]. */
-        get_frustum(): Array
+        get_frustum(): GArray
         
         /** Returns `true` if the given position is inside the camera's frustum (the green part of the linked diagram). [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/camera3d_position_frustum.png]See this diagram[/url] for an overview of position query methods. */
         is_position_in_frustum(world_point: Vector3): boolean
@@ -7285,8 +7285,8 @@ declare module "godot" {
          */
         /* gdvirtual */ _draw(): void
         _top_level_raise_self(): void
-        _edit_set_state(state: Dictionary): void
-        _edit_get_state(): Dictionary
+        _edit_set_state(state: GDictionary): void
+        _edit_get_state(): GDictionary
         _edit_set_position(position: Vector2): void
         _edit_get_position(): Vector2
         _edit_set_scale(scale: Vector2): void
@@ -7902,8 +7902,8 @@ declare module "godot" {
          *  For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will map to the following [Dictionary]:  
          *    
          */
-        get env(): Dictionary
-        set env(value: Dictionary)
+        get env(): GDictionary
+        set env(value: GDictionary)
         
         /** Font specific glyph index. */
         get glyph_index(): int64
@@ -8323,7 +8323,7 @@ declare module "godot" {
         /** Override this method to define what items in [param candidates] should be displayed.  
          *  Both [param candidates] and the return is a [Array] of [Dictionary], see [method get_code_completion_option] for [Dictionary] content.  
          */
-        /* gdvirtual */ _filter_code_completion_candidates(candidates: Array): Array
+        /* gdvirtual */ _filter_code_completion_candidates(candidates: GArray): GArray
         
         /** Perform an indent as if the user activated the "ui_text_indent" action. */
         do_indent(): void
@@ -8411,7 +8411,7 @@ declare module "godot" {
         is_line_folded(line: int64): boolean
         
         /** Returns all lines that are current folded. */
-        get_folded_lines(): Array
+        get_folded_lines(): GArray
         
         /** Creates a new code region with the selection. At least one single line comment delimiter have to be defined (see [method add_comment_delimiter]).  
          *  A code region is a part of code that is highlighted when folded and can help organize your script.  
@@ -8509,7 +8509,7 @@ declare module "godot" {
         update_code_completion_options(force: boolean): void
         
         /** Gets all completion options, see [method get_code_completion_option] for return content. */
-        get_code_completion_options(): Array
+        get_code_completion_options(): GArray
         
         /** Gets the completion option at [param index]. The return [Dictionary] has the following key-values:  
          *  `kind`: [enum CodeCompletionKind]  
@@ -8519,7 +8519,7 @@ declare module "godot" {
          *  `icon`: Icon to draw on the autocomplete menu.  
          *  `default_value`: Value of the symbol.  
          */
-        get_code_completion_option(index: int64): Dictionary
+        get_code_completion_option(index: int64): GDictionary
         
         /** Gets the index of the current selected completion option. */
         get_code_completion_selected_index(): int64
@@ -8622,8 +8622,8 @@ declare module "godot" {
         set auto_brace_completion_highlight_matching(value: boolean)
         
         /** Sets the brace pairs to be autocompleted. */
-        get auto_brace_completion_pairs(): Dictionary
-        set auto_brace_completion_pairs(value: Dictionary)
+        get auto_brace_completion_pairs(): GDictionary
+        set auto_brace_completion_pairs(value: GDictionary)
         
         /** Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a removed is emitted at the old line. */
         readonly breakpoint_toggled: Signal1<int64>
@@ -8710,16 +8710,16 @@ declare module "godot" {
         set member_variable_color(value: Color)
         
         /** Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the keyword. The value is the keyword color. */
-        get keyword_colors(): Dictionary
-        set keyword_colors(value: Dictionary)
+        get keyword_colors(): GDictionary
+        set keyword_colors(value: GDictionary)
         
         /** Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary] key is the member keyword. The value is the member keyword color. */
-        get member_keyword_colors(): Dictionary
-        set member_keyword_colors(value: Dictionary)
+        get member_keyword_colors(): GDictionary
+        set member_keyword_colors(value: GDictionary)
         
         /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
-        get color_regions(): Dictionary
-        set color_regions(value: Dictionary)
+        get color_regions(): GDictionary
+        set color_regions(value: GDictionary)
     }
     class CodeTextEditor extends VBoxContainer {
         constructor(identifier?: any)

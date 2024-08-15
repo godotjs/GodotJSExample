@@ -388,7 +388,7 @@ declare module "godot" {
          *  **Example:**  
          *    
          */
-        get_response_headers_as_dictionary(): Dictionary
+        get_response_headers_as_dictionary(): GDictionary
         
         /** Returns the response's body length.  
          *      
@@ -422,7 +422,7 @@ declare module "godot" {
          *  Furthermore, if a key has a `null` value, only the key itself is added, without equal sign and value. If the value is an array, for each value in it a pair with the same key is added.  
          *    
          */
-        query_string_from_dict(fields: Dictionary): string
+        query_string_from_dict(fields: GDictionary): string
         
         /** If `true`, execution will block until all data is read from the response. */
         get blocking_mode_enabled(): boolean
@@ -1089,7 +1089,7 @@ declare module "godot" {
         /** Compute image metrics on the current image and the compared image.  
          *  The dictionary contains `max`, `mean`, `mean_squared`, `root_mean_squared` and `peak_snr`.  
          */
-        compute_image_metrics(compared_image: Image, use_luma: boolean): Dictionary
+        compute_image_metrics(compared_image: Image, use_luma: boolean): GDictionary
         
         /** Copies [param src_rect] from [param src] image to this image at coordinates [param dst], clipped accordingly to both image bounds. This image and [param src] image **must** have the same format. [param src_rect] with non-positive size is treated as empty. */
         blit_rect(src: Image, src_rect: Rect2i, dst: Vector2i): void
@@ -1191,8 +1191,8 @@ declare module "godot" {
         load_svg_from_string(svg_str: string, scale: float64 = 1): Error
         
         /** Holds all the image's color data in a given format. See [enum Format] constants. */
-        get data(): Dictionary
-        set data(value: Dictionary)
+        get data(): GDictionary
+        set data(value: GDictionary)
     }
     namespace ImageFormatLoader {
         enum LoaderFlags {
@@ -1260,12 +1260,12 @@ declare module "godot" {
     class ImageTexture3D extends Texture3D {
         constructor(identifier?: any)
         /** Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth]. See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then generate mipmaps for the [ImageTexture3D]. */
-        create(format: Image.Format, width: int64, height: int64, depth: int64, use_mipmaps: boolean, data: Array): Error
+        create(format: Image.Format, width: int64, height: int64, depth: int64, use_mipmaps: boolean, data: GArray): Error
         
         /** Replaces the texture's existing data with the layers specified in [param data]. The size of [param data] must match the parameters that were used for [method create]. In other words, the texture cannot be resized or have its format changed by calling [method update]. */
-        update(data: Array): void
-        get _images(): Array
-        set _images(value: Array)
+        update(data: GArray): void
+        get _images(): GArray
+        set _images(value: GArray)
     }
     /** Base class for texture types which contain the data of multiple [ImageTexture]s. Each image is of the same size and format.  
      *  	  
@@ -1276,7 +1276,7 @@ declare module "godot" {
         /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images  *must*  have the same width, height, image format and mipmapping setting.  
          *  Each [Image] represents one `layer`.  
          */
-        create_from_images(images: Array): Error
+        create_from_images(images: GArray): Error
         
         /** Replaces the existing [Image] data at the given [param layer] with this new image.  
          *  The given [Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.  
@@ -1284,8 +1284,8 @@ declare module "godot" {
          *  The update is immediate: it's synchronized with drawing.  
          */
         update_layer(image: Image, layer: int64): void
-        get _images(): Array
-        set _images(value: Array)
+        get _images(): GArray
+        set _images(value: GArray)
     }
     /** Mesh optimized for creating geometry manually.  
      *  	  
@@ -1366,7 +1366,7 @@ declare module "godot" {
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
          */
-        add_surface(primitive: Mesh.PrimitiveType, arrays: Array, blend_shapes: Array = [], lods: Dictionary = new Dictionary(), material: Material = undefined, name: string = '', flags: int64 = 0): void
+        add_surface(primitive: Mesh.PrimitiveType, arrays: GArray, blend_shapes: GArray = [], lods: GDictionary = new GDictionary(), material: Material = undefined, name: string = '', flags: int64 = 0): void
         
         /** Returns the number of surfaces that the mesh holds. */
         get_surface_count(): int64
@@ -1378,10 +1378,10 @@ declare module "godot" {
         get_surface_name(surface_idx: int64): string
         
         /** Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface. See [method add_surface]. */
-        get_surface_arrays(surface_idx: int64): Array
+        get_surface_arrays(surface_idx: int64): GArray
         
         /** Returns a single set of blend shape arrays for the requested blend shape index for a surface. */
-        get_surface_blend_shape_arrays(surface_idx: int64, blend_shape_idx: int64): Array
+        get_surface_blend_shape_arrays(surface_idx: int64, blend_shape_idx: int64): GArray
         
         /** Returns the number of lods that the mesh holds on a given surface. */
         get_surface_lod_count(surface_idx: int64): int64
@@ -1409,7 +1409,7 @@ declare module "godot" {
          *  The number of generated lods can be accessed using [method get_surface_lod_count], and each LOD is available in [method get_surface_lod_size] and [method get_surface_lod_indices].  
          *  [param bone_transform_array] is an [Array] which can be either empty or contain [Transform3D]s which, for each of the mesh's bone IDs, will apply mesh skinning when generating the LOD mesh variations. This is usually used to account for discrepancies in scale between the mesh itself and its skinning data.  
          */
-        generate_lods(normal_merge_angle: float64, normal_split_angle: float64, bone_transform_array: Array): void
+        generate_lods(normal_merge_angle: float64, normal_split_angle: float64, bone_transform_array: GArray): void
         
         /** Returns the mesh data represented by this [ImporterMesh] as a usable [ArrayMesh].  
          *  This method caches the returned mesh, and subsequent calls will return the cached data until [method clear] is called.  
@@ -1425,8 +1425,8 @@ declare module "godot" {
         
         /** Returns the size hint of this mesh for lightmap-unwrapping in UV-space. */
         get_lightmap_size_hint(): Vector2i
-        get _data(): Dictionary
-        set _data(value: Dictionary)
+        get _data(): GDictionary
+        set _data(value: GDictionary)
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_importermeshinstance3d.html */
     class ImporterMeshInstance3D extends Node3D {
@@ -1942,7 +1942,7 @@ declare module "godot" {
         /** Returns the list of properties that will be applied to the node when [method create_instance] is called.  
          *  If [param with_order] is `true`, a key named `.order` (note the leading period) is added to the dictionary. This `.order` key is an [Array] of [String] property names specifying the order in which properties will be applied (with index 0 being the first).  
          */
-        get_stored_values(with_order: boolean = false): Dictionary
+        get_stored_values(with_order: boolean = false): GDictionary
         
         /** Call this method to actually load in the node. The created node will be placed as a sibling  *above*  the [InstancePlaceholder] in the scene tree. The [Node]'s reference is also returned for convenience.  
          *      
@@ -2299,26 +2299,26 @@ declare module "godot" {
          *  - [param params]: An array or dictionary of parameters being passed to the method.  
          *  - [param id]: Uniquely identifies this request. The server is expected to send a response with the same ID.  
          */
-        make_request(method: string, params: any, id: any): Dictionary
+        make_request(method: string, params: any, id: any): GDictionary
         
         /** When a server has received and processed a request, it is expected to send a response. If you did not want a response then you need to have sent a Notification instead.  
          *  - [param result]: The return value of the function which was called.  
          *  - [param id]: The ID of the request this response is targeted to.  
          */
-        make_response(result: any, id: any): Dictionary
+        make_response(result: any, id: any): GDictionary
         
         /** Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot messages which do not expect a response.  
          *  - [param method]: Name of the method being called.  
          *  - [param params]: An array or dictionary of parameters being passed to the method.  
          */
-        make_notification(method: string, params: any): Dictionary
+        make_notification(method: string, params: any): GDictionary
         
         /** Creates a response which indicates a previous reply has failed in some way.  
          *  - [param code]: The error code corresponding to what kind of error this is. See the [enum ErrorCode] constants.  
          *  - [param message]: A custom message about this error.  
          *  - [param id]: The request this error is a response to.  
          */
-        make_response_error(code: int64, message: string, id: any = <any> {}): Dictionary
+        make_response_error(code: int64, message: string, id: any = <any> {}): GDictionary
     }
     /** @link https://docs.godotengine.org/en/4.2/classes/class_javaclass.html */
     class JavaClass extends RefCounted {
@@ -2579,8 +2579,8 @@ declare module "godot" {
         set structured_text_bidi_override(value: int64)
         
         /** Set additional options for BiDi override. */
-        get structured_text_bidi_override_options(): Array
-        set structured_text_bidi_override_options(value: Array)
+        get structured_text_bidi_override_options(): GArray
+        set structured_text_bidi_override_options(value: GArray)
     }
     namespace Label3D {
         enum DrawFlags {
@@ -2773,8 +2773,8 @@ declare module "godot" {
         set structured_text_bidi_override(value: int64)
         
         /** Set additional options for BiDi override. */
-        get structured_text_bidi_override_options(): Array
-        set structured_text_bidi_override_options(value: Array)
+        get structured_text_bidi_override_options(): GArray
+        set structured_text_bidi_override_options(value: GArray)
     }
     class Label3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
@@ -3377,14 +3377,14 @@ declare module "godot" {
         clear_users(): void
         
         /** The lightmap atlas textures generated by the lightmapper. */
-        get lightmap_textures(): Array
-        set lightmap_textures(value: Array)
+        get lightmap_textures(): GArray
+        set lightmap_textures(value: GArray)
         get uses_spherical_harmonics(): boolean
         set uses_spherical_harmonics(value: boolean)
-        get user_data(): Array
-        set user_data(value: Array)
-        get probe_data(): Dictionary
-        set probe_data(value: Dictionary)
+        get user_data(): GArray
+        set user_data(value: GArray)
+        get probe_data(): GDictionary
+        set probe_data(value: GDictionary)
     }
     class LightmapGIEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
@@ -3860,8 +3860,8 @@ declare module "godot" {
         set structured_text_bidi_override(value: int64)
         
         /** Set additional options for BiDi override. */
-        get structured_text_bidi_override_options(): Array
-        set structured_text_bidi_override_options(value: Array)
+        get structured_text_bidi_override_options(): GArray
+        set structured_text_bidi_override_options(value: GArray)
         
         /** Emitted when the text changes. */
         readonly text_changed: Signal1<string>
@@ -3918,8 +3918,8 @@ declare module "godot" {
         set structured_text_bidi_override(value: int64)
         
         /** Set additional options for BiDi override. */
-        get structured_text_bidi_override_options(): Array
-        set structured_text_bidi_override_options(value: Array)
+        get structured_text_bidi_override_options(): GArray
+        set structured_text_bidi_override_options(value: GArray)
     }
     class LocalizationEditor extends VBoxContainer {
         constructor(identifier?: any)
@@ -4368,13 +4368,13 @@ declare module "godot" {
         /* gdvirtual */ _surface_get_array_index_len(index: int64): int64
         
         /** Virtual method to override the surface arrays for a custom class extending [Mesh]. */
-        /* gdvirtual */ _surface_get_arrays(index: int64): Array
+        /* gdvirtual */ _surface_get_arrays(index: int64): GArray
         
         /** Virtual method to override the blend shape arrays for a custom class extending [Mesh]. */
-        /* gdvirtual */ _surface_get_blend_shape_arrays(index: int64): Array
+        /* gdvirtual */ _surface_get_blend_shape_arrays(index: int64): GArray
         
         /** Virtual method to override the surface LODs for a custom class extending [Mesh]. */
-        /* gdvirtual */ _surface_get_lods(index: int64): Dictionary
+        /* gdvirtual */ _surface_get_lods(index: int64): GDictionary
         
         /** Virtual method to override the surface format for a custom class extending [Mesh]. */
         /* gdvirtual */ _surface_get_format(index: int64): int64
@@ -4413,10 +4413,10 @@ declare module "godot" {
         get_surface_count(): int64
         
         /** Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see [method ArrayMesh.add_surface_from_arrays]). */
-        surface_get_arrays(surf_idx: int64): Array
+        surface_get_arrays(surf_idx: int64): GArray
         
         /** Returns the blend shape arrays for the requested surface. */
-        surface_get_blend_shape_arrays(surf_idx: int64): Array
+        surface_get_blend_shape_arrays(surf_idx: int64): GArray
         
         /** Sets a [Material] for a given surface. Surface will be rendered using this material.  
          *      
@@ -4782,7 +4782,7 @@ declare module "godot" {
         /** Sets an item's collision shapes.  
          *  The array should consist of [Shape3D] objects, each followed by a [Transform3D] that will be applied to it. For shapes that should not have a transform, use [constant Transform3D.IDENTITY].  
          */
-        set_item_shapes(id: int64, shapes: Array): void
+        set_item_shapes(id: int64, shapes: GArray): void
         
         /** Sets a texture to use as the item's preview icon in the editor. */
         set_item_preview(id: int64, texture: Texture2D): void
@@ -4808,7 +4808,7 @@ declare module "godot" {
         /** Returns an item's collision shapes.  
          *  The array consists of each [Shape3D] followed by its [Transform3D].  
          */
-        get_item_shapes(id: int64): Array
+        get_item_shapes(id: int64): GArray
         
         /** When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using [method set_item_preview]. Returns an empty [Texture2D] if no preview was manually set in a running project. */
         get_item_preview(id: int64): Texture2D
@@ -5119,7 +5119,7 @@ declare module "godot" {
          *      
          *  **Note:** Prefer using [method Node.rpc], [method Node.rpc_id], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.  
          */
-        rpc(peer: int64, object: Object, method: StringName, arguments_: Array = []): Error
+        rpc(peer: int64, object: Object, method: StringName, arguments_: GArray = []): Error
         
         /** Notifies the MultiplayerAPI of a new [param configuration] for the given [param object]. This method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and a valid [NodePath] as [param configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [SceneMultiplayer]) for details on how they use it.  
          *      
@@ -5186,7 +5186,7 @@ declare module "godot" {
         /* gdvirtual */ _get_peer_ids(): PackedInt32Array
         
         /** Callback for [method MultiplayerAPI.rpc]. */
-        /* gdvirtual */ _rpc(peer: int64, object: Object, method: StringName, args: Array): Error
+        /* gdvirtual */ _rpc(peer: int64, object: Object, method: StringName, args: GArray): Error
         
         /** Callback for [method MultiplayerAPI.get_remote_sender_id]. */
         /* gdvirtual */ _get_remote_sender_id(): int64
@@ -5695,7 +5695,7 @@ declare module "godot" {
          *  - `rid`: The [RID] of the containing navigation primitive (region or link).  
          *  - `owner`: The object which manages the containing navigation primitive (region or link).  
          */
-        readonly waypoint_reached: Signal1<Dictionary>
+        readonly waypoint_reached: Signal1<GDictionary>
         
         /** Notifies when a navigation link has been reached.  
          *  The details dictionary may contain the following keys depending on the value of [member path_metadata_flags]:  
@@ -5706,7 +5706,7 @@ declare module "godot" {
          *  - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink2D], it will contain the global position of the link's point the agent is entering.  
          *  - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink2D], it will contain the global position of the link's point which the agent is exiting.  
          */
-        readonly link_reached: Signal1<Dictionary>
+        readonly link_reached: Signal1<GDictionary>
         
         /** Emitted once per loaded path when the agent internal navigation path index reaches the last index of the loaded path array. The agent internal navigation path index can be received with [method get_current_navigation_path_index]. */
         readonly navigation_finished: Signal0
@@ -5910,7 +5910,7 @@ declare module "godot" {
          *  - `rid`: The [RID] of the containing navigation primitive (region or link).  
          *  - `owner`: The object which manages the containing navigation primitive (region or link).  
          */
-        readonly waypoint_reached: Signal1<Dictionary>
+        readonly waypoint_reached: Signal1<GDictionary>
         
         /** Notifies when a navigation link has been reached.  
          *  The details dictionary may contain the following keys depending on the value of [member path_metadata_flags]:  
@@ -5921,7 +5921,7 @@ declare module "godot" {
          *  - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink3D], it will contain the global position of the link's point the agent is entering.  
          *  - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will contain the global position of the link's point which the agent is exiting.  
          */
-        readonly link_reached: Signal1<Dictionary>
+        readonly link_reached: Signal1<GDictionary>
         
         /** Emitted once per loaded path when the agent internal navigation path index reaches the last index of the loaded path array. The agent internal navigation path index can be received with [method get_current_navigation_path_index]. */
         readonly navigation_finished: Signal0
@@ -6135,8 +6135,8 @@ declare module "godot" {
         clear(): void
         get vertices(): PackedVector3Array
         set vertices(value: PackedVector3Array | Vector3[])
-        get polygons(): Array
-        set polygons(value: Array)
+        get polygons(): GArray
+        set polygons(value: GArray)
         
         /** Partitioning algorithm for creating the navigation mesh polys. See [enum SamplePartitionType] for possible values. */
         get sample_partition_type(): int64
@@ -6275,10 +6275,10 @@ declare module "godot" {
         
         /** Adds the outline points of a shape as obstructed area. */
         add_obstruction_outline(shape_outline: PackedVector2Array | Vector2[]): void
-        get traversable_outlines(): Array
-        set traversable_outlines(value: Array)
-        get obstruction_outlines(): Array
-        set obstruction_outlines(value: Array)
+        get traversable_outlines(): GArray
+        set traversable_outlines(value: GArray)
+        get obstruction_outlines(): GArray
+        set obstruction_outlines(value: GArray)
     }
     /** Container for parsed source geometry data used in navigation mesh baking.  
      *  	  
@@ -6296,7 +6296,7 @@ declare module "godot" {
         add_mesh(mesh: Mesh, xform: Transform3D): void
         
         /** Adds an [Array] the size of [constant Mesh.ARRAY_MAX] and with vertices at index [constant Mesh.ARRAY_VERTEX] and indices at index [constant Mesh.ARRAY_INDEX] to the navigation mesh baking data. The array must have valid triangulated mesh data to be considered. Since [NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [param xform]. */
-        add_mesh_array(mesh_array: Array, xform: Transform3D): void
+        add_mesh_array(mesh_array: GArray, xform: Transform3D): void
         
         /** Adds an array of vertex positions to the geometry data for navigation mesh baking to form triangulated faces. For each face the array must have three vertex positions in clockwise winding order. Since [NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [param xform]. */
         add_faces(faces: PackedVector3Array | Vector3[], xform: Transform3D): void
@@ -6563,8 +6563,8 @@ declare module "godot" {
         set path_types(value: PackedInt32Array | int32[])
         
         /** The [RID]s of the regions and links that each point of the path goes through. */
-        get path_rids(): Array
-        set path_rids(value: Array)
+        get path_rids(): GArray
+        set path_rids(value: GArray)
         
         /** The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes through. */
         get path_owner_ids(): PackedInt64Array
@@ -6597,8 +6597,8 @@ declare module "godot" {
         set path_types(value: PackedInt32Array | int32[])
         
         /** The [RID]s of the regions and links that each point of the path goes through. */
-        get path_rids(): Array
-        set path_rids(value: Array)
+        get path_rids(): GArray
+        set path_rids(value: GArray)
         
         /** The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes through. */
         get path_owner_ids(): PackedInt64Array
@@ -6686,10 +6686,10 @@ declare module "godot" {
         clear(): void
         get vertices(): PackedVector2Array
         set vertices(value: PackedVector2Array | Vector2[])
-        get polygons(): Array
-        set polygons(value: Array)
-        get outlines(): Array
-        set outlines(value: Array)
+        get polygons(): GArray
+        set polygons(value: GArray)
+        get outlines(): GArray
+        set outlines(value: GArray)
         
         /** Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for possible values. */
         get parsed_geometry_type(): int64
@@ -7286,7 +7286,7 @@ declare module "godot" {
         /** Returns all children of this node inside an [Array].  
          *  If [param include_internal] is `false`, excludes internal children from the returned array (see [method add_child]'s `internal` parameter).  
          */
-        get_children(include_internal: boolean = false): Array
+        get_children(include_internal: boolean = false): GArray
         
         /** Fetches a child node by its index. Each child node has an index relative its siblings (see [method get_index]). The first child is at index 0. Negative values can also be used to start from the end of the list. This method can be used in combination with [method get_child_count] to iterate over this node's children. If no child exists at the given index, this method returns `null` and an error is generated.  
          *  If [param include_internal] is `false`, internal children are ignored (see [method add_child]'s `internal` parameter).  
@@ -7334,7 +7334,7 @@ declare module "godot" {
          *      
          *  **Note:** To find a single descendant node matching a pattern, see [method find_child].  
          */
-        find_children(pattern: string, type: string = '', recursive: boolean = true, owned: boolean = true): Array
+        find_children(pattern: string, type: string = '', recursive: boolean = true, owned: boolean = true): GArray
         
         /** Finds the first ancestor of this node whose [member name] matches [param pattern], returning `null` if no match is found. The matching is done through [method String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"` matches any single character. See also [method find_child] and [method find_children].  
          *      
@@ -7352,7 +7352,7 @@ declare module "godot" {
          *  **Example:** Assume that the child's [member Sprite2D.texture] has been assigned a [AtlasTexture]:  
          *    
          */
-        get_node_and_resource(path: NodePath | string): Array
+        get_node_and_resource(path: NodePath | string): GArray
         
         /** Returns `true` if this node is currently inside a [SceneTree]. See also [method get_tree]. */
         is_inside_tree(): boolean
@@ -7401,7 +7401,7 @@ declare module "godot" {
          *  **Note:** This method may also return some group names starting with an underscore (`_`). These are internally used by the engine. To avoid conflicts, do not use custom groups starting with underscores. To exclude internal groups, see the following code snippet:  
          *    
          */
-        get_groups(): Array
+        get_groups(): GArray
         
         /** Returns this node's order among its siblings. The first node's index is `0`. See also [method get_child].  
          *  If [param include_internal] is `false`, returns the index ignoring internal children. The first, non-internal child will have an index of `0` (see [method add_child]'s `internal` parameter).  
@@ -7438,7 +7438,7 @@ declare module "godot" {
         /** Calls the given [param method] name, passing [param args] as arguments, on this node and all of its children, recursively.  
          *  If [param parent_first] is `true`, the method is called on this node first, then on all of its children. If `false`, the children's methods are called first.  
          */
-        propagate_call(method: StringName, args: Array = [], parent_first: boolean = false): void
+        propagate_call(method: StringName, args: GArray = [], parent_first: boolean = false): void
         
         /** If set to `true`, enables physics (fixed framerate) processing. When a node is being processed, it will receive a [constant NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see [member Engine.physics_ticks_per_second] to change) interval (and the [method _physics_process] callback will be called if exists). Enabled automatically if [method _physics_process] is overridden. */
         set_physics_process(enable: boolean): void
@@ -7887,7 +7887,7 @@ declare module "godot" {
         add_gizmo(gizmo: Node3DGizmo): void
         
         /** Returns all the gizmos attached to this [Node3D]. */
-        get_gizmos(): Array
+        get_gizmos(): GArray
         
         /** Clear all gizmos attached to this [Node3D]. */
         clear_gizmos(): void
@@ -8135,13 +8135,13 @@ declare module "godot" {
          *      
          *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
          */
-        get_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, normalize: boolean = true): Array
+        get_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, normalize: boolean = true): GArray
         
         /** Returns an [Array] of [Image]s containing seamless 3D noise values for use with [method ImageTexture3D.create].  
          *      
          *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
          */
-        get_seamless_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): Array
+        get_seamless_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): GArray
     }
     class NoiseEditorInspectorPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
@@ -8227,8 +8227,8 @@ declare module "godot" {
     class NoiseTexture3D extends Texture3D {
         constructor(identifier?: any)
         _update_texture(): void
-        _generate_texture(): Array
-        _thread_done(image: Array): void
+        _generate_texture(): GArray
+        _thread_done(image: GArray): void
         
         /** Width of the generated texture (in pixels). */
         get width(): int64
@@ -8347,12 +8347,12 @@ declare module "godot" {
          *      
          *  **Note:** If the object's script is not [annotation @GDScript.@tool], this method will not be called in the editor.  
          */
-        /* gdvirtual */ _get_property_list(): Array
+        /* gdvirtual */ _get_property_list(): GArray
         
         /** Override this method to customize existing properties. Every property info goes through this method. The dictionary contents is the same as in [method _get_property_list].  
          *    
          */
-        /* gdvirtual */ _validate_property(property: Dictionary): void
+        /* gdvirtual */ _validate_property(property: GDictionary): void
         
         /** Override this method to customize the given [param property]'s revert behavior. Should return `true` if the [param property] can be reverted in the Inspector dock. Use [method _property_get_revert] to specify the [param property]'s default value.  
          *      
@@ -8431,7 +8431,7 @@ declare module "godot" {
          *      
          *  **Note:** In GDScript, all class members are treated as properties. In C# and GDExtension, it may be necessary to explicitly mark class members as Godot properties using decorators or attributes.  
          */
-        get_property_list(): Array
+        get_property_list(): GArray
         
         /** Returns this object's methods and their signatures as an [Array] of dictionaries. Each [Dictionary] contains the following entries:  
          *  - `name` is the name of the method, as a [String];  
@@ -8443,7 +8443,7 @@ declare module "godot" {
          *      
          *  **Note:** The dictionaries of `args` and `return` are formatted identically to the results of [method get_property_list], although not all entries are used.  
          */
-        get_method_list(): Array
+        get_method_list(): GArray
         
         /** Returns `true` if the given [param property] has a custom default value. Use [method property_get_revert] to get the [param property]'s default value.  
          *      
@@ -8511,12 +8511,12 @@ declare module "godot" {
         has_meta(name: StringName): boolean
         
         /** Returns the object's metadata entry names as a [PackedStringArray]. */
-        get_meta_list(): Array
+        get_meta_list(): GArray
         
         /** Adds a user-defined [param signal]. Optional arguments for the signal can be added as an [Array] of dictionaries, each defining a `name` [String] and a `type` [int] (see [enum Variant.Type]). See also [method has_user_signal].  
          *    
          */
-        add_user_signal(signal: string, arguments_: Array = []): void
+        add_user_signal(signal: string, arguments_: GArray = []): void
         
         /** Returns `true` if the given user-defined [param signal] name exists. Only signals added with [method add_user_signal] are included. */
         has_user_signal(signal: StringName): boolean
@@ -8561,7 +8561,7 @@ declare module "godot" {
          *      
          *  **Note:** In C#, [param method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on each call.  
          */
-        callv(method: StringName, arg_array: Array): any
+        callv(method: StringName, arg_array: GArray): any
         
         /** Returns `true` if the given [param method] name exists in the object.  
          *      
@@ -8579,21 +8579,21 @@ declare module "godot" {
          *      
          *  **Note:** Due of the implementation, each [Dictionary] is formatted very similarly to the returned values of [method get_method_list].  
          */
-        get_signal_list(): Array
+        get_signal_list(): GArray
         
         /** Returns an [Array] of connections for the given [param signal] name. Each connection is represented as a [Dictionary] that contains three entries:  
          *  - [code skip-lint]signal` is a reference to the [Signal];  
          *  - `callable` is a reference to the connected [Callable];  
          *  - `flags` is a combination of [enum ConnectFlags].  
          */
-        get_signal_connection_list(signal: StringName): Array
+        get_signal_connection_list(signal: StringName): GArray
         
         /** Returns an [Array] of signal connections received by this object. Each connection is represented as a [Dictionary] that contains three entries:  
          *  - `signal` is a reference to the [Signal];  
          *  - `callable` is a reference to the [Callable];  
          *  - `flags` is a combination of [enum ConnectFlags].  
          */
-        get_incoming_connections(): Array
+        get_incoming_connections(): GArray
         
         /** Connects a [param signal] by name to a [param callable]. Optional [param flags] can be also added to configure the connection's behavior (see [enum ConnectFlags] constants).  
          *  A signal can only be connected once to the same [Callable]. If the signal is already connected, this method returns [constant ERR_INVALID_PARAMETER] and pushes an error message, unless the signal is connected with [constant CONNECT_REFERENCE_COUNTED]. To prevent this, use [method is_connected] first to check for existing connections.  
@@ -8771,8 +8771,8 @@ declare module "godot" {
         get_length(): float64
         
         /** Contains the raw packets that make up this OggPacketSequence. */
-        get packet_data(): Array
-        set packet_data(value: Array)
+        get packet_data(): GArray
+        set packet_data(value: GArray)
         
         /** Contains the granule positions for each page in this packet sequence. */
         get granule_positions(): PackedInt64Array
@@ -8974,9 +8974,9 @@ declare module "godot" {
      */
     class PackedDataContainer extends Resource {
         constructor(identifier?: any)
-        _iter_init(_unnamed_arg0: Array): any
+        _iter_init(_unnamed_arg0: GArray): any
         _iter_get(_unnamed_arg0: any): any
-        _iter_next(_unnamed_arg0: Array): any
+        _iter_next(_unnamed_arg0: GArray): any
         
         /** Packs the given container into a binary representation. The [param value] must be either [Array] or [Dictionary], any other type will result in invalid data error.  
          *      
@@ -8997,9 +8997,9 @@ declare module "godot" {
         constructor(identifier?: any)
         /** Returns the size of the packed container (see [method Array.size] and [method Dictionary.size]). */
         size(): int64
-        _iter_init(_unnamed_arg0: Array): any
+        _iter_init(_unnamed_arg0: GArray): any
         _iter_get(_unnamed_arg0: any): any
-        _iter_next(_unnamed_arg0: Array): any
+        _iter_next(_unnamed_arg0: GArray): any
     }
     namespace PackedScene {
         enum GenEditState {
@@ -9046,8 +9046,8 @@ declare module "godot" {
         /** A dictionary representation of the scene contents.  
          *  Available keys include "rnames" and "variants" for resources, "node_count", "nodes", "node_paths" for nodes, "editable_instances" for paths to overridden nodes, "conn_count" and "conns" for signal connections, and "version" for the format style of the PackedScene.  
          */
-        get _bundled(): Dictionary
-        set _bundled(value: Dictionary)
+        get _bundled(): GDictionary
+        set _bundled(value: GDictionary)
     }
     class PackedSceneEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)

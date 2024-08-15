@@ -8,7 +8,7 @@ declare module "godot" {
     class PackedInt32Array {
         constructor()
         constructor(from: PackedInt32Array | int32[])
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         
@@ -92,7 +92,7 @@ declare module "godot" {
     class PackedInt64Array {
         constructor()
         constructor(from: PackedInt64Array | int64[])
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         
@@ -176,7 +176,7 @@ declare module "godot" {
     class PackedFloat32Array {
         constructor()
         constructor(from: PackedFloat32Array | float32[])
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: float64)
         get_indexed(index: number): float64
         
@@ -277,7 +277,7 @@ declare module "godot" {
     class PackedFloat64Array {
         constructor()
         constructor(from: PackedFloat64Array | float64[])
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: float64)
         get_indexed(index: number): float64
         
@@ -378,7 +378,7 @@ declare module "godot" {
     class PackedStringArray {
         constructor()
         constructor(from: PackedStringArray | string[])
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: string)
         get_indexed(index: number): string
         
@@ -460,7 +460,7 @@ declare module "godot" {
     class PackedVector2Array {
         constructor()
         constructor(from: PackedVector2Array | Vector2[])
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: Vector2)
         get_indexed(index: number): Vector2
         
@@ -559,7 +559,7 @@ declare module "godot" {
     class PackedVector3Array {
         constructor()
         constructor(from: PackedVector3Array | Vector3[])
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: Vector3)
         get_indexed(index: number): Vector3
         
@@ -658,7 +658,7 @@ declare module "godot" {
     class PackedColorArray {
         constructor()
         constructor(from: PackedColorArray | Color[])
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: Color)
         get_indexed(index: number): Color
         

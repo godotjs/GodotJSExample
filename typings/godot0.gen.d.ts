@@ -130,7 +130,7 @@ declare module "godot" {
          *  The debugger calls the callable to get the value of custom monitor. The callable must return a zero or positive integer or floating-point number.  
          *  Callables are called with arguments supplied in argument array.  
          */
-        static add_custom_monitor(id: StringName, callable: Callable, arguments_: Array = []): void
+        static add_custom_monitor(id: StringName, callable: Callable, arguments_: GArray = []): void
         
         /** Removes the custom monitor with given [param id]. Prints an error if the given [param id] is already absent. */
         static remove_custom_monitor(id: StringName): void
@@ -145,7 +145,7 @@ declare module "godot" {
         static get_monitor_modification_time(): int64
         
         /** Returns the names of active custom monitors in an [Array]. */
-        static get_custom_monitor_names(): Array
+        static get_custom_monitor_names(): GArray
     }
     // // Singleton Class
     /** A singleton for managing [TextServer] implementations.  
@@ -166,7 +166,7 @@ declare module "godot" {
         static get_interface(idx: int64): TextServer
         
         /** Returns a list of available interfaces, with the index and name of each interface. */
-        static get_interfaces(): Array
+        static get_interfaces(): GArray
         
         /** Finds an interface by its [param name]. */
         static find_interface(name: string): TextServer
@@ -248,7 +248,7 @@ declare module "godot" {
          *      
          *  **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they start with `res://`.  
          */
-        static get_global_class_list(): Array
+        static get_global_class_list(): GArray
         
         /** Sets the order of a configuration value (influences when saved to the config file). */
         static set_order(name: string, position: int64): void
@@ -272,7 +272,7 @@ declare module "godot" {
          *  **Example:**  
          *    
          */
-        static add_property_info(hint: Dictionary): void
+        static add_property_info(hint: GDictionary): void
         
         /** Sets whether a setting requires restarting the editor to properly take effect.  
          *      
@@ -369,7 +369,7 @@ declare module "godot" {
         static get_resolve_item_address(id: int64): string
         
         /** Returns resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [method get_resolve_item_status]). */
-        static get_resolve_item_addresses(id: int64): Array
+        static get_resolve_item_addresses(id: int64): GArray
         
         /** Removes a given item [param id] from the queue. This should be used to free a queue after it has completed to enable more queries to happen. */
         static erase_resolve_item(id: int64): void
@@ -381,7 +381,7 @@ declare module "godot" {
          *  Each adapter is a dictionary of the form:  
          *    
          */
-        static get_local_interfaces(): Array
+        static get_local_interfaces(): GArray
         
         /** Removes all of a [param hostname]'s cached references. If no [param hostname] is given, all cached IP addresses are removed. */
         static clear_cache(hostname: string = ''): void
@@ -476,33 +476,33 @@ declare module "godot" {
         static convex_hull(points: PackedVector2Array | Vector2[]): PackedVector2Array
         
         /** Decomposes the [param polygon] into multiple convex hulls and returns an array of [PackedVector2Array]. */
-        static decompose_polygon_in_convex(polygon: PackedVector2Array | Vector2[]): Array
+        static decompose_polygon_in_convex(polygon: PackedVector2Array | Vector2[]): GArray
         
         /** Merges (combines) [param polygon_a] and [param polygon_b] and returns an array of merged polygons. This performs [constant OPERATION_UNION] between polygons.  
          *  The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static merge_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): Array
+        static merge_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray
         
         /** Clips [param polygon_a] against [param polygon_b] and returns an array of clipped polygons. This performs [constant OPERATION_DIFFERENCE] between polygons. Returns an empty array if [param polygon_b] completely overlaps [param polygon_a].  
          *  If [param polygon_b] is enclosed by [param polygon_a], returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static clip_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): Array
+        static clip_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray
         
         /** Intersects [param polygon_a] with [param polygon_b] and returns an array of intersected polygons. This performs [constant OPERATION_INTERSECTION] between polygons. In other words, returns common area shared by polygons. Returns an empty array if no intersection occurs.  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static intersect_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): Array
+        static intersect_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray
         
         /** Mutually excludes common area defined by intersection of [param polygon_a] and [param polygon_b] (see [method intersect_polygons]) and returns an array of excluded polygons. This performs [constant OPERATION_XOR] between polygons. In other words, returns all but common area between polygons.  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static exclude_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): Array
+        static exclude_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray
         
         /** Clips [param polyline] against [param polygon] and returns an array of clipped polylines. This performs [constant OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape. */
-        static clip_polyline_with_polygon(polyline: PackedVector2Array | Vector2[], polygon: PackedVector2Array | Vector2[]): Array
+        static clip_polyline_with_polygon(polyline: PackedVector2Array | Vector2[], polygon: PackedVector2Array | Vector2[]): GArray
         
         /** Intersects [param polyline] with [param polygon] and returns an array of intersected polylines. This performs [constant OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape. */
-        static intersect_polyline_with_polygon(polyline: PackedVector2Array | Vector2[], polygon: PackedVector2Array | Vector2[]): Array
+        static intersect_polyline_with_polygon(polyline: PackedVector2Array | Vector2[], polygon: PackedVector2Array | Vector2[]): GArray
         
         /** Inflates or deflates [param polygon] by [param delta] units (pixels). If [param delta] is positive, makes the polygon grow outward. If [param delta] is negative, shrinks the polygon inward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty array if [param delta] is negative and the absolute value of it approximately exceeds the minimum bounding rectangle dimensions of the polygon.  
          *  Each polygon's vertices will be rounded as determined by [param join_type], see [enum PolyJoinType].  
@@ -511,17 +511,17 @@ declare module "godot" {
          *  **Note:** To translate the polygon's vertices specifically, multiply them to a [Transform2D]:  
          *    
          */
-        static offset_polygon(polygon: PackedVector2Array | Vector2[], delta: float64, join_type: Geometry2D.PolyJoinType = 0): Array
+        static offset_polygon(polygon: PackedVector2Array | Vector2[], delta: float64, join_type: Geometry2D.PolyJoinType = 0): GArray
         
         /** Inflates or deflates [param polyline] by [param delta] units (pixels), producing polygons. If [param delta] is positive, makes the polyline grow outward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. If [param delta] is negative, returns an empty array.  
          *  Each polygon's vertices will be rounded as determined by [param join_type], see [enum PolyJoinType].  
          *  Each polygon's endpoints will be rounded as determined by [param end_type], see [enum PolyEndType].  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static offset_polyline(polyline: PackedVector2Array | Vector2[], delta: float64, join_type: Geometry2D.PolyJoinType = 0, end_type: Geometry2D.PolyEndType = 3): Array
+        static offset_polyline(polyline: PackedVector2Array | Vector2[], delta: float64, join_type: Geometry2D.PolyJoinType = 0, end_type: Geometry2D.PolyEndType = 3): GArray
         
         /** Given an array of [Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a [PackedVector2Array] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [Vector2i]. */
-        static make_atlas(sizes: PackedVector2Array | Vector2[]): Dictionary
+        static make_atlas(sizes: PackedVector2Array | Vector2[]): GDictionary
     }
     // // Singleton Class
     /** Provides methods for some common 3D geometric operations.  
@@ -530,16 +530,16 @@ declare module "godot" {
      */
     class Geometry3D extends Object {
         /** Calculates and returns all the vertex points of a convex shape defined by an array of [param planes]. */
-        static compute_convex_mesh_points(planes: Array): PackedVector3Array
+        static compute_convex_mesh_points(planes: GArray): PackedVector3Array
         
         /** Returns an array with 6 [Plane]s that describe the sides of a box centered at the origin. The box size is defined by [param extents], which represents one (positive) corner of the box (i.e. half its actual size). */
-        static build_box_planes(extents: Vector3): Array
+        static build_box_planes(extents: Vector3): GArray
         
         /** Returns an array of [Plane]s closely bounding a faceted cylinder centered at the origin with radius [param radius] and height [param height]. The parameter [param sides] defines how many planes will be generated for the round part of the cylinder. The parameter [param axis] describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z). */
-        static build_cylinder_planes(radius: float64, height: float64, sides: int64, axis: Vector3.Axis = 2): Array
+        static build_cylinder_planes(radius: float64, height: float64, sides: int64, axis: Vector3.Axis = 2): GArray
         
         /** Returns an array of [Plane]s closely bounding a faceted capsule centered at the origin with radius [param radius] and height [param height]. The parameter [param sides] defines how many planes will be generated for the side part of the capsule, whereas [param lats] gives the number of latitudinal steps at the bottom and top of the capsule. The parameter [param axis] describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z). */
-        static build_capsule_planes(radius: float64, height: float64, sides: int64, lats: int64, axis: Vector3.Axis = 2): Array
+        static build_capsule_planes(radius: float64, height: float64, sides: int64, lats: int64, axis: Vector3.Axis = 2): GArray
         
         /** Given the two 3D segments ([param p1], [param p2]) and ([param q1], [param q2]), finds those two points on the two segments that are closest to each other. Returns a [PackedVector3Array] that contains this point on ([param p1], [param p2]) as well the accompanying point on ([param q1], [param q2]). */
         static get_closest_points_between_segments(p1: Vector3, p2: Vector3, q1: Vector3, q2: Vector3): PackedVector3Array
@@ -568,7 +568,7 @@ declare module "godot" {
         static segment_intersects_cylinder(from: Vector3, to: Vector3, height: float64, radius: float64): PackedVector3Array
         
         /** Given a convex hull defined though the [Plane]s in the array [param planes], tests if the segment ([param from], [param to]) intersects with that hull. If an intersection is found, returns a [PackedVector3Array] containing the point the intersection and the hull's normal. Otherwise, returns an empty array. */
-        static segment_intersects_convex(from: Vector3, to: Vector3, planes: Array): PackedVector3Array
+        static segment_intersects_convex(from: Vector3, to: Vector3, planes: GArray): PackedVector3Array
         
         /** Clips the polygon defined by the points in [param points] against the [param plane] and returns the points of the clipped polygon. */
         static clip_polygon(points: PackedVector3Array | Vector3[], plane: Plane): PackedVector3Array
@@ -607,7 +607,7 @@ declare module "godot" {
         /** Returns the status of a threaded loading operation started with [method load_threaded_request] for the resource at [param path]. See [enum ThreadLoadStatus] for possible return values.  
          *  An array variable can optionally be passed via [param progress], and will return a one-element array containing the percentage of completion of the threaded loading.  
          */
-        static load_threaded_get_status(path: string, progress: Array = []): ResourceLoader.ThreadLoadStatus
+        static load_threaded_get_status(path: string, progress: GArray = []): ResourceLoader.ThreadLoadStatus
         
         /** Returns the resource loaded by [method load_threaded_request].  
          *  If this is called before the loading thread is done (i.e. [method load_threaded_get_status] is not [constant THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.  
@@ -847,7 +847,7 @@ declare module "godot" {
          *      
          *  **Note:** On Android, system commands such as `dumpsys` can only be run on a rooted device.  
          */
-        static execute(path: string, arguments_: PackedStringArray | string[], output: Array = [], read_stderr: boolean = false, open_console: boolean = false): int64
+        static execute(path: string, arguments_: PackedStringArray | string[], output: GArray = [], read_stderr: boolean = false, open_console: boolean = false): int64
         
         /** Creates a new process that runs independently of Godot. It will not terminate if Godot terminates. The path specified in [param path] must exist and be executable file or macOS .app bundle. Platform path resolution will be used. The [param arguments] are used in the given order and separated by a space.  
          *  On Windows, if [param open_console] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.  
@@ -1066,7 +1066,7 @@ declare module "godot" {
          *  `"available"` - amount of memory, that can be allocated without extending the swap file(s), in bytes or `-1` if unknown. This value include both physical memory and swap.  
          *  `"stack"` - size of the current thread stack, in bytes or `-1` if unknown.  
          */
-        static get_memory_info(): Dictionary
+        static get_memory_info(): GDictionary
         
         /** Moves the file or directory to the system's recycle bin. See also [method DirAccess.remove].  
          *  The method takes only global paths, so you may need to use [method ProjectSettings.globalize_path]. Do not use it for files in `res://` as it will not work in exported projects.  
@@ -1236,7 +1236,7 @@ declare module "godot" {
          *  **Note:** It's still an int internally, and printing it will give you its decimal representation, which is not particularly meaningful. Use hexadecimal literals for easy version comparisons from code:  
          *    
          */
-        static get_version_info(): Dictionary
+        static get_version_info(): GDictionary
         
         /** Returns engine author information in a Dictionary.  
          *  `lead_developers`    - Array of Strings, lead developer names  
@@ -1244,21 +1244,21 @@ declare module "godot" {
          *  `project_managers`   - Array of Strings, project manager names  
          *  `developers`         - Array of Strings, developer names  
          */
-        static get_author_info(): Dictionary
+        static get_author_info(): GDictionary
         
         /** Returns an Array of copyright information Dictionaries.  
          *  `name`    - String, component name  
          *  `parts`   - Array of Dictionaries {`files`, `copyright`, `license`} describing subsections of the component  
          */
-        static get_copyright_info(): Array
+        static get_copyright_info(): GArray
         
         /** Returns a Dictionary of Arrays of donor names.  
          *  {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`, `gold_donors`, `silver_donors`, `bronze_donors`}  
          */
-        static get_donor_info(): Dictionary
+        static get_donor_info(): GDictionary
         
         /** Returns Dictionary of licenses used by Godot and included third party components. */
-        static get_license_info(): Dictionary
+        static get_license_info(): GDictionary
         
         /** Returns Godot license text. */
         static get_license_text(): string
@@ -1392,13 +1392,13 @@ declare module "godot" {
         static class_has_signal(class_: StringName, signal: StringName): boolean
         
         /** Returns the [param signal] data of [param class] or its ancestry. The returned value is a [Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`. */
-        static class_get_signal(class_: StringName, signal: StringName): Dictionary
+        static class_get_signal(class_: StringName, signal: StringName): GDictionary
         
         /** Returns an array with all the signals of [param class] or its ancestry if [param no_inheritance] is `false`. Every element of the array is a [Dictionary] as described in [method class_get_signal]. */
-        static class_get_signal_list(class_: StringName, no_inheritance: boolean = false): Array
+        static class_get_signal_list(class_: StringName, no_inheritance: boolean = false): GArray
         
         /** Returns an array with all the properties of [param class] or its ancestry if [param no_inheritance] is `false`. */
-        static class_get_property_list(class_: StringName, no_inheritance: boolean = false): Array
+        static class_get_property_list(class_: StringName, no_inheritance: boolean = false): GArray
         
         /** Returns the value of [param property] of [param object] or its ancestry. */
         static class_get_property(object: Object, property: StringName): any
@@ -1413,7 +1413,7 @@ declare module "godot" {
          *      
          *  **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.  
          */
-        static class_get_method_list(class_: StringName, no_inheritance: boolean = false): Array
+        static class_get_method_list(class_: StringName, no_inheritance: boolean = false): GArray
         
         /** Returns an array with the names all the integer constants of [param class] or its ancestry. */
         static class_get_integer_constant_list(class_: StringName, no_inheritance: boolean = false): PackedStringArray
@@ -1736,7 +1736,7 @@ declare module "godot" {
          *  `product_id`: The USB product ID of the device.  
          *  `steam_input_index`: The Steam Input gamepad index, if the device is not a Steam Input device this key won't be present.  
          */
-        static get_joy_info(device: int64): Dictionary
+        static get_joy_info(device: int64): GDictionary
         
         /** Queries whether an input device should be ignored or not. Devices can be ignored by setting the environment variable `SDL_GAMECONTROLLER_IGNORE_DEVICES`. Read the [url=https://wiki.libsdl.org/SDL2]SDL documentation[/url] for more information.  
          *      
@@ -1745,7 +1745,7 @@ declare module "godot" {
         static should_ignore_device(vendor_id: int64, product_id: int64): boolean
         
         /** Returns an [Array] containing the device IDs of all currently connected joypads. */
-        static get_connected_joypads(): Array
+        static get_connected_joypads(): GArray
         
         /** Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the strength of the strong motor. */
         static get_joy_vibration_strength(device: int64): Vector2
@@ -1907,7 +1907,7 @@ declare module "godot" {
         static has_action(action: StringName): boolean
         
         /** Returns an array of all actions in the [InputMap]. */
-        static get_actions(): Array
+        static get_actions(): GArray
         
         /** Adds an empty action to the [InputMap] with a configurable [param deadzone].  
          *  An [InputEvent] can then be added to this action with [method action_add_event].  
@@ -1939,7 +1939,7 @@ declare module "godot" {
          *      
          *  **Note:** When used in the editor (e.g. a tool script or [EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input/*` settings from [ProjectSettings].  
          */
-        static action_get_events(action: StringName): Array
+        static action_get_events(action: StringName): GArray
         
         /** Returns `true` if the given event is part of an existing action. This method ignores keyboard modifiers if the given [InputEvent] is not pressed (for proper release detection). See [method action_has_event] if you don't want this behavior.  
          *  If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.  
@@ -1971,10 +1971,10 @@ declare module "godot" {
         static has_profiler(name: StringName): boolean
         
         /** Calls the `add` callable of the profiler with given [param name] and [param data]. */
-        static profiler_add_frame_data(name: StringName, data: Array): void
+        static profiler_add_frame_data(name: StringName, data: GArray): void
         
         /** Calls the `toggle` callable of the profiler with given [param name] and [param arguments]. Enables/Disables the same profiler depending on [param enable] argument. */
-        static profiler_enable(name: StringName, enable: boolean, arguments_: Array = []): void
+        static profiler_enable(name: StringName, enable: boolean, arguments_: GArray = []): void
         
         /** Registers a message capture with given [param name]. If [param name] is "my_message" then messages starting with "my_message:" will be called with the given callable.  
          *  Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.  
@@ -1988,7 +1988,7 @@ declare module "godot" {
         static has_capture(name: StringName): boolean
         
         /** Sends a message with given [param message] and [param data] array. */
-        static send_message(message: string, data: Array): void
+        static send_message(message: string, data: GArray): void
     }
     // // Singleton Class
     namespace Time {
@@ -2060,13 +2060,13 @@ declare module "godot" {
         /** Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.  
          *  The returned Dictionary's values will be the same as the [method get_datetime_dict_from_system] if the Unix timestamp is the current time, with the exception of Daylight Savings Time as it cannot be determined from the epoch.  
          */
-        static get_datetime_dict_from_unix_time(unix_time_val: int64): Dictionary
+        static get_datetime_dict_from_unix_time(unix_time_val: int64): GDictionary
         
         /** Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, and `weekday`. */
-        static get_date_dict_from_unix_time(unix_time_val: int64): Dictionary
+        static get_date_dict_from_unix_time(unix_time_val: int64): GDictionary
         
         /** Converts the given time to a dictionary of keys: `hour`, `minute`, and `second`. */
-        static get_time_dict_from_unix_time(unix_time_val: int64): Dictionary
+        static get_time_dict_from_unix_time(unix_time_val: int64): GDictionary
         
         /** Converts the given Unix timestamp to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).  
          *  If [param use_space] is `true`, the date and time bits are separated by an empty space character instead of the letter T.  
@@ -2084,14 +2084,14 @@ declare module "godot" {
          *      
          *  **Note:** Any decimal fraction in the time string will be ignored silently.  
          */
-        static get_datetime_dict_from_datetime_string(datetime: string, weekday: boolean): Dictionary
+        static get_datetime_dict_from_datetime_string(datetime: string, weekday: boolean): GDictionary
         
         /** Converts the given dictionary of keys to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).  
          *  The given dictionary can be populated with the following keys: `year`, `month`, `day`, `hour`, `minute`, and `second`. Any other entries (including `dst`) are ignored.  
          *  If the dictionary is empty, `0` is returned. If some keys are omitted, they default to the equivalent values for the Unix epoch timestamp 0 (1970-01-01 at 00:00:00).  
          *  If [param use_space] is `true`, the date and time bits are separated by an empty space character instead of the letter T.  
          */
-        static get_datetime_string_from_datetime_dict(datetime: Dictionary, use_space: boolean): string
+        static get_datetime_string_from_datetime_dict(datetime: GDictionary, use_space: boolean): string
         
         /** Converts a dictionary of time values to a Unix timestamp.  
          *  The given dictionary can be populated with the following keys: `year`, `month`, `day`, `hour`, `minute`, and `second`. Any other entries (including `dst`) are ignored.  
@@ -2100,7 +2100,7 @@ declare module "godot" {
          *      
          *  **Note:** Unix timestamps are often in UTC. This method does not do any timezone conversion, so the timestamp will be in the same timezone as the given datetime dictionary.  
          */
-        static get_unix_time_from_datetime_dict(datetime: Dictionary): int64
+        static get_unix_time_from_datetime_dict(datetime: GDictionary): int64
         
         /** Converts the given ISO 8601 date and/or time string to a Unix timestamp. The string can contain a date only, a time only, or both.  
          *      
@@ -2114,17 +2114,17 @@ declare module "godot" {
         static get_offset_string_from_offset_minutes(offset_minutes: int64): string
         
         /** Returns the current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, `second`, and `dst` (Daylight Savings Time). */
-        static get_datetime_dict_from_system(utc: boolean = false): Dictionary
+        static get_datetime_dict_from_system(utc: boolean = false): GDictionary
         
         /** Returns the current date as a dictionary of keys: `year`, `month`, `day`, and `weekday`.  
          *  The returned values are in the system's local time when [param utc] is `false`, otherwise they are in UTC.  
          */
-        static get_date_dict_from_system(utc: boolean = false): Dictionary
+        static get_date_dict_from_system(utc: boolean = false): GDictionary
         
         /** Returns the current time as a dictionary of keys: `hour`, `minute`, and `second`.  
          *  The returned values are in the system's local time when [param utc] is `false`, otherwise they are in UTC.  
          */
-        static get_time_dict_from_system(utc: boolean = false): Dictionary
+        static get_time_dict_from_system(utc: boolean = false): GDictionary
         
         /** Returns the current date and time as an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).  
          *  The returned values are in the system's local time when [param utc] is `false`, otherwise they are in UTC.  
@@ -2146,7 +2146,7 @@ declare module "godot" {
          *  - `bias` is the offset from UTC in minutes, since not all time zones are multiples of an hour from UTC.  
          *  - `name` is the localized name of the time zone, according to the OS locale settings of the current user.  
          */
-        static get_time_zone_from_system(): Dictionary
+        static get_time_zone_from_system(): GDictionary
         
         /** Returns the current Unix timestamp in seconds based on the system time in UTC. This method is implemented by the operating system and always returns the time in UTC. The Unix timestamp is the number of seconds passed since 1970-01-01 at 00:00:00, the [url=https://en.wikipedia.org/wiki/Unix_time]Unix epoch[/url].  
          *      
@@ -2343,7 +2343,7 @@ declare module "godot" {
         static get_editor_settings(): EditorSettings
         
         /** Returns mesh previews rendered at the given size as an [Array] of [Texture2D]s. */
-        static make_mesh_previews(meshes: Array, preview_size: int64): Array
+        static make_mesh_previews(meshes: GArray, preview_size: int64): GArray
         
         /** Sets the enabled status of a plugin. The plugin name is the same as its directory name. */
         static set_plugin_enabled(plugin: string, enabled: boolean): void
@@ -3346,7 +3346,7 @@ declare module "godot" {
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
-        static tts_get_voices(): Array
+        static tts_get_voices(): GArray
         
         /** Returns an [PackedStringArray] of voice identifiers for the [param language].  
          *      
@@ -3477,7 +3477,7 @@ declare module "godot" {
          *      
          *  **Note:** Currently only implemented on Android. Other platforms will return an empty array even if they do have display cutouts or notches.  
          */
-        static get_display_cutouts(): Array
+        static get_display_cutouts(): GArray
         
         /** Returns the unobscured area of the display where interactive controls should be rendered. See also [method get_display_cutouts]. */
         static get_display_safe_area(): Rect2i
@@ -5353,12 +5353,12 @@ declare module "godot" {
          *      
          *  **Note:** The equivalent resource is [TextureLayered].  
          */
-        static texture_2d_layered_create(layers: Array, layered_type: RenderingServer.TextureLayeredType): RID
+        static texture_2d_layered_create(layers: GArray, layered_type: RenderingServer.TextureLayeredType): RID
         
         /**     
          *  **Note:** The equivalent resource is [Texture3D].  
          */
-        static texture_3d_create(format: Image.Format, width: int64, height: int64, depth: int64, mipmaps: boolean, data: Array): RID
+        static texture_3d_create(format: Image.Format, width: int64, height: int64, depth: int64, mipmaps: boolean, data: GArray): RID
         
         /**  *Deprecated.*  ProxyTexture was removed in Godot 4, so this method does nothing when called and always returns a null [RID]. */
         static texture_proxy_create(base: RID): RID
@@ -5373,7 +5373,7 @@ declare module "godot" {
          *      
          *  **Note:** The [param texture] must have the same width, height, depth and format as the current texture data. Otherwise, an error will be printed and the original texture won't be modified. If you need to use different width, height, depth or format, use [method texture_replace] instead.  
          */
-        static texture_3d_update(texture: RID, data: Array): void
+        static texture_3d_update(texture: RID, data: GArray): void
         
         /**  *Deprecated.*  ProxyTexture was removed in Godot 4, so this method cannot be used anymore. */
         static texture_proxy_update(texture: RID, proxy_to: RID): void
@@ -5408,7 +5408,7 @@ declare module "godot" {
         static texture_2d_layer_get(texture: RID, layer: int64): Image
         
         /** Returns 3D texture data as an array of [Image]s for the specified texture [RID]. */
-        static texture_3d_get(texture: RID): Array
+        static texture_3d_get(texture: RID): GArray
         
         /** Replaces [param texture]'s texture data by the texture specified by the [param by_texture] RID, without changing [param texture]'s RID. */
         static texture_replace(texture: RID, by_texture: RID): void
@@ -5449,7 +5449,7 @@ declare module "godot" {
         static shader_get_code(shader: RID): string
         
         /** Returns the parameters of a shader. */
-        static get_shader_parameter_list(shader: RID): Array
+        static get_shader_parameter_list(shader: RID): GArray
         
         /** Returns the default value for the specified shader uniform. This is usually the value written in the shader source code. */
         static shader_get_parameter_default(shader: RID, name: StringName): any
@@ -5487,7 +5487,7 @@ declare module "godot" {
         
         /** Sets an object's next material. */
         static material_set_next_pass(material: RID, next_material: RID): void
-        static mesh_create_from_surfaces(surfaces: Array, blend_shape_count: int64 = 0): RID
+        static mesh_create_from_surfaces(surfaces: GArray, blend_shape_count: int64 = 0): RID
         
         /** Creates a new mesh and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `mesh_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -5511,8 +5511,8 @@ declare module "godot" {
         
         /** Returns the stride of the skin buffer for a mesh with given [param format]. */
         static mesh_surface_get_format_skin_stride(format: RenderingServer.ArrayFormat, vertex_count: int64): int64
-        static mesh_add_surface(mesh: RID, surface: Dictionary): void
-        static mesh_add_surface_from_arrays(mesh: RID, primitive: RenderingServer.PrimitiveType, arrays: Array, blend_shapes: Array = [], lods: Dictionary = new Dictionary(), compress_format: RenderingServer.ArrayFormat = 0): void
+        static mesh_add_surface(mesh: RID, surface: GDictionary): void
+        static mesh_add_surface_from_arrays(mesh: RID, primitive: RenderingServer.PrimitiveType, arrays: GArray, blend_shapes: GArray = [], lods: GDictionary = new GDictionary(), compress_format: RenderingServer.ArrayFormat = 0): void
         
         /** Returns a mesh's blend shape count. */
         static mesh_get_blend_shape_count(mesh: RID): int64
@@ -5528,13 +5528,13 @@ declare module "godot" {
         
         /** Returns a mesh's surface's material. */
         static mesh_surface_get_material(mesh: RID, surface: int64): RID
-        static mesh_get_surface(mesh: RID, surface: int64): Dictionary
+        static mesh_get_surface(mesh: RID, surface: int64): GDictionary
         
         /** Returns a mesh's surface's buffer arrays. */
-        static mesh_surface_get_arrays(mesh: RID, surface: int64): Array
+        static mesh_surface_get_arrays(mesh: RID, surface: int64): GArray
         
         /** Returns a mesh's surface's arrays for blend shapes. */
-        static mesh_surface_get_blend_shape_arrays(mesh: RID, surface: int64): Array
+        static mesh_surface_get_blend_shape_arrays(mesh: RID, surface: int64): GArray
         
         /** Returns a mesh's number of surfaces. */
         static mesh_get_surface_count(mesh: RID): int64
@@ -5938,7 +5938,7 @@ declare module "godot" {
         
         /** If [param enable] is `true`, enables trails for the [param particles] with the specified [param length_sec] in seconds. Equivalent to [member GPUParticles3D.trail_enabled] and [member GPUParticles3D.trail_lifetime]. */
         static particles_set_trails(particles: RID, enable: boolean, length_sec: float64): void
-        static particles_set_trail_bind_poses(particles: RID, bind_poses: Array): void
+        static particles_set_trail_bind_poses(particles: RID, bind_poses: GArray): void
         
         /** Returns `true` if particles are not emitting and particles are set to inactive. */
         static particles_is_inactive(particles: RID): boolean
@@ -6514,7 +6514,7 @@ declare module "godot" {
         static instance_geometry_get_shader_parameter_default_value(instance: RID, parameter: StringName): any
         
         /** Returns a dictionary of per-instance shader uniform names of the per-instance shader uniform from the specified 3D geometry instance. The returned dictionary is in PropertyInfo format, with the keys `name`, `class_name`, `type`, `hint`, `hint_string` and `usage`. Equivalent to [method GeometryInstance3D.get_instance_shader_parameter]. */
-        static instance_geometry_get_shader_parameter_list(instance: RID): Array
+        static instance_geometry_get_shader_parameter_list(instance: RID): GArray
         
         /** Returns an array of object IDs intersecting with the provided AABB. Only 3D nodes that inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D]. Use [method @GlobalScope.instance_from_id] to obtain the actual nodes. A scenario RID must be provided, which is available in the [World3D] you want to query. This forces an update for all resources queued to update.  
          *  **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.  
@@ -6529,10 +6529,10 @@ declare module "godot" {
         /** Returns an array of object IDs intersecting with the provided convex shape. Only 3D nodes that inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D]. Use [method @GlobalScope.instance_from_id] to obtain the actual nodes. A scenario RID must be provided, which is available in the [World3D] you want to query. This forces an update for all resources queued to update.  
          *  **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.  
          */
-        static instances_cull_convex(convex: Array, scenario: RID = new RID()): PackedInt64Array
+        static instances_cull_convex(convex: GArray, scenario: RID = new RID()): PackedInt64Array
         
         /** Bakes the material data of the Mesh passed in the [param base] parameter with optional [param material_overrides] to a set of [Image]s of size [param image_size]. Returns an array of [Image]s containing material properties as specified in [enum BakeChannels]. */
-        static bake_render_uv2(base: RID, material_overrides: Array, image_size: Vector2i): Array
+        static bake_render_uv2(base: RID, material_overrides: GArray, image_size: Vector2i): GArray
         
         /** Creates a canvas and returns the assigned [RID]. It can be accessed with the RID that is returned. This RID will be used in all `canvas_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -6831,7 +6831,7 @@ declare module "godot" {
          *      
          *  **Note:** [method global_shader_parameter_get] has a large performance penalty as the rendering thread needs to synchronize with the calling thread, which is slow. Do not use this method during gameplay to avoid stuttering. If you need to read values in a script after setting them, consider creating an autoload where you store the values you need to query at the same time you're setting them as global parameters.  
          */
-        static global_shader_parameter_get_list(): Array
+        static global_shader_parameter_get_list(): GArray
         
         /** Sets the global shader uniform [param name] to [param value]. */
         static global_shader_parameter_set(name: StringName, value: any): void
@@ -8685,7 +8685,7 @@ declare module "godot" {
      */
     class NavigationServer2D extends Object {
         /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
-        static get_maps(): Array
+        static get_maps(): GArray
         
         /** Create a new map. */
         static map_create(): RID
@@ -8730,16 +8730,16 @@ declare module "godot" {
         static map_get_closest_point_owner(map: RID, to_point: Vector2): RID
         
         /** Returns all navigation link [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_links(map: RID): Array
+        static map_get_links(map: RID): GArray
         
         /** Returns all navigation regions [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_regions(map: RID): Array
+        static map_get_regions(map: RID): GArray
         
         /** Returns all navigation agents [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_agents(map: RID): Array
+        static map_get_agents(map: RID): GArray
         
         /** Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_obstacles(map: RID): Array
+        static map_get_obstacles(map: RID): GArray
         
         /** This function immediately forces synchronization of the specified navigation [param map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).  
          *  Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.  
@@ -9045,7 +9045,7 @@ declare module "godot" {
      */
     class NavigationServer3D extends Object {
         /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
-        static get_maps(): Array
+        static get_maps(): GArray
         
         /** Create a new map. */
         static map_create(): RID
@@ -9108,16 +9108,16 @@ declare module "godot" {
         static map_get_closest_point_owner(map: RID, to_point: Vector3): RID
         
         /** Returns all navigation link [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_links(map: RID): Array
+        static map_get_links(map: RID): GArray
         
         /** Returns all navigation regions [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_regions(map: RID): Array
+        static map_get_regions(map: RID): GArray
         
         /** Returns all navigation agents [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_agents(map: RID): Array
+        static map_get_agents(map: RID): GArray
         
         /** Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_obstacles(map: RID): Array
+        static map_get_obstacles(map: RID): GArray
         
         /** This function immediately forces synchronization of the specified navigation [param map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).  
          *  Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.  
@@ -9484,7 +9484,7 @@ declare module "godot" {
         static get_interface(idx: int64): XRInterface
         
         /** Returns a list of available interfaces the ID and name of each interface. */
-        static get_interfaces(): Array
+        static get_interfaces(): GArray
         
         /** Finds an interface by its [param name]. For example, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it. */
         static find_interface(name: string): XRInterface
@@ -9496,7 +9496,7 @@ declare module "godot" {
         static remove_tracker(tracker: XRPositionalTracker): void
         
         /** Returns a dictionary of trackers for [param tracker_types]. */
-        static get_trackers(tracker_types: int64): Dictionary
+        static get_trackers(tracker_types: int64): GDictionary
         
         /** Returns the positional tracker with the given [param tracker_name]. */
         static get_tracker(tracker_name: StringName): XRPositionalTracker
@@ -9559,7 +9559,7 @@ declare module "godot" {
         static get_feed_count(): int64
         
         /** Returns an array of [CameraFeed]s. */
-        static feeds(): Array
+        static feeds(): GArray
         
         /** Adds the camera [param feed] to the camera server. */
         static add_feed(feed: CameraFeed): void
@@ -9576,7 +9576,7 @@ declare module "godot" {
     // // Singleton Class
     /** @link https://docs.godotengine.org/en/4.2/classes/class_gdscriptlanguageprotocol.html */
     class GDScriptLanguageProtocol extends JSONRPC {
-        static initialize(params: Dictionary): Dictionary
+        static initialize(params: GDictionary): GDictionary
         static initialized(params: any): void
         static on_client_connected(): Error
         static on_client_disconnected(_unnamed_arg0: int64): void

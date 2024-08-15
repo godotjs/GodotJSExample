@@ -1061,7 +1061,7 @@ declare module "godot" {
         test_move(from: Transform2D, motion: Vector2, collision: KinematicCollision2D = undefined, safe_margin: float64 = 0.08, recovery_as_collision: boolean = false): boolean
         
         /** Returns an array of nodes that were added as collision exceptions for this body. */
-        get_collision_exceptions(): Array
+        get_collision_exceptions(): GArray
         
         /** Adds a body to the list of bodies that this body can't collide with. */
         add_collision_exception_with(body: Node): void
@@ -1100,7 +1100,7 @@ declare module "godot" {
         get_axis_lock(axis: PhysicsServer3D.BodyAxis): boolean
         
         /** Returns an array of nodes that were added as collision exceptions for this body. */
-        get_collision_exceptions(): Array
+        get_collision_exceptions(): GArray
         
         /** Adds a body to the list of bodies that this body can't collide with. */
         add_collision_exception_with(body: Node): void
@@ -1666,7 +1666,7 @@ declare module "godot" {
          *      
          *  **Note:** [ConcavePolygonShape2D]s and [CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.  
          */
-        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: int64 = 32): Array
+        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: int64 = 32): GArray
         
         /** Intersects a ray in a given space. Ray position and other parameters are defined through [PhysicsRayQueryParameters2D]. The returned object is a dictionary with the following fields:  
          *  `collider`: The colliding object.  
@@ -1677,7 +1677,7 @@ declare module "godot" {
          *  `shape`: The shape index of the colliding shape.  
          *  If the ray did not intersect anything, then an empty dictionary is returned instead.  
          */
-        intersect_ray(parameters: PhysicsRayQueryParameters2D): Dictionary
+        intersect_ray(parameters: PhysicsRayQueryParameters2D): GDictionary
         
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. The intersected shapes are returned in an array containing dictionaries with the following fields:  
          *  `collider`: The colliding object.  
@@ -1686,7 +1686,7 @@ declare module "godot" {
          *  `shape`: The shape index of the colliding shape.  
          *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
          */
-        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): Array
+        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): GArray
         
         /** Checks how far a [Shape2D] can move without colliding. All the parameters for the query, including the shape and the motion, are supplied through a [PhysicsShapeQueryParameters2D] object.  
          *  Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.  
@@ -1698,7 +1698,7 @@ declare module "godot" {
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. The resulting array contains a list of points where the shape intersects another. Like with [method intersect_shape], the number of returned results can be limited to save processing time.  
          *  Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [PhysicsShapeQueryParameters2D] object, second one is in the collided shape from the physics space.  
          */
-        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): Array
+        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): GArray
         
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. If it collides with more than one shape, the nearest one is selected. If the shape did not intersect anything, then an empty dictionary is returned instead.  
          *      
@@ -1710,7 +1710,7 @@ declare module "godot" {
          *  `rid`: The intersecting object's [RID].  
          *  `shape`: The shape index of the colliding shape.  
          */
-        get_rest_info(parameters: PhysicsShapeQueryParameters2D): Dictionary
+        get_rest_info(parameters: PhysicsShapeQueryParameters2D): GDictionary
     }
     /** Provides virtual methods that can be overridden to create custom [PhysicsDirectSpaceState2D] implementations.  
      *  	  
@@ -1739,7 +1739,7 @@ declare module "godot" {
          *  `shape`: The shape index of the colliding shape.  
          *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
          */
-        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: int64 = 32): Array
+        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: int64 = 32): GArray
         
         /** Intersects a ray in a given space. Ray position and other parameters are defined through [PhysicsRayQueryParameters3D]. The returned object is a dictionary with the following fields:  
          *  `collider`: The colliding object.  
@@ -1753,7 +1753,7 @@ declare module "godot" {
          *  `shape`: The shape index of the colliding shape.  
          *  If the ray did not intersect anything, then an empty dictionary is returned instead.  
          */
-        intersect_ray(parameters: PhysicsRayQueryParameters3D): Dictionary
+        intersect_ray(parameters: PhysicsRayQueryParameters3D): GDictionary
         
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters3D] object, against the space. The intersected shapes are returned in an array containing dictionaries with the following fields:  
          *  `collider`: The colliding object.  
@@ -1764,7 +1764,7 @@ declare module "godot" {
          *      
          *  **Note:** This method does not take into account the `motion` property of the object.  
          */
-        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): Array
+        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): GArray
         
         /** Checks how far a [Shape3D] can move without colliding. All the parameters for the query, including the shape, are supplied through a [PhysicsShapeQueryParameters3D] object.  
          *  Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.  
@@ -1778,7 +1778,7 @@ declare module "godot" {
          *      
          *  **Note:** This method does not take into account the `motion` property of the object.  
          */
-        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): Array
+        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): GArray
         
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters3D] object, against the space. If it collides with more than one shape, the nearest one is selected. The returned object is a dictionary containing the following fields:  
          *  `collider_id`: The colliding object's ID.  
@@ -1791,7 +1791,7 @@ declare module "godot" {
          *      
          *  **Note:** This method does not take into account the `motion` property of the object.  
          */
-        get_rest_info(parameters: PhysicsShapeQueryParameters3D): Dictionary
+        get_rest_info(parameters: PhysicsShapeQueryParameters3D): GDictionary
     }
     /** Provides virtual methods that can be overridden to create custom [PhysicsDirectSpaceState3D] implementations.  
      *  	  
@@ -1854,8 +1854,8 @@ declare module "godot" {
         set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
-        get exclude(): Array
-        set exclude(value: Array)
+        get exclude(): GArray
+        set exclude(value: GArray)
         
         /** If `true`, the query will take [PhysicsBody2D]s into account. */
         get collide_with_bodies(): boolean
@@ -1880,8 +1880,8 @@ declare module "godot" {
         set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
-        get exclude(): Array
-        set exclude(value: Array)
+        get exclude(): GArray
+        set exclude(value: GArray)
         
         /** If `true`, the query will take [PhysicsBody3D]s into account. */
         get collide_with_bodies(): boolean
@@ -1900,7 +1900,7 @@ declare module "godot" {
         /** Returns a new, pre-configured [PhysicsRayQueryParameters2D] object. Use it to quickly create query parameters using the most common options.  
          *    
          */
-        static create(from: Vector2, to: Vector2, collision_mask: int64 = -1, exclude: Array = []): PhysicsRayQueryParameters2D
+        static create(from: Vector2, to: Vector2, collision_mask: int64 = -1, exclude: GArray = []): PhysicsRayQueryParameters2D
         
         /** The starting point of the ray being queried for, in global coordinates. */
         get from(): Vector2
@@ -1915,8 +1915,8 @@ declare module "godot" {
         set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
-        get exclude(): Array
-        set exclude(value: Array)
+        get exclude(): GArray
+        set exclude(value: GArray)
         
         /** If `true`, the query will take [PhysicsBody2D]s into account. */
         get collide_with_bodies(): boolean
@@ -1939,7 +1939,7 @@ declare module "godot" {
         /** Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create query parameters using the most common options.  
          *    
          */
-        static create(from: Vector3, to: Vector3, collision_mask: int64 = -1, exclude: Array = []): PhysicsRayQueryParameters3D
+        static create(from: Vector3, to: Vector3, collision_mask: int64 = -1, exclude: GArray = []): PhysicsRayQueryParameters3D
         
         /** The starting point of the ray being queried for, in global coordinates. */
         get from(): Vector3
@@ -1954,8 +1954,8 @@ declare module "godot" {
         set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
-        get exclude(): Array
-        set exclude(value: Array)
+        get exclude(): GArray
+        set exclude(value: GArray)
         
         /** If `true`, the query will take [PhysicsBody3D]s into account. */
         get collide_with_bodies(): boolean
@@ -2293,7 +2293,7 @@ declare module "godot" {
         /** Returns the [RID]s of all bodies added as collision exceptions for the given [param body]. See also [method _body_add_collision_exception] and [method _body_remove_collision_exception].  
          *  Overridable version of [PhysicsServer2D]'s internal `body_get_collision_exceptions` method. Corresponds to [method PhysicsBody2D.get_collision_exceptions].  
          */
-        /* gdvirtual */ _body_get_collision_exceptions(body: RID): Array
+        /* gdvirtual */ _body_get_collision_exceptions(body: RID): GArray
         
         /** Overridable version of [method PhysicsServer2D.body_set_max_contacts_reported]. */
         /* gdvirtual */ _body_set_max_contacts_reported(body: RID, amount: int64): void
@@ -2548,7 +2548,7 @@ declare module "godot" {
         /* gdvirtual */ _body_is_axis_locked(body: RID, axis: PhysicsServer3D.BodyAxis): boolean
         /* gdvirtual */ _body_add_collision_exception(body: RID, excepted_body: RID): void
         /* gdvirtual */ _body_remove_collision_exception(body: RID, excepted_body: RID): void
-        /* gdvirtual */ _body_get_collision_exceptions(body: RID): Array
+        /* gdvirtual */ _body_get_collision_exceptions(body: RID): GArray
         /* gdvirtual */ _body_set_max_contacts_reported(body: RID, amount: int64): void
         /* gdvirtual */ _body_get_max_contacts_reported(body: RID): int64
         /* gdvirtual */ _body_set_contacts_reported_depth_threshold(body: RID, threshold: float64): void
@@ -2571,7 +2571,7 @@ declare module "godot" {
         /* gdvirtual */ _soft_body_get_collision_mask(body: RID): int64
         /* gdvirtual */ _soft_body_add_collision_exception(body: RID, body_b: RID): void
         /* gdvirtual */ _soft_body_remove_collision_exception(body: RID, body_b: RID): void
-        /* gdvirtual */ _soft_body_get_collision_exceptions(body: RID): Array
+        /* gdvirtual */ _soft_body_get_collision_exceptions(body: RID): GArray
         /* gdvirtual */ _soft_body_set_state(body: RID, state: PhysicsServer3D.BodyState, variant: any): void
         /* gdvirtual */ _soft_body_get_state(body: RID, state: PhysicsServer3D.BodyState): void
         /* gdvirtual */ _soft_body_set_transform(body: RID, transform: Transform3D): void
@@ -2679,8 +2679,8 @@ declare module "godot" {
         set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
-        get exclude(): Array
-        set exclude(value: Array)
+        get exclude(): GArray
+        set exclude(value: GArray)
         
         /** The collision margin for the shape. */
         get margin(): float64
@@ -2723,8 +2723,8 @@ declare module "godot" {
         set collision_mask(value: int64)
         
         /** The list of object [RID]s that will be excluded from collisions. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
-        get exclude(): Array
-        set exclude(value: Array)
+        get exclude(): GArray
+        set exclude(value: GArray)
         
         /** The collision margin for the shape. */
         get margin(): float64
@@ -2781,12 +2781,12 @@ declare module "godot" {
         set collide_separation_ray(value: boolean)
         
         /** Optional array of body [RID] to exclude from collision. Use [method CollisionObject2D.get_rid] to get the [RID] associated with a [CollisionObject2D]-derived node. */
-        get exclude_bodies(): Array
-        set exclude_bodies(value: Array)
+        get exclude_bodies(): GArray
+        set exclude_bodies(value: GArray)
         
         /** Optional array of object unique instance ID to exclude from collision. See [method Object.get_instance_id]. */
-        get exclude_objects(): Array
-        set exclude_objects(value: Array)
+        get exclude_objects(): GArray
+        set exclude_objects(value: GArray)
         
         /** If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [CharacterBody2D] for improving floor detection during floor snapping.  
          *  If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.  
@@ -2823,12 +2823,12 @@ declare module "godot" {
         set collide_separation_ray(value: boolean)
         
         /** Optional array of body [RID] to exclude from collision. Use [method CollisionObject3D.get_rid] to get the [RID] associated with a [CollisionObject3D]-derived node. */
-        get exclude_bodies(): Array
-        set exclude_bodies(value: Array)
+        get exclude_bodies(): GArray
+        set exclude_bodies(value: GArray)
         
         /** Optional array of object unique instance ID to exclude from collision. See [method Object.get_instance_id]. */
-        get exclude_objects(): Array
-        set exclude_objects(value: Array)
+        get exclude_objects(): GArray
+        set exclude_objects(value: GArray)
         
         /** If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.  
          *  If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.  
@@ -3212,12 +3212,12 @@ declare module "godot" {
         set vertex_colors(value: PackedColorArray | Color[])
         
         /** The list of polygons, in case more than one is being represented. Every individual polygon is stored as a [PackedInt32Array] where each [int] is an index to a point in [member polygon]. If empty, this property will be ignored, and the resulting single polygon will be composed of all points in [member polygon], using the order they are stored in. */
-        get polygons(): Array
-        set polygons(value: Array)
+        get polygons(): GArray
+        set polygons(value: GArray)
         
         /** Internal list of [Bone2D] nodes used by the assigned [member skeleton]. Edited using the Polygon2D editor ("UV" button on the top toolbar). */
-        get bones(): Array
-        set bones(value: Array)
+        get bones(): GArray
+        set bones(value: GArray)
         
         /** Number of internal vertices, used for UV mapping. */
         get internal_vertex_count(): int64
@@ -3263,8 +3263,8 @@ declare module "godot" {
         set_point_penalty(idx: int64, penalty: float64): void
         get_point_penalty(idx: int64): float64
         get_bounds(): Rect2
-        get data(): Dictionary
-        set data(value: Dictionary)
+        get data(): GDictionary
+        set data(value: GDictionary)
     }
     /** Base class for contextual windows and panels with fixed position.  
      *  	  
@@ -3643,13 +3643,13 @@ declare module "godot" {
     class PrimitiveMesh extends Mesh {
         constructor(identifier?: any)
         /** Override this method to customize how this primitive mesh should be generated. Should return an [Array] where each element is another Array of values required for the mesh (see the [enum Mesh.ArrayType] constants). */
-        /* gdvirtual */ _create_mesh_array(): Array
+        /* gdvirtual */ _create_mesh_array(): GArray
         _update(): void
         
         /** Returns mesh arrays used to constitute surface of [Mesh]. The result can be passed to [method ArrayMesh.add_surface_from_arrays] to create a new surface. For example:  
          *    
          */
-        get_mesh_arrays(): Array
+        get_mesh_arrays(): GArray
         _request_update(): void
         
         /** The current [Material] of the primitive mesh. */
@@ -3930,8 +3930,8 @@ declare module "godot" {
         set blend_constant(value: Color)
         
         /** The attachments that are blended together. */
-        get attachments(): Array
-        set attachments(value: Array)
+        get attachments(): GArray
+        set attachments(value: GArray)
     }
     /** Pipeline color blend state attachment (used by [RenderingDevice]).  
      *  	  
@@ -4103,8 +4103,8 @@ declare module "godot" {
         set enable_alpha_to_one(value: boolean)
         
         /** The sample mask array. See the [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-samplemask]sample mask Vulkan documentation[/url] for more details. */
-        get sample_masks(): Array
-        set sample_masks(value: Array)
+        get sample_masks(): GArray
+        set sample_masks(value: GArray)
     }
     /** Pipeline rasterization state (used by [RenderingDevice]).  
      *  	  
@@ -4238,9 +4238,9 @@ declare module "godot" {
         get_spirv(version: StringName = ''): RDShaderSPIRV
         
         /** Returns the list of compiled versions for this shader. */
-        get_version_list(): Array
-        get _versions(): Dictionary
-        set _versions(value: Dictionary)
+        get_version_list(): GArray
+        get _versions(): GDictionary
+        set _versions(value: GDictionary)
         
         /** The base compilation error message, which indicates errors not related to a specific shader stage if non-empty. If empty, shader compilation is not necessarily successful (check [RDShaderSPIRV]'s error message members). */
         get base_error(): string
@@ -4427,8 +4427,8 @@ declare module "godot" {
         /** The uniform's binding. */
         get binding(): int64
         set binding(value: int64)
-        get _ids(): Array
-        set _ids(value: Array)
+        get _ids(): GArray
+        set _ids(value: GArray)
     }
     /** Vertex attribute (used by [RenderingDevice]).  
      *  	  
@@ -4917,7 +4917,7 @@ declare module "godot" {
         /** Searches the text for the compiled pattern. Returns an array of [RegExMatch] containers for each non-overlapping result. If no results were found, an empty array is returned instead.  
          *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
          */
-        search_all(subject: string, offset: int64 = 0, end: int64 = -1): Array
+        search_all(subject: string, offset: int64 = 0, end: int64 = -1): GArray
         
         /** Searches the text for the compiled pattern and replaces it with the specified string. Escapes and backreferences such as `$1` and `$name` are expanded and resolved. By default, only the first instance is replaced, but it can be changed for all instances (global replacement).  
          *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
@@ -4964,10 +4964,10 @@ declare module "godot" {
         get subject(): string
         
         /** A dictionary of named groups and its corresponding group number. Only groups that were matched are included. If multiple groups have the same name, that name would refer to the first matching one. */
-        get names(): Dictionary
+        get names(): GDictionary
         
         /** An [Array] of the match and its capturing groups. */
-        get strings(): Array
+        get strings(): GArray
     }
     /** RemoteTransform2D pushes its own [Transform2D] to another [Node2D] derived node in the scene.  
      *  	  
@@ -5099,6 +5099,9 @@ declare module "godot" {
         
         /** Implement this in GDExtension to react to the debanding flag changing. */
         /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
+    }
+    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
+        constructor(identifier?: any)
     }
     /** Abstract render scene buffer implementation for the RenderingDevice based renderers.  
      *  	  
@@ -6616,7 +6619,7 @@ declare module "godot" {
          *      
          *  **Note:** Not to be confused with [method RenderingServer.texture_2d_create], which creates the Godot-specific [Texture2D] resource as opposed to the graphics API's own texture type.  
          */
-        texture_create(format: RDTextureFormat, view: RDTextureView, data: Array = []): RID
+        texture_create(format: RDTextureFormat, view: RDTextureView, data: GArray = []): RID
         
         /** Creates a shared texture using the specified [param view] and the texture information from [param with_texture]. */
         texture_create_shared(view: RDTextureView, with_texture: RID): RID
@@ -6708,10 +6711,10 @@ declare module "godot" {
         /** Creates a new framebuffer format with the specified [param attachments] and [param view_count]. Returns the new framebuffer's unique framebuffer format ID.  
          *  If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension.  
          */
-        framebuffer_format_create(attachments: Array, view_count: int64 = 1): int64
+        framebuffer_format_create(attachments: GArray, view_count: int64 = 1): int64
         
         /** Creates a multipass framebuffer format with the specified [param attachments], [param passes] and [param view_count] and returns its ID. If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension. */
-        framebuffer_format_create_multipass(attachments: Array, passes: Array, view_count: int64 = 1): int64
+        framebuffer_format_create_multipass(attachments: GArray, passes: GArray, view_count: int64 = 1): int64
         
         /** Creates a new empty framebuffer format with the specified number of [param samples] and returns its ID. */
         framebuffer_format_create_empty(samples: RenderingDevice.TextureSamples = 0): int64
@@ -6722,12 +6725,12 @@ declare module "godot" {
         /** Creates a new framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        framebuffer_create(textures: Array, validate_with_format: int64 = -1, view_count: int64 = 1): RID
+        framebuffer_create(textures: GArray, validate_with_format: int64 = -1, view_count: int64 = 1): RID
         
         /** Creates a new multipass framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        framebuffer_create_multipass(textures: Array, passes: Array, validate_with_format: int64 = -1, view_count: int64 = 1): RID
+        framebuffer_create_multipass(textures: GArray, passes: GArray, validate_with_format: int64 = -1, view_count: int64 = 1): RID
         
         /** Creates a new empty framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
@@ -6754,10 +6757,10 @@ declare module "godot" {
         vertex_buffer_create(size_bytes: int64, data: PackedByteArray | byte[] | ArrayBuffer = [], use_as_storage: boolean = false): RID
         
         /** Creates a new vertex format with the specified [param vertex_descriptions]. Returns a unique vertex format ID corresponding to the newly created vertex format. */
-        vertex_format_create(vertex_descriptions: Array): int64
+        vertex_format_create(vertex_descriptions: GArray): int64
         
         /** Creates a vertex array based on the specified buffers. Optionally, [param offsets] (in bytes) may be defined for each buffer. */
-        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: Array, offsets: PackedInt64Array | int64[] = []): RID
+        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: GArray, offsets: PackedInt64Array | int64[] = []): RID
         
         /** Creates a new index buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
@@ -6813,7 +6816,7 @@ declare module "godot" {
         /** Creates a new uniform set. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        uniform_set_create(uniforms: Array, shader: RID, shader_set: int64): RID
+        uniform_set_create(uniforms: GArray, shader: RID, shader_set: int64): RID
         
         /** Checks if the [param uniform_set] is valid, i.e. is owned. */
         uniform_set_is_valid(uniform_set: RID): boolean
@@ -6841,7 +6844,7 @@ declare module "godot" {
         /** Creates a new render pipeline. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        render_pipeline_create(shader: RID, framebuffer_format: int64, vertex_format: int64, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: int64 = 0, specialization_constants: Array = []): RID
+        render_pipeline_create(shader: RID, framebuffer_format: int64, vertex_format: int64, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: int64 = 0, specialization_constants: GArray = []): RID
         
         /** Returns `true` if the render pipeline specified by the [param render_pipeline] RID is valid, `false` otherwise. */
         render_pipeline_is_valid(render_pipeline: RID): boolean
@@ -6849,7 +6852,7 @@ declare module "godot" {
         /** Creates a new compute pipeline. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        compute_pipeline_create(shader: RID, specialization_constants: Array = []): RID
+        compute_pipeline_create(shader: RID, specialization_constants: GArray = []): RID
         
         /** Returns `true` if the compute pipeline specified by the [param compute_pipeline] RID is valid, `false` otherwise. */
         compute_pipeline_is_valid(compute_pipeline: RID): boolean
@@ -6883,10 +6886,10 @@ declare module "godot" {
          *  A simple drawing operation might look like this (code is not a complete example):  
          *    
          */
-        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Color[] = [], clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = new Rect2(0, 0, 0, 0), storage_textures: Array = []): int64
+        draw_list_begin(framebuffer: RID, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Color[] = [], clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = new Rect2(0, 0, 0, 0), storage_textures: GArray = []): int64
         
         /** Variant of [method draw_list_begin] with support for multiple splits. The [param splits] parameter determines how many splits are created. */
-        draw_list_begin_split(framebuffer: RID, splits: int64, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Color[] = [], clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = new Rect2(0, 0, 0, 0), storage_textures: Array = []): PackedInt64Array
+        draw_list_begin_split(framebuffer: RID, splits: int64, initial_color_action: RenderingDevice.InitialAction, final_color_action: RenderingDevice.FinalAction, initial_depth_action: RenderingDevice.InitialAction, final_depth_action: RenderingDevice.FinalAction, clear_color_values: PackedColorArray | Color[] = [], clear_depth: float64 = 1, clear_stencil: int64 = 0, region: Rect2 = new Rect2(0, 0, 0, 0), storage_textures: GArray = []): PackedInt64Array
         
         /** Sets blend constants for the specified [param draw_list] to [param color]. Blend constants are used only if the graphics pipeline is created with [constant DYNAMIC_STATE_BLEND_CONSTANTS] flag set. */
         draw_list_set_blend_constants(draw_list: int64, color: Color): void
@@ -7172,7 +7175,7 @@ declare module "godot" {
         /** If implemented, renames dependencies within the given resource and saves it. [param renames] is a dictionary `{ String => String }` mapping old dependency paths to new paths.  
          *  Returns [constant OK] on success, or an [enum Error] constant in case of failure.  
          */
-        /* gdvirtual */ _rename_dependencies(path: string, renames: Dictionary): Error
+        /* gdvirtual */ _rename_dependencies(path: string, renames: GDictionary): Error
         /* gdvirtual */ _exists(path: string): boolean
         /* gdvirtual */ _get_classes_used(path: string): PackedStringArray
         
@@ -7355,8 +7358,8 @@ declare module "godot" {
         
         /** Returns the list of resources inside the preloader. */
         get_resource_list(): PackedStringArray
-        get resources(): Array
-        set resources(value: Array)
+        get resources(): GArray
+        set resources(value: GArray)
     }
     class ResourcePreloaderEditor extends PanelContainer {
         constructor(identifier?: any)
@@ -7589,7 +7592,7 @@ declare module "godot" {
         push_bgcolor(bgcolor: Color): void
         
         /** Adds a custom effect tag to the tag stack. The effect does not need to be in [member custom_effects]. The environment is directly passed to the effect. */
-        push_customfx(effect: RichTextEffect, env: Dictionary): void
+        push_customfx(effect: RichTextEffect, env: GDictionary): void
         
         /** Adds a context marker to the tag stack. See [method pop_context]. */
         push_context(): void
@@ -7713,7 +7716,7 @@ declare module "godot" {
         get_paragraph_offset(paragraph: int64): float64
         
         /** Parses BBCode parameter [param expressions] into a dictionary. */
-        parse_expressions_for_values(expressions: PackedStringArray | string[]): Dictionary
+        parse_expressions_for_values(expressions: PackedStringArray | string[]): GDictionary
         
         /** Installs a custom effect. This can also be done in the RichTextLabel inspector using the [member custom_effects] property. [param effect] should be a valid [RichTextEffect].  
          *  Example RichTextEffect:  
@@ -7779,8 +7782,8 @@ declare module "godot" {
         /** The currently installed custom effects. This is an array of [RichTextEffect]s.  
          *  To add a custom effect, it's more convenient to use [method install_effect].  
          */
-        get custom_effects(): Array
-        set custom_effects(value: Array)
+        get custom_effects(): GArray
+        set custom_effects(value: GArray)
         
         /** If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`. These tags can call a function when clicked if [signal meta_clicked] is connected to a function. */
         get meta_underlined(): boolean
@@ -7844,8 +7847,8 @@ declare module "godot" {
         set structured_text_bidi_override(value: int64)
         
         /** Set additional options for BiDi override. */
-        get structured_text_bidi_override_options(): Array
-        set structured_text_bidi_override_options(value: Array)
+        get structured_text_bidi_override_options(): GArray
+        set structured_text_bidi_override_options(value: GArray)
         
         /** Triggered when the user clicks on content between meta (URL) tags. If the meta is defined in BBCode, e.g. [code skip-lint][url={"key": "value"}]Text[/url]`, then the parameter for this signal will always be a [String] type. If a particular type or an object is desired, the [method push_meta] method must be used to manually insert the data into the tag stack. Alternatively, you can convert the [String] input to the desired type based on its contents (such as calling [method JSON.parse] on it).  
          *  For example, the following method can be connected to [signal meta_clicked] to open clicked URLs using the user's default web browser:  
@@ -7965,7 +7968,7 @@ declare module "godot" {
          *      
          *  **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.  
          */
-        get_colliding_bodies(): Array
+        get_colliding_bodies(): GArray
         
         /** The body's mass. */
         get mass(): float64
@@ -8217,7 +8220,7 @@ declare module "godot" {
          *      
          *  **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.  
          */
-        get_colliding_bodies(): Array
+        get_colliding_bodies(): GArray
         
         /** The body's mass. */
         get mass(): float64
@@ -8580,7 +8583,7 @@ declare module "godot" {
     class SceneReplicationConfig extends Resource {
         constructor(identifier?: any)
         /** Returns a list of synchronized property [NodePath]s. */
-        get_properties(): Array
+        get_properties(): GArray
         
         /** Adds the property identified by the given [param path] to the list of the properties being synchronized, optionally passing an [param index].  
          *      
@@ -8728,7 +8731,7 @@ declare module "godot" {
         get_connection_flags(idx: int64): int64
         
         /** Returns the list of bound parameters for the signal at [param idx]. */
-        get_connection_binds(idx: int64): Array
+        get_connection_binds(idx: int64): GArray
         
         /** Returns the number of unbound parameters for the signal at [param idx]. */
         get_connection_unbinds(idx: int64): int64
@@ -8785,7 +8788,7 @@ declare module "godot" {
         create_tween(): Tween
         
         /** Returns an array of currently existing [Tween]s in the [SceneTree] (both running and paused). */
-        get_processed_tweens(): Array
+        get_processed_tweens(): GArray
         
         /** Returns the number of nodes in this [SceneTree]. */
         get_node_count(): int64
@@ -8842,7 +8845,7 @@ declare module "godot" {
         set_group(group: StringName, property: string, value: any): void
         
         /** Returns a list of all nodes assigned to the given group. */
-        get_nodes_in_group(group: StringName): Array
+        get_nodes_in_group(group: StringName): GArray
         
         /** Returns the first node in the specified group, or `null` if the group is empty or does not exist. */
         get_first_node_in_group(group: StringName): Node
@@ -8971,7 +8974,7 @@ declare module "godot" {
     }
     class SceneTreeDock extends VBoxContainer {
         constructor(identifier?: any)
-        _set_owners(_unnamed_arg0: Node, _unnamed_arg1: Array): void
+        _set_owners(_unnamed_arg0: Node, _unnamed_arg1: GArray): void
         _update_script_button(): void
         instantiate(_unnamed_arg0: string): void
         get_tree_editor(): SceneTreeEditor
@@ -8991,7 +8994,7 @@ declare module "godot" {
         readonly node_prerename: Signal0
         readonly node_changed: Signal0
         readonly nodes_dragged: Signal0
-        readonly nodes_rearranged: Signal3<Array, NodePath | string, int64>
+        readonly nodes_rearranged: Signal3<GArray, NodePath | string, int64>
         readonly files_dropped: Signal3<PackedStringArray | string[], NodePath | string, int64>
         readonly script_dropped: Signal2<string, NodePath | string>
         readonly rmb_pressed: Signal1<Vector2>
@@ -9043,16 +9046,16 @@ declare module "godot" {
         has_script_signal(signal_name: StringName): boolean
         
         /** Returns the list of properties in this [Script]. */
-        get_script_property_list(): Array
+        get_script_property_list(): GArray
         
         /** Returns the list of methods in this [Script]. */
-        get_script_method_list(): Array
+        get_script_method_list(): GArray
         
         /** Returns the list of user signals defined in this [Script]. */
-        get_script_signal_list(): Array
+        get_script_signal_list(): GArray
         
         /** Returns a dictionary containing constant names and their values. */
-        get_script_constant_map(): Dictionary
+        get_script_constant_map(): GDictionary
         
         /** Returns the default value of the specified property. */
         get_property_default_value(property: StringName): any
@@ -9100,7 +9103,7 @@ declare module "godot" {
         get_current_editor(): ScriptEditorBase
         
         /** Returns an array with all [ScriptEditorBase] objects which are currently open in editor. */
-        get_open_script_editors(): Array
+        get_open_script_editors(): GArray
         
         /** Registers the [EditorSyntaxHighlighter] to the editor, the [EditorSyntaxHighlighter] will be available on all open scripts.  
          *      
@@ -9121,7 +9124,7 @@ declare module "godot" {
         get_current_script(): Script
         
         /** Returns an array with all [Script] objects which are currently open in editor. */
-        get_open_scripts(): Array
+        get_open_scripts(): GArray
         
         /** Opens the script create dialog. The script will extend [param base_name]. The file extension can be omitted from [param base_path]. It will be added based on the selected scripting language. */
         open_script_create_dialog(base_name: string, base_path: string): void
@@ -9195,11 +9198,11 @@ declare module "godot" {
         /* gdvirtual */ _get_source_code(): string
         /* gdvirtual */ _set_source_code(code: string): void
         /* gdvirtual */ _reload(keep_state: boolean): Error
-        /* gdvirtual */ _get_documentation(): Array
+        /* gdvirtual */ _get_documentation(): GArray
         /* gdvirtual */ _get_class_icon_path(): string
         /* gdvirtual */ _has_method(method: StringName): boolean
         /* gdvirtual */ _has_static_method(method: StringName): boolean
-        /* gdvirtual */ _get_method_info(method: StringName): Dictionary
+        /* gdvirtual */ _get_method_info(method: StringName): GDictionary
         /* gdvirtual */ _is_tool(): boolean
         /* gdvirtual */ _is_valid(): boolean
         
@@ -9207,15 +9210,15 @@ declare module "godot" {
         /* gdvirtual */ _is_abstract(): boolean
         /* gdvirtual */ _get_language(): ScriptLanguage
         /* gdvirtual */ _has_script_signal(signal: StringName): boolean
-        /* gdvirtual */ _get_script_signal_list(): Array
+        /* gdvirtual */ _get_script_signal_list(): GArray
         /* gdvirtual */ _has_property_default_value(property: StringName): boolean
         /* gdvirtual */ _get_property_default_value(property: StringName): void
         /* gdvirtual */ _update_exports(): void
-        /* gdvirtual */ _get_script_method_list(): Array
-        /* gdvirtual */ _get_script_property_list(): Array
+        /* gdvirtual */ _get_script_method_list(): GArray
+        /* gdvirtual */ _get_script_property_list(): GArray
         /* gdvirtual */ _get_member_line(member: StringName): int64
-        /* gdvirtual */ _get_constants(): Dictionary
-        /* gdvirtual */ _get_members(): Array
+        /* gdvirtual */ _get_constants(): GDictionary
+        /* gdvirtual */ _get_members(): GArray
         /* gdvirtual */ _is_placeholder_fallback_enabled(): boolean
         /* gdvirtual */ _get_rpc_config(): void
     }

@@ -975,7 +975,7 @@ declare module "godot" {
          *      
          *  **Note:** [Window]s inside other viewports will not be listed.  
          */
-        get_embedded_subwindows(): Array
+        get_embedded_subwindows(): GArray
         
         /** Set/clear individual bits on the rendering layer mask. This simplifies editing this [Viewport]'s layers. */
         set_canvas_cull_mask_bit(layer: int64, enable: boolean): void
@@ -1503,7 +1503,7 @@ declare module "godot" {
         connect_nodes_forced(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): void
         
         /** Returns the list of connected nodes with the specified type. */
-        get_node_connections(type: VisualShader.Type): Array
+        get_node_connections(type: VisualShader.Type): GArray
         
         /** Adds a new varying value node to the shader. */
         add_varying(name: string, mode: VisualShader.VaryingMode, type: VisualShader.VaryingType): void
@@ -1581,10 +1581,10 @@ declare module "godot" {
         /** Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview. */
         get output_port_for_preview(): int64
         set output_port_for_preview(value: int64)
-        get default_input_values(): Array
-        set default_input_values(value: Array)
-        get expanded_output_ports(): Array
-        set expanded_output_ports(value: Array)
+        get default_input_values(): GArray
+        set default_input_values(value: GArray)
+        get expanded_output_ports(): GArray
+        set expanded_output_ports(value: GArray)
     }
     namespace VisualShaderNodeBillboard {
         enum BillboardType {
@@ -2056,7 +2056,7 @@ declare module "godot" {
          *  You can customize the generated code based on the shader [param mode] (see [enum Shader.Mode]) and/or [param type] (see [enum VisualShader.Type]).  
          *  Defining this method is **required**.  
          */
-        /* gdvirtual */ _get_code(input_vars: Array, output_vars: Array, mode: Shader.Mode, type: VisualShader.Type): string
+        /* gdvirtual */ _get_code(input_vars: GArray, output_vars: GArray, mode: Shader.Mode, type: VisualShader.Type): string
         
         /** Override this method to add a shader code to the beginning of each shader function (once). The shader code should be returned as a string, which can have multiple lines (the `"""` multiline string construct can be used for convenience).  
          *  If there are multiple custom nodes of different types which use this feature the order of each insertion is undefined.  
@@ -4058,8 +4058,8 @@ declare module "godot" {
         get_octree_cells(): PackedByteArray
         get_data_cells(): PackedByteArray
         get_level_counts(): PackedInt32Array
-        get _data(): Dictionary
-        set _data(value: Dictionary)
+        get _data(): GDictionary
+        set _data(value: GDictionary)
         
         /** The dynamic range to use (`1.0` represents a low dynamic range scene brightness). Higher values can be used to provide brighter indirect lighting, at the cost of more visible color banding in dark areas (both in indirect lighting and reflections). To avoid color banding, it's recommended to use the lowest value that does not result in visible light clipping. */
         get dynamic_range(): float64
@@ -4206,15 +4206,15 @@ declare module "godot" {
         /** Initialize the multiplayer peer as a server (with unique ID of `1`). This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_server(channels_config: Array = []): Error
+        create_server(channels_config: GArray = []): Error
         
         /** Initialize the multiplayer peer as a client with the given [param peer_id] (must be between 2 and 2147483647). In this mode, you should only call [method add_peer] once and with [param peer_id] of `1`. This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_client(peer_id: int64, channels_config: Array = []): Error
+        create_client(peer_id: int64, channels_config: GArray = []): Error
         
         /** Initialize the multiplayer peer as a mesh (i.e. all peers connect to each other) with the given [param peer_id] (must be between 1 and 2147483647). */
-        create_mesh(peer_id: int64, channels_config: Array = []): Error
+        create_mesh(peer_id: int64, channels_config: GArray = []): Error
         
         /** Add a new peer to the mesh with the given [param peer_id]. The [WebRTCPeerConnection] must be in state [constant WebRTCPeerConnection.STATE_NEW].  
          *  Three channels will be created for reliable, unreliable, and ordered transport. The value of [param unreliable_lifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable and ordered channels (see [method WebRTCPeerConnection.create_data_channel]).  
@@ -4228,10 +4228,10 @@ declare module "godot" {
         has_peer(peer_id: int64): boolean
         
         /** Returns a dictionary representation of the peer with given [param peer_id] with three keys. `"connection"` containing the [WebRTCPeerConnection] to this peer, `"channels"` an array of three [WebRTCDataChannel], and `"connected"` a boolean representing if the peer connection is currently connected (all three channels are open). */
-        get_peer(peer_id: int64): Dictionary
+        get_peer(peer_id: int64): GDictionary
         
         /** Returns a dictionary which keys are the peer ids and values the peer representation as in [method get_peer]. */
-        get_peers(): Dictionary
+        get_peers(): GDictionary
     }
     namespace WebRTCPeerConnection {
         enum ConnectionState {
@@ -4296,7 +4296,7 @@ declare module "godot" {
          *  Valid [param configuration] options are:  
          *    
          */
-        initialize(configuration: Dictionary = new Dictionary()): Error
+        initialize(configuration: GDictionary = new GDictionary()): Error
         
         /** Returns a new [WebRTCDataChannel] (or `null` on failure) with given [param label] and optionally configured via the [param options] dictionary. This method can only be called when the connection is in state [constant STATE_NEW].  
          *  There are two ways to create a working data channel: either call [method create_data_channel] on only one of the peer and listen to [signal data_channel_received] on the other, or call [method create_data_channel] on both peers, with the same values, and the `"negotiated"` option set to `true`.  
@@ -4305,7 +4305,7 @@ declare module "godot" {
          *      
          *  **Note:** You must keep a reference to channels created this way, or it will be closed.  
          */
-        create_data_channel(label: string, options: Dictionary = new Dictionary()): WebRTCDataChannel
+        create_data_channel(label: string, options: GDictionary = new GDictionary()): WebRTCDataChannel
         
         /** Creates a new SDP offer to start a WebRTC connection with a remote peer. At least one [WebRTCDataChannel] must have been created before calling this method.  
          *  If this functions returns [constant OK], [signal session_description_created] will be called when the session is ready to be sent.  
@@ -4361,8 +4361,8 @@ declare module "godot" {
         /* gdvirtual */ _get_connection_state(): WebRTCPeerConnection.ConnectionState
         /* gdvirtual */ _get_gathering_state(): WebRTCPeerConnection.GatheringState
         /* gdvirtual */ _get_signaling_state(): WebRTCPeerConnection.SignalingState
-        /* gdvirtual */ _initialize(p_config: Dictionary): Error
-        /* gdvirtual */ _create_data_channel(p_label: string, p_config: Dictionary): WebRTCDataChannel
+        /* gdvirtual */ _initialize(p_config: GDictionary): Error
+        /* gdvirtual */ _create_data_channel(p_label: string, p_config: GDictionary): WebRTCDataChannel
         /* gdvirtual */ _create_offer(): Error
         /* gdvirtual */ _set_remote_description(p_type: string, p_sdp: string): Error
         /* gdvirtual */ _set_local_description(p_type: string, p_sdp: string): Error
@@ -4593,7 +4593,7 @@ declare module "godot" {
         set_display_refresh_rate(refresh_rate: float64): void
         
         /** Returns display refresh rates supported by the current HMD. Only returned if this feature is supported by the web browser and after the interface has been initialized. */
-        get_available_display_refresh_rates(): Array
+        get_available_display_refresh_rates(): GArray
         
         /** The session mode used by [method XRInterface.initialize] when setting up the WebXR session.  
          *  This doesn't have any effect on the interface when already initialized.  
@@ -5707,7 +5707,7 @@ declare module "godot" {
          *      
          *  **Note:**This information may only be available after [method initialize] was successfully called.  
          */
-        get_system_info(): Dictionary
+        get_system_info(): GDictionary
         
         /** If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking. */
         get_tracking_status(): XRInterface.TrackingStatus
@@ -5758,7 +5758,7 @@ declare module "godot" {
         get_projection_for_view(view: int64, aspect: float64, near: float64, far: float64): Projection
         
         /** Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode]. */
-        get_supported_environment_blend_modes(): Array
+        get_supported_environment_blend_modes(): GArray
         
         /** `true` if this is the primary interface. */
         get interface_is_primary(): boolean
@@ -5801,7 +5801,7 @@ declare module "godot" {
         /* gdvirtual */ _uninitialize(): void
         
         /** Returns a [Dictionary] with system information related to this interface. */
-        /* gdvirtual */ _get_system_info(): Dictionary
+        /* gdvirtual */ _get_system_info(): GDictionary
         
         /** Returns `true` if this interface supports this play area mode. */
         /* gdvirtual */ _supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
@@ -8683,7 +8683,7 @@ declare module "godot" {
         constructor(object: Object, method: StringName)
         
         /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
-        callv(arguments_: Array): void
+        callv(arguments_: GArray): void
         
         /** Returns `true` if this [Callable] has no target to call the method on. */
         is_null(): boolean
@@ -8710,7 +8710,7 @@ declare module "godot" {
         get_bound_arguments_count(): int64
         
         /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
-        get_bound_arguments(): Array
+        get_bound_arguments(): GArray
         
         /** Returns the 32-bit hash value of this [Callable]'s object.  
          *      
@@ -8722,7 +8722,7 @@ declare module "godot" {
          *      
          *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
          */
-        bindv(arguments_: Array): AnyCallable
+        bindv(arguments_: GArray): AnyCallable
         
         /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
          *      
@@ -8794,26 +8794,21 @@ declare module "godot" {
          *  - `callable` is a reference to the connected [Callable];  
          *  - `flags` is a combination of [enum Object.ConnectFlags].  
          */
-        get_connections(): Array
+        get_connections(): GArray
         
         /** Emits this signal. All [Callable]s connected to this signal will be triggered. This method supports a variable number of arguments, so parameters can be passed as a comma separated list. */
         emit(...vargargs: any[]): void
         static EQUAL(left: AnySignal, right: AnySignal): boolean
         static NOT_EQUAL(left: AnySignal, right: AnySignal): boolean
     }
-    /** A built-in data structure that holds key-value pairs.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_dictionary.html  
-     */
-    class Dictionary {
+    class GDictionary {
         constructor()
-        constructor(from: Dictionary)
+        constructor(from: GDictionary)
         set_indexed(index: number, value: any)
         get_indexed(index: number): any
         set_keyed(index: any, value: any)
         get_keyed(index: any): any
-
-        [Symbol.iterator](): IteratorObject<{ key: any, value: any}>;
+        [Symbol.iterator](): IteratorObject<{ key: any, value: any}>
         
         /** Returns the number of entries in the dictionary. Empty dictionaries (`{ }`) always return `0`. See also [method is_empty]. */
         size(): int64
@@ -8829,7 +8824,7 @@ declare module "godot" {
          *      
          *  **Note:** [method merge] is  *not*  recursive. Nested dictionaries are considered as keys that can be overwritten or not depending on the value of [param overwrite], but they will never be merged together.  
          */
-        merge(dictionary: Dictionary, overwrite: boolean = false): void
+        merge(dictionary: GDictionary, overwrite: boolean = false): void
         
         /** Returns `true` if the dictionary contains an entry with the given [param key].  
          *    
@@ -8843,7 +8838,7 @@ declare module "godot" {
         /** Returns `true` if the dictionary contains all keys in the given [param keys] array.  
          *    
          */
-        has_all(keys: Array): boolean
+        has_all(keys: GArray): boolean
         
         /** Finds and returns the first key whose associated value is equal to [param value], or `null` if it is not found.  
          *      
@@ -8867,13 +8862,13 @@ declare module "godot" {
         hash(): int64
         
         /** Returns the list of keys in the dictionary. */
-        keys(): Array
+        keys(): GArray
         
         /** Returns the list of values in this dictionary. */
-        values(): Array
+        values(): GArray
         
         /** Creates and returns a new copy of the dictionary. If [param deep] is `true`, inner [Dictionary] and [Array] keys and values are also copied, recursively. */
-        duplicate(deep: boolean = false): Dictionary
+        duplicate(deep: boolean = false): GDictionary
         
         /** Returns the corresponding value for the given [param key] in the dictionary. If the [param key] does not exist, returns [param default], or `null` if the parameter is omitted. */
         get(key: any, default_: any = <any> {}): void
@@ -8883,17 +8878,13 @@ declare module "godot" {
         
         /** Returns `true` if the dictionary is read-only. See [method make_read_only]. Dictionaries are automatically read-only if declared with `const` keyword. */
         is_read_only(): boolean
-        static EQUAL(left: Dictionary, right: Dictionary): boolean
-        static NOT_EQUAL(left: Dictionary, right: Dictionary): boolean
+        static EQUAL(left: GDictionary, right: GDictionary): boolean
+        static NOT_EQUAL(left: GDictionary, right: GDictionary): boolean
     }
-    /** A built-in data structure that holds a sequence of elements.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_array.html  
-     */
-    class Array {
+    class GArray {
         constructor()
-        constructor(from: Array)
-        constructor(base: Array, type: int64, class_name: StringName, script: any)
+        constructor(from: GArray)
+        constructor(base: GArray, type: int64, class_name: StringName, script: any)
         constructor(from: PackedByteArray | byte[] | ArrayBuffer)
         constructor(from: PackedInt32Array | int32[])
         constructor(from: PackedInt64Array | int64[])
@@ -8905,8 +8896,7 @@ declare module "godot" {
         constructor(from: PackedColorArray | Color[])
         set_indexed(index: number, value: any)
         get_indexed(index: number): any
-        
-        [Symbol.iterator](): IteratorObject<any>;
+        [Symbol.iterator](): IteratorObject<any>
         
         /** Returns the number of elements in the array. */
         size(): int64
@@ -8924,7 +8914,7 @@ declare module "godot" {
         hash(): int64
         
         /** Assigns elements of another [param array] into the array. Resizes the array to match [param array]. Performs type conversions if the array is typed. */
-        assign(array: Array): void
+        assign(array: GArray): void
         
         /** Appends an element at the end of the array. See also [method push_front]. */
         push_back(value: any): void
@@ -8941,7 +8931,7 @@ declare module "godot" {
         /** Appends another array at the end of this array.  
          *    
          */
-        append_array(array: Array): void
+        append_array(array: GArray): void
         
         /** Resizes the array to contain a different number of elements. If the array size is smaller, elements are cleared, if bigger, new elements are `null`. Returns [constant OK] on success, or one of the other [enum Error] values if the operation failed.  
          *  Calling [method resize] once and assigning the new values is faster than adding new elements one by one.  
@@ -9078,7 +9068,7 @@ declare module "godot" {
         /** Returns a copy of the array.  
          *  If [param deep] is `true`, a deep copy is performed: all nested arrays and dictionaries are duplicated and will not be shared with the original array. If `false`, a shallow copy is made and references to the original nested arrays and dictionaries are kept, so that modifying a sub-array or dictionary in the copy will also impact those referenced in the source array. Note that any [Object]-derived elements will be shallow copied regardless of the [param deep] setting.  
          */
-        duplicate(deep: boolean = false): Array
+        duplicate(deep: boolean = false): GArray
         
         /** Returns the slice of the [Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [Array].  
          *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
@@ -9088,21 +9078,21 @@ declare module "godot" {
          *      
          *  **Note:** To include the first element when [param step] is negative, use `arr.slice(begin, -arr.size() - 1, step)` (i.e. `[0, 1, 2].slice(1, -4, -1)` returns `[1, 0]`).  
          */
-        slice(begin: int64, end: int64 = 2147483647, step: int64 = 1, deep: boolean = false): Array
+        slice(begin: int64, end: int64 = 2147483647, step: int64 = 1, deep: boolean = false): GArray
         
         /** Calls the provided [Callable] on each element in the array and returns a new array with the elements for which the method returned `true`.  
          *  The callable's method should take one [Variant] parameter (the current array element) and return a boolean value.  
          *    
          *  See also [method any], [method all], [method map] and [method reduce].  
          */
-        filter(method: Callable): Array
+        filter(method: Callable): GArray
         
         /** Calls the provided [Callable] for each element in the array and returns a new array filled with values returned by the method.  
          *  The callable's method should take one [Variant] parameter (the current array element) and can return any [Variant].  
          *    
          *  See also [method filter], [method reduce], [method any] and [method all].  
          */
-        map(method: Callable): Array
+        map(method: Callable): GArray
         
         /** Calls the provided [Callable] for each element in array and accumulates the result in [param accum].  
          *  The callable's method takes two arguments: the current value of [param accum] and the current array element. If [param accum] is `null` (default value), the iteration will start from the second element, with the first one used as initial value of [param accum].  
@@ -9148,7 +9138,7 @@ declare module "godot" {
         is_typed(): boolean
         
         /** Returns `true` if the array is typed the same as [param array]. */
-        is_same_typed(array: Array): boolean
+        is_same_typed(array: GArray): boolean
         
         /** Returns the built-in type of the typed array as a [enum Variant.Type] constant. If the array is not typed, returns [constant TYPE_NIL]. */
         get_typed_builtin(): int64
@@ -9164,12 +9154,12 @@ declare module "godot" {
         
         /** Returns `true` if the array is read-only. See [method make_read_only]. Arrays are automatically read-only if declared with `const` keyword. */
         is_read_only(): boolean
-        static EQUAL(left: Array, right: Array): boolean
-        static NOT_EQUAL(left: Array, right: Array): boolean
-        static LESS(left: Array, right: Array): boolean
-        static LESS_EQUAL(left: Array, right: Array): boolean
-        static GREATER(left: Array, right: Array): boolean
-        static GREATER_EQUAL(left: Array, right: Array): boolean
+        static EQUAL(left: GArray, right: GArray): boolean
+        static NOT_EQUAL(left: GArray, right: GArray): boolean
+        static LESS(left: GArray, right: GArray): boolean
+        static LESS_EQUAL(left: GArray, right: GArray): boolean
+        static GREATER(left: GArray, right: GArray): boolean
+        static GREATER_EQUAL(left: GArray, right: GArray): boolean
     }
     /** A packed array of bytes.  
      *  	  
@@ -9178,7 +9168,7 @@ declare module "godot" {
     class PackedByteArray {
         constructor()
         constructor(from: PackedByteArray | byte[] | ArrayBuffer)
-        constructor(from: Array)
+        constructor(from: GArray)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         
