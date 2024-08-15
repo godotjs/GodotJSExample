@@ -1,4 +1,4 @@
-import { Dictionary, EditorScript } from "godot";
+import { Array, Dictionary, EditorScript } from "godot";
 import { tool } from "../jsb/jsb.core";
 
 @tool()
@@ -14,6 +14,22 @@ export default class TestDictionary extends EditorScript {
         for (let i = 0; i < keys.size(); ++i) {
             const key = keys.get_indexed(i);
             console.log(`key: ${key} value: ${d.get_keyed(key)}`);
+        }
+
+        // ensure 'jsb.core' module loaded before using iterator of godot Dictionary/Array (they are methods injected in jsb.core)
+        for (let kv of d) {
+            console.log("GodotDictionary:", kv.key, kv.value);
+        }
+
+        let a = new Array();
+        // a.append(1);
+        // a.append("hi");
+        // a.append(3.1415926);
+        a.append_array(<any>[1, "hi", 3.1415926]);
+        
+        // ensure 'jsb.core' module loaded before using iterator of godot Dictionary/Array (they are methods injected in jsb.core)
+        for (let v of a) {
+            console.log("GodotArray:", v);
         }
     }
 }

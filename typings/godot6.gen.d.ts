@@ -8812,6 +8812,8 @@ declare module "godot" {
         get_indexed(index: number): any
         set_keyed(index: any, value: any)
         get_keyed(index: any): any
+
+        [Symbol.iterator](): IteratorObject<{ key: any, value: any}>;
         
         /** Returns the number of entries in the dictionary. Empty dictionaries (`{ }`) always return `0`. See also [method is_empty]. */
         size(): int64
@@ -8903,6 +8905,8 @@ declare module "godot" {
         constructor(from: PackedColorArray | Color[])
         set_indexed(index: number, value: any)
         get_indexed(index: number): any
+        
+        [Symbol.iterator](): IteratorObject<any>;
         
         /** Returns the number of elements in the array. */
         size(): int64
