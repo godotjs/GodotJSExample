@@ -263,7 +263,15 @@ class PrimitiveClassGen {
         let args: Array<string> = [];
         let name = `method_${method.name}`;
         let func = new V8FunctionWriter(struct, name);
-        func.line(`${type_string(this.type.type)}* thiz = GetThis();`);
+        let op_call: string;
+        if (method.is_static) {
+            op_call = `${type_string(this.type.type)}::`;
+        } else {
+            const qualifier = method.is_const ? "const " : "";
+            func.line(`${qualifier}${type_string(this.type.type)}* thiz = GetThis();`);
+            op_call = "thiz->";
+        } 
+
         method.args_.forEach((value, index) => {
             let arg_name = `__${index}__`;
             let arg_type = type_string(value.type);
@@ -276,13 +284,13 @@ class PrimitiveClassGen {
         });
         if (typeof method.return_ != "undefined" && method.return_.type != Variant.Type.TYPE_NIL) {
             func.line(`v8::Local<v8::Value> rval;`);
-            IF(func, `WrapValue(isolate, context, thiz->${method.name}(${args.join(", ")}), rval)`).THEN(
+            IF(func, `WrapValue(isolate, context, ${op_call}${method.name}(${args.join(", ")}), rval)`).THEN(
                 `jsb_throw(isolate, "failed to translate return value")`, 
                 `return;`
             );
             func.line(`info.GetReturnValue().Set(rval);`);
         } else {
-            func.line(`thiz->${method.name}(${args.join(", ")});`);
+            func.line(`${op_call}${method.name}(${args.join(", ")});`);
         }
         func.finish();
         generated_methods.push({ method_name: name, method_info: method });
@@ -314,6 +322,40 @@ class PrimitiveClassGen {
                 }
             });
 
+            // enums
+            let enum_constants = new Set<string>();
+            for (let enum_info of this.type.enums ?? []) {
+                let block = new BlockWriter(bind);
+                block.line(`v8::Local<v8::ObjectTemplate> enum_obj = v8::ObjectTemplate::New(p_env.isolate);`);
+                block.line(`function_template->Set(V8Helper::to_string(p_env.isolate, "${enum_info.name}"), enum_obj);`);
+                for (let enum_item of enum_info.literals) {
+                    let enum_value = this.type.constants!.find(v => v.name == enum_item)!.value;
+                    block.line(`enum_obj->Set(V8Helper::to_string(p_env.isolate, "${enum_item}"), v8::Int32::New(p_env.isolate, ${enum_value}));`);
+                    enum_constants.add(enum_item);
+                }
+                block.finish();
+            }
+
+            // constants
+            if (typeof this.type.constants !== "undefined") {
+                let block = new BlockWriter(bind);
+                for (let const_info of this.type.constants) {
+                    if (enum_constants.has(const_info.name)) continue;
+                    switch (const_info.type) {
+                        case Variant.Type.TYPE_FLOAT:
+                            block.line(`[NOT_IMPLEMENTED] SET_CONST_NUMBER(${const_info.name}, ${const_info.value});`);
+                            break;
+                        case Variant.Type.TYPE_INT:
+                            block.line(`[NOT_IMPLEMENTED] SET_CONST_INT(${const_info.name}, ${const_info.value});`);
+                            break;
+                        default:
+                            block.line(`SET_CONST_LAZY(${const_info.name});`);
+                            break;
+                    }
+                }
+                block.finish();
+            }
+
             BLOCK(bind)(
                 "NativeClassInfo& class_info = p_env.environment->get_native_class(class_id);",
                 "class_info.finalizer = &finalizer;",
@@ -342,7 +384,7 @@ class Generator {
     }
 
     emit() {
-        let ignored_type = new Set([
+        let ignored_types = new Set([
             Variant.Type.TYPE_NIL,
             Variant.Type.TYPE_BOOL,
             Variant.Type.TYPE_INT,
@@ -370,7 +412,7 @@ class Generator {
         register.line("{");
         {
             for (let type of this.types) {
-                if (ignored_type.has(type.type)) continue;
+                if (ignored_types.has(type.type)) continue;
                 new PrimitiveClassGen(type, new IndentWriter(codegen), new IndentWriter(register)).emit();
             }
         }
