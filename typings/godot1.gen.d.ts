@@ -21,7 +21,7 @@ declare module "godot" {
     }
     /** Provides access to AES encryption/decryption of raw data.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_aescontext.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_aescontext.html  
      */
     class AESContext extends RefCounted {
         constructor(identifier?: any)
@@ -45,7 +45,7 @@ declare module "godot" {
     }
     /** An implementation of A* for finding the shortest path between two vertices on a connected graph in 2D space.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_astar2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_astar2d.html  
      */
     class AStar2D extends RefCounted {
         constructor(identifier?: any)
@@ -137,20 +137,22 @@ declare module "godot" {
         get_closest_position_in_segment(to_position: Vector2): Vector2
         
         /** Returns an array with the points that are in the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.  
+         *  If there is no valid path to the target, and [param allow_partial_path] is `true`, returns a path to the point closest to the target that can be reached.  
          *      
-         *  **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty [PackedVector2Array] and will print an error message.  
+         *  **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty array and will print an error message.  
          */
-        get_point_path(from_id: int64, to_id: int64): PackedVector2Array
+        get_point_path(from_id: int64, to_id: int64, allow_partial_path: boolean = false): PackedVector2Array
         
         /** Returns an array with the IDs of the points that form the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.  
+         *  If there is no valid path to the target, and [param allow_partial_path] is `true`, returns a path to the point closest to the target that can be reached.  
          *    
          *  If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.  
          */
-        get_id_path(from_id: int64, to_id: int64): PackedInt64Array
+        get_id_path(from_id: int64, to_id: int64, allow_partial_path: boolean = false): PackedInt64Array
     }
     /** An implementation of A* for finding the shortest path between two vertices on a connected graph in 3D space.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_astar3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_astar3d.html  
      */
     class AStar3D extends RefCounted {
         constructor(identifier?: any)
@@ -242,16 +244,18 @@ declare module "godot" {
         get_closest_position_in_segment(to_position: Vector3): Vector3
         
         /** Returns an array with the points that are in the path found by AStar3D between the given points. The array is ordered from the starting point to the ending point of the path.  
+         *  If there is no valid path to the target, and [param allow_partial_path] is `true`, returns a path to the point closest to the target that can be reached.  
          *      
-         *  **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty [PackedVector3Array] and will print an error message.  
+         *  **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty array and will print an error message.  
          */
-        get_point_path(from_id: int64, to_id: int64): PackedVector3Array
+        get_point_path(from_id: int64, to_id: int64, allow_partial_path: boolean = false): PackedVector3Array
         
         /** Returns an array with the IDs of the points that form the path found by AStar3D between the given points. The array is ordered from the starting point to the ending point of the path.  
+         *  If there is no valid path to the target, and [param allow_partial_path] is `true`, returns a path to the point closest to the target that can be reached.  
          *    
          *  If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.  
          */
-        get_id_path(from_id: int64, to_id: int64): PackedInt64Array
+        get_id_path(from_id: int64, to_id: int64, allow_partial_path: boolean = false): PackedInt64Array
     }
     namespace AStarGrid2D {
         enum Heuristic {
@@ -298,10 +302,23 @@ declare module "godot" {
             /** Represents the size of the [enum DiagonalMode] enum. */
             DIAGONAL_MODE_MAX = 4,
         }
+        enum CellShape {
+            /** Rectangular cell shape. */
+            CELL_SHAPE_SQUARE = 0,
+            
+            /** Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis goes up-right, and the vertical one goes down-right. */
+            CELL_SHAPE_ISOMETRIC_RIGHT = 1,
+            
+            /** Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis goes down-right, and the vertical one goes down-left. */
+            CELL_SHAPE_ISOMETRIC_DOWN = 2,
+            
+            /** Represents the size of the [enum CellShape] enum. */
+            CELL_SHAPE_MAX = 3,
+        }
     }
     /** An implementation of A* for finding the shortest path between two points on a partial 2D grid.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_astargrid2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_astargrid2d.html  
      */
     class AStarGrid2D extends RefCounted {
         constructor(identifier?: any)
@@ -367,21 +384,22 @@ declare module "godot" {
         get_point_position(id: Vector2i): Vector2
         
         /** Returns an array with the points that are in the path found by [AStarGrid2D] between the given points. The array is ordered from the starting point to the ending point of the path.  
+         *  If there is no valid path to the target, and [param allow_partial_path] is `true`, returns a path to the point closest to the target that can be reached.  
          *      
-         *  **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty [PackedVector2Array] and will print an error message.  
+         *  **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty array and will print an error message.  
          */
-        get_point_path(from_id: Vector2i, to_id: Vector2i): PackedVector2Array
+        get_point_path(from_id: Vector2i, to_id: Vector2i, allow_partial_path: boolean = false): PackedVector2Array
         
-        /** Returns an array with the IDs of the points that form the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path. */
-        get_id_path(from_id: Vector2i, to_id: Vector2i): GArray
+        /** Returns an array with the IDs of the points that form the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.  
+         *  If there is no valid path to the target, and [param allow_partial_path] is `true`, returns a path to the point closest to the target that can be reached.  
+         */
+        get_id_path(from_id: Vector2i, to_id: Vector2i, allow_partial_path: boolean = false): GArray
         
         /** The region of grid cells available for pathfinding. If changed, [method update] needs to be called before finding the next path. */
         get region(): Rect2i
         set region(value: Rect2i)
         
-        /** The size of the grid (number of cells of size [member cell_size] on each axis). If changed, [method update] needs to be called before finding the next path.  
-         *   *Deprecated.*  Use [member region] instead.  
-         */
+        /** The size of the grid (number of cells of size [member cell_size] on each axis). If changed, [method update] needs to be called before finding the next path. */
         get size(): Vector2i
         set size(value: Vector2i)
         
@@ -392,6 +410,10 @@ declare module "godot" {
         /** The size of the point cell which will be applied to calculate the resulting point position returned by [method get_point_path]. If changed, [method update] needs to be called before finding the next path. */
         get cell_size(): Vector2
         set cell_size(value: Vector2)
+        
+        /** The cell shape. Affects how the positions are placed in the grid. If changed, [method update] needs to be called before finding the next path. */
+        get cell_shape(): int64
+        set cell_shape(value: int64)
         
         /** Enables or disables jumping to skip up the intermediate points and speeds up the searching algorithm.  
          *      
@@ -420,7 +442,7 @@ declare module "godot" {
     }
     /** A base dialog used for user notification.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_acceptdialog.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_acceptdialog.html  
      */
     class AcceptDialog extends Window {
         constructor(identifier?: any)
@@ -446,10 +468,10 @@ declare module "godot" {
         add_cancel_button(name: string): Button
         
         /** Removes the [param button] from the dialog. Does NOT free the [param button]. The [param button] must be a [Button] added with [method add_button] or [method add_cancel_button] method. After removal, pressing the [param button] will no longer emit this dialog's [signal custom_action] or [signal canceled] signals. */
-        remove_button(button: Control): void
+        remove_button(button: Button): void
         
         /** Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted. */
-        register_text_enter(line_edit: Control): void
+        register_text_enter(line_edit: LineEdit): void
         
         /** The text displayed by the OK button (see [method get_ok_button]). */
         get ok_button_text(): string
@@ -499,7 +521,7 @@ declare module "godot" {
     }
     /** A 2D physics body that can't be moved by external forces. When moved manually, it affects other bodies in its path.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animatablebody2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animatablebody2d.html  
      */
     class AnimatableBody2D extends StaticBody2D {
         constructor(identifier?: any)
@@ -509,7 +531,7 @@ declare module "godot" {
     }
     /** A 3D physics body that can't be moved by external forces. When moved manually, it affects other bodies in its path.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animatablebody3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animatablebody3d.html  
      */
     class AnimatableBody3D extends StaticBody3D {
         constructor(identifier?: any)
@@ -519,7 +541,7 @@ declare module "godot" {
     }
     /** Sprite node that contains multiple textures as frames to play for animation.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animatedsprite2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animatedsprite2d.html  
      */
     class AnimatedSprite2D extends Node2D {
         constructor(identifier?: any)
@@ -582,7 +604,10 @@ declare module "godot" {
         get speed_scale(): float64
         set speed_scale(value: float64)
         
-        /** If `true`, texture will be centered. */
+        /** If `true`, texture will be centered.  
+         *      
+         *  **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered. This is caused by their position being between pixels. To prevent this, set this property to `false`, or consider enabling [member ProjectSettings.rendering/2d/snap/snap_2d_vertices_to_pixel] and [member ProjectSettings.rendering/2d/snap/snap_2d_transforms_to_pixel].  
+         */
         get centered(): boolean
         set centered(value: boolean)
         
@@ -610,12 +635,15 @@ declare module "godot" {
         /** Emitted when the animation loops. */
         readonly animation_looped: Signal0
         
-        /** Emitted when the animation reaches the end, or the start if it is played in reverse. When the animation finishes, it pauses the playback. */
+        /** Emitted when the animation reaches the end, or the start if it is played in reverse. When the animation finishes, it pauses the playback.  
+         *      
+         *  **Note:** This signal is not emitted if an animation is looping.  
+         */
         readonly animation_finished: Signal0
     }
     /** 2D sprite node in 3D world, that can use multiple 2D textures for animation.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animatedsprite3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animatedsprite3d.html  
      */
     class AnimatedSprite3D extends SpriteBase3D {
         constructor(identifier?: any)
@@ -691,12 +719,15 @@ declare module "godot" {
         /** Emitted when the animation loops. */
         readonly animation_looped: Signal0
         
-        /** Emitted when the animation reaches the end, or the start if it is played in reverse. When the animation finishes, it pauses the playback. */
+        /** Emitted when the animation reaches the end, or the start if it is played in reverse. When the animation finishes, it pauses the playback.  
+         *      
+         *  **Note:** This signal is not emitted if an animation is looping.  
+         */
         readonly animation_finished: Signal0
     }
     /** Proxy texture for simple frame-based animations.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animatedtexture.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animatedtexture.html  
      */
     class AnimatedTexture extends Texture2D {
         /** The maximum number of frames supported by [AnimatedTexture]. If you need more frames in your animation, use [AnimationPlayer] or [AnimatedSprite2D]. */
@@ -795,7 +826,7 @@ declare module "godot" {
             /** Update at the keyframes. */
             UPDATE_DISCRETE = 1,
             
-            /** Same as linear interpolation, but also interpolates from the current value (i.e. dynamically at runtime) if the first key isn't at 0 seconds. */
+            /** Same as [constant UPDATE_CONTINUOUS] but works as a flag to capture the value of the current object and perform interpolation in some methods. See also [method AnimationMixer.capture], [member AnimationPlayer.playback_auto_capture], and [method AnimationPlayer.play_with_capture]. */
             UPDATE_CAPTURE = 2,
         }
         enum LoopMode {
@@ -831,7 +862,7 @@ declare module "godot" {
     }
     /** Holds data that can be used to animate anything in the engine.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animation.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animation.html  
      */
     class Animation extends Resource {
         constructor(identifier?: any)
@@ -850,7 +881,7 @@ declare module "godot" {
         /** Gets the path of a track. For more information on the path format, see [method track_set_path]. */
         track_get_path(track_idx: int64): NodePath
         
-        /** Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by `":"`.  
+        /** Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the [member AnimationMixer.root_node] that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by `":"`.  
          *  For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.  
          */
         track_set_path(track_idx: int64, path: NodePath | string): void
@@ -895,16 +926,16 @@ declare module "godot" {
         blend_shape_track_insert_key(track_idx: int64, time: float64, amount: float64): int64
         
         /** Returns the interpolated position value at the given time (in seconds). The [param track_idx] must be the index of a 3D position track. */
-        position_track_interpolate(track_idx: int64, time_sec: float64): Vector3
+        position_track_interpolate(track_idx: int64, time_sec: float64, backward: boolean = false): Vector3
         
         /** Returns the interpolated rotation value at the given time (in seconds). The [param track_idx] must be the index of a 3D rotation track. */
-        rotation_track_interpolate(track_idx: int64, time_sec: float64): Quaternion
+        rotation_track_interpolate(track_idx: int64, time_sec: float64, backward: boolean = false): Quaternion
         
         /** Returns the interpolated scale value at the given time (in seconds). The [param track_idx] must be the index of a 3D scale track. */
-        scale_track_interpolate(track_idx: int64, time_sec: float64): Vector3
+        scale_track_interpolate(track_idx: int64, time_sec: float64, backward: boolean = false): Vector3
         
         /** Returns the interpolated blend shape value at the given time (in seconds). The [param track_idx] must be the index of a blend shape track. */
-        blend_shape_track_interpolate(track_idx: int64, time_sec: float64): float64
+        blend_shape_track_interpolate(track_idx: int64, time_sec: float64, backward: boolean = false): float64
         
         /** Inserts a generic key in a given track. Returns the key index. */
         track_insert_key(track_idx: int64, time: float64, key: any, transition: float64 = 1): int64
@@ -936,8 +967,12 @@ declare module "godot" {
         /** Returns the time at which the key is located. */
         track_get_key_time(track_idx: int64, key_idx: int64): float64
         
-        /** Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given. */
-        track_find_key(track_idx: int64, time: float64, find_mode: Animation.FindMode = 0): int64
+        /** Finds the key index by time in a given track. Optionally, only find it if the approx/exact time is given.  
+         *  If [param limit] is `true`, it does not return keys outside the animation range.  
+         *  If [param backward] is `true`, the direction is reversed in methods that rely on one directional processing.  
+         *  For example, in case [param find_mode] is [constant FIND_MODE_NEAREST], if there is no key in the current position just after seeked, the first key found is retrieved by searching before the position, but if [param backward] is `true`, the first key found is retrieved after the position.  
+         */
+        track_find_key(track_idx: int64, time: float64, find_mode: Animation.FindMode = 0, limit: boolean = false, backward: boolean = false): int64
         
         /** Sets the interpolation type of a given track. */
         track_set_interpolation_type(track_idx: int64, interpolation: Animation.InterpolationType): void
@@ -960,8 +995,10 @@ declare module "godot" {
         /** Returns the update mode of a value track. */
         value_track_get_update_mode(track_idx: int64): Animation.UpdateMode
         
-        /** Returns the interpolated value at the given time (in seconds). The [param track_idx] must be the index of a value track. */
-        value_track_interpolate(track_idx: int64, time_sec: float64): any
+        /** Returns the interpolated value at the given time (in seconds). The [param track_idx] must be the index of a value track.  
+         *  A [param backward] mainly affects the direction of key retrieval of the track with [constant UPDATE_DISCRETE] converted by [constant AnimationMixer.ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS] to match the result with [method track_find_key].  
+         */
+        value_track_interpolate(track_idx: int64, time_sec: float64, backward: boolean = false): any
         
         /** Returns the method name of a method track. */
         method_track_get_name(track_idx: int64, key_idx: int64): StringName
@@ -1063,29 +1100,25 @@ declare module "godot" {
         /** The animation step value. */
         get step(): float64
         set step(value: float64)
+        
+        /** Returns `true` if the capture track is included. This is a cached readonly value for performance. */
+        get capture_included(): boolean
     }
     class AnimationBezierTrackEdit extends Control {
         constructor(identifier?: any)
         _clear_selection(): void
         _clear_selection_for_anim(_unnamed_arg0: Animation): void
-        _select_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: int64, _unnamed_arg2: float64): void
+        _select_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: int64, _unnamed_arg2: float64, _unnamed_arg3: boolean): void
         _update_hidden_tracks_after(_unnamed_arg0: int64): void
         _update_locked_tracks_after(_unnamed_arg0: int64): void
-        _bezier_track_insert_key(_unnamed_arg0: int64, _unnamed_arg1: float64, _unnamed_arg2: float64, _unnamed_arg3: Vector2, _unnamed_arg4: Vector2, _unnamed_arg5: any /*Animation.HandleMode*/): void
-        readonly timeline_changed: Signal1<float64>
-        readonly remove_request: Signal1<int64>
-        readonly insert_key: Signal1<float64>
+        _bezier_track_insert_key_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: int64, _unnamed_arg2: float64, _unnamed_arg3: float64, _unnamed_arg4: Vector2, _unnamed_arg5: Vector2, _unnamed_arg6: any /*Animation.HandleMode*/): void
         readonly select_key: Signal3<int64, boolean, int64>
+        readonly deselect_key: Signal2<int64, int64>
         readonly clear_selection: Signal0
-        readonly close_request: Signal0
-        readonly move_selection_begin: Signal0
-        readonly move_selection: Signal1<float64>
-        readonly move_selection_commit: Signal0
-        readonly move_selection_cancel: Signal0
     }
     /** Container for [Animation] resources.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationlibrary.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationlibrary.html  
      */
     class AnimationLibrary extends Resource {
         constructor(identifier?: any)
@@ -1146,17 +1179,32 @@ declare module "godot" {
             /** Make method calls immediately when reached in the animation. */
             ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE = 1,
         }
+        enum AnimationCallbackModeDiscrete {
+            /** An [constant Animation.UPDATE_DISCRETE] track value takes precedence when blending [constant Animation.UPDATE_CONTINUOUS] or [constant Animation.UPDATE_CAPTURE] track values and [constant Animation.UPDATE_DISCRETE] track values. */
+            ANIMATION_CALLBACK_MODE_DISCRETE_DOMINANT = 0,
+            
+            /** An [constant Animation.UPDATE_CONTINUOUS] or [constant Animation.UPDATE_CAPTURE] track value takes precedence when blending the [constant Animation.UPDATE_CONTINUOUS] or [constant Animation.UPDATE_CAPTURE] track values and the [constant Animation.UPDATE_DISCRETE] track values. This is the default behavior for [AnimationPlayer]. */
+            ANIMATION_CALLBACK_MODE_DISCRETE_RECESSIVE = 1,
+            
+            /** Always treat the [constant Animation.UPDATE_DISCRETE] track value as [constant Animation.UPDATE_CONTINUOUS] with [constant Animation.INTERPOLATION_NEAREST]. This is the default behavior for [AnimationTree].  
+             *  If a value track has non-numeric type key values, it is internally converted to use [constant ANIMATION_CALLBACK_MODE_DISCRETE_RECESSIVE] with [constant Animation.UPDATE_DISCRETE].  
+             */
+            ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS = 2,
+        }
     }
     /** Base class for [AnimationPlayer] and [AnimationTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationmixer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationmixer.html  
      */
     class AnimationMixer extends Node {
         constructor(identifier?: any)
-        /** A virtual function for processing after key getting during playback. */
-        /* gdvirtual */ _post_process_key_value(animation: Animation, track: int64, value: any, object: Object, object_idx: int64): void
+        /** A virtual function for processing after getting a key during playback. */
+        /* gdvirtual */ _post_process_key_value(animation: Animation, track: int64, value: any, object_id: int64, object_sub_idx: int64): void
         
-        /** Adds [param library] to the animation player, under the key [param name]. */
+        /** Adds [param library] to the animation player, under the key [param name].  
+         *  AnimationMixer has a global library by default with an empty string as key. For adding an animation to the global library:  
+         *    
+         */
         add_animation_library(name: StringName, library: AnimationLibrary): Error
         
         /** Removes the [AnimationLibrary] associated with the key [param name]. */
@@ -1165,18 +1213,18 @@ declare module "godot" {
         /** Moves the [AnimationLibrary] associated with the key [param name] to the key [param newname]. */
         rename_animation_library(name: StringName, newname: StringName): void
         
-        /** Returns `true` if the [AnimationPlayer] stores an [AnimationLibrary] with key [param name]. */
+        /** Returns `true` if the [AnimationMixer] stores an [AnimationLibrary] with key [param name]. */
         has_animation_library(name: StringName): boolean
         
         /** Returns the first [AnimationLibrary] with key [param name] or `null` if not found.  
-         *  To get the [AnimationPlayer]'s global animation library, use `get_animation_library("")`.  
+         *  To get the [AnimationMixer]'s global animation library, use `get_animation_library("")`.  
          */
         get_animation_library(name: StringName): AnimationLibrary
         
         /** Returns the list of stored library keys. */
         get_animation_library_list(): GArray
         
-        /** Returns `true` if the [AnimationPlayer] stores an [Animation] with key [param name]. */
+        /** Returns `true` if the [AnimationMixer] stores an [Animation] with key [param name]. */
         has_animation(name: StringName): boolean
         
         /** Returns the [Animation] with the key [param name]. If the animation does not exist, `null` is returned and an error is logged. */
@@ -1190,7 +1238,7 @@ declare module "godot" {
          *  See also [member root_motion_track] and [RootMotionView].  
          *  The most basic example is applying position to [CharacterBody3D]:  
          *    
-         *  By using this in combination with [method get_root_motion_position_accumulator], you can apply the root motion position more correctly to account for the rotation of the node.  
+         *  By using this in combination with [method get_root_motion_rotation_accumulator], you can apply the root motion position more correctly to account for the rotation of the node.  
          *    
          */
         get_root_motion_position(): Vector3
@@ -1240,6 +1288,12 @@ declare module "godot" {
         
         /** Manually advance the animations by the specified time (in seconds). */
         advance(delta: float64): void
+        
+        /** If the animation track specified by [param name] has an option [constant Animation.UPDATE_CAPTURE], stores current values of the objects indicated by the track path as a cache. If there is already a captured cache, the old cache is discarded.  
+         *  After this it will interpolate with current animation blending result during the playback process for the time specified by [param duration], working like a crossfade.  
+         *  You can specify [param trans_type] as the curve for the interpolation. For better results, it may be appropriate to specify [constant Tween.TRANS_LINEAR] for cases where the first key of the track begins with a non-zero value or where the key value does not change, and [constant Tween.TRANS_QUAD] for cases where the key value changes linearly.  
+         */
+        capture(name: StringName, duration: float64, trans_type: Tween.TransitionType = 0, ease_type: Tween.EaseType = 0): void
         _reset(): void
         _restore(backup: any /*AnimatedValuesBackup*/): void
         
@@ -1270,12 +1324,12 @@ declare module "godot" {
         get reset_on_save(): boolean
         set reset_on_save(value: boolean)
         
-        /** The node from which node path references will travel. */
+        /** The node which node path references will travel from. */
         get root_node(): NodePath
         set root_node(value: NodePath | string)
         
-        /** The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. To specify a track that controls properties or bones, append its name after the path, separated by `":"`. For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.  
-         *  If the track has type [constant Animation.TYPE_POSITION_3D], [constant Animation.TYPE_ROTATION_3D] or [constant Animation.TYPE_SCALE_3D] the transformation will be canceled visually, and the animation will appear to stay in place. See also [method get_root_motion_position], [method get_root_motion_rotation], [method get_root_motion_scale] and [RootMotionView].  
+        /** The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. The [member root_motion_track] uses the same format as [method Animation.track_set_path], but note that a bone must be specified.  
+         *  If the track has type [constant Animation.TYPE_POSITION_3D], [constant Animation.TYPE_ROTATION_3D], or [constant Animation.TYPE_SCALE_3D] the transformation will be canceled visually, and the animation will appear to stay in place. See also [method get_root_motion_position], [method get_root_motion_rotation], [method get_root_motion_scale], and [RootMotionView].  
          */
         get root_motion_track(): NodePath
         set root_motion_track(value: NodePath | string)
@@ -1290,12 +1344,16 @@ declare module "godot" {
         get callback_mode_process(): int64
         set callback_mode_process(value: int64)
         
-        /** The call mode to use for Call Method tracks. */
+        /** The call mode used for "Call Method" tracks. */
         get callback_mode_method(): int64
         set callback_mode_method(value: int64)
         
-        /** Editor only. Notifies when the property have been updated to update dummy [AnimationPlayer] in animation player editor. */
-        readonly mixer_updated: Signal0
+        /** Ordinarily, tracks can be set to [constant Animation.UPDATE_DISCRETE] to update infrequently, usually when using nearest interpolation.  
+         *  However, when blending with [constant Animation.UPDATE_CONTINUOUS] several results are considered. The [member callback_mode_discrete] specify it explicitly. See also [enum AnimationCallbackModeDiscrete].  
+         *  To make the blended results look good, it is recommended to set this to [constant ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS] to update every frame during blending. Other values exist for compatibility and they are fine if there is no blending, but not so, may produce artifacts.  
+         */
+        get callback_mode_discrete(): int64
+        set callback_mode_discrete(value: int64)
         
         /** Notifies when an animation list is changed. */
         readonly animation_list_changed: Signal0
@@ -1314,6 +1372,12 @@ declare module "godot" {
         
         /** Notifies when the caches have been cleared, either automatically, or manually via [method clear_caches]. */
         readonly caches_cleared: Signal0
+        
+        /** Notifies when the blending result related have been applied to the target objects. */
+        readonly mixer_applied: Signal0
+        
+        /** Notifies when the property related process have been updated. */
+        readonly mixer_updated: Signal0
     }
     namespace AnimationNode {
         enum FilterAction {
@@ -1332,7 +1396,7 @@ declare module "godot" {
     }
     /** Base class for [AnimationTree] nodes. Not related to scene nodes.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnode.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnode.html  
      */
     class AnimationNode extends Resource {
         constructor(identifier?: any)
@@ -1353,7 +1417,7 @@ declare module "godot" {
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to run some code when this animation node is processed. The [param time] parameter is a relative delta, unless [param seek] is `true`, in which case it is absolute.  
          *  Here, call the [method blend_input], [method blend_node] or [method blend_animation] functions. You can also use [method get_parameter] and [method set_parameter] to modify local memory.  
-         *  This function should return the time left for the current animation to finish (if unsure, pass the value from the main blend being called).  
+         *  This function should return the delta.  
          */
         /* gdvirtual */ _process(time: float64, seek: boolean, is_external_seeking: boolean, test_only: boolean): float64
         
@@ -1421,14 +1485,14 @@ declare module "godot" {
     }
     /** Blends two animations additively inside of an [AnimationNodeBlendTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeadd2.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeadd2.html  
      */
     class AnimationNodeAdd2 extends AnimationNodeSync {
         constructor(identifier?: any)
     }
     /** Blends two of three animations additively inside of an [AnimationNodeBlendTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeadd3.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeadd3.html  
      */
     class AnimationNodeAdd3 extends AnimationNodeSync {
         constructor(identifier?: any)
@@ -1444,7 +1508,7 @@ declare module "godot" {
     }
     /** An input animation for an [AnimationNodeBlendTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeanimation.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeanimation.html  
      */
     class AnimationNodeAnimation extends AnimationRootNode {
         constructor(identifier?: any)
@@ -1455,17 +1519,45 @@ declare module "godot" {
         /** Determines the playback direction of the animation. */
         get play_mode(): int64
         set play_mode(value: int64)
+        
+        /** If `true`, [AnimationNode] provides an animation based on the [Animation] resource with some parameters adjusted. */
+        get use_custom_timeline(): boolean
+        set use_custom_timeline(value: boolean)
+        
+        /** If [member use_custom_timeline] is `true`, offset the start position of the animation. */
+        get timeline_length(): float64
+        set timeline_length(value: float64)
+        
+        /** If `true`, scales the time so that the length specified in [member timeline_length] is one cycle.  
+         *  This is useful for matching the periods of walking and running animations.  
+         *  If `false`, the original animation length is respected. If you set the loop to [member loop_mode], the animation will loop in [member timeline_length].  
+         */
+        get stretch_time_scale(): boolean
+        set stretch_time_scale(value: boolean)
+        
+        /** If [member use_custom_timeline] is `true`, offset the start position of the animation.  
+         *  This is useful for adjusting which foot steps first in 3D walking animations.  
+         */
+        get start_offset(): float64
+        set start_offset(value: float64)
+        
+        /** If [member use_custom_timeline] is `true`, override the loop settings of the original [Animation] resource with the value.  
+         *      
+         *  **Note:** If the [member Animation.loop_mode] isn't set to looping, the [method Animation.track_set_interpolation_loop_wrap] option will not be respected. If you cannot get the expected behavior, consider duplicating the [Animation] resource and changing the loop settings.  
+         */
+        get loop_mode(): int64
+        set loop_mode(value: int64)
     }
     /** Blends two animations linearly inside of an [AnimationNodeBlendTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeblend2.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeblend2.html  
      */
     class AnimationNodeBlend2 extends AnimationNodeSync {
         constructor(identifier?: any)
     }
     /** Blends two of three animations linearly inside of an [AnimationNodeBlendTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeblend3.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeblend3.html  
      */
     class AnimationNodeBlend3 extends AnimationNodeSync {
         constructor(identifier?: any)
@@ -1484,7 +1576,7 @@ declare module "godot" {
     }
     /** A set of [AnimationRootNode]s placed on a virtual axis, crossfading between the two adjacent ones. Used by [AnimationTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeblendspace1d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeblendspace1d.html  
      */
     class AnimationNodeBlendSpace1D extends AnimationRootNode {
         constructor(identifier?: any)
@@ -1556,7 +1648,7 @@ declare module "godot" {
     }
     /** A set of [AnimationRootNode]s placed on 2D coordinates, crossfading between the three adjacent ones. Used by [AnimationTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeblendspace2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeblendspace2d.html  
      */
     class AnimationNodeBlendSpace2D extends AnimationRootNode {
         constructor(identifier?: any)
@@ -1593,7 +1685,6 @@ declare module "godot" {
         /** Returns the number of triangles in the blend space. */
         get_triangle_count(): int64
         _add_blend_point(index: int64, node: AnimationRootNode): void
-        _update_triangles(): void
         
         /** If `true`, the blend space is triangulated automatically. The mesh updates every time you add or remove points with [method add_blend_point] and [method remove_blend_point]. */
         get auto_triangles(): boolean
@@ -1642,7 +1733,7 @@ declare module "godot" {
     }
     /** A sub-tree of many type [AnimationNode]s used for complex animations. Used by [AnimationTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeblendtree.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeblendtree.html  
      */
     class AnimationNodeBlendTree extends AnimationRootNode {
         /** The connection was successful. */
@@ -1727,7 +1818,7 @@ declare module "godot" {
     }
     /** Plays an animation once in an [AnimationNodeBlendTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeoneshot.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeoneshot.html  
      */
     class AnimationNodeOneShot extends AnimationNodeSync {
         constructor(identifier?: any)
@@ -1735,7 +1826,10 @@ declare module "godot" {
         get mix_mode(): int64
         set mix_mode(value: int64)
         
-        /** The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 0 second and ends at 1 second during the animation. */
+        /** The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 0 second and ends at 1 second during the animation.  
+         *      
+         *  **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading. When [AnimationNodeOutput] is considered as the most upstream, so the [member fadein_time] is scaled depending on the downstream delta. For example, if this value is set to `1.0` and a [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time will be 0.5 second.  
+         */
         get fadein_time(): float64
         set fadein_time(value: float64)
         
@@ -1743,13 +1837,20 @@ declare module "godot" {
         get fadein_curve(): Curve
         set fadein_curve(value: Curve)
         
-        /** The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 4 second and ends at 5 second during the animation. */
+        /** The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 4 second and ends at 5 second during the animation.  
+         *      
+         *  **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading. When [AnimationNodeOutput] is considered as the most upstream, so the [member fadeout_time] is scaled depending on the downstream delta. For example, if this value is set to `1.0` and an [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time will be 0.5 second.  
+         */
         get fadeout_time(): float64
         set fadeout_time(value: float64)
         
         /** Determines how cross-fading between animations is eased. If empty, the transition will be linear. */
         get fadeout_curve(): Curve
         set fadeout_curve(value: Curve)
+        
+        /** If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation is looping. */
+        get break_loop_at_end(): boolean
+        set break_loop_at_end(value: boolean)
         
         /** If `true`, the sub-animation will restart automatically after finishing.  
          *  In other words, to start auto restarting, the animation must be played once with the [constant ONE_SHOT_REQUEST_FIRE] request. The [constant ONE_SHOT_REQUEST_ABORT] request stops the auto restarting, but it does not disable the [member autorestart] itself. So, the [constant ONE_SHOT_REQUEST_FIRE] request will start auto restarting again.  
@@ -1767,7 +1868,7 @@ declare module "godot" {
     }
     /** The animation output node of an [AnimationNodeBlendTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodeoutput.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeoutput.html  
      */
     class AnimationNodeOutput extends AnimationNode {
         constructor(identifier?: any)
@@ -1786,12 +1887,14 @@ declare module "godot" {
     }
     /** A state machine with multiple [AnimationRootNode]s, used by [AnimationTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodestatemachine.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodestatemachine.html  
      */
     class AnimationNodeStateMachine extends AnimationRootNode {
         constructor(identifier?: any)
         /** Adds a new animation node to the graph. The [param position] is used for display in the editor. */
         add_node(name: StringName, node: AnimationNode, position: Vector2 = Vector2.ZERO): void
+        
+        /** Replaces the given animation node with a new animation node. */
         replace_node(name: StringName, node: AnimationNode): void
         
         /** Returns the animation node with the given name. */
@@ -1862,16 +1965,10 @@ declare module "godot" {
     class AnimationNodeStateMachineEditor extends AnimationTreeNodeEditorPlugin {
         constructor(identifier?: any)
         _update_graph(): void
-        _open_editor(_unnamed_arg0: string): void
-        _connect_to(_unnamed_arg0: int64): void
-        _stop_connecting(): void
-        _delete_selected(): void
-        _delete_all(): void
-        _delete_tree_draw(): void
     }
     /** Provides playback control for an [AnimationNodeStateMachine].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodestatemachineplayback.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodestatemachineplayback.html  
      */
     class AnimationNodeStateMachinePlayback extends Resource {
         constructor(identifier?: any)
@@ -1940,17 +2037,24 @@ declare module "godot" {
     }
     /** A transition within an [AnimationNodeStateMachine] connecting two [AnimationRootNode]s.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodestatemachinetransition.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodestatemachinetransition.html  
      */
     class AnimationNodeStateMachineTransition extends Resource {
         constructor(identifier?: any)
-        /** The time to cross-fade between this state and the next. */
+        /** The time to cross-fade between this state and the next.  
+         *      
+         *  **Note:** [AnimationNodeStateMachine] transitions the current state immediately after the start of the fading. The precise remaining time can only be inferred from the main animation. When [AnimationNodeOutput] is considered as the most upstream, so the [member xfade_time] is not scaled depending on the downstream delta. See also [member AnimationNodeOneShot.fadeout_time].  
+         */
         get xfade_time(): float64
         set xfade_time(value: float64)
         
         /** Ease curve for better control over cross-fade between this state and the next. */
         get xfade_curve(): Curve
         set xfade_curve(value: Curve)
+        
+        /** If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation is looping. */
+        get break_loop_at_end(): boolean
+        set break_loop_at_end(value: boolean)
         
         /** If `true`, the destination animation is played back from the beginning when switched. */
         get reset(): boolean
@@ -1968,7 +2072,7 @@ declare module "godot" {
         get advance_mode(): int64
         set advance_mode(value: int64)
         
-        /** Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the [AnimationTree] that can be controlled from code (see [url=https://docs.godotengine.org/en/4.2/tutorials/animation/animation_tree.html#controlling-from-code]Using AnimationTree[/url]). For example, if [member AnimationTree.tree_root] is an [AnimationNodeStateMachine] and [member advance_condition] is set to `"idle"`:  
+        /** Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the [AnimationTree] that can be controlled from code (see [url=https://docs.godotengine.org/en/4.3/tutorials/animation/animation_tree.html#controlling-from-code]Using AnimationTree[/url]). For example, if [member AnimationTree.tree_root] is an [AnimationNodeStateMachine] and [member advance_condition] is set to `"idle"`:  
          *    
          */
         get advance_condition(): StringName
@@ -1983,14 +2087,14 @@ declare module "godot" {
     }
     /** Blends two animations subtractively inside of an [AnimationNodeBlendTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodesub2.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodesub2.html  
      */
     class AnimationNodeSub2 extends AnimationNodeSync {
         constructor(identifier?: any)
     }
-    /** Base class for [AnimationNode]s with more than two input ports that must be synchronized.  
+    /** Base class for [AnimationNode]s with multiple input ports that must be synchronized.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodesync.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodesync.html  
      */
     class AnimationNodeSync extends AnimationNode {
         constructor(identifier?: any)
@@ -2002,21 +2106,21 @@ declare module "godot" {
     }
     /** A time-scaling animation node used in [AnimationTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodetimescale.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodetimescale.html  
      */
     class AnimationNodeTimeScale extends AnimationNode {
         constructor(identifier?: any)
     }
     /** A time-seeking animation node used in [AnimationTree].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodetimeseek.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodetimeseek.html  
      */
     class AnimationNodeTimeSeek extends AnimationNode {
         constructor(identifier?: any)
     }
     /** A transition within an [AnimationTree] connecting two [AnimationNode]s.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationnodetransition.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodetransition.html  
      */
     class AnimationNodeTransition extends AnimationNodeSync {
         constructor(identifier?: any)
@@ -2026,13 +2130,22 @@ declare module "godot" {
         /** Returns `true` if auto-advance is enabled for the given [param input] index. */
         is_input_set_as_auto_advance(input: int64): boolean
         
+        /** If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation is looping. */
+        set_input_break_loop_at_end(input: int64, enable: boolean): void
+        
+        /** Returns whether the animation breaks the loop at the end of the loop cycle for transition. */
+        is_input_loop_broken_at_end(input: int64): boolean
+        
         /** If `true`, the destination animation is restarted when the animation transitions. */
         set_input_reset(input: int64, enable: boolean): void
         
         /** Returns whether the animation restarts when the animation transitions from the other animation. */
         is_input_reset(input: int64): boolean
         
-        /** Cross-fading time (in seconds) between each animation connected to the inputs. */
+        /** Cross-fading time (in seconds) between each animation connected to the inputs.  
+         *      
+         *  **Note:** [AnimationNodeTransition] transitions the current state immediately after the start of the fading. The precise remaining time can only be inferred from the main animation. When [AnimationNodeOutput] is considered as the most upstream, so the [member xfade_time] is not scaled depending on the downstream delta. See also [member AnimationNodeOneShot.fadeout_time].  
+         */
         get xfade_time(): float64
         set xfade_time(value: float64)
         
@@ -2050,7 +2163,7 @@ declare module "godot" {
     }
     /** A node used for animation playback.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationplayer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationplayer.html  
      */
     class AnimationPlayer extends AnimationMixer {
         constructor(identifier?: any)
@@ -2079,6 +2192,16 @@ declare module "godot" {
          */
         play_backwards(name: StringName = '', custom_blend: float64 = -1): void
         
+        /** See also [method AnimationMixer.capture].  
+         *  You can use this method to use more detailed options for capture than those performed by [member playback_auto_capture]. When [member playback_auto_capture] is `false`, this method is almost the same as the following:  
+         *    
+         *  If [param name] is blank, it specifies [member assigned_animation].  
+         *  If [param duration] is a negative value, the duration is set to the interval between the current position and the first key, when [param from_end] is `true`, uses the interval between the current position and the last key instead.  
+         *      
+         *  **Note:** The [param duration] takes [member speed_scale] into account, but [param custom_speed] does not, because the capture cache is interpolated with the blend result and the result may contain multiple animations.  
+         */
+        play_with_capture(name: StringName = '', duration: float64 = -1, custom_blend: float64 = -1, custom_speed: float64 = 1, from_end: boolean = false, trans_type: Tween.TransitionType = 0, ease_type: Tween.EaseType = 0): void
+        
         /** Pauses the currently playing animation. The [member current_animation_position] will be kept and calling [method play] or [method play_backwards] without arguments or with the same animation name as [member assigned_animation] will resume the animation.  
          *  See also [method stop].  
          */
@@ -2094,7 +2217,7 @@ declare module "godot" {
         /** Returns `true` if an animation is currently playing (even if [member speed_scale] and/or `custom_speed` are `0`). */
         is_playing(): boolean
         
-        /** Queues an animation for playback once the current one is done.  
+        /** Queues an animation for playback once the current animation and all previously queued animations are done.  
          *      
          *  **Note:** If a looped animation is currently playing, the queued animation will never play unless the looped animation is stopped somehow.  
          */
@@ -2112,7 +2235,7 @@ declare module "godot" {
         get_playing_speed(): float64
         
         /** Seeks the animation to the [param seconds] point in time (in seconds). If [param update] is `true`, the animation updates too, otherwise it updates at process time. Events between the current frame and [param seconds] are skipped.  
-         *  If [param update_only] is true, the method / audio / animation playback tracks will not be processed.  
+         *  If [param update_only] is `true`, the method / audio / animation playback tracks will not be processed.  
          *      
          *  **Note:** Seeking to the end of the animation doesn't emit [signal AnimationMixer.animation_finished]. If you want to skip animation and emit the signal, use [method AnimationMixer.advance].  
          */
@@ -2138,6 +2261,27 @@ declare module "godot" {
         
         /** The position (in seconds) of the currently playing animation. */
         get current_animation_position(): float64
+        
+        /** If `true`, performs [method AnimationMixer.capture] before playback automatically. This means just [method play_with_capture] is executed with default arguments instead of [method play].  
+         *      
+         *  **Note:** Capture interpolation is only performed if the animation contains a capture track. See also [constant Animation.UPDATE_CAPTURE].  
+         */
+        get playback_auto_capture(): boolean
+        set playback_auto_capture(value: boolean)
+        
+        /** See also [method play_with_capture] and [method AnimationMixer.capture].  
+         *  If [member playback_auto_capture_duration] is negative value, the duration is set to the interval between the current position and the first key.  
+         */
+        get playback_auto_capture_duration(): float64
+        set playback_auto_capture_duration(value: float64)
+        
+        /** The transition type of the capture interpolation. See also [enum Tween.TransitionType]. */
+        get playback_auto_capture_transition_type(): int64
+        set playback_auto_capture_transition_type(value: int64)
+        
+        /** The ease type of the capture interpolation. See also [enum Tween.EaseType]. */
+        get playback_auto_capture_ease_type(): int64
+        set playback_auto_capture_ease_type(value: int64)
         
         /** The default time in which to blend animations. Ranges from 0 to 4096 with 0.01 precision. */
         get playback_default_blend_time(): float64
@@ -2177,7 +2321,7 @@ declare module "godot" {
     }
     /** Base class for [AnimationNode]s that hold one or multiple composite animations. Usually used for [member AnimationTree.tree_root].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationrootnode.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationrootnode.html  
      */
     class AnimationRootNode extends AnimationNode {
         constructor(identifier?: any)
@@ -2199,14 +2343,13 @@ declare module "godot" {
     }
     class AnimationTrackEditor extends VBoxContainer {
         constructor(identifier?: any)
-        _animation_update(): void
         _track_grab_focus(_unnamed_arg0: int64): void
         _redraw_tracks(): void
         _clear_selection_for_anim(_unnamed_arg0: Animation): void
         _select_at_anim(_unnamed_arg0: Animation, _unnamed_arg1: int64, _unnamed_arg2: float64): void
         _clear_selection(_unnamed_arg0: boolean): void
         _bezier_track_set_key_handle_mode(animation: Animation, track_idx: int64, key_idx: int64, key_handle_mode: any /*Animation.HandleMode*/, key_handle_set_mode: any /*Animation.HandleSetMode*/ = 0): void
-        readonly timeline_changed: Signal2<float64, boolean>
+        readonly timeline_changed: Signal3<float64, boolean, boolean>
         readonly keying_changed: Signal0
         readonly animation_len_changed: Signal1<float64>
         readonly animation_step_changed: Signal1<float64>
@@ -2216,12 +2359,10 @@ declare module "godot" {
     }
     /** A node used for advanced animation transitions in an [AnimationPlayer].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_animationtree.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_animationtree.html  
      */
     class AnimationTree extends AnimationMixer {
         constructor(identifier?: any)
-        _update_properties(): void
-        
         /** The root animation node of this [AnimationTree]. See [AnimationRootNode]. */
         get tree_root(): AnimationRootNode
         set tree_root(value: AnimationRootNode)
@@ -2266,7 +2407,7 @@ declare module "godot" {
     }
     /** A region of 2D space that detects other [CollisionObject2D]s entering or exiting it.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_area2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_area2d.html  
      */
     class Area2D extends CollisionObject2D {
         constructor(identifier?: any)
@@ -2425,7 +2566,7 @@ declare module "godot" {
     }
     /** A region of 3D space that detects other [CollisionObject3D]s entering or exiting it.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_area3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_area3d.html  
      */
     class Area3D extends CollisionObject3D {
         constructor(identifier?: any)
@@ -2520,15 +2661,24 @@ declare module "godot" {
         get angular_damp(): float64
         set angular_damp(value: float64)
         
-        /** The magnitude of area-specific wind force. */
+        /** The magnitude of area-specific wind force.  
+         *      
+         *  **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind.  
+         */
         get wind_force_magnitude(): float64
         set wind_force_magnitude(value: float64)
         
-        /** The exponential rate at which wind force decreases with distance from its origin. */
+        /** The exponential rate at which wind force decreases with distance from its origin.  
+         *      
+         *  **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind.  
+         */
         get wind_attenuation_factor(): float64
         set wind_attenuation_factor(value: float64)
         
-        /** The [Node3D] which is used to specify the direction and origin of an area-specific wind force. The direction is opposite to the z-axis of the [Node3D]'s local transform, and its origin is the origin of the [Node3D]'s local transform. */
+        /** The [Node3D] which is used to specify the direction and origin of an area-specific wind force. The direction is opposite to the z-axis of the [Node3D]'s local transform, and its origin is the origin of the [Node3D]'s local transform.  
+         *      
+         *  **Note:** This wind force only applies to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind.  
+         */
         get wind_source_path(): NodePath
         set wind_source_path(value: NodePath | string)
         
@@ -2594,7 +2744,7 @@ declare module "godot" {
     }
     /** [Mesh] type that provides utility for constructing a surface from arrays.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_arraymesh.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_arraymesh.html  
      */
     class ArrayMesh extends Mesh {
         constructor(identifier?: any)
@@ -2617,7 +2767,7 @@ declare module "godot" {
          *  Surfaces are created to be rendered using a [param primitive], which may be any of the values defined in [enum Mesh.PrimitiveType].  
          *  The [param arrays] argument is an array of arrays. Each of the [constant Mesh.ARRAY_MAX] elements contains an array with some of the mesh data for this surface as described by the corresponding member of [enum Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this surface into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty, except for [constant Mesh.ARRAY_INDEX] if it is used.  
          *  The [param blend_shapes] argument is an array of vertex data for each blend shape. Each element is an array of the same structure as [param arrays], but [constant Mesh.ARRAY_VERTEX], [constant Mesh.ARRAY_NORMAL], and [constant Mesh.ARRAY_TANGENT] are set if and only if they are set in [param arrays] and all other entries are `null`.  
-         *  The [param lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry in the dictionary represents a LOD level of the surface, where the value is the [constant Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the distance at which the LOD stats being used. I.e., increasing the key of a LOD also increases the distance that the objects has to be from the camera before the LOD is used.  
+         *  The [param lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry in the dictionary represents an LOD level of the surface, where the value is the [constant Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the distance that the objects has to be from the camera before the LOD is used.  
          *  The [param flags] argument is the bitwise or of, as required: One value of [enum Mesh.ArrayCustomFormat] left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use, [constant Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [constant Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [constant Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].  
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
@@ -2669,13 +2819,16 @@ declare module "godot" {
         get custom_aabb(): AABB
         set custom_aabb(value: AABB)
         
-        /** An optional mesh which is used for rendering shadows and can be used for the depth prepass. Can be used to increase performance of shadow rendering by using a mesh that only contains vertex position data (without normals, UVs, colors, etc.). */
+        /** An optional mesh which can be used for rendering shadows and the depth prepass. Can be used to increase performance by supplying a mesh with fused vertices and only vertex position data (without normals, UVs, colors, etc.).  
+         *      
+         *  **Note:** This mesh must have exactly the same vertex positions as the source mesh (including the source mesh's LODs, if present). If vertex positions differ, then the mesh will not draw correctly.  
+         */
         get shadow_mesh(): ArrayMesh
         set shadow_mesh(value: ArrayMesh)
     }
     /** 3D polygon shape for use with occlusion culling in [OccluderInstance3D].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_arrayoccluder3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_arrayoccluder3d.html  
      */
     class ArrayOccluder3D extends Occluder3D {
         constructor(identifier?: any)
@@ -2725,7 +2878,7 @@ declare module "godot" {
     }
     /** A container that preserves the proportions of its child controls.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_aspectratiocontainer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_aspectratiocontainer.html  
      */
     class AspectRatioContainer extends Container {
         constructor(identifier?: any)
@@ -2753,7 +2906,7 @@ declare module "godot" {
     }
     /** A texture that crops out part of another Texture2D.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_atlastexture.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_atlastexture.html  
      */
     class AtlasTexture extends Texture2D {
         constructor(identifier?: any)
@@ -2761,7 +2914,7 @@ declare module "godot" {
         get atlas(): Texture2D
         set atlas(value: Texture2D)
         
-        /** The region used to draw the [member atlas]. */
+        /** The region used to draw the [member atlas]. If either dimension of the region's size is `0`, the value from [member atlas] size will be used for that axis instead. */
         get region(): Rect2
         set region(value: Rect2)
         
@@ -2779,7 +2932,7 @@ declare module "godot" {
     }
     /** Stores information about the audio buses.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiobuslayout.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiobuslayout.html  
      */
     class AudioBusLayout extends Resource {
         constructor(identifier?: any)
@@ -2787,17 +2940,22 @@ declare module "godot" {
     class AudioBusesEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
-    /** Audio effect for audio.  
+    /** Base class for audio effect resources.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffect.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffect.html  
      */
     class AudioEffect extends Resource {
         constructor(identifier?: any)
+        /** Override this method to customize the [AudioEffectInstance] created when this effect is applied on a bus in the editor's Audio panel, or through [method AudioServer.add_bus_effect].  
+         *    
+         *      
+         *  **Note:** It is recommended to keep a reference to the original [AudioEffect] in the new instance. Depending on the implementation this allows the effect instance to listen for changes at run-time and be modified accordingly.  
+         */
         /* gdvirtual */ _instantiate(): AudioEffectInstance
     }
     /** Adds an amplifying audio effect to an audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectamplify.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectamplify.html  
      */
     class AudioEffectAmplify extends AudioEffect {
         constructor(identifier?: any)
@@ -2807,21 +2965,21 @@ declare module "godot" {
     }
     /** Adds a band limit filter to the audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectbandlimitfilter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectbandlimitfilter.html  
      */
     class AudioEffectBandLimitFilter extends AudioEffectFilter {
         constructor(identifier?: any)
     }
     /** Adds a band pass filter to the audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectbandpassfilter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectbandpassfilter.html  
      */
     class AudioEffectBandPassFilter extends AudioEffectFilter {
         constructor(identifier?: any)
     }
     /** Captures audio from an audio bus in real-time.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectcapture.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectcapture.html  
      */
     class AudioEffectCapture extends AudioEffect {
         constructor(identifier?: any)
@@ -2830,10 +2988,14 @@ declare module "godot" {
         
         /** Gets the next [param frames] audio samples from the internal ring buffer.  
          *  Returns a [PackedVector2Array] containing exactly [param frames] audio samples if available, or an empty [PackedVector2Array] if insufficient data was available.  
+         *  The samples are signed floating-point PCM between `-1` and `1`. You will have to scale them if you want to use them as 8 or 16-bit integer samples. (`v = 0x7fff * samples[0].x`)  
          */
         get_buffer(frames: int64): PackedVector2Array
         
-        /** Clears the internal ring buffer. */
+        /** Clears the internal ring buffer.  
+         *      
+         *  **Note:** Calling this during a capture can cause the loss of samples which causes popping in the playback.  
+         */
         clear_buffer(): void
         
         /** Returns the number of frames available to read using [method get_buffer]. */
@@ -2854,7 +3016,7 @@ declare module "godot" {
     }
     /** Adds a chorus audio effect.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectchorus.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectchorus.html  
      */
     class AudioEffectChorus extends AudioEffect {
         constructor(identifier?: any)
@@ -2886,7 +3048,7 @@ declare module "godot" {
     /** Adds a compressor audio effect to an audio bus.  
      *  Reduces sounds that exceed a certain threshold level, smooths out the dynamics and increases the overall volume.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectcompressor.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectcompressor.html  
      */
     class AudioEffectCompressor extends AudioEffect {
         constructor(identifier?: any)
@@ -2921,7 +3083,7 @@ declare module "godot" {
     /** Adds a delay audio effect to an audio bus. Plays input signal back after a period of time.  
      *  Two tap delay and feedback options.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectdelay.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectdelay.html  
      */
     class AudioEffectDelay extends AudioEffect {
         constructor(identifier?: any)
@@ -2996,7 +3158,7 @@ declare module "godot" {
     /** Adds a distortion audio effect to an Audio bus.  
      *  Modifies the sound to make it distorted.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectdistortion.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectdistortion.html  
      */
     class AudioEffectDistortion extends AudioEffect {
         constructor(identifier?: any)
@@ -3023,7 +3185,7 @@ declare module "godot" {
     /** Base class for audio equalizers. Gives you control over frequencies.  
      *  Use it to create a custom equalizer if [AudioEffectEQ6], [AudioEffectEQ10] or [AudioEffectEQ21] don't fit your needs.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffecteq.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffecteq.html  
      */
     class AudioEffectEQ extends AudioEffect {
         constructor(identifier?: any)
@@ -3039,7 +3201,7 @@ declare module "godot" {
     /** Adds a 10-band equalizer audio effect to an Audio bus. Gives you control over frequencies from 31 Hz to 16000 Hz.  
      *  Each frequency can be modulated between -60/+24 dB.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffecteq10.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffecteq10.html  
      */
     class AudioEffectEQ10 extends AudioEffectEQ {
         constructor(identifier?: any)
@@ -3047,7 +3209,7 @@ declare module "godot" {
     /** Adds a 21-band equalizer audio effect to an Audio bus. Gives you control over frequencies from 22 Hz to 22000 Hz.  
      *  Each frequency can be modulated between -60/+24 dB.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffecteq21.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffecteq21.html  
      */
     class AudioEffectEQ21 extends AudioEffectEQ {
         constructor(identifier?: any)
@@ -3055,7 +3217,7 @@ declare module "godot" {
     /** Adds a 6-band equalizer audio effect to an audio bus. Gives you control over frequencies from 32 Hz to 10000 Hz.  
      *  Each frequency can be modulated between -60/+24 dB.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffecteq6.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffecteq6.html  
      */
     class AudioEffectEQ6 extends AudioEffectEQ {
         constructor(identifier?: any)
@@ -3070,7 +3232,7 @@ declare module "godot" {
     }
     /** Adds a filter to the audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectfilter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectfilter.html  
      */
     class AudioEffectFilter extends AudioEffect {
         constructor(identifier?: any)
@@ -3088,29 +3250,60 @@ declare module "godot" {
         get db(): int64
         set db(value: int64)
     }
+    /** Adds a hard limiter audio effect to an Audio bus.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffecthardlimiter.html  
+     */
+    class AudioEffectHardLimiter extends AudioEffect {
+        constructor(identifier?: any)
+        /** Gain to apply before limiting, in decibels. */
+        get pre_gain_db(): float64
+        set pre_gain_db(value: float64)
+        
+        /** The waveform's maximum allowed value, in decibels. This value can range from `-24.0` to `0.0`.  
+         *  The default value of `-0.3` prevents potential inter-sample peaks (ISP) from crossing over 0 dB, which can cause slight distortion on some older hardware.  
+         */
+        get ceiling_db(): float64
+        set ceiling_db(value: float64)
+        
+        /** Time it takes in seconds for the gain reduction to fully release. */
+        get release(): float64
+        set release(value: float64)
+    }
     /** Adds a high-pass filter to the audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffecthighpassfilter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffecthighpassfilter.html  
      */
     class AudioEffectHighPassFilter extends AudioEffectFilter {
         constructor(identifier?: any)
     }
     /** Adds a high-shelf filter to the audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffecthighshelffilter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffecthighshelffilter.html  
      */
     class AudioEffectHighShelfFilter extends AudioEffectFilter {
         constructor(identifier?: any)
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectinstance.html */
+    /** Manipulates the audio it receives for a given effect.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectinstance.html  
+     */
     class AudioEffectInstance extends RefCounted {
         constructor(identifier?: any)
+        /** Called by the [AudioServer] to process this effect. When [method _process_silence] is not overridden or it returns `false`, this method is called only when the bus is active.  
+         *      
+         *  **Note:** It is not useful to override this method in GDScript or C#. Only GDExtension can take advantage of it.  
+         */
         /* gdvirtual */ _process(src_buffer: int64, dst_buffer: int64, frame_count: int64): void
+        
+        /** Override this method to customize the processing behavior of this effect instance.  
+         *  Should return `true` to force the [AudioServer] to always call [method _process], even if the bus has been muted or cannot otherwise be heard.  
+         */
         /* gdvirtual */ _process_silence(): boolean
     }
     /** Adds a soft-clip limiter audio effect to an Audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectlimiter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectlimiter.html  
      */
     class AudioEffectLimiter extends AudioEffect {
         constructor(identifier?: any)
@@ -3130,28 +3323,28 @@ declare module "godot" {
     }
     /** Adds a low-pass filter to the audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectlowpassfilter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectlowpassfilter.html  
      */
     class AudioEffectLowPassFilter extends AudioEffectFilter {
         constructor(identifier?: any)
     }
     /** Adds a low-shelf filter to the audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectlowshelffilter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectlowshelffilter.html  
      */
     class AudioEffectLowShelfFilter extends AudioEffectFilter {
         constructor(identifier?: any)
     }
     /** Adds a notch filter to the Audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectnotchfilter.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectnotchfilter.html  
      */
     class AudioEffectNotchFilter extends AudioEffectFilter {
         constructor(identifier?: any)
     }
     /** Adds a panner audio effect to an audio bus. Pans sound left or right.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectpanner.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectpanner.html  
      */
     class AudioEffectPanner extends AudioEffect {
         constructor(identifier?: any)
@@ -3162,7 +3355,7 @@ declare module "godot" {
     /** Adds a phaser audio effect to an audio bus.  
      *  Combines the original signal with a copy that is slightly out of phase with the original.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectphaser.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectphaser.html  
      */
     class AudioEffectPhaser extends AudioEffect {
         constructor(identifier?: any)
@@ -3210,7 +3403,7 @@ declare module "godot" {
     /** Adds a pitch-shifting audio effect to an audio bus.  
      *  Raises or lowers the pitch of original sound.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectpitchshift.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectpitchshift.html  
      */
     class AudioEffectPitchShift extends AudioEffect {
         constructor(identifier?: any)
@@ -3228,7 +3421,7 @@ declare module "godot" {
     }
     /** Audio effect used for recording the sound from an audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectrecord.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectrecord.html  
      */
     class AudioEffectRecord extends AudioEffect {
         constructor(identifier?: any)
@@ -3247,7 +3440,7 @@ declare module "godot" {
     }
     /** Adds a reverberation audio effect to an Audio bus.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectreverb.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectreverb.html  
      */
     class AudioEffectReverb extends AudioEffect {
         constructor(identifier?: any)
@@ -3306,7 +3499,7 @@ declare module "godot" {
     }
     /** Audio effect that can be used for real-time audio visualizations.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectspectrumanalyzer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectspectrumanalyzer.html  
      */
     class AudioEffectSpectrumAnalyzer extends AudioEffect {
         constructor(identifier?: any)
@@ -3322,21 +3515,27 @@ declare module "godot" {
     }
     namespace AudioEffectSpectrumAnalyzerInstance {
         enum MagnitudeMode {
-            /** Use the average value as magnitude. */
+            /** Use the average value across the frequency range as magnitude. */
             MAGNITUDE_AVERAGE = 0,
             
-            /** Use the maximum value as magnitude. */
+            /** Use the maximum value of the frequency range as magnitude. */
             MAGNITUDE_MAX = 1,
         }
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectspectrumanalyzerinstance.html */
+    /** Queryable instance of an [AudioEffectSpectrumAnalyzer].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectspectrumanalyzerinstance.html  
+     */
     class AudioEffectSpectrumAnalyzerInstance extends AudioEffectInstance {
         constructor(identifier?: any)
+        /** Returns the magnitude of the frequencies from [param from_hz] to [param to_hz] in linear energy as a Vector2. The `x` component of the return value represents the left stereo channel, and `y` represents the right channel.  
+         *  [param mode] determines how the frequency range will be processed. See [enum MagnitudeMode].  
+         */
         get_magnitude_for_frequency_range(from_hz: float64, to_hz: float64, mode: AudioEffectSpectrumAnalyzerInstance.MagnitudeMode = 1): Vector2
     }
     /** An audio effect that can be used to adjust the intensity of stereo panning.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioeffectstereoenhance.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioeffectstereoenhance.html  
      */
     class AudioEffectStereoEnhance extends AudioEffect {
         constructor(identifier?: any)
@@ -3350,7 +3549,7 @@ declare module "godot" {
     }
     /** Overrides the location sounds are heard from.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiolistener2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiolistener2d.html  
      */
     class AudioListener2D extends Node2D {
         constructor(identifier?: any)
@@ -3367,7 +3566,7 @@ declare module "godot" {
     }
     /** Overrides the location sounds are heard from.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiolistener3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiolistener3d.html  
      */
     class AudioListener3D extends Node3D {
         constructor(identifier?: any)
@@ -3389,9 +3588,23 @@ declare module "godot" {
     class AudioListener3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
     }
+    /** Base class for audio samples.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiosample.html  
+     */
+    class AudioSample extends RefCounted {
+        constructor(identifier?: any)
+    }
+    /** Meta class for playing back audio samples.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiosampleplayback.html  
+     */
+    class AudioSamplePlayback extends RefCounted {
+        constructor(identifier?: any)
+    }
     /** Base class for audio streams.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostream.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostream.html  
      */
     class AudioStream extends Resource {
         constructor(identifier?: any)
@@ -3417,6 +3630,9 @@ declare module "godot" {
          */
         /* gdvirtual */ _get_beat_count(): int64
         
+        /** Return the controllable parameters of this stream. This array contains dictionaries with a property info description format (see [method Object.get_property_list]). Additionally, the default value for this parameter must be added tho each dictionary in "default_value" field. */
+        /* gdvirtual */ _get_parameter_list(): GArray
+        
         /** Returns the length of the audio stream in seconds. */
         get_length(): float64
         
@@ -3425,13 +3641,25 @@ declare module "godot" {
         
         /** Returns a newly created [AudioStreamPlayback] intended to play this audio stream. Useful for when you want to extend [method _instantiate_playback] but call [method instantiate_playback] from an internally held AudioStream subresource. An example of this can be found in the source code for `AudioStreamRandomPitch::instantiate_playback`. */
         instantiate_playback(): AudioStreamPlayback
+        
+        /** Returns if the current [AudioStream] can be used as a sample. Only static streams can be sampled. */
+        can_be_sampled(): boolean
+        
+        /** Generates an [AudioSample] based on the current stream. */
+        generate_sample(): AudioSample
+        
+        /** Returns `true` if the stream is a collection of other streams, `false` otherwise. */
+        is_meta_stream(): boolean
+        
+        /** Signal to be emitted to notify when the parameter list changed. */
+        readonly parameter_list_changed: Signal0
     }
     class AudioStreamEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
     /** An audio stream with utilities for procedural sound generation.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamgenerator.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamgenerator.html  
      */
     class AudioStreamGenerator extends AudioStream {
         constructor(identifier?: any)
@@ -3448,7 +3676,7 @@ declare module "godot" {
     }
     /** Plays back audio generated using [AudioStreamGenerator].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamgeneratorplayback.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamgeneratorplayback.html  
      */
     class AudioStreamGeneratorPlayback extends AudioStreamPlaybackResampled {
         constructor(identifier?: any)
@@ -3470,12 +3698,153 @@ declare module "godot" {
         /** Clears the audio sample data buffer. */
         clear_buffer(): void
     }
-    class AudioStreamImportSettings extends ConfirmationDialog {
+    class AudioStreamImportSettingsDialog extends ConfirmationDialog {
         constructor(identifier?: any)
+    }
+    namespace AudioStreamInteractive {
+        enum TransitionFromTime {
+            /** Start transition as soon as possible, don't wait for any specific time position. */
+            TRANSITION_FROM_TIME_IMMEDIATE = 0,
+            
+            /** Transition when the clip playback position reaches the next beat. */
+            TRANSITION_FROM_TIME_NEXT_BEAT = 1,
+            
+            /** Transition when the clip playback position reaches the next bar. */
+            TRANSITION_FROM_TIME_NEXT_BAR = 2,
+            
+            /** Transition when the current clip finished playing. */
+            TRANSITION_FROM_TIME_END = 3,
+        }
+        enum TransitionToTime {
+            /** Transition to the same position in the destination clip. This is useful when both clips have exactly the same length and the music should fade between them. */
+            TRANSITION_TO_TIME_SAME_POSITION = 0,
+            
+            /** Transition to the start of the destination clip. */
+            TRANSITION_TO_TIME_START = 1,
+        }
+        enum FadeMode {
+            /** Do not use fade for the transition. This is useful when transitioning from a clip-end to clip-beginning, and each clip has their begin/end. */
+            FADE_DISABLED = 0,
+            
+            /** Use a fade-in in the next clip, let the current clip finish. */
+            FADE_IN = 1,
+            
+            /** Use a fade-out in the current clip, the next clip will start by itself. */
+            FADE_OUT = 2,
+            
+            /** Use a cross-fade between clips. */
+            FADE_CROSS = 3,
+            
+            /** Use automatic fade logic depending on the transition from/to. It is recommended to use this by default. */
+            FADE_AUTOMATIC = 4,
+        }
+        enum AutoAdvanceMode {
+            /** Disable auto-advance (default). */
+            AUTO_ADVANCE_DISABLED = 0,
+            
+            /** Enable auto-advance, a clip must be specified. */
+            AUTO_ADVANCE_ENABLED = 1,
+            
+            /** Enable auto-advance, but instead of specifying a clip, the playback will return to hold (see [method add_transition]). */
+            AUTO_ADVANCE_RETURN_TO_HOLD = 2,
+        }
+    }
+    /** Audio stream that can playback music interactively, combining clips and a transition table.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreaminteractive.html  
+     */
+    class AudioStreamInteractive extends AudioStream {
+        /** This constant describes that any clip is valid for a specific transition as either source or destination. */
+        static readonly CLIP_ANY = -1
+        constructor(identifier?: any)
+        _get_linked_undo_properties(for_property: string, for_value: any): PackedStringArray
+        _inspector_array_swap_clip(a: int64, b: int64): void
+        
+        /** Set the name of the current clip (for easier identification). */
+        set_clip_name(clip_index: int64, name: StringName): void
+        
+        /** Return the name of a clip. */
+        get_clip_name(clip_index: int64): StringName
+        
+        /** Set the [AudioStream] associated with the current clip. */
+        set_clip_stream(clip_index: int64, stream: AudioStream): void
+        
+        /** Return the [AudioStream] associated with a clip. */
+        get_clip_stream(clip_index: int64): AudioStream
+        
+        /** Set whether a clip will auto-advance by changing the auto-advance mode. */
+        set_clip_auto_advance(clip_index: int64, mode: AudioStreamInteractive.AutoAdvanceMode): void
+        
+        /** Return whether a clip has auto-advance enabled. See [method set_clip_auto_advance]. */
+        get_clip_auto_advance(clip_index: int64): AudioStreamInteractive.AutoAdvanceMode
+        
+        /** Set the index of the next clip towards which this clip will auto advance to when finished. If the clip being played loops, then auto-advance will be ignored. */
+        set_clip_auto_advance_next_clip(clip_index: int64, auto_advance_next_clip: int64): void
+        
+        /** Return the clip towards which the clip referenced by [param clip_index] will auto-advance to. */
+        get_clip_auto_advance_next_clip(clip_index: int64): int64
+        
+        /** Add a transition between two clips. Provide the indices of the source and destination clips, or use the [constant CLIP_ANY] constant to indicate that transition happens to/from any clip to this one.  
+         *  * [param from_time] indicates the moment in the current clip the transition will begin after triggered.  
+         *  * [param to_time] indicates the time in the next clip that the playback will start from.  
+         *  * [param fade_mode] indicates how the fade will happen between clips. If unsure, just use [constant FADE_AUTOMATIC] which uses the most common type of fade for each situation.  
+         *  * [param fade_beats] indicates how many beats the fade will take. Using decimals is allowed.  
+         *  * [param use_filler_clip] indicates that there will be a filler clip used between the source and destination clips.  
+         *  * [param filler_clip] the index of the filler clip.  
+         *  * If [param hold_previous] is used, then this clip will be remembered. This can be used together with [constant AUTO_ADVANCE_RETURN_TO_HOLD] to return to this clip after another is done playing.  
+         */
+        add_transition(from_clip: int64, to_clip: int64, from_time: AudioStreamInteractive.TransitionFromTime, to_time: AudioStreamInteractive.TransitionToTime, fade_mode: AudioStreamInteractive.FadeMode, fade_beats: float64, use_filler_clip: boolean = false, filler_clip: int64 = -1, hold_previous: boolean = false): void
+        
+        /** Return true if a given transition exists (was added via [method add_transition]). */
+        has_transition(from_clip: int64, to_clip: int64): boolean
+        
+        /** Erase a transition by providing [param from_clip] and [param to_clip] clip indices. [constant CLIP_ANY] can be used for either argument or both. */
+        erase_transition(from_clip: int64, to_clip: int64): void
+        
+        /** Return the list of transitions (from, to interleaved). */
+        get_transition_list(): PackedInt32Array
+        
+        /** Return the source time position for a transition (see [method add_transition]). */
+        get_transition_from_time(from_clip: int64, to_clip: int64): AudioStreamInteractive.TransitionFromTime
+        
+        /** Return the destination time position for a transition (see [method add_transition]). */
+        get_transition_to_time(from_clip: int64, to_clip: int64): AudioStreamInteractive.TransitionToTime
+        
+        /** Return the mode for a transition (see [method add_transition]). */
+        get_transition_fade_mode(from_clip: int64, to_clip: int64): AudioStreamInteractive.FadeMode
+        
+        /** Return the time (in beats) for a transition (see [method add_transition]). */
+        get_transition_fade_beats(from_clip: int64, to_clip: int64): float64
+        
+        /** Return whether a transition uses the  *filler clip*  functionality (see [method add_transition]). */
+        is_transition_using_filler_clip(from_clip: int64, to_clip: int64): boolean
+        
+        /** Return the filler clip for a transition (see [method add_transition]). */
+        get_transition_filler_clip(from_clip: int64, to_clip: int64): int64
+        
+        /** Return whether a transition uses the  *hold previous*  functionality (see [method add_transition]). */
+        is_transition_holding_previous(from_clip: int64, to_clip: int64): boolean
+        
+        /** Index of the initial clip, which will be played first when this stream is played. */
+        get initial_clip(): int64
+        set initial_clip(value: int64)
+        
+        /** Amount of clips contained in this interactive player. */
+        get clip_count(): any /*Clips,clip_,page_size=999,unfoldable,numbered,swap_method=_inspector_array_swap_clip,add_button_text=Add Clip*/
+        set clip_count(value: any /*Clips,clip_,page_size=999,unfoldable,numbered,swap_method=_inspector_array_swap_clip,add_button_text=Add Clip*/)
+        get _transitions(): GDictionary
+        set _transitions(value: GDictionary)
+    }
+    class AudioStreamInteractiveEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    class AudioStreamInteractiveTransitionEditor extends AcceptDialog {
+        constructor(identifier?: any)
+        _update_transitions(): void
     }
     /** MP3 audio stream driver.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreammp3.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreammp3.html  
      */
     class AudioStreamMP3 extends AudioStream {
         constructor(identifier?: any)
@@ -3502,14 +3871,14 @@ declare module "godot" {
     }
     /** Plays real-time audio input data.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreammicrophone.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreammicrophone.html  
      */
     class AudioStreamMicrophone extends AudioStream {
         constructor(identifier?: any)
     }
     /** A class representing an Ogg Vorbis audio stream.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamoggvorbis.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamoggvorbis.html  
      */
     class AudioStreamOggVorbis extends AudioStream {
         constructor(identifier?: any)
@@ -3539,7 +3908,7 @@ declare module "godot" {
     }
     /** Meta class for playing back audio.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplayback.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplayback.html  
      */
     class AudioStreamPlayback extends RefCounted {
         constructor(identifier?: any)
@@ -3569,26 +3938,57 @@ declare module "godot" {
         
         /** Overridable method. Called whenever the audio stream is mixed if the playback is active and [method AudioServer.set_enable_tagging_used_audio_streams] has been set to `true`. Editor plugins may use this method to "tag" the current position along the audio stream and display it in a preview. */
         /* gdvirtual */ _tag_used_streams(): void
+        
+        /** Set the current value of a playback parameter by name (see [method AudioStream._get_parameter_list]). */
+        /* gdvirtual */ _set_parameter(name: StringName, value: any): void
+        
+        /** Return the current value of a playback parameter by name (see [method AudioStream._get_parameter_list]). */
+        /* gdvirtual */ _get_parameter(name: StringName): void
+        
+        /** Associates [AudioSamplePlayback] to this [AudioStreamPlayback] for playing back the audio sample of this stream. */
+        set_sample_playback(playback_sample: AudioSamplePlayback): void
+        
+        /** Returns the [AudioSamplePlayback] associated with this [AudioStreamPlayback] for playing back the audio sample of this stream. */
+        get_sample_playback(): AudioSamplePlayback
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplaybackoggvorbis.html */
+    /** Playback component of [AudioStreamInteractive].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplaybackinteractive.html  
+     */
+    class AudioStreamPlaybackInteractive extends AudioStreamPlayback {
+        constructor(identifier?: any)
+        /** Switch to a clip (by name). */
+        switch_to_clip_by_name(clip_name: StringName): void
+        
+        /** Switch to a clip (by index). */
+        switch_to_clip(clip_index: int64): void
+    }
+    /** @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplaybackoggvorbis.html */
     class AudioStreamPlaybackOggVorbis extends AudioStreamPlaybackResampled {
+        constructor(identifier?: any)
+    }
+    /** Playback class used for [AudioStreamPlaylist].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplaybackplaylist.html  
+     */
+    class AudioStreamPlaybackPlaylist extends AudioStreamPlayback {
         constructor(identifier?: any)
     }
     /** Playback instance for [AudioStreamPolyphonic].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplaybackpolyphonic.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplaybackpolyphonic.html  
      */
     class AudioStreamPlaybackPolyphonic extends AudioStreamPlayback {
         /** Returned by [method play_stream] in case it could not allocate a stream for playback. */
         static readonly INVALID_ID = -1
         constructor(identifier?: any)
         
-        /** Play an [AudioStream] at a given offset, volume and pitch scale. Playback starts immediately.  
+        /** Play an [AudioStream] at a given offset, volume, pitch scale, playback type, and bus. Playback starts immediately.  
          *  The return value is a unique integer ID that is associated to this playback stream and which can be used to control it.  
          *  This ID becomes invalid when the stream ends (if it does not loop), when the [AudioStreamPlaybackPolyphonic] is stopped, or when [method stop_stream] is called.  
          *  This function returns [constant INVALID_ID] if the amount of streams currently playing equals [member AudioStreamPolyphonic.polyphony]. If you need a higher amount of maximum polyphony, raise this value.  
          */
-        play_stream(stream: AudioStream, from_offset: float64 = 0, volume_db: float64 = 0, pitch_scale: float64 = 1): int64
+        play_stream(stream: AudioStream, from_offset: float64 = 0, volume_db: float64 = 0, pitch_scale: float64 = 1, playback_type: AudioServer.PlaybackType = 0, bus: StringName = 'Master'): int64
         
         /** Change the stream volume (in db). The [param stream] argument is an integer ID returned by [method play_stream]. */
         set_stream_volume(stream: int64, volume_db: float64): void
@@ -3602,16 +4002,20 @@ declare module "godot" {
         /** Stop a stream. The [param stream] argument is an integer ID returned by [method play_stream], which becomes invalid after calling this function. */
         stop_stream(stream: int64): void
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplaybackresampled.html */
+    /** @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplaybackresampled.html */
     class AudioStreamPlaybackResampled extends AudioStreamPlayback {
         constructor(identifier?: any)
         /* gdvirtual */ _mix_resampled(dst_buffer: int64, frame_count: int64): int64
         /* gdvirtual */ _get_stream_sampling_rate(): float64
         begin_resample(): void
     }
+    /** @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplaybacksynchronized.html */
+    class AudioStreamPlaybackSynchronized extends AudioStreamPlayback {
+        constructor(identifier?: any)
+    }
     namespace AudioStreamPlayer {
         enum MixTarget {
-            /** The audio will be played only on the first channel. */
+            /** The audio will be played only on the first channel. This is the default. */
             MIX_TARGET_STEREO = 0,
             
             /** The audio will be played on all surround channels. */
@@ -3621,76 +4025,89 @@ declare module "godot" {
             MIX_TARGET_CENTER = 2,
         }
     }
-    /** Plays back audio non-positionally.  
+    /** A node for audio playback.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplayer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplayer.html  
      */
     class AudioStreamPlayer extends Node {
         constructor(identifier?: any)
-        /** Plays the audio from the given [param from_position], in seconds. */
+        /** Plays a sound from the beginning, or the given [param from_position] in seconds. */
         play(from_position: float64 = 0): void
         
-        /** Sets the position from which audio will be played, in seconds. */
+        /** Restarts all sounds to be played from the given [param to_position], in seconds. Does nothing if no sounds are playing. */
         seek(to_position: float64): void
         
-        /** Stops the audio. */
+        /** Stops all sounds from this node. */
         stop(): void
         
-        /** Returns the position in the [AudioStream] in seconds. */
+        /** Returns the position in the [AudioStream] of the latest sound, in seconds. Returns `0.0` if no sounds are playing.  
+         *      
+         *  **Note:** The position is not always accurate, as the [AudioServer] does not mix audio every processed frame. To get more accurate results, add [method AudioServer.get_time_since_last_mix] to the returned position.  
+         */
         get_playback_position(): float64
         _is_active(): boolean
         
-        /** Returns whether the [AudioStreamPlayer] can return the [AudioStreamPlayback] object or not. */
+        /** Returns `true` if any sound is active, even if [member stream_paused] is set to `true`. See also [member playing] and [method get_stream_playback]. */
         has_stream_playback(): boolean
         
-        /** Returns the [AudioStreamPlayback] object associated with this [AudioStreamPlayer]. */
+        /** Returns the latest [AudioStreamPlayback] of this node, usually the most recently created by [method play]. If no sounds are playing, this method fails and returns an empty playback. */
         get_stream_playback(): AudioStreamPlayback
         
-        /** The [AudioStream] object to be played. */
+        /** The [AudioStream] resource to be played. Setting this property stops all currently playing sounds. If left empty, the [AudioStreamPlayer] does not work. */
         get stream(): AudioStream
         set stream(value: AudioStream)
         
-        /** Volume of sound, in dB. */
+        /** Volume of sound, in decibel. This is an offset of the [member stream]'s volume.  
+         *      
+         *  **Note:** To convert between decibel and linear energy (like most volume sliders do), use [method @GlobalScope.db_to_linear] and [method @GlobalScope.linear_to_db].  
+         */
         get volume_db(): float64
         set volume_db(value: float64)
         
-        /** The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate. */
+        /** The audio's pitch and tempo, as a multiplier of the [member stream]'s sample rate. A value of `2.0` doubles the audio's pitch, while a value of `0.5` halves the pitch. */
         get pitch_scale(): float64
         set pitch_scale(value: float64)
         
-        /** If `true`, audio is playing. */
+        /** If `true`, this node is playing sounds. Setting this property has the same effect as [method play] and [method stop]. */
         get playing(): boolean
         set playing(value: boolean)
         
-        /** If `true`, audio plays when added to scene tree. */
+        /** If `true`, this node calls [method play] when entering the tree. */
         get autoplay(): boolean
         set autoplay(value: boolean)
         
-        /** If `true`, the playback is paused. You can resume it by setting [member stream_paused] to `false`. */
+        /** If `true`, the sounds are paused. Setting [member stream_paused] to `false` resumes all sounds.  
+         *      
+         *  **Note:** This property is automatically changed when exiting or entering the tree, or this node is paused (see [member Node.process_mode]).  
+         */
         get stream_paused(): boolean
         set stream_paused(value: boolean)
         
-        /** If the audio configuration has more than two speakers, this sets the target channels. See [enum MixTarget] constants. */
+        /** The mix target channels, as one of the [enum MixTarget] constants. Has no effect when two speakers or less are detected (see [enum AudioServer.SpeakerMode]). */
         get mix_target(): int64
         set mix_target(value: int64)
         
-        /** The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds. */
+        /** The maximum number of sounds this node can play at the same time. Calling [method play] after this value is reached will cut off the oldest sounds. */
         get max_polyphony(): int64
         set max_polyphony(value: int64)
         
-        /** Bus on which this audio is playing.  
+        /** The target bus name. All sounds from this node will be playing on this bus.  
          *      
-         *  **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.  
+         *  **Note:** At runtime, if no bus with the given name exists, all sounds will fall back on `"Master"`. See also [method AudioServer.get_bus_name].  
          */
         get bus(): StringName
         set bus(value: StringName)
         
-        /** Emitted when the audio stops playing. */
+        /** The playback type of the stream player. If set other than to the default value, it will force that playback type. */
+        get playback_type(): int64
+        set playback_type(value: int64)
+        
+        /** Emitted when a sound finishes playing without interruptions. This signal is  *not*  emitted when calling [method stop], or when exiting the tree while sounds are playing. */
         readonly finished: Signal0
     }
     /** Plays positional sound in 2D space.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplayer2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplayer2d.html  
      */
     class AudioStreamPlayer2D extends Node2D {
         constructor(identifier?: any)
@@ -3764,6 +4181,10 @@ declare module "godot" {
         get area_mask(): int64
         set area_mask(value: int64)
         
+        /** The playback type of the stream player. If set other than to the default value, it will force that playback type. */
+        get playback_type(): int64
+        set playback_type(value: int64)
+        
         /** Emitted when the audio stops playing. */
         readonly finished: Signal0
     }
@@ -3794,7 +4215,7 @@ declare module "godot" {
     }
     /** Plays positional sound in 3D space.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamplayer3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplayer3d.html  
      */
     class AudioStreamPlayer3D extends Node3D {
         constructor(identifier?: any)
@@ -3876,6 +4297,10 @@ declare module "godot" {
         get area_mask(): int64
         set area_mask(value: int64)
         
+        /** The playback type of the stream player. If set other than to the default value, it will force that playback type. */
+        get playback_type(): int64
+        set playback_type(value: int64)
+        
         /** If `true`, the audio should be attenuated according to the direction of the sound. */
         get emission_angle_enabled(): boolean
         set emission_angle_enabled(value: boolean)
@@ -3906,9 +4331,174 @@ declare module "godot" {
     class AudioStreamPlayer3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
     }
+    class AudioStreamPlayerInternal extends Object {
+        constructor(identifier?: any)
+    }
+    /** [AudioStream] that includes sub-streams and plays them back like a playlist.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamplaylist.html  
+     */
+    class AudioStreamPlaylist extends AudioStream {
+        /** Maximum amount of streams supported in the playlist. */
+        static readonly MAX_STREAMS = 64
+        constructor(identifier?: any)
+        
+        /** Returns the BPM of the playlist, which can vary depending on the clip being played. */
+        get_bpm(): float64
+        
+        /** Sets the stream at playback position index. */
+        set_list_stream(stream_index: int64, audio_stream: AudioStream): void
+        
+        /** Returns the stream at playback position index. */
+        get_list_stream(stream_index: int64): AudioStream
+        
+        /** If `true`, the playlist will shuffle each time playback starts and each time it loops. */
+        get shuffle(): boolean
+        set shuffle(value: boolean)
+        
+        /** If `true`, the playlist will loop, otherwise the playlist will end when the last stream is finished. */
+        get loop(): boolean
+        set loop(value: boolean)
+        
+        /** Fade time used when a stream ends, when going to the next one. Streams are expected to have an extra bit of audio after the end to help with fading. */
+        get fade_time(): float64
+        set fade_time(value: float64)
+        
+        /** Amount of streams in the playlist. */
+        get stream_count(): any /*Streams,stream_,unfoldable,page_size=999,add_button_text=Add Stream*/
+        set stream_count(value: any /*Streams,stream_,unfoldable,page_size=999,add_button_text=Add Stream*/)
+        get stream_0(): AudioStream
+        set stream_0(value: AudioStream)
+        get stream_1(): AudioStream
+        set stream_1(value: AudioStream)
+        get stream_2(): AudioStream
+        set stream_2(value: AudioStream)
+        get stream_3(): AudioStream
+        set stream_3(value: AudioStream)
+        get stream_4(): AudioStream
+        set stream_4(value: AudioStream)
+        get stream_5(): AudioStream
+        set stream_5(value: AudioStream)
+        get stream_6(): AudioStream
+        set stream_6(value: AudioStream)
+        get stream_7(): AudioStream
+        set stream_7(value: AudioStream)
+        get stream_8(): AudioStream
+        set stream_8(value: AudioStream)
+        get stream_9(): AudioStream
+        set stream_9(value: AudioStream)
+        get stream_10(): AudioStream
+        set stream_10(value: AudioStream)
+        get stream_11(): AudioStream
+        set stream_11(value: AudioStream)
+        get stream_12(): AudioStream
+        set stream_12(value: AudioStream)
+        get stream_13(): AudioStream
+        set stream_13(value: AudioStream)
+        get stream_14(): AudioStream
+        set stream_14(value: AudioStream)
+        get stream_15(): AudioStream
+        set stream_15(value: AudioStream)
+        get stream_16(): AudioStream
+        set stream_16(value: AudioStream)
+        get stream_17(): AudioStream
+        set stream_17(value: AudioStream)
+        get stream_18(): AudioStream
+        set stream_18(value: AudioStream)
+        get stream_19(): AudioStream
+        set stream_19(value: AudioStream)
+        get stream_20(): AudioStream
+        set stream_20(value: AudioStream)
+        get stream_21(): AudioStream
+        set stream_21(value: AudioStream)
+        get stream_22(): AudioStream
+        set stream_22(value: AudioStream)
+        get stream_23(): AudioStream
+        set stream_23(value: AudioStream)
+        get stream_24(): AudioStream
+        set stream_24(value: AudioStream)
+        get stream_25(): AudioStream
+        set stream_25(value: AudioStream)
+        get stream_26(): AudioStream
+        set stream_26(value: AudioStream)
+        get stream_27(): AudioStream
+        set stream_27(value: AudioStream)
+        get stream_28(): AudioStream
+        set stream_28(value: AudioStream)
+        get stream_29(): AudioStream
+        set stream_29(value: AudioStream)
+        get stream_30(): AudioStream
+        set stream_30(value: AudioStream)
+        get stream_31(): AudioStream
+        set stream_31(value: AudioStream)
+        get stream_32(): AudioStream
+        set stream_32(value: AudioStream)
+        get stream_33(): AudioStream
+        set stream_33(value: AudioStream)
+        get stream_34(): AudioStream
+        set stream_34(value: AudioStream)
+        get stream_35(): AudioStream
+        set stream_35(value: AudioStream)
+        get stream_36(): AudioStream
+        set stream_36(value: AudioStream)
+        get stream_37(): AudioStream
+        set stream_37(value: AudioStream)
+        get stream_38(): AudioStream
+        set stream_38(value: AudioStream)
+        get stream_39(): AudioStream
+        set stream_39(value: AudioStream)
+        get stream_40(): AudioStream
+        set stream_40(value: AudioStream)
+        get stream_41(): AudioStream
+        set stream_41(value: AudioStream)
+        get stream_42(): AudioStream
+        set stream_42(value: AudioStream)
+        get stream_43(): AudioStream
+        set stream_43(value: AudioStream)
+        get stream_44(): AudioStream
+        set stream_44(value: AudioStream)
+        get stream_45(): AudioStream
+        set stream_45(value: AudioStream)
+        get stream_46(): AudioStream
+        set stream_46(value: AudioStream)
+        get stream_47(): AudioStream
+        set stream_47(value: AudioStream)
+        get stream_48(): AudioStream
+        set stream_48(value: AudioStream)
+        get stream_49(): AudioStream
+        set stream_49(value: AudioStream)
+        get stream_50(): AudioStream
+        set stream_50(value: AudioStream)
+        get stream_51(): AudioStream
+        set stream_51(value: AudioStream)
+        get stream_52(): AudioStream
+        set stream_52(value: AudioStream)
+        get stream_53(): AudioStream
+        set stream_53(value: AudioStream)
+        get stream_54(): AudioStream
+        set stream_54(value: AudioStream)
+        get stream_55(): AudioStream
+        set stream_55(value: AudioStream)
+        get stream_56(): AudioStream
+        set stream_56(value: AudioStream)
+        get stream_57(): AudioStream
+        set stream_57(value: AudioStream)
+        get stream_58(): AudioStream
+        set stream_58(value: AudioStream)
+        get stream_59(): AudioStream
+        set stream_59(value: AudioStream)
+        get stream_60(): AudioStream
+        set stream_60(value: AudioStream)
+        get stream_61(): AudioStream
+        set stream_61(value: AudioStream)
+        get stream_62(): AudioStream
+        set stream_62(value: AudioStream)
+        get stream_63(): AudioStream
+        set stream_63(value: AudioStream)
+    }
     /** AudioStream that lets the user play custom streams at any time from code, simultaneously using a single player.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreampolyphonic.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreampolyphonic.html  
      */
     class AudioStreamPolyphonic extends AudioStream {
         constructor(identifier?: any)
@@ -3918,7 +4508,6 @@ declare module "godot" {
     }
     class AudioStreamPreviewGenerator extends Node {
         constructor(identifier?: any)
-        _update_emit(_unnamed_arg0: int64): void
         generate_preview(stream: AudioStream): any /*AudioStreamPreview*/
         readonly preview_updated: Signal1<int64>
     }
@@ -3936,7 +4525,7 @@ declare module "godot" {
     }
     /** Wraps a pool of audio streams with pitch and volume shifting.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamrandomizer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamrandomizer.html  
      */
     class AudioStreamRandomizer extends AudioStream {
         constructor(identifier?: any)
@@ -3980,6 +4569,31 @@ declare module "godot" {
     class AudioStreamRandomizerEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
+    /** Stream that can be fitted with sub-streams, which will be played in-sync.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamsynchronized.html  
+     */
+    class AudioStreamSynchronized extends AudioStream {
+        /** Maximum amount of streams that can be synchronized. */
+        static readonly MAX_STREAMS = 32
+        constructor(identifier?: any)
+        
+        /** Set one of the synchronized streams, by index. */
+        set_sync_stream(stream_index: int64, audio_stream: AudioStream): void
+        
+        /** Get one of the synchronized streams, by index. */
+        get_sync_stream(stream_index: int64): AudioStream
+        
+        /** Set the volume of one of the synchronized streams, by index. */
+        set_sync_stream_volume(stream_index: int64, volume_db: float64): void
+        
+        /** Get the volume of one of the synchronized streams, by index. */
+        get_sync_stream_volume(stream_index: int64): float64
+        
+        /** Set the total amount of streams that will be played back synchronized. */
+        get stream_count(): any /*Streams,stream_,unfoldable,page_size=999,add_button_text=Add Stream*/
+        set stream_count(value: any /*Streams,stream_,unfoldable,page_size=999,add_button_text=Add Stream*/)
+    }
     namespace AudioStreamWAV {
         enum Format {
             /** 8-bit audio codec. */
@@ -3990,6 +4604,9 @@ declare module "godot" {
             
             /** Audio is compressed using IMA ADPCM. */
             FORMAT_IMA_ADPCM = 2,
+            
+            /** Audio is compressed as QOA ([url=https://qoaformat.org/]Quite OK Audio[/url]). */
+            FORMAT_QOA = 3,
         }
         enum LoopMode {
             /** Audio does not loop. */
@@ -4007,11 +4624,11 @@ declare module "godot" {
     }
     /** Stores audio data loaded from WAV files.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audiostreamwav.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audiostreamwav.html  
      */
     class AudioStreamWAV extends AudioStream {
         constructor(identifier?: any)
-        /** Saves the AudioStreamWAV as a WAV file to [param path]. Samples with IMA ADPCM format can't be saved.  
+        /** Saves the AudioStreamWAV as a WAV file to [param path]. Samples with IMA ADPCM or QOA formats can't be saved.  
          *      
          *  **Note:** A `.wav` extension is automatically appended to [param path] if it is missing.  
          */
@@ -4032,11 +4649,11 @@ declare module "godot" {
         get loop_mode(): int64
         set loop_mode(value: int64)
         
-        /** The loop start point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present. */
+        /** The loop start point (in number of samples, relative to the beginning of the stream). This information will be imported automatically from the WAV file if present. */
         get loop_begin(): int64
         set loop_begin(value: int64)
         
-        /** The loop end point (in number of samples, relative to the beginning of the sample). This information will be imported automatically from the WAV file if present. */
+        /** The loop end point (in number of samples, relative to the beginning of the stream). This information will be imported automatically from the WAV file if present. */
         get loop_end(): int64
         set loop_end(value: int64)
         
@@ -4065,7 +4682,7 @@ declare module "godot" {
     }
     /** A node that copies a region of the screen to a buffer for access in shader code.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_backbuffercopy.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_backbuffercopy.html  
      */
     class BackBufferCopy extends Node2D {
         constructor(identifier?: any)
@@ -4079,10 +4696,6 @@ declare module "godot" {
     }
     class BackgroundProgress extends HBoxContainer {
         constructor(identifier?: any)
-        _add_task(_unnamed_arg0: string, _unnamed_arg1: string, _unnamed_arg2: int64): void
-        _task_step(_unnamed_arg0: string, _unnamed_arg1: int64): void
-        _end_task(_unnamed_arg0: string): void
-        _update(): void
     }
     namespace BaseButton {
         enum DrawMode {
@@ -4111,7 +4724,7 @@ declare module "godot" {
     }
     /** Abstract base class for GUI buttons.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_basebutton.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_basebutton.html  
      */
     class BaseButton extends Control {
         constructor(identifier?: any)
@@ -4370,6 +4983,9 @@ declare module "godot" {
             
             /** The color of the object is multiplied by the background. */
             BLEND_MODE_MUL = 3,
+            
+            /** The color of the object is added to the background and the alpha channel is used to mask out the background. This is effectively a hybrid of the blend mix and add modes, useful for effects like fire where you want the flame to add but the smoke to mix. By default, this works with unshaded materials using premultiplied textures. For shaded materials, use the `PREMUL_ALPHA_FACTOR` built-in so that lighting can be modulated as well. */
+            BLEND_MODE_PREMULT_ALPHA = 4,
         }
         enum AlphaAntiAliasing {
             /** Disables Alpha AntiAliasing for the material. */
@@ -4554,7 +5170,7 @@ declare module "godot" {
     }
     /** Abstract base class for defining the 3D rendering properties of meshes.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_basematerial3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_basematerial3d.html  
      */
     class BaseMaterial3D extends Material {
         constructor(identifier?: any)
@@ -5049,6 +5665,8 @@ declare module "godot" {
         
         /** Controls how the object faces the camera. See [enum BillboardMode].  
          *      
+         *  **Note:** When billboarding is enabled and the material also casts shadows, billboards will face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the intended shadow cannot be determined and this will result in undefined behavior. See [url=https://github.com/godotengine/godot/pull/72638]GitHub Pull Request #72638[/url] for details.  
+         *      
          *  **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.  
          */
         get billboard_mode(): int64
@@ -5136,7 +5754,7 @@ declare module "godot" {
     }
     /** Boolean matrix.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_bitmap.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_bitmap.html  
      */
     class BitMap extends Resource {
         constructor(identifier?: any)
@@ -5190,7 +5808,7 @@ declare module "godot" {
     }
     /** A joint used with [Skeleton2D] to control and animate other nodes.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_bone2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_bone2d.html  
      */
     class Bone2D extends Node2D {
         constructor(identifier?: any)
@@ -5233,12 +5851,12 @@ declare module "godot" {
     }
     /** А node that dynamically copies or overrides the 3D transform of a bone in its parent [Skeleton3D].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_boneattachment3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_boneattachment3d.html  
      */
     class BoneAttachment3D extends Node3D {
         constructor(identifier?: any)
-        /** A function that is called automatically when the [Skeleton3D] the BoneAttachment3D node is using has a bone that has changed its pose. This function is where the BoneAttachment3D node updates its position so it is correctly bound when it is  *not*  set to override the bone pose. */
-        on_bone_pose_update(bone_index: int64): void
+        /** A function that is called automatically when the [Skeleton3D] is updated. This function is where the [BoneAttachment3D] node updates its position so it is correctly bound when it is  *not*  set to override the bone pose. */
+        on_skeleton_update(): void
         
         /** Sets whether the BoneAttachment3D node will use an external [Skeleton3D] node rather than attempting to use its parent node as the [Skeleton3D]. When set to `true`, the BoneAttachment3D node will use the external [Skeleton3D] node set in [method set_external_skeleton]. */
         set_use_external_skeleton(use_external_skeleton: boolean): void
@@ -5260,13 +5878,16 @@ declare module "godot" {
         get bone_idx(): int64
         set bone_idx(value: int64)
         
-        /** Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to. When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to `false`, the BoneAttachment3D will always be set to the bone's transform. */
+        /** Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to. When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to `false`, the BoneAttachment3D will always be set to the bone's transform.  
+         *      
+         *  **Note:** This override performs interruptively in the skeleton update process using signals due to the old design. It may cause unintended behavior when used at the same time with [SkeletonModifier3D].  
+         */
         get override_pose(): boolean
         set override_pose(value: boolean)
     }
     /** Describes a mapping of bone names for retargeting [Skeleton3D] into common names defined by a [SkeletonProfile].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_bonemap.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_bonemap.html  
      */
     class BoneMap extends Resource {
         constructor(identifier?: any)
@@ -5312,7 +5933,7 @@ declare module "godot" {
     }
     /** A container that arranges its child controls horizontally or vertically.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_boxcontainer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_boxcontainer.html  
      */
     class BoxContainer extends Container {
         constructor(identifier?: any)
@@ -5331,7 +5952,7 @@ declare module "godot" {
     }
     /** Generate an axis-aligned box [PrimitiveMesh].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_boxmesh.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_boxmesh.html  
      */
     class BoxMesh extends PrimitiveMesh {
         constructor(identifier?: any)
@@ -5353,7 +5974,7 @@ declare module "godot" {
     }
     /** Cuboid shape for use with occlusion culling in [OccluderInstance3D].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_boxoccluder3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_boxoccluder3d.html  
      */
     class BoxOccluder3D extends Occluder3D {
         constructor(identifier?: any)
@@ -5363,7 +5984,7 @@ declare module "godot" {
     }
     /** A 3D box shape used for physics collision.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_boxshape3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_boxshape3d.html  
      */
     class BoxShape3D extends Shape3D {
         constructor(identifier?: any)
@@ -5373,7 +5994,7 @@ declare module "godot" {
     }
     /** A themed button that can contain text and an icon.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_button.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_button.html  
      */
     class Button extends BaseButton {
         constructor(identifier?: any)
@@ -5398,6 +6019,10 @@ declare module "godot" {
         /** Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes. */
         get text_overrun_behavior(): int64
         set text_overrun_behavior(value: int64)
+        
+        /** If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. */
+        get autowrap_mode(): int64
+        set autowrap_mode(value: int64)
         
         /** When this property is enabled, text that is too large to fit the button is clipped, when disabled the Button will always be wide enough to hold the text. */
         get clip_text(): boolean
@@ -5425,7 +6050,7 @@ declare module "godot" {
     }
     /** A group of buttons that doesn't allow more than one button to be pressed at a time.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_buttongroup.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_buttongroup.html  
      */
     class ButtonGroup extends Resource {
         constructor(identifier?: any)
@@ -5528,7 +6153,7 @@ declare module "godot" {
     }
     /** A CPU-based 2D particle emitter.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_cpuparticles2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_cpuparticles2d.html  
      */
     class CPUParticles2D extends Node2D {
         constructor(identifier?: any)
@@ -5926,7 +6551,7 @@ declare module "godot" {
     }
     /** A CPU-based 3D particle emitter.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_cpuparticles3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_cpuparticles3d.html  
      */
     class CPUParticles3D extends GeometryInstance3D {
         constructor(identifier?: any)
@@ -6003,6 +6628,12 @@ declare module "godot" {
         /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
         get fract_delta(): boolean
         set fract_delta(value: boolean)
+        
+        /** The [AABB] that determines the node's region which needs to be visible on screen for the particle system to be active.  
+         *  Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.  
+         */
+        get visibility_aabb(): AABB
+        set visibility_aabb(value: AABB)
         
         /** If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [CPUParticles3D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [CPUParticles3D] node (and its parents) when it is moved or rotated. */
         get local_coords(): boolean
@@ -6278,7 +6909,7 @@ declare module "godot" {
     }
     /** A CSG Box shape.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgbox3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgbox3d.html  
      */
     class CSGBox3D extends CSGPrimitive3D {
         constructor(identifier?: any)
@@ -6292,14 +6923,14 @@ declare module "godot" {
     }
     /** A CSG node that allows you to combine other CSG modifiers.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgcombiner3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgcombiner3d.html  
      */
     class CSGCombiner3D extends CSGShape3D {
         constructor(identifier?: any)
     }
     /** A CSG Cylinder shape.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgcylinder3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgcylinder3d.html  
      */
     class CSGCylinder3D extends CSGPrimitive3D {
         constructor(identifier?: any)
@@ -6329,7 +6960,7 @@ declare module "godot" {
     }
     /** A CSG Mesh shape that uses a mesh resource.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgmesh3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgmesh3d.html  
      */
     class CSGMesh3D extends CSGPrimitive3D {
         constructor(identifier?: any)
@@ -6382,7 +7013,7 @@ declare module "godot" {
     }
     /** Extrudes a 2D polygon shape to create a 3D mesh.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgpolygon3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgpolygon3d.html  
      */
     class CSGPolygon3D extends CSGPrimitive3D {
         constructor(identifier?: any)
@@ -6428,7 +7059,7 @@ declare module "godot" {
         get path_simplify_angle(): float64
         set path_simplify_angle(value: float64)
         
-        /** When [member mode] is [constant MODE_PATH], the [enum PathRotation] method used to rotate the [member polygon] as it is extruded. */
+        /** When [member mode] is [constant MODE_PATH], the path rotation method used to rotate the [member polygon] as it is extruded. */
         get path_rotation(): int64
         set path_rotation(value: int64)
         
@@ -6458,7 +7089,7 @@ declare module "godot" {
     }
     /** Base class for CSG primitives.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgprimitive3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgprimitive3d.html  
      */
     class CSGPrimitive3D extends CSGShape3D {
         constructor(identifier?: any)
@@ -6480,7 +7111,7 @@ declare module "godot" {
     }
     /** The CSG base class.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgshape3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgshape3d.html  
      */
     class CSGShape3D extends GeometryInstance3D {
         constructor(identifier?: any)
@@ -6508,7 +7139,7 @@ declare module "godot" {
         get operation(): int64
         set operation(value: int64)
         
-        /** Snap makes the mesh vertices snap to a given distance so that the faces of two meshes can be perfectly aligned. A lower value results in greater precision but may be harder to adjust. */
+        /** Snap makes the mesh vertices snap to a given distance so that the faces of two meshes can be perfectly aligned. A lower value results in greater precision but may be harder to adjust. The top-level CSG shape's snap value is used for the entire CSG tree. */
         get snap(): float64
         set snap(value: float64)
         
@@ -6522,12 +7153,12 @@ declare module "godot" {
         
         /** The physics layers this area is in.  
          *  Collidable objects can exist in any of 32 different layers. These layers work like a tagging system, and are not visual. A collidable can use these layers to select with which objects it can collide, using the collision_mask property.  
-         *  A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
+         *  A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
          */
         get collision_layer(): int64
         set collision_layer(value: int64)
         
-        /** The physics layers this CSG shape scans for collisions. Only effective if [member use_collision] is `true`. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
+        /** The physics layers this CSG shape scans for collisions. Only effective if [member use_collision] is `true`. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
         get collision_mask(): int64
         set collision_mask(value: int64)
         
@@ -6540,7 +7171,7 @@ declare module "godot" {
     }
     /** A CSG Sphere shape.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgsphere3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgsphere3d.html  
      */
     class CSGSphere3D extends CSGPrimitive3D {
         constructor(identifier?: any)
@@ -6566,7 +7197,7 @@ declare module "godot" {
     }
     /** A CSG Torus shape.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_csgtorus3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgtorus3d.html  
      */
     class CSGTorus3D extends CSGPrimitive3D {
         constructor(identifier?: any)
@@ -6596,7 +7227,7 @@ declare module "godot" {
     }
     /** Calls the specified method after optional delay.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_callbacktweener.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_callbacktweener.html  
      */
     class CallbackTweener extends Tweener {
         constructor(identifier?: any)
@@ -6624,7 +7255,7 @@ declare module "godot" {
     }
     /** Camera node for 2D scenes.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_camera2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_camera2d.html  
      */
     class Camera2D extends Node2D {
         constructor(identifier?: any)
@@ -6830,7 +7461,7 @@ declare module "godot" {
     }
     /** Camera node, displays from a point of view.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_camera3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_camera3d.html  
      */
     class Camera3D extends Node3D {
         constructor(identifier?: any)
@@ -6920,6 +7551,10 @@ declare module "godot" {
         get attributes(): CameraAttributesPractical | CameraAttributesPhysical
         set attributes(value: CameraAttributesPractical | CameraAttributesPhysical)
         
+        /** The [Compositor] to use for this camera. */
+        get compositor(): Compositor
+        set compositor(value: Compositor)
+        
         /** The horizontal (X) offset of the camera viewport. */
         get h_offset(): float64
         set h_offset(value: float64)
@@ -6979,7 +7614,7 @@ declare module "godot" {
     }
     /** Parent class for camera settings.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_cameraattributes.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_cameraattributes.html  
      */
     class CameraAttributes extends Resource {
         constructor(identifier?: any)
@@ -7005,7 +7640,7 @@ declare module "godot" {
     }
     /** Physically-based camera settings.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_cameraattributesphysical.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_cameraattributesphysical.html  
      */
     class CameraAttributesPhysical extends CameraAttributes {
         constructor(identifier?: any)
@@ -7050,7 +7685,7 @@ declare module "godot" {
     }
     /** Camera settings in an easy to use format.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_cameraattributespractical.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_cameraattributespractical.html  
      */
     class CameraAttributesPractical extends CameraAttributes {
         constructor(identifier?: any)
@@ -7123,7 +7758,7 @@ declare module "godot" {
     }
     /** A camera feed gives you access to a single physical camera attached to your device.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_camerafeed.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_camerafeed.html  
      */
     class CameraFeed extends RefCounted {
         constructor(identifier?: any)
@@ -7153,7 +7788,7 @@ declare module "godot" {
     }
     /** Texture provided by a [CameraFeed].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_cameratexture.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_cameratexture.html  
      */
     class CameraTexture extends Texture2D {
         constructor(identifier?: any)
@@ -7171,7 +7806,7 @@ declare module "godot" {
     }
     /** Merges several 2D nodes into a single draw operation.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_canvasgroup.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvasgroup.html  
      */
     class CanvasGroup extends Node2D {
         constructor(identifier?: any)
@@ -7233,7 +7868,7 @@ declare module "godot" {
             /** Texture will repeat normally. */
             TEXTURE_REPEAT_ENABLED = 2,
             
-            /** Texture will repeat in a 2x2 tiled mode, where elements at even positions are mirrored. */
+            /** Texture will repeat in a 2×2 tiled mode, where elements at even positions are mirrored. */
             TEXTURE_REPEAT_MIRROR = 3,
             
             /** Represents the size of the [enum TextureRepeat] enum. */
@@ -7255,7 +7890,7 @@ declare module "godot" {
     }
     /** Abstract base class for everything in 2D space.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_canvasitem.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvasitem.html  
      */
     class CanvasItem extends Node {
         /** The [CanvasItem]'s global transform has changed. This notification is only received if enabled by [method set_notify_transform]. */
@@ -7305,7 +7940,9 @@ declare module "godot" {
         /** Returns the canvas item RID used by [RenderingServer] for this item. */
         get_canvas_item(): RID
         
-        /** Returns `true` if the node is present in the [SceneTree], its [member visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree, and is therefore not drawn (see [method _draw]). */
+        /** Returns `true` if the node is present in the [SceneTree], its [member visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree, and is therefore not drawn (see [method _draw]).  
+         *  Visibility is checked only in parent nodes that inherit from [CanvasItem], [CanvasLayer], and [Window]. If the parent is of any other type (such as [Node], [AnimationPlayer], or [Node3D]), it is assumed to be visible.  
+         */
         is_visible_in_tree(): boolean
         
         /** Show the [CanvasItem] if it's currently hidden. This is equivalent to setting [member visible] to `true`. For controls that inherit [Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead. */
@@ -7329,8 +7966,11 @@ declare module "godot" {
         
         /** Draws a dashed line from a 2D point to another, with a given color and width. See also [method draw_multiline] and [method draw_polyline].  
          *  If [param width] is negative, then a two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
+         *  If [param antialiased] is `true`, half transparent "feathers" will be attached to the boundary, making outlines smooth.  
+         *      
+         *  **Note:** [param antialiased] is only effective if [param width] is greater than `0.0`.  
          */
-        draw_dashed_line(from: Vector2, to: Vector2, color: Color, width: float64 = -1, dash: float64 = 2, aligned: boolean = true): void
+        draw_dashed_line(from: Vector2, to: Vector2, color: Color, width: float64 = -1, dash: float64 = 2, aligned: boolean = true, antialiased: boolean = false): void
         
         /** Draws interconnected line segments with a uniform [param color] and [param width] and optional antialiasing (supported only for positive [param width]). When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw disconnected lines, use [method draw_multiline] instead. See also [method draw_polygon].  
          *  If [param width] is negative, it will be ignored and the polyline will be drawn using [constant RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the polyline will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
@@ -7350,25 +7990,36 @@ declare module "godot" {
         
         /** Draws multiple disconnected lines with a uniform [param width] and [param color]. Each line is defined by two consecutive points from [param points] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw interconnected lines, use [method draw_polyline] instead.  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
+         *      
+         *  **Note:** [param antialiased] is only effective if [param width] is greater than `0.0`.  
          */
-        draw_multiline(points: PackedVector2Array | Vector2[], color: Color, width: float64 = -1): void
+        draw_multiline(points: PackedVector2Array | Vector2[], color: Color, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws multiple disconnected lines with a uniform [param width] and segment-by-segment coloring. Each segment is defined by two consecutive points from [param points] array and a corresponding color from [param colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and has `colors *` color. When drawing large amounts of lines, this is faster than using individual [method draw_line] calls. To draw interconnected lines, use [method draw_polyline_colors] instead.  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
+         *      
+         *  **Note:** [param antialiased] is only effective if [param width] is greater than `0.0`.  
          */
-        draw_multiline_colors(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], width: float64 = -1): void
+        draw_multiline_colors(points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a rectangle. If [param filled] is `true`, the rectangle will be filled with the [param color] specified. If [param filled] is `false`, the rectangle will be drawn as a stroke with the [param color] and [param width] specified. See also [method draw_texture_rect].  
          *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
+         *  If [param antialiased] is `true`, half transparent "feathers" will be attached to the boundary, making outlines smooth.  
          *      
          *  **Note:** [param width] is only effective if [param filled] is `false`.  
          *      
          *  **Note:** Unfilled rectangles drawn with a negative [param width] may not display perfectly. For example, corners may be missing or brighter due to overlapping lines (for a translucent [param color]).  
          */
-        draw_rect(rect: Rect2, color: Color, filled: boolean = true, width: float64 = -1): void
+        draw_rect(rect: Rect2, color: Color, filled: boolean = true, width: float64 = -1, antialiased: boolean = false): void
         
-        /** Draws a colored, filled circle. See also [method draw_arc], [method draw_polyline] and [method draw_polygon]. */
-        draw_circle(position: Vector2, radius: float64, color: Color): void
+        /** Draws a circle. See also [method draw_arc], [method draw_polyline], and [method draw_polygon].  
+         *  If [param filled] is `true`, the circle will be filled with the [param color] specified. If [param filled] is `false`, the circle will be drawn as a stroke with the [param color] and [param width] specified.  
+         *  If [param width] is negative, then two-point primitives will be drawn instead of a four-point ones. This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not desired, then pass a positive [param width] like `1.0`.  
+         *  If [param antialiased] is `true`, half transparent "feathers" will be attached to the boundary, making outlines smooth.  
+         *      
+         *  **Note:** [param width] is only effective if [param filled] is `false`.  
+         */
+        draw_circle(position: Vector2, radius: float64, color: Color, filled: boolean = true, width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a texture at a given position. */
         draw_texture(texture: Texture2D, position: Vector2, modulate: Color = new Color(1, 1, 1, 1)): void
@@ -7481,6 +8132,9 @@ declare module "godot" {
         /** Returns the [RID] of the [World2D] canvas where this item is in. */
         get_canvas(): RID
         
+        /** Returns the [CanvasLayer] that contains this node, or `null` if the node is not in any [CanvasLayer]. */
+        get_canvas_layer_node(): CanvasLayer
+        
         /** Returns the [World2D] where this item is in. */
         get_world_2d(): World2D
         
@@ -7549,7 +8203,7 @@ declare module "godot" {
         get visibility_layer(): int64
         set visibility_layer(value: int64)
         
-        /** Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [constant RenderingServer.CANVAS_ITEM_Z_MIN] and [constant RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).  
+        /** Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [constant RenderingServer.CANVAS_ITEM_Z_MIN] and [constant RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).  
          *      
          *  **Note:** Changing the Z index of a [Control] only affects the drawing order, not the order in which input events are handled. This can be useful to implement certain UI animations, e.g. a menu where hovered items are scaled and should overlap others.  
          */
@@ -7560,8 +8214,9 @@ declare module "godot" {
         get z_as_relative(): boolean
         set z_as_relative(value: boolean)
         
-        /** If `true`, child nodes with the lowest Y position are drawn before those with a higher Y position. If `false`, Y-sorting is disabled. Y-sorting only affects children that inherit from [CanvasItem].  
-         *  You can nest nodes with Y-sorting. Child Y-sorted nodes are sorted in the same space as the parent Y-sort. This feature allows you to organize a scene better or divide it into multiple ones without changing your scene tree.  
+        /** If `true`, this and child [CanvasItem] nodes with a higher Y position are rendered in front of nodes with a lower Y position. If `false`, this and child [CanvasItem] nodes are rendered normally in scene tree order.  
+         *  With Y-sorting enabled on a parent node ('A') but disabled on a child node ('B'), the child node ('B') is sorted but its children ('C1', 'C2', etc) render together on the same Y position as the child node ('B'). This allows you to organize the render order of a scene without changing the scene tree.  
+         *  Nodes sort relative to each other only if they are on the same [member z_index].  
          */
         get y_sort_enabled(): boolean
         set y_sort_enabled(value: boolean)
@@ -7609,6 +8264,9 @@ declare module "godot" {
     class CanvasItemEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
+    class CanvasItemEditorSelectedItem extends Object {
+        constructor(identifier?: any)
+    }
     class CanvasItemEditorViewport extends Control {
         constructor(identifier?: any)
     }
@@ -7642,7 +8300,7 @@ declare module "godot" {
     }
     /** A material for [CanvasItem]s.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_canvasitemmaterial.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvasitemmaterial.html  
      */
     class CanvasItemMaterial extends Material {
         constructor(identifier?: any)
@@ -7686,7 +8344,7 @@ declare module "godot" {
     }
     /** A node used for independent rendering of objects within a 2D scene.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_canvaslayer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvaslayer.html  
      */
     class CanvasLayer extends Node {
         constructor(identifier?: any)
@@ -7750,7 +8408,7 @@ declare module "godot" {
     }
     /** A node that applies a color tint to a canvas.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_canvasmodulate.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvasmodulate.html  
      */
     class CanvasModulate extends Node2D {
         constructor(identifier?: any)
@@ -7760,7 +8418,7 @@ declare module "godot" {
     }
     /** Texture with optional normal and specular maps for use in 2D rendering.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_canvastexture.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvastexture.html  
      */
     class CanvasTexture extends Texture2D {
         constructor(identifier?: any)
@@ -7797,7 +8455,7 @@ declare module "godot" {
     }
     /** Class representing a capsule-shaped [PrimitiveMesh].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_capsulemesh.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsulemesh.html  
      */
     class CapsuleMesh extends PrimitiveMesh {
         constructor(identifier?: any)
@@ -7819,7 +8477,7 @@ declare module "godot" {
     }
     /** A 2D capsule shape used for physics collision.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_capsuleshape2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsuleshape2d.html  
      */
     class CapsuleShape2D extends Shape2D {
         constructor(identifier?: any)
@@ -7833,7 +8491,7 @@ declare module "godot" {
     }
     /** A 3D capsule shape used for physics collision.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_capsuleshape3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsuleshape3d.html  
      */
     class CapsuleShape3D extends Shape3D {
         constructor(identifier?: any)
@@ -7853,7 +8511,7 @@ declare module "godot" {
     }
     /** A container that keeps child controls in its center.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_centercontainer.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_centercontainer.html  
      */
     class CenterContainer extends Container {
         constructor(identifier?: any)
@@ -7863,7 +8521,7 @@ declare module "godot" {
     }
     /** Controls how an individual character will be displayed in a [RichTextEffect].  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_charfxtransform.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_charfxtransform.html  
      */
     class CharFXTransform extends RefCounted {
         constructor(identifier?: any)
@@ -7946,7 +8604,7 @@ declare module "godot" {
     }
     /** A 2D physics body specialized for characters moved by script.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_characterbody2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_characterbody2d.html  
      */
     class CharacterBody2D extends PhysicsBody2D {
         constructor(identifier?: any)
@@ -7979,10 +8637,14 @@ declare module "godot" {
         /** Returns `true` if the body collided only with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
         is_on_wall_only(): boolean
         
-        /** Returns the surface normal of the floor at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`. */
+        /** Returns the collision normal of the floor at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`.  
+         *  **Warning:** The collision normal is not always the same as the surface normal.  
+         */
         get_floor_normal(): Vector2
         
-        /** Returns the surface normal of the wall at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_wall] returns `true`. */
+        /** Returns the collision normal of the wall at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_wall] returns `true`.  
+         *  **Warning:** The collision normal is not always the same as the surface normal.  
+         */
         get_wall_normal(): Vector2
         
         /** Returns the last motion applied to the [CharacterBody2D] during the last call to [method move_and_slide]. The movement can be split into multiple motions when sliding occurs, and this method return the last one, which is useful to retrieve the current direction of the movement. */
@@ -8103,7 +8765,7 @@ declare module "godot" {
     }
     /** A 3D physics body specialized for characters moved by script.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_characterbody3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_characterbody3d.html  
      */
     class CharacterBody3D extends PhysicsBody3D {
         constructor(identifier?: any)
@@ -8135,10 +8797,14 @@ declare module "godot" {
         /** Returns `true` if the body collided only with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
         is_on_wall_only(): boolean
         
-        /** Returns the surface normal of the floor at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`. */
+        /** Returns the collision normal of the floor at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`.  
+         *  **Warning:** The collision normal is not always the same as the surface normal.  
+         */
         get_floor_normal(): Vector3
         
-        /** Returns the surface normal of the wall at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_wall] returns `true`. */
+        /** Returns the collision normal of the wall at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_wall] returns `true`.  
+         *  **Warning:** The collision normal is not always the same as the surface normal.  
+         */
         get_wall_normal(): Vector3
         
         /** Returns the last motion applied to the [CharacterBody3D] during the last call to [method move_and_slide]. The movement can be split into multiple motions when sliding occurs, and this method return the last one, which is useful to retrieve the current direction of the movement. */
@@ -8240,21 +8906,21 @@ declare module "godot" {
     }
     /** A button that represents a binary choice.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_checkbox.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_checkbox.html  
      */
     class CheckBox extends Button {
         constructor(identifier?: any)
     }
     /** A button that represents a binary choice.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_checkbutton.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_checkbutton.html  
      */
     class CheckButton extends Button {
         constructor(identifier?: any)
     }
     /** A 2D circle shape used for physics collision.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_circleshape2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_circleshape2d.html  
      */
     class CircleShape2D extends Shape2D {
         constructor(identifier?: any)
@@ -8298,7 +8964,7 @@ declare module "godot" {
             /** The option is local to the location of the code completion query - e.g. a local variable. Subsequent value of location represent options from the outer class, the exact value represent how far they are (in terms of inner classes). */
             LOCATION_LOCAL = 0,
             
-            /** The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1 for the parent, 2 for the grandparent, etc) to store the depth of an option in the class or a parent class. */
+            /** The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. `0` for the local class, `1` for the parent, `2` for the grandparent, etc.) to store the depth of an option in the class or a parent class. */
             LOCATION_PARENT_MASK = 256,
             
             /** The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons). */
@@ -8310,14 +8976,14 @@ declare module "godot" {
     }
     /** A multiline text editor designed for editing code.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_codeedit.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_codeedit.html  
      */
     class CodeEdit extends TextEdit {
         constructor(identifier?: any)
-        /** Override this method to define how the selected entry should be inserted. If [param replace] is true, any existing text should be replaced. */
+        /** Override this method to define how the selected entry should be inserted. If [param replace] is `true`, any existing text should be replaced. */
         /* gdvirtual */ _confirm_code_completion(replace: boolean): void
         
-        /** Override this method to define what happens when the user requests code completion. If [param force] is true, any checks should be bypassed. */
+        /** Override this method to define what happens when the user requests code completion. If [param force] is `true`, any checks should be bypassed. */
         /* gdvirtual */ _request_code_completion(force: boolean): void
         
         /** Override this method to define what items in [param candidates] should be displayed.  
@@ -8407,6 +9073,9 @@ declare module "godot" {
         /** Toggle the folding of the code block at the given line. */
         toggle_foldable_line(line: int64): void
         
+        /** Toggle the folding of the code block on all lines with a caret on them. */
+        toggle_foldable_lines_at_carets(): void
+        
         /** Returns whether the line at the specified index is folded or not. */
         is_line_folded(line: int64): boolean
         
@@ -8435,9 +9104,8 @@ declare module "godot" {
         /** Returns whether the line at the specified index is a code region end. */
         is_line_code_region_end(line: int64): boolean
         
-        /** Adds a string delimiter.  
-         *  Both the start and end keys must be symbols. Only the start key has to be unique.  
-         *  [param line_only] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.  
+        /** Defines a string delimiter from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
+         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
          */
         add_string_delimiter(start_key: string, end_key: string, line_only: boolean = false): void
         
@@ -8453,9 +9121,8 @@ declare module "godot" {
         /** Returns the delimiter index if [param line] [param column] is in a string. If [param column] is not provided, will return the delimiter index if the entire [param line] is a string. Otherwise `-1`. */
         is_in_string(line: int64, column: int64 = -1): int64
         
-        /** Adds a comment delimiter.  
-         *  Both the start and end keys must be symbols. Only the start key has to be unique.  
-         *  [param line_only] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.  
+        /** Adds a comment delimiter from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
+         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
          */
         add_comment_delimiter(start_key: string, end_key: string, line_only: boolean = false): void
         
@@ -8492,7 +9159,7 @@ declare module "godot" {
         /** Returns the full text with char `0xFFFF` at the caret location. */
         get_text_for_code_completion(): string
         
-        /** Emits [signal code_completion_requested], if [param force] is true will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path or signal. */
+        /** Emits [signal code_completion_requested], if [param force] is `true` will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path, or signal. */
         request_code_completion(force: boolean = false): void
         
         /** Submits an item to the queue of potential candidates for the autocomplete menu. Call [method update_code_completion_options] to update the list.  
@@ -8527,7 +9194,7 @@ declare module "godot" {
         /** Sets the current selected completion option. */
         set_code_completion_selected_index(index: int64): void
         
-        /** Inserts the selected entry into the text. If [param replace] is true, any existing text is replaced rather than merged. */
+        /** Inserts the selected entry into the text. If [param replace] is `true`, any existing text is replaced rather than merged. */
         confirm_code_completion(replace: boolean = false): void
         
         /** Cancels the autocomplete menu. */
@@ -8541,6 +9208,18 @@ declare module "godot" {
         
         /** Sets the symbol emitted by [signal symbol_validate] as a valid lookup. */
         set_symbol_lookup_word_as_valid(valid: boolean): void
+        
+        /** Moves all lines up that are selected or have a caret on them. */
+        move_lines_up(): void
+        
+        /** Moves all lines down that are selected or have a caret on them. */
+        move_lines_down(): void
+        
+        /** Deletes all lines that are selected or have a caret on them. */
+        delete_lines(): void
+        
+        /** Duplicates all selected text and duplicates all lines with a caret on them. */
+        duplicate_selection(): void
         
         /** Duplicates all lines currently selected with any caret. Duplicates the entire line beneath the current one no matter where the caret is within the line. */
         duplicate_lines(): void
@@ -8636,650 +9315,5 @@ declare module "godot" {
         
         /** Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [method set_symbol_lookup_word_as_valid]. */
         readonly symbol_validate: Signal1<string>
-    }
-    /** A syntax highlighter intended for code.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_codehighlighter.html  
-     */
-    class CodeHighlighter extends SyntaxHighlighter {
-        constructor(identifier?: any)
-        /** Sets the color for a keyword.  
-         *  The keyword cannot contain any symbols except '_'.  
-         */
-        add_keyword_color(keyword: string, color: Color): void
-        
-        /** Removes the keyword. */
-        remove_keyword_color(keyword: string): void
-        
-        /** Returns `true` if the keyword exists, else `false`. */
-        has_keyword_color(keyword: string): boolean
-        
-        /** Returns the color for a keyword. */
-        get_keyword_color(keyword: string): Color
-        
-        /** Removes all keywords. */
-        clear_keyword_colors(): void
-        
-        /** Sets the color for a member keyword.  
-         *  The member keyword cannot contain any symbols except '_'.  
-         *  It will not be highlighted if preceded by a '.'.  
-         */
-        add_member_keyword_color(member_keyword: string, color: Color): void
-        
-        /** Removes the member keyword. */
-        remove_member_keyword_color(member_keyword: string): void
-        
-        /** Returns `true` if the member keyword exists, else `false`. */
-        has_member_keyword_color(member_keyword: string): boolean
-        
-        /** Returns the color for a member keyword. */
-        get_member_keyword_color(member_keyword: string): Color
-        
-        /** Removes all member keywords. */
-        clear_member_keyword_colors(): void
-        
-        /** Adds a color region such as comments or strings.  
-         *  Both the start and end keys must be symbols. Only the start key has to be unique.  
-         *  [param line_only] denotes if the region should continue until the end of the line or carry over on to the next line. If the end key is blank this is automatically set to `true`.  
-         */
-        add_color_region(start_key: string, end_key: string, color: Color, line_only: boolean = false): void
-        
-        /** Removes the color region that uses that start key. */
-        remove_color_region(start_key: string): void
-        
-        /** Returns `true` if the start key exists, else `false`. */
-        has_color_region(start_key: string): boolean
-        
-        /** Removes all color regions. */
-        clear_color_regions(): void
-        
-        /** Sets the color for numbers. */
-        get number_color(): Color
-        set number_color(value: Color)
-        
-        /** Sets the color for symbols. */
-        get symbol_color(): Color
-        set symbol_color(value: Color)
-        
-        /** Sets color for functions. A function is a non-keyword string followed by a '('. */
-        get function_color(): Color
-        set function_color(value: Color)
-        
-        /** Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'. */
-        get member_variable_color(): Color
-        set member_variable_color(value: Color)
-        
-        /** Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the keyword. The value is the keyword color. */
-        get keyword_colors(): GDictionary
-        set keyword_colors(value: GDictionary)
-        
-        /** Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary] key is the member keyword. The value is the member keyword color. */
-        get member_keyword_colors(): GDictionary
-        set member_keyword_colors(value: GDictionary)
-        
-        /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
-        get color_regions(): GDictionary
-        set color_regions(value: GDictionary)
-    }
-    class CodeTextEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        readonly validate_script: Signal0
-        readonly load_theme_settings: Signal0
-        readonly show_errors_panel: Signal0
-        readonly show_warnings_panel: Signal0
-    }
-    namespace CollisionObject2D {
-        enum DisableMode {
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
-             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
-             */
-            DISABLE_MODE_REMOVE = 0,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.  
-             *  Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed again.  
-             */
-            DISABLE_MODE_MAKE_STATIC = 1,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
-            DISABLE_MODE_KEEP_ACTIVE = 2,
-        }
-    }
-    /** Abstract base class for 2D physics objects.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionobject2d.html  
-     */
-    class CollisionObject2D extends Node2D {
-        constructor(identifier?: any)
-        /** Accepts unhandled [InputEvent]s. [param shape_idx] is the child index of the clicked [Shape2D]. Connect to [signal input_event] to easily pick up these events.  
-         *      
-         *  **Note:** [method _input_event] requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         */
-        /* gdvirtual */ _input_event(viewport: Viewport, event: InputEvent, shape_idx: int64): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_enter(): void
-        
-        /** Called when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_exit(): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
-        /* gdvirtual */ _mouse_shape_enter(shape_idx: int64): void
-        
-        /** Called when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
-        /* gdvirtual */ _mouse_shape_exit(shape_idx: int64): void
-        
-        /** Returns the object's [RID]. */
-        get_rid(): RID
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: int64): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: int64): boolean
-        
-        /** Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference. */
-        create_shape_owner(owner: Object): int64
-        
-        /** Removes the given shape owner. */
-        remove_shape_owner(owner_id: int64): void
-        
-        /** Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument. */
-        get_shape_owners(): PackedInt32Array
-        
-        /** Sets the [Transform2D] of the given shape owner. */
-        shape_owner_set_transform(owner_id: int64, transform: Transform2D): void
-        
-        /** Returns the shape owner's [Transform2D]. */
-        shape_owner_get_transform(owner_id: int64): Transform2D
-        
-        /** Returns the parent object of the given shape owner. */
-        shape_owner_get_owner(owner_id: int64): Object
-        
-        /** If `true`, disables the given shape owner. */
-        shape_owner_set_disabled(owner_id: int64, disabled: boolean): void
-        
-        /** If `true`, the shape owner and its shapes are disabled. */
-        is_shape_owner_disabled(owner_id: int64): boolean
-        
-        /** If [param enable] is `true`, collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
-        shape_owner_set_one_way_collision(owner_id: int64, enable: boolean): void
-        
-        /** Returns `true` if collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
-        is_shape_owner_one_way_collision_enabled(owner_id: int64): boolean
-        
-        /** Sets the `one_way_collision_margin` of the shape owner identified by given [param owner_id] to [param margin] pixels. */
-        shape_owner_set_one_way_collision_margin(owner_id: int64, margin: float64): void
-        
-        /** Returns the `one_way_collision_margin` of the shape owner identified by given [param owner_id]. */
-        get_shape_owner_one_way_collision_margin(owner_id: int64): float64
-        
-        /** Adds a [Shape2D] to the shape owner. */
-        shape_owner_add_shape(owner_id: int64, shape: Shape2D): void
-        
-        /** Returns the number of shapes the given shape owner contains. */
-        shape_owner_get_shape_count(owner_id: int64): int64
-        
-        /** Returns the [Shape2D] with the given ID from the given shape owner. */
-        shape_owner_get_shape(owner_id: int64, shape_id: int64): Shape2D
-        
-        /** Returns the child index of the [Shape2D] with the given ID from the given shape owner. */
-        shape_owner_get_shape_index(owner_id: int64, shape_id: int64): int64
-        
-        /** Removes a shape from the given shape owner. */
-        shape_owner_remove_shape(owner_id: int64, shape_id: int64): void
-        
-        /** Removes all shapes from the shape owner. */
-        shape_owner_clear_shapes(owner_id: int64): void
-        
-        /** Returns the `owner_id` of the given shape. */
-        shape_find_owner(shape_index: int64): int64
-        
-        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
-        get disable_mode(): int64
-        set disable_mode(value: int64)
-        
-        /** The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_layer(): int64
-        set collision_layer(value: int64)
-        
-        /** The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_mask(): int64
-        set collision_mask(value: int64)
-        
-        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        get collision_priority(): float64
-        set collision_priority(value: float64)
-        
-        /** If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set. */
-        get input_pickable(): boolean
-        set input_pickable(value: boolean)
-        
-        /** Emitted when an input event occurs. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. See [method _input_event] for details. */
-        readonly input_event: Signal3<Node, InputEvent, int64>
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
-         */
-        readonly mouse_entered: Signal0
-        
-        /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
-         */
-        readonly mouse_exited: Signal0
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_entered: Signal1<int64>
-        
-        /** Emitted when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_exited: Signal1<int64>
-    }
-    namespace CollisionObject3D {
-        enum DisableMode {
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject3D].  
-             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
-             */
-            DISABLE_MODE_REMOVE = 0,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.  
-             *  Automatically set [PhysicsBody3D] back to its original mode when the [Node] is processed again.  
-             */
-            DISABLE_MODE_MAKE_STATIC = 1,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
-            DISABLE_MODE_KEEP_ACTIVE = 2,
-        }
-    }
-    /** Abstract base class for 3D physics objects.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionobject3d.html  
-     */
-    class CollisionObject3D extends Node3D {
-        constructor(identifier?: any)
-        /** Receives unhandled [InputEvent]s. [param position] is the location in world space of the mouse pointer on the surface of the shape with index [param shape_idx] and [param normal] is the normal vector of the surface at that point. Connect to the [signal input_event] signal to easily pick up these events.  
-         *      
-         *  **Note:** [method _input_event] requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         */
-        /* gdvirtual */ _input_event(camera: Camera3D, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int64): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject3D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_enter(): void
-        
-        /** Called when the mouse pointer exits all this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject3D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_exit(): void
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: int64): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: int64): boolean
-        
-        /** Returns the object's [RID]. */
-        get_rid(): RID
-        
-        /** Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference. */
-        create_shape_owner(owner: Object): int64
-        
-        /** Removes the given shape owner. */
-        remove_shape_owner(owner_id: int64): void
-        
-        /** Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument. */
-        get_shape_owners(): PackedInt32Array
-        
-        /** Sets the [Transform3D] of the given shape owner. */
-        shape_owner_set_transform(owner_id: int64, transform: Transform3D): void
-        
-        /** Returns the shape owner's [Transform3D]. */
-        shape_owner_get_transform(owner_id: int64): Transform3D
-        
-        /** Returns the parent object of the given shape owner. */
-        shape_owner_get_owner(owner_id: int64): Object
-        
-        /** If `true`, disables the given shape owner. */
-        shape_owner_set_disabled(owner_id: int64, disabled: boolean): void
-        
-        /** If `true`, the shape owner and its shapes are disabled. */
-        is_shape_owner_disabled(owner_id: int64): boolean
-        
-        /** Adds a [Shape3D] to the shape owner. */
-        shape_owner_add_shape(owner_id: int64, shape: Shape3D): void
-        
-        /** Returns the number of shapes the given shape owner contains. */
-        shape_owner_get_shape_count(owner_id: int64): int64
-        
-        /** Returns the [Shape3D] with the given ID from the given shape owner. */
-        shape_owner_get_shape(owner_id: int64, shape_id: int64): Shape3D
-        
-        /** Returns the child index of the [Shape3D] with the given ID from the given shape owner. */
-        shape_owner_get_shape_index(owner_id: int64, shape_id: int64): int64
-        
-        /** Removes a shape from the given shape owner. */
-        shape_owner_remove_shape(owner_id: int64, shape_id: int64): void
-        
-        /** Removes all shapes from the shape owner. */
-        shape_owner_clear_shapes(owner_id: int64): void
-        
-        /** Returns the `owner_id` of the given shape. */
-        shape_find_owner(shape_index: int64): int64
-        
-        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
-        get disable_mode(): int64
-        set disable_mode(value: int64)
-        
-        /** The physics layers this CollisionObject3D **is in**. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_layer(): int64
-        set collision_layer(value: int64)
-        
-        /** The physics layers this CollisionObject3D **scans**. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.2/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_mask(): int64
-        set collision_mask(value: int64)
-        
-        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        get collision_priority(): float64
-        set collision_priority(value: float64)
-        
-        /** If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set. */
-        get input_ray_pickable(): boolean
-        set input_ray_pickable(value: boolean)
-        
-        /** If `true`, the [CollisionObject3D] will continue to receive input events as the mouse is dragged across its shapes. */
-        get input_capture_on_drag(): boolean
-        set input_capture_on_drag(value: boolean)
-        
-        /** Emitted when the object receives an unhandled [InputEvent]. [param position] is the location in world space of the mouse pointer on the surface of the shape with index [param shape_idx] and [param normal] is the normal vector of the surface at that point. */
-        readonly input_event: Signal5<Node, InputEvent, Vector3, Vector3, int64>
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small. This signal may also not be emitted if another [CollisionObject3D] is overlapping the [CollisionObject3D] in question.  
-         */
-        readonly mouse_entered: Signal0
-        
-        /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_ray_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small. This signal may also not be emitted if another [CollisionObject3D] is overlapping the [CollisionObject3D] in question.  
-         */
-        readonly mouse_exited: Signal0
-    }
-    class CollisionObject3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    namespace CollisionPolygon2D {
-        enum BuildMode {
-            /** Collisions will include the polygon and its contained area. In this mode the node has the same effect as several [ConvexPolygonShape2D] nodes, one for each convex shape in the convex decomposition of the polygon (but without the overhead of multiple nodes). */
-            BUILD_SOLIDS = 0,
-            
-            /** Collisions will only include the polygon edges. In this mode the node has the same effect as a single [ConcavePolygonShape2D] made of segments, with the restriction that each segment (after the first one) starts where the previous one ends, and the last one ends where the first one starts (forming a closed but hollow polygon). */
-            BUILD_SEGMENTS = 1,
-        }
-    }
-    /** A node that provides a polygon shape to a [CollisionObject2D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon2d.html  
-     */
-    class CollisionPolygon2D extends Node2D {
-        constructor(identifier?: any)
-        /** Collision build mode. Use one of the [enum BuildMode] constants. */
-        get build_mode(): int64
-        set build_mode(value: int64)
-        
-        /** The polygon's list of vertices. Each point will be connected to the next, and the final point will be connected to the first.  
-         *      
-         *  **Note:** The returned vertices are in the local coordinate space of the given [CollisionPolygon2D].  
-         *  **Warning:** The returned value is a clone of the [PackedVector2Array], not a reference.  
-         */
-        get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array | Vector2[])
-        
-        /** If `true`, no collisions will be detected. */
-        get disabled(): boolean
-        set disabled(value: boolean)
-        
-        /** If `true`, only edges that face up, relative to [CollisionPolygon2D]'s rotation, will collide with other objects.  
-         *      
-         *  **Note:** This property has no effect if this [CollisionPolygon2D] is a child of an [Area2D] node.  
-         */
-        get one_way_collision(): boolean
-        set one_way_collision(value: boolean)
-        
-        /** The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the polygon at a high velocity. */
-        get one_way_collision_margin(): float64
-        set one_way_collision_margin(value: float64)
-    }
-    class CollisionPolygon2DEditor extends AbstractPolygon2DEditor {
-        constructor(identifier?: any)
-    }
-    class CollisionPolygon2DEditorPlugin extends AbstractPolygon2DEditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionpolygon3d.html  
-     */
-    class CollisionPolygon3D extends Node3D {
-        constructor(identifier?: any)
-        _is_editable_3d_polygon(): boolean
-        
-        /** Length that the resulting collision extends in either direction perpendicular to its 2D polygon. */
-        get depth(): float64
-        set depth(value: float64)
-        
-        /** If `true`, no collision will be produced. */
-        get disabled(): boolean
-        set disabled(value: boolean)
-        
-        /** Array of vertices which define the 2D polygon in the local XY plane.  
-         *      
-         *  **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the class property.  
-         */
-        get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array | Vector2[])
-        
-        /** The collision margin for the generated [Shape3D]. See [member Shape3D.margin] for more details. */
-        get margin(): float64
-        set margin(value: float64)
-    }
-    class CollisionPolygon3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** A node that provides a [Shape2D] to a [CollisionObject2D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape2d.html  
-     */
-    class CollisionShape2D extends Node2D {
-        constructor(identifier?: any)
-        /** The actual shape owned by this collision shape. */
-        get shape(): Shape2D
-        set shape(value: Shape2D)
-        
-        /** A disabled collision shape has no effect in the world. This property should be changed with [method Object.set_deferred]. */
-        get disabled(): boolean
-        set disabled(value: boolean)
-        
-        /** Sets whether this collision shape should only detect collision on one side (top or bottom).  
-         *      
-         *  **Note:** This property has no effect if this [CollisionShape2D] is a child of an [Area2D] node.  
-         */
-        get one_way_collision(): boolean
-        set one_way_collision(value: boolean)
-        
-        /** The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the shape at a high velocity. */
-        get one_way_collision_margin(): float64
-        set one_way_collision_margin(value: float64)
-        
-        /** The collision shape debug color.  
-         *      
-         *  **Note:** The default value is [member ProjectSettings.debug/shapes/collision/shape_color]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.  
-         */
-        get debug_color(): Color
-        set debug_color(value: Color)
-    }
-    class CollisionShape2DEditor extends Control {
-        constructor(identifier?: any)
-    }
-    class CollisionShape2DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A node that provides a [Shape3D] to a [CollisionObject3D] parent.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_collisionshape3d.html  
-     */
-    class CollisionShape3D extends Node3D {
-        constructor(identifier?: any)
-        /** Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings geometry. */
-        make_convex_from_siblings(): void
-        
-        /** The actual shape owned by this collision shape. */
-        get shape(): Shape3D
-        set shape(value: Shape3D)
-        
-        /** A disabled collision shape has no effect in the world. */
-        get disabled(): boolean
-        set disabled(value: boolean)
-    }
-    class CollisionShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    namespace ColorPicker {
-        enum ColorModeType {
-            /** Allows editing the color with Red/Green/Blue sliders. */
-            MODE_RGB = 0,
-            
-            /** Allows editing the color with Hue/Saturation/Value sliders. */
-            MODE_HSV = 1,
-            
-            /** Allows the color R, G, B component values to go beyond 1.0, which can be used for certain special operations that require it (like tinting without darkening or rendering sprites in HDR). */
-            MODE_RAW = 2,
-            
-            /** Allows editing the color with Hue/Saturation/Lightness sliders.  
-             *  OKHSL is a new color space similar to HSL but that better match perception by leveraging the Oklab color space which is designed to be simple to use, while doing a good job at predicting perceived lightness, chroma and hue.  
-             *  [url=https://bottosson.github.io/posts/colorpicker/]Okhsv and Okhsl color spaces[/url]  
-             */
-            MODE_OKHSL = 3,
-        }
-        enum PickerShapeType {
-            /** HSV Color Model rectangle color space. */
-            SHAPE_HSV_RECTANGLE = 0,
-            
-            /** HSV Color Model rectangle color space with a wheel. */
-            SHAPE_HSV_WHEEL = 1,
-            
-            /** HSV Color Model circle color space. Use Saturation as a radius. */
-            SHAPE_VHS_CIRCLE = 2,
-            
-            /** HSL OK Color Model circle color space. */
-            SHAPE_OKHSL_CIRCLE = 3,
-            
-            /** The color space shape and the shape select button are hidden. Can't be selected from the shapes popup. */
-            SHAPE_NONE = 4,
-        }
-    }
-    /** A widget that provides an interface for selecting or modifying a color.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_colorpicker.html  
-     */
-    class ColorPicker extends VBoxContainer {
-        constructor(identifier?: any)
-        /** Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them.  
-         *      
-         *  **Note:** The presets list is only for  *this*  color picker.  
-         */
-        add_preset(color: Color): void
-        
-        /** Removes the given color from the list of color presets of this color picker. */
-        erase_preset(color: Color): void
-        
-        /** Returns the list of colors in the presets of the color picker. */
-        get_presets(): PackedColorArray
-        
-        /** Adds the given color to a list of color recent presets so that it can be picked later. Recent presets are the colors that were picked recently, a new preset is automatically created and added to recent presets when you pick a new color.  
-         *      
-         *  **Note:** The recent presets list is only for  *this*  color picker.  
-         */
-        add_recent_preset(color: Color): void
-        
-        /** Removes the given color from the list of color recent presets of this color picker. */
-        erase_recent_preset(color: Color): void
-        
-        /** Returns the list of colors in the recent presets of the color picker. */
-        get_recent_presets(): PackedColorArray
-        
-        /** The currently selected color. */
-        get color(): Color
-        set color(value: Color)
-        
-        /** If `true`, shows an alpha channel slider (opacity). */
-        get edit_alpha(): boolean
-        set edit_alpha(value: boolean)
-        
-        /** The currently selected color mode. See [enum ColorModeType]. */
-        get color_mode(): int64
-        set color_mode(value: int64)
-        
-        /** If `true`, the color will apply only after the user releases the mouse button, otherwise it will apply immediately even in mouse motion event (which can cause performance issues). */
-        get deferred_mode(): boolean
-        set deferred_mode(value: boolean)
-        
-        /** The shape of the color space view. See [enum PickerShapeType]. */
-        get picker_shape(): int64
-        set picker_shape(value: int64)
-        
-        /** If `true`, it's possible to add presets under Swatches. If `false`, the button to add presets is disabled. */
-        get can_add_swatches(): boolean
-        set can_add_swatches(value: boolean)
-        
-        /** If `true`, the color sampler and color preview are visible. */
-        get sampler_visible(): boolean
-        set sampler_visible(value: boolean)
-        
-        /** If `true`, the color mode buttons are visible. */
-        get color_modes_visible(): boolean
-        set color_modes_visible(value: boolean)
-        
-        /** If `true`, the color sliders are visible. */
-        get sliders_visible(): boolean
-        set sliders_visible(value: boolean)
-        
-        /** If `true`, the hex color code input field is visible. */
-        get hex_visible(): boolean
-        set hex_visible(value: boolean)
-        
-        /** If `true`, the Swatches and Recent Colors presets are visible. */
-        get presets_visible(): boolean
-        set presets_visible(value: boolean)
-        
-        /** Emitted when the color is changed. */
-        readonly color_changed: Signal1<Color>
-        
-        /** Emitted when a preset is added. */
-        readonly preset_added: Signal1<Color>
-        
-        /** Emitted when a preset is removed. */
-        readonly preset_removed: Signal1<Color>
     }
 }

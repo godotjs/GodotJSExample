@@ -116,7 +116,7 @@ declare module "godot" {
     }
     /** Exposes performance-related data.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_performance.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_performance.html  
      */
     class Performance extends Object {
         /** Returns the value of one of the available built-in monitors. You should provide one of the [enum Monitor] constants as the argument, like this:  
@@ -150,7 +150,7 @@ declare module "godot" {
     // // Singleton Class
     /** A singleton for managing [TextServer] implementations.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_textservermanager.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_textservermanager.html  
      */
     class TextServerManager extends Object {
         /** Registers a [TextServer] interface. */
@@ -186,7 +186,7 @@ declare module "godot" {
     // // Singleton Class
     /** A singleton for managing [PhysicsServer2D] implementations.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver2dmanager.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_physicsserver2dmanager.html  
      */
     class PhysicsServer2DManager extends Object {
         /** Register a [PhysicsServer2D] implementation by passing a [param name] and a [Callable] that returns a [PhysicsServer2D] object. */
@@ -198,7 +198,7 @@ declare module "godot" {
     // // Singleton Class
     /** A singleton for managing [PhysicsServer3D] implementations.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver3dmanager.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_physicsserver3dmanager.html  
      */
     class PhysicsServer3DManager extends Object {
         /** Register a [PhysicsServer3D] implementation by passing a [param name] and a [Callable] that returns a [PhysicsServer3D] object. */
@@ -210,7 +210,7 @@ declare module "godot" {
     // // Singleton Class
     /** Stores globally-accessible variables.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_projectsettings.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_projectsettings.html  
      */
     class ProjectSettings extends Object {
         /** Returns `true` if a configuration value is present. */
@@ -286,7 +286,7 @@ declare module "godot" {
         /** Returns the localized path (starting with `res://`) corresponding to the absolute, native OS [param path]. See also [method globalize_path]. */
         static localize_path(path: string): string
         
-        /** Returns the absolute, native OS path corresponding to the localized [param path] (starting with `res://` or `user://`). The returned path will vary depending on the operating system and user preferences. See [url=https://docs.godotengine.org/en/4.2/tutorials/io/data_paths.html]File paths in Godot projects[/url] to see what those paths convert to. See also [method localize_path].  
+        /** Returns the absolute, native OS path corresponding to the localized [param path] (starting with `res://` or `user://`). The returned path will vary depending on the operating system and user preferences. See [url=https://docs.godotengine.org/en/4.3/tutorials/io/data_paths.html]File paths in Godot projects[/url] to see what those paths convert to. See also [method localize_path].  
          *      
          *  **Note:** [method globalize_path] with `res://` will not work in an exported project. Instead, prepend the executable's base directory to the path when running from an exported project:  
          *    
@@ -344,7 +344,7 @@ declare module "godot" {
     }
     /** Internet protocol (IP) support functions such as DNS resolution.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_ip.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_ip.html  
      */
     class IP extends Object {
         /** Maximum number of concurrent DNS resolver queries allowed, [constant RESOLVER_INVALID_ID] is returned if exceeded. */
@@ -430,7 +430,7 @@ declare module "godot" {
     }
     /** Provides methods for some common 2D geometric operations.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_geometry2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_geometry2d.html  
      */
     class Geometry2D extends Object {
         /** Returns `true` if [param point] is inside the circle or if it's located exactly  *on*  the circle's boundary, otherwise returns `false`. */
@@ -460,7 +460,10 @@ declare module "godot" {
         /** Returns if [param point] is inside the triangle specified by [param a], [param b] and [param c]. */
         static point_is_inside_triangle(point: Vector2, a: Vector2, b: Vector2, c: Vector2): boolean
         
-        /** Returns `true` if [param polygon]'s vertices are ordered in clockwise order, otherwise returns `false`. */
+        /** Returns `true` if [param polygon]'s vertices are ordered in clockwise order, otherwise returns `false`.  
+         *      
+         *  **Note:** Assumes a Cartesian coordinate system where `+x` is right and `+y` is up. If using screen coordinates (`+y` is down), the result will need to be flipped (i.e. a `true` result will indicate counter-clockwise).  
+         */
         static is_polygon_clockwise(polygon: PackedVector2Array | Vector2[]): boolean
         
         /** Returns `true` if [param point] is inside [param polygon] or if it's located exactly  *on*  polygon's boundary, otherwise returns `false`. */
@@ -526,7 +529,7 @@ declare module "godot" {
     // // Singleton Class
     /** Provides methods for some common 3D geometric operations.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_geometry3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_geometry3d.html  
      */
     class Geometry3D extends Object {
         /** Calculates and returns all the vertex points of a convex shape defined by an array of [param planes]. */
@@ -572,6 +575,9 @@ declare module "godot" {
         
         /** Clips the polygon defined by the points in [param points] against the [param plane] and returns the points of the clipped polygon. */
         static clip_polygon(points: PackedVector3Array | Vector3[], plane: Plane): PackedVector3Array
+        
+        /** Tetrahedralizes the volume specified by a discrete set of [param points] in 3D space, ensuring that no point lies within the circumsphere of any resulting tetrahedron. The method returns a [PackedInt32Array] where each tetrahedron consists of four consecutive point indices into the [param points] array (resulting in an array with `n * 4` elements, where `n` is the number of tetrahedra found). If the tetrahedralization is unsuccessful, an empty [PackedInt32Array] is returned. */
+        static tetrahedralize_delaunay(points: PackedVector3Array | Vector3[]): PackedInt32Array
     }
     // // Singleton Class
     namespace ResourceLoader {
@@ -589,14 +595,25 @@ declare module "godot" {
             THREAD_LOAD_LOADED = 3,
         }
         enum CacheMode {
+            /** Neither the main resource (the one requested to be loaded) nor any of its subresources are retrieved from cache nor stored into it. Dependencies (external resources) are loaded with [constant CACHE_MODE_REUSE]. */
             CACHE_MODE_IGNORE = 0,
+            
+            /** The main resource (the one requested to be loaded), its subresources, and its dependencies (external resources) are retrieved from cache if present, instead of loaded. Those not cached are loaded and then stored into the cache. The same rules are propagated recursively down the tree of dependencies (external resources). */
             CACHE_MODE_REUSE = 1,
+            
+            /** Like [constant CACHE_MODE_REUSE], but the cache is checked for the main resource (the one requested to be loaded) as well as for each of its subresources. Those already in the cache, as long as the loaded and cached types match, have their data refreshed from storage into the already existing instances. Otherwise, they are recreated as completely new objects. */
             CACHE_MODE_REPLACE = 2,
+            
+            /** Like [constant CACHE_MODE_IGNORE], but propagated recursively down the tree of dependencies (external resources). */
+            CACHE_MODE_IGNORE_DEEP = 3,
+            
+            /** Like [constant CACHE_MODE_REPLACE], but propagated recursively down the tree of dependencies (external resources). */
+            CACHE_MODE_REPLACE_DEEP = 4,
         }
     }
     /** A singleton for loading resource files.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceloader.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceloader.html  
      */
     class ResourceLoader extends Object {
         /** Loads the resource using threads. If [param use_sub_threads] is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).  
@@ -606,11 +623,13 @@ declare module "godot" {
         
         /** Returns the status of a threaded loading operation started with [method load_threaded_request] for the resource at [param path]. See [enum ThreadLoadStatus] for possible return values.  
          *  An array variable can optionally be passed via [param progress], and will return a one-element array containing the percentage of completion of the threaded loading.  
+         *      
+         *  **Note:** The recommended way of using this method is to call it during different frames (e.g., in [method Node._process], instead of a loop).  
          */
         static load_threaded_get_status(path: string, progress: GArray = []): ResourceLoader.ThreadLoadStatus
         
         /** Returns the resource loaded by [method load_threaded_request].  
-         *  If this is called before the loading thread is done (i.e. [method load_threaded_get_status] is not [constant THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.  
+         *  If this is called before the loading thread is done (i.e. [method load_threaded_get_status] is not [constant THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading. However, it's recommended to use [method load_threaded_get_status] to known when the load has actually completed.  
          */
         static load_threaded_get(path: string): Resource
         
@@ -618,7 +637,7 @@ declare module "godot" {
          *  The registered [ResourceFormatLoader]s are queried sequentially to find the first one which can handle the file's extension, and then attempt loading. If loading fails, the remaining ResourceFormatLoaders are also attempted.  
          *  An optional [param type_hint] can be used to further specify the [Resource] type that should be handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a type hint, for example [Image].  
          *  The [param cache_mode] property defines whether and how the cache should be used or updated when loading the resource. See [enum CacheMode] for details.  
-         *  Returns an empty resource if no [ResourceFormatLoader] could handle the file.  
+         *  Returns an empty resource if no [ResourceFormatLoader] could handle the file, and prints an error if no file is found at the specified path.  
          *  GDScript has a simplified [method @GDScript.load] built-in method which can be used in most situations, leaving the use of [ResourceLoader] for more advanced scenarios.  
          *      
          *  **Note:** If [member ProjectSettings.editor/export/convert_text_resources_to_binary] is `true`, [method @GDScript.load] will not be able to read converted files in an exported project. If you rely on run-time loading of files present within the PCK, set [member ProjectSettings.editor/export/convert_text_resources_to_binary] to `false`.  
@@ -655,6 +674,8 @@ declare module "godot" {
         
         /** Returns whether a recognized resource exists for the given [param path].  
          *  An optional [param type_hint] can be used to further specify the [Resource] type that should be handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a type hint, for example [Image].  
+         *      
+         *  **Note:** If you use [method Resource.take_over_path], this method will return `true` for the taken path even if the resource wasn't saved (i.e. exists only in resource cache).  
          */
         static exists(path: string, type_hint: string = ''): boolean
         
@@ -691,7 +712,7 @@ declare module "godot" {
     }
     /** A singleton for saving [Resource]s to the filesystem.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourcesaver.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourcesaver.html  
      */
     class ResourceSaver extends Object {
         /** Saves a resource to disk to the given path, using a [ResourceFormatSaver] that recognizes the resource object. If [param path] is empty, [ResourceSaver] will try to use [member Resource.resource_path].  
@@ -721,79 +742,93 @@ declare module "godot" {
             
             /** The OpenGL 3 rendering driver. It uses OpenGL 3.3 Core Profile on desktop platforms, OpenGL ES 3.0 on mobile devices, and WebGL 2.0 on Web. */
             RENDERING_DRIVER_OPENGL3 = 1,
+            
+            /** The Direct3D 12 rendering driver. */
+            RENDERING_DRIVER_D3D12 = 2,
         }
         enum SystemDir {
-            /** Desktop directory path. */
+            /** Refers to the Desktop directory path. */
             SYSTEM_DIR_DESKTOP = 0,
             
-            /** DCIM (Digital Camera Images) directory path. */
+            /** Refers to the DCIM (Digital Camera Images) directory path. */
             SYSTEM_DIR_DCIM = 1,
             
-            /** Documents directory path. */
+            /** Refers to the Documents directory path. */
             SYSTEM_DIR_DOCUMENTS = 2,
             
-            /** Downloads directory path. */
+            /** Refers to the Downloads directory path. */
             SYSTEM_DIR_DOWNLOADS = 3,
             
-            /** Movies directory path. */
+            /** Refers to the Movies (or Videos) directory path. */
             SYSTEM_DIR_MOVIES = 4,
             
-            /** Music directory path. */
+            /** Refers to the Music directory path. */
             SYSTEM_DIR_MUSIC = 5,
             
-            /** Pictures directory path. */
+            /** Refers to the Pictures directory path. */
             SYSTEM_DIR_PICTURES = 6,
             
-            /** Ringtones directory path. */
+            /** Refers to the Ringtones directory path. */
             SYSTEM_DIR_RINGTONES = 7,
         }
     }
     /** Provides access to common operating system functionalities.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_os.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_os.html  
      */
     class OS extends Object {
-        /** Returns an array of MIDI device names.  
-         *  The returned array will be empty if the system MIDI driver has not previously been initialized with [method open_midi_inputs].  
+        /** Generates a [PackedByteArray] of cryptographically secure random bytes with given [param size].  
+         *      
+         *  **Note:** Generating large quantities of bytes using this method can result in locking and entropy of lower quality on most platforms. Using [method Crypto.generate_random_bytes] is preferred in most cases.  
+         */
+        static get_entropy(size: int64): PackedByteArray
+        
+        /** Returns the list of certification authorities trusted by the operating system as a string of concatenated certificates in PEM format. */
+        static get_system_ca_certificates(): string
+        
+        /** Returns an array of connected MIDI device names, if they exist. Returns an empty array if the system MIDI driver has not previously been initialized with [method open_midi_inputs]. See also [method close_midi_inputs].  
          *      
          *  **Note:** This method is implemented on Linux, macOS and Windows.  
          */
         static get_connected_midi_inputs(): PackedStringArray
         
-        /** Initializes the singleton for the system MIDI driver.  
+        /** Initializes the singleton for the system MIDI driver, allowing Godot to receive [InputEventMIDI]. See also [method get_connected_midi_inputs] and [method close_midi_inputs].  
          *      
          *  **Note:** This method is implemented on Linux, macOS and Windows.  
          */
         static open_midi_inputs(): void
         
-        /** Shuts down system MIDI driver.  
+        /** Shuts down the system MIDI driver. Godot will no longer receive [InputEventMIDI]. See also [method open_midi_inputs] and [method get_connected_midi_inputs].  
          *      
          *  **Note:** This method is implemented on Linux, macOS and Windows.  
          */
         static close_midi_inputs(): void
         
-        /** Displays a modal dialog box using the host OS' facilities. Execution is blocked until the dialog is closed. */
+        /** Displays a modal dialog box using the host platform's implementation. The engine execution is blocked until the dialog is closed. */
         static alert(text: string, title: string = 'Alert!'): void
         
-        /** Crashes the engine (or the editor if called within a `@tool` script). This should  *only*  be used for testing the system's crash handler, not for any other purpose. For general error reporting, use (in order of preference) [method @GDScript.assert], [method @GlobalScope.push_error] or [method alert]. See also [method kill]. */
+        /** Crashes the engine (or the editor if called within a `@tool` script). See also [method kill].  
+         *      
+         *  **Note:** This method should  *only*  be used for testing the system's crash handler, not for any other purpose. For general error reporting, use (in order of preference) [method @GDScript.assert], [method @GlobalScope.push_error], or [method alert].  
+         */
         static crash(message: string): void
         
         /** Returns the number of  *logical*  CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of  *physical*  CPU cores. */
         static get_processor_count(): int64
         
-        /** Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").  
+        /** Returns the full name of the CPU model on the host machine (e.g. `"Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz"`).  
          *      
          *  **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android and Web, [method get_processor_name] returns an empty string.  
          */
         static get_processor_name(): string
         
-        /** Returns list of font family names available.  
+        /** Returns the list of font family names available.  
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
         static get_system_fonts(): PackedStringArray
         
-        /** Returns path to the system font file with [param font_name] and style. Returns empty string if no matching fonts found.  
+        /** Returns the path to the system font file with [param font_name] and style. Returns an empty string if no matching fonts found.  
          *  The following aliases can be used to request default fonts: "sans-serif", "serif", "monospace", "cursive", and "fantasy".  
          *      
          *  **Note:** Returned font might have different style if the requested style is not available.  
@@ -802,7 +837,7 @@ declare module "godot" {
          */
         static get_system_font_path(font_name: string, weight: int64 = 400, stretch: int64 = 100, italic: boolean = false): string
         
-        /** Returns an array of the system substitute font file paths, which are similar to the font with [param font_name] and style for the specified text, locale and script. Returns empty array if no matching fonts found.  
+        /** Returns an array of the system substitute font file paths, which are similar to the font with [param font_name] and style for the specified text, locale, and script. Returns an empty array if no matching fonts found.  
          *  The following aliases can be used to request default fonts: "sans-serif", "serif", "monospace", "cursive", and "fantasy".  
          *      
          *  **Note:** Depending on OS, it's not guaranteed that any of the returned fonts will be suitable for rendering specified text. Fonts should be loaded and checked in the order they are returned, and the first suitable one used.  
@@ -813,29 +848,32 @@ declare module "godot" {
          */
         static get_system_font_path_for_text(font_name: string, text: string, locale: string = '', script: string = '', weight: int64 = 400, stretch: int64 = 100, italic: boolean = false): PackedStringArray
         
-        /** Returns the path to the current engine executable.  
+        /** Returns the file path to the current engine executable.  
          *      
-         *  **Note:** On macOS, always use [method create_instance] instead of relying on executable path.  
+         *  **Note:** On macOS, if you want to launch another instance of Godot, always use [method create_instance] instead of relying on the executable path.  
          */
         static get_executable_path(): string
         
         /** Reads a user input string from the standard input (usually the terminal). This operation is  *blocking* , which causes the window to freeze if [method read_string_from_stdin] is called on the main thread. The thread calling [method read_string_from_stdin] will block until the program receives a line break in standard input (usually by the user pressing [kbd]Enter[/kbd]).  
          *      
          *  **Note:** This method is implemented on Linux, macOS and Windows.  
+         *      
+         *  **Note:** On exported Windows builds, run the console wrapper executable to access the terminal. Otherwise, the standard input will not work correctly. If you need a single executable with console support, use a custom build compiled with the `windows_subsystem=console` flag.  
          */
         static read_string_from_stdin(): string
         
-        /** Executes a command. The file specified in [param path] must exist and be executable. Platform path resolution will be used. The [param arguments] are used in the given order, separated by spaces, and wrapped in quotes. If an [param output] [Array] is provided, the complete shell output of the process will be appended as a single [String] element in [param output]. If [param read_stderr] is `true`, the output to the standard error stream will be included too.  
-         *  On Windows, if [param open_console] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.  
-         *  If the command is successfully executed, the method will return the exit code of the command, or `-1` if it fails.  
+        /** Executes the given process in a  *blocking*  way. The file specified in [param path] must exist and be executable. The system path resolution will be used. The [param arguments] are used in the given order, separated by spaces, and wrapped in quotes.  
+         *  If an [param output] array is provided, the complete shell output of the process is appended to [param output] as a single [String] element. If [param read_stderr] is `true`, the output to the standard error stream is also appended to the array.  
+         *  On Windows, if [param open_console] is `true` and the process is a console app, a new terminal window is opened.  
+         *  This method returns the exit code of the command, or `-1` if the process fails to execute.  
          *      
-         *  **Note:** The Godot thread will pause its execution until the executed command terminates. Use [Thread] to create a separate thread that will not pause the Godot thread, or use [method create_process] to create a completely independent process.  
+         *  **Note:** The main thread will be blocked until the executed command terminates. Use [Thread] to create a separate thread that will not block the main thread, or use [method create_process] to create a completely independent process.  
          *  For example, to retrieve a list of the working directory's contents:  
          *    
          *  If you wish to access a shell built-in or execute a composite command, a platform-specific shell can be invoked. For example:  
          *    
          *      
-         *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
+         *  **Note:** This method is implemented on Android, Linux, macOS, and Windows.  
          *      
          *  **Note:** To execute a Windows command interpreter built-in command, specify `cmd.exe` in [param path], `/c` as the first argument, and the desired command as the second argument.  
          *      
@@ -849,39 +887,58 @@ declare module "godot" {
          */
         static execute(path: string, arguments_: PackedStringArray | string[], output: GArray = [], read_stderr: boolean = false, open_console: boolean = false): int64
         
-        /** Creates a new process that runs independently of Godot. It will not terminate if Godot terminates. The path specified in [param path] must exist and be executable file or macOS .app bundle. Platform path resolution will be used. The [param arguments] are used in the given order and separated by a space.  
-         *  On Windows, if [param open_console] is `true` and the process is a console app, a new terminal window will be opened. This is ignored on other platforms.  
-         *  If the process creation succeeds, the method will return the new process ID, which you can use to monitor the process (and potentially terminate it with [method kill]). If the process creation fails, the method will return `-1`.  
+        /** Creates a new process that runs independently of Godot with redirected IO. It will not terminate when Godot terminates. The path specified in [param path] must exist and be an executable file or macOS `.app` bundle. The path is resolved based on the current platform. The [param arguments] are used in the given order and separated by a space.  
+         *  If the process cannot be created, this method returns an empty [Dictionary]. Otherwise, this method returns a [Dictionary] with the following keys:  
+         *  - `"stdio"` - [FileAccess] to access the process stdin and stdout pipes (read/write).  
+         *  - `"stderr"` - [FileAccess] to access the process stderr pipe (read only).  
+         *  - `"pid"` - Process ID as an [int], which you can use to monitor the process (and potentially terminate it with [method kill]).  
+         *      
+         *  **Note:** This method is implemented on Android, Linux, macOS, and Windows.  
+         *      
+         *  **Note:** To execute a Windows command interpreter built-in command, specify `cmd.exe` in [param path], `/c` as the first argument, and the desired command as the second argument.  
+         *      
+         *  **Note:** To execute a PowerShell built-in command, specify `powershell.exe` in [param path], `-Command` as the first argument, and the desired command as the second argument.  
+         *      
+         *  **Note:** To execute a Unix shell built-in command, specify shell executable name in [param path], `-c` as the first argument, and the desired command as the second argument.  
+         *      
+         *  **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export or system .app bundle, system .app bundles will ignore arguments.  
+         */
+        static execute_with_pipe(path: string, arguments_: PackedStringArray | string[]): GDictionary
+        
+        /** Creates a new process that runs independently of Godot. It will not terminate when Godot terminates. The path specified in [param path] must exist and be an executable file or macOS `.app` bundle. The path is resolved based on the current platform. The [param arguments] are used in the given order and separated by a space.  
+         *  On Windows, if [param open_console] is `true` and the process is a console app, a new terminal window will be opened.  
+         *  If the process is successfully created, this method returns its process ID, which you can use to monitor the process (and potentially terminate it with [method kill]). Otherwise, this method returns `-1`.  
          *  For example, running another instance of the project:  
          *    
          *  See [method execute] if you wish to run an external command and retrieve the results.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
+         *  **Note:** This method is implemented on Android, Linux, macOS, and Windows.  
          *      
          *  **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables, specified during export or system .app bundle, system .app bundles will ignore arguments.  
          */
         static create_process(path: string, arguments_: PackedStringArray | string[], open_console: boolean = false): int64
         
         /** Creates a new instance of Godot that runs independently. The [param arguments] are used in the given order and separated by a space.  
-         *  If the process creation succeeds, the method will return the new process ID, which you can use to monitor the process (and potentially terminate it with [method kill]). If the process creation fails, the method will return `-1`.  
+         *  If the process is successfully created, this method returns the new process' ID, which you can use to monitor the process (and potentially terminate it with [method kill]). If the process cannot be created, this method returns `-1`.  
+         *  See [method create_process] if you wish to run a different process.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
+         *  **Note:** This method is implemented on Android, Linux, macOS and Windows.  
          */
         static create_instance(arguments_: PackedStringArray | string[]): int64
         
-        /** Kill (terminate) the process identified by the given process ID ([param pid]), e.g. the one returned by [method execute] in non-blocking mode. See also [method crash].  
+        /** Kill (terminate) the process identified by the given process ID ([param pid]), such as the ID returned by [method execute] in non-blocking mode. See also [method crash].  
          *      
-         *  **Note:** This method can also be used to kill processes that were not spawned by the game.  
+         *  **Note:** This method can also be used to kill processes that were not spawned by the engine.  
          *      
          *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
          */
         static kill(pid: int64): Error
         
-        /** Requests the OS to open a resource with the most appropriate program. For example:  
+        /** Requests the OS to open a resource identified by [param uri] with the most appropriate program. For example:  
          *  - `OS.shell_open("C:\\Users\name\Downloads")` on Windows opens the file explorer at the user's Downloads folder.  
          *  - `OS.shell_open("https://godotengine.org")` opens the default web browser on the official Godot website.  
          *  - `OS.shell_open("mailto:example@example.com")` opens the default email client with the "To" field set to `example@example.com`. See [url=https://datatracker.ietf.org/doc/html/rfc2368]RFC 2368 - The `mailto` URL scheme[/url] for a list of fields that can be added.  
-         *  Use [method ProjectSettings.globalize_path] to convert a `res://` or `user://` path into a system path for use with this method.  
+         *  Use [method ProjectSettings.globalize_path] to convert a `res://` or `user://` project path into a system path for use with this method.  
          *      
          *  **Note:** Use [method String.uri_encode] to encode characters within URLs in a URL-safe, portable way. This is especially required for line breaks. Otherwise, [method shell_open] may not work correctly in a project exported to the Web platform.  
          *      
@@ -889,24 +946,32 @@ declare module "godot" {
          */
         static shell_open(uri: string): Error
         
-        /** Requests the OS to open the file manager, then navigate to the given [param file_or_dir_path] and select the target file or folder.  
-         *  If [param file_or_dir_path] is a valid directory path, and [param open_folder] is `true`, the method will open the file manager and enter the target folder without selecting anything.  
-         *  Use [method ProjectSettings.globalize_path] to convert a `res://` or `user://` path into a system path for use with this method.  
+        /** Requests the OS to open the file manager, navigate to the given [param file_or_dir_path] and select the target file or folder.  
+         *  If [param open_folder] is `true` and [param file_or_dir_path] is a valid directory path, the OS will open the file manager and navigate to the target folder without selecting anything.  
+         *  Use [method ProjectSettings.globalize_path] to convert a `res://` or `user://` project path into a system path to use with this method.  
          *      
-         *  **Note:** Currently this method is only implemented on Windows and macOS. On other platforms, it will fallback to [method shell_open] with a directory path of [param file_or_dir_path] with prefix `file://`.  
+         *  **Note:** This method is currently only implemented on Windows and macOS. On other platforms, it will fallback to [method shell_open] with a directory path of [param file_or_dir_path] prefixed with `file://`.  
          */
         static shell_show_in_file_manager(file_or_dir_path: string, open_folder: boolean = true): Error
         
-        /** Returns `true` if the child process ID ([param pid]) is still running or `false` if it has terminated.  
-         *  Must be a valid ID generated from [method create_process].  
+        /** Returns `true` if the child process ID ([param pid]) is still running or `false` if it has terminated. [param pid] must be a valid ID generated from [method create_process].  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Linux, macOS, and Windows.  
          */
         static is_process_running(pid: int64): boolean
         
-        /** Returns the project's process ID.  
+        /** Returns the exit code of a spawned process once it has finished running (see [method is_process_running]).  
+         *  Returns `-1` if the [param pid] is not a PID of a spawned child process, the process is still running, or the method is not implemented for the current platform.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.  
+         *  **Note:** Returns `-1` if the [param pid] is a macOS bundled app process.  
+         *      
+         *  **Note:** This method is implemented on Android, Linux, macOS and Windows.  
+         */
+        static get_process_exit_code(pid: int64): int64
+        
+        /** Returns the number used by the host machine to uniquely identify this application.  
+         *      
+         *  **Note:** This method is implemented on Android, iOS, Linux, macOS, and Windows.  
          */
         static get_process_id(): int64
         
@@ -916,9 +981,11 @@ declare module "godot" {
          */
         static has_environment(variable: string): boolean
         
-        /** Returns the value of an environment variable. Returns an empty string if the environment variable doesn't exist.  
+        /** Returns the value of the given environment variable, or an empty string if [param variable] doesn't exist.  
          *      
          *  **Note:** Double-check the casing of [param variable]. Environment variable names are case-sensitive on all platforms except Windows.  
+         *      
+         *  **Note:** On macOS, applications do not have access to shell environment variables.  
          */
         static get_environment(variable: string): string
         
@@ -928,41 +995,43 @@ declare module "godot" {
          */
         static set_environment(variable: string, value: string): void
         
-        /** Removes the environment [param variable] from the current environment, if it exists. The environment variable will be removed for the Godot process and any process executed with [method execute] after running [method unset_environment]. The removal of the environment variable will  *not*  persist to processes run after the Godot process was terminated.  
+        /** Removes the given environment variable from the current environment, if it exists. The [param variable] name cannot be empty or include the `=` character. The environment variable will be removed for the Godot process and any process executed with [method execute] after running [method unset_environment]. The removal of the environment variable will  *not*  persist to processes run after the Godot process was terminated.  
          *      
-         *  **Note:** Environment variable names are case-sensitive on all platforms except Windows. The [param variable] name cannot be empty or include the `=` character.  
+         *  **Note:** Environment variable names are case-sensitive on all platforms except Windows.  
          */
         static unset_environment(variable: string): void
         
-        /** Returns the name of the host OS.  
-         *  On Windows, this is `"Windows"`.  
-         *  On macOS, this is `"macOS"`.  
-         *  On Linux-based operating systems, this is `"Linux"`.  
-         *  On BSD-based operating systems, this is `"FreeBSD"`, `"NetBSD"`, `"OpenBSD"`, or `"BSD"` as a fallback.  
-         *  On Android, this is `"Android"`.  
-         *  On iOS, this is `"iOS"`.  
-         *  On the web, this is `"Web"`.  
+        /** Returns the name of the host platform.  
+         *  - On Windows, this is `"Windows"`.  
+         *  - On macOS, this is `"macOS"`.  
+         *  - On Linux-based operating systems, this is `"Linux"`.  
+         *  - On BSD-based operating systems, this is `"FreeBSD"`, `"NetBSD"`, `"OpenBSD"`, or `"BSD"` as a fallback.  
+         *  - On Android, this is `"Android"`.  
+         *  - On iOS, this is `"iOS"`.  
+         *  - On Web, this is `"Web"`.  
          *      
-         *  **Note:** Custom builds of the engine may support additional platforms, such as consoles, yielding other return values.  
+         *  **Note:** Custom builds of the engine may support additional platforms, such as consoles, possibly returning other names.  
          *    
+         *      
+         *  **Note:** On Web platforms, it is still possible to determine the host platform's OS with feature tags. See [method has_feature].  
          */
         static get_name(): string
         
-        /** Returns the name of the distribution for Linux and BSD platforms (e.g. Ubuntu, Manjaro, OpenBSD, etc.).  
-         *  Returns the same value as [method get_name] for stock Android ROMs, but attempts to return the custom ROM name for popular Android derivatives such as LineageOS.  
+        /** Returns the name of the distribution for Linux and BSD platforms (e.g. "Ubuntu", "Manjaro", "OpenBSD", etc.).  
+         *  Returns the same value as [method get_name] for stock Android ROMs, but attempts to return the custom ROM name for popular Android derivatives such as "LineageOS".  
          *  Returns the same value as [method get_name] for other platforms.  
          *      
-         *  **Note:** This method is not supported on the web platform. It returns an empty string.  
+         *  **Note:** This method is not supported on the Web platform. It returns an empty string.  
          */
         static get_distribution_name(): string
         
         /** Returns the exact production and build version of the operating system. This is different from the branded version used in marketing. This helps to distinguish between different releases of operating systems, including minor versions, and insider and custom builds.  
-         *  For Windows, the major and minor version are returned, as well as the build number. For example, the returned string can look like `10.0.9926` for a build of Windows 10, and it can look like `6.1.7601` for a build of Windows 7 SP1.  
-         *  For rolling distributions, such as Arch Linux, an empty string is returned.  
-         *  For macOS and iOS, the major and minor version are returned, as well as the patch number.  
-         *  For Android, the SDK version and the incremental build number are returned. If it's a custom ROM, it attempts to return its version instead.  
+         *  - For Windows, the major and minor version are returned, as well as the build number. For example, the returned string may look like `10.0.9926` for a build of Windows 10, and it may look like `6.1.7601` for a build of Windows 7 SP1.  
+         *  - For rolling distributions, such as Arch Linux, an empty string is returned.  
+         *  - For macOS and iOS, the major and minor version are returned, as well as the patch number.  
+         *  - For Android, the SDK version and the incremental build number are returned. If it's a custom ROM, it attempts to return its version instead.  
          *      
-         *  **Note:** This method is not supported on the web platform. It returns an empty string.  
+         *  **Note:** This method is not supported on the Web platform. It returns an empty string.  
          */
         static get_version(): string
         
@@ -970,29 +1039,29 @@ declare module "godot" {
          *  Command-line arguments can be written in any form, including both `--key value` and `--key=value` forms so they can be properly parsed, as long as custom command-line arguments do not conflict with engine arguments.  
          *  You can also incorporate environment variables using the [method get_environment] method.  
          *  You can set [member ProjectSettings.editor/run/main_run_args] to define command-line arguments to be passed by the editor when running the project.  
-         *  Here's a minimal example on how to parse command-line arguments into a dictionary using the `--key=value` form for arguments:  
+         *  Here's a minimal example on how to parse command-line arguments into a [Dictionary] using the `--key=value` form for arguments:  
          *    
          *      
-         *  **Note:** Passing custom user arguments directly is not recommended, as the engine may discard or modify them. Instead, the best way is to use the standard UNIX double dash (`--`) and then pass custom arguments, which the engine itself will ignore. These can be read via [method get_cmdline_user_args].  
+         *  **Note:** Passing custom user arguments directly is not recommended, as the engine may discard or modify them. Instead, pass the standard UNIX double dash (`--`) and then the custom arguments, which the engine will ignore by design. These can be read via [method get_cmdline_user_args].  
          */
         static get_cmdline_args(): PackedStringArray
         
-        /** Similar to [method get_cmdline_args], but this returns the user arguments (any argument passed after the double dash `--` or double plus `++` argument). These are left untouched by Godot for the user. `++` can be used in situations where `--` is intercepted by another program (such as `startx`).  
-         *  For example, in the command line below, `--fullscreen` will not be returned in [method get_cmdline_user_args] and `--level 1` will only be returned in [method get_cmdline_user_args]:  
+        /** Returns the command-line user arguments passed to the engine. User arguments are ignored by the engine and reserved for the user. They are passed after the double dash `--` argument. `++` may be used when `--` is intercepted by another program (such as `startx`).  
          *    
+         *  To get all passed arguments, use [method get_cmdline_args].  
          */
         static get_cmdline_user_args(): PackedStringArray
         
-        /** Returns the video adapter driver name and version for the user's currently active graphics card. See also [method RenderingServer.get_video_adapter_api_version].  
+        /** Returns the video adapter driver name and version for the user's currently active graphics card, as a [PackedStringArray]. See also [method RenderingServer.get_video_adapter_api_version].  
          *  The first element holds the driver name, such as `nvidia`, `amdgpu`, etc.  
-         *  The second element holds the driver version. For e.g. the `nvidia` driver on a Linux/BSD platform, the version is in the format `510.85.02`. For Windows, the driver's format is `31.0.15.1659`.  
+         *  The second element holds the driver version. For example, on the `nvidia` driver on a Linux/BSD platform, the version is in the format `510.85.02`. For Windows, the driver's format is `31.0.15.1659`.  
          *      
-         *  **Note:** This method is only supported on the platforms Linux/BSD and Windows when not running in headless mode. It returns an empty array on other platforms.  
+         *  **Note:** This method is only supported on Linux/BSD and Windows when not running in headless mode. On other platforms, it returns an empty array.  
          */
         static get_video_adapter_driver_info(): PackedStringArray
         
-        /** If [param restart] is `true`, restarts the project automatically when it is exited with [method SceneTree.quit] or [constant Node.NOTIFICATION_WM_CLOSE_REQUEST]. Command line [param arguments] can be supplied. To restart the project with the same command line arguments as originally used to run the project, pass [method get_cmdline_args] as the value for [param arguments].  
-         *  [method set_restart_on_exit] can be used to apply setting changes that require a restart. See also [method is_restart_on_exit_set] and [method get_restart_on_exit_arguments].  
+        /** If [param restart] is `true`, restarts the project automatically when it is exited with [method SceneTree.quit] or [constant Node.NOTIFICATION_WM_CLOSE_REQUEST]. Command-line [param arguments] can be supplied. To restart the project with the same command line arguments as originally used to run the project, pass [method get_cmdline_args] as the value for [param arguments].  
+         *  This method can be used to apply setting changes that require a restart. See also [method is_restart_on_exit_set] and [method get_restart_on_exit_arguments].  
          *      
          *  **Note:** This method is only effective on desktop platforms, and only when the project isn't started from the editor. It will have no effect on mobile and Web platforms, or when the project is started from the editor.  
          *      
@@ -1006,28 +1075,29 @@ declare module "godot" {
         /** Returns the list of command line arguments that will be used when the project automatically restarts using [method set_restart_on_exit]. See also [method is_restart_on_exit_set]. */
         static get_restart_on_exit_arguments(): PackedStringArray
         
-        /** Delays execution of the current thread by [param usec] microseconds. [param usec] must be greater than or equal to `0`. Otherwise, [method delay_usec] will do nothing and will print an error message.  
+        /** Delays execution of the current thread by [param usec] microseconds. [param usec] must be greater than or equal to `0`. Otherwise, [method delay_usec] does nothing and prints an error message.  
          *      
-         *  **Note:** [method delay_usec] is a  *blocking*  way to delay code execution. To delay code execution in a non-blocking way, see [method SceneTree.create_timer]. Awaiting with [method SceneTree.create_timer] will delay the execution of code placed below the `await` without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).  
+         *  **Note:** [method delay_usec] is a  *blocking*  way to delay code execution. To delay code execution in a non-blocking way, you may use [method SceneTree.create_timer]. Awaiting with a [SceneTreeTimer] delays the execution of code placed below the `await` without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).  
          *      
          *  **Note:** When [method delay_usec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [method delay_usec] as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).  
          */
         static delay_usec(usec: int64): void
         
-        /** Delays execution of the current thread by [param msec] milliseconds. [param msec] must be greater than or equal to `0`. Otherwise, [method delay_msec] will do nothing and will print an error message.  
+        /** Delays execution of the current thread by [param msec] milliseconds. [param msec] must be greater than or equal to `0`. Otherwise, [method delay_msec] does nothing and prints an error message.  
          *      
-         *  **Note:** [method delay_msec] is a  *blocking*  way to delay code execution. To delay code execution in a non-blocking way, see [method SceneTree.create_timer]. Awaiting with [method SceneTree.create_timer] will delay the execution of code placed below the `await` without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).  
+         *  **Note:** [method delay_msec] is a  *blocking*  way to delay code execution. To delay code execution in a non-blocking way, you may use [method SceneTree.create_timer]. Awaiting with [SceneTreeTimer] delays the execution of code placed below the `await` without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).  
          *      
          *  **Note:** When [method delay_msec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [method delay_msec] as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).  
          */
         static delay_msec(msec: int64): void
         
-        /** Returns the host OS locale as a string of the form `language_Script_COUNTRY_VARIANT@extra`. If you want only the language code and not the fully specified locale from the OS, you can use [method get_locale_language].  
-         *  `language` - 2 or 3-letter [url=https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]language code[/url], in lower case.  
-         *  [code skip-lint]Script` - optional, 4-letter [url=https://en.wikipedia.org/wiki/ISO_15924]script code[/url], in title case.  
-         *  `COUNTRY` - optional, 2 or 3-letter [url=https://en.wikipedia.org/wiki/ISO_3166-1]country code[/url], in upper case.  
-         *  `VARIANT` - optional, language variant, region and sort order. Variant can have any number of underscored keywords.  
-         *  `extra` - optional, semicolon separated list of additional key words. Currency, calendar, sort order and numbering system information.  
+        /** Returns the host OS locale as a [String] of the form `language_Script_COUNTRY_VARIANT@extra`. Every substring after `language` is optional and may not exist.  
+         *  - `language` - 2 or 3-letter [url=https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]language code[/url], in lower case.  
+         *  - [code skip-lint]Script` - 4-letter [url=https://en.wikipedia.org/wiki/ISO_15924]script code[/url], in title case.  
+         *  - `COUNTRY` - 2 or 3-letter [url=https://en.wikipedia.org/wiki/ISO_3166-1]country code[/url], in upper case.  
+         *  - `VARIANT` - language variant, region and sort order. The variant can have any number of underscored keywords.  
+         *  - `extra` - semicolon separated list of additional key words. This may include currency, calendar, sort order and numbering system information.  
+         *  If you want only the language code and not the fully specified locale from the OS, you can use [method get_locale_language].  
          */
         static get_locale(): string
         
@@ -1042,7 +1112,7 @@ declare module "godot" {
          */
         static get_model_name(): string
         
-        /** If `true`, the `user://` file system is persistent, so that its state is the same after a player quits and starts the game again. Relevant to the Web platform, where this persistence may be unavailable. */
+        /** Returns `true` if the `user://` file system is persistent, that is, its state is the same after a player quits and starts the game again. Relevant to the Web platform, where this persistence may be unavailable. */
         static is_userfs_persistent(): boolean
         
         /** Returns `true` if the engine was executed with the `--verbose` or `-v` command line argument, or if [member ProjectSettings.debug/settings/stdout/verbose_stdout] is `true`. See also [method @GlobalScope.print_verbose]. */
@@ -1050,89 +1120,106 @@ declare module "godot" {
         
         /** Returns `true` if the Godot binary used to run the project is a  *debug*  export template, or when running in the editor.  
          *  Returns `false` if the Godot binary used to run the project is a  *release*  export template.  
-         *  To check whether the Godot binary used to run the project is an export template (debug or release), use `OS.has_feature("template")` instead.  
+         *      
+         *  **Note:** To check whether the Godot binary used to run the project is an export template (debug or release), use `OS.has_feature("template")` instead.  
          */
         static is_debug_build(): boolean
         
-        /** Returns the amount of static memory being used by the program in bytes (only works in debug). */
+        /** Returns the amount of static memory being used by the program in bytes. Only works in debug builds. */
         static get_static_memory_usage(): int64
         
-        /** Returns the maximum amount of static memory used (only works in debug). */
+        /** Returns the maximum amount of static memory used. Only works in debug builds. */
         static get_static_memory_peak_usage(): int64
         
-        /** Returns the [Dictionary] with the following keys:  
-         *  `"physical"` - total amount of usable physical memory, in bytes or `-1` if unknown. This value can be slightly less than the actual physical memory amount, since it does not include memory reserved by kernel and devices.  
-         *  `"free"` - amount of physical memory, that can be immediately allocated without disk access or other costly operation, in bytes or `-1` if unknown. The process might be able to allocate more physical memory, but such allocation will require moving inactive pages to disk and can take some time.  
-         *  `"available"` - amount of memory, that can be allocated without extending the swap file(s), in bytes or `-1` if unknown. This value include both physical memory and swap.  
-         *  `"stack"` - size of the current thread stack, in bytes or `-1` if unknown.  
+        /** Returns a [Dictionary] containing information about the current memory with the following entries:  
+         *  - `"physical"` - total amount of usable physical memory in bytes. This value can be slightly less than the actual physical memory amount, since it does not include memory reserved by the kernel and devices.  
+         *  - `"free"` - amount of physical memory, that can be immediately allocated without disk access or other costly operations, in bytes. The process might be able to allocate more physical memory, but this action will require moving inactive pages to disk, which can be expensive.  
+         *  - `"available"` - amount of memory that can be allocated without extending the swap file(s), in bytes. This value includes both physical memory and swap.  
+         *  - `"stack"` - size of the current thread stack in bytes.  
+         *      
+         *  **Note:** Each entry's value may be `-1` if it is unknown.  
          */
         static get_memory_info(): GDictionary
         
-        /** Moves the file or directory to the system's recycle bin. See also [method DirAccess.remove].  
+        /** Moves the file or directory at the given [param path] to the system's recycle bin. See also [method DirAccess.remove].  
          *  The method takes only global paths, so you may need to use [method ProjectSettings.globalize_path]. Do not use it for files in `res://` as it will not work in exported projects.  
+         *  Returns [constant FAILED] if the file or directory cannot be found, or the system does not support this method.  
+         *    
+         *      
+         *  **Note:** This method is implemented on Android, Linux, macOS and Windows.  
          *      
          *  **Note:** If the user has disabled the recycle bin on their system, the file will be permanently deleted instead.  
-         *    
          */
         static move_to_trash(path: string): Error
         
-        /** Returns the absolute directory path where user data is written (`user://`).  
-         *  On Windows, this is `%AppData%\Godot\app_userdata\[project_name]`, or `%AppData%\[custom_name]` if `use_custom_user_dir` is set. `%AppData%` expands to `%UserProfile%\AppData\Roaming`.  
-         *  On macOS, this is `~/Library/Application Support/Godot/app_userdata/[project_name]`, or `~/Library/Application Support/[custom_name]` if `use_custom_user_dir` is set.  
-         *  On Linux and BSD, this is `~/.local/share/godot/app_userdata/[project_name]`, or `~/.local/share/[custom_name]` if `use_custom_user_dir` is set.  
-         *  On Android and iOS, this is a sandboxed directory in either internal or external storage, depending on the user's configuration.  
-         *  On the web, this is a virtual directory managed by the browser.  
+        /** Returns the absolute directory path where user data is written (the `user://` directory in Godot). The path depends on the project name and [member ProjectSettings.application/config/use_custom_user_dir].  
+         *  - On Windows, this is `%AppData%\Godot\app_userdata\[project_name]`, or `%AppData%\[custom_name]` if `use_custom_user_dir` is set. `%AppData%` expands to `%UserProfile%\AppData\Roaming`.  
+         *  - On macOS, this is `~/Library/Application Support/Godot/app_userdata/[project_name]`, or `~/Library/Application Support/[custom_name]` if `use_custom_user_dir` is set.  
+         *  - On Linux and BSD, this is `~/.local/share/godot/app_userdata/[project_name]`, or `~/.local/share/[custom_name]` if `use_custom_user_dir` is set.  
+         *  - On Android and iOS, this is a sandboxed directory in either internal or external storage, depending on the user's configuration.  
+         *  - On Web, this is a virtual directory managed by the browser.  
          *  If the project name is empty, `[project_name]` falls back to `[unnamed project]`.  
          *  Not to be confused with [method get_data_dir], which returns the  *global*  (non-project-specific) user home directory.  
          */
         static get_user_data_dir(): string
         
-        /** Returns the actual path to commonly used folders across different platforms. Available locations are specified in [enum SystemDir].  
+        /** Returns the path to commonly used folders across different platforms, as defined by [param dir]. See the [enum SystemDir] constants for available locations.  
          *      
          *  **Note:** This method is implemented on Android, Linux, macOS and Windows.  
          *      
-         *  **Note:** Shared storage is implemented on Android and allows to differentiate between app specific and shared directories. Shared directories have additional restrictions on Android.  
+         *  **Note:** Shared storage is implemented on Android and allows to differentiate between app specific and shared directories, if [param shared_storage] is `true`. Shared directories have additional restrictions on Android.  
          */
         static get_system_dir(dir: OS.SystemDir, shared_storage: boolean = true): string
         
-        /** Returns the  *global*  user configuration directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [url=https://docs.godotengine.org/en/4.2/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_data_dir].  
+        /** Returns the  *global*  user configuration directory according to the operating system's standards.  
+         *  On the Linux/BSD platform, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [url=https://docs.godotengine.org/en/4.3/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_data_dir].  
          *  Not to be confused with [method get_user_data_dir], which returns the  *project-specific*  user data path.  
          */
         static get_config_dir(): string
         
-        /** Returns the  *global*  user data directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [url=https://docs.godotengine.org/en/4.2/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_config_dir].  
+        /** Returns the  *global*  user data directory according to the operating system's standards.  
+         *  On the Linux/BSD platform, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [url=https://docs.godotengine.org/en/4.3/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_config_dir].  
          *  Not to be confused with [method get_user_data_dir], which returns the  *project-specific*  user data path.  
          */
         static get_data_dir(): string
         
-        /** Returns the  *global*  cache data directory according to the operating system's standards. On the Linux/BSD platform, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [url=https://docs.godotengine.org/en/4.2/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_config_dir] and [method get_data_dir].  
+        /** Returns the  *global*  cache data directory according to the operating system's standards.  
+         *  On the Linux/BSD platform, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [url=https://docs.godotengine.org/en/4.3/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_config_dir] and [method get_data_dir].  
          *  Not to be confused with [method get_user_data_dir], which returns the  *project-specific*  user data path.  
          */
         static get_cache_dir(): string
         
         /** Returns a string that is unique to the device.  
          *      
-         *  **Note:** This string may change without notice if the user reinstalls/upgrades their operating system or changes their hardware. This means it should generally not be used to encrypt persistent data as the data saved before an unexpected ID change would become inaccessible. The returned string may also be falsified using external programs, so do not rely on the string returned by [method get_unique_id] for security purposes.  
+         *  **Note:** This string may change without notice if the user reinstalls their operating system, upgrades it, or modifies their hardware. This means it should generally not be used to encrypt persistent data, as the data saved before an unexpected ID change would become inaccessible. The returned string may also be falsified using external programs, so do not rely on the string returned by this method for security purposes.  
          *      
-         *  **Note:** Returns an empty string and prints an error on Web, as this method cannot be implemented on this platform.  
+         *  **Note:** On Web, returns an empty string and generates an error, as this method cannot be implemented for security reasons.  
          */
         static get_unique_id(): string
         
-        /** Returns the given keycode as a string (e.g. Return values: `"Escape"`, `"Shift+Escape"`).  
-         *  See also [member InputEventKey.keycode] and [method InputEventKey.get_keycode_with_modifiers].  
+        /** Returns the given keycode as a [String].  
+         *    
+         *  See also [method find_keycode_from_string], [member InputEventKey.keycode], and [method InputEventKey.get_keycode_with_modifiers].  
          */
         static get_keycode_string(code: Key): string
         
-        /** Returns `true` if the input keycode corresponds to a Unicode character. */
+        /** Returns `true` if the input keycode corresponds to a Unicode character. For a list of codes, see the [enum Key] constants.  
+         *    
+         */
         static is_keycode_unicode(code: int64): boolean
         
-        /** Returns the keycode of the given string (e.g. "Escape"). */
+        /** Finds the keycode for the given string. The returned values are equivalent to the [enum Key] constants.  
+         *    
+         *  See also [method get_keycode_string].  
+         */
         static find_keycode_from_string(string_: string): Key
         
-        /** Enables backup saves if [param enabled] is `true`. */
+        /** If [param enabled] is `true`, when opening a file for writing, a temporary file is used in its place. When closed, it is automatically applied to the target file.  
+         *  This can useful when files may be opened by other applications, such as antiviruses, text editors, or even the Godot editor itself.  
+         */
         static set_use_file_access_save_and_swap(enabled: boolean): void
         
-        /** Sets the name of the current thread. */
+        /** Assigns the given name to the current thread. Returns [constant ERR_UNAVAILABLE] if unavailable on the current platform. */
         static set_thread_name(name: string): Error
         
         /** Returns the ID of the current thread. This can be used in logs to ease debugging of multi-threaded applications.  
@@ -1147,184 +1234,207 @@ declare module "godot" {
          */
         static get_main_thread_id(): int64
         
-        /** Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build, etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [url=https://docs.godotengine.org/en/4.2/tutorials/export/feature_tags.html]Feature Tags[/url] documentation for more details.  
+        /** Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build, etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [url=https://docs.godotengine.org/en/4.3/tutorials/export/feature_tags.html]Feature Tags[/url] documentation for more details.  
          *      
          *  **Note:** Tag names are case-sensitive.  
          *      
-         *  **Note:** On the web platform, one of the following additional tags is defined to indicate host platform: `web_android`, `web_ios`, `web_linuxbsd`, `web_macos`, or `web_windows`.  
-         *      
-         *  **Note:** On the iOS simulator, the additional `simulator` tag is defined.  
+         *  **Note:** On the Web platform, one of the following additional tags is defined to indicate the host platform: `web_android`, `web_ios`, `web_linuxbsd`, `web_macos`, or `web_windows`.  
          */
         static has_feature(tag_name: string): boolean
         
-        /** Returns `true` if application is running in the sandbox.  
+        /** Returns `true` if the application is running in the sandbox.  
          *      
-         *  **Note:** This method is implemented on macOS and Linux.  
+         *  **Note:** This method is only implemented on macOS and Linux.  
          */
         static is_sandboxed(): boolean
         
-        /** At the moment this function is only used by `AudioDriverOpenSL` to request permission for `RECORD_AUDIO` on Android. */
+        /** Requests permission from the OS for the given [param name]. Returns `true` if the permission has been successfully granted.  
+         *      
+         *  **Note:** This method is currently only implemented on Android, to specifically request permission for `"RECORD_AUDIO"` by `AudioDriverOpenSL`.  
+         */
         static request_permission(name: string): boolean
         
-        /** With this function, you can request dangerous permissions since normal permissions are automatically granted at install time in Android applications.  
+        /** Requests  *dangerous*  permissions from the OS. Returns `true` if permissions have been successfully granted.  
          *      
-         *  **Note:** This method is implemented only on Android.  
+         *  **Note:** This method is only implemented on Android. Normal permissions are automatically granted at install time in Android applications.  
          */
         static request_permissions(): boolean
         
-        /** On Android devices: With this function, you can get the list of dangerous permissions that have been granted.  
-         *  On macOS (sandboxed applications only): This function returns the list of user selected folders accessible to the application. Use native file dialog to request folder access permission.  
+        /** On Android devices: Returns the list of dangerous permissions that have been granted.  
+         *  On macOS: Returns the list of user selected folders accessible to the application (sandboxed applications only). Use the native file dialog to request folder access permission.  
          */
         static get_granted_permissions(): PackedStringArray
         
         /** On macOS (sandboxed applications only), this function clears list of user selected folders accessible to the application. */
         static revoke_granted_permissions(): void
         
-        /** If `true`, the engine optimizes for low processor usage by only refreshing the screen if needed. Can improve battery consumption on mobile. */
+        /** If `true`, the engine optimizes for low processor usage by only refreshing the screen if needed. Can improve battery consumption on mobile.  
+         *      
+         *  **Note:** On start-up, this is the same as [member ProjectSettings.application/run/low_processor_mode].  
+         */
         get low_processor_usage_mode(): boolean
         set low_processor_usage_mode(value: boolean)
         
-        /** The amount of sleeping between frames when the low-processor usage mode is enabled (in microseconds). Higher values will result in lower CPU usage. */
+        /** The amount of sleeping between frames when the low-processor usage mode is enabled, in microseconds. Higher values will result in lower CPU usage. See also [member low_processor_usage_mode].  
+         *      
+         *  **Note:** On start-up, this is the same as [member ProjectSettings.application/run/low_processor_mode_sleep_usec].  
+         */
         get low_processor_usage_mode_sleep_usec(): int64
         set low_processor_usage_mode_sleep_usec(value: int64)
         
-        /** If `true`, the engine filters the time delta measured between each frame, and attempts to compensate for random variation. This will only operate on systems where V-Sync is active. */
+        /** If `true`, the engine filters the time delta measured between each frame, and attempts to compensate for random variation. This only works on systems where V-Sync is active.  
+         *      
+         *  **Note:** On start-up, this is the same as [member ProjectSettings.application/run/delta_smoothing].  
+         */
         get delta_smoothing(): boolean
         set delta_smoothing(value: boolean)
     }
     // // Singleton Class
     /** Provides access to engine properties.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_engine.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_engine.html  
      */
     class Engine extends Object {
         /** Returns the fraction through the current physics tick we are at the time of rendering the frame. This can be used to implement fixed timestep interpolation. */
         static get_physics_interpolation_fraction(): float64
         
-        /** Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with `--disable-render-loop` via command line, [method get_frames_drawn] always returns `0`. See [method get_process_frames]. */
+        /** Returns the total number of frames drawn since the engine started.  
+         *      
+         *  **Note:** On headless platforms, or if rendering is disabled with `--disable-render-loop` via command line, this method always returns `0`. See also [method get_process_frames].  
+         */
         static get_frames_drawn(): int64
         
-        /** Returns the frames per second of the running game. */
+        /** Returns the average frames rendered every second (FPS), also known as the framerate. */
         static get_frames_per_second(): float64
         
-        /** Returns the total number of frames passed since engine initialization which is advanced on each **physics frame**. See also [method get_process_frames].  
-         *  [method get_physics_frames] can be used to run expensive logic less often without relying on a [Timer]:  
+        /** Returns the total number of frames passed since the engine started. This number is increased every **physics frame**. See also [method get_process_frames].  
+         *  This method can be used to run expensive logic less often without relying on a [Timer]:  
          *    
          */
         static get_physics_frames(): int64
         
-        /** Returns the total number of frames passed since engine initialization which is advanced on each **process frame**, regardless of whether the render loop is enabled. See also [method get_frames_drawn] and [method get_physics_frames].  
-         *  [method get_process_frames] can be used to run expensive logic less often without relying on a [Timer]:  
+        /** Returns the total number of frames passed since the engine started. This number is increased every **process frame**, regardless of whether the render loop is enabled. See also [method get_frames_drawn] and [method get_physics_frames].  
+         *  This method can be used to run expensive logic less often without relying on a [Timer]:  
          *    
          */
         static get_process_frames(): int64
         
-        /** Returns the main loop object (see [MainLoop] and [SceneTree]). */
+        /** Returns the instance of the [MainLoop]. This is usually the main [SceneTree] and is the same as [method Node.get_tree].  
+         *      
+         *  **Note:** The type instantiated as the main loop can changed with [member ProjectSettings.application/run/main_loop_type].  
+         */
         static get_main_loop(): MainLoop
         
-        /** Returns the current engine version information in a Dictionary.  
-         *  `major`    - Holds the major version number as an int  
-         *  `minor`    - Holds the minor version number as an int  
-         *  `patch`    - Holds the patch version number as an int  
-         *  `hex`      - Holds the full version number encoded as a hexadecimal int with one byte (2 places) per number (see example below)  
-         *  `status`   - Holds the status (e.g. "beta", "rc1", "rc2", ... "stable") as a String  
-         *  `build`    - Holds the build name (e.g. "custom_build") as a String  
-         *  `hash`     - Holds the full Git commit hash as a String  
-         *  `year`     - Holds the year the version was released in as an int  
-         *  `string`   - `major` + `minor` + `patch` + `status` + `build` in a single String  
-         *  The `hex` value is encoded as follows, from left to right: one byte for the major, one byte for the minor, one byte for the patch version. For example, "3.1.12" would be `0x03010C`.     
-         *  **Note:** It's still an int internally, and printing it will give you its decimal representation, which is not particularly meaningful. Use hexadecimal literals for easy version comparisons from code:  
+        /** Returns the current engine version information as a [Dictionary] containing the following entries:  
+         *  - `major` - Major version number as an int;  
+         *  - `minor` - Minor version number as an int;  
+         *  - `patch` - Patch version number as an int;  
+         *  - `hex` - Full version encoded as a hexadecimal int with one byte (2 hex digits) per number (see example below);  
+         *  - `status` - Status (such as "beta", "rc1", "rc2", "stable", etc.) as a String;  
+         *  - `build` - Build name (e.g. "custom_build") as a String;  
+         *  - `hash` - Full Git commit hash as a String;  
+         *  - `timestamp` - Holds the Git commit date UNIX timestamp in seconds as an int, or `0` if unavailable;  
+         *  - `string` - `major`, `minor`, `patch`, `status`, and `build` in a single String.  
+         *  The `hex` value is encoded as follows, from left to right: one byte for the major, one byte for the minor, one byte for the patch version. For example, "3.1.12" would be `0x03010C`.  
+         *      
+         *  **Note:** The `hex` value is still an [int] internally, and printing it will give you its decimal representation, which is not particularly meaningful. Use hexadecimal literals for quick version comparisons from code:  
          *    
          */
         static get_version_info(): GDictionary
         
-        /** Returns engine author information in a Dictionary.  
-         *  `lead_developers`    - Array of Strings, lead developer names  
-         *  `founders`           - Array of Strings, founder names  
-         *  `project_managers`   - Array of Strings, project manager names  
-         *  `developers`         - Array of Strings, developer names  
-         */
+        /** Returns the engine author information as a [Dictionary], where each entry is an [Array] of strings with the names of notable contributors to the Godot Engine: `lead_developers`, `founders`, `project_managers`, and `developers`. */
         static get_author_info(): GDictionary
         
-        /** Returns an Array of copyright information Dictionaries.  
-         *  `name`    - String, component name  
-         *  `parts`   - Array of Dictionaries {`files`, `copyright`, `license`} describing subsections of the component  
+        /** Returns an [Array] of dictionaries with copyright information for every component of Godot's source code.  
+         *  Every [Dictionary] contains a `name` identifier, and a `parts` array of dictionaries. It describes the component in detail with the following entries:  
+         *  - `files` - [Array] of file paths from the source code affected by this component;  
+         *  - `copyright` - [Array] of owners of this component;  
+         *  - `license` - The license applied to this component (such as "[url=https://en.wikipedia.org/wiki/MIT_License#Ambiguity_and_variants]Expat[/url]" or "[url=https://creativecommons.org/licenses/by/4.0/]CC-BY-4.0[/url]").  
          */
         static get_copyright_info(): GArray
         
-        /** Returns a Dictionary of Arrays of donor names.  
+        /** Returns a [Dictionary] of categorized donor names. Each entry is an [Array] of strings:  
          *  {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`, `gold_donors`, `silver_donors`, `bronze_donors`}  
          */
         static get_donor_info(): GDictionary
         
-        /** Returns Dictionary of licenses used by Godot and included third party components. */
+        /** Returns a [Dictionary] of licenses used by Godot and included third party components. Each entry is a license name (such as "[url=https://en.wikipedia.org/wiki/MIT_License#Ambiguity_and_variants]Expat[/url]") and its associated text. */
         static get_license_info(): GDictionary
         
-        /** Returns Godot license text. */
+        /** Returns the full Godot license text. */
         static get_license_text(): string
         
-        /** Returns the name of the CPU architecture the Godot binary was built for. Possible return values are `x86_64`, `x86_32`, `arm64`, `arm32`, `rv64`, `riscv`, `ppc64`, `ppc`, `wasm64` and `wasm32`.  
-         *  To detect whether the current CPU architecture is 64-bit, you can use the fact that all 64-bit architecture names have `64` in their name:  
+        /** Returns the name of the CPU architecture the Godot binary was built for. Possible return values include `"x86_64"`, `"x86_32"`, `"arm64"`, `"arm32"`, `"rv64"`, `"riscv"`, `"ppc64"`, `"ppc"`, `"wasm64"`, and `"wasm32"`.  
+         *  To detect whether the current build is 64-bit, you can use the fact that all 64-bit architecture names contain `64` in their name:  
          *    
          *      
-         *  **Note:** [method get_architecture_name] does  *not*  return the name of the host CPU architecture. For example, if running an x86_32 Godot binary on a x86_64 system, the returned value will be `x86_32`.  
+         *  **Note:** This method does  *not*  return the name of the system's CPU architecture (like [method OS.get_processor_name]). For example, when running an `x86_32` Godot binary on an `x86_64` system, the returned value will still be `"x86_32"`.  
          */
         static get_architecture_name(): string
         
-        /** Returns `true` if the game is inside the fixed process and physics phase of the game loop. */
+        /** Returns `true` if the engine is inside the fixed physics process step of the main loop.  
+         *    
+         */
         static is_in_physics_frame(): boolean
         
-        /** Returns `true` if a singleton with given [param name] exists in global scope. */
+        /** Returns `true` if a singleton with the given [param name] exists in the global scope. See also [method get_singleton].  
+         *    
+         *      
+         *  **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the project settings.  
+         */
         static has_singleton(name: StringName): boolean
         
-        /** Returns a global singleton with given [param name]. Often used for plugins, e.g. GodotPayments. */
+        /** Returns the global singleton with the given [param name], or `null` if it does not exist. Often used for plugins. See also [method has_singleton] and [method get_singleton_list].  
+         *      
+         *  **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the project settings.  
+         */
         static get_singleton(name: StringName): Object
         
-        /** Registers the given object as a singleton, globally available under [param name]. */
+        /** Registers the given [Object] [param instance] as a singleton, available globally under [param name]. Useful for plugins. */
         static register_singleton(name: StringName, instance: Object): void
         
-        /** Unregisters the singleton registered under [param name]. The singleton object is not freed. Only works with user-defined singletons created with [method register_singleton]. */
+        /** Removes the singleton registered under [param name]. The singleton object is  *not*  freed. Only works with user-defined singletons registered with [method register_singleton]. */
         static unregister_singleton(name: StringName): void
         
-        /** Returns a list of available global singletons. */
+        /** Returns a list of names of all available global singletons. See also [method get_singleton]. */
         static get_singleton_list(): PackedStringArray
         
         /** Registers a [ScriptLanguage] instance to be available with `ScriptServer`.  
          *  Returns:  
-         *  - [constant OK] on success  
-         *  - [constant ERR_UNAVAILABLE] if `ScriptServer` has reached it limit and cannot register any new language  
-         *  - [constant ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar extension/name/type  
+         *  - [constant OK] on success;  
+         *  - [constant ERR_UNAVAILABLE] if `ScriptServer` has reached the limit and cannot register any new language;  
+         *  - [constant ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar extension/name/type.  
          */
         static register_script_language(language: ScriptLanguage): Error
         
         /** Unregisters the [ScriptLanguage] instance from `ScriptServer`.  
          *  Returns:  
-         *  - [constant OK] on success  
-         *  - [constant ERR_DOES_NOT_EXIST] if the language is already not registered in `ScriptServer`  
+         *  - [constant OK] on success;  
+         *  - [constant ERR_DOES_NOT_EXIST] if the language is not registered in `ScriptServer`.  
          */
         static unregister_script_language(language: ScriptLanguage): Error
         
         /** Returns the number of available script languages. Use with [method get_script_language]. */
         static get_script_language_count(): int64
         
-        /** Returns an instance of a [ScriptLanguage] with the given index. */
+        /** Returns an instance of a [ScriptLanguage] with the given [param index]. */
         static get_script_language(index: int64): ScriptLanguage
         
-        /** Returns `true` if the script is currently running inside the editor, `false` otherwise. This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:  
+        /** Returns `true` if the script is currently running inside the editor, otherwise returns `false`. This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:  
          *    
-         *  See [url=https://docs.godotengine.org/en/4.2/tutorials/plugins/running_code_in_the_editor.html]Running code in the editor[/url] in the documentation for more information.  
+         *  See [url=https://docs.godotengine.org/en/4.3/tutorials/plugins/running_code_in_the_editor.html]Running code in the editor[/url] in the documentation for more information.  
          *      
-         *  **Note:** To detect whether the script is run from an editor  *build*  (e.g. when pressing [kbd]F5[/kbd]), use [method OS.has_feature] with the `"editor"` argument instead. `OS.has_feature("editor")` will evaluate to `true` both when the code is running in the editor and when running the project from the editor, but it will evaluate to `false` when the code is run from an exported project.  
+         *  **Note:** To detect whether the script is running on an editor  *build*  (such as when pressing [kbd]F5[/kbd]), use [method OS.has_feature] with the `"editor"` argument instead. `OS.has_feature("editor")` evaluate to `true` both when the script is running in the editor and when running the project from the editor, but returns `false` when run from an exported project.  
          */
         static is_editor_hint(): boolean
         
-        /** Returns the path to the [MovieWriter]'s output file, or an empty string if the engine wasn't started in Movie Maker mode. This path can be absolute or relative depending on how the user specified it. */
+        /** Returns the path to the [MovieWriter]'s output file, or an empty string if the engine wasn't started in Movie Maker mode. The default path can be changed in [member ProjectSettings.editor/movie_writer/movie_file]. */
         static get_write_movie_path(): string
         
         /** If `false`, stops printing error and warning messages to the console and editor Output log. This can be used to hide error and warning messages during unit test suite runs. This property is equivalent to the [member ProjectSettings.application/run/disable_stderr] project setting.  
-         *  **Warning:** If you set this to `false` anywhere in the project, important error messages may be hidden even if they are emitted from other scripts. If this is set to `false` in a `@tool` script, this will also impact the editor itself. Do  *not*  report bugs before ensuring error messages are enabled (as they are by default).  
          *      
          *  **Note:** This property does not impact the editor's Errors tab when running a project from the editor.  
+         *  **Warning:** If set to `false` anywhere in the project, important error messages may be hidden even if they are emitted from other scripts. In a `@tool` script, this will also impact the editor itself. Do  *not*  report bugs before ensuring error messages are enabled (as they are by default).  
          */
         get print_error_messages(): boolean
         set print_error_messages(value: boolean)
@@ -1336,27 +1446,43 @@ declare module "godot" {
         get physics_ticks_per_second(): int64
         set physics_ticks_per_second(value: int64)
         
-        /** Controls the maximum number of physics steps that can be simulated each rendered frame. The default value is tuned to avoid "spiral of death" situations where expensive physics simulations trigger more expensive simulations indefinitely. However, the game will appear to slow down if the rendering FPS is less than `1 / max_physics_steps_per_frame` of [member physics_ticks_per_second]. This occurs even if `delta` is consistently used in physics calculations. To avoid this, increase [member max_physics_steps_per_frame] if you have increased [member physics_ticks_per_second] significantly above its default value. */
+        /** The maximum number of physics steps that can be simulated each rendered frame.  
+         *      
+         *  **Note:** The default value is tuned to prevent expensive physics simulations from triggering even more expensive simulations indefinitely. However, the game will appear to slow down if the rendering FPS is less than `1 / max_physics_steps_per_frame` of [member physics_ticks_per_second]. This occurs even if `delta` is consistently used in physics calculations. To avoid this, increase [member max_physics_steps_per_frame] if you have increased [member physics_ticks_per_second] significantly above its default value.  
+         */
         get max_physics_steps_per_frame(): int64
         set max_physics_steps_per_frame(value: int64)
         
-        /** The maximum number of frames per second that can be rendered. A value of `0` means "no limit". The actual number of frames per second may still be below this value if the CPU or GPU cannot keep up with the project logic and rendering.  
-         *  Limiting the FPS can be useful to reduce system power consumption, which reduces heat and noise emissions (and improves battery life on mobile devices).  
-         *  If [member ProjectSettings.display/window/vsync/vsync_mode] is `Enabled` or `Adaptive`, it takes precedence and the forced FPS number cannot exceed the monitor's refresh rate.  
-         *  If [member ProjectSettings.display/window/vsync/vsync_mode] is `Enabled`, on monitors with variable refresh rate enabled (G-Sync/FreeSync), using a FPS limit a few frames lower than the monitor's refresh rate will [url=https://blurbusters.com/howto-low-lag-vsync-on/]reduce input lag while avoiding tearing[/url].  
-         *  If [member ProjectSettings.display/window/vsync/vsync_mode] is `Disabled`, limiting the FPS to a high value that can be consistently reached on the system can reduce input lag compared to an uncapped framerate. Since this works by ensuring the GPU load is lower than 100%, this latency reduction is only effective in GPU-bottlenecked scenarios, not CPU-bottlenecked scenarios.  
+        /** The maximum number of frames that can be rendered every second (FPS). A value of `0` means the framerate is uncapped.  
+         *  Limiting the FPS can be useful to reduce the host machine's power consumption, which reduces heat, noise emissions, and improves battery life.  
+         *  If [member ProjectSettings.display/window/vsync/vsync_mode] is **Enabled** or **Adaptive**, the setting takes precedence and the max FPS number cannot exceed the monitor's refresh rate.  
+         *  If [member ProjectSettings.display/window/vsync/vsync_mode] is **Enabled**, on monitors with variable refresh rate enabled (G-Sync/FreeSync), using an FPS limit a few frames lower than the monitor's refresh rate will [url=https://blurbusters.com/howto-low-lag-vsync-on/]reduce input lag while avoiding tearing[/url].  
          *  See also [member physics_ticks_per_second] and [member ProjectSettings.application/run/max_fps].  
+         *      
+         *  **Note:** The actual number of frames per second may still be below this value if the CPU or GPU cannot keep up with the project's logic and rendering.  
+         *      
+         *  **Note:** If [member ProjectSettings.display/window/vsync/vsync_mode] is **Disabled**, limiting the FPS to a high value that can be consistently reached on the system can reduce input lag compared to an uncapped framerate. Since this works by ensuring the GPU load is lower than 100%, this latency reduction is only effective in GPU-bottlenecked scenarios, not CPU-bottlenecked scenarios.  
          */
         get max_fps(): int64
         set max_fps(value: int64)
         
-        /** Controls how fast or slow the in-game clock ticks versus the real life one. It defaults to 1.0. A value of 2.0 means the game moves twice as fast as real life, whilst a value of 0.5 means the game moves at half the regular speed. This also affects [Timer] and [SceneTreeTimer] (see [method SceneTree.create_timer] for how to control this). */
+        /** The speed multiplier at which the in-game clock updates, compared to real time. For example, if set to `2.0` the game runs twice as fast, and if set to `0.5` the game runs half as fast.  
+         *  This value affects [Timer], [SceneTreeTimer], and all other simulations that make use of `delta` time (such as [method Node._process] and [method Node._physics_process]).  
+         *      
+         *  **Note:** It's recommended to keep this property above `0.0`, as the game may behave unexpectedly otherwise.  
+         *      
+         *  **Note:** This does not affect audio playback speed. Use [member AudioServer.playback_speed_scale] to adjust audio playback speed independently of [member Engine.time_scale].  
+         *      
+         *  **Note:** This does not automatically adjust [member physics_ticks_per_second]. With values above `1.0` physics simulation may become less precise, as each physics tick will stretch over a larger period of engine time. If you're modifying [member Engine.time_scale] to speed up simulation by a large factor, consider also increasing [member physics_ticks_per_second] to make the simulation more reliable.  
+         */
         get time_scale(): float64
         set time_scale(value: float64)
         
-        /** Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be good enough for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.  
+        /** How much physics ticks are synchronized with real time. If `0` or less, the ticks are fully synchronized. Higher values cause the in-game clock to deviate more from the real clock, but they smooth out framerate jitters.  
          *      
-         *  **Note:** For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting [member physics_jitter_fix] to `0`.  
+         *  **Note:** The default value of `0.5` should be good enough for most cases; values above `2` could cause the game to react to dropped frames with a noticeable delay and are not recommended.  
+         *      
+         *  **Note:** When using a custom physics interpolation solution, or within a network game, it's recommended to disable the physics jitter fix by setting this property to `0`.  
          */
         get physics_jitter_fix(): float64
         set physics_jitter_fix(value: float64)
@@ -1364,7 +1490,7 @@ declare module "godot" {
     // // Singleton Class
     /** A class information repository.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_classdb.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_classdb.html  
      */
     class ClassDB extends Object {
         /** Returns the names of all the classes available. */
@@ -1406,8 +1532,14 @@ declare module "godot" {
         /** Sets [param property] value of [param object] to [param value]. */
         static class_set_property(object: Object, property: StringName, value: any): Error
         
+        /** Returns the default value of [param property] of [param class] or its ancestor classes. */
+        static class_get_property_default_value(class_: StringName, property: StringName): any
+        
         /** Returns whether [param class] (or its ancestry if [param no_inheritance] is `false`) has a method called [param method] or not. */
         static class_has_method(class_: StringName, method: StringName, no_inheritance: boolean = false): boolean
+        
+        /** Returns the number of arguments of the method [param method] of [param class] or its ancestry if [param no_inheritance] is `false`. */
+        static class_get_method_argument_count(class_: StringName, method: StringName, no_inheritance: boolean = false): int64
         
         /** Returns an array with all the methods of [param class] or its ancestry if [param no_inheritance] is `false`. Every element of the array is a [Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.  
          *      
@@ -1436,13 +1568,16 @@ declare module "godot" {
         /** Returns which enum the integer constant [param name] of [param class] or its ancestry belongs to. */
         static class_get_integer_constant_enum(class_: StringName, name: StringName, no_inheritance: boolean = false): StringName
         
+        /** Returns whether [param class] (or its ancestor classes if [param no_inheritance] is `false`) has an enum called [param enum] that is a bitfield. */
+        static is_class_enum_bitfield(class_: StringName, enum_: StringName, no_inheritance: boolean = false): boolean
+        
         /** Returns whether this [param class] is enabled or not. */
         static is_class_enabled(class_: StringName): boolean
     }
     // // Singleton Class
     /** Data transformation (marshaling) and encoding helpers.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_marshalls.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_marshalls.html  
      */
     class Marshalls extends Object {
         /** Returns a Base64-encoded string of the [Variant] [param variant]. If [param full_objects] is `true`, encoding objects is allowed (and can potentially include code).  
@@ -1471,7 +1606,7 @@ declare module "godot" {
     // // Singleton Class
     /** The server responsible for language translations.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_translationserver.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_translationserver.html  
      */
     class TranslationServer extends Object {
         /** Sets the locale of the project. The [param locale] string will be standardized to match known locales (e.g. `en-US` would be matched to `en_US`).  
@@ -1586,10 +1721,10 @@ declare module "godot" {
             /** Cross cursor. Typically appears over regions in which a drawing operation can be performed or for selections. */
             CURSOR_CROSS = 3,
             
-            /** Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread). */
+            /** Wait cursor. Indicates that the application is busy performing an operation, and that it cannot be used during the operation (e.g. something is blocking its main thread). */
             CURSOR_WAIT = 4,
             
-            /** Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation. */
+            /** Busy cursor. Indicates that the application is busy performing an operation, and that it is still usable during the operation. */
             CURSOR_BUSY = 5,
             
             /** Drag cursor. Usually displayed when dragging something.  
@@ -1631,7 +1766,7 @@ declare module "godot" {
     }
     /** A singleton for handling inputs.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_input.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_input.html  
      */
     class Input extends Object {
         /** Returns `true` if any action, key, joypad button, or mouse button is being pressed. This will also return `true` if any action is simulated via code by calling [method action_press]. */
@@ -1640,14 +1775,14 @@ declare module "godot" {
         /** Returns `true` if you are pressing the Latin key in the current keyboard layout. You can pass a [enum Key] constant.  
          *  [method is_key_pressed] is only recommended over [method is_physical_key_pressed] in non-game applications. This ensures that shortcut keys behave as expected depending on the user's keyboard layout, as keyboard shortcuts are generally dependent on the keyboard layout in non-game applications. If in doubt, use [method is_physical_key_pressed].  
          *      
-         *  **Note:** Due to keyboard ghosting, [method is_key_pressed] may return `false` even if one of the action's keys is pressed. See [url=https://docs.godotengine.org/en/4.2/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
+         *  **Note:** Due to keyboard ghosting, [method is_key_pressed] may return `false` even if one of the action's keys is pressed. See [url=https://docs.godotengine.org/en/4.3/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
          */
         static is_key_pressed(keycode: Key): boolean
         
         /** Returns `true` if you are pressing the key in the physical location on the 101/102-key US QWERTY keyboard. You can pass a [enum Key] constant.  
          *  [method is_physical_key_pressed] is recommended over [method is_key_pressed] for in-game actions, as it will make [kbd]W[/kbd]/[kbd]A[/kbd]/[kbd]S[/kbd]/[kbd]D[/kbd] layouts work regardless of the user's keyboard layout. [method is_physical_key_pressed] will also ensure that the top row number keys work on any keyboard layout. If in doubt, use [method is_physical_key_pressed].  
          *      
-         *  **Note:** Due to keyboard ghosting, [method is_physical_key_pressed] may return `false` even if one of the action's keys is pressed. See [url=https://docs.godotengine.org/en/4.2/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
+         *  **Note:** Due to keyboard ghosting, [method is_physical_key_pressed] may return `false` even if one of the action's keys is pressed. See [url=https://docs.godotengine.org/en/4.3/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
          */
         static is_physical_key_pressed(keycode: Key): boolean
         
@@ -1663,7 +1798,7 @@ declare module "godot" {
         /** Returns `true` if you are pressing the action event.  
          *  If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.  
          *      
-         *  **Note:** Due to keyboard ghosting, [method is_action_pressed] may return `false` even if one of the action's keys is pressed. See [url=https://docs.godotengine.org/en/4.2/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
+         *  **Note:** Due to keyboard ghosting, [method is_action_pressed] may return `false` even if one of the action's keys is pressed. See [url=https://docs.godotengine.org/en/4.3/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
          */
         static is_action_pressed(action: StringName, exact_match: boolean = false): boolean
         
@@ -1673,7 +1808,7 @@ declare module "godot" {
          *      
          *  **Note:** Returning `true` does not imply that the action is  *still*  pressed. An action can be pressed and released again rapidly, and `true` will still be returned so as not to miss input.  
          *      
-         *  **Note:** Due to keyboard ghosting, [method is_action_just_pressed] may return `false` even if one of the action's keys is pressed. See [url=https://docs.godotengine.org/en/4.2/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
+         *  **Note:** Due to keyboard ghosting, [method is_action_just_pressed] may return `false` even if one of the action's keys is pressed. See [url=https://docs.godotengine.org/en/4.3/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.  
          *      
          *  **Note:** During input handling (e.g. [method Node._input]), use [method InputEvent.is_action_pressed] instead to query the action state of the current event.  
          */
@@ -1724,7 +1859,7 @@ declare module "godot" {
         /** Returns the name of the joypad at the specified device index, e.g. `PS4 Controller`. Godot uses the [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to determine gamepad names. */
         static get_joy_name(device: int64): string
         
-        /** Returns a SDL2-compatible device GUID on platforms that use gamepad remapping, e.g. `030000004c050000c405000000010000`. Returns `"Default Gamepad"` otherwise. Godot uses the [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to determine gamepad names and mappings based on this GUID. */
+        /** Returns an SDL2-compatible device GUID on platforms that use gamepad remapping, e.g. `030000004c050000c405000000010000`. Returns `"Default Gamepad"` otherwise. Godot uses the [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to determine gamepad names and mappings based on this GUID. */
         static get_joy_guid(device: int64): string
         
         /** Returns a dictionary with extra platform-specific information about the device, e.g. the raw gamepad name from the OS or the Steam Input index.  
@@ -1756,6 +1891,8 @@ declare module "godot" {
         /** Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. [param weak_magnitude] is the strength of the weak motor (between 0 and 1) and [param strong_magnitude] is the strength of the strong motor (between 0 and 1). [param duration] is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely). The vibration can be stopped early by calling [method stop_joy_vibration].  
          *      
          *  **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.  
+         *      
+         *  **Note:** For macOS, vibration is only supported in macOS 11 and later.  
          */
         static start_joy_vibration(device: int64, weak_magnitude: float64, strong_magnitude: float64, duration: float64 = 0): void
         
@@ -1763,6 +1900,7 @@ declare module "godot" {
         static stop_joy_vibration(device: int64): void
         
         /** Vibrate the handheld device for the specified duration in milliseconds.  
+         *  [param amplitude] is the strength of the vibration, as a value between `0.0` and `1.0`. If set to `-1.0`, the default vibration strength of the device is used.  
          *      
          *  **Note:** This method is implemented on Android, iOS, and Web. It has no effect on other platforms.  
          *      
@@ -1770,9 +1908,11 @@ declare module "godot" {
          *      
          *  **Note:** For iOS, specifying the duration is only supported in iOS 13 and later.  
          *      
+         *  **Note:** For Web, the amplitude cannot be changed.  
+         *      
          *  **Note:** Some web browsers such as Safari and Firefox for Android do not support [method vibrate_handheld].  
          */
-        static vibrate_handheld(duration_ms: int64 = 500): void
+        static vibrate_handheld(duration_ms: int64 = 500, amplitude: float64 = -1): void
         
         /** Returns the gravity in m/s² of the device's accelerometer sensor, if the device has one. Otherwise, the method returns [constant Vector3.ZERO].  
          *      
@@ -1826,6 +1966,9 @@ declare module "godot" {
         /** Returns the last mouse velocity. To provide a precise and jitter-free velocity, mouse velocity is only calculated every 0.1s. Therefore, mouse velocity will lag mouse movements. */
         static get_last_mouse_velocity(): Vector2
         
+        /** Returns the last mouse velocity in screen coordinates. To provide a precise and jitter-free velocity, mouse velocity is only calculated every 0.1s. Therefore, mouse velocity will lag mouse movements. */
+        static get_last_mouse_screen_velocity(): Vector2
+        
         /** Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to [method DisplayServer.mouse_get_button_state]. */
         static get_mouse_button_mask(): MouseButtonMask
         
@@ -1858,7 +2001,7 @@ declare module "godot" {
         static get_current_cursor_shape(): Input.CursorShape
         
         /** Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can also be specified. Passing `null` to the image parameter resets to the system cursor. See [enum CursorShape] for the list of shapes.  
-         *  [param image]'s size must be lower than or equal to 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.  
+         *  [param image] can be either [Texture2D] or [Image] and its size must be lower than or equal to 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.  
          *  [param hotspot] must be within [param image]'s size.  
          *      
          *  **Note:** [AnimatedTexture]s aren't supported as custom mouse cursors. If using an [AnimatedTexture], only the first frame will be displayed.  
@@ -1894,13 +2037,21 @@ declare module "godot" {
         get use_accumulated_input(): boolean
         set use_accumulated_input(value: boolean)
         
+        /** If `true`, sends mouse input events when tapping or swiping on the touchscreen. See also [member ProjectSettings.input_devices/pointing/emulate_mouse_from_touch]. */
+        get emulate_mouse_from_touch(): boolean
+        set emulate_mouse_from_touch(value: boolean)
+        
+        /** If `true`, sends touch input events when clicking or dragging the mouse. See also [member ProjectSettings.input_devices/pointing/emulate_touch_from_mouse]. */
+        get emulate_touch_from_mouse(): boolean
+        set emulate_touch_from_mouse(value: boolean)
+        
         /** Emitted when a joypad device has been connected or disconnected. */
         static readonly joy_connection_changed: Signal2<int64, boolean>
     }
     // // Singleton Class
     /** A singleton that manages all [InputEventAction]s.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_inputmap.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_inputmap.html  
      */
     class InputMap extends Object {
         /** Returns `true` if the [InputMap] has a registered action with the given name. */
@@ -1952,7 +2103,7 @@ declare module "godot" {
     // // Singleton Class
     /** Exposes the internal debugger.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_enginedebugger.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_enginedebugger.html  
      */
     class EngineDebugger extends Object {
         /** Returns `true` if the debugger is active otherwise `false`. */
@@ -1987,8 +2138,44 @@ declare module "godot" {
         /** Returns `true` if a capture with the given name is present otherwise `false`. */
         static has_capture(name: StringName): boolean
         
+        /** Forces a processing loop of debugger events. The purpose of this method is just processing events every now and then when the script might get too busy, so that bugs like infinite loops can be caught */
+        static line_poll(): void
+        
         /** Sends a message with given [param message] and [param data] array. */
         static send_message(message: string, data: GArray): void
+        
+        /** Starts a debug break in script execution, optionally specifying whether the program can continue based on [param can_continue] and whether the break was due to a breakpoint. */
+        static debug(can_continue: boolean = true, is_error_breakpoint: boolean = false): void
+        
+        /** Starts a debug break in script execution, optionally specifying whether the program can continue based on [param can_continue] and whether the break was due to a breakpoint. */
+        static script_debug(language: ScriptLanguage, can_continue: boolean = true, is_error_breakpoint: boolean = false): void
+        
+        /** Sets the current debugging lines that remain. */
+        static set_lines_left(lines: int64): void
+        
+        /** Returns the number of lines that remain. */
+        static get_lines_left(): int64
+        
+        /** Sets the current debugging depth. */
+        static set_depth(depth: int64): void
+        
+        /** Returns the current debug depth. */
+        static get_depth(): int64
+        
+        /** Returns `true` if the given [param source] and [param line] represent an existing breakpoint. */
+        static is_breakpoint(line: int64, source: StringName): boolean
+        
+        /** Returns `true` if the debugger is skipping breakpoints otherwise `false`. */
+        static is_skipping_breakpoints(): boolean
+        
+        /** Inserts a new breakpoint with the given [param source] and [param line]. */
+        static insert_breakpoint(line: int64, source: StringName): void
+        
+        /** Removes a breakpoint with the given [param source] and [param line]. */
+        static remove_breakpoint(line: int64, source: StringName): void
+        
+        /** Clears all breakpoints. */
+        static clear_breakpoints(): void
     }
     // // Singleton Class
     namespace Time {
@@ -2054,7 +2241,7 @@ declare module "godot" {
     }
     /** A singleton for working with time data.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_time.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_time.html  
      */
     class Time extends Object {
         /** Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.  
@@ -2142,7 +2329,7 @@ declare module "godot" {
          */
         static get_time_string_from_system(utc: boolean = false): string
         
-        /** Returns the current time zone as a dictionary of keys: `bias` and `name`.   
+        /** Returns the current time zone as a dictionary of keys: `bias` and `name`.  
          *  - `bias` is the offset from UTC in minutes, since not all time zones are multiples of an hour from UTC.  
          *  - `name` is the localized name of the time zone, according to the OS locale settings of the current user.  
          */
@@ -2167,29 +2354,55 @@ declare module "godot" {
     // // Singleton Class
     namespace GDExtensionManager {
         enum LoadStatus {
+            /** The extension has loaded successfully. */
             LOAD_STATUS_OK = 0,
+            
+            /** The extension has failed to load, possibly because it does not exist or has missing dependencies. */
             LOAD_STATUS_FAILED = 1,
+            
+            /** The extension has already been loaded. */
             LOAD_STATUS_ALREADY_LOADED = 2,
+            
+            /** The extension has not been loaded. */
             LOAD_STATUS_NOT_LOADED = 3,
+            
+            /** The extension requires the application to restart to fully load. */
             LOAD_STATUS_NEEDS_RESTART = 4,
         }
     }
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gdextensionmanager.html */
+    /** Provides access to GDExtension functionality.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gdextensionmanager.html  
+     */
     class GDExtensionManager extends Object {
+        /** Loads an extension by absolute file path. The [param path] needs to point to a valid [GDExtension]. Returns [constant LOAD_STATUS_OK] if successful. */
         static load_extension(path: string): GDExtensionManager.LoadStatus
+        
+        /** Reloads the extension at the given file path. The [param path] needs to point to a valid [GDExtension], otherwise this method may return either [constant LOAD_STATUS_NOT_LOADED] or [constant LOAD_STATUS_FAILED].  
+         *      
+         *  **Note:** You can only reload extensions in the editor. In release builds, this method always fails and returns [constant LOAD_STATUS_FAILED].  
+         */
         static reload_extension(path: string): GDExtensionManager.LoadStatus
+        
+        /** Unloads an extension by file path. The [param path] needs to point to an already loaded [GDExtension], otherwise this method returns [constant LOAD_STATUS_NOT_LOADED]. */
         static unload_extension(path: string): GDExtensionManager.LoadStatus
+        
+        /** Returns `true` if the extension at the given file [param path] has already been loaded successfully. See also [method get_loaded_extensions]. */
         static is_extension_loaded(path: string): boolean
+        
+        /** Returns the file paths of all currently loaded extensions. */
         static get_loaded_extensions(): PackedStringArray
+        
+        /** Returns the [GDExtension] at the given file [param path], or `null` if it has not been loaded or does not exist. */
         static get_extension(path: string): GDExtension
         
-        /** Emitted after the editor has automatically reloaded any extensions. */
+        /** Emitted after the editor has finished reloading one or more extensions. */
         static readonly extensions_reloaded: Signal0
     }
     // // Singleton Class
     /** A singleton that manages the unique identifiers of all resources within a project.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_resourceuid.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceuid.html  
      */
     class ResourceUID extends Object {
         /** The value to use for an invalid UID, for example if the resource could not be loaded.  
@@ -2234,31 +2447,39 @@ declare module "godot" {
     // // Singleton Class
     /** A singleton that allocates some [Thread]s on startup, used to offload tasks to these threads.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_workerthreadpool.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_workerthreadpool.html  
      */
     class WorkerThreadPool extends Object {
         /** Adds [param action] as a task to be executed by a worker thread. [param high_priority] determines if the task has a high priority or a low priority (default). You can optionally provide a [param description] to help with debugging.  
          *  Returns a task ID that can be used by other methods.  
+         *  **Warning:** Every task must be waited for completion using [method wait_for_task_completion] or [method wait_for_group_task_completion] at some point so that any allocated resources inside the task can be cleaned up.  
          */
         static add_task(action: Callable, high_priority: boolean = false, description: string = ''): int64
         
-        /** Returns `true` if the task with the given ID is completed. */
+        /** Returns `true` if the task with the given ID is completed.  
+         *      
+         *  **Note:** You should only call this method between adding the task and awaiting its completion.  
+         */
         static is_task_completed(task_id: int64): boolean
         
         /** Pauses the thread that calls this method until the task with the given ID is completed.  
          *  Returns [constant @GlobalScope.OK] if the task could be successfully awaited.  
          *  Returns [constant @GlobalScope.ERR_INVALID_PARAMETER] if a task with the passed ID does not exist (maybe because it was already awaited and disposed of).  
-         *  Returns [constant @GlobalScope.ERR_BUSY] if the call is made from another running task and, due to task scheduling, the task to await is at a lower level in the call stack and therefore can't progress. This is an advanced situation that should only matter when some tasks depend on others.  
+         *  Returns [constant @GlobalScope.ERR_BUSY] if the call is made from another running task and, due to task scheduling, there's potential for deadlocking (e.g., the task to await may be at a lower level in the call stack and therefore can't progress). This is an advanced situation that should only matter when some tasks depend on others (in the current implementation, the tricky case is a task trying to wait on an older one).  
          */
         static wait_for_task_completion(task_id: int64): Error
         
         /** Adds [param action] as a group task to be executed by the worker threads. The [Callable] will be called a number of times based on [param elements], with the first thread calling it with the value `0` as a parameter, and each consecutive execution incrementing this value by 1 until it reaches `element - 1`.  
          *  The number of threads the task is distributed to is defined by [param tasks_needed], where the default value `-1` means it is distributed to all worker threads. [param high_priority] determines if the task has a high priority or a low priority (default). You can optionally provide a [param description] to help with debugging.  
          *  Returns a group task ID that can be used by other methods.  
+         *  **Warning:** Every task must be waited for completion using [method wait_for_task_completion] or [method wait_for_group_task_completion] at some point so that any allocated resources inside the task can be cleaned up.  
          */
         static add_group_task(action: Callable, elements: int64, tasks_needed: int64 = -1, high_priority: boolean = false, description: string = ''): int64
         
-        /** Returns `true` if the group task with the given ID is completed. */
+        /** Returns `true` if the group task with the given ID is completed.  
+         *      
+         *  **Note:** You should only call this method between adding the group task and awaiting its completion.  
+         */
         static is_group_task_completed(group_id: int64): boolean
         
         /** Returns how many times the [Callable] of the group task with the given ID has already been executed by the worker threads.  
@@ -2273,7 +2494,7 @@ declare module "godot" {
     // // Singleton Class
     /** A singleton that provides access to static information about [Theme] resources used by the engine and by your project.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_themedb.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_themedb.html  
      */
     class ThemeDB extends Object {
         /** Returns a reference to the default engine [Theme]. This theme resource is responsible for the out-of-the-box look of [Control] nodes and cannot be overridden. */
@@ -2316,7 +2537,7 @@ declare module "godot" {
     // // Singleton Class
     /** Godot editor's interface.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_editorinterface.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_editorinterface.html  
      */
     class EditorInterface extends Object {
         /** Restarts the editor. This closes the editor and then opens the same project. If [param save] is `true`, the project will be saved before restarting. */
@@ -2363,6 +2584,8 @@ declare module "godot" {
         static get_base_control(): Control
         
         /** Returns the editor control responsible for main screen plugins and tools. Use it with plugins that implement [method EditorPlugin._has_main_screen].  
+         *      
+         *  **Note:** This node is a [VBoxContainer], which means that if you add a [Control] child to it, you need to set the child's [member Control.size_flags_vertical] to [constant Control.SIZE_EXPAND_FILL] to make it use the full available space.  
          *  **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.  
          */
         static get_editor_main_screen(): VBoxContainer
@@ -2380,6 +2603,13 @@ declare module "godot" {
         
         /** Sets the editor's current main screen to the one specified in [param name]. [param name] must match the title of the tab in question exactly (e.g. `2D`, `3D`, [code skip-lint]Script`, or `AssetLib` for default tabs). */
         static set_main_screen_editor(name: string): void
+        
+        /** Returns `true` if multiple window support is enabled in the editor. Multiple window support is enabled if  *all*  of these statements are true:  
+         *  - [member EditorSettings.interface/multi_window/enable] is `true`.  
+         *  - [member EditorSettings.interface/editor/single_window_mode] is `false`.  
+         *  - [member Viewport.gui_embed_subwindows] is `false`. This is forced to `true` on platforms that don't support multiple windows such as Web, or when the `--single-window` [url=https://docs.godotengine.org/en/4.3/tutorials/editor/command_line_tutorial.html]command line argument[/url] is used.  
+         */
+        static is_multi_window_enabled(): boolean
         
         /** Returns the actual scale of the editor UI (`1.0` being 100% scale). This can be used to adjust position and dimensions of the UI added by plugins.  
          *      
@@ -2420,6 +2650,18 @@ declare module "godot" {
          *  **Note:** The feature profile that gets activated must be located in the `feature_profiles` directory, as a file with the `.profile` extension. If a profile could not be found, an error occurs. The editor configuration folder can be found by using [method EditorPaths.get_config_dir].  
          */
         static set_current_feature_profile(profile_name: string): void
+        
+        /** Pops up an editor dialog for selecting a [Node] from the edited scene. The [param callback] must take a single argument of type [NodePath]. It is called on the selected [NodePath] or the empty path `^""` if the dialog is canceled. If [param valid_types] is provided, the dialog will only show Nodes that match one of the listed Node types.  
+         *  **Example:**  
+         *    
+         */
+        static popup_node_selector(callback: Callable, valid_types: GArray = []): void
+        
+        /** Pops up an editor dialog for selecting properties from [param object]. The [param callback] must take a single argument of type [NodePath]. It is called on the selected property path (see [method NodePath.get_as_property_path]) or the empty path `^""` if the dialog is canceled. If [param type_filter] is provided, the dialog will only show properties that match one of the listed [enum Variant.Type] values.  
+         *  **Example:**  
+         *    
+         */
+        static popup_property_selector(object: Object, callback: Callable, type_filter: PackedInt32Array | int32[] = []): void
         
         /** Returns the editor's [FileSystemDock] instance.  
          *  **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.  
@@ -2506,14 +2748,21 @@ declare module "godot" {
         set movie_maker_enabled(value: boolean)
     }
     // // Singleton Class
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_javaclasswrapper.html */
+    /** Provides access to the Java Native Interface.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_javaclasswrapper.html  
+     */
     class JavaClassWrapper extends Object {
+        /** Wraps a class defined in Java, and returns it as a [JavaClass] [Object] type that Godot can interact with.  
+         *      
+         *  **Note:** This method only works on Android. On every other platform, this method does nothing and returns an empty [JavaClass].  
+         */
         static wrap(name: string): JavaClass
     }
     // // Singleton Class
     /** Singleton that connects the engine with the browser's JavaScript context in Web export.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_javascriptbridge.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_javascriptbridge.html  
      */
     class JavaScriptBridge extends Object {
         /** Execute the string [param code] as JavaScript code within the browser window. This is a call to the actual global JavaScript function [code skip-lint]eval()`.  
@@ -2564,70 +2813,325 @@ declare module "godot" {
         static readonly pwa_update_available: Signal0
     }
     // // Singleton Class
+    namespace AudioServer {
+        enum SpeakerMode {
+            /** Two or fewer speakers were detected. */
+            SPEAKER_MODE_STEREO = 0,
+            
+            /** A 3.1 channel surround setup was detected. */
+            SPEAKER_SURROUND_31 = 1,
+            
+            /** A 5.1 channel surround setup was detected. */
+            SPEAKER_SURROUND_51 = 2,
+            
+            /** A 7.1 channel surround setup was detected. */
+            SPEAKER_SURROUND_71 = 3,
+        }
+        enum PlaybackType {
+            /** The playback will be considered of the type declared at [member ProjectSettings.audio/general/default_playback_type]. */
+            PLAYBACK_TYPE_DEFAULT = 0,
+            
+            /** Force the playback to be considered as a stream. */
+            PLAYBACK_TYPE_STREAM = 1,
+            
+            /** Force the playback to be considered as a sample. This can provide lower latency and more stable playback (with less risk of audio crackling), at the cost of having less flexibility.  
+             *      
+             *  **Note:** Only currently supported on the web platform.  
+             *      
+             *  **Note:** [AudioEffect]s are not supported when playback is considered as a sample.  
+             */
+            PLAYBACK_TYPE_SAMPLE = 2,
+            
+            /** Represents the size of the [enum PlaybackType] enum. */
+            PLAYBACK_TYPE_MAX = 3,
+        }
+    }
+    /** Server interface for low-level audio access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_audioserver.html  
+     */
+    class AudioServer extends Object {
+        /** Removes the bus at index [param index]. */
+        static remove_bus(index: int64): void
+        
+        /** Adds a bus at [param at_position]. */
+        static add_bus(at_position: int64 = -1): void
+        
+        /** Moves the bus from index [param index] to index [param to_index]. */
+        static move_bus(index: int64, to_index: int64): void
+        
+        /** Sets the name of the bus at index [param bus_idx] to [param name]. */
+        static set_bus_name(bus_idx: int64, name: string): void
+        
+        /** Returns the name of the bus with the index [param bus_idx]. */
+        static get_bus_name(bus_idx: int64): string
+        
+        /** Returns the index of the bus with the name [param bus_name]. Returns `-1` if no bus with the specified name exist. */
+        static get_bus_index(bus_name: StringName): int64
+        
+        /** Returns the number of channels of the bus at index [param bus_idx]. */
+        static get_bus_channels(bus_idx: int64): int64
+        
+        /** Sets the volume of the bus at index [param bus_idx] to [param volume_db]. */
+        static set_bus_volume_db(bus_idx: int64, volume_db: float64): void
+        
+        /** Returns the volume of the bus at index [param bus_idx] in dB. */
+        static get_bus_volume_db(bus_idx: int64): float64
+        
+        /** Connects the output of the bus at [param bus_idx] to the bus named [param send]. */
+        static set_bus_send(bus_idx: int64, send: StringName): void
+        
+        /** Returns the name of the bus that the bus at index [param bus_idx] sends to. */
+        static get_bus_send(bus_idx: int64): StringName
+        
+        /** If `true`, the bus at index [param bus_idx] is in solo mode. */
+        static set_bus_solo(bus_idx: int64, enable: boolean): void
+        
+        /** If `true`, the bus at index [param bus_idx] is in solo mode. */
+        static is_bus_solo(bus_idx: int64): boolean
+        
+        /** If `true`, the bus at index [param bus_idx] is muted. */
+        static set_bus_mute(bus_idx: int64, enable: boolean): void
+        
+        /** If `true`, the bus at index [param bus_idx] is muted. */
+        static is_bus_mute(bus_idx: int64): boolean
+        
+        /** If `true`, the bus at index [param bus_idx] is bypassing effects. */
+        static set_bus_bypass_effects(bus_idx: int64, enable: boolean): void
+        
+        /** If `true`, the bus at index [param bus_idx] is bypassing effects. */
+        static is_bus_bypassing_effects(bus_idx: int64): boolean
+        
+        /** Adds an [AudioEffect] effect to the bus [param bus_idx] at [param at_position]. */
+        static add_bus_effect(bus_idx: int64, effect: AudioEffect, at_position: int64 = -1): void
+        
+        /** Removes the effect at index [param effect_idx] from the bus at index [param bus_idx]. */
+        static remove_bus_effect(bus_idx: int64, effect_idx: int64): void
+        
+        /** Returns the number of effects on the bus at [param bus_idx]. */
+        static get_bus_effect_count(bus_idx: int64): int64
+        
+        /** Returns the [AudioEffect] at position [param effect_idx] in bus [param bus_idx]. */
+        static get_bus_effect(bus_idx: int64, effect_idx: int64): AudioEffect
+        
+        /** Returns the [AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel). */
+        static get_bus_effect_instance(bus_idx: int64, effect_idx: int64, channel: int64 = 0): AudioEffectInstance
+        
+        /** Swaps the position of two effects in bus [param bus_idx]. */
+        static swap_bus_effects(bus_idx: int64, effect_idx: int64, by_effect_idx: int64): void
+        
+        /** If `true`, the effect at index [param effect_idx] on the bus at index [param bus_idx] is enabled. */
+        static set_bus_effect_enabled(bus_idx: int64, effect_idx: int64, enabled: boolean): void
+        
+        /** If `true`, the effect at index [param effect_idx] on the bus at index [param bus_idx] is enabled. */
+        static is_bus_effect_enabled(bus_idx: int64, effect_idx: int64): boolean
+        
+        /** Returns the peak volume of the left speaker at bus index [param bus_idx] and channel index [param channel]. */
+        static get_bus_peak_volume_left_db(bus_idx: int64, channel: int64): float64
+        
+        /** Returns the peak volume of the right speaker at bus index [param bus_idx] and channel index [param channel]. */
+        static get_bus_peak_volume_right_db(bus_idx: int64, channel: int64): float64
+        
+        /** Locks the audio driver's main loop.  
+         *      
+         *  **Note:** Remember to unlock it afterwards.  
+         */
+        static lock(): void
+        
+        /** Unlocks the audio driver's main loop. (After locking it, you should always unlock it.) */
+        static unlock(): void
+        
+        /** Returns the speaker configuration. */
+        static get_speaker_mode(): AudioServer.SpeakerMode
+        
+        /** Returns the sample rate at the output of the [AudioServer]. */
+        static get_mix_rate(): float64
+        
+        /** Returns the names of all audio output devices detected on the system. */
+        static get_output_device_list(): PackedStringArray
+        
+        /** Returns the relative time until the next mix occurs. */
+        static get_time_to_next_mix(): float64
+        
+        /** Returns the relative time since the last mix occurred. */
+        static get_time_since_last_mix(): float64
+        
+        /** Returns the audio driver's effective output latency. This is based on [member ProjectSettings.audio/driver/output_latency], but the exact returned value will differ depending on the operating system and audio driver.  
+         *      
+         *  **Note:** This can be expensive; it is not recommended to call [method get_output_latency] every frame.  
+         */
+        static get_output_latency(): float64
+        
+        /** Returns the names of all audio input devices detected on the system.  
+         *      
+         *  **Note:** [member ProjectSettings.audio/driver/enable_input] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.  
+         */
+        static get_input_device_list(): PackedStringArray
+        
+        /** Overwrites the currently used [AudioBusLayout]. */
+        static set_bus_layout(bus_layout: AudioBusLayout): void
+        
+        /** Generates an [AudioBusLayout] using the available buses and effects. */
+        static generate_bus_layout(): AudioBusLayout
+        
+        /** If set to `true`, all instances of [AudioStreamPlayback] will call [method AudioStreamPlayback._tag_used_streams] every mix step.  
+         *      
+         *  **Note:** This is enabled by default in the editor, as it is used by editor plugins for the audio stream previews.  
+         */
+        static set_enable_tagging_used_audio_streams(enable: boolean): void
+        
+        /** If `true`, the stream is registered as a sample. The engine will not have to register it before playing the sample.  
+         *  If `false`, the stream will have to be registered before playing it. To prevent lag spikes, register the stream as sample with [method register_stream_as_sample].  
+         */
+        static is_stream_registered_as_sample(stream: AudioStream): boolean
+        
+        /** Forces the registration of a stream as a sample.  
+         *      
+         *  **Note:** Lag spikes may occur when calling this method, especially on single-threaded builds. It is suggested to call this method while loading assets, where the lag spike could be masked, instead of registering the sample right before it needs to be played.  
+         */
+        static register_stream_as_sample(stream: AudioStream): void
+        
+        /** Number of available audio buses. */
+        get bus_count(): int64
+        set bus_count(value: int64)
+        
+        /** Name of the current device for audio output (see [method get_output_device_list]). On systems with multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio output device. The value `"Default"` will play audio on the system-wide default audio output. If an invalid device name is set, the value will be reverted back to `"Default"`. */
+        get output_device(): string
+        set output_device(value: string)
+        
+        /** Name of the current device for audio input (see [method get_input_device_list]). On systems with multiple audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input device. The value `"Default"` will record audio on the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.  
+         *      
+         *  **Note:** [member ProjectSettings.audio/driver/enable_input] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.  
+         */
+        get input_device(): string
+        set input_device(value: string)
+        
+        /** Scales the rate at which audio is played (i.e. setting it to `0.5` will make the audio be played at half its speed). See also [member Engine.time_scale] to affect the general simulation speed, which is independent from [member AudioServer.playback_speed_scale]. */
+        get playback_speed_scale(): float64
+        set playback_speed_scale(value: float64)
+        
+        /** Emitted when an audio bus is added, deleted, or moved. */
+        static readonly bus_layout_changed: Signal0
+        
+        /** Emitted when the audio bus at [param bus_index] is renamed from [param old_name] to [param new_name]. */
+        static readonly bus_renamed: Signal3<int64, StringName, StringName>
+    }
+    // // Singleton Class
+    namespace CameraServer {
+        enum FeedImage {
+            /** The RGBA camera image. */
+            FEED_RGBA_IMAGE = 0,
+            
+            /** The [url=https://en.wikipedia.org/wiki/YCbCr]YCbCr[/url] camera image. */
+            FEED_YCBCR_IMAGE = 0,
+            
+            /** The Y component camera image. */
+            FEED_Y_IMAGE = 0,
+            
+            /** The CbCr component camera image. */
+            FEED_CBCR_IMAGE = 1,
+        }
+    }
+    /** Server keeping track of different cameras accessible in Godot.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_cameraserver.html  
+     */
+    class CameraServer extends Object {
+        /** Returns the [CameraFeed] corresponding to the camera with the given [param index]. */
+        static get_feed(index: int64): CameraFeed
+        
+        /** Returns the number of [CameraFeed]s registered. */
+        static get_feed_count(): int64
+        
+        /** Returns an array of [CameraFeed]s. */
+        static feeds(): GArray
+        
+        /** Adds the camera [param feed] to the camera server. */
+        static add_feed(feed: CameraFeed): void
+        
+        /** Removes the specified camera [param feed]. */
+        static remove_feed(feed: CameraFeed): void
+        
+        /** Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in). */
+        static readonly camera_feed_added: Signal1<int64>
+        
+        /** Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged). */
+        static readonly camera_feed_removed: Signal1<int64>
+    }
+    // // Singleton Class
     namespace DisplayServer {
         enum Feature {
-            /** Display server supports global menu. This allows the application to display its menu items in the operating system's top bar. **macOS** */
-            FEATURE_GLOBAL_MENU = 0,
-            
             /** Display server supports multiple windows that can be moved outside of the main window. **Windows, macOS, Linux (X11)** */
-            FEATURE_SUBWINDOWS = 1,
+            FEATURE_SUBWINDOWS = 0,
             
             /** Display server supports touchscreen input. **Windows, Linux (X11), Android, iOS, Web** */
-            FEATURE_TOUCHSCREEN = 2,
+            FEATURE_TOUCHSCREEN = 1,
             
-            /** Display server supports mouse input. **Windows, macOS, Linux (X11), Android, Web** */
-            FEATURE_MOUSE = 3,
+            /** Display server supports mouse input. **Windows, macOS, Linux (X11/Wayland), Android, Web** */
+            FEATURE_MOUSE = 2,
             
-            /** Display server supports warping mouse coordinates to keep the mouse cursor constrained within an area, but looping when one of the edges is reached. **Windows, macOS, Linux (X11)** */
-            FEATURE_MOUSE_WARP = 4,
+            /** Display server supports warping mouse coordinates to keep the mouse cursor constrained within an area, but looping when one of the edges is reached. **Windows, macOS, Linux (X11/Wayland)** */
+            FEATURE_MOUSE_WARP = 3,
             
-            /** Display server supports setting and getting clipboard data. See also [constant FEATURE_CLIPBOARD_PRIMARY]. **Windows, macOS, Linux (X11), Android, iOS, Web** */
-            FEATURE_CLIPBOARD = 5,
+            /** Display server supports setting and getting clipboard data. See also [constant FEATURE_CLIPBOARD_PRIMARY]. **Windows, macOS, Linux (X11/Wayland), Android, iOS, Web** */
+            FEATURE_CLIPBOARD = 4,
             
             /** Display server supports popping up a virtual keyboard when requested to input text without a physical keyboard. **Android, iOS, Web** */
-            FEATURE_VIRTUAL_KEYBOARD = 6,
+            FEATURE_VIRTUAL_KEYBOARD = 5,
             
-            /** Display server supports setting the mouse cursor shape to be different from the default. **Windows, macOS, Linux (X11), Android, Web** */
-            FEATURE_CURSOR_SHAPE = 7,
+            /** Display server supports setting the mouse cursor shape to be different from the default. **Windows, macOS, Linux (X11/Wayland), Android, Web** */
+            FEATURE_CURSOR_SHAPE = 6,
             
-            /** Display server supports setting the mouse cursor shape to a custom image. **Windows, macOS, Linux (X11), Web** */
-            FEATURE_CUSTOM_CURSOR_SHAPE = 8,
+            /** Display server supports setting the mouse cursor shape to a custom image. **Windows, macOS, Linux (X11/Wayland), Web** */
+            FEATURE_CUSTOM_CURSOR_SHAPE = 7,
             
-            /** Display server supports spawning dialogs using the operating system's native look-and-feel. **Windows, macOS, Linux (X11)** */
-            FEATURE_NATIVE_DIALOG = 9,
+            /** Display server supports spawning text dialogs using the operating system's native look-and-feel. See [method dialog_show]. **Windows, macOS** */
+            FEATURE_NATIVE_DIALOG = 8,
             
             /** Display server supports [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url], which is commonly used for inputting Chinese/Japanese/Korean text. This is handled by the operating system, rather than by Godot. **Windows, macOS, Linux (X11)** */
-            FEATURE_IME = 10,
+            FEATURE_IME = 9,
             
-            /** Display server supports windows can use per-pixel transparency to make windows behind them partially or fully visible. **Windows, macOS, Linux (X11)** */
-            FEATURE_WINDOW_TRANSPARENCY = 11,
+            /** Display server supports windows can use per-pixel transparency to make windows behind them partially or fully visible. **Windows, macOS, Linux (X11/Wayland)** */
+            FEATURE_WINDOW_TRANSPARENCY = 10,
             
-            /** Display server supports querying the operating system's display scale factor. This allows for  *reliable*  automatic hiDPI display detection, as opposed to guessing based on the screen resolution and reported display DPI (which can be unreliable due to broken monitor EDID). **Windows, macOS** */
-            FEATURE_HIDPI = 12,
+            /** Display server supports querying the operating system's display scale factor. This allows for  *reliable*  automatic hiDPI display detection, as opposed to guessing based on the screen resolution and reported display DPI (which can be unreliable due to broken monitor EDID). **Windows, Linux (Wayland), macOS** */
+            FEATURE_HIDPI = 11,
             
             /** Display server supports changing the window icon (usually displayed in the top-left corner). **Windows, macOS, Linux (X11)** */
-            FEATURE_ICON = 13,
+            FEATURE_ICON = 12,
             
             /** Display server supports changing the window icon (usually displayed in the top-left corner). **Windows, macOS** */
-            FEATURE_NATIVE_ICON = 14,
+            FEATURE_NATIVE_ICON = 13,
             
             /** Display server supports changing the screen orientation. **Android, iOS** */
-            FEATURE_ORIENTATION = 15,
+            FEATURE_ORIENTATION = 14,
             
-            /** Display server supports V-Sync status can be changed from the default (which is forced to be enabled platforms not supporting this feature). **Windows, macOS, Linux (X11)** */
-            FEATURE_SWAP_BUFFERS = 16,
+            /** Display server supports V-Sync status can be changed from the default (which is forced to be enabled platforms not supporting this feature). **Windows, macOS, Linux (X11/Wayland)** */
+            FEATURE_SWAP_BUFFERS = 15,
             
-            /** Display server supports Primary clipboard can be used. This is a different clipboard from [constant FEATURE_CLIPBOARD]. **Linux (X11)** */
-            FEATURE_CLIPBOARD_PRIMARY = 18,
+            /** Display server supports Primary clipboard can be used. This is a different clipboard from [constant FEATURE_CLIPBOARD]. **Linux (X11/Wayland)** */
+            FEATURE_CLIPBOARD_PRIMARY = 17,
             
-            /** Display server supports text-to-speech. See `tts_*` methods. **Windows, macOS, Linux (X11), Android, iOS, Web** */
-            FEATURE_TEXT_TO_SPEECH = 19,
+            /** Display server supports text-to-speech. See `tts_*` methods. **Windows, macOS, Linux (X11/Wayland), Android, iOS, Web** */
+            FEATURE_TEXT_TO_SPEECH = 18,
             
             /** Display server supports expanding window content to the title. See [constant WINDOW_FLAG_EXTEND_TO_TITLE]. **macOS** */
-            FEATURE_EXTEND_TO_TITLE = 20,
+            FEATURE_EXTEND_TO_TITLE = 19,
             
             /** Display server supports reading screen pixels. See [method screen_get_pixel]. */
-            FEATURE_SCREEN_CAPTURE = 21,
+            FEATURE_SCREEN_CAPTURE = 20,
+            
+            /** Display server supports application status indicators. */
+            FEATURE_STATUS_INDICATOR = 21,
+            
+            /** Display server supports native help system search callbacks. See [method help_set_search_callbacks]. */
+            FEATURE_NATIVE_HELP = 22,
+            
+            /** Display server supports spawning text input dialogs using the operating system's native look-and-feel. See [method dialog_input_text]. **Windows, macOS** */
+            FEATURE_NATIVE_DIALOG_INPUT = 23,
+            
+            /** Display server supports spawning dialogs for selecting files or directories using the operating system's native look-and-feel. See [method file_dialog_show] and [method file_dialog_with_options_show]. **Windows, macOS, Linux (X11/Wayland)** */
+            FEATURE_NATIVE_DIALOG_FILE = 24,
         }
         enum MouseMode {
             /** Makes the mouse cursor visible if it is hidden. */
@@ -2784,7 +3288,7 @@ declare module "godot" {
              *  **On Windows:** Multi-window full-screen mode has a 1px border of the [member ProjectSettings.rendering/environment/defaults/default_clear_color] color.  
              *  **On macOS:** A new desktop is used to display the running project.  
              *      
-             *  **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=https://docs.godotengine.org/en/4.2/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.  
+             *  **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=https://docs.godotengine.org/en/4.3/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.  
              */
             WINDOW_MODE_FULLSCREEN = 3,
             
@@ -2794,7 +3298,7 @@ declare module "godot" {
              *  **On macOS:** A new desktop is used to display the running project. Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.  
              *  **On Linux (X11):** Exclusive full screen mode bypasses compositor.  
              *      
-             *  **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=https://docs.godotengine.org/en/4.2/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.  
+             *  **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=https://docs.godotengine.org/en/4.3/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.  
              */
             WINDOW_MODE_EXCLUSIVE_FULLSCREEN = 4,
         }
@@ -2810,9 +3314,9 @@ declare module "godot" {
             
             /** The window background can be transparent.  
              *      
-             *  **Note:** This flag has no effect if [member ProjectSettings.display/window/per_pixel_transparency/allowed] is set to `false`.  
+             *  **Note:** This flag has no effect if [method is_window_transparency_available] returns `false`.  
              *      
-             *  **Note:** Transparency support is implemented on Linux (X11), macOS and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.  
+             *  **Note:** Transparency support is implemented on Linux (X11/Wayland), macOS, and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.  
              */
             WINDOW_FLAG_TRANSPARENT = 3,
             
@@ -2910,7 +3414,7 @@ declare module "godot" {
             
             /** OpenGL context (only with the GL Compatibility renderer):  
              *  - Windows: `HGLRC` for the window (native GL), or `EGLContext` for the window (ANGLE).  
-             *  - Linux: `GLXContext*` for the window.  
+             *  - Linux (X11): `GLXContext*` for the window.  
              *  - macOS: `NSOpenGLContext*` for the window (native GL), or `EGLContext` for the window (ANGLE).  
              *  - Android: `EGLContext` for the window.  
              */
@@ -2932,19 +3436,31 @@ declare module "godot" {
     }
     /** A server interface for low-level window management.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_displayserver.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_displayserver.html  
      */
     class DisplayServer extends Object {
-        /** Represents the screen containing the mouse pointer. */
+        /** Represents the screen containing the mouse pointer.  
+         *      
+         *  **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.  
+         */
         static readonly SCREEN_WITH_MOUSE_FOCUS = -4
         
-        /** Represents the screen containing the window with the keyboard focus. */
+        /** Represents the screen containing the window with the keyboard focus.  
+         *      
+         *  **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.  
+         */
         static readonly SCREEN_WITH_KEYBOARD_FOCUS = -3
         
-        /** Represents the primary screen. */
+        /** Represents the primary screen.  
+         *      
+         *  **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.  
+         */
         static readonly SCREEN_PRIMARY = -2
         
-        /** Represents the screen where the main window is located. This is usually the default value in functions that allow specifying one of several screens. */
+        /** Represents the screen where the main window is located. This is usually the default value in functions that allow specifying one of several screens.  
+         *      
+         *  **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.  
+         */
         static readonly SCREEN_OF_MAIN_WINDOW = -1
         
         /** The ID of the main window spawned by the engine, which can be passed to methods expecting a `window_id`. */
@@ -2953,375 +3469,28 @@ declare module "godot" {
         /** The ID that refers to a nonexistent window. This is returned by some [DisplayServer] methods if no window matches the requested result. */
         static readonly INVALID_WINDOW_ID = -1
         
+        /** The ID that refers to a nonexistent application status indicator. */
+        static readonly INVALID_INDICATOR_ID = -1
+        
         /** Returns `true` if the specified [param feature] is supported by the current [DisplayServer], `false` otherwise. */
         static has_feature(feature: DisplayServer.Feature): boolean
         
-        /** Returns the name of the [DisplayServer] currently in use. Most operating systems only have a single [DisplayServer], but Linux has access to more than one [DisplayServer] (although only X11 is currently implemented in Godot).  
-         *  The names of built-in display servers are `Windows`, `macOS`, `X11` (Linux), `Android`, `iOS`, `web` (HTML5) and `headless` (when started with the `--headless` [url=https://docs.godotengine.org/en/4.2/tutorials/editor/command_line_tutorial.html]command line argument[/url]).  
+        /** Returns the name of the [DisplayServer] currently in use. Most operating systems only have a single [DisplayServer], but Linux has access to more than one [DisplayServer] (currently X11 and Wayland).  
+         *  The names of built-in display servers are `Windows`, `macOS`, `X11` (Linux), `Wayland` (Linux), `Android`, `iOS`, `web` (HTML5), and `headless` (when started with the `--headless` [url=https://docs.godotengine.org/en/4.3/tutorials/editor/command_line_tutorial.html]command line argument[/url]).  
          */
         static get_name(): string
         
-        /** Registers callables to emit when the menu is respectively about to show or closed. */
-        static global_menu_set_popup_callbacks(menu_root: string, open_callback: Callable, close_callback: Callable): void
-        
-        /** Adds an item that will act as a submenu of the global menu [param menu_root]. The [param submenu] argument is the ID of the global menu root that will be shown when the item is clicked.  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_submenu_item(menu_root: string, label: string, submenu: string, index: int64 = -1): int64
-        
-        /** Adds a new item with text [param label] to the global menu with ID [param menu_root].  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
-         *      
-         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_item(menu_root: string, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
-        
-        /** Adds a new checkable item with text [param label] to the global menu with ID [param menu_root].  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
-         *      
-         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_check_item(menu_root: string, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
-        
-        /** Adds a new item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
-         *      
-         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_icon_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
-        
-        /** Adds a new checkable item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
-         *      
-         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_icon_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
-        
-        /** Adds a new radio-checkable item with text [param label] to the global menu with ID [param menu_root].  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
-         *      
-         *  **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method global_menu_set_item_checked] for more info on how to control it.  
-         *      
-         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_radio_check_item(menu_root: string, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
-        
-        /** Adds a new radio-checkable item with text [param label] and icon [param icon] to the global menu with ID [param menu_root].  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
-         *      
-         *  **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method global_menu_set_item_checked] for more info on how to control it.  
-         *      
-         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_icon_radio_check_item(menu_root: string, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
-        
-        /** Adds a new item with text [param label] to the global menu with ID [param menu_root].  
-         *  Contrarily to normal binary items, multistate items can have more than two states, as defined by [param max_states]. Each press or activate of the item will increase the state by one. The default value is defined by [param default_state].  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
-         *      
-         *  **Note:** By default, there's no indication of the current item state, it should be changed manually.  
-         *      
-         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_multistate_item(menu_root: string, label: string, max_states: int64, default_state: int64, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
-        
-        /** Adds a separator between items to the global menu with ID [param menu_root]. Separators also occupy an index.  
-         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_add_separator(menu_root: string, index: int64 = -1): int64
-        
-        /** Returns the index of the item with the specified [param text]. Index is automatically assigned to each item by the engine. Index can not be set manually.  
+        /** Sets native help system search callbacks.  
+         *  [param search_callback] has the following arguments: `String search_string, int result_limit` and return a [Dictionary] with "key, display name" pairs for the search results. Called when the user enters search terms in the `Help` menu.  
+         *  [param action_callback] has the following arguments: `String key`. Called when the user selects a search result in the `Help` menu.  
          *      
          *  **Note:** This method is implemented only on macOS.  
          */
-        static global_menu_get_item_index_from_text(menu_root: string, text: string): int64
-        
-        /** Returns the index of the item with the specified [param tag]. Index is automatically assigned to each item by the engine. Index can not be set manually.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_index_from_tag(menu_root: string, tag: any): int64
-        
-        /** Returns `true` if the item at index [param idx] is checked.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_is_item_checked(menu_root: string, idx: int64): boolean
-        
-        /** Returns `true` if the item at index [param idx] is checkable in some way, i.e. if it has a checkbox or radio button.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_is_item_checkable(menu_root: string, idx: int64): boolean
-        
-        /** Returns `true` if the item at index [param idx] has radio button-style checkability.  
-         *      
-         *  **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_is_item_radio_checkable(menu_root: string, idx: int64): boolean
-        
-        /** Returns the callback of the item at index [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_callback(menu_root: string, idx: int64): Callable
-        
-        /** Returns the callback of the item accelerator at index [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_key_callback(menu_root: string, idx: int64): Callable
-        
-        /** Returns the metadata of the specified item, which might be of any type. You can set it with [method global_menu_set_item_tag], which provides a simple way of assigning context data to items.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_tag(menu_root: string, idx: int64): any
-        
-        /** Returns the text of the item at index [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_text(menu_root: string, idx: int64): string
-        
-        /** Returns the submenu ID of the item at index [param idx]. See [method global_menu_add_submenu_item] for more info on how to add a submenu.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_submenu(menu_root: string, idx: int64): string
-        
-        /** Returns the accelerator of the item at index [param idx]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_accelerator(menu_root: string, idx: int64): Key
-        
-        /** Returns `true` if the item at index [param idx] is disabled. When it is disabled it can't be selected, or its action invoked.  
-         *  See [method global_menu_set_item_disabled] for more info on how to disable an item.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_is_item_disabled(menu_root: string, idx: int64): boolean
-        
-        /** Returns `true` if the item at index [param idx] is hidden.  
-         *  See [method global_menu_set_item_hidden] for more info on how to hide an item.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_is_item_hidden(menu_root: string, idx: int64): boolean
-        
-        /** Returns the tooltip associated with the specified index [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_tooltip(menu_root: string, idx: int64): string
-        
-        /** Returns the state of a multistate item. See [method global_menu_add_multistate_item] for details.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_state(menu_root: string, idx: int64): int64
-        
-        /** Returns number of states of a multistate item. See [method global_menu_add_multistate_item] for details.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_max_states(menu_root: string, idx: int64): int64
-        
-        /** Returns the icon of the item at index [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_icon(menu_root: string, idx: int64): Texture2D
-        
-        /** Returns the horizontal offset of the item at the given [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_indentation_level(menu_root: string, idx: int64): int64
-        
-        /** Sets the checkstate status of the item at index [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_checked(menu_root: string, idx: int64, checked: boolean): void
-        
-        /** Sets whether the item at index [param idx] has a checkbox. If `false`, sets the type of the item to plain text.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_checkable(menu_root: string, idx: int64, checkable: boolean): void
-        
-        /** Sets the type of the item at the specified index [param idx] to radio button. If `false`, sets the type of the item to plain text.  
-         *      
-         *  **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_radio_checkable(menu_root: string, idx: int64, checkable: boolean): void
-        
-        /** Sets the callback of the item at index [param idx]. Callback is emitted when an item is pressed.  
-         *      
-         *  **Note:** The [param callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_callback(menu_root: string, idx: int64, callback: Callable): void
-        
-        /** Sets the callback of the item at index [param idx]. The callback is emitted when an item is hovered.  
-         *      
-         *  **Note:** The [param callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_hover_callbacks(menu_root: string, idx: int64, callback: Callable): void
-        
-        /** Sets the callback of the item at index [param idx]. Callback is emitted when its accelerator is activated.  
-         *      
-         *  **Note:** The [param key_callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_key_callback(menu_root: string, idx: int64, key_callback: Callable): void
-        
-        /** Sets the metadata of an item, which may be of any type. You can later get it with [method global_menu_get_item_tag], which provides a simple way of assigning context data to items.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_tag(menu_root: string, idx: int64, tag: any): void
-        
-        /** Sets the text of the item at index [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_text(menu_root: string, idx: int64, text: string): void
-        
-        /** Sets the submenu of the item at index [param idx]. The submenu is the ID of a global menu root that would be shown when the item is clicked.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_submenu(menu_root: string, idx: int64, submenu: string): void
-        
-        /** Sets the accelerator of the item at index [param idx]. [param keycode] can be a single [enum Key], or a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_accelerator(menu_root: string, idx: int64, keycode: Key): void
-        
-        /** Enables/disables the item at index [param idx]. When it is disabled, it can't be selected and its action can't be invoked.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_disabled(menu_root: string, idx: int64, disabled: boolean): void
-        
-        /** Hides/shows the item at index [param idx]. When it is hidden, an item does not appear in a menu and its action cannot be invoked.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_hidden(menu_root: string, idx: int64, hidden: boolean): void
-        
-        /** Sets the [String] tooltip of the item at the specified index [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_tooltip(menu_root: string, idx: int64, tooltip: string): void
-        
-        /** Sets the state of a multistate item. See [method global_menu_add_multistate_item] for details.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_state(menu_root: string, idx: int64, state: int64): void
-        
-        /** Sets number of state of a multistate item. See [method global_menu_add_multistate_item] for details.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_max_states(menu_root: string, idx: int64, max_states: int64): void
-        
-        /** Replaces the [Texture2D] icon of the specified [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *      
-         *  **Note:** This method is not supported by macOS "_dock" menu items.  
-         */
-        static global_menu_set_item_icon(menu_root: string, idx: int64, icon: Texture2D): void
-        
-        /** Sets the horizontal offset of the item at the given [param idx].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_set_item_indentation_level(menu_root: string, idx: int64, level: int64): void
-        
-        /** Returns number of items in the global menu with ID [param menu_root].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_get_item_count(menu_root: string): int64
-        
-        /** Removes the item at index [param idx] from the global menu [param menu_root].  
-         *      
-         *  **Note:** The indices of items after the removed item will be shifted by one.  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         */
-        static global_menu_remove_item(menu_root: string, idx: int64): void
-        
-        /** Removes all items from the global menu with ID [param menu_root].  
-         *      
-         *  **Note:** This method is implemented only on macOS.  
-         *  **Supported system menu IDs:**  
-         *    
-         */
-        static global_menu_clear(menu_root: string): void
+        static help_set_search_callbacks(search_callback: Callable, action_callback: Callable): void
         
         /** Returns `true` if the synthesizer is generating speech, or have utterance waiting in the queue.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3329,7 +3498,7 @@ declare module "godot" {
         
         /** Returns `true` if the synthesizer is in a paused state.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3342,7 +3511,7 @@ declare module "godot" {
          *  - `language` is language code in `lang_Variant` format. The `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. The [code skip-lint]Variant` part is an engine-dependent string describing country, region or/and dialect.  
          *  Note that Godot depends on system libraries for text-to-speech functionality. These libraries are installed by default on Windows and macOS, but not on all Linux distributions. If they are not present, this method will return an empty list. This applies to both Godot users on Linux, as well as end-users on Linux running Godot games that use text-to-speech.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3350,7 +3519,7 @@ declare module "godot" {
         
         /** Returns an [PackedStringArray] of voice identifiers for the [param language].  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3363,11 +3532,11 @@ declare module "godot" {
          *  - [param rate] ranges from `0.1` (lowest) to `10.0` (highest), `1.0` is a normal speaking rate. Other values act as a percentage relative.  
          *  - [param utterance_id] is passed as a parameter to the callback functions.  
          *      
-         *  **Note:** On Windows and Linux (X11), utterance [param text] can use SSML markup. SSML support is engine and voice dependent. If the engine does not support SSML, you should strip out all XML markup before calling [method tts_speak].  
+         *  **Note:** On Windows and Linux (X11/Wayland), utterance [param text] can use SSML markup. SSML support is engine and voice dependent. If the engine does not support SSML, you should strip out all XML markup before calling [method tts_speak].  
          *      
          *  **Note:** The granularity of pitch, rate, and volume is engine and voice dependent. Values may be truncated.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3375,7 +3544,7 @@ declare module "godot" {
         
         /** Puts the synthesizer into a paused state.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3383,7 +3552,7 @@ declare module "godot" {
         
         /** Resumes the synthesizer if it was paused.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3391,7 +3560,7 @@ declare module "godot" {
         
         /** Stops synthesis in progress and removes all utterances from the queue.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Linux), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3403,7 +3572,7 @@ declare module "godot" {
          *      
          *  **Note:** The granularity of the boundary callbacks is engine dependent.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.  
+         *  **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.  
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
@@ -3412,13 +3581,13 @@ declare module "godot" {
         
         /** Returns `true` if OS supports dark mode.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11).  
+         *  **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).  
          */
         static is_dark_mode_supported(): boolean
         
         /** Returns `true` if OS is using dark mode.  
          *      
-         *  **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11).  
+         *  **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).  
          */
         static is_dark_mode(): boolean
         
@@ -3428,6 +3597,18 @@ declare module "godot" {
          */
         static get_accent_color(): Color
         
+        /** Returns the OS theme base color (default control background). Returns `Color(0, 0, 0, 0)` if the base color is unknown.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_base_color(): Color
+        
+        /** Sets the [param callable] that should be called when system theme settings are changed. Callback method should have zero arguments.  
+         *      
+         *  **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).  
+         */
+        static set_system_theme_change_callback(callable: Callable): void
+        
         /** Sets the current mouse mode. See also [method mouse_get_mode]. */
         static mouse_set_mode(mouse_mode: DisplayServer.MouseMode): void
         
@@ -3436,7 +3617,7 @@ declare module "godot" {
         
         /** Sets the mouse cursor position to the given [param position] relative to an origin at the upper left corner of the currently focused game Window Manager window.  
          *      
-         *  **Note:** [method warp_mouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.  
+         *  **Note:** [method warp_mouse] is only supported on Windows, macOS, and Linux (X11/Wayland). It has no effect on Android, iOS, and Web.  
          */
         static warp_mouse(position: Vector2i): void
         
@@ -3452,7 +3633,10 @@ declare module "godot" {
         /** Returns the user's clipboard as a string if possible. */
         static clipboard_get(): string
         
-        /** Returns the user's clipboard as an image if possible. */
+        /** Returns the user's clipboard as an image if possible.  
+         *      
+         *  **Note:** This method uses the copied pixel data, e.g. from a image editing software or a web browser, not an image file copied from file explorer.  
+         */
         static clipboard_get_image(): Image
         
         /** Returns `true` if there is a text content on the user's clipboard. */
@@ -3463,13 +3647,13 @@ declare module "godot" {
         
         /** Sets the user's [url=https://unix.stackexchange.com/questions/139191/whats-the-difference-between-primary-selection-and-clipboard-buffer]primary[/url] clipboard content to the given string. This is the clipboard that is set when the user selects text in any application, rather than when pressing [kbd]Ctrl + C[/kbd]. The clipboard data can then be pasted by clicking the middle mouse button in any application that supports the primary clipboard mechanism.  
          *      
-         *  **Note:** This method is only implemented on Linux (X11).  
+         *  **Note:** This method is only implemented on Linux (X11/Wayland).  
          */
         static clipboard_set_primary(clipboard_primary: string): void
         
         /** Returns the user's [url=https://unix.stackexchange.com/questions/139191/whats-the-difference-between-primary-selection-and-clipboard-buffer]primary[/url] clipboard as a string if possible. This is the clipboard that is set when the user selects text in any application, rather than when pressing [kbd]Ctrl + C[/kbd]. The clipboard data can then be pasted by clicking the middle mouse button in any application that supports the primary clipboard mechanism.  
          *      
-         *  **Note:** This method is only implemented on Linux (X11).  
+         *  **Note:** This method is only implemented on Linux (X11/Wayland).  
          */
         static clipboard_get_primary(): string
         
@@ -3495,8 +3679,17 @@ declare module "godot" {
         static get_screen_from_rect(rect: Rect2): int64
         
         /** Returns the screen's top-left corner position in pixels. On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:  
-         *    
+         *  [codeblock lang=text]  
+         *  * (0, 0)        +-------+  
+         *                  |       |  
+         *  +-------------+ |       |  
+         *  |             | |       |  
+         *  |             | |       |  
+         *  +-------------+ +-------+  
+         *  [/codeblock]  
          *  See also [method screen_get_size].  
+         *      
+         *  **Note:** On Linux (Wayland) this method always returns `(0, 0)`.  
          */
         static screen_get_position(screen: int64 = -1): Vector2i
         
@@ -3511,17 +3704,26 @@ declare module "godot" {
          *  **Note:** On macOS, returned value is inaccurate if fractional display scaling mode is used.  
          *      
          *  **Note:** On Android devices, the actual screen densities are grouped into six generalized densities:  
-         *    
+         *  [codeblock lang=text]  
+         *     ldpi - 120 dpi  
+         *     mdpi - 160 dpi  
+         *     hdpi - 240 dpi  
+         *    xhdpi - 320 dpi  
+         *   xxhdpi - 480 dpi  
+         *  xxxhdpi - 640 dpi  
+         *  [/codeblock]  
          *      
-         *  **Note:** This method is implemented on Android, Linux (X11), macOS and Windows. Returns `72` on unsupported platforms.  
+         *  **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS and Windows. Returns `72` on unsupported platforms.  
          */
         static screen_get_dpi(screen: int64 = -1): int64
         
         /** Returns the scale factor of the specified screen by index.  
          *      
-         *  **Note:** On macOS returned value is `2.0` for hiDPI (Retina) screen, and `1.0` for all other cases.  
+         *  **Note:** On macOS, the returned value is `2.0` for hiDPI (Retina) screens, and `1.0` for all other cases.  
          *      
-         *  **Note:** This method is implemented only on macOS.  
+         *  **Note:** On Linux (Wayland), the returned value is accurate only when [param screen] is [constant SCREEN_OF_MAIN_WINDOW]. Due to API limitations, passing a direct index will return a rounded-up integer, if the screen has a fractional scale (e.g. `1.25` would get rounded up to `2.0`).  
+         *      
+         *  **Note:** This method is implemented only on macOS and Linux (Wayland).  
          */
         static screen_get_scale(screen: int64 = -1): float64
         
@@ -3585,13 +3787,20 @@ declare module "godot" {
         static get_window_list(): PackedInt32Array
         
         /** Returns the ID of the window at the specified screen [param position] (in pixels). On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:  
-         *    
+         *  [codeblock lang=text]  
+         *  * (0, 0)        +-------+  
+         *                  |       |  
+         *  +-------------+ |       |  
+         *  |             | |       |  
+         *  |             | |       |  
+         *  +-------------+ +-------+  
+         *  [/codeblock]  
          */
         static get_window_at_screen_position(position: Vector2i): int64
         
         /** Returns internal structure pointers for use in plugins.  
          *      
-         *  **Note:** This method is implemented on Android, Linux (X11), macOS and Windows.  
+         *  **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS, and Windows.  
          */
         static window_get_native_handle(handle_type: DisplayServer.HandleType, window_id: int64 = 0): int64
         
@@ -3641,10 +3850,19 @@ declare module "godot" {
         static window_get_position_with_decorations(window_id: int64 = 0): Vector2i
         
         /** Sets the position of the given window to [param position]. On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:  
-         *    
+         *  [codeblock lang=text]  
+         *  * (0, 0)        +-------+  
+         *                  |       |  
+         *  +-------------+ |       |  
+         *  |             | |       |  
+         *  |             | |       |  
+         *  +-------------+ +-------+  
+         *  [/codeblock]  
          *  See also [method window_get_position] and [method window_set_size].  
          *      
          *  **Note:** It's recommended to change this value using [member Window.position] instead.  
+         *      
+         *  **Note:** On Linux (Wayland): this method is a no-op.  
          */
         static window_set_position(position: Vector2i, window_id: int64 = 0): void
         
@@ -3677,10 +3895,10 @@ declare module "godot" {
          */
         static window_set_input_text_callback(callback: Callable, window_id: int64 = 0): void
         
-        /** Sets the [param callback] that should be called when files are dropped from the operating system's file manager to the window specified by [param window_id].  
+        /** Sets the [param callback] that should be called when files are dropped from the operating system's file manager to the window specified by [param window_id]. [param callback] should take one [PackedStringArray] argument, which is the list of dropped files.  
          *  **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.  
          *      
-         *  **Note:** This method is implemented on Windows, macOS, Linux (X11) and Web.  
+         *  **Note:** This method is implemented on Windows, macOS, Linux (X11/Wayland), and Web.  
          */
         static window_set_drop_files_callback(callback: Callable, window_id: int64 = 0): void
         
@@ -3690,7 +3908,7 @@ declare module "godot" {
         /** Returns the window's maximum size (in pixels). See also [method window_set_max_size]. */
         static window_get_max_size(window_id: int64 = 0): Vector2i
         
-        /** Sets the maximum size of the window specified by [param window_id] in pixels. Normally, the user will not be able to drag the window to make it smaller than the specified size. See also [method window_get_max_size].  
+        /** Sets the maximum size of the window specified by [param window_id] in pixels. Normally, the user will not be able to drag the window to make it larger than the specified size. See also [method window_get_max_size].  
          *      
          *  **Note:** It's recommended to change this value using [member Window.max_size] instead.  
          *      
@@ -3701,7 +3919,7 @@ declare module "godot" {
         /** Returns the window's minimum size (in pixels). See also [method window_set_min_size]. */
         static window_get_min_size(window_id: int64 = 0): Vector2i
         
-        /** Sets the minimum size for the given window to [param min_size] (in pixels). Normally, the user will not be able to drag the window to make it larger than the specified size. See also [method window_get_min_size].  
+        /** Sets the minimum size for the given window to [param min_size] in pixels. Normally, the user will not be able to drag the window to make it smaller than the specified size. See also [method window_get_min_size].  
          *      
          *  **Note:** It's recommended to change this value using [member Window.min_size] instead.  
          *      
@@ -3834,7 +4052,9 @@ declare module "godot" {
         /** Returns the default mouse cursor shape set by [method cursor_set_shape]. */
         static cursor_get_shape(): DisplayServer.CursorShape
         
-        /** Sets a custom mouse cursor image for the defined [param shape]. This means the user's operating system and mouse cursor theme will no longer influence the mouse cursor's appearance. The image must be `256x256` or smaller for correct appearance. [param hotspot] can optionally be set to define the area where the cursor will click. By default, [param hotspot] is set to `Vector2(0, 0)`, which is the top-left corner of the image. See also [method cursor_set_shape]. */
+        /** Sets a custom mouse cursor image for the given [param shape]. This means the user's operating system and mouse cursor theme will no longer influence the mouse cursor's appearance.  
+         *  [param cursor] can be either a [Texture2D] or an [Image], and it should not be larger than 256×256 to display correctly. Optionally, [param hotspot] can be set to offset the image's position relative to the click point. By default, [param hotspot] is set to the top-left corner of the image. See also [method cursor_set_shape].  
+         */
         static cursor_set_custom_image(cursor: Resource, shape: DisplayServer.CursorShape = 0, hotspot: Vector2 = Vector2.ZERO): void
         
         /** Returns `true` if positions of **OK** and **Cancel** buttons are swapped in dialogs. This is enabled by default on Windows to follow interface conventions, and be toggled by changing [member ProjectSettings.gui/common/swap_cancel_ok].  
@@ -3849,24 +4069,23 @@ declare module "godot" {
          */
         static enable_for_stealing_focus(process_id: int64): void
         
-        /** Shows a text dialog which uses the operating system's native look-and-feel. [param callback] will be called when the dialog is closed for any reason.  
+        /** Shows a text dialog which uses the operating system's native look-and-feel. [param callback] should accept a single [int] parameter which corresponds to the index of the pressed button.  
          *      
-         *  **Note:** This method is implemented only on macOS.  
+         *  **Note:** This method is implemented if the display server has the [constant FEATURE_NATIVE_DIALOG] feature. Supported platforms include macOS and Windows.  
          */
         static dialog_show(title: string, description: string, buttons: PackedStringArray | string[], callback: Callable): Error
         
-        /** Shows a text input dialog which uses the operating system's native look-and-feel. [param callback] will be called with a [String] argument equal to the text field's contents when the dialog is closed for any reason.  
+        /** Shows a text input dialog which uses the operating system's native look-and-feel. [param callback] should accept a single [String] parameter which contains the text field's contents.  
          *      
-         *  **Note:** This method is implemented only on macOS.  
+         *  **Note:** This method is implemented if the display server has the [constant FEATURE_NATIVE_DIALOG_INPUT] feature. Supported platforms include macOS and Windows.  
          */
         static dialog_input_text(title: string, description: string, existing_text: string, callback: Callable): Error
         
         /** Displays OS native dialog for selecting files or directories in the file system.  
-         *  Callbacks have the following arguments: `bool status, PackedStringArray selected_paths, int selected_filter_index`.  
+         *  Each filter string in the [param filters] array should be formatted like this: `*.txt,*.doc;Text Files`. The description text of the filter is optional and can be omitted. See also [member FileDialog.filters].  
+         *  Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray, selected_filter_index: int`.  
          *      
-         *  **Note:** This method is implemented if the display server has the [constant FEATURE_NATIVE_DIALOG] feature.  
-         *      
-         *  **Note:** This method is implemented on Linux, Windows and macOS.  
+         *  **Note:** This method is implemented if the display server has the [constant FEATURE_NATIVE_DIALOG_FILE] feature. Supported platforms include Linux (X11/Wayland), Windows, and macOS.  
          *      
          *  **Note:** [param current_directory] might be ignored.  
          *      
@@ -3878,45 +4097,65 @@ declare module "godot" {
          */
         static file_dialog_show(title: string, current_directory: string, filename: string, show_hidden: boolean, mode: DisplayServer.FileDialogMode, filters: PackedStringArray | string[], callback: Callable): Error
         
+        /** Displays OS native dialog for selecting files or directories in the file system with additional user selectable options.  
+         *  Each filter string in the [param filters] array should be formatted like this: `*.txt,*.doc;Text Files`. The description text of the filter is optional and can be omitted. See also [member FileDialog.filters].  
+         *  [param options] is array of [Dictionary]s with the following keys:  
+         *  - `"name"` - option's name [String].  
+         *  - `"values"` - [PackedStringArray] of values. If empty, boolean option (check box) is used.  
+         *  - `"default"` - default selected option index ([int]) or default boolean value ([bool]).  
+         *  Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray, selected_filter_index: int, selected_option: Dictionary`.  
+         *      
+         *  **Note:** This method is implemented if the display server has the [constant FEATURE_NATIVE_DIALOG_FILE] feature. Supported platforms include Linux (X11/Wayland), Windows, and macOS.  
+         *      
+         *  **Note:** [param current_directory] might be ignored.  
+         *      
+         *  **Note:** On Linux (X11), [param show_hidden] is ignored.  
+         *      
+         *  **Note:** On macOS, native file dialogs have no title.  
+         *      
+         *  **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [method OS.get_granted_permissions] to get a list of saved bookmarks.  
+         */
+        static file_dialog_with_options_show(title: string, current_directory: string, root: string, filename: string, show_hidden: boolean, mode: DisplayServer.FileDialogMode, filters: PackedStringArray | string[], options: GArray, callback: Callable): Error
+        
         /** Returns the number of keyboard layouts.  
          *      
-         *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
+         *  **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.  
          */
         static keyboard_get_layout_count(): int64
         
         /** Returns active keyboard layout index.  
          *      
-         *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
+         *  **Note:** This method is implemented on Linux (X11/Wayland), macOS, and Windows.  
          */
         static keyboard_get_current_layout(): int64
         
         /** Sets the active keyboard layout.  
          *      
-         *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
+         *  **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.  
          */
         static keyboard_set_current_layout(index: int64): void
         
         /** Returns the ISO-639/BCP-47 language code of the keyboard layout at position [param index].  
          *      
-         *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
+         *  **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.  
          */
         static keyboard_get_layout_language(index: int64): string
         
         /** Returns the localized name of the keyboard layout at position [param index].  
          *      
-         *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
+         *  **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.  
          */
         static keyboard_get_layout_name(index: int64): string
         
         /** Converts a physical (US QWERTY) [param keycode] to one in the active keyboard layout.  
          *      
-         *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
+         *  **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.  
          */
         static keyboard_get_keycode_from_physical(keycode: Key): Key
         
         /** Converts a physical (US QWERTY) [param keycode] to localized label printed on the key in the active keyboard layout.  
          *      
-         *  **Note:** This method is implemented on Linux (X11), macOS and Windows.  
+         *  **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.  
          */
         static keyboard_get_label_from_physical(keycode: Key): Key
         
@@ -3929,11 +4168,59 @@ declare module "godot" {
          */
         static force_process_and_drop_events(): void
         
-        /** Sets the window icon (usually displayed in the top-left corner) in the operating system's  *native*  format. The file at [param filename] must be in `.ico` format on Windows or `.icns` on macOS. By using specially crafted `.ico` or `.icns` icons, [method set_native_icon] allows specifying different icons depending on the size the icon is displayed at. This size is determined by the operating system and user preferences (including the display scale factor). To use icons in other formats, use [method set_icon] instead. */
+        /** Sets the window icon (usually displayed in the top-left corner) in the operating system's  *native*  format. The file at [param filename] must be in `.ico` format on Windows or `.icns` on macOS. By using specially crafted `.ico` or `.icns` icons, [method set_native_icon] allows specifying different icons depending on the size the icon is displayed at. This size is determined by the operating system and user preferences (including the display scale factor). To use icons in other formats, use [method set_icon] instead.  
+         *      
+         *  **Note:** Requires support for [constant FEATURE_NATIVE_ICON].  
+         */
         static set_native_icon(filename: string): void
         
-        /** Sets the window icon (usually displayed in the top-left corner) with an [Image]. To use icons in the operating system's native format, use [method set_native_icon] instead. */
+        /** Sets the window icon (usually displayed in the top-left corner) with an [Image]. To use icons in the operating system's native format, use [method set_native_icon] instead.  
+         *      
+         *  **Note:** Requires support for [constant FEATURE_ICON].  
+         */
         static set_icon(image: Image): void
+        
+        /** Creates a new application status indicator with the specified icon, tooltip, and activation callback.  
+         *  [param callback] should take two arguments: the pressed mouse button (one of the [enum MouseButton] constants) and the click position in screen coordinates (a [Vector2i]).  
+         */
+        static create_status_indicator(icon: Texture2D, tooltip: string, callback: Callable): int64
+        
+        /** Sets the application status indicator icon.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static status_indicator_set_icon(id: int64, icon: Texture2D): void
+        
+        /** Sets the application status indicator tooltip.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static status_indicator_set_tooltip(id: int64, tooltip: string): void
+        
+        /** Sets the application status indicator native popup menu.  
+         *      
+         *  **Note:** On macOS, the menu is activated by any mouse button. Its activation callback is  *not*  triggered.  
+         *      
+         *  **Note:** On Windows, the menu is activated by the right mouse button, selecting the status icon and pressing [kbd]Shift + F10[/kbd], or the applications key. The menu's activation callback for the other mouse buttons is still triggered.  
+         *      
+         *  **Note:** Native popup is only supported if [NativeMenu] supports the [constant NativeMenu.FEATURE_POPUP_MENU] feature.  
+         */
+        static status_indicator_set_menu(id: int64, menu_rid: RID): void
+        
+        /** Sets the application status indicator activation callback. [param callback] should take two arguments: [int] mouse button index (one of [enum MouseButton] values) and [Vector2i] click position in screen coordinates.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static status_indicator_set_callback(id: int64, callback: Callable): void
+        
+        /** Returns the rectangle for the given status indicator [param id] in screen coordinates. If the status indicator is not visible, returns an empty [Rect2].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static status_indicator_get_rect(id: int64): Rect2
+        
+        /** Removes the application status indicator. */
+        static delete_status_indicator(id: int64): void
         
         /** Returns the total number of available tablet drivers.  
          *      
@@ -3954,10 +4241,1464 @@ declare module "godot" {
         static tablet_get_current_driver(): string
         
         /** Set active tablet driver name.  
+         *  Supported drivers:  
+         *  - `winink`: Windows Ink API, default (Windows 8.1+ required).  
+         *  - `wintab`: Wacom Wintab API (compatible device driver required).  
+         *  - `dummy`: Dummy driver, tablet input is disabled.  
          *      
          *  **Note:** This method is implemented only on Windows.  
          */
         static tablet_set_current_driver(name: string): void
+        
+        /** Returns `true` if the window background can be made transparent. This method returns `false` if [member ProjectSettings.display/window/per_pixel_transparency/allowed] is set to `false`, or if transparency is not supported by the renderer or OS compositor. */
+        static is_window_transparency_available(): boolean
+        
+        /** Registers an [Object] which represents an additional output that will be rendered too, beyond normal windows. The [Object] is only used as an identifier, which can be later passed to [method unregister_additional_output].  
+         *  This can be used to prevent Godot from skipping rendering when no normal windows are visible.  
+         */
+        static register_additional_output(object: Object): void
+        
+        /** Unregisters an [Object] representing an additional output, that was registered via [method register_additional_output]. */
+        static unregister_additional_output(object: Object): void
+        
+        /** Returns `true` if any additional outputs have been registered via [method register_additional_output]. */
+        static has_additional_outputs(): boolean
+    }
+    // // Singleton Class
+    namespace NativeMenu {
+        enum Feature {
+            /** [NativeMenu] supports native global main menu. */
+            FEATURE_GLOBAL_MENU = 0,
+            
+            /** [NativeMenu] supports native popup menus. */
+            FEATURE_POPUP_MENU = 1,
+            
+            /** [NativeMenu] supports menu open and close callbacks. */
+            FEATURE_OPEN_CLOSE_CALLBACK = 2,
+            
+            /** [NativeMenu] supports menu item hover callback. */
+            FEATURE_HOVER_CALLBACK = 3,
+            
+            /** [NativeMenu] supports menu item accelerator/key callback. */
+            FEATURE_KEY_CALLBACK = 4,
+        }
+        enum SystemMenus {
+            /** Invalid special system menu ID. */
+            INVALID_MENU_ID = 0,
+            
+            /** Global main menu ID. */
+            MAIN_MENU_ID = 1,
+            
+            /** Application (first menu after "Apple" menu on macOS) menu ID. */
+            APPLICATION_MENU_ID = 2,
+            
+            /** "Window" menu ID (on macOS this menu includes standard window control items and a list of open windows). */
+            WINDOW_MENU_ID = 3,
+            
+            /** "Help" menu ID (on macOS this menu includes help search bar). */
+            HELP_MENU_ID = 4,
+            
+            /** Dock icon right-click menu ID (on macOS this menu include standard application control items and a list of open windows). */
+            DOCK_MENU_ID = 5,
+        }
+    }
+    /** A server interface for OS native menus.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_nativemenu.html  
+     */
+    class NativeMenu extends Object {
+        /** Returns `true` if the specified [param feature] is supported by the current [NativeMenu], `false` otherwise.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static has_feature(feature: NativeMenu.Feature): boolean
+        
+        /** Returns `true` if a special system menu is supported.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static has_system_menu(menu_id: NativeMenu.SystemMenus): boolean
+        
+        /** Returns RID of a special system menu.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static get_system_menu(menu_id: NativeMenu.SystemMenus): RID
+        
+        /** Returns readable name of a special system menu.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static get_system_menu_name(menu_id: NativeMenu.SystemMenus): string
+        
+        /** Creates a new global menu object.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static create_menu(): RID
+        
+        /** Returns `true` if [param rid] is valid global menu.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static has_menu(rid: RID): boolean
+        
+        /** Frees a global menu object created by this [NativeMenu].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static free_menu(rid: RID): void
+        
+        /** Returns global menu size.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_size(rid: RID): Vector2
+        
+        /** Shows the global menu at [param position] in the screen coordinates.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static popup(rid: RID, position: Vector2i): void
+        
+        /** Sets the menu text layout direction from right-to-left if [param is_rtl] is `true`.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_interface_direction(rid: RID, is_rtl: boolean): void
+        
+        /** Registers callable to emit after the menu is closed.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_popup_open_callback(rid: RID, callback: Callable): void
+        
+        /** Returns global menu open callback.  
+         *  b]Note:** This method is implemented only on macOS.  
+         */
+        static get_popup_open_callback(rid: RID): Callable
+        
+        /** Registers callable to emit when the menu is about to show.  
+         *      
+         *  **Note:** The OS can simulate menu opening to track menu item changes and global shortcuts, in which case the corresponding close callback is not triggered. Use [method is_opened] to check if the menu is currently opened.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_popup_close_callback(rid: RID, callback: Callable): void
+        
+        /** Returns global menu close callback.  
+         *  b]Note:** This method is implemented only on macOS.  
+         */
+        static get_popup_close_callback(rid: RID): Callable
+        
+        /** Sets the minimum width of the global menu.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_minimum_width(rid: RID, width: float64): void
+        
+        /** Returns global menu minimum width.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static get_minimum_width(rid: RID): float64
+        
+        /** Returns `true` if the menu is currently opened.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static is_opened(rid: RID): boolean
+        
+        /** Adds an item that will act as a submenu of the global menu [param rid]. The [param submenu_rid] argument is the RID of the global menu that will be shown when the item is clicked.  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static add_submenu_item(rid: RID, label: string, submenu_rid: RID, tag: any = <any> {}, index: int64 = -1): int64
+        
+        /** Adds a new item with text [param label] to the global menu [param rid].  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
+         *      
+         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         *      
+         *  **Note:** On Windows, [param accelerator] and [param key_callback] are ignored.  
+         */
+        static add_item(rid: RID, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
+        
+        /** Adds a new checkable item with text [param label] to the global menu [param rid].  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
+         *      
+         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         *      
+         *  **Note:** On Windows, [param accelerator] and [param key_callback] are ignored.  
+         */
+        static add_check_item(rid: RID, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
+        
+        /** Adds a new item with text [param label] and icon [param icon] to the global menu [param rid].  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
+         *      
+         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         *      
+         *  **Note:** On Windows, [param accelerator] and [param key_callback] are ignored.  
+         */
+        static add_icon_item(rid: RID, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
+        
+        /** Adds a new checkable item with text [param label] and icon [param icon] to the global menu [param rid].  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
+         *      
+         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         *      
+         *  **Note:** On Windows, [param accelerator] and [param key_callback] are ignored.  
+         */
+        static add_icon_check_item(rid: RID, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
+        
+        /** Adds a new radio-checkable item with text [param label] to the global menu [param rid].  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
+         *      
+         *  **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
+         *      
+         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         *      
+         *  **Note:** On Windows, [param accelerator] and [param key_callback] are ignored.  
+         */
+        static add_radio_check_item(rid: RID, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
+        
+        /** Adds a new radio-checkable item with text [param label] and icon [param icon] to the global menu [param rid].  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
+         *      
+         *  **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [method set_item_checked] for more info on how to control it.  
+         *      
+         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         *      
+         *  **Note:** On Windows, [param accelerator] and [param key_callback] are ignored.  
+         */
+        static add_icon_radio_check_item(rid: RID, icon: Texture2D, label: string, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
+        
+        /** Adds a new item with text [param label] to the global menu [param rid].  
+         *  Contrarily to normal binary items, multistate items can have more than two states, as defined by [param max_states]. Each press or activate of the item will increase the state by one. The default value is defined by [param default_state].  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *  An [param accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [param accelerator] is generally a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
+         *      
+         *  **Note:** By default, there's no indication of the current item state, it should be changed manually.  
+         *      
+         *  **Note:** The [param callback] and [param key_callback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [param tag].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         *      
+         *  **Note:** On Windows, [param accelerator] and [param key_callback] are ignored.  
+         */
+        static add_multistate_item(rid: RID, label: string, max_states: int64, default_state: int64, callback: Callable = new Callable(), key_callback: Callable = new Callable(), tag: any = <any> {}, accelerator: Key = 0, index: int64 = -1): int64
+        
+        /** Adds a separator between items to the global menu [param rid]. Separators also occupy an index.  
+         *  Returns index of the inserted item, it's not guaranteed to be the same as [param index] value.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static add_separator(rid: RID, index: int64 = -1): int64
+        
+        /** Returns the index of the item with the specified [param text]. Indices are automatically assigned to each item by the engine, and cannot be set manually.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static find_item_index_with_text(rid: RID, text: string): int64
+        
+        /** Returns the index of the item with the specified [param tag]. Indices are automatically assigned to each item by the engine, and cannot be set manually.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static find_item_index_with_tag(rid: RID, tag: any): int64
+        
+        /** Returns the index of the item with the submenu specified by [param submenu_rid]. Indices are automatically assigned to each item by the engine, and cannot be set manually.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static find_item_index_with_submenu(rid: RID, submenu_rid: RID): int64
+        
+        /** Returns `true` if the item at index [param idx] is checked.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static is_item_checked(rid: RID, idx: int64): boolean
+        
+        /** Returns `true` if the item at index [param idx] is checkable in some way, i.e. if it has a checkbox or radio button.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static is_item_checkable(rid: RID, idx: int64): boolean
+        
+        /** Returns `true` if the item at index [param idx] has radio button-style checkability.  
+         *      
+         *  **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static is_item_radio_checkable(rid: RID, idx: int64): boolean
+        
+        /** Returns the callback of the item at index [param idx].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_item_callback(rid: RID, idx: int64): Callable
+        
+        /** Returns the callback of the item accelerator at index [param idx].  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static get_item_key_callback(rid: RID, idx: int64): Callable
+        
+        /** Returns the metadata of the specified item, which might be of any type. You can set it with [method set_item_tag], which provides a simple way of assigning context data to items.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_item_tag(rid: RID, idx: int64): any
+        
+        /** Returns the text of the item at index [param idx].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_item_text(rid: RID, idx: int64): string
+        
+        /** Returns the submenu ID of the item at index [param idx]. See [method add_submenu_item] for more info on how to add a submenu.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_item_submenu(rid: RID, idx: int64): RID
+        
+        /** Returns the accelerator of the item at index [param idx]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static get_item_accelerator(rid: RID, idx: int64): Key
+        
+        /** Returns `true` if the item at index [param idx] is disabled. When it is disabled it can't be selected, or its action invoked.  
+         *  See [method set_item_disabled] for more info on how to disable an item.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static is_item_disabled(rid: RID, idx: int64): boolean
+        
+        /** Returns `true` if the item at index [param idx] is hidden.  
+         *  See [method set_item_hidden] for more info on how to hide an item.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static is_item_hidden(rid: RID, idx: int64): boolean
+        
+        /** Returns the tooltip associated with the specified index [param idx].  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static get_item_tooltip(rid: RID, idx: int64): string
+        
+        /** Returns the state of a multistate item. See [method add_multistate_item] for details.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_item_state(rid: RID, idx: int64): int64
+        
+        /** Returns number of states of a multistate item. See [method add_multistate_item] for details.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_item_max_states(rid: RID, idx: int64): int64
+        
+        /** Returns the icon of the item at index [param idx].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_item_icon(rid: RID, idx: int64): Texture2D
+        
+        /** Returns the horizontal offset of the item at the given [param idx].  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static get_item_indentation_level(rid: RID, idx: int64): int64
+        
+        /** Sets the checkstate status of the item at index [param idx].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_checked(rid: RID, idx: int64, checked: boolean): void
+        
+        /** Sets whether the item at index [param idx] has a checkbox. If `false`, sets the type of the item to plain text.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_checkable(rid: RID, idx: int64, checkable: boolean): void
+        
+        /** Sets the type of the item at the specified index [param idx] to radio button. If `false`, sets the type of the item to plain text.  
+         *      
+         *  **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_radio_checkable(rid: RID, idx: int64, checkable: boolean): void
+        
+        /** Sets the callback of the item at index [param idx]. Callback is emitted when an item is pressed.  
+         *      
+         *  **Note:** The [param callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_callback(rid: RID, idx: int64, callback: Callable): void
+        
+        /** Sets the callback of the item at index [param idx]. The callback is emitted when an item is hovered.  
+         *      
+         *  **Note:** The [param callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_item_hover_callbacks(rid: RID, idx: int64, callback: Callable): void
+        
+        /** Sets the callback of the item at index [param idx]. Callback is emitted when its accelerator is activated.  
+         *      
+         *  **Note:** The [param key_callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_item_key_callback(rid: RID, idx: int64, key_callback: Callable): void
+        
+        /** Sets the metadata of an item, which may be of any type. You can later get it with [method get_item_tag], which provides a simple way of assigning context data to items.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_tag(rid: RID, idx: int64, tag: any): void
+        
+        /** Sets the text of the item at index [param idx].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_text(rid: RID, idx: int64, text: string): void
+        
+        /** Sets the submenu RID of the item at index [param idx]. The submenu is a global menu that would be shown when the item is clicked.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_submenu(rid: RID, idx: int64, submenu_rid: RID): void
+        
+        /** Sets the accelerator of the item at index [param idx]. [param keycode] can be a single [enum Key], or a combination of [enum KeyModifierMask]s and [enum Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_item_accelerator(rid: RID, idx: int64, keycode: Key): void
+        
+        /** Enables/disables the item at index [param idx]. When it is disabled, it can't be selected and its action can't be invoked.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_disabled(rid: RID, idx: int64, disabled: boolean): void
+        
+        /** Hides/shows the item at index [param idx]. When it is hidden, an item does not appear in a menu and its action cannot be invoked.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_item_hidden(rid: RID, idx: int64, hidden: boolean): void
+        
+        /** Sets the [String] tooltip of the item at the specified index [param idx].  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_item_tooltip(rid: RID, idx: int64, tooltip: string): void
+        
+        /** Sets the state of a multistate item. See [method add_multistate_item] for details.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_state(rid: RID, idx: int64, state: int64): void
+        
+        /** Sets number of state of a multistate item. See [method add_multistate_item] for details.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static set_item_max_states(rid: RID, idx: int64, max_states: int64): void
+        
+        /** Replaces the [Texture2D] icon of the specified [param idx].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         *      
+         *  **Note:** This method is not supported by macOS Dock menu items.  
+         */
+        static set_item_icon(rid: RID, idx: int64, icon: Texture2D): void
+        
+        /** Sets the horizontal offset of the item at the given [param idx].  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static set_item_indentation_level(rid: RID, idx: int64, level: int64): void
+        
+        /** Returns number of items in the global menu [param rid].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static get_item_count(rid: RID): int64
+        
+        /** Return `true` is global menu is a special system menu.  
+         *      
+         *  **Note:** This method is implemented only on macOS.  
+         */
+        static is_system_menu(rid: RID): boolean
+        
+        /** Removes the item at index [param idx] from the global menu [param rid].  
+         *      
+         *  **Note:** The indices of items after the removed item will be shifted by one.  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static remove_item(rid: RID, idx: int64): void
+        
+        /** Removes all items from the global menu [param rid].  
+         *      
+         *  **Note:** This method is implemented on macOS and Windows.  
+         */
+        static clear(rid: RID): void
+    }
+    // // Singleton Class
+    /** A server interface for low-level 2D navigation access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_navigationserver2d.html  
+     */
+    class NavigationServer2D extends Object {
+        /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
+        static get_maps(): GArray
+        
+        /** Create a new map. */
+        static map_create(): RID
+        
+        /** Sets the map active. */
+        static map_set_active(map: RID, active: boolean): void
+        
+        /** Returns true if the map is active. */
+        static map_is_active(map: RID): boolean
+        
+        /** Sets the map cell size used to rasterize the navigation mesh vertices. Must match with the cell size of the used navigation meshes. */
+        static map_set_cell_size(map: RID, cell_size: float64): void
+        
+        /** Returns the map cell size used to rasterize the navigation mesh vertices. */
+        static map_get_cell_size(map: RID): float64
+        
+        /** Set the navigation [param map] edge connection use. If [param enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
+        static map_set_use_edge_connections(map: RID, enabled: boolean): void
+        
+        /** Returns whether the navigation [param map] allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
+        static map_get_use_edge_connections(map: RID): boolean
+        
+        /** Set the map edge connection margin used to weld the compatible region edges. */
+        static map_set_edge_connection_margin(map: RID, margin: float64): void
+        
+        /** Returns the edge connection margin of the map. The edge connection margin is a distance used to connect two regions. */
+        static map_get_edge_connection_margin(map: RID): float64
+        
+        /** Set the map's link connection radius used to connect links to navigation polygons. */
+        static map_set_link_connection_radius(map: RID, radius: float64): void
+        
+        /** Returns the link connection radius of the map. This distance is the maximum range any link will search for navigation mesh polygons to connect to. */
+        static map_get_link_connection_radius(map: RID): float64
+        
+        /** Returns the navigation path to reach the destination from the origin. [param navigation_layers] is a bitmask of all region navigation layers that are allowed to be in the path. */
+        static map_get_path(map: RID, origin: Vector2, destination: Vector2, optimize: boolean, navigation_layers: int64 = 1): PackedVector2Array
+        
+        /** Returns the point closest to the provided [param to_point] on the navigation mesh surface. */
+        static map_get_closest_point(map: RID, to_point: Vector2): Vector2
+        
+        /** Returns the owner region RID for the point returned by [method map_get_closest_point]. */
+        static map_get_closest_point_owner(map: RID, to_point: Vector2): RID
+        
+        /** Returns all navigation link [RID]s that are currently assigned to the requested navigation [param map]. */
+        static map_get_links(map: RID): GArray
+        
+        /** Returns all navigation regions [RID]s that are currently assigned to the requested navigation [param map]. */
+        static map_get_regions(map: RID): GArray
+        
+        /** Returns all navigation agents [RID]s that are currently assigned to the requested navigation [param map]. */
+        static map_get_agents(map: RID): GArray
+        
+        /** Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [param map]. */
+        static map_get_obstacles(map: RID): GArray
+        
+        /** This function immediately forces synchronization of the specified navigation [param map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).  
+         *  Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.  
+         *  Avoidance processing and dispatch of the `safe_velocity` signals is unaffected by this function and continues to happen for all maps and agents at the end of the physics frame.  
+         *      
+         *  **Note:** With great power comes great responsibility. This function should only be used by users that really know what they are doing and have a good reason for it. Forcing an immediate update of a navigation map requires locking the NavigationServer and flushing the entire NavigationServer command queue. Not only can this severely impact the performance of a game but it can also introduce bugs if used inappropriately without much foresight.  
+         */
+        static map_force_update(map: RID): void
+        
+        /** Returns the current iteration id of the navigation map. Every time the navigation map changes and synchronizes the iteration id increases. An iteration id of 0 means the navigation map has never synchronized.  
+         *      
+         *  **Note:** The iteration id will wrap back to 1 after reaching its range limit.  
+         */
+        static map_get_iteration_id(map: RID): int64
+        
+        /** Returns a random position picked from all map region polygons with matching [param navigation_layers].  
+         *  If [param uniformly] is `true`, all map regions, polygons, and faces are weighted by their surface area (slower).  
+         *  If [param uniformly] is `false`, just a random region and a random polygon are picked (faster).  
+         */
+        static map_get_random_point(map: RID, navigation_layers: int64, uniformly: boolean): Vector2
+        
+        /** Queries a path in a given navigation map. Start and target position and other parameters are defined through [NavigationPathQueryParameters2D]. Updates the provided [NavigationPathQueryResult2D] result object with the path among other results requested by the query. */
+        static query_path(parameters: NavigationPathQueryParameters2D, result: NavigationPathQueryResult2D): void
+        
+        /** Creates a new region. */
+        static region_create(): RID
+        
+        /** If [param enabled] is `true` the specified [param region] will contribute to its current navigation map. */
+        static region_set_enabled(region: RID, enabled: boolean): void
+        
+        /** Returns `true` if the specified [param region] is enabled. */
+        static region_get_enabled(region: RID): boolean
+        
+        /** If [param enabled] is `true`, the navigation [param region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
+        static region_set_use_edge_connections(region: RID, enabled: boolean): void
+        
+        /** Returns whether the navigation [param region] is set to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
+        static region_get_use_edge_connections(region: RID): boolean
+        
+        /** Sets the [param enter_cost] for this [param region]. */
+        static region_set_enter_cost(region: RID, enter_cost: float64): void
+        
+        /** Returns the enter cost of this [param region]. */
+        static region_get_enter_cost(region: RID): float64
+        
+        /** Sets the [param travel_cost] for this [param region]. */
+        static region_set_travel_cost(region: RID, travel_cost: float64): void
+        
+        /** Returns the travel cost of this [param region]. */
+        static region_get_travel_cost(region: RID): float64
+        
+        /** Set the `ObjectID` of the object which manages this region. */
+        static region_set_owner_id(region: RID, owner_id: int64): void
+        
+        /** Returns the `ObjectID` of the object which manages this region. */
+        static region_get_owner_id(region: RID): int64
+        
+        /** Returns `true` if the provided [param point] in world space is currently owned by the provided navigation [param region]. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.  
+         *  If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.  
+         *      
+         *  **Note:** If navigation meshes from different navigation regions overlap (which should be avoided in general) the result might not be what is expected.  
+         */
+        static region_owns_point(region: RID, point: Vector2): boolean
+        
+        /** Sets the map for the region. */
+        static region_set_map(region: RID, map: RID): void
+        
+        /** Returns the navigation map [RID] the requested [param region] is currently assigned to. */
+        static region_get_map(region: RID): RID
+        
+        /** Set the region's navigation layers. This allows selecting regions from a path request (when using [method NavigationServer2D.map_get_path]). */
+        static region_set_navigation_layers(region: RID, navigation_layers: int64): void
+        
+        /** Returns the region's navigation layers. */
+        static region_get_navigation_layers(region: RID): int64
+        
+        /** Sets the global transformation for the region. */
+        static region_set_transform(region: RID, transform: Transform2D): void
+        
+        /** Returns the global transformation of this [param region]. */
+        static region_get_transform(region: RID): Transform2D
+        
+        /** Sets the [param navigation_polygon] for the region. */
+        static region_set_navigation_polygon(region: RID, navigation_polygon: NavigationPolygon): void
+        
+        /** Returns how many connections this [param region] has with other regions in the map. */
+        static region_get_connections_count(region: RID): int64
+        
+        /** Returns the starting point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
+        static region_get_connection_pathway_start(region: RID, connection: int64): Vector2
+        
+        /** Returns the ending point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
+        static region_get_connection_pathway_end(region: RID, connection: int64): Vector2
+        
+        /** Returns a random position picked from all region polygons with matching [param navigation_layers].  
+         *  If [param uniformly] is `true`, all region polygons and faces are weighted by their surface area (slower).  
+         *  If [param uniformly] is `false`, just a random polygon and face is picked (faster).  
+         */
+        static region_get_random_point(region: RID, navigation_layers: int64, uniformly: boolean): Vector2
+        
+        /** Create a new link between two positions on a map. */
+        static link_create(): RID
+        
+        /** Sets the navigation map [RID] for the link. */
+        static link_set_map(link: RID, map: RID): void
+        
+        /** Returns the navigation map [RID] the requested [param link] is currently assigned to. */
+        static link_get_map(link: RID): RID
+        
+        /** If [param enabled] is `true`, the specified [param link] will contribute to its current navigation map. */
+        static link_set_enabled(link: RID, enabled: boolean): void
+        
+        /** Returns `true` if the specified [param link] is enabled. */
+        static link_get_enabled(link: RID): boolean
+        
+        /** Sets whether this [param link] can be travelled in both directions. */
+        static link_set_bidirectional(link: RID, bidirectional: boolean): void
+        
+        /** Returns whether this [param link] can be travelled in both directions. */
+        static link_is_bidirectional(link: RID): boolean
+        
+        /** Set the links's navigation layers. This allows selecting links from a path request (when using [method NavigationServer2D.map_get_path]). */
+        static link_set_navigation_layers(link: RID, navigation_layers: int64): void
+        
+        /** Returns the navigation layers for this [param link]. */
+        static link_get_navigation_layers(link: RID): int64
+        
+        /** Sets the entry position for this [param link]. */
+        static link_set_start_position(link: RID, position: Vector2): void
+        
+        /** Returns the starting position of this [param link]. */
+        static link_get_start_position(link: RID): Vector2
+        
+        /** Sets the exit position for the [param link]. */
+        static link_set_end_position(link: RID, position: Vector2): void
+        
+        /** Returns the ending position of this [param link]. */
+        static link_get_end_position(link: RID): Vector2
+        
+        /** Sets the [param enter_cost] for this [param link]. */
+        static link_set_enter_cost(link: RID, enter_cost: float64): void
+        
+        /** Returns the enter cost of this [param link]. */
+        static link_get_enter_cost(link: RID): float64
+        
+        /** Sets the [param travel_cost] for this [param link]. */
+        static link_set_travel_cost(link: RID, travel_cost: float64): void
+        
+        /** Returns the travel cost of this [param link]. */
+        static link_get_travel_cost(link: RID): float64
+        
+        /** Set the `ObjectID` of the object which manages this link. */
+        static link_set_owner_id(link: RID, owner_id: int64): void
+        
+        /** Returns the `ObjectID` of the object which manages this link. */
+        static link_get_owner_id(link: RID): int64
+        
+        /** Creates the agent. */
+        static agent_create(): RID
+        
+        /** If [param enabled] is `true`, the specified [param agent] uses avoidance. */
+        static agent_set_avoidance_enabled(agent: RID, enabled: boolean): void
+        
+        /** Return `true` if the specified [param agent] uses avoidance. */
+        static agent_get_avoidance_enabled(agent: RID): boolean
+        
+        /** Puts the agent in the map. */
+        static agent_set_map(agent: RID, map: RID): void
+        
+        /** Returns the navigation map [RID] the requested [param agent] is currently assigned to. */
+        static agent_get_map(agent: RID): RID
+        
+        /** If [param paused] is true the specified [param agent] will not be processed, e.g. calculate avoidance velocities or receive avoidance callbacks. */
+        static agent_set_paused(agent: RID, paused: boolean): void
+        
+        /** Returns `true` if the specified [param agent] is paused. */
+        static agent_get_paused(agent: RID): boolean
+        
+        /** Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
+        static agent_set_neighbor_distance(agent: RID, distance: float64): void
+        
+        /** Returns the maximum distance to other agents the specified [param agent] takes into account in the navigation. */
+        static agent_get_neighbor_distance(agent: RID): float64
+        
+        /** Sets the maximum number of other agents the agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
+        static agent_set_max_neighbors(agent: RID, count: int64): void
+        
+        /** Returns the maximum number of other agents the specified [param agent] takes into account in the navigation. */
+        static agent_get_max_neighbors(agent: RID): int64
+        
+        /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
+        static agent_set_time_horizon_agents(agent: RID, time_horizon: float64): void
+        
+        /** Returns the minimal amount of time for which the specified [param agent]'s velocities that are computed by the simulation are safe with respect to other agents. */
+        static agent_get_time_horizon_agents(agent: RID): float64
+        
+        /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to static avoidance obstacles. The larger this number, the sooner this agent will respond to the presence of static avoidance obstacles, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
+        static agent_set_time_horizon_obstacles(agent: RID, time_horizon: float64): void
+        
+        /** Returns the minimal amount of time for which the specified [param agent]'s velocities that are computed by the simulation are safe with respect to static avoidance obstacles. */
+        static agent_get_time_horizon_obstacles(agent: RID): float64
+        
+        /** Sets the radius of the agent. */
+        static agent_set_radius(agent: RID, radius: float64): void
+        
+        /** Returns the radius of the specified [param agent]. */
+        static agent_get_radius(agent: RID): float64
+        
+        /** Sets the maximum speed of the agent. Must be positive. */
+        static agent_set_max_speed(agent: RID, max_speed: float64): void
+        
+        /** Returns the maximum speed of the specified [param agent]. */
+        static agent_get_max_speed(agent: RID): float64
+        
+        /** Replaces the internal velocity in the collision avoidance simulation with [param velocity] for the specified [param agent]. When an agent is teleported to a new position far away this function should be used in the same frame. If called frequently this function can get agents stuck. */
+        static agent_set_velocity_forced(agent: RID, velocity: Vector2): void
+        
+        /** Sets [param velocity] as the new wanted velocity for the specified [param agent]. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agent's and obstacles. When an agent is teleported to a new position far away use [method agent_set_velocity_forced] instead to reset the internal velocity state. */
+        static agent_set_velocity(agent: RID, velocity: Vector2): void
+        
+        /** Returns the velocity of the specified [param agent]. */
+        static agent_get_velocity(agent: RID): Vector2
+        
+        /** Sets the position of the agent in world space. */
+        static agent_set_position(agent: RID, position: Vector2): void
+        
+        /** Returns the position of the specified [param agent] in world space. */
+        static agent_get_position(agent: RID): Vector2
+        
+        /** Returns true if the map got changed the previous frame. */
+        static agent_is_map_changed(agent: RID): boolean
+        
+        /** Sets the callback [Callable] that gets called after each avoidance processing step for the [param agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before the physics calculations.  
+         *      
+         *  **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [method agent_set_avoidance_callback] again with an empty [Callable].  
+         */
+        static agent_set_avoidance_callback(agent: RID, callback: Callable): void
+        
+        /** Return `true` if the specified [param agent] has an avoidance callback. */
+        static agent_has_avoidance_callback(agent: RID): boolean
+        
+        /** Set the agent's `avoidance_layers` bitmask. */
+        static agent_set_avoidance_layers(agent: RID, layers: int64): void
+        
+        /** Returns the `avoidance_layers` bitmask of the specified [param agent]. */
+        static agent_get_avoidance_layers(agent: RID): int64
+        
+        /** Set the agent's `avoidance_mask` bitmask. */
+        static agent_set_avoidance_mask(agent: RID, mask: int64): void
+        
+        /** Returns the `avoidance_mask` bitmask of the specified [param agent]. */
+        static agent_get_avoidance_mask(agent: RID): int64
+        
+        /** Set the agent's `avoidance_priority` with a [param priority] between 0.0 (lowest priority) to 1.0 (highest priority).  
+         *  The specified [param agent] does not adjust the velocity for other agents that would match the `avoidance_mask` but have a lower `avoidance_priority`. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.  
+         */
+        static agent_set_avoidance_priority(agent: RID, priority: float64): void
+        
+        /** Returns the `avoidance_priority` of the specified [param agent]. */
+        static agent_get_avoidance_priority(agent: RID): float64
+        
+        /** Creates a new navigation obstacle. */
+        static obstacle_create(): RID
+        
+        /** If [param enabled] is `true`, the provided [param obstacle] affects avoidance using agents. */
+        static obstacle_set_avoidance_enabled(obstacle: RID, enabled: boolean): void
+        
+        /** Returns `true` if the provided [param obstacle] has avoidance enabled. */
+        static obstacle_get_avoidance_enabled(obstacle: RID): boolean
+        
+        /** Sets the navigation map [RID] for the obstacle. */
+        static obstacle_set_map(obstacle: RID, map: RID): void
+        
+        /** Returns the navigation map [RID] the requested [param obstacle] is currently assigned to. */
+        static obstacle_get_map(obstacle: RID): RID
+        
+        /** If [param paused] is true the specified [param obstacle] will not be processed, e.g. affect avoidance velocities. */
+        static obstacle_set_paused(obstacle: RID, paused: boolean): void
+        
+        /** Returns `true` if the specified [param obstacle] is paused. */
+        static obstacle_get_paused(obstacle: RID): boolean
+        
+        /** Sets the radius of the dynamic obstacle. */
+        static obstacle_set_radius(obstacle: RID, radius: float64): void
+        
+        /** Returns the radius of the specified dynamic [param obstacle]. */
+        static obstacle_get_radius(obstacle: RID): float64
+        
+        /** Sets [param velocity] of the dynamic [param obstacle]. Allows other agents to better predict the movement of the dynamic obstacle. Only works in combination with the radius of the obstacle. */
+        static obstacle_set_velocity(obstacle: RID, velocity: Vector2): void
+        
+        /** Returns the velocity of the specified dynamic [param obstacle]. */
+        static obstacle_get_velocity(obstacle: RID): Vector2
+        
+        /** Sets the position of the obstacle in world space. */
+        static obstacle_set_position(obstacle: RID, position: Vector2): void
+        
+        /** Returns the position of the specified [param obstacle] in world space. */
+        static obstacle_get_position(obstacle: RID): Vector2
+        
+        /** Sets the outline vertices for the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. */
+        static obstacle_set_vertices(obstacle: RID, vertices: PackedVector2Array | Vector2[]): void
+        
+        /** Returns the outline vertices for the specified [param obstacle]. */
+        static obstacle_get_vertices(obstacle: RID): PackedVector2Array
+        
+        /** Set the obstacles's `avoidance_layers` bitmask. */
+        static obstacle_set_avoidance_layers(obstacle: RID, layers: int64): void
+        
+        /** Returns the `avoidance_layers` bitmask of the specified [param obstacle]. */
+        static obstacle_get_avoidance_layers(obstacle: RID): int64
+        
+        /** Parses the [SceneTree] for source geometry according to the properties of [param navigation_polygon]. Updates the provided [param source_geometry_data] resource with the resulting data. The resource can then be used to bake a navigation mesh with [method bake_from_source_geometry_data]. After the process is finished the optional [param callback] will be called.  
+         *      
+         *  **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.  
+         *  **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.  
+         */
+        static parse_source_geometry_data(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, root_node: Node, callback: Callable = new Callable()): void
+        
+        /** Bakes the provided [param navigation_polygon] with the data from the provided [param source_geometry_data]. After the process is finished the optional [param callback] will be called. */
+        static bake_from_source_geometry_data(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, callback: Callable = new Callable()): void
+        
+        /** Bakes the provided [param navigation_polygon] with the data from the provided [param source_geometry_data] as an async task running on a background thread. After the process is finished the optional [param callback] will be called. */
+        static bake_from_source_geometry_data_async(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, callback: Callable = new Callable()): void
+        
+        /** Returns `true` when the provided navigation polygon is being baked on a background thread. */
+        static is_baking_navigation_polygon(navigation_polygon: NavigationPolygon): boolean
+        
+        /** Creates a new source geometry parser. If a [Callable] is set for the parser with [method source_geometry_parser_set_callback] the callback will be called for every single node that gets parsed whenever [method parse_source_geometry_data] is used. */
+        static source_geometry_parser_create(): RID
+        
+        /** Sets the [param callback] [Callable] for the specific source geometry [param parser]. The [Callable] will receive a call with the following parameters:  
+         *  - `navigation_mesh` - The [NavigationPolygon] reference used to define the parse settings. Do NOT edit or add directly to the navigation mesh.  
+         *  - `source_geometry_data` - The [NavigationMeshSourceGeometryData2D] reference. Add custom source geometry for navigation mesh baking to this object.  
+         *  - `node` - The [Node] that is parsed.  
+         */
+        static source_geometry_parser_set_callback(parser: RID, callback: Callable): void
+        
+        /** Returns a simplified version of [param path] with less critical path points removed. The simplification amount is in worlds units and controlled by [param epsilon]. The simplification uses a variant of Ramer-Douglas-Peucker algorithm for curve point decimation.  
+         *  Path simplification can be helpful to mitigate various path following issues that can arise with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open fields".  
+         */
+        static simplify_path(path: PackedVector2Array | Vector2[], epsilon: float64): PackedVector2Array
+        
+        /** Destroys the given RID. */
+        static free_rid(rid: RID): void
+        
+        /** If `true` enables debug mode on the NavigationServer. */
+        static set_debug_enabled(enabled: boolean): void
+        
+        /** Returns `true` when the NavigationServer has debug enabled. */
+        static get_debug_enabled(): boolean
+        
+        /** Emitted when a navigation map is updated, when a region moves or is modified. */
+        static readonly map_changed: Signal1<RID>
+        
+        /** Emitted when navigation debug settings are changed. Only available in debug builds. */
+        static readonly navigation_debug_changed: Signal0
+    }
+    // // Singleton Class
+    namespace NavigationServer3D {
+        enum ProcessInfo {
+            /** Constant to get the number of active navigation maps. */
+            INFO_ACTIVE_MAPS = 0,
+            
+            /** Constant to get the number of active navigation regions. */
+            INFO_REGION_COUNT = 1,
+            
+            /** Constant to get the number of active navigation agents processing avoidance. */
+            INFO_AGENT_COUNT = 2,
+            
+            /** Constant to get the number of active navigation links. */
+            INFO_LINK_COUNT = 3,
+            
+            /** Constant to get the number of navigation mesh polygons. */
+            INFO_POLYGON_COUNT = 4,
+            
+            /** Constant to get the number of navigation mesh polygon edges. */
+            INFO_EDGE_COUNT = 5,
+            
+            /** Constant to get the number of navigation mesh polygon edges that were merged due to edge key overlap. */
+            INFO_EDGE_MERGE_COUNT = 6,
+            
+            /** Constant to get the number of navigation mesh polygon edges that are considered connected by edge proximity. */
+            INFO_EDGE_CONNECTION_COUNT = 7,
+            
+            /** Constant to get the number of navigation mesh polygon edges that could not be merged but may be still connected by edge proximity or with links. */
+            INFO_EDGE_FREE_COUNT = 8,
+        }
+    }
+    /** A server interface for low-level 3D navigation access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_navigationserver3d.html  
+     */
+    class NavigationServer3D extends Object {
+        /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
+        static get_maps(): GArray
+        
+        /** Create a new map. */
+        static map_create(): RID
+        
+        /** Sets the map active. */
+        static map_set_active(map: RID, active: boolean): void
+        
+        /** Returns true if the map is active. */
+        static map_is_active(map: RID): boolean
+        
+        /** Sets the map up direction. */
+        static map_set_up(map: RID, up: Vector3): void
+        
+        /** Returns the map's up direction. */
+        static map_get_up(map: RID): Vector3
+        
+        /** Sets the map cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with the cell size of the used navigation meshes. */
+        static map_set_cell_size(map: RID, cell_size: float64): void
+        
+        /** Returns the map cell size used to rasterize the navigation mesh vertices on the XZ plane. */
+        static map_get_cell_size(map: RID): float64
+        
+        /** Sets the map cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with the cell height of the used navigation meshes. */
+        static map_set_cell_height(map: RID, cell_height: float64): void
+        
+        /** Returns the map cell height used to rasterize the navigation mesh vertices on the Y axis. */
+        static map_get_cell_height(map: RID): float64
+        
+        /** Set the map's internal merge rasterizer cell scale used to control merging sensitivity. */
+        static map_set_merge_rasterizer_cell_scale(map: RID, scale: float64): void
+        
+        /** Returns map's internal merge rasterizer cell scale. */
+        static map_get_merge_rasterizer_cell_scale(map: RID): float64
+        
+        /** Set the navigation [param map] edge connection use. If [param enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
+        static map_set_use_edge_connections(map: RID, enabled: boolean): void
+        
+        /** Returns true if the navigation [param map] allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
+        static map_get_use_edge_connections(map: RID): boolean
+        
+        /** Set the map edge connection margin used to weld the compatible region edges. */
+        static map_set_edge_connection_margin(map: RID, margin: float64): void
+        
+        /** Returns the edge connection margin of the map. This distance is the minimum vertex distance needed to connect two edges from different regions. */
+        static map_get_edge_connection_margin(map: RID): float64
+        
+        /** Set the map's link connection radius used to connect links to navigation polygons. */
+        static map_set_link_connection_radius(map: RID, radius: float64): void
+        
+        /** Returns the link connection radius of the map. This distance is the maximum range any link will search for navigation mesh polygons to connect to. */
+        static map_get_link_connection_radius(map: RID): float64
+        
+        /** Returns the navigation path to reach the destination from the origin. [param navigation_layers] is a bitmask of all region navigation layers that are allowed to be in the path. */
+        static map_get_path(map: RID, origin: Vector3, destination: Vector3, optimize: boolean, navigation_layers: int64 = 1): PackedVector3Array
+        
+        /** Returns the closest point between the navigation surface and the segment. */
+        static map_get_closest_point_to_segment(map: RID, start: Vector3, end: Vector3, use_collision: boolean = false): Vector3
+        
+        /** Returns the point closest to the provided [param to_point] on the navigation mesh surface. */
+        static map_get_closest_point(map: RID, to_point: Vector3): Vector3
+        
+        /** Returns the normal for the point returned by [method map_get_closest_point]. */
+        static map_get_closest_point_normal(map: RID, to_point: Vector3): Vector3
+        
+        /** Returns the owner region RID for the point returned by [method map_get_closest_point]. */
+        static map_get_closest_point_owner(map: RID, to_point: Vector3): RID
+        
+        /** Returns all navigation link [RID]s that are currently assigned to the requested navigation [param map]. */
+        static map_get_links(map: RID): GArray
+        
+        /** Returns all navigation regions [RID]s that are currently assigned to the requested navigation [param map]. */
+        static map_get_regions(map: RID): GArray
+        
+        /** Returns all navigation agents [RID]s that are currently assigned to the requested navigation [param map]. */
+        static map_get_agents(map: RID): GArray
+        
+        /** Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [param map]. */
+        static map_get_obstacles(map: RID): GArray
+        
+        /** This function immediately forces synchronization of the specified navigation [param map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).  
+         *  Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.  
+         *  Avoidance processing and dispatch of the `safe_velocity` signals is unaffected by this function and continues to happen for all maps and agents at the end of the physics frame.  
+         *      
+         *  **Note:** With great power comes great responsibility. This function should only be used by users that really know what they are doing and have a good reason for it. Forcing an immediate update of a navigation map requires locking the NavigationServer and flushing the entire NavigationServer command queue. Not only can this severely impact the performance of a game but it can also introduce bugs if used inappropriately without much foresight.  
+         */
+        static map_force_update(map: RID): void
+        
+        /** Returns the current iteration id of the navigation map. Every time the navigation map changes and synchronizes the iteration id increases. An iteration id of 0 means the navigation map has never synchronized.  
+         *      
+         *  **Note:** The iteration id will wrap back to 1 after reaching its range limit.  
+         */
+        static map_get_iteration_id(map: RID): int64
+        
+        /** Returns a random position picked from all map region polygons with matching [param navigation_layers].  
+         *  If [param uniformly] is `true`, all map regions, polygons, and faces are weighted by their surface area (slower).  
+         *  If [param uniformly] is `false`, just a random region and a random polygon are picked (faster).  
+         */
+        static map_get_random_point(map: RID, navigation_layers: int64, uniformly: boolean): Vector3
+        
+        /** Queries a path in a given navigation map. Start and target position and other parameters are defined through [NavigationPathQueryParameters3D]. Updates the provided [NavigationPathQueryResult3D] result object with the path among other results requested by the query. */
+        static query_path(parameters: NavigationPathQueryParameters3D, result: NavigationPathQueryResult3D): void
+        
+        /** Creates a new region. */
+        static region_create(): RID
+        
+        /** If [param enabled] is `true`, the specified [param region] will contribute to its current navigation map. */
+        static region_set_enabled(region: RID, enabled: boolean): void
+        
+        /** Returns `true` if the specified [param region] is enabled. */
+        static region_get_enabled(region: RID): boolean
+        
+        /** If [param enabled] is `true`, the navigation [param region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
+        static region_set_use_edge_connections(region: RID, enabled: boolean): void
+        
+        /** Returns true if the navigation [param region] is set to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
+        static region_get_use_edge_connections(region: RID): boolean
+        
+        /** Sets the [param enter_cost] for this [param region]. */
+        static region_set_enter_cost(region: RID, enter_cost: float64): void
+        
+        /** Returns the enter cost of this [param region]. */
+        static region_get_enter_cost(region: RID): float64
+        
+        /** Sets the [param travel_cost] for this [param region]. */
+        static region_set_travel_cost(region: RID, travel_cost: float64): void
+        
+        /** Returns the travel cost of this [param region]. */
+        static region_get_travel_cost(region: RID): float64
+        
+        /** Set the `ObjectID` of the object which manages this region. */
+        static region_set_owner_id(region: RID, owner_id: int64): void
+        
+        /** Returns the `ObjectID` of the object which manages this region. */
+        static region_get_owner_id(region: RID): int64
+        
+        /** Returns `true` if the provided [param point] in world space is currently owned by the provided navigation [param region]. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.  
+         *  If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.  
+         *      
+         *  **Note:** If navigation meshes from different navigation regions overlap (which should be avoided in general) the result might not be what is expected.  
+         */
+        static region_owns_point(region: RID, point: Vector3): boolean
+        
+        /** Sets the map for the region. */
+        static region_set_map(region: RID, map: RID): void
+        
+        /** Returns the navigation map [RID] the requested [param region] is currently assigned to. */
+        static region_get_map(region: RID): RID
+        
+        /** Set the region's navigation layers. This allows selecting regions from a path request (when using [method NavigationServer3D.map_get_path]). */
+        static region_set_navigation_layers(region: RID, navigation_layers: int64): void
+        
+        /** Returns the region's navigation layers. */
+        static region_get_navigation_layers(region: RID): int64
+        
+        /** Sets the global transformation for the region. */
+        static region_set_transform(region: RID, transform: Transform3D): void
+        
+        /** Returns the global transformation of this [param region]. */
+        static region_get_transform(region: RID): Transform3D
+        
+        /** Sets the navigation mesh for the region. */
+        static region_set_navigation_mesh(region: RID, navigation_mesh: NavigationMesh): void
+        
+        /** Returns how many connections this [param region] has with other regions in the map. */
+        static region_get_connections_count(region: RID): int64
+        
+        /** Returns the starting point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
+        static region_get_connection_pathway_start(region: RID, connection: int64): Vector3
+        
+        /** Returns the ending point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
+        static region_get_connection_pathway_end(region: RID, connection: int64): Vector3
+        
+        /** Returns a random position picked from all region polygons with matching [param navigation_layers].  
+         *  If [param uniformly] is `true`, all region polygons and faces are weighted by their surface area (slower).  
+         *  If [param uniformly] is `false`, just a random polygon and face is picked (faster).  
+         */
+        static region_get_random_point(region: RID, navigation_layers: int64, uniformly: boolean): Vector3
+        
+        /** Create a new link between two positions on a map. */
+        static link_create(): RID
+        
+        /** Sets the navigation map [RID] for the link. */
+        static link_set_map(link: RID, map: RID): void
+        
+        /** Returns the navigation map [RID] the requested [param link] is currently assigned to. */
+        static link_get_map(link: RID): RID
+        
+        /** If [param enabled] is `true`, the specified [param link] will contribute to its current navigation map. */
+        static link_set_enabled(link: RID, enabled: boolean): void
+        
+        /** Returns `true` if the specified [param link] is enabled. */
+        static link_get_enabled(link: RID): boolean
+        
+        /** Sets whether this [param link] can be travelled in both directions. */
+        static link_set_bidirectional(link: RID, bidirectional: boolean): void
+        
+        /** Returns whether this [param link] can be travelled in both directions. */
+        static link_is_bidirectional(link: RID): boolean
+        
+        /** Set the links's navigation layers. This allows selecting links from a path request (when using [method NavigationServer3D.map_get_path]). */
+        static link_set_navigation_layers(link: RID, navigation_layers: int64): void
+        
+        /** Returns the navigation layers for this [param link]. */
+        static link_get_navigation_layers(link: RID): int64
+        
+        /** Sets the entry position for this [param link]. */
+        static link_set_start_position(link: RID, position: Vector3): void
+        
+        /** Returns the starting position of this [param link]. */
+        static link_get_start_position(link: RID): Vector3
+        
+        /** Sets the exit position for the [param link]. */
+        static link_set_end_position(link: RID, position: Vector3): void
+        
+        /** Returns the ending position of this [param link]. */
+        static link_get_end_position(link: RID): Vector3
+        
+        /** Sets the [param enter_cost] for this [param link]. */
+        static link_set_enter_cost(link: RID, enter_cost: float64): void
+        
+        /** Returns the enter cost of this [param link]. */
+        static link_get_enter_cost(link: RID): float64
+        
+        /** Sets the [param travel_cost] for this [param link]. */
+        static link_set_travel_cost(link: RID, travel_cost: float64): void
+        
+        /** Returns the travel cost of this [param link]. */
+        static link_get_travel_cost(link: RID): float64
+        
+        /** Set the `ObjectID` of the object which manages this link. */
+        static link_set_owner_id(link: RID, owner_id: int64): void
+        
+        /** Returns the `ObjectID` of the object which manages this link. */
+        static link_get_owner_id(link: RID): int64
+        
+        /** Creates the agent. */
+        static agent_create(): RID
+        
+        /** If [param enabled] is `true`, the provided [param agent] calculates avoidance. */
+        static agent_set_avoidance_enabled(agent: RID, enabled: boolean): void
+        
+        /** Returns `true` if the provided [param agent] has avoidance enabled. */
+        static agent_get_avoidance_enabled(agent: RID): boolean
+        
+        /** Sets if the agent uses the 2D avoidance or the 3D avoidance while avoidance is enabled.  
+         *  If `true` the agent calculates avoidance velocities in 3D for the xyz-axis, e.g. for games that take place in air, underwater or space. The 3D using agent only avoids other 3D avoidance using agent's. The 3D using agent only reacts to radius based avoidance obstacles. The 3D using agent ignores any vertices based obstacles. The 3D using agent only avoids other 3D using agent's.  
+         *  If `false` the agent calculates avoidance velocities in 2D along the xz-axis ignoring the y-axis. The 2D using agent only avoids other 2D avoidance using agent's. The 2D using agent reacts to radius avoidance obstacles. The 2D using agent reacts to vertices based avoidance obstacles. The 2D using agent only avoids other 2D using agent's. 2D using agents will ignore other 2D using agents or obstacles that are below their current position or above their current position including the agents height in 2D avoidance.  
+         */
+        static agent_set_use_3d_avoidance(agent: RID, enabled: boolean): void
+        
+        /** Returns `true` if the provided [param agent] uses avoidance in 3D space Vector3(x,y,z) instead of horizontal 2D Vector2(x,y) / Vector3(x,0.0,z). */
+        static agent_get_use_3d_avoidance(agent: RID): boolean
+        
+        /** Puts the agent in the map. */
+        static agent_set_map(agent: RID, map: RID): void
+        
+        /** Returns the navigation map [RID] the requested [param agent] is currently assigned to. */
+        static agent_get_map(agent: RID): RID
+        
+        /** If [param paused] is true the specified [param agent] will not be processed, e.g. calculate avoidance velocities or receive avoidance callbacks. */
+        static agent_set_paused(agent: RID, paused: boolean): void
+        
+        /** Returns `true` if the specified [param agent] is paused. */
+        static agent_get_paused(agent: RID): boolean
+        
+        /** Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
+        static agent_set_neighbor_distance(agent: RID, distance: float64): void
+        
+        /** Returns the maximum distance to other agents the specified [param agent] takes into account in the navigation. */
+        static agent_get_neighbor_distance(agent: RID): float64
+        
+        /** Sets the maximum number of other agents the agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
+        static agent_set_max_neighbors(agent: RID, count: int64): void
+        
+        /** Returns the maximum number of other agents the specified [param agent] takes into account in the navigation. */
+        static agent_get_max_neighbors(agent: RID): int64
+        
+        /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
+        static agent_set_time_horizon_agents(agent: RID, time_horizon: float64): void
+        
+        /** Returns the minimal amount of time for which the specified [param agent]'s velocities that are computed by the simulation are safe with respect to other agents. */
+        static agent_get_time_horizon_agents(agent: RID): float64
+        
+        /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to static avoidance obstacles. The larger this number, the sooner this agent will respond to the presence of static avoidance obstacles, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
+        static agent_set_time_horizon_obstacles(agent: RID, time_horizon: float64): void
+        
+        /** Returns the minimal amount of time for which the specified [param agent]'s velocities that are computed by the simulation are safe with respect to static avoidance obstacles. */
+        static agent_get_time_horizon_obstacles(agent: RID): float64
+        
+        /** Sets the radius of the agent. */
+        static agent_set_radius(agent: RID, radius: float64): void
+        
+        /** Returns the radius of the specified [param agent]. */
+        static agent_get_radius(agent: RID): float64
+        
+        /** Updates the provided [param agent] [param height]. */
+        static agent_set_height(agent: RID, height: float64): void
+        
+        /** Returns the `height` of the specified [param agent]. */
+        static agent_get_height(agent: RID): float64
+        
+        /** Sets the maximum speed of the agent. Must be positive. */
+        static agent_set_max_speed(agent: RID, max_speed: float64): void
+        
+        /** Returns the maximum speed of the specified [param agent]. */
+        static agent_get_max_speed(agent: RID): float64
+        
+        /** Replaces the internal velocity in the collision avoidance simulation with [param velocity] for the specified [param agent]. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck. */
+        static agent_set_velocity_forced(agent: RID, velocity: Vector3): void
+        
+        /** Sets [param velocity] as the new wanted velocity for the specified [param agent]. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agent's and obstacles. When an agent is teleported to a new position use [method agent_set_velocity_forced] as well to reset the internal simulation velocity. */
+        static agent_set_velocity(agent: RID, velocity: Vector3): void
+        
+        /** Returns the velocity of the specified [param agent]. */
+        static agent_get_velocity(agent: RID): Vector3
+        
+        /** Sets the position of the agent in world space. */
+        static agent_set_position(agent: RID, position: Vector3): void
+        
+        /** Returns the position of the specified [param agent] in world space. */
+        static agent_get_position(agent: RID): Vector3
+        
+        /** Returns true if the map got changed the previous frame. */
+        static agent_is_map_changed(agent: RID): boolean
+        
+        /** Sets the callback [Callable] that gets called after each avoidance processing step for the [param agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before the physics calculations.  
+         *      
+         *  **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [method agent_set_avoidance_callback] again with an empty [Callable].  
+         */
+        static agent_set_avoidance_callback(agent: RID, callback: Callable): void
+        
+        /** Return `true` if the specified [param agent] has an avoidance callback. */
+        static agent_has_avoidance_callback(agent: RID): boolean
+        
+        /** Set the agent's `avoidance_layers` bitmask. */
+        static agent_set_avoidance_layers(agent: RID, layers: int64): void
+        
+        /** Returns the `avoidance_layers` bitmask of the specified [param agent]. */
+        static agent_get_avoidance_layers(agent: RID): int64
+        
+        /** Set the agent's `avoidance_mask` bitmask. */
+        static agent_set_avoidance_mask(agent: RID, mask: int64): void
+        
+        /** Returns the `avoidance_mask` bitmask of the specified [param agent]. */
+        static agent_get_avoidance_mask(agent: RID): int64
+        
+        /** Set the agent's `avoidance_priority` with a [param priority] between 0.0 (lowest priority) to 1.0 (highest priority).  
+         *  The specified [param agent] does not adjust the velocity for other agents that would match the `avoidance_mask` but have a lower `avoidance_priority`. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.  
+         */
+        static agent_set_avoidance_priority(agent: RID, priority: float64): void
+        
+        /** Returns the `avoidance_priority` of the specified [param agent]. */
+        static agent_get_avoidance_priority(agent: RID): float64
+        
+        /** Creates a new obstacle. */
+        static obstacle_create(): RID
+        
+        /** If [param enabled] is `true`, the provided [param obstacle] affects avoidance using agents. */
+        static obstacle_set_avoidance_enabled(obstacle: RID, enabled: boolean): void
+        
+        /** Returns `true` if the provided [param obstacle] has avoidance enabled. */
+        static obstacle_get_avoidance_enabled(obstacle: RID): boolean
+        
+        /** Sets if the [param obstacle] uses the 2D avoidance or the 3D avoidance while avoidance is enabled. */
+        static obstacle_set_use_3d_avoidance(obstacle: RID, enabled: boolean): void
+        
+        /** Returns `true` if the provided [param obstacle] uses avoidance in 3D space Vector3(x,y,z) instead of horizontal 2D Vector2(x,y) / Vector3(x,0.0,z). */
+        static obstacle_get_use_3d_avoidance(obstacle: RID): boolean
+        
+        /** Assigns the [param obstacle] to a navigation map. */
+        static obstacle_set_map(obstacle: RID, map: RID): void
+        
+        /** Returns the navigation map [RID] the requested [param obstacle] is currently assigned to. */
+        static obstacle_get_map(obstacle: RID): RID
+        
+        /** If [param paused] is true the specified [param obstacle] will not be processed, e.g. affect avoidance velocities. */
+        static obstacle_set_paused(obstacle: RID, paused: boolean): void
+        
+        /** Returns `true` if the specified [param obstacle] is paused. */
+        static obstacle_get_paused(obstacle: RID): boolean
+        
+        /** Sets the radius of the dynamic obstacle. */
+        static obstacle_set_radius(obstacle: RID, radius: float64): void
+        
+        /** Returns the radius of the specified dynamic [param obstacle]. */
+        static obstacle_get_radius(obstacle: RID): float64
+        
+        /** Sets the [param height] for the [param obstacle]. In 3D agents will ignore obstacles that are above or below them while using 2D avoidance. */
+        static obstacle_set_height(obstacle: RID, height: float64): void
+        
+        /** Returns the `height` of the specified [param obstacle]. */
+        static obstacle_get_height(obstacle: RID): float64
+        
+        /** Sets [param velocity] of the dynamic [param obstacle]. Allows other agents to better predict the movement of the dynamic obstacle. Only works in combination with the radius of the obstacle. */
+        static obstacle_set_velocity(obstacle: RID, velocity: Vector3): void
+        
+        /** Returns the velocity of the specified dynamic [param obstacle]. */
+        static obstacle_get_velocity(obstacle: RID): Vector3
+        
+        /** Updates the [param position] in world space for the [param obstacle]. */
+        static obstacle_set_position(obstacle: RID, position: Vector3): void
+        
+        /** Returns the position of the specified [param obstacle] in world space. */
+        static obstacle_get_position(obstacle: RID): Vector3
+        
+        /** Sets the outline vertices for the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. */
+        static obstacle_set_vertices(obstacle: RID, vertices: PackedVector3Array | Vector3[]): void
+        
+        /** Returns the outline vertices for the specified [param obstacle]. */
+        static obstacle_get_vertices(obstacle: RID): PackedVector3Array
+        
+        /** Set the obstacles's `avoidance_layers` bitmask. */
+        static obstacle_set_avoidance_layers(obstacle: RID, layers: int64): void
+        
+        /** Returns the `avoidance_layers` bitmask of the specified [param obstacle]. */
+        static obstacle_get_avoidance_layers(obstacle: RID): int64
+        
+        /** Parses the [SceneTree] for source geometry according to the properties of [param navigation_mesh]. Updates the provided [param source_geometry_data] resource with the resulting data. The resource can then be used to bake a navigation mesh with [method bake_from_source_geometry_data]. After the process is finished the optional [param callback] will be called.  
+         *      
+         *  **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.  
+         *  **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.  
+         */
+        static parse_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, root_node: Node, callback: Callable = new Callable()): void
+        
+        /** Bakes the provided [param navigation_mesh] with the data from the provided [param source_geometry_data]. After the process is finished the optional [param callback] will be called. */
+        static bake_from_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = new Callable()): void
+        
+        /** Bakes the provided [param navigation_mesh] with the data from the provided [param source_geometry_data] as an async task running on a background thread. After the process is finished the optional [param callback] will be called. */
+        static bake_from_source_geometry_data_async(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = new Callable()): void
+        
+        /** Returns `true` when the provided navigation mesh is being baked on a background thread. */
+        static is_baking_navigation_mesh(navigation_mesh: NavigationMesh): boolean
+        
+        /** Creates a new source geometry parser. If a [Callable] is set for the parser with [method source_geometry_parser_set_callback] the callback will be called for every single node that gets parsed whenever [method parse_source_geometry_data] is used. */
+        static source_geometry_parser_create(): RID
+        
+        /** Sets the [param callback] [Callable] for the specific source geometry [param parser]. The [Callable] will receive a call with the following parameters:  
+         *  - `navigation_mesh` - The [NavigationMesh] reference used to define the parse settings. Do NOT edit or add directly to the navigation mesh.  
+         *  - `source_geometry_data` - The [NavigationMeshSourceGeometryData3D] reference. Add custom source geometry for navigation mesh baking to this object.  
+         *  - `node` - The [Node] that is parsed.  
+         */
+        static source_geometry_parser_set_callback(parser: RID, callback: Callable): void
+        
+        /** Returns a simplified version of [param path] with less critical path points removed. The simplification amount is in worlds units and controlled by [param epsilon]. The simplification uses a variant of Ramer-Douglas-Peucker algorithm for curve point decimation.  
+         *  Path simplification can be helpful to mitigate various path following issues that can arise with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open fields".  
+         */
+        static simplify_path(path: PackedVector3Array | Vector3[], epsilon: float64): PackedVector3Array
+        
+        /** Destroys the given RID. */
+        static free_rid(rid: RID): void
+        
+        /** Control activation of this server. */
+        static set_active(active: boolean): void
+        
+        /** If `true` enables debug mode on the NavigationServer. */
+        static set_debug_enabled(enabled: boolean): void
+        
+        /** Returns `true` when the NavigationServer has debug enabled. */
+        static get_debug_enabled(): boolean
+        
+        /** Returns information about the current state of the NavigationServer. See [enum ProcessInfo] for a list of available states. */
+        static get_process_info(process_info: NavigationServer3D.ProcessInfo): int64
+        
+        /** Emitted when a navigation map is updated, when a region moves or is modified. */
+        static readonly map_changed: Signal1<RID>
+        
+        /** Emitted when navigation debug settings are changed. Only available in debug builds. */
+        static readonly navigation_debug_changed: Signal0
+        
+        /** Emitted when avoidance debug settings are changed. Only available in debug builds. */
+        static readonly avoidance_debug_changed: Signal0
     }
     // // Singleton Class
     namespace RenderingServer {
@@ -4610,8 +6351,11 @@ declare module "godot" {
             /** Shadow render pass. Objects will be rendered several times depending on the number of amounts of lights with shadows and the number of directional shadow splits. */
             VIEWPORT_RENDER_INFO_TYPE_SHADOW = 1,
             
+            /** Canvas item rendering. This includes all 2D rendering. */
+            VIEWPORT_RENDER_INFO_TYPE_CANVAS = 2,
+            
             /** Represents the size of the [enum ViewportRenderInfoType] enum. */
-            VIEWPORT_RENDER_INFO_TYPE_MAX = 2,
+            VIEWPORT_RENDER_INFO_TYPE_MAX = 3,
         }
         enum ViewportDebugDraw {
             /** Debug draw is disabled. Default setting. */
@@ -4708,11 +6452,24 @@ declare module "godot" {
             /** Variable rate shading uses a texture. Note, for stereoscopic use a texture atlas with a texture for each view. */
             VIEWPORT_VRS_TEXTURE = 1,
             
-            /** Variable rate shading texture is supplied by the primary [XRInterface]. */
+            /** Variable rate shading texture is supplied by the primary [XRInterface]. Note that this may override the update mode. */
             VIEWPORT_VRS_XR = 2,
             
             /** Represents the size of the [enum ViewportVRSMode] enum. */
             VIEWPORT_VRS_MAX = 3,
+        }
+        enum ViewportVRSUpdateMode {
+            /** The input texture for variable rate shading will not be processed. */
+            VIEWPORT_VRS_UPDATE_DISABLED = 0,
+            
+            /** The input texture for variable rate shading will be processed once. */
+            VIEWPORT_VRS_UPDATE_ONCE = 1,
+            
+            /** The input texture for variable rate shading will be processed each frame. */
+            VIEWPORT_VRS_UPDATE_ALWAYS = 2,
+            
+            /** Represents the size of the [enum ViewportVRSUpdateMode] enum. */
+            VIEWPORT_VRS_UPDATE_MAX = 3,
         }
         enum SkyMode {
             /** Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [constant SKY_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [constant SKY_MODE_INCREMENTAL]. Otherwise, this defaults to [constant SKY_MODE_QUALITY]. */
@@ -4729,6 +6486,39 @@ declare module "godot" {
              *  **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [method sky_set_radiance_size] must be set to `256`. Otherwise, a warning is printed and the overridden radiance size is ignored.  
              */
             SKY_MODE_REALTIME = 3,
+        }
+        enum CompositorEffectFlags {
+            /** The rendering effect requires the color buffer to be resolved if MSAA is enabled. */
+            COMPOSITOR_EFFECT_FLAG_ACCESS_RESOLVED_COLOR = 1,
+            
+            /** The rendering effect requires the depth buffer to be resolved if MSAA is enabled. */
+            COMPOSITOR_EFFECT_FLAG_ACCESS_RESOLVED_DEPTH = 2,
+            
+            /** The rendering effect requires motion vectors to be produced. */
+            COMPOSITOR_EFFECT_FLAG_NEEDS_MOTION_VECTORS = 4,
+            
+            /** The rendering effect requires normals and roughness g-buffer to be produced (Forward+ only). */
+            COMPOSITOR_EFFECT_FLAG_NEEDS_ROUGHNESS = 8,
+            
+            /** The rendering effect requires specular data to be separated out (Forward+ only). */
+            COMPOSITOR_EFFECT_FLAG_NEEDS_SEPARATE_SPECULAR = 16,
+        }
+        enum CompositorEffectCallbackType {
+            /** The callback is called before our opaque rendering pass, but after depth prepass (if applicable). */
+            COMPOSITOR_EFFECT_CALLBACK_TYPE_PRE_OPAQUE = 0,
+            
+            /** The callback is called after our opaque rendering pass, but before our sky is rendered. */
+            COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_OPAQUE = 1,
+            
+            /** The callback is called after our sky is rendered, but before our back buffers are created (and if enabled, before subsurface scattering and/or screen space reflections). */
+            COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_SKY = 2,
+            
+            /** The callback is called before our transparent rendering pass, but after our sky is rendered and we've created our back buffers. */
+            COMPOSITOR_EFFECT_CALLBACK_TYPE_PRE_TRANSPARENT = 3,
+            
+            /** The callback is called after our transparent rendering pass, but before any build in post effects and output to our render target. */
+            COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_TRANSPARENT = 4,
+            COMPOSITOR_EFFECT_CALLBACK_TYPE_ANY = -1,
         }
         enum EnvironmentBG {
             /** Use the clear color as background. */
@@ -4790,6 +6580,13 @@ declare module "godot" {
             
             /** Mixes the glow with the underlying color to avoid increasing brightness as much while still maintaining a glow effect. */
             ENV_GLOW_BLEND_MODE_MIX = 4,
+        }
+        enum EnvironmentFogMode {
+            /** Use a physically-based fog model defined primarily by fog density. */
+            ENV_FOG_MODE_EXPONENTIAL = 0,
+            
+            /** Use a simple fog model defined by start and end positions and a custom curve. While not physically accurate, this model can be useful when you need more artistic control. */
+            ENV_FOG_MODE_DEPTH = 1,
         }
         enum EnvironmentToneMapper {
             /** Output color as they came in. This can cause bright lighting to look blown out, with noticeable clipping in the output colors. */
@@ -5291,17 +7088,10 @@ declare module "godot" {
             /** Video memory used (in bytes). When using the Forward+ or mobile rendering backends, this is always greater than the sum of [constant RENDERING_INFO_TEXTURE_MEM_USED] and [constant RENDERING_INFO_BUFFER_MEM_USED], since there is miscellaneous data not accounted for by those two metrics. When using the GL Compatibility backend, this is equal to the sum of [constant RENDERING_INFO_TEXTURE_MEM_USED] and [constant RENDERING_INFO_BUFFER_MEM_USED]. */
             RENDERING_INFO_VIDEO_MEM_USED = 5,
         }
-        enum Features {
-            /** Hardware supports shaders. This enum is currently unused in Godot 3.x. */
-            FEATURE_SHADERS = 0,
-            
-            /** Hardware supports multithreading. This enum is currently unused in Godot 3.x. */
-            FEATURE_MULTITHREADED = 1,
-        }
     }
     /** Server for anything visible.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_renderingserver.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_renderingserver.html  
      */
     class RenderingServer extends Object {
         /** Marks an error that shows that the index array is empty. */
@@ -5318,12 +7108,13 @@ declare module "godot" {
         
         /** The maximum number of glow levels that can be used with the glow post-processing effect. */
         static readonly MAX_GLOW_LEVELS = 7
-        
-        /**  *Deprecated.*  This constant is unused internally. */
         static readonly MAX_CURSORS = 8
         
         /** The maximum number of directional lights that can be rendered at a given time in 2D. */
         static readonly MAX_2D_DIRECTIONAL_LIGHTS = 8
+        
+        /** The maximum number of surfaces a mesh can have. */
+        static readonly MAX_MESH_SURFACES = 256
         
         /** The minimum renderpriority of all materials. */
         static readonly MATERIAL_RENDER_PRIORITY_MIN = -128
@@ -5360,7 +7151,7 @@ declare module "godot" {
          */
         static texture_3d_create(format: Image.Format, width: int64, height: int64, depth: int64, mipmaps: boolean, data: GArray): RID
         
-        /**  *Deprecated.*  ProxyTexture was removed in Godot 4, so this method does nothing when called and always returns a null [RID]. */
+        /** This method does nothing and always returns an invalid [RID]. */
         static texture_proxy_create(base: RID): RID
         
         /** Updates the texture specified by the [param texture] [RID] with the data in [param image]. A [param layer] must also be specified, which should be `0` when updating a single-layer texture ([Texture2D]).  
@@ -5375,7 +7166,7 @@ declare module "godot" {
          */
         static texture_3d_update(texture: RID, data: GArray): void
         
-        /**  *Deprecated.*  ProxyTexture was removed in Godot 4, so this method cannot be used anymore. */
+        /** This method does nothing. */
         static texture_proxy_update(texture: RID, proxy_to: RID): void
         
         /** Creates a placeholder for a 2-dimensional layered texture and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `texture_2d_layered_*` RenderingServer functions, although it does nothing when used. See also [method texture_2d_layered_placeholder_create]  
@@ -5416,7 +7207,7 @@ declare module "godot" {
         static texture_set_path(texture: RID, path: string): void
         static texture_get_path(texture: RID): string
         
-        /** Returns the [enum Image.Format] for the texture. */
+        /** Returns the format for the texture. */
         static texture_get_format(texture: RID): Image.Format
         static texture_set_force_redraw_if_visible(texture: RID, enable: boolean): void
         
@@ -5585,6 +7376,12 @@ declare module "godot" {
         /** Calculates and returns the axis-aligned bounding box that encloses all instances within the multimesh. */
         static multimesh_get_aabb(multimesh: RID): AABB
         
+        /** Sets the custom AABB for this MultiMesh resource. */
+        static multimesh_set_custom_aabb(multimesh: RID, aabb: AABB): void
+        
+        /** Returns the custom AABB defined for this MultiMesh resource. */
+        static multimesh_get_custom_aabb(multimesh: RID): AABB
+        
         /** Returns the [Transform3D] of the specified instance. */
         static multimesh_instance_get_transform(multimesh: RID, index: int64): Transform3D
         
@@ -5605,11 +7402,22 @@ declare module "godot" {
         
         /** Set the entire data to use for drawing the [param multimesh] at once to [param buffer] (such as instance transforms and colors). [param buffer]'s size must match the number of instances multiplied by the per-instance data size (which depends on the enabled MultiMesh fields). Otherwise, an error message is printed and nothing is rendered. See also [method multimesh_get_buffer].  
          *  The per-instance data size and expected data order is:  
-         *    
+         *  [codeblock lang=text]  
+         *  2D:  
+         *    - Position: 8 floats (8 floats for Transform2D)  
+         *    - Position + Vertex color: 12 floats (8 floats for Transform2D, 4 floats for Color)  
+         *    - Position + Custom data: 12 floats (8 floats for Transform2D, 4 floats of custom data)  
+         *    - Position + Vertex color + Custom data: 16 floats (8 floats for Transform2D, 4 floats for Color, 4 floats of custom data)  
+         *  3D:  
+         *    - Position: 12 floats (12 floats for Transform3D)  
+         *    - Position + Vertex color: 16 floats (12 floats for Transform3D, 4 floats for Color)  
+         *    - Position + Custom data: 16 floats (12 floats for Transform3D, 4 floats of custom data)  
+         *    - Position + Vertex color + Custom data: 20 floats (12 floats for Transform3D, 4 floats for Color, 4 floats of custom data)  
+         *  [/codeblock]  
          */
         static multimesh_set_buffer(multimesh: RID, buffer: PackedFloat32Array | float32[]): void
         
-        /** Returns the MultiMesh data (such as instance transforms, colors, etc). See [method multimesh_set_buffer] for a description of the returned data.  
+        /** Returns the MultiMesh data (such as instance transforms, colors, etc.). See [method multimesh_set_buffer] for details on the returned data.  
          *      
          *  **Note:** If the buffer is in the engine's internal cache, it will have to be fetched from GPU memory and possibly decompressed. This means [method multimesh_get_buffer] is potentially a slow operation and should be avoided whenever possible.  
          */
@@ -5754,8 +7562,11 @@ declare module "godot" {
         /** If `true`, computes shadows in the reflection probe. This makes the reflection much slower to compute. Equivalent to [member ReflectionProbe.enable_shadows]. */
         static reflection_probe_set_enable_shadows(probe: RID, enable: boolean): void
         
-        /** Sets the render cull mask for this reflection probe. Only instances with a matching cull mask will be rendered by this probe. Equivalent to [member ReflectionProbe.cull_mask]. */
+        /** Sets the render cull mask for this reflection probe. Only instances with a matching layer will be reflected by this probe. Equivalent to [member ReflectionProbe.cull_mask]. */
         static reflection_probe_set_cull_mask(probe: RID, layers: int64): void
+        
+        /** Sets the render reflection mask for this reflection probe. Only instances with a matching layer will have reflections applied from this probe. Equivalent to [member ReflectionProbe.reflection_mask]. */
+        static reflection_probe_set_reflection_mask(probe: RID, layers: int64): void
         
         /** Sets the resolution to use when rendering the specified reflection probe. The [param resolution] is specified for each cubemap face: for instance, specifying `512` will allocate 6 faces of 512×512 each (plus mipmaps for roughness levels). */
         static reflection_probe_set_resolution(probe: RID, resolution: int64): void
@@ -6068,6 +7879,9 @@ declare module "godot" {
         /** Sets the camera_attributes created with [method camera_attributes_create] to the given camera. */
         static camera_set_camera_attributes(camera: RID, effects: RID): void
         
+        /** Sets the compositor used by this camera. Equivalent to [member Camera3D.compositor]. */
+        static camera_set_compositor(camera: RID, compositor: RID): void
+        
         /** If `true`, preserves the horizontal aspect ratio which is equivalent to [constant Camera3D.KEEP_WIDTH]. If `false`, preserves the vertical aspect ratio which is equivalent to [constant Camera3D.KEEP_HEIGHT]. */
         static camera_set_use_vertical_aspect(camera: RID, enable: boolean): void
         
@@ -6124,6 +7938,11 @@ declare module "godot" {
         /** Sets when the viewport should be updated. See [enum ViewportUpdateMode] constants for options. */
         static viewport_set_update_mode(viewport: RID, update_mode: RenderingServer.ViewportUpdateMode): void
         
+        /** Returns the viewport's update mode. See [enum ViewportUpdateMode] constants for options.  
+         *  **Warning:** Calling this from any thread other than the rendering thread will be detrimental to performance.  
+         */
+        static viewport_get_update_mode(viewport: RID): RenderingServer.ViewportUpdateMode
+        
         /** Sets the clear mode of a viewport. See [enum ViewportClearMode] for options. */
         static viewport_set_clear_mode(viewport: RID, clear_mode: RenderingServer.ViewportClearMode): void
         
@@ -6151,7 +7970,7 @@ declare module "godot" {
         /** Sets a viewport's canvas. */
         static viewport_attach_canvas(viewport: RID, canvas: RID): void
         
-        /** Detaches a viewport from a canvas and vice versa. */
+        /** Detaches a viewport from a canvas. */
         static viewport_remove_canvas(viewport: RID, canvas: RID): void
         
         /** If `true`, canvas item transforms (i.e. origin position) are snapped to the nearest pixel when rendering. This can lead to a crisper appearance at the cost of less smooth movement, especially when [Camera2D] smoothing is enabled. Equivalent to [member ProjectSettings.rendering/2d/snap/snap_2d_transforms_to_pixel]. */
@@ -6198,7 +8017,7 @@ declare module "godot" {
         /** Sets the multisample anti-aliasing mode for 2D/Canvas on the specified [param viewport] RID. See [enum ViewportMSAA] for options. */
         static viewport_set_msaa_2d(viewport: RID, msaa: RenderingServer.ViewportMSAA): void
         
-        /** If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer, while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients. This setting has the same effect as [member Viewport.use_hdr_2d].  
+        /** If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be an `RGBA16` framebuffer, while when using the Mobile renderer it will be an `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients. This setting has the same effect as [member Viewport.use_hdr_2d].  
          *      
          *  **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL Compatibility renderer always renders in low dynamic range for performance reasons.  
          */
@@ -6253,6 +8072,11 @@ declare module "godot" {
         /** Sets the Variable Rate Shading (VRS) mode for the viewport. If the GPU does not support VRS, this property is ignored. Equivalent to [member ProjectSettings.rendering/vrs/mode]. */
         static viewport_set_vrs_mode(viewport: RID, mode: RenderingServer.ViewportVRSMode): void
         
+        /** Sets the update mode for Variable Rate Shading (VRS) for the viewport. VRS requires the input texture to be converted to the format usable by the VRS method supported by the hardware. The update mode defines how often this happens. If the GPU does not support VRS, or VRS is not enabled, this property is ignored.  
+         *  If set to [constant RenderingServer.VIEWPORT_VRS_UPDATE_ONCE], the input texture is copied once and the mode is changed to [constant RenderingServer.VIEWPORT_VRS_UPDATE_DISABLED].  
+         */
+        static viewport_set_vrs_update_mode(viewport: RID, mode: RenderingServer.ViewportVRSUpdateMode): void
+        
         /** The texture to use when the VRS mode is set to [constant RenderingServer.VIEWPORT_VRS_TEXTURE]. Equivalent to [member ProjectSettings.rendering/vrs/texture]. */
         static viewport_set_vrs_texture(viewport: RID, texture: RID): void
         
@@ -6277,6 +8101,28 @@ declare module "godot" {
          *  **Note:** [param size] should be a 2:1 aspect ratio for the generated panorama to have square pixels. For radiance maps, there is no point in using a height greater than [member Sky.radiance_size], as it won't increase detail. Irradiance maps only contain low-frequency data, so there is usually no point in going past a size of 128×64 pixels when saving an irradiance map.  
          */
         static sky_bake_panorama(sky: RID, energy: float64, bake_irradiance: boolean, size: Vector2i): Image
+        
+        /** Creates a new rendering effect and adds it to the RenderingServer. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
+         */
+        static compositor_effect_create(): RID
+        
+        /** Enables/disables this rendering effect. */
+        static compositor_effect_set_enabled(effect: RID, enabled: boolean): void
+        
+        /** Sets the callback type ([param callback_type]) and callback method([param callback]) for this rendering effect. */
+        static compositor_effect_set_callback(effect: RID, callback_type: RenderingServer.CompositorEffectCallbackType, callback: Callable): void
+        
+        /** Sets the flag ([param flag]) for this rendering effect to `true` or `false` ([param set]). */
+        static compositor_effect_set_flag(effect: RID, flag: RenderingServer.CompositorEffectFlags, set: boolean): void
+        
+        /** Creates a new compositor and adds it to the RenderingServer. It can be accessed with the RID that is returned.  
+         *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
+         */
+        static compositor_create(): RID
+        
+        /** Sets the compositor effects for the specified compositor RID. [param effects] should be an array containing RIDs created with [method compositor_effect_create]. */
+        static compositor_set_compositor_effects(compositor: RID, effects: GArray): void
         
         /** Creates an environment and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `environment_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -6325,7 +8171,7 @@ declare module "godot" {
         static environment_set_ssao(env: RID, enable: boolean, radius: float64, intensity: float64, power: float64, detail: float64, horizon: float64, sharpness: float64, light_affect: float64, ao_channel_affect: float64): void
         
         /** Configures fog for the specified environment RID. See `fog_*` properties in [Environment] for more information. */
-        static environment_set_fog(env: RID, enable: boolean, light_color: Color, light_energy: float64, sun_scatter: float64, density: float64, height: float64, height_density: float64, aerial_perspective: float64, sky_affect: float64): void
+        static environment_set_fog(env: RID, enable: boolean, light_color: Color, light_energy: float64, sun_scatter: float64, density: float64, height: float64, height_density: float64, aerial_perspective: float64, sky_affect: float64, fog_mode: RenderingServer.EnvironmentFogMode = 0): void
         
         /** Configures signed distance field global illumination for the specified environment RID. See `sdfgi_*` properties in [Environment] for more information. */
         static environment_set_sdfgi(env: RID, enable: boolean, cascades: int64, min_cell_size: float64, y_scale: RenderingServer.EnvironmentSDFGIYScale, use_occlusion: boolean, bounce_feedback: float64, read_sky: boolean, energy: float64, normal_bias: float64, probe_bias: float64): void
@@ -6416,6 +8262,9 @@ declare module "godot" {
         
         /** Sets the camera attributes ([param effects]) that will be used with this scenario. See also [CameraAttributes]. */
         static scenario_set_camera_attributes(scenario: RID, effects: RID): void
+        
+        /** Sets the compositor ([param compositor]) that will be used with this scenario. See also [Compositor]. */
+        static scenario_set_compositor(scenario: RID, compositor: RID): void
         
         /** Creates a visual instance, adds it to the RenderingServer, and sets both base and scenario. It can be accessed with the RID that is returned. This RID will be used in all `instance_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method. This is a shorthand for using [method instance_create] and setting the base and scenario manually.  
@@ -6543,6 +8392,9 @@ declare module "godot" {
         /** A copy of the canvas item will be drawn with a local offset of the mirroring [Vector2]. */
         static canvas_set_item_mirroring(canvas: RID, item: RID, mirroring: Vector2): void
         
+        /** A copy of the canvas item will be drawn with a local offset of the [param repeat_size] by the number of times of the [param repeat_times]. As the [param repeat_times] increases, the copies will spread away from the origin texture. */
+        static canvas_set_item_repeat(item: RID, repeat_size: Vector2, repeat_times: int64): void
+        
         /** Modulates all colors in the given canvas. */
         static canvas_set_modulate(canvas: RID, color: Color): void
         static canvas_set_disable_scale(disable: boolean): void
@@ -6615,6 +8467,19 @@ declare module "godot" {
         /** If [param enabled] is `true`, draws the canvas item specified by the [param item] RID behind its parent. Equivalent to [member CanvasItem.show_behind_parent]. */
         static canvas_item_set_draw_behind_parent(item: RID, enabled: boolean): void
         
+        /** If [param interpolated] is `true`, turns on physics interpolation for the canvas item. */
+        static canvas_item_set_interpolated(item: RID, interpolated: boolean): void
+        
+        /** Prevents physics interpolation for the current physics tick.  
+         *  This is useful when moving a canvas item to a new location, to give an instantaneous change rather than interpolation from the previous location.  
+         */
+        static canvas_item_reset_physics_interpolation(item: RID): void
+        
+        /** Transforms both the current and previous stored transform for a canvas item.  
+         *  This allows transforming a canvas item without creating a "glitch" in the interpolation, which is particularly useful for large worlds utilizing a shifting origin.  
+         */
+        static canvas_item_transform_physics_interpolation(item: RID, transform: Transform2D): void
+        
         /** Draws a line on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_line]. */
         static canvas_item_add_line(item: RID, from: Vector2, to: Vector2, color: Color, width: float64 = -1, antialiased: boolean = false): void
         
@@ -6622,13 +8487,13 @@ declare module "godot" {
         static canvas_item_add_polyline(item: RID, points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a 2D multiline on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_multiline] and [method CanvasItem.draw_multiline_colors]. */
-        static canvas_item_add_multiline(item: RID, points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], width: float64 = -1): void
+        static canvas_item_add_multiline(item: RID, points: PackedVector2Array | Vector2[], colors: PackedColorArray | Color[], width: float64 = -1, antialiased: boolean = false): void
         
         /** Draws a rectangle on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_rect]. */
-        static canvas_item_add_rect(item: RID, rect: Rect2, color: Color): void
+        static canvas_item_add_rect(item: RID, rect: Rect2, color: Color, antialiased: boolean = false): void
         
         /** Draws a circle on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_circle]. */
-        static canvas_item_add_circle(item: RID, pos: Vector2, radius: float64, color: Color): void
+        static canvas_item_add_circle(item: RID, pos: Vector2, radius: float64, color: Color, antialiased: boolean = false): void
         
         /** Draws a 2D textured rectangle on the [CanvasItem] pointed to by the [param item] [RID]. See also [method CanvasItem.draw_texture_rect] and [method Texture2D.draw_rect]. */
         static canvas_item_add_texture_rect(item: RID, rect: Rect2, texture: RID, tile: boolean = false, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
@@ -6779,6 +8644,19 @@ declare module "godot" {
         /** Sets the blend mode for the given canvas light. See [enum CanvasLightBlendMode] for options. Equivalent to [member Light2D.blend_mode]. */
         static canvas_light_set_blend_mode(light: RID, mode: RenderingServer.CanvasLightBlendMode): void
         
+        /** If [param interpolated] is `true`, turns on physics interpolation for the canvas light. */
+        static canvas_light_set_interpolated(light: RID, interpolated: boolean): void
+        
+        /** Prevents physics interpolation for the current physics tick.  
+         *  This is useful when moving a canvas item to a new location, to give an instantaneous change rather than interpolation from the previous location.  
+         */
+        static canvas_light_reset_physics_interpolation(light: RID): void
+        
+        /** Transforms both the current and previous stored transform for a canvas light.  
+         *  This allows transforming a light without creating a "glitch" in the interpolation, which is is particularly useful for large worlds utilizing a shifting origin.  
+         */
+        static canvas_light_transform_physics_interpolation(light: RID, transform: Transform2D): void
+        
         /** Creates a light occluder and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `canvas_light_occluder_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
          *      
@@ -6801,6 +8679,19 @@ declare module "godot" {
         
         /** The light mask. See [LightOccluder2D] for more information on light masks. */
         static canvas_light_occluder_set_light_mask(occluder: RID, mask: int64): void
+        
+        /** If [param interpolated] is `true`, turns on physics interpolation for the light occluder. */
+        static canvas_light_occluder_set_interpolated(occluder: RID, interpolated: boolean): void
+        
+        /** Prevents physics interpolation for the current physics tick.  
+         *  This is useful when moving an occluder to a new location, to give an instantaneous change rather than interpolation from the previous location.  
+         */
+        static canvas_light_occluder_reset_physics_interpolation(occluder: RID): void
+        
+        /** Transforms both the current and previous stored transform for a light occluder.  
+         *  This allows transforming an occluder without creating a "glitch" in the interpolation, which is particularly useful for large worlds utilizing a shifting origin.  
+         */
+        static canvas_light_occluder_transform_physics_interpolation(occluder: RID, transform: Transform2D): void
         
         /** Creates a new light occluder polygon and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `canvas_occluder_polygon_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -6922,9 +8813,6 @@ declare module "godot" {
         /** Sets the default clear color which is used when a specific clear color has not been selected. See also [method get_default_clear_color]. */
         static set_default_clear_color(color: Color): void
         
-        /** Not yet implemented. Always returns `false`. */
-        static has_feature(feature: RenderingServer.Features): boolean
-        
         /** Returns `true` if the OS supports a certain [param feature]. Features might be `s3tc`, `etc`, and `etc2`. */
         static has_os_feature(feature: string): boolean
         
@@ -6952,6 +8840,9 @@ declare module "godot" {
          */
         static create_local_rendering_device(): RenderingDevice
         
+        /** Returns `true` if our code is currently executing on the rendering thread. */
+        static is_on_render_thread(): boolean
+        
         /** As the RenderingServer actual logic may run on an separate thread, accessing its internals from the main (or any other) thread will result in errors. To make it easier to run code that can safely access the rendering internals (such as [RenderingDevice] and similar RD classes), push a callable via this function so it will be executed on the render thread. */
         static call_on_render_thread(callable: Callable): void
         
@@ -6964,181 +8855,6 @@ declare module "godot" {
         
         /** Emitted at the end of the frame, after the RenderingServer has finished updating all the Viewports. */
         static readonly frame_post_draw: Signal0
-    }
-    // // Singleton Class
-    namespace AudioServer {
-        enum SpeakerMode {
-            /** Two or fewer speakers were detected. */
-            SPEAKER_MODE_STEREO = 0,
-            
-            /** A 3.1 channel surround setup was detected. */
-            SPEAKER_SURROUND_31 = 1,
-            
-            /** A 5.1 channel surround setup was detected. */
-            SPEAKER_SURROUND_51 = 2,
-            
-            /** A 7.1 channel surround setup was detected. */
-            SPEAKER_SURROUND_71 = 3,
-        }
-    }
-    /** Server interface for low-level audio access.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_audioserver.html  
-     */
-    class AudioServer extends Object {
-        /** Removes the bus at index [param index]. */
-        static remove_bus(index: int64): void
-        
-        /** Adds a bus at [param at_position]. */
-        static add_bus(at_position: int64 = -1): void
-        
-        /** Moves the bus from index [param index] to index [param to_index]. */
-        static move_bus(index: int64, to_index: int64): void
-        
-        /** Sets the name of the bus at index [param bus_idx] to [param name]. */
-        static set_bus_name(bus_idx: int64, name: string): void
-        
-        /** Returns the name of the bus with the index [param bus_idx]. */
-        static get_bus_name(bus_idx: int64): string
-        
-        /** Returns the index of the bus with the name [param bus_name]. Returns `-1` if no bus with the specified name exist. */
-        static get_bus_index(bus_name: StringName): int64
-        
-        /** Returns the number of channels of the bus at index [param bus_idx]. */
-        static get_bus_channels(bus_idx: int64): int64
-        
-        /** Sets the volume of the bus at index [param bus_idx] to [param volume_db]. */
-        static set_bus_volume_db(bus_idx: int64, volume_db: float64): void
-        
-        /** Returns the volume of the bus at index [param bus_idx] in dB. */
-        static get_bus_volume_db(bus_idx: int64): float64
-        
-        /** Connects the output of the bus at [param bus_idx] to the bus named [param send]. */
-        static set_bus_send(bus_idx: int64, send: StringName): void
-        
-        /** Returns the name of the bus that the bus at index [param bus_idx] sends to. */
-        static get_bus_send(bus_idx: int64): StringName
-        
-        /** If `true`, the bus at index [param bus_idx] is in solo mode. */
-        static set_bus_solo(bus_idx: int64, enable: boolean): void
-        
-        /** If `true`, the bus at index [param bus_idx] is in solo mode. */
-        static is_bus_solo(bus_idx: int64): boolean
-        
-        /** If `true`, the bus at index [param bus_idx] is muted. */
-        static set_bus_mute(bus_idx: int64, enable: boolean): void
-        
-        /** If `true`, the bus at index [param bus_idx] is muted. */
-        static is_bus_mute(bus_idx: int64): boolean
-        
-        /** If `true`, the bus at index [param bus_idx] is bypassing effects. */
-        static set_bus_bypass_effects(bus_idx: int64, enable: boolean): void
-        
-        /** If `true`, the bus at index [param bus_idx] is bypassing effects. */
-        static is_bus_bypassing_effects(bus_idx: int64): boolean
-        
-        /** Adds an [AudioEffect] effect to the bus [param bus_idx] at [param at_position]. */
-        static add_bus_effect(bus_idx: int64, effect: AudioEffect, at_position: int64 = -1): void
-        
-        /** Removes the effect at index [param effect_idx] from the bus at index [param bus_idx]. */
-        static remove_bus_effect(bus_idx: int64, effect_idx: int64): void
-        
-        /** Returns the number of effects on the bus at [param bus_idx]. */
-        static get_bus_effect_count(bus_idx: int64): int64
-        
-        /** Returns the [AudioEffect] at position [param effect_idx] in bus [param bus_idx]. */
-        static get_bus_effect(bus_idx: int64, effect_idx: int64): AudioEffect
-        
-        /** Returns the [AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel). */
-        static get_bus_effect_instance(bus_idx: int64, effect_idx: int64, channel: int64 = 0): AudioEffectInstance
-        
-        /** Swaps the position of two effects in bus [param bus_idx]. */
-        static swap_bus_effects(bus_idx: int64, effect_idx: int64, by_effect_idx: int64): void
-        
-        /** If `true`, the effect at index [param effect_idx] on the bus at index [param bus_idx] is enabled. */
-        static set_bus_effect_enabled(bus_idx: int64, effect_idx: int64, enabled: boolean): void
-        
-        /** If `true`, the effect at index [param effect_idx] on the bus at index [param bus_idx] is enabled. */
-        static is_bus_effect_enabled(bus_idx: int64, effect_idx: int64): boolean
-        
-        /** Returns the peak volume of the left speaker at bus index [param bus_idx] and channel index [param channel]. */
-        static get_bus_peak_volume_left_db(bus_idx: int64, channel: int64): float64
-        
-        /** Returns the peak volume of the right speaker at bus index [param bus_idx] and channel index [param channel]. */
-        static get_bus_peak_volume_right_db(bus_idx: int64, channel: int64): float64
-        
-        /** Locks the audio driver's main loop.  
-         *      
-         *  **Note:** Remember to unlock it afterwards.  
-         */
-        static lock(): void
-        
-        /** Unlocks the audio driver's main loop. (After locking it, you should always unlock it.) */
-        static unlock(): void
-        
-        /** Returns the speaker configuration. */
-        static get_speaker_mode(): AudioServer.SpeakerMode
-        
-        /** Returns the sample rate at the output of the [AudioServer]. */
-        static get_mix_rate(): float64
-        
-        /** Returns the names of all audio output devices detected on the system. */
-        static get_output_device_list(): PackedStringArray
-        
-        /** Returns the relative time until the next mix occurs. */
-        static get_time_to_next_mix(): float64
-        
-        /** Returns the relative time since the last mix occurred. */
-        static get_time_since_last_mix(): float64
-        
-        /** Returns the audio driver's effective output latency. This is based on [member ProjectSettings.audio/driver/output_latency], but the exact returned value will differ depending on the operating system and audio driver.  
-         *      
-         *  **Note:** This can be expensive; it is not recommended to call [method get_output_latency] every frame.  
-         */
-        static get_output_latency(): float64
-        
-        /** Returns the names of all audio input devices detected on the system.  
-         *      
-         *  **Note:** [member ProjectSettings.audio/driver/enable_input] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.  
-         */
-        static get_input_device_list(): PackedStringArray
-        
-        /** Overwrites the currently used [AudioBusLayout]. */
-        static set_bus_layout(bus_layout: AudioBusLayout): void
-        
-        /** Generates an [AudioBusLayout] using the available buses and effects. */
-        static generate_bus_layout(): AudioBusLayout
-        
-        /** If set to `true`, all instances of [AudioStreamPlayback] will call [method AudioStreamPlayback._tag_used_streams] every mix step.  
-         *      
-         *  **Note:** This is enabled by default in the editor, as it is used by editor plugins for the audio stream previews.  
-         */
-        static set_enable_tagging_used_audio_streams(enable: boolean): void
-        
-        /** Number of available audio buses. */
-        get bus_count(): int64
-        set bus_count(value: int64)
-        
-        /** Name of the current device for audio output (see [method get_output_device_list]). On systems with multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio output device. The value `"Default"` will play audio on the system-wide default audio output. If an invalid device name is set, the value will be reverted back to `"Default"`. */
-        get output_device(): string
-        set output_device(value: string)
-        
-        /** Name of the current device for audio input (see [method get_input_device_list]). On systems with multiple audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input device. The value `"Default"` will record audio on the system-wide default audio input. If an invalid device name is set, the value will be reverted back to `"Default"`.  
-         *      
-         *  **Note:** [member ProjectSettings.audio/driver/enable_input] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.  
-         */
-        get input_device(): string
-        set input_device(value: string)
-        
-        /** Scales the rate at which audio is played (i.e. setting it to `0.5` will make the audio be played at half its speed). */
-        get playback_speed_scale(): float64
-        set playback_speed_scale(value: float64)
-        
-        /** Emitted when an audio bus is added, deleted, or moved. */
-        static readonly bus_layout_changed: Signal0
-        
-        /** Emitted when the audio bus at [param bus_index] is renamed from [param old_name] to [param new_name]. */
-        static readonly bus_renamed: Signal3<int64, StringName, StringName>
     }
     // // Singleton Class
     namespace PhysicsServer2D {
@@ -7412,7 +9128,7 @@ declare module "godot" {
     }
     /** A server interface for low-level 2D physics access.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver2d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_physicsserver2d.html  
      */
     class PhysicsServer2D extends Object {
         /** Creates a 2D world boundary shape in the physics server, and returns the [RID] that identifies it. Use [method shape_set_data] to set the shape's normal direction and distance properties. */
@@ -7476,7 +9192,9 @@ declare module "godot" {
         /** Returns the state of a space, a [PhysicsDirectSpaceState2D]. This object can be used for collision/intersection queries. */
         static space_get_direct_state(space: RID): PhysicsDirectSpaceState2D
         
-        /** Creates a 2D area object in the physics server, and returns the [RID] that identifies it. Use [method area_add_shape] to add shapes to it, use [method area_set_transform] to set its transform, and use [method area_set_space] to add the area to a space. */
+        /** Creates a 2D area object in the physics server, and returns the [RID] that identifies it. The default settings for the created area include a collision layer and mask set to `1`, and `monitorable` set to `false`.  
+         *  Use [method area_add_shape] to add shapes to it, use [method area_set_transform] to set its transform, and use [method area_set_space] to add the area to a space. If you want the area to be detectable use [method area_set_monitorable].  
+         */
         static area_create(): RID
         
         /** Adds the area to the given space, after removing the area from the previously assigned space (if any).  
@@ -7574,7 +9292,9 @@ declare module "godot" {
         /** Sets whether the area is monitorable or not. If [param monitorable] is `true`, the area monitoring callback of other areas will be called when this area enters or exits them. */
         static area_set_monitorable(area: RID, monitorable: boolean): void
         
-        /** Creates a 2D body object in the physics server, and returns the [RID] that identifies it. Use [method body_add_shape] to add shapes to it, use [method body_set_state] to set its transform, and use [method body_set_space] to add the body to a space. */
+        /** Creates a 2D body object in the physics server, and returns the [RID] that identifies it. The default settings for the created area include a collision layer and mask set to `1`, and body mode set to [constant BODY_MODE_RIGID].  
+         *  Use [method body_add_shape] to add shapes to it, use [method body_set_state] to set its transform, and use [method body_set_space] to add the body to a space.  
+         */
         static body_create(): RID
         
         /** Adds the body to the given space, after removing the body from the previously assigned space (if any). If the body's mode is set to [constant BODY_MODE_RIGID], then adding the body to a space will have the following additional effects:  
@@ -7758,18 +9478,27 @@ declare module "godot" {
         /** Returns the maximum number of contacts that the body can report. See [method body_set_max_contacts_reported]. */
         static body_get_max_contacts_reported(body: RID): int64
         
-        /** Sets whether the body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]). */
+        /** Sets whether the body omits the standard force integration. If [param enable] is `true`, the body will not automatically use applied forces, torques, and damping to update the body's linear and angular velocity. In this case, [method body_set_force_integration_callback] can be used to manually update the linear and angular velocity instead.  
+         *  This method is called when the property [member RigidBody2D.custom_integrator] is set.  
+         */
         static body_set_omit_force_integration(body: RID, enable: boolean): void
         
-        /** Returns `true` if the body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]). */
+        /** Returns `true` if the body is omitting the standard force integration. See [method body_set_omit_force_integration]. */
         static body_is_omitting_force_integration(body: RID): boolean
         
-        /** Sets the function used to calculate physics for the body, if that body allows it (see [method body_set_omit_force_integration]).  
-         *  The force integration function takes the following two parameters:  
-         *  1. a [PhysicsDirectBodyState2D] `state`: used to retrieve and modify the body's state,  
-         *  2. a [Variant] [param userdata]: optional user data.  
-         *      
-         *  **Note:** This callback is currently not called in Godot Physics.  
+        /** Sets the body's state synchronization callback function to [param callable]. Use an empty [Callable] ([code skip-lint]Callable()`) to clear the callback.  
+         *  The function [param callable] will be called every physics frame, assuming that the body was active during the previous physics tick, and can be used to fetch the latest state from the physics server.  
+         *  The function [param callable] must take the following parameters:  
+         *  1. `state`: a [PhysicsDirectBodyState2D], used to retrieve the body's state.  
+         */
+        static body_set_state_sync_callback(body: RID, callable: Callable): void
+        
+        /** Sets the body's custom force integration callback function to [param callable]. Use an empty [Callable] ([code skip-lint]Callable()`) to clear the custom callback.  
+         *  The function [param callable] will be called every physics tick, before the standard force integration (see [method body_set_omit_force_integration]). It can be used for example to update the body's linear and angular velocity based on contact with other bodies.  
+         *  If [param userdata] is not `null`, the function [param callable] must take the following two parameters:  
+         *  1. `state`: a [PhysicsDirectBodyState2D] used to retrieve and modify the body's state,  
+         *  2. [code skip-lint]userdata`: a [Variant]; its value will be the [param userdata] passed into this method.  
+         *  If [param userdata] is `null`, then [param callable] must take only the `state` parameter.  
          */
         static body_set_force_integration_callback(body: RID, callable: Callable, userdata: any = <any> {}): void
         
@@ -8016,6 +9745,9 @@ declare module "godot" {
             
             /** The maximum force that the linear motor can apply while trying to reach the target velocity. */
             G6DOF_JOINT_LINEAR_MOTOR_FORCE_LIMIT = 6,
+            G6DOF_JOINT_LINEAR_SPRING_STIFFNESS = 7,
+            G6DOF_JOINT_LINEAR_SPRING_DAMPING = 8,
+            G6DOF_JOINT_LINEAR_SPRING_EQUILIBRIUM_POINT = 9,
             
             /** The minimum rotation in negative direction to break loose and rotate around the axes. */
             G6DOF_JOINT_ANGULAR_LOWER_LIMIT = 10,
@@ -8043,6 +9775,12 @@ declare module "godot" {
             
             /** Maximum acceleration for the motor at the axes. */
             G6DOF_JOINT_ANGULAR_MOTOR_FORCE_LIMIT = 18,
+            G6DOF_JOINT_ANGULAR_SPRING_STIFFNESS = 19,
+            G6DOF_JOINT_ANGULAR_SPRING_DAMPING = 20,
+            G6DOF_JOINT_ANGULAR_SPRING_EQUILIBRIUM_POINT = 21,
+            
+            /** Represents the size of the [enum G6DOFJointAxisParam] enum. */
+            G6DOF_JOINT_MAX = 22,
         }
         enum G6DOFJointAxisFlag {
             /** If set, linear motion is possible within the given limits. */
@@ -8050,12 +9788,17 @@ declare module "godot" {
             
             /** If set, rotational motion is possible. */
             G6DOF_JOINT_FLAG_ENABLE_ANGULAR_LIMIT = 1,
+            G6DOF_JOINT_FLAG_ENABLE_ANGULAR_SPRING = 2,
+            G6DOF_JOINT_FLAG_ENABLE_LINEAR_SPRING = 3,
             
             /** If set, there is a rotational motor across these axes. */
             G6DOF_JOINT_FLAG_ENABLE_MOTOR = 4,
             
             /** If set, there is a linear motor on this axis that targets a specific velocity. */
             G6DOF_JOINT_FLAG_ENABLE_LINEAR_MOTOR = 5,
+            
+            /** Represents the size of the [enum G6DOFJointAxisFlag] enum. */
+            G6DOF_JOINT_FLAG_MAX = 6,
         }
         enum ShapeType {
             /** The [Shape3D] is a [WorldBoundaryShape3D]. */
@@ -8124,7 +9867,7 @@ declare module "godot" {
             /** Constant to set/get the priority (order of processing) of an area. */
             AREA_PARAM_PRIORITY = 9,
             
-            /** Constant to set/get the magnitude of area-specific wind force. */
+            /** Constant to set/get the magnitude of area-specific wind force. This wind force only applies to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind. */
             AREA_PARAM_WIND_FORCE_MAGNITUDE = 10,
             
             /** Constant to set/get the 3D vector that specifies the origin from which an area-specific wind blows. */
@@ -8275,7 +10018,7 @@ declare module "godot" {
     }
     /** A server interface for low-level 3D physics access.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_physicsserver3d.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_physicsserver3d.html  
      */
     class PhysicsServer3D extends Object {
         static world_boundary_shape_create(): RID
@@ -8292,11 +10035,23 @@ declare module "godot" {
         /** Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type]. */
         static shape_set_data(shape: RID, data: any): void
         
+        /** Sets the collision margin for the shape.  
+         *      
+         *  **Note:** This is not used in Godot Physics.  
+         */
+        static shape_set_margin(shape: RID, margin: float64): void
+        
         /** Returns the type of shape (see [enum ShapeType] constants). */
         static shape_get_type(shape: RID): PhysicsServer3D.ShapeType
         
         /** Returns the shape data. */
         static shape_get_data(shape: RID): any
+        
+        /** Returns the collision margin for the shape.  
+         *      
+         *  **Note:** This is not used in Godot Physics, so will always return `0`.  
+         */
+        static shape_get_margin(shape: RID): float64
         
         /** Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [method area_set_space], or to a body with [method body_set_space]. */
         static space_create(): RID
@@ -8316,7 +10071,9 @@ declare module "godot" {
         /** Returns the state of a space, a [PhysicsDirectSpaceState3D]. This object can be used to make collision/intersection queries. */
         static space_get_direct_state(space: RID): PhysicsDirectSpaceState3D
         
-        /** Creates an [Area3D]. */
+        /** Creates a 3D area object in the physics server, and returns the [RID] that identifies it. The default settings for the created area include a collision layer and mask set to `1`, and `monitorable` set to `false`.  
+         *  Use [method area_add_shape] to add shapes to it, use [method area_set_transform] to set its transform, and use [method area_set_space] to add the area to a space. If you want the area to be detectable use [method area_set_monitorable].  
+         */
         static area_create(): RID
         
         /** Assigns a space to the area. */
@@ -8403,6 +10160,10 @@ declare module "godot" {
         
         /** Sets object pickable with rays. */
         static area_set_ray_pickable(area: RID, enable: boolean): void
+        
+        /** Creates a 3D body object in the physics server, and returns the [RID] that identifies it. The default settings for the created area include a collision layer and mask set to `1`, and body mode set to [constant BODY_MODE_RIGID].  
+         *  Use [method body_add_shape] to add shapes to it, use [method body_set_state] to set its transform, and use [method body_set_space] to add the body to a space.  
+         */
         static body_create(): RID
         
         /** Assigns a space to the body (see [method space_create]). */
@@ -8571,15 +10332,27 @@ declare module "godot" {
         /** Returns the maximum contacts that can be reported. See [method body_set_max_contacts_reported]. */
         static body_get_max_contacts_reported(body: RID): int64
         
-        /** Sets whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]). */
+        /** Sets whether the body omits the standard force integration. If [param enable] is `true`, the body will not automatically use applied forces, torques, and damping to update the body's linear and angular velocity. In this case, [method body_set_force_integration_callback] can be used to manually update the linear and angular velocity instead.  
+         *  This method is called when the property [member RigidBody3D.custom_integrator] is set.  
+         */
         static body_set_omit_force_integration(body: RID, enable: boolean): void
         
-        /** Returns whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]). */
+        /** Returns `true` if the body is omitting the standard force integration. See [method body_set_omit_force_integration]. */
         static body_is_omitting_force_integration(body: RID): boolean
         
-        /** Sets the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force_integration]). The force integration function takes 2 arguments:  
-         *  - `state` — [PhysicsDirectBodyState3D] used to retrieve and modify the body's state.  
-         *  - [code skip-lint]userdata` — optional user data passed to [method body_set_force_integration_callback].  
+        /** Sets the body's state synchronization callback function to [param callable]. Use an empty [Callable] ([code skip-lint]Callable()`) to clear the callback.  
+         *  The function [param callable] will be called every physics frame, assuming that the body was active during the previous physics tick, and can be used to fetch the latest state from the physics server.  
+         *  The function [param callable] must take the following parameters:  
+         *  1. `state`: a [PhysicsDirectBodyState3D], used to retrieve the body's state.  
+         */
+        static body_set_state_sync_callback(body: RID, callable: Callable): void
+        
+        /** Sets the body's custom force integration callback function to [param callable]. Use an empty [Callable] ([code skip-lint]Callable()`) to clear the custom callback.  
+         *  The function [param callable] will be called every physics tick, before the standard force integration (see [method body_set_omit_force_integration]). It can be used for example to update the body's linear and angular velocity based on contact with other bodies.  
+         *  If [param userdata] is not `null`, the function [param callable] must take the following two parameters:  
+         *  1. `state`: a [PhysicsDirectBodyState3D], used to retrieve and modify the body's state,  
+         *  2. [code skip-lint]userdata`: a [Variant]; its value will be the [param userdata] passed into this method.  
+         *  If [param userdata] is `null`, then [param callable] must take only the `state` parameter.  
          */
         static body_set_force_integration_callback(body: RID, callable: Callable, userdata: any = <any> {}): void
         
@@ -8591,7 +10364,117 @@ declare module "godot" {
         
         /** Returns the [PhysicsDirectBodyState3D] of the body. Returns `null` if the body is destroyed or removed from the physics space. */
         static body_get_direct_state(body: RID): PhysicsDirectBodyState3D
+        
+        /** Creates a new soft body and returns its internal [RID]. */
+        static soft_body_create(): RID
+        
+        /** Requests that the physics server updates the rendering server with the latest positions of the given soft body's points through the [param rendering_server_handler] interface. */
+        static soft_body_update_rendering_server(body: RID, rendering_server_handler: PhysicsServer3DRenderingServerHandler): void
+        
+        /** Assigns a space to the given soft body (see [method space_create]). */
+        static soft_body_set_space(body: RID, space: RID): void
+        
+        /** Returns the [RID] of the space assigned to the given soft body. */
+        static soft_body_get_space(body: RID): RID
+        
+        /** Sets the mesh of the given soft body. */
+        static soft_body_set_mesh(body: RID, mesh: RID): void
+        
+        /** Returns the bounds of the given soft body in global coordinates. */
         static soft_body_get_bounds(body: RID): AABB
+        
+        /** Sets the physics layer or layers the given soft body belongs to. */
+        static soft_body_set_collision_layer(body: RID, layer: int64): void
+        
+        /** Returns the physics layer or layers that the given soft body belongs to. */
+        static soft_body_get_collision_layer(body: RID): int64
+        
+        /** Sets the physics layer or layers the given soft body can collide with. */
+        static soft_body_set_collision_mask(body: RID, mask: int64): void
+        
+        /** Returns the physics layer or layers that the given soft body can collide with. */
+        static soft_body_get_collision_mask(body: RID): int64
+        
+        /** Adds the given body to the list of bodies exempt from collisions. */
+        static soft_body_add_collision_exception(body: RID, body_b: RID): void
+        
+        /** Removes the given body from the list of bodies exempt from collisions. */
+        static soft_body_remove_collision_exception(body: RID, body_b: RID): void
+        
+        /** Sets the given body state for the given body (see [enum BodyState] constants).  
+         *      
+         *  **Note:** Godot's default physics implementation does not support [constant BODY_STATE_LINEAR_VELOCITY], [constant BODY_STATE_ANGULAR_VELOCITY], [constant BODY_STATE_SLEEPING], or [constant BODY_STATE_CAN_SLEEP].  
+         */
+        static soft_body_set_state(body: RID, state: PhysicsServer3D.BodyState, variant: any): void
+        
+        /** Returns the given soft body state (see [enum BodyState] constants).  
+         *      
+         *  **Note:** Godot's default physics implementation does not support [constant BODY_STATE_LINEAR_VELOCITY], [constant BODY_STATE_ANGULAR_VELOCITY], [constant BODY_STATE_SLEEPING], or [constant BODY_STATE_CAN_SLEEP].  
+         */
+        static soft_body_get_state(body: RID, state: PhysicsServer3D.BodyState): any
+        
+        /** Sets the global transform of the given soft body. */
+        static soft_body_set_transform(body: RID, transform: Transform3D): void
+        
+        /** Sets whether the given soft body will be pickable when using object picking. */
+        static soft_body_set_ray_pickable(body: RID, enable: boolean): void
+        
+        /** Sets the simulation precision of the given soft body. Increasing this value will improve the resulting simulation, but can affect performance. Use with care. */
+        static soft_body_set_simulation_precision(body: RID, simulation_precision: int64): void
+        
+        /** Returns the simulation precision of the given soft body. */
+        static soft_body_get_simulation_precision(body: RID): int64
+        
+        /** Sets the total mass for the given soft body. */
+        static soft_body_set_total_mass(body: RID, total_mass: float64): void
+        
+        /** Returns the total mass assigned to the given soft body. */
+        static soft_body_get_total_mass(body: RID): float64
+        
+        /** Sets the linear stiffness of the given soft body. Higher values will result in a stiffer body, while lower values will increase the body's ability to bend. The value can be between `0.0` and `1.0` (inclusive). */
+        static soft_body_set_linear_stiffness(body: RID, stiffness: float64): void
+        
+        /** Returns the linear stiffness of the given soft body. */
+        static soft_body_get_linear_stiffness(body: RID): float64
+        
+        /** Sets the pressure coefficient of the given soft body. Simulates pressure build-up from inside this body. Higher values increase the strength of this effect. */
+        static soft_body_set_pressure_coefficient(body: RID, pressure_coefficient: float64): void
+        
+        /** Returns the pressure coefficient of the given soft body. */
+        static soft_body_get_pressure_coefficient(body: RID): float64
+        
+        /** Sets the damping coefficient of the given soft body. Higher values will slow down the body more noticeably when forces are applied. */
+        static soft_body_set_damping_coefficient(body: RID, damping_coefficient: float64): void
+        
+        /** Returns the damping coefficient of the given soft body. */
+        static soft_body_get_damping_coefficient(body: RID): float64
+        
+        /** Sets the drag coefficient of the given soft body. Higher values increase this body's air resistance.  
+         *      
+         *  **Note:** This value is currently unused by Godot's default physics implementation.  
+         */
+        static soft_body_set_drag_coefficient(body: RID, drag_coefficient: float64): void
+        
+        /** Returns the drag coefficient of the given soft body. */
+        static soft_body_get_drag_coefficient(body: RID): float64
+        
+        /** Moves the given soft body point to a position in global coordinates. */
+        static soft_body_move_point(body: RID, point_index: int64, global_position: Vector3): void
+        
+        /** Returns the current position of the given soft body point in global coordinates. */
+        static soft_body_get_point_global_position(body: RID, point_index: int64): Vector3
+        
+        /** Unpins all points of the given soft body. */
+        static soft_body_remove_all_pinned_points(body: RID): void
+        
+        /** Pins or unpins the given soft body point based on the value of [param pin].  
+         *      
+         *  **Note:** Pinning a point effectively makes it kinematic, preventing it from being affected by forces, but you can still move it using [method soft_body_move_point].  
+         */
+        static soft_body_pin_point(body: RID, point_index: int64, pin: boolean): void
+        
+        /** Returns whether the given soft body point is pinned. */
+        static soft_body_is_point_pinned(body: RID, point_index: int64): boolean
         static joint_create(): RID
         static joint_clear(joint: RID): void
         static joint_make_pin(joint: RID, body_A: RID, local_A: Vector3, body_B: RID, local_B: Vector3): void
@@ -8655,18 +10538,20 @@ declare module "godot" {
         
         /** Returns whether the bodies attached to the [Joint3D] will collide with each other. */
         static joint_is_disabled_collisions_between_bodies(joint: RID): boolean
+        
+        /** Make the joint a generic six degrees of freedom (6DOF) joint. Use [method generic_6dof_joint_set_flag] and [method generic_6dof_joint_set_param] to set the joint's flags and parameters respectively. */
         static joint_make_generic_6dof(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
         
-        /** Sets a generic_6_DOF_joint parameter (see [enum G6DOFJointAxisParam] constants). */
+        /** Sets the value of a given generic 6DOF joint parameter. See [enum G6DOFJointAxisParam] for the list of available parameters. */
         static generic_6dof_joint_set_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam, value: float64): void
         
-        /** Gets a generic_6_DOF_joint parameter (see [enum G6DOFJointAxisParam] constants). */
+        /** Returns the value of a generic 6DOF joint parameter. See [enum G6DOFJointAxisParam] for the list of available parameters. */
         static generic_6dof_joint_get_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam): float64
         
-        /** Sets a generic_6_DOF_joint flag (see [enum G6DOFJointAxisFlag] constants). */
+        /** Sets the value of a given generic 6DOF joint flag. See [enum G6DOFJointAxisFlag] for the list of available flags. */
         static generic_6dof_joint_set_flag(joint: RID, axis: Vector3.Axis, flag: PhysicsServer3D.G6DOFJointAxisFlag, enable: boolean): void
         
-        /** Gets a generic_6_DOF_joint flag (see [enum G6DOFJointAxisFlag] constants). */
+        /** Returns the value of a generic 6DOF joint flag. See [enum G6DOFJointAxisFlag] for the list of available flags. */
         static generic_6dof_joint_get_flag(joint: RID, axis: Vector3.Axis, flag: PhysicsServer3D.G6DOFJointAxisFlag): boolean
         
         /** Destroys any of the objects created by PhysicsServer3D. If the [RID] passed is not one of the objects that can be created by PhysicsServer3D, an error will be sent to the console. */
@@ -8677,744 +10562,6 @@ declare module "godot" {
         
         /** Returns information about the current state of the 3D physics engine. See [enum ProcessInfo] for a list of available states. */
         static get_process_info(process_info: PhysicsServer3D.ProcessInfo): int64
-    }
-    // // Singleton Class
-    /** A server interface for low-level 2D navigation access.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_navigationserver2d.html  
-     */
-    class NavigationServer2D extends Object {
-        /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
-        static get_maps(): GArray
-        
-        /** Create a new map. */
-        static map_create(): RID
-        
-        /** Sets the map active. */
-        static map_set_active(map: RID, active: boolean): void
-        
-        /** Returns true if the map is active. */
-        static map_is_active(map: RID): boolean
-        
-        /** Sets the map cell size used to rasterize the navigation mesh vertices. Must match with the cell size of the used navigation meshes. */
-        static map_set_cell_size(map: RID, cell_size: float64): void
-        
-        /** Returns the map cell size used to rasterize the navigation mesh vertices. */
-        static map_get_cell_size(map: RID): float64
-        
-        /** Set the navigation [param map] edge connection use. If [param enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
-        static map_set_use_edge_connections(map: RID, enabled: boolean): void
-        
-        /** Returns whether the navigation [param map] allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
-        static map_get_use_edge_connections(map: RID): boolean
-        
-        /** Set the map edge connection margin used to weld the compatible region edges. */
-        static map_set_edge_connection_margin(map: RID, margin: float64): void
-        
-        /** Returns the edge connection margin of the map. The edge connection margin is a distance used to connect two regions. */
-        static map_get_edge_connection_margin(map: RID): float64
-        
-        /** Set the map's link connection radius used to connect links to navigation polygons. */
-        static map_set_link_connection_radius(map: RID, radius: float64): void
-        
-        /** Returns the link connection radius of the map. This distance is the maximum range any link will search for navigation mesh polygons to connect to. */
-        static map_get_link_connection_radius(map: RID): float64
-        
-        /** Returns the navigation path to reach the destination from the origin. [param navigation_layers] is a bitmask of all region navigation layers that are allowed to be in the path. */
-        static map_get_path(map: RID, origin: Vector2, destination: Vector2, optimize: boolean, navigation_layers: int64 = 1): PackedVector2Array
-        
-        /** Returns the point closest to the provided [param to_point] on the navigation mesh surface. */
-        static map_get_closest_point(map: RID, to_point: Vector2): Vector2
-        
-        /** Returns the owner region RID for the point returned by [method map_get_closest_point]. */
-        static map_get_closest_point_owner(map: RID, to_point: Vector2): RID
-        
-        /** Returns all navigation link [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_links(map: RID): GArray
-        
-        /** Returns all navigation regions [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_regions(map: RID): GArray
-        
-        /** Returns all navigation agents [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_agents(map: RID): GArray
-        
-        /** Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_obstacles(map: RID): GArray
-        
-        /** This function immediately forces synchronization of the specified navigation [param map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).  
-         *  Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.  
-         *  Avoidance processing and dispatch of the `safe_velocity` signals is unaffected by this function and continues to happen for all maps and agents at the end of the physics frame.  
-         *      
-         *  **Note:** With great power comes great responsibility. This function should only be used by users that really know what they are doing and have a good reason for it. Forcing an immediate update of a navigation map requires locking the NavigationServer and flushing the entire NavigationServer command queue. Not only can this severely impact the performance of a game but it can also introduce bugs if used inappropriately without much foresight.  
-         */
-        static map_force_update(map: RID): void
-        
-        /** Queries a path in a given navigation map. Start and target position and other parameters are defined through [NavigationPathQueryParameters2D]. Updates the provided [NavigationPathQueryResult2D] result object with the path among other results requested by the query. */
-        static query_path(parameters: NavigationPathQueryParameters2D, result: NavigationPathQueryResult2D): void
-        
-        /** Creates a new region. */
-        static region_create(): RID
-        
-        /** If [param enabled] is `true` the specified [param region] will contribute to its current navigation map. */
-        static region_set_enabled(region: RID, enabled: boolean): void
-        
-        /** Returns `true` if the specified [param region] is enabled. */
-        static region_get_enabled(region: RID): boolean
-        
-        /** If [param enabled] is `true`, the navigation [param region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
-        static region_set_use_edge_connections(region: RID, enabled: boolean): void
-        
-        /** Returns whether the navigation [param region] is set to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
-        static region_get_use_edge_connections(region: RID): boolean
-        
-        /** Sets the [param enter_cost] for this [param region]. */
-        static region_set_enter_cost(region: RID, enter_cost: float64): void
-        
-        /** Returns the enter cost of this [param region]. */
-        static region_get_enter_cost(region: RID): float64
-        
-        /** Sets the [param travel_cost] for this [param region]. */
-        static region_set_travel_cost(region: RID, travel_cost: float64): void
-        
-        /** Returns the travel cost of this [param region]. */
-        static region_get_travel_cost(region: RID): float64
-        
-        /** Set the `ObjectID` of the object which manages this region. */
-        static region_set_owner_id(region: RID, owner_id: int64): void
-        
-        /** Returns the `ObjectID` of the object which manages this region. */
-        static region_get_owner_id(region: RID): int64
-        
-        /** Returns `true` if the provided [param point] in world space is currently owned by the provided navigation [param region]. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.  
-         *  If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.  
-         *      
-         *  **Note:** If navigation meshes from different navigation regions overlap (which should be avoided in general) the result might not be what is expected.  
-         */
-        static region_owns_point(region: RID, point: Vector2): boolean
-        
-        /** Sets the map for the region. */
-        static region_set_map(region: RID, map: RID): void
-        
-        /** Returns the navigation map [RID] the requested [param region] is currently assigned to. */
-        static region_get_map(region: RID): RID
-        
-        /** Set the region's navigation layers. This allows selecting regions from a path request (when using [method NavigationServer2D.map_get_path]). */
-        static region_set_navigation_layers(region: RID, navigation_layers: int64): void
-        
-        /** Returns the region's navigation layers. */
-        static region_get_navigation_layers(region: RID): int64
-        
-        /** Sets the global transformation for the region. */
-        static region_set_transform(region: RID, transform: Transform2D): void
-        
-        /** Sets the [param navigation_polygon] for the region. */
-        static region_set_navigation_polygon(region: RID, navigation_polygon: NavigationPolygon): void
-        
-        /** Returns how many connections this [param region] has with other regions in the map. */
-        static region_get_connections_count(region: RID): int64
-        
-        /** Returns the starting point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
-        static region_get_connection_pathway_start(region: RID, connection: int64): Vector2
-        
-        /** Returns the ending point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
-        static region_get_connection_pathway_end(region: RID, connection: int64): Vector2
-        
-        /** Create a new link between two positions on a map. */
-        static link_create(): RID
-        
-        /** Sets the navigation map [RID] for the link. */
-        static link_set_map(link: RID, map: RID): void
-        
-        /** Returns the navigation map [RID] the requested [param link] is currently assigned to. */
-        static link_get_map(link: RID): RID
-        
-        /** If [param enabled] is `true`, the specified [param link] will contribute to its current navigation map. */
-        static link_set_enabled(link: RID, enabled: boolean): void
-        
-        /** Returns `true` if the specified [param link] is enabled. */
-        static link_get_enabled(link: RID): boolean
-        
-        /** Sets whether this [param link] can be travelled in both directions. */
-        static link_set_bidirectional(link: RID, bidirectional: boolean): void
-        
-        /** Returns whether this [param link] can be travelled in both directions. */
-        static link_is_bidirectional(link: RID): boolean
-        
-        /** Set the links's navigation layers. This allows selecting links from a path request (when using [method NavigationServer2D.map_get_path]). */
-        static link_set_navigation_layers(link: RID, navigation_layers: int64): void
-        
-        /** Returns the navigation layers for this [param link]. */
-        static link_get_navigation_layers(link: RID): int64
-        
-        /** Sets the entry position for this [param link]. */
-        static link_set_start_position(link: RID, position: Vector2): void
-        
-        /** Returns the starting position of this [param link]. */
-        static link_get_start_position(link: RID): Vector2
-        
-        /** Sets the exit position for the [param link]. */
-        static link_set_end_position(link: RID, position: Vector2): void
-        
-        /** Returns the ending position of this [param link]. */
-        static link_get_end_position(link: RID): Vector2
-        
-        /** Sets the [param enter_cost] for this [param link]. */
-        static link_set_enter_cost(link: RID, enter_cost: float64): void
-        
-        /** Returns the enter cost of this [param link]. */
-        static link_get_enter_cost(link: RID): float64
-        
-        /** Sets the [param travel_cost] for this [param link]. */
-        static link_set_travel_cost(link: RID, travel_cost: float64): void
-        
-        /** Returns the travel cost of this [param link]. */
-        static link_get_travel_cost(link: RID): float64
-        
-        /** Set the `ObjectID` of the object which manages this link. */
-        static link_set_owner_id(link: RID, owner_id: int64): void
-        
-        /** Returns the `ObjectID` of the object which manages this link. */
-        static link_get_owner_id(link: RID): int64
-        
-        /** Creates the agent. */
-        static agent_create(): RID
-        
-        /** If [param enabled] is `true`, the specified [param agent] uses avoidance. */
-        static agent_set_avoidance_enabled(agent: RID, enabled: boolean): void
-        
-        /** Return `true` if the specified [param agent] uses avoidance. */
-        static agent_get_avoidance_enabled(agent: RID): boolean
-        
-        /** Puts the agent in the map. */
-        static agent_set_map(agent: RID, map: RID): void
-        
-        /** Returns the navigation map [RID] the requested [param agent] is currently assigned to. */
-        static agent_get_map(agent: RID): RID
-        
-        /** If [param paused] is true the specified [param agent] will not be processed, e.g. calculate avoidance velocities or receive avoidance callbacks. */
-        static agent_set_paused(agent: RID, paused: boolean): void
-        
-        /** Returns `true` if the specified [param agent] is paused. */
-        static agent_get_paused(agent: RID): boolean
-        
-        /** Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
-        static agent_set_neighbor_distance(agent: RID, distance: float64): void
-        
-        /** Sets the maximum number of other agents the agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
-        static agent_set_max_neighbors(agent: RID, count: int64): void
-        
-        /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
-        static agent_set_time_horizon_agents(agent: RID, time_horizon: float64): void
-        
-        /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to static avoidance obstacles. The larger this number, the sooner this agent will respond to the presence of static avoidance obstacles, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
-        static agent_set_time_horizon_obstacles(agent: RID, time_horizon: float64): void
-        
-        /** Sets the radius of the agent. */
-        static agent_set_radius(agent: RID, radius: float64): void
-        
-        /** Sets the maximum speed of the agent. Must be positive. */
-        static agent_set_max_speed(agent: RID, max_speed: float64): void
-        
-        /** Replaces the internal velocity in the collision avoidance simulation with [param velocity] for the specified [param agent]. When an agent is teleported to a new position far away this function should be used in the same frame. If called frequently this function can get agents stuck. */
-        static agent_set_velocity_forced(agent: RID, velocity: Vector2): void
-        
-        /** Sets [param velocity] as the new wanted velocity for the specified [param agent]. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agent's and obstacles. When an agent is teleported to a new position far away use [method agent_set_velocity_forced] instead to reset the internal velocity state. */
-        static agent_set_velocity(agent: RID, velocity: Vector2): void
-        
-        /** Sets the position of the agent in world space. */
-        static agent_set_position(agent: RID, position: Vector2): void
-        
-        /** Returns true if the map got changed the previous frame. */
-        static agent_is_map_changed(agent: RID): boolean
-        
-        /** Sets the callback [Callable] that gets called after each avoidance processing step for the [param agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before the physics calculations.  
-         *      
-         *  **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [method agent_set_avoidance_callback] again with an empty [Callable].  
-         */
-        static agent_set_avoidance_callback(agent: RID, callback: Callable): void
-        
-        /** Set the agent's `avoidance_layers` bitmask. */
-        static agent_set_avoidance_layers(agent: RID, layers: int64): void
-        
-        /** Set the agent's `avoidance_mask` bitmask. */
-        static agent_set_avoidance_mask(agent: RID, mask: int64): void
-        
-        /** Set the agent's `avoidance_priority` with a [param priority] between 0.0 (lowest priority) to 1.0 (highest priority).  
-         *  The specified [param agent] does not adjust the velocity for other agents that would match the `avoidance_mask` but have a lower ` avoidance_priority`. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.  
-         */
-        static agent_set_avoidance_priority(agent: RID, priority: float64): void
-        
-        /** Creates a new navigation obstacle. */
-        static obstacle_create(): RID
-        
-        /** If [param enabled] is `true`, the provided [param obstacle] affects avoidance using agents. */
-        static obstacle_set_avoidance_enabled(obstacle: RID, enabled: boolean): void
-        
-        /** Returns `true` if the provided [param obstacle] has avoidance enabled. */
-        static obstacle_get_avoidance_enabled(obstacle: RID): boolean
-        
-        /** Sets the navigation map [RID] for the obstacle. */
-        static obstacle_set_map(obstacle: RID, map: RID): void
-        
-        /** Returns the navigation map [RID] the requested [param obstacle] is currently assigned to. */
-        static obstacle_get_map(obstacle: RID): RID
-        
-        /** If [param paused] is true the specified [param obstacle] will not be processed, e.g. affect avoidance velocities. */
-        static obstacle_set_paused(obstacle: RID, paused: boolean): void
-        
-        /** Returns `true` if the specified [param obstacle] is paused. */
-        static obstacle_get_paused(obstacle: RID): boolean
-        
-        /** Sets the radius of the dynamic obstacle. */
-        static obstacle_set_radius(obstacle: RID, radius: float64): void
-        
-        /** Sets [param velocity] of the dynamic [param obstacle]. Allows other agents to better predict the movement of the dynamic obstacle. Only works in combination with the radius of the obstacle. */
-        static obstacle_set_velocity(obstacle: RID, velocity: Vector2): void
-        
-        /** Sets the position of the obstacle in world space. */
-        static obstacle_set_position(obstacle: RID, position: Vector2): void
-        
-        /** Sets the outline vertices for the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. */
-        static obstacle_set_vertices(obstacle: RID, vertices: PackedVector2Array | Vector2[]): void
-        
-        /** Set the obstacles's `avoidance_layers` bitmask. */
-        static obstacle_set_avoidance_layers(obstacle: RID, layers: int64): void
-        
-        /** Parses the [SceneTree] for source geometry according to the properties of [param navigation_polygon]. Updates the provided [param source_geometry_data] resource with the resulting data. The resource can then be used to bake a navigation mesh with [method bake_from_source_geometry_data]. After the process is finished the optional [param callback] will be called.  
-         *      
-         *  **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.  
-         *  **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.  
-         */
-        static parse_source_geometry_data(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, root_node: Node, callback: Callable = new Callable()): void
-        
-        /** Bakes the provided [param navigation_polygon] with the data from the provided [param source_geometry_data]. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, callback: Callable = new Callable()): void
-        
-        /** Bakes the provided [param navigation_polygon] with the data from the provided [param source_geometry_data] as an async task running on a background thread. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data_async(navigation_polygon: NavigationPolygon, source_geometry_data: NavigationMeshSourceGeometryData2D, callback: Callable = new Callable()): void
-        
-        /** Destroys the given RID. */
-        static free_rid(rid: RID): void
-        
-        /** If `true` enables debug mode on the NavigationServer. */
-        static set_debug_enabled(enabled: boolean): void
-        
-        /** Returns `true` when the NavigationServer has debug enabled. */
-        static get_debug_enabled(): boolean
-        
-        /** Emitted when a navigation map is updated, when a region moves or is modified. */
-        static readonly map_changed: Signal1<RID>
-        
-        /** Emitted when navigation debug settings are changed. Only available in debug builds. */
-        static readonly navigation_debug_changed: Signal0
-    }
-    // // Singleton Class
-    namespace NavigationServer3D {
-        enum ProcessInfo {
-            /** Constant to get the number of active navigation maps. */
-            INFO_ACTIVE_MAPS = 0,
-            
-            /** Constant to get the number of active navigation regions. */
-            INFO_REGION_COUNT = 1,
-            
-            /** Constant to get the number of active navigation agents processing avoidance. */
-            INFO_AGENT_COUNT = 2,
-            
-            /** Constant to get the number of active navigation links. */
-            INFO_LINK_COUNT = 3,
-            
-            /** Constant to get the number of navigation mesh polygons. */
-            INFO_POLYGON_COUNT = 4,
-            
-            /** Constant to get the number of navigation mesh polygon edges. */
-            INFO_EDGE_COUNT = 5,
-            
-            /** Constant to get the number of navigation mesh polygon edges that were merged due to edge key overlap. */
-            INFO_EDGE_MERGE_COUNT = 6,
-            
-            /** Constant to get the number of navigation mesh polygon edges that are considered connected by edge proximity. */
-            INFO_EDGE_CONNECTION_COUNT = 7,
-            
-            /** Constant to get the number of navigation mesh polygon edges that could not be merged but may be still connected by edge proximity or with links. */
-            INFO_EDGE_FREE_COUNT = 8,
-        }
-    }
-    /** A server interface for low-level 3D navigation access.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_navigationserver3d.html  
-     */
-    class NavigationServer3D extends Object {
-        /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
-        static get_maps(): GArray
-        
-        /** Create a new map. */
-        static map_create(): RID
-        
-        /** Sets the map active. */
-        static map_set_active(map: RID, active: boolean): void
-        
-        /** Returns true if the map is active. */
-        static map_is_active(map: RID): boolean
-        
-        /** Sets the map up direction. */
-        static map_set_up(map: RID, up: Vector3): void
-        
-        /** Returns the map's up direction. */
-        static map_get_up(map: RID): Vector3
-        
-        /** Sets the map cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with the cell size of the used navigation meshes. */
-        static map_set_cell_size(map: RID, cell_size: float64): void
-        
-        /** Returns the map cell size used to rasterize the navigation mesh vertices on the XZ plane. */
-        static map_get_cell_size(map: RID): float64
-        
-        /** Sets the map cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with the cell height of the used navigation meshes. */
-        static map_set_cell_height(map: RID, cell_height: float64): void
-        
-        /** Returns the map cell height used to rasterize the navigation mesh vertices on the Y axis. */
-        static map_get_cell_height(map: RID): float64
-        
-        /** Set the navigation [param map] edge connection use. If [param enabled] is `true`, the navigation map allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
-        static map_set_use_edge_connections(map: RID, enabled: boolean): void
-        
-        /** Returns true if the navigation [param map] allows navigation regions to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
-        static map_get_use_edge_connections(map: RID): boolean
-        
-        /** Set the map edge connection margin used to weld the compatible region edges. */
-        static map_set_edge_connection_margin(map: RID, margin: float64): void
-        
-        /** Returns the edge connection margin of the map. This distance is the minimum vertex distance needed to connect two edges from different regions. */
-        static map_get_edge_connection_margin(map: RID): float64
-        
-        /** Set the map's link connection radius used to connect links to navigation polygons. */
-        static map_set_link_connection_radius(map: RID, radius: float64): void
-        
-        /** Returns the link connection radius of the map. This distance is the maximum range any link will search for navigation mesh polygons to connect to. */
-        static map_get_link_connection_radius(map: RID): float64
-        
-        /** Returns the navigation path to reach the destination from the origin. [param navigation_layers] is a bitmask of all region navigation layers that are allowed to be in the path. */
-        static map_get_path(map: RID, origin: Vector3, destination: Vector3, optimize: boolean, navigation_layers: int64 = 1): PackedVector3Array
-        
-        /** Returns the closest point between the navigation surface and the segment. */
-        static map_get_closest_point_to_segment(map: RID, start: Vector3, end: Vector3, use_collision: boolean = false): Vector3
-        
-        /** Returns the point closest to the provided [param to_point] on the navigation mesh surface. */
-        static map_get_closest_point(map: RID, to_point: Vector3): Vector3
-        
-        /** Returns the normal for the point returned by [method map_get_closest_point]. */
-        static map_get_closest_point_normal(map: RID, to_point: Vector3): Vector3
-        
-        /** Returns the owner region RID for the point returned by [method map_get_closest_point]. */
-        static map_get_closest_point_owner(map: RID, to_point: Vector3): RID
-        
-        /** Returns all navigation link [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_links(map: RID): GArray
-        
-        /** Returns all navigation regions [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_regions(map: RID): GArray
-        
-        /** Returns all navigation agents [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_agents(map: RID): GArray
-        
-        /** Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_obstacles(map: RID): GArray
-        
-        /** This function immediately forces synchronization of the specified navigation [param map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).  
-         *  Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.  
-         *  Avoidance processing and dispatch of the `safe_velocity` signals is unaffected by this function and continues to happen for all maps and agents at the end of the physics frame.  
-         *      
-         *  **Note:** With great power comes great responsibility. This function should only be used by users that really know what they are doing and have a good reason for it. Forcing an immediate update of a navigation map requires locking the NavigationServer and flushing the entire NavigationServer command queue. Not only can this severely impact the performance of a game but it can also introduce bugs if used inappropriately without much foresight.  
-         */
-        static map_force_update(map: RID): void
-        
-        /** Queries a path in a given navigation map. Start and target position and other parameters are defined through [NavigationPathQueryParameters3D]. Updates the provided [NavigationPathQueryResult3D] result object with the path among other results requested by the query. */
-        static query_path(parameters: NavigationPathQueryParameters3D, result: NavigationPathQueryResult3D): void
-        
-        /** Creates a new region. */
-        static region_create(): RID
-        
-        /** If [param enabled] is `true`, the specified [param region] will contribute to its current navigation map. */
-        static region_set_enabled(region: RID, enabled: boolean): void
-        
-        /** Returns `true` if the specified [param region] is enabled. */
-        static region_get_enabled(region: RID): boolean
-        
-        /** If [param enabled] is `true`, the navigation [param region] will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
-        static region_set_use_edge_connections(region: RID, enabled: boolean): void
-        
-        /** Returns true if the navigation [param region] is set to use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin. */
-        static region_get_use_edge_connections(region: RID): boolean
-        
-        /** Sets the [param enter_cost] for this [param region]. */
-        static region_set_enter_cost(region: RID, enter_cost: float64): void
-        
-        /** Returns the enter cost of this [param region]. */
-        static region_get_enter_cost(region: RID): float64
-        
-        /** Sets the [param travel_cost] for this [param region]. */
-        static region_set_travel_cost(region: RID, travel_cost: float64): void
-        
-        /** Returns the travel cost of this [param region]. */
-        static region_get_travel_cost(region: RID): float64
-        
-        /** Set the `ObjectID` of the object which manages this region. */
-        static region_set_owner_id(region: RID, owner_id: int64): void
-        
-        /** Returns the `ObjectID` of the object which manages this region. */
-        static region_get_owner_id(region: RID): int64
-        
-        /** Returns `true` if the provided [param point] in world space is currently owned by the provided navigation [param region]. Owned in this context means that one of the region's navigation mesh polygon faces has a possible position at the closest distance to this point compared to all other navigation meshes from other navigation regions that are also registered on the navigation map of the provided region.  
-         *  If multiple navigation meshes have positions at equal distance the navigation region whose polygons are processed first wins the ownership. Polygons are processed in the same order that navigation regions were registered on the NavigationServer.  
-         *      
-         *  **Note:** If navigation meshes from different navigation regions overlap (which should be avoided in general) the result might not be what is expected.  
-         */
-        static region_owns_point(region: RID, point: Vector3): boolean
-        
-        /** Sets the map for the region. */
-        static region_set_map(region: RID, map: RID): void
-        
-        /** Returns the navigation map [RID] the requested [param region] is currently assigned to. */
-        static region_get_map(region: RID): RID
-        
-        /** Set the region's navigation layers. This allows selecting regions from a path request (when using [method NavigationServer3D.map_get_path]). */
-        static region_set_navigation_layers(region: RID, navigation_layers: int64): void
-        
-        /** Returns the region's navigation layers. */
-        static region_get_navigation_layers(region: RID): int64
-        
-        /** Sets the global transformation for the region. */
-        static region_set_transform(region: RID, transform: Transform3D): void
-        
-        /** Sets the navigation mesh for the region. */
-        static region_set_navigation_mesh(region: RID, navigation_mesh: NavigationMesh): void
-        
-        /** Returns how many connections this [param region] has with other regions in the map. */
-        static region_get_connections_count(region: RID): int64
-        
-        /** Returns the starting point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
-        static region_get_connection_pathway_start(region: RID, connection: int64): Vector3
-        
-        /** Returns the ending point of a connection door. [param connection] is an index between 0 and the return value of [method region_get_connections_count]. */
-        static region_get_connection_pathway_end(region: RID, connection: int64): Vector3
-        
-        /** Create a new link between two positions on a map. */
-        static link_create(): RID
-        
-        /** Sets the navigation map [RID] for the link. */
-        static link_set_map(link: RID, map: RID): void
-        
-        /** Returns the navigation map [RID] the requested [param link] is currently assigned to. */
-        static link_get_map(link: RID): RID
-        
-        /** If [param enabled] is `true`, the specified [param link] will contribute to its current navigation map. */
-        static link_set_enabled(link: RID, enabled: boolean): void
-        
-        /** Returns `true` if the specified [param link] is enabled. */
-        static link_get_enabled(link: RID): boolean
-        
-        /** Sets whether this [param link] can be travelled in both directions. */
-        static link_set_bidirectional(link: RID, bidirectional: boolean): void
-        
-        /** Returns whether this [param link] can be travelled in both directions. */
-        static link_is_bidirectional(link: RID): boolean
-        
-        /** Set the links's navigation layers. This allows selecting links from a path request (when using [method NavigationServer3D.map_get_path]). */
-        static link_set_navigation_layers(link: RID, navigation_layers: int64): void
-        
-        /** Returns the navigation layers for this [param link]. */
-        static link_get_navigation_layers(link: RID): int64
-        
-        /** Sets the entry position for this [param link]. */
-        static link_set_start_position(link: RID, position: Vector3): void
-        
-        /** Returns the starting position of this [param link]. */
-        static link_get_start_position(link: RID): Vector3
-        
-        /** Sets the exit position for the [param link]. */
-        static link_set_end_position(link: RID, position: Vector3): void
-        
-        /** Returns the ending position of this [param link]. */
-        static link_get_end_position(link: RID): Vector3
-        
-        /** Sets the [param enter_cost] for this [param link]. */
-        static link_set_enter_cost(link: RID, enter_cost: float64): void
-        
-        /** Returns the enter cost of this [param link]. */
-        static link_get_enter_cost(link: RID): float64
-        
-        /** Sets the [param travel_cost] for this [param link]. */
-        static link_set_travel_cost(link: RID, travel_cost: float64): void
-        
-        /** Returns the travel cost of this [param link]. */
-        static link_get_travel_cost(link: RID): float64
-        
-        /** Set the `ObjectID` of the object which manages this link. */
-        static link_set_owner_id(link: RID, owner_id: int64): void
-        
-        /** Returns the `ObjectID` of the object which manages this link. */
-        static link_get_owner_id(link: RID): int64
-        
-        /** Creates the agent. */
-        static agent_create(): RID
-        
-        /** If [param enabled] is `true`, the provided [param agent] calculates avoidance. */
-        static agent_set_avoidance_enabled(agent: RID, enabled: boolean): void
-        
-        /** Returns `true` if the provided [param agent] has avoidance enabled. */
-        static agent_get_avoidance_enabled(agent: RID): boolean
-        
-        /** Sets if the agent uses the 2D avoidance or the 3D avoidance while avoidance is enabled.  
-         *  If `true` the agent calculates avoidance velocities in 3D for the xyz-axis, e.g. for games that take place in air, underwater or space. The 3D using agent only avoids other 3D avoidance using agent's. The 3D using agent only reacts to radius based avoidance obstacles. The 3D using agent ignores any vertices based obstacles. The 3D using agent only avoids other 3D using agent's.  
-         *  If `false` the agent calculates avoidance velocities in 2D along the xz-axis ignoring the y-axis. The 2D using agent only avoids other 2D avoidance using agent's. The 2D using agent reacts to radius avoidance obstacles. The 2D using agent reacts to vertices based avoidance obstacles. The 2D using agent only avoids other 2D using agent's. 2D using agents will ignore other 2D using agents or obstacles that are below their current position or above their current position including the agents height in 2D avoidance.  
-         */
-        static agent_set_use_3d_avoidance(agent: RID, enabled: boolean): void
-        
-        /** Returns `true` if the provided [param agent] uses avoidance in 3D space Vector3(x,y,z) instead of horizontal 2D Vector2(x,y) / Vector3(x,0.0,z). */
-        static agent_get_use_3d_avoidance(agent: RID): boolean
-        
-        /** Puts the agent in the map. */
-        static agent_set_map(agent: RID, map: RID): void
-        
-        /** Returns the navigation map [RID] the requested [param agent] is currently assigned to. */
-        static agent_get_map(agent: RID): RID
-        
-        /** If [param paused] is true the specified [param agent] will not be processed, e.g. calculate avoidance velocities or receive avoidance callbacks. */
-        static agent_set_paused(agent: RID, paused: boolean): void
-        
-        /** Returns `true` if the specified [param agent] is paused. */
-        static agent_get_paused(agent: RID): boolean
-        
-        /** Sets the maximum distance to other agents this agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
-        static agent_set_neighbor_distance(agent: RID, distance: float64): void
-        
-        /** Sets the maximum number of other agents the agent takes into account in the navigation. The larger this number, the longer the running time of the simulation. If the number is too low, the simulation will not be safe. */
-        static agent_set_max_neighbors(agent: RID, count: int64): void
-        
-        /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to other agents. The larger this number, the sooner this agent will respond to the presence of other agents, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
-        static agent_set_time_horizon_agents(agent: RID, time_horizon: float64): void
-        
-        /** The minimal amount of time for which the agent's velocities that are computed by the simulation are safe with respect to static avoidance obstacles. The larger this number, the sooner this agent will respond to the presence of static avoidance obstacles, but the less freedom this agent has in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive. */
-        static agent_set_time_horizon_obstacles(agent: RID, time_horizon: float64): void
-        
-        /** Sets the radius of the agent. */
-        static agent_set_radius(agent: RID, radius: float64): void
-        
-        /** Updates the provided [param agent] [param height]. */
-        static agent_set_height(agent: RID, height: float64): void
-        
-        /** Sets the maximum speed of the agent. Must be positive. */
-        static agent_set_max_speed(agent: RID, max_speed: float64): void
-        
-        /** Replaces the internal velocity in the collision avoidance simulation with [param velocity] for the specified [param agent]. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck. */
-        static agent_set_velocity_forced(agent: RID, velocity: Vector3): void
-        
-        /** Sets [param velocity] as the new wanted velocity for the specified [param agent]. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agent's and obstacles. When an agent is teleported to a new position use [method agent_set_velocity_forced] as well to reset the internal simulation velocity. */
-        static agent_set_velocity(agent: RID, velocity: Vector3): void
-        
-        /** Sets the position of the agent in world space. */
-        static agent_set_position(agent: RID, position: Vector3): void
-        
-        /** Returns true if the map got changed the previous frame. */
-        static agent_is_map_changed(agent: RID): boolean
-        
-        /** Sets the callback [Callable] that gets called after each avoidance processing step for the [param agent]. The calculated `safe_velocity` will be dispatched with a signal to the object just before the physics calculations.  
-         *      
-         *  **Note:** Created callbacks are always processed independently of the SceneTree state as long as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an agent use [method agent_set_avoidance_callback] again with an empty [Callable].  
-         */
-        static agent_set_avoidance_callback(agent: RID, callback: Callable): void
-        
-        /** Set the agent's `avoidance_layers` bitmask. */
-        static agent_set_avoidance_layers(agent: RID, layers: int64): void
-        
-        /** Set the agent's `avoidance_mask` bitmask. */
-        static agent_set_avoidance_mask(agent: RID, mask: int64): void
-        
-        /** Set the agent's `avoidance_priority` with a [param priority] between 0.0 (lowest priority) to 1.0 (highest priority).  
-         *  The specified [param agent] does not adjust the velocity for other agents that would match the `avoidance_mask` but have a lower ` avoidance_priority`. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.  
-         */
-        static agent_set_avoidance_priority(agent: RID, priority: float64): void
-        
-        /** Creates a new obstacle. */
-        static obstacle_create(): RID
-        
-        /** If [param enabled] is `true`, the provided [param obstacle] affects avoidance using agents. */
-        static obstacle_set_avoidance_enabled(obstacle: RID, enabled: boolean): void
-        
-        /** Returns `true` if the provided [param obstacle] has avoidance enabled. */
-        static obstacle_get_avoidance_enabled(obstacle: RID): boolean
-        
-        /** Sets if the [param obstacle] uses the 2D avoidance or the 3D avoidance while avoidance is enabled. */
-        static obstacle_set_use_3d_avoidance(obstacle: RID, enabled: boolean): void
-        
-        /** Returns `true` if the provided [param obstacle] uses avoidance in 3D space Vector3(x,y,z) instead of horizontal 2D Vector2(x,y) / Vector3(x,0.0,z). */
-        static obstacle_get_use_3d_avoidance(obstacle: RID): boolean
-        
-        /** Assigns the [param obstacle] to a navigation map. */
-        static obstacle_set_map(obstacle: RID, map: RID): void
-        
-        /** Returns the navigation map [RID] the requested [param obstacle] is currently assigned to. */
-        static obstacle_get_map(obstacle: RID): RID
-        
-        /** If [param paused] is true the specified [param obstacle] will not be processed, e.g. affect avoidance velocities. */
-        static obstacle_set_paused(obstacle: RID, paused: boolean): void
-        
-        /** Returns `true` if the specified [param obstacle] is paused. */
-        static obstacle_get_paused(obstacle: RID): boolean
-        
-        /** Sets the radius of the dynamic obstacle. */
-        static obstacle_set_radius(obstacle: RID, radius: float64): void
-        
-        /** Sets the [param height] for the [param obstacle]. In 3D agents will ignore obstacles that are above or below them while using 2D avoidance. */
-        static obstacle_set_height(obstacle: RID, height: float64): void
-        
-        /** Sets [param velocity] of the dynamic [param obstacle]. Allows other agents to better predict the movement of the dynamic obstacle. Only works in combination with the radius of the obstacle. */
-        static obstacle_set_velocity(obstacle: RID, velocity: Vector3): void
-        
-        /** Updates the [param position] in world space for the [param obstacle]. */
-        static obstacle_set_position(obstacle: RID, position: Vector3): void
-        
-        /** Sets the outline vertices for the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. */
-        static obstacle_set_vertices(obstacle: RID, vertices: PackedVector3Array | Vector3[]): void
-        
-        /** Set the obstacles's `avoidance_layers` bitmask. */
-        static obstacle_set_avoidance_layers(obstacle: RID, layers: int64): void
-        
-        /** Parses the [SceneTree] for source geometry according to the properties of [param navigation_mesh]. Updates the provided [param source_geometry_data] resource with the resulting data. The resource can then be used to bake a navigation mesh with [method bake_from_source_geometry_data]. After the process is finished the optional [param callback] will be called.  
-         *      
-         *  **Note:** This function needs to run on the main thread or with a deferred call as the SceneTree is not thread-safe.  
-         *  **Performance:** While convenient, reading data arrays from [Mesh] resources can affect the frame rate negatively. The data needs to be received from the GPU, stalling the [RenderingServer] in the process. For performance prefer the use of e.g. collision shapes or creating the data arrays entirely in code.  
-         */
-        static parse_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, root_node: Node, callback: Callable = new Callable()): void
-        
-        /** Bakes the provided [param navigation_mesh] with the data from the provided [param source_geometry_data]. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = new Callable()): void
-        
-        /** Bakes the provided [param navigation_mesh] with the data from the provided [param source_geometry_data] as an async task running on a background thread. After the process is finished the optional [param callback] will be called. */
-        static bake_from_source_geometry_data_async(navigation_mesh: NavigationMesh, source_geometry_data: NavigationMeshSourceGeometryData3D, callback: Callable = new Callable()): void
-        
-        /** Destroys the given RID. */
-        static free_rid(rid: RID): void
-        
-        /** Control activation of this server. */
-        static set_active(active: boolean): void
-        
-        /** If `true` enables debug mode on the NavigationServer. */
-        static set_debug_enabled(enabled: boolean): void
-        
-        /** Returns `true` when the NavigationServer has debug enabled. */
-        static get_debug_enabled(): boolean
-        
-        /** Returns information about the current state of the NavigationServer. See [enum ProcessInfo] for a list of available states. */
-        static get_process_info(process_info: NavigationServer3D.ProcessInfo): int64
-        
-        /** Emitted when a navigation map is updated, when a region moves or is modified. */
-        static readonly map_changed: Signal1<RID>
-        
-        /** Emitted when navigation debug settings are changed. Only available in debug builds. */
-        static readonly navigation_debug_changed: Signal0
-        
-        /** Emitted when avoidance debug settings are changed. Only available in debug builds. */
-        static readonly avoidance_debug_changed: Signal0
     }
     // // Singleton Class
     namespace XRServer {
@@ -9430,6 +10577,15 @@ declare module "godot" {
             
             /** The tracker tracks the location and size of an AR anchor. */
             TRACKER_ANCHOR = 8,
+            
+            /** The tracker tracks the location and joints of a hand. */
+            TRACKER_HAND = 16,
+            
+            /** The tracker tracks the location and joints of a body. */
+            TRACKER_BODY = 32,
+            
+            /** The tracker tracks the expressions of a face. */
+            TRACKER_FACE = 64,
             
             /** Used internally to filter trackers of any known type. */
             TRACKER_ANY_KNOWN = 127,
@@ -9453,11 +10609,14 @@ declare module "godot" {
     }
     /** Server for AR and VR features.  
      *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_xrserver.html  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrserver.html  
      */
     class XRServer extends Object {
         /** Returns the reference frame transform. Mostly used internally and exposed for GDExtension build interfaces. */
         static get_reference_frame(): Transform3D
+        
+        /** Clears the reference frame that was set by previous calls to [method center_on_hmd]. */
+        static clear_reference_frame(): void
         
         /** This is an important function to understand correctly. AR and VR platforms all handle positioning slightly differently.  
          *  For platforms that do not offer spatial tracking, our origin point (0, 0, 0) is the location of our HMD, but you have little control over the direction the player is facing in the real world.  
@@ -9489,17 +10648,17 @@ declare module "godot" {
         /** Finds an interface by its [param name]. For example, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it. */
         static find_interface(name: string): XRInterface
         
-        /** Registers a new [XRPositionalTracker] that tracks a spatial location in real space. */
-        static add_tracker(tracker: XRPositionalTracker): void
+        /** Registers a new [XRTracker] that tracks a physical object. */
+        static add_tracker(tracker: XRTracker): void
         
-        /** Removes this positional [param tracker]. */
-        static remove_tracker(tracker: XRPositionalTracker): void
+        /** Removes this [param tracker]. */
+        static remove_tracker(tracker: XRTracker): void
         
         /** Returns a dictionary of trackers for [param tracker_types]. */
         static get_trackers(tracker_types: int64): GDictionary
         
         /** Returns the positional tracker with the given [param tracker_name]. */
-        static get_tracker(tracker_name: StringName): XRPositionalTracker
+        static get_tracker(tracker_name: StringName): XRTracker
         
         /** The scale of the game world compared to the real world. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
         get world_scale(): float64
@@ -9515,6 +10674,9 @@ declare module "godot" {
         /** The primary [XRInterface] currently bound to the [XRServer]. */
         get primary_interface(): Object
         set primary_interface(value: Object)
+        
+        /** Emitted when the reference frame transform changes. */
+        static readonly reference_frame_changed: Signal0
         
         /** Emitted when a new interface has been added. */
         static readonly interface_added: Signal1<StringName>
@@ -9532,49 +10694,7 @@ declare module "godot" {
         static readonly tracker_removed: Signal2<StringName, int64>
     }
     // // Singleton Class
-    namespace CameraServer {
-        enum FeedImage {
-            /** The RGBA camera image. */
-            FEED_RGBA_IMAGE = 0,
-            
-            /** The [url=https://en.wikipedia.org/wiki/YCbCr]YCbCr[/url] camera image. */
-            FEED_YCBCR_IMAGE = 0,
-            
-            /** The Y component camera image. */
-            FEED_Y_IMAGE = 0,
-            
-            /** The CbCr component camera image. */
-            FEED_CBCR_IMAGE = 1,
-        }
-    }
-    /** Server keeping track of different cameras accessible in Godot.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_cameraserver.html  
-     */
-    class CameraServer extends Object {
-        /** Returns the [CameraFeed] corresponding to the camera with the given [param index]. */
-        static get_feed(index: int64): CameraFeed
-        
-        /** Returns the number of [CameraFeed]s registered. */
-        static get_feed_count(): int64
-        
-        /** Returns an array of [CameraFeed]s. */
-        static feeds(): GArray
-        
-        /** Adds the camera [param feed] to the camera server. */
-        static add_feed(feed: CameraFeed): void
-        
-        /** Removes the specified camera [param feed]. */
-        static remove_feed(feed: CameraFeed): void
-        
-        /** Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in). */
-        static readonly camera_feed_added: Signal1<int64>
-        
-        /** Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged). */
-        static readonly camera_feed_removed: Signal1<int64>
-    }
-    // // Singleton Class
-    /** @link https://docs.godotengine.org/en/4.2/classes/class_gdscriptlanguageprotocol.html */
+    /** @link https://docs.godotengine.org/en/4.3/classes/class_gdscriptlanguageprotocol.html */
     class GDScriptLanguageProtocol extends JSONRPC {
         static initialize(params: GDictionary): GDictionary
         static initialized(params: any): void
