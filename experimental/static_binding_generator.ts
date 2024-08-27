@@ -591,6 +591,16 @@ class PrimitiveClassGen {
         generated_methods.push({ method_name: name, method_info: method });
     }
 
+    private direct_names = new Set(["x", "y", "z", "w"]);
+    
+    get_underlying_getter(name: string) {
+        return this.direct_names.has(name) ? name : ("get_" + name);
+    }
+
+    get_underlying_setter(name: string) {
+        return this.direct_names.has(name) ? name : ("set_" + name);
+    }
+
     emit_property(struct: IWriter, info: editor.PrimitiveGetSetInfo, generated_methods: Array<GeneratedProperty>) {
         const generated: GeneratedProperty = {
             name: info.name,
@@ -601,13 +611,13 @@ class PrimitiveClassGen {
         const self_type = to_cpp_type(this.type.type);
         {
             let getter = new V8FunctionWriter(struct, generated.getter_name);
-            getter.line(`const ${self_type}* thiz = nullptr;`);
+            getter.line(`${self_type}* thiz = nullptr;`);
             IF(getter, `!${Util.to_this(self_type)}(isolate, context, info.This(), thiz)`).THEN(
                 `jsb_throw(isolate, "failed to get this");`,
                 `return;`
             )
             getter.line(`v8::Local<v8::Value> rval;`);
-            IF(getter, `${Util.to_script(arg_type)}(isolate, context, thiz->get_${info.name}(), rval)`).THEN(
+            IF(getter, `${Util.to_script(arg_type)}(isolate, context, ((const ${self_type}*) thiz)->${this.get_underlying_getter(info.name)}(), rval)`).THEN(
                 `jsb_throw(isolate, "failed to translate return value");`,
                 `return;`
             );
@@ -616,12 +626,17 @@ class PrimitiveClassGen {
         }
         if (typeof generated.setter_name !== "undefined") {
             let setter = new V8FunctionWriter(struct, generated.setter_name);
+            setter.line(`${self_type}* thiz = nullptr;`);
+            IF(setter, `!${Util.to_this(self_type)}(isolate, context, info.This(), thiz)`).THEN(
+                `jsb_throw(isolate, "failed to get this");`,
+                `return;`
+            )
             setter.line(`${arg_type} rval;`);
             IF(setter, `!${Util.to_native(arg_type)}(isolate, context, info[0], rval)`).THEN(
                 `jsb_throw(isolate, "failed to translate return value");`,
                 `return;`
             );
-            setter.line(`thiz->set_${info.name}(rval);`)
+            setter.line(`thiz->${this.get_underlying_setter(info.name)}(rval);`)
             setter.finish();
         }
         generated_methods.push(generated)
