@@ -2633,13 +2633,13 @@ declare module "godot" {
         project(point: Vector3): Vector3
         
         /** Returns the intersection point of the three planes [param b], [param c] and this plane. If no intersection is found, `null` is returned. */
-        intersect_3(b: Plane, c: Plane): void
+        intersect_3(b: Plane, c: Plane): any
         
         /** Returns the intersection point of a ray consisting of the position [param from] and the direction normal [param dir] with this plane. If no intersection is found, `null` is returned. */
-        intersects_ray(from: Vector3, dir: Vector3): void
+        intersects_ray(from: Vector3, dir: Vector3): any
         
         /** Returns the intersection point of a segment from position [param from] to position [param to] with this plane. If no intersection is found, `null` is returned. */
-        intersects_segment(from: Vector3, to: Vector3): void
+        intersects_segment(from: Vector3, to: Vector3): any
         static NEGATE(left: Plane): Plane
         static EQUAL(left: Plane, right: Plane): boolean
         static NOT_EQUAL(left: Plane, right: Plane): boolean
@@ -2875,12 +2875,12 @@ declare module "godot" {
         /** Returns the first point where this bounding box and the given segment intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
          *  The segment begins at [param from] and ends at [param to].  
          */
-        intersects_segment(from: Vector3, to: Vector3): void
+        intersects_segment(from: Vector3, to: Vector3): any
         
         /** Returns the first point where this bounding box and the given ray intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
          *  The ray begin at [param from], faces [param dir] and extends towards infinity.  
          */
-        intersects_ray(from: Vector3, dir: Vector3): void
+        intersects_ray(from: Vector3, dir: Vector3): any
         static EQUAL(left: AABB, right: AABB): boolean
         static NOT_EQUAL(left: AABB, right: AABB): boolean
         get position(): Vector3
@@ -4008,7 +4008,7 @@ declare module "godot" {
         static create(variant: any, method: StringName): AnyCallable
         
         /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
-        callv(arguments_: GArray): void
+        callv(arguments_: GArray): any
         
         /** Returns `true` if this [Callable] has no target to call the method on. */
         is_null(): boolean
@@ -4065,7 +4065,7 @@ declare module "godot" {
         unbind(argcount: int64): AnyCallable
         
         /** Calls the method represented by this [Callable]. Arguments can be passed and should match the method's signature. */
-        call(...vargargs: any[]): void
+        call(...vargargs: any[]): any
         
         /** Calls the method represented by this [Callable] in deferred mode, i.e. at the end of the current frame. Arguments can be passed and should match the method's signature.  
          *    
@@ -4183,7 +4183,7 @@ declare module "godot" {
          *      
          *  **Note:** `null` is also a valid key. If inside the dictionary, [method find_key] may give misleading results.  
          */
-        find_key(value: any): void
+        find_key(value: any): any
         
         /** Removes the dictionary entry by key, if it exists. Returns `true` if the given [param key] existed in the dictionary, otherwise `false`.  
          *      
@@ -4210,10 +4210,10 @@ declare module "godot" {
         duplicate(deep: boolean = false): GDictionary
         
         /** Returns the corresponding value for the given [param key] in the dictionary. If the [param key] does not exist, returns [param default], or `null` if the parameter is omitted. */
-        get(key: any, default_: any = <any> {}): void
+        get(key: any, default_: any = <any> {}): any
         
         /** Gets a value and ensures the key is set. If the [param key] exists in the dictionary, this behaves like [method get]. Otherwise, the [param default] value is inserted into the dictionary and returned. */
-        get_or_add(key: any, default_: any = <any> {}): void
+        get_or_add(key: any, default_: any = <any> {}): any
         
         /** Makes the dictionary read-only, i.e. disables modification of the dictionary's contents. Does not apply to nested content, e.g. content of nested dictionaries. */
         make_read_only(): void
@@ -4322,20 +4322,20 @@ declare module "godot" {
          *      
          *  **Note:** Unlike with the `[]` operator (`array[0]`), an error is generated without stopping project execution.  
          */
-        front(): void
+        front(): any
         
         /** Returns the last element of the array. If the array is empty, fails and returns `null`. See also [method front].  
          *      
          *  **Note:** Unlike with the `[]` operator (`array[-1]`), an error is generated without stopping project execution.  
          */
-        back(): void
+        back(): any
         
         /** Returns a random element from the array. Generates an error and returns `null` if the array is empty.  
          *    
          *      
          *  **Note:** Like many similar functions in the engine (such as [method @GlobalScope.randi] or [method shuffle]), this method uses a common, global random seed. To get a predictable outcome from this method, see [method @GlobalScope.seed].  
          */
-        pick_random(): void
+        pick_random(): any
         
         /** Returns the index of the **first** occurrence of [param what] in this array, or `-1` if there are none. The search's start can be specified with [param from], continuing to the end of the array.  
          *      
@@ -4361,19 +4361,19 @@ declare module "godot" {
         has(value: any): boolean
         
         /** Removes and returns the last element of the array. Returns `null` if the array is empty, without generating an error. See also [method pop_front]. */
-        pop_back(): void
+        pop_back(): any
         
         /** Removes and returns the first element of the array. Returns `null` if the array is empty, without generating an error. See also [method pop_back].  
          *      
          *  **Note:** This method shifts every other element's index back, which may have a noticeable performance cost, especially on larger arrays.  
          */
-        pop_front(): void
+        pop_front(): any
         
         /** Removes and returns the element of the array at index [param position]. If negative, [param position] is considered relative to the end of the array. Returns `null` if the array is empty. If [param position] is out of bounds, an error message is also generated.  
          *      
          *  **Note:** This method shifts every element's index after [param position] back, which may have a noticeable performance cost, especially on larger arrays.  
          */
-        pop_at(position: int64): void
+        pop_at(position: int64): any
         
         /** Sorts the array in ascending order. The final order is dependent on the "less than" (`<`) comparison between elements.  
          *    
@@ -4456,7 +4456,7 @@ declare module "godot" {
          *    
          *  See also [method map], [method filter], [method any] and [method all].  
          */
-        reduce(method: Callable, accum: any = <any> {}): void
+        reduce(method: Callable, accum: any = <any> {}): any
         
         /** Calls the given [Callable] on each element in the array and returns `true` if the [Callable] returns `true` for  *one or more*  elements in the array. If the [Callable] returns `false` for all elements in the array, this method returns `false`.  
          *  The [param method] should take one [Variant] parameter (the current array element) and return a [bool].  
@@ -4483,10 +4483,10 @@ declare module "godot" {
         /** Returns the maximum value contained in the array, if all elements can be compared. Otherwise, returns `null`. See also [method min].  
          *  To find the maximum value using a custom comparator, you can use [method reduce].  
          */
-        max(): void
+        max(): any
         
         /** Returns the minimum value contained in the array, if all elements can be compared. Otherwise, returns `null`. See also [method max]. */
-        min(): void
+        min(): any
         
         /** Returns `true` if the array is typed. Typed arrays can only contain elements of a specific type, as defined by the typed array constructor. The methods of a typed array are still expected to return a generic [Variant].  
          *  In GDScript, it is possible to define a typed array with static typing:  
@@ -4504,7 +4504,7 @@ declare module "godot" {
         get_typed_class_name(): StringName
         
         /** Returns the [Script] instance associated with this typed array, or `null` if it does not exist. See also [method is_typed]. */
-        get_typed_script(): void
+        get_typed_script(): any
         
         /** Makes the array read-only. The array's elements cannot be overridden with different values, and their order cannot change. Does not apply to nested elements, such as dictionaries.  
          *  In GDScript, arrays are automatically read-only if declared with the `const` keyword.  
@@ -4673,7 +4673,7 @@ declare module "godot" {
         has_encoded_var(byte_offset: int64, allow_objects: boolean = false): boolean
         
         /** Decodes a [Variant] from the bytes starting at [param byte_offset]. Returns `null` if a valid variant can't be decoded or the value is [Object]-derived and [param allow_objects] is `false`. */
-        decode_var(byte_offset: int64, allow_objects: boolean = false): void
+        decode_var(byte_offset: int64, allow_objects: boolean = false): any
         
         /** Decodes a size of a [Variant] from the bytes starting at [param byte_offset]. Requires at least 4 bytes of data starting at the offset, otherwise fails. */
         decode_var_size(byte_offset: int64, allow_objects: boolean = false): int64
@@ -7175,7 +7175,7 @@ declare module "godot" {
      *      
      *  **Note:** For better type safety, use [method floorf], [method floori], [method Vector2.floor], [method Vector3.floor], or [method Vector4.floor].  
      */
-    static function floor(x: any): void
+    static function floor(x: any): any
     
     /** Rounds [param x] downward (towards negative infinity), returning the largest whole number that is not more than [param x].  
      *  A type-safe version of [method floor], returning a [float].  
@@ -7195,7 +7195,7 @@ declare module "godot" {
      *      
      *  **Note:** For better type safety, use [method ceilf], [method ceili], [method Vector2.ceil], [method Vector3.ceil], or [method Vector4.ceil].  
      */
-    static function ceil(x: any): void
+    static function ceil(x: any): any
     
     /** Rounds [param x] upward (towards positive infinity), returning the smallest whole number that is not less than [param x].  
      *  A type-safe version of [method ceil], returning a [float].  
@@ -7213,7 +7213,7 @@ declare module "godot" {
      *      
      *  **Note:** For better type safety, use [method roundf], [method roundi], [method Vector2.round], [method Vector3.round], or [method Vector4.round].  
      */
-    static function round(x: any): void
+    static function round(x: any): any
     
     /** Rounds [param x] to the nearest whole number, with halfway cases rounded away from 0.  
      *  A type-safe version of [method round], returning a [float].  
@@ -7230,7 +7230,7 @@ declare module "godot" {
      *      
      *  **Note:** For better type safety, use [method absf], [method absi], [method Vector2.abs], [method Vector2i.abs], [method Vector3.abs], [method Vector3i.abs], [method Vector4.abs], or [method Vector4i.abs].  
      */
-    static function abs(x: any): void
+    static function abs(x: any): any
     
     /** Returns the absolute value of float parameter [param x] (i.e. positive value).  
      *    
@@ -7248,7 +7248,7 @@ declare module "godot" {
      *      
      *  **Note:** For better type safety, use [method signf], [method signi], [method Vector2.sign], [method Vector2i.sign], [method Vector3.sign], [method Vector3i.sign], [method Vector4.sign], or [method Vector4i.sign].  
      */
-    static function sign(x: any): void
+    static function sign(x: any): any
     
     /** Returns `-1.0` if [param x] is negative, `1.0` if [param x] is positive, and `0.0` if [param x] is zero. For `nan` values of [param x] it returns 0.0.  
      *    
@@ -7267,7 +7267,7 @@ declare module "godot" {
      *      
      *  **Note:** For better type safety, use [method snappedf], [method snappedi], [method Vector2.snapped], [method Vector2i.snapped], [method Vector3.snapped], [method Vector3i.snapped], [method Vector4.snapped], or [method Vector4i.snapped].  
      */
-    static function snapped(x: any, step: any): void
+    static function snapped(x: any, step: any): any
     
     /** Returns the multiple of [param step] that is the closest to [param x]. This can also be used to round a floating-point number to an arbitrary number of decimals.  
      *  A type-safe version of [method snapped], returning a [float].  
@@ -7350,7 +7350,7 @@ declare module "godot" {
      *      
      *  **Note:** For better type safety, use [method lerpf], [method Vector2.lerp], [method Vector3.lerp], [method Vector4.lerp], [method Color.lerp], [method Quaternion.slerp] or [method Basis.slerp].  
      */
-    static function lerp(from: any, to: any, weight: any): void
+    static function lerp(from: any, to: any, weight: any): any
     
     /** Linearly interpolates between two values by the factor defined in [param weight]. To perform interpolation, [param weight] should be between `0.0` and `1.0` (inclusive). However, values outside this range are allowed and can be used to perform  *extrapolation* . If this is not desired, use [method clampf] on the result of this function.  
      *    
@@ -7449,7 +7449,7 @@ declare module "godot" {
      *  Variant types [int] and [float] are supported. If any of the arguments is [float] this function returns a [float], otherwise it returns an [int].  
      *    
      */
-    static function wrap(value: any, min: any, max: any): void
+    static function wrap(value: any, min: any, max: any): any
     
     /** Wraps the integer [param value] between [param min] and [param max]. Can be used for creating loop-alike behavior or infinite surfaces.  
      *    
@@ -7472,7 +7472,7 @@ declare module "godot" {
      *      
      *  **Note:** When using this on vectors it will  *not*  perform component-wise maximum, and will pick the largest value when compared using `x < y`. To perform component-wise maximum, use [method Vector2.max], [method Vector2i.max], [method Vector3.max], [method Vector3i.max], [method Vector4.max], and [method Vector4i.max].  
      */
-    static function max(...vargargs: any[]): void
+    static function max(...vargargs: any[]): any
     
     /** Returns the maximum of two [int] values.  
      *    
@@ -7489,7 +7489,7 @@ declare module "godot" {
      *      
      *  **Note:** When using this on vectors it will  *not*  perform component-wise minimum, and will pick the smallest value when compared using `x < y`. To perform component-wise minimum, use [method Vector2.min], [method Vector2i.min], [method Vector3.min], [method Vector3i.min], [method Vector4.min], and [method Vector4i.min].  
      */
-    static function min(...vargargs: any[]): void
+    static function min(...vargargs: any[]): any
     
     /** Returns the minimum of two [int] values.  
      *    
@@ -7508,7 +7508,7 @@ declare module "godot" {
      *      
      *  **Note:** When using this on vectors it will  *not*  perform component-wise clamping, and will pick [param min] if `value < min` or [param max] if `value > max`. To perform component-wise clamping use the methods listed above.  
      */
-    static function clamp(value: any, min: any, max: any): void
+    static function clamp(value: any, min: any, max: any): any
     
     /** Clamps the [param value], returning an [int] not less than [param min] and not more than [param max].  
      *    
@@ -7578,7 +7578,7 @@ declare module "godot" {
     /** Returns a [WeakRef] instance holding a weak reference to [param obj]. Returns an empty [WeakRef] instance if [param obj] is `null`. Prints an error and returns `null` if [param obj] is neither [Object]-derived nor `null`.  
      *  A weak reference to an object is not enough to keep the object alive: when the only remaining references to a referent are weak references, garbage collection is free to destroy the referent and reuse its memory for something else. However, until the object is actually destroyed the weak reference may return the object even if there are no strong references to it.  
      */
-    static function weakref(obj: any): void
+    static function weakref(obj: any): any
     
     /** Returns the internal type of the given [param variable], using the [enum Variant.Type] values.  
      *    
@@ -7591,7 +7591,7 @@ declare module "godot" {
      *  The returned value is a [Variant], but the data inside and its type will be the same as the requested type.  
      *    
      */
-    static function type_convert(variant: any, type: int64): void
+    static function type_convert(variant: any, type: int64): any
     
     /** Converts one or more arguments of any [Variant] type to a [String] in the best way possible.  
      *    
@@ -7685,7 +7685,7 @@ declare module "godot" {
     /** Converts a formatted [param string] that was returned by [method var_to_str] to the original [Variant].  
      *    
      */
-    static function str_to_var(string_: string): void
+    static function str_to_var(string_: string): any
     
     /** Encodes a [Variant] value to a byte array, without encoding objects. Deserialization can be done with [method bytes_to_var].  
      *      
@@ -7699,7 +7699,7 @@ declare module "godot" {
      *      
      *  **Note:** If you need object deserialization, see [method bytes_to_var_with_objects].  
      */
-    static function bytes_to_var(bytes: PackedByteArray | byte[] | ArrayBuffer): void
+    static function bytes_to_var(bytes: PackedByteArray | byte[] | ArrayBuffer): any
     
     /** Encodes a [Variant] value to a byte array. Encoding objects is allowed (and can potentially include executable code). Deserialization can be done with [method bytes_to_var_with_objects].  
      *      
@@ -7710,7 +7710,7 @@ declare module "godot" {
     /** Decodes a byte array back to a [Variant] value. Decoding objects is allowed.  
      *  **Warning:** Deserialized object can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats (remote code execution).  
      */
-    static function bytes_to_var_with_objects(bytes: PackedByteArray | byte[] | ArrayBuffer): void
+    static function bytes_to_var_with_objects(bytes: PackedByteArray | byte[] | ArrayBuffer): any
     
     /** Returns the integer hash of the passed [param variable].  
      *    

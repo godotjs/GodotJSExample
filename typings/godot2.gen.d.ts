@@ -84,14 +84,6 @@ declare module "godot" {
         get color_regions(): GDictionary
         set color_regions(value: GDictionary)
     }
-    class CodeTextEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        readonly validate_script: Signal0
-        readonly load_theme_settings: Signal0
-        readonly show_errors_panel: Signal0
-        readonly show_warnings_panel: Signal0
-        readonly zoomed: Signal1<float64>
-    }
     namespace CollisionObject2D {
         enum DisableMode {
             /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
@@ -1004,9 +996,6 @@ declare module "godot" {
         readonly connected: Signal0
     }
     class ConnectDialogBinds extends Object {
-        constructor(identifier?: any)
-    }
-    class ConnectionInfoDialog extends AcceptDialog {
         constructor(identifier?: any)
     }
     class ConnectionsDock extends VBoxContainer {
@@ -4363,13 +4352,6 @@ declare module "godot" {
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
-    class EditorInspectorSection extends Container {
-        constructor(identifier?: any)
-        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, indent_depth: int64 = 0, level: int64 = 1): void
-        get_vbox(): VBoxContainer
-        unfold(): void
-        fold(): void
-    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
@@ -4661,9 +4643,6 @@ declare module "godot" {
         get_project_settings_dir(): string
     }
     class EditorPerformanceProfiler extends HSplitContainer {
-        constructor(identifier?: any)
-    }
-    class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
         constructor(identifier?: any)
     }
     namespace EditorPlugin {
@@ -5187,28 +5166,11 @@ declare module "godot" {
     class EditorPropertyCheck extends EditorProperty {
         constructor(identifier?: any)
     }
-    class EditorPropertyColor extends EditorProperty {
-        constructor(identifier?: any)
-    }
     class EditorPropertyDictionaryObject extends RefCounted {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyEnum extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyFloat extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyInteger extends EditorProperty {
         constructor(identifier?: any)
-    }
-    class EditorPropertyLayers extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyLayersGrid extends Control {
-        constructor(identifier?: any)
-        readonly flag_changed: Signal1<int64>
-        readonly rename_confirmed: Signal2<int64, string>
     }
     class EditorPropertyLocalizableString extends EditorProperty {
         constructor(identifier?: any)
@@ -5226,9 +5188,6 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class EditorPropertyText extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyVector2 extends EditorPropertyVectorN {
         constructor(identifier?: any)
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
@@ -5688,9 +5647,6 @@ declare module "godot" {
         
         /** Emitted when the value form loses focus. */
         readonly value_focus_exited: Signal0
-    }
-    class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
-        constructor(identifier?: any)
     }
     /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
      *  	  

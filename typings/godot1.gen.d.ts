@@ -8264,9 +8264,6 @@ declare module "godot" {
     class CanvasItemEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
-    class CanvasItemEditorSelectedItem extends Object {
-        constructor(identifier?: any)
-    }
     class CanvasItemEditorViewport extends Control {
         constructor(identifier?: any)
     }

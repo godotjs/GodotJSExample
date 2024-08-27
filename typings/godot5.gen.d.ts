@@ -1908,10 +1908,6 @@ declare module "godot" {
     class ScriptEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
-    class ScriptEditorQuickOpen extends ConfirmationDialog {
-        constructor(identifier?: any)
-        readonly goto_line: Signal1<int64>
-    }
     /** @link https://docs.godotengine.org/en/4.3/classes/class_scriptextension.html */
     class ScriptExtension extends Script {
         constructor(identifier?: any)
@@ -2073,9 +2069,6 @@ declare module "godot" {
         /* gdvirtual */ _frame(): void
         /* gdvirtual */ _handles_global_class_type(type: string): boolean
         /* gdvirtual */ _get_global_class_name(path: string): GDictionary
-    }
-    class ScriptTextEditor extends ScriptEditorBase {
-        constructor(identifier?: any)
     }
     /** Abstract base class for scrollbars.  
      *  	  
