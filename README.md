@@ -41,4 +41,4 @@ This is an example originally from https://godotengine.org/asset-library/asset/5
 
 It utilizes [ZzFXM](https://keithclark.github.io/ZzFXM/) which is written in pure javascript to play a 8bit-ish sound without audio media files.
 
-*No graphics available for this example.*
+[![AudioGenerator](./raw/screenshots/audio_generator.gif)](./jumpybaudio_generatorird/generator_demo.ts)

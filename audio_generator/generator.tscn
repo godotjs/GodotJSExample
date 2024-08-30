@@ -10,3 +10,380 @@ script = ExtResource("1_6f8oh")
 
 [node name="Player" type="AudioStreamPlayer" parent="."]
 stream = SubResource("1")
+
+[node name="Left" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = -86.0
+offset_right = -13.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="Left"]
+points = PackedVector2Array(0, 14.525, 0, 100)
+width = 8.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="Left"]
+position = Vector2(10, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D3" type="Line2D" parent="Left"]
+position = Vector2(20, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D4" type="Line2D" parent="Left"]
+position = Vector2(30, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D5" type="Line2D" parent="Left"]
+position = Vector2(40, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D6" type="Line2D" parent="Left"]
+position = Vector2(50, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D7" type="Line2D" parent="Left"]
+position = Vector2(60, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D8" type="Line2D" parent="Left"]
+position = Vector2(70, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D9" type="Line2D" parent="Left"]
+position = Vector2(80, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D10" type="Line2D" parent="Left"]
+position = Vector2(90, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D11" type="Line2D" parent="Left"]
+position = Vector2(100, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D12" type="Line2D" parent="Left"]
+position = Vector2(110, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D13" type="Line2D" parent="Left"]
+position = Vector2(120, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D14" type="Line2D" parent="Left"]
+position = Vector2(130, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D15" type="Line2D" parent="Left"]
+position = Vector2(140, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D16" type="Line2D" parent="Left"]
+position = Vector2(150, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D17" type="Line2D" parent="Left"]
+position = Vector2(160, 0)
+points = PackedVector2Array(0, 14.525, 0, 100)
+width = 8.0
+default_color = Color(1, 0, 0, 1)
+
+[node name="Line2D18" type="Line2D" parent="Left"]
+position = Vector2(170, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D19" type="Line2D" parent="Left"]
+position = Vector2(180, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D20" type="Line2D" parent="Left"]
+position = Vector2(190, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D21" type="Line2D" parent="Left"]
+position = Vector2(200, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D22" type="Line2D" parent="Left"]
+position = Vector2(210, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D23" type="Line2D" parent="Left"]
+position = Vector2(220, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D24" type="Line2D" parent="Left"]
+position = Vector2(230, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D25" type="Line2D" parent="Left"]
+position = Vector2(240, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D26" type="Line2D" parent="Left"]
+position = Vector2(250, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D27" type="Line2D" parent="Left"]
+position = Vector2(260, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D28" type="Line2D" parent="Left"]
+position = Vector2(270, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D29" type="Line2D" parent="Left"]
+position = Vector2(280, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D30" type="Line2D" parent="Left"]
+position = Vector2(290, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D31" type="Line2D" parent="Left"]
+position = Vector2(300, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D32" type="Line2D" parent="Left"]
+position = Vector2(310, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Right" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = 116.0
+offset_right = -13.0
+offset_bottom = 232.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, -1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="Right"]
+points = PackedVector2Array(0, 14.525, 0, 100)
+width = 8.0
+default_color = Color(0, 0, 0.976471, 1)
+
+[node name="Line2D2" type="Line2D" parent="Right"]
+position = Vector2(10, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D3" type="Line2D" parent="Right"]
+position = Vector2(20, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D4" type="Line2D" parent="Right"]
+position = Vector2(30, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D5" type="Line2D" parent="Right"]
+position = Vector2(40, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D6" type="Line2D" parent="Right"]
+position = Vector2(50, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D7" type="Line2D" parent="Right"]
+position = Vector2(60, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D8" type="Line2D" parent="Right"]
+position = Vector2(70, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D9" type="Line2D" parent="Right"]
+position = Vector2(80, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D10" type="Line2D" parent="Right"]
+position = Vector2(90, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D11" type="Line2D" parent="Right"]
+position = Vector2(100, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D12" type="Line2D" parent="Right"]
+position = Vector2(110, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D13" type="Line2D" parent="Right"]
+position = Vector2(120, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D14" type="Line2D" parent="Right"]
+position = Vector2(130, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D15" type="Line2D" parent="Right"]
+position = Vector2(140, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D16" type="Line2D" parent="Right"]
+position = Vector2(150, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D17" type="Line2D" parent="Right"]
+position = Vector2(160, 0)
+points = PackedVector2Array(0, 14.525, 0, 100)
+width = 8.0
+default_color = Color(0, 0, 0.976471, 1)
+
+[node name="Line2D18" type="Line2D" parent="Right"]
+position = Vector2(170, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D19" type="Line2D" parent="Right"]
+position = Vector2(180, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D20" type="Line2D" parent="Right"]
+position = Vector2(190, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D21" type="Line2D" parent="Right"]
+position = Vector2(200, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D22" type="Line2D" parent="Right"]
+position = Vector2(210, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D23" type="Line2D" parent="Right"]
+position = Vector2(220, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D24" type="Line2D" parent="Right"]
+position = Vector2(230, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D25" type="Line2D" parent="Right"]
+position = Vector2(240, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D26" type="Line2D" parent="Right"]
+position = Vector2(250, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D27" type="Line2D" parent="Right"]
+position = Vector2(260, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D28" type="Line2D" parent="Right"]
+position = Vector2(270, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D29" type="Line2D" parent="Right"]
+position = Vector2(280, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D30" type="Line2D" parent="Right"]
+position = Vector2(290, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D31" type="Line2D" parent="Right"]
+position = Vector2(300, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Line2D32" type="Line2D" parent="Right"]
+position = Vector2(310, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+width = 8.0
+
+[node name="Button1" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Play Song 1"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 105.0
+offset_top = 2.0
+offset_right = 201.0
+offset_bottom = 33.0
+text = "Play Song 2"
+
+[node name="SongName" type="Label" parent="."]
+offset_top = 45.0
+offset_right = 40.0
+offset_bottom = 68.0
+
+[connection signal="pressed" from="Button1" to="." method="on_play_first_song"]
+[connection signal="pressed" from="Button2" to="." method="on_play_second_song"]
