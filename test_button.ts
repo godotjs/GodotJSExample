@@ -1,6 +1,6 @@
 import { Error as GodotError, GArray, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid, Signal1, Control, CanvasItem } from "godot";
 import * as jsb from "godot-jsb";
-import { $wait, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, onready, signal } from "jsb.core";
+import { $wait, experimental, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, help, onready, signal } from "jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 
 enum MyColor {
@@ -17,9 +17,10 @@ enum MyTags {
     Hot = 2, 
     Soft = 4, 
     Hard = 8, 
-    Opaque = 16, 
+    Opaque = 16,
 }
 
+@help("Just a test!")
 export default class TestNode extends Button {
     private _v1 = 0
 
@@ -29,6 +30,8 @@ export default class TestNode extends Button {
     @onready("JSButtonChildNode")
     ready_node!: Node;
 
+    @help("Select a tag you want")
+    @experimental("An example of Enum")
     @export_flags(MyTags)
     tags: MyTags = MyTags.None;
 
