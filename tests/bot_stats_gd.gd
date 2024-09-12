@@ -1,5 +1,10 @@
+## Resource Class in GDScript
+## @experimental: Test3
+class_name BotStatsGD
 extends Resource
 
+## HP value
+## @experimental: any int
 @export var health: int
 @export var sub_resource: Resource
 @export var strings: PackedStringArray

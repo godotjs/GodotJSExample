@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bg4b5gskbxcmd"]
+
+[ext_resource type="Script" path="res://tests/bot_stats_gd.gd" id="1_e40eg"]
+
+[resource]
+script = ExtResource("1_e40eg")
+health = 0
+strings = PackedStringArray()
