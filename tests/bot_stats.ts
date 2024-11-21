@@ -1,7 +1,8 @@
-import { PackedStringArray, Resource, Variant } from "godot";
+import { PackedStringArray, Variant } from "godot";
 import { export_ } from "jsb.core";
+import BotStatsBase from "./bot_stats_base";
 
-export default class BotStats extends Resource {
+export default class BotStats extends BotStatsBase {
     @export_(Variant.Type.TYPE_INT)
     health = 0
 

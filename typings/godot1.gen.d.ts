@@ -393,7 +393,7 @@ declare module "godot" {
         /** Returns an array with the IDs of the points that form the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.  
          *  If there is no valid path to the target, and [param allow_partial_path] is `true`, returns a path to the point closest to the target that can be reached.  
          */
-        get_id_path(from_id: Vector2i, to_id: Vector2i, allow_partial_path: boolean = false): GArray
+        get_id_path(from_id: Vector2i, to_id: Vector2i, allow_partial_path: boolean = false): GArray<any>
         
         /** The region of grid cells available for pathfinding. If changed, [method update] needs to be called before finding the next path. */
         get region(): Rect2i
@@ -1004,7 +1004,7 @@ declare module "godot" {
         method_track_get_name(track_idx: int64, key_idx: int64): StringName
         
         /** Returns the arguments values to be called on a method track for a given key in a given track. */
-        method_track_get_params(track_idx: int64, key_idx: int64): GArray
+        method_track_get_params(track_idx: int64, key_idx: int64): GArray<any>
         
         /** Inserts a Bezier Track key at the given [param time] in seconds. The [param track_idx] must be the index of a Bezier Track.  
          *  [param in_handle] is the left-side weight of the added Bezier curve point, [param out_handle] is the right-side one, while [param value] is the actual value at this point.  
@@ -1138,7 +1138,7 @@ declare module "godot" {
         get_animation(name: StringName): Animation
         
         /** Returns the keys for the [Animation]s stored in the library. */
-        get_animation_list(): GArray
+        get_animation_list(): GArray<any>
         get _data(): GDictionary
         set _data(value: GDictionary)
         
@@ -1222,7 +1222,7 @@ declare module "godot" {
         get_animation_library(name: StringName): AnimationLibrary
         
         /** Returns the list of stored library keys. */
-        get_animation_library_list(): GArray
+        get_animation_library_list(): GArray<any>
         
         /** Returns `true` if the [AnimationMixer] stores an [Animation] with key [param name]. */
         has_animation(name: StringName): boolean
@@ -1404,7 +1404,7 @@ declare module "godot" {
         /* gdvirtual */ _get_child_nodes(): GDictionary
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to return a list of the properties on this animation node. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees. Format is similar to [method Object.get_property_list]. */
-        /* gdvirtual */ _get_parameter_list(): GArray
+        /* gdvirtual */ _get_parameter_list(): GArray<any>
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to return a child animation node by its [param name]. */
         /* gdvirtual */ _get_child_by_name(name: StringName): AnimationNode
@@ -2011,7 +2011,7 @@ declare module "godot" {
         get_fading_from_node(): StringName
         
         /** Returns the current travel path as computed internally by the A* algorithm. */
-        get_travel_path(): GArray
+        get_travel_path(): GArray<any>
     }
     namespace AnimationNodeStateMachineTransition {
         enum SwitchMode {
@@ -2414,12 +2414,12 @@ declare module "godot" {
         /** Returns a list of intersecting [PhysicsBody2D]s and [TileMap]s. The overlapping body's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_bodies(): GArray
+        get_overlapping_bodies(): GArray<any>
         
         /** Returns a list of intersecting [Area2D]s. The overlapping area's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_areas(): GArray
+        get_overlapping_areas(): GArray<any>
         
         /** Returns `true` if intersecting any [PhysicsBody2D]s or [TileMap]s, otherwise returns `false`. The overlapping body's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) the list of overlapping bodies is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
@@ -2573,12 +2573,12 @@ declare module "godot" {
         /** Returns a list of intersecting [PhysicsBody3D]s and [GridMap]s. The overlapping body's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_bodies(): GArray
+        get_overlapping_bodies(): GArray<any>
         
         /** Returns a list of intersecting [Area3D]s. The overlapping area's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_areas(): GArray
+        get_overlapping_areas(): GArray<any>
         
         /** Returns `true` if intersecting any [PhysicsBody3D]s or [GridMap]s, otherwise returns `false`. The overlapping body's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) the list of overlapping bodies is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
@@ -2772,7 +2772,7 @@ declare module "godot" {
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
          */
-        add_surface_from_arrays(primitive: Mesh.PrimitiveType, arrays: GArray, blend_shapes: GArray = [], lods: GDictionary = new GDictionary(), flags: Mesh.ArrayFormat = 0): void
+        add_surface_from_arrays(primitive: Mesh.PrimitiveType, arrays: GArray<any>, blend_shapes: GArray<any> = [], lods: GDictionary = new GDictionary(), flags: Mesh.ArrayFormat = 0): void
         
         /** Removes all surfaces from this [ArrayMesh]. */
         clear_surfaces(): void
@@ -3631,7 +3631,7 @@ declare module "godot" {
         /* gdvirtual */ _get_beat_count(): int64
         
         /** Return the controllable parameters of this stream. This array contains dictionaries with a property info description format (see [method Object.get_property_list]). Additionally, the default value for this parameter must be added tho each dictionary in "default_value" field. */
-        /* gdvirtual */ _get_parameter_list(): GArray
+        /* gdvirtual */ _get_parameter_list(): GArray<any>
         
         /** Returns the length of the audio stream in seconds. */
         get_length(): float64
@@ -5799,7 +5799,7 @@ declare module "godot" {
          *    
          *  [param epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [param epsilon] corresponds to more points in the polygons.  
          */
-        opaque_to_polygons(rect: Rect2i, epsilon: float64 = 2): GArray
+        opaque_to_polygons(rect: Rect2i, epsilon: float64 = 2): GArray<any>
         get data(): GDictionary
         set data(value: GDictionary)
     }
@@ -6058,7 +6058,7 @@ declare module "godot" {
         get_pressed_button(): BaseButton
         
         /** Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see [member BaseButton.button_group]). */
-        get_buttons(): GArray
+        get_buttons(): GArray<any>
         
         /** If `true`, it is possible to unpress all buttons in this [ButtonGroup]. */
         get allow_unpress(): boolean
@@ -6907,324 +6907,6 @@ declare module "godot" {
     class CPUParticles3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
     }
-    /** A CSG Box shape.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgbox3d.html  
-     */
-    class CSGBox3D extends CSGPrimitive3D {
-        constructor(identifier?: any)
-        /** The box's width, height and depth. */
-        get size(): Vector3
-        set size(value: Vector3)
-        
-        /** The material used to render the box. */
-        get material(): BaseMaterial3D | ShaderMaterial
-        set material(value: BaseMaterial3D | ShaderMaterial)
-    }
-    /** A CSG node that allows you to combine other CSG modifiers.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgcombiner3d.html  
-     */
-    class CSGCombiner3D extends CSGShape3D {
-        constructor(identifier?: any)
-    }
-    /** A CSG Cylinder shape.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgcylinder3d.html  
-     */
-    class CSGCylinder3D extends CSGPrimitive3D {
-        constructor(identifier?: any)
-        /** The radius of the cylinder. */
-        get radius(): float64
-        set radius(value: float64)
-        
-        /** The height of the cylinder. */
-        get height(): float64
-        set height(value: float64)
-        
-        /** The number of sides of the cylinder, the higher this number the more detail there will be in the cylinder. */
-        get sides(): int64
-        set sides(value: int64)
-        
-        /** If `true` a cone is created, the [member radius] will only apply to one side. */
-        get cone(): boolean
-        set cone(value: boolean)
-        
-        /** If `true` the normals of the cylinder are set to give a smooth effect making the cylinder seem rounded. If `false` the cylinder will have a flat shaded look. */
-        get smooth_faces(): boolean
-        set smooth_faces(value: boolean)
-        
-        /** The material used to render the cylinder. */
-        get material(): BaseMaterial3D | ShaderMaterial
-        set material(value: BaseMaterial3D | ShaderMaterial)
-    }
-    /** A CSG Mesh shape that uses a mesh resource.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgmesh3d.html  
-     */
-    class CSGMesh3D extends CSGPrimitive3D {
-        constructor(identifier?: any)
-        /** The [Mesh] resource to use as a CSG shape.  
-         *      
-         *  **Note:** When using an [ArrayMesh], all vertex attributes except [constant Mesh.ARRAY_VERTEX], [constant Mesh.ARRAY_NORMAL] and [constant Mesh.ARRAY_TEX_UV] are left unused. Only [constant Mesh.ARRAY_VERTEX] and [constant Mesh.ARRAY_TEX_UV] will be passed to the GPU.  
-         *  [constant Mesh.ARRAY_NORMAL] is only used to determine which faces require the use of flat shading. By default, CSGMesh will ignore the mesh's vertex normals, recalculate them for each vertex and use a smooth shader. If a flat shader is required for a face, ensure that all vertex normals of the face are approximately equal.  
-         */
-        get mesh(): Mesh
-        set mesh(value: Mesh)
-        
-        /** The [Material] used in drawing the CSG shape. */
-        get material(): BaseMaterial3D | ShaderMaterial
-        set material(value: BaseMaterial3D | ShaderMaterial)
-    }
-    namespace CSGPolygon3D {
-        enum Mode {
-            /** The [member polygon] shape is extruded along the negative Z axis. */
-            MODE_DEPTH = 0,
-            
-            /** The [member polygon] shape is extruded by rotating it around the Y axis. */
-            MODE_SPIN = 1,
-            
-            /** The [member polygon] shape is extruded along the [Path3D] specified in [member path_node]. */
-            MODE_PATH = 2,
-        }
-        enum PathRotation {
-            /** The [member polygon] shape is not rotated.  
-             *      
-             *  **Note:** Requires the path Z coordinates to continually decrease to ensure viable shapes.  
-             */
-            PATH_ROTATION_POLYGON = 0,
-            
-            /** The [member polygon] shape is rotated along the path, but it is not rotated around the path axis.  
-             *      
-             *  **Note:** Requires the path Z coordinates to continually decrease to ensure viable shapes.  
-             */
-            PATH_ROTATION_PATH = 1,
-            
-            /** The [member polygon] shape follows the path and its rotations around the path axis. */
-            PATH_ROTATION_PATH_FOLLOW = 2,
-        }
-        enum PathIntervalType {
-            /** When [member mode] is set to [constant MODE_PATH], [member path_interval] will determine the distance, in meters, each interval of the path will extrude. */
-            PATH_INTERVAL_DISTANCE = 0,
-            
-            /** When [member mode] is set to [constant MODE_PATH], [member path_interval] will subdivide the polygons along the path. */
-            PATH_INTERVAL_SUBDIVIDE = 1,
-        }
-    }
-    /** Extrudes a 2D polygon shape to create a 3D mesh.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgpolygon3d.html  
-     */
-    class CSGPolygon3D extends CSGPrimitive3D {
-        constructor(identifier?: any)
-        _is_editable_3d_polygon(): boolean
-        _has_editable_3d_polygon_no_depth(): boolean
-        
-        /** The point array that defines the 2D polygon that is extruded. This can be a convex or concave polygon with 3 or more points. The polygon must  *not*  have any intersecting edges. Otherwise, triangulation will fail and no mesh will be generated.  
-         *      
-         *  **Note:** If only 1 or 2 points are defined in [member polygon], no mesh will be generated.  
-         */
-        get polygon(): PackedVector2Array
-        set polygon(value: PackedVector2Array | Vector2[])
-        
-        /** The [member mode] used to extrude the [member polygon]. */
-        get mode(): int64
-        set mode(value: int64)
-        
-        /** When [member mode] is [constant MODE_DEPTH], the depth of the extrusion. */
-        get depth(): float64
-        set depth(value: float64)
-        
-        /** When [member mode] is [constant MODE_SPIN], the total number of degrees the [member polygon] is rotated when extruding. */
-        get spin_degrees(): float64
-        set spin_degrees(value: float64)
-        
-        /** When [member mode] is [constant MODE_SPIN], the number of extrusions made. */
-        get spin_sides(): int64
-        set spin_sides(value: int64)
-        
-        /** When [member mode] is [constant MODE_PATH], the location of the [Path3D] object used to extrude the [member polygon]. */
-        get path_node(): NodePath
-        set path_node(value: NodePath | string)
-        
-        /** When [member mode] is [constant MODE_PATH], this will determine if the interval should be by distance ([constant PATH_INTERVAL_DISTANCE]) or subdivision fractions ([constant PATH_INTERVAL_SUBDIVIDE]). */
-        get path_interval_type(): int64
-        set path_interval_type(value: int64)
-        
-        /** When [member mode] is [constant MODE_PATH], the path interval or ratio of path points to extrusions. */
-        get path_interval(): float64
-        set path_interval(value: float64)
-        
-        /** When [member mode] is [constant MODE_PATH], extrusions that are less than this angle, will be merged together to reduce polygon count. */
-        get path_simplify_angle(): float64
-        set path_simplify_angle(value: float64)
-        
-        /** When [member mode] is [constant MODE_PATH], the path rotation method used to rotate the [member polygon] as it is extruded. */
-        get path_rotation(): int64
-        set path_rotation(value: int64)
-        
-        /** When [member mode] is [constant MODE_PATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the starting point for the extrusions, not the [Transform3D] of the [member path_node]. */
-        get path_local(): boolean
-        set path_local(value: boolean)
-        
-        /** When [member mode] is [constant MODE_PATH], by default, the top half of the [member material] is stretched along the entire length of the extruded shape. If `false` the top half of the material is repeated every step of the extrusion. */
-        get path_continuous_u(): boolean
-        set path_continuous_u(value: boolean)
-        
-        /** When [member mode] is [constant MODE_PATH], this is the distance along the path, in meters, the texture coordinates will tile. When set to 0, texture coordinates will match geometry exactly with no tiling. */
-        get path_u_distance(): float64
-        set path_u_distance(value: float64)
-        
-        /** When [member mode] is [constant MODE_PATH], if `true` the ends of the path are joined, by adding an extrusion between the last and first points of the path. */
-        get path_joined(): boolean
-        set path_joined(value: boolean)
-        
-        /** If `true`, applies smooth shading to the extrusions. */
-        get smooth_faces(): boolean
-        set smooth_faces(value: boolean)
-        
-        /** Material to use for the resulting mesh. The UV maps the top half of the material to the extruded shape (U along the length of the extrusions and V around the outline of the [member polygon]), the bottom-left quarter to the front end face, and the bottom-right quarter to the back end face. */
-        get material(): BaseMaterial3D | ShaderMaterial
-        set material(value: BaseMaterial3D | ShaderMaterial)
-    }
-    /** Base class for CSG primitives.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgprimitive3d.html  
-     */
-    class CSGPrimitive3D extends CSGShape3D {
-        constructor(identifier?: any)
-        /** If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn. */
-        get flip_faces(): boolean
-        set flip_faces(value: boolean)
-    }
-    namespace CSGShape3D {
-        enum Operation {
-            /** Geometry of both primitives is merged, intersecting geometry is removed. */
-            OPERATION_UNION = 0,
-            
-            /** Only intersecting geometry remains, the rest is removed. */
-            OPERATION_INTERSECTION = 1,
-            
-            /** The second shape is subtracted from the first, leaving a dent with its shape. */
-            OPERATION_SUBTRACTION = 2,
-        }
-    }
-    /** The CSG base class.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgshape3d.html  
-     */
-    class CSGShape3D extends GeometryInstance3D {
-        constructor(identifier?: any)
-        _update_shape(): void
-        
-        /** Returns `true` if this is a root shape and is thus the object that is rendered. */
-        is_root_shape(): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: int64): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: int64): boolean
-        
-        /** Returns an [Array] with two elements, the first is the [Transform3D] of this node and the second is the root [Mesh] of this node. Only works when this node is the root shape. */
-        get_meshes(): GArray
-        
-        /** The operation that is performed on this shape. This is ignored for the first CSG child node as the operation is between this node and the previous child of this nodes parent. */
-        get operation(): int64
-        set operation(value: int64)
-        
-        /** Snap makes the mesh vertices snap to a given distance so that the faces of two meshes can be perfectly aligned. A lower value results in greater precision but may be harder to adjust. The top-level CSG shape's snap value is used for the entire CSG tree. */
-        get snap(): float64
-        set snap(value: float64)
-        
-        /** Calculate tangents for the CSG shape which allows the use of normal maps. This is only applied on the root shape, this setting is ignored on any child. */
-        get calculate_tangents(): boolean
-        set calculate_tangents(value: boolean)
-        
-        /** Adds a collision shape to the physics engine for our CSG shape. This will always act like a static body. Note that the collision shape is still active even if the CSG shape itself is hidden. See also [member collision_mask] and [member collision_priority]. */
-        get use_collision(): boolean
-        set use_collision(value: boolean)
-        
-        /** The physics layers this area is in.  
-         *  Collidable objects can exist in any of 32 different layers. These layers work like a tagging system, and are not visual. A collidable can use these layers to select with which objects it can collide, using the collision_mask property.  
-         *  A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_layer(): int64
-        set collision_layer(value: int64)
-        
-        /** The physics layers this CSG shape scans for collisions. Only effective if [member use_collision] is `true`. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information. */
-        get collision_mask(): int64
-        set collision_mask(value: int64)
-        
-        /** The priority used to solve colliding when occurring penetration. Only effective if [member use_collision] is `true`. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        get collision_priority(): float64
-        set collision_priority(value: float64)
-    }
-    class CSGShape3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** A CSG Sphere shape.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgsphere3d.html  
-     */
-    class CSGSphere3D extends CSGPrimitive3D {
-        constructor(identifier?: any)
-        /** Radius of the sphere. */
-        get radius(): float64
-        set radius(value: float64)
-        
-        /** Number of vertical slices for the sphere. */
-        get radial_segments(): int64
-        set radial_segments(value: int64)
-        
-        /** Number of horizontal slices for the sphere. */
-        get rings(): int64
-        set rings(value: int64)
-        
-        /** If `true` the normals of the sphere are set to give a smooth effect making the sphere seem rounded. If `false` the sphere will have a flat shaded look. */
-        get smooth_faces(): boolean
-        set smooth_faces(value: boolean)
-        
-        /** The material used to render the sphere. */
-        get material(): BaseMaterial3D | ShaderMaterial
-        set material(value: BaseMaterial3D | ShaderMaterial)
-    }
-    /** A CSG Torus shape.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_csgtorus3d.html  
-     */
-    class CSGTorus3D extends CSGPrimitive3D {
-        constructor(identifier?: any)
-        /** The inner radius of the torus. */
-        get inner_radius(): float64
-        set inner_radius(value: float64)
-        
-        /** The outer radius of the torus. */
-        get outer_radius(): float64
-        set outer_radius(value: float64)
-        
-        /** The number of slices the torus is constructed of. */
-        get sides(): int64
-        set sides(value: int64)
-        
-        /** The number of edges each ring of the torus is constructed of. */
-        get ring_sides(): int64
-        set ring_sides(value: int64)
-        
-        /** If `true` the normals of the torus are set to give a smooth effect making the torus seem rounded. If `false` the torus will have a flat shaded look. */
-        get smooth_faces(): boolean
-        set smooth_faces(value: boolean)
-        
-        /** The material used to render the torus. */
-        get material(): BaseMaterial3D | ShaderMaterial
-        set material(value: BaseMaterial3D | ShaderMaterial)
-    }
     /** Calls the specified method after optional delay.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_callbacktweener.html  
@@ -7512,7 +7194,7 @@ declare module "godot" {
         get_camera_projection(): Projection
         
         /** Returns the camera's frustum planes in world space units as an array of [Plane]s in the following order: near, far, left, top, right, bottom. Not to be confused with [member frustum_offset]. */
-        get_frustum(): GArray
+        get_frustum(): GArray<any>
         
         /** Returns `true` if the given position is inside the camera's frustum (the green part of the linked diagram). [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/camera3d_position_frustum.png]See this diagram[/url] for an overview of position query methods. */
         is_position_in_frustum(world_point: Vector3): boolean
@@ -8264,6 +7946,9 @@ declare module "godot" {
     class CanvasItemEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
+    class CanvasItemEditorSelectedItem extends Object {
+        constructor(identifier?: any)
+    }
     class CanvasItemEditorViewport extends Control {
         constructor(identifier?: any)
     }
@@ -8986,7 +8671,7 @@ declare module "godot" {
         /** Override this method to define what items in [param candidates] should be displayed.  
          *  Both [param candidates] and the return is a [Array] of [Dictionary], see [method get_code_completion_option] for [Dictionary] content.  
          */
-        /* gdvirtual */ _filter_code_completion_candidates(candidates: GArray): GArray
+        /* gdvirtual */ _filter_code_completion_candidates(candidates: GArray<any>): GArray<any>
         
         /** Perform an indent as if the user activated the "ui_text_indent" action. */
         do_indent(): void
@@ -9077,7 +8762,7 @@ declare module "godot" {
         is_line_folded(line: int64): boolean
         
         /** Returns all lines that are current folded. */
-        get_folded_lines(): GArray
+        get_folded_lines(): GArray<any>
         
         /** Creates a new code region with the selection. At least one single line comment delimiter have to be defined (see [method add_comment_delimiter]).  
          *  A code region is a part of code that is highlighted when folded and can help organize your script.  
@@ -9173,7 +8858,7 @@ declare module "godot" {
         update_code_completion_options(force: boolean): void
         
         /** Gets all completion options, see [method get_code_completion_option] for return content. */
-        get_code_completion_options(): GArray
+        get_code_completion_options(): GArray<any>
         
         /** Gets the completion option at [param index]. The return [Dictionary] has the following key-values:  
          *  `kind`: [enum CodeCompletionKind]  
@@ -9312,5 +8997,255 @@ declare module "godot" {
         
         /** Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [method set_symbol_lookup_word_as_valid]. */
         readonly symbol_validate: Signal1<string>
+    }
+    /** A syntax highlighter intended for code.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_codehighlighter.html  
+     */
+    class CodeHighlighter extends SyntaxHighlighter {
+        constructor(identifier?: any)
+        /** Sets the color for a keyword.  
+         *  The keyword cannot contain any symbols except '_'.  
+         */
+        add_keyword_color(keyword: string, color: Color): void
+        
+        /** Removes the keyword. */
+        remove_keyword_color(keyword: string): void
+        
+        /** Returns `true` if the keyword exists, else `false`. */
+        has_keyword_color(keyword: string): boolean
+        
+        /** Returns the color for a keyword. */
+        get_keyword_color(keyword: string): Color
+        
+        /** Removes all keywords. */
+        clear_keyword_colors(): void
+        
+        /** Sets the color for a member keyword.  
+         *  The member keyword cannot contain any symbols except '_'.  
+         *  It will not be highlighted if preceded by a '.'.  
+         */
+        add_member_keyword_color(member_keyword: string, color: Color): void
+        
+        /** Removes the member keyword. */
+        remove_member_keyword_color(member_keyword: string): void
+        
+        /** Returns `true` if the member keyword exists, else `false`. */
+        has_member_keyword_color(member_keyword: string): boolean
+        
+        /** Returns the color for a member keyword. */
+        get_member_keyword_color(member_keyword: string): Color
+        
+        /** Removes all member keywords. */
+        clear_member_keyword_colors(): void
+        
+        /** Adds a color region (such as for comments or strings) from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
+         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
+         */
+        add_color_region(start_key: string, end_key: string, color: Color, line_only: boolean = false): void
+        
+        /** Removes the color region that uses that start key. */
+        remove_color_region(start_key: string): void
+        
+        /** Returns `true` if the start key exists, else `false`. */
+        has_color_region(start_key: string): boolean
+        
+        /** Removes all color regions. */
+        clear_color_regions(): void
+        
+        /** Sets the color for numbers. */
+        get number_color(): Color
+        set number_color(value: Color)
+        
+        /** Sets the color for symbols. */
+        get symbol_color(): Color
+        set symbol_color(value: Color)
+        
+        /** Sets color for functions. A function is a non-keyword string followed by a '('. */
+        get function_color(): Color
+        set function_color(value: Color)
+        
+        /** Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'. */
+        get member_variable_color(): Color
+        set member_variable_color(value: Color)
+        
+        /** Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the keyword. The value is the keyword color. */
+        get keyword_colors(): GDictionary
+        set keyword_colors(value: GDictionary)
+        
+        /** Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary] key is the member keyword. The value is the member keyword color. */
+        get member_keyword_colors(): GDictionary
+        set member_keyword_colors(value: GDictionary)
+        
+        /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
+        get color_regions(): GDictionary
+        set color_regions(value: GDictionary)
+    }
+    class CodeTextEditor extends VBoxContainer {
+        constructor(identifier?: any)
+        readonly validate_script: Signal0
+        readonly load_theme_settings: Signal0
+        readonly show_errors_panel: Signal0
+        readonly show_warnings_panel: Signal0
+        readonly zoomed: Signal1<float64>
+    }
+    namespace CollisionObject2D {
+        enum DisableMode {
+            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
+             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
+             */
+            DISABLE_MODE_REMOVE = 0,
+            
+            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.  
+             *  Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed again.  
+             */
+            DISABLE_MODE_MAKE_STATIC = 1,
+            
+            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
+            DISABLE_MODE_KEEP_ACTIVE = 2,
+        }
+    }
+    /** Abstract base class for 2D physics objects.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_collisionobject2d.html  
+     */
+    class CollisionObject2D extends Node2D {
+        constructor(identifier?: any)
+        /** Accepts unhandled [InputEvent]s. [param shape_idx] is the child index of the clicked [Shape2D]. Connect to [signal input_event] to easily pick up these events.  
+         *      
+         *  **Note:** [method _input_event] requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
+         */
+        /* gdvirtual */ _input_event(viewport: Viewport, event: InputEvent, shape_idx: int64): void
+        
+        /** Called when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
+        /* gdvirtual */ _mouse_enter(): void
+        
+        /** Called when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
+        /* gdvirtual */ _mouse_exit(): void
+        
+        /** Called when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
+        /* gdvirtual */ _mouse_shape_enter(shape_idx: int64): void
+        
+        /** Called when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
+        /* gdvirtual */ _mouse_shape_exit(shape_idx: int64): void
+        
+        /** Returns the object's [RID]. */
+        get_rid(): RID
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
+        set_collision_layer_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_layer_value(layer_number: int64): boolean
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
+        set_collision_mask_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_mask_value(layer_number: int64): boolean
+        
+        /** Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference. */
+        create_shape_owner(owner: Object): int64
+        
+        /** Removes the given shape owner. */
+        remove_shape_owner(owner_id: int64): void
+        
+        /** Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument. */
+        get_shape_owners(): PackedInt32Array
+        
+        /** Sets the [Transform2D] of the given shape owner. */
+        shape_owner_set_transform(owner_id: int64, transform: Transform2D): void
+        
+        /** Returns the shape owner's [Transform2D]. */
+        shape_owner_get_transform(owner_id: int64): Transform2D
+        
+        /** Returns the parent object of the given shape owner. */
+        shape_owner_get_owner(owner_id: int64): Object
+        
+        /** If `true`, disables the given shape owner. */
+        shape_owner_set_disabled(owner_id: int64, disabled: boolean): void
+        
+        /** If `true`, the shape owner and its shapes are disabled. */
+        is_shape_owner_disabled(owner_id: int64): boolean
+        
+        /** If [param enable] is `true`, collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
+        shape_owner_set_one_way_collision(owner_id: int64, enable: boolean): void
+        
+        /** Returns `true` if collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
+        is_shape_owner_one_way_collision_enabled(owner_id: int64): boolean
+        
+        /** Sets the `one_way_collision_margin` of the shape owner identified by given [param owner_id] to [param margin] pixels. */
+        shape_owner_set_one_way_collision_margin(owner_id: int64, margin: float64): void
+        
+        /** Returns the `one_way_collision_margin` of the shape owner identified by given [param owner_id]. */
+        get_shape_owner_one_way_collision_margin(owner_id: int64): float64
+        
+        /** Adds a [Shape2D] to the shape owner. */
+        shape_owner_add_shape(owner_id: int64, shape: Shape2D): void
+        
+        /** Returns the number of shapes the given shape owner contains. */
+        shape_owner_get_shape_count(owner_id: int64): int64
+        
+        /** Returns the [Shape2D] with the given ID from the given shape owner. */
+        shape_owner_get_shape(owner_id: int64, shape_id: int64): Shape2D
+        
+        /** Returns the child index of the [Shape2D] with the given ID from the given shape owner. */
+        shape_owner_get_shape_index(owner_id: int64, shape_id: int64): int64
+        
+        /** Removes a shape from the given shape owner. */
+        shape_owner_remove_shape(owner_id: int64, shape_id: int64): void
+        
+        /** Removes all shapes from the shape owner. */
+        shape_owner_clear_shapes(owner_id: int64): void
+        
+        /** Returns the `owner_id` of the given shape. */
+        shape_find_owner(shape_index: int64): int64
+        
+        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
+        get disable_mode(): int64
+        set disable_mode(value: int64)
+        
+        /** The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
+         *      
+         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
+         */
+        get collision_layer(): int64
+        set collision_layer(value: int64)
+        
+        /** The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
+         *      
+         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
+         */
+        get collision_mask(): int64
+        set collision_mask(value: int64)
+        
+        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
+        get collision_priority(): float64
+        set collision_priority(value: float64)
+        
+        /** If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set. */
+        get input_pickable(): boolean
+        set input_pickable(value: boolean)
+        
+        /** Emitted when an input event occurs. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. See [method _input_event] for details. */
+        readonly input_event: Signal3<Node, InputEvent, int64>
+        
+        /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
+         *      
+         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
+         */
+        readonly mouse_entered: Signal0
+        
+        /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
+         *      
+         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
+         */
+        readonly mouse_exited: Signal0
+        
+        /** Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
+        readonly mouse_shape_entered: Signal1<int64>
+        
+        /** Emitted when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
+        readonly mouse_shape_exited: Signal1<int64>
     }
 }

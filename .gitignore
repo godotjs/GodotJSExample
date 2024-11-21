@@ -6,4 +6,5 @@
 # you could ignore these files in your project if you decide to always generate them locally
 !typescripts/typings/godot*.gen.d.ts
 
-node_modules
+node_modules/
+android/

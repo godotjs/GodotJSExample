@@ -1,504 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** A 2D game object, inherited by all 2D-related nodes. Has a position, rotation, scale, and Z index.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_node2d.html  
-     */
-    class Node2D extends CanvasItem {
-        constructor(identifier?: any)
-        /** Applies a rotation to the node, in radians, starting from its current rotation. */
-        rotate(radians: float64): void
-        
-        /** Applies a local translation on the node's X axis based on the [method Node._process]'s [param delta]. If [param scaled] is `false`, normalizes the movement. */
-        move_local_x(delta: float64, scaled: boolean = false): void
-        
-        /** Applies a local translation on the node's Y axis based on the [method Node._process]'s [param delta]. If [param scaled] is `false`, normalizes the movement. */
-        move_local_y(delta: float64, scaled: boolean = false): void
-        
-        /** Translates the node by the given [param offset] in local coordinates. */
-        translate(offset: Vector2): void
-        
-        /** Adds the [param offset] vector to the node's global position. */
-        global_translate(offset: Vector2): void
-        
-        /** Multiplies the current scale by the [param ratio] vector. */
-        apply_scale(ratio: Vector2): void
-        
-        /** Rotates the node so that its local +X axis points towards the [param point], which is expected to use global coordinates.  
-         *  [param point] should not be the same as the node's position, otherwise the node always looks to the right.  
-         */
-        look_at(point: Vector2): void
-        
-        /** Returns the angle between the node and the [param point] in radians.  
-         *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/node2d_get_angle_to.png]Illustration of the returned angle.[/url]  
-         */
-        get_angle_to(point: Vector2): float64
-        
-        /** Transforms the provided global position into a position in local coordinate space. The output will be local relative to the [Node2D] it is called on. e.g. It is appropriate for determining the positions of child nodes, but it is not appropriate for determining its own position relative to its parent. */
-        to_local(global_point: Vector2): Vector2
-        
-        /** Transforms the provided local position into a position in global coordinate space. The input is expected to be local relative to the [Node2D] it is called on. e.g. Applying this method to the positions of child nodes will correctly transform their positions into the global coordinate space, but applying it to a node's own position will give an incorrect result, as it will incorporate the node's own transformation into its global position. */
-        to_global(local_point: Vector2): Vector2
-        
-        /** Returns the [Transform2D] relative to this node's parent. */
-        get_relative_transform_to_parent(parent: Node): Transform2D
-        
-        /** Position, relative to the node's parent. */
-        get position(): Vector2
-        set position(value: Vector2)
-        
-        /** Rotation in radians, relative to the node's parent.  
-         *      
-         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
-         */
-        get rotation(): float64
-        set rotation(value: float64)
-        
-        /** Helper property to access [member rotation] in degrees instead of radians. */
-        get rotation_degrees(): float64
-        set rotation_degrees(value: float64)
-        
-        /** The node's scale. Unscaled value: `(1, 1)`.  
-         *      
-         *  **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.  
-         */
-        get scale(): Vector2
-        set scale(value: Vector2)
-        
-        /** Slants the node.  
-         *      
-         *  **Note:** Skew is X axis only.  
-         */
-        get skew(): float64
-        set skew(value: float64)
-        
-        /** Local [Transform2D]. */
-        get transform(): Transform2D
-        set transform(value: Transform2D)
-        
-        /** Global position. */
-        get global_position(): Vector2
-        set global_position(value: Vector2)
-        
-        /** Global rotation in radians. */
-        get global_rotation(): float64
-        set global_rotation(value: float64)
-        
-        /** Helper property to access [member global_rotation] in degrees instead of radians. */
-        get global_rotation_degrees(): float64
-        set global_rotation_degrees(value: float64)
-        
-        /** Global scale. */
-        get global_scale(): Vector2
-        set global_scale(value: Vector2)
-        
-        /** Global skew in radians. */
-        get global_skew(): float64
-        set global_skew(value: float64)
-        
-        /** Global [Transform2D]. */
-        get global_transform(): Transform2D
-        set global_transform(value: Transform2D)
-    }
-    namespace Node3D {
-        enum RotationEditMode {
-            /** The rotation is edited using [Vector3] Euler angles. */
-            ROTATION_EDIT_MODE_EULER = 0,
-            
-            /** The rotation is edited using a [Quaternion]. */
-            ROTATION_EDIT_MODE_QUATERNION = 1,
-            
-            /** The rotation is edited using a [Basis]. In this mode, [member scale] can't be edited separately. */
-            ROTATION_EDIT_MODE_BASIS = 2,
-        }
-    }
-    /** Most basic 3D game object, parent of all 3D-related nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_node3d.html  
-     */
-    class Node3D extends Node {
-        /** [Node3D] nodes receive this notification when their global transform changes. This means that either the current or a parent node changed its transform.  
-         *  In order for [constant NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [method set_notify_transform]. The notification is also sent if the node is in the editor context and it has at least one valid gizmo.  
-         */
-        static readonly NOTIFICATION_TRANSFORM_CHANGED = 2000
-        
-        /** [Node3D] nodes receive this notification when they are registered to new [World3D] resource. */
-        static readonly NOTIFICATION_ENTER_WORLD = 41
-        
-        /** [Node3D] nodes receive this notification when they are unregistered from current [World3D] resource. */
-        static readonly NOTIFICATION_EXIT_WORLD = 42
-        
-        /** [Node3D] nodes receive this notification when their visibility changes. */
-        static readonly NOTIFICATION_VISIBILITY_CHANGED = 43
-        
-        /** [Node3D] nodes receive this notification when their local transform changes. This is not received when the transform of a parent node is changed.  
-         *  In order for [constant NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it, with [method set_notify_local_transform].  
-         */
-        static readonly NOTIFICATION_LOCAL_TRANSFORM_CHANGED = 44
-        constructor(identifier?: any)
-        
-        /** Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D], or [member top_level] is `true`.  
-         *      
-         *  **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not take [member top_level] into account.  
-         */
-        get_parent_node_3d(): Node3D
-        
-        /** Sets whether the node ignores notification that its transformation (global or local) changed. */
-        set_ignore_transform_notification(enabled: boolean): void
-        
-        /** Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to the local transformation scale are preserved. */
-        set_disable_scale(disable: boolean): void
-        
-        /** Returns whether this node uses a scale of `(1, 1, 1)` or its local transformation scale. */
-        is_scale_disabled(): boolean
-        
-        /** Returns the current [World3D] resource this [Node3D] node is registered to. */
-        get_world_3d(): World3D
-        
-        /** Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations. */
-        force_update_transform(): void
-        
-        /** Updates all the [Node3D] gizmos attached to this node. */
-        update_gizmos(): void
-        
-        /** Attach an editor gizmo to this [Node3D].  
-         *      
-         *  **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].  
-         */
-        add_gizmo(gizmo: Node3DGizmo): void
-        
-        /** Returns all the gizmos attached to this [Node3D]. */
-        get_gizmos(): GArray
-        
-        /** Clear all gizmos attached to this [Node3D]. */
-        clear_gizmos(): void
-        
-        /** Set subgizmo selection for this node in the editor.  
-         *      
-         *  **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].  
-         */
-        set_subgizmo_selection(gizmo: Node3DGizmo, id: int64, transform: Transform3D): void
-        
-        /** Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid after a property change. */
-        clear_subgizmo_selection(): void
-        
-        /** Returns `true` if the node is present in the [SceneTree], its [member visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree. */
-        is_visible_in_tree(): boolean
-        
-        /** Enables rendering of this node. Changes [member visible] to `true`. */
-        show(): void
-        
-        /** Disables rendering of this node. Changes [member visible] to `false`. */
-        hide(): void
-        
-        /** Sets whether the node notifies about its local transformation changes. [Node3D] will not propagate this by default. */
-        set_notify_local_transform(enable: boolean): void
-        
-        /** Returns whether node notifies about its local transformation changes. [Node3D] will not propagate this by default. */
-        is_local_transform_notification_enabled(): boolean
-        
-        /** Sets whether the node notifies about its global and local transformation changes. [Node3D] will not propagate this by default, unless it is in the editor context and it has a valid gizmo. */
-        set_notify_transform(enable: boolean): void
-        
-        /** Returns whether the node notifies about its global and local transformation changes. [Node3D] will not propagate this by default. */
-        is_transform_notification_enabled(): boolean
-        
-        /** Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. */
-        rotate(axis: Vector3, angle: float64): void
-        
-        /** Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in global coordinate system. */
-        global_rotate(axis: Vector3, angle: float64): void
-        
-        /** Scales the global (world) transformation by the given [Vector3] scale factors. */
-        global_scale(scale: Vector3): void
-        
-        /** Moves the global (world) transformation by [Vector3] offset. The offset is in global coordinate system. */
-        global_translate(offset: Vector3): void
-        
-        /** Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system. */
-        rotate_object_local(axis: Vector3, angle: float64): void
-        
-        /** Scales the local transformation by given 3D scale factors in object-local coordinate system. */
-        scale_object_local(scale: Vector3): void
-        
-        /** Changes the node's position by the given offset [Vector3] in local space. */
-        translate_object_local(offset: Vector3): void
-        
-        /** Rotates the local transformation around the X axis by angle in radians. */
-        rotate_x(angle: float64): void
-        
-        /** Rotates the local transformation around the Y axis by angle in radians. */
-        rotate_y(angle: float64): void
-        
-        /** Rotates the local transformation around the Z axis by angle in radians. */
-        rotate_z(angle: float64): void
-        
-        /** Changes the node's position by the given offset [Vector3].  
-         *  Note that the translation [param offset] is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.  
-         */
-        translate(offset: Vector3): void
-        
-        /** Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation by performing Gram-Schmidt orthonormalization on this node's [Transform3D]. */
-        orthonormalize(): void
-        
-        /** Reset all transformations for this node (sets its [Transform3D] to the identity matrix). */
-        set_identity(): void
-        
-        /** Rotates the node so that the local forward axis (-Z, [constant Vector3.FORWARD]) points toward the [param target] position.  
-         *  The local up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.  
-         *  The [param target] position cannot be the same as the node's position, the [param up] vector cannot be zero, and the direction from the node's position to the [param target] vector cannot be parallel to the [param up] vector.  
-         *  Operations take place in global space, which means that the node must be in the scene tree.  
-         *  If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).  
-         */
-        look_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): void
-        
-        /** Moves the node to the specified [param position], and then rotates the node to point toward the [param target] as per [method look_at]. Operations take place in global space. */
-        look_at_from_position(position: Vector3, target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): void
-        
-        /** Transforms [param global_point] from world space to this node's local space. */
-        to_local(global_point: Vector3): Vector3
-        
-        /** Transforms [param local_point] from this node's local space to world space. */
-        to_global(local_point: Vector3): Vector3
-        
-        /** Local space [Transform3D] of this node, with respect to the parent node. */
-        get transform(): Transform3D
-        set transform(value: Transform3D)
-        
-        /** World3D space (global) [Transform3D] of this node. */
-        get global_transform(): Transform3D
-        set global_transform(value: Transform3D)
-        
-        /** Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`. */
-        get position(): Vector3
-        set position(value: Vector3)
-        
-        /** Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [member rotation_order] property.  
-         *      
-         *  **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.  
-         *      
-         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
-         */
-        get rotation(): Vector3
-        set rotation(value: Vector3)
-        
-        /** Helper property to access [member rotation] in degrees instead of radians. */
-        get rotation_degrees(): Vector3
-        set rotation_degrees(value: Vector3)
-        
-        /** Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex rotations. */
-        get quaternion(): Quaternion
-        set quaternion(value: Quaternion)
-        
-        /** Basis of the [member transform] property. Represents the rotation, scale, and shear of this node. */
-        get basis(): Basis
-        set basis(value: Basis)
-        
-        /** Scale part of the local transformation.  
-         *      
-         *  **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.  
-         *      
-         *  **Note:** Not all nodes are visually scaled by the [member scale] property. For example, [Light3D]s are not visually affected by [member scale].  
-         */
-        get scale(): Vector3
-        set scale(value: Vector3)
-        
-        /** Specify how rotation (and scale) will be presented in the editor. */
-        get rotation_edit_mode(): int64
-        set rotation_edit_mode(value: int64)
-        
-        /** Specify the axis rotation order of the [member rotation] property. The final orientation is constructed by rotating the Euler angles in the order specified by this property. */
-        get rotation_order(): int64
-        set rotation_order(value: int64)
-        
-        /** If `true`, the node will not inherit its transformations from its parent. Node transformations are only in global space. */
-        get top_level(): boolean
-        set top_level(value: boolean)
-        
-        /** Global position of this node. This is equivalent to `global_transform.origin`. */
-        get global_position(): Vector3
-        set global_position(value: Vector3)
-        
-        /** Global basis of this node. This is equivalent to `global_transform.basis`. */
-        get global_basis(): Basis
-        set global_basis(value: Basis)
-        
-        /** Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).  
-         *      
-         *  **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.  
-         */
-        get global_rotation(): Vector3
-        set global_rotation(value: Vector3)
-        
-        /** Helper property to access [member global_rotation] in degrees instead of radians. */
-        get global_rotation_degrees(): Vector3
-        set global_rotation_degrees(value: Vector3)
-        
-        /** If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [method is_visible_in_tree] must return `true`). */
-        get visible(): boolean
-        set visible(value: boolean)
-        
-        /** Defines the visibility range parent for this node and its subtree. The visibility parent must be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and all of its visibility ancestors) is hidden by being closer to the camera than its own [member GeometryInstance3D.visibility_range_begin]. Nodes hidden via the [member Node3D.visible] property are essentially removed from the visibility dependency tree, so dependent instances will not take the hidden node or its ancestors into account. */
-        get visibility_parent(): NodePath
-        set visibility_parent(value: NodePath | string)
-        
-        /** Emitted when node visibility changes. */
-        readonly visibility_changed: Signal0
-    }
-    class Node3DEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        _get_editor_data(_unnamed_arg0: Object): Object
-        _request_gizmo(_unnamed_arg0: Object): void
-        _request_gizmo_for_id(_unnamed_arg0: int64): void
-        _set_subgizmo_selection(_unnamed_arg0: Object, _unnamed_arg1: Node3DGizmo, _unnamed_arg2: int64, _unnamed_arg3: Transform3D): void
-        _clear_subgizmo_selection(_unnamed_arg0: Object): void
-        _refresh_menu_icons(): void
-        update_all_gizmos(_unnamed_arg0: Node): void
-        update_transform_gizmo(): void
-        readonly transform_key_request: Signal0
-        readonly item_lock_status_changed: Signal0
-        readonly item_group_status_changed: Signal0
-    }
-    class Node3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class Node3DEditorViewport extends Control {
-        constructor(identifier?: any)
-        readonly toggle_maximize_view: Signal1<Object>
-        readonly clicked: Signal1<Object>
-    }
-    class Node3DEditorViewportContainer extends Container {
-        constructor(identifier?: any)
-    }
-    /** Abstract class to expose editor gizmos for [Node3D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_node3dgizmo.html  
-     */
-    class Node3DGizmo extends RefCounted {
-        constructor(identifier?: any)
-    }
-    class NodeDock extends VBoxContainer {
-        constructor(identifier?: any)
-    }
-    /** Abstract base class for noise generators.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_noise.html  
-     */
-    class Noise extends Resource {
-        constructor(identifier?: any)
-        /** Returns the 1D noise value at the given (x) coordinate. */
-        get_noise_1d(x: float64): float64
-        
-        /** Returns the 2D noise value at the given position. */
-        get_noise_2d(x: float64, y: float64): float64
-        
-        /** Returns the 2D noise value at the given position. */
-        get_noise_2dv(v: Vector2): float64
-        
-        /** Returns the 3D noise value at the given position. */
-        get_noise_3d(x: float64, y: float64, z: float64): float64
-        
-        /** Returns the 3D noise value at the given position. */
-        get_noise_3dv(v: Vector3): float64
-        
-        /** Returns an [Image] containing 2D noise values.  
-         *      
-         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
-         */
-        get_image(width: int64, height: int64, invert: boolean = false, in_3d_space: boolean = false, normalize: boolean = true): Image
-        
-        /** Returns an [Image] containing seamless 2D noise values.  
-         *      
-         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
-         */
-        get_seamless_image(width: int64, height: int64, invert: boolean = false, in_3d_space: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): Image
-        
-        /** Returns an [Array] of [Image]s containing 3D noise values for use with [method ImageTexture3D.create].  
-         *      
-         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
-         */
-        get_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, normalize: boolean = true): GArray
-        
-        /** Returns an [Array] of [Image]s containing seamless 3D noise values for use with [method ImageTexture3D.create].  
-         *      
-         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
-         */
-        get_seamless_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): GArray
-    }
-    class NoiseEditorInspectorPlugin extends EditorInspectorPlugin {
-        constructor(identifier?: any)
-    }
-    class NoiseEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A 2D texture filled with noise generated by a [Noise] object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_noisetexture2d.html  
-     */
-    class NoiseTexture2D extends Texture2D {
-        constructor(identifier?: any)
-        /** Width of the generated texture (in pixels). */
-        get width(): int64
-        set width(value: int64)
-        
-        /** Height of the generated texture (in pixels). */
-        get height(): int64
-        set height(value: int64)
-        
-        /** If `true`, inverts the noise texture. White becomes black, black becomes white. */
-        get invert(): boolean
-        set invert(value: boolean)
-        
-        /** Determines whether the noise image is calculated in 3D space. May result in reduced contrast. */
-        get in_3d_space(): boolean
-        set in_3d_space(value: boolean)
-        
-        /** Determines whether mipmaps are generated for this texture. Enabling this results in less texture aliasing in the distance, at the cost of increasing memory usage by roughly 33% and making the noise texture generation take longer.  
-         *      
-         *  **Note:** [member generate_mipmaps] requires mipmap filtering to be enabled on the material using the [NoiseTexture2D] to have an effect.  
-         */
-        get generate_mipmaps(): boolean
-        set generate_mipmaps(value: boolean)
-        
-        /** If `true`, a seamless texture is requested from the [Noise] resource.  
-         *      
-         *  **Note:** Seamless noise textures may take longer to generate and/or can have a lower contrast compared to non-seamless noise depending on the used [Noise] resource. This is because some implementations use higher dimensions for generating seamless noise.  
-         *      
-         *  **Note:** The default [FastNoiseLite] implementation uses the fallback path for seamless generation. If using a [member width] or [member height] lower than the default, you may need to increase [member seamless_blend_skirt] to make seamless blending more effective.  
-         */
-        get seamless(): boolean
-        set seamless(value: boolean)
-        
-        /** Used for the default/fallback implementation of the seamless texture generation. It determines the distance over which the seams are blended. High values may result in less details and contrast. See [Noise] for further details.  
-         *      
-         *  **Note:** If using a [member width] or [member height] lower than the default, you may need to increase [member seamless_blend_skirt] to make seamless blending more effective.  
-         */
-        get seamless_blend_skirt(): float64
-        set seamless_blend_skirt(value: float64)
-        
-        /** If `true`, the resulting texture contains a normal map created from the original noise interpreted as a bump map. */
-        get as_normal_map(): boolean
-        set as_normal_map(value: boolean)
-        
-        /** Strength of the bump maps used in this texture. A higher value will make the bump maps appear larger while a lower value will make them appear softer. */
-        get bump_strength(): float64
-        set bump_strength(value: float64)
-        
-        /** If `true`, the noise image coming from the noise generator is normalized to the range `0.0` to `1.0`.  
-         *  Turning normalization off can affect the contrast and allows you to generate non repeating tileable noise textures.  
-         */
-        get normalize(): boolean
-        set normalize(value: boolean)
-        
-        /** A [Gradient] which is used to map the luminance of each pixel to a color value. */
-        get color_ramp(): Gradient
-        set color_ramp(value: Gradient)
-        
-        /** The instance of the [Noise] object. */
-        get noise(): Noise
-        set noise(value: Noise)
-    }
     /** A 3D texture filled with noise generated by a [Noise] object.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_noisetexture3d.html  
@@ -623,7 +125,7 @@ declare module "godot" {
          *      
          *  **Note:** If the object's script is not [annotation @GDScript.@tool], this method will not be called in the editor.  
          */
-        /* gdvirtual */ _get_property_list(): GArray
+        /* gdvirtual */ _get_property_list(): GArray<any>
         
         /** Override this method to customize existing properties. Every property info goes through this method, except properties added with [method _get_property_list]. The dictionary contents is the same as in [method _get_property_list].  
          *    
@@ -707,7 +209,7 @@ declare module "godot" {
          *      
          *  **Note:** In GDScript, all class members are treated as properties. In C# and GDExtension, it may be necessary to explicitly mark class members as Godot properties using decorators or attributes.  
          */
-        get_property_list(): GArray
+        get_property_list(): GArray<any>
         
         /** Returns this object's methods and their signatures as an [Array] of dictionaries. Each [Dictionary] contains the following entries:  
          *  - `name` is the name of the method, as a [String];  
@@ -719,7 +221,7 @@ declare module "godot" {
          *      
          *  **Note:** The dictionaries of `args` and `return` are formatted identically to the results of [method get_property_list], although not all entries are used.  
          */
-        get_method_list(): GArray
+        get_method_list(): GArray<any>
         
         /** Returns `true` if the given [param property] has a custom default value. Use [method property_get_revert] to get the [param property]'s default value.  
          *      
@@ -790,12 +292,12 @@ declare module "godot" {
         has_meta(name: StringName): boolean
         
         /** Returns the object's metadata entry names as a [PackedStringArray]. */
-        get_meta_list(): GArray
+        get_meta_list(): GArray<any>
         
         /** Adds a user-defined [param signal]. Optional arguments for the signal can be added as an [Array] of dictionaries, each defining a `name` [String] and a `type` [int] (see [enum Variant.Type]). See also [method has_user_signal] and [method remove_user_signal].  
          *    
          */
-        add_user_signal(signal: string, arguments_: GArray = []): void
+        add_user_signal(signal: string, arguments_: GArray<any> = []): void
         
         /** Returns `true` if the given user-defined [param signal] name exists. Only signals added with [method add_user_signal] are included. See also [method remove_user_signal]. */
         has_user_signal(signal: StringName): boolean
@@ -843,7 +345,7 @@ declare module "godot" {
          *      
          *  **Note:** In C#, [param method] must be in snake_case when referring to built-in Godot methods. Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on each call.  
          */
-        callv(method: StringName, arg_array: GArray): any
+        callv(method: StringName, arg_array: GArray<any>): any
         
         /** Returns `true` if the given [param method] name exists in the object.  
          *      
@@ -867,21 +369,21 @@ declare module "godot" {
          *      
          *  **Note:** Due of the implementation, each [Dictionary] is formatted very similarly to the returned values of [method get_method_list].  
          */
-        get_signal_list(): GArray
+        get_signal_list(): GArray<any>
         
         /** Returns an [Array] of connections for the given [param signal] name. Each connection is represented as a [Dictionary] that contains three entries:  
          *  - [code skip-lint]signal` is a reference to the [Signal];  
          *  - `callable` is a reference to the connected [Callable];  
          *  - `flags` is a combination of [enum ConnectFlags].  
          */
-        get_signal_connection_list(signal: StringName): GArray
+        get_signal_connection_list(signal: StringName): GArray<any>
         
         /** Returns an [Array] of signal connections received by this object. Each connection is represented as a [Dictionary] that contains three entries:  
          *  - `signal` is a reference to the [Signal];  
          *  - `callable` is a reference to the [Callable];  
          *  - `flags` is a combination of [enum ConnectFlags].  
          */
-        get_incoming_connections(): GArray
+        get_incoming_connections(): GArray<any>
         
         /** Connects a [param signal] by name to a [param callable]. Optional [param flags] can be also added to configure the connection's behavior (see [enum ConnectFlags] constants).  
          *  A signal can only be connected once to the same [Callable]. If the signal is already connected, this method returns [constant ERR_INVALID_PARAMETER] and pushes an error message, unless the signal is connected with [constant CONNECT_REFERENCE_COUNTED]. To prevent this, use [method is_connected] first to check for existing connections.  
@@ -1042,13 +544,6 @@ declare module "godot" {
         /** A [Vector2] array with the index for polygon's vertices positions. */
         get polygon(): PackedVector2Array
         set polygon(value: PackedVector2Array | Vector2[])
-    }
-    /** A [MultiplayerPeer] which is always connected and acts as a server.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_offlinemultiplayerpeer.html  
-     */
-    class OfflineMultiplayerPeer extends MultiplayerPeer {
-        constructor(identifier?: any)
     }
     /** A sequence of Ogg packets.  
      *  	  
@@ -1266,9 +761,9 @@ declare module "godot" {
      */
     class PackedDataContainer extends Resource {
         constructor(identifier?: any)
-        _iter_init(_unnamed_arg0: GArray): any
+        _iter_init(_unnamed_arg0: GArray<any>): any
         _iter_get(_unnamed_arg0: any): any
-        _iter_next(_unnamed_arg0: GArray): any
+        _iter_next(_unnamed_arg0: GArray<any>): any
         
         /** Packs the given container into a binary representation. The [param value] must be either [Array] or [Dictionary], any other type will result in invalid data error.  
          *      
@@ -1289,9 +784,9 @@ declare module "godot" {
         constructor(identifier?: any)
         /** Returns the size of the packed container (see [method Array.size] and [method Dictionary.size]). */
         size(): int64
-        _iter_init(_unnamed_arg0: GArray): any
+        _iter_init(_unnamed_arg0: GArray<any>): any
         _iter_get(_unnamed_arg0: any): any
-        _iter_next(_unnamed_arg0: GArray): any
+        _iter_next(_unnamed_arg0: GArray<any>): any
     }
     namespace PackedScene {
         enum GenEditState {
@@ -2619,7 +2114,7 @@ declare module "godot" {
         /** Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the physics world.  
          *  Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.  
          */
-        physical_bones_start_simulation(bones: GArray = []): void
+        physical_bones_start_simulation(bones: GArray<any> = []): void
         
         /** Adds a collision exception to the physical bone.  
          *  Works just like the [RigidBody3D] node.  
@@ -2710,7 +2205,7 @@ declare module "godot" {
         get_gravity(): Vector2
         
         /** Returns an array of nodes that were added as collision exceptions for this body. */
-        get_collision_exceptions(): GArray
+        get_collision_exceptions(): GArray<any>
         
         /** Adds a body to the list of bodies that this body can't collide with. */
         add_collision_exception_with(body: Node): void
@@ -2752,7 +2247,7 @@ declare module "godot" {
         get_axis_lock(axis: PhysicsServer3D.BodyAxis): boolean
         
         /** Returns an array of nodes that were added as collision exceptions for this body. */
-        get_collision_exceptions(): GArray
+        get_collision_exceptions(): GArray<any>
         
         /** Adds a body to the list of bodies that this body can't collide with. */
         add_collision_exception_with(body: Node): void
@@ -3318,7 +2813,7 @@ declare module "godot" {
          *      
          *  **Note:** [ConcavePolygonShape2D]s and [CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.  
          */
-        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: int64 = 32): GArray
+        intersect_point(parameters: PhysicsPointQueryParameters2D, max_results: int64 = 32): GArray<any>
         
         /** Intersects a ray in a given space. Ray position and other parameters are defined through [PhysicsRayQueryParameters2D]. The returned object is a dictionary with the following fields:  
          *  `collider`: The colliding object.  
@@ -3338,7 +2833,7 @@ declare module "godot" {
          *  `shape`: The shape index of the colliding shape.  
          *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
          */
-        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): GArray
+        intersect_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): GArray<any>
         
         /** Checks how far a [Shape2D] can move without colliding. All the parameters for the query, including the shape and the motion, are supplied through a [PhysicsShapeQueryParameters2D] object.  
          *  Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.  
@@ -3350,7 +2845,7 @@ declare module "godot" {
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. The resulting array contains a list of points where the shape intersects another. Like with [method intersect_shape], the number of returned results can be limited to save processing time.  
          *  Returned points are a list of pairs of contact points. For each pair the first one is in the shape passed in [PhysicsShapeQueryParameters2D] object, second one is in the collided shape from the physics space.  
          */
-        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): GArray
+        collide_shape(parameters: PhysicsShapeQueryParameters2D, max_results: int64 = 32): GArray<any>
         
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object, against the space. If it collides with more than one shape, the nearest one is selected. If the shape did not intersect anything, then an empty dictionary is returned instead.  
          *      
@@ -3391,7 +2886,7 @@ declare module "godot" {
          *  `shape`: The shape index of the colliding shape.  
          *  The number of intersections can be limited with the [param max_results] parameter, to reduce the processing time.  
          */
-        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: int64 = 32): GArray
+        intersect_point(parameters: PhysicsPointQueryParameters3D, max_results: int64 = 32): GArray<any>
         
         /** Intersects a ray in a given space. Ray position and other parameters are defined through [PhysicsRayQueryParameters3D]. The returned object is a dictionary with the following fields:  
          *  `collider`: The colliding object.  
@@ -3416,7 +2911,7 @@ declare module "godot" {
          *      
          *  **Note:** This method does not take into account the `motion` property of the object.  
          */
-        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): GArray
+        intersect_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): GArray<any>
         
         /** Checks how far a [Shape3D] can move without colliding. All the parameters for the query, including the shape, are supplied through a [PhysicsShapeQueryParameters3D] object.  
          *  Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.  
@@ -3430,7 +2925,7 @@ declare module "godot" {
          *      
          *  **Note:** This method does not take into account the `motion` property of the object.  
          */
-        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): GArray
+        collide_shape(parameters: PhysicsShapeQueryParameters3D, max_results: int64 = 32): GArray<any>
         
         /** Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters3D] object, against the space. If it collides with more than one shape, the nearest one is selected. The returned object is a dictionary containing the following fields:  
          *  `collider_id`: The colliding object's ID.  
@@ -3558,7 +3053,7 @@ declare module "godot" {
         /** Returns a new, pre-configured [PhysicsRayQueryParameters2D] object. Use it to quickly create query parameters using the most common options.  
          *    
          */
-        static create(from: Vector2, to: Vector2, collision_mask: int64 = -1, exclude: GArray = []): PhysicsRayQueryParameters2D
+        static create(from: Vector2, to: Vector2, collision_mask: int64 = 4294967295, exclude: GArray<any> = []): PhysicsRayQueryParameters2D
         
         /** The starting point of the ray being queried for, in global coordinates. */
         get from(): Vector2
@@ -3600,7 +3095,7 @@ declare module "godot" {
         /** Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create query parameters using the most common options.  
          *    
          */
-        static create(from: Vector3, to: Vector3, collision_mask: int64 = -1, exclude: GArray = []): PhysicsRayQueryParameters3D
+        static create(from: Vector3, to: Vector3, collision_mask: int64 = 4294967295, exclude: GArray<any> = []): PhysicsRayQueryParameters3D
         
         /** The starting point of the ray being queried for, in global coordinates. */
         get from(): Vector3
@@ -3957,7 +3452,7 @@ declare module "godot" {
         /** Returns the [RID]s of all bodies added as collision exceptions for the given [param body]. See also [method _body_add_collision_exception] and [method _body_remove_collision_exception].  
          *  Overridable version of [PhysicsServer2D]'s internal `body_get_collision_exceptions` method. Corresponds to [method PhysicsBody2D.get_collision_exceptions].  
          */
-        /* gdvirtual */ _body_get_collision_exceptions(body: RID): GArray
+        /* gdvirtual */ _body_get_collision_exceptions(body: RID): GArray<any>
         
         /** Overridable version of [method PhysicsServer2D.body_set_max_contacts_reported]. */
         /* gdvirtual */ _body_set_max_contacts_reported(body: RID, amount: int64): void
@@ -4212,7 +3707,7 @@ declare module "godot" {
         /* gdvirtual */ _body_is_axis_locked(body: RID, axis: PhysicsServer3D.BodyAxis): boolean
         /* gdvirtual */ _body_add_collision_exception(body: RID, excepted_body: RID): void
         /* gdvirtual */ _body_remove_collision_exception(body: RID, excepted_body: RID): void
-        /* gdvirtual */ _body_get_collision_exceptions(body: RID): GArray
+        /* gdvirtual */ _body_get_collision_exceptions(body: RID): GArray<any>
         /* gdvirtual */ _body_set_max_contacts_reported(body: RID, amount: int64): void
         /* gdvirtual */ _body_get_max_contacts_reported(body: RID): int64
         /* gdvirtual */ _body_set_contacts_reported_depth_threshold(body: RID, threshold: float64): void
@@ -4235,7 +3730,7 @@ declare module "godot" {
         /* gdvirtual */ _soft_body_get_collision_mask(body: RID): int64
         /* gdvirtual */ _soft_body_add_collision_exception(body: RID, body_b: RID): void
         /* gdvirtual */ _soft_body_remove_collision_exception(body: RID, body_b: RID): void
-        /* gdvirtual */ _soft_body_get_collision_exceptions(body: RID): GArray
+        /* gdvirtual */ _soft_body_get_collision_exceptions(body: RID): GArray<any>
         /* gdvirtual */ _soft_body_set_state(body: RID, state: PhysicsServer3D.BodyState, variant: any): void
         /* gdvirtual */ _soft_body_get_state(body: RID, state: PhysicsServer3D.BodyState): void
         /* gdvirtual */ _soft_body_set_transform(body: RID, transform: Transform3D): void
@@ -5352,12 +4847,12 @@ declare module "godot" {
     class PrimitiveMesh extends Mesh {
         constructor(identifier?: any)
         /** Override this method to customize how this primitive mesh should be generated. Should return an [Array] where each element is another Array of values required for the mesh (see the [enum Mesh.ArrayType] constants). */
-        /* gdvirtual */ _create_mesh_array(): GArray
+        /* gdvirtual */ _create_mesh_array(): GArray<any>
         
         /** Returns mesh arrays used to constitute surface of [Mesh]. The result can be passed to [method ArrayMesh.add_surface_from_arrays] to create a new surface. For example:  
          *    
          */
-        get_mesh_arrays(): GArray
+        get_mesh_arrays(): GArray<any>
         
         /** Request an update of this primitive mesh based on its properties. */
         request_update(): void
@@ -5519,7 +5014,7 @@ declare module "godot" {
     }
     class ProjectExportDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        get_current_preset(): any /*EditorExportPreset*/
+        get_current_preset(): EditorExportPreset
         get export_path(): string
         set export_path(value: string)
     }
@@ -5978,7 +5473,7 @@ declare module "godot" {
         get_spirv(version: StringName = ''): RDShaderSPIRV
         
         /** Returns the list of compiled versions for this shader. */
-        get_version_list(): GArray
+        get_version_list(): GArray<any>
         get _versions(): GDictionary
         set _versions(value: GDictionary)
         
@@ -6680,7 +6175,7 @@ declare module "godot" {
         /** Searches the text for the compiled pattern. Returns an array of [RegExMatch] containers for each non-overlapping result. If no results were found, an empty array is returned instead.  
          *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
          */
-        search_all(subject: string, offset: int64 = 0, end: int64 = -1): GArray
+        search_all(subject: string, offset: int64 = 0, end: int64 = -1): GArray<any>
         
         /** Searches the text for the compiled pattern and replaces it with the specified string. Escapes and backreferences such as `$1` and `$name` are expanded and resolved. By default, only the first instance is replaced, but it can be changed for all instances (global replacement).  
          *  The region to search within can be specified with [param offset] and [param end]. This is useful when searching for another match in the same [param subject] by calling this method again after a previous success. Note that setting these parameters differs from passing over a shortened string. For example, the start anchor `^` is not affected by [param offset], and the character before [param offset] will be checked for the word boundary `\b`.  
@@ -8507,7 +8002,7 @@ declare module "godot" {
          *      
          *  **Note:** Not to be confused with [method RenderingServer.texture_2d_create], which creates the Godot-specific [Texture2D] resource as opposed to the graphics API's own texture type.  
          */
-        texture_create(format: RDTextureFormat, view: RDTextureView, data: GArray = []): RID
+        texture_create(format: RDTextureFormat, view: RDTextureView, data: GArray<any> = []): RID
         
         /** Creates a shared texture using the specified [param view] and the texture information from [param with_texture]. */
         texture_create_shared(view: RDTextureView, with_texture: RID): RID
@@ -8593,10 +8088,10 @@ declare module "godot" {
         /** Creates a new framebuffer format with the specified [param attachments] and [param view_count]. Returns the new framebuffer's unique framebuffer format ID.  
          *  If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension.  
          */
-        framebuffer_format_create(attachments: GArray, view_count: int64 = 1): int64
+        framebuffer_format_create(attachments: GArray<any>, view_count: int64 = 1): int64
         
         /** Creates a multipass framebuffer format with the specified [param attachments], [param passes] and [param view_count] and returns its ID. If [param view_count] is greater than or equal to `2`, enables multiview which is used for VR rendering. This requires support for the Vulkan multiview extension. */
-        framebuffer_format_create_multipass(attachments: GArray, passes: GArray, view_count: int64 = 1): int64
+        framebuffer_format_create_multipass(attachments: GArray<any>, passes: GArray<any>, view_count: int64 = 1): int64
         
         /** Creates a new empty framebuffer format with the specified number of [param samples] and returns its ID. */
         framebuffer_format_create_empty(samples: RenderingDevice.TextureSamples = 0): int64
@@ -8607,12 +8102,12 @@ declare module "godot" {
         /** Creates a new framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        framebuffer_create(textures: GArray, validate_with_format: int64 = -1, view_count: int64 = 1): RID
+        framebuffer_create(textures: GArray<any>, validate_with_format: int64 = -1, view_count: int64 = 1): RID
         
         /** Creates a new multipass framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        framebuffer_create_multipass(textures: GArray, passes: GArray, validate_with_format: int64 = -1, view_count: int64 = 1): RID
+        framebuffer_create_multipass(textures: GArray<any>, passes: GArray<any>, validate_with_format: int64 = -1, view_count: int64 = 1): RID
         
         /** Creates a new empty framebuffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
@@ -8639,10 +8134,10 @@ declare module "godot" {
         vertex_buffer_create(size_bytes: int64, data: PackedByteArray | byte[] | ArrayBuffer = [], use_as_storage: boolean = false): RID
         
         /** Creates a new vertex format with the specified [param vertex_descriptions]. Returns a unique vertex format ID corresponding to the newly created vertex format. */
-        vertex_format_create(vertex_descriptions: GArray): int64
+        vertex_format_create(vertex_descriptions: GArray<any>): int64
         
         /** Creates a vertex array based on the specified buffers. Optionally, [param offsets] (in bytes) may be defined for each buffer. */
-        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: GArray, offsets: PackedInt64Array | int64[] = []): RID
+        vertex_array_create(vertex_count: int64, vertex_format: int64, src_buffers: GArray<any>, offsets: PackedInt64Array | int64[] = []): RID
         
         /** Creates a new index buffer. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
@@ -8698,7 +8193,7 @@ declare module "godot" {
         /** Creates a new uniform set. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        uniform_set_create(uniforms: GArray, shader: RID, shader_set: int64): RID
+        uniform_set_create(uniforms: GArray<any>, shader: RID, shader_set: int64): RID
         
         /** Checks if the [param uniform_set] is valid, i.e. is owned. */
         uniform_set_is_valid(uniform_set: RID): boolean
@@ -8734,7 +8229,7 @@ declare module "godot" {
         /** Creates a new render pipeline. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        render_pipeline_create(shader: RID, framebuffer_format: int64, vertex_format: int64, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: int64 = 0, specialization_constants: GArray = []): RID
+        render_pipeline_create(shader: RID, framebuffer_format: int64, vertex_format: int64, primitive: RenderingDevice.RenderPrimitive, rasterization_state: RDPipelineRasterizationState, multisample_state: RDPipelineMultisampleState, stencil_state: RDPipelineDepthStencilState, color_blend_state: RDPipelineColorBlendState, dynamic_state_flags: RenderingDevice.PipelineDynamicStateFlags = 0, for_render_pass: int64 = 0, specialization_constants: GArray<any> = []): RID
         
         /** Returns `true` if the render pipeline specified by the [param render_pipeline] RID is valid, `false` otherwise. */
         render_pipeline_is_valid(render_pipeline: RID): boolean
@@ -8742,7 +8237,7 @@ declare module "godot" {
         /** Creates a new compute pipeline. It can be accessed with the RID that is returned.  
          *  Once finished with your RID, you will want to free the RID using the RenderingDevice's [method free_rid] method.  
          */
-        compute_pipeline_create(shader: RID, specialization_constants: GArray = []): RID
+        compute_pipeline_create(shader: RID, specialization_constants: GArray<any> = []): RID
         
         /** Returns `true` if the compute pipeline specified by the [param compute_pipeline] RID is valid, `false` otherwise. */
         compute_pipeline_is_valid(compute_pipeline: RID): boolean
@@ -8922,11 +8417,6 @@ declare module "godot" {
         constructor(identifier?: any)
         _cancel(): void
         readonly reparent: Signal2<NodePath | string, boolean>
-    }
-    class ReplicationEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        _update_config(): void
-        _update_value(property: NodePath | string, column: int64, value: int64): void
     }
     /** Base class for serializable objects.  
      *  	  
@@ -9207,5 +8697,580 @@ declare module "godot" {
      */
     class ResourceImporterScene extends ResourceImporter {
         constructor(identifier?: any)
+    }
+    /** Imports native GLSL shaders (not Godot shaders) as a [RDShaderFile].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceimportershaderfile.html  
+     */
+    class ResourceImporterShaderFile extends ResourceImporter {
+        constructor(identifier?: any)
+    }
+    /** Imports an image for use in 2D or 3D rendering.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceimportertexture.html  
+     */
+    class ResourceImporterTexture extends ResourceImporter {
+        constructor(identifier?: any)
+    }
+    /** Imports a collection of textures from a PNG image into an optimized [AtlasTexture] for 2D rendering.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceimportertextureatlas.html  
+     */
+    class ResourceImporterTextureAtlas extends ResourceImporter {
+        constructor(identifier?: any)
+    }
+    /** Imports a WAV audio file for playback.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceimporterwav.html  
+     */
+    class ResourceImporterWAV extends ResourceImporter {
+        constructor(identifier?: any)
+    }
+    /** A node used to preload sub-resources inside a scene.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourcepreloader.html  
+     */
+    class ResourcePreloader extends Node {
+        constructor(identifier?: any)
+        /** Adds a resource to the preloader with the given [param name]. If a resource with the given [param name] already exists, the new resource will be renamed to "[param name] N" where N is an incrementing number starting from 2. */
+        add_resource(name: StringName, resource: Resource): void
+        
+        /** Removes the resource associated to [param name] from the preloader. */
+        remove_resource(name: StringName): void
+        
+        /** Renames a resource inside the preloader from [param name] to [param newname]. */
+        rename_resource(name: StringName, newname: StringName): void
+        
+        /** Returns `true` if the preloader contains a resource associated to [param name]. */
+        has_resource(name: StringName): boolean
+        
+        /** Returns the resource associated to [param name]. */
+        get_resource(name: StringName): Resource
+        
+        /** Returns the list of resources inside the preloader. */
+        get_resource_list(): PackedStringArray
+        get resources(): GArray
+        set resources(value: GArray)
+    }
+    class ResourcePreloaderEditor extends PanelContainer {
+        constructor(identifier?: any)
+        _update_library(): void
+        _remove_resource(to_remove: string): void
+    }
+    class ResourcePreloaderEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    namespace RibbonTrailMesh {
+        enum Shape {
+            /** Gives the mesh a single flat face. */
+            SHAPE_FLAT = 0,
+            
+            /** Gives the mesh two perpendicular flat faces, making a cross shape. */
+            SHAPE_CROSS = 1,
+        }
+    }
+    /** Represents a straight ribbon-shaped [PrimitiveMesh] with variable width.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_ribbontrailmesh.html  
+     */
+    class RibbonTrailMesh extends PrimitiveMesh {
+        constructor(identifier?: any)
+        /** Determines the shape of the ribbon. */
+        get shape(): int64
+        set shape(value: int64)
+        
+        /** The baseline size of the ribbon. The size of a particular section segment is obtained by multiplying this size by the value of the [member curve] at the given distance. */
+        get size(): float64
+        set size(value: float64)
+        
+        /** The total number of sections on the ribbon. */
+        get sections(): int64
+        set sections(value: int64)
+        
+        /** The length of a section of the ribbon. */
+        get section_length(): float64
+        set section_length(value: float64)
+        
+        /** The number of segments in a section. The [member curve] is sampled on each segment to determine its size. Higher values result in a more detailed ribbon at the cost of performance. */
+        get section_segments(): int64
+        set section_segments(value: int64)
+        
+        /** Determines the size of the ribbon along its length. The size of a particular section segment is obtained by multiplying the baseline [member size] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. */
+        get curve(): Curve
+        set curve(value: Curve)
+    }
+    /** A custom effect for a [RichTextLabel].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_richtexteffect.html  
+     */
+    class RichTextEffect extends Resource {
+        constructor(identifier?: any)
+        /** Override this method to modify properties in [param char_fx]. The method must return `true` if the character could be transformed successfully. If the method returns `false`, it will skip transformation to avoid displaying broken text. */
+        /* gdvirtual */ _process_custom_fx(char_fx: CharFXTransform): boolean
+    }
+    namespace RichTextLabel {
+        enum ListType {
+            /** Each list item has a number marker. */
+            LIST_NUMBERS = 0,
+            
+            /** Each list item has a letter marker. */
+            LIST_LETTERS = 1,
+            
+            /** Each list item has a roman number marker. */
+            LIST_ROMAN = 2,
+            
+            /** Each list item has a filled circle marker. */
+            LIST_DOTS = 3,
+        }
+        enum MenuItems {
+            /** Copies the selected text. */
+            MENU_COPY = 0,
+            
+            /** Selects the whole [RichTextLabel] text. */
+            MENU_SELECT_ALL = 1,
+            
+            /** Represents the size of the [enum MenuItems] enum. */
+            MENU_MAX = 2,
+        }
+        enum MetaUnderline {
+            /** Meta tag does not display an underline, even if [member meta_underlined] is `true`. */
+            META_UNDERLINE_NEVER = 0,
+            
+            /** If [member meta_underlined] is `true`, meta tag always display an underline. */
+            META_UNDERLINE_ALWAYS = 1,
+            
+            /** If [member meta_underlined] is `true`, meta tag display an underline when the mouse cursor is over it. */
+            META_UNDERLINE_ON_HOVER = 2,
+        }
+        enum ImageUpdateMask {
+            /** If this bit is set, [method update_image] changes image texture. */
+            UPDATE_TEXTURE = 1,
+            
+            /** If this bit is set, [method update_image] changes image size. */
+            UPDATE_SIZE = 2,
+            
+            /** If this bit is set, [method update_image] changes image color. */
+            UPDATE_COLOR = 4,
+            
+            /** If this bit is set, [method update_image] changes image inline alignment. */
+            UPDATE_ALIGNMENT = 8,
+            
+            /** If this bit is set, [method update_image] changes image texture region. */
+            UPDATE_REGION = 16,
+            
+            /** If this bit is set, [method update_image] changes image padding. */
+            UPDATE_PAD = 32,
+            
+            /** If this bit is set, [method update_image] changes image tooltip. */
+            UPDATE_TOOLTIP = 64,
+            
+            /** If this bit is set, [method update_image] changes image width from/to percents. */
+            UPDATE_WIDTH_IN_PERCENT = 128,
+        }
+    }
+    /** A control for displaying text that can contain different font styles, images, and basic formatting.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_richtextlabel.html  
+     */
+    class RichTextLabel extends Control {
+        constructor(identifier?: any)
+        /** Returns the text without BBCode mark-up. */
+        get_parsed_text(): string
+        
+        /** Adds raw non-BBCode-parsed text to the tag stack. */
+        add_text(text: string): void
+        
+        /** Adds an image's opening and closing tags to the tag stack, optionally providing a [param width] and [param height] to resize the image, a [param color] to tint the image and a [param region] to only use parts of the image.  
+         *  If [param width] or [param height] is set to 0, the image size will be adjusted in order to keep the original aspect ratio.  
+         *  If [param width] and [param height] are not set, but [param region] is, the region's rect will be used.  
+         *  [param key] is an optional identifier, that can be used to modify the image via [method update_image].  
+         *  If [param pad] is set, and the image is smaller than the size specified by [param width] and [param height], the image padding is added to match the size instead of upscaling.  
+         *  If [param size_in_percent] is set, [param width] and [param height] values are percentages of the control width instead of pixels.  
+         */
+        add_image(image: Texture2D, width: int64 = 0, height: int64 = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = new Rect2(0, 0, 0, 0), key: any = <any> {}, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        
+        /** Updates the existing images with the key [param key]. Only properties specified by [param mask] bits are updated. See [method add_image]. */
+        update_image(key: any, mask: RichTextLabel.ImageUpdateMask, image: Texture2D, width: int64 = 0, height: int64 = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = new Rect2(0, 0, 0, 0), pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        
+        /** Adds a newline tag to the tag stack. */
+        newline(): void
+        
+        /** Removes a paragraph of content from the label. Returns `true` if the paragraph exists.  
+         *  The [param paragraph] argument is the index of the paragraph to remove, it can take values in the interval `[0, get_paragraph_count() - 1]`.  
+         *  If [param no_invalidate] is set to `true`, cache for the subsequent paragraphs is not invalidated. Use it for faster updates if deleted paragraph is fully self-contained (have no unclosed tags), or this call is part of the complex edit operation and [method invalidate_paragraph] will be called at the end of operation.  
+         */
+        remove_paragraph(paragraph: int64, no_invalidate: boolean = false): boolean
+        
+        /** Invalidates [param paragraph] and all subsequent paragraphs cache. */
+        invalidate_paragraph(paragraph: int64): boolean
+        
+        /** Adds a [code skip-lint][font]` tag to the tag stack. Overrides default fonts for its duration.  
+         *  Passing `0` to [param font_size] will use the existing default font size.  
+         */
+        push_font(font: Font, font_size: int64 = 0): void
+        
+        /** Adds a [code skip-lint][font_size]` tag to the tag stack. Overrides default font size for its duration. */
+        push_font_size(font_size: int64): void
+        
+        /** Adds a [code skip-lint][font]` tag with a normal font to the tag stack. */
+        push_normal(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a bold font to the tag stack. This is the same as adding a [code skip-lint]**` tag if not currently in a [code skip-lint] *` tag. */
+        push_bold(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a bold italics font to the tag stack. */
+        push_bold_italics(): void
+        
+        /** Adds a [code skip-lint][font]` tag with an italics font to the tag stack. This is the same as adding an [code skip-lint] *` tag if not currently in a [code skip-lint]**` tag. */
+        push_italics(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a monospace font to the tag stack. */
+        push_mono(): void
+        
+        /** Adds a [code skip-lint][color]` tag to the tag stack. */
+        push_color(color: Color): void
+        
+        /** Adds a [code skip-lint][outline_size]` tag to the tag stack. Overrides default text outline size for its duration. */
+        push_outline_size(outline_size: int64): void
+        
+        /** Adds a [code skip-lint][outline_color]` tag to the tag stack. Adds text outline for its duration. */
+        push_outline_color(color: Color): void
+        
+        /** Adds a [code skip-lint][p]` tag to the tag stack. */
+        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array | float32[] = []): void
+        
+        /** Adds an [code skip-lint][indent]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
+        push_indent(level: int64): void
+        
+        /** Adds [code skip-lint][ol]` or [code skip-lint][ul]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
+        push_list(level: int64, type: RichTextLabel.ListType, capitalize: boolean, bullet: string = '•'): void
+        
+        /** Adds a meta tag to the tag stack. Similar to the BBCode [code skip-lint][url=something]{text}[/url]`, but supports non-[String] metadata types.  
+         *  If [member meta_underlined] is `true`, meta tags display an underline. This behavior can be customized with [param underline_mode].  
+         *      
+         *  **Note:** Meta tags do nothing by default when clicked. To assign behavior when clicked, connect [signal meta_clicked] to a function that is called when the meta tag is clicked.  
+         */
+        push_meta(data: any, underline_mode: RichTextLabel.MetaUnderline = 1): void
+        
+        /** Adds a [code skip-lint][hint]` tag to the tag stack. Same as BBCode [code skip-lint][hint=something]{text}[/hint]`. */
+        push_hint(description: string): void
+        
+        /** Adds language code used for text shaping algorithm and Open-Type font features. */
+        push_language(language: string): void
+        
+        /** Adds a [code skip-lint][u]` tag to the tag stack. */
+        push_underline(): void
+        
+        /** Adds a [code skip-lint][s]` tag to the tag stack. */
+        push_strikethrough(): void
+        
+        /** Adds a [code skip-lint][table=columns,inline_align]` tag to the tag stack. Use [method set_table_column_expand] to set column expansion ratio. Use [method push_cell] to add cells. */
+        push_table(columns: int64, inline_align: InlineAlignment = 0, align_to_row: int64 = -1): void
+        
+        /** Adds a [code skip-lint][dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text. */
+        push_dropcap(string_: string, font: Font, size: int64, dropcap_margins: Rect2 = new Rect2(0, 0, 0, 0), color: Color = new Color(1, 1, 1, 1), outline_size: int64 = 0, outline_color: Color = new Color(0, 0, 0, 0)): void
+        
+        /** Edits the selected column's expansion options. If [param expand] is `true`, the column expands in proportion to its expansion ratio versus the other columns' ratios.  
+         *  For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively.  
+         *  If [param expand] is `false`, the column will not contribute to the total ratio.  
+         */
+        set_table_column_expand(column: int64, expand: boolean, ratio: int64 = 1): void
+        
+        /** Sets color of a table cell. Separate colors for alternating rows can be specified. */
+        set_cell_row_background_color(odd_row_bg: Color, even_row_bg: Color): void
+        
+        /** Sets color of a table cell border. */
+        set_cell_border_color(color: Color): void
+        
+        /** Sets minimum and maximum size overrides for a table cell. */
+        set_cell_size_override(min_size: Vector2, max_size: Vector2): void
+        
+        /** Sets inner padding of a table cell. */
+        set_cell_padding(padding: Rect2): void
+        
+        /** Adds a [code skip-lint][cell]` tag to the tag stack. Must be inside a [code skip-lint][table]` tag. See [method push_table] for details. Use [method set_table_column_expand] to set column expansion ratio, [method set_cell_border_color] to set cell border, [method set_cell_row_background_color] to set cell background, [method set_cell_size_override] to override cell size, and [method set_cell_padding] to set padding. */
+        push_cell(): void
+        
+        /** Adds a [code skip-lint][fgcolor]` tag to the tag stack. */
+        push_fgcolor(fgcolor: Color): void
+        
+        /** Adds a [code skip-lint][bgcolor]` tag to the tag stack. */
+        push_bgcolor(bgcolor: Color): void
+        
+        /** Adds a custom effect tag to the tag stack. The effect does not need to be in [member custom_effects]. The environment is directly passed to the effect. */
+        push_customfx(effect: RichTextEffect, env: GDictionary): void
+        
+        /** Adds a context marker to the tag stack. See [method pop_context]. */
+        push_context(): void
+        
+        /** Terminates tags opened after the last [method push_context] call (including context marker), or all tags if there's no context marker on the stack. */
+        pop_context(): void
+        
+        /** Terminates the current tag. Use after `push_*` methods to close BBCodes manually. Does not need to follow `add_*` methods. */
+        pop(): void
+        
+        /** Terminates all tags opened by `push_*` methods. */
+        pop_all(): void
+        
+        /** Clears the tag stack, causing the label to display nothing.  
+         *      
+         *  **Note:** This method does not affect [member text], and its contents will show again if the label is redrawn. However, setting [member text] to an empty [String] also clears the stack.  
+         */
+        clear(): void
+        
+        /** Returns the vertical scrollbar.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
+         */
+        get_v_scroll_bar(): VScrollBar
+        
+        /** Scrolls the window's top line to match [param line]. */
+        scroll_to_line(line: int64): void
+        
+        /** Scrolls the window's top line to match first line of the [param paragraph]. */
+        scroll_to_paragraph(paragraph: int64): void
+        
+        /** Scrolls to the beginning of the current selection. */
+        scroll_to_selection(): void
+        
+        /** Returns the current selection first character index if a selection is active, `-1` otherwise. Does not include BBCodes. */
+        get_selection_from(): int64
+        
+        /** Returns the current selection last character index if a selection is active, `-1` otherwise. Does not include BBCodes. */
+        get_selection_to(): int64
+        
+        /** Select all the text.  
+         *  If [member selection_enabled] is `false`, no selection will occur.  
+         */
+        select_all(): void
+        
+        /** Returns the current selection text. Does not include BBCodes. */
+        get_selected_text(): string
+        
+        /** Clears the current selection. */
+        deselect(): void
+        
+        /** The assignment version of [method append_text]. Clears the tag stack and inserts the new content. */
+        parse_bbcode(bbcode: string): void
+        
+        /** Parses [param bbcode] and adds tags to the tag stack as needed.  
+         *      
+         *  **Note:** Using this method, you can't close a tag that was opened in a previous [method append_text] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [member text] instead of using [method append_text].  
+         */
+        append_text(bbcode: string): void
+        
+        /** If [member threaded] is enabled, returns `true` if the background thread has finished text processing, otherwise always return `true`. */
+        is_ready(): boolean
+        
+        /** Returns the line number of the character position provided. Line and character numbers are both zero-indexed.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_character_line(character: int64): int64
+        
+        /** Returns the paragraph number of the character position provided. Paragraph and character numbers are both zero-indexed.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_character_paragraph(character: int64): int64
+        
+        /** Returns the total number of characters from text tags. Does not include BBCodes. */
+        get_total_character_count(): int64
+        
+        /** Returns the total number of lines in the text. Wrapped text is counted as multiple lines.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_line_count(): int64
+        
+        /** Returns the number of visible lines.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_visible_line_count(): int64
+        
+        /** Returns the total number of paragraphs (newlines or `p` tags in the tag stack's text tags). Considers wrapped text as one paragraph. */
+        get_paragraph_count(): int64
+        
+        /** Returns the number of visible paragraphs. A paragraph is considered visible if at least one of its lines is visible.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_visible_paragraph_count(): int64
+        
+        /** Returns the height of the content.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_content_height(): int64
+        
+        /** Returns the width of the content.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_content_width(): int64
+        
+        /** Returns the vertical offset of the line found at the provided index.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_line_offset(line: int64): float64
+        
+        /** Returns the vertical offset of the paragraph found at the provided index.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_paragraph_offset(paragraph: int64): float64
+        
+        /** Parses BBCode parameter [param expressions] into a dictionary. */
+        parse_expressions_for_values(expressions: PackedStringArray | string[]): GDictionary
+        
+        /** Installs a custom effect. This can also be done in the RichTextLabel inspector using the [member custom_effects] property. [param effect] should be a valid [RichTextEffect].  
+         *  Example RichTextEffect:  
+         *    
+         *  Registering the above effect in RichTextLabel from script:  
+         *    
+         */
+        install_effect(effect: any): void
+        
+        /** Returns the [PopupMenu] of this [RichTextLabel]. By default, this menu is displayed when right-clicking on the [RichTextLabel].  
+         *  You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:  
+         *    
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.  
+         */
+        get_menu(): PopupMenu
+        
+        /** Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided). */
+        is_menu_visible(): boolean
+        
+        /** Executes a given action as defined in the [enum MenuItems] enum. */
+        menu_option(option: int64): void
+        
+        /** If `true`, the label uses BBCode formatting.  
+         *      
+         *  **Note:** This only affects the contents of [member text], not the tag stack.  
+         */
+        get bbcode_enabled(): boolean
+        set bbcode_enabled(value: boolean)
+        
+        /** The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.  
+         *      
+         *  **Note:** If [member bbcode_enabled] is `true`, it is unadvised to use the `+=` operator with [member text] (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [method append_text] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.  
+         */
+        get text(): string
+        set text(value: string)
+        
+        /** If `true`, the label's minimum size will be automatically updated to fit its content, matching the behavior of [Label]. */
+        get fit_content(): boolean
+        set fit_content(value: boolean)
+        
+        /** If `true`, the scrollbar is visible. Setting this to `false` does not block scrolling completely. See [method scroll_to_line]. */
+        get scroll_active(): boolean
+        set scroll_active(value: boolean)
+        
+        /** If `true`, the window scrolls down to display new content automatically. */
+        get scroll_following(): boolean
+        set scroll_following(value: boolean)
+        
+        /** If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode]. */
+        get autowrap_mode(): int64
+        set autowrap_mode(value: int64)
+        
+        /** The number of spaces associated with a single tab length. Does not affect `\t` in text tags, only indent tags. */
+        get tab_size(): int64
+        set tab_size(value: int64)
+        
+        /** If `true`, a right-click displays the context menu. */
+        get context_menu_enabled(): boolean
+        set context_menu_enabled(value: boolean)
+        
+        /** If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled. */
+        get shortcut_keys_enabled(): boolean
+        set shortcut_keys_enabled(value: boolean)
+        
+        /** The currently installed custom effects. This is an array of [RichTextEffect]s.  
+         *  To add a custom effect, it's more convenient to use [method install_effect].  
+         */
+        get custom_effects(): GArray
+        set custom_effects(value: GArray)
+        
+        /** If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`. These tags can call a function when clicked if [signal meta_clicked] is connected to a function. */
+        get meta_underlined(): boolean
+        set meta_underlined(value: boolean)
+        
+        /** If `true`, the label underlines hint tags such as [code skip-lint][hint=description]{text}[/hint]`. */
+        get hint_underlined(): boolean
+        set hint_underlined(value: boolean)
+        
+        /** If `true`, text processing is done in a background thread. */
+        get threaded(): boolean
+        set threaded(value: boolean)
+        
+        /** The delay after which the loading progress bar is displayed, in milliseconds. Set to `-1` to disable progress bar entirely.  
+         *      
+         *  **Note:** Progress bar is displayed only if [member threaded] is enabled.  
+         */
+        get progress_bar_delay(): int64
+        set progress_bar_delay(value: int64)
+        
+        /** If `true`, the label allows text selection. */
+        get selection_enabled(): boolean
+        set selection_enabled(value: boolean)
+        
+        /** If `true`, the selected text will be deselected when focus is lost. */
+        get deselect_on_focus_loss_enabled(): boolean
+        set deselect_on_focus_loss_enabled(value: boolean)
+        
+        /** If `true`, allow drag and drop of selected text. */
+        get drag_and_drop_selection_enabled(): boolean
+        set drag_and_drop_selection_enabled(value: boolean)
+        
+        /** The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.  
+         *      
+         *  **Note:** Setting this property updates [member visible_ratio] accordingly.  
+         */
+        get visible_characters(): int64
+        set visible_characters(value: int64)
+        
+        /** Sets the clipping behavior when [member visible_characters] or [member visible_ratio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info. */
+        get visible_characters_behavior(): int64
+        set visible_characters_behavior(value: int64)
+        
+        /** The fraction of characters to display, relative to the total number of characters (see [method get_total_character_count]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.  
+         *      
+         *  **Note:** Setting this property updates [member visible_characters] accordingly.  
+         */
+        get visible_ratio(): float64
+        set visible_ratio(value: float64)
+        
+        /** Base text writing direction. */
+        get text_direction(): int64
+        set text_direction(value: int64)
+        
+        /** Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+        get language(): string
+        set language(value: string)
+        
+        /** Set BiDi algorithm override for the structured text. */
+        get structured_text_bidi_override(): int64
+        set structured_text_bidi_override(value: int64)
+        
+        /** Set additional options for BiDi override. */
+        get structured_text_bidi_override_options(): GArray
+        set structured_text_bidi_override_options(value: GArray)
+        
+        /** Triggered when the user clicks on content between meta (URL) tags. If the meta is defined in BBCode, e.g. [code skip-lint][url={"key": "value"}]Text[/url]`, then the parameter for this signal will always be a [String] type. If a particular type or an object is desired, the [method push_meta] method must be used to manually insert the data into the tag stack. Alternatively, you can convert the [String] input to the desired type based on its contents (such as calling [method JSON.parse] on it).  
+         *  For example, the following method can be connected to [signal meta_clicked] to open clicked URLs using the user's default web browser:  
+         *    
+         */
+        readonly meta_clicked: Signal1<any>
+        
+        /** Triggers when the mouse enters a meta tag. */
+        readonly meta_hover_started: Signal1<any>
+        
+        /** Triggers when the mouse exits a meta tag. */
+        readonly meta_hover_ended: Signal1<any>
+        
+        /** Triggered when the document is fully loaded. */
+        readonly finished: Signal0
     }
 }

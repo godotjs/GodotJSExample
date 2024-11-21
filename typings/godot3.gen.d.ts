@@ -1,497 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    class GPUParticles3DEditor extends GPUParticles3DEditorBase {
-        constructor(identifier?: any)
-    }
-    class GPUParticles3DEditorBase extends Control {
-        constructor(identifier?: any)
-    }
-    class GPUParticles3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class GPUParticles3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** Abstract base class for 3D particle attractors.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractor3d.html  
-     */
-    class GPUParticlesAttractor3D extends VisualInstance3D {
-        constructor(identifier?: any)
-        /** Adjusts the strength of the attractor. If [member strength] is negative, particles will be pushed in the opposite direction. Particles will be pushed  *away*  from the attractor's origin if [member directionality] is `0.0`, or towards local +Z if [member directionality] is greater than `0.0`. */
-        get strength(): float64
-        set strength(value: float64)
-        
-        /** The particle attractor's attenuation. Higher values result in more gradual pushing of particles as they come closer to the attractor's origin. Zero or negative values will cause particles to be pushed very fast as soon as the touch the attractor's edges. */
-        get attenuation(): float64
-        set attenuation(value: float64)
-        
-        /** Adjusts how directional the attractor is. At `0.0`, the attractor is not directional at all: it will attract particles towards its center. At `1.0`, the attractor is fully directional: particles will always be pushed towards local -Z (or +Z if [member strength] is negative).  
-         *      
-         *  **Note:** If [member directionality] is greater than `0.0`, the direction in which particles are pushed can be changed by rotating the [GPUParticlesAttractor3D] node.  
-         */
-        get directionality(): float64
-        set directionality(value: float64)
-        
-        /** The particle rendering layers ([member VisualInstance3D.layers]) that will be affected by the attractor. By default, all particles are affected by an attractor.  
-         *  After configuring particle nodes accordingly, specific layers can be unchecked to prevent certain particles from being affected by attractors. For example, this can be used if you're using an attractor as part of a spell effect but don't want the attractor to affect unrelated weather particles at the same position.  
-         *  Particle attraction can also be disabled on a per-process material basis by setting [member ParticleProcessMaterial.attractor_interaction_enabled] on the [GPUParticles3D] node.  
-         */
-        get cull_mask(): int64
-        set cull_mask(value: int64)
-    }
-    /** A box-shaped attractor that influences particles from [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorbox3d.html  
-     */
-    class GPUParticlesAttractorBox3D extends GPUParticlesAttractor3D {
-        constructor(identifier?: any)
-        /** The attractor box's size in 3D units. */
-        get size(): Vector3
-        set size(value: Vector3)
-    }
-    /** A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorsphere3d.html  
-     */
-    class GPUParticlesAttractorSphere3D extends GPUParticlesAttractor3D {
-        constructor(identifier?: any)
-        /** The attractor sphere's radius in 3D units.  
-         *      
-         *  **Note:** Stretched ellipses can be obtained by using non-uniform scaling on the [GPUParticlesAttractorSphere3D] node.  
-         */
-        get radius(): float64
-        set radius(value: float64)
-    }
-    /** A box-shaped attractor with varying directions and strengths defined in it that influences particles from [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorvectorfield3d.html  
-     */
-    class GPUParticlesAttractorVectorField3D extends GPUParticlesAttractor3D {
-        constructor(identifier?: any)
-        /** The size of the vector field box in 3D units. */
-        get size(): Vector3
-        set size(value: Vector3)
-        
-        /** The 3D texture to be used. Values are linearly interpolated between the texture's pixels.  
-         *      
-         *  **Note:** To get better performance, the 3D texture's resolution should reflect the [member size] of the attractor. Since particle attraction is usually low-frequency data, the texture can be kept at a low resolution such as 64×64×64.  
-         */
-        get texture(): Texture3D
-        set texture(value: Texture3D)
-    }
-    /** Abstract base class for 3D particle collision shapes affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollision3d.html  
-     */
-    class GPUParticlesCollision3D extends VisualInstance3D {
-        constructor(identifier?: any)
-        /** The particle rendering layers ([member VisualInstance3D.layers]) that will be affected by the collision shape. By default, all particles that have [member ParticleProcessMaterial.collision_mode] set to [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] will be affected by a collision shape.  
-         *  After configuring particle nodes accordingly, specific layers can be unchecked to prevent certain particles from being affected by attractors. For example, this can be used if you're using an attractor as part of a spell effect but don't want the attractor to affect unrelated weather particles at the same position.  
-         *  Particle attraction can also be disabled on a per-process material basis by setting [member ParticleProcessMaterial.attractor_interaction_enabled] on the [GPUParticles3D] node.  
-         */
-        get cull_mask(): int64
-        set cull_mask(value: int64)
-    }
-    class GPUParticlesCollision3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionbox3d.html  
-     */
-    class GPUParticlesCollisionBox3D extends GPUParticlesCollision3D {
-        constructor(identifier?: any)
-        /** The collision box's size in 3D units. */
-        get size(): Vector3
-        set size(value: Vector3)
-    }
-    namespace GPUParticlesCollisionHeightField3D {
-        enum Resolution {
-            /** Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no distant particles. */
-            RESOLUTION_256 = 0,
-            
-            /** Generate a 512×512 heightmap. Intended for medium-scale scenes, or larger scenes with no distant particles. */
-            RESOLUTION_512 = 1,
-            
-            /** Generate a 1024×1024 heightmap. Intended for large scenes with distant particles. */
-            RESOLUTION_1024 = 2,
-            
-            /** Generate a 2048×2048 heightmap. Intended for very large scenes with distant particles. */
-            RESOLUTION_2048 = 3,
-            
-            /** Generate a 4096×4096 heightmap. Intended for huge scenes with distant particles. */
-            RESOLUTION_4096 = 4,
-            
-            /** Generate a 8192×8192 heightmap. Intended for gigantic scenes with distant particles. */
-            RESOLUTION_8192 = 5,
-            
-            /** Represents the size of the [enum Resolution] enum. */
-            RESOLUTION_MAX = 6,
-        }
-        enum UpdateMode {
-            /** Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [member follow_camera_enabled] is `true`. An update can be forced by slightly moving the [GPUParticlesCollisionHeightField3D] in any direction, or by calling [method RenderingServer.particles_collision_height_field_update]. */
-            UPDATE_MODE_WHEN_MOVED = 0,
-            
-            /** Update the heightmap every frame. This has a significant performance cost. This update should only be used when geometry that particles can collide with changes significantly during gameplay. */
-            UPDATE_MODE_ALWAYS = 1,
-        }
-    }
-    /** A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionheightfield3d.html  
-     */
-    class GPUParticlesCollisionHeightField3D extends GPUParticlesCollision3D {
-        constructor(identifier?: any)
-        /** The collision heightmap's size in 3D units. To improve heightmap quality, [member size] should be set as small as possible while covering the parts of the scene you need. */
-        get size(): Vector3
-        set size(value: Vector3)
-        
-        /** Higher resolutions can represent small details more accurately in large scenes, at the cost of lower performance. If [member update_mode] is [constant UPDATE_MODE_ALWAYS], consider using the lowest resolution possible. */
-        get resolution(): int64
-        set resolution(value: int64)
-        
-        /** The update policy to use for the generated heightmap. */
-        get update_mode(): int64
-        set update_mode(value: int64)
-        
-        /** If `true`, the [GPUParticlesCollisionHeightField3D] will follow the current camera in global space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node for this to work.  
-         *  Following the camera has a performance cost, as it will force the heightmap to update whenever the camera moves. Consider lowering [member resolution] to improve performance if [member follow_camera_enabled] is `true`.  
-         */
-        get follow_camera_enabled(): boolean
-        set follow_camera_enabled(value: boolean)
-    }
-    namespace GPUParticlesCollisionSDF3D {
-        enum Resolution {
-            /** Bake a 16×16×16 signed distance field. This is the fastest option, but also the least precise. */
-            RESOLUTION_16 = 0,
-            
-            /** Bake a 32×32×32 signed distance field. */
-            RESOLUTION_32 = 1,
-            
-            /** Bake a 64×64×64 signed distance field. */
-            RESOLUTION_64 = 2,
-            
-            /** Bake a 128×128×128 signed distance field. */
-            RESOLUTION_128 = 3,
-            
-            /** Bake a 256×256×256 signed distance field. */
-            RESOLUTION_256 = 4,
-            
-            /** Bake a 512×512×512 signed distance field. This is the slowest option, but also the most precise. */
-            RESOLUTION_512 = 5,
-            
-            /** Represents the size of the [enum Resolution] enum. */
-            RESOLUTION_MAX = 6,
-        }
-    }
-    /** A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionsdf3d.html  
-     */
-    class GPUParticlesCollisionSDF3D extends GPUParticlesCollision3D {
-        constructor(identifier?: any)
-        /** Based on [param value], enables or disables the specified layer in the [member bake_mask], given a [param layer_number] between 1 and 32. */
-        set_bake_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member bake_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_bake_mask_value(layer_number: int64): boolean
-        
-        /** The collision SDF's size in 3D units. To improve SDF quality, the [member size] should be set as small as possible while covering the parts of the scene you need. */
-        get size(): Vector3
-        set size(value: Vector3)
-        
-        /** The bake resolution to use for the signed distance field [member texture]. The texture must be baked again for changes to the [member resolution] property to be effective. Higher resolutions have a greater performance cost and take more time to bake. Higher resolutions also result in larger baked textures, leading to increased VRAM and storage space requirements. To improve performance and reduce bake times, use the lowest resolution possible for the object you're representing the collision of. */
-        get resolution(): int64
-        set resolution(value: int64)
-        
-        /** The collision shape's thickness. Unlike other particle colliders, [GPUParticlesCollisionSDF3D] is actually hollow on the inside. [member thickness] can be increased to prevent particles from tunneling through the collision shape at high speeds, or when the [GPUParticlesCollisionSDF3D] is moved. */
-        get thickness(): float64
-        set thickness(value: float64)
-        
-        /** The visual layers to account for when baking the particle collision SDF. Only [MeshInstance3D]s whose [member VisualInstance3D.layers] match with this [member bake_mask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking. */
-        get bake_mask(): int64
-        set bake_mask(value: int64)
-        
-        /** The 3D texture representing the signed distance field. */
-        get texture(): Texture3D
-        set texture(value: Texture3D)
-    }
-    class GPUParticlesCollisionSDF3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionsphere3d.html  
-     */
-    class GPUParticlesCollisionSphere3D extends GPUParticlesCollision3D {
-        constructor(identifier?: any)
-        /** The collision sphere's radius in 3D units. */
-        get radius(): float64
-        set radius(value: float64)
-    }
-    namespace Generic6DOFJoint3D {
-        enum Param {
-            /** The minimum difference between the pivot points' axes. */
-            PARAM_LINEAR_LOWER_LIMIT = 0,
-            
-            /** The maximum difference between the pivot points' axes. */
-            PARAM_LINEAR_UPPER_LIMIT = 1,
-            
-            /** A factor applied to the movement across the axes. The lower, the slower the movement. */
-            PARAM_LINEAR_LIMIT_SOFTNESS = 2,
-            
-            /** The amount of restitution on the axes' movement. The lower, the more momentum gets lost. */
-            PARAM_LINEAR_RESTITUTION = 3,
-            
-            /** The amount of damping that happens at the linear motion across the axes. */
-            PARAM_LINEAR_DAMPING = 4,
-            
-            /** The velocity the linear motor will try to reach. */
-            PARAM_LINEAR_MOTOR_TARGET_VELOCITY = 5,
-            
-            /** The maximum force the linear motor will apply while trying to reach the velocity target. */
-            PARAM_LINEAR_MOTOR_FORCE_LIMIT = 6,
-            PARAM_LINEAR_SPRING_STIFFNESS = 7,
-            PARAM_LINEAR_SPRING_DAMPING = 8,
-            PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT = 9,
-            
-            /** The minimum rotation in negative direction to break loose and rotate around the axes. */
-            PARAM_ANGULAR_LOWER_LIMIT = 10,
-            
-            /** The minimum rotation in positive direction to break loose and rotate around the axes. */
-            PARAM_ANGULAR_UPPER_LIMIT = 11,
-            
-            /** The speed of all rotations across the axes. */
-            PARAM_ANGULAR_LIMIT_SOFTNESS = 12,
-            
-            /** The amount of rotational damping across the axes. The lower, the more damping occurs. */
-            PARAM_ANGULAR_DAMPING = 13,
-            
-            /** The amount of rotational restitution across the axes. The lower, the more restitution occurs. */
-            PARAM_ANGULAR_RESTITUTION = 14,
-            
-            /** The maximum amount of force that can occur, when rotating around the axes. */
-            PARAM_ANGULAR_FORCE_LIMIT = 15,
-            
-            /** When rotating across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower. */
-            PARAM_ANGULAR_ERP = 16,
-            
-            /** Target speed for the motor at the axes. */
-            PARAM_ANGULAR_MOTOR_TARGET_VELOCITY = 17,
-            
-            /** Maximum acceleration for the motor at the axes. */
-            PARAM_ANGULAR_MOTOR_FORCE_LIMIT = 18,
-            PARAM_ANGULAR_SPRING_STIFFNESS = 19,
-            PARAM_ANGULAR_SPRING_DAMPING = 20,
-            PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT = 21,
-            
-            /** Represents the size of the [enum Param] enum. */
-            PARAM_MAX = 22,
-        }
-        enum Flag {
-            /** If enabled, linear motion is possible within the given limits. */
-            FLAG_ENABLE_LINEAR_LIMIT = 0,
-            
-            /** If enabled, rotational motion is possible within the given limits. */
-            FLAG_ENABLE_ANGULAR_LIMIT = 1,
-            FLAG_ENABLE_LINEAR_SPRING = 3,
-            FLAG_ENABLE_ANGULAR_SPRING = 2,
-            
-            /** If enabled, there is a rotational motor across these axes. */
-            FLAG_ENABLE_MOTOR = 4,
-            
-            /** If enabled, there is a linear motor across these axes. */
-            FLAG_ENABLE_LINEAR_MOTOR = 5,
-            
-            /** Represents the size of the [enum Flag] enum. */
-            FLAG_MAX = 6,
-        }
-    }
-    /** A physics joint that allows for complex movement and rotation between two 3D physics bodies.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_generic6dofjoint3d.html  
-     */
-    class Generic6DOFJoint3D extends Joint3D {
-        constructor(identifier?: any)
-        set_param_x(param: Generic6DOFJoint3D.Param, value: float64): void
-        get_param_x(param: Generic6DOFJoint3D.Param): float64
-        set_param_y(param: Generic6DOFJoint3D.Param, value: float64): void
-        get_param_y(param: Generic6DOFJoint3D.Param): float64
-        set_param_z(param: Generic6DOFJoint3D.Param, value: float64): void
-        get_param_z(param: Generic6DOFJoint3D.Param): float64
-        set_flag_x(flag: Generic6DOFJoint3D.Flag, value: boolean): void
-        get_flag_x(flag: Generic6DOFJoint3D.Flag): boolean
-        set_flag_y(flag: Generic6DOFJoint3D.Flag, value: boolean): void
-        get_flag_y(flag: Generic6DOFJoint3D.Flag): boolean
-        set_flag_z(flag: Generic6DOFJoint3D.Flag, value: boolean): void
-        get_flag_z(flag: Generic6DOFJoint3D.Flag): boolean
-    }
-    namespace GeometryInstance3D {
-        enum ShadowCastingSetting {
-            /** Will not cast any shadows. Use this to improve performance for small geometry that is unlikely to cast noticeable shadows (such as debris). */
-            SHADOW_CASTING_SETTING_OFF = 0,
-            
-            /** Will cast shadows from all visible faces in the GeometryInstance3D.  
-             *  Will take culling into account, so faces not being rendered will not be taken into account when shadow casting.  
-             */
-            SHADOW_CASTING_SETTING_ON = 1,
-            
-            /** Will cast shadows from all visible faces in the GeometryInstance3D.  
-             *  Will not take culling into account, so all faces will be taken into account when shadow casting.  
-             */
-            SHADOW_CASTING_SETTING_DOUBLE_SIDED = 2,
-            
-            /** Will only show the shadows casted from this object.  
-             *  In other words, the actual mesh will not be visible, only the shadows casted from the mesh will be.  
-             */
-            SHADOW_CASTING_SETTING_SHADOWS_ONLY = 3,
-        }
-        enum GIMode {
-            /** Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will  *receive*  indirect lighting and reflections but the geometry will not be considered in GI baking. */
-            GI_MODE_DISABLED = 0,
-            
-            /** Baked global illumination mode. Use for static objects that contribute to global illumination (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and [LightmapGI]. */
-            GI_MODE_STATIC = 1,
-            
-            /** Dynamic global illumination mode. Use for dynamic objects that contribute to global illumination. This GI mode is only effective when using [VoxelGI], but it has a higher performance impact than [constant GI_MODE_STATIC]. When using other GI methods, this will act the same as [constant GI_MODE_DISABLED]. When using [LightmapGI], the object will receive indirect lighting using lightmap probes instead of using the baked lightmap texture. */
-            GI_MODE_DYNAMIC = 2,
-        }
-        enum LightmapScale {
-            /** The standard texel density for lightmapping with [LightmapGI]. */
-            LIGHTMAP_SCALE_1X = 0,
-            
-            /** Multiplies texel density by 2× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 1.5 and 3.0. */
-            LIGHTMAP_SCALE_2X = 1,
-            
-            /** Multiplies texel density by 4× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 3.0 and 6.0. */
-            LIGHTMAP_SCALE_4X = 2,
-            
-            /** Multiplies texel density by 8× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor greater than 6.0. */
-            LIGHTMAP_SCALE_8X = 3,
-            
-            /** Represents the size of the [enum LightmapScale] enum. */
-            LIGHTMAP_SCALE_MAX = 4,
-        }
-        enum VisibilityRangeFadeMode {
-            /** Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This is the fastest approach to manual LOD, but it can result in noticeable LOD transitions depending on how the LOD meshes are authored. See [member visibility_range_begin] and [member Node3D.visibility_parent] for more information. */
-            VISIBILITY_RANGE_FADE_DISABLED = 0,
-            
-            /** Will fade-out itself when reaching the limits of its own visibility range. This is slower than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [member visibility_range_begin_margin] and [member visibility_range_end_margin].  
-             *      
-             *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, this mode acts like [constant VISIBILITY_RANGE_FADE_DISABLED] but with hysteresis disabled.  
-             */
-            VISIBILITY_RANGE_FADE_SELF = 1,
-            
-            /** Will fade-in its visibility dependencies (see [member Node3D.visibility_parent]) when reaching the limits of its own visibility range. This is slower than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [member visibility_range_begin_margin] and [member visibility_range_end_margin].  
-             *      
-             *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, this mode acts like [constant VISIBILITY_RANGE_FADE_DISABLED] but with hysteresis disabled.  
-             */
-            VISIBILITY_RANGE_FADE_DEPENDENCIES = 2,
-        }
-    }
-    /** Base node for geometry-based visual instances.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_geometryinstance3d.html  
-     */
-    class GeometryInstance3D extends VisualInstance3D {
-        constructor(identifier?: any)
-        /** Set the value of a shader uniform for this instance only ([url=https://docs.godotengine.org/en/4.3/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance uniform[/url]). See also [method ShaderMaterial.set_shader_parameter] to assign a uniform on all instances using the same [ShaderMaterial].  
-         *      
-         *  **Note:** For a shader uniform to be assignable on a per-instance basis, it  *must*  be defined with `instance uniform ...` rather than `uniform ...` in the shader code.  
-         *      
-         *  **Note:** [param name] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).  
-         *      
-         *  **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D equivalent of this method.  
-         */
-        set_instance_shader_parameter(name: StringName, value: any): void
-        
-        /** Get the value of a shader parameter as set on this instance. */
-        get_instance_shader_parameter(name: StringName): any
-        
-        /** The material override for the whole geometry.  
-         *  If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.  
-         */
-        get material_override(): BaseMaterial3D | ShaderMaterial
-        set material_override(value: BaseMaterial3D | ShaderMaterial)
-        
-        /** The material overlay for the whole geometry.  
-         *  If a material is assigned to this property, it will be rendered on top of any other active material for all the surfaces.  
-         */
-        get material_overlay(): BaseMaterial3D | ShaderMaterial
-        set material_overlay(value: BaseMaterial3D | ShaderMaterial)
-        
-        /** The transparency applied to the whole geometry (as a multiplier of the materials' existing transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [member transparency] to a value greater than `0.0` (exclusive) will  *not*  disable shadow rendering.  
-         *  In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.  
-         *      
-         *  **Note:** [member transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.  
-         *      
-         *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, [member transparency] is ignored and is considered as always being `0.0`.  
-         */
-        get transparency(): float64
-        set transparency(value: float64)
-        
-        /** The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values. */
-        get cast_shadow(): int64
-        set cast_shadow(value: int64)
-        
-        /** The extra distance added to the GeometryInstance3D's bounding box ([AABB]) to increase its cull box. */
-        get extra_cull_margin(): float64
-        set extra_cull_margin(value: float64)
-        
-        /** Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [MeshInstance3D] or to have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [member custom_aabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [method RenderingServer.instance_set_ignore_culling] on the [GeometryInstance3D]'s [RID]. */
-        get custom_aabb(): AABB
-        set custom_aabb(value: AABB)
-        
-        /** Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.  
-         *  Useful for testing level of detail transitions in the editor.  
-         */
-        get lod_bias(): float64
-        set lod_bias(value: float64)
-        
-        /** If `true`, disables occlusion culling for this instance. Useful for gizmos that must be rendered even when occlusion culling is in use.  
-         *      
-         *  **Note:** [member ignore_occlusion_culling] does not affect frustum culling (which is what happens when an object is not visible given the camera's angle). To avoid frustum culling, set [member custom_aabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`.  
-         */
-        get ignore_occlusion_culling(): boolean
-        set ignore_occlusion_culling(value: boolean)
-        
-        /** The global illumination mode to use for the whole geometry. To avoid inconsistent results, use a mode that matches the purpose of the mesh during gameplay (static/dynamic).  
-         *      
-         *  **Note:** Lights' bake mode will also affect the global illumination rendering. See [member Light3D.light_bake_mode].  
-         */
-        get gi_mode(): int64
-        set gi_mode(value: int64)
-        
-        /** The texel density to use for lightmapping in [LightmapGI]. Greater scale values provide higher resolution in the lightmap, which can result in sharper shadows for lights that have both direct and indirect light baked. However, greater scale values will also increase the space taken by the mesh in the lightmap texture, which increases the memory, storage, and bake time requirements. When using a single mesh at different scales, consider adjusting this value to keep the lightmap texel density consistent across meshes. */
-        get gi_lightmap_scale(): int64
-        set gi_lightmap_scale(value: int64)
-        
-        /** Starting distance from which the GeometryInstance3D will be visible, taking [member visibility_range_begin_margin] into account as well. The default value of 0 is used to disable the range check. */
-        get visibility_range_begin(): float64
-        set visibility_range_begin(value: float64)
-        
-        /** Margin for the [member visibility_range_begin] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [member visibility_range_begin] threshold by this amount.  
-         *  If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_SELF] or [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.  
-         */
-        get visibility_range_begin_margin(): float64
-        set visibility_range_begin_margin(value: float64)
-        
-        /** Distance from which the GeometryInstance3D will be hidden, taking [member visibility_range_end_margin] into account as well. The default value of 0 is used to disable the range check. */
-        get visibility_range_end(): float64
-        set visibility_range_end(value: float64)
-        
-        /** Margin for the [member visibility_range_end] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [member visibility_range_end] threshold by this amount.  
-         *  If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_SELF] or [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.  
-         */
-        get visibility_range_end_margin(): float64
-        set visibility_range_end_margin(value: float64)
-        
-        /** Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values. */
-        get visibility_range_fade_mode(): int64
-        set visibility_range_fade_mode(value: int64)
-    }
     class GeometryInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
     }
@@ -514,6 +23,9 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class GodotPhysicsServer3D extends PhysicsServer3D {
+        constructor(identifier?: any)
+    }
+    class GotoLineDialog extends ConfirmationDialog {
         constructor(identifier?: any)
     }
     namespace Gradient {
@@ -741,7 +253,7 @@ declare module "godot" {
         set_connection_activity(from_node: StringName, from_port: int64, to_node: StringName, to_port: int64, amount: float64): void
         
         /** Returns an [Array] containing the list of connections. A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`. */
-        get_connection_list(): GArray
+        get_connection_list(): GArray<any>
         
         /** Returns the closest connection to the given point in screen space. If no connection is found within [param max_distance] pixels, an empty [Dictionary] is returned.  
          *  A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`.  
@@ -751,7 +263,7 @@ declare module "godot" {
         get_closest_connection_at_point(point: Vector2, max_distance: float64 = 4): GDictionary
         
         /** Returns an [Array] containing the list of connections that intersect with the given [Rect2]. A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`. */
-        get_connections_intersecting_with_rect(rect: Rect2): GArray
+        get_connections_intersecting_with_rect(rect: Rect2): GArray<any>
         
         /** Removes all connections between nodes. */
         clear_connections(): void
@@ -803,7 +315,7 @@ declare module "godot" {
         get_element_frame(element: StringName): GraphFrame
         
         /** Returns an array of node names that are attached to the [GraphFrame] with the given name. */
-        get_attached_nodes_of_frame(frame: StringName): GArray
+        get_attached_nodes_of_frame(frame: StringName): GArray<any>
         
         /** Gets the [HBoxContainer] that contains the zooming and grid snap controls in the top left of the graph. You can use this method to reposition the toolbar or to add your own custom controls to it.  
          *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
@@ -1256,16 +768,16 @@ declare module "godot" {
         clear(): void
         
         /** Returns an array of [Vector3] with the non-empty cell coordinates in the grid map. */
-        get_used_cells(): GArray
+        get_used_cells(): GArray<any>
         
         /** Returns an array of all cells with the given item index specified in [param item]. */
-        get_used_cells_by_item(item: int64): GArray
+        get_used_cells_by_item(item: int64): GArray<any>
         
         /** Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in the grid. The transforms are specified in local space. */
-        get_meshes(): GArray
+        get_meshes(): GArray<any>
         
         /** Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist within the current GridMap. */
-        get_bake_meshes(): GArray
+        get_bake_meshes(): GArray<any>
         
         /** Returns [RID] of a baked mesh with the given [param idx]. */
         get_bake_mesh_instance(idx: int64): RID
@@ -2613,10 +2125,10 @@ declare module "godot" {
     class ImageTexture3D extends Texture3D {
         constructor(identifier?: any)
         /** Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth]. See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then generate mipmaps for the [ImageTexture3D]. */
-        create(format: Image.Format, width: int64, height: int64, depth: int64, use_mipmaps: boolean, data: GArray): Error
+        create(format: Image.Format, width: int64, height: int64, depth: int64, use_mipmaps: boolean, data: GArray<any>): Error
         
         /** Replaces the texture's existing data with the layers specified in [param data]. The size of [param data] must match the parameters that were used for [method create]. In other words, the texture cannot be resized or have its format changed by calling [method update]. */
-        update(data: GArray): void
+        update(data: GArray<any>): void
         get _images(): GArray
         set _images(value: GArray)
     }
@@ -2629,7 +2141,7 @@ declare module "godot" {
         /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images  *must*  have the same width, height, image format and mipmapping setting.  
          *  Each [Image] represents one `layer`.  
          */
-        create_from_images(images: GArray): Error
+        create_from_images(images: GArray<any>): Error
         
         /** Replaces the existing [Image] data at the given [param layer] with this new image.  
          *  The given [Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.  
@@ -2719,7 +2231,7 @@ declare module "godot" {
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
          */
-        add_surface(primitive: Mesh.PrimitiveType, arrays: GArray, blend_shapes: GArray = [], lods: GDictionary = new GDictionary(), material: Material = undefined, name: string = '', flags: int64 = 0): void
+        add_surface(primitive: Mesh.PrimitiveType, arrays: GArray<any>, blend_shapes: GArray<any> = [], lods: GDictionary = new GDictionary(), material: Material = undefined, name: string = '', flags: int64 = 0): void
         
         /** Returns the number of surfaces that the mesh holds. */
         get_surface_count(): int64
@@ -2731,10 +2243,10 @@ declare module "godot" {
         get_surface_name(surface_idx: int64): string
         
         /** Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface. See [method add_surface]. */
-        get_surface_arrays(surface_idx: int64): GArray
+        get_surface_arrays(surface_idx: int64): GArray<any>
         
         /** Returns a single set of blend shape arrays for the requested blend shape index for a surface. */
-        get_surface_blend_shape_arrays(surface_idx: int64, blend_shape_idx: int64): GArray
+        get_surface_blend_shape_arrays(surface_idx: int64, blend_shape_idx: int64): GArray<any>
         
         /** Returns the number of lods that the mesh holds on a given surface. */
         get_surface_lod_count(surface_idx: int64): int64
@@ -2762,7 +2274,7 @@ declare module "godot" {
          *  The number of generated lods can be accessed using [method get_surface_lod_count], and each LOD is available in [method get_surface_lod_size] and [method get_surface_lod_indices].  
          *  [param bone_transform_array] is an [Array] which can be either empty or contain [Transform3D]s which, for each of the mesh's bone IDs, will apply mesh skinning when generating the LOD mesh variations. This is usually used to account for discrepancies in scale between the mesh itself and its skinning data.  
          */
-        generate_lods(normal_merge_angle: float64, normal_split_angle: float64, bone_transform_array: GArray): void
+        generate_lods(normal_merge_angle: float64, normal_split_angle: float64, bone_transform_array: GArray<any>): void
         
         /** Returns the mesh data represented by this [ImporterMesh] as a usable [ArrayMesh].  
          *  This method caches the returned mesh, and subsequent calls will return the cached data until [method clear] is called.  
@@ -3670,65 +3182,6 @@ declare module "godot" {
         /** Contains the parsed JSON data in [Variant] form. */
         get data(): any
         set data(value: any)
-    }
-    namespace JSONRPC {
-        enum ErrorCode {
-            /** The request could not be parsed as it was not valid by JSON standard ([method JSON.parse] failed). */
-            PARSE_ERROR = -32700,
-            
-            /** A method call was requested but the request's format is not valid. */
-            INVALID_REQUEST = -32600,
-            
-            /** A method call was requested but no function of that name existed in the JSONRPC subclass. */
-            METHOD_NOT_FOUND = -32601,
-            
-            /** A method call was requested but the given method parameters are not valid. Not used by the built-in JSONRPC. */
-            INVALID_PARAMS = -32602,
-            
-            /** An internal error occurred while processing the request. Not used by the built-in JSONRPC. */
-            INTERNAL_ERROR = -32603,
-        }
-    }
-    /** A helper to handle dictionaries which look like JSONRPC documents.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_jsonrpc.html  
-     */
-    class JSONRPC extends Object {
-        constructor(identifier?: any)
-        set_scope(scope: string, target: Object): void
-        
-        /** Given a Dictionary which takes the form of a JSON-RPC request: unpack the request and run it. Methods are resolved by looking at the field called "method" and looking for an equivalently named function in the JSONRPC object. If one is found that method is called.  
-         *  To add new supported methods extend the JSONRPC class and call [method process_action] on your subclass.  
-         *  [param action]: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.  
-         */
-        process_action(action: any, recurse: boolean = false): any
-        process_string(action: string): string
-        
-        /** Returns a dictionary in the form of a JSON-RPC request. Requests are sent to a server with the expectation of a response. The ID field is used for the server to specify which exact request it is responding to.  
-         *  - [param method]: Name of the method being called.  
-         *  - [param params]: An array or dictionary of parameters being passed to the method.  
-         *  - [param id]: Uniquely identifies this request. The server is expected to send a response with the same ID.  
-         */
-        make_request(method: string, params: any, id: any): GDictionary
-        
-        /** When a server has received and processed a request, it is expected to send a response. If you did not want a response then you need to have sent a Notification instead.  
-         *  - [param result]: The return value of the function which was called.  
-         *  - [param id]: The ID of the request this response is targeted to.  
-         */
-        make_response(result: any, id: any): GDictionary
-        
-        /** Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot messages which do not expect a response.  
-         *  - [param method]: Name of the method being called.  
-         *  - [param params]: An array or dictionary of parameters being passed to the method.  
-         */
-        make_notification(method: string, params: any): GDictionary
-        
-        /** Creates a response which indicates a previous reply has failed in some way.  
-         *  - [param code]: The error code corresponding to what kind of error this is. See the [enum ErrorCode] constants.  
-         *  - [param message]: A custom message about this error.  
-         *  - [param id]: The request this error is a response to.  
-         */
-        make_response_error(code: int64, message: string, id: any = <any> {}): GDictionary
     }
     /** Represents an object from the Java Native Interface.  
      *  	  
@@ -5809,10 +5262,10 @@ declare module "godot" {
         /* gdvirtual */ _surface_get_array_index_len(index: int64): int64
         
         /** Virtual method to override the surface arrays for a custom class extending [Mesh]. */
-        /* gdvirtual */ _surface_get_arrays(index: int64): GArray
+        /* gdvirtual */ _surface_get_arrays(index: int64): GArray<any>
         
         /** Virtual method to override the blend shape arrays for a custom class extending [Mesh]. */
-        /* gdvirtual */ _surface_get_blend_shape_arrays(index: int64): GArray
+        /* gdvirtual */ _surface_get_blend_shape_arrays(index: int64): GArray<any>
         
         /** Virtual method to override the surface LODs for a custom class extending [Mesh]. */
         /* gdvirtual */ _surface_get_lods(index: int64): GDictionary
@@ -5854,10 +5307,10 @@ declare module "godot" {
         get_surface_count(): int64
         
         /** Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see [method ArrayMesh.add_surface_from_arrays]). */
-        surface_get_arrays(surf_idx: int64): GArray
+        surface_get_arrays(surf_idx: int64): GArray<any>
         
         /** Returns the blend shape arrays for the requested surface. */
-        surface_get_blend_shape_arrays(surf_idx: int64): GArray
+        surface_get_blend_shape_arrays(surf_idx: int64): GArray<any>
         
         /** Sets a [Material] for a given surface. Surface will be rendered using this material.  
          *      
@@ -6229,7 +5682,7 @@ declare module "godot" {
         /** Sets an item's collision shapes.  
          *  The array should consist of [Shape3D] objects, each followed by a [Transform3D] that will be applied to it. For shapes that should not have a transform, use [constant Transform3D.IDENTITY].  
          */
-        set_item_shapes(id: int64, shapes: GArray): void
+        set_item_shapes(id: int64, shapes: GArray<any>): void
         
         /** Sets a texture to use as the item's preview icon in the editor. */
         set_item_preview(id: int64, texture: Texture2D): void
@@ -6255,7 +5708,7 @@ declare module "godot" {
         /** Returns an item's collision shapes.  
          *  The array consists of each [Shape3D] followed by its [Transform3D].  
          */
-        get_item_shapes(id: int64): GArray
+        get_item_shapes(id: int64): GArray<any>
         
         /** When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using [method set_item_preview]. Returns an empty [Texture2D] if no preview was manually set in a running project. */
         get_item_preview(id: int64): Texture2D
@@ -6345,58 +5798,6 @@ declare module "godot" {
         /** If set to `true`, allows new properties to be added on top of the existing ones with [method Object.set]. */
         get recording_properties(): boolean
         set recording_properties(value: boolean)
-    }
-    /** Generic mobile VR implementation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_mobilevrinterface.html  
-     */
-    class MobileVRInterface extends XRInterface {
-        constructor(identifier?: any)
-        /** The height at which the camera is placed in relation to the ground (i.e. [XROrigin3D] node). */
-        get eye_height(): float64
-        set eye_height(value: float64)
-        
-        /** The interocular distance, also known as the interpupillary distance. The distance between the pupils of the left and right eye. */
-        get iod(): float64
-        set iod(value: float64)
-        
-        /** The width of the display in centimeters. */
-        get display_width(): float64
-        set display_width(value: float64)
-        
-        /** The distance between the display and the lenses inside of the device in centimeters. */
-        get display_to_lens(): float64
-        set display_to_lens(value: float64)
-        
-        /** Set the offset rect relative to the area being rendered. A length of 1 represents the whole rendering area on that axis. */
-        get offset_rect(): Rect2
-        set offset_rect(value: Rect2)
-        
-        /** The oversample setting. Because of the lens distortion we have to render our buffers at a higher resolution then the screen can natively handle. A value between 1.5 and 2.0 often provides good results but at the cost of performance. */
-        get oversample(): float64
-        set oversample(value: float64)
-        
-        /** The k1 lens factor is one of the two constants that define the strength of the lens used and directly influences the lens distortion effect. */
-        get k1(): float64
-        set k1(value: float64)
-        
-        /** The k2 lens factor, see k1. */
-        get k2(): float64
-        set k2(value: float64)
-        
-        /** The minimum radius around the focal point where full quality is guaranteed if VRS is used as a percentage of screen size.  
-         *      
-         *  **Note:** Mobile and Forward+ renderers only. Requires [member Viewport.vrs_mode] to be set to [constant Viewport.VRS_XR].  
-         */
-        get vrs_min_radius(): float64
-        set vrs_min_radius(value: float64)
-        
-        /** The strength used to calculate the VRS density map. The greater this value, the more noticeable VRS is. This improves performance at the cost of quality.  
-         *      
-         *  **Note:** Mobile and Forward+ renderers only. Requires [member Viewport.vrs_mode] to be set to [constant Viewport.VRS_XR].  
-         */
-        get vrs_strength(): float64
-        set vrs_strength(value: float64)
     }
     /** Abstract class for non-real-time video recording encoders.  
      *  	  
@@ -6600,7 +6001,7 @@ declare module "godot" {
          *      
          *  **Note:** Prefer using [method Node.rpc], [method Node.rpc_id], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.  
          */
-        rpc(peer: int64, object: Object, method: StringName, arguments_: GArray = []): Error
+        rpc(peer: int64, object: Object, method: StringName, arguments_: GArray<any> = []): Error
         
         /** Notifies the MultiplayerAPI of a new [param configuration] for the given [param object]. This method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and a valid [NodePath] as [param configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [SceneMultiplayer]) for details on how they use it.  
          *      
@@ -6667,7 +6068,7 @@ declare module "godot" {
         /* gdvirtual */ _get_peer_ids(): PackedInt32Array
         
         /** Callback for [method MultiplayerAPI.rpc]. */
-        /* gdvirtual */ _rpc(peer: int64, object: Object, method: StringName, args: GArray): Error
+        /* gdvirtual */ _rpc(peer: int64, object: Object, method: StringName, args: GArray<any>): Error
         
         /** Callback for [method MultiplayerAPI.get_remote_sender_id]. */
         /* gdvirtual */ _get_remote_sender_id(): int64
@@ -6677,13 +6078,6 @@ declare module "godot" {
         
         /** Callback for [method MultiplayerAPI.object_configuration_remove]. */
         /* gdvirtual */ _object_configuration_remove(object: Object, configuration: any): Error
-    }
-    class MultiplayerEditorDebugger extends EditorDebuggerPlugin {
-        constructor(identifier?: any)
-        readonly open_request: Signal1<string>
-    }
-    class MultiplayerEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
     }
     namespace MultiplayerPeer {
         enum ConnectionStatus {
@@ -6849,125 +6243,6 @@ declare module "godot" {
         
         /** Called when the connection status is requested on the [MultiplayerPeer] (see [method MultiplayerPeer.get_connection_status]). */
         /* gdvirtual */ _get_connection_status(): MultiplayerPeer.ConnectionStatus
-    }
-    /** Automatically replicates spawnable nodes from the authority to other multiplayer peers.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_multiplayerspawner.html  
-     */
-    class MultiplayerSpawner extends Node {
-        constructor(identifier?: any)
-        /** Adds a scene path to spawnable scenes, making it automatically replicated from the multiplayer authority to other peers when added as children of the node pointed by [member spawn_path]. */
-        add_spawnable_scene(path: string): void
-        
-        /** Returns the count of spawnable scene paths. */
-        get_spawnable_scene_count(): int64
-        
-        /** Returns the spawnable scene path by index. */
-        get_spawnable_scene(index: int64): string
-        
-        /** Clears all spawnable scenes. Does not despawn existing instances on remote peers. */
-        clear_spawnable_scenes(): void
-        
-        /** Requests a custom spawn, with [param data] passed to [member spawn_function] on all peers. Returns the locally spawned node instance already inside the scene tree, and added as a child of the node pointed by [member spawn_path].  
-         *      
-         *  **Note:** Spawnable scenes are spawned automatically. [method spawn] is only needed for custom spawns.  
-         */
-        spawn(data: any = <any> {}): Node
-        get _spawnable_scenes(): PackedStringArray
-        set _spawnable_scenes(value: PackedStringArray | string[])
-        
-        /** Path to the spawn root. Spawnable scenes that are added as direct children are replicated to other peers. */
-        get spawn_path(): NodePath
-        set spawn_path(value: NodePath | string)
-        
-        /** Maximum nodes that is allowed to be spawned by this spawner. Includes both spawnable scenes and custom spawns.  
-         *  When set to `0` (the default), there is no limit.  
-         */
-        get spawn_limit(): int64
-        set spawn_limit(value: int64)
-        
-        /** Method called on all peers when for every custom [method spawn] requested by the authority. Will receive the `data` parameter, and should return a [Node] that is not in the scene tree.  
-         *      
-         *  **Note:** The returned node should **not** be added to the scene with [method Node.add_child]. This is done automatically.  
-         */
-        get spawn_function(): Callable
-        set spawn_function(value: Callable)
-        
-        /** Emitted when a spawnable scene or custom spawn was despawned by the multiplayer authority. Only called on puppets. */
-        readonly despawned: Signal1<Node>
-        
-        /** Emitted when a spawnable scene or custom spawn was spawned by the multiplayer authority. Only called on puppets. */
-        readonly spawned: Signal1<Node>
-    }
-    namespace MultiplayerSynchronizer {
-        enum VisibilityUpdateMode {
-            /** Visibility filters are updated during process frames (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]). */
-            VISIBILITY_PROCESS_IDLE = 0,
-            
-            /** Visibility filters are updated during physics frames (see [constant Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). */
-            VISIBILITY_PROCESS_PHYSICS = 1,
-            
-            /** Visibility filters are not updated automatically, and must be updated manually by calling [method update_visibility]. */
-            VISIBILITY_PROCESS_NONE = 2,
-        }
-    }
-    /** Synchronizes properties from the multiplayer authority to the remote peers.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_multiplayersynchronizer.html  
-     */
-    class MultiplayerSynchronizer extends Node {
-        constructor(identifier?: any)
-        /** Updates the visibility of [param for_peer] according to visibility filters. If [param for_peer] is `0` (the default), all peers' visibilties are updated. */
-        update_visibility(for_peer: int64 = 0): void
-        
-        /** Adds a peer visibility filter for this synchronizer.  
-         *  [param filter] should take a peer ID [int] and return a [bool].  
-         */
-        add_visibility_filter(filter: Callable): void
-        
-        /** Removes a peer visibility filter from this synchronizer. */
-        remove_visibility_filter(filter: Callable): void
-        
-        /** Sets the visibility of [param peer] to [param visible]. If [param peer] is `0`, the value of [member public_visibility] will be updated instead. */
-        set_visibility_for(peer: int64, visible: boolean): void
-        
-        /** Queries the current visibility for peer [param peer]. */
-        get_visibility_for(peer: int64): boolean
-        
-        /** Node path that replicated properties are relative to.  
-         *  If [member root_path] was spawned by a [MultiplayerSpawner], the node will be also be spawned and despawned based on this synchronizer visibility options.  
-         */
-        get root_path(): NodePath
-        set root_path(value: NodePath | string)
-        
-        /** Time interval between synchronizations. When set to `0.0` (the default), synchronizations happen every network process frame. */
-        get replication_interval(): float64
-        set replication_interval(value: float64)
-        
-        /** Time interval between delta synchronizations. When set to `0.0` (the default), delta synchronizations happen every network process frame. */
-        get delta_interval(): float64
-        set delta_interval(value: float64)
-        
-        /** Resource containing which properties to synchronize. */
-        get replication_config(): SceneReplicationConfig
-        set replication_config(value: SceneReplicationConfig)
-        
-        /** Specifies when visibility filters are updated (see [enum VisibilityUpdateMode] for options). */
-        get visibility_update_mode(): int64
-        set visibility_update_mode(value: int64)
-        
-        /** Whether synchronization should be visible to all peers by default. See [method set_visibility_for] and [method add_visibility_filter] for ways of configuring fine-grained visibility options. */
-        get public_visibility(): boolean
-        set public_visibility(value: boolean)
-        
-        /** Emitted when a new synchronization state is received by this synchronizer after the properties have been updated. */
-        readonly synchronized: Signal0
-        
-        /** Emitted when a new delta synchronization state is received by this synchronizer after the properties have been updated. */
-        readonly delta_synchronized: Signal0
-        
-        /** Emitted when visibility of [param for_peer] is updated. See [method update_visibility]. */
-        readonly visibility_changed: Signal1<int64>
     }
     /** A binary [Semaphore] for synchronization of multiple [Thread]s.  
      *  	  
@@ -7799,10 +7074,10 @@ declare module "godot" {
         has_data(): boolean
         
         /** Appends another array of [param traversable_outlines] at the end of the existing traversable outlines array. */
-        append_traversable_outlines(traversable_outlines: GArray): void
+        append_traversable_outlines(traversable_outlines: GArray<any>): void
         
         /** Appends another array of [param obstruction_outlines] at the end of the existing obstruction outlines array. */
-        append_obstruction_outlines(obstruction_outlines: GArray): void
+        append_obstruction_outlines(obstruction_outlines: GArray<any>): void
         
         /** Adds the outline points of a shape as traversable area. */
         add_traversable_outline(shape_outline: PackedVector2Array | Vector2[]): void
@@ -7844,7 +7119,7 @@ declare module "godot" {
         add_mesh(mesh: Mesh, xform: Transform3D): void
         
         /** Adds an [Array] the size of [constant Mesh.ARRAY_MAX] and with vertices at index [constant Mesh.ARRAY_VERTEX] and indices at index [constant Mesh.ARRAY_INDEX] to the navigation mesh baking data. The array must have valid triangulated mesh data to be considered. Since [NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [param xform]. */
-        add_mesh_array(mesh_array: GArray, xform: Transform3D): void
+        add_mesh_array(mesh_array: GArray<any>, xform: Transform3D): void
         
         /** Adds an array of vertex positions to the geometry data for navigation mesh baking to form triangulated faces. For each face the array must have three vertex positions in clockwise winding order. Since [NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [param xform]. */
         add_faces(faces: PackedVector3Array | Vector3[], xform: Transform3D): void
@@ -8920,7 +8195,7 @@ declare module "godot" {
         /** Returns all children of this node inside an [Array].  
          *  If [param include_internal] is `false`, excludes internal children from the returned array (see [method add_child]'s `internal` parameter).  
          */
-        get_children(include_internal: boolean = false): GArray
+        get_children(include_internal: boolean = false): GArray<any>
         
         /** Fetches a child node by its index. Each child node has an index relative its siblings (see [method get_index]). The first child is at index 0. Negative values can also be used to start from the end of the list. This method can be used in combination with [method get_child_count] to iterate over this node's children. If no child exists at the given index, this method returns `null` and an error is generated.  
          *  If [param include_internal] is `false`, internal children are ignored (see [method add_child]'s `internal` parameter).  
@@ -8979,7 +8254,7 @@ declare module "godot" {
          *      
          *  **Note:** To find a single descendant node matching a pattern, see [method find_child].  
          */
-        find_children(pattern: string, type: string = '', recursive: boolean = true, owned: boolean = true): GArray
+        find_children(pattern: string, type: string = '', recursive: boolean = true, owned: boolean = true): GArray<any>
         
         /** Finds the first ancestor of this node whose [member name] matches [param pattern], returning `null` if no match is found. The matching is done through [method String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"` matches any single character. See also [method find_child] and [method find_children].  
          *      
@@ -8997,7 +8272,7 @@ declare module "godot" {
          *  **Example:** Assume that the child's [member Sprite2D.texture] has been assigned a [AtlasTexture]:  
          *    
          */
-        get_node_and_resource(path: NodePath | string): GArray
+        get_node_and_resource(path: NodePath | string): GArray<any>
         
         /** Returns `true` if this node is currently inside a [SceneTree]. See also [method get_tree]. */
         is_inside_tree(): boolean
@@ -9049,7 +8324,7 @@ declare module "godot" {
          *  **Note:** This method may also return some group names starting with an underscore (`_`). These are internally used by the engine. To avoid conflicts, do not use custom groups starting with underscores. To exclude internal groups, see the following code snippet:  
          *    
          */
-        get_groups(): GArray
+        get_groups(): GArray<any>
         
         /** Returns this node's order among its siblings. The first node's index is `0`. See also [method get_child].  
          *  If [param include_internal] is `false`, returns the index ignoring internal children. The first, non-internal child will have an index of `0` (see [method add_child]'s `internal` parameter).  
@@ -9114,7 +8389,7 @@ declare module "godot" {
         /** Calls the given [param method] name, passing [param args] as arguments, on this node and all of its children, recursively.  
          *  If [param parent_first] is `true`, the method is called on this node first, then on all of its children. If `false`, the children's methods are called first.  
          */
-        propagate_call(method: StringName, args: GArray = [], parent_first: boolean = false): void
+        propagate_call(method: StringName, args: GArray<any> = [], parent_first: boolean = false): void
         
         /** If set to `true`, enables physics (fixed framerate) processing. When a node is being processed, it will receive a [constant NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see [member Engine.physics_ticks_per_second] to change) interval (and the [method _physics_process] callback will be called if it exists).  
          *      
@@ -9479,5 +8754,503 @@ declare module "godot" {
         
         /** Emitted when the node's editor description field changed. */
         readonly editor_description_changed: Signal1<Node>
+    }
+    /** A 2D game object, inherited by all 2D-related nodes. Has a position, rotation, scale, and Z index.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_node2d.html  
+     */
+    class Node2D extends CanvasItem {
+        constructor(identifier?: any)
+        /** Applies a rotation to the node, in radians, starting from its current rotation. */
+        rotate(radians: float64): void
+        
+        /** Applies a local translation on the node's X axis based on the [method Node._process]'s [param delta]. If [param scaled] is `false`, normalizes the movement. */
+        move_local_x(delta: float64, scaled: boolean = false): void
+        
+        /** Applies a local translation on the node's Y axis based on the [method Node._process]'s [param delta]. If [param scaled] is `false`, normalizes the movement. */
+        move_local_y(delta: float64, scaled: boolean = false): void
+        
+        /** Translates the node by the given [param offset] in local coordinates. */
+        translate(offset: Vector2): void
+        
+        /** Adds the [param offset] vector to the node's global position. */
+        global_translate(offset: Vector2): void
+        
+        /** Multiplies the current scale by the [param ratio] vector. */
+        apply_scale(ratio: Vector2): void
+        
+        /** Rotates the node so that its local +X axis points towards the [param point], which is expected to use global coordinates.  
+         *  [param point] should not be the same as the node's position, otherwise the node always looks to the right.  
+         */
+        look_at(point: Vector2): void
+        
+        /** Returns the angle between the node and the [param point] in radians.  
+         *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/node2d_get_angle_to.png]Illustration of the returned angle.[/url]  
+         */
+        get_angle_to(point: Vector2): float64
+        
+        /** Transforms the provided global position into a position in local coordinate space. The output will be local relative to the [Node2D] it is called on. e.g. It is appropriate for determining the positions of child nodes, but it is not appropriate for determining its own position relative to its parent. */
+        to_local(global_point: Vector2): Vector2
+        
+        /** Transforms the provided local position into a position in global coordinate space. The input is expected to be local relative to the [Node2D] it is called on. e.g. Applying this method to the positions of child nodes will correctly transform their positions into the global coordinate space, but applying it to a node's own position will give an incorrect result, as it will incorporate the node's own transformation into its global position. */
+        to_global(local_point: Vector2): Vector2
+        
+        /** Returns the [Transform2D] relative to this node's parent. */
+        get_relative_transform_to_parent(parent: Node): Transform2D
+        
+        /** Position, relative to the node's parent. */
+        get position(): Vector2
+        set position(value: Vector2)
+        
+        /** Rotation in radians, relative to the node's parent.  
+         *      
+         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
+         */
+        get rotation(): float64
+        set rotation(value: float64)
+        
+        /** Helper property to access [member rotation] in degrees instead of radians. */
+        get rotation_degrees(): float64
+        set rotation_degrees(value: float64)
+        
+        /** The node's scale. Unscaled value: `(1, 1)`.  
+         *      
+         *  **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.  
+         */
+        get scale(): Vector2
+        set scale(value: Vector2)
+        
+        /** Slants the node.  
+         *      
+         *  **Note:** Skew is X axis only.  
+         */
+        get skew(): float64
+        set skew(value: float64)
+        
+        /** Local [Transform2D]. */
+        get transform(): Transform2D
+        set transform(value: Transform2D)
+        
+        /** Global position. */
+        get global_position(): Vector2
+        set global_position(value: Vector2)
+        
+        /** Global rotation in radians. */
+        get global_rotation(): float64
+        set global_rotation(value: float64)
+        
+        /** Helper property to access [member global_rotation] in degrees instead of radians. */
+        get global_rotation_degrees(): float64
+        set global_rotation_degrees(value: float64)
+        
+        /** Global scale. */
+        get global_scale(): Vector2
+        set global_scale(value: Vector2)
+        
+        /** Global skew in radians. */
+        get global_skew(): float64
+        set global_skew(value: float64)
+        
+        /** Global [Transform2D]. */
+        get global_transform(): Transform2D
+        set global_transform(value: Transform2D)
+    }
+    namespace Node3D {
+        enum RotationEditMode {
+            /** The rotation is edited using [Vector3] Euler angles. */
+            ROTATION_EDIT_MODE_EULER = 0,
+            
+            /** The rotation is edited using a [Quaternion]. */
+            ROTATION_EDIT_MODE_QUATERNION = 1,
+            
+            /** The rotation is edited using a [Basis]. In this mode, [member scale] can't be edited separately. */
+            ROTATION_EDIT_MODE_BASIS = 2,
+        }
+    }
+    /** Most basic 3D game object, parent of all 3D-related nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_node3d.html  
+     */
+    class Node3D extends Node {
+        /** [Node3D] nodes receive this notification when their global transform changes. This means that either the current or a parent node changed its transform.  
+         *  In order for [constant NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [method set_notify_transform]. The notification is also sent if the node is in the editor context and it has at least one valid gizmo.  
+         */
+        static readonly NOTIFICATION_TRANSFORM_CHANGED = 2000
+        
+        /** [Node3D] nodes receive this notification when they are registered to new [World3D] resource. */
+        static readonly NOTIFICATION_ENTER_WORLD = 41
+        
+        /** [Node3D] nodes receive this notification when they are unregistered from current [World3D] resource. */
+        static readonly NOTIFICATION_EXIT_WORLD = 42
+        
+        /** [Node3D] nodes receive this notification when their visibility changes. */
+        static readonly NOTIFICATION_VISIBILITY_CHANGED = 43
+        
+        /** [Node3D] nodes receive this notification when their local transform changes. This is not received when the transform of a parent node is changed.  
+         *  In order for [constant NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it, with [method set_notify_local_transform].  
+         */
+        static readonly NOTIFICATION_LOCAL_TRANSFORM_CHANGED = 44
+        constructor(identifier?: any)
+        
+        /** Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D], or [member top_level] is `true`.  
+         *      
+         *  **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not take [member top_level] into account.  
+         */
+        get_parent_node_3d(): Node3D
+        
+        /** Sets whether the node ignores notification that its transformation (global or local) changed. */
+        set_ignore_transform_notification(enabled: boolean): void
+        
+        /** Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to the local transformation scale are preserved. */
+        set_disable_scale(disable: boolean): void
+        
+        /** Returns whether this node uses a scale of `(1, 1, 1)` or its local transformation scale. */
+        is_scale_disabled(): boolean
+        
+        /** Returns the current [World3D] resource this [Node3D] node is registered to. */
+        get_world_3d(): World3D
+        
+        /** Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations. */
+        force_update_transform(): void
+        
+        /** Updates all the [Node3D] gizmos attached to this node. */
+        update_gizmos(): void
+        
+        /** Attach an editor gizmo to this [Node3D].  
+         *      
+         *  **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].  
+         */
+        add_gizmo(gizmo: Node3DGizmo): void
+        
+        /** Returns all the gizmos attached to this [Node3D]. */
+        get_gizmos(): GArray<any>
+        
+        /** Clear all gizmos attached to this [Node3D]. */
+        clear_gizmos(): void
+        
+        /** Set subgizmo selection for this node in the editor.  
+         *      
+         *  **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].  
+         */
+        set_subgizmo_selection(gizmo: Node3DGizmo, id: int64, transform: Transform3D): void
+        
+        /** Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid after a property change. */
+        clear_subgizmo_selection(): void
+        
+        /** Returns `true` if the node is present in the [SceneTree], its [member visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree. */
+        is_visible_in_tree(): boolean
+        
+        /** Enables rendering of this node. Changes [member visible] to `true`. */
+        show(): void
+        
+        /** Disables rendering of this node. Changes [member visible] to `false`. */
+        hide(): void
+        
+        /** Sets whether the node notifies about its local transformation changes. [Node3D] will not propagate this by default. */
+        set_notify_local_transform(enable: boolean): void
+        
+        /** Returns whether node notifies about its local transformation changes. [Node3D] will not propagate this by default. */
+        is_local_transform_notification_enabled(): boolean
+        
+        /** Sets whether the node notifies about its global and local transformation changes. [Node3D] will not propagate this by default, unless it is in the editor context and it has a valid gizmo. */
+        set_notify_transform(enable: boolean): void
+        
+        /** Returns whether the node notifies about its global and local transformation changes. [Node3D] will not propagate this by default. */
+        is_transform_notification_enabled(): boolean
+        
+        /** Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. */
+        rotate(axis: Vector3, angle: float64): void
+        
+        /** Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in global coordinate system. */
+        global_rotate(axis: Vector3, angle: float64): void
+        
+        /** Scales the global (world) transformation by the given [Vector3] scale factors. */
+        global_scale(scale: Vector3): void
+        
+        /** Moves the global (world) transformation by [Vector3] offset. The offset is in global coordinate system. */
+        global_translate(offset: Vector3): void
+        
+        /** Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system. */
+        rotate_object_local(axis: Vector3, angle: float64): void
+        
+        /** Scales the local transformation by given 3D scale factors in object-local coordinate system. */
+        scale_object_local(scale: Vector3): void
+        
+        /** Changes the node's position by the given offset [Vector3] in local space. */
+        translate_object_local(offset: Vector3): void
+        
+        /** Rotates the local transformation around the X axis by angle in radians. */
+        rotate_x(angle: float64): void
+        
+        /** Rotates the local transformation around the Y axis by angle in radians. */
+        rotate_y(angle: float64): void
+        
+        /** Rotates the local transformation around the Z axis by angle in radians. */
+        rotate_z(angle: float64): void
+        
+        /** Changes the node's position by the given offset [Vector3].  
+         *  Note that the translation [param offset] is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.  
+         */
+        translate(offset: Vector3): void
+        
+        /** Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation by performing Gram-Schmidt orthonormalization on this node's [Transform3D]. */
+        orthonormalize(): void
+        
+        /** Reset all transformations for this node (sets its [Transform3D] to the identity matrix). */
+        set_identity(): void
+        
+        /** Rotates the node so that the local forward axis (-Z, [constant Vector3.FORWARD]) points toward the [param target] position.  
+         *  The local up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.  
+         *  The [param target] position cannot be the same as the node's position, the [param up] vector cannot be zero, and the direction from the node's position to the [param target] vector cannot be parallel to the [param up] vector.  
+         *  Operations take place in global space, which means that the node must be in the scene tree.  
+         *  If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).  
+         */
+        look_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): void
+        
+        /** Moves the node to the specified [param position], and then rotates the node to point toward the [param target] as per [method look_at]. Operations take place in global space. */
+        look_at_from_position(position: Vector3, target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): void
+        
+        /** Transforms [param global_point] from world space to this node's local space. */
+        to_local(global_point: Vector3): Vector3
+        
+        /** Transforms [param local_point] from this node's local space to world space. */
+        to_global(local_point: Vector3): Vector3
+        
+        /** Local space [Transform3D] of this node, with respect to the parent node. */
+        get transform(): Transform3D
+        set transform(value: Transform3D)
+        
+        /** World3D space (global) [Transform3D] of this node. */
+        get global_transform(): Transform3D
+        set global_transform(value: Transform3D)
+        
+        /** Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`. */
+        get position(): Vector3
+        set position(value: Vector3)
+        
+        /** Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [member rotation_order] property.  
+         *      
+         *  **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.  
+         *      
+         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
+         */
+        get rotation(): Vector3
+        set rotation(value: Vector3)
+        
+        /** Helper property to access [member rotation] in degrees instead of radians. */
+        get rotation_degrees(): Vector3
+        set rotation_degrees(value: Vector3)
+        
+        /** Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex rotations. */
+        get quaternion(): Quaternion
+        set quaternion(value: Quaternion)
+        
+        /** Basis of the [member transform] property. Represents the rotation, scale, and shear of this node. */
+        get basis(): Basis
+        set basis(value: Basis)
+        
+        /** Scale part of the local transformation.  
+         *      
+         *  **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.  
+         *      
+         *  **Note:** Not all nodes are visually scaled by the [member scale] property. For example, [Light3D]s are not visually affected by [member scale].  
+         */
+        get scale(): Vector3
+        set scale(value: Vector3)
+        
+        /** Specify how rotation (and scale) will be presented in the editor. */
+        get rotation_edit_mode(): int64
+        set rotation_edit_mode(value: int64)
+        
+        /** Specify the axis rotation order of the [member rotation] property. The final orientation is constructed by rotating the Euler angles in the order specified by this property. */
+        get rotation_order(): int64
+        set rotation_order(value: int64)
+        
+        /** If `true`, the node will not inherit its transformations from its parent. Node transformations are only in global space. */
+        get top_level(): boolean
+        set top_level(value: boolean)
+        
+        /** Global position of this node. This is equivalent to `global_transform.origin`. */
+        get global_position(): Vector3
+        set global_position(value: Vector3)
+        
+        /** Global basis of this node. This is equivalent to `global_transform.basis`. */
+        get global_basis(): Basis
+        set global_basis(value: Basis)
+        
+        /** Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).  
+         *      
+         *  **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.  
+         */
+        get global_rotation(): Vector3
+        set global_rotation(value: Vector3)
+        
+        /** Helper property to access [member global_rotation] in degrees instead of radians. */
+        get global_rotation_degrees(): Vector3
+        set global_rotation_degrees(value: Vector3)
+        
+        /** If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [method is_visible_in_tree] must return `true`). */
+        get visible(): boolean
+        set visible(value: boolean)
+        
+        /** Defines the visibility range parent for this node and its subtree. The visibility parent must be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and all of its visibility ancestors) is hidden by being closer to the camera than its own [member GeometryInstance3D.visibility_range_begin]. Nodes hidden via the [member Node3D.visible] property are essentially removed from the visibility dependency tree, so dependent instances will not take the hidden node or its ancestors into account. */
+        get visibility_parent(): NodePath
+        set visibility_parent(value: NodePath | string)
+        
+        /** Emitted when node visibility changes. */
+        readonly visibility_changed: Signal0
+    }
+    class Node3DEditor extends VBoxContainer {
+        constructor(identifier?: any)
+        _get_editor_data(_unnamed_arg0: Object): Object
+        _request_gizmo(_unnamed_arg0: Object): void
+        _request_gizmo_for_id(_unnamed_arg0: int64): void
+        _set_subgizmo_selection(_unnamed_arg0: Object, _unnamed_arg1: Node3DGizmo, _unnamed_arg2: int64, _unnamed_arg3: Transform3D): void
+        _clear_subgizmo_selection(_unnamed_arg0: Object): void
+        _refresh_menu_icons(): void
+        update_all_gizmos(_unnamed_arg0: Node): void
+        update_transform_gizmo(): void
+        readonly transform_key_request: Signal0
+        readonly item_lock_status_changed: Signal0
+        readonly item_group_status_changed: Signal0
+    }
+    class Node3DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    class Node3DEditorViewport extends Control {
+        constructor(identifier?: any)
+        readonly toggle_maximize_view: Signal1<Object>
+        readonly clicked: Signal1<Object>
+    }
+    class Node3DEditorViewportContainer extends Container {
+        constructor(identifier?: any)
+    }
+    /** Abstract class to expose editor gizmos for [Node3D].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_node3dgizmo.html  
+     */
+    class Node3DGizmo extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class NodeDock extends VBoxContainer {
+        constructor(identifier?: any)
+    }
+    /** Abstract base class for noise generators.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_noise.html  
+     */
+    class Noise extends Resource {
+        constructor(identifier?: any)
+        /** Returns the 1D noise value at the given (x) coordinate. */
+        get_noise_1d(x: float64): float64
+        
+        /** Returns the 2D noise value at the given position. */
+        get_noise_2d(x: float64, y: float64): float64
+        
+        /** Returns the 2D noise value at the given position. */
+        get_noise_2dv(v: Vector2): float64
+        
+        /** Returns the 3D noise value at the given position. */
+        get_noise_3d(x: float64, y: float64, z: float64): float64
+        
+        /** Returns the 3D noise value at the given position. */
+        get_noise_3dv(v: Vector3): float64
+        
+        /** Returns an [Image] containing 2D noise values.  
+         *      
+         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
+         */
+        get_image(width: int64, height: int64, invert: boolean = false, in_3d_space: boolean = false, normalize: boolean = true): Image
+        
+        /** Returns an [Image] containing seamless 2D noise values.  
+         *      
+         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
+         */
+        get_seamless_image(width: int64, height: int64, invert: boolean = false, in_3d_space: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): Image
+        
+        /** Returns an [Array] of [Image]s containing 3D noise values for use with [method ImageTexture3D.create].  
+         *      
+         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
+         */
+        get_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, normalize: boolean = true): GArray<any>
+        
+        /** Returns an [Array] of [Image]s containing seamless 3D noise values for use with [method ImageTexture3D.create].  
+         *      
+         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
+         */
+        get_seamless_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): GArray<any>
+    }
+    class NoiseEditorInspectorPlugin extends EditorInspectorPlugin {
+        constructor(identifier?: any)
+    }
+    class NoiseEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** A 2D texture filled with noise generated by a [Noise] object.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_noisetexture2d.html  
+     */
+    class NoiseTexture2D extends Texture2D {
+        constructor(identifier?: any)
+        /** Width of the generated texture (in pixels). */
+        get width(): int64
+        set width(value: int64)
+        
+        /** Height of the generated texture (in pixels). */
+        get height(): int64
+        set height(value: int64)
+        
+        /** If `true`, inverts the noise texture. White becomes black, black becomes white. */
+        get invert(): boolean
+        set invert(value: boolean)
+        
+        /** Determines whether the noise image is calculated in 3D space. May result in reduced contrast. */
+        get in_3d_space(): boolean
+        set in_3d_space(value: boolean)
+        
+        /** Determines whether mipmaps are generated for this texture. Enabling this results in less texture aliasing in the distance, at the cost of increasing memory usage by roughly 33% and making the noise texture generation take longer.  
+         *      
+         *  **Note:** [member generate_mipmaps] requires mipmap filtering to be enabled on the material using the [NoiseTexture2D] to have an effect.  
+         */
+        get generate_mipmaps(): boolean
+        set generate_mipmaps(value: boolean)
+        
+        /** If `true`, a seamless texture is requested from the [Noise] resource.  
+         *      
+         *  **Note:** Seamless noise textures may take longer to generate and/or can have a lower contrast compared to non-seamless noise depending on the used [Noise] resource. This is because some implementations use higher dimensions for generating seamless noise.  
+         *      
+         *  **Note:** The default [FastNoiseLite] implementation uses the fallback path for seamless generation. If using a [member width] or [member height] lower than the default, you may need to increase [member seamless_blend_skirt] to make seamless blending more effective.  
+         */
+        get seamless(): boolean
+        set seamless(value: boolean)
+        
+        /** Used for the default/fallback implementation of the seamless texture generation. It determines the distance over which the seams are blended. High values may result in less details and contrast. See [Noise] for further details.  
+         *      
+         *  **Note:** If using a [member width] or [member height] lower than the default, you may need to increase [member seamless_blend_skirt] to make seamless blending more effective.  
+         */
+        get seamless_blend_skirt(): float64
+        set seamless_blend_skirt(value: float64)
+        
+        /** If `true`, the resulting texture contains a normal map created from the original noise interpreted as a bump map. */
+        get as_normal_map(): boolean
+        set as_normal_map(value: boolean)
+        
+        /** Strength of the bump maps used in this texture. A higher value will make the bump maps appear larger while a lower value will make them appear softer. */
+        get bump_strength(): float64
+        set bump_strength(value: float64)
+        
+        /** If `true`, the noise image coming from the noise generator is normalized to the range `0.0` to `1.0`.  
+         *  Turning normalization off can affect the contrast and allows you to generate non repeating tileable noise textures.  
+         */
+        get normalize(): boolean
+        set normalize(value: boolean)
+        
+        /** A [Gradient] which is used to map the luminance of each pixel to a color value. */
+        get color_ramp(): Gradient
+        set color_ramp(value: Gradient)
+        
+        /** The instance of the [Noise] object. */
+        get noise(): Noise
+        set noise(value: Noise)
     }
 }

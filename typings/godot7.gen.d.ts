@@ -1,1172 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** A camera node with a few overrules for AR/VR applied, such as location tracking.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrcamera3d.html  
-     */
-    class XRCamera3D extends Camera3D {
-        constructor(identifier?: any)
-    }
-    /** A spatial node representing a spatially-tracked controller.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrcontroller3d.html  
-     */
-    class XRController3D extends XRNode3D {
-        constructor(identifier?: any)
-        /** Returns `true` if the button with the given [param name] is pressed. */
-        is_button_pressed(name: StringName): boolean
-        
-        /** Returns a [Variant] for the input with the given [param name]. This works for any input type, the variant will be typed according to the actions configuration. */
-        get_input(name: StringName): any
-        
-        /** Returns a numeric value for the input with the given [param name]. This is used for triggers and grip sensors. */
-        get_float(name: StringName): float64
-        
-        /** Returns a [Vector2] for the input with the given [param name]. This is used for thumbsticks and thumbpads found on many controllers. */
-        get_vector2(name: StringName): Vector2
-        
-        /** Returns the hand holding this controller, if known. See [enum XRPositionalTracker.TrackerHand]. */
-        get_tracker_hand(): XRPositionalTracker.TrackerHand
-        
-        /** Emitted when a button on this controller is pressed. */
-        readonly button_pressed: Signal1<string>
-        
-        /** Emitted when a button on this controller is released. */
-        readonly button_released: Signal1<string>
-        
-        /** Emitted when a trigger or similar input on this controller changes value. */
-        readonly input_float_changed: Signal2<string, float64>
-        
-        /** Emitted when a thumbstick or thumbpad on this controller is moved. */
-        readonly input_vector2_changed: Signal2<string, Vector2>
-        
-        /** Emitted when the interaction profile on this controller is changed. */
-        readonly profile_changed: Signal1<string>
-    }
-    /** A tracked controller.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrcontrollertracker.html  
-     */
-    class XRControllerTracker extends XRPositionalTracker {
-        constructor(identifier?: any)
-    }
-    /** A node for driving standard face meshes from [XRFaceTracker] weights.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrfacemodifier3d.html  
-     */
-    class XRFaceModifier3D extends Node3D {
-        constructor(identifier?: any)
-        /** The [XRFaceTracker] path. */
-        get face_tracker(): string
-        set face_tracker(value: string)
-        
-        /** The [NodePath] of the face [MeshInstance3D]. */
-        get target(): NodePath
-        set target(value: NodePath | string)
-    }
-    namespace XRFaceTracker {
-        enum BlendShapeEntry {
-            /** Right eye looks outwards. */
-            FT_EYE_LOOK_OUT_RIGHT = 0,
-            
-            /** Right eye looks inwards. */
-            FT_EYE_LOOK_IN_RIGHT = 1,
-            
-            /** Right eye looks upwards. */
-            FT_EYE_LOOK_UP_RIGHT = 2,
-            
-            /** Right eye looks downwards. */
-            FT_EYE_LOOK_DOWN_RIGHT = 3,
-            
-            /** Left eye looks outwards. */
-            FT_EYE_LOOK_OUT_LEFT = 4,
-            
-            /** Left eye looks inwards. */
-            FT_EYE_LOOK_IN_LEFT = 5,
-            
-            /** Left eye looks upwards. */
-            FT_EYE_LOOK_UP_LEFT = 6,
-            
-            /** Left eye looks downwards. */
-            FT_EYE_LOOK_DOWN_LEFT = 7,
-            
-            /** Closes the right eyelid. */
-            FT_EYE_CLOSED_RIGHT = 8,
-            
-            /** Closes the left eyelid. */
-            FT_EYE_CLOSED_LEFT = 9,
-            
-            /** Squeezes the right eye socket muscles. */
-            FT_EYE_SQUINT_RIGHT = 10,
-            
-            /** Squeezes the left eye socket muscles. */
-            FT_EYE_SQUINT_LEFT = 11,
-            
-            /** Right eyelid widens beyond relaxed. */
-            FT_EYE_WIDE_RIGHT = 12,
-            
-            /** Left eyelid widens beyond relaxed. */
-            FT_EYE_WIDE_LEFT = 13,
-            
-            /** Dilates the right eye pupil. */
-            FT_EYE_DILATION_RIGHT = 14,
-            
-            /** Dilates the left eye pupil. */
-            FT_EYE_DILATION_LEFT = 15,
-            
-            /** Constricts the right eye pupil. */
-            FT_EYE_CONSTRICT_RIGHT = 16,
-            
-            /** Constricts the left eye pupil. */
-            FT_EYE_CONSTRICT_LEFT = 17,
-            
-            /** Right eyebrow pinches in. */
-            FT_BROW_PINCH_RIGHT = 18,
-            
-            /** Left eyebrow pinches in. */
-            FT_BROW_PINCH_LEFT = 19,
-            
-            /** Outer right eyebrow pulls down. */
-            FT_BROW_LOWERER_RIGHT = 20,
-            
-            /** Outer left eyebrow pulls down. */
-            FT_BROW_LOWERER_LEFT = 21,
-            
-            /** Inner right eyebrow pulls up. */
-            FT_BROW_INNER_UP_RIGHT = 22,
-            
-            /** Inner left eyebrow pulls up. */
-            FT_BROW_INNER_UP_LEFT = 23,
-            
-            /** Outer right eyebrow pulls up. */
-            FT_BROW_OUTER_UP_RIGHT = 24,
-            
-            /** Outer left eyebrow pulls up. */
-            FT_BROW_OUTER_UP_LEFT = 25,
-            
-            /** Right side face sneers. */
-            FT_NOSE_SNEER_RIGHT = 26,
-            
-            /** Left side face sneers. */
-            FT_NOSE_SNEER_LEFT = 27,
-            
-            /** Right side nose canal dilates. */
-            FT_NASAL_DILATION_RIGHT = 28,
-            
-            /** Left side nose canal dilates. */
-            FT_NASAL_DILATION_LEFT = 29,
-            
-            /** Right side nose canal constricts. */
-            FT_NASAL_CONSTRICT_RIGHT = 30,
-            
-            /** Left side nose canal constricts. */
-            FT_NASAL_CONSTRICT_LEFT = 31,
-            
-            /** Raises the right side cheek. */
-            FT_CHEEK_SQUINT_RIGHT = 32,
-            
-            /** Raises the left side cheek. */
-            FT_CHEEK_SQUINT_LEFT = 33,
-            
-            /** Puffs the right side cheek. */
-            FT_CHEEK_PUFF_RIGHT = 34,
-            
-            /** Puffs the left side cheek. */
-            FT_CHEEK_PUFF_LEFT = 35,
-            
-            /** Sucks in the right side cheek. */
-            FT_CHEEK_SUCK_RIGHT = 36,
-            
-            /** Sucks in the left side cheek. */
-            FT_CHEEK_SUCK_LEFT = 37,
-            
-            /** Opens jawbone. */
-            FT_JAW_OPEN = 38,
-            
-            /** Closes the mouth. */
-            FT_MOUTH_CLOSED = 39,
-            
-            /** Pushes jawbone right. */
-            FT_JAW_RIGHT = 40,
-            
-            /** Pushes jawbone left. */
-            FT_JAW_LEFT = 41,
-            
-            /** Pushes jawbone forward. */
-            FT_JAW_FORWARD = 42,
-            
-            /** Pushes jawbone backward. */
-            FT_JAW_BACKWARD = 43,
-            
-            /** Flexes jaw muscles. */
-            FT_JAW_CLENCH = 44,
-            
-            /** Raises the jawbone. */
-            FT_JAW_MANDIBLE_RAISE = 45,
-            
-            /** Upper right lip part tucks in the mouth. */
-            FT_LIP_SUCK_UPPER_RIGHT = 46,
-            
-            /** Upper left lip part tucks in the mouth. */
-            FT_LIP_SUCK_UPPER_LEFT = 47,
-            
-            /** Lower right lip part tucks in the mouth. */
-            FT_LIP_SUCK_LOWER_RIGHT = 48,
-            
-            /** Lower left lip part tucks in the mouth. */
-            FT_LIP_SUCK_LOWER_LEFT = 49,
-            
-            /** Right lip corner folds into the mouth. */
-            FT_LIP_SUCK_CORNER_RIGHT = 50,
-            
-            /** Left lip corner folds into the mouth. */
-            FT_LIP_SUCK_CORNER_LEFT = 51,
-            
-            /** Upper right lip part pushes into a funnel. */
-            FT_LIP_FUNNEL_UPPER_RIGHT = 52,
-            
-            /** Upper left lip part pushes into a funnel. */
-            FT_LIP_FUNNEL_UPPER_LEFT = 53,
-            
-            /** Lower right lip part pushes into a funnel. */
-            FT_LIP_FUNNEL_LOWER_RIGHT = 54,
-            
-            /** Lower left lip part pushes into a funnel. */
-            FT_LIP_FUNNEL_LOWER_LEFT = 55,
-            
-            /** Upper right lip part pushes outwards. */
-            FT_LIP_PUCKER_UPPER_RIGHT = 56,
-            
-            /** Upper left lip part pushes outwards. */
-            FT_LIP_PUCKER_UPPER_LEFT = 57,
-            
-            /** Lower right lip part pushes outwards. */
-            FT_LIP_PUCKER_LOWER_RIGHT = 58,
-            
-            /** Lower left lip part pushes outwards. */
-            FT_LIP_PUCKER_LOWER_LEFT = 59,
-            
-            /** Upper right part of the lip pulls up. */
-            FT_MOUTH_UPPER_UP_RIGHT = 60,
-            
-            /** Upper left part of the lip pulls up. */
-            FT_MOUTH_UPPER_UP_LEFT = 61,
-            
-            /** Lower right part of the lip pulls up. */
-            FT_MOUTH_LOWER_DOWN_RIGHT = 62,
-            
-            /** Lower left part of the lip pulls up. */
-            FT_MOUTH_LOWER_DOWN_LEFT = 63,
-            
-            /** Upper right lip part pushes in the cheek. */
-            FT_MOUTH_UPPER_DEEPEN_RIGHT = 64,
-            
-            /** Upper left lip part pushes in the cheek. */
-            FT_MOUTH_UPPER_DEEPEN_LEFT = 65,
-            
-            /** Moves upper lip right. */
-            FT_MOUTH_UPPER_RIGHT = 66,
-            
-            /** Moves upper lip left. */
-            FT_MOUTH_UPPER_LEFT = 67,
-            
-            /** Moves lower lip right. */
-            FT_MOUTH_LOWER_RIGHT = 68,
-            
-            /** Moves lower lip left. */
-            FT_MOUTH_LOWER_LEFT = 69,
-            
-            /** Right lip corner pulls diagonally up and out. */
-            FT_MOUTH_CORNER_PULL_RIGHT = 70,
-            
-            /** Left lip corner pulls diagonally up and out. */
-            FT_MOUTH_CORNER_PULL_LEFT = 71,
-            
-            /** Right corner lip slants up. */
-            FT_MOUTH_CORNER_SLANT_RIGHT = 72,
-            
-            /** Left corner lip slants up. */
-            FT_MOUTH_CORNER_SLANT_LEFT = 73,
-            
-            /** Right corner lip pulls down. */
-            FT_MOUTH_FROWN_RIGHT = 74,
-            
-            /** Left corner lip pulls down. */
-            FT_MOUTH_FROWN_LEFT = 75,
-            
-            /** Mouth corner lip pulls out and down. */
-            FT_MOUTH_STRETCH_RIGHT = 76,
-            
-            /** Mouth corner lip pulls out and down. */
-            FT_MOUTH_STRETCH_LEFT = 77,
-            
-            /** Right lip corner is pushed backwards. */
-            FT_MOUTH_DIMPLE_RIGHT = 78,
-            
-            /** Left lip corner is pushed backwards. */
-            FT_MOUTH_DIMPLE_LEFT = 79,
-            
-            /** Raises and slightly pushes out the upper mouth. */
-            FT_MOUTH_RAISER_UPPER = 80,
-            
-            /** Raises and slightly pushes out the lower mouth. */
-            FT_MOUTH_RAISER_LOWER = 81,
-            
-            /** Right side lips press and flatten together vertically. */
-            FT_MOUTH_PRESS_RIGHT = 82,
-            
-            /** Left side lips press and flatten together vertically. */
-            FT_MOUTH_PRESS_LEFT = 83,
-            
-            /** Right side lips squeeze together horizontally. */
-            FT_MOUTH_TIGHTENER_RIGHT = 84,
-            
-            /** Left side lips squeeze together horizontally. */
-            FT_MOUTH_TIGHTENER_LEFT = 85,
-            
-            /** Tongue visibly sticks out of the mouth. */
-            FT_TONGUE_OUT = 86,
-            
-            /** Tongue points upwards. */
-            FT_TONGUE_UP = 87,
-            
-            /** Tongue points downwards. */
-            FT_TONGUE_DOWN = 88,
-            
-            /** Tongue points right. */
-            FT_TONGUE_RIGHT = 89,
-            
-            /** Tongue points left. */
-            FT_TONGUE_LEFT = 90,
-            
-            /** Sides of the tongue funnel, creating a roll. */
-            FT_TONGUE_ROLL = 91,
-            
-            /** Tongue arches up then down inside the mouth. */
-            FT_TONGUE_BLEND_DOWN = 92,
-            
-            /** Tongue arches down then up inside the mouth. */
-            FT_TONGUE_CURL_UP = 93,
-            
-            /** Tongue squishes together and thickens. */
-            FT_TONGUE_SQUISH = 94,
-            
-            /** Tongue flattens and thins out. */
-            FT_TONGUE_FLAT = 95,
-            
-            /** Tongue tip rotates clockwise, with the rest following gradually. */
-            FT_TONGUE_TWIST_RIGHT = 96,
-            
-            /** Tongue tip rotates counter-clockwise, with the rest following gradually. */
-            FT_TONGUE_TWIST_LEFT = 97,
-            
-            /** Inner mouth throat closes. */
-            FT_SOFT_PALATE_CLOSE = 98,
-            
-            /** The Adam's apple visibly swallows. */
-            FT_THROAT_SWALLOW = 99,
-            
-            /** Right side neck visibly flexes. */
-            FT_NECK_FLEX_RIGHT = 100,
-            
-            /** Left side neck visibly flexes. */
-            FT_NECK_FLEX_LEFT = 101,
-            
-            /** Closes both eye lids. */
-            FT_EYE_CLOSED = 102,
-            
-            /** Widens both eye lids. */
-            FT_EYE_WIDE = 103,
-            
-            /** Squints both eye lids. */
-            FT_EYE_SQUINT = 104,
-            
-            /** Dilates both pupils. */
-            FT_EYE_DILATION = 105,
-            
-            /** Constricts both pupils. */
-            FT_EYE_CONSTRICT = 106,
-            
-            /** Pulls the right eyebrow down and in. */
-            FT_BROW_DOWN_RIGHT = 107,
-            
-            /** Pulls the left eyebrow down and in. */
-            FT_BROW_DOWN_LEFT = 108,
-            
-            /** Pulls both eyebrows down and in. */
-            FT_BROW_DOWN = 109,
-            
-            /** Right brow appears worried. */
-            FT_BROW_UP_RIGHT = 110,
-            
-            /** Left brow appears worried. */
-            FT_BROW_UP_LEFT = 111,
-            
-            /** Both brows appear worried. */
-            FT_BROW_UP = 112,
-            
-            /** Entire face sneers. */
-            FT_NOSE_SNEER = 113,
-            
-            /** Both nose canals dilate. */
-            FT_NASAL_DILATION = 114,
-            
-            /** Both nose canals constrict. */
-            FT_NASAL_CONSTRICT = 115,
-            
-            /** Puffs both cheeks. */
-            FT_CHEEK_PUFF = 116,
-            
-            /** Sucks in both cheeks. */
-            FT_CHEEK_SUCK = 117,
-            
-            /** Raises both cheeks. */
-            FT_CHEEK_SQUINT = 118,
-            
-            /** Tucks in the upper lips. */
-            FT_LIP_SUCK_UPPER = 119,
-            
-            /** Tucks in the lower lips. */
-            FT_LIP_SUCK_LOWER = 120,
-            
-            /** Tucks in both lips. */
-            FT_LIP_SUCK = 121,
-            
-            /** Funnels in the upper lips. */
-            FT_LIP_FUNNEL_UPPER = 122,
-            
-            /** Funnels in the lower lips. */
-            FT_LIP_FUNNEL_LOWER = 123,
-            
-            /** Funnels in both lips. */
-            FT_LIP_FUNNEL = 124,
-            
-            /** Upper lip part pushes outwards. */
-            FT_LIP_PUCKER_UPPER = 125,
-            
-            /** Lower lip part pushes outwards. */
-            FT_LIP_PUCKER_LOWER = 126,
-            
-            /** Lips push outwards. */
-            FT_LIP_PUCKER = 127,
-            
-            /** Raises the upper lips. */
-            FT_MOUTH_UPPER_UP = 128,
-            
-            /** Lowers the lower lips. */
-            FT_MOUTH_LOWER_DOWN = 129,
-            
-            /** Mouth opens, revealing teeth. */
-            FT_MOUTH_OPEN = 130,
-            
-            /** Moves mouth right. */
-            FT_MOUTH_RIGHT = 131,
-            
-            /** Moves mouth left. */
-            FT_MOUTH_LEFT = 132,
-            
-            /** Right side of the mouth smiles. */
-            FT_MOUTH_SMILE_RIGHT = 133,
-            
-            /** Left side of the mouth smiles. */
-            FT_MOUTH_SMILE_LEFT = 134,
-            
-            /** Mouth expresses a smile. */
-            FT_MOUTH_SMILE = 135,
-            
-            /** Right side of the mouth expresses sadness. */
-            FT_MOUTH_SAD_RIGHT = 136,
-            
-            /** Left side of the mouth expresses sadness. */
-            FT_MOUTH_SAD_LEFT = 137,
-            
-            /** Mouth expresses sadness. */
-            FT_MOUTH_SAD = 138,
-            
-            /** Mouth stretches. */
-            FT_MOUTH_STRETCH = 139,
-            
-            /** Lip corners dimple. */
-            FT_MOUTH_DIMPLE = 140,
-            
-            /** Mouth tightens. */
-            FT_MOUTH_TIGHTENER = 141,
-            
-            /** Mouth presses together. */
-            FT_MOUTH_PRESS = 142,
-            
-            /** Represents the size of the [enum BlendShapeEntry] enum. */
-            FT_MAX = 143,
-        }
-    }
-    /** A tracked face.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrfacetracker.html  
-     */
-    class XRFaceTracker extends XRTracker {
-        constructor(identifier?: any)
-        /** Returns the requested face blend shape weight. */
-        get_blend_shape(blend_shape: XRFaceTracker.BlendShapeEntry): float64
-        
-        /** Sets a face blend shape weight. */
-        set_blend_shape(blend_shape: XRFaceTracker.BlendShapeEntry, weight: float64): void
-        
-        /** The array of face blend shape weights with indices corresponding to the [enum BlendShapeEntry] enum. */
-        get blend_shapes(): PackedFloat32Array
-        set blend_shapes(value: PackedFloat32Array | float32[])
-    }
-    namespace XRHandModifier3D {
-        enum BoneUpdate {
-            /** The skeleton's bones are fully updated (both position and rotation) to match the tracked bones. */
-            BONE_UPDATE_FULL = 0,
-            
-            /** The skeleton's bones are only rotated to align with the tracked bones, preserving bone length. */
-            BONE_UPDATE_ROTATION_ONLY = 1,
-            
-            /** Represents the size of the [enum BoneUpdate] enum. */
-            BONE_UPDATE_MAX = 2,
-        }
-    }
-    /** A node for driving hand meshes from [XRHandTracker] data.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrhandmodifier3d.html  
-     */
-    class XRHandModifier3D extends SkeletonModifier3D {
-        constructor(identifier?: any)
-        /** The name of the [XRHandTracker] registered with [XRServer] to obtain the hand tracking data from. */
-        get hand_tracker(): string
-        set hand_tracker(value: string)
-        
-        /** Specifies the type of updates to perform on the bones. */
-        get bone_update(): int64
-        set bone_update(value: int64)
-    }
-    namespace XRHandTracker {
-        enum HandTrackingSource {
-            /** The source of hand tracking data is unknown. */
-            HAND_TRACKING_SOURCE_UNKNOWN = 0,
-            
-            /** The source of hand tracking data is unobstructed, meaning that an accurate method of hand tracking is used. These include optical hand tracking, data gloves, etc. */
-            HAND_TRACKING_SOURCE_UNOBSTRUCTED = 1,
-            
-            /** The source of hand tracking data is a controller, meaning that joint positions are inferred from controller inputs. */
-            HAND_TRACKING_SOURCE_CONTROLLER = 2,
-            
-            /** Represents the size of the [enum HandTrackingSource] enum. */
-            HAND_TRACKING_SOURCE_MAX = 3,
-        }
-        enum HandJoint {
-            /** Palm joint. */
-            HAND_JOINT_PALM = 0,
-            
-            /** Wrist joint. */
-            HAND_JOINT_WRIST = 1,
-            
-            /** Thumb metacarpal joint. */
-            HAND_JOINT_THUMB_METACARPAL = 2,
-            
-            /** Thumb phalanx proximal joint. */
-            HAND_JOINT_THUMB_PHALANX_PROXIMAL = 3,
-            
-            /** Thumb phalanx distal joint. */
-            HAND_JOINT_THUMB_PHALANX_DISTAL = 4,
-            
-            /** Thumb tip joint. */
-            HAND_JOINT_THUMB_TIP = 5,
-            
-            /** Index finger metacarpal joint. */
-            HAND_JOINT_INDEX_FINGER_METACARPAL = 6,
-            
-            /** Index finger phalanx proximal joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_PROXIMAL = 7,
-            
-            /** Index finger phalanx intermediate joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_INTERMEDIATE = 8,
-            
-            /** Index finger phalanx distal joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_DISTAL = 9,
-            
-            /** Index finger tip joint. */
-            HAND_JOINT_INDEX_FINGER_TIP = 10,
-            
-            /** Middle finger metacarpal joint. */
-            HAND_JOINT_MIDDLE_FINGER_METACARPAL = 11,
-            
-            /** Middle finger phalanx proximal joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_PROXIMAL = 12,
-            
-            /** Middle finger phalanx intermediate joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_INTERMEDIATE = 13,
-            
-            /** Middle finger phalanx distal joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_DISTAL = 14,
-            
-            /** Middle finger tip joint. */
-            HAND_JOINT_MIDDLE_FINGER_TIP = 15,
-            
-            /** Ring finger metacarpal joint. */
-            HAND_JOINT_RING_FINGER_METACARPAL = 16,
-            
-            /** Ring finger phalanx proximal joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_PROXIMAL = 17,
-            
-            /** Ring finger phalanx intermediate joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_INTERMEDIATE = 18,
-            
-            /** Ring finger phalanx distal joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_DISTAL = 19,
-            
-            /** Ring finger tip joint. */
-            HAND_JOINT_RING_FINGER_TIP = 20,
-            
-            /** Pinky finger metacarpal joint. */
-            HAND_JOINT_PINKY_FINGER_METACARPAL = 21,
-            
-            /** Pinky finger phalanx proximal joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_PROXIMAL = 22,
-            
-            /** Pinky finger phalanx intermediate joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_INTERMEDIATE = 23,
-            
-            /** Pinky finger phalanx distal joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_DISTAL = 24,
-            
-            /** Pinky finger tip joint. */
-            HAND_JOINT_PINKY_FINGER_TIP = 25,
-            
-            /** Represents the size of the [enum HandJoint] enum. */
-            HAND_JOINT_MAX = 26,
-        }
-        enum HandJointFlags {
-            /** The hand joint's orientation data is valid. */
-            HAND_JOINT_FLAG_ORIENTATION_VALID = 1,
-            
-            /** The hand joint's orientation is actively tracked. May not be set if tracking has been temporarily lost. */
-            HAND_JOINT_FLAG_ORIENTATION_TRACKED = 2,
-            
-            /** The hand joint's position data is valid. */
-            HAND_JOINT_FLAG_POSITION_VALID = 4,
-            
-            /** The hand joint's position is actively tracked. May not be set if tracking has been temporarily lost. */
-            HAND_JOINT_FLAG_POSITION_TRACKED = 8,
-            
-            /** The hand joint's linear velocity data is valid. */
-            HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID = 16,
-            
-            /** The hand joint's angular velocity data is valid. */
-            HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID = 32,
-        }
-    }
-    /** A tracked hand in XR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrhandtracker.html  
-     */
-    class XRHandTracker extends XRPositionalTracker {
-        constructor(identifier?: any)
-        /** Sets flags about the validity of the tracking data for the given hand joint. */
-        set_hand_joint_flags(joint: XRHandTracker.HandJoint, flags: XRHandTracker.HandJointFlags): void
-        
-        /** Returns flags about the validity of the tracking data for the given hand joint (see [enum XRHandTracker.HandJointFlags]). */
-        get_hand_joint_flags(joint: XRHandTracker.HandJoint): XRHandTracker.HandJointFlags
-        
-        /** Sets the transform for the given hand joint. */
-        set_hand_joint_transform(joint: XRHandTracker.HandJoint, transform: Transform3D): void
-        
-        /** Returns the transform for the given hand joint. */
-        get_hand_joint_transform(joint: XRHandTracker.HandJoint): Transform3D
-        
-        /** Sets the radius of the given hand joint. */
-        set_hand_joint_radius(joint: XRHandTracker.HandJoint, radius: float64): void
-        
-        /** Returns the radius of the given hand joint. */
-        get_hand_joint_radius(joint: XRHandTracker.HandJoint): float64
-        
-        /** Sets the linear velocity for the given hand joint. */
-        set_hand_joint_linear_velocity(joint: XRHandTracker.HandJoint, linear_velocity: Vector3): void
-        
-        /** Returns the linear velocity for the given hand joint. */
-        get_hand_joint_linear_velocity(joint: XRHandTracker.HandJoint): Vector3
-        
-        /** Sets the angular velocity for the given hand joint. */
-        set_hand_joint_angular_velocity(joint: XRHandTracker.HandJoint, angular_velocity: Vector3): void
-        
-        /** Returns the angular velocity for the given hand joint. */
-        get_hand_joint_angular_velocity(joint: XRHandTracker.HandJoint): Vector3
-        
-        /** If `true`, the hand tracking data is valid. */
-        get has_tracking_data(): boolean
-        set has_tracking_data(value: boolean)
-        
-        /** The source of the hand tracking data. */
-        get hand_tracking_source(): int64
-        set hand_tracking_source(value: int64)
-    }
-    namespace XRInterface {
-        enum Capabilities {
-            /** No XR capabilities. */
-            XR_NONE = 0,
-            
-            /** This interface can work with normal rendering output (non-HMD based AR). */
-            XR_MONO = 1,
-            
-            /** This interface supports stereoscopic rendering. */
-            XR_STEREO = 2,
-            
-            /** This interface supports quad rendering (not yet supported by Godot). */
-            XR_QUAD = 4,
-            
-            /** This interface supports VR. */
-            XR_VR = 8,
-            
-            /** This interface supports AR (video background and real world tracking). */
-            XR_AR = 16,
-            
-            /** This interface outputs to an external device. If the main viewport is used, the on screen output is an unmodified buffer of either the left or right eye (stretched if the viewport size is not changed to the same aspect ratio of [method get_render_target_size]). Using a separate viewport node frees up the main viewport for other purposes. */
-            XR_EXTERNAL = 32,
-        }
-        enum TrackingStatus {
-            /** Tracking is behaving as expected. */
-            XR_NORMAL_TRACKING = 0,
-            
-            /** Tracking is hindered by excessive motion (the player is moving faster than tracking can keep up). */
-            XR_EXCESSIVE_MOTION = 1,
-            
-            /** Tracking is hindered by insufficient features, it's too dark (for camera-based tracking), player is blocked, etc. */
-            XR_INSUFFICIENT_FEATURES = 2,
-            
-            /** We don't know the status of the tracking or this interface does not provide feedback. */
-            XR_UNKNOWN_TRACKING = 3,
-            
-            /** Tracking is not functional (camera not plugged in or obscured, lighthouses turned off, etc.). */
-            XR_NOT_TRACKING = 4,
-        }
-        enum PlayAreaMode {
-            /** Play area mode not set or not available. */
-            XR_PLAY_AREA_UNKNOWN = 0,
-            
-            /** Play area only supports orientation tracking, no positional tracking, area will center around player. */
-            XR_PLAY_AREA_3DOF = 1,
-            
-            /** Player is in seated position, limited positional tracking, fixed guardian around player. */
-            XR_PLAY_AREA_SITTING = 2,
-            
-            /** Player is free to move around, full positional tracking. */
-            XR_PLAY_AREA_ROOMSCALE = 3,
-            
-            /** Same as [constant XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the physical space. In this mode, system-level recentering may be disabled, requiring the use of [method XRServer.center_on_hmd]. */
-            XR_PLAY_AREA_STAGE = 4,
-        }
-        enum EnvironmentBlendMode {
-            /** Opaque blend mode. This is typically used for VR devices. */
-            XR_ENV_BLEND_MODE_OPAQUE = 0,
-            
-            /** Additive blend mode. This is typically used for AR devices or VR devices with passthrough. */
-            XR_ENV_BLEND_MODE_ADDITIVE = 1,
-            
-            /** Alpha blend mode. This is typically used for AR or VR devices with passthrough capabilities. The alpha channel controls how much of the passthrough is visible. Alpha of 0.0 means the passthrough is visible and this pixel works in ADDITIVE mode. Alpha of 1.0 means that the passthrough is not visible and this pixel works in OPAQUE mode. */
-            XR_ENV_BLEND_MODE_ALPHA_BLEND = 2,
-        }
-    }
-    /** Base class for an XR interface implementation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrinterface.html  
-     */
-    class XRInterface extends RefCounted {
-        constructor(identifier?: any)
-        /** Returns the name of this interface (`"OpenXR"`, `"OpenVR"`, `"OpenHMD"`, `"ARKit"`, etc.). */
-        get_name(): StringName
-        
-        /** Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface. */
-        get_capabilities(): int64
-        
-        /** Returns `true` if this interface has been initialized. */
-        is_initialized(): boolean
-        
-        /** Call this to initialize this interface. The first interface that is initialized is identified as the primary interface and it will be used for rendering output.  
-         *  After initializing the interface you want to use you then need to enable the AR/VR mode of a viewport and rendering should commence.  
-         *      
-         *  **Note:** You must enable the XR mode on the main viewport for any device that uses the main output of Godot, such as for mobile VR.  
-         *  If you do this for a platform that handles its own output (such as OpenVR) Godot will show just one eye without distortion on screen. Alternatively, you can add a separate viewport node to your scene and enable AR/VR on that viewport. It will be used to output to the HMD, leaving you free to do anything you like in the main window, such as using a separate camera as a spectator camera or rendering something completely different.  
-         *  While currently not used, you can activate additional interfaces. You may wish to do this if you want to track controllers from other platforms. However, at this point in time only one interface can render to an HMD.  
-         */
-        initialize(): boolean
-        
-        /** Turns the interface off. */
-        uninitialize(): void
-        
-        /** Returns a [Dictionary] with extra system info. Interfaces are expected to return `XRRuntimeName` and `XRRuntimeVersion` providing info about the used XR runtime. Additional entries may be provided specific to an interface.  
-         *      
-         *  **Note:**This information may only be available after [method initialize] was successfully called.  
-         */
-        get_system_info(): GDictionary
-        
-        /** If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking. */
-        get_tracking_status(): XRInterface.TrackingStatus
-        
-        /** Returns the resolution at which we should render our intermediate results before things like lens distortion are applied by the VR platform. */
-        get_render_target_size(): Vector2
-        
-        /** Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic. */
-        get_view_count(): int64
-        
-        /** Triggers a haptic pulse on a device associated with this interface.  
-         *  [param action_name] is the name of the action for this pulse.  
-         *  [param tracker_name] is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.  
-         *  [param frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.  
-         *  [param amplitude] is the amplitude of the pulse between `0.0` and `1.0`.  
-         *  [param duration_sec] is the duration of the pulse in seconds.  
-         *  [param delay_sec] is a delay in seconds before the pulse is given.  
-         */
-        trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** Call this to find out if a given play area mode is supported by this interface. */
-        supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns an array of vectors that represent the physical play area mapped to the virtual space around the [XROrigin3D] point. The points form a convex polygon that can be used to react to or visualize the play area. This returns an empty array if this feature is not supported or if the information is not yet available. */
-        get_play_area(): PackedVector3Array
-        
-        /** If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [CameraServer] for this interface. */
-        get_camera_feed_id(): int64
-        
-        /** Returns `true` if this interface supports passthrough. */
-        is_passthrough_supported(): boolean
-        
-        /** Returns `true` if passthrough is enabled. */
-        is_passthrough_enabled(): boolean
-        
-        /** Starts passthrough, will return `false` if passthrough couldn't be started.  
-         *      
-         *  **Note:** The viewport used for XR must have a transparent background, otherwise passthrough may not properly render.  
-         */
-        start_passthrough(): boolean
-        
-        /** Stops passthrough. */
-        stop_passthrough(): void
-        
-        /** Returns the transform for a view/eye.  
-         *  [param view] is the view/eye index.  
-         *  [param cam_transform] is the transform that maps device coordinates to scene coordinates, typically the [member Node3D.global_transform] of the current XROrigin3D.  
-         */
-        get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
-        
-        /** Returns the projection matrix for a view/eye. */
-        get_projection_for_view(view: int64, aspect: float64, near: float64, far: float64): Projection
-        
-        /** Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode]. */
-        get_supported_environment_blend_modes(): GArray
-        
-        /** `true` if this is the primary interface. */
-        get interface_is_primary(): boolean
-        set interface_is_primary(value: boolean)
-        
-        /** The play area mode for this interface. */
-        get xr_play_area_mode(): int64
-        set xr_play_area_mode(value: int64)
-        
-        /** Specify how XR should blend in the environment. This is specific to certain AR and passthrough devices where camera images are blended in by the XR compositor. */
-        get environment_blend_mode(): int64
-        set environment_blend_mode(value: int64)
-        
-        /** On an AR interface, `true` if anchor detection is enabled. */
-        get ar_is_anchor_detection_enabled(): boolean
-        set ar_is_anchor_detection_enabled(value: boolean)
-        
-        /** Emitted when the play area is changed. This can be a result of the player resetting the boundary or entering a new play area, the player changing the play area mode, the world scale changing or the player resetting their headset orientation. */
-        readonly play_area_changed: Signal1<int64>
-    }
-    /** Base class for XR interface extensions (plugins).  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrinterfaceextension.html  
-     */
-    class XRInterfaceExtension extends XRInterface {
-        constructor(identifier?: any)
-        /** Returns the name of this interface. */
-        /* gdvirtual */ _get_name(): StringName
-        
-        /** Returns the capabilities of this interface. */
-        /* gdvirtual */ _get_capabilities(): int64
-        
-        /** Returns `true` if this interface has been initialized. */
-        /* gdvirtual */ _is_initialized(): boolean
-        
-        /** Initializes the interface, returns `true` on success. */
-        /* gdvirtual */ _initialize(): boolean
-        
-        /** Uninitialize the interface. */
-        /* gdvirtual */ _uninitialize(): void
-        
-        /** Returns a [Dictionary] with system information related to this interface. */
-        /* gdvirtual */ _get_system_info(): GDictionary
-        
-        /** Returns `true` if this interface supports this play area mode. */
-        /* gdvirtual */ _supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns the play area mode that sets up our play area. */
-        /* gdvirtual */ _get_play_area_mode(): XRInterface.PlayAreaMode
-        
-        /** Set the play area mode for this interface. */
-        /* gdvirtual */ _set_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns a [PackedVector3Array] that represents the play areas boundaries (if applicable). */
-        /* gdvirtual */ _get_play_area(): PackedVector3Array
-        
-        /** Returns the size of our render target for this interface, this overrides the size of the [Viewport] marked as the xr viewport. */
-        /* gdvirtual */ _get_render_target_size(): Vector2
-        
-        /** Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic. */
-        /* gdvirtual */ _get_view_count(): int64
-        
-        /** Returns the [Transform3D] that positions the [XRCamera3D] in the world. */
-        /* gdvirtual */ _get_camera_transform(): Transform3D
-        
-        /** Returns a [Transform3D] for a given view. */
-        /* gdvirtual */ _get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
-        
-        /** Returns the projection matrix for the given view as a [PackedFloat64Array]. */
-        /* gdvirtual */ _get_projection_for_view(view: int64, aspect: float64, z_near: float64, z_far: float64): PackedFloat64Array
-        /* gdvirtual */ _get_vrs_texture(): RID
-        
-        /** Called if this [XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [XRPositionalTracker]s at this point in time. */
-        /* gdvirtual */ _process(): void
-        
-        /** Called if this [XRInterfaceExtension] is active before rendering starts. Most XR interfaces will sync tracking at this point in time. */
-        /* gdvirtual */ _pre_render(): void
-        
-        /** Called if this is our primary [XRInterfaceExtension] before we start processing a [Viewport] for every active XR [Viewport], returns `true` if that viewport should be rendered. An XR interface may return `false` if the user has taken off their headset and we can pause rendering. */
-        /* gdvirtual */ _pre_draw_viewport(render_target: RID): boolean
-        
-        /** Called after the XR [Viewport] draw logic has completed. */
-        /* gdvirtual */ _post_draw_viewport(render_target: RID, screen_rect: Rect2): void
-        
-        /** Called if interface is active and queues have been submitted. */
-        /* gdvirtual */ _end_frame(): void
-        
-        /** Returns a [PackedStringArray] with tracker names configured by this interface. Note that user configuration can override this list. */
-        /* gdvirtual */ _get_suggested_tracker_names(): PackedStringArray
-        
-        /** Returns a [PackedStringArray] with pose names configured by this interface. Note that user configuration can override this list. */
-        /* gdvirtual */ _get_suggested_pose_names(tracker_name: StringName): PackedStringArray
-        
-        /** Returns a [enum XRInterface.TrackingStatus] specifying the current status of our tracking. */
-        /* gdvirtual */ _get_tracking_status(): XRInterface.TrackingStatus
-        
-        /** Triggers a haptic pulse to be emitted on the specified tracker. */
-        /* gdvirtual */ _trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** Return `true` if anchor detection is enabled for this interface. */
-        /* gdvirtual */ _get_anchor_detection_is_enabled(): boolean
-        
-        /** Enables anchor detection on this interface if supported. */
-        /* gdvirtual */ _set_anchor_detection_is_enabled(enabled: boolean): void
-        
-        /** Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should be presented as the background on an AR capable device (if applicable). */
-        /* gdvirtual */ _get_camera_feed_id(): int64
-        
-        /** Return color texture into which to render (if applicable). */
-        /* gdvirtual */ _get_color_texture(): RID
-        
-        /** Return depth texture into which to render (if applicable). */
-        /* gdvirtual */ _get_depth_texture(): RID
-        
-        /** Return velocity texture into which to render (if applicable). */
-        /* gdvirtual */ _get_velocity_texture(): RID
-        get_color_texture(): RID
-        get_depth_texture(): RID
-        get_velocity_texture(): RID
-        
-        /** Blits our render results to screen optionally applying lens distortion. This can only be called while processing `_commit_views`. */
-        add_blit(render_target: RID, src_rect: Rect2, dst_rect: Rect2i, use_layer: boolean, layer: int64, apply_lens_distortion: boolean, eye_center: Vector2, k1: float64, k2: float64, upscale: float64, aspect_ratio: float64): void
-        
-        /** Returns a valid [RID] for a texture to which we should render the current frame if supported by the interface. */
-        get_render_target_texture(render_target: RID): RID
-    }
-    /** A spatial node that has its position automatically updated by the [XRServer].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrnode3d.html  
-     */
-    class XRNode3D extends Node3D {
-        constructor(identifier?: any)
-        /** Returns `true` if the [member tracker] has been registered and the [member pose] is being tracked. */
-        get_is_active(): boolean
-        
-        /** Returns `true` if the [member tracker] has current tracking data for the [member pose] being tracked. */
-        get_has_tracking_data(): boolean
-        
-        /** Returns the [XRPose] containing the current state of the pose being tracked. This gives access to additional properties of this pose. */
-        get_pose(): XRPose
-        
-        /** Triggers a haptic pulse on a device associated with this interface.  
-         *  [param action_name] is the name of the action for this pulse.  
-         *  [param frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.  
-         *  [param amplitude] is the amplitude of the pulse between `0.0` and `1.0`.  
-         *  [param duration_sec] is the duration of the pulse in seconds.  
-         *  [param delay_sec] is a delay in seconds before the pulse is given.  
-         */
-        trigger_haptic_pulse(action_name: string, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** The name of the tracker we're bound to. Which trackers are available is not known during design time.  
-         *  Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [XRInterface].  
-         */
-        get tracker(): string
-        set tracker(value: string)
-        
-        /** The name of the pose we're bound to. Which poses a tracker supports is not known during design time.  
-         *  Godot defines number of standard pose names such as `aim` and `grip` but other may be configured within a given [XRInterface].  
-         */
-        get pose(): string
-        set pose(value: string)
-        
-        /** Enables showing the node when tracking starts, and hiding the node when tracking is lost. */
-        get show_when_tracked(): boolean
-        set show_when_tracked(value: boolean)
-        
-        /** Emitted when the [member tracker] starts or stops receiving updated tracking data for the [member pose] being tracked. The [param tracking] argument indicates whether the tracker is getting updated tracking data. */
-        readonly tracking_changed: Signal1<boolean>
-    }
-    /** The origin point in AR/VR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrorigin3d.html  
-     */
-    class XROrigin3D extends Node3D {
-        constructor(identifier?: any)
-        /** The scale of the game world compared to the real world. This is the same as [member XRServer.world_scale]. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
-        get world_scale(): float64
-        set world_scale(value: float64)
-        
-        /** If `true`, this origin node is currently being used by the [XRServer]. Only one origin point can be used at a time. */
-        get current(): boolean
-        set current(value: boolean)
-    }
-    namespace XRPose {
-        enum TrackingConfidence {
-            /** No tracking information is available for this pose. */
-            XR_TRACKING_CONFIDENCE_NONE = 0,
-            
-            /** Tracking information may be inaccurate or estimated. For example, with inside out tracking this would indicate a controller may be (partially) obscured. */
-            XR_TRACKING_CONFIDENCE_LOW = 1,
-            
-            /** Tracking information is considered accurate and up to date. */
-            XR_TRACKING_CONFIDENCE_HIGH = 2,
-        }
-    }
-    /** This object contains all data related to a pose on a tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrpose.html  
-     */
-    class XRPose extends RefCounted {
-        constructor(identifier?: any)
-        set_name(name: StringName): void
-        get_name(): StringName
-        
-        /** Returns the [member transform] with world scale and our reference frame applied. This is the transform used to position [XRNode3D] objects. */
-        get_adjusted_transform(): Transform3D
-        
-        /** If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking data and our state is whatever that last valid state was. */
-        get has_tracking_data(): boolean
-        set has_tracking_data(value: boolean)
-        
-        /** The transform containing the original and transform as reported by the XR runtime. */
-        get transform(): string
-        set transform(value: string)
-        
-        /** The linear velocity of this pose. */
-        get linear_velocity(): string
-        set linear_velocity(value: string)
-        
-        /** The angular velocity for this pose. */
-        get angular_velocity(): string
-        set angular_velocity(value: string)
-        
-        /** The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is. */
-        get tracking_confidence(): int64
-        set tracking_confidence(value: int64)
-    }
-    namespace XRPositionalTracker {
-        enum TrackerHand {
-            /** The hand this tracker is held in is unknown or not applicable. */
-            TRACKER_HAND_UNKNOWN = 0,
-            
-            /** This tracker is the left hand controller. */
-            TRACKER_HAND_LEFT = 1,
-            
-            /** This tracker is the right hand controller. */
-            TRACKER_HAND_RIGHT = 2,
-            
-            /** Represents the size of the [enum TrackerHand] enum. */
-            TRACKER_HAND_MAX = 3,
-        }
-    }
-    /** A tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrpositionaltracker.html  
-     */
-    class XRPositionalTracker extends XRTracker {
-        constructor(identifier?: any)
-        /** Returns `true` if the tracker is available and is currently tracking the bound [param name] pose. */
-        has_pose(name: StringName): boolean
-        
-        /** Returns the current [XRPose] state object for the bound [param name] pose. */
-        get_pose(name: StringName): XRPose
-        
-        /** Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position. */
-        invalidate_pose(name: StringName): void
-        
-        /** Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [XRInterface] implementation and should not be used directly. */
-        set_pose(name: StringName, transform: Transform3D, linear_velocity: Vector3, angular_velocity: Vector3, tracking_confidence: XRPose.TrackingConfidence): void
-        
-        /** Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad. */
-        get_input(name: StringName): any
-        
-        /** Changes the value for the given input. This method is called by a [XRInterface] implementation and should not be used directly. */
-        set_input(name: StringName, value: any): void
-        
-        /** The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked. */
-        get profile(): string
-        set profile(value: string)
-        
-        /** Defines which hand this tracker relates to. */
-        get hand(): int64
-        set hand(value: int64)
-        
-        /** Emitted when the state of a pose tracked by this tracker changes. */
-        readonly pose_changed: Signal1<XRPose>
-        
-        /** Emitted when a pose tracked by this tracker stops getting updated tracking data. */
-        readonly pose_lost_tracking: Signal1<XRPose>
-        
-        /** Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs to be mapped to buttons. */
-        readonly button_pressed: Signal1<string>
-        
-        /** Emitted when a button on this tracker is released. */
-        readonly button_released: Signal1<string>
-        
-        /** Emitted when a trigger or similar input on this tracker changes value. */
-        readonly input_float_changed: Signal2<string, float64>
-        
-        /** Emitted when a thumbstick or thumbpad on this tracker moves. */
-        readonly input_vector2_changed: Signal2<string, Vector2>
-        
-        /** Emitted when the profile of our tracker changes. */
-        readonly profile_changed: Signal1<string>
-    }
-    /** A tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrtracker.html  
-     */
-    class XRTracker extends RefCounted {
-        constructor(identifier?: any)
-        get_tracker_name(): StringName
-        set_tracker_name(name: StringName): void
-        
-        /** The type of tracker. */
-        get type(): int64
-        set type(value: int64)
-        
-        /** The description of this tracker. */
-        get description(): string
-        set description(value: string)
-    }
     /** Helper class for XR interfaces that generates VRS images.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_xrvrs.html  
@@ -4008,7 +2842,7 @@ declare module "godot" {
         static create(variant: any, method: StringName): AnyCallable
         
         /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
-        callv(arguments_: GArray): any
+        callv(arguments_: GArray<T>): any
         
         /** Returns `true` if this [Callable] has no target to call the method on. */
         is_null(): boolean
@@ -4043,7 +2877,7 @@ declare module "godot" {
         get_bound_arguments_count(): int64
         
         /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
-        get_bound_arguments(): GArray
+        get_bound_arguments(): GArray<T>
         
         /** Returns the 32-bit hash value of this [Callable]'s object.  
          *      
@@ -4055,7 +2889,7 @@ declare module "godot" {
          *      
          *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
          */
-        bindv(arguments_: GArray): AnyCallable
+        bindv(arguments_: GArray<T>): AnyCallable
         
         /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
          *      
@@ -4127,7 +2961,7 @@ declare module "godot" {
          *  - `callable` is a reference to the connected [Callable];  
          *  - `flags` is a combination of [enum Object.ConnectFlags].  
          */
-        get_connections(): GArray
+        get_connections(): GArray<T>
         
         /** Emits this signal. All [Callable]s connected to this signal will be triggered. This method supports a variable number of arguments, so parameters can be passed as a comma separated list. */
         emit(...vargargs: any[]): void
@@ -4177,7 +3011,7 @@ declare module "godot" {
         /** Returns `true` if the dictionary contains all keys in the given [param keys] array.  
          *    
          */
-        has_all(keys: GArray): boolean
+        has_all(keys: GArray<any>): boolean
         
         /** Finds and returns the first key whose associated value is equal to [param value], or `null` if it is not found.  
          *      
@@ -4201,10 +3035,10 @@ declare module "godot" {
         hash(): int64
         
         /** Returns the list of keys in the dictionary. */
-        keys(): GArray
+        keys(): GArray<any>
         
         /** Returns the list of values in this dictionary. */
-        values(): GArray
+        values(): GArray<any>
         
         /** Creates and returns a new copy of the dictionary. If [param deep] is `true`, inner [Dictionary] and [Array] keys and values are also copied, recursively. */
         duplicate(deep: boolean = false): GDictionary
@@ -4226,10 +3060,10 @@ declare module "godot" {
         static EQUAL(left: GDictionary, right: GDictionary): boolean
         static NOT_EQUAL(left: GDictionary, right: GDictionary): boolean
     }
-    class GArray {
+    class GArray<T> {
         constructor()
-        constructor(from: GArray)
-        constructor(base: GArray, type: int64, class_name: StringName, script: any)
+        constructor(from: GArray<T>)
+        constructor(base: GArray<T>, type: int64, class_name: StringName, script: any)
         constructor(from: PackedByteArray | byte[] | ArrayBuffer)
         constructor(from: PackedInt32Array | int32[])
         constructor(from: PackedInt64Array | int64[])
@@ -4240,9 +3074,9 @@ declare module "godot" {
         constructor(from: PackedVector3Array | Vector3[])
         constructor(from: PackedColorArray | Color[])
         constructor(from: PackedVector4Array)
-        set_indexed(index: number, value: any)
-        get_indexed(index: number): any
-        [Symbol.iterator](): IteratorObject<any>
+        set_indexed(index: number, value: T)
+        get_indexed(index: number): T
+        [Symbol.iterator](): IteratorObject<T>
         
         /** Returns the number of elements in the array. Empty arrays (`[]`) always return `0`. See also [method is_empty]. */
         size(): int64
@@ -4260,24 +3094,24 @@ declare module "godot" {
         hash(): int64
         
         /** Assigns elements of another [param array] into the array. Resizes the array to match [param array]. Performs type conversions if the array is typed. */
-        assign(array: GArray): void
+        assign(array: GArray<T>): void
         
         /** Appends an element at the end of the array. See also [method push_front]. */
-        push_back(value: any): void
+        push_back(value: T): void
         
         /** Adds an element at the beginning of the array. See also [method push_back].  
          *      
          *  **Note:** This method shifts every other element's index forward, which may have a noticeable performance cost, especially on larger arrays.  
          */
-        push_front(value: any): void
+        push_front(value: T): void
         
         /** Appends [param value] at the end of the array (alias of [method push_back]). */
-        append(value: any): void
+        append(value: T): void
         
         /** Appends another [param array] at the end of this array.  
          *    
          */
-        append_array(array: GArray): void
+        append_array(array: GArray<T>): void
         
         /** Sets the array's number of elements to [param size]. If [param size] is smaller than the array's current size, the elements at the end are removed. If [param size] is greater, new default elements (usually `null`) are added, depending on the array's type.  
          *  Returns [constant OK] on success, or one of the other [enum Error] constants if this method fails.  
@@ -4291,7 +3125,7 @@ declare module "godot" {
          *      
          *  **Note:** Every element's index after [param position] needs to be shifted forward, which may have a noticeable performance cost, especially on larger arrays.  
          */
-        insert(position: int64, value: any): int64
+        insert(position: int64, value: T): int64
         
         /** Removes the element from the array at the given index ([param position]). If the index is out of bounds, this method fails.  
          *  If you need to return the removed element, use [method pop_at]. To remove an element by value, use [method erase] instead.  
@@ -4308,7 +3142,7 @@ declare module "godot" {
          *      
          *  **Note:** If [param value] is a [Variant] passed by reference ([Object]-derived, [Array], [Dictionary], etc.), the array will be filled with references to the same [param value], which are not duplicates.  
          */
-        fill(value: any): void
+        fill(value: T): void
         
         /** Finds and removes the first occurrence of [param value] from the array. If [param value] does not exist in the array, nothing happens. To remove an element by index, use [method remove_at] instead.  
          *      
@@ -4316,26 +3150,26 @@ declare module "godot" {
          *      
          *  **Note:** Erasing elements while iterating over arrays is **not** supported and will result in unpredictable behavior.  
          */
-        erase(value: any): void
+        erase(value: T): void
         
         /** Returns the first element of the array. If the array is empty, fails and returns `null`. See also [method back].  
          *      
          *  **Note:** Unlike with the `[]` operator (`array[0]`), an error is generated without stopping project execution.  
          */
-        front(): any
+        front(): T
         
         /** Returns the last element of the array. If the array is empty, fails and returns `null`. See also [method front].  
          *      
          *  **Note:** Unlike with the `[]` operator (`array[-1]`), an error is generated without stopping project execution.  
          */
-        back(): any
+        back(): T
         
         /** Returns a random element from the array. Generates an error and returns `null` if the array is empty.  
          *    
          *      
          *  **Note:** Like many similar functions in the engine (such as [method @GlobalScope.randi] or [method shuffle]), this method uses a common, global random seed. To get a predictable outcome from this method, see [method @GlobalScope.seed].  
          */
-        pick_random(): any
+        pick_random(): T
         
         /** Returns the index of the **first** occurrence of [param what] in this array, or `-1` if there are none. The search's start can be specified with [param from], continuing to the end of the array.  
          *      
@@ -4343,13 +3177,13 @@ declare module "godot" {
          *      
          *  **Note:** For performance reasons, the search is affected by [param what]'s [enum Variant.Type]. For example, `7` ([int]) and `7.0` ([float]) are not considered equal for this method.  
          */
-        find(what: any, from: int64 = 0): int64
+        find(what: T, from: int64 = 0): int64
         
         /** Returns the index of the **last** occurrence of [param what] in this array, or `-1` if there are none. The search's start can be specified with [param from], continuing to the beginning of the array. This method is the reverse of [method find]. */
-        rfind(what: any, from: int64 = -1): int64
+        rfind(what: T, from: int64 = -1): int64
         
         /** Returns the number of times an element is in the array. */
-        count(value: any): int64
+        count(value: T): int64
         
         /** Returns `true` if the array contains the given [param value].  
          *    
@@ -4358,22 +3192,22 @@ declare module "godot" {
          *      
          *  **Note:** For performance reasons, the search is affected by the [param value]'s [enum Variant.Type]. For example, `7` ([int]) and `7.0` ([float]) are not considered equal for this method.  
          */
-        has(value: any): boolean
+        has(value: T): boolean
         
         /** Removes and returns the last element of the array. Returns `null` if the array is empty, without generating an error. See also [method pop_front]. */
-        pop_back(): any
+        pop_back(): T
         
         /** Removes and returns the first element of the array. Returns `null` if the array is empty, without generating an error. See also [method pop_back].  
          *      
          *  **Note:** This method shifts every other element's index back, which may have a noticeable performance cost, especially on larger arrays.  
          */
-        pop_front(): any
+        pop_front(): T
         
         /** Removes and returns the element of the array at index [param position]. If negative, [param position] is considered relative to the end of the array. Returns `null` if the array is empty. If [param position] is out of bounds, an error message is also generated.  
          *      
          *  **Note:** This method shifts every element's index after [param position] back, which may have a noticeable performance cost, especially on larger arrays.  
          */
-        pop_at(position: int64): any
+        pop_at(position: int64): T
         
         /** Sorts the array in ascending order. The final order is dependent on the "less than" (`<`) comparison between elements.  
          *    
@@ -4394,7 +3228,7 @@ declare module "godot" {
          *      
          *  **Note:** You should not randomize the return value of [param func], as the heapsort algorithm expects a consistent result. Randomizing the return value will result in unexpected behavior.  
          */
-        sort_custom(func: Callable): void
+        sort_custom(func: Callable2<T, T, boolean>): void
         
         /** Shuffles all elements of the array in a random order.  
          *      
@@ -4408,7 +3242,7 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch] on an  *unsorted*  array will result in unexpected behavior. Use [method sort] before calling this method.  
          */
-        bsearch(value: any, before: boolean = true): int64
+        bsearch(value: T, before: boolean = true): int64
         
         /** Returns the index of [param value] in the sorted array. If it cannot be found, returns where [param value] should be inserted to keep the array sorted (using [param func] for the comparisons). The algorithm used is [url=https://en.wikipedia.org/wiki/Binary_search_algorithm]binary search[/url].  
          *  Similar to [method sort_custom], [param func] is called as many times as necessary, receiving one array element and [param value] as arguments. The function should return `true` if the array element should be  *behind*  [param value], otherwise it should return `false`.  
@@ -4417,7 +3251,7 @@ declare module "godot" {
          *      
          *  **Note:** Calling [method bsearch_custom] on an  *unsorted*  array will result in unexpected behavior. Use [method sort_custom] with [param func] before calling this method.  
          */
-        bsearch_custom(value: any, func: Callable, before: boolean = true): int64
+        bsearch_custom(value: T, func: AnyCallable, before: boolean = true): int64
         
         /** Reverses the order of all elements in the array. */
         reverse(): void
@@ -4425,7 +3259,7 @@ declare module "godot" {
         /** Returns a new copy of the array.  
          *  By default, a **shallow** copy is returned: all nested [Array] and [Dictionary] elements are shared with the original array. Modifying them in one array will also affect them in the other.[br]If [param deep] is `true`, a **deep** copy is returned: all nested arrays and dictionaries are also duplicated (recursively).  
          */
-        duplicate(deep: boolean = false): GArray
+        duplicate(deep: boolean = false): GArray<T>
         
         /** Returns a new [Array] containing this array's elements, from index [param begin] (inclusive) to [param end] (exclusive), every [param step] elements.  
          *  If either [param begin] or [param end] are negative, their value is relative to the end of the array.  
@@ -4433,21 +3267,21 @@ declare module "godot" {
          *  If [param deep] is `true`, all nested [Array] and [Dictionary] elements in the slice are duplicated from the original, recursively. See also [method duplicate]).  
          *    
          */
-        slice(begin: int64, end: int64 = 2147483647, step: int64 = 1, deep: boolean = false): GArray
+        slice(begin: int64, end: int64 = 2147483647, step: int64 = 1, deep: boolean = false): GArray<T>
         
         /** Calls the given [Callable] on each element in the array and returns a new, filtered [Array].  
          *  The [param method] receives one of the array elements as an argument, and should return `true` to add the element to the filtered array, or `false` to exclude it.  
          *    
          *  See also [method any], [method all], [method map] and [method reduce].  
          */
-        filter(method: Callable): GArray
+        filter(func: Callable1<T, boolean>): GArray<T>
         
         /** Calls the given [Callable] for each element in the array and returns a new array filled with values returned by the [param method].  
          *  The [param method] should take one [Variant] parameter (the current array element) and can return any [Variant].  
          *    
          *  See also [method filter], [method reduce], [method any] and [method all].  
          */
-        map(method: Callable): GArray
+        map<U>(func: Callable1<T, U>): GArray<U>
         
         /** Calls the given [Callable] for each element in array, accumulates the result in [param accum], then returns it.  
          *  The [param method] takes two arguments: the current value of [param accum] and the current array element. If [param accum] is `null` (as by default), the iteration will start from the second element, with the first one used as initial value of [param accum].  
@@ -4456,7 +3290,7 @@ declare module "godot" {
          *    
          *  See also [method map], [method filter], [method any] and [method all].  
          */
-        reduce(method: Callable, accum: any = <any> {}): any
+        reduce(method: AnyCallable, accum: any = <any> {}): any
         
         /** Calls the given [Callable] on each element in the array and returns `true` if the [Callable] returns `true` for  *one or more*  elements in the array. If the [Callable] returns `false` for all elements in the array, this method returns `false`.  
          *  The [param method] should take one [Variant] parameter (the current array element) and return a [bool].  
@@ -4467,7 +3301,7 @@ declare module "godot" {
          *      
          *  **Note:** For an empty array, this method always returns `false`.  
          */
-        any(method: Callable): boolean
+        any(func: Callable1<T, boolean>): boolean
         
         /** Calls the given [Callable] on each element in the array and returns `true` if the [Callable] returns `true` for  *all*  elements in the array. If the [Callable] returns `false` for one array element or more, this method returns `false`.  
          *  The [param method] should take one [Variant] parameter (the current array element) and return a [bool].  
@@ -4478,15 +3312,15 @@ declare module "godot" {
          *      
          *  **Note:** For an empty array, this method [url=https://en.wikipedia.org/wiki/Vacuous_truth]always[/url] returns `true`.  
          */
-        all(method: Callable): boolean
+        all(func: Callable1<T, boolean>): boolean
         
         /** Returns the maximum value contained in the array, if all elements can be compared. Otherwise, returns `null`. See also [method min].  
          *  To find the maximum value using a custom comparator, you can use [method reduce].  
          */
-        max(): any
+        max(): T
         
         /** Returns the minimum value contained in the array, if all elements can be compared. Otherwise, returns `null`. See also [method max]. */
-        min(): any
+        min(): T
         
         /** Returns `true` if the array is typed. Typed arrays can only contain elements of a specific type, as defined by the typed array constructor. The methods of a typed array are still expected to return a generic [Variant].  
          *  In GDScript, it is possible to define a typed array with static typing:  
@@ -4495,7 +3329,7 @@ declare module "godot" {
         is_typed(): boolean
         
         /** Returns `true` if this array is typed the same as the given [param array]. See also [method is_typed]. */
-        is_same_typed(array: GArray): boolean
+        is_same_typed(array: GArray<T>): boolean
         
         /** Returns the built-in [Variant] type of the typed array as a [enum Variant.Type] constant. If the array is not typed, returns [constant TYPE_NIL]. See also [method is_typed]. */
         get_typed_builtin(): int64
@@ -4515,12 +3349,12 @@ declare module "godot" {
          *  In GDScript, arrays are automatically read-only if declared with the `const` keyword.  
          */
         is_read_only(): boolean
-        static EQUAL(left: GArray, right: GArray): boolean
-        static NOT_EQUAL(left: GArray, right: GArray): boolean
-        static LESS(left: GArray, right: GArray): boolean
-        static LESS_EQUAL(left: GArray, right: GArray): boolean
-        static GREATER(left: GArray, right: GArray): boolean
-        static GREATER_EQUAL(left: GArray, right: GArray): boolean
+        static EQUAL(left: GArray<T>, right: GArray<T>): boolean
+        static NOT_EQUAL(left: GArray<T>, right: GArray<T>): boolean
+        static LESS(left: GArray<T>, right: GArray<T>): boolean
+        static LESS_EQUAL(left: GArray<T>, right: GArray<T>): boolean
+        static GREATER(left: GArray<T>, right: GArray<T>): boolean
+        static GREATER_EQUAL(left: GArray<T>, right: GArray<T>): boolean
     }
     /** A packed array of bytes.  
      *  	  
@@ -4529,7 +3363,7 @@ declare module "godot" {
     class PackedByteArray {
         constructor()
         constructor(from: PackedByteArray | byte[] | ArrayBuffer)
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         
@@ -4747,7 +3581,7 @@ declare module "godot" {
     class PackedInt32Array {
         constructor()
         constructor(from: PackedInt32Array | int32[])
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         
@@ -4831,7 +3665,7 @@ declare module "godot" {
     class PackedInt64Array {
         constructor()
         constructor(from: PackedInt64Array | int64[])
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         
@@ -4915,7 +3749,7 @@ declare module "godot" {
     class PackedFloat32Array {
         constructor()
         constructor(from: PackedFloat32Array | float32[])
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: float64)
         get_indexed(index: number): float64
         
@@ -5016,7 +3850,7 @@ declare module "godot" {
     class PackedFloat64Array {
         constructor()
         constructor(from: PackedFloat64Array | float64[])
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: float64)
         get_indexed(index: number): float64
         
@@ -5117,7 +3951,7 @@ declare module "godot" {
     class PackedStringArray {
         constructor()
         constructor(from: PackedStringArray | string[])
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: string)
         get_indexed(index: number): string
         
@@ -5199,7 +4033,7 @@ declare module "godot" {
     class PackedVector2Array {
         constructor()
         constructor(from: PackedVector2Array | Vector2[])
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: Vector2)
         get_indexed(index: number): Vector2
         
@@ -5298,7 +4132,7 @@ declare module "godot" {
     class PackedVector3Array {
         constructor()
         constructor(from: PackedVector3Array | Vector3[])
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: Vector3)
         get_indexed(index: number): Vector3
         
@@ -5390,6 +4224,105 @@ declare module "godot" {
         static EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
         static NOT_EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
     }
+    /** A packed array of [Vector4]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedvector4array.html  
+     */
+    class PackedVector4Array {
+        constructor()
+        constructor(from: PackedVector4Array)
+        constructor(from: GArray<any>)
+        set_indexed(index: number, value: Vector4)
+        get_indexed(index: number): Vector4
+        
+        /** Returns the number of elements in the array. */
+        size(): int64
+        
+        /** Returns `true` if the array is empty. */
+        is_empty(): boolean
+        
+        /** Changes the [Vector4] at the given index. */
+        set(index: int64, value: Vector4): void
+        
+        /** Inserts a [Vector4] at the end. */
+        push_back(value: Vector4): boolean
+        
+        /** Appends an element at the end of the array (alias of [method push_back]). */
+        append(value: Vector4): boolean
+        
+        /** Appends a [PackedVector4Array] at the end of this array. */
+        append_array(array: PackedVector4Array): void
+        
+        /** Removes an element from the array by index. */
+        remove_at(index: int64): void
+        
+        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
+        insert(at_index: int64, value: Vector4): int64
+        
+        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
+        fill(value: Vector4): void
+        
+        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. */
+        resize(new_size: int64): int64
+        
+        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
+        clear(): void
+        
+        /** Returns `true` if the array contains [param value].  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        has(value: Vector4): boolean
+        
+        /** Reverses the order of the elements in the array. */
+        reverse(): void
+        
+        /** Returns the slice of the [PackedVector4Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedVector4Array].  
+         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
+         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
+         */
+        slice(begin: int64, end: int64 = 2147483647): PackedVector4Array
+        
+        /** Returns a [PackedByteArray] with each vector encoded as bytes. */
+        to_byte_array(): PackedByteArray
+        
+        /** Sorts the elements of the array in ascending order.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        sort(): void
+        
+        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
+         *      
+         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        bsearch(value: Vector4, before: boolean = true): int64
+        
+        /** Creates a copy of the array, and returns it. */
+        duplicate(): PackedVector4Array
+        
+        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        find(value: Vector4, from: int64 = 0): int64
+        
+        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        rfind(value: Vector4, from: int64 = -1): int64
+        
+        /** Returns the number of times an element is in the array.  
+         *      
+         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
+         */
+        count(value: Vector4): int64
+        static EQUAL(left: PackedVector4Array, right: PackedVector4Array): boolean
+        static NOT_EQUAL(left: PackedVector4Array, right: PackedVector4Array): boolean
+    }
     /** A packed array of [Color]s.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_packedcolorarray.html  
@@ -5397,7 +4330,7 @@ declare module "godot" {
     class PackedColorArray {
         constructor()
         constructor(from: PackedColorArray | Color[])
-        constructor(from: GArray)
+        constructor(from: GArray<any>)
         set_indexed(index: number, value: Color)
         get_indexed(index: number): Color
         

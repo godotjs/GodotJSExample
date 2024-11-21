@@ -1,248 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** A syntax highlighter intended for code.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_codehighlighter.html  
-     */
-    class CodeHighlighter extends SyntaxHighlighter {
-        constructor(identifier?: any)
-        /** Sets the color for a keyword.  
-         *  The keyword cannot contain any symbols except '_'.  
-         */
-        add_keyword_color(keyword: string, color: Color): void
-        
-        /** Removes the keyword. */
-        remove_keyword_color(keyword: string): void
-        
-        /** Returns `true` if the keyword exists, else `false`. */
-        has_keyword_color(keyword: string): boolean
-        
-        /** Returns the color for a keyword. */
-        get_keyword_color(keyword: string): Color
-        
-        /** Removes all keywords. */
-        clear_keyword_colors(): void
-        
-        /** Sets the color for a member keyword.  
-         *  The member keyword cannot contain any symbols except '_'.  
-         *  It will not be highlighted if preceded by a '.'.  
-         */
-        add_member_keyword_color(member_keyword: string, color: Color): void
-        
-        /** Removes the member keyword. */
-        remove_member_keyword_color(member_keyword: string): void
-        
-        /** Returns `true` if the member keyword exists, else `false`. */
-        has_member_keyword_color(member_keyword: string): boolean
-        
-        /** Returns the color for a member keyword. */
-        get_member_keyword_color(member_keyword: string): Color
-        
-        /** Removes all member keywords. */
-        clear_member_keyword_colors(): void
-        
-        /** Adds a color region (such as for comments or strings) from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
-         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
-         */
-        add_color_region(start_key: string, end_key: string, color: Color, line_only: boolean = false): void
-        
-        /** Removes the color region that uses that start key. */
-        remove_color_region(start_key: string): void
-        
-        /** Returns `true` if the start key exists, else `false`. */
-        has_color_region(start_key: string): boolean
-        
-        /** Removes all color regions. */
-        clear_color_regions(): void
-        
-        /** Sets the color for numbers. */
-        get number_color(): Color
-        set number_color(value: Color)
-        
-        /** Sets the color for symbols. */
-        get symbol_color(): Color
-        set symbol_color(value: Color)
-        
-        /** Sets color for functions. A function is a non-keyword string followed by a '('. */
-        get function_color(): Color
-        set function_color(value: Color)
-        
-        /** Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'. */
-        get member_variable_color(): Color
-        set member_variable_color(value: Color)
-        
-        /** Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the keyword. The value is the keyword color. */
-        get keyword_colors(): GDictionary
-        set keyword_colors(value: GDictionary)
-        
-        /** Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary] key is the member keyword. The value is the member keyword color. */
-        get member_keyword_colors(): GDictionary
-        set member_keyword_colors(value: GDictionary)
-        
-        /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
-        get color_regions(): GDictionary
-        set color_regions(value: GDictionary)
-    }
-    namespace CollisionObject2D {
-        enum DisableMode {
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
-             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
-             */
-            DISABLE_MODE_REMOVE = 0,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.  
-             *  Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed again.  
-             */
-            DISABLE_MODE_MAKE_STATIC = 1,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
-            DISABLE_MODE_KEEP_ACTIVE = 2,
-        }
-    }
-    /** Abstract base class for 2D physics objects.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_collisionobject2d.html  
-     */
-    class CollisionObject2D extends Node2D {
-        constructor(identifier?: any)
-        /** Accepts unhandled [InputEvent]s. [param shape_idx] is the child index of the clicked [Shape2D]. Connect to [signal input_event] to easily pick up these events.  
-         *      
-         *  **Note:** [method _input_event] requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         */
-        /* gdvirtual */ _input_event(viewport: Viewport, event: InputEvent, shape_idx: int64): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_enter(): void
-        
-        /** Called when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_exit(): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
-        /* gdvirtual */ _mouse_shape_enter(shape_idx: int64): void
-        
-        /** Called when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
-        /* gdvirtual */ _mouse_shape_exit(shape_idx: int64): void
-        
-        /** Returns the object's [RID]. */
-        get_rid(): RID
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: int64): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: int64): boolean
-        
-        /** Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference. */
-        create_shape_owner(owner: Object): int64
-        
-        /** Removes the given shape owner. */
-        remove_shape_owner(owner_id: int64): void
-        
-        /** Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument. */
-        get_shape_owners(): PackedInt32Array
-        
-        /** Sets the [Transform2D] of the given shape owner. */
-        shape_owner_set_transform(owner_id: int64, transform: Transform2D): void
-        
-        /** Returns the shape owner's [Transform2D]. */
-        shape_owner_get_transform(owner_id: int64): Transform2D
-        
-        /** Returns the parent object of the given shape owner. */
-        shape_owner_get_owner(owner_id: int64): Object
-        
-        /** If `true`, disables the given shape owner. */
-        shape_owner_set_disabled(owner_id: int64, disabled: boolean): void
-        
-        /** If `true`, the shape owner and its shapes are disabled. */
-        is_shape_owner_disabled(owner_id: int64): boolean
-        
-        /** If [param enable] is `true`, collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
-        shape_owner_set_one_way_collision(owner_id: int64, enable: boolean): void
-        
-        /** Returns `true` if collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
-        is_shape_owner_one_way_collision_enabled(owner_id: int64): boolean
-        
-        /** Sets the `one_way_collision_margin` of the shape owner identified by given [param owner_id] to [param margin] pixels. */
-        shape_owner_set_one_way_collision_margin(owner_id: int64, margin: float64): void
-        
-        /** Returns the `one_way_collision_margin` of the shape owner identified by given [param owner_id]. */
-        get_shape_owner_one_way_collision_margin(owner_id: int64): float64
-        
-        /** Adds a [Shape2D] to the shape owner. */
-        shape_owner_add_shape(owner_id: int64, shape: Shape2D): void
-        
-        /** Returns the number of shapes the given shape owner contains. */
-        shape_owner_get_shape_count(owner_id: int64): int64
-        
-        /** Returns the [Shape2D] with the given ID from the given shape owner. */
-        shape_owner_get_shape(owner_id: int64, shape_id: int64): Shape2D
-        
-        /** Returns the child index of the [Shape2D] with the given ID from the given shape owner. */
-        shape_owner_get_shape_index(owner_id: int64, shape_id: int64): int64
-        
-        /** Removes a shape from the given shape owner. */
-        shape_owner_remove_shape(owner_id: int64, shape_id: int64): void
-        
-        /** Removes all shapes from the shape owner. */
-        shape_owner_clear_shapes(owner_id: int64): void
-        
-        /** Returns the `owner_id` of the given shape. */
-        shape_find_owner(shape_index: int64): int64
-        
-        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
-        get disable_mode(): int64
-        set disable_mode(value: int64)
-        
-        /** The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_layer(): int64
-        set collision_layer(value: int64)
-        
-        /** The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_mask(): int64
-        set collision_mask(value: int64)
-        
-        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        get collision_priority(): float64
-        set collision_priority(value: float64)
-        
-        /** If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set. */
-        get input_pickable(): boolean
-        set input_pickable(value: boolean)
-        
-        /** Emitted when an input event occurs. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. See [method _input_event] for details. */
-        readonly input_event: Signal3<Node, InputEvent, int64>
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
-         */
-        readonly mouse_entered: Signal0
-        
-        /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
-         */
-        readonly mouse_exited: Signal0
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_entered: Signal1<int64>
-        
-        /** Emitted when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_exited: Signal1<int64>
-    }
     namespace CollisionObject3D {
         enum DisableMode {
             /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject3D].  
@@ -998,6 +756,9 @@ declare module "godot" {
     class ConnectDialogBinds extends Object {
         constructor(identifier?: any)
     }
+    class ConnectionInfoDialog extends AcceptDialog {
+        constructor(identifier?: any)
+    }
     class ConnectionsDock extends VBoxContainer {
         constructor(identifier?: any)
         update_tree(): void
@@ -1323,7 +1084,7 @@ declare module "godot" {
         /** User defined BiDi algorithm override function.  
          *  Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right order. Ranges should cover full source [param text] without overlaps. BiDi algorithm will be used on each range separately.  
          */
-        /* gdvirtual */ _structured_text_parser(args: GArray, text: string): GArray
+        /* gdvirtual */ _structured_text_parser(args: GArray<any>, text: string): GArray<any>
         
         /** Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [member custom_minimum_size] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).  
          *  If not overridden, defaults to [constant Vector2.ZERO].  
@@ -2982,320 +2743,6 @@ declare module "godot" {
     class DynamicFontImportSettingsDialog extends ConfirmationDialog {
         constructor(identifier?: any)
     }
-    namespace ENetConnection {
-        enum CompressionMode {
-            /** No compression. This uses the most bandwidth, but has the upside of requiring the fewest CPU resources. This option may also be used to make network debugging using tools like Wireshark easier. */
-            COMPRESS_NONE = 0,
-            
-            /** ENet's built-in range encoding. Works well on small packets, but is not the most efficient algorithm on packets larger than 4 KB. */
-            COMPRESS_RANGE_CODER = 1,
-            
-            /** [url=https://fastlz.org/]FastLZ[/url] compression. This option uses less CPU resources compared to [constant COMPRESS_ZLIB], at the expense of using more bandwidth. */
-            COMPRESS_FASTLZ = 2,
-            
-            /** [url=https://www.zlib.net/]Zlib[/url] compression. This option uses less bandwidth compared to [constant COMPRESS_FASTLZ], at the expense of using more CPU resources. */
-            COMPRESS_ZLIB = 3,
-            
-            /** [url=https://facebook.github.io/zstd/]Zstandard[/url] compression. Note that this algorithm is not very efficient on packets smaller than 4 KB. Therefore, it's recommended to use other compression algorithms in most cases. */
-            COMPRESS_ZSTD = 4,
-        }
-        enum EventType {
-            /** An error occurred during [method service]. You will likely need to [method destroy] the host and recreate it. */
-            EVENT_ERROR = -1,
-            
-            /** No event occurred within the specified time limit. */
-            EVENT_NONE = 0,
-            
-            /** A connection request initiated by enet_host_connect has completed. The array will contain the peer which successfully connected. */
-            EVENT_CONNECT = 1,
-            
-            /** A peer has disconnected. This event is generated on a successful completion of a disconnect initiated by [method ENetPacketPeer.peer_disconnect], if a peer has timed out, or if a connection request initialized by [method connect_to_host] has timed out. The array will contain the peer which disconnected. The data field contains user supplied data describing the disconnection, or 0, if none is available. */
-            EVENT_DISCONNECT = 2,
-            
-            /** A packet has been received from a peer. The array will contain the peer which sent the packet and the channel number upon which the packet was received. The received packet will be queued to the associated [ENetPacketPeer]. */
-            EVENT_RECEIVE = 3,
-        }
-        enum HostStatistic {
-            /** Total data sent. */
-            HOST_TOTAL_SENT_DATA = 0,
-            
-            /** Total UDP packets sent. */
-            HOST_TOTAL_SENT_PACKETS = 1,
-            
-            /** Total data received. */
-            HOST_TOTAL_RECEIVED_DATA = 2,
-            
-            /** Total UDP packets received. */
-            HOST_TOTAL_RECEIVED_PACKETS = 3,
-        }
-    }
-    /** A wrapper class for an [url=http://enet.bespin.org/group__host.html]ENetHost[/url].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_enetconnection.html  
-     */
-    class ENetConnection extends RefCounted {
-        constructor(identifier?: any)
-        /** Creates an ENetHost bound to the given [param bind_address] and [param bind_port] that allows up to [param max_peers] connected peers, each allocating up to [param max_channels] channels, optionally limiting bandwidth to [param in_bandwidth] and [param out_bandwidth] (if greater than zero).  
-         *      
-         *  **Note:** It is necessary to create a host in both client and server in order to establish a connection.  
-         */
-        create_host_bound(bind_address: string, bind_port: int64, max_peers: int64 = 32, max_channels: int64 = 0, in_bandwidth: int64 = 0, out_bandwidth: int64 = 0): Error
-        
-        /** Creates an ENetHost that allows up to [param max_peers] connected peers, each allocating up to [param max_channels] channels, optionally limiting bandwidth to [param in_bandwidth] and [param out_bandwidth] (if greater than zero).  
-         *  This method binds a random available dynamic UDP port on the host machine at the  *unspecified*  address. Use [method create_host_bound] to specify the address and port.  
-         *      
-         *  **Note:** It is necessary to create a host in both client and server in order to establish a connection.  
-         */
-        create_host(max_peers: int64 = 32, max_channels: int64 = 0, in_bandwidth: int64 = 0, out_bandwidth: int64 = 0): Error
-        
-        /** Destroys the host and all resources associated with it. */
-        destroy(): void
-        
-        /** Initiates a connection to a foreign [param address] using the specified [param port] and allocating the requested [param channels]. Optional [param data] can be passed during connection in the form of a 32 bit integer.  
-         *      
-         *  **Note:** You must call either [method create_host] or [method create_host_bound] on both ends before calling this method.  
-         */
-        connect_to_host(address: string, port: int64, channels: int64 = 0, data: int64 = 0): ENetPacketPeer
-        
-        /** Waits for events on this connection and shuttles packets between the host and its peers, with the given [param timeout] (in milliseconds). The returned [Array] will have 4 elements. An [enum EventType], the [ENetPacketPeer] which generated the event, the event associated data (if any), the event associated channel (if any). If the generated event is [constant EVENT_RECEIVE], the received packet will be queued to the associated [ENetPacketPeer].  
-         *  Call this function regularly to handle connections, disconnections, and to receive new packets.  
-         *      
-         *  **Note:** This method must be called on both ends involved in the event (sending and receiving hosts).  
-         */
-        service(timeout: int64 = 0): GArray
-        
-        /** Sends any queued packets on the host specified to its designated peers. */
-        flush(): void
-        
-        /** Adjusts the bandwidth limits of a host. */
-        bandwidth_limit(in_bandwidth: int64 = 0, out_bandwidth: int64 = 0): void
-        
-        /** Limits the maximum allowed channels of future incoming connections. */
-        channel_limit(limit: int64): void
-        
-        /** Queues a [param packet] to be sent to all peers associated with the host over the specified [param channel]. See [ENetPacketPeer] `FLAG_*` constants for available packet flags. */
-        broadcast(channel: int64, packet: PackedByteArray | byte[] | ArrayBuffer, flags: int64): void
-        
-        /** Sets the compression method used for network packets. These have different tradeoffs of compression speed versus bandwidth, you may need to test which one works best for your use case if you use compression at all.  
-         *      
-         *  **Note:** Most games' network design involve sending many small packets frequently (smaller than 4 KB each). If in doubt, it is recommended to keep the default compression algorithm as it works best on these small packets.  
-         *      
-         *  **Note:** The compression mode must be set to the same value on both the server and all its clients. Clients will fail to connect if the compression mode set on the client differs from the one set on the server.  
-         */
-        compress(mode: ENetConnection.CompressionMode): void
-        
-        /** Configure this ENetHost to use the custom Godot extension allowing DTLS encryption for ENet servers. Call this right after [method create_host_bound] to have ENet expect peers to connect using DTLS. See [method TLSOptions.server]. */
-        dtls_server_setup(server_options: TLSOptions): Error
-        
-        /** Configure this ENetHost to use the custom Godot extension allowing DTLS encryption for ENet clients. Call this before [method connect_to_host] to have ENet connect using DTLS validating the server certificate against [param hostname]. You can pass the optional [param client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        dtls_client_setup(hostname: string, client_options: TLSOptions = undefined): Error
-        
-        /** Configures the DTLS server to automatically drop new connections.  
-         *      
-         *  **Note:** This method is only relevant after calling [method dtls_server_setup].  
-         */
-        refuse_new_connections(refuse: boolean): void
-        
-        /** Returns and resets host statistics. See [enum HostStatistic] for more info. */
-        pop_statistic(statistic: ENetConnection.HostStatistic): float64
-        
-        /** Returns the maximum number of channels allowed for connected peers. */
-        get_max_channels(): int64
-        
-        /** Returns the local port to which this peer is bound. */
-        get_local_port(): int64
-        
-        /** Returns the list of peers associated with this host.  
-         *      
-         *  **Note:** This list might include some peers that are not fully connected or are still being disconnected.  
-         */
-        get_peers(): GArray
-        
-        /** Sends a [param packet] toward a destination from the address and port currently bound by this ENetConnection instance.  
-         *  This is useful as it serves to establish entries in NAT routing tables on all devices between this bound instance and the public facing internet, allowing a prospective client's connection packets to be routed backward through the NAT device(s) between the public internet and this host.  
-         *  This requires forward knowledge of a prospective client's address and communication port as seen by the public internet - after any NAT devices have handled their connection request. This information can be obtained by a [url=https://en.wikipedia.org/wiki/STUN]STUN[/url] service, and must be handed off to your host by an entity that is not the prospective client. This will never work for a client behind a Symmetric NAT due to the nature of the Symmetric NAT routing algorithm, as their IP and Port cannot be known beforehand.  
-         */
-        socket_send(destination_address: string, destination_port: int64, packet: PackedByteArray | byte[] | ArrayBuffer): void
-    }
-    /** A MultiplayerPeer implementation using the [url=http://enet.bespin.org/index.html]ENet[/url] library.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_enetmultiplayerpeer.html  
-     */
-    class ENetMultiplayerPeer extends MultiplayerPeer {
-        constructor(identifier?: any)
-        /** Create server that listens to connections via [param port]. The port needs to be an available, unused port between 0 and 65535. Note that ports below 1024 are privileged and may require elevated permissions depending on the platform. To change the interface the server listens on, use [method set_bind_ip]. The default IP is the wildcard `"*"`, which listens on all available interfaces. [param max_clients] is the maximum number of clients that are allowed at once, any number up to 4095 may be used, although the achievable number of simultaneous clients may be far lower and depends on the application. For additional details on the bandwidth parameters, see [method create_client]. Returns [constant OK] if a server was created, [constant ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already has an open connection (in which case you need to call [method MultiplayerPeer.close] first) or [constant ERR_CANT_CREATE] if the server could not be created. */
-        create_server(port: int64, max_clients: int64 = 32, max_channels: int64 = 0, in_bandwidth: int64 = 0, out_bandwidth: int64 = 0): Error
-        
-        /** Create client that connects to a server at [param address] using specified [param port]. The given address needs to be either a fully qualified domain name (e.g. `"www.example.com"`) or an IP address in IPv4 or IPv6 format (e.g. `"192.168.1.1"`). The [param port] is the port the server is listening on. The [param channel_count] parameter can be used to specify the number of ENet channels allocated for the connection. The [param in_bandwidth] and [param out_bandwidth] parameters can be used to limit the incoming and outgoing bandwidth to the given number of bytes per second. The default of 0 means unlimited bandwidth. Note that ENet will strategically drop packets on specific sides of a connection between peers to ensure the peer's bandwidth is not overwhelmed. The bandwidth parameters also determine the window size of a connection which limits the amount of reliable packets that may be in transit at any given time. Returns [constant OK] if a client was created, [constant ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already has an open connection (in which case you need to call [method MultiplayerPeer.close] first) or [constant ERR_CANT_CREATE] if the client could not be created. If [param local_port] is specified, the client will also listen to the given port; this is useful for some NAT traversal techniques. */
-        create_client(address: string, port: int64, channel_count: int64 = 0, in_bandwidth: int64 = 0, out_bandwidth: int64 = 0, local_port: int64 = 0): Error
-        
-        /** Initialize this [MultiplayerPeer] in mesh mode. The provided [param unique_id] will be used as the local peer network unique ID once assigned as the [member MultiplayerAPI.multiplayer_peer]. In the mesh configuration you will need to set up each new peer manually using [ENetConnection] before calling [method add_mesh_peer]. While this technique is more advanced, it allows for better control over the connection process (e.g. when dealing with NAT punch-through) and for better distribution of the network load (which would otherwise be more taxing on the server). */
-        create_mesh(unique_id: int64): Error
-        
-        /** Add a new remote peer with the given [param peer_id] connected to the given [param host].  
-         *      
-         *  **Note:** The [param host] must have exactly one peer in the [constant ENetPacketPeer.STATE_CONNECTED] state.  
-         */
-        add_mesh_peer(peer_id: int64, host: ENetConnection): Error
-        
-        /** The IP used when creating a server. This is set to the wildcard `"*"` by default, which binds to all available interfaces. The given IP needs to be in IPv4 or IPv6 address format, for example: `"192.168.1.1"`. */
-        set_bind_ip(ip: string): void
-        
-        /** Returns the [ENetPacketPeer] associated to the given [param id]. */
-        get_peer(id: int64): ENetPacketPeer
-        
-        /** The underlying [ENetConnection] created after [method create_client] and [method create_server]. */
-        get host(): ENetConnection
-    }
-    namespace ENetPacketPeer {
-        enum PeerState {
-            /** The peer is disconnected. */
-            STATE_DISCONNECTED = 0,
-            
-            /** The peer is currently attempting to connect. */
-            STATE_CONNECTING = 1,
-            
-            /** The peer has acknowledged the connection request. */
-            STATE_ACKNOWLEDGING_CONNECT = 2,
-            
-            /** The peer is currently connecting. */
-            STATE_CONNECTION_PENDING = 3,
-            
-            /** The peer has successfully connected, but is not ready to communicate with yet ([constant STATE_CONNECTED]). */
-            STATE_CONNECTION_SUCCEEDED = 4,
-            
-            /** The peer is currently connected and ready to communicate with. */
-            STATE_CONNECTED = 5,
-            
-            /** The peer is slated to disconnect after it has no more outgoing packets to send. */
-            STATE_DISCONNECT_LATER = 6,
-            
-            /** The peer is currently disconnecting. */
-            STATE_DISCONNECTING = 7,
-            
-            /** The peer has acknowledged the disconnection request. */
-            STATE_ACKNOWLEDGING_DISCONNECT = 8,
-            
-            /** The peer has lost connection, but is not considered truly disconnected (as the peer didn't acknowledge the disconnection request). */
-            STATE_ZOMBIE = 9,
-        }
-        enum PeerStatistic {
-            /** Mean packet loss of reliable packets as a ratio with respect to the [constant PACKET_LOSS_SCALE]. */
-            PEER_PACKET_LOSS = 0,
-            
-            /** Packet loss variance. */
-            PEER_PACKET_LOSS_VARIANCE = 1,
-            
-            /** The time at which packet loss statistics were last updated (in milliseconds since the connection started). The interval for packet loss statistics updates is 10 seconds, and at least one packet must have been sent since the last statistics update. */
-            PEER_PACKET_LOSS_EPOCH = 2,
-            
-            /** Mean packet round trip time for reliable packets. */
-            PEER_ROUND_TRIP_TIME = 3,
-            
-            /** Variance of the mean round trip time. */
-            PEER_ROUND_TRIP_TIME_VARIANCE = 4,
-            
-            /** Last recorded round trip time for a reliable packet. */
-            PEER_LAST_ROUND_TRIP_TIME = 5,
-            
-            /** Variance of the last trip time recorded. */
-            PEER_LAST_ROUND_TRIP_TIME_VARIANCE = 6,
-            
-            /** The peer's current throttle status. */
-            PEER_PACKET_THROTTLE = 7,
-            
-            /** The maximum number of unreliable packets that should not be dropped. This value is always greater than or equal to `1`. The initial value is equal to [constant PACKET_THROTTLE_SCALE]. */
-            PEER_PACKET_THROTTLE_LIMIT = 8,
-            
-            /** Internal value used to increment the packet throttle counter. The value is hardcoded to `7` and cannot be changed. You probably want to look at [constant PEER_PACKET_THROTTLE_ACCELERATION] instead. */
-            PEER_PACKET_THROTTLE_COUNTER = 9,
-            
-            /** The time at which throttle statistics were last updated (in milliseconds since the connection started). The interval for throttle statistics updates is [constant PEER_PACKET_THROTTLE_INTERVAL]. */
-            PEER_PACKET_THROTTLE_EPOCH = 10,
-            
-            /** The throttle's acceleration factor. Higher values will make ENet adapt to fluctuating network conditions faster, causing unrelaible packets to be sent  *more*  often. The default value is `2`. */
-            PEER_PACKET_THROTTLE_ACCELERATION = 11,
-            
-            /** The throttle's deceleration factor. Higher values will make ENet adapt to fluctuating network conditions faster, causing unrelaible packets to be sent  *less*  often. The default value is `2`. */
-            PEER_PACKET_THROTTLE_DECELERATION = 12,
-            
-            /** The interval over which the lowest mean round trip time should be measured for use by the throttle mechanism (in milliseconds). The default value is `5000`. */
-            PEER_PACKET_THROTTLE_INTERVAL = 13,
-        }
-    }
-    /** A wrapper class for an [url=http://enet.bespin.org/group__peer.html]ENetPeer[/url].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_enetpacketpeer.html  
-     */
-    class ENetPacketPeer extends PacketPeer {
-        /** The reference scale for packet loss. See [method get_statistic] and [constant PEER_PACKET_LOSS]. */
-        static readonly PACKET_LOSS_SCALE = 65536
-        
-        /** The reference value for throttle configuration. The default value is `32`. See [method throttle_configure]. */
-        static readonly PACKET_THROTTLE_SCALE = 32
-        
-        /** Mark the packet to be sent as reliable. */
-        static readonly FLAG_RELIABLE = 1
-        
-        /** Mark the packet to be sent unsequenced (unreliable). */
-        static readonly FLAG_UNSEQUENCED = 2
-        
-        /** Mark the packet to be sent unreliable even if the packet is too big and needs fragmentation (increasing the chance of it being dropped). */
-        static readonly FLAG_UNRELIABLE_FRAGMENT = 8
-        constructor(identifier?: any)
-        
-        /** Request a disconnection from a peer. An [constant ENetConnection.EVENT_DISCONNECT] will be generated during [method ENetConnection.service] once the disconnection is complete. */
-        peer_disconnect(data: int64 = 0): void
-        
-        /** Request a disconnection from a peer, but only after all queued outgoing packets are sent. An [constant ENetConnection.EVENT_DISCONNECT] will be generated during [method ENetConnection.service] once the disconnection is complete. */
-        peer_disconnect_later(data: int64 = 0): void
-        
-        /** Force an immediate disconnection from a peer. No [constant ENetConnection.EVENT_DISCONNECT] will be generated. The foreign peer is not guaranteed to receive the disconnect notification, and is reset immediately upon return from this function. */
-        peer_disconnect_now(data: int64 = 0): void
-        
-        /** Sends a ping request to a peer. ENet automatically pings all connected peers at regular intervals, however, this function may be called to ensure more frequent ping requests. */
-        ping(): void
-        
-        /** Sets the [param ping_interval] in milliseconds at which pings will be sent to a peer. Pings are used both to monitor the liveness of the connection and also to dynamically adjust the throttle during periods of low traffic so that the throttle has reasonable responsiveness during traffic spikes. The default ping interval is `500` milliseconds. */
-        ping_interval(ping_interval: int64): void
-        
-        /** Forcefully disconnects a peer. The foreign host represented by the peer is not notified of the disconnection and will timeout on its connection to the local host. */
-        reset(): void
-        
-        /** Queues a [param packet] to be sent over the specified [param channel]. See `FLAG_*` constants for available packet flags. */
-        send(channel: int64, packet: PackedByteArray | byte[] | ArrayBuffer, flags: int64): Error
-        
-        /** Configures throttle parameter for a peer.  
-         *  Unreliable packets are dropped by ENet in response to the varying conditions of the Internet connection to the peer. The throttle represents a probability that an unreliable packet should not be dropped and thus sent by ENet to the peer. By measuring fluctuations in round trip times of reliable packets over the specified [param interval], ENet will either increase the probability by the amount specified in the [param acceleration] parameter, or decrease it by the amount specified in the [param deceleration] parameter (both are ratios to [constant PACKET_THROTTLE_SCALE]).  
-         *  When the throttle has a value of [constant PACKET_THROTTLE_SCALE], no unreliable packets are dropped by ENet, and so 100% of all unreliable packets will be sent.  
-         *  When the throttle has a value of `0`, all unreliable packets are dropped by ENet, and so 0% of all unreliable packets will be sent.  
-         *  Intermediate values for the throttle represent intermediate probabilities between 0% and 100% of unreliable packets being sent. The bandwidth limits of the local and foreign hosts are taken into account to determine a sensible limit for the throttle probability above which it should not raise even in the best of conditions.  
-         */
-        throttle_configure(interval: int64, acceleration: int64, deceleration: int64): void
-        
-        /** Sets the timeout parameters for a peer. The timeout parameters control how and when a peer will timeout from a failure to acknowledge reliable traffic. Timeout values are expressed in milliseconds.  
-         *  The [param timeout] is a factor that, multiplied by a value based on the average round trip time, will determine the timeout limit for a reliable packet. When that limit is reached, the timeout will be doubled, and the peer will be disconnected if that limit has reached [param timeout_min]. The [param timeout_max] parameter, on the other hand, defines a fixed timeout for which any packet must be acknowledged or the peer will be dropped.  
-         */
-        set_timeout(timeout: int64, timeout_min: int64, timeout_max: int64): void
-        
-        /** Returns the IP address of this peer. */
-        get_remote_address(): string
-        
-        /** Returns the remote port of this peer. */
-        get_remote_port(): int64
-        
-        /** Returns the requested [param statistic] for this peer. See [enum PeerStatistic]. */
-        get_statistic(statistic: ENetPacketPeer.PeerStatistic): float64
-        
-        /** Returns the current peer state. See [enum PeerState]. */
-        get_state(): ENetPacketPeer.PeerState
-        
-        /** Returns the number of channels allocated for communication with peer. */
-        get_channels(): int64
-        
-        /** Returns `true` if the peer is currently active (i.e. the associated [ENetConnection] is still valid). */
-        is_active(): boolean
-    }
     class EditorAbout extends AcceptDialog {
         constructor(identifier?: any)
     }
@@ -3435,7 +2882,7 @@ declare module "godot" {
         /* gdvirtual */ _has_capture(capture: string): boolean
         
         /** Override this method to process incoming messages. The [param session_id] is the ID of the [EditorDebuggerSession] that received the message (which you can retrieve via [method get_session]). */
-        /* gdvirtual */ _capture(message: string, data: GArray, session_id: int64): boolean
+        /* gdvirtual */ _capture(message: string, data: GArray<any>, session_id: int64): boolean
         
         /** Override this method to be notified when a breakpoint line has been clicked in the debugger breakpoint panel. */
         /* gdvirtual */ _goto_script_line(script: Script, line: int64): void
@@ -3453,7 +2900,7 @@ declare module "godot" {
          *      
          *  **Note:** Sessions in the array may be inactive, check their state via [method EditorDebuggerSession.is_active].  
          */
-        get_sessions(): GArray
+        get_sessions(): GArray<any>
     }
     class EditorDebuggerRemoteObject extends Object {
         constructor(identifier?: any)
@@ -3470,10 +2917,10 @@ declare module "godot" {
     class EditorDebuggerSession extends RefCounted {
         constructor(identifier?: any)
         /** Sends the given [param message] to the attached remote instance, optionally passing additionally [param data]. See [EngineDebugger] for how to retrieve those messages. */
-        send_message(message: string, data: GArray = []): void
+        send_message(message: string, data: GArray<any> = []): void
         
         /** Toggle the given [param profiler] on the attached remote instance, optionally passing additionally [param data]. See [EngineProfiler] for more details. */
-        toggle_profiler(profiler: string, enable: boolean, data: GArray = []): void
+        toggle_profiler(profiler: string, enable: boolean, data: GArray<any> = []): void
         
         /** Returns `true` if the attached remote instance is currently in the debug loop. */
         is_breaked(): boolean
@@ -3640,7 +3087,7 @@ declare module "godot" {
          *  - `default_value`: The default value for this option.  
          *  - `update_visibility`: An optional boolean value. If set to `true`, the preset will emit [signal Object.property_list_changed] when the option is changed.  
          */
-        /* gdvirtual */ _get_export_options(platform: EditorExportPlatform): GArray
+        /* gdvirtual */ _get_export_options(platform: EditorExportPlatform): GArray<any>
         
         /** Return a [Dictionary] of override values for export options, that will be used instead of user-provided values. Overridden options will be hidden from the user interface.  
          *    
@@ -3759,6 +3206,10 @@ declare module "godot" {
         
         /** Returns the current value of an export option supplied by [method _get_export_options]. */
         get_option(name: StringName): any
+    }
+    class EditorExportPreset extends RefCounted {
+        constructor(identifier?: any)
+        _get_property_warning(name: StringName): string
     }
     namespace EditorFeatureProfile {
         enum Feature {
@@ -4155,7 +3606,7 @@ declare module "godot" {
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
         
         /** Gets the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: `name`, `default_value`, `property_hint` (optional), `hint_string` (optional), `usage` (optional). */
-        /* gdvirtual */ _get_import_options(path: string, preset_index: int64): GArray
+        /* gdvirtual */ _get_import_options(path: string, preset_index: int64): GArray<any>
         
         /** Gets the extension used to save this resource in the `.godot/imported` directory (see [member ProjectSettings.application/config/use_hidden_project_data_directory]). */
         /* gdvirtual */ _get_save_extension(): string
@@ -4178,7 +3629,7 @@ declare module "godot" {
         /** Imports [param source_file] into [param save_path] with the import [param options] specified. The [param platform_variants] and [param gen_files] arrays will be modified by this function.  
          *  This method must be overridden to do the actual importing work. See this class' description for an example of overriding this method.  
          */
-        /* gdvirtual */ _import(source_file: string, save_path: string, options: GDictionary, platform_variants: GArray, gen_files: GArray): Error
+        /* gdvirtual */ _import(source_file: string, save_path: string, options: GDictionary, platform_variants: GArray<any>, gen_files: GArray<any>): Error
         
         /** Tells whether this importer can be run in parallel on threads, or, on the contrary, it's only safe for the editor to call it from the main thread, for one file at a time.  
          *  If this method is not overridden, it will return `true` by default (i.e., safe for parallel importing).  
@@ -4352,6 +3803,13 @@ declare module "godot" {
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
+    class EditorInspectorSection extends Container {
+        constructor(identifier?: any)
+        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, indent_depth: int64 = 0, level: int64 = 1): void
+        get_vbox(): VBoxContainer
+        unfold(): void
+        fold(): void
+    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
@@ -4378,11 +3836,6 @@ declare module "godot" {
     class EditorNativeShaderSourceVisualizer extends AcceptDialog {
         constructor(identifier?: any)
         _inspect_shader(_unnamed_arg0: RID): void
-    }
-    class EditorNetworkProfiler extends VBoxContainer {
-        constructor(identifier?: any)
-        readonly enable_profiling: Signal1<boolean>
-        readonly open_request: Signal1<string>
     }
     class EditorNode extends Node {
         constructor(identifier?: any)
@@ -4436,7 +3889,7 @@ declare module "godot" {
         /* gdvirtual */ _subgizmos_intersect_ray(camera: Camera3D, point: Vector2): int64
         
         /** Override this method to allow selecting subgizmos using mouse drag box selection. Given a [param camera] and a [param frustum], this method should return which subgizmos are contained within the frustum. The [param frustum] argument consists of an array with all the [Plane]s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [method _get_subgizmo_transform] or [method _commit_subgizmos]. */
-        /* gdvirtual */ _subgizmos_intersect_frustum(camera: Camera3D, frustum: GArray): PackedInt32Array
+        /* gdvirtual */ _subgizmos_intersect_frustum(camera: Camera3D, frustum: GArray<any>): PackedInt32Array
         
         /** Override this method to update the node properties during subgizmo editing (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). The [param transform] is given in the [Node3D]'s local coordinate system. */
         /* gdvirtual */ _set_subgizmo_transform(id: int64, transform: Transform3D): void
@@ -4447,7 +3900,7 @@ declare module "godot" {
         /** Override this method to commit a group of subgizmos being edited (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). This usually means creating an [UndoRedo] action for the change, using the current transforms as "do" and the [param restores] transforms as "undo".  
          *  If the [param cancel] argument is `true`, the [param restores] transforms should be directly set, without any [UndoRedo] action.  
          */
-        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array | int32[], restores: GArray, cancel: boolean): void
+        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array | int32[], restores: GArray<any>, cancel: boolean): void
         
         /** Adds lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this method during [method _redraw]. */
         add_lines(lines: PackedVector3Array | Vector3[], material: Material, billboard: boolean = false, modulate: Color = new Color(1, 1, 1, 1)): void
@@ -4550,7 +4003,7 @@ declare module "godot" {
         /* gdvirtual */ _subgizmos_intersect_ray(gizmo: EditorNode3DGizmo, camera: Camera3D, screen_pos: Vector2): int64
         
         /** Override this method to allow selecting subgizmos using mouse drag box selection. Given a [param camera] and [param frustum_planes], this method should return which subgizmos are contained within the frustums. The [param frustum_planes] argument consists of an array with all the [Plane]s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, these identifiers can have any non-negative value and will be used in other virtual methods like [method _get_subgizmo_transform] or [method _commit_subgizmos]. Called for this plugin's active gizmos. */
-        /* gdvirtual */ _subgizmos_intersect_frustum(gizmo: EditorNode3DGizmo, camera: Camera3D, frustum_planes: GArray): PackedInt32Array
+        /* gdvirtual */ _subgizmos_intersect_frustum(gizmo: EditorNode3DGizmo, camera: Camera3D, frustum_planes: GArray<any>): PackedInt32Array
         
         /** Override this method to return the current transform of a subgizmo. As with all subgizmo methods, the transform should be in local space respect to the gizmo's Node3D. This transform will be requested at the start of an edit and used in the `restore` argument in [method _commit_subgizmos]. Called for this plugin's active gizmos. */
         /* gdvirtual */ _get_subgizmo_transform(gizmo: EditorNode3DGizmo, subgizmo_id: int64): Transform3D
@@ -4561,7 +4014,7 @@ declare module "godot" {
         /** Override this method to commit a group of subgizmos being edited (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). This usually means creating an [UndoRedo] action for the change, using the current transforms as "do" and the [param restores] transforms as "undo".  
          *  If the [param cancel] argument is `true`, the [param restores] transforms should be directly set, without any [UndoRedo] action. As with all subgizmo methods, transforms are given in local space respect to the gizmo's Node3D. Called for this plugin's active gizmos.  
          */
-        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array | int32[], restores: GArray, cancel: boolean): void
+        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array | int32[], restores: GArray<any>, cancel: boolean): void
         
         /** Creates an unshaded material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [method get_material] and used in [method EditorNode3DGizmo.add_mesh] and [method EditorNode3DGizmo.add_lines]. Should not be overridden. */
         create_material(name: string, color: Color, billboard: boolean = false, on_top: boolean = false, use_vertex_color: boolean = false): void
@@ -4643,6 +4096,9 @@ declare module "godot" {
         get_project_settings_dir(): string
     }
     class EditorPerformanceProfiler extends HSplitContainer {
+        constructor(identifier?: any)
+    }
+    class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
         constructor(identifier?: any)
     }
     namespace EditorPlugin {
@@ -5058,9 +4514,6 @@ declare module "godot" {
         /** Emitted when any project setting has changed. */
         readonly project_settings_changed: Signal0
     }
-    class EditorPluginCSG extends EditorPlugin {
-        constructor(identifier?: any)
-    }
     class EditorPluginSettings extends VBoxContainer {
         constructor(identifier?: any)
     }
@@ -5166,11 +4619,28 @@ declare module "godot" {
     class EditorPropertyCheck extends EditorProperty {
         constructor(identifier?: any)
     }
+    class EditorPropertyColor extends EditorProperty {
+        constructor(identifier?: any)
+    }
     class EditorPropertyDictionaryObject extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyEnum extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyFloat extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyInteger extends EditorProperty {
         constructor(identifier?: any)
+    }
+    class EditorPropertyLayers extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyLayersGrid extends Control {
+        constructor(identifier?: any)
+        readonly flag_changed: Signal1<int64>
+        readonly rename_confirmed: Signal2<int64, string>
     }
     class EditorPropertyLocalizableString extends EditorProperty {
         constructor(identifier?: any)
@@ -5188,6 +4658,9 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class EditorPropertyText extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyVector2 extends EditorPropertyVectorN {
         constructor(identifier?: any)
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
@@ -5353,7 +4826,7 @@ declare module "godot" {
     }
     class EditorRunNative extends HBoxContainer {
         constructor(identifier?: any)
-        readonly native_run: Signal1<any /*EditorExportPreset*/>
+        readonly native_run: Signal1<EditorExportPreset>
     }
     class EditorSceneExporterGLTFSettings extends RefCounted {
         constructor(identifier?: any)
@@ -5531,10 +5004,10 @@ declare module "godot" {
         remove_node(node: Node): void
         
         /** Returns the list of selected nodes. */
-        get_selected_nodes(): GArray
+        get_selected_nodes(): GArray<any>
         
         /** Returns the list of selected nodes, optimized for transform operations (i.e. moving them, rotating, etc.). This list can be used to avoid situations where a node is selected and is also a child/grandchild. */
-        get_transformable_selected_nodes(): GArray
+        get_transformable_selected_nodes(): GArray<any>
         
         /** Emitted when the selection changes. */
         readonly selection_changed: Signal0
@@ -5591,7 +5064,7 @@ declare module "godot" {
         get_recent_dirs(): PackedStringArray
         
         /** Overrides the built-in editor action [param name] with the input actions defined in [param actions_list]. */
-        set_builtin_action_override(name: string, actions_list: GArray): void
+        set_builtin_action_override(name: string, actions_list: GArray<any>): void
         
         /** Checks if any settings with the prefix [param setting_prefix] exist in the set of changed settings. See also [method get_changed_settings]. */
         check_changed_settings_in_group(setting_prefix: string): boolean
@@ -5648,6 +5121,9 @@ declare module "godot" {
         /** Emitted when the value form loses focus. */
         readonly value_focus_exited: Signal0
     }
+    class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
+        constructor(identifier?: any)
+    }
     /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_editorsyntaxhighlighter.html  
@@ -5683,7 +5159,7 @@ declare module "godot" {
     class EditorTranslationParserPlugin extends RefCounted {
         constructor(identifier?: any)
         /** Override this method to define a custom parsing logic to extract the translatable strings. */
-        /* gdvirtual */ _parse_file(path: string, msgids: GArray, msgids_context_plural: GArray): void
+        /* gdvirtual */ _parse_file(path: string, msgids: GArray<any>, msgids_context_plural: GArray<any>): void
         
         /** Gets the list of file extensions to associate with this parser, e.g. `["csv"]`. */
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
@@ -5809,7 +5285,7 @@ declare module "godot" {
         /* gdvirtual */ _set_credentials(username: string, password: string, ssh_public_key_path: string, ssh_private_key_path: string, ssh_passphrase: string): void
         
         /** Returns an [Array] of [Dictionary] items (see [method create_status_file]), each containing the status data of every modified file in the project folder. */
-        /* gdvirtual */ _get_modified_files_data(): GArray
+        /* gdvirtual */ _get_modified_files_data(): GArray<any>
         
         /** Stages the file present at [param file_path] to the staged area. */
         /* gdvirtual */ _stage_file(file_path: string): void
@@ -5824,7 +5300,7 @@ declare module "godot" {
         /* gdvirtual */ _commit(msg: string): void
         
         /** Returns an array of [Dictionary] items (see [method create_diff_file], [method create_diff_hunk], [method create_diff_line], [method add_line_diffs_into_diff_hunk] and [method add_diff_hunks_into_diff_file]), each containing information about a diff. If [param identifier] is a file path, returns a file diff, and if it is a commit identifier, then returns a commit diff. */
-        /* gdvirtual */ _get_diff(identifier: string, area: int64): GArray
+        /* gdvirtual */ _get_diff(identifier: string, area: int64): GArray<any>
         
         /** Shuts down VCS plugin instance. Called when the user either closes the editor or shuts down the VCS plugin through the editor UI. */
         /* gdvirtual */ _shut_down(): boolean
@@ -5833,13 +5309,13 @@ declare module "godot" {
         /* gdvirtual */ _get_vcs_name(): string
         
         /** Returns an [Array] of [Dictionary] items (see [method create_commit]), each containing the data for a past commit. */
-        /* gdvirtual */ _get_previous_commits(max_commits: int64): GArray
+        /* gdvirtual */ _get_previous_commits(max_commits: int64): GArray<any>
         
         /** Gets an instance of an [Array] of [String]s containing available branch names in the VCS. */
-        /* gdvirtual */ _get_branch_list(): GArray
+        /* gdvirtual */ _get_branch_list(): GArray<any>
         
         /** Returns an [Array] of [String]s, each containing the name of a remote configured in the VCS. */
-        /* gdvirtual */ _get_remotes(): GArray
+        /* gdvirtual */ _get_remotes(): GArray<any>
         
         /** Creates a new branch named [param branch_name] in the VCS. */
         /* gdvirtual */ _create_branch(branch_name: string): void
@@ -5869,7 +5345,7 @@ declare module "godot" {
         /* gdvirtual */ _fetch(remote: string): void
         
         /** Returns an [Array] of [Dictionary] items (see [method create_diff_hunk]), each containing a line diff between a file at [param file_path] and the [param text] which is passed in. */
-        /* gdvirtual */ _get_line_diff(file_path: string, text: string): GArray
+        /* gdvirtual */ _get_line_diff(file_path: string, text: string): GArray<any>
         
         /** Helper function to create a [Dictionary] for storing a line diff. [param new_line_no] is the line number in the new file (can be `-1` if the line is deleted). [param old_line_no] is the line number in the old file (can be `-1` if the line is added). [param content] is the diff text. [param status] is a single character string which stores the line origin. */
         create_diff_line(new_line_no: int64, old_line_no: int64, content: string, status: string): GDictionary
@@ -5887,10 +5363,10 @@ declare module "godot" {
         create_status_file(file_path: string, change_type: EditorVCSInterface.ChangeType, area: EditorVCSInterface.TreeArea): GDictionary
         
         /** Helper function to add an array of [param diff_hunks] into a [param diff_file]. */
-        add_diff_hunks_into_diff_file(diff_file: GDictionary, diff_hunks: GArray): GDictionary
+        add_diff_hunks_into_diff_file(diff_file: GDictionary, diff_hunks: GArray<any>): GDictionary
         
         /** Helper function to add an array of [param line_diffs] into a [param diff_hunk]. */
-        add_line_diffs_into_diff_hunk(diff_hunk: GDictionary, line_diffs: GArray): GDictionary
+        add_line_diffs_into_diff_hunk(diff_hunk: GDictionary, line_diffs: GArray<any>): GDictionary
         
         /** Pops up an error message in the editor which is shown as coming from the underlying VCS. Use this to show VCS specific error messages. */
         popup_error(msg: string): void
@@ -5926,10 +5402,10 @@ declare module "godot" {
     class EngineProfiler extends RefCounted {
         constructor(identifier?: any)
         /** Called when the profiler is enabled/disabled, along with a set of [param options]. */
-        /* gdvirtual */ _toggle(enable: boolean, options: GArray): void
+        /* gdvirtual */ _toggle(enable: boolean, options: GArray<any>): void
         
         /** Called when data is added to profiler using [method EngineDebugger.profiler_add_frame_data]. */
-        /* gdvirtual */ _add_frame(data: GArray): void
+        /* gdvirtual */ _add_frame(data: GArray<any>): void
         
         /** Called once every engine iteration when the profiler is active with information about the current frame. All time values are in seconds. Lower values represent faster processing times and are therefore considered better. */
         /* gdvirtual */ _tick(frame_time: float64, process_time: float64, physics_time: float64, physics_frame_time: float64): void
@@ -6508,7 +5984,7 @@ declare module "godot" {
         /** Executes the expression that was previously parsed by [method parse] and returns the result. Before you use the returned object, you should check if the method failed by calling [method has_execute_failed].  
          *  If you defined input variables in [method parse], you can specify their values in the inputs array, in the same order.  
          */
-        execute(inputs: GArray = [], base_instance: Object = undefined, show_error: boolean = true, const_calls_only: boolean = false): any
+        execute(inputs: GArray<any> = [], base_instance: Object = undefined, show_error: boolean = true, const_calls_only: boolean = false): any
         
         /** Returns `true` if [method execute] has failed. */
         has_execute_failed(): boolean
@@ -7433,7 +6909,7 @@ declare module "godot" {
         find_variation(variation_coordinates: GDictionary, face_index: int64 = 0, strength: float64 = 0, transform: Transform2D = new Transform2D(), spacing_top: int64 = 0, spacing_bottom: int64 = 0, spacing_space: int64 = 0, spacing_glyph: int64 = 0, baseline_offset: float64 = 0): RID
         
         /** Returns [Array] of valid [Font] [RID]s, which can be passed to the [TextServer] methods. */
-        get_rids(): GArray
+        get_rids(): GArray<any>
         
         /** Returns the total average font height (ascent plus descent) in pixels.  
          *      
@@ -7609,7 +7085,7 @@ declare module "godot" {
         remove_cache(cache_index: int64): void
         
         /** Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size. */
-        get_size_cache_list(cache_index: int64): GArray
+        get_size_cache_list(cache_index: int64): GArray<any>
         
         /** Removes all font sizes from the cache entry */
         clear_size_cache(cache_index: int64): void
@@ -7762,7 +7238,7 @@ declare module "godot" {
         get_glyph_texture_idx(cache_index: int64, size: Vector2i, glyph: int64): int64
         
         /** Returns list of the kerning overrides. */
-        get_kerning_list(cache_index: int64, size: int64): GArray
+        get_kerning_list(cache_index: int64, size: int64): GArray<any>
         
         /** Removes all kerning overrides. */
         clear_kerning_map(cache_index: int64, size: int64): void
@@ -7967,7 +7443,7 @@ declare module "godot" {
     class FramebufferCacheRD extends Object {
         constructor(identifier?: any)
         /** Creates, or obtains a cached, framebuffer. [param textures] lists textures accessed. [param passes] defines the subpasses and texture allocation, if left empty a single pass is created and textures are allocated depending on their usage flags. [param views] defines the number of views used when rendering. */
-        static get_cache_multipass(textures: GArray, passes: GArray, views: int64): RID
+        static get_cache_multipass(textures: GArray<any>, passes: GArray<any>, views: int64): RID
     }
     namespace GDExtension {
         enum InitializationLevel {
@@ -7995,46 +7471,6 @@ declare module "godot" {
         
         /** Returns the lowest level required for this extension to be properly initialized (see the [enum InitializationLevel] enum). */
         get_minimum_library_initialization_level(): GDExtension.InitializationLevel
-    }
-    class GDScriptLanguageServer extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** @link https://docs.godotengine.org/en/4.3/classes/class_gdscripttextdocument.html */
-    class GDScriptTextDocument extends RefCounted {
-        constructor(identifier?: any)
-        didOpen(_unnamed_arg0: any): void
-        didClose(_unnamed_arg0: any): void
-        didChange(_unnamed_arg0: any): void
-        willSaveWaitUntil(_unnamed_arg0: any): void
-        didSave(_unnamed_arg0: any): void
-        nativeSymbol(_unnamed_arg0: GDictionary): any
-        documentSymbol(_unnamed_arg0: GDictionary): GArray
-        completion(_unnamed_arg0: GDictionary): GArray
-        resolve(_unnamed_arg0: GDictionary): GDictionary
-        rename(_unnamed_arg0: GDictionary): GDictionary
-        prepareRename(_unnamed_arg0: GDictionary): any
-        references(_unnamed_arg0: GDictionary): GArray
-        foldingRange(_unnamed_arg0: GDictionary): GArray
-        codeLens(_unnamed_arg0: GDictionary): GArray
-        documentLink(_unnamed_arg0: GDictionary): GArray
-        colorPresentation(_unnamed_arg0: GDictionary): GArray
-        hover(_unnamed_arg0: GDictionary): any
-        definition(_unnamed_arg0: GDictionary): GArray
-        declaration(_unnamed_arg0: GDictionary): any
-        signatureHelp(_unnamed_arg0: GDictionary): any
-        show_native_symbol_in_editor(_unnamed_arg0: string): void
-    }
-    /** @link https://docs.godotengine.org/en/4.3/classes/class_gdscriptworkspace.html */
-    class GDScriptWorkspace extends RefCounted {
-        constructor(identifier?: any)
-        apply_new_signal(_unnamed_arg0: Object, _unnamed_arg1: string, _unnamed_arg2: PackedStringArray | string[]): void
-        didDeleteFiles(_unnamed_arg0: GDictionary): void
-        parse_script(path: string, content: string): Error
-        parse_local_script(path: string): Error
-        get_file_path(uri: string): string
-        get_file_uri(path: string): string
-        publish_diagnostics(path: string): void
-        generate_script_api(path: string): GDictionary
     }
     namespace GLTFAccessor {
         enum GLTFAccessorType {
@@ -9286,5 +8722,496 @@ declare module "godot" {
          *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the signal during which setting [member emitting] to `true` will not restart the emission cycle. This delay is avoided by instead calling [method restart].  
          */
         readonly finished: Signal0
+    }
+    class GPUParticles3DEditor extends GPUParticles3DEditorBase {
+        constructor(identifier?: any)
+    }
+    class GPUParticles3DEditorBase extends Control {
+        constructor(identifier?: any)
+    }
+    class GPUParticles3DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    class GPUParticles3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    /** Abstract base class for 3D particle attractors.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractor3d.html  
+     */
+    class GPUParticlesAttractor3D extends VisualInstance3D {
+        constructor(identifier?: any)
+        /** Adjusts the strength of the attractor. If [member strength] is negative, particles will be pushed in the opposite direction. Particles will be pushed  *away*  from the attractor's origin if [member directionality] is `0.0`, or towards local +Z if [member directionality] is greater than `0.0`. */
+        get strength(): float64
+        set strength(value: float64)
+        
+        /** The particle attractor's attenuation. Higher values result in more gradual pushing of particles as they come closer to the attractor's origin. Zero or negative values will cause particles to be pushed very fast as soon as the touch the attractor's edges. */
+        get attenuation(): float64
+        set attenuation(value: float64)
+        
+        /** Adjusts how directional the attractor is. At `0.0`, the attractor is not directional at all: it will attract particles towards its center. At `1.0`, the attractor is fully directional: particles will always be pushed towards local -Z (or +Z if [member strength] is negative).  
+         *      
+         *  **Note:** If [member directionality] is greater than `0.0`, the direction in which particles are pushed can be changed by rotating the [GPUParticlesAttractor3D] node.  
+         */
+        get directionality(): float64
+        set directionality(value: float64)
+        
+        /** The particle rendering layers ([member VisualInstance3D.layers]) that will be affected by the attractor. By default, all particles are affected by an attractor.  
+         *  After configuring particle nodes accordingly, specific layers can be unchecked to prevent certain particles from being affected by attractors. For example, this can be used if you're using an attractor as part of a spell effect but don't want the attractor to affect unrelated weather particles at the same position.  
+         *  Particle attraction can also be disabled on a per-process material basis by setting [member ParticleProcessMaterial.attractor_interaction_enabled] on the [GPUParticles3D] node.  
+         */
+        get cull_mask(): int64
+        set cull_mask(value: int64)
+    }
+    /** A box-shaped attractor that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorbox3d.html  
+     */
+    class GPUParticlesAttractorBox3D extends GPUParticlesAttractor3D {
+        constructor(identifier?: any)
+        /** The attractor box's size in 3D units. */
+        get size(): Vector3
+        set size(value: Vector3)
+    }
+    /** A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorsphere3d.html  
+     */
+    class GPUParticlesAttractorSphere3D extends GPUParticlesAttractor3D {
+        constructor(identifier?: any)
+        /** The attractor sphere's radius in 3D units.  
+         *      
+         *  **Note:** Stretched ellipses can be obtained by using non-uniform scaling on the [GPUParticlesAttractorSphere3D] node.  
+         */
+        get radius(): float64
+        set radius(value: float64)
+    }
+    /** A box-shaped attractor with varying directions and strengths defined in it that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorvectorfield3d.html  
+     */
+    class GPUParticlesAttractorVectorField3D extends GPUParticlesAttractor3D {
+        constructor(identifier?: any)
+        /** The size of the vector field box in 3D units. */
+        get size(): Vector3
+        set size(value: Vector3)
+        
+        /** The 3D texture to be used. Values are linearly interpolated between the texture's pixels.  
+         *      
+         *  **Note:** To get better performance, the 3D texture's resolution should reflect the [member size] of the attractor. Since particle attraction is usually low-frequency data, the texture can be kept at a low resolution such as 64×64×64.  
+         */
+        get texture(): Texture3D
+        set texture(value: Texture3D)
+    }
+    /** Abstract base class for 3D particle collision shapes affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollision3d.html  
+     */
+    class GPUParticlesCollision3D extends VisualInstance3D {
+        constructor(identifier?: any)
+        /** The particle rendering layers ([member VisualInstance3D.layers]) that will be affected by the collision shape. By default, all particles that have [member ParticleProcessMaterial.collision_mode] set to [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] will be affected by a collision shape.  
+         *  After configuring particle nodes accordingly, specific layers can be unchecked to prevent certain particles from being affected by attractors. For example, this can be used if you're using an attractor as part of a spell effect but don't want the attractor to affect unrelated weather particles at the same position.  
+         *  Particle attraction can also be disabled on a per-process material basis by setting [member ParticleProcessMaterial.attractor_interaction_enabled] on the [GPUParticles3D] node.  
+         */
+        get cull_mask(): int64
+        set cull_mask(value: int64)
+    }
+    class GPUParticlesCollision3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    /** A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionbox3d.html  
+     */
+    class GPUParticlesCollisionBox3D extends GPUParticlesCollision3D {
+        constructor(identifier?: any)
+        /** The collision box's size in 3D units. */
+        get size(): Vector3
+        set size(value: Vector3)
+    }
+    namespace GPUParticlesCollisionHeightField3D {
+        enum Resolution {
+            /** Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no distant particles. */
+            RESOLUTION_256 = 0,
+            
+            /** Generate a 512×512 heightmap. Intended for medium-scale scenes, or larger scenes with no distant particles. */
+            RESOLUTION_512 = 1,
+            
+            /** Generate a 1024×1024 heightmap. Intended for large scenes with distant particles. */
+            RESOLUTION_1024 = 2,
+            
+            /** Generate a 2048×2048 heightmap. Intended for very large scenes with distant particles. */
+            RESOLUTION_2048 = 3,
+            
+            /** Generate a 4096×4096 heightmap. Intended for huge scenes with distant particles. */
+            RESOLUTION_4096 = 4,
+            
+            /** Generate a 8192×8192 heightmap. Intended for gigantic scenes with distant particles. */
+            RESOLUTION_8192 = 5,
+            
+            /** Represents the size of the [enum Resolution] enum. */
+            RESOLUTION_MAX = 6,
+        }
+        enum UpdateMode {
+            /** Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [member follow_camera_enabled] is `true`. An update can be forced by slightly moving the [GPUParticlesCollisionHeightField3D] in any direction, or by calling [method RenderingServer.particles_collision_height_field_update]. */
+            UPDATE_MODE_WHEN_MOVED = 0,
+            
+            /** Update the heightmap every frame. This has a significant performance cost. This update should only be used when geometry that particles can collide with changes significantly during gameplay. */
+            UPDATE_MODE_ALWAYS = 1,
+        }
+    }
+    /** A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionheightfield3d.html  
+     */
+    class GPUParticlesCollisionHeightField3D extends GPUParticlesCollision3D {
+        constructor(identifier?: any)
+        /** The collision heightmap's size in 3D units. To improve heightmap quality, [member size] should be set as small as possible while covering the parts of the scene you need. */
+        get size(): Vector3
+        set size(value: Vector3)
+        
+        /** Higher resolutions can represent small details more accurately in large scenes, at the cost of lower performance. If [member update_mode] is [constant UPDATE_MODE_ALWAYS], consider using the lowest resolution possible. */
+        get resolution(): int64
+        set resolution(value: int64)
+        
+        /** The update policy to use for the generated heightmap. */
+        get update_mode(): int64
+        set update_mode(value: int64)
+        
+        /** If `true`, the [GPUParticlesCollisionHeightField3D] will follow the current camera in global space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node for this to work.  
+         *  Following the camera has a performance cost, as it will force the heightmap to update whenever the camera moves. Consider lowering [member resolution] to improve performance if [member follow_camera_enabled] is `true`.  
+         */
+        get follow_camera_enabled(): boolean
+        set follow_camera_enabled(value: boolean)
+    }
+    namespace GPUParticlesCollisionSDF3D {
+        enum Resolution {
+            /** Bake a 16×16×16 signed distance field. This is the fastest option, but also the least precise. */
+            RESOLUTION_16 = 0,
+            
+            /** Bake a 32×32×32 signed distance field. */
+            RESOLUTION_32 = 1,
+            
+            /** Bake a 64×64×64 signed distance field. */
+            RESOLUTION_64 = 2,
+            
+            /** Bake a 128×128×128 signed distance field. */
+            RESOLUTION_128 = 3,
+            
+            /** Bake a 256×256×256 signed distance field. */
+            RESOLUTION_256 = 4,
+            
+            /** Bake a 512×512×512 signed distance field. This is the slowest option, but also the most precise. */
+            RESOLUTION_512 = 5,
+            
+            /** Represents the size of the [enum Resolution] enum. */
+            RESOLUTION_MAX = 6,
+        }
+    }
+    /** A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionsdf3d.html  
+     */
+    class GPUParticlesCollisionSDF3D extends GPUParticlesCollision3D {
+        constructor(identifier?: any)
+        /** Based on [param value], enables or disables the specified layer in the [member bake_mask], given a [param layer_number] between 1 and 32. */
+        set_bake_mask_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member bake_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_bake_mask_value(layer_number: int64): boolean
+        
+        /** The collision SDF's size in 3D units. To improve SDF quality, the [member size] should be set as small as possible while covering the parts of the scene you need. */
+        get size(): Vector3
+        set size(value: Vector3)
+        
+        /** The bake resolution to use for the signed distance field [member texture]. The texture must be baked again for changes to the [member resolution] property to be effective. Higher resolutions have a greater performance cost and take more time to bake. Higher resolutions also result in larger baked textures, leading to increased VRAM and storage space requirements. To improve performance and reduce bake times, use the lowest resolution possible for the object you're representing the collision of. */
+        get resolution(): int64
+        set resolution(value: int64)
+        
+        /** The collision shape's thickness. Unlike other particle colliders, [GPUParticlesCollisionSDF3D] is actually hollow on the inside. [member thickness] can be increased to prevent particles from tunneling through the collision shape at high speeds, or when the [GPUParticlesCollisionSDF3D] is moved. */
+        get thickness(): float64
+        set thickness(value: float64)
+        
+        /** The visual layers to account for when baking the particle collision SDF. Only [MeshInstance3D]s whose [member VisualInstance3D.layers] match with this [member bake_mask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking. */
+        get bake_mask(): int64
+        set bake_mask(value: int64)
+        
+        /** The 3D texture representing the signed distance field. */
+        get texture(): Texture3D
+        set texture(value: Texture3D)
+    }
+    class GPUParticlesCollisionSDF3DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionsphere3d.html  
+     */
+    class GPUParticlesCollisionSphere3D extends GPUParticlesCollision3D {
+        constructor(identifier?: any)
+        /** The collision sphere's radius in 3D units. */
+        get radius(): float64
+        set radius(value: float64)
+    }
+    namespace Generic6DOFJoint3D {
+        enum Param {
+            /** The minimum difference between the pivot points' axes. */
+            PARAM_LINEAR_LOWER_LIMIT = 0,
+            
+            /** The maximum difference between the pivot points' axes. */
+            PARAM_LINEAR_UPPER_LIMIT = 1,
+            
+            /** A factor applied to the movement across the axes. The lower, the slower the movement. */
+            PARAM_LINEAR_LIMIT_SOFTNESS = 2,
+            
+            /** The amount of restitution on the axes' movement. The lower, the more momentum gets lost. */
+            PARAM_LINEAR_RESTITUTION = 3,
+            
+            /** The amount of damping that happens at the linear motion across the axes. */
+            PARAM_LINEAR_DAMPING = 4,
+            
+            /** The velocity the linear motor will try to reach. */
+            PARAM_LINEAR_MOTOR_TARGET_VELOCITY = 5,
+            
+            /** The maximum force the linear motor will apply while trying to reach the velocity target. */
+            PARAM_LINEAR_MOTOR_FORCE_LIMIT = 6,
+            PARAM_LINEAR_SPRING_STIFFNESS = 7,
+            PARAM_LINEAR_SPRING_DAMPING = 8,
+            PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT = 9,
+            
+            /** The minimum rotation in negative direction to break loose and rotate around the axes. */
+            PARAM_ANGULAR_LOWER_LIMIT = 10,
+            
+            /** The minimum rotation in positive direction to break loose and rotate around the axes. */
+            PARAM_ANGULAR_UPPER_LIMIT = 11,
+            
+            /** The speed of all rotations across the axes. */
+            PARAM_ANGULAR_LIMIT_SOFTNESS = 12,
+            
+            /** The amount of rotational damping across the axes. The lower, the more damping occurs. */
+            PARAM_ANGULAR_DAMPING = 13,
+            
+            /** The amount of rotational restitution across the axes. The lower, the more restitution occurs. */
+            PARAM_ANGULAR_RESTITUTION = 14,
+            
+            /** The maximum amount of force that can occur, when rotating around the axes. */
+            PARAM_ANGULAR_FORCE_LIMIT = 15,
+            
+            /** When rotating across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower. */
+            PARAM_ANGULAR_ERP = 16,
+            
+            /** Target speed for the motor at the axes. */
+            PARAM_ANGULAR_MOTOR_TARGET_VELOCITY = 17,
+            
+            /** Maximum acceleration for the motor at the axes. */
+            PARAM_ANGULAR_MOTOR_FORCE_LIMIT = 18,
+            PARAM_ANGULAR_SPRING_STIFFNESS = 19,
+            PARAM_ANGULAR_SPRING_DAMPING = 20,
+            PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT = 21,
+            
+            /** Represents the size of the [enum Param] enum. */
+            PARAM_MAX = 22,
+        }
+        enum Flag {
+            /** If enabled, linear motion is possible within the given limits. */
+            FLAG_ENABLE_LINEAR_LIMIT = 0,
+            
+            /** If enabled, rotational motion is possible within the given limits. */
+            FLAG_ENABLE_ANGULAR_LIMIT = 1,
+            FLAG_ENABLE_LINEAR_SPRING = 3,
+            FLAG_ENABLE_ANGULAR_SPRING = 2,
+            
+            /** If enabled, there is a rotational motor across these axes. */
+            FLAG_ENABLE_MOTOR = 4,
+            
+            /** If enabled, there is a linear motor across these axes. */
+            FLAG_ENABLE_LINEAR_MOTOR = 5,
+            
+            /** Represents the size of the [enum Flag] enum. */
+            FLAG_MAX = 6,
+        }
+    }
+    /** A physics joint that allows for complex movement and rotation between two 3D physics bodies.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_generic6dofjoint3d.html  
+     */
+    class Generic6DOFJoint3D extends Joint3D {
+        constructor(identifier?: any)
+        set_param_x(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_x(param: Generic6DOFJoint3D.Param): float64
+        set_param_y(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_y(param: Generic6DOFJoint3D.Param): float64
+        set_param_z(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_z(param: Generic6DOFJoint3D.Param): float64
+        set_flag_x(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_x(flag: Generic6DOFJoint3D.Flag): boolean
+        set_flag_y(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_y(flag: Generic6DOFJoint3D.Flag): boolean
+        set_flag_z(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_z(flag: Generic6DOFJoint3D.Flag): boolean
+    }
+    namespace GeometryInstance3D {
+        enum ShadowCastingSetting {
+            /** Will not cast any shadows. Use this to improve performance for small geometry that is unlikely to cast noticeable shadows (such as debris). */
+            SHADOW_CASTING_SETTING_OFF = 0,
+            
+            /** Will cast shadows from all visible faces in the GeometryInstance3D.  
+             *  Will take culling into account, so faces not being rendered will not be taken into account when shadow casting.  
+             */
+            SHADOW_CASTING_SETTING_ON = 1,
+            
+            /** Will cast shadows from all visible faces in the GeometryInstance3D.  
+             *  Will not take culling into account, so all faces will be taken into account when shadow casting.  
+             */
+            SHADOW_CASTING_SETTING_DOUBLE_SIDED = 2,
+            
+            /** Will only show the shadows casted from this object.  
+             *  In other words, the actual mesh will not be visible, only the shadows casted from the mesh will be.  
+             */
+            SHADOW_CASTING_SETTING_SHADOWS_ONLY = 3,
+        }
+        enum GIMode {
+            /** Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will  *receive*  indirect lighting and reflections but the geometry will not be considered in GI baking. */
+            GI_MODE_DISABLED = 0,
+            
+            /** Baked global illumination mode. Use for static objects that contribute to global illumination (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and [LightmapGI]. */
+            GI_MODE_STATIC = 1,
+            
+            /** Dynamic global illumination mode. Use for dynamic objects that contribute to global illumination. This GI mode is only effective when using [VoxelGI], but it has a higher performance impact than [constant GI_MODE_STATIC]. When using other GI methods, this will act the same as [constant GI_MODE_DISABLED]. When using [LightmapGI], the object will receive indirect lighting using lightmap probes instead of using the baked lightmap texture. */
+            GI_MODE_DYNAMIC = 2,
+        }
+        enum LightmapScale {
+            /** The standard texel density for lightmapping with [LightmapGI]. */
+            LIGHTMAP_SCALE_1X = 0,
+            
+            /** Multiplies texel density by 2× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 1.5 and 3.0. */
+            LIGHTMAP_SCALE_2X = 1,
+            
+            /** Multiplies texel density by 4× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 3.0 and 6.0. */
+            LIGHTMAP_SCALE_4X = 2,
+            
+            /** Multiplies texel density by 8× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor greater than 6.0. */
+            LIGHTMAP_SCALE_8X = 3,
+            
+            /** Represents the size of the [enum LightmapScale] enum. */
+            LIGHTMAP_SCALE_MAX = 4,
+        }
+        enum VisibilityRangeFadeMode {
+            /** Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This is the fastest approach to manual LOD, but it can result in noticeable LOD transitions depending on how the LOD meshes are authored. See [member visibility_range_begin] and [member Node3D.visibility_parent] for more information. */
+            VISIBILITY_RANGE_FADE_DISABLED = 0,
+            
+            /** Will fade-out itself when reaching the limits of its own visibility range. This is slower than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [member visibility_range_begin_margin] and [member visibility_range_end_margin].  
+             *      
+             *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, this mode acts like [constant VISIBILITY_RANGE_FADE_DISABLED] but with hysteresis disabled.  
+             */
+            VISIBILITY_RANGE_FADE_SELF = 1,
+            
+            /** Will fade-in its visibility dependencies (see [member Node3D.visibility_parent]) when reaching the limits of its own visibility range. This is slower than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [member visibility_range_begin_margin] and [member visibility_range_end_margin].  
+             *      
+             *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, this mode acts like [constant VISIBILITY_RANGE_FADE_DISABLED] but with hysteresis disabled.  
+             */
+            VISIBILITY_RANGE_FADE_DEPENDENCIES = 2,
+        }
+    }
+    /** Base node for geometry-based visual instances.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_geometryinstance3d.html  
+     */
+    class GeometryInstance3D extends VisualInstance3D {
+        constructor(identifier?: any)
+        /** Set the value of a shader uniform for this instance only ([url=https://docs.godotengine.org/en/4.3/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance uniform[/url]). See also [method ShaderMaterial.set_shader_parameter] to assign a uniform on all instances using the same [ShaderMaterial].  
+         *      
+         *  **Note:** For a shader uniform to be assignable on a per-instance basis, it  *must*  be defined with `instance uniform ...` rather than `uniform ...` in the shader code.  
+         *      
+         *  **Note:** [param name] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).  
+         *      
+         *  **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D equivalent of this method.  
+         */
+        set_instance_shader_parameter(name: StringName, value: any): void
+        
+        /** Get the value of a shader parameter as set on this instance. */
+        get_instance_shader_parameter(name: StringName): any
+        
+        /** The material override for the whole geometry.  
+         *  If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.  
+         */
+        get material_override(): BaseMaterial3D | ShaderMaterial
+        set material_override(value: BaseMaterial3D | ShaderMaterial)
+        
+        /** The material overlay for the whole geometry.  
+         *  If a material is assigned to this property, it will be rendered on top of any other active material for all the surfaces.  
+         */
+        get material_overlay(): BaseMaterial3D | ShaderMaterial
+        set material_overlay(value: BaseMaterial3D | ShaderMaterial)
+        
+        /** The transparency applied to the whole geometry (as a multiplier of the materials' existing transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [member transparency] to a value greater than `0.0` (exclusive) will  *not*  disable shadow rendering.  
+         *  In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.  
+         *      
+         *  **Note:** [member transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.  
+         *      
+         *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, [member transparency] is ignored and is considered as always being `0.0`.  
+         */
+        get transparency(): float64
+        set transparency(value: float64)
+        
+        /** The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values. */
+        get cast_shadow(): int64
+        set cast_shadow(value: int64)
+        
+        /** The extra distance added to the GeometryInstance3D's bounding box ([AABB]) to increase its cull box. */
+        get extra_cull_margin(): float64
+        set extra_cull_margin(value: float64)
+        
+        /** Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [MeshInstance3D] or to have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [member custom_aabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [method RenderingServer.instance_set_ignore_culling] on the [GeometryInstance3D]'s [RID]. */
+        get custom_aabb(): AABB
+        set custom_aabb(value: AABB)
+        
+        /** Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.  
+         *  Useful for testing level of detail transitions in the editor.  
+         */
+        get lod_bias(): float64
+        set lod_bias(value: float64)
+        
+        /** If `true`, disables occlusion culling for this instance. Useful for gizmos that must be rendered even when occlusion culling is in use.  
+         *      
+         *  **Note:** [member ignore_occlusion_culling] does not affect frustum culling (which is what happens when an object is not visible given the camera's angle). To avoid frustum culling, set [member custom_aabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`.  
+         */
+        get ignore_occlusion_culling(): boolean
+        set ignore_occlusion_culling(value: boolean)
+        
+        /** The global illumination mode to use for the whole geometry. To avoid inconsistent results, use a mode that matches the purpose of the mesh during gameplay (static/dynamic).  
+         *      
+         *  **Note:** Lights' bake mode will also affect the global illumination rendering. See [member Light3D.light_bake_mode].  
+         */
+        get gi_mode(): int64
+        set gi_mode(value: int64)
+        
+        /** The texel density to use for lightmapping in [LightmapGI]. Greater scale values provide higher resolution in the lightmap, which can result in sharper shadows for lights that have both direct and indirect light baked. However, greater scale values will also increase the space taken by the mesh in the lightmap texture, which increases the memory, storage, and bake time requirements. When using a single mesh at different scales, consider adjusting this value to keep the lightmap texel density consistent across meshes. */
+        get gi_lightmap_scale(): int64
+        set gi_lightmap_scale(value: int64)
+        
+        /** Starting distance from which the GeometryInstance3D will be visible, taking [member visibility_range_begin_margin] into account as well. The default value of 0 is used to disable the range check. */
+        get visibility_range_begin(): float64
+        set visibility_range_begin(value: float64)
+        
+        /** Margin for the [member visibility_range_begin] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [member visibility_range_begin] threshold by this amount.  
+         *  If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_SELF] or [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.  
+         */
+        get visibility_range_begin_margin(): float64
+        set visibility_range_begin_margin(value: float64)
+        
+        /** Distance from which the GeometryInstance3D will be hidden, taking [member visibility_range_end_margin] into account as well. The default value of 0 is used to disable the range check. */
+        get visibility_range_end(): float64
+        set visibility_range_end(value: float64)
+        
+        /** Margin for the [member visibility_range_end] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [member visibility_range_end] threshold by this amount.  
+         *  If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_SELF] or [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.  
+         */
+        get visibility_range_end_margin(): float64
+        set visibility_range_end_margin(value: float64)
+        
+        /** Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values. */
+        get visibility_range_fade_mode(): int64
+        set visibility_range_fade_mode(value: int64)
     }
 }
