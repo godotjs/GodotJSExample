@@ -777,7 +777,7 @@ declare module "godot" {
          *      
          *  **Note:** See [method change_scene_to_packed] for details on the order of operations.  
          */
-        change_scene_to_file(path: string): Error
+        change_scene_to_file(path: string): GError
         
         /** Changes the running scene to a new instance of the given [PackedScene] (which must be valid).  
          *  Returns [constant OK] on success, [constant ERR_CANT_CREATE] if the scene cannot be instantiated, or [constant ERR_INVALID_PARAMETER] if the scene is invalid.  
@@ -787,12 +787,12 @@ declare module "godot" {
          *  2. At the end of the frame, the formerly current scene, already removed from the tree, will be deleted (freed from memory) and then the new scene will be instantiated and added to the tree. [method Node.get_tree] and [member current_scene] will be back to working as usual.  
          *  This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to [method Node.queue_free].  
          */
-        change_scene_to_packed(packed_scene: PackedScene): Error
+        change_scene_to_packed(packed_scene: PackedScene): GError
         
         /** Reloads the currently active scene, replacing [member current_scene] with a new instance of its original [PackedScene].  
          *  Returns [constant OK] on success, [constant ERR_UNCONFIGURED] if no [member current_scene] is defined, [constant ERR_CANT_OPEN] if [member current_scene] cannot be loaded into a [PackedScene], or [constant ERR_CANT_CREATE] if the scene cannot be instantiated.  
          */
-        reload_current_scene(): Error
+        reload_current_scene(): GError
         
         /** If a current scene is loaded, calling this method will unload it. */
         unload_current_scene(): void
@@ -907,6 +907,7 @@ declare module "godot" {
     }
     class SceneTreeDock extends VBoxContainer {
         constructor(identifier?: any)
+        _post_do_create(_unnamed_arg0: Node): void
         _set_owners(_unnamed_arg0: Node, _unnamed_arg1: GArray<any>): void
         _reparent_nodes_to_root(_unnamed_arg0: Node, _unnamed_arg1: GArray<any>, _unnamed_arg2: Node): void
         _reparent_nodes_to_paths_with_transform_and_name(_unnamed_arg0: Node, _unnamed_arg1: GArray<any>, _unnamed_arg2: GArray<any>, _unnamed_arg3: GArray<any>, _unnamed_arg4: GArray<any>, _unnamed_arg5: Node): void
@@ -970,7 +971,7 @@ declare module "godot" {
         has_source_code(): boolean
         
         /** Reloads the script's class implementation. Returns an error code. */
-        reload(keep_state: boolean = false): Error
+        reload(keep_state: boolean = false): GError
         
         /** Returns the script directly inherited by this script. */
         get_base_script(): Script
@@ -1140,7 +1141,7 @@ declare module "godot" {
         /* gdvirtual */ _has_source_code(): boolean
         /* gdvirtual */ _get_source_code(): string
         /* gdvirtual */ _set_source_code(code: string): void
-        /* gdvirtual */ _reload(keep_state: boolean): Error
+        /* gdvirtual */ _reload(keep_state: boolean): GError
         /* gdvirtual */ _get_documentation(): GArray<any>
         /* gdvirtual */ _get_class_icon_path(): string
         /* gdvirtual */ _has_method(method: StringName): boolean
@@ -1247,7 +1248,7 @@ declare module "godot" {
         /* gdvirtual */ _find_function(function_: string, code: string): int64
         /* gdvirtual */ _make_function(class_name: string, function_name: string, function_args: PackedStringArray | string[]): string
         /* gdvirtual */ _can_make_function(): boolean
-        /* gdvirtual */ _open_in_external_editor(script: Script, line: int64, column: int64): Error
+        /* gdvirtual */ _open_in_external_editor(script: Script, line: int64, column: int64): GError
         /* gdvirtual */ _overrides_external_editor(): boolean
         /* gdvirtual */ _preferred_file_name_casing(): ScriptLanguage.ScriptNameCasing
         /* gdvirtual */ _complete_code(code: string, path: string, owner: Object): GDictionary
@@ -1272,6 +1273,7 @@ declare module "godot" {
         /* gdvirtual */ _debug_parse_stack_level_expression(level: int64, expression: string, max_subitems: int64, max_depth: int64): string
         /* gdvirtual */ _debug_get_current_stack_info(): GArray<any>
         /* gdvirtual */ _reload_all_scripts(): void
+        /* gdvirtual */ _reload_scripts(scripts: GArray<any>, soft_reload: boolean): void
         /* gdvirtual */ _reload_tool_script(script: Script, soft_reload: boolean): void
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
         /* gdvirtual */ _get_public_functions(): GArray<any>
@@ -3724,7 +3726,7 @@ declare module "godot" {
     class StreamPeer extends RefCounted {
         constructor(identifier?: any)
         /** Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum Error] code. */
-        put_data(data: PackedByteArray | byte[] | ArrayBuffer): Error
+        put_data(data: PackedByteArray | byte[] | ArrayBuffer): GError
         
         /** Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum Error] code and an integer, describing how much data was actually sent. */
         put_partial_data(data: PackedByteArray | byte[] | ArrayBuffer): GArray<any>
@@ -3864,10 +3866,10 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.3/classes/class_streampeerextension.html */
     class StreamPeerExtension extends StreamPeer {
         constructor(identifier?: any)
-        /* gdvirtual */ _get_data(r_buffer: int64, r_bytes: int64, r_received: int64): Error
-        /* gdvirtual */ _get_partial_data(r_buffer: int64, r_bytes: int64, r_received: int64): Error
-        /* gdvirtual */ _put_data(p_data: int64, p_bytes: int64, r_sent: int64): Error
-        /* gdvirtual */ _put_partial_data(p_data: int64, p_bytes: int64, r_sent: int64): Error
+        /* gdvirtual */ _get_data(r_buffer: int64, r_bytes: int64, r_received: int64): GError
+        /* gdvirtual */ _get_partial_data(r_buffer: int64, r_bytes: int64, r_received: int64): GError
+        /* gdvirtual */ _put_data(p_data: int64, p_bytes: int64, r_sent: int64): GError
+        /* gdvirtual */ _put_partial_data(p_data: int64, p_bytes: int64, r_sent: int64): GError
         /* gdvirtual */ _get_available_bytes(): int64
     }
     /** A stream peer that handles GZIP and deflate compression/decompression.  
@@ -3877,13 +3879,13 @@ declare module "godot" {
     class StreamPeerGZIP extends StreamPeer {
         constructor(identifier?: any)
         /** Start the stream in compression mode with the given [param buffer_size], if [param use_deflate] is `true` uses deflate instead of GZIP. */
-        start_compression(use_deflate: boolean = false, buffer_size: int64 = 65535): Error
+        start_compression(use_deflate: boolean = false, buffer_size: int64 = 65535): GError
         
         /** Start the stream in decompression mode with the given [param buffer_size], if [param use_deflate] is `true` uses deflate instead of GZIP. */
-        start_decompression(use_deflate: boolean = false, buffer_size: int64 = 65535): Error
+        start_decompression(use_deflate: boolean = false, buffer_size: int64 = 65535): GError
         
         /** Finalizes the stream, compressing or decompressing any buffered chunk left. */
-        finish(): Error
+        finish(): GError
         
         /** Clears this stream, resetting the internal state. */
         clear(): void
@@ -3912,13 +3914,13 @@ declare module "godot" {
         /** Opens the TCP socket, and binds it to the specified local address.  
          *  This method is generally not needed, and only used to force the subsequent call to [method connect_to_host] to use the specified [param host] and [param port] as source address. This can be desired in some NAT punchthrough techniques, or when forcing the source network interface.  
          */
-        bind(port: int64, host: string = '*'): Error
+        bind(port: int64, host: string = '*'): GError
         
         /** Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [constant OK] on success. */
-        connect_to_host(host: string, port: int64): Error
+        connect_to_host(host: string, port: int64): GError
         
         /** Poll the socket, updating its state. See [method get_status]. */
-        poll(): Error
+        poll(): GError
         
         /** Returns the status of the connection, see [enum Status]. */
         get_status(): StreamPeerTCP.Status
@@ -3969,10 +3971,10 @@ declare module "godot" {
         poll(): void
         
         /** Accepts a peer connection as a server using the given [param server_options]. See [method TLSOptions.server]. */
-        accept_stream(stream: StreamPeer, server_options: TLSOptions): Error
+        accept_stream(stream: StreamPeer, server_options: TLSOptions): GError
         
         /** Connects to a peer using an underlying [StreamPeer] [param stream] and verifying the remote certificate is correctly signed for the given [param common_name]. You can pass the optional [param client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
-        connect_to_stream(stream: StreamPeer, common_name: string, client_options: TLSOptions = undefined): Error
+        connect_to_stream(stream: StreamPeer, common_name: string, client_options: TLSOptions = undefined): GError
         
         /** Returns the status of the connection. See [enum Status] for values. */
         get_status(): StreamPeerTLS.Status
@@ -4727,7 +4729,7 @@ declare module "godot" {
          *  If [param bind_address] is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen on all available addresses matching that IP type.  
          *  If [param bind_address] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the server will only listen on the interface with that address (or fail if no interface with the given address exists).  
          */
-        listen(port: int64, bind_address: string = '*'): Error
+        listen(port: int64, bind_address: string = '*'): GError
         
         /** Returns `true` if a connection is available for taking. */
         is_connection_available(): boolean
@@ -9460,7 +9462,7 @@ declare module "godot" {
         set default_font(value: Font)
         
         /** The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font_size]).  
-         *  Values below `0` are invalid and can be used to unset the property. Use [method has_default_font_size] to check if this value is valid.  
+         *  Values below `1` are invalid and can be used to unset the property. Use [method has_default_font_size] to check if this value is valid.  
          */
         get default_font_size(): int64
         set default_font_size(value: int64)

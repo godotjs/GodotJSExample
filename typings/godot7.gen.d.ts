@@ -41,25 +41,25 @@ declare module "godot" {
         /** Opens a zip file for writing at the given path using the specified write mode.  
          *  This must be called before everything else.  
          */
-        open(path: string, append: ZIPPacker.ZipAppend = 0): Error
+        open(path: string, append: ZIPPacker.ZipAppend = 0): GError
         
         /** Starts writing to a file within the archive. Only one file can be written at the same time.  
          *  Must be called after [method open].  
          */
-        start_file(path: string): Error
+        start_file(path: string): GError
         
         /** Write the given [param data] to the file.  
          *  Needs to be called after [method start_file].  
          */
-        write_file(data: PackedByteArray | byte[] | ArrayBuffer): Error
+        write_file(data: PackedByteArray | byte[] | ArrayBuffer): GError
         
         /** Stops writing to a file within the archive.  
          *  It will fail if there is no open file.  
          */
-        close_file(): Error
+        close_file(): GError
         
         /** Closes the underlying resources used by this instance. */
-        close(): Error
+        close(): GError
     }
     /** Allows reading the content of a zip file.  
      *  	  
@@ -68,10 +68,10 @@ declare module "godot" {
     class ZIPReader extends RefCounted {
         constructor(identifier?: any)
         /** Opens the zip archive at the given [param path] and reads its file index. */
-        open(path: string): Error
+        open(path: string): GError
         
         /** Closes the underlying resources used by this instance. */
-        close(): Error
+        close(): GError
         
         /** Returns the list of names of all files in the loaded archive.  
          *  Must be called after [method open].  
@@ -3217,7 +3217,7 @@ declare module "godot" {
         sort(): void
         
         /** Sorts the array using a custom [Callable].  
-         *  [param func] is called as many times as necessary, receiving two array elements as arguments. The function should return `true` if the first element should be moved  *behind*  the second one, otherwise it should return `false`.  
+         *  [param func] is called as many times as necessary, receiving two array elements as arguments. The function should return `true` if the first element should be moved  *before*  the second one, otherwise it should return `false`.  
          *    
          *  It may also be necessary to use this method to sort strings by natural order, with [method String.naturalnocasecmp_to], as in the following example:  
          *    
@@ -5375,7 +5375,7 @@ declare module "godot" {
         /** MIDI message sent to reset a MIDI device to its default state, as if it was just turned on. It should not be sent when the MIDI device is being turned on. */
         MIDI_MESSAGE_SYSTEM_RESET = 255,
     }
-    enum Error {
+    enum GError {
         /** Methods that return [enum Error] return [constant OK] when no error occurred.  
          *  Since [constant OK] has value 0, and all other error constants are positive integers, it can also be used in boolean checks.  
          *  **Example:**  

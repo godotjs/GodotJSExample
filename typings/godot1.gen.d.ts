@@ -26,7 +26,7 @@ declare module "godot" {
     class AESContext extends RefCounted {
         constructor(identifier?: any)
         /** Start the AES context in the given [param mode]. A [param key] of either 16 or 32 bytes must always be provided, while an [param iv] (initialization vector) of exactly 16 bytes, is only needed when [param mode] is either [constant MODE_CBC_ENCRYPT] or [constant MODE_CBC_DECRYPT]. */
-        start(mode: AESContext.Mode, key: PackedByteArray | byte[] | ArrayBuffer, iv: PackedByteArray | byte[] | ArrayBuffer = []): Error
+        start(mode: AESContext.Mode, key: PackedByteArray | byte[] | ArrayBuffer, iv: PackedByteArray | byte[] | ArrayBuffer = []): GError
         
         /** Run the desired operation for this AES context. Will return a [PackedByteArray] containing the result of encrypting (or decrypting) the given [param src]. See [method start] for mode of operation.  
          *      
@@ -1123,7 +1123,7 @@ declare module "godot" {
     class AnimationLibrary extends Resource {
         constructor(identifier?: any)
         /** Adds the [param animation] to the library, accessible by the key [param name]. */
-        add_animation(name: StringName, animation: Animation): Error
+        add_animation(name: StringName, animation: Animation): GError
         
         /** Removes the [Animation] with the key [param name]. */
         remove_animation(name: StringName): void
@@ -1205,7 +1205,7 @@ declare module "godot" {
          *  AnimationMixer has a global library by default with an empty string as key. For adding an animation to the global library:  
          *    
          */
-        add_animation_library(name: StringName, library: AnimationLibrary): Error
+        add_animation_library(name: StringName, library: AnimationLibrary): GError
         
         /** Removes the [AnimationLibrary] associated with the key [param name]. */
         remove_animation_library(name: StringName): void
@@ -1655,7 +1655,7 @@ declare module "godot" {
         /** Adds a new point that represents a [param node] at the position set by [param pos]. You can insert it at a specific index using the [param at_index] argument. If you use the default value for [param at_index], the point is inserted at the end of the blend points array. */
         add_blend_point(node: AnimationRootNode, pos: Vector2, at_index: int64 = -1): void
         
-        /** Updates the position of the point at index [param point] on the blend axis. */
+        /** Updates the position of the point at index [param point] in the blend space. */
         set_blend_point_position(point: int64, pos: Vector2): void
         
         /** Returns the position of the point at index [param point]. */
@@ -1794,6 +1794,9 @@ declare module "godot" {
         update_graph(): void
         _update_filters(_unnamed_arg0: AnimationNode): boolean
     }
+    class AnimationNodeEndState extends AnimationRootNode {
+        constructor(identifier?: any)
+    }
     namespace AnimationNodeOneShot {
         enum OneShotRequest {
             /** The default state of the request. Nothing is done. */
@@ -1871,6 +1874,9 @@ declare module "godot" {
      *  @link https://docs.godotengine.org/en/4.3/classes/class_animationnodeoutput.html  
      */
     class AnimationNodeOutput extends AnimationNode {
+        constructor(identifier?: any)
+    }
+    class AnimationNodeStartState extends AnimationRootNode {
         constructor(identifier?: any)
     }
     namespace AnimationNodeStateMachine {
@@ -2805,7 +2811,7 @@ declare module "godot" {
         regen_normal_maps(): void
         
         /** Performs a UV unwrap on the [ArrayMesh] to prepare the mesh for lightmapping. */
-        lightmap_unwrap(transform: Transform3D, texel_size: float64): Error
+        lightmap_unwrap(transform: Transform3D, texel_size: float64): GError
         get _blend_shape_names(): PackedStringArray
         set _blend_shape_names(value: PackedStringArray | string[])
         get _surfaces(): GArray
@@ -4632,7 +4638,7 @@ declare module "godot" {
          *      
          *  **Note:** A `.wav` extension is automatically appended to [param path] if it is missing.  
          */
-        save_to_wav(path: string): Error
+        save_to_wav(path: string): GError
         
         /** Contains the audio data in bytes.  
          *      

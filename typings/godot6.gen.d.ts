@@ -58,7 +58,7 @@ declare module "godot" {
          *  The [param priority] of the [Thread] can be changed by passing a value from the [enum Priority] enum.  
          *  Returns [constant OK] on success, or [constant ERR_CANT_CREATE] on failure.  
          */
-        start(callable: Callable, priority: Thread.Priority = 1): Error
+        start(callable: Callable, priority: Thread.Priority = 1): GError
         
         /** Returns the current [Thread]'s ID, uniquely identifying it among all threads. If the [Thread] has not started running or if [method wait_to_finish] has been called, this returns an empty string. */
         get_id(): string
@@ -2541,10 +2541,10 @@ declare module "godot" {
     class UDPServer extends RefCounted {
         constructor(identifier?: any)
         /** Starts the server by opening a UDP socket listening on the given [param port]. You can optionally specify a [param bind_address] to only listen for packets sent to that address. See also [method PacketPeerUDP.bind]. */
-        listen(port: int64, bind_address: string = '*'): Error
+        listen(port: int64, bind_address: string = '*'): GError
         
         /** Call this method at regular intervals (e.g. inside [method Node._process]) to process new packets. And packet from known address/port pair will be delivered to the appropriate [PacketPeerUDP], any packet received from an unknown address/port pair will be added as a pending connection (see [method is_connection_available], [method take_connection]). The maximum number of pending connection is defined via [member max_pending_connections]. */
-        poll(): Error
+        poll(): GError
         
         /** Returns `true` if a packet with a new address/port combination was received on the socket. */
         is_connection_available(): boolean
@@ -3917,7 +3917,7 @@ declare module "godot" {
         can_connect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): boolean
         
         /** Connects the specified nodes and ports. */
-        connect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): Error
+        connect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): GError
         
         /** Connects the specified nodes and ports. */
         disconnect_nodes(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): void
@@ -6590,7 +6590,7 @@ declare module "godot" {
     class WebRTCDataChannel extends PacketPeer {
         constructor(identifier?: any)
         /** Reserved, but not used for now. */
-        poll(): Error
+        poll(): GError
         
         /** Closes this data channel, notifying the other peer. */
         close(): void
@@ -6638,11 +6638,11 @@ declare module "godot" {
     /** @link https://docs.godotengine.org/en/4.3/classes/class_webrtcdatachannelextension.html */
     class WebRTCDataChannelExtension extends WebRTCDataChannel {
         constructor(identifier?: any)
-        /* gdvirtual */ _get_packet(r_buffer: int64, r_buffer_size: int64): Error
-        /* gdvirtual */ _put_packet(p_buffer: int64, p_buffer_size: int64): Error
+        /* gdvirtual */ _get_packet(r_buffer: int64, r_buffer_size: int64): GError
+        /* gdvirtual */ _put_packet(p_buffer: int64, p_buffer_size: int64): GError
         /* gdvirtual */ _get_available_packet_count(): int64
         /* gdvirtual */ _get_max_packet_size(): int64
-        /* gdvirtual */ _poll(): Error
+        /* gdvirtual */ _poll(): GError
         /* gdvirtual */ _close(): void
         /* gdvirtual */ _set_write_mode(p_write_mode: WebRTCDataChannel.WriteMode): void
         /* gdvirtual */ _get_write_mode(): WebRTCDataChannel.WriteMode
@@ -6666,20 +6666,20 @@ declare module "godot" {
         /** Initialize the multiplayer peer as a server (with unique ID of `1`). This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_server(channels_config: GArray<any> = []): Error
+        create_server(channels_config: GArray<any> = []): GError
         
         /** Initialize the multiplayer peer as a client with the given [param peer_id] (must be between 2 and 2147483647). In this mode, you should only call [method add_peer] once and with [param peer_id] of `1`. This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_client(peer_id: int64, channels_config: GArray<any> = []): Error
+        create_client(peer_id: int64, channels_config: GArray<any> = []): GError
         
         /** Initialize the multiplayer peer as a mesh (i.e. all peers connect to each other) with the given [param peer_id] (must be between 1 and 2147483647). */
-        create_mesh(peer_id: int64, channels_config: GArray<any> = []): Error
+        create_mesh(peer_id: int64, channels_config: GArray<any> = []): GError
         
         /** Add a new peer to the mesh with the given [param peer_id]. The [WebRTCPeerConnection] must be in state [constant WebRTCPeerConnection.STATE_NEW].  
          *  Three channels will be created for reliable, unreliable, and ordered transport. The value of [param unreliable_lifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable and ordered channels (see [method WebRTCPeerConnection.create_data_channel]).  
          */
-        add_peer(peer: WebRTCPeerConnection, peer_id: int64, unreliable_lifetime: int64 = 1): Error
+        add_peer(peer: WebRTCPeerConnection, peer_id: int64, unreliable_lifetime: int64 = 1): GError
         
         /** Remove the peer with given [param peer_id] from the mesh. If the peer was connected, and [signal MultiplayerPeer.peer_connected] was emitted for it, then [signal MultiplayerPeer.peer_disconnected] will be emitted. */
         remove_peer(peer_id: int64): void
@@ -6756,7 +6756,7 @@ declare module "godot" {
          *  Valid [param configuration] options are:  
          *    
          */
-        initialize(configuration: GDictionary = new GDictionary()): Error
+        initialize(configuration: GDictionary = new GDictionary()): GError
         
         /** Returns a new [WebRTCDataChannel] (or `null` on failure) with given [param label] and optionally configured via the [param options] dictionary. This method can only be called when the connection is in state [constant STATE_NEW].  
          *  There are two ways to create a working data channel: either call [method create_data_channel] on only one of the peer and listen to [signal data_channel_received] on the other, or call [method create_data_channel] on both peers, with the same values, and the `"negotiated"` option set to `true`.  
@@ -6770,24 +6770,24 @@ declare module "godot" {
         /** Creates a new SDP offer to start a WebRTC connection with a remote peer. At least one [WebRTCDataChannel] must have been created before calling this method.  
          *  If this functions returns [constant OK], [signal session_description_created] will be called when the session is ready to be sent.  
          */
-        create_offer(): Error
+        create_offer(): GError
         
         /** Sets the SDP description of the local peer. This should be called in response to [signal session_description_created].  
          *  After calling this function the peer will start emitting [signal ice_candidate_created] (unless an [enum Error] different from [constant OK] is returned).  
          */
-        set_local_description(type: string, sdp: string): Error
+        set_local_description(type: string, sdp: string): GError
         
         /** Sets the SDP description of the remote peer. This should be called with the values generated by a remote peer and received over the signaling server.  
          *  If [param type] is `"offer"` the peer will emit [signal session_description_created] with the appropriate answer.  
          *  If [param type] is `"answer"` the peer will start emitting [signal ice_candidate_created].  
          */
-        set_remote_description(type: string, sdp: string): Error
+        set_remote_description(type: string, sdp: string): GError
         
         /** Add an ice candidate generated by a remote peer (and received over the signaling server). See [signal ice_candidate_created]. */
-        add_ice_candidate(media: string, index: int64, name: string): Error
+        add_ice_candidate(media: string, index: int64, name: string): GError
         
         /** Call this method frequently (e.g. in [method Node._process] or [method Node._physics_process]) to properly receive signals. */
-        poll(): Error
+        poll(): GError
         
         /** Close the peer connection and all data channels associated with it.  
          *      
@@ -6821,13 +6821,13 @@ declare module "godot" {
         /* gdvirtual */ _get_connection_state(): WebRTCPeerConnection.ConnectionState
         /* gdvirtual */ _get_gathering_state(): WebRTCPeerConnection.GatheringState
         /* gdvirtual */ _get_signaling_state(): WebRTCPeerConnection.SignalingState
-        /* gdvirtual */ _initialize(p_config: GDictionary): Error
+        /* gdvirtual */ _initialize(p_config: GDictionary): GError
         /* gdvirtual */ _create_data_channel(p_label: string, p_config: GDictionary): WebRTCDataChannel
-        /* gdvirtual */ _create_offer(): Error
-        /* gdvirtual */ _set_remote_description(p_type: string, p_sdp: string): Error
-        /* gdvirtual */ _set_local_description(p_type: string, p_sdp: string): Error
-        /* gdvirtual */ _add_ice_candidate(p_sdp_mid_name: string, p_sdp_mline_index: int64, p_sdp_name: string): Error
-        /* gdvirtual */ _poll(): Error
+        /* gdvirtual */ _create_offer(): GError
+        /* gdvirtual */ _set_remote_description(p_type: string, p_sdp: string): GError
+        /* gdvirtual */ _set_local_description(p_type: string, p_sdp: string): GError
+        /* gdvirtual */ _add_ice_candidate(p_sdp_mid_name: string, p_sdp_mline_index: int64, p_sdp_name: string): GError
+        /* gdvirtual */ _poll(): GError
         /* gdvirtual */ _close(): void
     }
     namespace Window {
@@ -7611,16 +7611,16 @@ declare module "godot" {
     class X509Certificate extends Resource {
         constructor(identifier?: any)
         /** Saves a certificate to the given [param path] (should be a "*.crt" file). */
-        save(path: string): Error
+        save(path: string): GError
         
         /** Loads a certificate from [param path] ("*.crt" file). */
-        load(path: string): Error
+        load(path: string): GError
         
         /** Returns a string representation of the certificate, or an empty string if the certificate is invalid. */
         save_to_string(): string
         
         /** Loads a certificate from the given [param string]. */
-        load_from_string(string_: string): Error
+        load_from_string(string_: string): GError
     }
     namespace XMLParser {
         enum NodeType {
@@ -7653,7 +7653,7 @@ declare module "godot" {
     class XMLParser extends RefCounted {
         constructor(identifier?: any)
         /** Parses the next node in the file. This method returns an error code. */
-        read(): Error
+        read(): GError
         
         /** Returns the type of the current node. Compare with [enum NodeType] constants. */
         get_node_type(): XMLParser.NodeType
@@ -7701,13 +7701,13 @@ declare module "godot" {
         skip_section(): void
         
         /** Moves the buffer cursor to a certain offset (since the beginning) and reads the next node there. This method returns an error code. */
-        seek(position: int64): Error
+        seek(position: int64): GError
         
         /** Opens an XML [param file] for parsing. This method returns an error code. */
-        open(file: string): Error
+        open(file: string): GError
         
         /** Opens an XML raw [param buffer] for parsing. This method returns an error code. */
-        open_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): Error
+        open_buffer(buffer: PackedByteArray | byte[] | ArrayBuffer): GError
     }
     /** An anchor point in AR space.  
      *  	  

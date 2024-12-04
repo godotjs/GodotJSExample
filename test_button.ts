@@ -1,4 +1,4 @@
-import { Error as GodotError, GArray, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid, Signal1, Control, CanvasItem } from "godot";
+import { GError, GArray, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid, Signal1, Control, CanvasItem } from "godot";
 import * as jsb from "godot-jsb";
 import { $wait, experimental, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, help, onready, signal } from "jsb.core";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
@@ -144,7 +144,7 @@ export default class TestNode extends Button {
         let err = ResourceLoader.load_threaded_request("res://piggy/background.png", "", true, ResourceLoader.CacheMode.CACHE_MODE_IGNORE);
         console.log(
             error_string(err), // string represented via godot api
-            GodotError[err]    // or, conveniently via typescript enum name lookup
+            GError[err]    // or, conveniently via typescript enum name lookup
         );
         let timerid: NodeJS.Timeout;
         timerid = setInterval(function (){
