@@ -88,6 +88,13 @@ export default class TestNode extends Button {
     }
 
     _ready() {
+        let worker = new Worker("tests/worker");
+        worker.onmessage = function (m: any) {
+            console.log("master: get message", m);
+            worker.terminate();
+        }
+        worker.postMessage("hello");
+
         console.log("test ready", this.hello);
         console.log("ready_node:", this.ready_node);
         this.test_wait_for_signal();
