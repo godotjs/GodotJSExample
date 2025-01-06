@@ -3210,10 +3210,6 @@ declare module "godot" {
         /** Returns the current value of an export option supplied by [method _get_export_options]. */
         get_option(name: StringName): any
     }
-    class EditorExportPreset extends RefCounted {
-        constructor(identifier?: any)
-        _get_property_warning(name: StringName): string
-    }
     namespace EditorFeatureProfile {
         enum Feature {
             /** The 3D editor. If this feature is disabled, the 3D editor won't display but 3D nodes will still display in the Create New Node dialog. */
@@ -4619,12 +4615,6 @@ declare module "godot" {
         /** Emitted when selected. Used internally. */
         readonly selected: Signal2<string, int64>
     }
-    class EditorPropertyArray extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyArrayObject extends RefCounted {
-        constructor(identifier?: any)
-    }
     class EditorPropertyCheck extends EditorProperty {
         constructor(identifier?: any)
     }
@@ -4634,7 +4624,13 @@ declare module "godot" {
     class EditorPropertyDictionaryObject extends RefCounted {
         constructor(identifier?: any)
     }
+    class EditorPropertyEasing extends EditorProperty {
+        constructor(identifier?: any)
+    }
     class EditorPropertyEnum extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyFlags extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyFloat extends EditorProperty {
@@ -4844,7 +4840,7 @@ declare module "godot" {
     }
     class EditorRunNative extends HBoxContainer {
         constructor(identifier?: any)
-        readonly native_run: Signal1<EditorExportPreset>
+        readonly native_run: Signal1<any /*EditorExportPreset*/>
     }
     class EditorSceneExporterGLTFSettings extends RefCounted {
         constructor(identifier?: any)

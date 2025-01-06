@@ -5014,7 +5014,7 @@ declare module "godot" {
     }
     class ProjectExportDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        get_current_preset(): EditorExportPreset
+        get_current_preset(): any /*EditorExportPreset*/
         get export_path(): string
         set export_path(value: string)
     }

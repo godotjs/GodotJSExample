@@ -5,9 +5,11 @@ declare module "godot-jsb" {
     const DEV_ENABLED: boolean;
     const TOOLS_ENABLED: boolean;
 
-    const VERSION_MAJOR: number;
-    const VERSION_MINOR: number;
-    const VERSION_PATCH: number;
+    /** version of GodotJS */
+    const version: string;
+
+    /** impl currently used */
+    const impl: string;
 
     /**
      * Create godot Callable with a bound object `self`
@@ -32,7 +34,8 @@ declare module "godot-jsb" {
     // function callable(fn: Function): GDCallable;
 
     /**
-     * Explicitly convert a `PackedByteArray`(aka Vector<uint8_t>) into a javascript `ArrayBuffer`
+     * Explicitly convert a `PackedByteArray`(aka Vector<uint8_t>) into a javascript `ArrayBuffer` 
+     * @deprecated [WARNING] This free function '_to_array_buffer' is deprecated and will be removed in a future version, use 'PackedByteArray.to_array_buffer()' instead. 
      */
     function to_array_buffer(packed: PackedByteArray): ArrayBuffer;
 

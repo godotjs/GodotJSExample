@@ -3366,6 +3366,8 @@ declare module "godot" {
         constructor(from: GArray<any>)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
+        /** [jsb utility method] Converts a PackedByteArray to a JavaScript ArrayBuffer. */
+        to_array_buffer(): ArrayBuffer
         
         /** Returns the number of elements in the array. */
         size(): int64
