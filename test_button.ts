@@ -88,6 +88,7 @@ export default class TestNode extends Button {
     }
 
     _ready() {
+        //@ts-ignore
         let worker = new Worker("tests/worker");
         worker.onmessage = function (m: any) {
             console.log("master: get message", m);
