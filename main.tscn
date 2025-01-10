@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvykv0u5duqyj"]
+[gd_scene load_steps=6 format=3 uid="uid://bvykv0u5duqyj"]
 
 [ext_resource type="Script" path="res://test_button.ts" id="1_ewk4v"]
 [ext_resource type="Script" path="res://ui/main_ui.ts" id="1_j74ag"]
 [ext_resource type="Texture2D" uid="uid://dx3san3aa6mwy" path="res://icon.svg" id="4_2050k"]
 [ext_resource type="Script" path="res://tests/my_editor_sprite.ts" id="5_l2t80"]
+[ext_resource type="Script" path="res://simple_js_node.js" id="5_qv8k5"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_j74ag")
@@ -52,9 +53,13 @@ placeholder_text = "Input text"
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 position = Vector2(386, 134)
-rotation = 2.60912
+rotation = 0.575926
 texture = ExtResource("4_2050k")
 script = ExtResource("5_l2t80")
 speed = 0.25
+
+[node name="BareJSNode" type="Node" parent="."]
+script = ExtResource("5_qv8k5")
+speed = 0.22
 
 [connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]
