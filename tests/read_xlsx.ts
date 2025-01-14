@@ -20,7 +20,7 @@ import * as xlsx from "xlsx";
 export function exec() {
     let filename = "res://test.xlsx";
     FileAccess.get_file_as_bytes(filename).to_array_buffer();
-    let wb = xlsx.read(jsb.to_array_buffer(FileAccess.get_file_as_bytes(filename)), { type: "buffer" });
+    let wb = xlsx.read(FileAccess.get_file_as_bytes(filename).to_array_buffer(), { type: "buffer" });
 
     console.log("read excel:", filename);
     for (let sheetIndex in wb.SheetNames) {

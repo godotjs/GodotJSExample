@@ -1,5 +1,5 @@
 import { EditorScript, Time, Vector3, Vector4 } from "godot";
-import { tool } from "jsb.core";
+import { tool } from "godot.annotations";
 import BotStats from "./bot_stats";
 
 @tool()

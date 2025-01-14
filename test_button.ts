@@ -1,6 +1,5 @@
 import { GError, GArray, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid, Signal1, Control, CanvasItem } from "godot";
-import * as jsb from "godot-jsb";
-import { $wait, experimental, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, help, onready, signal } from "jsb.core";
+import { experimental, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, help, onready, signal } from "godot.annotations";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
 
 enum MyColor {
@@ -128,7 +127,7 @@ export default class TestNode extends Button {
 
     private async test_wait_for_signal() {
         console.log("waiting for test signal");
-        let res = await $wait(this.test_signal);
+        let res = await this.test_signal.as_promise();
         console.log("done, test signal emitted", res);
     }
 

@@ -1,5 +1,4 @@
-import { Area2D, Input, Node, Node2D, NodePath, PackedScene, ResourceLoader, RID, Sprite2D, Vector2 } from "godot";
-import * as jsb from "godot-jsb";
+import { Area2D, Callable, Input, Node, Node2D, NodePath, PackedScene, ResourceLoader, RID, Sprite2D, Vector2 } from "godot";
 import JumpyBirdPipe from "./jumpybird_pipe";
 
 const kGScale = 40;
@@ -22,7 +21,7 @@ export default class JumpyBirdMain extends Node {
         this._scene = <Sprite2D>this.get_node(new NodePath("scene"));
         this._bird = <Sprite2D>this._scene.get_node(new NodePath("bird"));
         const area = <Area2D>this._bird.get_node(new NodePath("Area2D"));
-        area.area_shape_entered.connect(jsb.callable(this, this.on_area_shape_entered), 0);
+        area.area_shape_entered.connect(Callable.create(this, this.on_area_shape_entered), 0);
         this._bird.rotation_degrees = this._rotation;
         console.log("scene", this._scene);
     }

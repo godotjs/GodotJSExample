@@ -1,6 +1,5 @@
-import { Button, EditorInspectorPlugin, MarginContainer, Object } from "godot";
+import { Button, Callable, EditorInspectorPlugin, MarginContainer, Object } from "godot";
 import Test01 from "./test_01";
-import * as jsb from "godot-jsb";
 
 export default class Test01Inspector extends EditorInspectorPlugin {
     _can_handle(object: Object): boolean {
@@ -11,7 +10,7 @@ export default class Test01Inspector extends EditorInspectorPlugin {
         // let test = <Test01>object;
         let button = new Button();
         button.text = "My Button";
-        button.pressed.connect(jsb.callable(function () {
+        button.pressed.connect(Callable.create(function () {
             console.log("MyButton clicked");
         }));
 

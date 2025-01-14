@@ -1,5 +1,5 @@
 import { Control, EditorPlugin, is_instance_valid, Node, PackedScene, ResourceLoader } from "godot";
-import { tool } from "jsb.core";
+import { tool } from "godot.annotations";
 
 @tool()
 export default class MyExamplePlugin extends EditorPlugin {

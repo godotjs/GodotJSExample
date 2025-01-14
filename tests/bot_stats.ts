@@ -1,5 +1,5 @@
 import { PackedStringArray, Variant } from "godot";
-import { export_ } from "jsb.core";
+import { export_ } from "godot.annotations";
 import BotStatsBase from "./bot_stats_base";
 
 export default class BotStats extends BotStatsBase {

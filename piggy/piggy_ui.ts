@@ -1,5 +1,5 @@
 import { Control, Label } from "godot";
-import { onready } from "jsb.core";
+import { onready } from "godot.annotations";
 
 export default class PiggyUI extends Control {
     @onready("debug_info/position_label")

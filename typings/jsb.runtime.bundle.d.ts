@@ -1,5 +1,5 @@
-declare module "jsb.core" {
-    import { PropertyHint, PropertyUsageFlags, StringName, Variant, MultiplayerAPI, MultiplayerPeer } from "godot";
+declare module "godot.annotations" {
+    import { PropertyHint, PropertyUsageFlags, Variant, MultiplayerAPI, MultiplayerPeer } from "godot";
     import * as jsb from "godot-jsb";
     /**
      *
@@ -44,19 +44,27 @@ declare module "jsb.core" {
     export function deprecated(message?: string): (target: any, propertyKey?: PropertyKey, descriptor?: PropertyDescriptor) => void;
     export function experimental(message?: string): (target: any, propertyKey?: PropertyKey, descriptor?: PropertyDescriptor) => void;
     export function help(message?: string): (target: any, propertyKey?: PropertyKey, descriptor?: PropertyDescriptor) => void;
+}
+declare module "jsb.core" {
+    /**
+     * @deprecated [WARNING] This function is deprecated. Use `SignalN<..., R>.as_promise()` instead.
+     */
     export function $wait(signal: any): Promise<unknown>;
     /**
-     * Wait for seconds
+     * Wait for seconds as a promise.
+     * ```typescript
+     * function seconds(secs: number) {
+     *    return new Promise(function (resolve) {
+     *        setTimeout(function () {
+     *            resolve(undefined);
+     *        }, secs * 1000);
+     *    });
+     *}
+     * ```
+     * @deprecated [WARNING] This function is deprecated. Implement your own version of this function.
      * @param secs time to wait in seconds
      * @returns Promise to await
      */
     export function seconds(secs: number): Promise<unknown>;
-    /** shorthand for getting project settings */
-    export function GLOBAL_GET(entry_path: StringName): any;
-    /**
-     * shorthand for getting editor settings
-     * NOTE: calling before EditorSettings created will cause null reference exception.
-     */
-    export function EDITOR_GET(entry_path: StringName): any;
 }
 declare module "jsb.inject" { }

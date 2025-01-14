@@ -1,7 +1,14 @@
-import { Label, Node2D, NodePath, randf, Variant, Vector2 } from "godot";
-import * as jsb from "godot-jsb";
+import { Callable, Label, Node2D, NodePath, randf, Variant, Vector2 } from "godot";
 import TestNode from "../test_button";
-import { export_, seconds } from "jsb.core";
+import { export_ } from "godot.annotations";
+
+function seconds(secs: number) {
+    return new Promise(function (resolve) {
+        setTimeout(function () {
+            resolve(undefined);
+        }, secs * 1000);
+    });
+}
 
 export default class MainUI extends Node2D {
     private _pc = 0;
@@ -12,7 +19,7 @@ export default class MainUI extends Node2D {
     async _ready() {
         const button = <TestNode>this.get_node(new NodePath("Control/Button"));
         if (button) {
-            button.test_signal.connect(jsb.callable(this, this.on_test), 0);
+            button.test_signal.connect(Callable.create(this, this.on_test), 0);
         }
 
         let ticks = 5;

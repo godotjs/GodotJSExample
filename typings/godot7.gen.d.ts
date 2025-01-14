@@ -2834,6 +2834,30 @@ declare module "godot" {
         constructor()
         constructor(from: AnyCallable)
         constructor(object: Object, method: StringName)
+        /** Create a callable object with a bound object `self` */
+        static create<R = void>(self: GDObject, fn: () => R): Callable0<R>
+        /** Create a callable object with a bound object `self` */
+        static create<T1, R = void>(self: GDObject, fn: (v1: T1) => R): Callable1<T1, R>
+        /** Create a callable object with a bound object `self` */
+        static create<T1, T2, R = void>(self: GDObject, fn: (v1: T1, v2: T2) => R): Callable2<T1, T2, R>
+        /** Create a callable object with a bound object `self` */
+        static create<T1, T2, T3, R = void>(self: GDObject, fn: (v1: T1, v2: T2, v3: T3) => R): Callable3<T1, T2, T3, R>
+        /** Create a callable object with a bound object `self` */
+        static create<T1, T2, T3, T4, R = void>(self: GDObject, fn: (v1: T1, v2: T2, v3: T3, v4: T4) => R): Callable4<T1, T2, T3, T4, R>
+        /** Create a callable object with a bound object `self` */
+        static create<T1, T2, T3, T4, T5, R = void>(self: GDObject, fn: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5) => R): Callable5<T1, T2, T3, T4, T5, R>
+        /** Create godot Callable without a bound object */
+        static create<R = void>(fn: () => R): Callable0<R>
+        /** Create godot Callable without a bound object */
+        static create<T1, R = void>(fn: (v1: T1) => R): Callable1<T1, R>
+        /** Create godot Callable without a bound object */
+        static create<T1, T2, R = void>(fn: (v1: T1, v2: T2) => R): Callable2<T1, T2, R>
+        /** Create godot Callable without a bound object */
+        static create<T1, T2, T3, R = void>(fn: (v1: T1, v2: T2, v3: T3) => R): Callable3<T1, T2, T3, R>
+        /** Create godot Callable without a bound object */
+        static create<T1, T2, T3, T4, R = void>(fn: (v1: T1, v2: T2, v3: T3, v4: T4) => R): Callable4<T1, T2, T3, T4, R>
+        /** Create godot Callable without a bound object */
+        static create<T1, T2, T3, T4, T5, R = void>(fn: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5) => R): Callable5<T1, T2, T3, T4, T5, R>
         
         /** Creates a new [Callable] for the method named [param method] in the specified [param variant]. To represent a method of a built-in [Variant] type, a custom callable is used (see [method is_custom]). If [param variant] is [Object], then a standard callable will be created instead.  
          *      
@@ -6675,4 +6699,12 @@ declare module "godot" {
      *  These are [Variant] reference types: [Object], [Dictionary], [Array], [PackedByteArray], [PackedInt32Array], [PackedInt64Array], [PackedFloat32Array], [PackedFloat64Array], [PackedStringArray], [PackedVector2Array], [PackedVector3Array], [PackedVector4Array], and [PackedColorArray].  
      */
     static function is_same(a: any, b: any): boolean
+    
+    /** shorthand for getting project settings */
+    function GLOBAL_GET(entry_path: StringName): any
+    
+    /** shorthand for getting editor settings  
+     *  NOTE: calling before EditorSettings created will cause null reference exception.  
+     */
+    function EDITOR_GET(entry_path: StringName): any
 }

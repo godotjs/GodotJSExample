@@ -1,5 +1,5 @@
 import { AudioEffectSpectrumAnalyzer, AudioServer, AudioStreamGenerator, AudioStreamGeneratorPlayback, AudioStreamPlayer, Color, Label, Line2D, Node, Vector2 } from "godot";
-import { onready } from "jsb.core";
+import { onready } from "godot.annotations";
 import { transform as fft } from "./fft";
 
 const zzfxm = require("libs/zzfxm");

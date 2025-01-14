@@ -1,27 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    class GeometryInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    class Gizmo3DHelper extends RefCounted {
-        constructor(identifier?: any)
-    }
-    class GodotJSDockedPanel extends MarginContainer {
-        constructor(identifier?: any)
-    }
-    class GodotJSStatisticsViewer extends VBoxContainer {
-        constructor(identifier?: any)
-    }
-    class GodotNavigationServer2D extends NavigationServer2D {
-        constructor(identifier?: any)
-    }
-    class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
-        constructor(identifier?: any)
-    }
-    class GodotPhysicsServer2D extends PhysicsServer2D {
-        constructor(identifier?: any)
-    }
     class GodotPhysicsServer3D extends PhysicsServer3D {
         constructor(identifier?: any)
     }

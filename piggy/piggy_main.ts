@@ -1,6 +1,5 @@
-import { Node, Node2D, NodePath, PackedScene, ResourceLoader, ShaderMaterial, Sprite2D, Vector2 } from "godot";
-import * as jsb from "godot-jsb";
-import { onready } from "jsb.core";
+import { Callable, Node, Node2D, NodePath, PackedScene, ResourceLoader, ShaderMaterial, Sprite2D, Vector2 } from "godot";
+import { onready } from "godot.annotations";
 import Arrow from "./arrow";
 import Shooter from "./shooter";
 
@@ -32,8 +31,8 @@ export default class PiggyMain extends Node {
         console.log("shooter:", this.shooter);
         console.log("rope:", this.rope);
 
-        this.shooter.shot.connect(jsb.callable(this, this.on_shooter_shot));
-        this.shooter.moved.connect(jsb.callable(this, this.on_shooter_moved));
+        this.shooter.shot.connect(Callable.create(this, this.on_shooter_shot));
+        this.shooter.moved.connect(Callable.create(this, this.on_shooter_moved));
     }
 
     private on_shooter_moved(y: number) {
@@ -53,7 +52,7 @@ export default class PiggyMain extends Node {
 
         let arrow = <Arrow>this.instantiate_asset("res://piggy/arrow.tscn");
         arrow.init_position(pos);
-        arrow.die.connect(jsb.callable(this, this.on_arrow_die));
+        arrow.die.connect(Callable.create(this, this.on_arrow_die));
     }
 
     private on_arrow_die() {

@@ -1739,9 +1739,6 @@ declare module "godot" {
     class ControlEditorToolbar extends HBoxContainer {
         constructor(identifier?: any)
     }
-    class ControlPositioningWarning extends MarginContainer {
-        constructor(identifier?: any)
-    }
     /** A 2D convex polygon shape used for physics collision.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_convexpolygonshape2d.html  
@@ -3802,13 +3799,6 @@ declare module "godot" {
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
-    class EditorInspectorSection extends Container {
-        constructor(identifier?: any)
-        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, indent_depth: int64 = 0, level: int64 = 1): void
-        get_vbox(): VBoxContainer
-        unfold(): void
-        fold(): void
-    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
@@ -4618,36 +4608,10 @@ declare module "godot" {
     class EditorPropertyCheck extends EditorProperty {
         constructor(identifier?: any)
     }
-    class EditorPropertyColor extends EditorProperty {
-        constructor(identifier?: any)
-    }
     class EditorPropertyDictionaryObject extends RefCounted {
         constructor(identifier?: any)
     }
-    class EditorPropertyEasing extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyEnum extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyFlags extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyFloat extends EditorProperty {
-        constructor(identifier?: any)
-    }
     class EditorPropertyInteger extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyLayers extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyLayersGrid extends Control {
-        constructor(identifier?: any)
-        readonly flag_changed: Signal1<int64>
-        readonly rename_confirmed: Signal2<int64, string>
-    }
-    class EditorPropertyLocale extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyLocalizableString extends EditorProperty {
@@ -4659,9 +4623,6 @@ declare module "godot" {
     class EditorPropertyNameProcessor extends Node {
         constructor(identifier?: any)
     }
-    class EditorPropertyNodePath extends EditorProperty {
-        constructor(identifier?: any)
-    }
     class EditorPropertyPath extends EditorProperty {
         constructor(identifier?: any)
     }
@@ -4669,12 +4630,6 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class EditorPropertyText extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyTextEnum extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyVector2 extends EditorPropertyVectorN {
         constructor(identifier?: any)
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
@@ -9227,5 +9182,26 @@ declare module "godot" {
         /** Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values. */
         get visibility_range_fade_mode(): int64
         set visibility_range_fade_mode(value: int64)
+    }
+    class GeometryInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    class Gizmo3DHelper extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class GodotJSDockedPanel extends MarginContainer {
+        constructor(identifier?: any)
+    }
+    class GodotJSStatisticsViewer extends VBoxContainer {
+        constructor(identifier?: any)
+    }
+    class GodotNavigationServer2D extends NavigationServer2D {
+        constructor(identifier?: any)
+    }
+    class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
+        constructor(identifier?: any)
+    }
+    class GodotPhysicsServer2D extends PhysicsServer2D {
+        constructor(identifier?: any)
     }
 }

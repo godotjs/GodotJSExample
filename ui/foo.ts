@@ -1,4 +1,4 @@
-import { tool } from "jsb.core";
+import { tool } from "godot.annotations";
 import FooBase from "./foo_base";
 
 @tool()

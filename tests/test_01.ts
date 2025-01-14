@@ -1,5 +1,5 @@
 import { EditorPlugin, Node2D, Variant, Vector2 } from "godot";
-import { export_, onready, tool } from "jsb.core";
+import { export_, tool } from "godot.annotations";
 import Test01Inspector from "./test_01_inspector";
 import * as jsb from "godot-jsb";
 
