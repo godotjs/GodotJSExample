@@ -756,9 +756,6 @@ declare module "godot" {
     class ConnectDialogBinds extends Object {
         constructor(identifier?: any)
     }
-    class ConnectionInfoDialog extends AcceptDialog {
-        constructor(identifier?: any)
-    }
     class ConnectionsDock extends VBoxContainer {
         constructor(identifier?: any)
         update_tree(): void
@@ -3207,6 +3204,10 @@ declare module "godot" {
         /** Returns the current value of an export option supplied by [method _get_export_options]. */
         get_option(name: StringName): any
     }
+    class EditorExportPreset extends RefCounted {
+        constructor(identifier?: any)
+        _get_property_warning(name: StringName): string
+    }
     namespace EditorFeatureProfile {
         enum Feature {
             /** The 3D editor. If this feature is disabled, the 3D editor won't display but 3D nodes will still display in the Create New Node dialog. */
@@ -4087,9 +4088,6 @@ declare module "godot" {
     class EditorPerformanceProfiler extends HSplitContainer {
         constructor(identifier?: any)
     }
-    class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
-        constructor(identifier?: any)
-    }
     namespace EditorPlugin {
         enum CustomControlContainer {
             /** Main editor toolbar, next to play buttons. */
@@ -4795,7 +4793,7 @@ declare module "godot" {
     }
     class EditorRunNative extends HBoxContainer {
         constructor(identifier?: any)
-        readonly native_run: Signal1<any /*EditorExportPreset*/>
+        readonly native_run: Signal1<EditorExportPreset>
     }
     class EditorSceneExporterGLTFSettings extends RefCounted {
         constructor(identifier?: any)
@@ -5089,9 +5087,6 @@ declare module "godot" {
         
         /** Emitted when the value form loses focus. */
         readonly value_focus_exited: Signal0
-    }
-    class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
-        constructor(identifier?: any)
     }
     /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
      *  	  
@@ -9202,6 +9197,9 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class GodotPhysicsServer2D extends PhysicsServer2D {
+        constructor(identifier?: any)
+    }
+    class GodotPhysicsServer3D extends PhysicsServer3D {
         constructor(identifier?: any)
     }
 }

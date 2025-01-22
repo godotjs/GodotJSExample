@@ -1,12 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    class GodotPhysicsServer3D extends PhysicsServer3D {
-        constructor(identifier?: any)
-    }
-    class GotoLineDialog extends ConfirmationDialog {
-        constructor(identifier?: any)
-    }
     namespace Gradient {
         enum InterpolationMode {
             /** Linear interpolation. */

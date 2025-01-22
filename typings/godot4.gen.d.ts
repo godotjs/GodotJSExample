@@ -5014,7 +5014,7 @@ declare module "godot" {
     }
     class ProjectExportDialog extends ConfirmationDialog {
         constructor(identifier?: any)
-        get_current_preset(): any /*EditorExportPreset*/
+        get_current_preset(): EditorExportPreset
         get export_path(): string
         set export_path(value: string)
     }
@@ -6289,6 +6289,15 @@ declare module "godot" {
         constructor(identifier?: any)
         rename(): void
     }
+    class RenderBufferCustomDataRD extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class RenderBufferDataForwardClustered extends RenderBufferCustomDataRD {
+        constructor(identifier?: any)
+    }
+    class RenderBuffersGI extends RenderBufferCustomDataRD {
+        constructor(identifier?: any)
+    }
     /** Abstract render data object, holds frame data related to rendering a single frame of a viewport.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_renderdata.html  
@@ -6402,9 +6411,6 @@ declare module "godot" {
         
         /** Implement this in GDExtension to react to the debanding flag changing. */
         /* gdvirtual */ _set_use_debanding(use_debanding: boolean): void
-    }
-    class RenderSceneBuffersGLES3 extends RenderSceneBuffers {
-        constructor(identifier?: any)
     }
     /** Render scene buffer implementation for the RenderingDevice based renderers.  
      *  	  
