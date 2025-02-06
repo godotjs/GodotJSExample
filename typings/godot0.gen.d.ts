@@ -8,7 +8,8 @@ declare module "godot" {
     type float64 = number
     type StringName = string
     type unresolved = any
-    // // Singleton Class
+    type GAny = boolean | int64 | float64 | string | Vector2 | Vector2i | Rect2 | Rect2i | Vector3 | Vector3i | Transform2D | Vector4 | Vector4i | Plane | Quaternion | AABB | Basis | Transform3D | Projection | Color | StringName | NodePath | RID | Object | Callable | Signal | GDictionary | GArray | PackedByteArray | PackedInt32Array | PackedInt64Array | PackedFloat32Array | PackedFloat64Array | PackedStringArray | PackedVector2Array | PackedVector3Array | PackedColorArray | PackedVector4Array | undefined
+    // _singleton_class_: Performance
     namespace Performance {
         enum Monitor {
             /** The number of frames rendered in the last second. This metric is only updated once per second, even if queried more often.  *Higher is better.*  */
@@ -130,7 +131,7 @@ declare module "godot" {
          *  The debugger calls the callable to get the value of custom monitor. The callable must return a zero or positive integer or floating-point number.  
          *  Callables are called with arguments supplied in argument array.  
          */
-        static add_custom_monitor(id: StringName, callable: Callable, arguments_: GArray<any> = []): void
+        static add_custom_monitor(id: StringName, callable: Callable, arguments_: GArray = []): void
         
         /** Removes the custom monitor with given [param id]. Prints an error if the given [param id] is already absent. */
         static remove_custom_monitor(id: StringName): void
@@ -145,9 +146,9 @@ declare module "godot" {
         static get_monitor_modification_time(): int64
         
         /** Returns the names of active custom monitors in an [Array]. */
-        static get_custom_monitor_names(): GArray<any>
+        static get_custom_monitor_names(): GArray
     }
-    // // Singleton Class
+    // _singleton_class_: TextServerManager
     /** A singleton for managing [TextServer] implementations.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_textservermanager.html  
@@ -166,7 +167,7 @@ declare module "godot" {
         static get_interface(idx: int64): TextServer
         
         /** Returns a list of available interfaces, with the index and name of each interface. */
-        static get_interfaces(): GArray<any>
+        static get_interfaces(): GArray
         
         /** Finds an interface by its [param name]. */
         static find_interface(name: string): TextServer
@@ -183,7 +184,7 @@ declare module "godot" {
         /** Emitted when an interface is removed. */
         static readonly interface_removed: Signal1<StringName>
     }
-    // // Singleton Class
+    // _singleton_class_: PhysicsServer2DManager
     /** A singleton for managing [PhysicsServer2D] implementations.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_physicsserver2dmanager.html  
@@ -195,7 +196,7 @@ declare module "godot" {
         /** Set the default [PhysicsServer2D] implementation to the one identified by [param name], if [param priority] is greater than the priority of the current default implementation. */
         static set_default_server(name: string, priority: int64): void
     }
-    // // Singleton Class
+    // _singleton_class_: PhysicsServer3DManager
     /** A singleton for managing [PhysicsServer3D] implementations.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_physicsserver3dmanager.html  
@@ -207,7 +208,7 @@ declare module "godot" {
         /** Set the default [PhysicsServer3D] implementation to the one identified by [param name], if [param priority] is greater than the priority of the current default implementation. */
         static set_default_server(name: string, priority: int64): void
     }
-    // // Singleton Class
+    // _singleton_class_: ProjectSettings
     /** Stores globally-accessible variables.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_projectsettings.html  
@@ -248,7 +249,7 @@ declare module "godot" {
          *      
          *  **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they start with `res://`.  
          */
-        static get_global_class_list(): GArray<any>
+        static get_global_class_list(): GArray
         
         /** Sets the order of a configuration value (influences when saved to the config file). */
         static set_order(name: string, position: int64): void
@@ -313,7 +314,7 @@ declare module "godot" {
         /** Emitted when any setting is changed, up to once per process frame. */
         static readonly settings_changed: Signal0
     }
-    // // Singleton Class
+    // _singleton_class_: IP
     namespace IP {
         enum ResolverStatus {
             /** DNS hostname resolver status: No status. */
@@ -369,7 +370,7 @@ declare module "godot" {
         static get_resolve_item_address(id: int64): string
         
         /** Returns resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [method get_resolve_item_status]). */
-        static get_resolve_item_addresses(id: int64): GArray<any>
+        static get_resolve_item_addresses(id: int64): GArray
         
         /** Removes a given item [param id] from the queue. This should be used to free a queue after it has completed to enable more queries to happen. */
         static erase_resolve_item(id: int64): void
@@ -381,12 +382,12 @@ declare module "godot" {
          *  Each adapter is a dictionary of the form:  
          *    
          */
-        static get_local_interfaces(): GArray<any>
+        static get_local_interfaces(): GArray
         
         /** Removes all of a [param hostname]'s cached references. If no [param hostname] is given, all cached IP addresses are removed. */
         static clear_cache(hostname: string = ''): void
     }
-    // // Singleton Class
+    // _singleton_class_: Geometry2D
     namespace Geometry2D {
         enum PolyBooleanOperation {
             /** Create regions where either subject or clip polygons (or both) are filled. */
@@ -479,33 +480,33 @@ declare module "godot" {
         static convex_hull(points: PackedVector2Array | Vector2[]): PackedVector2Array
         
         /** Decomposes the [param polygon] into multiple convex hulls and returns an array of [PackedVector2Array]. */
-        static decompose_polygon_in_convex(polygon: PackedVector2Array | Vector2[]): GArray<any>
+        static decompose_polygon_in_convex(polygon: PackedVector2Array | Vector2[]): GArray
         
         /** Merges (combines) [param polygon_a] and [param polygon_b] and returns an array of merged polygons. This performs [constant OPERATION_UNION] between polygons.  
          *  The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static merge_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray<any>
+        static merge_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray
         
         /** Clips [param polygon_a] against [param polygon_b] and returns an array of clipped polygons. This performs [constant OPERATION_DIFFERENCE] between polygons. Returns an empty array if [param polygon_b] completely overlaps [param polygon_a].  
          *  If [param polygon_b] is enclosed by [param polygon_a], returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static clip_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray<any>
+        static clip_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray
         
         /** Intersects [param polygon_a] with [param polygon_b] and returns an array of intersected polygons. This performs [constant OPERATION_INTERSECTION] between polygons. In other words, returns common area shared by polygons. Returns an empty array if no intersection occurs.  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static intersect_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray<any>
+        static intersect_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray
         
         /** Mutually excludes common area defined by intersection of [param polygon_a] and [param polygon_b] (see [method intersect_polygons]) and returns an array of excluded polygons. This performs [constant OPERATION_XOR] between polygons. In other words, returns all but common area between polygons.  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static exclude_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray<any>
+        static exclude_polygons(polygon_a: PackedVector2Array | Vector2[], polygon_b: PackedVector2Array | Vector2[]): GArray
         
         /** Clips [param polyline] against [param polygon] and returns an array of clipped polylines. This performs [constant OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape. */
-        static clip_polyline_with_polygon(polyline: PackedVector2Array | Vector2[], polygon: PackedVector2Array | Vector2[]): GArray<any>
+        static clip_polyline_with_polygon(polyline: PackedVector2Array | Vector2[], polygon: PackedVector2Array | Vector2[]): GArray
         
         /** Intersects [param polyline] with [param polygon] and returns an array of intersected polylines. This performs [constant OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape. */
-        static intersect_polyline_with_polygon(polyline: PackedVector2Array | Vector2[], polygon: PackedVector2Array | Vector2[]): GArray<any>
+        static intersect_polyline_with_polygon(polyline: PackedVector2Array | Vector2[], polygon: PackedVector2Array | Vector2[]): GArray
         
         /** Inflates or deflates [param polygon] by [param delta] units (pixels). If [param delta] is positive, makes the polygon grow outward. If [param delta] is negative, shrinks the polygon inward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. Returns an empty array if [param delta] is negative and the absolute value of it approximately exceeds the minimum bounding rectangle dimensions of the polygon.  
          *  Each polygon's vertices will be rounded as determined by [param join_type], see [enum PolyJoinType].  
@@ -514,35 +515,35 @@ declare module "godot" {
          *  **Note:** To translate the polygon's vertices specifically, multiply them to a [Transform2D]:  
          *    
          */
-        static offset_polygon(polygon: PackedVector2Array | Vector2[], delta: float64, join_type: Geometry2D.PolyJoinType = 0): GArray<any>
+        static offset_polygon(polygon: PackedVector2Array | Vector2[], delta: float64, join_type: Geometry2D.PolyJoinType = 0): GArray
         
         /** Inflates or deflates [param polyline] by [param delta] units (pixels), producing polygons. If [param delta] is positive, makes the polyline grow outward. Returns an array of polygons because inflating/deflating may result in multiple discrete polygons. If [param delta] is negative, returns an empty array.  
          *  Each polygon's vertices will be rounded as determined by [param join_type], see [enum PolyJoinType].  
          *  Each polygon's endpoints will be rounded as determined by [param end_type], see [enum PolyEndType].  
          *  The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [method is_polygon_clockwise].  
          */
-        static offset_polyline(polyline: PackedVector2Array | Vector2[], delta: float64, join_type: Geometry2D.PolyJoinType = 0, end_type: Geometry2D.PolyEndType = 3): GArray<any>
+        static offset_polyline(polyline: PackedVector2Array | Vector2[], delta: float64, join_type: Geometry2D.PolyJoinType = 0, end_type: Geometry2D.PolyEndType = 3): GArray
         
         /** Given an array of [Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a [PackedVector2Array] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [Vector2i]. */
         static make_atlas(sizes: PackedVector2Array | Vector2[]): GDictionary
     }
-    // // Singleton Class
+    // _singleton_class_: Geometry3D
     /** Provides methods for some common 3D geometric operations.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_geometry3d.html  
      */
     class Geometry3D extends Object {
         /** Calculates and returns all the vertex points of a convex shape defined by an array of [param planes]. */
-        static compute_convex_mesh_points(planes: GArray<any>): PackedVector3Array
+        static compute_convex_mesh_points(planes: GArray): PackedVector3Array
         
         /** Returns an array with 6 [Plane]s that describe the sides of a box centered at the origin. The box size is defined by [param extents], which represents one (positive) corner of the box (i.e. half its actual size). */
-        static build_box_planes(extents: Vector3): GArray<any>
+        static build_box_planes(extents: Vector3): GArray
         
         /** Returns an array of [Plane]s closely bounding a faceted cylinder centered at the origin with radius [param radius] and height [param height]. The parameter [param sides] defines how many planes will be generated for the round part of the cylinder. The parameter [param axis] describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z). */
-        static build_cylinder_planes(radius: float64, height: float64, sides: int64, axis: Vector3.Axis = 2): GArray<any>
+        static build_cylinder_planes(radius: float64, height: float64, sides: int64, axis: Vector3.Axis = 2): GArray
         
         /** Returns an array of [Plane]s closely bounding a faceted capsule centered at the origin with radius [param radius] and height [param height]. The parameter [param sides] defines how many planes will be generated for the side part of the capsule, whereas [param lats] gives the number of latitudinal steps at the bottom and top of the capsule. The parameter [param axis] describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z). */
-        static build_capsule_planes(radius: float64, height: float64, sides: int64, lats: int64, axis: Vector3.Axis = 2): GArray<any>
+        static build_capsule_planes(radius: float64, height: float64, sides: int64, lats: int64, axis: Vector3.Axis = 2): GArray
         
         /** Given the two 3D segments ([param p1], [param p2]) and ([param q1], [param q2]), finds those two points on the two segments that are closest to each other. Returns a [PackedVector3Array] that contains this point on ([param p1], [param p2]) as well the accompanying point on ([param q1], [param q2]). */
         static get_closest_points_between_segments(p1: Vector3, p2: Vector3, q1: Vector3, q2: Vector3): PackedVector3Array
@@ -571,7 +572,7 @@ declare module "godot" {
         static segment_intersects_cylinder(from: Vector3, to: Vector3, height: float64, radius: float64): PackedVector3Array
         
         /** Given a convex hull defined though the [Plane]s in the array [param planes], tests if the segment ([param from], [param to]) intersects with that hull. If an intersection is found, returns a [PackedVector3Array] containing the point the intersection and the hull's normal. Otherwise, returns an empty array. */
-        static segment_intersects_convex(from: Vector3, to: Vector3, planes: GArray<any>): PackedVector3Array
+        static segment_intersects_convex(from: Vector3, to: Vector3, planes: GArray): PackedVector3Array
         
         /** Clips the polygon defined by the points in [param points] against the [param plane] and returns the points of the clipped polygon. */
         static clip_polygon(points: PackedVector3Array | Vector3[], plane: Plane): PackedVector3Array
@@ -579,7 +580,7 @@ declare module "godot" {
         /** Tetrahedralizes the volume specified by a discrete set of [param points] in 3D space, ensuring that no point lies within the circumsphere of any resulting tetrahedron. The method returns a [PackedInt32Array] where each tetrahedron consists of four consecutive point indices into the [param points] array (resulting in an array with `n * 4` elements, where `n` is the number of tetrahedra found). If the tetrahedralization is unsuccessful, an empty [PackedInt32Array] is returned. */
         static tetrahedralize_delaunay(points: PackedVector3Array | Vector3[]): PackedInt32Array
     }
-    // // Singleton Class
+    // _singleton_class_: ResourceLoader
     namespace ResourceLoader {
         enum ThreadLoadStatus {
             /** The resource is invalid, or has not been loaded with [method load_threaded_request]. */
@@ -626,7 +627,7 @@ declare module "godot" {
          *      
          *  **Note:** The recommended way of using this method is to call it during different frames (e.g., in [method Node._process], instead of a loop).  
          */
-        static load_threaded_get_status(path: string, progress: GArray<any> = []): ResourceLoader.ThreadLoadStatus
+        static load_threaded_get_status(path: string, progress: GArray = []): ResourceLoader.ThreadLoadStatus
         
         /** Returns the resource loaded by [method load_threaded_request].  
          *  If this is called before the loading thread is done (i.e. [method load_threaded_get_status] is not [constant THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading. However, it's recommended to use [method load_threaded_get_status] to known when the load has actually completed.  
@@ -682,7 +683,7 @@ declare module "godot" {
         /** Returns the ID associated with a given resource path, or `-1` when no such ID exists. */
         static get_resource_uid(path: string): int64
     }
-    // // Singleton Class
+    // _singleton_class_: ResourceSaver
     namespace ResourceSaver {
         enum SaverFlags {
             /** No resource saving option. */
@@ -734,7 +735,7 @@ declare module "godot" {
         /** Unregisters the given [ResourceFormatSaver]. */
         static remove_resource_format_saver(format_saver: ResourceFormatSaver): void
     }
-    // // Singleton Class
+    // _singleton_class_: OS
     namespace OS {
         enum RenderingDriver {
             /** The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features from Vulkan 1.1 and 1.2 if available. */
@@ -885,7 +886,7 @@ declare module "godot" {
          *      
          *  **Note:** On Android, system commands such as `dumpsys` can only be run on a rooted device.  
          */
-        static execute(path: string, arguments_: PackedStringArray | string[], output: GArray<any> = [], read_stderr: boolean = false, open_console: boolean = false): int64
+        static execute(path: string, arguments_: PackedStringArray | string[], output: GArray = [], read_stderr: boolean = false, open_console: boolean = false): int64
         
         /** Creates a new process that runs independently of Godot with redirected IO. It will not terminate when Godot terminates. The path specified in [param path] must exist and be an executable file or macOS `.app` bundle. The path is resolved based on the current platform. The [param arguments] are used in the given order and separated by a space.  
          *  If the process cannot be created, this method returns an empty [Dictionary]. Otherwise, this method returns a [Dictionary] with the following keys:  
@@ -1289,7 +1290,7 @@ declare module "godot" {
         get delta_smoothing(): boolean
         set delta_smoothing(value: boolean)
     }
-    // // Singleton Class
+    // _singleton_class_: Engine
     /** Provides access to engine properties.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_engine.html  
@@ -1351,7 +1352,7 @@ declare module "godot" {
          *  - `copyright` - [Array] of owners of this component;  
          *  - `license` - The license applied to this component (such as "[url=https://en.wikipedia.org/wiki/MIT_License#Ambiguity_and_variants]Expat[/url]" or "[url=https://creativecommons.org/licenses/by/4.0/]CC-BY-4.0[/url]").  
          */
-        static get_copyright_info(): GArray<any>
+        static get_copyright_info(): GArray
         
         /** Returns a [Dictionary] of categorized donor names. Each entry is an [Array] of strings:  
          *  {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`, `gold_donors`, `silver_donors`, `bronze_donors`}  
@@ -1487,7 +1488,7 @@ declare module "godot" {
         get physics_jitter_fix(): float64
         set physics_jitter_fix(value: float64)
     }
-    // // Singleton Class
+    // _singleton_class_: ClassDB
     /** A class information repository.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_classdb.html  
@@ -1521,10 +1522,10 @@ declare module "godot" {
         static class_get_signal(class_: StringName, signal: StringName): GDictionary
         
         /** Returns an array with all the signals of [param class] or its ancestry if [param no_inheritance] is `false`. Every element of the array is a [Dictionary] as described in [method class_get_signal]. */
-        static class_get_signal_list(class_: StringName, no_inheritance: boolean = false): GArray<any>
+        static class_get_signal_list(class_: StringName, no_inheritance: boolean = false): GArray
         
         /** Returns an array with all the properties of [param class] or its ancestry if [param no_inheritance] is `false`. */
-        static class_get_property_list(class_: StringName, no_inheritance: boolean = false): GArray<any>
+        static class_get_property_list(class_: StringName, no_inheritance: boolean = false): GArray
         
         /** Returns the value of [param property] of [param object] or its ancestry. */
         static class_get_property(object: Object, property: StringName): any
@@ -1545,7 +1546,7 @@ declare module "godot" {
          *      
          *  **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.  
          */
-        static class_get_method_list(class_: StringName, no_inheritance: boolean = false): GArray<any>
+        static class_get_method_list(class_: StringName, no_inheritance: boolean = false): GArray
         
         /** Returns an array with the names all the integer constants of [param class] or its ancestry. */
         static class_get_integer_constant_list(class_: StringName, no_inheritance: boolean = false): PackedStringArray
@@ -1574,7 +1575,7 @@ declare module "godot" {
         /** Returns whether this [param class] is enabled or not. */
         static is_class_enabled(class_: StringName): boolean
     }
-    // // Singleton Class
+    // _singleton_class_: Marshalls
     /** Data transformation (marshaling) and encoding helpers.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_marshalls.html  
@@ -1603,7 +1604,7 @@ declare module "godot" {
         /** Returns a decoded string corresponding to the Base64-encoded string [param base64_str]. */
         static base64_to_utf8(base64_str: string): string
     }
-    // // Singleton Class
+    // _singleton_class_: TranslationServer
     /** The server responsible for language translations.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_translationserver.html  
@@ -1687,7 +1688,7 @@ declare module "godot" {
         get pseudolocalization_enabled(): boolean
         set pseudolocalization_enabled(value: boolean)
     }
-    // // Singleton Class
+    // _singleton_class_: Input
     namespace Input {
         enum MouseMode {
             /** Makes the mouse cursor visible if it is hidden. */
@@ -1880,7 +1881,7 @@ declare module "godot" {
         static should_ignore_device(vendor_id: int64, product_id: int64): boolean
         
         /** Returns an [Array] containing the device IDs of all currently connected joypads. */
-        static get_connected_joypads(): GArray<any>
+        static get_connected_joypads(): GArray
         
         /** Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the strength of the strong motor. */
         static get_joy_vibration_strength(device: int64): Vector2
@@ -2048,7 +2049,7 @@ declare module "godot" {
         /** Emitted when a joypad device has been connected or disconnected. */
         static readonly joy_connection_changed: Signal2<int64, boolean>
     }
-    // // Singleton Class
+    // _singleton_class_: InputMap
     /** A singleton that manages all [InputEventAction]s.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_inputmap.html  
@@ -2058,7 +2059,7 @@ declare module "godot" {
         static has_action(action: StringName): boolean
         
         /** Returns an array of all actions in the [InputMap]. */
-        static get_actions(): GArray<any>
+        static get_actions(): GArray
         
         /** Adds an empty action to the [InputMap] with a configurable [param deadzone].  
          *  An [InputEvent] can then be added to this action with [method action_add_event].  
@@ -2090,7 +2091,7 @@ declare module "godot" {
          *      
          *  **Note:** When used in the editor (e.g. a tool script or [EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the `input/*` settings from [ProjectSettings].  
          */
-        static action_get_events(action: StringName): GArray<any>
+        static action_get_events(action: StringName): GArray
         
         /** Returns `true` if the given event is part of an existing action. This method ignores keyboard modifiers if the given [InputEvent] is not pressed (for proper release detection). See [method action_has_event] if you don't want this behavior.  
          *  If [param exact_match] is `false`, it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.  
@@ -2100,7 +2101,7 @@ declare module "godot" {
         /** Clears all [InputEventAction] in the [InputMap] and load it anew from [ProjectSettings]. */
         static load_from_project_settings(): void
     }
-    // // Singleton Class
+    // _singleton_class_: EngineDebugger
     /** Exposes the internal debugger.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_enginedebugger.html  
@@ -2122,10 +2123,10 @@ declare module "godot" {
         static has_profiler(name: StringName): boolean
         
         /** Calls the `add` callable of the profiler with given [param name] and [param data]. */
-        static profiler_add_frame_data(name: StringName, data: GArray<any>): void
+        static profiler_add_frame_data(name: StringName, data: GArray): void
         
         /** Calls the `toggle` callable of the profiler with given [param name] and [param arguments]. Enables/Disables the same profiler depending on [param enable] argument. */
-        static profiler_enable(name: StringName, enable: boolean, arguments_: GArray<any> = []): void
+        static profiler_enable(name: StringName, enable: boolean, arguments_: GArray = []): void
         
         /** Registers a message capture with given [param name]. If [param name] is "my_message" then messages starting with "my_message:" will be called with the given callable.  
          *  Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.  
@@ -2142,7 +2143,7 @@ declare module "godot" {
         static line_poll(): void
         
         /** Sends a message with given [param message] and [param data] array. */
-        static send_message(message: string, data: GArray<any>): void
+        static send_message(message: string, data: GArray): void
         
         /** Starts a debug break in script execution, optionally specifying whether the program can continue based on [param can_continue] and whether the break was due to a breakpoint. */
         static debug(can_continue: boolean = true, is_error_breakpoint: boolean = false): void
@@ -2177,7 +2178,7 @@ declare module "godot" {
         /** Clears all breakpoints. */
         static clear_breakpoints(): void
     }
-    // // Singleton Class
+    // _singleton_class_: Time
     namespace Time {
         enum Month {
             /** The month of January, represented numerically as `01`. */
@@ -2351,7 +2352,7 @@ declare module "godot" {
          */
         static get_ticks_usec(): int64
     }
-    // // Singleton Class
+    // _singleton_class_: GDExtensionManager
     namespace GDExtensionManager {
         enum LoadStatus {
             /** The extension has loaded successfully. */
@@ -2399,7 +2400,7 @@ declare module "godot" {
         /** Emitted after the editor has finished reloading one or more extensions. */
         static readonly extensions_reloaded: Signal0
     }
-    // // Singleton Class
+    // _singleton_class_: ResourceUID
     /** A singleton that manages the unique identifiers of all resources within a project.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceuid.html  
@@ -2444,7 +2445,7 @@ declare module "godot" {
          */
         static remove_id(id: int64): void
     }
-    // // Singleton Class
+    // _singleton_class_: WorkerThreadPool
     /** A singleton that allocates some [Thread]s on startup, used to offload tasks to these threads.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_workerthreadpool.html  
@@ -2491,7 +2492,7 @@ declare module "godot" {
         /** Pauses the thread that calls this method until the group task with the given ID is completed. */
         static wait_for_group_task_completion(group_id: int64): void
     }
-    // // Singleton Class
+    // _singleton_class_: ThemeDB
     /** A singleton that provides access to static information about [Theme] resources used by the engine and by your project.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_themedb.html  
@@ -2534,7 +2535,7 @@ declare module "godot" {
         /** Emitted when one of the fallback values had been changed. Use it to refresh the look of controls that may rely on the fallback theme items. */
         static readonly fallback_changed: Signal0
     }
-    // // Singleton Class
+    // _singleton_class_: EditorInterface
     /** Godot editor's interface.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_editorinterface.html  
@@ -2564,7 +2565,7 @@ declare module "godot" {
         static get_editor_settings(): EditorSettings
         
         /** Returns mesh previews rendered at the given size as an [Array] of [Texture2D]s. */
-        static make_mesh_previews(meshes: GArray<any>, preview_size: int64): GArray<any>
+        static make_mesh_previews(meshes: GArray, preview_size: int64): GArray
         
         /** Sets the enabled status of a plugin. The plugin name is the same as its directory name. */
         static set_plugin_enabled(plugin: string, enabled: boolean): void
@@ -2655,7 +2656,7 @@ declare module "godot" {
          *  **Example:**  
          *    
          */
-        static popup_node_selector(callback: Callable, valid_types: GArray<any> = []): void
+        static popup_node_selector(callback: Callable, valid_types: GArray = []): void
         
         /** Pops up an editor dialog for selecting properties from [param object]. The [param callback] must take a single argument of type [NodePath]. It is called on the selected property path (see [method NodePath.get_as_property_path]) or the empty path `^""` if the dialog is canceled. If [param type_filter] is provided, the dialog will only show properties that match one of the listed [enum Variant.Type] values.  
          *  **Example:**  
@@ -2747,7 +2748,7 @@ declare module "godot" {
         get movie_maker_enabled(): boolean
         set movie_maker_enabled(value: boolean)
     }
-    // // Singleton Class
+    // _singleton_class_: JavaClassWrapper
     /** Provides access to the Java Native Interface.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_javaclasswrapper.html  
@@ -2759,7 +2760,7 @@ declare module "godot" {
          */
         static wrap(name: string): JavaClass
     }
-    // // Singleton Class
+    // _singleton_class_: JavaScriptBridge
     /** Singleton that connects the engine with the browser's JavaScript context in Web export.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_javascriptbridge.html  
@@ -2812,7 +2813,7 @@ declare module "godot" {
         /** Emitted when an update for this progressive web app has been detected but is waiting to be activated because a previous version is active. See [method pwa_update] to force the update to take place immediately. */
         static readonly pwa_update_available: Signal0
     }
-    // // Singleton Class
+    // _singleton_class_: AudioServer
     namespace AudioServer {
         enum SpeakerMode {
             /** Two or fewer speakers were detected. */
@@ -3016,7 +3017,7 @@ declare module "godot" {
         /** Emitted when the audio bus at [param bus_index] is renamed from [param old_name] to [param new_name]. */
         static readonly bus_renamed: Signal3<int64, StringName, StringName>
     }
-    // // Singleton Class
+    // _singleton_class_: CameraServer
     namespace CameraServer {
         enum FeedImage {
             /** The RGBA camera image. */
@@ -3044,7 +3045,7 @@ declare module "godot" {
         static get_feed_count(): int64
         
         /** Returns an array of [CameraFeed]s. */
-        static feeds(): GArray<any>
+        static feeds(): GArray
         
         /** Adds the camera [param feed] to the camera server. */
         static add_feed(feed: CameraFeed): void
@@ -3058,7 +3059,7 @@ declare module "godot" {
         /** Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged). */
         static readonly camera_feed_removed: Signal1<int64>
     }
-    // // Singleton Class
+    // _singleton_class_: DisplayServer
     namespace DisplayServer {
         enum Feature {
             /** Display server supports multiple windows that can be moved outside of the main window. **Windows, macOS, Linux (X11)** */
@@ -3515,7 +3516,7 @@ declare module "godot" {
          *      
          *  **Note:** [member ProjectSettings.audio/general/text_to_speech] should be `true` to use text-to-speech.  
          */
-        static tts_get_voices(): GArray<any>
+        static tts_get_voices(): GArray
         
         /** Returns an [PackedStringArray] of voice identifiers for the [param language].  
          *      
@@ -3661,7 +3662,7 @@ declare module "godot" {
          *      
          *  **Note:** Currently only implemented on Android. Other platforms will return an empty array even if they do have display cutouts or notches.  
          */
-        static get_display_cutouts(): GArray<any>
+        static get_display_cutouts(): GArray
         
         /** Returns the unobscured area of the display where interactive controls should be rendered. See also [method get_display_cutouts]. */
         static get_display_safe_area(): Rect2i
@@ -4115,7 +4116,7 @@ declare module "godot" {
          *      
          *  **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [method OS.get_granted_permissions] to get a list of saved bookmarks.  
          */
-        static file_dialog_with_options_show(title: string, current_directory: string, root: string, filename: string, show_hidden: boolean, mode: DisplayServer.FileDialogMode, filters: PackedStringArray | string[], options: GArray<any>, callback: Callable): GError
+        static file_dialog_with_options_show(title: string, current_directory: string, root: string, filename: string, show_hidden: boolean, mode: DisplayServer.FileDialogMode, filters: PackedStringArray | string[], options: GArray, callback: Callable): GError
         
         /** Returns the number of keyboard layouts.  
          *      
@@ -4264,7 +4265,7 @@ declare module "godot" {
         /** Returns `true` if any additional outputs have been registered via [method register_additional_output]. */
         static has_additional_outputs(): boolean
     }
-    // // Singleton Class
+    // _singleton_class_: NativeMenu
     namespace NativeMenu {
         enum Feature {
             /** [NativeMenu] supports native global main menu. */
@@ -4770,14 +4771,14 @@ declare module "godot" {
          */
         static clear(rid: RID): void
     }
-    // // Singleton Class
+    // _singleton_class_: NavigationServer2D
     /** A server interface for low-level 2D navigation access.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_navigationserver2d.html  
      */
     class NavigationServer2D extends Object {
         /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
-        static get_maps(): GArray<any>
+        static get_maps(): GArray
         
         /** Create a new map. */
         static map_create(): RID
@@ -4822,16 +4823,16 @@ declare module "godot" {
         static map_get_closest_point_owner(map: RID, to_point: Vector2): RID
         
         /** Returns all navigation link [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_links(map: RID): GArray<any>
+        static map_get_links(map: RID): GArray
         
         /** Returns all navigation regions [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_regions(map: RID): GArray<any>
+        static map_get_regions(map: RID): GArray
         
         /** Returns all navigation agents [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_agents(map: RID): GArray<any>
+        static map_get_agents(map: RID): GArray
         
         /** Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_obstacles(map: RID): GArray<any>
+        static map_get_obstacles(map: RID): GArray
         
         /** This function immediately forces synchronization of the specified navigation [param map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).  
          *  Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.  
@@ -5190,7 +5191,7 @@ declare module "godot" {
         /** Emitted when navigation debug settings are changed. Only available in debug builds. */
         static readonly navigation_debug_changed: Signal0
     }
-    // // Singleton Class
+    // _singleton_class_: NavigationServer3D
     namespace NavigationServer3D {
         enum ProcessInfo {
             /** Constant to get the number of active navigation maps. */
@@ -5227,7 +5228,7 @@ declare module "godot" {
      */
     class NavigationServer3D extends Object {
         /** Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D created navigation maps as there is technically no distinction between them. */
-        static get_maps(): GArray<any>
+        static get_maps(): GArray
         
         /** Create a new map. */
         static map_create(): RID
@@ -5296,16 +5297,16 @@ declare module "godot" {
         static map_get_closest_point_owner(map: RID, to_point: Vector3): RID
         
         /** Returns all navigation link [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_links(map: RID): GArray<any>
+        static map_get_links(map: RID): GArray
         
         /** Returns all navigation regions [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_regions(map: RID): GArray<any>
+        static map_get_regions(map: RID): GArray
         
         /** Returns all navigation agents [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_agents(map: RID): GArray<any>
+        static map_get_agents(map: RID): GArray
         
         /** Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation [param map]. */
-        static map_get_obstacles(map: RID): GArray<any>
+        static map_get_obstacles(map: RID): GArray
         
         /** This function immediately forces synchronization of the specified navigation [param map] [RID]. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).  
          *  Due to technical restrictions the current NavigationServer command queue will be flushed. This means all already queued update commands for this physics frame will be executed, even those intended for other maps, regions and agents not part of the specified map. The expensive computation of the navigation meshes and region connections of a map will only be done for the specified map. Other maps will receive the normal synchronization at the end of the physics frame. Should the specified map receive changes after the forced update it will update again as well when the other maps receive their update.  
@@ -5700,7 +5701,7 @@ declare module "godot" {
         /** Emitted when avoidance debug settings are changed. Only available in debug builds. */
         static readonly avoidance_debug_changed: Signal0
     }
-    // // Singleton Class
+    // _singleton_class_: RenderingServer
     namespace RenderingServer {
         enum TextureLayeredType {
             /** Array of 2-dimensional textures (see [Texture2DArray]). */
@@ -7144,12 +7145,12 @@ declare module "godot" {
          *      
          *  **Note:** The equivalent resource is [TextureLayered].  
          */
-        static texture_2d_layered_create(layers: GArray<any>, layered_type: RenderingServer.TextureLayeredType): RID
+        static texture_2d_layered_create(layers: GArray, layered_type: RenderingServer.TextureLayeredType): RID
         
         /**     
          *  **Note:** The equivalent resource is [Texture3D].  
          */
-        static texture_3d_create(format: Image.Format, width: int64, height: int64, depth: int64, mipmaps: boolean, data: GArray<any>): RID
+        static texture_3d_create(format: Image.Format, width: int64, height: int64, depth: int64, mipmaps: boolean, data: GArray): RID
         
         /** This method does nothing and always returns an invalid [RID]. */
         static texture_proxy_create(base: RID): RID
@@ -7164,7 +7165,7 @@ declare module "godot" {
          *      
          *  **Note:** The [param texture] must have the same width, height, depth and format as the current texture data. Otherwise, an error will be printed and the original texture won't be modified. If you need to use different width, height, depth or format, use [method texture_replace] instead.  
          */
-        static texture_3d_update(texture: RID, data: GArray<any>): void
+        static texture_3d_update(texture: RID, data: GArray): void
         
         /** This method does nothing. */
         static texture_proxy_update(texture: RID, proxy_to: RID): void
@@ -7199,7 +7200,7 @@ declare module "godot" {
         static texture_2d_layer_get(texture: RID, layer: int64): Image
         
         /** Returns 3D texture data as an array of [Image]s for the specified texture [RID]. */
-        static texture_3d_get(texture: RID): GArray<any>
+        static texture_3d_get(texture: RID): GArray
         
         /** Replaces [param texture]'s texture data by the texture specified by the [param by_texture] RID, without changing [param texture]'s RID. */
         static texture_replace(texture: RID, by_texture: RID): void
@@ -7240,7 +7241,7 @@ declare module "godot" {
         static shader_get_code(shader: RID): string
         
         /** Returns the parameters of a shader. */
-        static get_shader_parameter_list(shader: RID): GArray<any>
+        static get_shader_parameter_list(shader: RID): GArray
         
         /** Returns the default value for the specified shader uniform. This is usually the value written in the shader source code. */
         static shader_get_parameter_default(shader: RID, name: StringName): any
@@ -7278,7 +7279,7 @@ declare module "godot" {
         
         /** Sets an object's next material. */
         static material_set_next_pass(material: RID, next_material: RID): void
-        static mesh_create_from_surfaces(surfaces: GArray<any>, blend_shape_count: int64 = 0): RID
+        static mesh_create_from_surfaces(surfaces: GArray, blend_shape_count: int64 = 0): RID
         
         /** Creates a new mesh and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `mesh_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -7303,7 +7304,7 @@ declare module "godot" {
         /** Returns the stride of the skin buffer for a mesh with given [param format]. */
         static mesh_surface_get_format_skin_stride(format: RenderingServer.ArrayFormat, vertex_count: int64): int64
         static mesh_add_surface(mesh: RID, surface: GDictionary): void
-        static mesh_add_surface_from_arrays(mesh: RID, primitive: RenderingServer.PrimitiveType, arrays: GArray<any>, blend_shapes: GArray<any> = [], lods: GDictionary = new GDictionary(), compress_format: RenderingServer.ArrayFormat = 0): void
+        static mesh_add_surface_from_arrays(mesh: RID, primitive: RenderingServer.PrimitiveType, arrays: GArray, blend_shapes: GArray = [], lods: GDictionary = new GDictionary(), compress_format: RenderingServer.ArrayFormat = 0): void
         
         /** Returns a mesh's blend shape count. */
         static mesh_get_blend_shape_count(mesh: RID): int64
@@ -7322,10 +7323,10 @@ declare module "godot" {
         static mesh_get_surface(mesh: RID, surface: int64): GDictionary
         
         /** Returns a mesh's surface's buffer arrays. */
-        static mesh_surface_get_arrays(mesh: RID, surface: int64): GArray<any>
+        static mesh_surface_get_arrays(mesh: RID, surface: int64): GArray
         
         /** Returns a mesh's surface's arrays for blend shapes. */
-        static mesh_surface_get_blend_shape_arrays(mesh: RID, surface: int64): GArray<any>
+        static mesh_surface_get_blend_shape_arrays(mesh: RID, surface: int64): GArray
         
         /** Returns a mesh's number of surfaces. */
         static mesh_get_surface_count(mesh: RID): int64
@@ -7749,7 +7750,7 @@ declare module "godot" {
         
         /** If [param enable] is `true`, enables trails for the [param particles] with the specified [param length_sec] in seconds. Equivalent to [member GPUParticles3D.trail_enabled] and [member GPUParticles3D.trail_lifetime]. */
         static particles_set_trails(particles: RID, enable: boolean, length_sec: float64): void
-        static particles_set_trail_bind_poses(particles: RID, bind_poses: GArray<any>): void
+        static particles_set_trail_bind_poses(particles: RID, bind_poses: GArray): void
         
         /** Returns `true` if particles are not emitting and particles are set to inactive. */
         static particles_is_inactive(particles: RID): boolean
@@ -8122,7 +8123,7 @@ declare module "godot" {
         static compositor_create(): RID
         
         /** Sets the compositor effects for the specified compositor RID. [param effects] should be an array containing RIDs created with [method compositor_effect_create]. */
-        static compositor_set_compositor_effects(compositor: RID, effects: GArray<any>): void
+        static compositor_set_compositor_effects(compositor: RID, effects: GArray): void
         
         /** Creates an environment and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all `environment_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -8363,7 +8364,7 @@ declare module "godot" {
         static instance_geometry_get_shader_parameter_default_value(instance: RID, parameter: StringName): any
         
         /** Returns a dictionary of per-instance shader uniform names of the per-instance shader uniform from the specified 3D geometry instance. The returned dictionary is in PropertyInfo format, with the keys `name`, `class_name`, `type`, `hint`, `hint_string` and `usage`. Equivalent to [method GeometryInstance3D.get_instance_shader_parameter]. */
-        static instance_geometry_get_shader_parameter_list(instance: RID): GArray<any>
+        static instance_geometry_get_shader_parameter_list(instance: RID): GArray
         
         /** Returns an array of object IDs intersecting with the provided AABB. Only 3D nodes that inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D]. Use [method @GlobalScope.instance_from_id] to obtain the actual nodes. A scenario RID must be provided, which is available in the [World3D] you want to query. This forces an update for all resources queued to update.  
          *  **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.  
@@ -8378,10 +8379,10 @@ declare module "godot" {
         /** Returns an array of object IDs intersecting with the provided convex shape. Only 3D nodes that inherit from [VisualInstance3D] are considered, such as [MeshInstance3D] or [DirectionalLight3D]. Use [method @GlobalScope.instance_from_id] to obtain the actual nodes. A scenario RID must be provided, which is available in the [World3D] you want to query. This forces an update for all resources queued to update.  
          *  **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.  
          */
-        static instances_cull_convex(convex: GArray<any>, scenario: RID = new RID()): PackedInt64Array
+        static instances_cull_convex(convex: GArray, scenario: RID = new RID()): PackedInt64Array
         
         /** Bakes the material data of the Mesh passed in the [param base] parameter with optional [param material_overrides] to a set of [Image]s of size [param image_size]. Returns an array of [Image]s containing material properties as specified in [enum BakeChannels]. */
-        static bake_render_uv2(base: RID, material_overrides: GArray<any>, image_size: Vector2i): GArray<any>
+        static bake_render_uv2(base: RID, material_overrides: GArray, image_size: Vector2i): GArray
         
         /** Creates a canvas and returns the assigned [RID]. It can be accessed with the RID that is returned. This RID will be used in all `canvas_*` RenderingServer functions.  
          *  Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.  
@@ -8725,7 +8726,7 @@ declare module "godot" {
          *      
          *  **Note:** [method global_shader_parameter_get] has a large performance penalty as the rendering thread needs to synchronize with the calling thread, which is slow. Do not use this method during gameplay to avoid stuttering. If you need to read values in a script after setting them, consider creating an autoload where you store the values you need to query at the same time you're setting them as global parameters.  
          */
-        static global_shader_parameter_get_list(): GArray<any>
+        static global_shader_parameter_get_list(): GArray
         
         /** Sets the global shader uniform [param name] to [param value]. */
         static global_shader_parameter_set(name: StringName, value: any): void
@@ -8859,7 +8860,7 @@ declare module "godot" {
         /** Emitted at the end of the frame, after the RenderingServer has finished updating all the Viewports. */
         static readonly frame_post_draw: Signal0
     }
-    // // Singleton Class
+    // _singleton_class_: PhysicsServer2D
     namespace PhysicsServer2D {
         enum SpaceParameter {
             /** Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated. The default value of this parameter is [member ProjectSettings.physics/2d/solver/contact_recycle_radius]. */
@@ -9568,7 +9569,7 @@ declare module "godot" {
         /** Returns information about the current state of the 2D physics engine. See [enum ProcessInfo] for the list of available states. */
         static get_process_info(process_info: PhysicsServer2D.ProcessInfo): int64
     }
-    // // Singleton Class
+    // _singleton_class_: PhysicsServer3D
     namespace PhysicsServer3D {
         enum JointType {
             /** The [Joint3D] is a [PinJoint3D]. */
@@ -10566,7 +10567,7 @@ declare module "godot" {
         /** Returns information about the current state of the 3D physics engine. See [enum ProcessInfo] for a list of available states. */
         static get_process_info(process_info: PhysicsServer3D.ProcessInfo): int64
     }
-    // // Singleton Class
+    // _singleton_class_: XRServer
     namespace XRServer {
         enum TrackerType {
             /** The tracker tracks the location of the players head. This is usually a location centered between the players eyes. Note that for handheld AR devices this can be the current location of the device. */
@@ -10646,7 +10647,7 @@ declare module "godot" {
         static get_interface(idx: int64): XRInterface
         
         /** Returns a list of available interfaces the ID and name of each interface. */
-        static get_interfaces(): GArray<any>
+        static get_interfaces(): GArray
         
         /** Finds an interface by its [param name]. For example, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it. */
         static find_interface(name: string): XRInterface

@@ -393,7 +393,7 @@ declare module "godot" {
         /** Returns an array with the IDs of the points that form the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.  
          *  If there is no valid path to the target, and [param allow_partial_path] is `true`, returns a path to the point closest to the target that can be reached.  
          */
-        get_id_path(from_id: Vector2i, to_id: Vector2i, allow_partial_path: boolean = false): GArray<any>
+        get_id_path(from_id: Vector2i, to_id: Vector2i, allow_partial_path: boolean = false): GArray
         
         /** The region of grid cells available for pathfinding. If changed, [method update] needs to be called before finding the next path. */
         get region(): Rect2i
@@ -1004,7 +1004,7 @@ declare module "godot" {
         method_track_get_name(track_idx: int64, key_idx: int64): StringName
         
         /** Returns the arguments values to be called on a method track for a given key in a given track. */
-        method_track_get_params(track_idx: int64, key_idx: int64): GArray<any>
+        method_track_get_params(track_idx: int64, key_idx: int64): GArray
         
         /** Inserts a Bezier Track key at the given [param time] in seconds. The [param track_idx] must be the index of a Bezier Track.  
          *  [param in_handle] is the left-side weight of the added Bezier curve point, [param out_handle] is the right-side one, while [param value] is the actual value at this point.  
@@ -1138,7 +1138,7 @@ declare module "godot" {
         get_animation(name: StringName): Animation
         
         /** Returns the keys for the [Animation]s stored in the library. */
-        get_animation_list(): GArray<any>
+        get_animation_list(): GArray
         get _data(): GDictionary
         set _data(value: GDictionary)
         
@@ -1199,7 +1199,7 @@ declare module "godot" {
     class AnimationMixer extends Node {
         constructor(identifier?: any)
         /** A virtual function for processing after getting a key during playback. */
-        /* gdvirtual */ _post_process_key_value(animation: Animation, track: int64, value: any, object_id: int64, object_sub_idx: int64): void
+        /* gdvirtual */ _post_process_key_value(animation: Animation, track: int64, value: any, object_id: int64, object_sub_idx: int64): any
         
         /** Adds [param library] to the animation player, under the key [param name].  
          *  AnimationMixer has a global library by default with an empty string as key. For adding an animation to the global library:  
@@ -1222,7 +1222,7 @@ declare module "godot" {
         get_animation_library(name: StringName): AnimationLibrary
         
         /** Returns the list of stored library keys. */
-        get_animation_library_list(): GArray<any>
+        get_animation_library_list(): GArray
         
         /** Returns `true` if the [AnimationMixer] stores an [Animation] with key [param name]. */
         has_animation(name: StringName): boolean
@@ -1404,13 +1404,13 @@ declare module "godot" {
         /* gdvirtual */ _get_child_nodes(): GDictionary
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to return a list of the properties on this animation node. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees. Format is similar to [method Object.get_property_list]. */
-        /* gdvirtual */ _get_parameter_list(): GArray<any>
+        /* gdvirtual */ _get_parameter_list(): GArray
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to return a child animation node by its [param name]. */
         /* gdvirtual */ _get_child_by_name(name: StringName): AnimationNode
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to return the default value of a [param parameter]. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees. */
-        /* gdvirtual */ _get_parameter_default_value(parameter: StringName): void
+        /* gdvirtual */ _get_parameter_default_value(parameter: StringName): any
         
         /** When inheriting from [AnimationRootNode], implement this virtual method to return whether the [param parameter] is read-only. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees. */
         /* gdvirtual */ _is_parameter_read_only(parameter: StringName): boolean
@@ -2017,7 +2017,7 @@ declare module "godot" {
         get_fading_from_node(): StringName
         
         /** Returns the current travel path as computed internally by the A* algorithm. */
-        get_travel_path(): GArray<any>
+        get_travel_path(): GArray
     }
     namespace AnimationNodeStateMachineTransition {
         enum SwitchMode {
@@ -2420,12 +2420,12 @@ declare module "godot" {
         /** Returns a list of intersecting [PhysicsBody2D]s and [TileMap]s. The overlapping body's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_bodies(): GArray<any>
+        get_overlapping_bodies(): GArray
         
         /** Returns a list of intersecting [Area2D]s. The overlapping area's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_areas(): GArray<any>
+        get_overlapping_areas(): GArray
         
         /** Returns `true` if intersecting any [PhysicsBody2D]s or [TileMap]s, otherwise returns `false`. The overlapping body's [member CollisionObject2D.collision_layer] must be part of this area's [member CollisionObject2D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) the list of overlapping bodies is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
@@ -2579,12 +2579,12 @@ declare module "godot" {
         /** Returns a list of intersecting [PhysicsBody3D]s and [GridMap]s. The overlapping body's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_bodies(): GArray<any>
+        get_overlapping_bodies(): GArray
         
         /** Returns a list of intersecting [Area3D]s. The overlapping area's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
          */
-        get_overlapping_areas(): GArray<any>
+        get_overlapping_areas(): GArray
         
         /** Returns `true` if intersecting any [PhysicsBody3D]s or [GridMap]s, otherwise returns `false`. The overlapping body's [member CollisionObject3D.collision_layer] must be part of this area's [member CollisionObject3D.collision_mask] in order to be detected.  
          *  For performance reasons (collisions are all processed at the same time) the list of overlapping bodies is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.  
@@ -2778,7 +2778,7 @@ declare module "godot" {
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
          */
-        add_surface_from_arrays(primitive: Mesh.PrimitiveType, arrays: GArray<any>, blend_shapes: GArray<any> = [], lods: GDictionary = new GDictionary(), flags: Mesh.ArrayFormat = 0): void
+        add_surface_from_arrays(primitive: Mesh.PrimitiveType, arrays: GArray, blend_shapes: GArray = [], lods: GDictionary = new GDictionary(), flags: Mesh.ArrayFormat = 0): void
         
         /** Removes all surfaces from this [ArrayMesh]. */
         clear_surfaces(): void
@@ -3637,7 +3637,7 @@ declare module "godot" {
         /* gdvirtual */ _get_beat_count(): int64
         
         /** Return the controllable parameters of this stream. This array contains dictionaries with a property info description format (see [method Object.get_property_list]). Additionally, the default value for this parameter must be added tho each dictionary in "default_value" field. */
-        /* gdvirtual */ _get_parameter_list(): GArray<any>
+        /* gdvirtual */ _get_parameter_list(): GArray
         
         /** Returns the length of the audio stream in seconds. */
         get_length(): float64
@@ -3949,7 +3949,7 @@ declare module "godot" {
         /* gdvirtual */ _set_parameter(name: StringName, value: any): void
         
         /** Return the current value of a playback parameter by name (see [method AudioStream._get_parameter_list]). */
-        /* gdvirtual */ _get_parameter(name: StringName): void
+        /* gdvirtual */ _get_parameter(name: StringName): any
         
         /** Associates [AudioSamplePlayback] to this [AudioStreamPlayback] for playing back the audio sample of this stream. */
         set_sample_playback(playback_sample: AudioSamplePlayback): void
@@ -5805,7 +5805,7 @@ declare module "godot" {
          *    
          *  [param epsilon] is passed to RDP to control how accurately the polygons cover the bitmap: a lower [param epsilon] corresponds to more points in the polygons.  
          */
-        opaque_to_polygons(rect: Rect2i, epsilon: float64 = 2): GArray<any>
+        opaque_to_polygons(rect: Rect2i, epsilon: float64 = 2): GArray
         get data(): GDictionary
         set data(value: GDictionary)
     }
@@ -6064,7 +6064,7 @@ declare module "godot" {
         get_pressed_button(): BaseButton
         
         /** Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see [member BaseButton.button_group]). */
-        get_buttons(): GArray<any>
+        get_buttons(): GArray
         
         /** If `true`, it is possible to unpress all buttons in this [ButtonGroup]. */
         get allow_unpress(): boolean
@@ -7200,7 +7200,7 @@ declare module "godot" {
         get_camera_projection(): Projection
         
         /** Returns the camera's frustum planes in world space units as an array of [Plane]s in the following order: near, far, left, top, right, bottom. Not to be confused with [member frustum_offset]. */
-        get_frustum(): GArray<any>
+        get_frustum(): GArray
         
         /** Returns `true` if the given position is inside the camera's frustum (the green part of the linked diagram). [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/camera3d_position_frustum.png]See this diagram[/url] for an overview of position query methods. */
         is_position_in_frustum(world_point: Vector3): boolean
@@ -7952,6 +7952,9 @@ declare module "godot" {
     class CanvasItemEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
+    class CanvasItemEditorSelectedItem extends Object {
+        constructor(identifier?: any)
+    }
     class CanvasItemEditorViewport extends Control {
         constructor(identifier?: any)
     }
@@ -8674,7 +8677,7 @@ declare module "godot" {
         /** Override this method to define what items in [param candidates] should be displayed.  
          *  Both [param candidates] and the return is a [Array] of [Dictionary], see [method get_code_completion_option] for [Dictionary] content.  
          */
-        /* gdvirtual */ _filter_code_completion_candidates(candidates: GArray<any>): GArray<any>
+        /* gdvirtual */ _filter_code_completion_candidates(candidates: GArray): GArray
         
         /** Perform an indent as if the user activated the "ui_text_indent" action. */
         do_indent(): void
@@ -8765,7 +8768,7 @@ declare module "godot" {
         is_line_folded(line: int64): boolean
         
         /** Returns all lines that are current folded. */
-        get_folded_lines(): GArray<any>
+        get_folded_lines(): GArray
         
         /** Creates a new code region with the selection. At least one single line comment delimiter have to be defined (see [method add_comment_delimiter]).  
          *  A code region is a part of code that is highlighted when folded and can help organize your script.  
@@ -8861,7 +8864,7 @@ declare module "godot" {
         update_code_completion_options(force: boolean): void
         
         /** Gets all completion options, see [method get_code_completion_option] for return content. */
-        get_code_completion_options(): GArray<any>
+        get_code_completion_options(): GArray
         
         /** Gets the completion option at [param index]. The return [Dictionary] has the following key-values:  
          *  `kind`: [enum CodeCompletionKind]  
@@ -9083,6 +9086,14 @@ declare module "godot" {
         /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
         get color_regions(): GDictionary
         set color_regions(value: GDictionary)
+    }
+    class CodeTextEditor extends VBoxContainer {
+        constructor(identifier?: any)
+        readonly validate_script: Signal0
+        readonly load_theme_settings: Signal0
+        readonly show_errors_panel: Signal0
+        readonly show_warnings_panel: Signal0
+        readonly zoomed: Signal1<float64>
     }
     namespace CollisionObject2D {
         enum DisableMode {

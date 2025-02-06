@@ -1,66 +1,6 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
-    /** Helper class for XR interfaces that generates VRS images.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrvrs.html  
-     */
-    class XRVRS extends Object {
-        constructor(identifier?: any)
-        /** Generates the VRS texture based on a render [param target_size] adjusted by our VRS tile size. For each eyes focal point passed in [param eye_foci] a layer is created. Focal point should be in NDC.  
-         *  The result will be cached, requesting a VRS texture with unchanged parameters and settings will return the cached RID.  
-         */
-        make_vrs_texture(target_size: Vector2, eye_foci: PackedVector2Array | Vector2[]): RID
-        
-        /** The minimum radius around the focal point where full quality is guaranteed if VRS is used as a percentage of screen size. */
-        get vrs_min_radius(): float64
-        set vrs_min_radius(value: float64)
-        
-        /** The strength used to calculate the VRS density map. The greater this value, the more noticeable VRS is. */
-        get vrs_strength(): float64
-        set vrs_strength(value: float64)
-    }
-    namespace ZIPPacker {
-        enum ZipAppend {
-            /** Create a new zip archive at the given path. */
-            APPEND_CREATE = 0,
-            
-            /** Append a new zip archive to the end of the already existing file at the given path. */
-            APPEND_CREATEAFTER = 1,
-            
-            /** Add new files to the existing zip archive at the given path. */
-            APPEND_ADDINZIP = 2,
-        }
-    }
-    /** Allows the creation of zip files.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_zippacker.html  
-     */
-    class ZIPPacker extends RefCounted {
-        constructor(identifier?: any)
-        /** Opens a zip file for writing at the given path using the specified write mode.  
-         *  This must be called before everything else.  
-         */
-        open(path: string, append: ZIPPacker.ZipAppend = 0): GError
-        
-        /** Starts writing to a file within the archive. Only one file can be written at the same time.  
-         *  Must be called after [method open].  
-         */
-        start_file(path: string): GError
-        
-        /** Write the given [param data] to the file.  
-         *  Needs to be called after [method start_file].  
-         */
-        write_file(data: PackedByteArray | byte[] | ArrayBuffer): GError
-        
-        /** Stops writing to a file within the archive.  
-         *  It will fail if there is no open file.  
-         */
-        close_file(): GError
-        
-        /** Closes the underlying resources used by this instance. */
-        close(): GError
-    }
     /** Allows reading the content of a zip file.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_zipreader.html  
@@ -2866,7 +2806,7 @@ declare module "godot" {
         static create(variant: any, method: StringName): AnyCallable
         
         /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
-        callv(arguments_: GArray<T>): any
+        callv(arguments_: GArray): any
         
         /** Returns `true` if this [Callable] has no target to call the method on. */
         is_null(): boolean
@@ -2901,7 +2841,7 @@ declare module "godot" {
         get_bound_arguments_count(): int64
         
         /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
-        get_bound_arguments(): GArray<T>
+        get_bound_arguments(): GArray
         
         /** Returns the 32-bit hash value of this [Callable]'s object.  
          *      
@@ -2913,7 +2853,7 @@ declare module "godot" {
          *      
          *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
          */
-        bindv(arguments_: GArray<T>): AnyCallable
+        bindv(arguments_: GArray): AnyCallable
         
         /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
          *      
@@ -2985,7 +2925,7 @@ declare module "godot" {
          *  - `callable` is a reference to the connected [Callable];  
          *  - `flags` is a combination of [enum Object.ConnectFlags].  
          */
-        get_connections(): GArray<T>
+        get_connections(): GArray
         
         /** Emits this signal. All [Callable]s connected to this signal will be triggered. This method supports a variable number of arguments, so parameters can be passed as a comma separated list. */
         emit(...vargargs: any[]): void
@@ -3035,7 +2975,7 @@ declare module "godot" {
         /** Returns `true` if the dictionary contains all keys in the given [param keys] array.  
          *    
          */
-        has_all(keys: GArray<any>): boolean
+        has_all(keys: GArray): boolean
         
         /** Finds and returns the first key whose associated value is equal to [param value], or `null` if it is not found.  
          *      
@@ -3059,10 +2999,10 @@ declare module "godot" {
         hash(): int64
         
         /** Returns the list of keys in the dictionary. */
-        keys(): GArray<any>
+        keys(): GArray
         
         /** Returns the list of values in this dictionary. */
-        values(): GArray<any>
+        values(): GArray
         
         /** Creates and returns a new copy of the dictionary. If [param deep] is `true`, inner [Dictionary] and [Array] keys and values are also copied, recursively. */
         duplicate(deep: boolean = false): GDictionary
@@ -3084,10 +3024,10 @@ declare module "godot" {
         static EQUAL(left: GDictionary, right: GDictionary): boolean
         static NOT_EQUAL(left: GDictionary, right: GDictionary): boolean
     }
-    class GArray<T> {
+    class GArray<T = any> {
         constructor()
-        constructor(from: GArray<T>)
-        constructor(base: GArray<T>, type: int64, class_name: StringName, script: any)
+        constructor(from: GArray)
+        constructor(base: GArray, type: int64, class_name: StringName, script: any)
         constructor(from: PackedByteArray | byte[] | ArrayBuffer)
         constructor(from: PackedInt32Array | int32[])
         constructor(from: PackedInt64Array | int64[])
@@ -3118,7 +3058,7 @@ declare module "godot" {
         hash(): int64
         
         /** Assigns elements of another [param array] into the array. Resizes the array to match [param array]. Performs type conversions if the array is typed. */
-        assign(array: GArray<T>): void
+        assign(array: GArray): void
         
         /** Appends an element at the end of the array. See also [method push_front]. */
         push_back(value: T): void
@@ -3135,7 +3075,7 @@ declare module "godot" {
         /** Appends another [param array] at the end of this array.  
          *    
          */
-        append_array(array: GArray<T>): void
+        append_array(array: GArray): void
         
         /** Sets the array's number of elements to [param size]. If [param size] is smaller than the array's current size, the elements at the end are removed. If [param size] is greater, new default elements (usually `null`) are added, depending on the array's type.  
          *  Returns [constant OK] on success, or one of the other [enum Error] constants if this method fails.  
@@ -3283,7 +3223,7 @@ declare module "godot" {
         /** Returns a new copy of the array.  
          *  By default, a **shallow** copy is returned: all nested [Array] and [Dictionary] elements are shared with the original array. Modifying them in one array will also affect them in the other.[br]If [param deep] is `true`, a **deep** copy is returned: all nested arrays and dictionaries are also duplicated (recursively).  
          */
-        duplicate(deep: boolean = false): GArray<T>
+        duplicate(deep: boolean = false): GArray
         
         /** Returns a new [Array] containing this array's elements, from index [param begin] (inclusive) to [param end] (exclusive), every [param step] elements.  
          *  If either [param begin] or [param end] are negative, their value is relative to the end of the array.  
@@ -3291,14 +3231,14 @@ declare module "godot" {
          *  If [param deep] is `true`, all nested [Array] and [Dictionary] elements in the slice are duplicated from the original, recursively. See also [method duplicate]).  
          *    
          */
-        slice(begin: int64, end: int64 = 2147483647, step: int64 = 1, deep: boolean = false): GArray<T>
+        slice(begin: int64, end: int64 = 2147483647, step: int64 = 1, deep: boolean = false): GArray
         
         /** Calls the given [Callable] on each element in the array and returns a new, filtered [Array].  
          *  The [param method] receives one of the array elements as an argument, and should return `true` to add the element to the filtered array, or `false` to exclude it.  
          *    
          *  See also [method any], [method all], [method map] and [method reduce].  
          */
-        filter(func: Callable1<T, boolean>): GArray<T>
+        filter(func: Callable1<T, boolean>): GArray
         
         /** Calls the given [Callable] for each element in the array and returns a new array filled with values returned by the [param method].  
          *  The [param method] should take one [Variant] parameter (the current array element) and can return any [Variant].  
@@ -3353,7 +3293,7 @@ declare module "godot" {
         is_typed(): boolean
         
         /** Returns `true` if this array is typed the same as the given [param array]. See also [method is_typed]. */
-        is_same_typed(array: GArray<T>): boolean
+        is_same_typed(array: GArray): boolean
         
         /** Returns the built-in [Variant] type of the typed array as a [enum Variant.Type] constant. If the array is not typed, returns [constant TYPE_NIL]. See also [method is_typed]. */
         get_typed_builtin(): int64
@@ -3373,12 +3313,12 @@ declare module "godot" {
          *  In GDScript, arrays are automatically read-only if declared with the `const` keyword.  
          */
         is_read_only(): boolean
-        static EQUAL(left: GArray<T>, right: GArray<T>): boolean
-        static NOT_EQUAL(left: GArray<T>, right: GArray<T>): boolean
-        static LESS(left: GArray<T>, right: GArray<T>): boolean
-        static LESS_EQUAL(left: GArray<T>, right: GArray<T>): boolean
-        static GREATER(left: GArray<T>, right: GArray<T>): boolean
-        static GREATER_EQUAL(left: GArray<T>, right: GArray<T>): boolean
+        static EQUAL(left: GArray, right: GArray): boolean
+        static NOT_EQUAL(left: GArray, right: GArray): boolean
+        static LESS(left: GArray, right: GArray): boolean
+        static LESS_EQUAL(left: GArray, right: GArray): boolean
+        static GREATER(left: GArray, right: GArray): boolean
+        static GREATER_EQUAL(left: GArray, right: GArray): boolean
     }
     /** A packed array of bytes.  
      *  	  
@@ -3387,7 +3327,7 @@ declare module "godot" {
     class PackedByteArray {
         constructor()
         constructor(from: PackedByteArray | byte[] | ArrayBuffer)
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         /** [jsb utility method] Converts a PackedByteArray to a JavaScript ArrayBuffer. */
@@ -3607,7 +3547,7 @@ declare module "godot" {
     class PackedInt32Array {
         constructor()
         constructor(from: PackedInt32Array | int32[])
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         
@@ -3691,7 +3631,7 @@ declare module "godot" {
     class PackedInt64Array {
         constructor()
         constructor(from: PackedInt64Array | int64[])
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: int64)
         get_indexed(index: number): int64
         
@@ -3775,7 +3715,7 @@ declare module "godot" {
     class PackedFloat32Array {
         constructor()
         constructor(from: PackedFloat32Array | float32[])
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: float64)
         get_indexed(index: number): float64
         
@@ -3876,7 +3816,7 @@ declare module "godot" {
     class PackedFloat64Array {
         constructor()
         constructor(from: PackedFloat64Array | float64[])
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: float64)
         get_indexed(index: number): float64
         
@@ -3977,7 +3917,7 @@ declare module "godot" {
     class PackedStringArray {
         constructor()
         constructor(from: PackedStringArray | string[])
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: string)
         get_indexed(index: number): string
         
@@ -4059,7 +3999,7 @@ declare module "godot" {
     class PackedVector2Array {
         constructor()
         constructor(from: PackedVector2Array | Vector2[])
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: Vector2)
         get_indexed(index: number): Vector2
         
@@ -4158,7 +4098,7 @@ declare module "godot" {
     class PackedVector3Array {
         constructor()
         constructor(from: PackedVector3Array | Vector3[])
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: Vector3)
         get_indexed(index: number): Vector3
         
@@ -4257,7 +4197,7 @@ declare module "godot" {
     class PackedVector4Array {
         constructor()
         constructor(from: PackedVector4Array)
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: Vector4)
         get_indexed(index: number): Vector4
         
@@ -4356,7 +4296,7 @@ declare module "godot" {
     class PackedColorArray {
         constructor()
         constructor(from: PackedColorArray | Color[])
-        constructor(from: GArray<any>)
+        constructor(from: GArray)
         set_indexed(index: number, value: Color)
         get_indexed(index: number): Color
         

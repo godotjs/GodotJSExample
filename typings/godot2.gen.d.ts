@@ -756,6 +756,9 @@ declare module "godot" {
     class ConnectDialogBinds extends Object {
         constructor(identifier?: any)
     }
+    class ConnectionInfoDialog extends AcceptDialog {
+        constructor(identifier?: any)
+    }
     class ConnectionsDock extends VBoxContainer {
         constructor(identifier?: any)
         update_tree(): void
@@ -1081,7 +1084,7 @@ declare module "godot" {
         /** User defined BiDi algorithm override function.  
          *  Returns an [Array] of [Vector3i] text ranges and text base directions, in the left-to-right order. Ranges should cover full source [param text] without overlaps. BiDi algorithm will be used on each range separately.  
          */
-        /* gdvirtual */ _structured_text_parser(args: GArray<any>, text: string): GArray<any>
+        /* gdvirtual */ _structured_text_parser(args: GArray, text: string): GArray
         
         /** Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [member custom_minimum_size] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).  
          *  If not overridden, defaults to [constant Vector2.ZERO].  
@@ -1100,7 +1103,7 @@ declare module "godot" {
          *  A preview that will follow the mouse that should represent the data can be set with [method set_drag_preview]. A good time to set the preview is in this method.  
          *    
          */
-        /* gdvirtual */ _get_drag_data(at_position: Vector2): void
+        /* gdvirtual */ _get_drag_data(at_position: Vector2): any
         
         /** Godot calls this method to test if [param data] from a control's [method _get_drag_data] can be dropped at [param at_position]. [param at_position] is local to this control.  
          *  This method should only be used to test the data. Process the data in [method _drop_data].  
@@ -2879,7 +2882,7 @@ declare module "godot" {
         /* gdvirtual */ _has_capture(capture: string): boolean
         
         /** Override this method to process incoming messages. The [param session_id] is the ID of the [EditorDebuggerSession] that received the message (which you can retrieve via [method get_session]). */
-        /* gdvirtual */ _capture(message: string, data: GArray<any>, session_id: int64): boolean
+        /* gdvirtual */ _capture(message: string, data: GArray, session_id: int64): boolean
         
         /** Override this method to be notified when a breakpoint line has been clicked in the debugger breakpoint panel. */
         /* gdvirtual */ _goto_script_line(script: Script, line: int64): void
@@ -2897,7 +2900,7 @@ declare module "godot" {
          *      
          *  **Note:** Sessions in the array may be inactive, check their state via [method EditorDebuggerSession.is_active].  
          */
-        get_sessions(): GArray<any>
+        get_sessions(): GArray
     }
     class EditorDebuggerRemoteObject extends Object {
         constructor(identifier?: any)
@@ -2914,10 +2917,10 @@ declare module "godot" {
     class EditorDebuggerSession extends RefCounted {
         constructor(identifier?: any)
         /** Sends the given [param message] to the attached remote instance, optionally passing additionally [param data]. See [EngineDebugger] for how to retrieve those messages. */
-        send_message(message: string, data: GArray<any> = []): void
+        send_message(message: string, data: GArray = []): void
         
         /** Toggle the given [param profiler] on the attached remote instance, optionally passing additionally [param data]. See [EngineProfiler] for more details. */
-        toggle_profiler(profiler: string, enable: boolean, data: GArray<any> = []): void
+        toggle_profiler(profiler: string, enable: boolean, data: GArray = []): void
         
         /** Returns `true` if the attached remote instance is currently in the debug loop. */
         is_breaked(): boolean
@@ -3084,7 +3087,7 @@ declare module "godot" {
          *  - `default_value`: The default value for this option.  
          *  - `update_visibility`: An optional boolean value. If set to `true`, the preset will emit [signal Object.property_list_changed] when the option is changed.  
          */
-        /* gdvirtual */ _get_export_options(platform: EditorExportPlatform): GArray<any>
+        /* gdvirtual */ _get_export_options(platform: EditorExportPlatform): GArray
         
         /** Return a [Dictionary] of override values for export options, that will be used instead of user-provided values. Overridden options will be hidden from the user interface.  
          *    
@@ -3203,10 +3206,6 @@ declare module "godot" {
         
         /** Returns the current value of an export option supplied by [method _get_export_options]. */
         get_option(name: StringName): any
-    }
-    class EditorExportPreset extends RefCounted {
-        constructor(identifier?: any)
-        _get_property_warning(name: StringName): string
     }
     namespace EditorFeatureProfile {
         enum Feature {
@@ -3603,7 +3602,7 @@ declare module "godot" {
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
         
         /** Gets the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: `name`, `default_value`, `property_hint` (optional), `hint_string` (optional), `usage` (optional). */
-        /* gdvirtual */ _get_import_options(path: string, preset_index: int64): GArray<any>
+        /* gdvirtual */ _get_import_options(path: string, preset_index: int64): GArray
         
         /** Gets the extension used to save this resource in the `.godot/imported` directory (see [member ProjectSettings.application/config/use_hidden_project_data_directory]). */
         /* gdvirtual */ _get_save_extension(): string
@@ -3626,7 +3625,7 @@ declare module "godot" {
         /** Imports [param source_file] into [param save_path] with the import [param options] specified. The [param platform_variants] and [param gen_files] arrays will be modified by this function.  
          *  This method must be overridden to do the actual importing work. See this class' description for an example of overriding this method.  
          */
-        /* gdvirtual */ _import(source_file: string, save_path: string, options: GDictionary, platform_variants: GArray<any>, gen_files: GArray<any>): GError
+        /* gdvirtual */ _import(source_file: string, save_path: string, options: GDictionary, platform_variants: GArray, gen_files: GArray): GError
         
         /** Tells whether this importer can be run in parallel on threads, or, on the contrary, it's only safe for the editor to call it from the main thread, for one file at a time.  
          *  If this method is not overridden, it will return `true` by default (i.e., safe for parallel importing).  
@@ -3800,6 +3799,13 @@ declare module "godot" {
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
+    class EditorInspectorSection extends Container {
+        constructor(identifier?: any)
+        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, indent_depth: int64 = 0, level: int64 = 1): void
+        get_vbox(): VBoxContainer
+        unfold(): void
+        fold(): void
+    }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
     }
@@ -3861,7 +3867,7 @@ declare module "godot" {
         /** Override this method to return the current value of a handle. This value will be requested at the start of an edit and used as the `restore` argument in [method _commit_handle].  
          *  The [param secondary] argument is `true` when the requested handle is secondary (see [method add_handles] for more information).  
          */
-        /* gdvirtual */ _get_handle_value(id: int64, secondary: boolean): void
+        /* gdvirtual */ _get_handle_value(id: int64, secondary: boolean): any
         /* gdvirtual */ _begin_handle_action(id: int64, secondary: boolean): void
         
         /** Override this method to update the node properties when the user drags a gizmo handle (previously added with [method add_handles]). The provided [param point] is the mouse position in screen coordinates and the [param camera] can be used to convert it to raycasts.  
@@ -3879,7 +3885,7 @@ declare module "godot" {
         /* gdvirtual */ _subgizmos_intersect_ray(camera: Camera3D, point: Vector2): int64
         
         /** Override this method to allow selecting subgizmos using mouse drag box selection. Given a [param camera] and a [param frustum], this method should return which subgizmos are contained within the frustum. The [param frustum] argument consists of an array with all the [Plane]s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [method _get_subgizmo_transform] or [method _commit_subgizmos]. */
-        /* gdvirtual */ _subgizmos_intersect_frustum(camera: Camera3D, frustum: GArray<any>): PackedInt32Array
+        /* gdvirtual */ _subgizmos_intersect_frustum(camera: Camera3D, frustum: GArray): PackedInt32Array
         
         /** Override this method to update the node properties during subgizmo editing (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). The [param transform] is given in the [Node3D]'s local coordinate system. */
         /* gdvirtual */ _set_subgizmo_transform(id: int64, transform: Transform3D): void
@@ -3890,7 +3896,7 @@ declare module "godot" {
         /** Override this method to commit a group of subgizmos being edited (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). This usually means creating an [UndoRedo] action for the change, using the current transforms as "do" and the [param restores] transforms as "undo".  
          *  If the [param cancel] argument is `true`, the [param restores] transforms should be directly set, without any [UndoRedo] action.  
          */
-        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array | int32[], restores: GArray<any>, cancel: boolean): void
+        /* gdvirtual */ _commit_subgizmos(ids: PackedInt32Array | int32[], restores: GArray, cancel: boolean): void
         
         /** Adds lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this method during [method _redraw]. */
         add_lines(lines: PackedVector3Array | Vector3[], material: Material, billboard: boolean = false, modulate: Color = new Color(1, 1, 1, 1)): void
@@ -3973,7 +3979,7 @@ declare module "godot" {
          *  The [param secondary] argument is `true` when the requested handle is secondary (see [method EditorNode3DGizmo.add_handles] for more information).  
          *  Called for this plugin's active gizmos.  
          */
-        /* gdvirtual */ _get_handle_value(gizmo: EditorNode3DGizmo, handle_id: int64, secondary: boolean): void
+        /* gdvirtual */ _get_handle_value(gizmo: EditorNode3DGizmo, handle_id: int64, secondary: boolean): any
         /* gdvirtual */ _begin_handle_action(gizmo: EditorNode3DGizmo, handle_id: int64, secondary: boolean): void
         
         /** Override this method to update the node's properties when the user drags a gizmo handle (previously added with [method EditorNode3DGizmo.add_handles]). The provided [param screen_pos] is the mouse position in screen coordinates and the [param camera] can be used to convert it to raycasts.  
@@ -3993,7 +3999,7 @@ declare module "godot" {
         /* gdvirtual */ _subgizmos_intersect_ray(gizmo: EditorNode3DGizmo, camera: Camera3D, screen_pos: Vector2): int64
         
         /** Override this method to allow selecting subgizmos using mouse drag box selection. Given a [param camera] and [param frustum_planes], this method should return which subgizmos are contained within the frustums. The [param frustum_planes] argument consists of an array with all the [Plane]s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, these identifiers can have any non-negative value and will be used in other virtual methods like [method _get_subgizmo_transform] or [method _commit_subgizmos]. Called for this plugin's active gizmos. */
-        /* gdvirtual */ _subgizmos_intersect_frustum(gizmo: EditorNode3DGizmo, camera: Camera3D, frustum_planes: GArray<any>): PackedInt32Array
+        /* gdvirtual */ _subgizmos_intersect_frustum(gizmo: EditorNode3DGizmo, camera: Camera3D, frustum_planes: GArray): PackedInt32Array
         
         /** Override this method to return the current transform of a subgizmo. As with all subgizmo methods, the transform should be in local space respect to the gizmo's Node3D. This transform will be requested at the start of an edit and used in the `restore` argument in [method _commit_subgizmos]. Called for this plugin's active gizmos. */
         /* gdvirtual */ _get_subgizmo_transform(gizmo: EditorNode3DGizmo, subgizmo_id: int64): Transform3D
@@ -4004,7 +4010,7 @@ declare module "godot" {
         /** Override this method to commit a group of subgizmos being edited (see [method _subgizmos_intersect_ray] and [method _subgizmos_intersect_frustum]). This usually means creating an [UndoRedo] action for the change, using the current transforms as "do" and the [param restores] transforms as "undo".  
          *  If the [param cancel] argument is `true`, the [param restores] transforms should be directly set, without any [UndoRedo] action. As with all subgizmo methods, transforms are given in local space respect to the gizmo's Node3D. Called for this plugin's active gizmos.  
          */
-        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array | int32[], restores: GArray<any>, cancel: boolean): void
+        /* gdvirtual */ _commit_subgizmos(gizmo: EditorNode3DGizmo, ids: PackedInt32Array | int32[], restores: GArray, cancel: boolean): void
         
         /** Creates an unshaded material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [method get_material] and used in [method EditorNode3DGizmo.add_mesh] and [method EditorNode3DGizmo.add_lines]. Should not be overridden. */
         create_material(name: string, color: Color, billboard: boolean = false, on_top: boolean = false, use_vertex_color: boolean = false): void
@@ -4086,6 +4092,9 @@ declare module "godot" {
         get_project_settings_dir(): string
     }
     class EditorPerformanceProfiler extends HSplitContainer {
+        constructor(identifier?: any)
+    }
+    class EditorPlainTextSyntaxHighlighter extends EditorSyntaxHighlighter {
         constructor(identifier?: any)
     }
     namespace EditorPlugin {
@@ -4606,11 +4615,28 @@ declare module "godot" {
     class EditorPropertyCheck extends EditorProperty {
         constructor(identifier?: any)
     }
+    class EditorPropertyColor extends EditorProperty {
+        constructor(identifier?: any)
+    }
     class EditorPropertyDictionaryObject extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyEnum extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyFloat extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyInteger extends EditorProperty {
         constructor(identifier?: any)
+    }
+    class EditorPropertyLayers extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyLayersGrid extends Control {
+        constructor(identifier?: any)
+        readonly flag_changed: Signal1<int64>
+        readonly rename_confirmed: Signal2<int64, string>
     }
     class EditorPropertyLocalizableString extends EditorProperty {
         constructor(identifier?: any)
@@ -4628,6 +4654,9 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class EditorPropertyText extends EditorProperty {
+        constructor(identifier?: any)
+    }
+    class EditorPropertyVector2 extends EditorPropertyVectorN {
         constructor(identifier?: any)
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
@@ -4793,7 +4822,7 @@ declare module "godot" {
     }
     class EditorRunNative extends HBoxContainer {
         constructor(identifier?: any)
-        readonly native_run: Signal1<EditorExportPreset>
+        readonly native_run: Signal1<any /*EditorExportPreset*/>
     }
     class EditorSceneExporterGLTFSettings extends RefCounted {
         constructor(identifier?: any)
@@ -4819,7 +4848,7 @@ declare module "godot" {
         /* gdvirtual */ _get_extensions(): PackedStringArray
         /* gdvirtual */ _import_scene(path: string, flags: int64, options: GDictionary): Object
         /* gdvirtual */ _get_import_options(path: string): void
-        /* gdvirtual */ _get_option_visibility(path: string, for_animation: boolean, option: string): void
+        /* gdvirtual */ _get_option_visibility(path: string, for_animation: boolean, option: string): any
     }
     /** Importer for Blender's `.blend` scene file format.  
      *  	  
@@ -4886,10 +4915,10 @@ declare module "godot" {
         /* gdvirtual */ _get_internal_import_options(category: int64): void
         
         /** Return true or false whether a given option should be visible. Return null to ignore. */
-        /* gdvirtual */ _get_internal_option_visibility(category: int64, for_animation: boolean, option: string): void
+        /* gdvirtual */ _get_internal_option_visibility(category: int64, for_animation: boolean, option: string): any
         
         /** Return true whether updating the 3D view of the import dialog needs to be updated if an option has changed. */
-        /* gdvirtual */ _get_internal_option_update_view_required(category: int64, option: string): void
+        /* gdvirtual */ _get_internal_option_update_view_required(category: int64, option: string): any
         
         /** Process a specific node or resource for a given category. */
         /* gdvirtual */ _internal_process(category: int64, base_node: Node, node: Node, resource: Resource): void
@@ -4898,7 +4927,7 @@ declare module "godot" {
         /* gdvirtual */ _get_import_options(path: string): void
         
         /** Return true or false whether a given option should be visible. Return null to ignore. */
-        /* gdvirtual */ _get_option_visibility(path: string, for_animation: boolean, option: string): void
+        /* gdvirtual */ _get_option_visibility(path: string, for_animation: boolean, option: string): any
         
         /** Pre Process the scene. This function is called right after the scene format loader loaded the scene and no changes have been made. */
         /* gdvirtual */ _pre_process(scene: Node): void
@@ -4971,10 +5000,10 @@ declare module "godot" {
         remove_node(node: Node): void
         
         /** Returns the list of selected nodes. */
-        get_selected_nodes(): GArray<any>
+        get_selected_nodes(): GArray
         
         /** Returns the list of selected nodes, optimized for transform operations (i.e. moving them, rotating, etc.). This list can be used to avoid situations where a node is selected and is also a child/grandchild. */
-        get_transformable_selected_nodes(): GArray<any>
+        get_transformable_selected_nodes(): GArray
         
         /** Emitted when the selection changes. */
         readonly selection_changed: Signal0
@@ -5031,7 +5060,7 @@ declare module "godot" {
         get_recent_dirs(): PackedStringArray
         
         /** Overrides the built-in editor action [param name] with the input actions defined in [param actions_list]. */
-        set_builtin_action_override(name: string, actions_list: GArray<any>): void
+        set_builtin_action_override(name: string, actions_list: GArray): void
         
         /** Checks if any settings with the prefix [param setting_prefix] exist in the set of changed settings. See also [method get_changed_settings]. */
         check_changed_settings_in_group(setting_prefix: string): boolean
@@ -5088,6 +5117,9 @@ declare module "godot" {
         /** Emitted when the value form loses focus. */
         readonly value_focus_exited: Signal0
     }
+    class EditorStandardSyntaxHighlighter extends EditorSyntaxHighlighter {
+        constructor(identifier?: any)
+    }
     /** Base class for [SyntaxHighlighter] used by the [ScriptEditor].  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_editorsyntaxhighlighter.html  
@@ -5123,7 +5155,7 @@ declare module "godot" {
     class EditorTranslationParserPlugin extends RefCounted {
         constructor(identifier?: any)
         /** Override this method to define a custom parsing logic to extract the translatable strings. */
-        /* gdvirtual */ _parse_file(path: string, msgids: GArray<any>, msgids_context_plural: GArray<any>): void
+        /* gdvirtual */ _parse_file(path: string, msgids: GArray, msgids_context_plural: GArray): void
         
         /** Gets the list of file extensions to associate with this parser, e.g. `["csv"]`. */
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
@@ -5249,7 +5281,7 @@ declare module "godot" {
         /* gdvirtual */ _set_credentials(username: string, password: string, ssh_public_key_path: string, ssh_private_key_path: string, ssh_passphrase: string): void
         
         /** Returns an [Array] of [Dictionary] items (see [method create_status_file]), each containing the status data of every modified file in the project folder. */
-        /* gdvirtual */ _get_modified_files_data(): GArray<any>
+        /* gdvirtual */ _get_modified_files_data(): GArray
         
         /** Stages the file present at [param file_path] to the staged area. */
         /* gdvirtual */ _stage_file(file_path: string): void
@@ -5264,7 +5296,7 @@ declare module "godot" {
         /* gdvirtual */ _commit(msg: string): void
         
         /** Returns an array of [Dictionary] items (see [method create_diff_file], [method create_diff_hunk], [method create_diff_line], [method add_line_diffs_into_diff_hunk] and [method add_diff_hunks_into_diff_file]), each containing information about a diff. If [param identifier] is a file path, returns a file diff, and if it is a commit identifier, then returns a commit diff. */
-        /* gdvirtual */ _get_diff(identifier: string, area: int64): GArray<any>
+        /* gdvirtual */ _get_diff(identifier: string, area: int64): GArray
         
         /** Shuts down VCS plugin instance. Called when the user either closes the editor or shuts down the VCS plugin through the editor UI. */
         /* gdvirtual */ _shut_down(): boolean
@@ -5273,13 +5305,13 @@ declare module "godot" {
         /* gdvirtual */ _get_vcs_name(): string
         
         /** Returns an [Array] of [Dictionary] items (see [method create_commit]), each containing the data for a past commit. */
-        /* gdvirtual */ _get_previous_commits(max_commits: int64): GArray<any>
+        /* gdvirtual */ _get_previous_commits(max_commits: int64): GArray
         
         /** Gets an instance of an [Array] of [String]s containing available branch names in the VCS. */
-        /* gdvirtual */ _get_branch_list(): GArray<any>
+        /* gdvirtual */ _get_branch_list(): GArray
         
         /** Returns an [Array] of [String]s, each containing the name of a remote configured in the VCS. */
-        /* gdvirtual */ _get_remotes(): GArray<any>
+        /* gdvirtual */ _get_remotes(): GArray
         
         /** Creates a new branch named [param branch_name] in the VCS. */
         /* gdvirtual */ _create_branch(branch_name: string): void
@@ -5309,7 +5341,7 @@ declare module "godot" {
         /* gdvirtual */ _fetch(remote: string): void
         
         /** Returns an [Array] of [Dictionary] items (see [method create_diff_hunk]), each containing a line diff between a file at [param file_path] and the [param text] which is passed in. */
-        /* gdvirtual */ _get_line_diff(file_path: string, text: string): GArray<any>
+        /* gdvirtual */ _get_line_diff(file_path: string, text: string): GArray
         
         /** Helper function to create a [Dictionary] for storing a line diff. [param new_line_no] is the line number in the new file (can be `-1` if the line is deleted). [param old_line_no] is the line number in the old file (can be `-1` if the line is added). [param content] is the diff text. [param status] is a single character string which stores the line origin. */
         create_diff_line(new_line_no: int64, old_line_no: int64, content: string, status: string): GDictionary
@@ -5327,10 +5359,10 @@ declare module "godot" {
         create_status_file(file_path: string, change_type: EditorVCSInterface.ChangeType, area: EditorVCSInterface.TreeArea): GDictionary
         
         /** Helper function to add an array of [param diff_hunks] into a [param diff_file]. */
-        add_diff_hunks_into_diff_file(diff_file: GDictionary, diff_hunks: GArray<any>): GDictionary
+        add_diff_hunks_into_diff_file(diff_file: GDictionary, diff_hunks: GArray): GDictionary
         
         /** Helper function to add an array of [param line_diffs] into a [param diff_hunk]. */
-        add_line_diffs_into_diff_hunk(diff_hunk: GDictionary, line_diffs: GArray<any>): GDictionary
+        add_line_diffs_into_diff_hunk(diff_hunk: GDictionary, line_diffs: GArray): GDictionary
         
         /** Pops up an error message in the editor which is shown as coming from the underlying VCS. Use this to show VCS specific error messages. */
         popup_error(msg: string): void
@@ -5366,10 +5398,10 @@ declare module "godot" {
     class EngineProfiler extends RefCounted {
         constructor(identifier?: any)
         /** Called when the profiler is enabled/disabled, along with a set of [param options]. */
-        /* gdvirtual */ _toggle(enable: boolean, options: GArray<any>): void
+        /* gdvirtual */ _toggle(enable: boolean, options: GArray): void
         
         /** Called when data is added to profiler using [method EngineDebugger.profiler_add_frame_data]. */
-        /* gdvirtual */ _add_frame(data: GArray<any>): void
+        /* gdvirtual */ _add_frame(data: GArray): void
         
         /** Called once every engine iteration when the profiler is active with information about the current frame. All time values are in seconds. Lower values represent faster processing times and are therefore considered better. */
         /* gdvirtual */ _tick(frame_time: float64, process_time: float64, physics_time: float64, physics_frame_time: float64): void
@@ -5948,7 +5980,7 @@ declare module "godot" {
         /** Executes the expression that was previously parsed by [method parse] and returns the result. Before you use the returned object, you should check if the method failed by calling [method has_execute_failed].  
          *  If you defined input variables in [method parse], you can specify their values in the inputs array, in the same order.  
          */
-        execute(inputs: GArray<any> = [], base_instance: Object = undefined, show_error: boolean = true, const_calls_only: boolean = false): any
+        execute(inputs: GArray = [], base_instance: Object = undefined, show_error: boolean = true, const_calls_only: boolean = false): any
         
         /** Returns `true` if [method execute] has failed. */
         has_execute_failed(): boolean
@@ -6873,7 +6905,7 @@ declare module "godot" {
         find_variation(variation_coordinates: GDictionary, face_index: int64 = 0, strength: float64 = 0, transform: Transform2D = new Transform2D(), spacing_top: int64 = 0, spacing_bottom: int64 = 0, spacing_space: int64 = 0, spacing_glyph: int64 = 0, baseline_offset: float64 = 0): RID
         
         /** Returns [Array] of valid [Font] [RID]s, which can be passed to the [TextServer] methods. */
-        get_rids(): GArray<any>
+        get_rids(): GArray
         
         /** Returns the total average font height (ascent plus descent) in pixels.  
          *      
@@ -7049,7 +7081,7 @@ declare module "godot" {
         remove_cache(cache_index: int64): void
         
         /** Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size. */
-        get_size_cache_list(cache_index: int64): GArray<any>
+        get_size_cache_list(cache_index: int64): GArray
         
         /** Removes all font sizes from the cache entry */
         clear_size_cache(cache_index: int64): void
@@ -7202,7 +7234,7 @@ declare module "godot" {
         get_glyph_texture_idx(cache_index: int64, size: Vector2i, glyph: int64): int64
         
         /** Returns list of the kerning overrides. */
-        get_kerning_list(cache_index: int64, size: int64): GArray<any>
+        get_kerning_list(cache_index: int64, size: int64): GArray
         
         /** Removes all kerning overrides. */
         clear_kerning_map(cache_index: int64, size: int64): void
@@ -7407,7 +7439,7 @@ declare module "godot" {
     class FramebufferCacheRD extends Object {
         constructor(identifier?: any)
         /** Creates, or obtains a cached, framebuffer. [param textures] lists textures accessed. [param passes] defines the subpasses and texture allocation, if left empty a single pass is created and textures are allocated depending on their usage flags. [param views] defines the number of views used when rendering. */
-        static get_cache_multipass(textures: GArray<any>, passes: GArray<any>, views: int64): RID
+        static get_cache_multipass(textures: GArray, passes: GArray, views: int64): RID
     }
     namespace GDExtension {
         enum InitializationLevel {
@@ -9177,29 +9209,5 @@ declare module "godot" {
         /** Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values. */
         get visibility_range_fade_mode(): int64
         set visibility_range_fade_mode(value: int64)
-    }
-    class GeometryInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    class Gizmo3DHelper extends RefCounted {
-        constructor(identifier?: any)
-    }
-    class GodotJSDockedPanel extends MarginContainer {
-        constructor(identifier?: any)
-    }
-    class GodotJSStatisticsViewer extends VBoxContainer {
-        constructor(identifier?: any)
-    }
-    class GodotNavigationServer2D extends NavigationServer2D {
-        constructor(identifier?: any)
-    }
-    class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
-        constructor(identifier?: any)
-    }
-    class GodotPhysicsServer2D extends PhysicsServer2D {
-        constructor(identifier?: any)
-    }
-    class GodotPhysicsServer3D extends PhysicsServer3D {
-        constructor(identifier?: any)
     }
 }

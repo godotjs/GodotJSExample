@@ -1,6 +1,33 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    class GeometryInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    class Gizmo3DHelper extends RefCounted {
+        constructor(identifier?: any)
+    }
+    class GodotJSDockedPanel extends MarginContainer {
+        constructor(identifier?: any)
+    }
+    class GodotJSStatisticsViewer extends VBoxContainer {
+        constructor(identifier?: any)
+    }
+    class GodotNavigationServer2D extends NavigationServer2D {
+        constructor(identifier?: any)
+    }
+    class GodotPhysicsDirectSpaceState2D extends PhysicsDirectSpaceState2D {
+        constructor(identifier?: any)
+    }
+    class GodotPhysicsServer2D extends PhysicsServer2D {
+        constructor(identifier?: any)
+    }
+    class GodotPhysicsServer3D extends PhysicsServer3D {
+        constructor(identifier?: any)
+    }
+    class GotoLineDialog extends ConfirmationDialog {
+        constructor(identifier?: any)
+    }
     namespace Gradient {
         enum InterpolationMode {
             /** Linear interpolation. */
@@ -226,7 +253,7 @@ declare module "godot" {
         set_connection_activity(from_node: StringName, from_port: int64, to_node: StringName, to_port: int64, amount: float64): void
         
         /** Returns an [Array] containing the list of connections. A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`. */
-        get_connection_list(): GArray<any>
+        get_connection_list(): GArray
         
         /** Returns the closest connection to the given point in screen space. If no connection is found within [param max_distance] pixels, an empty [Dictionary] is returned.  
          *  A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`.  
@@ -236,7 +263,7 @@ declare module "godot" {
         get_closest_connection_at_point(point: Vector2, max_distance: float64 = 4): GDictionary
         
         /** Returns an [Array] containing the list of connections that intersect with the given [Rect2]. A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`. */
-        get_connections_intersecting_with_rect(rect: Rect2): GArray<any>
+        get_connections_intersecting_with_rect(rect: Rect2): GArray
         
         /** Removes all connections between nodes. */
         clear_connections(): void
@@ -288,7 +315,7 @@ declare module "godot" {
         get_element_frame(element: StringName): GraphFrame
         
         /** Returns an array of node names that are attached to the [GraphFrame] with the given name. */
-        get_attached_nodes_of_frame(frame: StringName): GArray<any>
+        get_attached_nodes_of_frame(frame: StringName): GArray
         
         /** Gets the [HBoxContainer] that contains the zooming and grid snap controls in the top left of the graph. You can use this method to reposition the toolbar or to add your own custom controls to it.  
          *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
@@ -741,16 +768,16 @@ declare module "godot" {
         clear(): void
         
         /** Returns an array of [Vector3] with the non-empty cell coordinates in the grid map. */
-        get_used_cells(): GArray<any>
+        get_used_cells(): GArray
         
         /** Returns an array of all cells with the given item index specified in [param item]. */
-        get_used_cells_by_item(item: int64): GArray<any>
+        get_used_cells_by_item(item: int64): GArray
         
         /** Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in the grid. The transforms are specified in local space. */
-        get_meshes(): GArray<any>
+        get_meshes(): GArray
         
         /** Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist within the current GridMap. */
-        get_bake_meshes(): GArray<any>
+        get_bake_meshes(): GArray
         
         /** Returns [RID] of a baked mesh with the given [param idx]. */
         get_bake_mesh_instance(idx: int64): RID
@@ -2098,10 +2125,10 @@ declare module "godot" {
     class ImageTexture3D extends Texture3D {
         constructor(identifier?: any)
         /** Creates the [ImageTexture3D] with specified [param width], [param height], and [param depth]. See [enum Image.Format] for [param format] options. If [param use_mipmaps] is `true`, then generate mipmaps for the [ImageTexture3D]. */
-        create(format: Image.Format, width: int64, height: int64, depth: int64, use_mipmaps: boolean, data: GArray<any>): GError
+        create(format: Image.Format, width: int64, height: int64, depth: int64, use_mipmaps: boolean, data: GArray): GError
         
         /** Replaces the texture's existing data with the layers specified in [param data]. The size of [param data] must match the parameters that were used for [method create]. In other words, the texture cannot be resized or have its format changed by calling [method update]. */
-        update(data: GArray<any>): void
+        update(data: GArray): void
         get _images(): GArray
         set _images(value: GArray)
     }
@@ -2114,7 +2141,7 @@ declare module "godot" {
         /** Creates an [ImageTextureLayered] from an array of [Image]s. See [method Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images  *must*  have the same width, height, image format and mipmapping setting.  
          *  Each [Image] represents one `layer`.  
          */
-        create_from_images(images: GArray<any>): GError
+        create_from_images(images: GArray): GError
         
         /** Replaces the existing [Image] data at the given [param layer] with this new image.  
          *  The given [Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.  
@@ -2204,7 +2231,7 @@ declare module "godot" {
          *      
          *  **Note:** When using indices, it is recommended to only use points, lines, or triangles.  
          */
-        add_surface(primitive: Mesh.PrimitiveType, arrays: GArray<any>, blend_shapes: GArray<any> = [], lods: GDictionary = new GDictionary(), material: Material = undefined, name: string = '', flags: int64 = 0): void
+        add_surface(primitive: Mesh.PrimitiveType, arrays: GArray, blend_shapes: GArray = [], lods: GDictionary = new GDictionary(), material: Material = undefined, name: string = '', flags: int64 = 0): void
         
         /** Returns the number of surfaces that the mesh holds. */
         get_surface_count(): int64
@@ -2216,10 +2243,10 @@ declare module "godot" {
         get_surface_name(surface_idx: int64): string
         
         /** Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface. See [method add_surface]. */
-        get_surface_arrays(surface_idx: int64): GArray<any>
+        get_surface_arrays(surface_idx: int64): GArray
         
         /** Returns a single set of blend shape arrays for the requested blend shape index for a surface. */
-        get_surface_blend_shape_arrays(surface_idx: int64, blend_shape_idx: int64): GArray<any>
+        get_surface_blend_shape_arrays(surface_idx: int64, blend_shape_idx: int64): GArray
         
         /** Returns the number of lods that the mesh holds on a given surface. */
         get_surface_lod_count(surface_idx: int64): int64
@@ -2247,7 +2274,7 @@ declare module "godot" {
          *  The number of generated lods can be accessed using [method get_surface_lod_count], and each LOD is available in [method get_surface_lod_size] and [method get_surface_lod_indices].  
          *  [param bone_transform_array] is an [Array] which can be either empty or contain [Transform3D]s which, for each of the mesh's bone IDs, will apply mesh skinning when generating the LOD mesh variations. This is usually used to account for discrepancies in scale between the mesh itself and its skinning data.  
          */
-        generate_lods(normal_merge_angle: float64, normal_split_angle: float64, bone_transform_array: GArray<any>): void
+        generate_lods(normal_merge_angle: float64, normal_split_angle: float64, bone_transform_array: GArray): void
         
         /** Returns the mesh data represented by this [ImporterMesh] as a usable [ArrayMesh].  
          *  This method caches the returned mesh, and subsequent calls will return the cached data until [method clear] is called.  
@@ -5235,10 +5262,10 @@ declare module "godot" {
         /* gdvirtual */ _surface_get_array_index_len(index: int64): int64
         
         /** Virtual method to override the surface arrays for a custom class extending [Mesh]. */
-        /* gdvirtual */ _surface_get_arrays(index: int64): GArray<any>
+        /* gdvirtual */ _surface_get_arrays(index: int64): GArray
         
         /** Virtual method to override the blend shape arrays for a custom class extending [Mesh]. */
-        /* gdvirtual */ _surface_get_blend_shape_arrays(index: int64): GArray<any>
+        /* gdvirtual */ _surface_get_blend_shape_arrays(index: int64): GArray
         
         /** Virtual method to override the surface LODs for a custom class extending [Mesh]. */
         /* gdvirtual */ _surface_get_lods(index: int64): GDictionary
@@ -5280,10 +5307,10 @@ declare module "godot" {
         get_surface_count(): int64
         
         /** Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see [method ArrayMesh.add_surface_from_arrays]). */
-        surface_get_arrays(surf_idx: int64): GArray<any>
+        surface_get_arrays(surf_idx: int64): GArray
         
         /** Returns the blend shape arrays for the requested surface. */
-        surface_get_blend_shape_arrays(surf_idx: int64): GArray<any>
+        surface_get_blend_shape_arrays(surf_idx: int64): GArray
         
         /** Sets a [Material] for a given surface. Surface will be rendered using this material.  
          *      
@@ -5655,7 +5682,7 @@ declare module "godot" {
         /** Sets an item's collision shapes.  
          *  The array should consist of [Shape3D] objects, each followed by a [Transform3D] that will be applied to it. For shapes that should not have a transform, use [constant Transform3D.IDENTITY].  
          */
-        set_item_shapes(id: int64, shapes: GArray<any>): void
+        set_item_shapes(id: int64, shapes: GArray): void
         
         /** Sets a texture to use as the item's preview icon in the editor. */
         set_item_preview(id: int64, texture: Texture2D): void
@@ -5681,7 +5708,7 @@ declare module "godot" {
         /** Returns an item's collision shapes.  
          *  The array consists of each [Shape3D] followed by its [Transform3D].  
          */
-        get_item_shapes(id: int64): GArray<any>
+        get_item_shapes(id: int64): GArray
         
         /** When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using [method set_item_preview]. Returns an empty [Texture2D] if no preview was manually set in a running project. */
         get_item_preview(id: int64): Texture2D
@@ -5974,7 +6001,7 @@ declare module "godot" {
          *      
          *  **Note:** Prefer using [method Node.rpc], [method Node.rpc_id], or `my_method.rpc(peer, arg1, arg2, ...)` (in GDScript), since they are faster. This method is mostly useful in conjunction with [MultiplayerAPIExtension] when augmenting or replacing the multiplayer capabilities.  
          */
-        rpc(peer: int64, object: Object, method: StringName, arguments_: GArray<any> = []): GError
+        rpc(peer: int64, object: Object, method: StringName, arguments_: GArray = []): GError
         
         /** Notifies the MultiplayerAPI of a new [param configuration] for the given [param object]. This method is used internally by [SceneTree] to configure the root path for this MultiplayerAPI (passing `null` and a valid [NodePath] as [param configuration]). This method can be further used by MultiplayerAPI implementations to provide additional features, refer to specific implementation (e.g. [SceneMultiplayer]) for details on how they use it.  
          *      
@@ -6041,7 +6068,7 @@ declare module "godot" {
         /* gdvirtual */ _get_peer_ids(): PackedInt32Array
         
         /** Callback for [method MultiplayerAPI.rpc]. */
-        /* gdvirtual */ _rpc(peer: int64, object: Object, method: StringName, args: GArray<any>): GError
+        /* gdvirtual */ _rpc(peer: int64, object: Object, method: StringName, args: GArray): GError
         
         /** Callback for [method MultiplayerAPI.get_remote_sender_id]. */
         /* gdvirtual */ _get_remote_sender_id(): int64
@@ -7059,10 +7086,10 @@ declare module "godot" {
         has_data(): boolean
         
         /** Appends another array of [param traversable_outlines] at the end of the existing traversable outlines array. */
-        append_traversable_outlines(traversable_outlines: GArray<any>): void
+        append_traversable_outlines(traversable_outlines: GArray): void
         
         /** Appends another array of [param obstruction_outlines] at the end of the existing obstruction outlines array. */
-        append_obstruction_outlines(obstruction_outlines: GArray<any>): void
+        append_obstruction_outlines(obstruction_outlines: GArray): void
         
         /** Adds the outline points of a shape as traversable area. */
         add_traversable_outline(shape_outline: PackedVector2Array | Vector2[]): void
@@ -7104,7 +7131,7 @@ declare module "godot" {
         add_mesh(mesh: Mesh, xform: Transform3D): void
         
         /** Adds an [Array] the size of [constant Mesh.ARRAY_MAX] and with vertices at index [constant Mesh.ARRAY_VERTEX] and indices at index [constant Mesh.ARRAY_INDEX] to the navigation mesh baking data. The array must have valid triangulated mesh data to be considered. Since [NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [param xform]. */
-        add_mesh_array(mesh_array: GArray<any>, xform: Transform3D): void
+        add_mesh_array(mesh_array: GArray, xform: Transform3D): void
         
         /** Adds an array of vertex positions to the geometry data for navigation mesh baking to form triangulated faces. For each face the array must have three vertex positions in clockwise winding order. Since [NavigationMesh] resources have no transform, all vertex positions need to be offset by the node's transform using [param xform]. */
         add_faces(faces: PackedVector3Array | Vector3[], xform: Transform3D): void
@@ -8180,7 +8207,7 @@ declare module "godot" {
         /** Returns all children of this node inside an [Array].  
          *  If [param include_internal] is `false`, excludes internal children from the returned array (see [method add_child]'s `internal` parameter).  
          */
-        get_children(include_internal: boolean = false): GArray<any>
+        get_children(include_internal: boolean = false): GArray
         
         /** Fetches a child node by its index. Each child node has an index relative its siblings (see [method get_index]). The first child is at index 0. Negative values can also be used to start from the end of the list. This method can be used in combination with [method get_child_count] to iterate over this node's children. If no child exists at the given index, this method returns `null` and an error is generated.  
          *  If [param include_internal] is `false`, internal children are ignored (see [method add_child]'s `internal` parameter).  
@@ -8239,7 +8266,7 @@ declare module "godot" {
          *      
          *  **Note:** To find a single descendant node matching a pattern, see [method find_child].  
          */
-        find_children(pattern: string, type: string = '', recursive: boolean = true, owned: boolean = true): GArray<any>
+        find_children(pattern: string, type: string = '', recursive: boolean = true, owned: boolean = true): GArray
         
         /** Finds the first ancestor of this node whose [member name] matches [param pattern], returning `null` if no match is found. The matching is done through [method String.match]. As such, it is case-sensitive, `"*"` matches zero or more characters, and `"?"` matches any single character. See also [method find_child] and [method find_children].  
          *      
@@ -8257,7 +8284,7 @@ declare module "godot" {
          *  **Example:** Assume that the child's [member Sprite2D.texture] has been assigned a [AtlasTexture]:  
          *    
          */
-        get_node_and_resource(path: NodePath | string): GArray<any>
+        get_node_and_resource(path: NodePath | string): GArray
         
         /** Returns `true` if this node is currently inside a [SceneTree]. See also [method get_tree]. */
         is_inside_tree(): boolean
@@ -8309,7 +8336,7 @@ declare module "godot" {
          *  **Note:** This method may also return some group names starting with an underscore (`_`). These are internally used by the engine. To avoid conflicts, do not use custom groups starting with underscores. To exclude internal groups, see the following code snippet:  
          *    
          */
-        get_groups(): GArray<any>
+        get_groups(): GArray
         
         /** Returns this node's order among its siblings. The first node's index is `0`. See also [method get_child].  
          *  If [param include_internal] is `false`, returns the index ignoring internal children. The first, non-internal child will have an index of `0` (see [method add_child]'s `internal` parameter).  
@@ -8374,7 +8401,7 @@ declare module "godot" {
         /** Calls the given [param method] name, passing [param args] as arguments, on this node and all of its children, recursively.  
          *  If [param parent_first] is `true`, the method is called on this node first, then on all of its children. If `false`, the children's methods are called first.  
          */
-        propagate_call(method: StringName, args: GArray<any> = [], parent_first: boolean = false): void
+        propagate_call(method: StringName, args: GArray = [], parent_first: boolean = false): void
         
         /** If set to `true`, enables physics (fixed framerate) processing. When a node is being processed, it will receive a [constant NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see [member Engine.physics_ticks_per_second] to change) interval (and the [method _physics_process] callback will be called if it exists).  
          *      
@@ -8908,7 +8935,7 @@ declare module "godot" {
         add_gizmo(gizmo: Node3DGizmo): void
         
         /** Returns all the gizmos attached to this [Node3D]. */
-        get_gizmos(): GArray<any>
+        get_gizmos(): GArray
         
         /** Clear all gizmos attached to this [Node3D]. */
         clear_gizmos(): void
@@ -9157,13 +9184,13 @@ declare module "godot" {
          *      
          *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
          */
-        get_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, normalize: boolean = true): GArray<any>
+        get_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, normalize: boolean = true): GArray
         
         /** Returns an [Array] of [Image]s containing seamless 3D noise values for use with [method ImageTexture3D.create].  
          *      
          *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
          */
-        get_seamless_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): GArray<any>
+        get_seamless_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): GArray
     }
     class NoiseEditorInspectorPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)

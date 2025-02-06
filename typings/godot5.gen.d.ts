@@ -104,7 +104,7 @@ declare module "godot" {
          *      
          *  **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.  
          */
-        get_colliding_bodies(): GArray<any>
+        get_colliding_bodies(): GArray
         
         /** The body's mass. */
         get mass(): float64
@@ -358,7 +358,7 @@ declare module "godot" {
          *      
          *  **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.  
          */
-        get_colliding_bodies(): GArray<any>
+        get_colliding_bodies(): GArray
         
         /** The body's mass. */
         get mass(): float64
@@ -653,7 +653,7 @@ declare module "godot" {
         get_connection_flags(idx: int64): int64
         
         /** Returns the list of bound parameters for the signal at [param idx]. */
-        get_connection_binds(idx: int64): GArray<any>
+        get_connection_binds(idx: int64): GArray
         
         /** Returns the number of unbound parameters for the signal at [param idx]. */
         get_connection_unbinds(idx: int64): int64
@@ -707,7 +707,7 @@ declare module "godot" {
         create_tween(): Tween
         
         /** Returns an [Array] of currently existing [Tween]s in the tree, including paused tweens. */
-        get_processed_tweens(): GArray<any>
+        get_processed_tweens(): GArray
         
         /** Returns the number of nodes inside this tree. */
         get_node_count(): int64
@@ -764,7 +764,7 @@ declare module "godot" {
         set_group(group: StringName, property: string, value: any): void
         
         /** Returns an [Array] containing all nodes inside this tree, that have been added to the given [param group], in scene hierarchy order. */
-        get_nodes_in_group(group: StringName): GArray<any>
+        get_nodes_in_group(group: StringName): GArray
         
         /** Returns the first [Node] found inside the tree, that has been added to the given [param group], in scene hierarchy order. Returns `null` if no match is found. See also [method get_nodes_in_group]. */
         get_first_node_in_group(group: StringName): Node
@@ -908,9 +908,9 @@ declare module "godot" {
     class SceneTreeDock extends VBoxContainer {
         constructor(identifier?: any)
         _post_do_create(_unnamed_arg0: Node): void
-        _set_owners(_unnamed_arg0: Node, _unnamed_arg1: GArray<any>): void
-        _reparent_nodes_to_root(_unnamed_arg0: Node, _unnamed_arg1: GArray<any>, _unnamed_arg2: Node): void
-        _reparent_nodes_to_paths_with_transform_and_name(_unnamed_arg0: Node, _unnamed_arg1: GArray<any>, _unnamed_arg2: GArray<any>, _unnamed_arg3: GArray<any>, _unnamed_arg4: GArray<any>, _unnamed_arg5: Node): void
+        _set_owners(_unnamed_arg0: Node, _unnamed_arg1: GArray): void
+        _reparent_nodes_to_root(_unnamed_arg0: Node, _unnamed_arg1: GArray, _unnamed_arg2: Node): void
+        _reparent_nodes_to_paths_with_transform_and_name(_unnamed_arg0: Node, _unnamed_arg1: GArray, _unnamed_arg2: GArray, _unnamed_arg3: GArray, _unnamed_arg4: GArray, _unnamed_arg5: Node): void
         _update_script_button(): void
         instantiate(_unnamed_arg0: string): void
         get_tree_editor(): SceneTreeEditor
@@ -989,13 +989,13 @@ declare module "godot" {
         has_script_signal(signal_name: StringName): boolean
         
         /** Returns the list of properties in this [Script]. */
-        get_script_property_list(): GArray<any>
+        get_script_property_list(): GArray
         
         /** Returns the list of methods in this [Script]. */
-        get_script_method_list(): GArray<any>
+        get_script_method_list(): GArray
         
         /** Returns the list of user signals defined in this [Script]. */
-        get_script_signal_list(): GArray<any>
+        get_script_signal_list(): GArray
         
         /** Returns a dictionary containing constant names and their values. */
         get_script_constant_map(): GDictionary
@@ -1037,7 +1037,7 @@ declare module "godot" {
         get_current_editor(): ScriptEditorBase
         
         /** Returns an array with all [ScriptEditorBase] objects which are currently open in editor. */
-        get_open_script_editors(): GArray<any>
+        get_open_script_editors(): GArray
         
         /** Registers the [EditorSyntaxHighlighter] to the editor, the [EditorSyntaxHighlighter] will be available on all open scripts.  
          *      
@@ -1058,7 +1058,7 @@ declare module "godot" {
         get_current_script(): Script
         
         /** Returns an array with all [Script] objects which are currently open in editor. */
-        get_open_scripts(): GArray<any>
+        get_open_scripts(): GArray
         
         /** Opens the script create dialog. The script will extend [param base_name]. The file extension can be omitted from [param base_path]. It will be added based on the selected scripting language. */
         open_script_create_dialog(base_name: string, base_path: string): void
@@ -1121,6 +1121,10 @@ declare module "godot" {
     class ScriptEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
+    class ScriptEditorQuickOpen extends ConfirmationDialog {
+        constructor(identifier?: any)
+        readonly goto_line: Signal1<int64>
+    }
     /** @link https://docs.godotengine.org/en/4.3/classes/class_scriptextension.html */
     class ScriptExtension extends Script {
         constructor(identifier?: any)
@@ -1138,13 +1142,13 @@ declare module "godot" {
         /* gdvirtual */ _get_source_code(): string
         /* gdvirtual */ _set_source_code(code: string): void
         /* gdvirtual */ _reload(keep_state: boolean): GError
-        /* gdvirtual */ _get_documentation(): GArray<any>
+        /* gdvirtual */ _get_documentation(): GArray
         /* gdvirtual */ _get_class_icon_path(): string
         /* gdvirtual */ _has_method(method: StringName): boolean
         /* gdvirtual */ _has_static_method(method: StringName): boolean
         
         /** Return the expected argument count for the given [param method], or `null` if it can't be determined (which will then fall back to the default behavior). */
-        /* gdvirtual */ _get_script_method_argument_count(method: StringName): void
+        /* gdvirtual */ _get_script_method_argument_count(method: StringName): any
         /* gdvirtual */ _get_method_info(method: StringName): GDictionary
         /* gdvirtual */ _is_tool(): boolean
         /* gdvirtual */ _is_valid(): boolean
@@ -1153,17 +1157,17 @@ declare module "godot" {
         /* gdvirtual */ _is_abstract(): boolean
         /* gdvirtual */ _get_language(): ScriptLanguage
         /* gdvirtual */ _has_script_signal(signal: StringName): boolean
-        /* gdvirtual */ _get_script_signal_list(): GArray<any>
+        /* gdvirtual */ _get_script_signal_list(): GArray
         /* gdvirtual */ _has_property_default_value(property: StringName): boolean
-        /* gdvirtual */ _get_property_default_value(property: StringName): void
+        /* gdvirtual */ _get_property_default_value(property: StringName): any
         /* gdvirtual */ _update_exports(): void
-        /* gdvirtual */ _get_script_method_list(): GArray<any>
-        /* gdvirtual */ _get_script_property_list(): GArray<any>
+        /* gdvirtual */ _get_script_method_list(): GArray
+        /* gdvirtual */ _get_script_property_list(): GArray
         /* gdvirtual */ _get_member_line(member: StringName): int64
         /* gdvirtual */ _get_constants(): GDictionary
-        /* gdvirtual */ _get_members(): GArray<any>
+        /* gdvirtual */ _get_members(): GArray
         /* gdvirtual */ _is_placeholder_fallback_enabled(): boolean
-        /* gdvirtual */ _get_rpc_config(): void
+        /* gdvirtual */ _get_rpc_config(): any
     }
     namespace ScriptLanguage {
         enum ScriptNameCasing {
@@ -1231,7 +1235,7 @@ declare module "godot" {
         /* gdvirtual */ _get_doc_comment_delimiters(): PackedStringArray
         /* gdvirtual */ _get_string_delimiters(): PackedStringArray
         /* gdvirtual */ _make_template(template: string, class_name: string, base_class_name: string): Script
-        /* gdvirtual */ _get_built_in_templates(object: StringName): GArray<any>
+        /* gdvirtual */ _get_built_in_templates(object: StringName): GArray
         /* gdvirtual */ _is_using_templates(): boolean
         /* gdvirtual */ _validate(script: string, path: string, validate_functions: boolean, validate_errors: boolean, validate_warnings: boolean, validate_safe_lines: boolean): GDictionary
         /* gdvirtual */ _validate_path(path: string): string
@@ -1267,14 +1271,14 @@ declare module "godot" {
         /* gdvirtual */ _debug_get_stack_level_instance(level: int64): int64
         /* gdvirtual */ _debug_get_globals(max_subitems: int64, max_depth: int64): GDictionary
         /* gdvirtual */ _debug_parse_stack_level_expression(level: int64, expression: string, max_subitems: int64, max_depth: int64): string
-        /* gdvirtual */ _debug_get_current_stack_info(): GArray<any>
+        /* gdvirtual */ _debug_get_current_stack_info(): GArray
         /* gdvirtual */ _reload_all_scripts(): void
-        /* gdvirtual */ _reload_scripts(scripts: GArray<any>, soft_reload: boolean): void
+        /* gdvirtual */ _reload_scripts(scripts: GArray, soft_reload: boolean): void
         /* gdvirtual */ _reload_tool_script(script: Script, soft_reload: boolean): void
         /* gdvirtual */ _get_recognized_extensions(): PackedStringArray
-        /* gdvirtual */ _get_public_functions(): GArray<any>
+        /* gdvirtual */ _get_public_functions(): GArray
         /* gdvirtual */ _get_public_constants(): GDictionary
-        /* gdvirtual */ _get_public_annotations(): GArray<any>
+        /* gdvirtual */ _get_public_annotations(): GArray
         /* gdvirtual */ _profiling_start(): void
         /* gdvirtual */ _profiling_stop(): void
         /* gdvirtual */ _profiling_set_save_native_calls(enable: boolean): void
@@ -1283,6 +1287,9 @@ declare module "godot" {
         /* gdvirtual */ _frame(): void
         /* gdvirtual */ _handles_global_class_type(type: string): boolean
         /* gdvirtual */ _get_global_class_name(path: string): GDictionary
+    }
+    class ScriptTextEditor extends ScriptEditorBase {
+        constructor(identifier?: any)
     }
     /** Abstract base class for scrollbars.  
      *  	  
@@ -1408,21 +1415,6 @@ declare module "godot" {
         get b(): Vector2
         set b(value: Vector2)
     }
-    /** A synchronization mechanism used to control access to a shared resource by [Thread]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_semaphore.html  
-     */
-    class Semaphore extends RefCounted {
-        constructor(identifier?: any)
-        /** Waits for the [Semaphore], if its value is zero, blocks until non-zero. */
-        wait(): void
-        
-        /** Like [method wait], but won't block, so if the value is zero, fails immediately and returns `false`. If non-zero, it returns `true` to report success. */
-        try_wait(): boolean
-        
-        /** Lowers the [Semaphore], allowing one more thread in. */
-        post(): void
-    }
     /** A 2D ray shape used for physics collision that tries to separate itself from any collider.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_separationrayshape2d.html  
@@ -1508,7 +1500,7 @@ declare module "godot" {
         /** Get the list of shader uniforms that can be assigned to a [ShaderMaterial], for use with [method ShaderMaterial.set_shader_parameter] and [method ShaderMaterial.get_shader_parameter]. The parameters returned are contained in dictionaries in a similar format to the ones returned by [method Object.get_property_list].  
          *  If argument [param get_groups] is true, parameter grouping hints will be provided.  
          */
-        get_shader_uniform_list(get_groups: boolean = false): GArray<any>
+        get_shader_uniform_list(get_groups: boolean = false): GArray
         
         /** Returns the shader's code as the user has written it, not the full generated code used internally. */
         get code(): string
@@ -2482,12 +2474,12 @@ declare module "godot" {
         /** Tell the [PhysicalBone2D] nodes to start simulating and interacting with the physics world.  
          *  Optionally, an array of bone names can be passed to this function, and that will cause only [PhysicalBone2D] nodes with those names to start simulating.  
          */
-        start_simulation(bones: GArray<any> = []): void
+        start_simulation(bones: GArray = []): void
         
         /** Tell the [PhysicalBone2D] nodes to stop simulating and interacting with the physics world.  
          *  Optionally, an array of bone names can be passed to this function, and that will cause only [PhysicalBone2D] nodes with those names to stop simulating.  
          */
-        stop_simulation(bones: GArray<any> = []): void
+        stop_simulation(bones: GArray = []): void
         
         /** The number of [PhysicalBone2D] nodes linked in this modification. */
         get physical_bone_chain_length(): int64
@@ -2999,7 +2991,7 @@ declare module "godot" {
         get_collision_layer_value(layer_number: int64): boolean
         
         /** Returns an array of nodes that were added as collision exceptions for this body. */
-        get_collision_exceptions(): GArray<any>
+        get_collision_exceptions(): GArray
         
         /** Adds a body to the list of bodies that this body can't collide with. */
         add_collision_exception_with(body: Node): void
@@ -3722,13 +3714,13 @@ declare module "godot" {
         put_data(data: PackedByteArray | byte[] | ArrayBuffer): GError
         
         /** Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum Error] code and an integer, describing how much data was actually sent. */
-        put_partial_data(data: PackedByteArray | byte[] | ArrayBuffer): GArray<any>
+        put_partial_data(data: PackedByteArray | byte[] | ArrayBuffer): GArray
         
         /** Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the [param bytes] argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [enum Error] code and a data array. */
-        get_data(bytes: int64): GArray<any>
+        get_data(bytes: int64): GArray
         
         /** Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an [enum Error] code, and a data array. */
-        get_partial_data(bytes: int64): GArray<any>
+        get_partial_data(bytes: int64): GArray
         
         /** Returns the number of bytes this [StreamPeer] has available. */
         get_available_bytes(): int64
@@ -4539,7 +4531,7 @@ declare module "godot" {
         /** Inserts a triangle fan made of array data into [Mesh] being constructed.  
          *  Requires the primitive type be set to [constant Mesh.PRIMITIVE_TRIANGLES].  
          */
-        add_triangle_fan(vertices: PackedVector3Array | Vector3[], uvs: PackedVector2Array | Vector2[] = [], colors: PackedColorArray | Color[] = [], uv2s: PackedVector2Array | Vector2[] = [], normals: PackedVector3Array | Vector3[] = [], tangents: GArray<any> = []): void
+        add_triangle_fan(vertices: PackedVector3Array | Vector3[], uvs: PackedVector2Array | Vector2[] = [], colors: PackedColorArray | Color[] = [], uv2s: PackedVector2Array | Vector2[] = [], normals: PackedVector3Array | Vector3[] = [], tangents: GArray = []): void
         
         /** Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices. */
         add_index(index: int64): void
@@ -4583,7 +4575,7 @@ declare module "godot" {
         create_from(existing: Mesh, surface: int64): void
         
         /** Creates this SurfaceTool from existing vertex arrays such as returned by [method commit_to_arrays], [method Mesh.surface_get_arrays], [method Mesh.surface_get_blend_shape_arrays], [method ImporterMesh.get_surface_arrays], and [method ImporterMesh.get_surface_blend_shape_arrays]. [param primitive_type] controls the type of mesh data, defaulting to [constant Mesh.PRIMITIVE_TRIANGLES]. */
-        create_from_arrays(arrays: GArray<any>, primitive_type: Mesh.PrimitiveType = 3): void
+        create_from_arrays(arrays: GArray, primitive_type: Mesh.PrimitiveType = 3): void
         
         /** Creates a vertex array from the specified blend shape of an existing [Mesh]. This can be used to extract a specific pose from a blend shape. */
         create_from_blend_shape(existing: Mesh, surface: int64, blend_shape: string): void
@@ -4597,7 +4589,7 @@ declare module "godot" {
         commit(existing: ArrayMesh = undefined, flags: int64 = 0): ArrayMesh
         
         /** Commits the data to the same format used by [method ArrayMesh.add_surface_from_arrays], [method ImporterMesh.add_surface], and [method create_from_arrays]. This way you can further process the mesh data using the [ArrayMesh] or [ImporterMesh] APIs. */
-        commit_to_arrays(): GArray<any>
+        commit_to_arrays(): GArray
     }
     class SurfaceUpgradeDialog extends ConfirmationDialog {
         constructor(identifier?: any)
@@ -5665,7 +5657,7 @@ declare module "godot" {
         /** Returns an [Array] of line ranges where `x` is the first line and `y` is the last line. All lines within these ranges will have a caret on them or be part of a selection. Each line will only be part of one line range, even if it has multiple carets on it.  
          *  If a selection's end column ([method get_selection_to_column]) is at column `0`, that line will not be included. If a selection begins on the line after another selection ends and [param merge_adjacent] is `true`, or they begin and end on the same line, one line range will include both selections.  
          */
-        get_line_ranges_from_carets(only_selections: boolean = false, merge_adjacent: boolean = true): GArray<any>
+        get_line_ranges_from_carets(only_selections: boolean = false, merge_adjacent: boolean = true): GArray
         
         /** Returns the origin line of the selection. This is the opposite end from the caret. */
         get_selection_origin_line(caret_index: int64 = 0): int64
@@ -6072,7 +6064,7 @@ declare module "godot" {
         /** Overrides BiDi for the structured text.  
          *  Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.  
          */
-        set_bidi_override(override: GArray<any>): void
+        set_bidi_override(override: GArray): void
         
         /** Adds text span and font to draw it. */
         add_string(text: string, font: Font, font_size: int64, language: string = '', meta: any = <any> {}): boolean
@@ -6087,7 +6079,7 @@ declare module "godot" {
         tab_align(tab_stops: PackedFloat32Array | float32[]): void
         
         /** Returns array of inline objects. */
-        get_objects(): GArray<any>
+        get_objects(): GArray
         
         /** Returns bounding rectangle of the inline object. */
         get_object_rect(key: any): Rect2
@@ -6251,7 +6243,7 @@ declare module "godot" {
         /** Overrides BiDi for the structured text.  
          *  Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.  
          */
-        set_bidi_override(override: GArray<any>): void
+        set_bidi_override(override: GArray): void
         
         /** Sets drop cap, overrides previously set drop cap. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text. */
         set_dropcap(text: string, font: Font, font_size: int64, dropcap_margins: Rect2 = new Rect2(0, 0, 0, 0), language: string = ''): boolean
@@ -6290,7 +6282,7 @@ declare module "godot" {
         get_line_count(): int64
         
         /** Returns array of inline objects in the line. */
-        get_line_objects(line: int64): GArray<any>
+        get_line_objects(line: int64): GArray
         
         /** Returns bounding rectangle of the inline object. */
         get_line_object_rect(line: int64, key: any): Rect2
@@ -6976,7 +6968,7 @@ declare module "godot" {
         font_get_oversampling(font_rid: RID): float64
         
         /** Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size. */
-        font_get_size_cache_list(font_rid: RID): GArray<any>
+        font_get_size_cache_list(font_rid: RID): GArray
         
         /** Removes all font sizes from the cache entry. */
         font_clear_size_cache(font_rid: RID): void
@@ -7112,7 +7104,7 @@ declare module "godot" {
         font_get_glyph_contours(font: RID, size: int64, index: int64): GDictionary
         
         /** Returns list of the kerning overrides. */
-        font_get_kerning_list(font_rid: RID, size: int64): GArray<any>
+        font_get_kerning_list(font_rid: RID, size: int64): GArray
         
         /** Removes all kerning overrides. */
         font_clear_kerning_map(font_rid: RID, size: int64): void
@@ -7243,7 +7235,7 @@ declare module "godot" {
         /** Overrides BiDi for the structured text.  
          *  Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.  
          */
-        shaped_text_set_bidi_override(shaped: RID, override: GArray<any>): void
+        shaped_text_set_bidi_override(shaped: RID, override: GArray): void
         
         /** Sets custom punctuation character list, used for word breaking. If set to empty string, server defaults are used. */
         shaped_text_set_custom_punctuation(shaped: RID, punct: string): void
@@ -7288,7 +7280,7 @@ declare module "godot" {
         shaped_text_get_spacing(shaped: RID, spacing: TextServer.SpacingType): int64
         
         /** Adds text span and font to draw it to the text buffer. */
-        shaped_text_add_string(shaped: RID, text: string, fonts: GArray<any>, size: int64, opentype_features: GDictionary = new GDictionary(), language: string = '', meta: any = <any> {}): boolean
+        shaped_text_add_string(shaped: RID, text: string, fonts: GArray, size: int64, opentype_features: GDictionary = new GDictionary(), language: string = '', meta: any = <any> {}): boolean
         
         /** Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters. */
         shaped_text_add_object(shaped: RID, key: any, size: Vector2, inline_align: InlineAlignment = 5, length: int64 = 1, baseline: float64 = 0): boolean
@@ -7303,7 +7295,7 @@ declare module "godot" {
         shaped_get_span_meta(shaped: RID, index: int64): any
         
         /** Changes text span font, font size, and OpenType features, without changing the text. */
-        shaped_set_span_update_font(shaped: RID, index: int64, fonts: GArray<any>, size: int64, opentype_features: GDictionary = new GDictionary()): void
+        shaped_set_span_update_font(shaped: RID, index: int64, fonts: GArray, size: int64, opentype_features: GDictionary = new GDictionary()): void
         
         /** Returns text buffer for the substring of the text in the [param shaped] text buffer (including inline objects). */
         shaped_text_substr(shaped: RID, start: int64, length: int64): RID
@@ -7330,10 +7322,10 @@ declare module "godot" {
         shaped_text_has_visible_chars(shaped: RID): boolean
         
         /** Returns an array of glyphs in the visual order. */
-        shaped_text_get_glyphs(shaped: RID): GArray<any>
+        shaped_text_get_glyphs(shaped: RID): GArray
         
         /** Returns text glyphs in the logical order. */
-        shaped_text_sort_logical(shaped: RID): GArray<any>
+        shaped_text_sort_logical(shaped: RID): GArray
         
         /** Returns number of glyphs in the buffer. */
         shaped_text_get_glyph_count(shaped: RID): int64
@@ -7357,7 +7349,7 @@ declare module "godot" {
         shaped_text_get_ellipsis_pos(shaped: RID): int64
         
         /** Returns array of the glyphs in the ellipsis. */
-        shaped_text_get_ellipsis_glyphs(shaped: RID): GArray<any>
+        shaped_text_get_ellipsis_glyphs(shaped: RID): GArray
         
         /** Returns number of glyphs in the ellipsis. */
         shaped_text_get_ellipsis_glyph_count(shaped: RID): int64
@@ -7366,7 +7358,7 @@ declare module "godot" {
         shaped_text_overrun_trim_to_width(shaped: RID, width: float64 = 0, overrun_trim_flags: TextServer.TextOverrunFlag = 0): void
         
         /** Returns array of inline objects. */
-        shaped_text_get_objects(shaped: RID): GArray<any>
+        shaped_text_get_objects(shaped: RID): GArray
         
         /** Returns bounding rectangle of the inline object. */
         shaped_text_get_object_rect(shaped: RID, key: any): Rect2
@@ -7525,7 +7517,7 @@ declare module "godot" {
         string_to_title(string_: string, language: string = ''): string
         
         /** Default implementation of the BiDi algorithm override function. See [enum StructuredTextParser] for more info. */
-        parse_structured_text(parser_type: TextServer.StructuredTextParser, args: GArray<any>, text: string): GArray<any>
+        parse_structured_text(parser_type: TextServer.StructuredTextParser, args: GArray, text: string): GArray
     }
     /** An advanced text server with support for BiDi, complex text layout, and contextual OpenType features. Used in Godot by default.  
      *  	  
@@ -7878,7 +7870,7 @@ declare module "godot" {
         /** **Required.**  
          *  Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size.  
          */
-        /* gdvirtual */ _font_get_size_cache_list(font_rid: RID): GArray<any>
+        /* gdvirtual */ _font_get_size_cache_list(font_rid: RID): GArray
         
         /** **Required.**  
          *  Removes all font sizes from the cache entry.  
@@ -8058,7 +8050,7 @@ declare module "godot" {
         /** **Optional.**  
          *  Returns list of the kerning overrides.  
          */
-        /* gdvirtual */ _font_get_kerning_list(font_rid: RID, size: int64): GArray<any>
+        /* gdvirtual */ _font_get_kerning_list(font_rid: RID, size: int64): GArray
         
         /** **Optional.**  
          *  Removes all kerning overrides.  
@@ -8238,7 +8230,7 @@ declare module "godot" {
         /** **Optional.**  
          *  Overrides BiDi for the structured text.  
          */
-        /* gdvirtual */ _shaped_text_set_bidi_override(shaped: RID, override: GArray<any>): void
+        /* gdvirtual */ _shaped_text_set_bidi_override(shaped: RID, override: GArray): void
         
         /** **Optional.**  
          *  Sets custom punctuation character list, used for word breaking. If set to empty string, server defaults are used.  
@@ -8303,7 +8295,7 @@ declare module "godot" {
         /** **Required.**  
          *  Adds text span and font to draw it to the text buffer.  
          */
-        /* gdvirtual */ _shaped_text_add_string(shaped: RID, text: string, fonts: GArray<any>, size: int64, opentype_features: GDictionary, language: string, meta: any): boolean
+        /* gdvirtual */ _shaped_text_add_string(shaped: RID, text: string, fonts: GArray, size: int64, opentype_features: GDictionary, language: string, meta: any): boolean
         
         /** **Required.**  
          *  Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters.  
@@ -8323,12 +8315,12 @@ declare module "godot" {
         /** **Required.**  
          *  Returns text span metadata.  
          */
-        /* gdvirtual */ _shaped_get_span_meta(shaped: RID, index: int64): void
+        /* gdvirtual */ _shaped_get_span_meta(shaped: RID, index: int64): any
         
         /** **Required.**  
          *  Changes text span font, font size, and OpenType features, without changing the text.  
          */
-        /* gdvirtual */ _shaped_set_span_update_font(shaped: RID, index: int64, fonts: GArray<any>, size: int64, opentype_features: GDictionary): void
+        /* gdvirtual */ _shaped_set_span_update_font(shaped: RID, index: int64, fonts: GArray, size: int64, opentype_features: GDictionary): void
         
         /** **Required.**  
          *  Returns text buffer for the substring of the text in the [param shaped] text buffer (including inline objects).  
@@ -8433,7 +8425,7 @@ declare module "godot" {
         /** **Required.**  
          *  Returns array of inline objects.  
          */
-        /* gdvirtual */ _shaped_text_get_objects(shaped: RID): GArray<any>
+        /* gdvirtual */ _shaped_text_get_objects(shaped: RID): GArray
         
         /** **Required.**  
          *  Returns bounding rectangle of the inline object.  
@@ -8614,7 +8606,7 @@ declare module "godot" {
         /** **Optional.**  
          *  Default implementation of the BiDi algorithm override function. See [enum TextServer.StructuredTextParser] for more info.  
          */
-        /* gdvirtual */ _parse_structured_text(parser_type: TextServer.StructuredTextParser, args: GArray<any>, text: string): GArray<any>
+        /* gdvirtual */ _parse_structured_text(parser_type: TextServer.StructuredTextParser, args: GArray, text: string): GArray
         
         /** **Optional.**  
          *  This method is called before text server is unregistered.  
@@ -8751,7 +8743,7 @@ declare module "godot" {
         /* gdvirtual */ _has_mipmaps(): boolean
         
         /** Called when the [Texture3D]'s data is queried. */
-        /* gdvirtual */ _get_data(): GArray<any>
+        /* gdvirtual */ _get_data(): GArray
         
         /** Returns the current format being used by this texture. See [enum Image.Format] for details. */
         get_format(): Image.Format
@@ -8769,7 +8761,7 @@ declare module "godot" {
         has_mipmaps(): boolean
         
         /** Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a  *slice*  of the [Texture3D], with different slices mapping to different depth (Z axis) levels. */
-        get_data(): GArray<any>
+        get_data(): GArray
         
         /** Creates a placeholder version of this resource ([PlaceholderTexture3D]). */
         create_placeholder(): Resource

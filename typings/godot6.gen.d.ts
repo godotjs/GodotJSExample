@@ -35,61 +35,6 @@ declare module "godot" {
         _unpin_leading_stylebox(): void
         _change_pinned_stylebox(): void
     }
-    namespace Thread {
-        enum Priority {
-            /** A thread running with lower priority than normally. */
-            PRIORITY_LOW = 0,
-            
-            /** A thread with a standard priority. */
-            PRIORITY_NORMAL = 1,
-            
-            /** A thread running with higher priority than normally. */
-            PRIORITY_HIGH = 2,
-        }
-    }
-    /** A unit of execution in a process.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_thread.html  
-     */
-    class Thread extends RefCounted {
-        constructor(identifier?: any)
-        /** Starts a new [Thread] that calls [param callable].  
-         *  If the method takes some arguments, you can pass them using [method Callable.bind].  
-         *  The [param priority] of the [Thread] can be changed by passing a value from the [enum Priority] enum.  
-         *  Returns [constant OK] on success, or [constant ERR_CANT_CREATE] on failure.  
-         */
-        start(callable: Callable, priority: Thread.Priority = 1): GError
-        
-        /** Returns the current [Thread]'s ID, uniquely identifying it among all threads. If the [Thread] has not started running or if [method wait_to_finish] has been called, this returns an empty string. */
-        get_id(): string
-        
-        /** Returns `true` if this [Thread] has been started. Once started, this will return `true` until it is joined using [method wait_to_finish]. For checking if a [Thread] is still executing its task, use [method is_alive]. */
-        is_started(): boolean
-        
-        /** Returns `true` if this [Thread] is currently running the provided function. This is useful for determining if [method wait_to_finish] can be called without blocking the calling thread.  
-         *  To check if a [Thread] is joinable, use [method is_started].  
-         */
-        is_alive(): boolean
-        
-        /** Joins the [Thread] and waits for it to finish. Returns the output of the [Callable] passed to [method start].  
-         *  Should either be used when you want to retrieve the value returned from the method called by the [Thread] or before freeing the instance that contains the [Thread].  
-         *  To determine if this can be called without blocking the calling thread, check if [method is_alive] is `false`.  
-         */
-        wait_to_finish(): any
-        
-        /** Sets whether the thread safety checks the engine normally performs in methods of certain classes (e.g., [Node]) should happen **on the current thread**.  
-         *  The default, for every thread, is that they are enabled (as if called with [param enabled] being `true`).  
-         *  Those checks are conservative. That means that they will only succeed in considering a call thread-safe (and therefore allow it to happen) if the engine can guarantee such safety.  
-         *  Because of that, there may be cases where the user may want to disable them ([param enabled] being `false`) to make certain operations allowed again. By doing so, it becomes the user's responsibility to ensure thread safety (e.g., by using [Mutex]) for those objects that are otherwise protected by the engine.  
-         *      
-         *  **Note:** This is an advanced usage of the engine. You are advised to use it only if you know what you are doing and there is no safer way.  
-         *      
-         *  **Note:** This is useful for scripts running on either arbitrary [Thread] objects or tasks submitted to the [WorkerThreadPool]. It doesn't apply to code running during [Node] group processing, where the checks will be always performed.  
-         *      
-         *  **Note:** Even in the case of having disabled the checks in a [WorkerThreadPool] task, there's no need to re-enable them at the end. The engine will do so.  
-         */
-        static set_thread_safety_checks_enabled(enabled: boolean): void
-    }
     class TileAtlasView extends Control {
         constructor(identifier?: any)
         readonly transform_changed: Signal2<float64, Vector2>
@@ -401,7 +346,7 @@ declare module "godot" {
         /** Creates a new [TileMapPattern] from the given layer and set of cells.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_pattern(layer: int64, coords_array: GArray<any>): TileMapPattern
+        get_pattern(layer: int64, coords_array: GArray): TileMapPattern
         
         /** Returns for the given coordinate [param coords_in_pattern] in a [TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [param position_in_tilemap] coordinates (see [method set_pattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`. */
         map_pattern(position_in_tilemap: Vector2i, coords_in_pattern: Vector2i, pattern: TileMapPattern): Vector2i
@@ -417,7 +362,7 @@ declare module "godot" {
          *      
          *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
          */
-        set_cells_terrain_connect(layer: int64, cells: GArray<any>, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
+        set_cells_terrain_connect(layer: int64, cells: GArray, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
         
         /** Update all the cells in the [param path] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.  
          *  If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.  
@@ -425,7 +370,7 @@ declare module "godot" {
          *      
          *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
          */
-        set_cells_terrain_path(layer: int64, path: GArray<any>, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
+        set_cells_terrain_path(layer: int64, path: GArray, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
         
         /** Clears cells that do not exist in the tileset. */
         fix_invalid_tiles(): void
@@ -453,19 +398,19 @@ declare module "godot" {
         notify_runtime_tile_data_update(layer: int64 = -1): void
         
         /** Returns the list of all neighbourings cells to the one at [param coords]. */
-        get_surrounding_cells(coords: Vector2i): GArray<any>
+        get_surrounding_cells(coords: Vector2i): GArray
         
         /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_used_cells(layer: int64): GArray<any>
+        get_used_cells(layer: int64): GArray
         
         /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. Tiles may be filtered according to their source ([param source_id]), their atlas coordinates ([param atlas_coords]) or alternative id ([param alternative_tile]).  
          *  If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [method get_used_cells].  
          *  A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.  
          *  If [param layer] is negative, the layers are accessed from the last one.  
          */
-        get_used_cells_by_id(layer: int64, source_id: int64 = -1, atlas_coords: Vector2i = new Vector2i(-1, -1), alternative_tile: int64 = -1): GArray<any>
+        get_used_cells_by_id(layer: int64, source_id: int64 = -1, atlas_coords: Vector2i = new Vector2i(-1, -1), alternative_tile: int64 = -1): GArray
         
         /** Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers. */
         get_used_rect(): Rect2i
@@ -580,19 +525,19 @@ declare module "godot" {
         get_cell_tile_data(coords: Vector2i): TileData
         
         /** Returns a [Vector2i] array with the positions of all cells containing a tile. A cell is considered empty if its source identifier equals `-1`, its atlas coordinate identifier is `Vector2(-1, -1)` and its alternative identifier is `-1`. */
-        get_used_cells(): GArray<any>
+        get_used_cells(): GArray
         
         /** Returns a [Vector2i] array with the positions of all cells containing a tile. Tiles may be filtered according to their source ([param source_id]), their atlas coordinates ([param atlas_coords]), or alternative id ([param alternative_tile]).  
          *  If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default values, this method returns the same result as [method get_used_cells].  
          *  A cell is considered empty if its source identifier equals `-1`, its atlas coordinate identifier is `Vector2(-1, -1)` and its alternative identifier is `-1`.  
          */
-        get_used_cells_by_id(source_id: int64 = -1, atlas_coords: Vector2i = new Vector2i(-1, -1), alternative_tile: int64 = -1): GArray<any>
+        get_used_cells_by_id(source_id: int64 = -1, atlas_coords: Vector2i = new Vector2i(-1, -1), alternative_tile: int64 = -1): GArray
         
         /** Returns a rectangle enclosing the used (non-empty) tiles of the map. */
         get_used_rect(): Rect2i
         
         /** Creates and returns a new [TileMapPattern] from the given array of cells. See also [method set_pattern]. */
-        get_pattern(coords_array: GArray<any>): TileMapPattern
+        get_pattern(coords_array: GArray): TileMapPattern
         
         /** Pastes the [TileMapPattern] at the given [param position] in the tile map. See also [method get_pattern]. */
         set_pattern(position: Vector2i, pattern: TileMapPattern): void
@@ -602,14 +547,14 @@ declare module "godot" {
          *      
          *  **Note:** To work correctly, this method requires the [TileMapLayer]'s TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
          */
-        set_cells_terrain_connect(cells: GArray<any>, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
+        set_cells_terrain_connect(cells: GArray, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
         
         /** Update all the cells in the [param path] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.  
          *  If [param ignore_empty_terrains] is true, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.  
          *      
          *  **Note:** To work correctly, this method requires the [TileMapLayer]'s TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.  
          */
-        set_cells_terrain_path(path: GArray<any>, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
+        set_cells_terrain_path(path: GArray, terrain_set: int64, terrain: int64, ignore_empty_terrains: boolean = true): void
         
         /** Returns whether the provided [param body] [RID] belongs to one of this [TileMapLayer]'s cells. */
         has_body_rid(body: RID): boolean
@@ -634,7 +579,7 @@ declare module "godot" {
         map_pattern(position_in_tilemap: Vector2i, coords_in_pattern: Vector2i, pattern: TileMapPattern): Vector2i
         
         /** Returns the list of all neighboring cells to the one at [param coords]. */
-        get_surrounding_cells(coords: Vector2i): GArray<any>
+        get_surrounding_cells(coords: Vector2i): GArray
         
         /** Returns the neighboring cell to the one at coordinates [param coords], identified by the [param neighbor] direction. This method takes into account the different layouts a TileMap can take. */
         get_neighbor_cell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i
@@ -719,8 +664,8 @@ declare module "godot" {
     class TileMapLayerEditorTilesPlugin extends Object {
         constructor(identifier?: any)
         _scene_thumbnail_done(_unnamed_arg0: string, _unnamed_arg1: Texture2D, _unnamed_arg2: Texture2D, _unnamed_arg3: any): void
-        _set_tile_map_selection(selection: GArray<any>): void
-        _get_tile_map_selection(): GArray<any>
+        _set_tile_map_selection(selection: GArray): void
+        _get_tile_map_selection(): GArray
     }
     /** Holds a pattern to be copied from or pasted into [TileMap]s.  
      *  	  
@@ -747,7 +692,7 @@ declare module "godot" {
         get_cell_alternative_tile(coords: Vector2i): int64
         
         /** Returns the list of used cell coordinates in the pattern. */
-        get_used_cells(): GArray<any>
+        get_used_cells(): GArray
         
         /** Returns the size, in cells, of the pattern. */
         get_size(): Vector2i
@@ -1080,7 +1025,7 @@ declare module "godot" {
         /** Returns the coordinate-level proxy for the given identifiers. The returned array contains the two target identifiers of the proxy (source ID and atlas coordinates ID).  
          *  If the TileSet has no proxy for the given identifiers, returns an empty Array.  
          */
-        get_coords_level_tile_proxy(source_from: int64, coords_from: Vector2i): GArray<any>
+        get_coords_level_tile_proxy(source_from: int64, coords_from: Vector2i): GArray
         
         /** Returns if there is a coodinates-level proxy for the given identifiers. */
         has_coords_level_tile_proxy(source_from: int64, coords_from: Vector2i): boolean
@@ -1097,7 +1042,7 @@ declare module "godot" {
         /** Returns the alternative-level proxy for the given identifiers. The returned array contains the three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).  
          *  If the TileSet has no proxy for the given identifiers, returns an empty Array.  
          */
-        get_alternative_level_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): GArray<any>
+        get_alternative_level_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): GArray
         
         /** Returns if there is an alternative-level proxy for the given identifiers. */
         has_alternative_level_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): boolean
@@ -1109,7 +1054,7 @@ declare module "godot" {
          *  This function first look for matching alternative-level proxies, then coordinates-level proxies, then source-level proxies.  
          *  If no proxy corresponding to provided identifiers are found, returns the same values the ones used as arguments.  
          */
-        map_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): GArray<any>
+        map_tile_proxy(source_from: int64, coords_from: Vector2i, alternative_from: int64): GArray
         
         /** Clears tile proxies pointing to invalid tiles. */
         cleanup_invalid_tile_proxies(): void
@@ -1310,7 +1255,7 @@ declare module "godot" {
     }
     class TileSetAtlasSourceEditor extends HSplitContainer {
         constructor(identifier?: any)
-        _set_selection_from_array(_unnamed_arg0: GArray<any>): void
+        _set_selection_from_array(_unnamed_arg0: GArray): void
         _check_outside_tiles(): void
         readonly source_id_changed: Signal1<int64>
     }
@@ -1966,10 +1911,10 @@ declare module "godot" {
         get_structured_text_bidi_override(column: int64): TextServer.StructuredTextParser
         
         /** Set additional options for BiDi override. Has effect for cells that display text. */
-        set_structured_text_bidi_override_options(column: int64, args: GArray<any>): void
+        set_structured_text_bidi_override_options(column: int64, args: GArray): void
         
         /** Returns the additional BiDi options set for this cell. */
-        get_structured_text_bidi_override_options(column: int64): GArray<any>
+        get_structured_text_bidi_override_options(column: int64): GArray
         
         /** Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
         set_language(column: int64, language: string): void
@@ -2221,7 +2166,7 @@ declare module "godot" {
         get_child_count(): int64
         
         /** Returns an array of references to the item's children. */
-        get_children(): GArray<any>
+        get_children(): GArray
         
         /** Returns the node's order in the tree. For example, if called on the first child item the position is `0`. */
         get_index(): int64
@@ -2676,7 +2621,7 @@ declare module "godot" {
     class UniformSetCacheRD extends Object {
         constructor(identifier?: any)
         /** Creates/returns a cached uniform set based on the provided uniforms for a given shader. */
-        static get_cache(shader: RID, set: int64, uniforms: GArray<any>): RID
+        static get_cache(shader: RID, set: int64, uniforms: GArray): RID
     }
     /** A container that arranges its child controls vertically.  
      *  	  
@@ -3360,7 +3305,7 @@ declare module "godot" {
          *      
          *  **Note:** [Window]s inside other viewports will not be listed.  
          */
-        get_embedded_subwindows(): GArray<any>
+        get_embedded_subwindows(): GArray
         
         /** Set/clear individual bits on the rendering layer mask. This simplifies editing this [Viewport]'s layers. */
         set_canvas_cull_mask_bit(layer: int64, enable: boolean): void
@@ -3926,7 +3871,7 @@ declare module "godot" {
         connect_nodes_forced(type: VisualShader.Type, from_node: int64, from_port: int64, to_node: int64, to_port: int64): void
         
         /** Returns the list of connected nodes with the specified type. */
-        get_node_connections(type: VisualShader.Type): GArray<any>
+        get_node_connections(type: VisualShader.Type): GArray
         
         /** Attaches the given node to the given frame. */
         attach_node_to_frame(type: VisualShader.Type, id: int64, frame: int64): void
@@ -4427,7 +4372,7 @@ declare module "godot" {
         /** Override this method to define the default value for the specified input port. Prefer use this over [method VisualShaderNode.set_input_port_default_value].  
          *  Defining this method is **required**. If not overridden, the node has no default values for their input ports.  
          */
-        /* gdvirtual */ _get_input_port_default_value(port: int64): void
+        /* gdvirtual */ _get_input_port_default_value(port: int64): any
         
         /** Override this method to define the input port which should be connected by default when this node is created as a result of dragging a connection from an existing node to the empty space on the graph.  
          *  Defining this method is **optional**. If not overridden, the connection will be created to the first valid port.  
@@ -4475,7 +4420,7 @@ declare module "godot" {
          *  You can customize the generated code based on the shader [param mode] (see [enum Shader.Mode]) and/or [param type] (see [enum VisualShader.Type]).  
          *  Defining this method is **required**.  
          */
-        /* gdvirtual */ _get_code(input_vars: GArray<any>, output_vars: GArray<any>, mode: Shader.Mode, type: VisualShader.Type): string
+        /* gdvirtual */ _get_code(input_vars: GArray, output_vars: GArray, mode: Shader.Mode, type: VisualShader.Type): string
         
         /** Override this method to add a shader code to the beginning of each shader function (once). The shader code should be returned as a string, which can have multiple lines (the `"""` multiline string construct can be used for convenience).  
          *  If there are multiple custom nodes of different types which use this feature the order of each insertion is undefined.  
@@ -6666,15 +6611,15 @@ declare module "godot" {
         /** Initialize the multiplayer peer as a server (with unique ID of `1`). This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_server(channels_config: GArray<any> = []): GError
+        create_server(channels_config: GArray = []): GError
         
         /** Initialize the multiplayer peer as a client with the given [param peer_id] (must be between 2 and 2147483647). In this mode, you should only call [method add_peer] once and with [param peer_id] of `1`. This mode enables [method MultiplayerPeer.is_server_relay_supported], allowing the upper [MultiplayerAPI] layer to perform peer exchange and packet relaying.  
          *  You can optionally specify a [param channels_config] array of [enum MultiplayerPeer.TransferMode] which will be used to create extra channels (WebRTC only supports one transfer mode per channel).  
          */
-        create_client(peer_id: int64, channels_config: GArray<any> = []): GError
+        create_client(peer_id: int64, channels_config: GArray = []): GError
         
         /** Initialize the multiplayer peer as a mesh (i.e. all peers connect to each other) with the given [param peer_id] (must be between 1 and 2147483647). */
-        create_mesh(peer_id: int64, channels_config: GArray<any> = []): GError
+        create_mesh(peer_id: int64, channels_config: GArray = []): GError
         
         /** Add a new peer to the mesh with the given [param peer_id]. The [WebRTCPeerConnection] must be in state [constant WebRTCPeerConnection.STATE_NEW].  
          *  Three channels will be created for reliable, unreliable, and ordered transport. The value of [param unreliable_lifetime] will be passed to the `"maxPacketLifetime"` option when creating unreliable and ordered channels (see [method WebRTCPeerConnection.create_data_channel]).  
@@ -8897,7 +8842,7 @@ declare module "godot" {
         get_projection_for_view(view: int64, aspect: float64, near: float64, far: float64): Projection
         
         /** Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode]. */
-        get_supported_environment_blend_modes(): GArray<any>
+        get_supported_environment_blend_modes(): GArray
         
         /** `true` if this is the primary interface. */
         get interface_is_primary(): boolean
@@ -9209,5 +9154,65 @@ declare module "godot" {
         /** The description of this tracker. */
         get description(): string
         set description(value: string)
+    }
+    /** Helper class for XR interfaces that generates VRS images.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrvrs.html  
+     */
+    class XRVRS extends Object {
+        constructor(identifier?: any)
+        /** Generates the VRS texture based on a render [param target_size] adjusted by our VRS tile size. For each eyes focal point passed in [param eye_foci] a layer is created. Focal point should be in NDC.  
+         *  The result will be cached, requesting a VRS texture with unchanged parameters and settings will return the cached RID.  
+         */
+        make_vrs_texture(target_size: Vector2, eye_foci: PackedVector2Array | Vector2[]): RID
+        
+        /** The minimum radius around the focal point where full quality is guaranteed if VRS is used as a percentage of screen size. */
+        get vrs_min_radius(): float64
+        set vrs_min_radius(value: float64)
+        
+        /** The strength used to calculate the VRS density map. The greater this value, the more noticeable VRS is. */
+        get vrs_strength(): float64
+        set vrs_strength(value: float64)
+    }
+    namespace ZIPPacker {
+        enum ZipAppend {
+            /** Create a new zip archive at the given path. */
+            APPEND_CREATE = 0,
+            
+            /** Append a new zip archive to the end of the already existing file at the given path. */
+            APPEND_CREATEAFTER = 1,
+            
+            /** Add new files to the existing zip archive at the given path. */
+            APPEND_ADDINZIP = 2,
+        }
+    }
+    /** Allows the creation of zip files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_zippacker.html  
+     */
+    class ZIPPacker extends RefCounted {
+        constructor(identifier?: any)
+        /** Opens a zip file for writing at the given path using the specified write mode.  
+         *  This must be called before everything else.  
+         */
+        open(path: string, append: ZIPPacker.ZipAppend = 0): GError
+        
+        /** Starts writing to a file within the archive. Only one file can be written at the same time.  
+         *  Must be called after [method open].  
+         */
+        start_file(path: string): GError
+        
+        /** Write the given [param data] to the file.  
+         *  Needs to be called after [method start_file].  
+         */
+        write_file(data: PackedByteArray | byte[] | ArrayBuffer): GError
+        
+        /** Stops writing to a file within the archive.  
+         *  It will fail if there is no open file.  
+         */
+        close_file(): GError
+        
+        /** Closes the underlying resources used by this instance. */
+        close(): GError
     }
 }
