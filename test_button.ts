@@ -148,7 +148,8 @@ export default class TestNode extends Button {
         const basis = Basis.looking_at(new Vector3(1, 2, 0), Vector3.UP);
         console.log("Basis.looking_at(new Vector3(1, 2, 0), Vector3.UP)", basis.x, basis.y, basis.z);
 
-        let err = ResourceLoader.load_threaded_request("res://piggy/background.png", "", true, ResourceLoader.CacheMode.CACHE_MODE_IGNORE);
+        const dummy_res_path = "res://piggy/background.png";
+        let err = ResourceLoader.load_threaded_request(dummy_res_path, "", true, ResourceLoader.CacheMode.CACHE_MODE_IGNORE);
         console.log(
             error_string(err), // string represented via godot api
             GError[err]    // or, conveniently via typescript enum name lookup
@@ -156,10 +157,16 @@ export default class TestNode extends Button {
         let timerid: NodeJS.Timeout;
         timerid = setInterval(function (){
             let array = new GArray();
-            let status = ResourceLoader.load_threaded_get_status("res://piggy/background.png", array);
+            let status = ResourceLoader.load_threaded_get_status(dummy_res_path, array);
             console.log("loading", ResourceLoader.ThreadLoadStatus[status], array);
             if (status != ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS) {
                 clearInterval(timerid);
+                if (status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED) {
+                    // it should be a bug of godot, 
+                    // a ResourceLoader::LoadToken will be leaked if not calling `load_threaded_get` for a corresponding `load_threaded_request`
+                    const res = ResourceLoader.load_threaded_get(dummy_res_path);
+                    console.log("loaded", res);
+                }
             }
         }, 20);
     }
