@@ -1,6 +1,7 @@
 import { GError, GArray, Basis, Button, error_string, Input, Node, Object, ResourceLoader, Signal, Time, Variant, Vector2, Vector3, is_instance_valid, Signal1, Control, CanvasItem } from "godot";
 import { experimental, export_, export_enum, export_exp_easing, export_file, export_flags, export_global_file, export_multiline, export_range, export_range_i, help, onready, signal } from "godot.annotations";
 import { CyclicClass1 } from "./tests/cyclic_import_1";
+import { JSWorker } from "godot.worker";
 
 enum MyColor {
     White, 
@@ -87,8 +88,7 @@ export default class TestNode extends Button {
     }
 
     _ready() {
-        //@ts-ignore
-        let worker = new Worker("tests/worker");
+        let worker = new JSWorker("tests/worker");
         worker.onmessage = function (m: any) {
             console.log("master: get message", m);
             worker.terminate();

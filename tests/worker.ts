@@ -1,7 +1,9 @@
+import { JSWorkerParent } from "godot.worker";
 
-//@ts-ignore
-onmessage = function (m: any) {
-    console.log("worker: get message", m);
-    //@ts-ignore
-    postMessage("worker result");
+if (typeof JSWorkerParent !== "undefined") {
+    JSWorkerParent.onmessage = function (m: any) {
+        console.log("worker: get message", m);
+        //@ts-ignore
+        JSWorkerParent.postMessage("worker result");
+    }
 }
