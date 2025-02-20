@@ -1,4 +1,4 @@
-import { EditorPlugin, Node2D, Variant, Vector2 } from "godot";
+import { EditorPlugin, Engine, Node2D, Variant, Vector2 } from "godot";
 import { export_, tool } from "godot.annotations";
 import Test01Inspector from "./test_01_inspector";
 import * as jsb from "godot-jsb";
@@ -22,7 +22,7 @@ export default class Test01 extends Node2D {
 
 	_enter_tree(): void {
 		console.log("test01 enter tree")
-		if (jsb.TOOLS_ENABLED) {
+		if (jsb.TOOLS_ENABLED && Engine.is_editor_hint()) {
 			if (!inspector) {
 				inspector = new EditorPlugin();
 				inspector.add_inspector_plugin(new Test01Inspector());
