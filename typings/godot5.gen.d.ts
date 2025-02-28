@@ -1,6 +1,574 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** Imports an image for use in 2D or 3D rendering.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceimportertexture.html  
+     */
+    class ResourceImporterTexture extends ResourceImporter {
+        constructor(identifier?: any)
+    }
+    /** Imports a collection of textures from a PNG image into an optimized [AtlasTexture] for 2D rendering.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceimportertextureatlas.html  
+     */
+    class ResourceImporterTextureAtlas extends ResourceImporter {
+        constructor(identifier?: any)
+    }
+    /** Imports a WAV audio file for playback.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourceimporterwav.html  
+     */
+    class ResourceImporterWAV extends ResourceImporter {
+        constructor(identifier?: any)
+    }
+    /** A node used to preload sub-resources inside a scene.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_resourcepreloader.html  
+     */
+    class ResourcePreloader extends Node {
+        constructor(identifier?: any)
+        /** Adds a resource to the preloader with the given [param name]. If a resource with the given [param name] already exists, the new resource will be renamed to "[param name] N" where N is an incrementing number starting from 2. */
+        add_resource(name: StringName, resource: Resource): void
+        
+        /** Removes the resource associated to [param name] from the preloader. */
+        remove_resource(name: StringName): void
+        
+        /** Renames a resource inside the preloader from [param name] to [param newname]. */
+        rename_resource(name: StringName, newname: StringName): void
+        
+        /** Returns `true` if the preloader contains a resource associated to [param name]. */
+        has_resource(name: StringName): boolean
+        
+        /** Returns the resource associated to [param name]. */
+        get_resource(name: StringName): Resource
+        
+        /** Returns the list of resources inside the preloader. */
+        get_resource_list(): PackedStringArray
+        get resources(): GArray
+        set resources(value: GArray)
+    }
+    class ResourcePreloaderEditor extends PanelContainer {
+        constructor(identifier?: any)
+        _update_library(): void
+        _remove_resource(to_remove: string): void
+    }
+    class ResourcePreloaderEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    namespace RibbonTrailMesh {
+        enum Shape {
+            /** Gives the mesh a single flat face. */
+            SHAPE_FLAT = 0,
+            
+            /** Gives the mesh two perpendicular flat faces, making a cross shape. */
+            SHAPE_CROSS = 1,
+        }
+    }
+    /** Represents a straight ribbon-shaped [PrimitiveMesh] with variable width.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_ribbontrailmesh.html  
+     */
+    class RibbonTrailMesh extends PrimitiveMesh {
+        constructor(identifier?: any)
+        /** Determines the shape of the ribbon. */
+        get shape(): int64
+        set shape(value: int64)
+        
+        /** The baseline size of the ribbon. The size of a particular section segment is obtained by multiplying this size by the value of the [member curve] at the given distance. */
+        get size(): float64
+        set size(value: float64)
+        
+        /** The total number of sections on the ribbon. */
+        get sections(): int64
+        set sections(value: int64)
+        
+        /** The length of a section of the ribbon. */
+        get section_length(): float64
+        set section_length(value: float64)
+        
+        /** The number of segments in a section. The [member curve] is sampled on each segment to determine its size. Higher values result in a more detailed ribbon at the cost of performance. */
+        get section_segments(): int64
+        set section_segments(value: int64)
+        
+        /** Determines the size of the ribbon along its length. The size of a particular section segment is obtained by multiplying the baseline [member size] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. */
+        get curve(): Curve
+        set curve(value: Curve)
+    }
+    /** A custom effect for a [RichTextLabel].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_richtexteffect.html  
+     */
+    class RichTextEffect extends Resource {
+        constructor(identifier?: any)
+        /** Override this method to modify properties in [param char_fx]. The method must return `true` if the character could be transformed successfully. If the method returns `false`, it will skip transformation to avoid displaying broken text. */
+        /* gdvirtual */ _process_custom_fx(char_fx: CharFXTransform): boolean
+    }
+    namespace RichTextLabel {
+        enum ListType {
+            /** Each list item has a number marker. */
+            LIST_NUMBERS = 0,
+            
+            /** Each list item has a letter marker. */
+            LIST_LETTERS = 1,
+            
+            /** Each list item has a roman number marker. */
+            LIST_ROMAN = 2,
+            
+            /** Each list item has a filled circle marker. */
+            LIST_DOTS = 3,
+        }
+        enum MenuItems {
+            /** Copies the selected text. */
+            MENU_COPY = 0,
+            
+            /** Selects the whole [RichTextLabel] text. */
+            MENU_SELECT_ALL = 1,
+            
+            /** Represents the size of the [enum MenuItems] enum. */
+            MENU_MAX = 2,
+        }
+        enum MetaUnderline {
+            /** Meta tag does not display an underline, even if [member meta_underlined] is `true`. */
+            META_UNDERLINE_NEVER = 0,
+            
+            /** If [member meta_underlined] is `true`, meta tag always display an underline. */
+            META_UNDERLINE_ALWAYS = 1,
+            
+            /** If [member meta_underlined] is `true`, meta tag display an underline when the mouse cursor is over it. */
+            META_UNDERLINE_ON_HOVER = 2,
+        }
+        enum ImageUpdateMask {
+            /** If this bit is set, [method update_image] changes image texture. */
+            UPDATE_TEXTURE = 1,
+            
+            /** If this bit is set, [method update_image] changes image size. */
+            UPDATE_SIZE = 2,
+            
+            /** If this bit is set, [method update_image] changes image color. */
+            UPDATE_COLOR = 4,
+            
+            /** If this bit is set, [method update_image] changes image inline alignment. */
+            UPDATE_ALIGNMENT = 8,
+            
+            /** If this bit is set, [method update_image] changes image texture region. */
+            UPDATE_REGION = 16,
+            
+            /** If this bit is set, [method update_image] changes image padding. */
+            UPDATE_PAD = 32,
+            
+            /** If this bit is set, [method update_image] changes image tooltip. */
+            UPDATE_TOOLTIP = 64,
+            
+            /** If this bit is set, [method update_image] changes image width from/to percents. */
+            UPDATE_WIDTH_IN_PERCENT = 128,
+        }
+    }
+    /** A control for displaying text that can contain different font styles, images, and basic formatting.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_richtextlabel.html  
+     */
+    class RichTextLabel extends Control {
+        constructor(identifier?: any)
+        /** Returns the text without BBCode mark-up. */
+        get_parsed_text(): string
+        
+        /** Adds raw non-BBCode-parsed text to the tag stack. */
+        add_text(text: string): void
+        
+        /** Adds an image's opening and closing tags to the tag stack, optionally providing a [param width] and [param height] to resize the image, a [param color] to tint the image and a [param region] to only use parts of the image.  
+         *  If [param width] or [param height] is set to 0, the image size will be adjusted in order to keep the original aspect ratio.  
+         *  If [param width] and [param height] are not set, but [param region] is, the region's rect will be used.  
+         *  [param key] is an optional identifier, that can be used to modify the image via [method update_image].  
+         *  If [param pad] is set, and the image is smaller than the size specified by [param width] and [param height], the image padding is added to match the size instead of upscaling.  
+         *  If [param size_in_percent] is set, [param width] and [param height] values are percentages of the control width instead of pixels.  
+         */
+        add_image(image: Texture2D, width: int64 = 0, height: int64 = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = new Rect2(0, 0, 0, 0), key: any = <any> {}, pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        
+        /** Updates the existing images with the key [param key]. Only properties specified by [param mask] bits are updated. See [method add_image]. */
+        update_image(key: any, mask: RichTextLabel.ImageUpdateMask, image: Texture2D, width: int64 = 0, height: int64 = 0, color: Color = new Color(1, 1, 1, 1), inline_align: InlineAlignment = 5, region: Rect2 = new Rect2(0, 0, 0, 0), pad: boolean = false, tooltip: string = '', size_in_percent: boolean = false): void
+        
+        /** Adds a newline tag to the tag stack. */
+        newline(): void
+        
+        /** Removes a paragraph of content from the label. Returns `true` if the paragraph exists.  
+         *  The [param paragraph] argument is the index of the paragraph to remove, it can take values in the interval `[0, get_paragraph_count() - 1]`.  
+         *  If [param no_invalidate] is set to `true`, cache for the subsequent paragraphs is not invalidated. Use it for faster updates if deleted paragraph is fully self-contained (have no unclosed tags), or this call is part of the complex edit operation and [method invalidate_paragraph] will be called at the end of operation.  
+         */
+        remove_paragraph(paragraph: int64, no_invalidate: boolean = false): boolean
+        
+        /** Invalidates [param paragraph] and all subsequent paragraphs cache. */
+        invalidate_paragraph(paragraph: int64): boolean
+        
+        /** Adds a [code skip-lint][font]` tag to the tag stack. Overrides default fonts for its duration.  
+         *  Passing `0` to [param font_size] will use the existing default font size.  
+         */
+        push_font(font: Font, font_size: int64 = 0): void
+        
+        /** Adds a [code skip-lint][font_size]` tag to the tag stack. Overrides default font size for its duration. */
+        push_font_size(font_size: int64): void
+        
+        /** Adds a [code skip-lint][font]` tag with a normal font to the tag stack. */
+        push_normal(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a bold font to the tag stack. This is the same as adding a [code skip-lint]**` tag if not currently in a [code skip-lint] *` tag. */
+        push_bold(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a bold italics font to the tag stack. */
+        push_bold_italics(): void
+        
+        /** Adds a [code skip-lint][font]` tag with an italics font to the tag stack. This is the same as adding an [code skip-lint] *` tag if not currently in a [code skip-lint]**` tag. */
+        push_italics(): void
+        
+        /** Adds a [code skip-lint][font]` tag with a monospace font to the tag stack. */
+        push_mono(): void
+        
+        /** Adds a [code skip-lint][color]` tag to the tag stack. */
+        push_color(color: Color): void
+        
+        /** Adds a [code skip-lint][outline_size]` tag to the tag stack. Overrides default text outline size for its duration. */
+        push_outline_size(outline_size: int64): void
+        
+        /** Adds a [code skip-lint][outline_color]` tag to the tag stack. Adds text outline for its duration. */
+        push_outline_color(color: Color): void
+        
+        /** Adds a [code skip-lint][p]` tag to the tag stack. */
+        push_paragraph(alignment: HorizontalAlignment, base_direction: Control.TextDirection = 0, language: string = '', st_parser: TextServer.StructuredTextParser = 0, justification_flags: TextServer.JustificationFlag = 163, tab_stops: PackedFloat32Array | float32[] = []): void
+        
+        /** Adds an [code skip-lint][indent]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
+        push_indent(level: int64): void
+        
+        /** Adds [code skip-lint][ol]` or [code skip-lint][ul]` tag to the tag stack. Multiplies [param level] by current [member tab_size] to determine new margin length. */
+        push_list(level: int64, type: RichTextLabel.ListType, capitalize: boolean, bullet: string = '•'): void
+        
+        /** Adds a meta tag to the tag stack. Similar to the BBCode [code skip-lint][url=something]{text}[/url]`, but supports non-[String] metadata types.  
+         *  If [member meta_underlined] is `true`, meta tags display an underline. This behavior can be customized with [param underline_mode].  
+         *      
+         *  **Note:** Meta tags do nothing by default when clicked. To assign behavior when clicked, connect [signal meta_clicked] to a function that is called when the meta tag is clicked.  
+         */
+        push_meta(data: any, underline_mode: RichTextLabel.MetaUnderline = 1): void
+        
+        /** Adds a [code skip-lint][hint]` tag to the tag stack. Same as BBCode [code skip-lint][hint=something]{text}[/hint]`. */
+        push_hint(description: string): void
+        
+        /** Adds language code used for text shaping algorithm and Open-Type font features. */
+        push_language(language: string): void
+        
+        /** Adds a [code skip-lint][u]` tag to the tag stack. */
+        push_underline(): void
+        
+        /** Adds a [code skip-lint][s]` tag to the tag stack. */
+        push_strikethrough(): void
+        
+        /** Adds a [code skip-lint][table=columns,inline_align]` tag to the tag stack. Use [method set_table_column_expand] to set column expansion ratio. Use [method push_cell] to add cells. */
+        push_table(columns: int64, inline_align: InlineAlignment = 0, align_to_row: int64 = -1): void
+        
+        /** Adds a [code skip-lint][dropcap]` tag to the tag stack. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text. */
+        push_dropcap(string_: string, font: Font, size: int64, dropcap_margins: Rect2 = new Rect2(0, 0, 0, 0), color: Color = new Color(1, 1, 1, 1), outline_size: int64 = 0, outline_color: Color = new Color(0, 0, 0, 0)): void
+        
+        /** Edits the selected column's expansion options. If [param expand] is `true`, the column expands in proportion to its expansion ratio versus the other columns' ratios.  
+         *  For example, 2 columns with ratios 3 and 4 plus 70 pixels in available width would expand 30 and 40 pixels, respectively.  
+         *  If [param expand] is `false`, the column will not contribute to the total ratio.  
+         */
+        set_table_column_expand(column: int64, expand: boolean, ratio: int64 = 1): void
+        
+        /** Sets color of a table cell. Separate colors for alternating rows can be specified. */
+        set_cell_row_background_color(odd_row_bg: Color, even_row_bg: Color): void
+        
+        /** Sets color of a table cell border. */
+        set_cell_border_color(color: Color): void
+        
+        /** Sets minimum and maximum size overrides for a table cell. */
+        set_cell_size_override(min_size: Vector2, max_size: Vector2): void
+        
+        /** Sets inner padding of a table cell. */
+        set_cell_padding(padding: Rect2): void
+        
+        /** Adds a [code skip-lint][cell]` tag to the tag stack. Must be inside a [code skip-lint][table]` tag. See [method push_table] for details. Use [method set_table_column_expand] to set column expansion ratio, [method set_cell_border_color] to set cell border, [method set_cell_row_background_color] to set cell background, [method set_cell_size_override] to override cell size, and [method set_cell_padding] to set padding. */
+        push_cell(): void
+        
+        /** Adds a [code skip-lint][fgcolor]` tag to the tag stack. */
+        push_fgcolor(fgcolor: Color): void
+        
+        /** Adds a [code skip-lint][bgcolor]` tag to the tag stack. */
+        push_bgcolor(bgcolor: Color): void
+        
+        /** Adds a custom effect tag to the tag stack. The effect does not need to be in [member custom_effects]. The environment is directly passed to the effect. */
+        push_customfx(effect: RichTextEffect, env: GDictionary): void
+        
+        /** Adds a context marker to the tag stack. See [method pop_context]. */
+        push_context(): void
+        
+        /** Terminates tags opened after the last [method push_context] call (including context marker), or all tags if there's no context marker on the stack. */
+        pop_context(): void
+        
+        /** Terminates the current tag. Use after `push_*` methods to close BBCodes manually. Does not need to follow `add_*` methods. */
+        pop(): void
+        
+        /** Terminates all tags opened by `push_*` methods. */
+        pop_all(): void
+        
+        /** Clears the tag stack, causing the label to display nothing.  
+         *      
+         *  **Note:** This method does not affect [member text], and its contents will show again if the label is redrawn. However, setting [member text] to an empty [String] also clears the stack.  
+         */
+        clear(): void
+        
+        /** Returns the vertical scrollbar.  
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.  
+         */
+        get_v_scroll_bar(): VScrollBar
+        
+        /** Scrolls the window's top line to match [param line]. */
+        scroll_to_line(line: int64): void
+        
+        /** Scrolls the window's top line to match first line of the [param paragraph]. */
+        scroll_to_paragraph(paragraph: int64): void
+        
+        /** Scrolls to the beginning of the current selection. */
+        scroll_to_selection(): void
+        
+        /** Returns the current selection first character index if a selection is active, `-1` otherwise. Does not include BBCodes. */
+        get_selection_from(): int64
+        
+        /** Returns the current selection last character index if a selection is active, `-1` otherwise. Does not include BBCodes. */
+        get_selection_to(): int64
+        
+        /** Select all the text.  
+         *  If [member selection_enabled] is `false`, no selection will occur.  
+         */
+        select_all(): void
+        
+        /** Returns the current selection text. Does not include BBCodes. */
+        get_selected_text(): string
+        
+        /** Clears the current selection. */
+        deselect(): void
+        
+        /** The assignment version of [method append_text]. Clears the tag stack and inserts the new content. */
+        parse_bbcode(bbcode: string): void
+        
+        /** Parses [param bbcode] and adds tags to the tag stack as needed.  
+         *      
+         *  **Note:** Using this method, you can't close a tag that was opened in a previous [method append_text] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [member text] instead of using [method append_text].  
+         */
+        append_text(bbcode: string): void
+        
+        /** If [member threaded] is enabled, returns `true` if the background thread has finished text processing, otherwise always return `true`. */
+        is_ready(): boolean
+        
+        /** Returns the line number of the character position provided. Line and character numbers are both zero-indexed.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_character_line(character: int64): int64
+        
+        /** Returns the paragraph number of the character position provided. Paragraph and character numbers are both zero-indexed.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_character_paragraph(character: int64): int64
+        
+        /** Returns the total number of characters from text tags. Does not include BBCodes. */
+        get_total_character_count(): int64
+        
+        /** Returns the total number of lines in the text. Wrapped text is counted as multiple lines.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_line_count(): int64
+        
+        /** Returns the number of visible lines.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_visible_line_count(): int64
+        
+        /** Returns the total number of paragraphs (newlines or `p` tags in the tag stack's text tags). Considers wrapped text as one paragraph. */
+        get_paragraph_count(): int64
+        
+        /** Returns the number of visible paragraphs. A paragraph is considered visible if at least one of its lines is visible.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_visible_paragraph_count(): int64
+        
+        /** Returns the height of the content.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_content_height(): int64
+        
+        /** Returns the width of the content.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_content_width(): int64
+        
+        /** Returns the vertical offset of the line found at the provided index.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_line_offset(line: int64): float64
+        
+        /** Returns the vertical offset of the paragraph found at the provided index.  
+         *      
+         *  **Note:** If [member threaded] is enabled, this method returns a value for the loaded part of the document. Use [method is_ready] or [signal finished] to determine whether document is fully loaded.  
+         */
+        get_paragraph_offset(paragraph: int64): float64
+        
+        /** Parses BBCode parameter [param expressions] into a dictionary. */
+        parse_expressions_for_values(expressions: PackedStringArray | string[]): GDictionary
+        
+        /** Installs a custom effect. This can also be done in the RichTextLabel inspector using the [member custom_effects] property. [param effect] should be a valid [RichTextEffect].  
+         *  Example RichTextEffect:  
+         *    
+         *  Registering the above effect in RichTextLabel from script:  
+         *    
+         */
+        install_effect(effect: any): void
+        
+        /** Returns the [PopupMenu] of this [RichTextLabel]. By default, this menu is displayed when right-clicking on the [RichTextLabel].  
+         *  You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:  
+         *    
+         *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.  
+         */
+        get_menu(): PopupMenu
+        
+        /** Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided). */
+        is_menu_visible(): boolean
+        
+        /** Executes a given action as defined in the [enum MenuItems] enum. */
+        menu_option(option: int64): void
+        
+        /** If `true`, the label uses BBCode formatting.  
+         *      
+         *  **Note:** This only affects the contents of [member text], not the tag stack.  
+         */
+        get bbcode_enabled(): boolean
+        set bbcode_enabled(value: boolean)
+        
+        /** The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.  
+         *      
+         *  **Note:** If [member bbcode_enabled] is `true`, it is unadvised to use the `+=` operator with [member text] (e.g. `text += "some string"`) as it replaces the whole text and can cause slowdowns. It will also erase all BBCode that was added to stack using `push_*` methods. Use [method append_text] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.  
+         */
+        get text(): string
+        set text(value: string)
+        
+        /** If `true`, the label's minimum size will be automatically updated to fit its content, matching the behavior of [Label]. */
+        get fit_content(): boolean
+        set fit_content(value: boolean)
+        
+        /** If `true`, the scrollbar is visible. Setting this to `false` does not block scrolling completely. See [method scroll_to_line]. */
+        get scroll_active(): boolean
+        set scroll_active(value: boolean)
+        
+        /** If `true`, the window scrolls down to display new content automatically. */
+        get scroll_following(): boolean
+        set scroll_following(value: boolean)
+        
+        /** If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum TextServer.AutowrapMode]. */
+        get autowrap_mode(): int64
+        set autowrap_mode(value: int64)
+        
+        /** The number of spaces associated with a single tab length. Does not affect `\t` in text tags, only indent tags. */
+        get tab_size(): int64
+        set tab_size(value: int64)
+        
+        /** If `true`, a right-click displays the context menu. */
+        get context_menu_enabled(): boolean
+        set context_menu_enabled(value: boolean)
+        
+        /** If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled. */
+        get shortcut_keys_enabled(): boolean
+        set shortcut_keys_enabled(value: boolean)
+        
+        /** The currently installed custom effects. This is an array of [RichTextEffect]s.  
+         *  To add a custom effect, it's more convenient to use [method install_effect].  
+         */
+        get custom_effects(): GArray
+        set custom_effects(value: GArray)
+        
+        /** If `true`, the label underlines meta tags such as [code skip-lint][url]{text}[/url]`. These tags can call a function when clicked if [signal meta_clicked] is connected to a function. */
+        get meta_underlined(): boolean
+        set meta_underlined(value: boolean)
+        
+        /** If `true`, the label underlines hint tags such as [code skip-lint][hint=description]{text}[/hint]`. */
+        get hint_underlined(): boolean
+        set hint_underlined(value: boolean)
+        
+        /** If `true`, text processing is done in a background thread. */
+        get threaded(): boolean
+        set threaded(value: boolean)
+        
+        /** The delay after which the loading progress bar is displayed, in milliseconds. Set to `-1` to disable progress bar entirely.  
+         *      
+         *  **Note:** Progress bar is displayed only if [member threaded] is enabled.  
+         */
+        get progress_bar_delay(): int64
+        set progress_bar_delay(value: int64)
+        
+        /** If `true`, the label allows text selection. */
+        get selection_enabled(): boolean
+        set selection_enabled(value: boolean)
+        
+        /** If `true`, the selected text will be deselected when focus is lost. */
+        get deselect_on_focus_loss_enabled(): boolean
+        set deselect_on_focus_loss_enabled(value: boolean)
+        
+        /** If `true`, allow drag and drop of selected text. */
+        get drag_and_drop_selection_enabled(): boolean
+        set drag_and_drop_selection_enabled(value: boolean)
+        
+        /** The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.  
+         *      
+         *  **Note:** Setting this property updates [member visible_ratio] accordingly.  
+         */
+        get visible_characters(): int64
+        set visible_characters(value: int64)
+        
+        /** Sets the clipping behavior when [member visible_characters] or [member visible_ratio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info. */
+        get visible_characters_behavior(): int64
+        set visible_characters_behavior(value: int64)
+        
+        /** The fraction of characters to display, relative to the total number of characters (see [method get_total_character_count]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.  
+         *      
+         *  **Note:** Setting this property updates [member visible_characters] accordingly.  
+         */
+        get visible_ratio(): float64
+        set visible_ratio(value: float64)
+        
+        /** Base text writing direction. */
+        get text_direction(): int64
+        set text_direction(value: int64)
+        
+        /** Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+        get language(): string
+        set language(value: string)
+        
+        /** Set BiDi algorithm override for the structured text. */
+        get structured_text_bidi_override(): int64
+        set structured_text_bidi_override(value: int64)
+        
+        /** Set additional options for BiDi override. */
+        get structured_text_bidi_override_options(): GArray
+        set structured_text_bidi_override_options(value: GArray)
+        
+        /** Triggered when the user clicks on content between meta (URL) tags. If the meta is defined in BBCode, e.g. [code skip-lint][url={"key": "value"}]Text[/url]`, then the parameter for this signal will always be a [String] type. If a particular type or an object is desired, the [method push_meta] method must be used to manually insert the data into the tag stack. Alternatively, you can convert the [String] input to the desired type based on its contents (such as calling [method JSON.parse] on it).  
+         *  For example, the following method can be connected to [signal meta_clicked] to open clicked URLs using the user's default web browser:  
+         *    
+         */
+        readonly meta_clicked: Signal1<any>
+        
+        /** Triggers when the mouse enters a meta tag. */
+        readonly meta_hover_started: Signal1<any>
+        
+        /** Triggers when the mouse exits a meta tag. */
+        readonly meta_hover_ended: Signal1<any>
+        
+        /** Triggered when the document is fully loaded. */
+        readonly finished: Signal0
+    }
     namespace RigidBody2D {
         enum FreezeMode {
             /** Static body freeze mode (default). The body is not affected by gravity and forces. It can be only moved by user code and doesn't collide with other bodies along its path. */
@@ -544,6 +1112,36 @@ declare module "godot" {
     }
     class RunInstancesDialog extends AcceptDialog {
         constructor(identifier?: any)
+    }
+    /** @link https://docs.godotengine.org/en/4.3/classes/class_sqlitedatabase.html */
+    class SQLiteDatabase extends RefCounted {
+        constructor(identifier?: any)
+        static open(path: string, readonly: boolean): SQLiteDatabase
+        close(): void
+        prepare(sql: string): SQLiteStatement
+        exec(sql: string): GError
+        readonly closed: Signal0
+    }
+    /** @link https://docs.godotengine.org/en/4.3/classes/class_sqlitestatement.html */
+    class SQLiteStatement extends RefCounted {
+        constructor(identifier?: any)
+        step(): GError
+        reset(): GError
+        bind_any(index: int64, value: any): GError
+        bind_null(index: int64): GError
+        bind_bool(index: int64, value: boolean): GError
+        bind_int(index: int64, value: int64): GError
+        bind_double(index: int64, value: float64): GError
+        bind_text(index: int64, value: string): GError
+        bind_blob(index: int64, value: PackedByteArray | byte[] | ArrayBuffer): GError
+        column_count(): int64
+        column_type(index: int64): Variant.Type
+        column_any(index: int64): any
+        column_bool(index: int64): boolean
+        column_int(index: int64): int64
+        column_double(index: int64): float64
+        column_text(index: int64): string
+        column_blob(index: int64): PackedByteArray
     }
     class SceneCreateDialog extends ConfirmationDialog {
         constructor(identifier?: any)
@@ -8612,844 +9210,5 @@ declare module "godot" {
          *  This method is called before text server is unregistered.  
          */
         /* gdvirtual */ _cleanup(): void
-    }
-    /** A fallback implementation of Godot's text server, without support for BiDi and complex text layout.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_textserverfallback.html  
-     */
-    class TextServerFallback extends TextServerExtension {
-        constructor(identifier?: any)
-    }
-    /** Base class for all texture types.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture.html  
-     */
-    class Texture extends Resource {
-        constructor(identifier?: any)
-    }
-    /** Texture for 2D and 3D.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture2d.html  
-     */
-    class Texture2D extends Texture {
-        constructor(identifier?: any)
-        /** Called when the [Texture2D]'s width is queried. */
-        /* gdvirtual */ _get_width(): int64
-        
-        /** Called when the [Texture2D]'s height is queried. */
-        /* gdvirtual */ _get_height(): int64
-        
-        /** Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)` position. */
-        /* gdvirtual */ _is_pixel_opaque(x: int64, y: int64): boolean
-        
-        /** Called when the presence of an alpha channel in the [Texture2D] is queried. */
-        /* gdvirtual */ _has_alpha(): boolean
-        
-        /** Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the top-left offset specified in [param pos]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: boolean): void
-        
-        /** Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw_rect(to_canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color, transpose: boolean): void
-        
-        /** Called when a part of the [Texture2D] specified by [param src_rect]'s coordinates is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
-         *      
-         *  **Note:** This is only used in 2D rendering, not 3D.  
-         */
-        /* gdvirtual */ _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: boolean, clip_uv: boolean): void
-        
-        /** Returns the texture width in pixels. */
-        get_width(): int64
-        
-        /** Returns the texture height in pixels. */
-        get_height(): int64
-        
-        /** Returns the texture size in pixels. */
-        get_size(): Vector2
-        
-        /** Returns `true` if this [Texture2D] has an alpha channel. */
-        has_alpha(): boolean
-        
-        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified [param position]. */
-        draw(canvas_item: RID, position: Vector2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
-        
-        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API. */
-        draw_rect(canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
-        
-        /** Draws a part of the texture using a [CanvasItem] with the [RenderingServer] API. */
-        draw_rect_region(canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false, clip_uv: boolean = true): void
-        
-        /** Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each time). [Image]s can be accessed and manipulated directly.  
-         *      
-         *  **Note:** This will return `null` if this [Texture2D] is invalid.  
-         *      
-         *  **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.  
-         */
-        get_image(): Image
-        
-        /** Creates a placeholder version of this resource ([PlaceholderTexture2D]). */
-        create_placeholder(): Resource
-    }
-    /** A single texture resource which consists of multiple, separate images. Each image has the same dimensions and number of mipmap levels.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture2darray.html  
-     */
-    class Texture2DArray extends ImageTextureLayered {
-        constructor(identifier?: any)
-        /** Creates a placeholder version of this resource ([PlaceholderTexture2DArray]). */
-        create_placeholder(): Resource
-    }
-    /** Texture Array for 2D that is bound to a texture created on the [RenderingDevice].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture2darrayrd.html  
-     */
-    class Texture2DArrayRD extends TextureLayeredRD {
-        constructor(identifier?: any)
-    }
-    /** Texture for 2D that is bound to a texture created on the [RenderingDevice].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture2drd.html  
-     */
-    class Texture2DRD extends Texture2D {
-        constructor(identifier?: any)
-        /** The RID of the texture object created on the [RenderingDevice]. */
-        get texture_rd_rid(): RID
-        set texture_rd_rid(value: RID)
-    }
-    /** Base class for 3-dimensional textures.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture3d.html  
-     */
-    class Texture3D extends Texture {
-        constructor(identifier?: any)
-        /** Called when the [Texture3D]'s format is queried. */
-        /* gdvirtual */ _get_format(): Image.Format
-        
-        /** Called when the [Texture3D]'s width is queried. */
-        /* gdvirtual */ _get_width(): int64
-        
-        /** Called when the [Texture3D]'s height is queried. */
-        /* gdvirtual */ _get_height(): int64
-        
-        /** Called when the [Texture3D]'s depth is queried. */
-        /* gdvirtual */ _get_depth(): int64
-        
-        /** Called when the presence of mipmaps in the [Texture3D] is queried. */
-        /* gdvirtual */ _has_mipmaps(): boolean
-        
-        /** Called when the [Texture3D]'s data is queried. */
-        /* gdvirtual */ _get_data(): GArray
-        
-        /** Returns the current format being used by this texture. See [enum Image.Format] for details. */
-        get_format(): Image.Format
-        
-        /** Returns the [Texture3D]'s width in pixels. Width is typically represented by the X axis. */
-        get_width(): int64
-        
-        /** Returns the [Texture3D]'s height in pixels. Width is typically represented by the Y axis. */
-        get_height(): int64
-        
-        /** Returns the [Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a dimension not present in [Texture2D]). */
-        get_depth(): int64
-        
-        /** Returns `true` if the [Texture3D] has generated mipmaps. */
-        has_mipmaps(): boolean
-        
-        /** Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a  *slice*  of the [Texture3D], with different slices mapping to different depth (Z axis) levels. */
-        get_data(): GArray
-        
-        /** Creates a placeholder version of this resource ([PlaceholderTexture3D]). */
-        create_placeholder(): Resource
-    }
-    class Texture3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** Texture for 3D that is bound to a texture created on the [RenderingDevice].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture3drd.html  
-     */
-    class Texture3DRD extends Texture3D {
-        constructor(identifier?: any)
-        /** The RID of the texture object created on the [RenderingDevice]. */
-        get texture_rd_rid(): RID
-        set texture_rd_rid(value: RID)
-    }
-    namespace TextureButton {
-        enum StretchMode {
-            /** Scale to fit the node's bounding rectangle. */
-            STRETCH_SCALE = 0,
-            
-            /** Tile inside the node's bounding rectangle. */
-            STRETCH_TILE = 1,
-            
-            /** The texture keeps its original size and stays in the bounding rectangle's top-left corner. */
-            STRETCH_KEEP = 2,
-            
-            /** The texture keeps its original size and stays centered in the node's bounding rectangle. */
-            STRETCH_KEEP_CENTERED = 3,
-            
-            /** Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio. */
-            STRETCH_KEEP_ASPECT = 4,
-            
-            /** Scale the texture to fit the node's bounding rectangle, center it, and maintain its aspect ratio. */
-            STRETCH_KEEP_ASPECT_CENTERED = 5,
-            
-            /** Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits. */
-            STRETCH_KEEP_ASPECT_COVERED = 6,
-        }
-    }
-    /** Texture-based button. Supports Pressed, Hover, Disabled and Focused states.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturebutton.html  
-     */
-    class TextureButton extends BaseButton {
-        constructor(identifier?: any)
-        /** Texture to display by default, when the node is **not** in the disabled, hover or pressed state. This texture is still displayed in the focused state, with [member texture_focused] drawn on top. */
-        get texture_normal(): Texture2D
-        set texture_normal(value: Texture2D)
-        
-        /** Texture to display on mouse down over the node, if the node has keyboard focus and the player presses the Enter key or if the player presses the [member BaseButton.shortcut] key. */
-        get texture_pressed(): Texture2D
-        set texture_pressed(value: Texture2D)
-        
-        /** Texture to display when the mouse hovers the node. */
-        get texture_hover(): Texture2D
-        set texture_hover(value: Texture2D)
-        
-        /** Texture to display when the node is disabled. See [member BaseButton.disabled]. */
-        get texture_disabled(): Texture2D
-        set texture_disabled(value: Texture2D)
-        
-        /** Texture to display when the node has mouse or keyboard focus. [member texture_focused] is displayed  *over*  the base texture, so a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons. */
-        get texture_focused(): Texture2D
-        set texture_focused(value: Texture2D)
-        
-        /** Pure black and white [BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes. */
-        get texture_click_mask(): BitMap
-        set texture_click_mask(value: BitMap)
-        
-        /** If `true`, the size of the texture won't be considered for minimum size calculation, so the [TextureButton] can be shrunk down past the texture size. */
-        get ignore_texture_size(): boolean
-        set ignore_texture_size(value: boolean)
-        
-        /** Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options. */
-        get stretch_mode(): int64
-        set stretch_mode(value: int64)
-        
-        /** If `true`, texture is flipped horizontally. */
-        get flip_h(): boolean
-        set flip_h(value: boolean)
-        
-        /** If `true`, texture is flipped vertically. */
-        get flip_v(): boolean
-        set flip_v(value: boolean)
-    }
-    /** Texture Array for Cubemaps that is bound to a texture created on the [RenderingDevice].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturecubemaparrayrd.html  
-     */
-    class TextureCubemapArrayRD extends TextureLayeredRD {
-        constructor(identifier?: any)
-    }
-    /** Texture for Cubemap that is bound to a texture created on the [RenderingDevice].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturecubemaprd.html  
-     */
-    class TextureCubemapRD extends TextureLayeredRD {
-        constructor(identifier?: any)
-    }
-    class TextureEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    namespace TextureLayered {
-        enum LayeredType {
-            /** Texture is a generic [Texture2DArray]. */
-            LAYERED_TYPE_2D_ARRAY = 0,
-            
-            /** Texture is a [Cubemap], with each side in its own layer (6 in total). */
-            LAYERED_TYPE_CUBEMAP = 1,
-            
-            /** Texture is a [CubemapArray], with each cubemap being made of 6 layers. */
-            LAYERED_TYPE_CUBEMAP_ARRAY = 2,
-        }
-    }
-    /** Base class for texture types which contain the data of multiple [Image]s. Each image is of the same size and format.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturelayered.html  
-     */
-    class TextureLayered extends Texture {
-        constructor(identifier?: any)
-        /** Called when the [TextureLayered]'s format is queried. */
-        /* gdvirtual */ _get_format(): Image.Format
-        
-        /** Called when the layers' type in the [TextureLayered] is queried. */
-        /* gdvirtual */ _get_layered_type(): int64
-        
-        /** Called when the [TextureLayered]'s width queried. */
-        /* gdvirtual */ _get_width(): int64
-        
-        /** Called when the [TextureLayered]'s height is queried. */
-        /* gdvirtual */ _get_height(): int64
-        
-        /** Called when the number of layers in the [TextureLayered] is queried. */
-        /* gdvirtual */ _get_layers(): int64
-        
-        /** Called when the presence of mipmaps in the [TextureLayered] is queried. */
-        /* gdvirtual */ _has_mipmaps(): boolean
-        
-        /** Called when the data for a layer in the [TextureLayered] is queried. */
-        /* gdvirtual */ _get_layer_data(layer_index: int64): Image
-        
-        /** Returns the current format being used by this texture. See [enum Image.Format] for details. */
-        get_format(): Image.Format
-        
-        /** Returns the [TextureLayered]'s type. The type determines how the data is accessed, with cubemaps having special types. */
-        get_layered_type(): TextureLayered.LayeredType
-        
-        /** Returns the width of the texture in pixels. Width is typically represented by the X axis. */
-        get_width(): int64
-        
-        /** Returns the height of the texture in pixels. Height is typically represented by the Y axis. */
-        get_height(): int64
-        
-        /** Returns the number of referenced [Image]s. */
-        get_layers(): int64
-        
-        /** Returns `true` if the layers have generated mipmaps. */
-        has_mipmaps(): boolean
-        
-        /** Returns an [Image] resource with the data from specified [param layer]. */
-        get_layer_data(layer: int64): Image
-    }
-    class TextureLayeredEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** Abstract base class for layered texture RD types.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturelayeredrd.html  
-     */
-    class TextureLayeredRD extends TextureLayered {
-        constructor(identifier?: any)
-        /** The RID of the texture object created on the [RenderingDevice]. */
-        get texture_rd_rid(): RID
-        set texture_rd_rid(value: RID)
-    }
-    namespace TextureProgressBar {
-        enum FillMode {
-            /** The [member texture_progress] fills from left to right. */
-            FILL_LEFT_TO_RIGHT = 0,
-            
-            /** The [member texture_progress] fills from right to left. */
-            FILL_RIGHT_TO_LEFT = 1,
-            
-            /** The [member texture_progress] fills from top to bottom. */
-            FILL_TOP_TO_BOTTOM = 2,
-            
-            /** The [member texture_progress] fills from bottom to top. */
-            FILL_BOTTOM_TO_TOP = 3,
-            
-            /** Turns the node into a radial bar. The [member texture_progress] fills clockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
-            FILL_CLOCKWISE = 4,
-            
-            /** Turns the node into a radial bar. The [member texture_progress] fills counterclockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
-            FILL_COUNTER_CLOCKWISE = 5,
-            
-            /** The [member texture_progress] fills from the center, expanding both towards the left and the right. */
-            FILL_BILINEAR_LEFT_AND_RIGHT = 6,
-            
-            /** The [member texture_progress] fills from the center, expanding both towards the top and the bottom. */
-            FILL_BILINEAR_TOP_AND_BOTTOM = 7,
-            
-            /** Turns the node into a radial bar. The [member texture_progress] fills radially from the center, expanding both clockwise and counterclockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
-            FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE = 8,
-        }
-    }
-    /** Texture-based progress bar. Useful for loading screens and life or stamina bars.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_textureprogressbar.html  
-     */
-    class TextureProgressBar extends Range {
-        constructor(identifier?: any)
-        /** Sets the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
-        set_stretch_margin(margin: Side, value: int64): void
-        
-        /** Returns the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
-        get_stretch_margin(margin: Side): int64
-        
-        /** The fill direction. See [enum FillMode] for possible values. */
-        get fill_mode(): int64
-        set fill_mode(value: int64)
-        
-        /** Starting angle for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the texture fills and tends towards [member radial_fill_degrees]. */
-        get radial_initial_angle(): float64
-        set radial_initial_angle(value: float64)
-        
-        /** Upper limit for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up to this angle.  
-         *  See [member Range.value], [member Range.max_value].  
-         */
-        get radial_fill_degrees(): float64
-        set radial_fill_degrees(value: float64)
-        
-        /** Offsets [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. */
-        get radial_center_offset(): Vector2
-        set radial_center_offset(value: Vector2)
-        
-        /** If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*` properties like [member stretch_margin_bottom] to set up the nine patch's 3×3 grid. When using a radial [member fill_mode], this setting will enable stretching. */
-        get nine_patch_stretch(): boolean
-        set nine_patch_stretch(value: boolean)
-        
-        /** The width of the 9-patch's left column. Only effective if [member nine_patch_stretch] is `true`. */
-        get stretch_margin_left(): int64
-        set stretch_margin_left(value: int64)
-        
-        /** The height of the 9-patch's top row. Only effective if [member nine_patch_stretch] is `true`. */
-        get stretch_margin_top(): int64
-        set stretch_margin_top(value: int64)
-        
-        /** The width of the 9-patch's right column. Only effective if [member nine_patch_stretch] is `true`. */
-        get stretch_margin_right(): int64
-        set stretch_margin_right(value: int64)
-        
-        /** The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders. Only effective if [member nine_patch_stretch] is `true`. */
-        get stretch_margin_bottom(): int64
-        set stretch_margin_bottom(value: int64)
-        
-        /** [Texture2D] that draws under the progress bar. The bar's background. */
-        get texture_under(): Texture2D
-        set texture_under(value: Texture2D)
-        
-        /** [Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that hides part of [member texture_progress]. */
-        get texture_over(): Texture2D
-        set texture_over(value: Texture2D)
-        
-        /** [Texture2D] that clips based on the node's `value` and [member fill_mode]. As `value` increased, the texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if `value` is equal to `min_value`.  
-         *  The `value` property comes from [Range]. See [member Range.value], [member Range.min_value], [member Range.max_value].  
-         */
-        get texture_progress(): Texture2D
-        set texture_progress(value: Texture2D)
-        
-        /** The offset of [member texture_progress]. Useful for [member texture_over] and [member texture_under] with fancy borders, to avoid transparent margins in your progress texture. */
-        get texture_progress_offset(): Vector2
-        set texture_progress_offset(value: Vector2)
-        
-        /** Multiplies the color of the bar's [member texture_under] texture. */
-        get tint_under(): Color
-        set tint_under(value: Color)
-        
-        /** Multiplies the color of the bar's [member texture_over] texture. The effect is similar to [member CanvasItem.modulate], except it only affects this specific texture instead of the entire node. */
-        get tint_over(): Color
-        set tint_over(value: Color)
-        
-        /** Multiplies the color of the bar's [member texture_progress] texture. */
-        get tint_progress(): Color
-        set tint_progress(value: Color)
-    }
-    namespace TextureRect {
-        enum ExpandMode {
-            /** The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the texture. */
-            EXPAND_KEEP_SIZE = 0,
-            
-            /** The size of the texture won't be considered for minimum size calculation, so the [TextureRect] can be shrunk down past the texture size. */
-            EXPAND_IGNORE_SIZE = 1,
-            
-            /** The height of the texture will be ignored. Minimum width will be equal to the current height. Useful for horizontal layouts, e.g. inside [HBoxContainer]. */
-            EXPAND_FIT_WIDTH = 2,
-            
-            /** Same as [constant EXPAND_FIT_WIDTH], but keeps texture's aspect ratio. */
-            EXPAND_FIT_WIDTH_PROPORTIONAL = 3,
-            
-            /** The width of the texture will be ignored. Minimum height will be equal to the current width. Useful for vertical layouts, e.g. inside [VBoxContainer]. */
-            EXPAND_FIT_HEIGHT = 4,
-            
-            /** Same as [constant EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio. */
-            EXPAND_FIT_HEIGHT_PROPORTIONAL = 5,
-        }
-        enum StretchMode {
-            /** Scale to fit the node's bounding rectangle. */
-            STRETCH_SCALE = 0,
-            
-            /** Tile inside the node's bounding rectangle. */
-            STRETCH_TILE = 1,
-            
-            /** The texture keeps its original size and stays in the bounding rectangle's top-left corner. */
-            STRETCH_KEEP = 2,
-            
-            /** The texture keeps its original size and stays centered in the node's bounding rectangle. */
-            STRETCH_KEEP_CENTERED = 3,
-            
-            /** Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio. */
-            STRETCH_KEEP_ASPECT = 4,
-            
-            /** Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect ratio. */
-            STRETCH_KEEP_ASPECT_CENTERED = 5,
-            
-            /** Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits. */
-            STRETCH_KEEP_ASPECT_COVERED = 6,
-        }
-    }
-    /** A control that displays a texture.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturerect.html  
-     */
-    class TextureRect extends Control {
-        constructor(identifier?: any)
-        /** The node's [Texture2D] resource. */
-        get texture(): Texture2D
-        set texture(value: Texture2D)
-        
-        /** Defines how minimum size is determined based on the texture's size. See [enum ExpandMode] for options. */
-        get expand_mode(): int64
-        set expand_mode(value: int64)
-        
-        /** Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode]. */
-        get stretch_mode(): int64
-        set stretch_mode(value: int64)
-        
-        /** If `true`, texture is flipped horizontally. */
-        get flip_h(): boolean
-        set flip_h(value: boolean)
-        
-        /** If `true`, texture is flipped vertically. */
-        get flip_v(): boolean
-        set flip_v(value: boolean)
-    }
-    class TextureRegionEditor extends AcceptDialog {
-        constructor(identifier?: any)
-        _update_rect(): void
-    }
-    class TextureRegionEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    namespace Theme {
-        enum DataType {
-            /** Theme's [Color] item type. */
-            DATA_TYPE_COLOR = 0,
-            
-            /** Theme's constant item type. */
-            DATA_TYPE_CONSTANT = 1,
-            
-            /** Theme's [Font] item type. */
-            DATA_TYPE_FONT = 2,
-            
-            /** Theme's font size item type. */
-            DATA_TYPE_FONT_SIZE = 3,
-            
-            /** Theme's icon [Texture2D] item type. */
-            DATA_TYPE_ICON = 4,
-            
-            /** Theme's [StyleBox] item type. */
-            DATA_TYPE_STYLEBOX = 5,
-            
-            /** Maximum value for the DataType enum. */
-            DATA_TYPE_MAX = 6,
-        }
-    }
-    /** A resource used for styling/skinning [Control]s and [Window]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_theme.html  
-     */
-    class Theme extends Resource {
-        constructor(identifier?: any)
-        /** Creates or changes the value of the icon property defined by [param name] and [param theme_type]. Use [method clear_icon] to remove the property. */
-        set_icon(name: StringName, theme_type: StringName, texture: Texture2D): void
-        
-        /** Returns the icon property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the engine fallback icon value if the property doesn't exist (see [member ThemeDB.fallback_icon]). Use [method has_icon] to check for existence.  
-         */
-        get_icon(name: StringName, theme_type: StringName): Texture2D
-        
-        /** Returns `true` if the icon property defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_icon] to define it.  
-         */
-        has_icon(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the icon property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_icon] to check for existence, and [method clear_icon] to remove the existing property.  
-         */
-        rename_icon(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the icon property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_icon] to check for existence.  
-         */
-        clear_icon(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for icon properties defined with [param theme_type]. Use [method get_icon_type_list] to get a list of possible theme type names. */
-        get_icon_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for icon properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_icon_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the [StyleBox] property defined by [param name] and [param theme_type]. Use [method clear_stylebox] to remove the property. */
-        set_stylebox(name: StringName, theme_type: StringName, texture: StyleBox): void
-        
-        /** Returns the [StyleBox] property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the engine fallback stylebox value if the property doesn't exist (see [member ThemeDB.fallback_stylebox]). Use [method has_stylebox] to check for existence.  
-         */
-        get_stylebox(name: StringName, theme_type: StringName): StyleBox
-        
-        /** Returns `true` if the [StyleBox] property defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_stylebox] to define it.  
-         */
-        has_stylebox(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the [StyleBox] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_stylebox] to check for existence, and [method clear_stylebox] to remove the existing property.  
-         */
-        rename_stylebox(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the [StyleBox] property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_stylebox] to check for existence.  
-         */
-        clear_stylebox(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for [StyleBox] properties defined with [param theme_type]. Use [method get_stylebox_type_list] to get a list of possible theme type names. */
-        get_stylebox_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for [StyleBox] properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_stylebox_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the [Font] property defined by [param name] and [param theme_type]. Use [method clear_font] to remove the property. */
-        set_font(name: StringName, theme_type: StringName, font: Font): void
-        
-        /** Returns the [Font] property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the default theme font if the property doesn't exist and the default theme font is set up (see [member default_font]). Use [method has_font] to check for existence of the property and [method has_default_font] to check for existence of the default theme font.  
-         *  Returns the engine fallback font value, if neither exist (see [member ThemeDB.fallback_font]).  
-         */
-        get_font(name: StringName, theme_type: StringName): Font
-        
-        /** Returns `true` if the [Font] property defined by [param name] and [param theme_type] exists, or if the default theme font is set up (see [method has_default_font]).  
-         *  Returns `false` if neither exist. Use [method set_font] to define the property.  
-         */
-        has_font(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the [Font] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font] to check for existence, and [method clear_font] to remove the existing property.  
-         */
-        rename_font(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the [Font] property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_font] to check for existence.  
-         */
-        clear_font(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for [Font] properties defined with [param theme_type]. Use [method get_font_type_list] to get a list of possible theme type names. */
-        get_font_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for [Font] properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_font_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the font size property defined by [param name] and [param theme_type]. Use [method clear_font_size] to remove the property. */
-        set_font_size(name: StringName, theme_type: StringName, font_size: int64): void
-        
-        /** Returns the font size property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the default theme font size if the property doesn't exist and the default theme font size is set up (see [member default_font_size]). Use [method has_font_size] to check for existence of the property and [method has_default_font_size] to check for existence of the default theme font.  
-         *  Returns the engine fallback font size value, if neither exist (see [member ThemeDB.fallback_font_size]).  
-         */
-        get_font_size(name: StringName, theme_type: StringName): int64
-        
-        /** Returns `true` if the font size property defined by [param name] and [param theme_type] exists, or if the default theme font size is set up (see [method has_default_font_size]).  
-         *  Returns `false` if neither exist. Use [method set_font_size] to define the property.  
-         */
-        has_font_size(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the font size property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font_size] to check for existence, and [method clear_font_size] to remove the existing property.  
-         */
-        rename_font_size(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the font size property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_font_size] to check for existence.  
-         */
-        clear_font_size(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for font size properties defined with [param theme_type]. Use [method get_font_size_type_list] to get a list of possible theme type names. */
-        get_font_size_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for font size properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_font_size_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the [Color] property defined by [param name] and [param theme_type]. Use [method clear_color] to remove the property. */
-        set_color(name: StringName, theme_type: StringName, color: Color): void
-        
-        /** Returns the [Color] property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the default color value if the property doesn't exist. Use [method has_color] to check for existence.  
-         */
-        get_color(name: StringName, theme_type: StringName): Color
-        
-        /** Returns `true` if the [Color] property defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_color] to define it.  
-         */
-        has_color(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the [Color] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_color] to check for existence, and [method clear_color] to remove the existing property.  
-         */
-        rename_color(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the [Color] property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_color] to check for existence.  
-         */
-        clear_color(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for [Color] properties defined with [param theme_type]. Use [method get_color_type_list] to get a list of possible theme type names. */
-        get_color_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for [Color] properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_color_type_list(): PackedStringArray
-        
-        /** Creates or changes the value of the constant property defined by [param name] and [param theme_type]. Use [method clear_constant] to remove the property. */
-        set_constant(name: StringName, theme_type: StringName, constant: int64): void
-        
-        /** Returns the constant property defined by [param name] and [param theme_type], if it exists.  
-         *  Returns `0` if the property doesn't exist. Use [method has_constant] to check for existence.  
-         */
-        get_constant(name: StringName, theme_type: StringName): int64
-        
-        /** Returns `true` if the constant property defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_constant] to define it.  
-         */
-        has_constant(name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the constant property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_constant] to check for existence, and [method clear_constant] to remove the existing property.  
-         */
-        rename_constant(old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the constant property defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_constant] to check for existence.  
-         */
-        clear_constant(name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for constant properties defined with [param theme_type]. Use [method get_constant_type_list] to get a list of possible theme type names. */
-        get_constant_list(theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for constant properties. Use [method get_type_list] to get a list of all unique theme types. */
-        get_constant_type_list(): PackedStringArray
-        
-        /** Returns `true` if [member default_base_scale] has a valid value.  
-         *  Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.  
-         */
-        has_default_base_scale(): boolean
-        
-        /** Returns `true` if [member default_font] has a valid value.  
-         *  Returns `false` if it doesn't.  
-         */
-        has_default_font(): boolean
-        
-        /** Returns `true` if [member default_font_size] has a valid value.  
-         *  Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.  
-         */
-        has_default_font_size(): boolean
-        
-        /** Creates or changes the value of the theme property of [param data_type] defined by [param name] and [param theme_type]. Use [method clear_theme_item] to remove the property.  
-         *  Fails if the [param value] type is not accepted by [param data_type].  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        set_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName, value: any): void
-        
-        /** Returns the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.  
-         *  Returns the engine fallback value if the property doesn't exist (see [ThemeDB]). Use [method has_theme_item] to check for existence.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        get_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): any
-        
-        /** Returns `true` if the theme property of [param data_type] defined by [param name] and [param theme_type] exists.  
-         *  Returns `false` if it doesn't exist. Use [method set_theme_item] to define it.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        has_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): boolean
-        
-        /** Renames the theme property of [param data_type] defined by [param old_name] and [param theme_type] to [param name], if it exists.  
-         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_theme_item] to check for existence, and [method clear_theme_item] to remove the existing property.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        rename_theme_item(data_type: Theme.DataType, old_name: StringName, name: StringName, theme_type: StringName): void
-        
-        /** Removes the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.  
-         *  Fails if it doesn't exist. Use [method has_theme_item] to check for existence.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        clear_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): void
-        
-        /** Returns a list of names for properties of [param data_type] defined with [param theme_type]. Use [method get_theme_item_type_list] to get a list of possible theme type names.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        get_theme_item_list(data_type: Theme.DataType, theme_type: string): PackedStringArray
-        
-        /** Returns a list of all unique theme type names for [param data_type] properties. Use [method get_type_list] to get a list of all unique theme types.  
-         *      
-         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
-         */
-        get_theme_item_type_list(data_type: Theme.DataType): PackedStringArray
-        
-        /** Marks [param theme_type] as a variation of [param base_type].  
-         *  This adds [param theme_type] as a suggested option for [member Control.theme_type_variation] on a [Control] that is of the [param base_type] class.  
-         *  Variations can also be nested, i.e. [param base_type] can be another variation. If a chain of variations ends with a [param base_type] matching the class of the [Control], the whole chain is going to be suggested as options.  
-         *      
-         *  **Note:** Suggestions only show up if this theme resource is set as the project default theme. See [member ProjectSettings.gui/theme/custom].  
-         */
-        set_type_variation(theme_type: StringName, base_type: StringName): void
-        
-        /** Returns `true` if [param theme_type] is marked as a variation of [param base_type]. */
-        is_type_variation(theme_type: StringName, base_type: StringName): boolean
-        
-        /** Unmarks [param theme_type] as being a variation of another theme type. See [method set_type_variation]. */
-        clear_type_variation(theme_type: StringName): void
-        
-        /** Returns the name of the base theme type if [param theme_type] is a valid variation type. Returns an empty string otherwise. */
-        get_type_variation_base(theme_type: StringName): StringName
-        
-        /** Returns a list of all type variations for the given [param base_type]. */
-        get_type_variation_list(base_type: StringName): PackedStringArray
-        
-        /** Adds an empty theme type for every valid data type.  
-         *      
-         *  **Note:** Empty types are not saved with the theme. This method only exists to perform in-memory changes to the resource. Use available `set_*` methods to add theme items.  
-         */
-        add_type(theme_type: StringName): void
-        
-        /** Removes the theme type, gracefully discarding defined theme items. If the type is a variation, this information is also erased. If the type is a base for type variations, those variations lose their base. */
-        remove_type(theme_type: StringName): void
-        
-        /** Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to get a list of unique theme types for a single data type. */
-        get_type_list(): PackedStringArray
-        
-        /** Adds missing and overrides existing definitions with values from the [param other] theme resource.  
-         *      
-         *  **Note:** This modifies the current theme. If you want to merge two themes together without modifying either one, create a new empty theme and merge the other two into it one after another.  
-         */
-        merge_with(other: Theme): void
-        
-        /** Removes all the theme properties defined on the theme resource. */
-        clear(): void
-        
-        /** The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used (see [member ThemeDB.fallback_base_scale]).  
-         *  Use [method has_default_base_scale] to check if this value is valid.  
-         */
-        get default_base_scale(): float64
-        set default_base_scale(value: float64)
-        
-        /** The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font]).  
-         *  Use [method has_default_font] to check if this value is valid.  
-         */
-        get default_font(): Font
-        set default_font(value: Font)
-        
-        /** The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font_size]).  
-         *  Values below `1` are invalid and can be used to unset the property. Use [method has_default_font_size] to check if this value is valid.  
-         */
-        get default_font_size(): int64
-        set default_font_size(value: int64)
     }
 }

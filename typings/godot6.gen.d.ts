@@ -1,6 +1,845 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A fallback implementation of Godot's text server, without support for BiDi and complex text layout.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_textserverfallback.html  
+     */
+    class TextServerFallback extends TextServerExtension {
+        constructor(identifier?: any)
+    }
+    /** Base class for all texture types.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture.html  
+     */
+    class Texture extends Resource {
+        constructor(identifier?: any)
+    }
+    /** Texture for 2D and 3D.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture2d.html  
+     */
+    class Texture2D extends Texture {
+        constructor(identifier?: any)
+        /** Called when the [Texture2D]'s width is queried. */
+        /* gdvirtual */ _get_width(): int64
+        
+        /** Called when the [Texture2D]'s height is queried. */
+        /* gdvirtual */ _get_height(): int64
+        
+        /** Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)` position. */
+        /* gdvirtual */ _is_pixel_opaque(x: int64, y: int64): boolean
+        
+        /** Called when the presence of an alpha channel in the [Texture2D] is queried. */
+        /* gdvirtual */ _has_alpha(): boolean
+        
+        /** Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the top-left offset specified in [param pos]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
+         *      
+         *  **Note:** This is only used in 2D rendering, not 3D.  
+         */
+        /* gdvirtual */ _draw(to_canvas_item: RID, pos: Vector2, modulate: Color, transpose: boolean): void
+        
+        /** Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
+         *      
+         *  **Note:** This is only used in 2D rendering, not 3D.  
+         */
+        /* gdvirtual */ _draw_rect(to_canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color, transpose: boolean): void
+        
+        /** Called when a part of the [Texture2D] specified by [param src_rect]'s coordinates is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).  
+         *      
+         *  **Note:** This is only used in 2D rendering, not 3D.  
+         */
+        /* gdvirtual */ _draw_rect_region(to_canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color, transpose: boolean, clip_uv: boolean): void
+        
+        /** Returns the texture width in pixels. */
+        get_width(): int64
+        
+        /** Returns the texture height in pixels. */
+        get_height(): int64
+        
+        /** Returns the texture size in pixels. */
+        get_size(): Vector2
+        
+        /** Returns `true` if this [Texture2D] has an alpha channel. */
+        has_alpha(): boolean
+        
+        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified [param position]. */
+        draw(canvas_item: RID, position: Vector2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
+        
+        /** Draws the texture using a [CanvasItem] with the [RenderingServer] API. */
+        draw_rect(canvas_item: RID, rect: Rect2, tile: boolean, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false): void
+        
+        /** Draws a part of the texture using a [CanvasItem] with the [RenderingServer] API. */
+        draw_rect_region(canvas_item: RID, rect: Rect2, src_rect: Rect2, modulate: Color = new Color(1, 1, 1, 1), transpose: boolean = false, clip_uv: boolean = true): void
+        
+        /** Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each time). [Image]s can be accessed and manipulated directly.  
+         *      
+         *  **Note:** This will return `null` if this [Texture2D] is invalid.  
+         *      
+         *  **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.  
+         */
+        get_image(): Image
+        
+        /** Creates a placeholder version of this resource ([PlaceholderTexture2D]). */
+        create_placeholder(): Resource
+    }
+    /** A single texture resource which consists of multiple, separate images. Each image has the same dimensions and number of mipmap levels.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture2darray.html  
+     */
+    class Texture2DArray extends ImageTextureLayered {
+        constructor(identifier?: any)
+        /** Creates a placeholder version of this resource ([PlaceholderTexture2DArray]). */
+        create_placeholder(): Resource
+    }
+    /** Texture Array for 2D that is bound to a texture created on the [RenderingDevice].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture2darrayrd.html  
+     */
+    class Texture2DArrayRD extends TextureLayeredRD {
+        constructor(identifier?: any)
+    }
+    /** Texture for 2D that is bound to a texture created on the [RenderingDevice].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture2drd.html  
+     */
+    class Texture2DRD extends Texture2D {
+        constructor(identifier?: any)
+        /** The RID of the texture object created on the [RenderingDevice]. */
+        get texture_rd_rid(): RID
+        set texture_rd_rid(value: RID)
+    }
+    /** Base class for 3-dimensional textures.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture3d.html  
+     */
+    class Texture3D extends Texture {
+        constructor(identifier?: any)
+        /** Called when the [Texture3D]'s format is queried. */
+        /* gdvirtual */ _get_format(): Image.Format
+        
+        /** Called when the [Texture3D]'s width is queried. */
+        /* gdvirtual */ _get_width(): int64
+        
+        /** Called when the [Texture3D]'s height is queried. */
+        /* gdvirtual */ _get_height(): int64
+        
+        /** Called when the [Texture3D]'s depth is queried. */
+        /* gdvirtual */ _get_depth(): int64
+        
+        /** Called when the presence of mipmaps in the [Texture3D] is queried. */
+        /* gdvirtual */ _has_mipmaps(): boolean
+        
+        /** Called when the [Texture3D]'s data is queried. */
+        /* gdvirtual */ _get_data(): GArray
+        
+        /** Returns the current format being used by this texture. See [enum Image.Format] for details. */
+        get_format(): Image.Format
+        
+        /** Returns the [Texture3D]'s width in pixels. Width is typically represented by the X axis. */
+        get_width(): int64
+        
+        /** Returns the [Texture3D]'s height in pixels. Width is typically represented by the Y axis. */
+        get_height(): int64
+        
+        /** Returns the [Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a dimension not present in [Texture2D]). */
+        get_depth(): int64
+        
+        /** Returns `true` if the [Texture3D] has generated mipmaps. */
+        has_mipmaps(): boolean
+        
+        /** Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a  *slice*  of the [Texture3D], with different slices mapping to different depth (Z axis) levels. */
+        get_data(): GArray
+        
+        /** Creates a placeholder version of this resource ([PlaceholderTexture3D]). */
+        create_placeholder(): Resource
+    }
+    class Texture3DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** Texture for 3D that is bound to a texture created on the [RenderingDevice].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texture3drd.html  
+     */
+    class Texture3DRD extends Texture3D {
+        constructor(identifier?: any)
+        /** The RID of the texture object created on the [RenderingDevice]. */
+        get texture_rd_rid(): RID
+        set texture_rd_rid(value: RID)
+    }
+    namespace TextureButton {
+        enum StretchMode {
+            /** Scale to fit the node's bounding rectangle. */
+            STRETCH_SCALE = 0,
+            
+            /** Tile inside the node's bounding rectangle. */
+            STRETCH_TILE = 1,
+            
+            /** The texture keeps its original size and stays in the bounding rectangle's top-left corner. */
+            STRETCH_KEEP = 2,
+            
+            /** The texture keeps its original size and stays centered in the node's bounding rectangle. */
+            STRETCH_KEEP_CENTERED = 3,
+            
+            /** Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio. */
+            STRETCH_KEEP_ASPECT = 4,
+            
+            /** Scale the texture to fit the node's bounding rectangle, center it, and maintain its aspect ratio. */
+            STRETCH_KEEP_ASPECT_CENTERED = 5,
+            
+            /** Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits. */
+            STRETCH_KEEP_ASPECT_COVERED = 6,
+        }
+    }
+    /** Texture-based button. Supports Pressed, Hover, Disabled and Focused states.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturebutton.html  
+     */
+    class TextureButton extends BaseButton {
+        constructor(identifier?: any)
+        /** Texture to display by default, when the node is **not** in the disabled, hover or pressed state. This texture is still displayed in the focused state, with [member texture_focused] drawn on top. */
+        get texture_normal(): Texture2D
+        set texture_normal(value: Texture2D)
+        
+        /** Texture to display on mouse down over the node, if the node has keyboard focus and the player presses the Enter key or if the player presses the [member BaseButton.shortcut] key. */
+        get texture_pressed(): Texture2D
+        set texture_pressed(value: Texture2D)
+        
+        /** Texture to display when the mouse hovers the node. */
+        get texture_hover(): Texture2D
+        set texture_hover(value: Texture2D)
+        
+        /** Texture to display when the node is disabled. See [member BaseButton.disabled]. */
+        get texture_disabled(): Texture2D
+        set texture_disabled(value: Texture2D)
+        
+        /** Texture to display when the node has mouse or keyboard focus. [member texture_focused] is displayed  *over*  the base texture, so a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons. */
+        get texture_focused(): Texture2D
+        set texture_focused(value: Texture2D)
+        
+        /** Pure black and white [BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes. */
+        get texture_click_mask(): BitMap
+        set texture_click_mask(value: BitMap)
+        
+        /** If `true`, the size of the texture won't be considered for minimum size calculation, so the [TextureButton] can be shrunk down past the texture size. */
+        get ignore_texture_size(): boolean
+        set ignore_texture_size(value: boolean)
+        
+        /** Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options. */
+        get stretch_mode(): int64
+        set stretch_mode(value: int64)
+        
+        /** If `true`, texture is flipped horizontally. */
+        get flip_h(): boolean
+        set flip_h(value: boolean)
+        
+        /** If `true`, texture is flipped vertically. */
+        get flip_v(): boolean
+        set flip_v(value: boolean)
+    }
+    /** Texture Array for Cubemaps that is bound to a texture created on the [RenderingDevice].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturecubemaparrayrd.html  
+     */
+    class TextureCubemapArrayRD extends TextureLayeredRD {
+        constructor(identifier?: any)
+    }
+    /** Texture for Cubemap that is bound to a texture created on the [RenderingDevice].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturecubemaprd.html  
+     */
+    class TextureCubemapRD extends TextureLayeredRD {
+        constructor(identifier?: any)
+    }
+    class TextureEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    namespace TextureLayered {
+        enum LayeredType {
+            /** Texture is a generic [Texture2DArray]. */
+            LAYERED_TYPE_2D_ARRAY = 0,
+            
+            /** Texture is a [Cubemap], with each side in its own layer (6 in total). */
+            LAYERED_TYPE_CUBEMAP = 1,
+            
+            /** Texture is a [CubemapArray], with each cubemap being made of 6 layers. */
+            LAYERED_TYPE_CUBEMAP_ARRAY = 2,
+        }
+    }
+    /** Base class for texture types which contain the data of multiple [Image]s. Each image is of the same size and format.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturelayered.html  
+     */
+    class TextureLayered extends Texture {
+        constructor(identifier?: any)
+        /** Called when the [TextureLayered]'s format is queried. */
+        /* gdvirtual */ _get_format(): Image.Format
+        
+        /** Called when the layers' type in the [TextureLayered] is queried. */
+        /* gdvirtual */ _get_layered_type(): int64
+        
+        /** Called when the [TextureLayered]'s width queried. */
+        /* gdvirtual */ _get_width(): int64
+        
+        /** Called when the [TextureLayered]'s height is queried. */
+        /* gdvirtual */ _get_height(): int64
+        
+        /** Called when the number of layers in the [TextureLayered] is queried. */
+        /* gdvirtual */ _get_layers(): int64
+        
+        /** Called when the presence of mipmaps in the [TextureLayered] is queried. */
+        /* gdvirtual */ _has_mipmaps(): boolean
+        
+        /** Called when the data for a layer in the [TextureLayered] is queried. */
+        /* gdvirtual */ _get_layer_data(layer_index: int64): Image
+        
+        /** Returns the current format being used by this texture. See [enum Image.Format] for details. */
+        get_format(): Image.Format
+        
+        /** Returns the [TextureLayered]'s type. The type determines how the data is accessed, with cubemaps having special types. */
+        get_layered_type(): TextureLayered.LayeredType
+        
+        /** Returns the width of the texture in pixels. Width is typically represented by the X axis. */
+        get_width(): int64
+        
+        /** Returns the height of the texture in pixels. Height is typically represented by the Y axis. */
+        get_height(): int64
+        
+        /** Returns the number of referenced [Image]s. */
+        get_layers(): int64
+        
+        /** Returns `true` if the layers have generated mipmaps. */
+        has_mipmaps(): boolean
+        
+        /** Returns an [Image] resource with the data from specified [param layer]. */
+        get_layer_data(layer: int64): Image
+    }
+    class TextureLayeredEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** Abstract base class for layered texture RD types.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturelayeredrd.html  
+     */
+    class TextureLayeredRD extends TextureLayered {
+        constructor(identifier?: any)
+        /** The RID of the texture object created on the [RenderingDevice]. */
+        get texture_rd_rid(): RID
+        set texture_rd_rid(value: RID)
+    }
+    namespace TextureProgressBar {
+        enum FillMode {
+            /** The [member texture_progress] fills from left to right. */
+            FILL_LEFT_TO_RIGHT = 0,
+            
+            /** The [member texture_progress] fills from right to left. */
+            FILL_RIGHT_TO_LEFT = 1,
+            
+            /** The [member texture_progress] fills from top to bottom. */
+            FILL_TOP_TO_BOTTOM = 2,
+            
+            /** The [member texture_progress] fills from bottom to top. */
+            FILL_BOTTOM_TO_TOP = 3,
+            
+            /** Turns the node into a radial bar. The [member texture_progress] fills clockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
+            FILL_CLOCKWISE = 4,
+            
+            /** Turns the node into a radial bar. The [member texture_progress] fills counterclockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
+            FILL_COUNTER_CLOCKWISE = 5,
+            
+            /** The [member texture_progress] fills from the center, expanding both towards the left and the right. */
+            FILL_BILINEAR_LEFT_AND_RIGHT = 6,
+            
+            /** The [member texture_progress] fills from the center, expanding both towards the top and the bottom. */
+            FILL_BILINEAR_TOP_AND_BOTTOM = 7,
+            
+            /** Turns the node into a radial bar. The [member texture_progress] fills radially from the center, expanding both clockwise and counterclockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
+            FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE = 8,
+        }
+    }
+    /** Texture-based progress bar. Useful for loading screens and life or stamina bars.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_textureprogressbar.html  
+     */
+    class TextureProgressBar extends Range {
+        constructor(identifier?: any)
+        /** Sets the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
+        set_stretch_margin(margin: Side, value: int64): void
+        
+        /** Returns the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
+        get_stretch_margin(margin: Side): int64
+        
+        /** The fill direction. See [enum FillMode] for possible values. */
+        get fill_mode(): int64
+        set fill_mode(value: int64)
+        
+        /** Starting angle for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the texture fills and tends towards [member radial_fill_degrees]. */
+        get radial_initial_angle(): float64
+        set radial_initial_angle(value: float64)
+        
+        /** Upper limit for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up to this angle.  
+         *  See [member Range.value], [member Range.max_value].  
+         */
+        get radial_fill_degrees(): float64
+        set radial_fill_degrees(value: float64)
+        
+        /** Offsets [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. */
+        get radial_center_offset(): Vector2
+        set radial_center_offset(value: Vector2)
+        
+        /** If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*` properties like [member stretch_margin_bottom] to set up the nine patch's 3×3 grid. When using a radial [member fill_mode], this setting will enable stretching. */
+        get nine_patch_stretch(): boolean
+        set nine_patch_stretch(value: boolean)
+        
+        /** The width of the 9-patch's left column. Only effective if [member nine_patch_stretch] is `true`. */
+        get stretch_margin_left(): int64
+        set stretch_margin_left(value: int64)
+        
+        /** The height of the 9-patch's top row. Only effective if [member nine_patch_stretch] is `true`. */
+        get stretch_margin_top(): int64
+        set stretch_margin_top(value: int64)
+        
+        /** The width of the 9-patch's right column. Only effective if [member nine_patch_stretch] is `true`. */
+        get stretch_margin_right(): int64
+        set stretch_margin_right(value: int64)
+        
+        /** The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders. Only effective if [member nine_patch_stretch] is `true`. */
+        get stretch_margin_bottom(): int64
+        set stretch_margin_bottom(value: int64)
+        
+        /** [Texture2D] that draws under the progress bar. The bar's background. */
+        get texture_under(): Texture2D
+        set texture_under(value: Texture2D)
+        
+        /** [Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that hides part of [member texture_progress]. */
+        get texture_over(): Texture2D
+        set texture_over(value: Texture2D)
+        
+        /** [Texture2D] that clips based on the node's `value` and [member fill_mode]. As `value` increased, the texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if `value` is equal to `min_value`.  
+         *  The `value` property comes from [Range]. See [member Range.value], [member Range.min_value], [member Range.max_value].  
+         */
+        get texture_progress(): Texture2D
+        set texture_progress(value: Texture2D)
+        
+        /** The offset of [member texture_progress]. Useful for [member texture_over] and [member texture_under] with fancy borders, to avoid transparent margins in your progress texture. */
+        get texture_progress_offset(): Vector2
+        set texture_progress_offset(value: Vector2)
+        
+        /** Multiplies the color of the bar's [member texture_under] texture. */
+        get tint_under(): Color
+        set tint_under(value: Color)
+        
+        /** Multiplies the color of the bar's [member texture_over] texture. The effect is similar to [member CanvasItem.modulate], except it only affects this specific texture instead of the entire node. */
+        get tint_over(): Color
+        set tint_over(value: Color)
+        
+        /** Multiplies the color of the bar's [member texture_progress] texture. */
+        get tint_progress(): Color
+        set tint_progress(value: Color)
+    }
+    namespace TextureRect {
+        enum ExpandMode {
+            /** The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the texture. */
+            EXPAND_KEEP_SIZE = 0,
+            
+            /** The size of the texture won't be considered for minimum size calculation, so the [TextureRect] can be shrunk down past the texture size. */
+            EXPAND_IGNORE_SIZE = 1,
+            
+            /** The height of the texture will be ignored. Minimum width will be equal to the current height. Useful for horizontal layouts, e.g. inside [HBoxContainer]. */
+            EXPAND_FIT_WIDTH = 2,
+            
+            /** Same as [constant EXPAND_FIT_WIDTH], but keeps texture's aspect ratio. */
+            EXPAND_FIT_WIDTH_PROPORTIONAL = 3,
+            
+            /** The width of the texture will be ignored. Minimum height will be equal to the current width. Useful for vertical layouts, e.g. inside [VBoxContainer]. */
+            EXPAND_FIT_HEIGHT = 4,
+            
+            /** Same as [constant EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio. */
+            EXPAND_FIT_HEIGHT_PROPORTIONAL = 5,
+        }
+        enum StretchMode {
+            /** Scale to fit the node's bounding rectangle. */
+            STRETCH_SCALE = 0,
+            
+            /** Tile inside the node's bounding rectangle. */
+            STRETCH_TILE = 1,
+            
+            /** The texture keeps its original size and stays in the bounding rectangle's top-left corner. */
+            STRETCH_KEEP = 2,
+            
+            /** The texture keeps its original size and stays centered in the node's bounding rectangle. */
+            STRETCH_KEEP_CENTERED = 3,
+            
+            /** Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio. */
+            STRETCH_KEEP_ASPECT = 4,
+            
+            /** Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect ratio. */
+            STRETCH_KEEP_ASPECT_CENTERED = 5,
+            
+            /** Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits. */
+            STRETCH_KEEP_ASPECT_COVERED = 6,
+        }
+    }
+    /** A control that displays a texture.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_texturerect.html  
+     */
+    class TextureRect extends Control {
+        constructor(identifier?: any)
+        /** The node's [Texture2D] resource. */
+        get texture(): Texture2D
+        set texture(value: Texture2D)
+        
+        /** Defines how minimum size is determined based on the texture's size. See [enum ExpandMode] for options. */
+        get expand_mode(): int64
+        set expand_mode(value: int64)
+        
+        /** Controls the texture's behavior when resizing the node's bounding rectangle. See [enum StretchMode]. */
+        get stretch_mode(): int64
+        set stretch_mode(value: int64)
+        
+        /** If `true`, texture is flipped horizontally. */
+        get flip_h(): boolean
+        set flip_h(value: boolean)
+        
+        /** If `true`, texture is flipped vertically. */
+        get flip_v(): boolean
+        set flip_v(value: boolean)
+    }
+    class TextureRegionEditor extends AcceptDialog {
+        constructor(identifier?: any)
+        _update_rect(): void
+    }
+    class TextureRegionEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    namespace Theme {
+        enum DataType {
+            /** Theme's [Color] item type. */
+            DATA_TYPE_COLOR = 0,
+            
+            /** Theme's constant item type. */
+            DATA_TYPE_CONSTANT = 1,
+            
+            /** Theme's [Font] item type. */
+            DATA_TYPE_FONT = 2,
+            
+            /** Theme's font size item type. */
+            DATA_TYPE_FONT_SIZE = 3,
+            
+            /** Theme's icon [Texture2D] item type. */
+            DATA_TYPE_ICON = 4,
+            
+            /** Theme's [StyleBox] item type. */
+            DATA_TYPE_STYLEBOX = 5,
+            
+            /** Maximum value for the DataType enum. */
+            DATA_TYPE_MAX = 6,
+        }
+    }
+    /** A resource used for styling/skinning [Control]s and [Window]s.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_theme.html  
+     */
+    class Theme extends Resource {
+        constructor(identifier?: any)
+        /** Creates or changes the value of the icon property defined by [param name] and [param theme_type]. Use [method clear_icon] to remove the property. */
+        set_icon(name: StringName, theme_type: StringName, texture: Texture2D): void
+        
+        /** Returns the icon property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the engine fallback icon value if the property doesn't exist (see [member ThemeDB.fallback_icon]). Use [method has_icon] to check for existence.  
+         */
+        get_icon(name: StringName, theme_type: StringName): Texture2D
+        
+        /** Returns `true` if the icon property defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_icon] to define it.  
+         */
+        has_icon(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the icon property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_icon] to check for existence, and [method clear_icon] to remove the existing property.  
+         */
+        rename_icon(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the icon property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_icon] to check for existence.  
+         */
+        clear_icon(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for icon properties defined with [param theme_type]. Use [method get_icon_type_list] to get a list of possible theme type names. */
+        get_icon_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for icon properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_icon_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the [StyleBox] property defined by [param name] and [param theme_type]. Use [method clear_stylebox] to remove the property. */
+        set_stylebox(name: StringName, theme_type: StringName, texture: StyleBox): void
+        
+        /** Returns the [StyleBox] property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the engine fallback stylebox value if the property doesn't exist (see [member ThemeDB.fallback_stylebox]). Use [method has_stylebox] to check for existence.  
+         */
+        get_stylebox(name: StringName, theme_type: StringName): StyleBox
+        
+        /** Returns `true` if the [StyleBox] property defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_stylebox] to define it.  
+         */
+        has_stylebox(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the [StyleBox] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_stylebox] to check for existence, and [method clear_stylebox] to remove the existing property.  
+         */
+        rename_stylebox(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the [StyleBox] property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_stylebox] to check for existence.  
+         */
+        clear_stylebox(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for [StyleBox] properties defined with [param theme_type]. Use [method get_stylebox_type_list] to get a list of possible theme type names. */
+        get_stylebox_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for [StyleBox] properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_stylebox_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the [Font] property defined by [param name] and [param theme_type]. Use [method clear_font] to remove the property. */
+        set_font(name: StringName, theme_type: StringName, font: Font): void
+        
+        /** Returns the [Font] property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the default theme font if the property doesn't exist and the default theme font is set up (see [member default_font]). Use [method has_font] to check for existence of the property and [method has_default_font] to check for existence of the default theme font.  
+         *  Returns the engine fallback font value, if neither exist (see [member ThemeDB.fallback_font]).  
+         */
+        get_font(name: StringName, theme_type: StringName): Font
+        
+        /** Returns `true` if the [Font] property defined by [param name] and [param theme_type] exists, or if the default theme font is set up (see [method has_default_font]).  
+         *  Returns `false` if neither exist. Use [method set_font] to define the property.  
+         */
+        has_font(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the [Font] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font] to check for existence, and [method clear_font] to remove the existing property.  
+         */
+        rename_font(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the [Font] property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_font] to check for existence.  
+         */
+        clear_font(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for [Font] properties defined with [param theme_type]. Use [method get_font_type_list] to get a list of possible theme type names. */
+        get_font_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for [Font] properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_font_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the font size property defined by [param name] and [param theme_type]. Use [method clear_font_size] to remove the property. */
+        set_font_size(name: StringName, theme_type: StringName, font_size: int64): void
+        
+        /** Returns the font size property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the default theme font size if the property doesn't exist and the default theme font size is set up (see [member default_font_size]). Use [method has_font_size] to check for existence of the property and [method has_default_font_size] to check for existence of the default theme font.  
+         *  Returns the engine fallback font size value, if neither exist (see [member ThemeDB.fallback_font_size]).  
+         */
+        get_font_size(name: StringName, theme_type: StringName): int64
+        
+        /** Returns `true` if the font size property defined by [param name] and [param theme_type] exists, or if the default theme font size is set up (see [method has_default_font_size]).  
+         *  Returns `false` if neither exist. Use [method set_font_size] to define the property.  
+         */
+        has_font_size(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the font size property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font_size] to check for existence, and [method clear_font_size] to remove the existing property.  
+         */
+        rename_font_size(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the font size property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_font_size] to check for existence.  
+         */
+        clear_font_size(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for font size properties defined with [param theme_type]. Use [method get_font_size_type_list] to get a list of possible theme type names. */
+        get_font_size_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for font size properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_font_size_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the [Color] property defined by [param name] and [param theme_type]. Use [method clear_color] to remove the property. */
+        set_color(name: StringName, theme_type: StringName, color: Color): void
+        
+        /** Returns the [Color] property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the default color value if the property doesn't exist. Use [method has_color] to check for existence.  
+         */
+        get_color(name: StringName, theme_type: StringName): Color
+        
+        /** Returns `true` if the [Color] property defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_color] to define it.  
+         */
+        has_color(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the [Color] property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_color] to check for existence, and [method clear_color] to remove the existing property.  
+         */
+        rename_color(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the [Color] property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_color] to check for existence.  
+         */
+        clear_color(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for [Color] properties defined with [param theme_type]. Use [method get_color_type_list] to get a list of possible theme type names. */
+        get_color_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for [Color] properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_color_type_list(): PackedStringArray
+        
+        /** Creates or changes the value of the constant property defined by [param name] and [param theme_type]. Use [method clear_constant] to remove the property. */
+        set_constant(name: StringName, theme_type: StringName, constant: int64): void
+        
+        /** Returns the constant property defined by [param name] and [param theme_type], if it exists.  
+         *  Returns `0` if the property doesn't exist. Use [method has_constant] to check for existence.  
+         */
+        get_constant(name: StringName, theme_type: StringName): int64
+        
+        /** Returns `true` if the constant property defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_constant] to define it.  
+         */
+        has_constant(name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the constant property defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_constant] to check for existence, and [method clear_constant] to remove the existing property.  
+         */
+        rename_constant(old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the constant property defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_constant] to check for existence.  
+         */
+        clear_constant(name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for constant properties defined with [param theme_type]. Use [method get_constant_type_list] to get a list of possible theme type names. */
+        get_constant_list(theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for constant properties. Use [method get_type_list] to get a list of all unique theme types. */
+        get_constant_type_list(): PackedStringArray
+        
+        /** Returns `true` if [member default_base_scale] has a valid value.  
+         *  Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.  
+         */
+        has_default_base_scale(): boolean
+        
+        /** Returns `true` if [member default_font] has a valid value.  
+         *  Returns `false` if it doesn't.  
+         */
+        has_default_font(): boolean
+        
+        /** Returns `true` if [member default_font_size] has a valid value.  
+         *  Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.  
+         */
+        has_default_font_size(): boolean
+        
+        /** Creates or changes the value of the theme property of [param data_type] defined by [param name] and [param theme_type]. Use [method clear_theme_item] to remove the property.  
+         *  Fails if the [param value] type is not accepted by [param data_type].  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        set_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName, value: any): void
+        
+        /** Returns the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.  
+         *  Returns the engine fallback value if the property doesn't exist (see [ThemeDB]). Use [method has_theme_item] to check for existence.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        get_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): any
+        
+        /** Returns `true` if the theme property of [param data_type] defined by [param name] and [param theme_type] exists.  
+         *  Returns `false` if it doesn't exist. Use [method set_theme_item] to define it.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        has_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): boolean
+        
+        /** Renames the theme property of [param data_type] defined by [param old_name] and [param theme_type] to [param name], if it exists.  
+         *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_theme_item] to check for existence, and [method clear_theme_item] to remove the existing property.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        rename_theme_item(data_type: Theme.DataType, old_name: StringName, name: StringName, theme_type: StringName): void
+        
+        /** Removes the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.  
+         *  Fails if it doesn't exist. Use [method has_theme_item] to check for existence.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        clear_theme_item(data_type: Theme.DataType, name: StringName, theme_type: StringName): void
+        
+        /** Returns a list of names for properties of [param data_type] defined with [param theme_type]. Use [method get_theme_item_type_list] to get a list of possible theme type names.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        get_theme_item_list(data_type: Theme.DataType, theme_type: string): PackedStringArray
+        
+        /** Returns a list of all unique theme type names for [param data_type] properties. Use [method get_type_list] to get a list of all unique theme types.  
+         *      
+         *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.  
+         */
+        get_theme_item_type_list(data_type: Theme.DataType): PackedStringArray
+        
+        /** Marks [param theme_type] as a variation of [param base_type].  
+         *  This adds [param theme_type] as a suggested option for [member Control.theme_type_variation] on a [Control] that is of the [param base_type] class.  
+         *  Variations can also be nested, i.e. [param base_type] can be another variation. If a chain of variations ends with a [param base_type] matching the class of the [Control], the whole chain is going to be suggested as options.  
+         *      
+         *  **Note:** Suggestions only show up if this theme resource is set as the project default theme. See [member ProjectSettings.gui/theme/custom].  
+         */
+        set_type_variation(theme_type: StringName, base_type: StringName): void
+        
+        /** Returns `true` if [param theme_type] is marked as a variation of [param base_type]. */
+        is_type_variation(theme_type: StringName, base_type: StringName): boolean
+        
+        /** Unmarks [param theme_type] as being a variation of another theme type. See [method set_type_variation]. */
+        clear_type_variation(theme_type: StringName): void
+        
+        /** Returns the name of the base theme type if [param theme_type] is a valid variation type. Returns an empty string otherwise. */
+        get_type_variation_base(theme_type: StringName): StringName
+        
+        /** Returns a list of all type variations for the given [param base_type]. */
+        get_type_variation_list(base_type: StringName): PackedStringArray
+        
+        /** Adds an empty theme type for every valid data type.  
+         *      
+         *  **Note:** Empty types are not saved with the theme. This method only exists to perform in-memory changes to the resource. Use available `set_*` methods to add theme items.  
+         */
+        add_type(theme_type: StringName): void
+        
+        /** Removes the theme type, gracefully discarding defined theme items. If the type is a variation, this information is also erased. If the type is a base for type variations, those variations lose their base. */
+        remove_type(theme_type: StringName): void
+        
+        /** Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to get a list of unique theme types for a single data type. */
+        get_type_list(): PackedStringArray
+        
+        /** Adds missing and overrides existing definitions with values from the [param other] theme resource.  
+         *      
+         *  **Note:** This modifies the current theme. If you want to merge two themes together without modifying either one, create a new empty theme and merge the other two into it one after another.  
+         */
+        merge_with(other: Theme): void
+        
+        /** Removes all the theme properties defined on the theme resource. */
+        clear(): void
+        
+        /** The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used (see [member ThemeDB.fallback_base_scale]).  
+         *  Use [method has_default_base_scale] to check if this value is valid.  
+         */
+        get default_base_scale(): float64
+        set default_base_scale(value: float64)
+        
+        /** The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font]).  
+         *  Use [method has_default_font] to check if this value is valid.  
+         */
+        get default_font(): Font
+        set default_font(value: Font)
+        
+        /** The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font_size]).  
+         *  Values below `1` are invalid and can be used to unset the property. Use [method has_default_font_size] to check if this value is valid.  
+         */
+        get default_font_size(): int64
+        set default_font_size(value: int64)
+    }
     class ThemeContext extends Object {
         constructor(identifier?: any)
         readonly changed: Signal0
@@ -8503,716 +9342,5 @@ declare module "godot" {
         /** The array of face blend shape weights with indices corresponding to the [enum BlendShapeEntry] enum. */
         get blend_shapes(): PackedFloat32Array
         set blend_shapes(value: PackedFloat32Array | float32[])
-    }
-    namespace XRHandModifier3D {
-        enum BoneUpdate {
-            /** The skeleton's bones are fully updated (both position and rotation) to match the tracked bones. */
-            BONE_UPDATE_FULL = 0,
-            
-            /** The skeleton's bones are only rotated to align with the tracked bones, preserving bone length. */
-            BONE_UPDATE_ROTATION_ONLY = 1,
-            
-            /** Represents the size of the [enum BoneUpdate] enum. */
-            BONE_UPDATE_MAX = 2,
-        }
-    }
-    /** A node for driving hand meshes from [XRHandTracker] data.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrhandmodifier3d.html  
-     */
-    class XRHandModifier3D extends SkeletonModifier3D {
-        constructor(identifier?: any)
-        /** The name of the [XRHandTracker] registered with [XRServer] to obtain the hand tracking data from. */
-        get hand_tracker(): string
-        set hand_tracker(value: string)
-        
-        /** Specifies the type of updates to perform on the bones. */
-        get bone_update(): int64
-        set bone_update(value: int64)
-    }
-    namespace XRHandTracker {
-        enum HandTrackingSource {
-            /** The source of hand tracking data is unknown. */
-            HAND_TRACKING_SOURCE_UNKNOWN = 0,
-            
-            /** The source of hand tracking data is unobstructed, meaning that an accurate method of hand tracking is used. These include optical hand tracking, data gloves, etc. */
-            HAND_TRACKING_SOURCE_UNOBSTRUCTED = 1,
-            
-            /** The source of hand tracking data is a controller, meaning that joint positions are inferred from controller inputs. */
-            HAND_TRACKING_SOURCE_CONTROLLER = 2,
-            
-            /** Represents the size of the [enum HandTrackingSource] enum. */
-            HAND_TRACKING_SOURCE_MAX = 3,
-        }
-        enum HandJoint {
-            /** Palm joint. */
-            HAND_JOINT_PALM = 0,
-            
-            /** Wrist joint. */
-            HAND_JOINT_WRIST = 1,
-            
-            /** Thumb metacarpal joint. */
-            HAND_JOINT_THUMB_METACARPAL = 2,
-            
-            /** Thumb phalanx proximal joint. */
-            HAND_JOINT_THUMB_PHALANX_PROXIMAL = 3,
-            
-            /** Thumb phalanx distal joint. */
-            HAND_JOINT_THUMB_PHALANX_DISTAL = 4,
-            
-            /** Thumb tip joint. */
-            HAND_JOINT_THUMB_TIP = 5,
-            
-            /** Index finger metacarpal joint. */
-            HAND_JOINT_INDEX_FINGER_METACARPAL = 6,
-            
-            /** Index finger phalanx proximal joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_PROXIMAL = 7,
-            
-            /** Index finger phalanx intermediate joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_INTERMEDIATE = 8,
-            
-            /** Index finger phalanx distal joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_DISTAL = 9,
-            
-            /** Index finger tip joint. */
-            HAND_JOINT_INDEX_FINGER_TIP = 10,
-            
-            /** Middle finger metacarpal joint. */
-            HAND_JOINT_MIDDLE_FINGER_METACARPAL = 11,
-            
-            /** Middle finger phalanx proximal joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_PROXIMAL = 12,
-            
-            /** Middle finger phalanx intermediate joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_INTERMEDIATE = 13,
-            
-            /** Middle finger phalanx distal joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_DISTAL = 14,
-            
-            /** Middle finger tip joint. */
-            HAND_JOINT_MIDDLE_FINGER_TIP = 15,
-            
-            /** Ring finger metacarpal joint. */
-            HAND_JOINT_RING_FINGER_METACARPAL = 16,
-            
-            /** Ring finger phalanx proximal joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_PROXIMAL = 17,
-            
-            /** Ring finger phalanx intermediate joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_INTERMEDIATE = 18,
-            
-            /** Ring finger phalanx distal joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_DISTAL = 19,
-            
-            /** Ring finger tip joint. */
-            HAND_JOINT_RING_FINGER_TIP = 20,
-            
-            /** Pinky finger metacarpal joint. */
-            HAND_JOINT_PINKY_FINGER_METACARPAL = 21,
-            
-            /** Pinky finger phalanx proximal joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_PROXIMAL = 22,
-            
-            /** Pinky finger phalanx intermediate joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_INTERMEDIATE = 23,
-            
-            /** Pinky finger phalanx distal joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_DISTAL = 24,
-            
-            /** Pinky finger tip joint. */
-            HAND_JOINT_PINKY_FINGER_TIP = 25,
-            
-            /** Represents the size of the [enum HandJoint] enum. */
-            HAND_JOINT_MAX = 26,
-        }
-        enum HandJointFlags {
-            /** The hand joint's orientation data is valid. */
-            HAND_JOINT_FLAG_ORIENTATION_VALID = 1,
-            
-            /** The hand joint's orientation is actively tracked. May not be set if tracking has been temporarily lost. */
-            HAND_JOINT_FLAG_ORIENTATION_TRACKED = 2,
-            
-            /** The hand joint's position data is valid. */
-            HAND_JOINT_FLAG_POSITION_VALID = 4,
-            
-            /** The hand joint's position is actively tracked. May not be set if tracking has been temporarily lost. */
-            HAND_JOINT_FLAG_POSITION_TRACKED = 8,
-            
-            /** The hand joint's linear velocity data is valid. */
-            HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID = 16,
-            
-            /** The hand joint's angular velocity data is valid. */
-            HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID = 32,
-        }
-    }
-    /** A tracked hand in XR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrhandtracker.html  
-     */
-    class XRHandTracker extends XRPositionalTracker {
-        constructor(identifier?: any)
-        /** Sets flags about the validity of the tracking data for the given hand joint. */
-        set_hand_joint_flags(joint: XRHandTracker.HandJoint, flags: XRHandTracker.HandJointFlags): void
-        
-        /** Returns flags about the validity of the tracking data for the given hand joint (see [enum XRHandTracker.HandJointFlags]). */
-        get_hand_joint_flags(joint: XRHandTracker.HandJoint): XRHandTracker.HandJointFlags
-        
-        /** Sets the transform for the given hand joint. */
-        set_hand_joint_transform(joint: XRHandTracker.HandJoint, transform: Transform3D): void
-        
-        /** Returns the transform for the given hand joint. */
-        get_hand_joint_transform(joint: XRHandTracker.HandJoint): Transform3D
-        
-        /** Sets the radius of the given hand joint. */
-        set_hand_joint_radius(joint: XRHandTracker.HandJoint, radius: float64): void
-        
-        /** Returns the radius of the given hand joint. */
-        get_hand_joint_radius(joint: XRHandTracker.HandJoint): float64
-        
-        /** Sets the linear velocity for the given hand joint. */
-        set_hand_joint_linear_velocity(joint: XRHandTracker.HandJoint, linear_velocity: Vector3): void
-        
-        /** Returns the linear velocity for the given hand joint. */
-        get_hand_joint_linear_velocity(joint: XRHandTracker.HandJoint): Vector3
-        
-        /** Sets the angular velocity for the given hand joint. */
-        set_hand_joint_angular_velocity(joint: XRHandTracker.HandJoint, angular_velocity: Vector3): void
-        
-        /** Returns the angular velocity for the given hand joint. */
-        get_hand_joint_angular_velocity(joint: XRHandTracker.HandJoint): Vector3
-        
-        /** If `true`, the hand tracking data is valid. */
-        get has_tracking_data(): boolean
-        set has_tracking_data(value: boolean)
-        
-        /** The source of the hand tracking data. */
-        get hand_tracking_source(): int64
-        set hand_tracking_source(value: int64)
-    }
-    namespace XRInterface {
-        enum Capabilities {
-            /** No XR capabilities. */
-            XR_NONE = 0,
-            
-            /** This interface can work with normal rendering output (non-HMD based AR). */
-            XR_MONO = 1,
-            
-            /** This interface supports stereoscopic rendering. */
-            XR_STEREO = 2,
-            
-            /** This interface supports quad rendering (not yet supported by Godot). */
-            XR_QUAD = 4,
-            
-            /** This interface supports VR. */
-            XR_VR = 8,
-            
-            /** This interface supports AR (video background and real world tracking). */
-            XR_AR = 16,
-            
-            /** This interface outputs to an external device. If the main viewport is used, the on screen output is an unmodified buffer of either the left or right eye (stretched if the viewport size is not changed to the same aspect ratio of [method get_render_target_size]). Using a separate viewport node frees up the main viewport for other purposes. */
-            XR_EXTERNAL = 32,
-        }
-        enum TrackingStatus {
-            /** Tracking is behaving as expected. */
-            XR_NORMAL_TRACKING = 0,
-            
-            /** Tracking is hindered by excessive motion (the player is moving faster than tracking can keep up). */
-            XR_EXCESSIVE_MOTION = 1,
-            
-            /** Tracking is hindered by insufficient features, it's too dark (for camera-based tracking), player is blocked, etc. */
-            XR_INSUFFICIENT_FEATURES = 2,
-            
-            /** We don't know the status of the tracking or this interface does not provide feedback. */
-            XR_UNKNOWN_TRACKING = 3,
-            
-            /** Tracking is not functional (camera not plugged in or obscured, lighthouses turned off, etc.). */
-            XR_NOT_TRACKING = 4,
-        }
-        enum PlayAreaMode {
-            /** Play area mode not set or not available. */
-            XR_PLAY_AREA_UNKNOWN = 0,
-            
-            /** Play area only supports orientation tracking, no positional tracking, area will center around player. */
-            XR_PLAY_AREA_3DOF = 1,
-            
-            /** Player is in seated position, limited positional tracking, fixed guardian around player. */
-            XR_PLAY_AREA_SITTING = 2,
-            
-            /** Player is free to move around, full positional tracking. */
-            XR_PLAY_AREA_ROOMSCALE = 3,
-            
-            /** Same as [constant XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the physical space. In this mode, system-level recentering may be disabled, requiring the use of [method XRServer.center_on_hmd]. */
-            XR_PLAY_AREA_STAGE = 4,
-        }
-        enum EnvironmentBlendMode {
-            /** Opaque blend mode. This is typically used for VR devices. */
-            XR_ENV_BLEND_MODE_OPAQUE = 0,
-            
-            /** Additive blend mode. This is typically used for AR devices or VR devices with passthrough. */
-            XR_ENV_BLEND_MODE_ADDITIVE = 1,
-            
-            /** Alpha blend mode. This is typically used for AR or VR devices with passthrough capabilities. The alpha channel controls how much of the passthrough is visible. Alpha of 0.0 means the passthrough is visible and this pixel works in ADDITIVE mode. Alpha of 1.0 means that the passthrough is not visible and this pixel works in OPAQUE mode. */
-            XR_ENV_BLEND_MODE_ALPHA_BLEND = 2,
-        }
-    }
-    /** Base class for an XR interface implementation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrinterface.html  
-     */
-    class XRInterface extends RefCounted {
-        constructor(identifier?: any)
-        /** Returns the name of this interface (`"OpenXR"`, `"OpenVR"`, `"OpenHMD"`, `"ARKit"`, etc.). */
-        get_name(): StringName
-        
-        /** Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface. */
-        get_capabilities(): int64
-        
-        /** Returns `true` if this interface has been initialized. */
-        is_initialized(): boolean
-        
-        /** Call this to initialize this interface. The first interface that is initialized is identified as the primary interface and it will be used for rendering output.  
-         *  After initializing the interface you want to use you then need to enable the AR/VR mode of a viewport and rendering should commence.  
-         *      
-         *  **Note:** You must enable the XR mode on the main viewport for any device that uses the main output of Godot, such as for mobile VR.  
-         *  If you do this for a platform that handles its own output (such as OpenVR) Godot will show just one eye without distortion on screen. Alternatively, you can add a separate viewport node to your scene and enable AR/VR on that viewport. It will be used to output to the HMD, leaving you free to do anything you like in the main window, such as using a separate camera as a spectator camera or rendering something completely different.  
-         *  While currently not used, you can activate additional interfaces. You may wish to do this if you want to track controllers from other platforms. However, at this point in time only one interface can render to an HMD.  
-         */
-        initialize(): boolean
-        
-        /** Turns the interface off. */
-        uninitialize(): void
-        
-        /** Returns a [Dictionary] with extra system info. Interfaces are expected to return `XRRuntimeName` and `XRRuntimeVersion` providing info about the used XR runtime. Additional entries may be provided specific to an interface.  
-         *      
-         *  **Note:**This information may only be available after [method initialize] was successfully called.  
-         */
-        get_system_info(): GDictionary
-        
-        /** If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking. */
-        get_tracking_status(): XRInterface.TrackingStatus
-        
-        /** Returns the resolution at which we should render our intermediate results before things like lens distortion are applied by the VR platform. */
-        get_render_target_size(): Vector2
-        
-        /** Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic. */
-        get_view_count(): int64
-        
-        /** Triggers a haptic pulse on a device associated with this interface.  
-         *  [param action_name] is the name of the action for this pulse.  
-         *  [param tracker_name] is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.  
-         *  [param frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.  
-         *  [param amplitude] is the amplitude of the pulse between `0.0` and `1.0`.  
-         *  [param duration_sec] is the duration of the pulse in seconds.  
-         *  [param delay_sec] is a delay in seconds before the pulse is given.  
-         */
-        trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** Call this to find out if a given play area mode is supported by this interface. */
-        supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns an array of vectors that represent the physical play area mapped to the virtual space around the [XROrigin3D] point. The points form a convex polygon that can be used to react to or visualize the play area. This returns an empty array if this feature is not supported or if the information is not yet available. */
-        get_play_area(): PackedVector3Array
-        
-        /** If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [CameraServer] for this interface. */
-        get_camera_feed_id(): int64
-        
-        /** Returns `true` if this interface supports passthrough. */
-        is_passthrough_supported(): boolean
-        
-        /** Returns `true` if passthrough is enabled. */
-        is_passthrough_enabled(): boolean
-        
-        /** Starts passthrough, will return `false` if passthrough couldn't be started.  
-         *      
-         *  **Note:** The viewport used for XR must have a transparent background, otherwise passthrough may not properly render.  
-         */
-        start_passthrough(): boolean
-        
-        /** Stops passthrough. */
-        stop_passthrough(): void
-        
-        /** Returns the transform for a view/eye.  
-         *  [param view] is the view/eye index.  
-         *  [param cam_transform] is the transform that maps device coordinates to scene coordinates, typically the [member Node3D.global_transform] of the current XROrigin3D.  
-         */
-        get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
-        
-        /** Returns the projection matrix for a view/eye. */
-        get_projection_for_view(view: int64, aspect: float64, near: float64, far: float64): Projection
-        
-        /** Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode]. */
-        get_supported_environment_blend_modes(): GArray
-        
-        /** `true` if this is the primary interface. */
-        get interface_is_primary(): boolean
-        set interface_is_primary(value: boolean)
-        
-        /** The play area mode for this interface. */
-        get xr_play_area_mode(): int64
-        set xr_play_area_mode(value: int64)
-        
-        /** Specify how XR should blend in the environment. This is specific to certain AR and passthrough devices where camera images are blended in by the XR compositor. */
-        get environment_blend_mode(): int64
-        set environment_blend_mode(value: int64)
-        
-        /** On an AR interface, `true` if anchor detection is enabled. */
-        get ar_is_anchor_detection_enabled(): boolean
-        set ar_is_anchor_detection_enabled(value: boolean)
-        
-        /** Emitted when the play area is changed. This can be a result of the player resetting the boundary or entering a new play area, the player changing the play area mode, the world scale changing or the player resetting their headset orientation. */
-        readonly play_area_changed: Signal1<int64>
-    }
-    /** Base class for XR interface extensions (plugins).  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrinterfaceextension.html  
-     */
-    class XRInterfaceExtension extends XRInterface {
-        constructor(identifier?: any)
-        /** Returns the name of this interface. */
-        /* gdvirtual */ _get_name(): StringName
-        
-        /** Returns the capabilities of this interface. */
-        /* gdvirtual */ _get_capabilities(): int64
-        
-        /** Returns `true` if this interface has been initialized. */
-        /* gdvirtual */ _is_initialized(): boolean
-        
-        /** Initializes the interface, returns `true` on success. */
-        /* gdvirtual */ _initialize(): boolean
-        
-        /** Uninitialize the interface. */
-        /* gdvirtual */ _uninitialize(): void
-        
-        /** Returns a [Dictionary] with system information related to this interface. */
-        /* gdvirtual */ _get_system_info(): GDictionary
-        
-        /** Returns `true` if this interface supports this play area mode. */
-        /* gdvirtual */ _supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns the play area mode that sets up our play area. */
-        /* gdvirtual */ _get_play_area_mode(): XRInterface.PlayAreaMode
-        
-        /** Set the play area mode for this interface. */
-        /* gdvirtual */ _set_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns a [PackedVector3Array] that represents the play areas boundaries (if applicable). */
-        /* gdvirtual */ _get_play_area(): PackedVector3Array
-        
-        /** Returns the size of our render target for this interface, this overrides the size of the [Viewport] marked as the xr viewport. */
-        /* gdvirtual */ _get_render_target_size(): Vector2
-        
-        /** Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic. */
-        /* gdvirtual */ _get_view_count(): int64
-        
-        /** Returns the [Transform3D] that positions the [XRCamera3D] in the world. */
-        /* gdvirtual */ _get_camera_transform(): Transform3D
-        
-        /** Returns a [Transform3D] for a given view. */
-        /* gdvirtual */ _get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
-        
-        /** Returns the projection matrix for the given view as a [PackedFloat64Array]. */
-        /* gdvirtual */ _get_projection_for_view(view: int64, aspect: float64, z_near: float64, z_far: float64): PackedFloat64Array
-        /* gdvirtual */ _get_vrs_texture(): RID
-        
-        /** Called if this [XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [XRPositionalTracker]s at this point in time. */
-        /* gdvirtual */ _process(): void
-        
-        /** Called if this [XRInterfaceExtension] is active before rendering starts. Most XR interfaces will sync tracking at this point in time. */
-        /* gdvirtual */ _pre_render(): void
-        
-        /** Called if this is our primary [XRInterfaceExtension] before we start processing a [Viewport] for every active XR [Viewport], returns `true` if that viewport should be rendered. An XR interface may return `false` if the user has taken off their headset and we can pause rendering. */
-        /* gdvirtual */ _pre_draw_viewport(render_target: RID): boolean
-        
-        /** Called after the XR [Viewport] draw logic has completed. */
-        /* gdvirtual */ _post_draw_viewport(render_target: RID, screen_rect: Rect2): void
-        
-        /** Called if interface is active and queues have been submitted. */
-        /* gdvirtual */ _end_frame(): void
-        
-        /** Returns a [PackedStringArray] with tracker names configured by this interface. Note that user configuration can override this list. */
-        /* gdvirtual */ _get_suggested_tracker_names(): PackedStringArray
-        
-        /** Returns a [PackedStringArray] with pose names configured by this interface. Note that user configuration can override this list. */
-        /* gdvirtual */ _get_suggested_pose_names(tracker_name: StringName): PackedStringArray
-        
-        /** Returns a [enum XRInterface.TrackingStatus] specifying the current status of our tracking. */
-        /* gdvirtual */ _get_tracking_status(): XRInterface.TrackingStatus
-        
-        /** Triggers a haptic pulse to be emitted on the specified tracker. */
-        /* gdvirtual */ _trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** Return `true` if anchor detection is enabled for this interface. */
-        /* gdvirtual */ _get_anchor_detection_is_enabled(): boolean
-        
-        /** Enables anchor detection on this interface if supported. */
-        /* gdvirtual */ _set_anchor_detection_is_enabled(enabled: boolean): void
-        
-        /** Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should be presented as the background on an AR capable device (if applicable). */
-        /* gdvirtual */ _get_camera_feed_id(): int64
-        
-        /** Return color texture into which to render (if applicable). */
-        /* gdvirtual */ _get_color_texture(): RID
-        
-        /** Return depth texture into which to render (if applicable). */
-        /* gdvirtual */ _get_depth_texture(): RID
-        
-        /** Return velocity texture into which to render (if applicable). */
-        /* gdvirtual */ _get_velocity_texture(): RID
-        get_color_texture(): RID
-        get_depth_texture(): RID
-        get_velocity_texture(): RID
-        
-        /** Blits our render results to screen optionally applying lens distortion. This can only be called while processing `_commit_views`. */
-        add_blit(render_target: RID, src_rect: Rect2, dst_rect: Rect2i, use_layer: boolean, layer: int64, apply_lens_distortion: boolean, eye_center: Vector2, k1: float64, k2: float64, upscale: float64, aspect_ratio: float64): void
-        
-        /** Returns a valid [RID] for a texture to which we should render the current frame if supported by the interface. */
-        get_render_target_texture(render_target: RID): RID
-    }
-    /** A spatial node that has its position automatically updated by the [XRServer].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrnode3d.html  
-     */
-    class XRNode3D extends Node3D {
-        constructor(identifier?: any)
-        /** Returns `true` if the [member tracker] has been registered and the [member pose] is being tracked. */
-        get_is_active(): boolean
-        
-        /** Returns `true` if the [member tracker] has current tracking data for the [member pose] being tracked. */
-        get_has_tracking_data(): boolean
-        
-        /** Returns the [XRPose] containing the current state of the pose being tracked. This gives access to additional properties of this pose. */
-        get_pose(): XRPose
-        
-        /** Triggers a haptic pulse on a device associated with this interface.  
-         *  [param action_name] is the name of the action for this pulse.  
-         *  [param frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.  
-         *  [param amplitude] is the amplitude of the pulse between `0.0` and `1.0`.  
-         *  [param duration_sec] is the duration of the pulse in seconds.  
-         *  [param delay_sec] is a delay in seconds before the pulse is given.  
-         */
-        trigger_haptic_pulse(action_name: string, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** The name of the tracker we're bound to. Which trackers are available is not known during design time.  
-         *  Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [XRInterface].  
-         */
-        get tracker(): string
-        set tracker(value: string)
-        
-        /** The name of the pose we're bound to. Which poses a tracker supports is not known during design time.  
-         *  Godot defines number of standard pose names such as `aim` and `grip` but other may be configured within a given [XRInterface].  
-         */
-        get pose(): string
-        set pose(value: string)
-        
-        /** Enables showing the node when tracking starts, and hiding the node when tracking is lost. */
-        get show_when_tracked(): boolean
-        set show_when_tracked(value: boolean)
-        
-        /** Emitted when the [member tracker] starts or stops receiving updated tracking data for the [member pose] being tracked. The [param tracking] argument indicates whether the tracker is getting updated tracking data. */
-        readonly tracking_changed: Signal1<boolean>
-    }
-    /** The origin point in AR/VR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrorigin3d.html  
-     */
-    class XROrigin3D extends Node3D {
-        constructor(identifier?: any)
-        /** The scale of the game world compared to the real world. This is the same as [member XRServer.world_scale]. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
-        get world_scale(): float64
-        set world_scale(value: float64)
-        
-        /** If `true`, this origin node is currently being used by the [XRServer]. Only one origin point can be used at a time. */
-        get current(): boolean
-        set current(value: boolean)
-    }
-    namespace XRPose {
-        enum TrackingConfidence {
-            /** No tracking information is available for this pose. */
-            XR_TRACKING_CONFIDENCE_NONE = 0,
-            
-            /** Tracking information may be inaccurate or estimated. For example, with inside out tracking this would indicate a controller may be (partially) obscured. */
-            XR_TRACKING_CONFIDENCE_LOW = 1,
-            
-            /** Tracking information is considered accurate and up to date. */
-            XR_TRACKING_CONFIDENCE_HIGH = 2,
-        }
-    }
-    /** This object contains all data related to a pose on a tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrpose.html  
-     */
-    class XRPose extends RefCounted {
-        constructor(identifier?: any)
-        set_name(name: StringName): void
-        get_name(): StringName
-        
-        /** Returns the [member transform] with world scale and our reference frame applied. This is the transform used to position [XRNode3D] objects. */
-        get_adjusted_transform(): Transform3D
-        
-        /** If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking data and our state is whatever that last valid state was. */
-        get has_tracking_data(): boolean
-        set has_tracking_data(value: boolean)
-        
-        /** The transform containing the original and transform as reported by the XR runtime. */
-        get transform(): string
-        set transform(value: string)
-        
-        /** The linear velocity of this pose. */
-        get linear_velocity(): string
-        set linear_velocity(value: string)
-        
-        /** The angular velocity for this pose. */
-        get angular_velocity(): string
-        set angular_velocity(value: string)
-        
-        /** The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is. */
-        get tracking_confidence(): int64
-        set tracking_confidence(value: int64)
-    }
-    namespace XRPositionalTracker {
-        enum TrackerHand {
-            /** The hand this tracker is held in is unknown or not applicable. */
-            TRACKER_HAND_UNKNOWN = 0,
-            
-            /** This tracker is the left hand controller. */
-            TRACKER_HAND_LEFT = 1,
-            
-            /** This tracker is the right hand controller. */
-            TRACKER_HAND_RIGHT = 2,
-            
-            /** Represents the size of the [enum TrackerHand] enum. */
-            TRACKER_HAND_MAX = 3,
-        }
-    }
-    /** A tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrpositionaltracker.html  
-     */
-    class XRPositionalTracker extends XRTracker {
-        constructor(identifier?: any)
-        /** Returns `true` if the tracker is available and is currently tracking the bound [param name] pose. */
-        has_pose(name: StringName): boolean
-        
-        /** Returns the current [XRPose] state object for the bound [param name] pose. */
-        get_pose(name: StringName): XRPose
-        
-        /** Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position. */
-        invalidate_pose(name: StringName): void
-        
-        /** Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [XRInterface] implementation and should not be used directly. */
-        set_pose(name: StringName, transform: Transform3D, linear_velocity: Vector3, angular_velocity: Vector3, tracking_confidence: XRPose.TrackingConfidence): void
-        
-        /** Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad. */
-        get_input(name: StringName): any
-        
-        /** Changes the value for the given input. This method is called by a [XRInterface] implementation and should not be used directly. */
-        set_input(name: StringName, value: any): void
-        
-        /** The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked. */
-        get profile(): string
-        set profile(value: string)
-        
-        /** Defines which hand this tracker relates to. */
-        get hand(): int64
-        set hand(value: int64)
-        
-        /** Emitted when the state of a pose tracked by this tracker changes. */
-        readonly pose_changed: Signal1<XRPose>
-        
-        /** Emitted when a pose tracked by this tracker stops getting updated tracking data. */
-        readonly pose_lost_tracking: Signal1<XRPose>
-        
-        /** Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs to be mapped to buttons. */
-        readonly button_pressed: Signal1<string>
-        
-        /** Emitted when a button on this tracker is released. */
-        readonly button_released: Signal1<string>
-        
-        /** Emitted when a trigger or similar input on this tracker changes value. */
-        readonly input_float_changed: Signal2<string, float64>
-        
-        /** Emitted when a thumbstick or thumbpad on this tracker moves. */
-        readonly input_vector2_changed: Signal2<string, Vector2>
-        
-        /** Emitted when the profile of our tracker changes. */
-        readonly profile_changed: Signal1<string>
-    }
-    /** A tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrtracker.html  
-     */
-    class XRTracker extends RefCounted {
-        constructor(identifier?: any)
-        get_tracker_name(): StringName
-        set_tracker_name(name: StringName): void
-        
-        /** The type of tracker. */
-        get type(): int64
-        set type(value: int64)
-        
-        /** The description of this tracker. */
-        get description(): string
-        set description(value: string)
-    }
-    /** Helper class for XR interfaces that generates VRS images.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrvrs.html  
-     */
-    class XRVRS extends Object {
-        constructor(identifier?: any)
-        /** Generates the VRS texture based on a render [param target_size] adjusted by our VRS tile size. For each eyes focal point passed in [param eye_foci] a layer is created. Focal point should be in NDC.  
-         *  The result will be cached, requesting a VRS texture with unchanged parameters and settings will return the cached RID.  
-         */
-        make_vrs_texture(target_size: Vector2, eye_foci: PackedVector2Array | Vector2[]): RID
-        
-        /** The minimum radius around the focal point where full quality is guaranteed if VRS is used as a percentage of screen size. */
-        get vrs_min_radius(): float64
-        set vrs_min_radius(value: float64)
-        
-        /** The strength used to calculate the VRS density map. The greater this value, the more noticeable VRS is. */
-        get vrs_strength(): float64
-        set vrs_strength(value: float64)
-    }
-    namespace ZIPPacker {
-        enum ZipAppend {
-            /** Create a new zip archive at the given path. */
-            APPEND_CREATE = 0,
-            
-            /** Append a new zip archive to the end of the already existing file at the given path. */
-            APPEND_CREATEAFTER = 1,
-            
-            /** Add new files to the existing zip archive at the given path. */
-            APPEND_ADDINZIP = 2,
-        }
-    }
-    /** Allows the creation of zip files.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_zippacker.html  
-     */
-    class ZIPPacker extends RefCounted {
-        constructor(identifier?: any)
-        /** Opens a zip file for writing at the given path using the specified write mode.  
-         *  This must be called before everything else.  
-         */
-        open(path: string, append: ZIPPacker.ZipAppend = 0): GError
-        
-        /** Starts writing to a file within the archive. Only one file can be written at the same time.  
-         *  Must be called after [method open].  
-         */
-        start_file(path: string): GError
-        
-        /** Write the given [param data] to the file.  
-         *  Needs to be called after [method start_file].  
-         */
-        write_file(data: PackedByteArray | byte[] | ArrayBuffer): GError
-        
-        /** Stops writing to a file within the archive.  
-         *  It will fail if there is no open file.  
-         */
-        close_file(): GError
-        
-        /** Closes the underlying resources used by this instance. */
-        close(): GError
     }
 }

@@ -1,6 +1,1166 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** A node that applies a color tint to a canvas.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvasmodulate.html  
+     */
+    class CanvasModulate extends Node2D {
+        constructor(identifier?: any)
+        /** The tint color to apply. */
+        get color(): Color
+        set color(value: Color)
+    }
+    /** Texture with optional normal and specular maps for use in 2D rendering.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvastexture.html  
+     */
+    class CanvasTexture extends Texture2D {
+        constructor(identifier?: any)
+        /** The diffuse (color) texture to use. This is the main texture you want to set in most cases. */
+        get diffuse_texture(): Texture2D
+        set diffuse_texture(value: Texture2D)
+        
+        /** The normal map texture to use. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture].  
+         *      
+         *  **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.  
+         */
+        get normal_texture(): Texture2D
+        set normal_texture(value: Texture2D)
+        
+        /** The specular map to use for [Light2D] specular reflections. This should be a grayscale or colored texture, with brighter areas resulting in a higher [member specular_shininess] value. Using a colored [member specular_texture] allows controlling specular shininess on a per-channel basis. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
+        get specular_texture(): Texture2D
+        set specular_texture(value: Texture2D)
+        
+        /** The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
+        get specular_color(): Color
+        set specular_color(value: Color)
+        
+        /** The specular exponent for [Light2D] specular reflections. Higher values result in a more glossy/"wet" look, with reflections becoming more localized and less visible overall. The default value of `1.0` disables specular reflections entirely. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
+        get specular_shininess(): float64
+        set specular_shininess(value: float64)
+        
+        /** The texture filtering mode to use when drawing this [CanvasTexture]. */
+        get texture_filter(): int64
+        set texture_filter(value: int64)
+        
+        /** The texture repeat mode to use when drawing this [CanvasTexture]. */
+        get texture_repeat(): int64
+        set texture_repeat(value: int64)
+    }
+    /** Class representing a capsule-shaped [PrimitiveMesh].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsulemesh.html  
+     */
+    class CapsuleMesh extends PrimitiveMesh {
+        constructor(identifier?: any)
+        /** Radius of the capsule mesh. */
+        get radius(): float64
+        set radius(value: float64)
+        
+        /** Total height of the capsule mesh (including the hemispherical ends). */
+        get height(): float64
+        set height(value: float64)
+        
+        /** Number of radial segments on the capsule mesh. */
+        get radial_segments(): int64
+        set radial_segments(value: int64)
+        
+        /** Number of rings along the height of the capsule. */
+        get rings(): int64
+        set rings(value: int64)
+    }
+    /** A 2D capsule shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsuleshape2d.html  
+     */
+    class CapsuleShape2D extends Shape2D {
+        constructor(identifier?: any)
+        /** The capsule's radius. */
+        get radius(): float64
+        set radius(value: float64)
+        
+        /** The capsule's height. */
+        get height(): float64
+        set height(value: float64)
+    }
+    /** A 3D capsule shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsuleshape3d.html  
+     */
+    class CapsuleShape3D extends Shape3D {
+        constructor(identifier?: any)
+        /** The capsule's radius. */
+        get radius(): float64
+        set radius(value: float64)
+        
+        /** The capsule's height. */
+        get height(): float64
+        set height(value: float64)
+    }
+    class Cast2DEditor extends Control {
+        constructor(identifier?: any)
+    }
+    class Cast2DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** A container that keeps child controls in its center.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_centercontainer.html  
+     */
+    class CenterContainer extends Container {
+        constructor(identifier?: any)
+        /** If `true`, centers children relative to the [CenterContainer]'s top left corner. */
+        get use_top_left(): boolean
+        set use_top_left(value: boolean)
+    }
+    /** Controls how an individual character will be displayed in a [RichTextEffect].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_charfxtransform.html  
+     */
+    class CharFXTransform extends RefCounted {
+        constructor(identifier?: any)
+        /** The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects. */
+        get transform(): Transform2D
+        set transform(value: Transform2D)
+        
+        /** Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing. */
+        get range(): Vector2i
+        set range(value: Vector2i)
+        
+        /** The time elapsed since the [RichTextLabel] was added to the scene tree (in seconds). Time stops when the [RichTextLabel] is paused (see [member Node.process_mode]). Resets when the text in the [RichTextLabel] is changed.  
+         *      
+         *  **Note:** Time still passes while the [RichTextLabel] is hidden.  
+         */
+        get elapsed_time(): float64
+        set elapsed_time(value: float64)
+        
+        /** If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [member color] to `Color(1, 1, 1, 0)` instead. */
+        get visible(): boolean
+        set visible(value: boolean)
+        
+        /** If `true`, FX transform is called for outline drawing. Setting this property won't affect drawing. */
+        get outline(): boolean
+        set outline(value: boolean)
+        
+        /** The position offset the character will be drawn with (in pixels). */
+        get offset(): Vector2
+        set offset(value: Vector2)
+        
+        /** The color the character will be drawn with. */
+        get color(): Color
+        set color(value: Color)
+        
+        /** Contains the arguments passed in the opening BBCode tag. By default, arguments are strings; if their contents match a type such as [bool], [int] or [float], they will be converted automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [Color]. String arguments may not contain spaces, even if they're quoted. If present, quotes will also be present in the final string.  
+         *  For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will map to the following [Dictionary]:  
+         *    
+         */
+        get env(): GDictionary
+        set env(value: GDictionary)
+        
+        /** Font specific glyph index. */
+        get glyph_index(): int64
+        set glyph_index(value: int64)
+        
+        /** Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster. Setting this property won't affect drawing. */
+        get glyph_count(): int64
+        set glyph_count(value: int64)
+        
+        /** Glyph flags. See [enum TextServer.GraphemeFlag] for more info. Setting this property won't affect drawing. */
+        get glyph_flags(): int64
+        set glyph_flags(value: int64)
+        
+        /** The character offset of the glyph, relative to the current [RichTextEffect] custom block. Setting this property won't affect drawing. */
+        get relative_index(): int64
+        set relative_index(value: int64)
+        
+        /** Font resource used to render glyph. */
+        get font(): RID
+        set font(value: RID)
+    }
+    namespace CharacterBody2D {
+        enum MotionMode {
+            /** Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion will react to slopes (acceleration/slowdown). This mode is suitable for sided games like platformers. */
+            MOTION_MODE_GROUNDED = 0,
+            
+            /** Apply when there is no notion of floor or ceiling. All collisions will be reported as `on_wall`. In this mode, when you slide, the speed will always be constant. This mode is suitable for top-down games. */
+            MOTION_MODE_FLOATING = 1,
+        }
+        enum PlatformOnLeave {
+            /** Add the last platform velocity to the [member velocity] when you leave a moving platform. */
+            PLATFORM_ON_LEAVE_ADD_VELOCITY = 0,
+            
+            /** Add the last platform velocity to the [member velocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down. */
+            PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY = 1,
+            
+            /** Do nothing when leaving a platform. */
+            PLATFORM_ON_LEAVE_DO_NOTHING = 2,
+        }
+    }
+    /** A 2D physics body specialized for characters moved by script.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_characterbody2d.html  
+     */
+    class CharacterBody2D extends PhysicsBody2D {
+        constructor(identifier?: any)
+        /** Moves the body based on [member velocity]. If the body collides with another, it will slide along the other body (by default only on floor) rather than stop immediately. If the other body is a [CharacterBody2D] or [RigidBody2D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.  
+         *  Modifies [member velocity] if a slide collision occurred. To get the latest collision call [method get_last_slide_collision], for detailed information about collisions that occurred, use [method get_slide_collision].  
+         *  When the body touches a moving platform, the platform's velocity is automatically added to the body motion. If a collision occurs due to the platform's motion, it will always be first in the slide collisions.  
+         *  The general behavior and available properties change according to the [member motion_mode].  
+         *  Returns `true` if the body collided, otherwise, returns `false`.  
+         */
+        move_and_slide(): boolean
+        
+        /** Allows to manually apply a snap to the floor regardless of the body's velocity. This function does nothing when [method is_on_floor] returns `true`. */
+        apply_floor_snap(): void
+        
+        /** Returns `true` if the body collided with the floor on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "floor" or not. */
+        is_on_floor(): boolean
+        
+        /** Returns `true` if the body collided only with the floor on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "floor" or not. */
+        is_on_floor_only(): boolean
+        
+        /** Returns `true` if the body collided with the ceiling on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "ceiling" or not. */
+        is_on_ceiling(): boolean
+        
+        /** Returns `true` if the body collided only with the ceiling on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "ceiling" or not. */
+        is_on_ceiling_only(): boolean
+        
+        /** Returns `true` if the body collided with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
+        is_on_wall(): boolean
+        
+        /** Returns `true` if the body collided only with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
+        is_on_wall_only(): boolean
+        
+        /** Returns the collision normal of the floor at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`.  
+         *  **Warning:** The collision normal is not always the same as the surface normal.  
+         */
+        get_floor_normal(): Vector2
+        
+        /** Returns the collision normal of the wall at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_wall] returns `true`.  
+         *  **Warning:** The collision normal is not always the same as the surface normal.  
+         */
+        get_wall_normal(): Vector2
+        
+        /** Returns the last motion applied to the [CharacterBody2D] during the last call to [method move_and_slide]. The movement can be split into multiple motions when sliding occurs, and this method return the last one, which is useful to retrieve the current direction of the movement. */
+        get_last_motion(): Vector2
+        
+        /** Returns the travel (position delta) that occurred during the last call to [method move_and_slide]. */
+        get_position_delta(): Vector2
+        
+        /** Returns the current real velocity since the last call to [method move_and_slide]. For example, when you climb a slope, you will move diagonally even though the velocity is horizontal. This method returns the diagonal movement, as opposed to [member velocity] which returns the requested velocity. */
+        get_real_velocity(): Vector2
+        
+        /** Returns the floor's collision angle at the last collision point according to [param up_direction], which is [constant Vector2.UP] by default. This value is always positive and only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`. */
+        get_floor_angle(up_direction: Vector2 = new Vector2(0, -1)): float64
+        
+        /** Returns the linear velocity of the platform at the last collision point. Only valid after calling [method move_and_slide]. */
+        get_platform_velocity(): Vector2
+        
+        /** Returns the number of times the body collided and changed direction during the last call to [method move_and_slide]. */
+        get_slide_collision_count(): int64
+        
+        /** Returns a [KinematicCollision2D], which contains information about a collision that occurred during the last call to [method move_and_slide]. Since the body can collide several times in a single call to [method move_and_slide], you must specify the index of the collision in the range 0 to ([method get_slide_collision_count] - 1).  
+         *  **Example usage:**  
+         *    
+         */
+        get_slide_collision(slide_idx: int64): KinematicCollision2D
+        
+        /** Returns a [KinematicCollision2D], which contains information about the latest collision that occurred during the last call to [method move_and_slide]. */
+        get_last_slide_collision(): KinematicCollision2D
+        
+        /** Sets the motion mode which defines the behavior of [method move_and_slide]. See [enum MotionMode] constants for available modes. */
+        get motion_mode(): int64
+        set motion_mode(value: int64)
+        
+        /** Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [method move_and_slide]. Defaults to [constant Vector2.UP]. As the vector will be normalized it can't be equal to [constant Vector2.ZERO], if you want all collisions to be reported as walls, consider using [constant MOTION_MODE_FLOATING] as [member motion_mode]. */
+        get up_direction(): Vector2
+        set up_direction(value: Vector2)
+        
+        /** Current velocity vector in pixels per second, used and modified during calls to [method move_and_slide]. */
+        get velocity(): Vector2
+        set velocity(value: Vector2)
+        
+        /** If `true`, during a jump against the ceiling, the body will slide, if `false` it will be stopped and will fall vertically. */
+        get slide_on_ceiling(): boolean
+        set slide_on_ceiling(value: boolean)
+        
+        /** Maximum number of times the body can change direction before it stops when calling [method move_and_slide]. */
+        get max_slides(): int64
+        set max_slides(value: int64)
+        
+        /** Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. This property only affects movement when [member motion_mode] is [constant MOTION_MODE_FLOATING]. */
+        get wall_min_slide_angle(): float64
+        set wall_min_slide_angle(value: float64)
+        
+        /** If `true`, the body will not slide on slopes when calling [method move_and_slide] when the body is standing still.  
+         *  If `false`, the body will slide on floor's slopes when [member velocity] applies a downward force.  
+         */
+        get floor_stop_on_slope(): boolean
+        set floor_stop_on_slope(value: boolean)
+        
+        /** If `false` (by default), the body will move faster on downward slopes and slower on upward slopes.  
+         *  If `true`, the body will always move at the same speed on the ground no matter the slope. Note that you need to use [member floor_snap_length] to stick along a downward slope at constant speed.  
+         */
+        get floor_constant_speed(): boolean
+        set floor_constant_speed(value: boolean)
+        
+        /** If `true`, the body will be able to move on the floor only. This option avoids to be able to walk on walls, it will however allow to slide down along them. */
+        get floor_block_on_wall(): boolean
+        set floor_block_on_wall(value: boolean)
+        
+        /** Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [method move_and_slide]. The default value equals 45 degrees. */
+        get floor_max_angle(): float64
+        set floor_max_angle(value: float64)
+        
+        /** Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [method move_and_slide]. The snapping vector is determined by the given distance along the opposite direction of the [member up_direction].  
+         *  As long as the snapping vector is in contact with the ground and the body moves against [member up_direction], the body will remain attached to the surface. Snapping is not applied if the body moves along [member up_direction], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [method apply_floor_snap].  
+         */
+        get floor_snap_length(): float64
+        set floor_snap_length(value: float64)
+        
+        /** Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior. */
+        get platform_on_leave(): int64
+        set platform_on_leave(value: int64)
+        
+        /** Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all floor bodies are detected and propagate their velocity. */
+        get platform_floor_layers(): int64
+        set platform_floor_layers(value: int64)
+        
+        /** Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all wall bodies are ignored. */
+        get platform_wall_layers(): int64
+        set platform_wall_layers(value: int64)
+        
+        /** Extra margin used for collision recovery when calling [method move_and_slide].  
+         *  If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.  
+         *  A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.  
+         *  A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.  
+         */
+        get safe_margin(): float64
+        set safe_margin(value: float64)
+    }
+    namespace CharacterBody3D {
+        enum MotionMode {
+            /** Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion will react to slopes (acceleration/slowdown). This mode is suitable for grounded games like platformers. */
+            MOTION_MODE_GROUNDED = 0,
+            
+            /** Apply when there is no notion of floor or ceiling. All collisions will be reported as `on_wall`. In this mode, when you slide, the speed will always be constant. This mode is suitable for games without ground like space games. */
+            MOTION_MODE_FLOATING = 1,
+        }
+        enum PlatformOnLeave {
+            /** Add the last platform velocity to the [member velocity] when you leave a moving platform. */
+            PLATFORM_ON_LEAVE_ADD_VELOCITY = 0,
+            
+            /** Add the last platform velocity to the [member velocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down. */
+            PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY = 1,
+            
+            /** Do nothing when leaving a platform. */
+            PLATFORM_ON_LEAVE_DO_NOTHING = 2,
+        }
+    }
+    /** A 3D physics body specialized for characters moved by script.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_characterbody3d.html  
+     */
+    class CharacterBody3D extends PhysicsBody3D {
+        constructor(identifier?: any)
+        /** Moves the body based on [member velocity]. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [CharacterBody3D] or [RigidBody3D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.  
+         *  Modifies [member velocity] if a slide collision occurred. To get the latest collision call [method get_last_slide_collision], for more detailed information about collisions that occurred, use [method get_slide_collision].  
+         *  When the body touches a moving platform, the platform's velocity is automatically added to the body motion. If a collision occurs due to the platform's motion, it will always be first in the slide collisions.  
+         *  Returns `true` if the body collided, otherwise, returns `false`.  
+         */
+        move_and_slide(): boolean
+        
+        /** Allows to manually apply a snap to the floor regardless of the body's velocity. This function does nothing when [method is_on_floor] returns `true`. */
+        apply_floor_snap(): void
+        
+        /** Returns `true` if the body collided with the floor on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "floor" or not. */
+        is_on_floor(): boolean
+        
+        /** Returns `true` if the body collided only with the floor on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "floor" or not. */
+        is_on_floor_only(): boolean
+        
+        /** Returns `true` if the body collided with the ceiling on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "ceiling" or not. */
+        is_on_ceiling(): boolean
+        
+        /** Returns `true` if the body collided only with the ceiling on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "ceiling" or not. */
+        is_on_ceiling_only(): boolean
+        
+        /** Returns `true` if the body collided with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
+        is_on_wall(): boolean
+        
+        /** Returns `true` if the body collided only with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
+        is_on_wall_only(): boolean
+        
+        /** Returns the collision normal of the floor at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`.  
+         *  **Warning:** The collision normal is not always the same as the surface normal.  
+         */
+        get_floor_normal(): Vector3
+        
+        /** Returns the collision normal of the wall at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_wall] returns `true`.  
+         *  **Warning:** The collision normal is not always the same as the surface normal.  
+         */
+        get_wall_normal(): Vector3
+        
+        /** Returns the last motion applied to the [CharacterBody3D] during the last call to [method move_and_slide]. The movement can be split into multiple motions when sliding occurs, and this method return the last one, which is useful to retrieve the current direction of the movement. */
+        get_last_motion(): Vector3
+        
+        /** Returns the travel (position delta) that occurred during the last call to [method move_and_slide]. */
+        get_position_delta(): Vector3
+        
+        /** Returns the current real velocity since the last call to [method move_and_slide]. For example, when you climb a slope, you will move diagonally even though the velocity is horizontal. This method returns the diagonal movement, as opposed to [member velocity] which returns the requested velocity. */
+        get_real_velocity(): Vector3
+        
+        /** Returns the floor's collision angle at the last collision point according to [param up_direction], which is [constant Vector3.UP] by default. This value is always positive and only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`. */
+        get_floor_angle(up_direction: Vector3 = Vector3.ZERO): float64
+        
+        /** Returns the linear velocity of the platform at the last collision point. Only valid after calling [method move_and_slide]. */
+        get_platform_velocity(): Vector3
+        
+        /** Returns the angular velocity of the platform at the last collision point. Only valid after calling [method move_and_slide]. */
+        get_platform_angular_velocity(): Vector3
+        
+        /** Returns the number of times the body collided and changed direction during the last call to [method move_and_slide]. */
+        get_slide_collision_count(): int64
+        
+        /** Returns a [KinematicCollision3D], which contains information about a collision that occurred during the last call to [method move_and_slide]. Since the body can collide several times in a single call to [method move_and_slide], you must specify the index of the collision in the range 0 to ([method get_slide_collision_count] - 1). */
+        get_slide_collision(slide_idx: int64): KinematicCollision3D
+        
+        /** Returns a [KinematicCollision3D], which contains information about the latest collision that occurred during the last call to [method move_and_slide]. */
+        get_last_slide_collision(): KinematicCollision3D
+        
+        /** Sets the motion mode which defines the behavior of [method move_and_slide]. See [enum MotionMode] constants for available modes. */
+        get motion_mode(): int64
+        set motion_mode(value: int64)
+        
+        /** Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [method move_and_slide]. Defaults to [constant Vector3.UP]. As the vector will be normalized it can't be equal to [constant Vector3.ZERO], if you want all collisions to be reported as walls, consider using [constant MOTION_MODE_FLOATING] as [member motion_mode]. */
+        get up_direction(): Vector3
+        set up_direction(value: Vector3)
+        
+        /** If `true`, during a jump against the ceiling, the body will slide, if `false` it will be stopped and will fall vertically. */
+        get slide_on_ceiling(): boolean
+        set slide_on_ceiling(value: boolean)
+        
+        /** Current velocity vector (typically meters per second), used and modified during calls to [method move_and_slide]. */
+        get velocity(): Vector3
+        set velocity(value: Vector3)
+        
+        /** Maximum number of times the body can change direction before it stops when calling [method move_and_slide]. */
+        get max_slides(): int64
+        set max_slides(value: int64)
+        
+        /** Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. When [member motion_mode] is [constant MOTION_MODE_GROUNDED], it only affects movement if [member floor_block_on_wall] is `true`. */
+        get wall_min_slide_angle(): float64
+        set wall_min_slide_angle(value: float64)
+        
+        /** If `true`, the body will not slide on slopes when calling [method move_and_slide] when the body is standing still.  
+         *  If `false`, the body will slide on floor's slopes when [member velocity] applies a downward force.  
+         */
+        get floor_stop_on_slope(): boolean
+        set floor_stop_on_slope(value: boolean)
+        
+        /** If `false` (by default), the body will move faster on downward slopes and slower on upward slopes.  
+         *  If `true`, the body will always move at the same speed on the ground no matter the slope. Note that you need to use [member floor_snap_length] to stick along a downward slope at constant speed.  
+         */
+        get floor_constant_speed(): boolean
+        set floor_constant_speed(value: boolean)
+        
+        /** If `true`, the body will be able to move on the floor only. This option avoids to be able to walk on walls, it will however allow to slide down along them. */
+        get floor_block_on_wall(): boolean
+        set floor_block_on_wall(value: boolean)
+        
+        /** Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [method move_and_slide]. The default value equals 45 degrees. */
+        get floor_max_angle(): float64
+        set floor_max_angle(value: float64)
+        
+        /** Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [method move_and_slide]. The snapping vector is determined by the given distance along the opposite direction of the [member up_direction].  
+         *  As long as the snapping vector is in contact with the ground and the body moves against [member up_direction], the body will remain attached to the surface. Snapping is not applied if the body moves along [member up_direction], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [method apply_floor_snap].  
+         */
+        get floor_snap_length(): float64
+        set floor_snap_length(value: float64)
+        
+        /** Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior. */
+        get platform_on_leave(): int64
+        set platform_on_leave(value: int64)
+        
+        /** Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody3D]. By default, all floor bodies are detected and propagate their velocity. */
+        get platform_floor_layers(): int64
+        set platform_floor_layers(value: int64)
+        
+        /** Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody3D]. By default, all wall bodies are ignored. */
+        get platform_wall_layers(): int64
+        set platform_wall_layers(value: int64)
+        
+        /** Extra margin used for collision recovery when calling [method move_and_slide].  
+         *  If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.  
+         *  A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.  
+         *  A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.  
+         */
+        get safe_margin(): float64
+        set safe_margin(value: float64)
+    }
+    /** A button that represents a binary choice.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_checkbox.html  
+     */
+    class CheckBox extends Button {
+        constructor(identifier?: any)
+    }
+    /** A button that represents a binary choice.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_checkbutton.html  
+     */
+    class CheckButton extends Button {
+        constructor(identifier?: any)
+    }
+    /** A 2D circle shape used for physics collision.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_circleshape2d.html  
+     */
+    class CircleShape2D extends Shape2D {
+        constructor(identifier?: any)
+        /** The circle's radius. */
+        get radius(): float64
+        set radius(value: float64)
+    }
+    namespace CodeEdit {
+        enum CodeCompletionKind {
+            /** Marks the option as a class. */
+            KIND_CLASS = 0,
+            
+            /** Marks the option as a function. */
+            KIND_FUNCTION = 1,
+            
+            /** Marks the option as a Godot signal. */
+            KIND_SIGNAL = 2,
+            
+            /** Marks the option as a variable. */
+            KIND_VARIABLE = 3,
+            
+            /** Marks the option as a member. */
+            KIND_MEMBER = 4,
+            
+            /** Marks the option as an enum entry. */
+            KIND_ENUM = 5,
+            
+            /** Marks the option as a constant. */
+            KIND_CONSTANT = 6,
+            
+            /** Marks the option as a Godot node path. */
+            KIND_NODE_PATH = 7,
+            
+            /** Marks the option as a file path. */
+            KIND_FILE_PATH = 8,
+            
+            /** Marks the option as unclassified or plain text. */
+            KIND_PLAIN_TEXT = 9,
+        }
+        enum CodeCompletionLocation {
+            /** The option is local to the location of the code completion query - e.g. a local variable. Subsequent value of location represent options from the outer class, the exact value represent how far they are (in terms of inner classes). */
+            LOCATION_LOCAL = 0,
+            
+            /** The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. `0` for the local class, `1` for the parent, `2` for the grandparent, etc.) to store the depth of an option in the class or a parent class. */
+            LOCATION_PARENT_MASK = 256,
+            
+            /** The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons). */
+            LOCATION_OTHER_USER_CODE = 512,
+            
+            /** The option is from other engine code, not covered by the other enum constants - e.g. built-in classes. */
+            LOCATION_OTHER = 1024,
+        }
+    }
+    /** A multiline text editor designed for editing code.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_codeedit.html  
+     */
+    class CodeEdit extends TextEdit {
+        constructor(identifier?: any)
+        /** Override this method to define how the selected entry should be inserted. If [param replace] is `true`, any existing text should be replaced. */
+        /* gdvirtual */ _confirm_code_completion(replace: boolean): void
+        
+        /** Override this method to define what happens when the user requests code completion. If [param force] is `true`, any checks should be bypassed. */
+        /* gdvirtual */ _request_code_completion(force: boolean): void
+        
+        /** Override this method to define what items in [param candidates] should be displayed.  
+         *  Both [param candidates] and the return is a [Array] of [Dictionary], see [method get_code_completion_option] for [Dictionary] content.  
+         */
+        /* gdvirtual */ _filter_code_completion_candidates(candidates: GArray): GArray
+        
+        /** Perform an indent as if the user activated the "ui_text_indent" action. */
+        do_indent(): void
+        
+        /** Indents selected lines, or in the case of no selection the caret line by one. */
+        indent_lines(): void
+        
+        /** Unindents selected lines, or in the case of no selection the caret line by one. Same as performing "ui_text_unindent" action. */
+        unindent_lines(): void
+        
+        /** Converts the indents of lines between [param from_line] and [param to_line] to tabs or spaces as set by [member indent_use_spaces].  
+         *  Values of `-1` convert the entire text.  
+         */
+        convert_indent(from_line: int64 = -1, to_line: int64 = -1): void
+        
+        /** Adds a brace pair.  
+         *  Both the start and end keys must be symbols. Only the start key has to be unique.  
+         */
+        add_auto_brace_completion_pair(start_key: string, end_key: string): void
+        
+        /** Returns `true` if open key [param open_key] exists. */
+        has_auto_brace_completion_open_key(open_key: string): boolean
+        
+        /** Returns `true` if close key [param close_key] exists. */
+        has_auto_brace_completion_close_key(close_key: string): boolean
+        
+        /** Gets the matching auto brace close key for [param open_key]. */
+        get_auto_brace_completion_close_key(open_key: string): string
+        
+        /** Sets the line as breakpointed. */
+        set_line_as_breakpoint(line: int64, breakpointed: boolean): void
+        
+        /** Returns whether the line at the specified index is breakpointed or not. */
+        is_line_breakpointed(line: int64): boolean
+        
+        /** Clears all breakpointed lines. */
+        clear_breakpointed_lines(): void
+        
+        /** Gets all breakpointed lines. */
+        get_breakpointed_lines(): PackedInt32Array
+        
+        /** Sets the line as bookmarked. */
+        set_line_as_bookmarked(line: int64, bookmarked: boolean): void
+        
+        /** Returns whether the line at the specified index is bookmarked or not. */
+        is_line_bookmarked(line: int64): boolean
+        
+        /** Clears all bookmarked lines. */
+        clear_bookmarked_lines(): void
+        
+        /** Gets all bookmarked lines. */
+        get_bookmarked_lines(): PackedInt32Array
+        
+        /** Sets the line as executing. */
+        set_line_as_executing(line: int64, executing: boolean): void
+        
+        /** Returns whether the line at the specified index is marked as executing or not. */
+        is_line_executing(line: int64): boolean
+        
+        /** Clears all executed lines. */
+        clear_executing_lines(): void
+        
+        /** Gets all executing lines. */
+        get_executing_lines(): PackedInt32Array
+        
+        /** Returns if the given line is foldable, that is, it has indented lines right below it or a comment / string block. */
+        can_fold_line(line: int64): boolean
+        
+        /** Folds the given line, if possible (see [method can_fold_line]). */
+        fold_line(line: int64): void
+        
+        /** Unfolds all lines that were previously folded. */
+        unfold_line(line: int64): void
+        
+        /** Folds all lines that are possible to be folded (see [method can_fold_line]). */
+        fold_all_lines(): void
+        
+        /** Unfolds all lines, folded or not. */
+        unfold_all_lines(): void
+        
+        /** Toggle the folding of the code block at the given line. */
+        toggle_foldable_line(line: int64): void
+        
+        /** Toggle the folding of the code block on all lines with a caret on them. */
+        toggle_foldable_lines_at_carets(): void
+        
+        /** Returns whether the line at the specified index is folded or not. */
+        is_line_folded(line: int64): boolean
+        
+        /** Returns all lines that are current folded. */
+        get_folded_lines(): GArray
+        
+        /** Creates a new code region with the selection. At least one single line comment delimiter have to be defined (see [method add_comment_delimiter]).  
+         *  A code region is a part of code that is highlighted when folded and can help organize your script.  
+         *  Code region start and end tags can be customized (see [method set_code_region_tags]).  
+         *  Code regions are delimited using start and end tags (respectively `region` and `endregion` by default) preceded by one line comment delimiter. (eg. `#region` and `#endregion`)  
+         */
+        create_code_region(): void
+        
+        /** Returns the code region start tag (without comment delimiter). */
+        get_code_region_start_tag(): string
+        
+        /** Returns the code region end tag (without comment delimiter). */
+        get_code_region_end_tag(): string
+        
+        /** Sets the code region start and end tags (without comment delimiter). */
+        set_code_region_tags(start: string = 'region', end: string = 'endregion'): void
+        
+        /** Returns whether the line at the specified index is a code region start. */
+        is_line_code_region_start(line: int64): boolean
+        
+        /** Returns whether the line at the specified index is a code region end. */
+        is_line_code_region_end(line: int64): boolean
+        
+        /** Defines a string delimiter from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
+         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
+         */
+        add_string_delimiter(start_key: string, end_key: string, line_only: boolean = false): void
+        
+        /** Removes the string delimiter with [param start_key]. */
+        remove_string_delimiter(start_key: string): void
+        
+        /** Returns `true` if string [param start_key] exists. */
+        has_string_delimiter(start_key: string): boolean
+        
+        /** Removes all string delimiters. */
+        clear_string_delimiters(): void
+        
+        /** Returns the delimiter index if [param line] [param column] is in a string. If [param column] is not provided, will return the delimiter index if the entire [param line] is a string. Otherwise `-1`. */
+        is_in_string(line: int64, column: int64 = -1): int64
+        
+        /** Adds a comment delimiter from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
+         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
+         */
+        add_comment_delimiter(start_key: string, end_key: string, line_only: boolean = false): void
+        
+        /** Removes the comment delimiter with [param start_key]. */
+        remove_comment_delimiter(start_key: string): void
+        
+        /** Returns `true` if comment [param start_key] exists. */
+        has_comment_delimiter(start_key: string): boolean
+        
+        /** Removes all comment delimiters. */
+        clear_comment_delimiters(): void
+        
+        /** Returns delimiter index if [param line] [param column] is in a comment. If [param column] is not provided, will return delimiter index if the entire [param line] is a comment. Otherwise `-1`. */
+        is_in_comment(line: int64, column: int64 = -1): int64
+        
+        /** Gets the start key for a string or comment region index. */
+        get_delimiter_start_key(delimiter_index: int64): string
+        
+        /** Gets the end key for a string or comment region index. */
+        get_delimiter_end_key(delimiter_index: int64): string
+        
+        /** If [param line] [param column] is in a string or comment, returns the start position of the region. If not or no start could be found, both [Vector2] values will be `-1`. */
+        get_delimiter_start_position(line: int64, column: int64): Vector2
+        
+        /** If [param line] [param column] is in a string or comment, returns the end position of the region. If not or no end could be found, both [Vector2] values will be `-1`. */
+        get_delimiter_end_position(line: int64, column: int64): Vector2
+        
+        /** Sets the code hint text. Pass an empty string to clear. */
+        set_code_hint(code_hint: string): void
+        
+        /** Sets if the code hint should draw below the text. */
+        set_code_hint_draw_below(draw_below: boolean): void
+        
+        /** Returns the full text with char `0xFFFF` at the caret location. */
+        get_text_for_code_completion(): string
+        
+        /** Emits [signal code_completion_requested], if [param force] is `true` will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path, or signal. */
+        request_code_completion(force: boolean = false): void
+        
+        /** Submits an item to the queue of potential candidates for the autocomplete menu. Call [method update_code_completion_options] to update the list.  
+         *  [param location] indicates location of the option relative to the location of the code completion query. See [enum CodeEdit.CodeCompletionLocation] for how to set this value.  
+         *      
+         *  **Note:** This list will replace all current candidates.  
+         */
+        add_code_completion_option(type: CodeEdit.CodeCompletionKind, display_text: string, insert_text: string, text_color: Color = new Color(1, 1, 1, 1), icon: Resource = undefined, value: any = <any> {}, location: int64 = 1024): void
+        
+        /** Submits all completion options added with [method add_code_completion_option]. Will try to force the autocomplete menu to popup, if [param force] is `true`.  
+         *      
+         *  **Note:** This will replace all current candidates.  
+         */
+        update_code_completion_options(force: boolean): void
+        
+        /** Gets all completion options, see [method get_code_completion_option] for return content. */
+        get_code_completion_options(): GArray
+        
+        /** Gets the completion option at [param index]. The return [Dictionary] has the following key-values:  
+         *  `kind`: [enum CodeCompletionKind]  
+         *  `display_text`: Text that is shown on the autocomplete menu.  
+         *  `insert_text`: Text that is to be inserted when this item is selected.  
+         *  `font_color`: Color of the text on the autocomplete menu.  
+         *  `icon`: Icon to draw on the autocomplete menu.  
+         *  `default_value`: Value of the symbol.  
+         */
+        get_code_completion_option(index: int64): GDictionary
+        
+        /** Gets the index of the current selected completion option. */
+        get_code_completion_selected_index(): int64
+        
+        /** Sets the current selected completion option. */
+        set_code_completion_selected_index(index: int64): void
+        
+        /** Inserts the selected entry into the text. If [param replace] is `true`, any existing text is replaced rather than merged. */
+        confirm_code_completion(replace: boolean = false): void
+        
+        /** Cancels the autocomplete menu. */
+        cancel_code_completion(): void
+        
+        /** Returns the full text with char `0xFFFF` at the cursor location. */
+        get_text_for_symbol_lookup(): string
+        
+        /** Returns the full text with char `0xFFFF` at the specified location. */
+        get_text_with_cursor_char(line: int64, column: int64): string
+        
+        /** Sets the symbol emitted by [signal symbol_validate] as a valid lookup. */
+        set_symbol_lookup_word_as_valid(valid: boolean): void
+        
+        /** Moves all lines up that are selected or have a caret on them. */
+        move_lines_up(): void
+        
+        /** Moves all lines down that are selected or have a caret on them. */
+        move_lines_down(): void
+        
+        /** Deletes all lines that are selected or have a caret on them. */
+        delete_lines(): void
+        
+        /** Duplicates all selected text and duplicates all lines with a caret on them. */
+        duplicate_selection(): void
+        
+        /** Duplicates all lines currently selected with any caret. Duplicates the entire line beneath the current one no matter where the caret is within the line. */
+        duplicate_lines(): void
+        
+        /** Set when a validated word from [signal symbol_validate] is clicked, the [signal symbol_lookup] should be emitted. */
+        get symbol_lookup_on_click(): boolean
+        set symbol_lookup_on_click(value: boolean)
+        
+        /** Sets whether line folding is allowed. */
+        get line_folding(): boolean
+        set line_folding(value: boolean)
+        
+        /** Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently. */
+        get line_length_guidelines(): PackedInt32Array
+        set line_length_guidelines(value: PackedInt32Array | int32[])
+        
+        /** Sets if breakpoints should be drawn in the gutter. This gutter is shared with bookmarks and executing lines. */
+        get gutters_draw_breakpoints_gutter(): boolean
+        set gutters_draw_breakpoints_gutter(value: boolean)
+        
+        /** Sets if bookmarked should be drawn in the gutter. This gutter is shared with breakpoints and executing lines. */
+        get gutters_draw_bookmarks(): boolean
+        set gutters_draw_bookmarks(value: boolean)
+        
+        /** Sets if executing lines should be marked in the gutter. This gutter is shared with breakpoints and bookmarks lines. */
+        get gutters_draw_executing_lines(): boolean
+        set gutters_draw_executing_lines(value: boolean)
+        
+        /** Sets if line numbers should be drawn in the gutter. */
+        get gutters_draw_line_numbers(): boolean
+        set gutters_draw_line_numbers(value: boolean)
+        
+        /** Sets if line numbers drawn in the gutter are zero padded. */
+        get gutters_zero_pad_line_numbers(): boolean
+        set gutters_zero_pad_line_numbers(value: boolean)
+        
+        /** Sets if foldable lines icons should be drawn in the gutter. */
+        get gutters_draw_fold_gutter(): boolean
+        set gutters_draw_fold_gutter(value: boolean)
+        
+        /** Sets the string delimiters. All existing string delimiters will be removed. */
+        get delimiter_strings(): PackedStringArray
+        set delimiter_strings(value: PackedStringArray | string[])
+        
+        /** Sets the comment delimiters. All existing comment delimiters will be removed. */
+        get delimiter_comments(): PackedStringArray
+        set delimiter_comments(value: PackedStringArray | string[])
+        
+        /** Sets whether code completion is allowed. */
+        get code_completion_enabled(): boolean
+        set code_completion_enabled(value: boolean)
+        
+        /** Sets prefixes that will trigger code completion. */
+        get code_completion_prefixes(): PackedStringArray
+        set code_completion_prefixes(value: PackedStringArray | string[])
+        
+        /** Size of the tabulation indent (one [kbd]Tab[/kbd] press) in characters. If [member indent_use_spaces] is enabled the number of spaces to use. */
+        get indent_size(): int64
+        set indent_size(value: int64)
+        
+        /** Use spaces instead of tabs for indentation. */
+        get indent_use_spaces(): boolean
+        set indent_use_spaces(value: boolean)
+        
+        /** Sets whether automatic indent are enabled, this will add an extra indent if a prefix or brace is found. */
+        get indent_automatic(): boolean
+        set indent_automatic(value: boolean)
+        
+        /** Prefixes to trigger an automatic indent. */
+        get indent_automatic_prefixes(): PackedStringArray
+        set indent_automatic_prefixes(value: PackedStringArray | string[])
+        
+        /** Sets whether brace pairs should be autocompleted. */
+        get auto_brace_completion_enabled(): boolean
+        set auto_brace_completion_enabled(value: boolean)
+        
+        /** Highlight mismatching brace pairs. */
+        get auto_brace_completion_highlight_matching(): boolean
+        set auto_brace_completion_highlight_matching(value: boolean)
+        
+        /** Sets the brace pairs to be autocompleted. */
+        get auto_brace_completion_pairs(): GDictionary
+        set auto_brace_completion_pairs(value: GDictionary)
+        
+        /** Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a removed is emitted at the old line. */
+        readonly breakpoint_toggled: Signal1<int64>
+        
+        /** Emitted when the user requests code completion. */
+        readonly code_completion_requested: Signal0
+        
+        /** Emitted when the user has clicked on a valid symbol. */
+        readonly symbol_lookup: Signal3<string, int64, int64>
+        
+        /** Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [method set_symbol_lookup_word_as_valid]. */
+        readonly symbol_validate: Signal1<string>
+    }
+    /** A syntax highlighter intended for code.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_codehighlighter.html  
+     */
+    class CodeHighlighter extends SyntaxHighlighter {
+        constructor(identifier?: any)
+        /** Sets the color for a keyword.  
+         *  The keyword cannot contain any symbols except '_'.  
+         */
+        add_keyword_color(keyword: string, color: Color): void
+        
+        /** Removes the keyword. */
+        remove_keyword_color(keyword: string): void
+        
+        /** Returns `true` if the keyword exists, else `false`. */
+        has_keyword_color(keyword: string): boolean
+        
+        /** Returns the color for a keyword. */
+        get_keyword_color(keyword: string): Color
+        
+        /** Removes all keywords. */
+        clear_keyword_colors(): void
+        
+        /** Sets the color for a member keyword.  
+         *  The member keyword cannot contain any symbols except '_'.  
+         *  It will not be highlighted if preceded by a '.'.  
+         */
+        add_member_keyword_color(member_keyword: string, color: Color): void
+        
+        /** Removes the member keyword. */
+        remove_member_keyword_color(member_keyword: string): void
+        
+        /** Returns `true` if the member keyword exists, else `false`. */
+        has_member_keyword_color(member_keyword: string): boolean
+        
+        /** Returns the color for a member keyword. */
+        get_member_keyword_color(member_keyword: string): Color
+        
+        /** Removes all member keywords. */
+        clear_member_keyword_colors(): void
+        
+        /** Adds a color region (such as for comments or strings) from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
+         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
+         */
+        add_color_region(start_key: string, end_key: string, color: Color, line_only: boolean = false): void
+        
+        /** Removes the color region that uses that start key. */
+        remove_color_region(start_key: string): void
+        
+        /** Returns `true` if the start key exists, else `false`. */
+        has_color_region(start_key: string): boolean
+        
+        /** Removes all color regions. */
+        clear_color_regions(): void
+        
+        /** Sets the color for numbers. */
+        get number_color(): Color
+        set number_color(value: Color)
+        
+        /** Sets the color for symbols. */
+        get symbol_color(): Color
+        set symbol_color(value: Color)
+        
+        /** Sets color for functions. A function is a non-keyword string followed by a '('. */
+        get function_color(): Color
+        set function_color(value: Color)
+        
+        /** Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'. */
+        get member_variable_color(): Color
+        set member_variable_color(value: Color)
+        
+        /** Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the keyword. The value is the keyword color. */
+        get keyword_colors(): GDictionary
+        set keyword_colors(value: GDictionary)
+        
+        /** Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary] key is the member keyword. The value is the member keyword color. */
+        get member_keyword_colors(): GDictionary
+        set member_keyword_colors(value: GDictionary)
+        
+        /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
+        get color_regions(): GDictionary
+        set color_regions(value: GDictionary)
+    }
+    class CodeTextEditor extends VBoxContainer {
+        constructor(identifier?: any)
+        readonly validate_script: Signal0
+        readonly load_theme_settings: Signal0
+        readonly show_errors_panel: Signal0
+        readonly show_warnings_panel: Signal0
+        readonly zoomed: Signal1<float64>
+    }
+    namespace CollisionObject2D {
+        enum DisableMode {
+            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
+             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
+             */
+            DISABLE_MODE_REMOVE = 0,
+            
+            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.  
+             *  Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed again.  
+             */
+            DISABLE_MODE_MAKE_STATIC = 1,
+            
+            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
+            DISABLE_MODE_KEEP_ACTIVE = 2,
+        }
+    }
+    /** Abstract base class for 2D physics objects.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_collisionobject2d.html  
+     */
+    class CollisionObject2D extends Node2D {
+        constructor(identifier?: any)
+        /** Accepts unhandled [InputEvent]s. [param shape_idx] is the child index of the clicked [Shape2D]. Connect to [signal input_event] to easily pick up these events.  
+         *      
+         *  **Note:** [method _input_event] requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
+         */
+        /* gdvirtual */ _input_event(viewport: Viewport, event: InputEvent, shape_idx: int64): void
+        
+        /** Called when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
+        /* gdvirtual */ _mouse_enter(): void
+        
+        /** Called when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
+        /* gdvirtual */ _mouse_exit(): void
+        
+        /** Called when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
+        /* gdvirtual */ _mouse_shape_enter(shape_idx: int64): void
+        
+        /** Called when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
+        /* gdvirtual */ _mouse_shape_exit(shape_idx: int64): void
+        
+        /** Returns the object's [RID]. */
+        get_rid(): RID
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
+        set_collision_layer_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_layer_value(layer_number: int64): boolean
+        
+        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
+        set_collision_mask_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_collision_mask_value(layer_number: int64): boolean
+        
+        /** Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference. */
+        create_shape_owner(owner: Object): int64
+        
+        /** Removes the given shape owner. */
+        remove_shape_owner(owner_id: int64): void
+        
+        /** Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument. */
+        get_shape_owners(): PackedInt32Array
+        
+        /** Sets the [Transform2D] of the given shape owner. */
+        shape_owner_set_transform(owner_id: int64, transform: Transform2D): void
+        
+        /** Returns the shape owner's [Transform2D]. */
+        shape_owner_get_transform(owner_id: int64): Transform2D
+        
+        /** Returns the parent object of the given shape owner. */
+        shape_owner_get_owner(owner_id: int64): Object
+        
+        /** If `true`, disables the given shape owner. */
+        shape_owner_set_disabled(owner_id: int64, disabled: boolean): void
+        
+        /** If `true`, the shape owner and its shapes are disabled. */
+        is_shape_owner_disabled(owner_id: int64): boolean
+        
+        /** If [param enable] is `true`, collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
+        shape_owner_set_one_way_collision(owner_id: int64, enable: boolean): void
+        
+        /** Returns `true` if collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
+        is_shape_owner_one_way_collision_enabled(owner_id: int64): boolean
+        
+        /** Sets the `one_way_collision_margin` of the shape owner identified by given [param owner_id] to [param margin] pixels. */
+        shape_owner_set_one_way_collision_margin(owner_id: int64, margin: float64): void
+        
+        /** Returns the `one_way_collision_margin` of the shape owner identified by given [param owner_id]. */
+        get_shape_owner_one_way_collision_margin(owner_id: int64): float64
+        
+        /** Adds a [Shape2D] to the shape owner. */
+        shape_owner_add_shape(owner_id: int64, shape: Shape2D): void
+        
+        /** Returns the number of shapes the given shape owner contains. */
+        shape_owner_get_shape_count(owner_id: int64): int64
+        
+        /** Returns the [Shape2D] with the given ID from the given shape owner. */
+        shape_owner_get_shape(owner_id: int64, shape_id: int64): Shape2D
+        
+        /** Returns the child index of the [Shape2D] with the given ID from the given shape owner. */
+        shape_owner_get_shape_index(owner_id: int64, shape_id: int64): int64
+        
+        /** Removes a shape from the given shape owner. */
+        shape_owner_remove_shape(owner_id: int64, shape_id: int64): void
+        
+        /** Removes all shapes from the shape owner. */
+        shape_owner_clear_shapes(owner_id: int64): void
+        
+        /** Returns the `owner_id` of the given shape. */
+        shape_find_owner(shape_index: int64): int64
+        
+        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
+        get disable_mode(): int64
+        set disable_mode(value: int64)
+        
+        /** The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
+         *      
+         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
+         */
+        get collision_layer(): int64
+        set collision_layer(value: int64)
+        
+        /** The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
+         *      
+         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
+         */
+        get collision_mask(): int64
+        set collision_mask(value: int64)
+        
+        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
+        get collision_priority(): float64
+        set collision_priority(value: float64)
+        
+        /** If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set. */
+        get input_pickable(): boolean
+        set input_pickable(value: boolean)
+        
+        /** Emitted when an input event occurs. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. See [method _input_event] for details. */
+        readonly input_event: Signal3<Node, InputEvent, int64>
+        
+        /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
+         *      
+         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
+         */
+        readonly mouse_entered: Signal0
+        
+        /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
+         *      
+         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
+         */
+        readonly mouse_exited: Signal0
+        
+        /** Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
+        readonly mouse_shape_entered: Signal1<int64>
+        
+        /** Emitted when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
+        readonly mouse_shape_exited: Signal1<int64>
+    }
     namespace CollisionObject3D {
         enum DisableMode {
             /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject3D].  
@@ -2971,9 +4131,6 @@ declare module "godot" {
         readonly export_presets_updated: Signal0
         readonly export_presets_runnable_updated: Signal0
     }
-    class EditorExportGDScript extends EditorExportPlugin {
-        constructor(identifier?: any)
-    }
     /** Identifies a supported export platform, and internally provides the functionality of exporting to that platform.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_editorexportplatform.html  
@@ -3206,6 +4363,10 @@ declare module "godot" {
         
         /** Returns the current value of an export option supplied by [method _get_export_options]. */
         get_option(name: StringName): any
+    }
+    class EditorExportPreset extends RefCounted {
+        constructor(identifier?: any)
+        _get_property_warning(name: StringName): string
     }
     namespace EditorFeatureProfile {
         enum Feature {
@@ -3798,13 +4959,6 @@ declare module "godot" {
     }
     class EditorInspectorRootMotionPlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
-    }
-    class EditorInspectorSection extends Container {
-        constructor(identifier?: any)
-        setup(section: string, label: string, object: Object, bg_color: Color, foldable: boolean, indent_depth: int64 = 0, level: int64 = 1): void
-        get_vbox(): VBoxContainer
-        unfold(): void
-        fold(): void
     }
     class EditorInspectorVisualShaderModePlugin extends EditorInspectorPlugin {
         constructor(identifier?: any)
@@ -4615,28 +5769,11 @@ declare module "godot" {
     class EditorPropertyCheck extends EditorProperty {
         constructor(identifier?: any)
     }
-    class EditorPropertyColor extends EditorProperty {
-        constructor(identifier?: any)
-    }
     class EditorPropertyDictionaryObject extends RefCounted {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyEnum extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyFloat extends EditorProperty {
         constructor(identifier?: any)
     }
     class EditorPropertyInteger extends EditorProperty {
         constructor(identifier?: any)
-    }
-    class EditorPropertyLayers extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyLayersGrid extends Control {
-        constructor(identifier?: any)
-        readonly flag_changed: Signal1<int64>
-        readonly rename_confirmed: Signal2<int64, string>
     }
     class EditorPropertyLocalizableString extends EditorProperty {
         constructor(identifier?: any)
@@ -4654,9 +5791,6 @@ declare module "godot" {
         constructor(identifier?: any)
     }
     class EditorPropertyText extends EditorProperty {
-        constructor(identifier?: any)
-    }
-    class EditorPropertyVector2 extends EditorPropertyVectorN {
         constructor(identifier?: any)
     }
     class EditorPropertyVector2i extends EditorPropertyVectorN {
@@ -4822,7 +5956,7 @@ declare module "godot" {
     }
     class EditorRunNative extends HBoxContainer {
         constructor(identifier?: any)
-        readonly native_run: Signal1<any /*EditorExportPreset*/>
+        readonly native_run: Signal1<EditorExportPreset>
     }
     class EditorSceneExporterGLTFSettings extends RefCounted {
         constructor(identifier?: any)
@@ -8085,1129 +9219,5 @@ declare module "godot" {
         /** The [ImporterMesh] resource of the shape. This is only used when the shape type is "hull" (convex hull) or "trimesh" (concave trimesh). */
         get importer_mesh(): ImporterMesh
         set importer_mesh(value: ImporterMesh)
-    }
-    /** @link https://docs.godotengine.org/en/4.3/classes/class_gltfskeleton.html */
-    class GLTFSkeleton extends Resource {
-        constructor(identifier?: any)
-        get_godot_skeleton(): Skeleton3D
-        get_bone_attachment_count(): int64
-        get_bone_attachment(idx: int64): BoneAttachment3D
-        get joints(): PackedInt32Array
-        set joints(value: PackedInt32Array | int32[])
-        get roots(): PackedInt32Array
-        set roots(value: PackedInt32Array | int32[])
-        get unique_names(): GArray
-        set unique_names(value: GArray)
-        get godot_bone_node(): GDictionary
-        set godot_bone_node(value: GDictionary)
-    }
-    /** @link https://docs.godotengine.org/en/4.3/classes/class_gltfskin.html */
-    class GLTFSkin extends Resource {
-        constructor(identifier?: any)
-        get skin_root(): int64
-        set skin_root(value: int64)
-        get joints_original(): PackedInt32Array
-        set joints_original(value: PackedInt32Array | int32[])
-        get inverse_binds(): GArray
-        set inverse_binds(value: GArray)
-        get joints(): PackedInt32Array
-        set joints(value: PackedInt32Array | int32[])
-        get non_joints(): PackedInt32Array
-        set non_joints(value: PackedInt32Array | int32[])
-        get roots(): PackedInt32Array
-        set roots(value: PackedInt32Array | int32[])
-        get skeleton(): int64
-        set skeleton(value: int64)
-        get joint_i_to_bone_i(): GDictionary
-        set joint_i_to_bone_i(value: GDictionary)
-        get joint_i_to_name(): GDictionary
-        set joint_i_to_name(value: GDictionary)
-        get godot_skin(): Skin
-        set godot_skin(value: Skin)
-    }
-    /** Archived GLTF extension for specular/glossy materials.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gltfspecgloss.html  
-     */
-    class GLTFSpecGloss extends Resource {
-        constructor(identifier?: any)
-        /** The diffuse texture. */
-        get diffuse_img(): Object
-        set diffuse_img(value: Object)
-        
-        /** The reflected diffuse factor of the material. */
-        get diffuse_factor(): Color
-        set diffuse_factor(value: Color)
-        
-        /** The glossiness or smoothness of the material. */
-        get gloss_factor(): float64
-        set gloss_factor(value: float64)
-        
-        /** The specular RGB color of the material. The alpha channel is unused. */
-        get specular_factor(): Color
-        set specular_factor(value: Color)
-        
-        /** The specular-glossiness texture. */
-        get spec_gloss_img(): Object
-        set spec_gloss_img(value: Object)
-    }
-    /** Represents all data of a GLTF file.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gltfstate.html  
-     */
-    class GLTFState extends Resource {
-        /** Discards all embedded textures and uses untextured materials. */
-        static readonly HANDLE_BINARY_DISCARD_TEXTURES = 0
-        
-        /** Extracts embedded textures to be reimported and compressed. Editor only. Acts as uncompressed at runtime. */
-        static readonly HANDLE_BINARY_EXTRACT_TEXTURES = 1
-        
-        /** Embeds textures VRAM compressed with Basis Universal into the generated scene. */
-        static readonly HANDLE_BINARY_EMBED_AS_BASISU = 2
-        
-        /** Embeds textures compressed losslessly into the generated scene, matching old behavior. */
-        static readonly HANDLE_BINARY_EMBED_AS_UNCOMPRESSED = 3
-        constructor(identifier?: any)
-        
-        /** Appends an extension to the list of extensions used by this GLTF file during serialization. If [param required] is true, the extension will also be added to the list of required extensions. Do not run this in [method GLTFDocumentExtension._export_post], as that stage is too late to add extensions. The final list is sorted alphabetically. */
-        add_used_extension(extension_name: string, required: boolean): void
-        
-        /** Appends the given byte array data to the buffers and creates a [GLTFBufferView] for it. The index of the destination [GLTFBufferView] is returned. If [param deduplication] is true, the buffers will first be searched for duplicate data, otherwise new bytes will always be appended. */
-        append_data_to_buffers(data: PackedByteArray | byte[] | ArrayBuffer, deduplication: boolean): int64
-        
-        /** Returns the number of [AnimationPlayer] nodes in this [GLTFState]. These nodes are only used during the export process when converting Godot [AnimationPlayer] nodes to GLTF animations. */
-        get_animation_players_count(idx: int64): int64
-        
-        /** Returns the [AnimationPlayer] node with the given index. These nodes are only used during the export process when converting Godot [AnimationPlayer] nodes to GLTF animations. */
-        get_animation_player(idx: int64): AnimationPlayer
-        
-        /** Returns the Godot scene node that corresponds to the same index as the [GLTFNode] it was generated from. This is the inverse of [method get_node_index]. Useful during the import process.  
-         *      
-         *  **Note:** Not every [GLTFNode] will have a scene node generated, and not every generated scene node will have a corresponding [GLTFNode]. If there is no scene node for this [GLTFNode] index, `null` is returned.  
-         */
-        get_scene_node(idx: int64): Node
-        
-        /** Returns the index of the [GLTFNode] corresponding to this Godot scene node. This is the inverse of [method get_scene_node]. Useful during the export process.  
-         *      
-         *  **Note:** Not every Godot scene node will have a corresponding [GLTFNode], and not every [GLTFNode] will have a scene node generated. If there is no [GLTFNode] index for this scene node, `-1` is returned.  
-         */
-        get_node_index(scene_node: Node): int64
-        
-        /** Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file state data in [GLTFDocumentExtension] classes, which is important because they are stateless.  
-         *  The argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the GLTF file), and the return value can be anything you set. If nothing was set, the return value is null.  
-         */
-        get_additional_data(extension_name: StringName): any
-        
-        /** Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file state data in [GLTFDocumentExtension] classes, which is important because they are stateless.  
-         *  The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the GLTF file), and the second argument can be anything you want.  
-         */
-        set_additional_data(extension_name: StringName, additional_data: any): void
-        
-        /** The original raw JSON document corresponding to this GLTFState. */
-        get json(): GDictionary
-        set json(value: GDictionary)
-        get major_version(): int64
-        set major_version(value: int64)
-        get minor_version(): int64
-        set minor_version(value: int64)
-        
-        /** The copyright string in the asset header of the GLTF file. This is set during import if present and export if non-empty. See the GLTF asset header documentation for more information. */
-        get copyright(): string
-        set copyright(value: string)
-        
-        /** The binary buffer attached to a .glb file. */
-        get glb_data(): PackedByteArray
-        set glb_data(value: PackedByteArray | byte[] | ArrayBuffer)
-        get use_named_skin_binds(): boolean
-        set use_named_skin_binds(value: boolean)
-        get nodes(): GArray
-        set nodes(value: GArray)
-        get buffers(): GArray
-        set buffers(value: GArray)
-        get buffer_views(): GArray
-        set buffer_views(value: GArray)
-        get accessors(): GArray
-        set accessors(value: GArray)
-        get meshes(): GArray
-        set meshes(value: GArray)
-        get materials(): GArray
-        set materials(value: GArray)
-        
-        /** The name of the scene. When importing, if not specified, this will be the file name. When exporting, if specified, the scene name will be saved to the GLTF file. */
-        get scene_name(): string
-        set scene_name(value: string)
-        
-        /** The folder path associated with this GLTF data. This is used to find other files the GLTF file references, like images or binary buffers. This will be set during import when appending from a file, and will be set during export when writing to a file. */
-        get base_path(): string
-        set base_path(value: string)
-        
-        /** The file name associated with this GLTF data. If it ends with `.gltf`, this is text-based GLTF, otherwise this is binary GLB. This will be set during import when appending from a file, and will be set during export when writing to a file. If writing to a buffer, this will be an empty string. */
-        get filename(): string
-        set filename(value: string)
-        
-        /** The root nodes of the GLTF file. Typically, a GLTF file will only have one scene, and therefore one root node. However, a GLTF file may have multiple scenes and therefore multiple root nodes, which will be generated as siblings of each other and as children of the root node of the generated Godot scene. */
-        get root_nodes(): PackedInt32Array
-        set root_nodes(value: PackedInt32Array | int32[])
-        get textures(): GArray
-        set textures(value: GArray)
-        get texture_samplers(): GArray
-        set texture_samplers(value: GArray)
-        get images(): GArray
-        set images(value: GArray)
-        get skins(): GArray
-        set skins(value: GArray)
-        get cameras(): GArray
-        set cameras(value: GArray)
-        get lights(): GArray
-        set lights(value: GArray)
-        get unique_names(): GArray
-        set unique_names(value: GArray)
-        get unique_animation_names(): GArray
-        set unique_animation_names(value: GArray)
-        get skeletons(): GArray
-        set skeletons(value: GArray)
-        get create_animations(): boolean
-        set create_animations(value: boolean)
-        
-        /** True to force all GLTFNodes in the document to be bones of a single Skeleton3D godot node. */
-        get import_as_skeleton_bones(): boolean
-        set import_as_skeleton_bones(value: boolean)
-        get animations(): GArray
-        set animations(value: GArray)
-        get handle_binary_image(): int64
-        set handle_binary_image(value: int64)
-        
-        /** The baking fps of the animation for either import or export. */
-        get bake_fps(): float64
-        set bake_fps(value: float64)
-    }
-    /** GLTFTexture represents a texture in a GLTF file.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gltftexture.html  
-     */
-    class GLTFTexture extends Resource {
-        constructor(identifier?: any)
-        /** The index of the image associated with this texture, see [method GLTFState.get_images]. If -1, then this texture does not have an image assigned. */
-        get src_image(): int64
-        set src_image(value: int64)
-        
-        /** ID of the texture sampler to use when sampling the image. If -1, then the default texture sampler is used (linear filtering, and repeat wrapping in both axes). */
-        get sampler(): int64
-        set sampler(value: int64)
-    }
-    /** Represents a GLTF texture sampler  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gltftexturesampler.html  
-     */
-    class GLTFTextureSampler extends Resource {
-        constructor(identifier?: any)
-        /** Texture's magnification filter, used when texture appears larger on screen than the source image. */
-        get mag_filter(): int64
-        set mag_filter(value: int64)
-        
-        /** Texture's minification filter, used when the texture appears smaller on screen than the source image. */
-        get min_filter(): int64
-        set min_filter(value: int64)
-        
-        /** Wrapping mode to use for S-axis (horizontal) texture coordinates. */
-        get wrap_s(): int64
-        set wrap_s(value: int64)
-        
-        /** Wrapping mode to use for T-axis (vertical) texture coordinates. */
-        get wrap_t(): int64
-        set wrap_t(value: int64)
-    }
-    namespace GPUParticles2D {
-        enum DrawOrder {
-            /** Particles are drawn in the order emitted. */
-            DRAW_ORDER_INDEX = 0,
-            
-            /** Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front. */
-            DRAW_ORDER_LIFETIME = 1,
-            
-            /** Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front. */
-            DRAW_ORDER_REVERSE_LIFETIME = 2,
-        }
-        enum EmitFlags {
-            /** Particle starts at the specified position. */
-            EMIT_FLAG_POSITION = 1,
-            
-            /** Particle starts with specified rotation and scale. */
-            EMIT_FLAG_ROTATION_SCALE = 2,
-            
-            /** Particle starts with the specified velocity vector, which defines the emission direction and speed. */
-            EMIT_FLAG_VELOCITY = 4,
-            
-            /** Particle starts with specified color. */
-            EMIT_FLAG_COLOR = 8,
-            
-            /** Particle starts with specified `CUSTOM` data. */
-            EMIT_FLAG_CUSTOM = 16,
-        }
-    }
-    /** A 2D particle emitter.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticles2d.html  
-     */
-    class GPUParticles2D extends Node2D {
-        constructor(identifier?: any)
-        /** Returns a rectangle containing the positions of all existing particles.  
-         *      
-         *  **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling it often may have a negative impact on performance.  
-         */
-        capture_rect(): Rect2
-        
-        /** Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing from the viewport, wait for the [signal finished] signal before calling.  
-         *      
-         *  **Note:** The [signal finished] signal is only emitted by [member one_shot] emitters.  
-         */
-        restart(): void
-        
-        /** Emits a single particle. Whether [param xform], [param velocity], [param color] and [param custom] are applied depends on the value of [param flags]. See [enum EmitFlags].  
-         *  The default ParticleProcessMaterial will overwrite [param color] and use the contents of [param custom] as `(rotation, age, animation, lifetime)`.  
-         */
-        emit_particle(xform: Transform2D, velocity: Vector2, color: Color, custom: Color, flags: int64): void
-        
-        /** Sets this node's properties to match a given [CPUParticles2D] node. */
-        convert_from_particles(particles: Node): void
-        
-        /** If `true`, particles are being emitted. [member emitting] can be used to start and stop particles from emitting. However, if [member one_shot] is `true` setting [member emitting] to `true` will not restart the emission cycle unless all active particles have finished processing. Use the [signal finished] signal to be notified once all active particles finish processing.  
-         *      
-         *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the [signal finished] signal during which setting this to `true` will not restart the emission cycle.  
-         *  **Tip:** If your [member one_shot] emitter needs to immediately restart emitting particles once [signal finished] signal is received, consider calling [method restart] instead of setting [member emitting].  
-         */
-        get emitting(): boolean
-        set emitting(value: boolean)
-        
-        /** The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [member amount_ratio] is decreased.  
-         *      
-         *  **Note:** Changing this value will cause the particle system to restart. To avoid this, change [member amount_ratio] instead.  
-         */
-        get amount(): int64
-        set amount(value: int64)
-        
-        /** The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [member amount], changing [member amount_ratio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [member amount_ratio] can be used to create effects that make the number of emitted particles vary over time.  
-         *      
-         *  **Note:** Reducing the [member amount_ratio] has no performance benefit, since resources need to be allocated and processed for the total [member amount] of particles regardless of the [member amount_ratio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [member amount_ratio] is set to `1` and change [member amount] to your liking instead.  
-         */
-        get amount_ratio(): float64
-        set amount_ratio(value: float64)
-        
-        /** Path to another [GPUParticles2D] node that will be used as a subemitter (see [member ParticleProcessMaterial.sub_emitter_mode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.  
-         *      
-         *  **Note:** When [member sub_emitter] is set, the target [GPUParticles2D] node will no longer emit particles on its own.  
-         */
-        get sub_emitter(): NodePath
-        set sub_emitter(value: NodePath | string)
-        
-        /** [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial]. */
-        get process_material(): ParticleProcessMaterial | ShaderMaterial
-        set process_material(value: ParticleProcessMaterial | ShaderMaterial)
-        
-        /** Particle texture. If `null`, particles will be squares with a size of 1×1 pixels.  
-         *      
-         *  **Note:** To use a flipbook texture, assign a new [CanvasItemMaterial] to the [GPUParticles2D]'s [member CanvasItem.material] property, then enable [member CanvasItemMaterial.particles_animation] and set [member CanvasItemMaterial.particles_anim_h_frames], [member CanvasItemMaterial.particles_anim_v_frames], and [member CanvasItemMaterial.particles_anim_loop] to match the flipbook texture.  
-         */
-        get texture(): Texture2D
-        set texture(value: Texture2D)
-        
-        /** The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. */
-        get lifetime(): float64
-        set lifetime(value: float64)
-        
-        /** If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end. */
-        get one_shot(): boolean
-        set one_shot(value: boolean)
-        
-        /** Particle system starts as if it had already run for this many seconds. */
-        get preprocess(): float64
-        set preprocess(value: float64)
-        
-        /** Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles. */
-        get speed_scale(): float64
-        set speed_scale(value: float64)
-        
-        /** How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins. */
-        get explosiveness(): float64
-        set explosiveness(value: float64)
-        
-        /** Emission lifetime randomness ratio. */
-        get randomness(): float64
-        set randomness(value: float64)
-        
-        /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself. */
-        get fixed_fps(): int64
-        set fixed_fps(value: int64)
-        
-        /** Enables particle interpolation, which makes the particle movement smoother when their [member fixed_fps] is lower than the screen refresh rate. */
-        get interpolate(): boolean
-        set interpolate(value: boolean)
-        
-        /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
-        get fract_delta(): boolean
-        set fract_delta(value: boolean)
-        
-        /** Causes all the particles in this node to interpolate towards the end of their lifetime.  
-         *      
-         *  **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.  
-         */
-        get interp_to_end(): float64
-        set interp_to_end(value: float64)
-        
-        /** Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [member ParticleProcessMaterial.collision_mode] is [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].  
-         *      
-         *  **Note:** Particles always have a spherical collision shape.  
-         */
-        get collision_base_size(): float64
-        set collision_base_size(value: float64)
-        
-        /** The [Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.  
-         *  Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.  
-         */
-        get visibility_rect(): Rect2
-        set visibility_rect(value: Rect2)
-        
-        /** If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [GPUParticles2D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [GPUParticles2D] node (and its parents) when it is moved or rotated. */
-        get local_coords(): boolean
-        set local_coords(value: boolean)
-        
-        /** Particle draw order. Uses [enum DrawOrder] values. */
-        get draw_order(): int64
-        set draw_order(value: int64)
-        
-        /** If `true`, enables particle trails using a mesh skinning system.  
-         *      
-         *  **Note:** Unlike [GPUParticles3D], the number of trail sections and subdivisions is set with the [member trail_sections] and [member trail_section_subdivisions] properties.  
-         */
-        get trail_enabled(): boolean
-        set trail_enabled(value: boolean)
-        
-        /** The amount of time the particle's trail should represent (in seconds). Only effective if [member trail_enabled] is `true`. */
-        get trail_lifetime(): float64
-        set trail_lifetime(value: float64)
-        
-        /** The number of sections to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [member trail_section_subdivisions]. Only effective if [member trail_enabled] is `true`. */
-        get trail_sections(): int64
-        set trail_sections(value: int64)
-        
-        /** The number of subdivisions to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [member trail_sections]. Only effective if [member trail_enabled] is `true`. */
-        get trail_section_subdivisions(): int64
-        set trail_section_subdivisions(value: int64)
-        
-        /** Emitted when all active particles have finished processing. To immediately restart the emission cycle, call [method restart].  
-         *  Never emitted when [member one_shot] is disabled, as particles will be emitted and processed continuously.  
-         *      
-         *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the signal during which setting [member emitting] to `true` will not restart the emission cycle. This delay is avoided by instead calling [method restart].  
-         */
-        readonly finished: Signal0
-    }
-    class GPUParticles2DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    namespace GPUParticles3D {
-        enum DrawOrder {
-            /** Particles are drawn in the order emitted. */
-            DRAW_ORDER_INDEX = 0,
-            
-            /** Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front. */
-            DRAW_ORDER_LIFETIME = 1,
-            
-            /** Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front. */
-            DRAW_ORDER_REVERSE_LIFETIME = 2,
-            
-            /** Particles are drawn in order of depth. */
-            DRAW_ORDER_VIEW_DEPTH = 3,
-        }
-        enum EmitFlags {
-            /** Particle starts at the specified position. */
-            EMIT_FLAG_POSITION = 1,
-            
-            /** Particle starts with specified rotation and scale. */
-            EMIT_FLAG_ROTATION_SCALE = 2,
-            
-            /** Particle starts with the specified velocity vector, which defines the emission direction and speed. */
-            EMIT_FLAG_VELOCITY = 4,
-            
-            /** Particle starts with specified color. */
-            EMIT_FLAG_COLOR = 8,
-            
-            /** Particle starts with specified `CUSTOM` data. */
-            EMIT_FLAG_CUSTOM = 16,
-        }
-        enum TransformAlign {
-            TRANSFORM_ALIGN_DISABLED = 0,
-            TRANSFORM_ALIGN_Z_BILLBOARD = 1,
-            TRANSFORM_ALIGN_Y_TO_VELOCITY = 2,
-            TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY = 3,
-        }
-    }
-    /** A 3D particle emitter.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticles3d.html  
-     */
-    class GPUParticles3D extends GeometryInstance3D {
-        /** Maximum number of draw passes supported. */
-        static readonly MAX_DRAW_PASSES = 4
-        constructor(identifier?: any)
-        
-        /** Sets the [Mesh] that is drawn at index [param pass]. */
-        set_draw_pass_mesh(pass: int64, mesh: Mesh): void
-        
-        /** Returns the [Mesh] that is drawn at index [param pass]. */
-        get_draw_pass_mesh(pass: int64): Mesh
-        
-        /** Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing from the viewport, wait for the [signal finished] signal before calling.  
-         *      
-         *  **Note:** The [signal finished] signal is only emitted by [member one_shot] emitters.  
-         */
-        restart(): void
-        
-        /** Returns the axis-aligned bounding box that contains all the particles that are active in the current frame. */
-        capture_aabb(): AABB
-        
-        /** Emits a single particle. Whether [param xform], [param velocity], [param color] and [param custom] are applied depends on the value of [param flags]. See [enum EmitFlags].  
-         *  The default ParticleProcessMaterial will overwrite [param color] and use the contents of [param custom] as `(rotation, age, animation, lifetime)`.  
-         */
-        emit_particle(xform: Transform3D, velocity: Vector3, color: Color, custom: Color, flags: int64): void
-        
-        /** Sets this node's properties to match a given [CPUParticles3D] node. */
-        convert_from_particles(particles: Node): void
-        
-        /** If `true`, particles are being emitted. [member emitting] can be used to start and stop particles from emitting. However, if [member one_shot] is `true` setting [member emitting] to `true` will not restart the emission cycle unless all active particles have finished processing. Use the [signal finished] signal to be notified once all active particles finish processing.  
-         *      
-         *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the [signal finished] signal during which setting this to `true` will not restart the emission cycle.  
-         *  **Tip:** If your [member one_shot] emitter needs to immediately restart emitting particles once [signal finished] signal is received, consider calling [method restart] instead of setting [member emitting].  
-         */
-        get emitting(): boolean
-        set emitting(value: boolean)
-        
-        /** The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [member amount_ratio] is decreased.  
-         *      
-         *  **Note:** Changing this value will cause the particle system to restart. To avoid this, change [member amount_ratio] instead.  
-         */
-        get amount(): int64
-        set amount(value: int64)
-        
-        /** The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [member amount], changing [member amount_ratio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [member amount_ratio] can be used to create effects that make the number of emitted particles vary over time.  
-         *      
-         *  **Note:** Reducing the [member amount_ratio] has no performance benefit, since resources need to be allocated and processed for the total [member amount] of particles regardless of the [member amount_ratio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [member amount_ratio] is set to `1` and change [member amount] to your liking instead.  
-         */
-        get amount_ratio(): float64
-        set amount_ratio(value: float64)
-        
-        /** Path to another [GPUParticles3D] node that will be used as a subemitter (see [member ParticleProcessMaterial.sub_emitter_mode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.  
-         *      
-         *  **Note:** When [member sub_emitter] is set, the target [GPUParticles3D] node will no longer emit particles on its own.  
-         */
-        get sub_emitter(): NodePath
-        set sub_emitter(value: NodePath | string)
-        
-        /** The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. */
-        get lifetime(): float64
-        set lifetime(value: float64)
-        
-        /** Causes all the particles in this node to interpolate towards the end of their lifetime.  
-         *      
-         *  **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.  
-         */
-        get interp_to_end(): float64
-        set interp_to_end(value: float64)
-        
-        /** If `true`, only the number of particles equal to [member amount] will be emitted. */
-        get one_shot(): boolean
-        set one_shot(value: boolean)
-        
-        /** Amount of time to preprocess the particles before animation starts. Lets you start the animation some time after particles have started emitting. */
-        get preprocess(): float64
-        set preprocess(value: float64)
-        
-        /** Speed scaling ratio. A value of `0` can be used to pause the particles. */
-        get speed_scale(): float64
-        set speed_scale(value: float64)
-        
-        /** Time ratio between each emission. If `0`, particles are emitted continuously. If `1`, all particles are emitted simultaneously. */
-        get explosiveness(): float64
-        set explosiveness(value: float64)
-        
-        /** Emission randomness ratio. */
-        get randomness(): float64
-        set randomness(value: float64)
-        
-        /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself. */
-        get fixed_fps(): int64
-        set fixed_fps(value: int64)
-        
-        /** Enables particle interpolation, which makes the particle movement smoother when their [member fixed_fps] is lower than the screen refresh rate. */
-        get interpolate(): boolean
-        set interpolate(value: boolean)
-        
-        /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
-        get fract_delta(): boolean
-        set fract_delta(value: boolean)
-        
-        /** The base diameter for particle collision in meters. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [member ParticleProcessMaterial.collision_mode] is [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].  
-         *      
-         *  **Note:** Particles always have a spherical collision shape.  
-         */
-        get collision_base_size(): float64
-        set collision_base_size(value: float64)
-        
-        /** The [AABB] that determines the node's region which needs to be visible on screen for the particle system to be active. [member GeometryInstance3D.extra_cull_margin] is added on each of the AABB's axes. Particle collisions and attraction will only occur within this area.  
-         *  Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.  
-         *      
-         *  **Note:** [member visibility_aabb] is overridden by [member GeometryInstance3D.custom_aabb] if that property is set to a non-default value.  
-         */
-        get visibility_aabb(): AABB
-        set visibility_aabb(value: AABB)
-        
-        /** If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [GPUParticles3D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [GPUParticles3D] node (and its parents) when it is moved or rotated. */
-        get local_coords(): boolean
-        set local_coords(value: boolean)
-        
-        /** Particle draw order. Uses [enum DrawOrder] values.  
-         *      
-         *  **Note:** [constant DRAW_ORDER_INDEX] is the only option that supports motion vectors for effects like TAA. It is suggested to use this draw order if the particles are opaque to fix ghosting artifacts.  
-         */
-        get draw_order(): int64
-        set draw_order(value: int64)
-        get transform_align(): int64
-        set transform_align(value: int64)
-        
-        /** If `true`, enables particle trails using a mesh skinning system. Designed to work with [RibbonTrailMesh] and [TubeTrailMesh].  
-         *      
-         *  **Note:** [member BaseMaterial3D.use_particle_trails] must also be enabled on the particle mesh's material. Otherwise, setting [member trail_enabled] to `true` will have no effect.  
-         *      
-         *  **Note:** Unlike [GPUParticles2D], the number of trail sections and subdivisions is set in the [RibbonTrailMesh] or the [TubeTrailMesh]'s properties.  
-         */
-        get trail_enabled(): boolean
-        set trail_enabled(value: boolean)
-        
-        /** The amount of time the particle's trail should represent (in seconds). Only effective if [member trail_enabled] is `true`. */
-        get trail_lifetime(): float64
-        set trail_lifetime(value: float64)
-        
-        /** [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial]. */
-        get process_material(): ParticleProcessMaterial | ShaderMaterial
-        set process_material(value: ParticleProcessMaterial | ShaderMaterial)
-        
-        /** The number of draw passes when rendering particles. */
-        get draw_passes(): int64
-        set draw_passes(value: int64)
-        
-        /** [Mesh] that is drawn for the first draw pass. */
-        get draw_pass_1(): Mesh
-        set draw_pass_1(value: Mesh)
-        
-        /** [Mesh] that is drawn for the second draw pass. */
-        get draw_pass_2(): Mesh
-        set draw_pass_2(value: Mesh)
-        
-        /** [Mesh] that is drawn for the third draw pass. */
-        get draw_pass_3(): Mesh
-        set draw_pass_3(value: Mesh)
-        
-        /** [Mesh] that is drawn for the fourth draw pass. */
-        get draw_pass_4(): Mesh
-        set draw_pass_4(value: Mesh)
-        get draw_skin(): Skin
-        set draw_skin(value: Skin)
-        
-        /** Emitted when all active particles have finished processing. To immediately emit new particles, call [method restart].  
-         *  Never emitted when [member one_shot] is disabled, as particles will be emitted and processed continuously.  
-         *      
-         *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the signal during which setting [member emitting] to `true` will not restart the emission cycle. This delay is avoided by instead calling [method restart].  
-         */
-        readonly finished: Signal0
-    }
-    class GPUParticles3DEditor extends GPUParticles3DEditorBase {
-        constructor(identifier?: any)
-    }
-    class GPUParticles3DEditorBase extends Control {
-        constructor(identifier?: any)
-    }
-    class GPUParticles3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class GPUParticles3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** Abstract base class for 3D particle attractors.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractor3d.html  
-     */
-    class GPUParticlesAttractor3D extends VisualInstance3D {
-        constructor(identifier?: any)
-        /** Adjusts the strength of the attractor. If [member strength] is negative, particles will be pushed in the opposite direction. Particles will be pushed  *away*  from the attractor's origin if [member directionality] is `0.0`, or towards local +Z if [member directionality] is greater than `0.0`. */
-        get strength(): float64
-        set strength(value: float64)
-        
-        /** The particle attractor's attenuation. Higher values result in more gradual pushing of particles as they come closer to the attractor's origin. Zero or negative values will cause particles to be pushed very fast as soon as the touch the attractor's edges. */
-        get attenuation(): float64
-        set attenuation(value: float64)
-        
-        /** Adjusts how directional the attractor is. At `0.0`, the attractor is not directional at all: it will attract particles towards its center. At `1.0`, the attractor is fully directional: particles will always be pushed towards local -Z (or +Z if [member strength] is negative).  
-         *      
-         *  **Note:** If [member directionality] is greater than `0.0`, the direction in which particles are pushed can be changed by rotating the [GPUParticlesAttractor3D] node.  
-         */
-        get directionality(): float64
-        set directionality(value: float64)
-        
-        /** The particle rendering layers ([member VisualInstance3D.layers]) that will be affected by the attractor. By default, all particles are affected by an attractor.  
-         *  After configuring particle nodes accordingly, specific layers can be unchecked to prevent certain particles from being affected by attractors. For example, this can be used if you're using an attractor as part of a spell effect but don't want the attractor to affect unrelated weather particles at the same position.  
-         *  Particle attraction can also be disabled on a per-process material basis by setting [member ParticleProcessMaterial.attractor_interaction_enabled] on the [GPUParticles3D] node.  
-         */
-        get cull_mask(): int64
-        set cull_mask(value: int64)
-    }
-    /** A box-shaped attractor that influences particles from [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorbox3d.html  
-     */
-    class GPUParticlesAttractorBox3D extends GPUParticlesAttractor3D {
-        constructor(identifier?: any)
-        /** The attractor box's size in 3D units. */
-        get size(): Vector3
-        set size(value: Vector3)
-    }
-    /** A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorsphere3d.html  
-     */
-    class GPUParticlesAttractorSphere3D extends GPUParticlesAttractor3D {
-        constructor(identifier?: any)
-        /** The attractor sphere's radius in 3D units.  
-         *      
-         *  **Note:** Stretched ellipses can be obtained by using non-uniform scaling on the [GPUParticlesAttractorSphere3D] node.  
-         */
-        get radius(): float64
-        set radius(value: float64)
-    }
-    /** A box-shaped attractor with varying directions and strengths defined in it that influences particles from [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorvectorfield3d.html  
-     */
-    class GPUParticlesAttractorVectorField3D extends GPUParticlesAttractor3D {
-        constructor(identifier?: any)
-        /** The size of the vector field box in 3D units. */
-        get size(): Vector3
-        set size(value: Vector3)
-        
-        /** The 3D texture to be used. Values are linearly interpolated between the texture's pixels.  
-         *      
-         *  **Note:** To get better performance, the 3D texture's resolution should reflect the [member size] of the attractor. Since particle attraction is usually low-frequency data, the texture can be kept at a low resolution such as 64×64×64.  
-         */
-        get texture(): Texture3D
-        set texture(value: Texture3D)
-    }
-    /** Abstract base class for 3D particle collision shapes affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollision3d.html  
-     */
-    class GPUParticlesCollision3D extends VisualInstance3D {
-        constructor(identifier?: any)
-        /** The particle rendering layers ([member VisualInstance3D.layers]) that will be affected by the collision shape. By default, all particles that have [member ParticleProcessMaterial.collision_mode] set to [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] will be affected by a collision shape.  
-         *  After configuring particle nodes accordingly, specific layers can be unchecked to prevent certain particles from being affected by attractors. For example, this can be used if you're using an attractor as part of a spell effect but don't want the attractor to affect unrelated weather particles at the same position.  
-         *  Particle attraction can also be disabled on a per-process material basis by setting [member ParticleProcessMaterial.attractor_interaction_enabled] on the [GPUParticles3D] node.  
-         */
-        get cull_mask(): int64
-        set cull_mask(value: int64)
-    }
-    class GPUParticlesCollision3DGizmoPlugin extends EditorNode3DGizmoPlugin {
-        constructor(identifier?: any)
-    }
-    /** A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionbox3d.html  
-     */
-    class GPUParticlesCollisionBox3D extends GPUParticlesCollision3D {
-        constructor(identifier?: any)
-        /** The collision box's size in 3D units. */
-        get size(): Vector3
-        set size(value: Vector3)
-    }
-    namespace GPUParticlesCollisionHeightField3D {
-        enum Resolution {
-            /** Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no distant particles. */
-            RESOLUTION_256 = 0,
-            
-            /** Generate a 512×512 heightmap. Intended for medium-scale scenes, or larger scenes with no distant particles. */
-            RESOLUTION_512 = 1,
-            
-            /** Generate a 1024×1024 heightmap. Intended for large scenes with distant particles. */
-            RESOLUTION_1024 = 2,
-            
-            /** Generate a 2048×2048 heightmap. Intended for very large scenes with distant particles. */
-            RESOLUTION_2048 = 3,
-            
-            /** Generate a 4096×4096 heightmap. Intended for huge scenes with distant particles. */
-            RESOLUTION_4096 = 4,
-            
-            /** Generate a 8192×8192 heightmap. Intended for gigantic scenes with distant particles. */
-            RESOLUTION_8192 = 5,
-            
-            /** Represents the size of the [enum Resolution] enum. */
-            RESOLUTION_MAX = 6,
-        }
-        enum UpdateMode {
-            /** Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [member follow_camera_enabled] is `true`. An update can be forced by slightly moving the [GPUParticlesCollisionHeightField3D] in any direction, or by calling [method RenderingServer.particles_collision_height_field_update]. */
-            UPDATE_MODE_WHEN_MOVED = 0,
-            
-            /** Update the heightmap every frame. This has a significant performance cost. This update should only be used when geometry that particles can collide with changes significantly during gameplay. */
-            UPDATE_MODE_ALWAYS = 1,
-        }
-    }
-    /** A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionheightfield3d.html  
-     */
-    class GPUParticlesCollisionHeightField3D extends GPUParticlesCollision3D {
-        constructor(identifier?: any)
-        /** The collision heightmap's size in 3D units. To improve heightmap quality, [member size] should be set as small as possible while covering the parts of the scene you need. */
-        get size(): Vector3
-        set size(value: Vector3)
-        
-        /** Higher resolutions can represent small details more accurately in large scenes, at the cost of lower performance. If [member update_mode] is [constant UPDATE_MODE_ALWAYS], consider using the lowest resolution possible. */
-        get resolution(): int64
-        set resolution(value: int64)
-        
-        /** The update policy to use for the generated heightmap. */
-        get update_mode(): int64
-        set update_mode(value: int64)
-        
-        /** If `true`, the [GPUParticlesCollisionHeightField3D] will follow the current camera in global space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node for this to work.  
-         *  Following the camera has a performance cost, as it will force the heightmap to update whenever the camera moves. Consider lowering [member resolution] to improve performance if [member follow_camera_enabled] is `true`.  
-         */
-        get follow_camera_enabled(): boolean
-        set follow_camera_enabled(value: boolean)
-    }
-    namespace GPUParticlesCollisionSDF3D {
-        enum Resolution {
-            /** Bake a 16×16×16 signed distance field. This is the fastest option, but also the least precise. */
-            RESOLUTION_16 = 0,
-            
-            /** Bake a 32×32×32 signed distance field. */
-            RESOLUTION_32 = 1,
-            
-            /** Bake a 64×64×64 signed distance field. */
-            RESOLUTION_64 = 2,
-            
-            /** Bake a 128×128×128 signed distance field. */
-            RESOLUTION_128 = 3,
-            
-            /** Bake a 256×256×256 signed distance field. */
-            RESOLUTION_256 = 4,
-            
-            /** Bake a 512×512×512 signed distance field. This is the slowest option, but also the most precise. */
-            RESOLUTION_512 = 5,
-            
-            /** Represents the size of the [enum Resolution] enum. */
-            RESOLUTION_MAX = 6,
-        }
-    }
-    /** A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionsdf3d.html  
-     */
-    class GPUParticlesCollisionSDF3D extends GPUParticlesCollision3D {
-        constructor(identifier?: any)
-        /** Based on [param value], enables or disables the specified layer in the [member bake_mask], given a [param layer_number] between 1 and 32. */
-        set_bake_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member bake_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_bake_mask_value(layer_number: int64): boolean
-        
-        /** The collision SDF's size in 3D units. To improve SDF quality, the [member size] should be set as small as possible while covering the parts of the scene you need. */
-        get size(): Vector3
-        set size(value: Vector3)
-        
-        /** The bake resolution to use for the signed distance field [member texture]. The texture must be baked again for changes to the [member resolution] property to be effective. Higher resolutions have a greater performance cost and take more time to bake. Higher resolutions also result in larger baked textures, leading to increased VRAM and storage space requirements. To improve performance and reduce bake times, use the lowest resolution possible for the object you're representing the collision of. */
-        get resolution(): int64
-        set resolution(value: int64)
-        
-        /** The collision shape's thickness. Unlike other particle colliders, [GPUParticlesCollisionSDF3D] is actually hollow on the inside. [member thickness] can be increased to prevent particles from tunneling through the collision shape at high speeds, or when the [GPUParticlesCollisionSDF3D] is moved. */
-        get thickness(): float64
-        set thickness(value: float64)
-        
-        /** The visual layers to account for when baking the particle collision SDF. Only [MeshInstance3D]s whose [member VisualInstance3D.layers] match with this [member bake_mask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking. */
-        get bake_mask(): int64
-        set bake_mask(value: int64)
-        
-        /** The 3D texture representing the signed distance field. */
-        get texture(): Texture3D
-        set texture(value: Texture3D)
-    }
-    class GPUParticlesCollisionSDF3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionsphere3d.html  
-     */
-    class GPUParticlesCollisionSphere3D extends GPUParticlesCollision3D {
-        constructor(identifier?: any)
-        /** The collision sphere's radius in 3D units. */
-        get radius(): float64
-        set radius(value: float64)
-    }
-    namespace Generic6DOFJoint3D {
-        enum Param {
-            /** The minimum difference between the pivot points' axes. */
-            PARAM_LINEAR_LOWER_LIMIT = 0,
-            
-            /** The maximum difference between the pivot points' axes. */
-            PARAM_LINEAR_UPPER_LIMIT = 1,
-            
-            /** A factor applied to the movement across the axes. The lower, the slower the movement. */
-            PARAM_LINEAR_LIMIT_SOFTNESS = 2,
-            
-            /** The amount of restitution on the axes' movement. The lower, the more momentum gets lost. */
-            PARAM_LINEAR_RESTITUTION = 3,
-            
-            /** The amount of damping that happens at the linear motion across the axes. */
-            PARAM_LINEAR_DAMPING = 4,
-            
-            /** The velocity the linear motor will try to reach. */
-            PARAM_LINEAR_MOTOR_TARGET_VELOCITY = 5,
-            
-            /** The maximum force the linear motor will apply while trying to reach the velocity target. */
-            PARAM_LINEAR_MOTOR_FORCE_LIMIT = 6,
-            PARAM_LINEAR_SPRING_STIFFNESS = 7,
-            PARAM_LINEAR_SPRING_DAMPING = 8,
-            PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT = 9,
-            
-            /** The minimum rotation in negative direction to break loose and rotate around the axes. */
-            PARAM_ANGULAR_LOWER_LIMIT = 10,
-            
-            /** The minimum rotation in positive direction to break loose and rotate around the axes. */
-            PARAM_ANGULAR_UPPER_LIMIT = 11,
-            
-            /** The speed of all rotations across the axes. */
-            PARAM_ANGULAR_LIMIT_SOFTNESS = 12,
-            
-            /** The amount of rotational damping across the axes. The lower, the more damping occurs. */
-            PARAM_ANGULAR_DAMPING = 13,
-            
-            /** The amount of rotational restitution across the axes. The lower, the more restitution occurs. */
-            PARAM_ANGULAR_RESTITUTION = 14,
-            
-            /** The maximum amount of force that can occur, when rotating around the axes. */
-            PARAM_ANGULAR_FORCE_LIMIT = 15,
-            
-            /** When rotating across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower. */
-            PARAM_ANGULAR_ERP = 16,
-            
-            /** Target speed for the motor at the axes. */
-            PARAM_ANGULAR_MOTOR_TARGET_VELOCITY = 17,
-            
-            /** Maximum acceleration for the motor at the axes. */
-            PARAM_ANGULAR_MOTOR_FORCE_LIMIT = 18,
-            PARAM_ANGULAR_SPRING_STIFFNESS = 19,
-            PARAM_ANGULAR_SPRING_DAMPING = 20,
-            PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT = 21,
-            
-            /** Represents the size of the [enum Param] enum. */
-            PARAM_MAX = 22,
-        }
-        enum Flag {
-            /** If enabled, linear motion is possible within the given limits. */
-            FLAG_ENABLE_LINEAR_LIMIT = 0,
-            
-            /** If enabled, rotational motion is possible within the given limits. */
-            FLAG_ENABLE_ANGULAR_LIMIT = 1,
-            FLAG_ENABLE_LINEAR_SPRING = 3,
-            FLAG_ENABLE_ANGULAR_SPRING = 2,
-            
-            /** If enabled, there is a rotational motor across these axes. */
-            FLAG_ENABLE_MOTOR = 4,
-            
-            /** If enabled, there is a linear motor across these axes. */
-            FLAG_ENABLE_LINEAR_MOTOR = 5,
-            
-            /** Represents the size of the [enum Flag] enum. */
-            FLAG_MAX = 6,
-        }
-    }
-    /** A physics joint that allows for complex movement and rotation between two 3D physics bodies.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_generic6dofjoint3d.html  
-     */
-    class Generic6DOFJoint3D extends Joint3D {
-        constructor(identifier?: any)
-        set_param_x(param: Generic6DOFJoint3D.Param, value: float64): void
-        get_param_x(param: Generic6DOFJoint3D.Param): float64
-        set_param_y(param: Generic6DOFJoint3D.Param, value: float64): void
-        get_param_y(param: Generic6DOFJoint3D.Param): float64
-        set_param_z(param: Generic6DOFJoint3D.Param, value: float64): void
-        get_param_z(param: Generic6DOFJoint3D.Param): float64
-        set_flag_x(flag: Generic6DOFJoint3D.Flag, value: boolean): void
-        get_flag_x(flag: Generic6DOFJoint3D.Flag): boolean
-        set_flag_y(flag: Generic6DOFJoint3D.Flag, value: boolean): void
-        get_flag_y(flag: Generic6DOFJoint3D.Flag): boolean
-        set_flag_z(flag: Generic6DOFJoint3D.Flag, value: boolean): void
-        get_flag_z(flag: Generic6DOFJoint3D.Flag): boolean
-    }
-    namespace GeometryInstance3D {
-        enum ShadowCastingSetting {
-            /** Will not cast any shadows. Use this to improve performance for small geometry that is unlikely to cast noticeable shadows (such as debris). */
-            SHADOW_CASTING_SETTING_OFF = 0,
-            
-            /** Will cast shadows from all visible faces in the GeometryInstance3D.  
-             *  Will take culling into account, so faces not being rendered will not be taken into account when shadow casting.  
-             */
-            SHADOW_CASTING_SETTING_ON = 1,
-            
-            /** Will cast shadows from all visible faces in the GeometryInstance3D.  
-             *  Will not take culling into account, so all faces will be taken into account when shadow casting.  
-             */
-            SHADOW_CASTING_SETTING_DOUBLE_SIDED = 2,
-            
-            /** Will only show the shadows casted from this object.  
-             *  In other words, the actual mesh will not be visible, only the shadows casted from the mesh will be.  
-             */
-            SHADOW_CASTING_SETTING_SHADOWS_ONLY = 3,
-        }
-        enum GIMode {
-            /** Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will  *receive*  indirect lighting and reflections but the geometry will not be considered in GI baking. */
-            GI_MODE_DISABLED = 0,
-            
-            /** Baked global illumination mode. Use for static objects that contribute to global illumination (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and [LightmapGI]. */
-            GI_MODE_STATIC = 1,
-            
-            /** Dynamic global illumination mode. Use for dynamic objects that contribute to global illumination. This GI mode is only effective when using [VoxelGI], but it has a higher performance impact than [constant GI_MODE_STATIC]. When using other GI methods, this will act the same as [constant GI_MODE_DISABLED]. When using [LightmapGI], the object will receive indirect lighting using lightmap probes instead of using the baked lightmap texture. */
-            GI_MODE_DYNAMIC = 2,
-        }
-        enum LightmapScale {
-            /** The standard texel density for lightmapping with [LightmapGI]. */
-            LIGHTMAP_SCALE_1X = 0,
-            
-            /** Multiplies texel density by 2× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 1.5 and 3.0. */
-            LIGHTMAP_SCALE_2X = 1,
-            
-            /** Multiplies texel density by 4× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 3.0 and 6.0. */
-            LIGHTMAP_SCALE_4X = 2,
-            
-            /** Multiplies texel density by 8× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor greater than 6.0. */
-            LIGHTMAP_SCALE_8X = 3,
-            
-            /** Represents the size of the [enum LightmapScale] enum. */
-            LIGHTMAP_SCALE_MAX = 4,
-        }
-        enum VisibilityRangeFadeMode {
-            /** Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This is the fastest approach to manual LOD, but it can result in noticeable LOD transitions depending on how the LOD meshes are authored. See [member visibility_range_begin] and [member Node3D.visibility_parent] for more information. */
-            VISIBILITY_RANGE_FADE_DISABLED = 0,
-            
-            /** Will fade-out itself when reaching the limits of its own visibility range. This is slower than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [member visibility_range_begin_margin] and [member visibility_range_end_margin].  
-             *      
-             *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, this mode acts like [constant VISIBILITY_RANGE_FADE_DISABLED] but with hysteresis disabled.  
-             */
-            VISIBILITY_RANGE_FADE_SELF = 1,
-            
-            /** Will fade-in its visibility dependencies (see [member Node3D.visibility_parent]) when reaching the limits of its own visibility range. This is slower than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [member visibility_range_begin_margin] and [member visibility_range_end_margin].  
-             *      
-             *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, this mode acts like [constant VISIBILITY_RANGE_FADE_DISABLED] but with hysteresis disabled.  
-             */
-            VISIBILITY_RANGE_FADE_DEPENDENCIES = 2,
-        }
-    }
-    /** Base node for geometry-based visual instances.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_geometryinstance3d.html  
-     */
-    class GeometryInstance3D extends VisualInstance3D {
-        constructor(identifier?: any)
-        /** Set the value of a shader uniform for this instance only ([url=https://docs.godotengine.org/en/4.3/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance uniform[/url]). See also [method ShaderMaterial.set_shader_parameter] to assign a uniform on all instances using the same [ShaderMaterial].  
-         *      
-         *  **Note:** For a shader uniform to be assignable on a per-instance basis, it  *must*  be defined with `instance uniform ...` rather than `uniform ...` in the shader code.  
-         *      
-         *  **Note:** [param name] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).  
-         *      
-         *  **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D equivalent of this method.  
-         */
-        set_instance_shader_parameter(name: StringName, value: any): void
-        
-        /** Get the value of a shader parameter as set on this instance. */
-        get_instance_shader_parameter(name: StringName): any
-        
-        /** The material override for the whole geometry.  
-         *  If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.  
-         */
-        get material_override(): BaseMaterial3D | ShaderMaterial
-        set material_override(value: BaseMaterial3D | ShaderMaterial)
-        
-        /** The material overlay for the whole geometry.  
-         *  If a material is assigned to this property, it will be rendered on top of any other active material for all the surfaces.  
-         */
-        get material_overlay(): BaseMaterial3D | ShaderMaterial
-        set material_overlay(value: BaseMaterial3D | ShaderMaterial)
-        
-        /** The transparency applied to the whole geometry (as a multiplier of the materials' existing transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [member transparency] to a value greater than `0.0` (exclusive) will  *not*  disable shadow rendering.  
-         *  In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.  
-         *      
-         *  **Note:** [member transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.  
-         *      
-         *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, [member transparency] is ignored and is considered as always being `0.0`.  
-         */
-        get transparency(): float64
-        set transparency(value: float64)
-        
-        /** The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values. */
-        get cast_shadow(): int64
-        set cast_shadow(value: int64)
-        
-        /** The extra distance added to the GeometryInstance3D's bounding box ([AABB]) to increase its cull box. */
-        get extra_cull_margin(): float64
-        set extra_cull_margin(value: float64)
-        
-        /** Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [MeshInstance3D] or to have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [member custom_aabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [method RenderingServer.instance_set_ignore_culling] on the [GeometryInstance3D]'s [RID]. */
-        get custom_aabb(): AABB
-        set custom_aabb(value: AABB)
-        
-        /** Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.  
-         *  Useful for testing level of detail transitions in the editor.  
-         */
-        get lod_bias(): float64
-        set lod_bias(value: float64)
-        
-        /** If `true`, disables occlusion culling for this instance. Useful for gizmos that must be rendered even when occlusion culling is in use.  
-         *      
-         *  **Note:** [member ignore_occlusion_culling] does not affect frustum culling (which is what happens when an object is not visible given the camera's angle). To avoid frustum culling, set [member custom_aabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`.  
-         */
-        get ignore_occlusion_culling(): boolean
-        set ignore_occlusion_culling(value: boolean)
-        
-        /** The global illumination mode to use for the whole geometry. To avoid inconsistent results, use a mode that matches the purpose of the mesh during gameplay (static/dynamic).  
-         *      
-         *  **Note:** Lights' bake mode will also affect the global illumination rendering. See [member Light3D.light_bake_mode].  
-         */
-        get gi_mode(): int64
-        set gi_mode(value: int64)
-        
-        /** The texel density to use for lightmapping in [LightmapGI]. Greater scale values provide higher resolution in the lightmap, which can result in sharper shadows for lights that have both direct and indirect light baked. However, greater scale values will also increase the space taken by the mesh in the lightmap texture, which increases the memory, storage, and bake time requirements. When using a single mesh at different scales, consider adjusting this value to keep the lightmap texel density consistent across meshes. */
-        get gi_lightmap_scale(): int64
-        set gi_lightmap_scale(value: int64)
-        
-        /** Starting distance from which the GeometryInstance3D will be visible, taking [member visibility_range_begin_margin] into account as well. The default value of 0 is used to disable the range check. */
-        get visibility_range_begin(): float64
-        set visibility_range_begin(value: float64)
-        
-        /** Margin for the [member visibility_range_begin] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [member visibility_range_begin] threshold by this amount.  
-         *  If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_SELF] or [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.  
-         */
-        get visibility_range_begin_margin(): float64
-        set visibility_range_begin_margin(value: float64)
-        
-        /** Distance from which the GeometryInstance3D will be hidden, taking [member visibility_range_end_margin] into account as well. The default value of 0 is used to disable the range check. */
-        get visibility_range_end(): float64
-        set visibility_range_end(value: float64)
-        
-        /** Margin for the [member visibility_range_end] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [member visibility_range_end] threshold by this amount.  
-         *  If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_SELF] or [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.  
-         */
-        get visibility_range_end_margin(): float64
-        set visibility_range_end_margin(value: float64)
-        
-        /** Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values. */
-        get visibility_range_fade_mode(): int64
-        set visibility_range_fade_mode(value: int64)
     }
 }

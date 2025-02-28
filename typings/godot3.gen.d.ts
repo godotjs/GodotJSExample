@@ -1,6 +1,1130 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    /** @link https://docs.godotengine.org/en/4.3/classes/class_gltfskeleton.html */
+    class GLTFSkeleton extends Resource {
+        constructor(identifier?: any)
+        get_godot_skeleton(): Skeleton3D
+        get_bone_attachment_count(): int64
+        get_bone_attachment(idx: int64): BoneAttachment3D
+        get joints(): PackedInt32Array
+        set joints(value: PackedInt32Array | int32[])
+        get roots(): PackedInt32Array
+        set roots(value: PackedInt32Array | int32[])
+        get unique_names(): GArray
+        set unique_names(value: GArray)
+        get godot_bone_node(): GDictionary
+        set godot_bone_node(value: GDictionary)
+    }
+    /** @link https://docs.godotengine.org/en/4.3/classes/class_gltfskin.html */
+    class GLTFSkin extends Resource {
+        constructor(identifier?: any)
+        get skin_root(): int64
+        set skin_root(value: int64)
+        get joints_original(): PackedInt32Array
+        set joints_original(value: PackedInt32Array | int32[])
+        get inverse_binds(): GArray
+        set inverse_binds(value: GArray)
+        get joints(): PackedInt32Array
+        set joints(value: PackedInt32Array | int32[])
+        get non_joints(): PackedInt32Array
+        set non_joints(value: PackedInt32Array | int32[])
+        get roots(): PackedInt32Array
+        set roots(value: PackedInt32Array | int32[])
+        get skeleton(): int64
+        set skeleton(value: int64)
+        get joint_i_to_bone_i(): GDictionary
+        set joint_i_to_bone_i(value: GDictionary)
+        get joint_i_to_name(): GDictionary
+        set joint_i_to_name(value: GDictionary)
+        get godot_skin(): Skin
+        set godot_skin(value: Skin)
+    }
+    /** Archived GLTF extension for specular/glossy materials.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gltfspecgloss.html  
+     */
+    class GLTFSpecGloss extends Resource {
+        constructor(identifier?: any)
+        /** The diffuse texture. */
+        get diffuse_img(): Object
+        set diffuse_img(value: Object)
+        
+        /** The reflected diffuse factor of the material. */
+        get diffuse_factor(): Color
+        set diffuse_factor(value: Color)
+        
+        /** The glossiness or smoothness of the material. */
+        get gloss_factor(): float64
+        set gloss_factor(value: float64)
+        
+        /** The specular RGB color of the material. The alpha channel is unused. */
+        get specular_factor(): Color
+        set specular_factor(value: Color)
+        
+        /** The specular-glossiness texture. */
+        get spec_gloss_img(): Object
+        set spec_gloss_img(value: Object)
+    }
+    /** Represents all data of a GLTF file.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gltfstate.html  
+     */
+    class GLTFState extends Resource {
+        /** Discards all embedded textures and uses untextured materials. */
+        static readonly HANDLE_BINARY_DISCARD_TEXTURES = 0
+        
+        /** Extracts embedded textures to be reimported and compressed. Editor only. Acts as uncompressed at runtime. */
+        static readonly HANDLE_BINARY_EXTRACT_TEXTURES = 1
+        
+        /** Embeds textures VRAM compressed with Basis Universal into the generated scene. */
+        static readonly HANDLE_BINARY_EMBED_AS_BASISU = 2
+        
+        /** Embeds textures compressed losslessly into the generated scene, matching old behavior. */
+        static readonly HANDLE_BINARY_EMBED_AS_UNCOMPRESSED = 3
+        constructor(identifier?: any)
+        
+        /** Appends an extension to the list of extensions used by this GLTF file during serialization. If [param required] is true, the extension will also be added to the list of required extensions. Do not run this in [method GLTFDocumentExtension._export_post], as that stage is too late to add extensions. The final list is sorted alphabetically. */
+        add_used_extension(extension_name: string, required: boolean): void
+        
+        /** Appends the given byte array data to the buffers and creates a [GLTFBufferView] for it. The index of the destination [GLTFBufferView] is returned. If [param deduplication] is true, the buffers will first be searched for duplicate data, otherwise new bytes will always be appended. */
+        append_data_to_buffers(data: PackedByteArray | byte[] | ArrayBuffer, deduplication: boolean): int64
+        
+        /** Returns the number of [AnimationPlayer] nodes in this [GLTFState]. These nodes are only used during the export process when converting Godot [AnimationPlayer] nodes to GLTF animations. */
+        get_animation_players_count(idx: int64): int64
+        
+        /** Returns the [AnimationPlayer] node with the given index. These nodes are only used during the export process when converting Godot [AnimationPlayer] nodes to GLTF animations. */
+        get_animation_player(idx: int64): AnimationPlayer
+        
+        /** Returns the Godot scene node that corresponds to the same index as the [GLTFNode] it was generated from. This is the inverse of [method get_node_index]. Useful during the import process.  
+         *      
+         *  **Note:** Not every [GLTFNode] will have a scene node generated, and not every generated scene node will have a corresponding [GLTFNode]. If there is no scene node for this [GLTFNode] index, `null` is returned.  
+         */
+        get_scene_node(idx: int64): Node
+        
+        /** Returns the index of the [GLTFNode] corresponding to this Godot scene node. This is the inverse of [method get_scene_node]. Useful during the export process.  
+         *      
+         *  **Note:** Not every Godot scene node will have a corresponding [GLTFNode], and not every [GLTFNode] will have a scene node generated. If there is no [GLTFNode] index for this scene node, `-1` is returned.  
+         */
+        get_node_index(scene_node: Node): int64
+        
+        /** Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file state data in [GLTFDocumentExtension] classes, which is important because they are stateless.  
+         *  The argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the GLTF file), and the return value can be anything you set. If nothing was set, the return value is null.  
+         */
+        get_additional_data(extension_name: StringName): any
+        
+        /** Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file state data in [GLTFDocumentExtension] classes, which is important because they are stateless.  
+         *  The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the GLTF file), and the second argument can be anything you want.  
+         */
+        set_additional_data(extension_name: StringName, additional_data: any): void
+        
+        /** The original raw JSON document corresponding to this GLTFState. */
+        get json(): GDictionary
+        set json(value: GDictionary)
+        get major_version(): int64
+        set major_version(value: int64)
+        get minor_version(): int64
+        set minor_version(value: int64)
+        
+        /** The copyright string in the asset header of the GLTF file. This is set during import if present and export if non-empty. See the GLTF asset header documentation for more information. */
+        get copyright(): string
+        set copyright(value: string)
+        
+        /** The binary buffer attached to a .glb file. */
+        get glb_data(): PackedByteArray
+        set glb_data(value: PackedByteArray | byte[] | ArrayBuffer)
+        get use_named_skin_binds(): boolean
+        set use_named_skin_binds(value: boolean)
+        get nodes(): GArray
+        set nodes(value: GArray)
+        get buffers(): GArray
+        set buffers(value: GArray)
+        get buffer_views(): GArray
+        set buffer_views(value: GArray)
+        get accessors(): GArray
+        set accessors(value: GArray)
+        get meshes(): GArray
+        set meshes(value: GArray)
+        get materials(): GArray
+        set materials(value: GArray)
+        
+        /** The name of the scene. When importing, if not specified, this will be the file name. When exporting, if specified, the scene name will be saved to the GLTF file. */
+        get scene_name(): string
+        set scene_name(value: string)
+        
+        /** The folder path associated with this GLTF data. This is used to find other files the GLTF file references, like images or binary buffers. This will be set during import when appending from a file, and will be set during export when writing to a file. */
+        get base_path(): string
+        set base_path(value: string)
+        
+        /** The file name associated with this GLTF data. If it ends with `.gltf`, this is text-based GLTF, otherwise this is binary GLB. This will be set during import when appending from a file, and will be set during export when writing to a file. If writing to a buffer, this will be an empty string. */
+        get filename(): string
+        set filename(value: string)
+        
+        /** The root nodes of the GLTF file. Typically, a GLTF file will only have one scene, and therefore one root node. However, a GLTF file may have multiple scenes and therefore multiple root nodes, which will be generated as siblings of each other and as children of the root node of the generated Godot scene. */
+        get root_nodes(): PackedInt32Array
+        set root_nodes(value: PackedInt32Array | int32[])
+        get textures(): GArray
+        set textures(value: GArray)
+        get texture_samplers(): GArray
+        set texture_samplers(value: GArray)
+        get images(): GArray
+        set images(value: GArray)
+        get skins(): GArray
+        set skins(value: GArray)
+        get cameras(): GArray
+        set cameras(value: GArray)
+        get lights(): GArray
+        set lights(value: GArray)
+        get unique_names(): GArray
+        set unique_names(value: GArray)
+        get unique_animation_names(): GArray
+        set unique_animation_names(value: GArray)
+        get skeletons(): GArray
+        set skeletons(value: GArray)
+        get create_animations(): boolean
+        set create_animations(value: boolean)
+        
+        /** True to force all GLTFNodes in the document to be bones of a single Skeleton3D godot node. */
+        get import_as_skeleton_bones(): boolean
+        set import_as_skeleton_bones(value: boolean)
+        get animations(): GArray
+        set animations(value: GArray)
+        get handle_binary_image(): int64
+        set handle_binary_image(value: int64)
+        
+        /** The baking fps of the animation for either import or export. */
+        get bake_fps(): float64
+        set bake_fps(value: float64)
+    }
+    /** GLTFTexture represents a texture in a GLTF file.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gltftexture.html  
+     */
+    class GLTFTexture extends Resource {
+        constructor(identifier?: any)
+        /** The index of the image associated with this texture, see [method GLTFState.get_images]. If -1, then this texture does not have an image assigned. */
+        get src_image(): int64
+        set src_image(value: int64)
+        
+        /** ID of the texture sampler to use when sampling the image. If -1, then the default texture sampler is used (linear filtering, and repeat wrapping in both axes). */
+        get sampler(): int64
+        set sampler(value: int64)
+    }
+    /** Represents a GLTF texture sampler  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gltftexturesampler.html  
+     */
+    class GLTFTextureSampler extends Resource {
+        constructor(identifier?: any)
+        /** Texture's magnification filter, used when texture appears larger on screen than the source image. */
+        get mag_filter(): int64
+        set mag_filter(value: int64)
+        
+        /** Texture's minification filter, used when the texture appears smaller on screen than the source image. */
+        get min_filter(): int64
+        set min_filter(value: int64)
+        
+        /** Wrapping mode to use for S-axis (horizontal) texture coordinates. */
+        get wrap_s(): int64
+        set wrap_s(value: int64)
+        
+        /** Wrapping mode to use for T-axis (vertical) texture coordinates. */
+        get wrap_t(): int64
+        set wrap_t(value: int64)
+    }
+    namespace GPUParticles2D {
+        enum DrawOrder {
+            /** Particles are drawn in the order emitted. */
+            DRAW_ORDER_INDEX = 0,
+            
+            /** Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front. */
+            DRAW_ORDER_LIFETIME = 1,
+            
+            /** Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front. */
+            DRAW_ORDER_REVERSE_LIFETIME = 2,
+        }
+        enum EmitFlags {
+            /** Particle starts at the specified position. */
+            EMIT_FLAG_POSITION = 1,
+            
+            /** Particle starts with specified rotation and scale. */
+            EMIT_FLAG_ROTATION_SCALE = 2,
+            
+            /** Particle starts with the specified velocity vector, which defines the emission direction and speed. */
+            EMIT_FLAG_VELOCITY = 4,
+            
+            /** Particle starts with specified color. */
+            EMIT_FLAG_COLOR = 8,
+            
+            /** Particle starts with specified `CUSTOM` data. */
+            EMIT_FLAG_CUSTOM = 16,
+        }
+    }
+    /** A 2D particle emitter.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticles2d.html  
+     */
+    class GPUParticles2D extends Node2D {
+        constructor(identifier?: any)
+        /** Returns a rectangle containing the positions of all existing particles.  
+         *      
+         *  **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling it often may have a negative impact on performance.  
+         */
+        capture_rect(): Rect2
+        
+        /** Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing from the viewport, wait for the [signal finished] signal before calling.  
+         *      
+         *  **Note:** The [signal finished] signal is only emitted by [member one_shot] emitters.  
+         */
+        restart(): void
+        
+        /** Emits a single particle. Whether [param xform], [param velocity], [param color] and [param custom] are applied depends on the value of [param flags]. See [enum EmitFlags].  
+         *  The default ParticleProcessMaterial will overwrite [param color] and use the contents of [param custom] as `(rotation, age, animation, lifetime)`.  
+         */
+        emit_particle(xform: Transform2D, velocity: Vector2, color: Color, custom: Color, flags: int64): void
+        
+        /** Sets this node's properties to match a given [CPUParticles2D] node. */
+        convert_from_particles(particles: Node): void
+        
+        /** If `true`, particles are being emitted. [member emitting] can be used to start and stop particles from emitting. However, if [member one_shot] is `true` setting [member emitting] to `true` will not restart the emission cycle unless all active particles have finished processing. Use the [signal finished] signal to be notified once all active particles finish processing.  
+         *      
+         *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the [signal finished] signal during which setting this to `true` will not restart the emission cycle.  
+         *  **Tip:** If your [member one_shot] emitter needs to immediately restart emitting particles once [signal finished] signal is received, consider calling [method restart] instead of setting [member emitting].  
+         */
+        get emitting(): boolean
+        set emitting(value: boolean)
+        
+        /** The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [member amount_ratio] is decreased.  
+         *      
+         *  **Note:** Changing this value will cause the particle system to restart. To avoid this, change [member amount_ratio] instead.  
+         */
+        get amount(): int64
+        set amount(value: int64)
+        
+        /** The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [member amount], changing [member amount_ratio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [member amount_ratio] can be used to create effects that make the number of emitted particles vary over time.  
+         *      
+         *  **Note:** Reducing the [member amount_ratio] has no performance benefit, since resources need to be allocated and processed for the total [member amount] of particles regardless of the [member amount_ratio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [member amount_ratio] is set to `1` and change [member amount] to your liking instead.  
+         */
+        get amount_ratio(): float64
+        set amount_ratio(value: float64)
+        
+        /** Path to another [GPUParticles2D] node that will be used as a subemitter (see [member ParticleProcessMaterial.sub_emitter_mode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.  
+         *      
+         *  **Note:** When [member sub_emitter] is set, the target [GPUParticles2D] node will no longer emit particles on its own.  
+         */
+        get sub_emitter(): NodePath
+        set sub_emitter(value: NodePath | string)
+        
+        /** [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial]. */
+        get process_material(): ParticleProcessMaterial | ShaderMaterial
+        set process_material(value: ParticleProcessMaterial | ShaderMaterial)
+        
+        /** Particle texture. If `null`, particles will be squares with a size of 1×1 pixels.  
+         *      
+         *  **Note:** To use a flipbook texture, assign a new [CanvasItemMaterial] to the [GPUParticles2D]'s [member CanvasItem.material] property, then enable [member CanvasItemMaterial.particles_animation] and set [member CanvasItemMaterial.particles_anim_h_frames], [member CanvasItemMaterial.particles_anim_v_frames], and [member CanvasItemMaterial.particles_anim_loop] to match the flipbook texture.  
+         */
+        get texture(): Texture2D
+        set texture(value: Texture2D)
+        
+        /** The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. */
+        get lifetime(): float64
+        set lifetime(value: float64)
+        
+        /** If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end. */
+        get one_shot(): boolean
+        set one_shot(value: boolean)
+        
+        /** Particle system starts as if it had already run for this many seconds. */
+        get preprocess(): float64
+        set preprocess(value: float64)
+        
+        /** Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles. */
+        get speed_scale(): float64
+        set speed_scale(value: float64)
+        
+        /** How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins. */
+        get explosiveness(): float64
+        set explosiveness(value: float64)
+        
+        /** Emission lifetime randomness ratio. */
+        get randomness(): float64
+        set randomness(value: float64)
+        
+        /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself. */
+        get fixed_fps(): int64
+        set fixed_fps(value: int64)
+        
+        /** Enables particle interpolation, which makes the particle movement smoother when their [member fixed_fps] is lower than the screen refresh rate. */
+        get interpolate(): boolean
+        set interpolate(value: boolean)
+        
+        /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
+        get fract_delta(): boolean
+        set fract_delta(value: boolean)
+        
+        /** Causes all the particles in this node to interpolate towards the end of their lifetime.  
+         *      
+         *  **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.  
+         */
+        get interp_to_end(): float64
+        set interp_to_end(value: float64)
+        
+        /** Multiplier for particle's collision radius. `1.0` corresponds to the size of the sprite. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [member ParticleProcessMaterial.collision_mode] is [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].  
+         *      
+         *  **Note:** Particles always have a spherical collision shape.  
+         */
+        get collision_base_size(): float64
+        set collision_base_size(value: float64)
+        
+        /** The [Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.  
+         *  Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.  
+         */
+        get visibility_rect(): Rect2
+        set visibility_rect(value: Rect2)
+        
+        /** If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [GPUParticles2D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [GPUParticles2D] node (and its parents) when it is moved or rotated. */
+        get local_coords(): boolean
+        set local_coords(value: boolean)
+        
+        /** Particle draw order. Uses [enum DrawOrder] values. */
+        get draw_order(): int64
+        set draw_order(value: int64)
+        
+        /** If `true`, enables particle trails using a mesh skinning system.  
+         *      
+         *  **Note:** Unlike [GPUParticles3D], the number of trail sections and subdivisions is set with the [member trail_sections] and [member trail_section_subdivisions] properties.  
+         */
+        get trail_enabled(): boolean
+        set trail_enabled(value: boolean)
+        
+        /** The amount of time the particle's trail should represent (in seconds). Only effective if [member trail_enabled] is `true`. */
+        get trail_lifetime(): float64
+        set trail_lifetime(value: float64)
+        
+        /** The number of sections to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [member trail_section_subdivisions]. Only effective if [member trail_enabled] is `true`. */
+        get trail_sections(): int64
+        set trail_sections(value: int64)
+        
+        /** The number of subdivisions to use for the particle trail rendering. Higher values can result in smoother trail curves, at the cost of performance due to increased mesh complexity. See also [member trail_sections]. Only effective if [member trail_enabled] is `true`. */
+        get trail_section_subdivisions(): int64
+        set trail_section_subdivisions(value: int64)
+        
+        /** Emitted when all active particles have finished processing. To immediately restart the emission cycle, call [method restart].  
+         *  Never emitted when [member one_shot] is disabled, as particles will be emitted and processed continuously.  
+         *      
+         *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the signal during which setting [member emitting] to `true` will not restart the emission cycle. This delay is avoided by instead calling [method restart].  
+         */
+        readonly finished: Signal0
+    }
+    class GPUParticles2DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    namespace GPUParticles3D {
+        enum DrawOrder {
+            /** Particles are drawn in the order emitted. */
+            DRAW_ORDER_INDEX = 0,
+            
+            /** Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front. */
+            DRAW_ORDER_LIFETIME = 1,
+            
+            /** Particles are drawn in reverse order of remaining lifetime. In other words, the particle with the lowest lifetime is drawn at the front. */
+            DRAW_ORDER_REVERSE_LIFETIME = 2,
+            
+            /** Particles are drawn in order of depth. */
+            DRAW_ORDER_VIEW_DEPTH = 3,
+        }
+        enum EmitFlags {
+            /** Particle starts at the specified position. */
+            EMIT_FLAG_POSITION = 1,
+            
+            /** Particle starts with specified rotation and scale. */
+            EMIT_FLAG_ROTATION_SCALE = 2,
+            
+            /** Particle starts with the specified velocity vector, which defines the emission direction and speed. */
+            EMIT_FLAG_VELOCITY = 4,
+            
+            /** Particle starts with specified color. */
+            EMIT_FLAG_COLOR = 8,
+            
+            /** Particle starts with specified `CUSTOM` data. */
+            EMIT_FLAG_CUSTOM = 16,
+        }
+        enum TransformAlign {
+            TRANSFORM_ALIGN_DISABLED = 0,
+            TRANSFORM_ALIGN_Z_BILLBOARD = 1,
+            TRANSFORM_ALIGN_Y_TO_VELOCITY = 2,
+            TRANSFORM_ALIGN_Z_BILLBOARD_Y_TO_VELOCITY = 3,
+        }
+    }
+    /** A 3D particle emitter.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticles3d.html  
+     */
+    class GPUParticles3D extends GeometryInstance3D {
+        /** Maximum number of draw passes supported. */
+        static readonly MAX_DRAW_PASSES = 4
+        constructor(identifier?: any)
+        
+        /** Sets the [Mesh] that is drawn at index [param pass]. */
+        set_draw_pass_mesh(pass: int64, mesh: Mesh): void
+        
+        /** Returns the [Mesh] that is drawn at index [param pass]. */
+        get_draw_pass_mesh(pass: int64): Mesh
+        
+        /** Restarts the particle emission cycle, clearing existing particles. To avoid particles vanishing from the viewport, wait for the [signal finished] signal before calling.  
+         *      
+         *  **Note:** The [signal finished] signal is only emitted by [member one_shot] emitters.  
+         */
+        restart(): void
+        
+        /** Returns the axis-aligned bounding box that contains all the particles that are active in the current frame. */
+        capture_aabb(): AABB
+        
+        /** Emits a single particle. Whether [param xform], [param velocity], [param color] and [param custom] are applied depends on the value of [param flags]. See [enum EmitFlags].  
+         *  The default ParticleProcessMaterial will overwrite [param color] and use the contents of [param custom] as `(rotation, age, animation, lifetime)`.  
+         */
+        emit_particle(xform: Transform3D, velocity: Vector3, color: Color, custom: Color, flags: int64): void
+        
+        /** Sets this node's properties to match a given [CPUParticles3D] node. */
+        convert_from_particles(particles: Node): void
+        
+        /** If `true`, particles are being emitted. [member emitting] can be used to start and stop particles from emitting. However, if [member one_shot] is `true` setting [member emitting] to `true` will not restart the emission cycle unless all active particles have finished processing. Use the [signal finished] signal to be notified once all active particles finish processing.  
+         *      
+         *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the [signal finished] signal during which setting this to `true` will not restart the emission cycle.  
+         *  **Tip:** If your [member one_shot] emitter needs to immediately restart emitting particles once [signal finished] signal is received, consider calling [method restart] instead of setting [member emitting].  
+         */
+        get emitting(): boolean
+        set emitting(value: boolean)
+        
+        /** The number of particles to emit in one emission cycle. The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. Higher values will increase GPU requirements, even if not all particles are visible at a given time or if [member amount_ratio] is decreased.  
+         *      
+         *  **Note:** Changing this value will cause the particle system to restart. To avoid this, change [member amount_ratio] instead.  
+         */
+        get amount(): int64
+        set amount(value: int64)
+        
+        /** The ratio of particles that should actually be emitted. If set to a value lower than `1.0`, this will set the amount of emitted particles throughout the lifetime to `amount * amount_ratio`. Unlike changing [member amount], changing [member amount_ratio] while emitting does not affect already-emitted particles and doesn't cause the particle system to restart. [member amount_ratio] can be used to create effects that make the number of emitted particles vary over time.  
+         *      
+         *  **Note:** Reducing the [member amount_ratio] has no performance benefit, since resources need to be allocated and processed for the total [member amount] of particles regardless of the [member amount_ratio]. If you don't intend to change the number of particles emitted while the particles are emitting, make sure [member amount_ratio] is set to `1` and change [member amount] to your liking instead.  
+         */
+        get amount_ratio(): float64
+        set amount_ratio(value: float64)
+        
+        /** Path to another [GPUParticles3D] node that will be used as a subemitter (see [member ParticleProcessMaterial.sub_emitter_mode]). Subemitters can be used to achieve effects such as fireworks, sparks on collision, bubbles popping into water drops, and more.  
+         *      
+         *  **Note:** When [member sub_emitter] is set, the target [GPUParticles3D] node will no longer emit particles on its own.  
+         */
+        get sub_emitter(): NodePath
+        set sub_emitter(value: NodePath | string)
+        
+        /** The amount of time each particle will exist (in seconds). The effective emission rate is `(amount * amount_ratio) / lifetime` particles per second. */
+        get lifetime(): float64
+        set lifetime(value: float64)
+        
+        /** Causes all the particles in this node to interpolate towards the end of their lifetime.  
+         *      
+         *  **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually implemented for custom process shaders.  
+         */
+        get interp_to_end(): float64
+        set interp_to_end(value: float64)
+        
+        /** If `true`, only the number of particles equal to [member amount] will be emitted. */
+        get one_shot(): boolean
+        set one_shot(value: boolean)
+        
+        /** Amount of time to preprocess the particles before animation starts. Lets you start the animation some time after particles have started emitting. */
+        get preprocess(): float64
+        set preprocess(value: float64)
+        
+        /** Speed scaling ratio. A value of `0` can be used to pause the particles. */
+        get speed_scale(): float64
+        set speed_scale(value: float64)
+        
+        /** Time ratio between each emission. If `0`, particles are emitted continuously. If `1`, all particles are emitted simultaneously. */
+        get explosiveness(): float64
+        set explosiveness(value: float64)
+        
+        /** Emission randomness ratio. */
+        get randomness(): float64
+        set randomness(value: float64)
+        
+        /** The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself. */
+        get fixed_fps(): int64
+        set fixed_fps(value: int64)
+        
+        /** Enables particle interpolation, which makes the particle movement smoother when their [member fixed_fps] is lower than the screen refresh rate. */
+        get interpolate(): boolean
+        set interpolate(value: boolean)
+        
+        /** If `true`, results in fractional delta calculation which has a smoother particles display effect. */
+        get fract_delta(): boolean
+        set fract_delta(value: boolean)
+        
+        /** The base diameter for particle collision in meters. If particles appear to sink into the ground when colliding, increase this value. If particles appear to float when colliding, decrease this value. Only effective if [member ParticleProcessMaterial.collision_mode] is [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].  
+         *      
+         *  **Note:** Particles always have a spherical collision shape.  
+         */
+        get collision_base_size(): float64
+        set collision_base_size(value: float64)
+        
+        /** The [AABB] that determines the node's region which needs to be visible on screen for the particle system to be active. [member GeometryInstance3D.extra_cull_margin] is added on each of the AABB's axes. Particle collisions and attraction will only occur within this area.  
+         *  Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.  
+         *      
+         *  **Note:** [member visibility_aabb] is overridden by [member GeometryInstance3D.custom_aabb] if that property is set to a non-default value.  
+         */
+        get visibility_aabb(): AABB
+        set visibility_aabb(value: AABB)
+        
+        /** If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [GPUParticles3D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [GPUParticles3D] node (and its parents) when it is moved or rotated. */
+        get local_coords(): boolean
+        set local_coords(value: boolean)
+        
+        /** Particle draw order. Uses [enum DrawOrder] values.  
+         *      
+         *  **Note:** [constant DRAW_ORDER_INDEX] is the only option that supports motion vectors for effects like TAA. It is suggested to use this draw order if the particles are opaque to fix ghosting artifacts.  
+         */
+        get draw_order(): int64
+        set draw_order(value: int64)
+        get transform_align(): int64
+        set transform_align(value: int64)
+        
+        /** If `true`, enables particle trails using a mesh skinning system. Designed to work with [RibbonTrailMesh] and [TubeTrailMesh].  
+         *      
+         *  **Note:** [member BaseMaterial3D.use_particle_trails] must also be enabled on the particle mesh's material. Otherwise, setting [member trail_enabled] to `true` will have no effect.  
+         *      
+         *  **Note:** Unlike [GPUParticles2D], the number of trail sections and subdivisions is set in the [RibbonTrailMesh] or the [TubeTrailMesh]'s properties.  
+         */
+        get trail_enabled(): boolean
+        set trail_enabled(value: boolean)
+        
+        /** The amount of time the particle's trail should represent (in seconds). Only effective if [member trail_enabled] is `true`. */
+        get trail_lifetime(): float64
+        set trail_lifetime(value: float64)
+        
+        /** [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial]. */
+        get process_material(): ParticleProcessMaterial | ShaderMaterial
+        set process_material(value: ParticleProcessMaterial | ShaderMaterial)
+        
+        /** The number of draw passes when rendering particles. */
+        get draw_passes(): int64
+        set draw_passes(value: int64)
+        
+        /** [Mesh] that is drawn for the first draw pass. */
+        get draw_pass_1(): Mesh
+        set draw_pass_1(value: Mesh)
+        
+        /** [Mesh] that is drawn for the second draw pass. */
+        get draw_pass_2(): Mesh
+        set draw_pass_2(value: Mesh)
+        
+        /** [Mesh] that is drawn for the third draw pass. */
+        get draw_pass_3(): Mesh
+        set draw_pass_3(value: Mesh)
+        
+        /** [Mesh] that is drawn for the fourth draw pass. */
+        get draw_pass_4(): Mesh
+        set draw_pass_4(value: Mesh)
+        get draw_skin(): Skin
+        set draw_skin(value: Skin)
+        
+        /** Emitted when all active particles have finished processing. To immediately emit new particles, call [method restart].  
+         *  Never emitted when [member one_shot] is disabled, as particles will be emitted and processed continuously.  
+         *      
+         *  **Note:** For [member one_shot] emitters, due to the particles being computed on the GPU, there may be a short period after receiving the signal during which setting [member emitting] to `true` will not restart the emission cycle. This delay is avoided by instead calling [method restart].  
+         */
+        readonly finished: Signal0
+    }
+    class GPUParticles3DEditor extends GPUParticles3DEditorBase {
+        constructor(identifier?: any)
+    }
+    class GPUParticles3DEditorBase extends Control {
+        constructor(identifier?: any)
+    }
+    class GPUParticles3DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    class GPUParticles3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    /** Abstract base class for 3D particle attractors.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractor3d.html  
+     */
+    class GPUParticlesAttractor3D extends VisualInstance3D {
+        constructor(identifier?: any)
+        /** Adjusts the strength of the attractor. If [member strength] is negative, particles will be pushed in the opposite direction. Particles will be pushed  *away*  from the attractor's origin if [member directionality] is `0.0`, or towards local +Z if [member directionality] is greater than `0.0`. */
+        get strength(): float64
+        set strength(value: float64)
+        
+        /** The particle attractor's attenuation. Higher values result in more gradual pushing of particles as they come closer to the attractor's origin. Zero or negative values will cause particles to be pushed very fast as soon as the touch the attractor's edges. */
+        get attenuation(): float64
+        set attenuation(value: float64)
+        
+        /** Adjusts how directional the attractor is. At `0.0`, the attractor is not directional at all: it will attract particles towards its center. At `1.0`, the attractor is fully directional: particles will always be pushed towards local -Z (or +Z if [member strength] is negative).  
+         *      
+         *  **Note:** If [member directionality] is greater than `0.0`, the direction in which particles are pushed can be changed by rotating the [GPUParticlesAttractor3D] node.  
+         */
+        get directionality(): float64
+        set directionality(value: float64)
+        
+        /** The particle rendering layers ([member VisualInstance3D.layers]) that will be affected by the attractor. By default, all particles are affected by an attractor.  
+         *  After configuring particle nodes accordingly, specific layers can be unchecked to prevent certain particles from being affected by attractors. For example, this can be used if you're using an attractor as part of a spell effect but don't want the attractor to affect unrelated weather particles at the same position.  
+         *  Particle attraction can also be disabled on a per-process material basis by setting [member ParticleProcessMaterial.attractor_interaction_enabled] on the [GPUParticles3D] node.  
+         */
+        get cull_mask(): int64
+        set cull_mask(value: int64)
+    }
+    /** A box-shaped attractor that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorbox3d.html  
+     */
+    class GPUParticlesAttractorBox3D extends GPUParticlesAttractor3D {
+        constructor(identifier?: any)
+        /** The attractor box's size in 3D units. */
+        get size(): Vector3
+        set size(value: Vector3)
+    }
+    /** A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorsphere3d.html  
+     */
+    class GPUParticlesAttractorSphere3D extends GPUParticlesAttractor3D {
+        constructor(identifier?: any)
+        /** The attractor sphere's radius in 3D units.  
+         *      
+         *  **Note:** Stretched ellipses can be obtained by using non-uniform scaling on the [GPUParticlesAttractorSphere3D] node.  
+         */
+        get radius(): float64
+        set radius(value: float64)
+    }
+    /** A box-shaped attractor with varying directions and strengths defined in it that influences particles from [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlesattractorvectorfield3d.html  
+     */
+    class GPUParticlesAttractorVectorField3D extends GPUParticlesAttractor3D {
+        constructor(identifier?: any)
+        /** The size of the vector field box in 3D units. */
+        get size(): Vector3
+        set size(value: Vector3)
+        
+        /** The 3D texture to be used. Values are linearly interpolated between the texture's pixels.  
+         *      
+         *  **Note:** To get better performance, the 3D texture's resolution should reflect the [member size] of the attractor. Since particle attraction is usually low-frequency data, the texture can be kept at a low resolution such as 64×64×64.  
+         */
+        get texture(): Texture3D
+        set texture(value: Texture3D)
+    }
+    /** Abstract base class for 3D particle collision shapes affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollision3d.html  
+     */
+    class GPUParticlesCollision3D extends VisualInstance3D {
+        constructor(identifier?: any)
+        /** The particle rendering layers ([member VisualInstance3D.layers]) that will be affected by the collision shape. By default, all particles that have [member ParticleProcessMaterial.collision_mode] set to [constant ParticleProcessMaterial.COLLISION_RIGID] or [constant ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] will be affected by a collision shape.  
+         *  After configuring particle nodes accordingly, specific layers can be unchecked to prevent certain particles from being affected by attractors. For example, this can be used if you're using an attractor as part of a spell effect but don't want the attractor to affect unrelated weather particles at the same position.  
+         *  Particle attraction can also be disabled on a per-process material basis by setting [member ParticleProcessMaterial.attractor_interaction_enabled] on the [GPUParticles3D] node.  
+         */
+        get cull_mask(): int64
+        set cull_mask(value: int64)
+    }
+    class GPUParticlesCollision3DGizmoPlugin extends EditorNode3DGizmoPlugin {
+        constructor(identifier?: any)
+    }
+    /** A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionbox3d.html  
+     */
+    class GPUParticlesCollisionBox3D extends GPUParticlesCollision3D {
+        constructor(identifier?: any)
+        /** The collision box's size in 3D units. */
+        get size(): Vector3
+        set size(value: Vector3)
+    }
+    namespace GPUParticlesCollisionHeightField3D {
+        enum Resolution {
+            /** Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no distant particles. */
+            RESOLUTION_256 = 0,
+            
+            /** Generate a 512×512 heightmap. Intended for medium-scale scenes, or larger scenes with no distant particles. */
+            RESOLUTION_512 = 1,
+            
+            /** Generate a 1024×1024 heightmap. Intended for large scenes with distant particles. */
+            RESOLUTION_1024 = 2,
+            
+            /** Generate a 2048×2048 heightmap. Intended for very large scenes with distant particles. */
+            RESOLUTION_2048 = 3,
+            
+            /** Generate a 4096×4096 heightmap. Intended for huge scenes with distant particles. */
+            RESOLUTION_4096 = 4,
+            
+            /** Generate a 8192×8192 heightmap. Intended for gigantic scenes with distant particles. */
+            RESOLUTION_8192 = 5,
+            
+            /** Represents the size of the [enum Resolution] enum. */
+            RESOLUTION_MAX = 6,
+        }
+        enum UpdateMode {
+            /** Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [member follow_camera_enabled] is `true`. An update can be forced by slightly moving the [GPUParticlesCollisionHeightField3D] in any direction, or by calling [method RenderingServer.particles_collision_height_field_update]. */
+            UPDATE_MODE_WHEN_MOVED = 0,
+            
+            /** Update the heightmap every frame. This has a significant performance cost. This update should only be used when geometry that particles can collide with changes significantly during gameplay. */
+            UPDATE_MODE_ALWAYS = 1,
+        }
+    }
+    /** A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionheightfield3d.html  
+     */
+    class GPUParticlesCollisionHeightField3D extends GPUParticlesCollision3D {
+        constructor(identifier?: any)
+        /** The collision heightmap's size in 3D units. To improve heightmap quality, [member size] should be set as small as possible while covering the parts of the scene you need. */
+        get size(): Vector3
+        set size(value: Vector3)
+        
+        /** Higher resolutions can represent small details more accurately in large scenes, at the cost of lower performance. If [member update_mode] is [constant UPDATE_MODE_ALWAYS], consider using the lowest resolution possible. */
+        get resolution(): int64
+        set resolution(value: int64)
+        
+        /** The update policy to use for the generated heightmap. */
+        get update_mode(): int64
+        set update_mode(value: int64)
+        
+        /** If `true`, the [GPUParticlesCollisionHeightField3D] will follow the current camera in global space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node for this to work.  
+         *  Following the camera has a performance cost, as it will force the heightmap to update whenever the camera moves. Consider lowering [member resolution] to improve performance if [member follow_camera_enabled] is `true`.  
+         */
+        get follow_camera_enabled(): boolean
+        set follow_camera_enabled(value: boolean)
+    }
+    namespace GPUParticlesCollisionSDF3D {
+        enum Resolution {
+            /** Bake a 16×16×16 signed distance field. This is the fastest option, but also the least precise. */
+            RESOLUTION_16 = 0,
+            
+            /** Bake a 32×32×32 signed distance field. */
+            RESOLUTION_32 = 1,
+            
+            /** Bake a 64×64×64 signed distance field. */
+            RESOLUTION_64 = 2,
+            
+            /** Bake a 128×128×128 signed distance field. */
+            RESOLUTION_128 = 3,
+            
+            /** Bake a 256×256×256 signed distance field. */
+            RESOLUTION_256 = 4,
+            
+            /** Bake a 512×512×512 signed distance field. This is the slowest option, but also the most precise. */
+            RESOLUTION_512 = 5,
+            
+            /** Represents the size of the [enum Resolution] enum. */
+            RESOLUTION_MAX = 6,
+        }
+    }
+    /** A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionsdf3d.html  
+     */
+    class GPUParticlesCollisionSDF3D extends GPUParticlesCollision3D {
+        constructor(identifier?: any)
+        /** Based on [param value], enables or disables the specified layer in the [member bake_mask], given a [param layer_number] between 1 and 32. */
+        set_bake_mask_value(layer_number: int64, value: boolean): void
+        
+        /** Returns whether or not the specified layer of the [member bake_mask] is enabled, given a [param layer_number] between 1 and 32. */
+        get_bake_mask_value(layer_number: int64): boolean
+        
+        /** The collision SDF's size in 3D units. To improve SDF quality, the [member size] should be set as small as possible while covering the parts of the scene you need. */
+        get size(): Vector3
+        set size(value: Vector3)
+        
+        /** The bake resolution to use for the signed distance field [member texture]. The texture must be baked again for changes to the [member resolution] property to be effective. Higher resolutions have a greater performance cost and take more time to bake. Higher resolutions also result in larger baked textures, leading to increased VRAM and storage space requirements. To improve performance and reduce bake times, use the lowest resolution possible for the object you're representing the collision of. */
+        get resolution(): int64
+        set resolution(value: int64)
+        
+        /** The collision shape's thickness. Unlike other particle colliders, [GPUParticlesCollisionSDF3D] is actually hollow on the inside. [member thickness] can be increased to prevent particles from tunneling through the collision shape at high speeds, or when the [GPUParticlesCollisionSDF3D] is moved. */
+        get thickness(): float64
+        set thickness(value: float64)
+        
+        /** The visual layers to account for when baking the particle collision SDF. Only [MeshInstance3D]s whose [member VisualInstance3D.layers] match with this [member bake_mask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking. */
+        get bake_mask(): int64
+        set bake_mask(value: int64)
+        
+        /** The 3D texture representing the signed distance field. */
+        get texture(): Texture3D
+        set texture(value: Texture3D)
+    }
+    class GPUParticlesCollisionSDF3DEditorPlugin extends EditorPlugin {
+        constructor(identifier?: any)
+    }
+    /** A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_gpuparticlescollisionsphere3d.html  
+     */
+    class GPUParticlesCollisionSphere3D extends GPUParticlesCollision3D {
+        constructor(identifier?: any)
+        /** The collision sphere's radius in 3D units. */
+        get radius(): float64
+        set radius(value: float64)
+    }
+    namespace Generic6DOFJoint3D {
+        enum Param {
+            /** The minimum difference between the pivot points' axes. */
+            PARAM_LINEAR_LOWER_LIMIT = 0,
+            
+            /** The maximum difference between the pivot points' axes. */
+            PARAM_LINEAR_UPPER_LIMIT = 1,
+            
+            /** A factor applied to the movement across the axes. The lower, the slower the movement. */
+            PARAM_LINEAR_LIMIT_SOFTNESS = 2,
+            
+            /** The amount of restitution on the axes' movement. The lower, the more momentum gets lost. */
+            PARAM_LINEAR_RESTITUTION = 3,
+            
+            /** The amount of damping that happens at the linear motion across the axes. */
+            PARAM_LINEAR_DAMPING = 4,
+            
+            /** The velocity the linear motor will try to reach. */
+            PARAM_LINEAR_MOTOR_TARGET_VELOCITY = 5,
+            
+            /** The maximum force the linear motor will apply while trying to reach the velocity target. */
+            PARAM_LINEAR_MOTOR_FORCE_LIMIT = 6,
+            PARAM_LINEAR_SPRING_STIFFNESS = 7,
+            PARAM_LINEAR_SPRING_DAMPING = 8,
+            PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT = 9,
+            
+            /** The minimum rotation in negative direction to break loose and rotate around the axes. */
+            PARAM_ANGULAR_LOWER_LIMIT = 10,
+            
+            /** The minimum rotation in positive direction to break loose and rotate around the axes. */
+            PARAM_ANGULAR_UPPER_LIMIT = 11,
+            
+            /** The speed of all rotations across the axes. */
+            PARAM_ANGULAR_LIMIT_SOFTNESS = 12,
+            
+            /** The amount of rotational damping across the axes. The lower, the more damping occurs. */
+            PARAM_ANGULAR_DAMPING = 13,
+            
+            /** The amount of rotational restitution across the axes. The lower, the more restitution occurs. */
+            PARAM_ANGULAR_RESTITUTION = 14,
+            
+            /** The maximum amount of force that can occur, when rotating around the axes. */
+            PARAM_ANGULAR_FORCE_LIMIT = 15,
+            
+            /** When rotating across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower. */
+            PARAM_ANGULAR_ERP = 16,
+            
+            /** Target speed for the motor at the axes. */
+            PARAM_ANGULAR_MOTOR_TARGET_VELOCITY = 17,
+            
+            /** Maximum acceleration for the motor at the axes. */
+            PARAM_ANGULAR_MOTOR_FORCE_LIMIT = 18,
+            PARAM_ANGULAR_SPRING_STIFFNESS = 19,
+            PARAM_ANGULAR_SPRING_DAMPING = 20,
+            PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT = 21,
+            
+            /** Represents the size of the [enum Param] enum. */
+            PARAM_MAX = 22,
+        }
+        enum Flag {
+            /** If enabled, linear motion is possible within the given limits. */
+            FLAG_ENABLE_LINEAR_LIMIT = 0,
+            
+            /** If enabled, rotational motion is possible within the given limits. */
+            FLAG_ENABLE_ANGULAR_LIMIT = 1,
+            FLAG_ENABLE_LINEAR_SPRING = 3,
+            FLAG_ENABLE_ANGULAR_SPRING = 2,
+            
+            /** If enabled, there is a rotational motor across these axes. */
+            FLAG_ENABLE_MOTOR = 4,
+            
+            /** If enabled, there is a linear motor across these axes. */
+            FLAG_ENABLE_LINEAR_MOTOR = 5,
+            
+            /** Represents the size of the [enum Flag] enum. */
+            FLAG_MAX = 6,
+        }
+    }
+    /** A physics joint that allows for complex movement and rotation between two 3D physics bodies.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_generic6dofjoint3d.html  
+     */
+    class Generic6DOFJoint3D extends Joint3D {
+        constructor(identifier?: any)
+        set_param_x(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_x(param: Generic6DOFJoint3D.Param): float64
+        set_param_y(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_y(param: Generic6DOFJoint3D.Param): float64
+        set_param_z(param: Generic6DOFJoint3D.Param, value: float64): void
+        get_param_z(param: Generic6DOFJoint3D.Param): float64
+        set_flag_x(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_x(flag: Generic6DOFJoint3D.Flag): boolean
+        set_flag_y(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_y(flag: Generic6DOFJoint3D.Flag): boolean
+        set_flag_z(flag: Generic6DOFJoint3D.Flag, value: boolean): void
+        get_flag_z(flag: Generic6DOFJoint3D.Flag): boolean
+    }
+    namespace GeometryInstance3D {
+        enum ShadowCastingSetting {
+            /** Will not cast any shadows. Use this to improve performance for small geometry that is unlikely to cast noticeable shadows (such as debris). */
+            SHADOW_CASTING_SETTING_OFF = 0,
+            
+            /** Will cast shadows from all visible faces in the GeometryInstance3D.  
+             *  Will take culling into account, so faces not being rendered will not be taken into account when shadow casting.  
+             */
+            SHADOW_CASTING_SETTING_ON = 1,
+            
+            /** Will cast shadows from all visible faces in the GeometryInstance3D.  
+             *  Will not take culling into account, so all faces will be taken into account when shadow casting.  
+             */
+            SHADOW_CASTING_SETTING_DOUBLE_SIDED = 2,
+            
+            /** Will only show the shadows casted from this object.  
+             *  In other words, the actual mesh will not be visible, only the shadows casted from the mesh will be.  
+             */
+            SHADOW_CASTING_SETTING_SHADOWS_ONLY = 3,
+        }
+        enum GIMode {
+            /** Disabled global illumination mode. Use for dynamic objects that do not contribute to global illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will  *receive*  indirect lighting and reflections but the geometry will not be considered in GI baking. */
+            GI_MODE_DISABLED = 0,
+            
+            /** Baked global illumination mode. Use for static objects that contribute to global illumination (such as level geometry). This GI mode is effective when using [VoxelGI], SDFGI and [LightmapGI]. */
+            GI_MODE_STATIC = 1,
+            
+            /** Dynamic global illumination mode. Use for dynamic objects that contribute to global illumination. This GI mode is only effective when using [VoxelGI], but it has a higher performance impact than [constant GI_MODE_STATIC]. When using other GI methods, this will act the same as [constant GI_MODE_DISABLED]. When using [LightmapGI], the object will receive indirect lighting using lightmap probes instead of using the baked lightmap texture. */
+            GI_MODE_DYNAMIC = 2,
+        }
+        enum LightmapScale {
+            /** The standard texel density for lightmapping with [LightmapGI]. */
+            LIGHTMAP_SCALE_1X = 0,
+            
+            /** Multiplies texel density by 2× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 1.5 and 3.0. */
+            LIGHTMAP_SCALE_2X = 1,
+            
+            /** Multiplies texel density by 4× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor between 3.0 and 6.0. */
+            LIGHTMAP_SCALE_4X = 2,
+            
+            /** Multiplies texel density by 8× for lightmapping with [LightmapGI]. To ensure consistency in texel density, use this when scaling a mesh by a factor greater than 6.0. */
+            LIGHTMAP_SCALE_8X = 3,
+            
+            /** Represents the size of the [enum LightmapScale] enum. */
+            LIGHTMAP_SCALE_MAX = 4,
+        }
+        enum VisibilityRangeFadeMode {
+            /** Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This is the fastest approach to manual LOD, but it can result in noticeable LOD transitions depending on how the LOD meshes are authored. See [member visibility_range_begin] and [member Node3D.visibility_parent] for more information. */
+            VISIBILITY_RANGE_FADE_DISABLED = 0,
+            
+            /** Will fade-out itself when reaching the limits of its own visibility range. This is slower than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [member visibility_range_begin_margin] and [member visibility_range_end_margin].  
+             *      
+             *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, this mode acts like [constant VISIBILITY_RANGE_FADE_DISABLED] but with hysteresis disabled.  
+             */
+            VISIBILITY_RANGE_FADE_SELF = 1,
+            
+            /** Will fade-in its visibility dependencies (see [member Node3D.visibility_parent]) when reaching the limits of its own visibility range. This is slower than [constant VISIBILITY_RANGE_FADE_DISABLED], but it can provide smoother transitions. The fading range is determined by [member visibility_range_begin_margin] and [member visibility_range_end_margin].  
+             *      
+             *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, this mode acts like [constant VISIBILITY_RANGE_FADE_DISABLED] but with hysteresis disabled.  
+             */
+            VISIBILITY_RANGE_FADE_DEPENDENCIES = 2,
+        }
+    }
+    /** Base node for geometry-based visual instances.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_geometryinstance3d.html  
+     */
+    class GeometryInstance3D extends VisualInstance3D {
+        constructor(identifier?: any)
+        /** Set the value of a shader uniform for this instance only ([url=https://docs.godotengine.org/en/4.3/tutorials/shaders/shader_reference/shading_language.html#per-instance-uniforms]per-instance uniform[/url]). See also [method ShaderMaterial.set_shader_parameter] to assign a uniform on all instances using the same [ShaderMaterial].  
+         *      
+         *  **Note:** For a shader uniform to be assignable on a per-instance basis, it  *must*  be defined with `instance uniform ...` rather than `uniform ...` in the shader code.  
+         *      
+         *  **Note:** [param name] is case-sensitive and must match the name of the uniform in the code exactly (not the capitalized name in the inspector).  
+         *      
+         *  **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D equivalent of this method.  
+         */
+        set_instance_shader_parameter(name: StringName, value: any): void
+        
+        /** Get the value of a shader parameter as set on this instance. */
+        get_instance_shader_parameter(name: StringName): any
+        
+        /** The material override for the whole geometry.  
+         *  If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.  
+         */
+        get material_override(): BaseMaterial3D | ShaderMaterial
+        set material_override(value: BaseMaterial3D | ShaderMaterial)
+        
+        /** The material overlay for the whole geometry.  
+         *  If a material is assigned to this property, it will be rendered on top of any other active material for all the surfaces.  
+         */
+        get material_overlay(): BaseMaterial3D | ShaderMaterial
+        set material_overlay(value: BaseMaterial3D | ShaderMaterial)
+        
+        /** The transparency applied to the whole geometry (as a multiplier of the materials' existing transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [member transparency] to a value greater than `0.0` (exclusive) will  *not*  disable shadow rendering.  
+         *  In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.  
+         *      
+         *  **Note:** [member transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.  
+         *      
+         *  **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or Compatibility rendering method, [member transparency] is ignored and is considered as always being `0.0`.  
+         */
+        get transparency(): float64
+        set transparency(value: float64)
+        
+        /** The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values. */
+        get cast_shadow(): int64
+        set cast_shadow(value: int64)
+        
+        /** The extra distance added to the GeometryInstance3D's bounding box ([AABB]) to increase its cull box. */
+        get extra_cull_margin(): float64
+        set extra_cull_margin(value: float64)
+        
+        /** Overrides the bounding box of this node with a custom one. This can be used to avoid the expensive [AABB] recalculation that happens when a skeleton is used with a [MeshInstance3D] or to have precise control over the [MeshInstance3D]'s bounding box. To use the default AABB, set value to an [AABB] with all fields set to `0.0`. To avoid frustum culling, set [member custom_aabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`. To disable all forms of culling (including occlusion culling), call [method RenderingServer.instance_set_ignore_culling] on the [GeometryInstance3D]'s [RID]. */
+        get custom_aabb(): AABB
+        set custom_aabb(value: AABB)
+        
+        /** Changes how quickly the mesh transitions to a lower level of detail. A value of 0 will force the mesh to its lowest level of detail, a value of 1 will use the default settings, and larger values will keep the mesh in a higher level of detail at farther distances.  
+         *  Useful for testing level of detail transitions in the editor.  
+         */
+        get lod_bias(): float64
+        set lod_bias(value: float64)
+        
+        /** If `true`, disables occlusion culling for this instance. Useful for gizmos that must be rendered even when occlusion culling is in use.  
+         *      
+         *  **Note:** [member ignore_occlusion_culling] does not affect frustum culling (which is what happens when an object is not visible given the camera's angle). To avoid frustum culling, set [member custom_aabb] to a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000, 20000, 20000)`.  
+         */
+        get ignore_occlusion_culling(): boolean
+        set ignore_occlusion_culling(value: boolean)
+        
+        /** The global illumination mode to use for the whole geometry. To avoid inconsistent results, use a mode that matches the purpose of the mesh during gameplay (static/dynamic).  
+         *      
+         *  **Note:** Lights' bake mode will also affect the global illumination rendering. See [member Light3D.light_bake_mode].  
+         */
+        get gi_mode(): int64
+        set gi_mode(value: int64)
+        
+        /** The texel density to use for lightmapping in [LightmapGI]. Greater scale values provide higher resolution in the lightmap, which can result in sharper shadows for lights that have both direct and indirect light baked. However, greater scale values will also increase the space taken by the mesh in the lightmap texture, which increases the memory, storage, and bake time requirements. When using a single mesh at different scales, consider adjusting this value to keep the lightmap texel density consistent across meshes. */
+        get gi_lightmap_scale(): int64
+        set gi_lightmap_scale(value: int64)
+        
+        /** Starting distance from which the GeometryInstance3D will be visible, taking [member visibility_range_begin_margin] into account as well. The default value of 0 is used to disable the range check. */
+        get visibility_range_begin(): float64
+        set visibility_range_begin(value: float64)
+        
+        /** Margin for the [member visibility_range_begin] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [member visibility_range_begin] threshold by this amount.  
+         *  If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_SELF] or [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.  
+         */
+        get visibility_range_begin_margin(): float64
+        set visibility_range_begin_margin(value: float64)
+        
+        /** Distance from which the GeometryInstance3D will be hidden, taking [member visibility_range_end_margin] into account as well. The default value of 0 is used to disable the range check. */
+        get visibility_range_end(): float64
+        set visibility_range_end(value: float64)
+        
+        /** Margin for the [member visibility_range_end] threshold. The GeometryInstance3D will only change its visibility state when it goes over or under the [member visibility_range_end] threshold by this amount.  
+         *  If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_DISABLED], this acts as a hysteresis distance. If [member visibility_range_fade_mode] is [constant VISIBILITY_RANGE_FADE_SELF] or [constant VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a value greater than `0.0` for the effect to be noticeable.  
+         */
+        get visibility_range_end_margin(): float64
+        set visibility_range_end_margin(value: float64)
+        
+        /** Controls which instances will be faded when approaching the limits of the visibility range. See [enum VisibilityRangeFadeMode] for possible values. */
+        get visibility_range_fade_mode(): int64
+        set visibility_range_fade_mode(value: int64)
+    }
     class GeometryInstance3DGizmoPlugin extends EditorNode3DGizmoPlugin {
         constructor(identifier?: any)
     }
@@ -9,6 +1133,16 @@ declare module "godot" {
     }
     class GodotJSDockedPanel extends MarginContainer {
         constructor(identifier?: any)
+    }
+    class GodotJSMonitor extends Object {
+        constructor(identifier?: any)
+        get_value_objects(): any
+        get_value_native_classes(): any
+        get_value_script_classes(): any
+        get_value_cached_string_names(): any
+        get_value_persistent_objects(): any
+        get_value_allocated_variants(): any
+        get_value_heap_size(): any
     }
     class GodotJSStatisticsViewer extends VBoxContainer {
         constructor(identifier?: any)
@@ -8766,503 +9900,5 @@ declare module "godot" {
         
         /** Emitted when the node's editor description field changed. */
         readonly editor_description_changed: Signal1<Node>
-    }
-    /** A 2D game object, inherited by all 2D-related nodes. Has a position, rotation, scale, and Z index.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_node2d.html  
-     */
-    class Node2D extends CanvasItem {
-        constructor(identifier?: any)
-        /** Applies a rotation to the node, in radians, starting from its current rotation. */
-        rotate(radians: float64): void
-        
-        /** Applies a local translation on the node's X axis based on the [method Node._process]'s [param delta]. If [param scaled] is `false`, normalizes the movement. */
-        move_local_x(delta: float64, scaled: boolean = false): void
-        
-        /** Applies a local translation on the node's Y axis based on the [method Node._process]'s [param delta]. If [param scaled] is `false`, normalizes the movement. */
-        move_local_y(delta: float64, scaled: boolean = false): void
-        
-        /** Translates the node by the given [param offset] in local coordinates. */
-        translate(offset: Vector2): void
-        
-        /** Adds the [param offset] vector to the node's global position. */
-        global_translate(offset: Vector2): void
-        
-        /** Multiplies the current scale by the [param ratio] vector. */
-        apply_scale(ratio: Vector2): void
-        
-        /** Rotates the node so that its local +X axis points towards the [param point], which is expected to use global coordinates.  
-         *  [param point] should not be the same as the node's position, otherwise the node always looks to the right.  
-         */
-        look_at(point: Vector2): void
-        
-        /** Returns the angle between the node and the [param point] in radians.  
-         *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/node2d_get_angle_to.png]Illustration of the returned angle.[/url]  
-         */
-        get_angle_to(point: Vector2): float64
-        
-        /** Transforms the provided global position into a position in local coordinate space. The output will be local relative to the [Node2D] it is called on. e.g. It is appropriate for determining the positions of child nodes, but it is not appropriate for determining its own position relative to its parent. */
-        to_local(global_point: Vector2): Vector2
-        
-        /** Transforms the provided local position into a position in global coordinate space. The input is expected to be local relative to the [Node2D] it is called on. e.g. Applying this method to the positions of child nodes will correctly transform their positions into the global coordinate space, but applying it to a node's own position will give an incorrect result, as it will incorporate the node's own transformation into its global position. */
-        to_global(local_point: Vector2): Vector2
-        
-        /** Returns the [Transform2D] relative to this node's parent. */
-        get_relative_transform_to_parent(parent: Node): Transform2D
-        
-        /** Position, relative to the node's parent. */
-        get position(): Vector2
-        set position(value: Vector2)
-        
-        /** Rotation in radians, relative to the node's parent.  
-         *      
-         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
-         */
-        get rotation(): float64
-        set rotation(value: float64)
-        
-        /** Helper property to access [member rotation] in degrees instead of radians. */
-        get rotation_degrees(): float64
-        set rotation_degrees(value: float64)
-        
-        /** The node's scale. Unscaled value: `(1, 1)`.  
-         *      
-         *  **Note:** Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.  
-         */
-        get scale(): Vector2
-        set scale(value: Vector2)
-        
-        /** Slants the node.  
-         *      
-         *  **Note:** Skew is X axis only.  
-         */
-        get skew(): float64
-        set skew(value: float64)
-        
-        /** Local [Transform2D]. */
-        get transform(): Transform2D
-        set transform(value: Transform2D)
-        
-        /** Global position. */
-        get global_position(): Vector2
-        set global_position(value: Vector2)
-        
-        /** Global rotation in radians. */
-        get global_rotation(): float64
-        set global_rotation(value: float64)
-        
-        /** Helper property to access [member global_rotation] in degrees instead of radians. */
-        get global_rotation_degrees(): float64
-        set global_rotation_degrees(value: float64)
-        
-        /** Global scale. */
-        get global_scale(): Vector2
-        set global_scale(value: Vector2)
-        
-        /** Global skew in radians. */
-        get global_skew(): float64
-        set global_skew(value: float64)
-        
-        /** Global [Transform2D]. */
-        get global_transform(): Transform2D
-        set global_transform(value: Transform2D)
-    }
-    namespace Node3D {
-        enum RotationEditMode {
-            /** The rotation is edited using [Vector3] Euler angles. */
-            ROTATION_EDIT_MODE_EULER = 0,
-            
-            /** The rotation is edited using a [Quaternion]. */
-            ROTATION_EDIT_MODE_QUATERNION = 1,
-            
-            /** The rotation is edited using a [Basis]. In this mode, [member scale] can't be edited separately. */
-            ROTATION_EDIT_MODE_BASIS = 2,
-        }
-    }
-    /** Most basic 3D game object, parent of all 3D-related nodes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_node3d.html  
-     */
-    class Node3D extends Node {
-        /** [Node3D] nodes receive this notification when their global transform changes. This means that either the current or a parent node changed its transform.  
-         *  In order for [constant NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [method set_notify_transform]. The notification is also sent if the node is in the editor context and it has at least one valid gizmo.  
-         */
-        static readonly NOTIFICATION_TRANSFORM_CHANGED = 2000
-        
-        /** [Node3D] nodes receive this notification when they are registered to new [World3D] resource. */
-        static readonly NOTIFICATION_ENTER_WORLD = 41
-        
-        /** [Node3D] nodes receive this notification when they are unregistered from current [World3D] resource. */
-        static readonly NOTIFICATION_EXIT_WORLD = 42
-        
-        /** [Node3D] nodes receive this notification when their visibility changes. */
-        static readonly NOTIFICATION_VISIBILITY_CHANGED = 43
-        
-        /** [Node3D] nodes receive this notification when their local transform changes. This is not received when the transform of a parent node is changed.  
-         *  In order for [constant NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it, with [method set_notify_local_transform].  
-         */
-        static readonly NOTIFICATION_LOCAL_TRANSFORM_CHANGED = 44
-        constructor(identifier?: any)
-        
-        /** Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D], or [member top_level] is `true`.  
-         *      
-         *  **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not take [member top_level] into account.  
-         */
-        get_parent_node_3d(): Node3D
-        
-        /** Sets whether the node ignores notification that its transformation (global or local) changed. */
-        set_ignore_transform_notification(enabled: boolean): void
-        
-        /** Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to the local transformation scale are preserved. */
-        set_disable_scale(disable: boolean): void
-        
-        /** Returns whether this node uses a scale of `(1, 1, 1)` or its local transformation scale. */
-        is_scale_disabled(): boolean
-        
-        /** Returns the current [World3D] resource this [Node3D] node is registered to. */
-        get_world_3d(): World3D
-        
-        /** Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations. */
-        force_update_transform(): void
-        
-        /** Updates all the [Node3D] gizmos attached to this node. */
-        update_gizmos(): void
-        
-        /** Attach an editor gizmo to this [Node3D].  
-         *      
-         *  **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].  
-         */
-        add_gizmo(gizmo: Node3DGizmo): void
-        
-        /** Returns all the gizmos attached to this [Node3D]. */
-        get_gizmos(): GArray
-        
-        /** Clear all gizmos attached to this [Node3D]. */
-        clear_gizmos(): void
-        
-        /** Set subgizmo selection for this node in the editor.  
-         *      
-         *  **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].  
-         */
-        set_subgizmo_selection(gizmo: Node3DGizmo, id: int64, transform: Transform3D): void
-        
-        /** Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid after a property change. */
-        clear_subgizmo_selection(): void
-        
-        /** Returns `true` if the node is present in the [SceneTree], its [member visible] property is `true` and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree. */
-        is_visible_in_tree(): boolean
-        
-        /** Enables rendering of this node. Changes [member visible] to `true`. */
-        show(): void
-        
-        /** Disables rendering of this node. Changes [member visible] to `false`. */
-        hide(): void
-        
-        /** Sets whether the node notifies about its local transformation changes. [Node3D] will not propagate this by default. */
-        set_notify_local_transform(enable: boolean): void
-        
-        /** Returns whether node notifies about its local transformation changes. [Node3D] will not propagate this by default. */
-        is_local_transform_notification_enabled(): boolean
-        
-        /** Sets whether the node notifies about its global and local transformation changes. [Node3D] will not propagate this by default, unless it is in the editor context and it has a valid gizmo. */
-        set_notify_transform(enable: boolean): void
-        
-        /** Returns whether the node notifies about its global and local transformation changes. [Node3D] will not propagate this by default. */
-        is_transform_notification_enabled(): boolean
-        
-        /** Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. */
-        rotate(axis: Vector3, angle: float64): void
-        
-        /** Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in global coordinate system. */
-        global_rotate(axis: Vector3, angle: float64): void
-        
-        /** Scales the global (world) transformation by the given [Vector3] scale factors. */
-        global_scale(scale: Vector3): void
-        
-        /** Moves the global (world) transformation by [Vector3] offset. The offset is in global coordinate system. */
-        global_translate(offset: Vector3): void
-        
-        /** Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system. */
-        rotate_object_local(axis: Vector3, angle: float64): void
-        
-        /** Scales the local transformation by given 3D scale factors in object-local coordinate system. */
-        scale_object_local(scale: Vector3): void
-        
-        /** Changes the node's position by the given offset [Vector3] in local space. */
-        translate_object_local(offset: Vector3): void
-        
-        /** Rotates the local transformation around the X axis by angle in radians. */
-        rotate_x(angle: float64): void
-        
-        /** Rotates the local transformation around the Y axis by angle in radians. */
-        rotate_y(angle: float64): void
-        
-        /** Rotates the local transformation around the Z axis by angle in radians. */
-        rotate_z(angle: float64): void
-        
-        /** Changes the node's position by the given offset [Vector3].  
-         *  Note that the translation [param offset] is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.  
-         */
-        translate(offset: Vector3): void
-        
-        /** Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation by performing Gram-Schmidt orthonormalization on this node's [Transform3D]. */
-        orthonormalize(): void
-        
-        /** Reset all transformations for this node (sets its [Transform3D] to the identity matrix). */
-        set_identity(): void
-        
-        /** Rotates the node so that the local forward axis (-Z, [constant Vector3.FORWARD]) points toward the [param target] position.  
-         *  The local up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.  
-         *  The [param target] position cannot be the same as the node's position, the [param up] vector cannot be zero, and the direction from the node's position to the [param target] vector cannot be parallel to the [param up] vector.  
-         *  Operations take place in global space, which means that the node must be in the scene tree.  
-         *  If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).  
-         */
-        look_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): void
-        
-        /** Moves the node to the specified [param position], and then rotates the node to point toward the [param target] as per [method look_at]. Operations take place in global space. */
-        look_at_from_position(position: Vector3, target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): void
-        
-        /** Transforms [param global_point] from world space to this node's local space. */
-        to_local(global_point: Vector3): Vector3
-        
-        /** Transforms [param local_point] from this node's local space to world space. */
-        to_global(local_point: Vector3): Vector3
-        
-        /** Local space [Transform3D] of this node, with respect to the parent node. */
-        get transform(): Transform3D
-        set transform(value: Transform3D)
-        
-        /** World3D space (global) [Transform3D] of this node. */
-        get global_transform(): Transform3D
-        set global_transform(value: Transform3D)
-        
-        /** Local position or translation of this node relative to the parent. This is equivalent to `transform.origin`. */
-        get position(): Vector3
-        set position(value: Vector3)
-        
-        /** Rotation part of the local transformation in radians, specified in terms of Euler angles. The angles construct a rotation in the order specified by the [member rotation_order] property.  
-         *      
-         *  **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.  
-         *      
-         *  **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a script, use [member rotation_degrees].  
-         */
-        get rotation(): Vector3
-        set rotation(value: Vector3)
-        
-        /** Helper property to access [member rotation] in degrees instead of radians. */
-        get rotation_degrees(): Vector3
-        set rotation_degrees(value: Vector3)
-        
-        /** Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex rotations. */
-        get quaternion(): Quaternion
-        set quaternion(value: Quaternion)
-        
-        /** Basis of the [member transform] property. Represents the rotation, scale, and shear of this node. */
-        get basis(): Basis
-        set basis(value: Basis)
-        
-        /** Scale part of the local transformation.  
-         *      
-         *  **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.  
-         *      
-         *  **Note:** Not all nodes are visually scaled by the [member scale] property. For example, [Light3D]s are not visually affected by [member scale].  
-         */
-        get scale(): Vector3
-        set scale(value: Vector3)
-        
-        /** Specify how rotation (and scale) will be presented in the editor. */
-        get rotation_edit_mode(): int64
-        set rotation_edit_mode(value: int64)
-        
-        /** Specify the axis rotation order of the [member rotation] property. The final orientation is constructed by rotating the Euler angles in the order specified by this property. */
-        get rotation_order(): int64
-        set rotation_order(value: int64)
-        
-        /** If `true`, the node will not inherit its transformations from its parent. Node transformations are only in global space. */
-        get top_level(): boolean
-        set top_level(value: boolean)
-        
-        /** Global position of this node. This is equivalent to `global_transform.origin`. */
-        get global_position(): Vector3
-        set global_position(value: Vector3)
-        
-        /** Global basis of this node. This is equivalent to `global_transform.basis`. */
-        get global_basis(): Basis
-        set global_basis(value: Basis)
-        
-        /** Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).  
-         *      
-         *  **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.  
-         */
-        get global_rotation(): Vector3
-        set global_rotation(value: Vector3)
-        
-        /** Helper property to access [member global_rotation] in degrees instead of radians. */
-        get global_rotation_degrees(): Vector3
-        set global_rotation_degrees(value: Vector3)
-        
-        /** If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [method is_visible_in_tree] must return `true`). */
-        get visible(): boolean
-        set visible(value: boolean)
-        
-        /** Defines the visibility range parent for this node and its subtree. The visibility parent must be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and all of its visibility ancestors) is hidden by being closer to the camera than its own [member GeometryInstance3D.visibility_range_begin]. Nodes hidden via the [member Node3D.visible] property are essentially removed from the visibility dependency tree, so dependent instances will not take the hidden node or its ancestors into account. */
-        get visibility_parent(): NodePath
-        set visibility_parent(value: NodePath | string)
-        
-        /** Emitted when node visibility changes. */
-        readonly visibility_changed: Signal0
-    }
-    class Node3DEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        _get_editor_data(_unnamed_arg0: Object): Object
-        _request_gizmo(_unnamed_arg0: Object): void
-        _request_gizmo_for_id(_unnamed_arg0: int64): void
-        _set_subgizmo_selection(_unnamed_arg0: Object, _unnamed_arg1: Node3DGizmo, _unnamed_arg2: int64, _unnamed_arg3: Transform3D): void
-        _clear_subgizmo_selection(_unnamed_arg0: Object): void
-        _refresh_menu_icons(): void
-        update_all_gizmos(_unnamed_arg0: Node): void
-        update_transform_gizmo(): void
-        readonly transform_key_request: Signal0
-        readonly item_lock_status_changed: Signal0
-        readonly item_group_status_changed: Signal0
-    }
-    class Node3DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    class Node3DEditorViewport extends Control {
-        constructor(identifier?: any)
-        readonly toggle_maximize_view: Signal1<Object>
-        readonly clicked: Signal1<Object>
-    }
-    class Node3DEditorViewportContainer extends Container {
-        constructor(identifier?: any)
-    }
-    /** Abstract class to expose editor gizmos for [Node3D].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_node3dgizmo.html  
-     */
-    class Node3DGizmo extends RefCounted {
-        constructor(identifier?: any)
-    }
-    class NodeDock extends VBoxContainer {
-        constructor(identifier?: any)
-    }
-    /** Abstract base class for noise generators.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_noise.html  
-     */
-    class Noise extends Resource {
-        constructor(identifier?: any)
-        /** Returns the 1D noise value at the given (x) coordinate. */
-        get_noise_1d(x: float64): float64
-        
-        /** Returns the 2D noise value at the given position. */
-        get_noise_2d(x: float64, y: float64): float64
-        
-        /** Returns the 2D noise value at the given position. */
-        get_noise_2dv(v: Vector2): float64
-        
-        /** Returns the 3D noise value at the given position. */
-        get_noise_3d(x: float64, y: float64, z: float64): float64
-        
-        /** Returns the 3D noise value at the given position. */
-        get_noise_3dv(v: Vector3): float64
-        
-        /** Returns an [Image] containing 2D noise values.  
-         *      
-         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
-         */
-        get_image(width: int64, height: int64, invert: boolean = false, in_3d_space: boolean = false, normalize: boolean = true): Image
-        
-        /** Returns an [Image] containing seamless 2D noise values.  
-         *      
-         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
-         */
-        get_seamless_image(width: int64, height: int64, invert: boolean = false, in_3d_space: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): Image
-        
-        /** Returns an [Array] of [Image]s containing 3D noise values for use with [method ImageTexture3D.create].  
-         *      
-         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
-         */
-        get_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, normalize: boolean = true): GArray
-        
-        /** Returns an [Array] of [Image]s containing seamless 3D noise values for use with [method ImageTexture3D.create].  
-         *      
-         *  **Note:** With [param normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.  
-         */
-        get_seamless_image_3d(width: int64, height: int64, depth: int64, invert: boolean = false, skirt: float64 = 0.1, normalize: boolean = true): GArray
-    }
-    class NoiseEditorInspectorPlugin extends EditorInspectorPlugin {
-        constructor(identifier?: any)
-    }
-    class NoiseEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A 2D texture filled with noise generated by a [Noise] object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_noisetexture2d.html  
-     */
-    class NoiseTexture2D extends Texture2D {
-        constructor(identifier?: any)
-        /** Width of the generated texture (in pixels). */
-        get width(): int64
-        set width(value: int64)
-        
-        /** Height of the generated texture (in pixels). */
-        get height(): int64
-        set height(value: int64)
-        
-        /** If `true`, inverts the noise texture. White becomes black, black becomes white. */
-        get invert(): boolean
-        set invert(value: boolean)
-        
-        /** Determines whether the noise image is calculated in 3D space. May result in reduced contrast. */
-        get in_3d_space(): boolean
-        set in_3d_space(value: boolean)
-        
-        /** Determines whether mipmaps are generated for this texture. Enabling this results in less texture aliasing in the distance, at the cost of increasing memory usage by roughly 33% and making the noise texture generation take longer.  
-         *      
-         *  **Note:** [member generate_mipmaps] requires mipmap filtering to be enabled on the material using the [NoiseTexture2D] to have an effect.  
-         */
-        get generate_mipmaps(): boolean
-        set generate_mipmaps(value: boolean)
-        
-        /** If `true`, a seamless texture is requested from the [Noise] resource.  
-         *      
-         *  **Note:** Seamless noise textures may take longer to generate and/or can have a lower contrast compared to non-seamless noise depending on the used [Noise] resource. This is because some implementations use higher dimensions for generating seamless noise.  
-         *      
-         *  **Note:** The default [FastNoiseLite] implementation uses the fallback path for seamless generation. If using a [member width] or [member height] lower than the default, you may need to increase [member seamless_blend_skirt] to make seamless blending more effective.  
-         */
-        get seamless(): boolean
-        set seamless(value: boolean)
-        
-        /** Used for the default/fallback implementation of the seamless texture generation. It determines the distance over which the seams are blended. High values may result in less details and contrast. See [Noise] for further details.  
-         *      
-         *  **Note:** If using a [member width] or [member height] lower than the default, you may need to increase [member seamless_blend_skirt] to make seamless blending more effective.  
-         */
-        get seamless_blend_skirt(): float64
-        set seamless_blend_skirt(value: float64)
-        
-        /** If `true`, the resulting texture contains a normal map created from the original noise interpreted as a bump map. */
-        get as_normal_map(): boolean
-        set as_normal_map(value: boolean)
-        
-        /** Strength of the bump maps used in this texture. A higher value will make the bump maps appear larger while a lower value will make them appear softer. */
-        get bump_strength(): float64
-        set bump_strength(value: float64)
-        
-        /** If `true`, the noise image coming from the noise generator is normalized to the range `0.0` to `1.0`.  
-         *  Turning normalization off can affect the contrast and allows you to generate non repeating tileable noise textures.  
-         */
-        get normalize(): boolean
-        set normalize(value: boolean)
-        
-        /** A [Gradient] which is used to map the luminance of each pixel to a color value. */
-        get color_ramp(): Gradient
-        set color_ramp(value: Gradient)
-        
-        /** The instance of the [Noise] object. */
-        get noise(): Noise
-        set noise(value: Noise)
     }
 }

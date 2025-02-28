@@ -1,6 +1,717 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    namespace XRHandModifier3D {
+        enum BoneUpdate {
+            /** The skeleton's bones are fully updated (both position and rotation) to match the tracked bones. */
+            BONE_UPDATE_FULL = 0,
+            
+            /** The skeleton's bones are only rotated to align with the tracked bones, preserving bone length. */
+            BONE_UPDATE_ROTATION_ONLY = 1,
+            
+            /** Represents the size of the [enum BoneUpdate] enum. */
+            BONE_UPDATE_MAX = 2,
+        }
+    }
+    /** A node for driving hand meshes from [XRHandTracker] data.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrhandmodifier3d.html  
+     */
+    class XRHandModifier3D extends SkeletonModifier3D {
+        constructor(identifier?: any)
+        /** The name of the [XRHandTracker] registered with [XRServer] to obtain the hand tracking data from. */
+        get hand_tracker(): string
+        set hand_tracker(value: string)
+        
+        /** Specifies the type of updates to perform on the bones. */
+        get bone_update(): int64
+        set bone_update(value: int64)
+    }
+    namespace XRHandTracker {
+        enum HandTrackingSource {
+            /** The source of hand tracking data is unknown. */
+            HAND_TRACKING_SOURCE_UNKNOWN = 0,
+            
+            /** The source of hand tracking data is unobstructed, meaning that an accurate method of hand tracking is used. These include optical hand tracking, data gloves, etc. */
+            HAND_TRACKING_SOURCE_UNOBSTRUCTED = 1,
+            
+            /** The source of hand tracking data is a controller, meaning that joint positions are inferred from controller inputs. */
+            HAND_TRACKING_SOURCE_CONTROLLER = 2,
+            
+            /** Represents the size of the [enum HandTrackingSource] enum. */
+            HAND_TRACKING_SOURCE_MAX = 3,
+        }
+        enum HandJoint {
+            /** Palm joint. */
+            HAND_JOINT_PALM = 0,
+            
+            /** Wrist joint. */
+            HAND_JOINT_WRIST = 1,
+            
+            /** Thumb metacarpal joint. */
+            HAND_JOINT_THUMB_METACARPAL = 2,
+            
+            /** Thumb phalanx proximal joint. */
+            HAND_JOINT_THUMB_PHALANX_PROXIMAL = 3,
+            
+            /** Thumb phalanx distal joint. */
+            HAND_JOINT_THUMB_PHALANX_DISTAL = 4,
+            
+            /** Thumb tip joint. */
+            HAND_JOINT_THUMB_TIP = 5,
+            
+            /** Index finger metacarpal joint. */
+            HAND_JOINT_INDEX_FINGER_METACARPAL = 6,
+            
+            /** Index finger phalanx proximal joint. */
+            HAND_JOINT_INDEX_FINGER_PHALANX_PROXIMAL = 7,
+            
+            /** Index finger phalanx intermediate joint. */
+            HAND_JOINT_INDEX_FINGER_PHALANX_INTERMEDIATE = 8,
+            
+            /** Index finger phalanx distal joint. */
+            HAND_JOINT_INDEX_FINGER_PHALANX_DISTAL = 9,
+            
+            /** Index finger tip joint. */
+            HAND_JOINT_INDEX_FINGER_TIP = 10,
+            
+            /** Middle finger metacarpal joint. */
+            HAND_JOINT_MIDDLE_FINGER_METACARPAL = 11,
+            
+            /** Middle finger phalanx proximal joint. */
+            HAND_JOINT_MIDDLE_FINGER_PHALANX_PROXIMAL = 12,
+            
+            /** Middle finger phalanx intermediate joint. */
+            HAND_JOINT_MIDDLE_FINGER_PHALANX_INTERMEDIATE = 13,
+            
+            /** Middle finger phalanx distal joint. */
+            HAND_JOINT_MIDDLE_FINGER_PHALANX_DISTAL = 14,
+            
+            /** Middle finger tip joint. */
+            HAND_JOINT_MIDDLE_FINGER_TIP = 15,
+            
+            /** Ring finger metacarpal joint. */
+            HAND_JOINT_RING_FINGER_METACARPAL = 16,
+            
+            /** Ring finger phalanx proximal joint. */
+            HAND_JOINT_RING_FINGER_PHALANX_PROXIMAL = 17,
+            
+            /** Ring finger phalanx intermediate joint. */
+            HAND_JOINT_RING_FINGER_PHALANX_INTERMEDIATE = 18,
+            
+            /** Ring finger phalanx distal joint. */
+            HAND_JOINT_RING_FINGER_PHALANX_DISTAL = 19,
+            
+            /** Ring finger tip joint. */
+            HAND_JOINT_RING_FINGER_TIP = 20,
+            
+            /** Pinky finger metacarpal joint. */
+            HAND_JOINT_PINKY_FINGER_METACARPAL = 21,
+            
+            /** Pinky finger phalanx proximal joint. */
+            HAND_JOINT_PINKY_FINGER_PHALANX_PROXIMAL = 22,
+            
+            /** Pinky finger phalanx intermediate joint. */
+            HAND_JOINT_PINKY_FINGER_PHALANX_INTERMEDIATE = 23,
+            
+            /** Pinky finger phalanx distal joint. */
+            HAND_JOINT_PINKY_FINGER_PHALANX_DISTAL = 24,
+            
+            /** Pinky finger tip joint. */
+            HAND_JOINT_PINKY_FINGER_TIP = 25,
+            
+            /** Represents the size of the [enum HandJoint] enum. */
+            HAND_JOINT_MAX = 26,
+        }
+        enum HandJointFlags {
+            /** The hand joint's orientation data is valid. */
+            HAND_JOINT_FLAG_ORIENTATION_VALID = 1,
+            
+            /** The hand joint's orientation is actively tracked. May not be set if tracking has been temporarily lost. */
+            HAND_JOINT_FLAG_ORIENTATION_TRACKED = 2,
+            
+            /** The hand joint's position data is valid. */
+            HAND_JOINT_FLAG_POSITION_VALID = 4,
+            
+            /** The hand joint's position is actively tracked. May not be set if tracking has been temporarily lost. */
+            HAND_JOINT_FLAG_POSITION_TRACKED = 8,
+            
+            /** The hand joint's linear velocity data is valid. */
+            HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID = 16,
+            
+            /** The hand joint's angular velocity data is valid. */
+            HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID = 32,
+        }
+    }
+    /** A tracked hand in XR.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrhandtracker.html  
+     */
+    class XRHandTracker extends XRPositionalTracker {
+        constructor(identifier?: any)
+        /** Sets flags about the validity of the tracking data for the given hand joint. */
+        set_hand_joint_flags(joint: XRHandTracker.HandJoint, flags: XRHandTracker.HandJointFlags): void
+        
+        /** Returns flags about the validity of the tracking data for the given hand joint (see [enum XRHandTracker.HandJointFlags]). */
+        get_hand_joint_flags(joint: XRHandTracker.HandJoint): XRHandTracker.HandJointFlags
+        
+        /** Sets the transform for the given hand joint. */
+        set_hand_joint_transform(joint: XRHandTracker.HandJoint, transform: Transform3D): void
+        
+        /** Returns the transform for the given hand joint. */
+        get_hand_joint_transform(joint: XRHandTracker.HandJoint): Transform3D
+        
+        /** Sets the radius of the given hand joint. */
+        set_hand_joint_radius(joint: XRHandTracker.HandJoint, radius: float64): void
+        
+        /** Returns the radius of the given hand joint. */
+        get_hand_joint_radius(joint: XRHandTracker.HandJoint): float64
+        
+        /** Sets the linear velocity for the given hand joint. */
+        set_hand_joint_linear_velocity(joint: XRHandTracker.HandJoint, linear_velocity: Vector3): void
+        
+        /** Returns the linear velocity for the given hand joint. */
+        get_hand_joint_linear_velocity(joint: XRHandTracker.HandJoint): Vector3
+        
+        /** Sets the angular velocity for the given hand joint. */
+        set_hand_joint_angular_velocity(joint: XRHandTracker.HandJoint, angular_velocity: Vector3): void
+        
+        /** Returns the angular velocity for the given hand joint. */
+        get_hand_joint_angular_velocity(joint: XRHandTracker.HandJoint): Vector3
+        
+        /** If `true`, the hand tracking data is valid. */
+        get has_tracking_data(): boolean
+        set has_tracking_data(value: boolean)
+        
+        /** The source of the hand tracking data. */
+        get hand_tracking_source(): int64
+        set hand_tracking_source(value: int64)
+    }
+    namespace XRInterface {
+        enum Capabilities {
+            /** No XR capabilities. */
+            XR_NONE = 0,
+            
+            /** This interface can work with normal rendering output (non-HMD based AR). */
+            XR_MONO = 1,
+            
+            /** This interface supports stereoscopic rendering. */
+            XR_STEREO = 2,
+            
+            /** This interface supports quad rendering (not yet supported by Godot). */
+            XR_QUAD = 4,
+            
+            /** This interface supports VR. */
+            XR_VR = 8,
+            
+            /** This interface supports AR (video background and real world tracking). */
+            XR_AR = 16,
+            
+            /** This interface outputs to an external device. If the main viewport is used, the on screen output is an unmodified buffer of either the left or right eye (stretched if the viewport size is not changed to the same aspect ratio of [method get_render_target_size]). Using a separate viewport node frees up the main viewport for other purposes. */
+            XR_EXTERNAL = 32,
+        }
+        enum TrackingStatus {
+            /** Tracking is behaving as expected. */
+            XR_NORMAL_TRACKING = 0,
+            
+            /** Tracking is hindered by excessive motion (the player is moving faster than tracking can keep up). */
+            XR_EXCESSIVE_MOTION = 1,
+            
+            /** Tracking is hindered by insufficient features, it's too dark (for camera-based tracking), player is blocked, etc. */
+            XR_INSUFFICIENT_FEATURES = 2,
+            
+            /** We don't know the status of the tracking or this interface does not provide feedback. */
+            XR_UNKNOWN_TRACKING = 3,
+            
+            /** Tracking is not functional (camera not plugged in or obscured, lighthouses turned off, etc.). */
+            XR_NOT_TRACKING = 4,
+        }
+        enum PlayAreaMode {
+            /** Play area mode not set or not available. */
+            XR_PLAY_AREA_UNKNOWN = 0,
+            
+            /** Play area only supports orientation tracking, no positional tracking, area will center around player. */
+            XR_PLAY_AREA_3DOF = 1,
+            
+            /** Player is in seated position, limited positional tracking, fixed guardian around player. */
+            XR_PLAY_AREA_SITTING = 2,
+            
+            /** Player is free to move around, full positional tracking. */
+            XR_PLAY_AREA_ROOMSCALE = 3,
+            
+            /** Same as [constant XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the physical space. In this mode, system-level recentering may be disabled, requiring the use of [method XRServer.center_on_hmd]. */
+            XR_PLAY_AREA_STAGE = 4,
+        }
+        enum EnvironmentBlendMode {
+            /** Opaque blend mode. This is typically used for VR devices. */
+            XR_ENV_BLEND_MODE_OPAQUE = 0,
+            
+            /** Additive blend mode. This is typically used for AR devices or VR devices with passthrough. */
+            XR_ENV_BLEND_MODE_ADDITIVE = 1,
+            
+            /** Alpha blend mode. This is typically used for AR or VR devices with passthrough capabilities. The alpha channel controls how much of the passthrough is visible. Alpha of 0.0 means the passthrough is visible and this pixel works in ADDITIVE mode. Alpha of 1.0 means that the passthrough is not visible and this pixel works in OPAQUE mode. */
+            XR_ENV_BLEND_MODE_ALPHA_BLEND = 2,
+        }
+    }
+    /** Base class for an XR interface implementation.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrinterface.html  
+     */
+    class XRInterface extends RefCounted {
+        constructor(identifier?: any)
+        /** Returns the name of this interface (`"OpenXR"`, `"OpenVR"`, `"OpenHMD"`, `"ARKit"`, etc.). */
+        get_name(): StringName
+        
+        /** Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface. */
+        get_capabilities(): int64
+        
+        /** Returns `true` if this interface has been initialized. */
+        is_initialized(): boolean
+        
+        /** Call this to initialize this interface. The first interface that is initialized is identified as the primary interface and it will be used for rendering output.  
+         *  After initializing the interface you want to use you then need to enable the AR/VR mode of a viewport and rendering should commence.  
+         *      
+         *  **Note:** You must enable the XR mode on the main viewport for any device that uses the main output of Godot, such as for mobile VR.  
+         *  If you do this for a platform that handles its own output (such as OpenVR) Godot will show just one eye without distortion on screen. Alternatively, you can add a separate viewport node to your scene and enable AR/VR on that viewport. It will be used to output to the HMD, leaving you free to do anything you like in the main window, such as using a separate camera as a spectator camera or rendering something completely different.  
+         *  While currently not used, you can activate additional interfaces. You may wish to do this if you want to track controllers from other platforms. However, at this point in time only one interface can render to an HMD.  
+         */
+        initialize(): boolean
+        
+        /** Turns the interface off. */
+        uninitialize(): void
+        
+        /** Returns a [Dictionary] with extra system info. Interfaces are expected to return `XRRuntimeName` and `XRRuntimeVersion` providing info about the used XR runtime. Additional entries may be provided specific to an interface.  
+         *      
+         *  **Note:**This information may only be available after [method initialize] was successfully called.  
+         */
+        get_system_info(): GDictionary
+        
+        /** If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking. */
+        get_tracking_status(): XRInterface.TrackingStatus
+        
+        /** Returns the resolution at which we should render our intermediate results before things like lens distortion are applied by the VR platform. */
+        get_render_target_size(): Vector2
+        
+        /** Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic. */
+        get_view_count(): int64
+        
+        /** Triggers a haptic pulse on a device associated with this interface.  
+         *  [param action_name] is the name of the action for this pulse.  
+         *  [param tracker_name] is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.  
+         *  [param frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.  
+         *  [param amplitude] is the amplitude of the pulse between `0.0` and `1.0`.  
+         *  [param duration_sec] is the duration of the pulse in seconds.  
+         *  [param delay_sec] is a delay in seconds before the pulse is given.  
+         */
+        trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
+        
+        /** Call this to find out if a given play area mode is supported by this interface. */
+        supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
+        
+        /** Returns an array of vectors that represent the physical play area mapped to the virtual space around the [XROrigin3D] point. The points form a convex polygon that can be used to react to or visualize the play area. This returns an empty array if this feature is not supported or if the information is not yet available. */
+        get_play_area(): PackedVector3Array
+        
+        /** If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [CameraServer] for this interface. */
+        get_camera_feed_id(): int64
+        
+        /** Returns `true` if this interface supports passthrough. */
+        is_passthrough_supported(): boolean
+        
+        /** Returns `true` if passthrough is enabled. */
+        is_passthrough_enabled(): boolean
+        
+        /** Starts passthrough, will return `false` if passthrough couldn't be started.  
+         *      
+         *  **Note:** The viewport used for XR must have a transparent background, otherwise passthrough may not properly render.  
+         */
+        start_passthrough(): boolean
+        
+        /** Stops passthrough. */
+        stop_passthrough(): void
+        
+        /** Returns the transform for a view/eye.  
+         *  [param view] is the view/eye index.  
+         *  [param cam_transform] is the transform that maps device coordinates to scene coordinates, typically the [member Node3D.global_transform] of the current XROrigin3D.  
+         */
+        get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
+        
+        /** Returns the projection matrix for a view/eye. */
+        get_projection_for_view(view: int64, aspect: float64, near: float64, far: float64): Projection
+        
+        /** Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode]. */
+        get_supported_environment_blend_modes(): GArray
+        
+        /** `true` if this is the primary interface. */
+        get interface_is_primary(): boolean
+        set interface_is_primary(value: boolean)
+        
+        /** The play area mode for this interface. */
+        get xr_play_area_mode(): int64
+        set xr_play_area_mode(value: int64)
+        
+        /** Specify how XR should blend in the environment. This is specific to certain AR and passthrough devices where camera images are blended in by the XR compositor. */
+        get environment_blend_mode(): int64
+        set environment_blend_mode(value: int64)
+        
+        /** On an AR interface, `true` if anchor detection is enabled. */
+        get ar_is_anchor_detection_enabled(): boolean
+        set ar_is_anchor_detection_enabled(value: boolean)
+        
+        /** Emitted when the play area is changed. This can be a result of the player resetting the boundary or entering a new play area, the player changing the play area mode, the world scale changing or the player resetting their headset orientation. */
+        readonly play_area_changed: Signal1<int64>
+    }
+    /** Base class for XR interface extensions (plugins).  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrinterfaceextension.html  
+     */
+    class XRInterfaceExtension extends XRInterface {
+        constructor(identifier?: any)
+        /** Returns the name of this interface. */
+        /* gdvirtual */ _get_name(): StringName
+        
+        /** Returns the capabilities of this interface. */
+        /* gdvirtual */ _get_capabilities(): int64
+        
+        /** Returns `true` if this interface has been initialized. */
+        /* gdvirtual */ _is_initialized(): boolean
+        
+        /** Initializes the interface, returns `true` on success. */
+        /* gdvirtual */ _initialize(): boolean
+        
+        /** Uninitialize the interface. */
+        /* gdvirtual */ _uninitialize(): void
+        
+        /** Returns a [Dictionary] with system information related to this interface. */
+        /* gdvirtual */ _get_system_info(): GDictionary
+        
+        /** Returns `true` if this interface supports this play area mode. */
+        /* gdvirtual */ _supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
+        
+        /** Returns the play area mode that sets up our play area. */
+        /* gdvirtual */ _get_play_area_mode(): XRInterface.PlayAreaMode
+        
+        /** Set the play area mode for this interface. */
+        /* gdvirtual */ _set_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
+        
+        /** Returns a [PackedVector3Array] that represents the play areas boundaries (if applicable). */
+        /* gdvirtual */ _get_play_area(): PackedVector3Array
+        
+        /** Returns the size of our render target for this interface, this overrides the size of the [Viewport] marked as the xr viewport. */
+        /* gdvirtual */ _get_render_target_size(): Vector2
+        
+        /** Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic. */
+        /* gdvirtual */ _get_view_count(): int64
+        
+        /** Returns the [Transform3D] that positions the [XRCamera3D] in the world. */
+        /* gdvirtual */ _get_camera_transform(): Transform3D
+        
+        /** Returns a [Transform3D] for a given view. */
+        /* gdvirtual */ _get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
+        
+        /** Returns the projection matrix for the given view as a [PackedFloat64Array]. */
+        /* gdvirtual */ _get_projection_for_view(view: int64, aspect: float64, z_near: float64, z_far: float64): PackedFloat64Array
+        /* gdvirtual */ _get_vrs_texture(): RID
+        
+        /** Called if this [XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [XRPositionalTracker]s at this point in time. */
+        /* gdvirtual */ _process(): void
+        
+        /** Called if this [XRInterfaceExtension] is active before rendering starts. Most XR interfaces will sync tracking at this point in time. */
+        /* gdvirtual */ _pre_render(): void
+        
+        /** Called if this is our primary [XRInterfaceExtension] before we start processing a [Viewport] for every active XR [Viewport], returns `true` if that viewport should be rendered. An XR interface may return `false` if the user has taken off their headset and we can pause rendering. */
+        /* gdvirtual */ _pre_draw_viewport(render_target: RID): boolean
+        
+        /** Called after the XR [Viewport] draw logic has completed. */
+        /* gdvirtual */ _post_draw_viewport(render_target: RID, screen_rect: Rect2): void
+        
+        /** Called if interface is active and queues have been submitted. */
+        /* gdvirtual */ _end_frame(): void
+        
+        /** Returns a [PackedStringArray] with tracker names configured by this interface. Note that user configuration can override this list. */
+        /* gdvirtual */ _get_suggested_tracker_names(): PackedStringArray
+        
+        /** Returns a [PackedStringArray] with pose names configured by this interface. Note that user configuration can override this list. */
+        /* gdvirtual */ _get_suggested_pose_names(tracker_name: StringName): PackedStringArray
+        
+        /** Returns a [enum XRInterface.TrackingStatus] specifying the current status of our tracking. */
+        /* gdvirtual */ _get_tracking_status(): XRInterface.TrackingStatus
+        
+        /** Triggers a haptic pulse to be emitted on the specified tracker. */
+        /* gdvirtual */ _trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
+        
+        /** Return `true` if anchor detection is enabled for this interface. */
+        /* gdvirtual */ _get_anchor_detection_is_enabled(): boolean
+        
+        /** Enables anchor detection on this interface if supported. */
+        /* gdvirtual */ _set_anchor_detection_is_enabled(enabled: boolean): void
+        
+        /** Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should be presented as the background on an AR capable device (if applicable). */
+        /* gdvirtual */ _get_camera_feed_id(): int64
+        
+        /** Return color texture into which to render (if applicable). */
+        /* gdvirtual */ _get_color_texture(): RID
+        
+        /** Return depth texture into which to render (if applicable). */
+        /* gdvirtual */ _get_depth_texture(): RID
+        
+        /** Return velocity texture into which to render (if applicable). */
+        /* gdvirtual */ _get_velocity_texture(): RID
+        get_color_texture(): RID
+        get_depth_texture(): RID
+        get_velocity_texture(): RID
+        
+        /** Blits our render results to screen optionally applying lens distortion. This can only be called while processing `_commit_views`. */
+        add_blit(render_target: RID, src_rect: Rect2, dst_rect: Rect2i, use_layer: boolean, layer: int64, apply_lens_distortion: boolean, eye_center: Vector2, k1: float64, k2: float64, upscale: float64, aspect_ratio: float64): void
+        
+        /** Returns a valid [RID] for a texture to which we should render the current frame if supported by the interface. */
+        get_render_target_texture(render_target: RID): RID
+    }
+    /** A spatial node that has its position automatically updated by the [XRServer].  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrnode3d.html  
+     */
+    class XRNode3D extends Node3D {
+        constructor(identifier?: any)
+        /** Returns `true` if the [member tracker] has been registered and the [member pose] is being tracked. */
+        get_is_active(): boolean
+        
+        /** Returns `true` if the [member tracker] has current tracking data for the [member pose] being tracked. */
+        get_has_tracking_data(): boolean
+        
+        /** Returns the [XRPose] containing the current state of the pose being tracked. This gives access to additional properties of this pose. */
+        get_pose(): XRPose
+        
+        /** Triggers a haptic pulse on a device associated with this interface.  
+         *  [param action_name] is the name of the action for this pulse.  
+         *  [param frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.  
+         *  [param amplitude] is the amplitude of the pulse between `0.0` and `1.0`.  
+         *  [param duration_sec] is the duration of the pulse in seconds.  
+         *  [param delay_sec] is a delay in seconds before the pulse is given.  
+         */
+        trigger_haptic_pulse(action_name: string, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
+        
+        /** The name of the tracker we're bound to. Which trackers are available is not known during design time.  
+         *  Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [XRInterface].  
+         */
+        get tracker(): string
+        set tracker(value: string)
+        
+        /** The name of the pose we're bound to. Which poses a tracker supports is not known during design time.  
+         *  Godot defines number of standard pose names such as `aim` and `grip` but other may be configured within a given [XRInterface].  
+         */
+        get pose(): string
+        set pose(value: string)
+        
+        /** Enables showing the node when tracking starts, and hiding the node when tracking is lost. */
+        get show_when_tracked(): boolean
+        set show_when_tracked(value: boolean)
+        
+        /** Emitted when the [member tracker] starts or stops receiving updated tracking data for the [member pose] being tracked. The [param tracking] argument indicates whether the tracker is getting updated tracking data. */
+        readonly tracking_changed: Signal1<boolean>
+    }
+    /** The origin point in AR/VR.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrorigin3d.html  
+     */
+    class XROrigin3D extends Node3D {
+        constructor(identifier?: any)
+        /** The scale of the game world compared to the real world. This is the same as [member XRServer.world_scale]. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
+        get world_scale(): float64
+        set world_scale(value: float64)
+        
+        /** If `true`, this origin node is currently being used by the [XRServer]. Only one origin point can be used at a time. */
+        get current(): boolean
+        set current(value: boolean)
+    }
+    namespace XRPose {
+        enum TrackingConfidence {
+            /** No tracking information is available for this pose. */
+            XR_TRACKING_CONFIDENCE_NONE = 0,
+            
+            /** Tracking information may be inaccurate or estimated. For example, with inside out tracking this would indicate a controller may be (partially) obscured. */
+            XR_TRACKING_CONFIDENCE_LOW = 1,
+            
+            /** Tracking information is considered accurate and up to date. */
+            XR_TRACKING_CONFIDENCE_HIGH = 2,
+        }
+    }
+    /** This object contains all data related to a pose on a tracked object.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrpose.html  
+     */
+    class XRPose extends RefCounted {
+        constructor(identifier?: any)
+        set_name(name: StringName): void
+        get_name(): StringName
+        
+        /** Returns the [member transform] with world scale and our reference frame applied. This is the transform used to position [XRNode3D] objects. */
+        get_adjusted_transform(): Transform3D
+        
+        /** If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking data and our state is whatever that last valid state was. */
+        get has_tracking_data(): boolean
+        set has_tracking_data(value: boolean)
+        
+        /** The transform containing the original and transform as reported by the XR runtime. */
+        get transform(): string
+        set transform(value: string)
+        
+        /** The linear velocity of this pose. */
+        get linear_velocity(): string
+        set linear_velocity(value: string)
+        
+        /** The angular velocity for this pose. */
+        get angular_velocity(): string
+        set angular_velocity(value: string)
+        
+        /** The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is. */
+        get tracking_confidence(): int64
+        set tracking_confidence(value: int64)
+    }
+    namespace XRPositionalTracker {
+        enum TrackerHand {
+            /** The hand this tracker is held in is unknown or not applicable. */
+            TRACKER_HAND_UNKNOWN = 0,
+            
+            /** This tracker is the left hand controller. */
+            TRACKER_HAND_LEFT = 1,
+            
+            /** This tracker is the right hand controller. */
+            TRACKER_HAND_RIGHT = 2,
+            
+            /** Represents the size of the [enum TrackerHand] enum. */
+            TRACKER_HAND_MAX = 3,
+        }
+    }
+    /** A tracked object.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrpositionaltracker.html  
+     */
+    class XRPositionalTracker extends XRTracker {
+        constructor(identifier?: any)
+        /** Returns `true` if the tracker is available and is currently tracking the bound [param name] pose. */
+        has_pose(name: StringName): boolean
+        
+        /** Returns the current [XRPose] state object for the bound [param name] pose. */
+        get_pose(name: StringName): XRPose
+        
+        /** Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position. */
+        invalidate_pose(name: StringName): void
+        
+        /** Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [XRInterface] implementation and should not be used directly. */
+        set_pose(name: StringName, transform: Transform3D, linear_velocity: Vector3, angular_velocity: Vector3, tracking_confidence: XRPose.TrackingConfidence): void
+        
+        /** Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad. */
+        get_input(name: StringName): any
+        
+        /** Changes the value for the given input. This method is called by a [XRInterface] implementation and should not be used directly. */
+        set_input(name: StringName, value: any): void
+        
+        /** The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked. */
+        get profile(): string
+        set profile(value: string)
+        
+        /** Defines which hand this tracker relates to. */
+        get hand(): int64
+        set hand(value: int64)
+        
+        /** Emitted when the state of a pose tracked by this tracker changes. */
+        readonly pose_changed: Signal1<XRPose>
+        
+        /** Emitted when a pose tracked by this tracker stops getting updated tracking data. */
+        readonly pose_lost_tracking: Signal1<XRPose>
+        
+        /** Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs to be mapped to buttons. */
+        readonly button_pressed: Signal1<string>
+        
+        /** Emitted when a button on this tracker is released. */
+        readonly button_released: Signal1<string>
+        
+        /** Emitted when a trigger or similar input on this tracker changes value. */
+        readonly input_float_changed: Signal2<string, float64>
+        
+        /** Emitted when a thumbstick or thumbpad on this tracker moves. */
+        readonly input_vector2_changed: Signal2<string, Vector2>
+        
+        /** Emitted when the profile of our tracker changes. */
+        readonly profile_changed: Signal1<string>
+    }
+    /** A tracked object.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrtracker.html  
+     */
+    class XRTracker extends RefCounted {
+        constructor(identifier?: any)
+        get_tracker_name(): StringName
+        set_tracker_name(name: StringName): void
+        
+        /** The type of tracker. */
+        get type(): int64
+        set type(value: int64)
+        
+        /** The description of this tracker. */
+        get description(): string
+        set description(value: string)
+    }
+    /** Helper class for XR interfaces that generates VRS images.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrvrs.html  
+     */
+    class XRVRS extends Object {
+        constructor(identifier?: any)
+        /** Generates the VRS texture based on a render [param target_size] adjusted by our VRS tile size. For each eyes focal point passed in [param eye_foci] a layer is created. Focal point should be in NDC.  
+         *  The result will be cached, requesting a VRS texture with unchanged parameters and settings will return the cached RID.  
+         */
+        make_vrs_texture(target_size: Vector2, eye_foci: PackedVector2Array | Vector2[]): RID
+        
+        /** The minimum radius around the focal point where full quality is guaranteed if VRS is used as a percentage of screen size. */
+        get vrs_min_radius(): float64
+        set vrs_min_radius(value: float64)
+        
+        /** The strength used to calculate the VRS density map. The greater this value, the more noticeable VRS is. */
+        get vrs_strength(): float64
+        set vrs_strength(value: float64)
+    }
+    namespace ZIPPacker {
+        enum ZipAppend {
+            /** Create a new zip archive at the given path. */
+            APPEND_CREATE = 0,
+            
+            /** Append a new zip archive to the end of the already existing file at the given path. */
+            APPEND_CREATEAFTER = 1,
+            
+            /** Add new files to the existing zip archive at the given path. */
+            APPEND_ADDINZIP = 2,
+        }
+    }
+    /** Allows the creation of zip files.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_zippacker.html  
+     */
+    class ZIPPacker extends RefCounted {
+        constructor(identifier?: any)
+        /** Opens a zip file for writing at the given path using the specified write mode.  
+         *  This must be called before everything else.  
+         */
+        open(path: string, append: ZIPPacker.ZipAppend = 0): GError
+        
+        /** Starts writing to a file within the archive. Only one file can be written at the same time.  
+         *  Must be called after [method open].  
+         */
+        start_file(path: string): GError
+        
+        /** Write the given [param data] to the file.  
+         *  Needs to be called after [method start_file].  
+         */
+        write_file(data: PackedByteArray | byte[] | ArrayBuffer): GError
+        
+        /** Stops writing to a file within the archive.  
+         *  It will fail if there is no open file.  
+         */
+        close_file(): GError
+        
+        /** Closes the underlying resources used by this instance. */
+        close(): GError
+    }
     /** Allows reading the content of a zip file.  
      *  	  
      *  @link https://docs.godotengine.org/en/4.3/classes/class_zipreader.html  
@@ -5954,6 +6665,7 @@ declare module "godot" {
             OP_MAX = 25,
         }
     }
+    
     /** Returns the sine of angle [param angle_rad] in radians.  
      *    
      */

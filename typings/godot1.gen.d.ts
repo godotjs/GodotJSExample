@@ -1,6 +1,1134 @@
 // AUTO-GENERATED
 /// <reference no-default-lib="true"/>
 declare module "godot" {
+    // _singleton_class_: PhysicsServer3D
+    namespace PhysicsServer3D {
+        enum JointType {
+            /** The [Joint3D] is a [PinJoint3D]. */
+            JOINT_TYPE_PIN = 0,
+            
+            /** The [Joint3D] is a [HingeJoint3D]. */
+            JOINT_TYPE_HINGE = 1,
+            
+            /** The [Joint3D] is a [SliderJoint3D]. */
+            JOINT_TYPE_SLIDER = 2,
+            
+            /** The [Joint3D] is a [ConeTwistJoint3D]. */
+            JOINT_TYPE_CONE_TWIST = 3,
+            
+            /** The [Joint3D] is a [Generic6DOFJoint3D]. */
+            JOINT_TYPE_6DOF = 4,
+            
+            /** Represents the size of the [enum JointType] enum. */
+            JOINT_TYPE_MAX = 5,
+        }
+        enum PinJointParam {
+            /** The strength with which the pinned objects try to stay in positional relation to each other.  
+             *  The higher, the stronger.  
+             */
+            PIN_JOINT_BIAS = 0,
+            
+            /** The strength with which the pinned objects try to stay in velocity relation to each other.  
+             *  The higher, the stronger.  
+             */
+            PIN_JOINT_DAMPING = 1,
+            
+            /** If above 0, this value is the maximum value for an impulse that this Joint3D puts on its ends. */
+            PIN_JOINT_IMPULSE_CLAMP = 2,
+        }
+        enum HingeJointParam {
+            /** The speed with which the two bodies get pulled together when they move in different directions. */
+            HINGE_JOINT_BIAS = 0,
+            
+            /** The maximum rotation across the Hinge. */
+            HINGE_JOINT_LIMIT_UPPER = 1,
+            
+            /** The minimum rotation across the Hinge. */
+            HINGE_JOINT_LIMIT_LOWER = 2,
+            
+            /** The speed with which the rotation across the axis perpendicular to the hinge gets corrected. */
+            HINGE_JOINT_LIMIT_BIAS = 3,
+            HINGE_JOINT_LIMIT_SOFTNESS = 4,
+            
+            /** The lower this value, the more the rotation gets slowed down. */
+            HINGE_JOINT_LIMIT_RELAXATION = 5,
+            
+            /** Target speed for the motor. */
+            HINGE_JOINT_MOTOR_TARGET_VELOCITY = 6,
+            
+            /** Maximum acceleration for the motor. */
+            HINGE_JOINT_MOTOR_MAX_IMPULSE = 7,
+        }
+        enum HingeJointFlag {
+            /** If `true`, the Hinge has a maximum and a minimum rotation. */
+            HINGE_JOINT_FLAG_USE_LIMIT = 0,
+            
+            /** If `true`, a motor turns the Hinge. */
+            HINGE_JOINT_FLAG_ENABLE_MOTOR = 1,
+        }
+        enum SliderJointParam {
+            /** The maximum difference between the pivot points on their X axis before damping happens. */
+            SLIDER_JOINT_LINEAR_LIMIT_UPPER = 0,
+            
+            /** The minimum difference between the pivot points on their X axis before damping happens. */
+            SLIDER_JOINT_LINEAR_LIMIT_LOWER = 1,
+            
+            /** A factor applied to the movement across the slider axis once the limits get surpassed. The lower, the slower the movement. */
+            SLIDER_JOINT_LINEAR_LIMIT_SOFTNESS = 2,
+            
+            /** The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost. */
+            SLIDER_JOINT_LINEAR_LIMIT_RESTITUTION = 3,
+            
+            /** The amount of damping once the slider limits are surpassed. */
+            SLIDER_JOINT_LINEAR_LIMIT_DAMPING = 4,
+            
+            /** A factor applied to the movement across the slider axis as long as the slider is in the limits. The lower, the slower the movement. */
+            SLIDER_JOINT_LINEAR_MOTION_SOFTNESS = 5,
+            
+            /** The amount of restitution inside the slider limits. */
+            SLIDER_JOINT_LINEAR_MOTION_RESTITUTION = 6,
+            
+            /** The amount of damping inside the slider limits. */
+            SLIDER_JOINT_LINEAR_MOTION_DAMPING = 7,
+            
+            /** A factor applied to the movement across axes orthogonal to the slider. */
+            SLIDER_JOINT_LINEAR_ORTHOGONAL_SOFTNESS = 8,
+            
+            /** The amount of restitution when movement is across axes orthogonal to the slider. */
+            SLIDER_JOINT_LINEAR_ORTHOGONAL_RESTITUTION = 9,
+            
+            /** The amount of damping when movement is across axes orthogonal to the slider. */
+            SLIDER_JOINT_LINEAR_ORTHOGONAL_DAMPING = 10,
+            
+            /** The upper limit of rotation in the slider. */
+            SLIDER_JOINT_ANGULAR_LIMIT_UPPER = 11,
+            
+            /** The lower limit of rotation in the slider. */
+            SLIDER_JOINT_ANGULAR_LIMIT_LOWER = 12,
+            
+            /** A factor applied to the all rotation once the limit is surpassed. */
+            SLIDER_JOINT_ANGULAR_LIMIT_SOFTNESS = 13,
+            
+            /** The amount of restitution of the rotation when the limit is surpassed. */
+            SLIDER_JOINT_ANGULAR_LIMIT_RESTITUTION = 14,
+            
+            /** The amount of damping of the rotation when the limit is surpassed. */
+            SLIDER_JOINT_ANGULAR_LIMIT_DAMPING = 15,
+            
+            /** A factor that gets applied to the all rotation in the limits. */
+            SLIDER_JOINT_ANGULAR_MOTION_SOFTNESS = 16,
+            
+            /** The amount of restitution of the rotation in the limits. */
+            SLIDER_JOINT_ANGULAR_MOTION_RESTITUTION = 17,
+            
+            /** The amount of damping of the rotation in the limits. */
+            SLIDER_JOINT_ANGULAR_MOTION_DAMPING = 18,
+            
+            /** A factor that gets applied to the all rotation across axes orthogonal to the slider. */
+            SLIDER_JOINT_ANGULAR_ORTHOGONAL_SOFTNESS = 19,
+            
+            /** The amount of restitution of the rotation across axes orthogonal to the slider. */
+            SLIDER_JOINT_ANGULAR_ORTHOGONAL_RESTITUTION = 20,
+            
+            /** The amount of damping of the rotation across axes orthogonal to the slider. */
+            SLIDER_JOINT_ANGULAR_ORTHOGONAL_DAMPING = 21,
+            
+            /** Represents the size of the [enum SliderJointParam] enum. */
+            SLIDER_JOINT_MAX = 22,
+        }
+        enum ConeTwistJointParam {
+            /** Swing is rotation from side to side, around the axis perpendicular to the twist axis.  
+             *  The swing span defines, how much rotation will not get corrected along the swing axis.  
+             *  Could be defined as looseness in the [ConeTwistJoint3D].  
+             *  If below 0.05, this behavior is locked.  
+             */
+            CONE_TWIST_JOINT_SWING_SPAN = 0,
+            
+            /** Twist is the rotation around the twist axis, this value defined how far the joint can twist.  
+             *  Twist is locked if below 0.05.  
+             */
+            CONE_TWIST_JOINT_TWIST_SPAN = 1,
+            
+            /** The speed with which the swing or twist will take place.  
+             *  The higher, the faster.  
+             */
+            CONE_TWIST_JOINT_BIAS = 2,
+            
+            /** The ease with which the Joint3D twists, if it's too low, it takes more force to twist the joint. */
+            CONE_TWIST_JOINT_SOFTNESS = 3,
+            
+            /** Defines, how fast the swing- and twist-speed-difference on both sides gets synced. */
+            CONE_TWIST_JOINT_RELAXATION = 4,
+        }
+        enum G6DOFJointAxisParam {
+            /** The minimum difference between the pivot points' axes. */
+            G6DOF_JOINT_LINEAR_LOWER_LIMIT = 0,
+            
+            /** The maximum difference between the pivot points' axes. */
+            G6DOF_JOINT_LINEAR_UPPER_LIMIT = 1,
+            
+            /** A factor that gets applied to the movement across the axes. The lower, the slower the movement. */
+            G6DOF_JOINT_LINEAR_LIMIT_SOFTNESS = 2,
+            
+            /** The amount of restitution on the axes movement. The lower, the more velocity-energy gets lost. */
+            G6DOF_JOINT_LINEAR_RESTITUTION = 3,
+            
+            /** The amount of damping that happens at the linear motion across the axes. */
+            G6DOF_JOINT_LINEAR_DAMPING = 4,
+            
+            /** The velocity that the joint's linear motor will attempt to reach. */
+            G6DOF_JOINT_LINEAR_MOTOR_TARGET_VELOCITY = 5,
+            
+            /** The maximum force that the linear motor can apply while trying to reach the target velocity. */
+            G6DOF_JOINT_LINEAR_MOTOR_FORCE_LIMIT = 6,
+            G6DOF_JOINT_LINEAR_SPRING_STIFFNESS = 7,
+            G6DOF_JOINT_LINEAR_SPRING_DAMPING = 8,
+            G6DOF_JOINT_LINEAR_SPRING_EQUILIBRIUM_POINT = 9,
+            
+            /** The minimum rotation in negative direction to break loose and rotate around the axes. */
+            G6DOF_JOINT_ANGULAR_LOWER_LIMIT = 10,
+            
+            /** The minimum rotation in positive direction to break loose and rotate around the axes. */
+            G6DOF_JOINT_ANGULAR_UPPER_LIMIT = 11,
+            
+            /** A factor that gets multiplied onto all rotations across the axes. */
+            G6DOF_JOINT_ANGULAR_LIMIT_SOFTNESS = 12,
+            
+            /** The amount of rotational damping across the axes. The lower, the more damping occurs. */
+            G6DOF_JOINT_ANGULAR_DAMPING = 13,
+            
+            /** The amount of rotational restitution across the axes. The lower, the more restitution occurs. */
+            G6DOF_JOINT_ANGULAR_RESTITUTION = 14,
+            
+            /** The maximum amount of force that can occur, when rotating around the axes. */
+            G6DOF_JOINT_ANGULAR_FORCE_LIMIT = 15,
+            
+            /** When correcting the crossing of limits in rotation across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower. */
+            G6DOF_JOINT_ANGULAR_ERP = 16,
+            
+            /** Target speed for the motor at the axes. */
+            G6DOF_JOINT_ANGULAR_MOTOR_TARGET_VELOCITY = 17,
+            
+            /** Maximum acceleration for the motor at the axes. */
+            G6DOF_JOINT_ANGULAR_MOTOR_FORCE_LIMIT = 18,
+            G6DOF_JOINT_ANGULAR_SPRING_STIFFNESS = 19,
+            G6DOF_JOINT_ANGULAR_SPRING_DAMPING = 20,
+            G6DOF_JOINT_ANGULAR_SPRING_EQUILIBRIUM_POINT = 21,
+            
+            /** Represents the size of the [enum G6DOFJointAxisParam] enum. */
+            G6DOF_JOINT_MAX = 22,
+        }
+        enum G6DOFJointAxisFlag {
+            /** If set, linear motion is possible within the given limits. */
+            G6DOF_JOINT_FLAG_ENABLE_LINEAR_LIMIT = 0,
+            
+            /** If set, rotational motion is possible. */
+            G6DOF_JOINT_FLAG_ENABLE_ANGULAR_LIMIT = 1,
+            G6DOF_JOINT_FLAG_ENABLE_ANGULAR_SPRING = 2,
+            G6DOF_JOINT_FLAG_ENABLE_LINEAR_SPRING = 3,
+            
+            /** If set, there is a rotational motor across these axes. */
+            G6DOF_JOINT_FLAG_ENABLE_MOTOR = 4,
+            
+            /** If set, there is a linear motor on this axis that targets a specific velocity. */
+            G6DOF_JOINT_FLAG_ENABLE_LINEAR_MOTOR = 5,
+            
+            /** Represents the size of the [enum G6DOFJointAxisFlag] enum. */
+            G6DOF_JOINT_FLAG_MAX = 6,
+        }
+        enum ShapeType {
+            /** The [Shape3D] is a [WorldBoundaryShape3D]. */
+            SHAPE_WORLD_BOUNDARY = 0,
+            
+            /** The [Shape3D] is a [SeparationRayShape3D]. */
+            SHAPE_SEPARATION_RAY = 1,
+            
+            /** The [Shape3D] is a [SphereShape3D]. */
+            SHAPE_SPHERE = 2,
+            
+            /** The [Shape3D] is a [BoxShape3D]. */
+            SHAPE_BOX = 3,
+            
+            /** The [Shape3D] is a [CapsuleShape3D]. */
+            SHAPE_CAPSULE = 4,
+            
+            /** The [Shape3D] is a [CylinderShape3D]. */
+            SHAPE_CYLINDER = 5,
+            
+            /** The [Shape3D] is a [ConvexPolygonShape3D]. */
+            SHAPE_CONVEX_POLYGON = 6,
+            
+            /** The [Shape3D] is a [ConcavePolygonShape3D]. */
+            SHAPE_CONCAVE_POLYGON = 7,
+            
+            /** The [Shape3D] is a [HeightMapShape3D]. */
+            SHAPE_HEIGHTMAP = 8,
+            
+            /** The [Shape3D] is used internally for a soft body. Any attempt to create this kind of shape results in an error. */
+            SHAPE_SOFT_BODY = 9,
+            
+            /** This constant is used internally by the engine. Any attempt to create this kind of shape results in an error. */
+            SHAPE_CUSTOM = 10,
+        }
+        enum AreaParameter {
+            /** Constant to set/get gravity override mode in an area. See [enum AreaSpaceOverrideMode] for possible values. */
+            AREA_PARAM_GRAVITY_OVERRIDE_MODE = 0,
+            
+            /** Constant to set/get gravity strength in an area. */
+            AREA_PARAM_GRAVITY = 1,
+            
+            /** Constant to set/get gravity vector/center in an area. */
+            AREA_PARAM_GRAVITY_VECTOR = 2,
+            
+            /** Constant to set/get whether the gravity vector of an area is a direction, or a center point. */
+            AREA_PARAM_GRAVITY_IS_POINT = 3,
+            
+            /** Constant to set/get the distance at which the gravity strength is equal to the gravity controlled by [constant AREA_PARAM_GRAVITY]. For example, on a planet 100 meters in radius with a surface gravity of 4.0 m/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 meters from the center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it will be 16.0 m/s² (half the distance, 4x the gravity), and so on.  
+             *  The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.  
+             */
+            AREA_PARAM_GRAVITY_POINT_UNIT_DISTANCE = 4,
+            
+            /** Constant to set/get linear damping override mode in an area. See [enum AreaSpaceOverrideMode] for possible values. */
+            AREA_PARAM_LINEAR_DAMP_OVERRIDE_MODE = 5,
+            
+            /** Constant to set/get the linear damping factor of an area. */
+            AREA_PARAM_LINEAR_DAMP = 6,
+            
+            /** Constant to set/get angular damping override mode in an area. See [enum AreaSpaceOverrideMode] for possible values. */
+            AREA_PARAM_ANGULAR_DAMP_OVERRIDE_MODE = 7,
+            
+            /** Constant to set/get the angular damping factor of an area. */
+            AREA_PARAM_ANGULAR_DAMP = 8,
+            
+            /** Constant to set/get the priority (order of processing) of an area. */
+            AREA_PARAM_PRIORITY = 9,
+            
+            /** Constant to set/get the magnitude of area-specific wind force. This wind force only applies to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind. */
+            AREA_PARAM_WIND_FORCE_MAGNITUDE = 10,
+            
+            /** Constant to set/get the 3D vector that specifies the origin from which an area-specific wind blows. */
+            AREA_PARAM_WIND_SOURCE = 11,
+            
+            /** Constant to set/get the 3D vector that specifies the direction in which an area-specific wind blows. */
+            AREA_PARAM_WIND_DIRECTION = 12,
+            
+            /** Constant to set/get the exponential rate at which wind force decreases with distance from its origin. */
+            AREA_PARAM_WIND_ATTENUATION_FACTOR = 13,
+        }
+        enum AreaSpaceOverrideMode {
+            /** This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them. */
+            AREA_SPACE_OVERRIDE_DISABLED = 0,
+            
+            /** This area adds its gravity/damp values to whatever has been calculated so far. This way, many overlapping areas can combine their physics to make interesting effects. */
+            AREA_SPACE_OVERRIDE_COMBINE = 1,
+            
+            /** This area adds its gravity/damp values to whatever has been calculated so far. Then stops taking into account the rest of the areas, even the default one. */
+            AREA_SPACE_OVERRIDE_COMBINE_REPLACE = 2,
+            
+            /** This area replaces any gravity/damp, even the default one, and stops taking into account the rest of the areas. */
+            AREA_SPACE_OVERRIDE_REPLACE = 3,
+            
+            /** This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the areas, down to the default one. */
+            AREA_SPACE_OVERRIDE_REPLACE_COMBINE = 4,
+        }
+        enum BodyMode {
+            /** Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved. */
+            BODY_MODE_STATIC = 0,
+            
+            /** Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path. */
+            BODY_MODE_KINEMATIC = 1,
+            
+            /** Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces applied. */
+            BODY_MODE_RIGID = 2,
+            
+            /** Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear velocity is affected by external forces. */
+            BODY_MODE_RIGID_LINEAR = 3,
+        }
+        enum BodyParameter {
+            /** Constant to set/get a body's bounce factor. */
+            BODY_PARAM_BOUNCE = 0,
+            
+            /** Constant to set/get a body's friction. */
+            BODY_PARAM_FRICTION = 1,
+            
+            /** Constant to set/get a body's mass. */
+            BODY_PARAM_MASS = 2,
+            
+            /** Constant to set/get a body's inertia. */
+            BODY_PARAM_INERTIA = 3,
+            
+            /** Constant to set/get a body's center of mass position in the body's local coordinate system. */
+            BODY_PARAM_CENTER_OF_MASS = 4,
+            
+            /** Constant to set/get a body's gravity multiplier. */
+            BODY_PARAM_GRAVITY_SCALE = 5,
+            
+            /** Constant to set/get a body's linear damping mode. See [enum BodyDampMode] for possible values. */
+            BODY_PARAM_LINEAR_DAMP_MODE = 6,
+            
+            /** Constant to set/get a body's angular damping mode. See [enum BodyDampMode] for possible values. */
+            BODY_PARAM_ANGULAR_DAMP_MODE = 7,
+            
+            /** Constant to set/get a body's linear damping factor. */
+            BODY_PARAM_LINEAR_DAMP = 8,
+            
+            /** Constant to set/get a body's angular damping factor. */
+            BODY_PARAM_ANGULAR_DAMP = 9,
+            
+            /** Represents the size of the [enum BodyParameter] enum. */
+            BODY_PARAM_MAX = 10,
+        }
+        enum BodyDampMode {
+            /** The body's damping value is added to any value set in areas or the default value. */
+            BODY_DAMP_MODE_COMBINE = 0,
+            
+            /** The body's damping value replaces any value set in areas or the default value. */
+            BODY_DAMP_MODE_REPLACE = 1,
+        }
+        enum BodyState {
+            /** Constant to set/get the current transform matrix of the body. */
+            BODY_STATE_TRANSFORM = 0,
+            
+            /** Constant to set/get the current linear velocity of the body. */
+            BODY_STATE_LINEAR_VELOCITY = 1,
+            
+            /** Constant to set/get the current angular velocity of the body. */
+            BODY_STATE_ANGULAR_VELOCITY = 2,
+            
+            /** Constant to sleep/wake up a body, or to get whether it is sleeping. */
+            BODY_STATE_SLEEPING = 3,
+            
+            /** Constant to set/get whether the body can sleep. */
+            BODY_STATE_CAN_SLEEP = 4,
+        }
+        enum AreaBodyStatus {
+            /** The value of the first parameter and area callback function receives, when an object enters one of its shapes. */
+            AREA_BODY_ADDED = 0,
+            
+            /** The value of the first parameter and area callback function receives, when an object exits one of its shapes. */
+            AREA_BODY_REMOVED = 1,
+        }
+        enum ProcessInfo {
+            /** Constant to get the number of objects that are not sleeping. */
+            INFO_ACTIVE_OBJECTS = 0,
+            
+            /** Constant to get the number of possible collisions. */
+            INFO_COLLISION_PAIRS = 1,
+            
+            /** Constant to get the number of space regions where a collision could occur. */
+            INFO_ISLAND_COUNT = 2,
+        }
+        enum SpaceParameter {
+            /** Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated. */
+            SPACE_PARAM_CONTACT_RECYCLE_RADIUS = 0,
+            
+            /** Constant to set/get the maximum distance a shape can be from another before they are considered separated and the contact is discarded. */
+            SPACE_PARAM_CONTACT_MAX_SEPARATION = 1,
+            
+            /** Constant to set/get the maximum distance a shape can penetrate another shape before it is considered a collision. */
+            SPACE_PARAM_CONTACT_MAX_ALLOWED_PENETRATION = 2,
+            
+            /** Constant to set/get the default solver bias for all physics contacts. A solver bias is a factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in that state because of numerical imprecision. */
+            SPACE_PARAM_CONTACT_DEFAULT_BIAS = 3,
+            
+            /** Constant to set/get the threshold linear velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given. */
+            SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD = 4,
+            
+            /** Constant to set/get the threshold angular velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given. */
+            SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD = 5,
+            
+            /** Constant to set/get the maximum time of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after this time. */
+            SPACE_PARAM_BODY_TIME_TO_SLEEP = 6,
+            
+            /** Constant to set/get the number of solver iterations for contacts and constraints. The greater the number of iterations, the more accurate the collisions and constraints will be. However, a greater number of iterations requires more CPU power, which can decrease performance. */
+            SPACE_PARAM_SOLVER_ITERATIONS = 7,
+        }
+        enum BodyAxis {
+            BODY_AXIS_LINEAR_X = 1,
+            BODY_AXIS_LINEAR_Y = 2,
+            BODY_AXIS_LINEAR_Z = 4,
+            BODY_AXIS_ANGULAR_X = 8,
+            BODY_AXIS_ANGULAR_Y = 16,
+            BODY_AXIS_ANGULAR_Z = 32,
+        }
+    }
+    /** A server interface for low-level 3D physics access.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_physicsserver3d.html  
+     */
+    class PhysicsServer3D extends Object {
+        static world_boundary_shape_create(): RID
+        static separation_ray_shape_create(): RID
+        static sphere_shape_create(): RID
+        static box_shape_create(): RID
+        static capsule_shape_create(): RID
+        static cylinder_shape_create(): RID
+        static convex_polygon_shape_create(): RID
+        static concave_polygon_shape_create(): RID
+        static heightmap_shape_create(): RID
+        static custom_shape_create(): RID
+        
+        /** Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type]. */
+        static shape_set_data(shape: RID, data: any): void
+        
+        /** Sets the collision margin for the shape.  
+         *      
+         *  **Note:** This is not used in Godot Physics.  
+         */
+        static shape_set_margin(shape: RID, margin: float64): void
+        
+        /** Returns the type of shape (see [enum ShapeType] constants). */
+        static shape_get_type(shape: RID): PhysicsServer3D.ShapeType
+        
+        /** Returns the shape data. */
+        static shape_get_data(shape: RID): any
+        
+        /** Returns the collision margin for the shape.  
+         *      
+         *  **Note:** This is not used in Godot Physics, so will always return `0`.  
+         */
+        static shape_get_margin(shape: RID): float64
+        
+        /** Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [method area_set_space], or to a body with [method body_set_space]. */
+        static space_create(): RID
+        
+        /** Marks a space as active. It will not have an effect, unless it is assigned to an area or body. */
+        static space_set_active(space: RID, active: boolean): void
+        
+        /** Returns whether the space is active. */
+        static space_is_active(space: RID): boolean
+        
+        /** Sets the value for a space parameter. A list of available parameters is on the [enum SpaceParameter] constants. */
+        static space_set_param(space: RID, param: PhysicsServer3D.SpaceParameter, value: float64): void
+        
+        /** Returns the value of a space parameter. */
+        static space_get_param(space: RID, param: PhysicsServer3D.SpaceParameter): float64
+        
+        /** Returns the state of a space, a [PhysicsDirectSpaceState3D]. This object can be used to make collision/intersection queries. */
+        static space_get_direct_state(space: RID): PhysicsDirectSpaceState3D
+        
+        /** Creates a 3D area object in the physics server, and returns the [RID] that identifies it. The default settings for the created area include a collision layer and mask set to `1`, and `monitorable` set to `false`.  
+         *  Use [method area_add_shape] to add shapes to it, use [method area_set_transform] to set its transform, and use [method area_set_space] to add the area to a space. If you want the area to be detectable use [method area_set_monitorable].  
+         */
+        static area_create(): RID
+        
+        /** Assigns a space to the area. */
+        static area_set_space(area: RID, space: RID): void
+        
+        /** Returns the space assigned to the area. */
+        static area_get_space(area: RID): RID
+        
+        /** Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index. */
+        static area_add_shape(area: RID, shape: RID, transform: Transform3D = new Transform3D(), disabled: boolean = false): void
+        
+        /** Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID]. */
+        static area_set_shape(area: RID, shape_idx: int64, shape: RID): void
+        
+        /** Sets the transform matrix for an area shape. */
+        static area_set_shape_transform(area: RID, shape_idx: int64, transform: Transform3D): void
+        static area_set_shape_disabled(area: RID, shape_idx: int64, disabled: boolean): void
+        
+        /** Returns the number of shapes assigned to an area. */
+        static area_get_shape_count(area: RID): int64
+        
+        /** Returns the [RID] of the nth shape of an area. */
+        static area_get_shape(area: RID, shape_idx: int64): RID
+        
+        /** Returns the transform matrix of a shape within an area. */
+        static area_get_shape_transform(area: RID, shape_idx: int64): Transform3D
+        
+        /** Removes a shape from an area. It does not delete the shape, so it can be reassigned later. */
+        static area_remove_shape(area: RID, shape_idx: int64): void
+        
+        /** Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later. */
+        static area_clear_shapes(area: RID): void
+        
+        /** Assigns the area to one or many physics layers. */
+        static area_set_collision_layer(area: RID, layer: int64): void
+        
+        /** Returns the physics layer or layers an area belongs to. */
+        static area_get_collision_layer(area: RID): int64
+        
+        /** Sets which physics layers the area will monitor. */
+        static area_set_collision_mask(area: RID, mask: int64): void
+        
+        /** Returns the physics layer or layers an area can contact with. */
+        static area_get_collision_mask(area: RID): int64
+        
+        /** Sets the value for an area parameter. A list of available parameters is on the [enum AreaParameter] constants. */
+        static area_set_param(area: RID, param: PhysicsServer3D.AreaParameter, value: any): void
+        
+        /** Sets the transform matrix for an area. */
+        static area_set_transform(area: RID, transform: Transform3D): void
+        
+        /** Returns an area parameter value. A list of available parameters is on the [enum AreaParameter] constants. */
+        static area_get_param(area: RID, param: PhysicsServer3D.AreaParameter): any
+        
+        /** Returns the transform matrix for an area. */
+        static area_get_transform(area: RID): Transform3D
+        
+        /** Assigns the area to a descendant of [Object], so it can exist in the node tree. */
+        static area_attach_object_instance_id(area: RID, id: int64): void
+        
+        /** Gets the instance ID of the object the area is assigned to. */
+        static area_get_object_instance_id(area: RID): int64
+        
+        /** Sets the area's body monitor callback. This callback will be called when any other (shape of a) body enters or exits (a shape of) the given area, and must take the following five parameters:  
+         *  1. an integer `status`: either [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED] depending on whether the other body shape entered or exited the area,  
+         *  2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,  
+         *  3. an integer `instance_id`: the `ObjectID` attached to the body,  
+         *  4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the area,  
+         *  5. an integer `self_shape_idx`: the index of the shape of the area where the body entered or exited.  
+         *  By counting (or keeping track of) the shapes that enter and exit, it can be determined if a body (with all its shapes) is entering for the first time or exiting for the last time.  
+         */
+        static area_set_monitor_callback(area: RID, callback: Callable): void
+        
+        /** Sets the area's area monitor callback. This callback will be called when any other (shape of an) area enters or exits (a shape of) the given area, and must take the following five parameters:  
+         *  1. an integer `status`: either [constant AREA_BODY_ADDED] or [constant AREA_BODY_REMOVED] depending on whether the other area's shape entered or exited the area,  
+         *  2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,  
+         *  3. an integer `instance_id`: the `ObjectID` attached to the other area,  
+         *  4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited the area,  
+         *  5. an integer `self_shape_idx`: the index of the shape of the area where the other area entered or exited.  
+         *  By counting (or keeping track of) the shapes that enter and exit, it can be determined if an area (with all its shapes) is entering for the first time or exiting for the last time.  
+         */
+        static area_set_area_monitor_callback(area: RID, callback: Callable): void
+        static area_set_monitorable(area: RID, monitorable: boolean): void
+        
+        /** Sets object pickable with rays. */
+        static area_set_ray_pickable(area: RID, enable: boolean): void
+        
+        /** Creates a 3D body object in the physics server, and returns the [RID] that identifies it. The default settings for the created area include a collision layer and mask set to `1`, and body mode set to [constant BODY_MODE_RIGID].  
+         *  Use [method body_add_shape] to add shapes to it, use [method body_set_state] to set its transform, and use [method body_set_space] to add the body to a space.  
+         */
+        static body_create(): RID
+        
+        /** Assigns a space to the body (see [method space_create]). */
+        static body_set_space(body: RID, space: RID): void
+        
+        /** Returns the [RID] of the space assigned to a body. */
+        static body_get_space(body: RID): RID
+        
+        /** Sets the body mode, from one of the [enum BodyMode] constants. */
+        static body_set_mode(body: RID, mode: PhysicsServer3D.BodyMode): void
+        
+        /** Returns the body mode. */
+        static body_get_mode(body: RID): PhysicsServer3D.BodyMode
+        
+        /** Sets the physics layer or layers a body belongs to. */
+        static body_set_collision_layer(body: RID, layer: int64): void
+        
+        /** Returns the physics layer or layers a body belongs to. */
+        static body_get_collision_layer(body: RID): int64
+        
+        /** Sets the physics layer or layers a body can collide with. */
+        static body_set_collision_mask(body: RID, mask: int64): void
+        
+        /** Returns the physics layer or layers a body can collide with. */
+        static body_get_collision_mask(body: RID): int64
+        
+        /** Sets the body's collision priority. */
+        static body_set_collision_priority(body: RID, priority: float64): void
+        
+        /** Returns the body's collision priority. */
+        static body_get_collision_priority(body: RID): float64
+        
+        /** Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index. */
+        static body_add_shape(body: RID, shape: RID, transform: Transform3D = new Transform3D(), disabled: boolean = false): void
+        
+        /** Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID]. */
+        static body_set_shape(body: RID, shape_idx: int64, shape: RID): void
+        
+        /** Sets the transform matrix for a body shape. */
+        static body_set_shape_transform(body: RID, shape_idx: int64, transform: Transform3D): void
+        static body_set_shape_disabled(body: RID, shape_idx: int64, disabled: boolean): void
+        
+        /** Returns the number of shapes assigned to a body. */
+        static body_get_shape_count(body: RID): int64
+        
+        /** Returns the [RID] of the nth shape of a body. */
+        static body_get_shape(body: RID, shape_idx: int64): RID
+        
+        /** Returns the transform matrix of a body shape. */
+        static body_get_shape_transform(body: RID, shape_idx: int64): Transform3D
+        
+        /** Removes a shape from a body. The shape is not deleted, so it can be reused afterwards. */
+        static body_remove_shape(body: RID, shape_idx: int64): void
+        
+        /** Removes all shapes from a body. */
+        static body_clear_shapes(body: RID): void
+        
+        /** Assigns the area to a descendant of [Object], so it can exist in the node tree. */
+        static body_attach_object_instance_id(body: RID, id: int64): void
+        
+        /** Gets the instance ID of the object the area is assigned to. */
+        static body_get_object_instance_id(body: RID): int64
+        
+        /** If `true`, the continuous collision detection mode is enabled.  
+         *  Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.  
+         */
+        static body_set_enable_continuous_collision_detection(body: RID, enable: boolean): void
+        
+        /** If `true`, the continuous collision detection mode is enabled. */
+        static body_is_continuous_collision_detection_enabled(body: RID): boolean
+        
+        /** Sets a body parameter. A list of available parameters is on the [enum BodyParameter] constants. */
+        static body_set_param(body: RID, param: PhysicsServer3D.BodyParameter, value: any): void
+        
+        /** Returns the value of a body parameter. A list of available parameters is on the [enum BodyParameter] constants. */
+        static body_get_param(body: RID, param: PhysicsServer3D.BodyParameter): any
+        
+        /** Restores the default inertia and center of mass based on shapes to cancel any custom values previously set using [method body_set_param]. */
+        static body_reset_mass_properties(body: RID): void
+        
+        /** Sets a body state (see [enum BodyState] constants). */
+        static body_set_state(body: RID, state: PhysicsServer3D.BodyState, value: any): void
+        
+        /** Returns a body state. */
+        static body_get_state(body: RID, state: PhysicsServer3D.BodyState): any
+        
+        /** Applies a directional impulse without affecting rotation.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  This is equivalent to using [method body_apply_impulse] at the body's center of mass.  
+         */
+        static body_apply_central_impulse(body: RID, impulse: Vector3): void
+        
+        /** Applies a positioned impulse to the body.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        static body_apply_impulse(body: RID, impulse: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational impulse to the body without affecting the position.  
+         *  An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).  
+         */
+        static body_apply_torque_impulse(body: RID, impulse: Vector3): void
+        
+        /** Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.  
+         *  This is equivalent to using [method body_apply_force] at the body's center of mass.  
+         */
+        static body_apply_central_force(body: RID, force: Vector3): void
+        
+        /** Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        static body_apply_force(body: RID, force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update. */
+        static body_apply_torque(body: RID, torque: Vector3): void
+        
+        /** Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.  
+         *  This is equivalent to using [method body_add_constant_force] at the body's center of mass.  
+         */
+        static body_add_constant_central_force(body: RID, force: Vector3): void
+        
+        /** Adds a constant positioned force to the body that keeps being applied over time until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.  
+         *  [param position] is the offset from the body origin in global coordinates.  
+         */
+        static body_add_constant_force(body: RID, force: Vector3, position: Vector3 = new Vector3(0, 0, 0)): void
+        
+        /** Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `body_set_constant_torque(body, Vector3(0, 0, 0))`. */
+        static body_add_constant_torque(body: RID, torque: Vector3): void
+        
+        /** Sets the body's total constant positional forces applied during each physics update.  
+         *  See [method body_add_constant_force] and [method body_add_constant_central_force].  
+         */
+        static body_set_constant_force(body: RID, force: Vector3): void
+        
+        /** Returns the body's total constant positional forces applied during each physics update.  
+         *  See [method body_add_constant_force] and [method body_add_constant_central_force].  
+         */
+        static body_get_constant_force(body: RID): Vector3
+        
+        /** Sets the body's total constant rotational forces applied during each physics update.  
+         *  See [method body_add_constant_torque].  
+         */
+        static body_set_constant_torque(body: RID, torque: Vector3): void
+        
+        /** Returns the body's total constant rotational forces applied during each physics update.  
+         *  See [method body_add_constant_torque].  
+         */
+        static body_get_constant_torque(body: RID): Vector3
+        
+        /** Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior. */
+        static body_set_axis_velocity(body: RID, axis_velocity: Vector3): void
+        static body_set_axis_lock(body: RID, axis: PhysicsServer3D.BodyAxis, lock: boolean): void
+        static body_is_axis_locked(body: RID, axis: PhysicsServer3D.BodyAxis): boolean
+        
+        /** Adds a body to the list of bodies exempt from collisions. */
+        static body_add_collision_exception(body: RID, excepted_body: RID): void
+        
+        /** Removes a body from the list of bodies exempt from collisions.  
+         *  Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.  
+         */
+        static body_remove_collision_exception(body: RID, excepted_body: RID): void
+        
+        /** Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies. This is enabled by setting the maximum number of contacts reported to a number greater than 0. */
+        static body_set_max_contacts_reported(body: RID, amount: int64): void
+        
+        /** Returns the maximum contacts that can be reported. See [method body_set_max_contacts_reported]. */
+        static body_get_max_contacts_reported(body: RID): int64
+        
+        /** Sets whether the body omits the standard force integration. If [param enable] is `true`, the body will not automatically use applied forces, torques, and damping to update the body's linear and angular velocity. In this case, [method body_set_force_integration_callback] can be used to manually update the linear and angular velocity instead.  
+         *  This method is called when the property [member RigidBody3D.custom_integrator] is set.  
+         */
+        static body_set_omit_force_integration(body: RID, enable: boolean): void
+        
+        /** Returns `true` if the body is omitting the standard force integration. See [method body_set_omit_force_integration]. */
+        static body_is_omitting_force_integration(body: RID): boolean
+        
+        /** Sets the body's state synchronization callback function to [param callable]. Use an empty [Callable] ([code skip-lint]Callable()`) to clear the callback.  
+         *  The function [param callable] will be called every physics frame, assuming that the body was active during the previous physics tick, and can be used to fetch the latest state from the physics server.  
+         *  The function [param callable] must take the following parameters:  
+         *  1. `state`: a [PhysicsDirectBodyState3D], used to retrieve the body's state.  
+         */
+        static body_set_state_sync_callback(body: RID, callable: Callable): void
+        
+        /** Sets the body's custom force integration callback function to [param callable]. Use an empty [Callable] ([code skip-lint]Callable()`) to clear the custom callback.  
+         *  The function [param callable] will be called every physics tick, before the standard force integration (see [method body_set_omit_force_integration]). It can be used for example to update the body's linear and angular velocity based on contact with other bodies.  
+         *  If [param userdata] is not `null`, the function [param callable] must take the following two parameters:  
+         *  1. `state`: a [PhysicsDirectBodyState3D], used to retrieve and modify the body's state,  
+         *  2. [code skip-lint]userdata`: a [Variant]; its value will be the [param userdata] passed into this method.  
+         *  If [param userdata] is `null`, then [param callable] must take only the `state` parameter.  
+         */
+        static body_set_force_integration_callback(body: RID, callable: Callable, userdata: any = <any> {}): void
+        
+        /** Sets the body pickable with rays if [param enable] is set. */
+        static body_set_ray_pickable(body: RID, enable: boolean): void
+        
+        /** Returns `true` if a collision would result from moving along a motion vector from a given point in space. [PhysicsTestMotionParameters3D] is passed to set motion parameters. [PhysicsTestMotionResult3D] can be passed to return additional information. */
+        static body_test_motion(body: RID, parameters: PhysicsTestMotionParameters3D, result: PhysicsTestMotionResult3D = undefined): boolean
+        
+        /** Returns the [PhysicsDirectBodyState3D] of the body. Returns `null` if the body is destroyed or removed from the physics space. */
+        static body_get_direct_state(body: RID): PhysicsDirectBodyState3D
+        
+        /** Creates a new soft body and returns its internal [RID]. */
+        static soft_body_create(): RID
+        
+        /** Requests that the physics server updates the rendering server with the latest positions of the given soft body's points through the [param rendering_server_handler] interface. */
+        static soft_body_update_rendering_server(body: RID, rendering_server_handler: PhysicsServer3DRenderingServerHandler): void
+        
+        /** Assigns a space to the given soft body (see [method space_create]). */
+        static soft_body_set_space(body: RID, space: RID): void
+        
+        /** Returns the [RID] of the space assigned to the given soft body. */
+        static soft_body_get_space(body: RID): RID
+        
+        /** Sets the mesh of the given soft body. */
+        static soft_body_set_mesh(body: RID, mesh: RID): void
+        
+        /** Returns the bounds of the given soft body in global coordinates. */
+        static soft_body_get_bounds(body: RID): AABB
+        
+        /** Sets the physics layer or layers the given soft body belongs to. */
+        static soft_body_set_collision_layer(body: RID, layer: int64): void
+        
+        /** Returns the physics layer or layers that the given soft body belongs to. */
+        static soft_body_get_collision_layer(body: RID): int64
+        
+        /** Sets the physics layer or layers the given soft body can collide with. */
+        static soft_body_set_collision_mask(body: RID, mask: int64): void
+        
+        /** Returns the physics layer or layers that the given soft body can collide with. */
+        static soft_body_get_collision_mask(body: RID): int64
+        
+        /** Adds the given body to the list of bodies exempt from collisions. */
+        static soft_body_add_collision_exception(body: RID, body_b: RID): void
+        
+        /** Removes the given body from the list of bodies exempt from collisions. */
+        static soft_body_remove_collision_exception(body: RID, body_b: RID): void
+        
+        /** Sets the given body state for the given body (see [enum BodyState] constants).  
+         *      
+         *  **Note:** Godot's default physics implementation does not support [constant BODY_STATE_LINEAR_VELOCITY], [constant BODY_STATE_ANGULAR_VELOCITY], [constant BODY_STATE_SLEEPING], or [constant BODY_STATE_CAN_SLEEP].  
+         */
+        static soft_body_set_state(body: RID, state: PhysicsServer3D.BodyState, variant: any): void
+        
+        /** Returns the given soft body state (see [enum BodyState] constants).  
+         *      
+         *  **Note:** Godot's default physics implementation does not support [constant BODY_STATE_LINEAR_VELOCITY], [constant BODY_STATE_ANGULAR_VELOCITY], [constant BODY_STATE_SLEEPING], or [constant BODY_STATE_CAN_SLEEP].  
+         */
+        static soft_body_get_state(body: RID, state: PhysicsServer3D.BodyState): any
+        
+        /** Sets the global transform of the given soft body. */
+        static soft_body_set_transform(body: RID, transform: Transform3D): void
+        
+        /** Sets whether the given soft body will be pickable when using object picking. */
+        static soft_body_set_ray_pickable(body: RID, enable: boolean): void
+        
+        /** Sets the simulation precision of the given soft body. Increasing this value will improve the resulting simulation, but can affect performance. Use with care. */
+        static soft_body_set_simulation_precision(body: RID, simulation_precision: int64): void
+        
+        /** Returns the simulation precision of the given soft body. */
+        static soft_body_get_simulation_precision(body: RID): int64
+        
+        /** Sets the total mass for the given soft body. */
+        static soft_body_set_total_mass(body: RID, total_mass: float64): void
+        
+        /** Returns the total mass assigned to the given soft body. */
+        static soft_body_get_total_mass(body: RID): float64
+        
+        /** Sets the linear stiffness of the given soft body. Higher values will result in a stiffer body, while lower values will increase the body's ability to bend. The value can be between `0.0` and `1.0` (inclusive). */
+        static soft_body_set_linear_stiffness(body: RID, stiffness: float64): void
+        
+        /** Returns the linear stiffness of the given soft body. */
+        static soft_body_get_linear_stiffness(body: RID): float64
+        
+        /** Sets the pressure coefficient of the given soft body. Simulates pressure build-up from inside this body. Higher values increase the strength of this effect. */
+        static soft_body_set_pressure_coefficient(body: RID, pressure_coefficient: float64): void
+        
+        /** Returns the pressure coefficient of the given soft body. */
+        static soft_body_get_pressure_coefficient(body: RID): float64
+        
+        /** Sets the damping coefficient of the given soft body. Higher values will slow down the body more noticeably when forces are applied. */
+        static soft_body_set_damping_coefficient(body: RID, damping_coefficient: float64): void
+        
+        /** Returns the damping coefficient of the given soft body. */
+        static soft_body_get_damping_coefficient(body: RID): float64
+        
+        /** Sets the drag coefficient of the given soft body. Higher values increase this body's air resistance.  
+         *      
+         *  **Note:** This value is currently unused by Godot's default physics implementation.  
+         */
+        static soft_body_set_drag_coefficient(body: RID, drag_coefficient: float64): void
+        
+        /** Returns the drag coefficient of the given soft body. */
+        static soft_body_get_drag_coefficient(body: RID): float64
+        
+        /** Moves the given soft body point to a position in global coordinates. */
+        static soft_body_move_point(body: RID, point_index: int64, global_position: Vector3): void
+        
+        /** Returns the current position of the given soft body point in global coordinates. */
+        static soft_body_get_point_global_position(body: RID, point_index: int64): Vector3
+        
+        /** Unpins all points of the given soft body. */
+        static soft_body_remove_all_pinned_points(body: RID): void
+        
+        /** Pins or unpins the given soft body point based on the value of [param pin].  
+         *      
+         *  **Note:** Pinning a point effectively makes it kinematic, preventing it from being affected by forces, but you can still move it using [method soft_body_move_point].  
+         */
+        static soft_body_pin_point(body: RID, point_index: int64, pin: boolean): void
+        
+        /** Returns whether the given soft body point is pinned. */
+        static soft_body_is_point_pinned(body: RID, point_index: int64): boolean
+        static joint_create(): RID
+        static joint_clear(joint: RID): void
+        static joint_make_pin(joint: RID, body_A: RID, local_A: Vector3, body_B: RID, local_B: Vector3): void
+        
+        /** Sets a pin_joint parameter (see [enum PinJointParam] constants). */
+        static pin_joint_set_param(joint: RID, param: PhysicsServer3D.PinJointParam, value: float64): void
+        
+        /** Gets a pin_joint parameter (see [enum PinJointParam] constants). */
+        static pin_joint_get_param(joint: RID, param: PhysicsServer3D.PinJointParam): float64
+        
+        /** Sets position of the joint in the local space of body a of the joint. */
+        static pin_joint_set_local_a(joint: RID, local_A: Vector3): void
+        
+        /** Returns position of the joint in the local space of body a of the joint. */
+        static pin_joint_get_local_a(joint: RID): Vector3
+        
+        /** Sets position of the joint in the local space of body b of the joint. */
+        static pin_joint_set_local_b(joint: RID, local_B: Vector3): void
+        
+        /** Returns position of the joint in the local space of body b of the joint. */
+        static pin_joint_get_local_b(joint: RID): Vector3
+        static joint_make_hinge(joint: RID, body_A: RID, hinge_A: Transform3D, body_B: RID, hinge_B: Transform3D): void
+        
+        /** Sets a hinge_joint parameter (see [enum HingeJointParam] constants). */
+        static hinge_joint_set_param(joint: RID, param: PhysicsServer3D.HingeJointParam, value: float64): void
+        
+        /** Gets a hinge_joint parameter (see [enum HingeJointParam]). */
+        static hinge_joint_get_param(joint: RID, param: PhysicsServer3D.HingeJointParam): float64
+        
+        /** Sets a hinge_joint flag (see [enum HingeJointFlag] constants). */
+        static hinge_joint_set_flag(joint: RID, flag: PhysicsServer3D.HingeJointFlag, enabled: boolean): void
+        
+        /** Gets a hinge_joint flag (see [enum HingeJointFlag] constants). */
+        static hinge_joint_get_flag(joint: RID, flag: PhysicsServer3D.HingeJointFlag): boolean
+        static joint_make_slider(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
+        
+        /** Gets a slider_joint parameter (see [enum SliderJointParam] constants). */
+        static slider_joint_set_param(joint: RID, param: PhysicsServer3D.SliderJointParam, value: float64): void
+        
+        /** Gets a slider_joint parameter (see [enum SliderJointParam] constants). */
+        static slider_joint_get_param(joint: RID, param: PhysicsServer3D.SliderJointParam): float64
+        static joint_make_cone_twist(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
+        
+        /** Sets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants). */
+        static cone_twist_joint_set_param(joint: RID, param: PhysicsServer3D.ConeTwistJointParam, value: float64): void
+        
+        /** Gets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants). */
+        static cone_twist_joint_get_param(joint: RID, param: PhysicsServer3D.ConeTwistJointParam): float64
+        
+        /** Returns the type of the Joint3D. */
+        static joint_get_type(joint: RID): PhysicsServer3D.JointType
+        
+        /** Sets the priority value of the Joint3D. */
+        static joint_set_solver_priority(joint: RID, priority: int64): void
+        
+        /** Gets the priority value of the Joint3D. */
+        static joint_get_solver_priority(joint: RID): int64
+        
+        /** Sets whether the bodies attached to the [Joint3D] will collide with each other. */
+        static joint_disable_collisions_between_bodies(joint: RID, disable: boolean): void
+        
+        /** Returns whether the bodies attached to the [Joint3D] will collide with each other. */
+        static joint_is_disabled_collisions_between_bodies(joint: RID): boolean
+        
+        /** Make the joint a generic six degrees of freedom (6DOF) joint. Use [method generic_6dof_joint_set_flag] and [method generic_6dof_joint_set_param] to set the joint's flags and parameters respectively. */
+        static joint_make_generic_6dof(joint: RID, body_A: RID, local_ref_A: Transform3D, body_B: RID, local_ref_B: Transform3D): void
+        
+        /** Sets the value of a given generic 6DOF joint parameter. See [enum G6DOFJointAxisParam] for the list of available parameters. */
+        static generic_6dof_joint_set_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam, value: float64): void
+        
+        /** Returns the value of a generic 6DOF joint parameter. See [enum G6DOFJointAxisParam] for the list of available parameters. */
+        static generic_6dof_joint_get_param(joint: RID, axis: Vector3.Axis, param: PhysicsServer3D.G6DOFJointAxisParam): float64
+        
+        /** Sets the value of a given generic 6DOF joint flag. See [enum G6DOFJointAxisFlag] for the list of available flags. */
+        static generic_6dof_joint_set_flag(joint: RID, axis: Vector3.Axis, flag: PhysicsServer3D.G6DOFJointAxisFlag, enable: boolean): void
+        
+        /** Returns the value of a generic 6DOF joint flag. See [enum G6DOFJointAxisFlag] for the list of available flags. */
+        static generic_6dof_joint_get_flag(joint: RID, axis: Vector3.Axis, flag: PhysicsServer3D.G6DOFJointAxisFlag): boolean
+        
+        /** Destroys any of the objects created by PhysicsServer3D. If the [RID] passed is not one of the objects that can be created by PhysicsServer3D, an error will be sent to the console. */
+        static free_rid(rid: RID): void
+        
+        /** Activates or deactivates the 3D physics engine. */
+        static set_active(active: boolean): void
+        
+        /** Returns information about the current state of the 3D physics engine. See [enum ProcessInfo] for a list of available states. */
+        static get_process_info(process_info: PhysicsServer3D.ProcessInfo): int64
+    }
+    // _singleton_class_: XRServer
+    namespace XRServer {
+        enum TrackerType {
+            /** The tracker tracks the location of the players head. This is usually a location centered between the players eyes. Note that for handheld AR devices this can be the current location of the device. */
+            TRACKER_HEAD = 1,
+            
+            /** The tracker tracks the location of a controller. */
+            TRACKER_CONTROLLER = 2,
+            
+            /** The tracker tracks the location of a base station. */
+            TRACKER_BASESTATION = 4,
+            
+            /** The tracker tracks the location and size of an AR anchor. */
+            TRACKER_ANCHOR = 8,
+            
+            /** The tracker tracks the location and joints of a hand. */
+            TRACKER_HAND = 16,
+            
+            /** The tracker tracks the location and joints of a body. */
+            TRACKER_BODY = 32,
+            
+            /** The tracker tracks the expressions of a face. */
+            TRACKER_FACE = 64,
+            
+            /** Used internally to filter trackers of any known type. */
+            TRACKER_ANY_KNOWN = 127,
+            
+            /** Used internally if we haven't set the tracker type yet. */
+            TRACKER_UNKNOWN = 128,
+            
+            /** Used internally to select all trackers. */
+            TRACKER_ANY = 255,
+        }
+        enum RotationMode {
+            /** Fully reset the orientation of the HMD. Regardless of what direction the user is looking to in the real world. The user will look dead ahead in the virtual world. */
+            RESET_FULL_ROTATION = 0,
+            
+            /** Resets the orientation but keeps the tilt of the device. So if we're looking down, we keep looking down but heading will be reset. */
+            RESET_BUT_KEEP_TILT = 1,
+            
+            /** Does not reset the orientation of the HMD, only the position of the player gets centered. */
+            DONT_RESET_ROTATION = 2,
+        }
+    }
+    /** Server for AR and VR features.  
+     *  	  
+     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrserver.html  
+     */
+    class XRServer extends Object {
+        /** Returns the reference frame transform. Mostly used internally and exposed for GDExtension build interfaces. */
+        static get_reference_frame(): Transform3D
+        
+        /** Clears the reference frame that was set by previous calls to [method center_on_hmd]. */
+        static clear_reference_frame(): void
+        
+        /** This is an important function to understand correctly. AR and VR platforms all handle positioning slightly differently.  
+         *  For platforms that do not offer spatial tracking, our origin point (0, 0, 0) is the location of our HMD, but you have little control over the direction the player is facing in the real world.  
+         *  For platforms that do offer spatial tracking, our origin point depends very much on the system. For OpenVR, our origin point is usually the center of the tracking space, on the ground. For other platforms, it's often the location of the tracking camera.  
+         *  This method allows you to center your tracker on the location of the HMD. It will take the current location of the HMD and use that to adjust all your tracking data; in essence, realigning the real world to your player's current position in the game world.  
+         *  For this method to produce usable results, tracking information must be available. This often takes a few frames after starting your game.  
+         *  You should call this method after a few seconds have passed. For example, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, or when implementing a teleport mechanism.  
+         */
+        static center_on_hmd(rotation_mode: XRServer.RotationMode, keep_height: boolean): void
+        
+        /** Returns the primary interface's transformation. */
+        static get_hmd_transform(): Transform3D
+        
+        /** Registers an [XRInterface] object. */
+        static add_interface(interface: XRInterface): void
+        
+        /** Returns the number of interfaces currently registered with the AR/VR server. If your project supports multiple AR/VR platforms, you can look through the available interface, and either present the user with a selection or simply try to initialize each interface and use the first one that returns `true`. */
+        static get_interface_count(): int64
+        
+        /** Removes this [param interface]. */
+        static remove_interface(interface: XRInterface): void
+        
+        /** Returns the interface registered at the given [param idx] index in the list of interfaces. */
+        static get_interface(idx: int64): XRInterface
+        
+        /** Returns a list of available interfaces the ID and name of each interface. */
+        static get_interfaces(): GArray
+        
+        /** Finds an interface by its [param name]. For example, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it. */
+        static find_interface(name: string): XRInterface
+        
+        /** Registers a new [XRTracker] that tracks a physical object. */
+        static add_tracker(tracker: XRTracker): void
+        
+        /** Removes this [param tracker]. */
+        static remove_tracker(tracker: XRTracker): void
+        
+        /** Returns a dictionary of trackers for [param tracker_types]. */
+        static get_trackers(tracker_types: int64): GDictionary
+        
+        /** Returns the positional tracker with the given [param tracker_name]. */
+        static get_tracker(tracker_name: StringName): XRTracker
+        
+        /** The scale of the game world compared to the real world. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
+        get world_scale(): float64
+        set world_scale(value: float64)
+        
+        /** The current origin of our tracking space in the virtual world. This is used by the renderer to properly position the camera with new tracking data.  
+         *      
+         *  **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access from GDExtensions.  
+         */
+        get world_origin(): Vector3
+        set world_origin(value: Vector3)
+        
+        /** The primary [XRInterface] currently bound to the [XRServer]. */
+        get primary_interface(): Object
+        set primary_interface(value: Object)
+        
+        /** Emitted when the reference frame transform changes. */
+        static readonly reference_frame_changed: Signal0
+        
+        /** Emitted when a new interface has been added. */
+        static readonly interface_added: Signal1<StringName>
+        
+        /** Emitted when an interface is removed. */
+        static readonly interface_removed: Signal1<StringName>
+        
+        /** Emitted when a new tracker has been added. If you don't use a fixed number of controllers or if you're using [XRAnchor3D]s for an AR solution, it is important to react to this signal to add the appropriate [XRController3D] or [XRAnchor3D] nodes related to this new tracker. */
+        static readonly tracker_added: Signal2<StringName, int64>
+        
+        /** Emitted when an existing tracker has been updated. This can happen if the user switches controllers. */
+        static readonly tracker_updated: Signal2<StringName, int64>
+        
+        /** Emitted when a tracker is removed. You should remove any [XRController3D] or [XRAnchor3D] points if applicable. This is not mandatory, the nodes simply become inactive and will be made active again when a new tracker becomes available (i.e. a new controller is switched on that takes the place of the previous one). */
+        static readonly tracker_removed: Signal2<StringName, int64>
+    }
     namespace AESContext {
         enum Mode {
             /** AES electronic codebook encryption mode. */
@@ -7952,9 +9080,6 @@ declare module "godot" {
     class CanvasItemEditorPlugin extends EditorPlugin {
         constructor(identifier?: any)
     }
-    class CanvasItemEditorSelectedItem extends Object {
-        constructor(identifier?: any)
-    }
     class CanvasItemEditorViewport extends Control {
         constructor(identifier?: any)
     }
@@ -8093,1165 +9218,5 @@ declare module "godot" {
         
         /** Emitted when visibility of the layer is changed. See [member visible]. */
         readonly visibility_changed: Signal0
-    }
-    /** A node that applies a color tint to a canvas.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvasmodulate.html  
-     */
-    class CanvasModulate extends Node2D {
-        constructor(identifier?: any)
-        /** The tint color to apply. */
-        get color(): Color
-        set color(value: Color)
-    }
-    /** Texture with optional normal and specular maps for use in 2D rendering.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_canvastexture.html  
-     */
-    class CanvasTexture extends Texture2D {
-        constructor(identifier?: any)
-        /** The diffuse (color) texture to use. This is the main texture you want to set in most cases. */
-        get diffuse_texture(): Texture2D
-        set diffuse_texture(value: Texture2D)
-        
-        /** The normal map texture to use. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture].  
-         *      
-         *  **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.  
-         */
-        get normal_texture(): Texture2D
-        set normal_texture(value: Texture2D)
-        
-        /** The specular map to use for [Light2D] specular reflections. This should be a grayscale or colored texture, with brighter areas resulting in a higher [member specular_shininess] value. Using a colored [member specular_texture] allows controlling specular shininess on a per-channel basis. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
-        get specular_texture(): Texture2D
-        set specular_texture(value: Texture2D)
-        
-        /** The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
-        get specular_color(): Color
-        set specular_color(value: Color)
-        
-        /** The specular exponent for [Light2D] specular reflections. Higher values result in a more glossy/"wet" look, with reflections becoming more localized and less visible overall. The default value of `1.0` disables specular reflections entirely. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture]. */
-        get specular_shininess(): float64
-        set specular_shininess(value: float64)
-        
-        /** The texture filtering mode to use when drawing this [CanvasTexture]. */
-        get texture_filter(): int64
-        set texture_filter(value: int64)
-        
-        /** The texture repeat mode to use when drawing this [CanvasTexture]. */
-        get texture_repeat(): int64
-        set texture_repeat(value: int64)
-    }
-    /** Class representing a capsule-shaped [PrimitiveMesh].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsulemesh.html  
-     */
-    class CapsuleMesh extends PrimitiveMesh {
-        constructor(identifier?: any)
-        /** Radius of the capsule mesh. */
-        get radius(): float64
-        set radius(value: float64)
-        
-        /** Total height of the capsule mesh (including the hemispherical ends). */
-        get height(): float64
-        set height(value: float64)
-        
-        /** Number of radial segments on the capsule mesh. */
-        get radial_segments(): int64
-        set radial_segments(value: int64)
-        
-        /** Number of rings along the height of the capsule. */
-        get rings(): int64
-        set rings(value: int64)
-    }
-    /** A 2D capsule shape used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsuleshape2d.html  
-     */
-    class CapsuleShape2D extends Shape2D {
-        constructor(identifier?: any)
-        /** The capsule's radius. */
-        get radius(): float64
-        set radius(value: float64)
-        
-        /** The capsule's height. */
-        get height(): float64
-        set height(value: float64)
-    }
-    /** A 3D capsule shape used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_capsuleshape3d.html  
-     */
-    class CapsuleShape3D extends Shape3D {
-        constructor(identifier?: any)
-        /** The capsule's radius. */
-        get radius(): float64
-        set radius(value: float64)
-        
-        /** The capsule's height. */
-        get height(): float64
-        set height(value: float64)
-    }
-    class Cast2DEditor extends Control {
-        constructor(identifier?: any)
-    }
-    class Cast2DEditorPlugin extends EditorPlugin {
-        constructor(identifier?: any)
-    }
-    /** A container that keeps child controls in its center.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_centercontainer.html  
-     */
-    class CenterContainer extends Container {
-        constructor(identifier?: any)
-        /** If `true`, centers children relative to the [CenterContainer]'s top left corner. */
-        get use_top_left(): boolean
-        set use_top_left(value: boolean)
-    }
-    /** Controls how an individual character will be displayed in a [RichTextEffect].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_charfxtransform.html  
-     */
-    class CharFXTransform extends RefCounted {
-        constructor(identifier?: any)
-        /** The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects. */
-        get transform(): Transform2D
-        set transform(value: Transform2D)
-        
-        /** Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing. */
-        get range(): Vector2i
-        set range(value: Vector2i)
-        
-        /** The time elapsed since the [RichTextLabel] was added to the scene tree (in seconds). Time stops when the [RichTextLabel] is paused (see [member Node.process_mode]). Resets when the text in the [RichTextLabel] is changed.  
-         *      
-         *  **Note:** Time still passes while the [RichTextLabel] is hidden.  
-         */
-        get elapsed_time(): float64
-        set elapsed_time(value: float64)
-        
-        /** If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [member color] to `Color(1, 1, 1, 0)` instead. */
-        get visible(): boolean
-        set visible(value: boolean)
-        
-        /** If `true`, FX transform is called for outline drawing. Setting this property won't affect drawing. */
-        get outline(): boolean
-        set outline(value: boolean)
-        
-        /** The position offset the character will be drawn with (in pixels). */
-        get offset(): Vector2
-        set offset(value: Vector2)
-        
-        /** The color the character will be drawn with. */
-        get color(): Color
-        set color(value: Color)
-        
-        /** Contains the arguments passed in the opening BBCode tag. By default, arguments are strings; if their contents match a type such as [bool], [int] or [float], they will be converted automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [Color]. String arguments may not contain spaces, even if they're quoted. If present, quotes will also be present in the final string.  
-         *  For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will map to the following [Dictionary]:  
-         *    
-         */
-        get env(): GDictionary
-        set env(value: GDictionary)
-        
-        /** Font specific glyph index. */
-        get glyph_index(): int64
-        set glyph_index(value: int64)
-        
-        /** Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster. Setting this property won't affect drawing. */
-        get glyph_count(): int64
-        set glyph_count(value: int64)
-        
-        /** Glyph flags. See [enum TextServer.GraphemeFlag] for more info. Setting this property won't affect drawing. */
-        get glyph_flags(): int64
-        set glyph_flags(value: int64)
-        
-        /** The character offset of the glyph, relative to the current [RichTextEffect] custom block. Setting this property won't affect drawing. */
-        get relative_index(): int64
-        set relative_index(value: int64)
-        
-        /** Font resource used to render glyph. */
-        get font(): RID
-        set font(value: RID)
-    }
-    namespace CharacterBody2D {
-        enum MotionMode {
-            /** Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion will react to slopes (acceleration/slowdown). This mode is suitable for sided games like platformers. */
-            MOTION_MODE_GROUNDED = 0,
-            
-            /** Apply when there is no notion of floor or ceiling. All collisions will be reported as `on_wall`. In this mode, when you slide, the speed will always be constant. This mode is suitable for top-down games. */
-            MOTION_MODE_FLOATING = 1,
-        }
-        enum PlatformOnLeave {
-            /** Add the last platform velocity to the [member velocity] when you leave a moving platform. */
-            PLATFORM_ON_LEAVE_ADD_VELOCITY = 0,
-            
-            /** Add the last platform velocity to the [member velocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down. */
-            PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY = 1,
-            
-            /** Do nothing when leaving a platform. */
-            PLATFORM_ON_LEAVE_DO_NOTHING = 2,
-        }
-    }
-    /** A 2D physics body specialized for characters moved by script.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_characterbody2d.html  
-     */
-    class CharacterBody2D extends PhysicsBody2D {
-        constructor(identifier?: any)
-        /** Moves the body based on [member velocity]. If the body collides with another, it will slide along the other body (by default only on floor) rather than stop immediately. If the other body is a [CharacterBody2D] or [RigidBody2D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.  
-         *  Modifies [member velocity] if a slide collision occurred. To get the latest collision call [method get_last_slide_collision], for detailed information about collisions that occurred, use [method get_slide_collision].  
-         *  When the body touches a moving platform, the platform's velocity is automatically added to the body motion. If a collision occurs due to the platform's motion, it will always be first in the slide collisions.  
-         *  The general behavior and available properties change according to the [member motion_mode].  
-         *  Returns `true` if the body collided, otherwise, returns `false`.  
-         */
-        move_and_slide(): boolean
-        
-        /** Allows to manually apply a snap to the floor regardless of the body's velocity. This function does nothing when [method is_on_floor] returns `true`. */
-        apply_floor_snap(): void
-        
-        /** Returns `true` if the body collided with the floor on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "floor" or not. */
-        is_on_floor(): boolean
-        
-        /** Returns `true` if the body collided only with the floor on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "floor" or not. */
-        is_on_floor_only(): boolean
-        
-        /** Returns `true` if the body collided with the ceiling on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "ceiling" or not. */
-        is_on_ceiling(): boolean
-        
-        /** Returns `true` if the body collided only with the ceiling on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "ceiling" or not. */
-        is_on_ceiling_only(): boolean
-        
-        /** Returns `true` if the body collided with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
-        is_on_wall(): boolean
-        
-        /** Returns `true` if the body collided only with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
-        is_on_wall_only(): boolean
-        
-        /** Returns the collision normal of the floor at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`.  
-         *  **Warning:** The collision normal is not always the same as the surface normal.  
-         */
-        get_floor_normal(): Vector2
-        
-        /** Returns the collision normal of the wall at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_wall] returns `true`.  
-         *  **Warning:** The collision normal is not always the same as the surface normal.  
-         */
-        get_wall_normal(): Vector2
-        
-        /** Returns the last motion applied to the [CharacterBody2D] during the last call to [method move_and_slide]. The movement can be split into multiple motions when sliding occurs, and this method return the last one, which is useful to retrieve the current direction of the movement. */
-        get_last_motion(): Vector2
-        
-        /** Returns the travel (position delta) that occurred during the last call to [method move_and_slide]. */
-        get_position_delta(): Vector2
-        
-        /** Returns the current real velocity since the last call to [method move_and_slide]. For example, when you climb a slope, you will move diagonally even though the velocity is horizontal. This method returns the diagonal movement, as opposed to [member velocity] which returns the requested velocity. */
-        get_real_velocity(): Vector2
-        
-        /** Returns the floor's collision angle at the last collision point according to [param up_direction], which is [constant Vector2.UP] by default. This value is always positive and only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`. */
-        get_floor_angle(up_direction: Vector2 = new Vector2(0, -1)): float64
-        
-        /** Returns the linear velocity of the platform at the last collision point. Only valid after calling [method move_and_slide]. */
-        get_platform_velocity(): Vector2
-        
-        /** Returns the number of times the body collided and changed direction during the last call to [method move_and_slide]. */
-        get_slide_collision_count(): int64
-        
-        /** Returns a [KinematicCollision2D], which contains information about a collision that occurred during the last call to [method move_and_slide]. Since the body can collide several times in a single call to [method move_and_slide], you must specify the index of the collision in the range 0 to ([method get_slide_collision_count] - 1).  
-         *  **Example usage:**  
-         *    
-         */
-        get_slide_collision(slide_idx: int64): KinematicCollision2D
-        
-        /** Returns a [KinematicCollision2D], which contains information about the latest collision that occurred during the last call to [method move_and_slide]. */
-        get_last_slide_collision(): KinematicCollision2D
-        
-        /** Sets the motion mode which defines the behavior of [method move_and_slide]. See [enum MotionMode] constants for available modes. */
-        get motion_mode(): int64
-        set motion_mode(value: int64)
-        
-        /** Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [method move_and_slide]. Defaults to [constant Vector2.UP]. As the vector will be normalized it can't be equal to [constant Vector2.ZERO], if you want all collisions to be reported as walls, consider using [constant MOTION_MODE_FLOATING] as [member motion_mode]. */
-        get up_direction(): Vector2
-        set up_direction(value: Vector2)
-        
-        /** Current velocity vector in pixels per second, used and modified during calls to [method move_and_slide]. */
-        get velocity(): Vector2
-        set velocity(value: Vector2)
-        
-        /** If `true`, during a jump against the ceiling, the body will slide, if `false` it will be stopped and will fall vertically. */
-        get slide_on_ceiling(): boolean
-        set slide_on_ceiling(value: boolean)
-        
-        /** Maximum number of times the body can change direction before it stops when calling [method move_and_slide]. */
-        get max_slides(): int64
-        set max_slides(value: int64)
-        
-        /** Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. This property only affects movement when [member motion_mode] is [constant MOTION_MODE_FLOATING]. */
-        get wall_min_slide_angle(): float64
-        set wall_min_slide_angle(value: float64)
-        
-        /** If `true`, the body will not slide on slopes when calling [method move_and_slide] when the body is standing still.  
-         *  If `false`, the body will slide on floor's slopes when [member velocity] applies a downward force.  
-         */
-        get floor_stop_on_slope(): boolean
-        set floor_stop_on_slope(value: boolean)
-        
-        /** If `false` (by default), the body will move faster on downward slopes and slower on upward slopes.  
-         *  If `true`, the body will always move at the same speed on the ground no matter the slope. Note that you need to use [member floor_snap_length] to stick along a downward slope at constant speed.  
-         */
-        get floor_constant_speed(): boolean
-        set floor_constant_speed(value: boolean)
-        
-        /** If `true`, the body will be able to move on the floor only. This option avoids to be able to walk on walls, it will however allow to slide down along them. */
-        get floor_block_on_wall(): boolean
-        set floor_block_on_wall(value: boolean)
-        
-        /** Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [method move_and_slide]. The default value equals 45 degrees. */
-        get floor_max_angle(): float64
-        set floor_max_angle(value: float64)
-        
-        /** Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [method move_and_slide]. The snapping vector is determined by the given distance along the opposite direction of the [member up_direction].  
-         *  As long as the snapping vector is in contact with the ground and the body moves against [member up_direction], the body will remain attached to the surface. Snapping is not applied if the body moves along [member up_direction], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [method apply_floor_snap].  
-         */
-        get floor_snap_length(): float64
-        set floor_snap_length(value: float64)
-        
-        /** Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior. */
-        get platform_on_leave(): int64
-        set platform_on_leave(value: int64)
-        
-        /** Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all floor bodies are detected and propagate their velocity. */
-        get platform_floor_layers(): int64
-        set platform_floor_layers(value: int64)
-        
-        /** Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody2D]. By default, all wall bodies are ignored. */
-        get platform_wall_layers(): int64
-        set platform_wall_layers(value: int64)
-        
-        /** Extra margin used for collision recovery when calling [method move_and_slide].  
-         *  If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.  
-         *  A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.  
-         *  A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.  
-         */
-        get safe_margin(): float64
-        set safe_margin(value: float64)
-    }
-    namespace CharacterBody3D {
-        enum MotionMode {
-            /** Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion will react to slopes (acceleration/slowdown). This mode is suitable for grounded games like platformers. */
-            MOTION_MODE_GROUNDED = 0,
-            
-            /** Apply when there is no notion of floor or ceiling. All collisions will be reported as `on_wall`. In this mode, when you slide, the speed will always be constant. This mode is suitable for games without ground like space games. */
-            MOTION_MODE_FLOATING = 1,
-        }
-        enum PlatformOnLeave {
-            /** Add the last platform velocity to the [member velocity] when you leave a moving platform. */
-            PLATFORM_ON_LEAVE_ADD_VELOCITY = 0,
-            
-            /** Add the last platform velocity to the [member velocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down. */
-            PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY = 1,
-            
-            /** Do nothing when leaving a platform. */
-            PLATFORM_ON_LEAVE_DO_NOTHING = 2,
-        }
-    }
-    /** A 3D physics body specialized for characters moved by script.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_characterbody3d.html  
-     */
-    class CharacterBody3D extends PhysicsBody3D {
-        constructor(identifier?: any)
-        /** Moves the body based on [member velocity]. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [CharacterBody3D] or [RigidBody3D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.  
-         *  Modifies [member velocity] if a slide collision occurred. To get the latest collision call [method get_last_slide_collision], for more detailed information about collisions that occurred, use [method get_slide_collision].  
-         *  When the body touches a moving platform, the platform's velocity is automatically added to the body motion. If a collision occurs due to the platform's motion, it will always be first in the slide collisions.  
-         *  Returns `true` if the body collided, otherwise, returns `false`.  
-         */
-        move_and_slide(): boolean
-        
-        /** Allows to manually apply a snap to the floor regardless of the body's velocity. This function does nothing when [method is_on_floor] returns `true`. */
-        apply_floor_snap(): void
-        
-        /** Returns `true` if the body collided with the floor on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "floor" or not. */
-        is_on_floor(): boolean
-        
-        /** Returns `true` if the body collided only with the floor on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "floor" or not. */
-        is_on_floor_only(): boolean
-        
-        /** Returns `true` if the body collided with the ceiling on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "ceiling" or not. */
-        is_on_ceiling(): boolean
-        
-        /** Returns `true` if the body collided only with the ceiling on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "ceiling" or not. */
-        is_on_ceiling_only(): boolean
-        
-        /** Returns `true` if the body collided with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
-        is_on_wall(): boolean
-        
-        /** Returns `true` if the body collided only with a wall on the last call of [method move_and_slide]. Otherwise, returns `false`. The [member up_direction] and [member floor_max_angle] are used to determine whether a surface is "wall" or not. */
-        is_on_wall_only(): boolean
-        
-        /** Returns the collision normal of the floor at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`.  
-         *  **Warning:** The collision normal is not always the same as the surface normal.  
-         */
-        get_floor_normal(): Vector3
-        
-        /** Returns the collision normal of the wall at the last collision point. Only valid after calling [method move_and_slide] and when [method is_on_wall] returns `true`.  
-         *  **Warning:** The collision normal is not always the same as the surface normal.  
-         */
-        get_wall_normal(): Vector3
-        
-        /** Returns the last motion applied to the [CharacterBody3D] during the last call to [method move_and_slide]. The movement can be split into multiple motions when sliding occurs, and this method return the last one, which is useful to retrieve the current direction of the movement. */
-        get_last_motion(): Vector3
-        
-        /** Returns the travel (position delta) that occurred during the last call to [method move_and_slide]. */
-        get_position_delta(): Vector3
-        
-        /** Returns the current real velocity since the last call to [method move_and_slide]. For example, when you climb a slope, you will move diagonally even though the velocity is horizontal. This method returns the diagonal movement, as opposed to [member velocity] which returns the requested velocity. */
-        get_real_velocity(): Vector3
-        
-        /** Returns the floor's collision angle at the last collision point according to [param up_direction], which is [constant Vector3.UP] by default. This value is always positive and only valid after calling [method move_and_slide] and when [method is_on_floor] returns `true`. */
-        get_floor_angle(up_direction: Vector3 = Vector3.ZERO): float64
-        
-        /** Returns the linear velocity of the platform at the last collision point. Only valid after calling [method move_and_slide]. */
-        get_platform_velocity(): Vector3
-        
-        /** Returns the angular velocity of the platform at the last collision point. Only valid after calling [method move_and_slide]. */
-        get_platform_angular_velocity(): Vector3
-        
-        /** Returns the number of times the body collided and changed direction during the last call to [method move_and_slide]. */
-        get_slide_collision_count(): int64
-        
-        /** Returns a [KinematicCollision3D], which contains information about a collision that occurred during the last call to [method move_and_slide]. Since the body can collide several times in a single call to [method move_and_slide], you must specify the index of the collision in the range 0 to ([method get_slide_collision_count] - 1). */
-        get_slide_collision(slide_idx: int64): KinematicCollision3D
-        
-        /** Returns a [KinematicCollision3D], which contains information about the latest collision that occurred during the last call to [method move_and_slide]. */
-        get_last_slide_collision(): KinematicCollision3D
-        
-        /** Sets the motion mode which defines the behavior of [method move_and_slide]. See [enum MotionMode] constants for available modes. */
-        get motion_mode(): int64
-        set motion_mode(value: int64)
-        
-        /** Vector pointing upwards, used to determine what is a wall and what is a floor (or a ceiling) when calling [method move_and_slide]. Defaults to [constant Vector3.UP]. As the vector will be normalized it can't be equal to [constant Vector3.ZERO], if you want all collisions to be reported as walls, consider using [constant MOTION_MODE_FLOATING] as [member motion_mode]. */
-        get up_direction(): Vector3
-        set up_direction(value: Vector3)
-        
-        /** If `true`, during a jump against the ceiling, the body will slide, if `false` it will be stopped and will fall vertically. */
-        get slide_on_ceiling(): boolean
-        set slide_on_ceiling(value: boolean)
-        
-        /** Current velocity vector (typically meters per second), used and modified during calls to [method move_and_slide]. */
-        get velocity(): Vector3
-        set velocity(value: Vector3)
-        
-        /** Maximum number of times the body can change direction before it stops when calling [method move_and_slide]. */
-        get max_slides(): int64
-        set max_slides(value: int64)
-        
-        /** Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. When [member motion_mode] is [constant MOTION_MODE_GROUNDED], it only affects movement if [member floor_block_on_wall] is `true`. */
-        get wall_min_slide_angle(): float64
-        set wall_min_slide_angle(value: float64)
-        
-        /** If `true`, the body will not slide on slopes when calling [method move_and_slide] when the body is standing still.  
-         *  If `false`, the body will slide on floor's slopes when [member velocity] applies a downward force.  
-         */
-        get floor_stop_on_slope(): boolean
-        set floor_stop_on_slope(value: boolean)
-        
-        /** If `false` (by default), the body will move faster on downward slopes and slower on upward slopes.  
-         *  If `true`, the body will always move at the same speed on the ground no matter the slope. Note that you need to use [member floor_snap_length] to stick along a downward slope at constant speed.  
-         */
-        get floor_constant_speed(): boolean
-        set floor_constant_speed(value: boolean)
-        
-        /** If `true`, the body will be able to move on the floor only. This option avoids to be able to walk on walls, it will however allow to slide down along them. */
-        get floor_block_on_wall(): boolean
-        set floor_block_on_wall(value: boolean)
-        
-        /** Maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall, when calling [method move_and_slide]. The default value equals 45 degrees. */
-        get floor_max_angle(): float64
-        set floor_max_angle(value: float64)
-        
-        /** Sets a snapping distance. When set to a value different from `0.0`, the body is kept attached to slopes when calling [method move_and_slide]. The snapping vector is determined by the given distance along the opposite direction of the [member up_direction].  
-         *  As long as the snapping vector is in contact with the ground and the body moves against [member up_direction], the body will remain attached to the surface. Snapping is not applied if the body moves along [member up_direction], meaning it contains vertical rising velocity, so it will be able to detach from the ground when jumping or when the body is pushed up by something. If you want to apply a snap without taking into account the velocity, use [method apply_floor_snap].  
-         */
-        get floor_snap_length(): float64
-        set floor_snap_length(value: float64)
-        
-        /** Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See [enum PlatformOnLeave] constants for available behavior. */
-        get platform_on_leave(): int64
-        set platform_on_leave(value: int64)
-        
-        /** Collision layers that will be included for detecting floor bodies that will act as moving platforms to be followed by the [CharacterBody3D]. By default, all floor bodies are detected and propagate their velocity. */
-        get platform_floor_layers(): int64
-        set platform_floor_layers(value: int64)
-        
-        /** Collision layers that will be included for detecting wall bodies that will act as moving platforms to be followed by the [CharacterBody3D]. By default, all wall bodies are ignored. */
-        get platform_wall_layers(): int64
-        set platform_wall_layers(value: int64)
-        
-        /** Extra margin used for collision recovery when calling [method move_and_slide].  
-         *  If the body is at least this close to another body, it will consider them to be colliding and will be pushed away before performing the actual motion.  
-         *  A higher value means it's more flexible for detecting collision, which helps with consistently detecting walls and floors.  
-         *  A lower value forces the collision algorithm to use more exact detection, so it can be used in cases that specifically require precision, e.g at very low scale to avoid visible jittering, or for stability with a stack of character bodies.  
-         */
-        get safe_margin(): float64
-        set safe_margin(value: float64)
-    }
-    /** A button that represents a binary choice.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_checkbox.html  
-     */
-    class CheckBox extends Button {
-        constructor(identifier?: any)
-    }
-    /** A button that represents a binary choice.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_checkbutton.html  
-     */
-    class CheckButton extends Button {
-        constructor(identifier?: any)
-    }
-    /** A 2D circle shape used for physics collision.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_circleshape2d.html  
-     */
-    class CircleShape2D extends Shape2D {
-        constructor(identifier?: any)
-        /** The circle's radius. */
-        get radius(): float64
-        set radius(value: float64)
-    }
-    namespace CodeEdit {
-        enum CodeCompletionKind {
-            /** Marks the option as a class. */
-            KIND_CLASS = 0,
-            
-            /** Marks the option as a function. */
-            KIND_FUNCTION = 1,
-            
-            /** Marks the option as a Godot signal. */
-            KIND_SIGNAL = 2,
-            
-            /** Marks the option as a variable. */
-            KIND_VARIABLE = 3,
-            
-            /** Marks the option as a member. */
-            KIND_MEMBER = 4,
-            
-            /** Marks the option as an enum entry. */
-            KIND_ENUM = 5,
-            
-            /** Marks the option as a constant. */
-            KIND_CONSTANT = 6,
-            
-            /** Marks the option as a Godot node path. */
-            KIND_NODE_PATH = 7,
-            
-            /** Marks the option as a file path. */
-            KIND_FILE_PATH = 8,
-            
-            /** Marks the option as unclassified or plain text. */
-            KIND_PLAIN_TEXT = 9,
-        }
-        enum CodeCompletionLocation {
-            /** The option is local to the location of the code completion query - e.g. a local variable. Subsequent value of location represent options from the outer class, the exact value represent how far they are (in terms of inner classes). */
-            LOCATION_LOCAL = 0,
-            
-            /** The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. `0` for the local class, `1` for the parent, `2` for the grandparent, etc.) to store the depth of an option in the class or a parent class. */
-            LOCATION_PARENT_MASK = 256,
-            
-            /** The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons). */
-            LOCATION_OTHER_USER_CODE = 512,
-            
-            /** The option is from other engine code, not covered by the other enum constants - e.g. built-in classes. */
-            LOCATION_OTHER = 1024,
-        }
-    }
-    /** A multiline text editor designed for editing code.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_codeedit.html  
-     */
-    class CodeEdit extends TextEdit {
-        constructor(identifier?: any)
-        /** Override this method to define how the selected entry should be inserted. If [param replace] is `true`, any existing text should be replaced. */
-        /* gdvirtual */ _confirm_code_completion(replace: boolean): void
-        
-        /** Override this method to define what happens when the user requests code completion. If [param force] is `true`, any checks should be bypassed. */
-        /* gdvirtual */ _request_code_completion(force: boolean): void
-        
-        /** Override this method to define what items in [param candidates] should be displayed.  
-         *  Both [param candidates] and the return is a [Array] of [Dictionary], see [method get_code_completion_option] for [Dictionary] content.  
-         */
-        /* gdvirtual */ _filter_code_completion_candidates(candidates: GArray): GArray
-        
-        /** Perform an indent as if the user activated the "ui_text_indent" action. */
-        do_indent(): void
-        
-        /** Indents selected lines, or in the case of no selection the caret line by one. */
-        indent_lines(): void
-        
-        /** Unindents selected lines, or in the case of no selection the caret line by one. Same as performing "ui_text_unindent" action. */
-        unindent_lines(): void
-        
-        /** Converts the indents of lines between [param from_line] and [param to_line] to tabs or spaces as set by [member indent_use_spaces].  
-         *  Values of `-1` convert the entire text.  
-         */
-        convert_indent(from_line: int64 = -1, to_line: int64 = -1): void
-        
-        /** Adds a brace pair.  
-         *  Both the start and end keys must be symbols. Only the start key has to be unique.  
-         */
-        add_auto_brace_completion_pair(start_key: string, end_key: string): void
-        
-        /** Returns `true` if open key [param open_key] exists. */
-        has_auto_brace_completion_open_key(open_key: string): boolean
-        
-        /** Returns `true` if close key [param close_key] exists. */
-        has_auto_brace_completion_close_key(close_key: string): boolean
-        
-        /** Gets the matching auto brace close key for [param open_key]. */
-        get_auto_brace_completion_close_key(open_key: string): string
-        
-        /** Sets the line as breakpointed. */
-        set_line_as_breakpoint(line: int64, breakpointed: boolean): void
-        
-        /** Returns whether the line at the specified index is breakpointed or not. */
-        is_line_breakpointed(line: int64): boolean
-        
-        /** Clears all breakpointed lines. */
-        clear_breakpointed_lines(): void
-        
-        /** Gets all breakpointed lines. */
-        get_breakpointed_lines(): PackedInt32Array
-        
-        /** Sets the line as bookmarked. */
-        set_line_as_bookmarked(line: int64, bookmarked: boolean): void
-        
-        /** Returns whether the line at the specified index is bookmarked or not. */
-        is_line_bookmarked(line: int64): boolean
-        
-        /** Clears all bookmarked lines. */
-        clear_bookmarked_lines(): void
-        
-        /** Gets all bookmarked lines. */
-        get_bookmarked_lines(): PackedInt32Array
-        
-        /** Sets the line as executing. */
-        set_line_as_executing(line: int64, executing: boolean): void
-        
-        /** Returns whether the line at the specified index is marked as executing or not. */
-        is_line_executing(line: int64): boolean
-        
-        /** Clears all executed lines. */
-        clear_executing_lines(): void
-        
-        /** Gets all executing lines. */
-        get_executing_lines(): PackedInt32Array
-        
-        /** Returns if the given line is foldable, that is, it has indented lines right below it or a comment / string block. */
-        can_fold_line(line: int64): boolean
-        
-        /** Folds the given line, if possible (see [method can_fold_line]). */
-        fold_line(line: int64): void
-        
-        /** Unfolds all lines that were previously folded. */
-        unfold_line(line: int64): void
-        
-        /** Folds all lines that are possible to be folded (see [method can_fold_line]). */
-        fold_all_lines(): void
-        
-        /** Unfolds all lines, folded or not. */
-        unfold_all_lines(): void
-        
-        /** Toggle the folding of the code block at the given line. */
-        toggle_foldable_line(line: int64): void
-        
-        /** Toggle the folding of the code block on all lines with a caret on them. */
-        toggle_foldable_lines_at_carets(): void
-        
-        /** Returns whether the line at the specified index is folded or not. */
-        is_line_folded(line: int64): boolean
-        
-        /** Returns all lines that are current folded. */
-        get_folded_lines(): GArray
-        
-        /** Creates a new code region with the selection. At least one single line comment delimiter have to be defined (see [method add_comment_delimiter]).  
-         *  A code region is a part of code that is highlighted when folded and can help organize your script.  
-         *  Code region start and end tags can be customized (see [method set_code_region_tags]).  
-         *  Code regions are delimited using start and end tags (respectively `region` and `endregion` by default) preceded by one line comment delimiter. (eg. `#region` and `#endregion`)  
-         */
-        create_code_region(): void
-        
-        /** Returns the code region start tag (without comment delimiter). */
-        get_code_region_start_tag(): string
-        
-        /** Returns the code region end tag (without comment delimiter). */
-        get_code_region_end_tag(): string
-        
-        /** Sets the code region start and end tags (without comment delimiter). */
-        set_code_region_tags(start: string = 'region', end: string = 'endregion'): void
-        
-        /** Returns whether the line at the specified index is a code region start. */
-        is_line_code_region_start(line: int64): boolean
-        
-        /** Returns whether the line at the specified index is a code region end. */
-        is_line_code_region_end(line: int64): boolean
-        
-        /** Defines a string delimiter from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
-         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
-         */
-        add_string_delimiter(start_key: string, end_key: string, line_only: boolean = false): void
-        
-        /** Removes the string delimiter with [param start_key]. */
-        remove_string_delimiter(start_key: string): void
-        
-        /** Returns `true` if string [param start_key] exists. */
-        has_string_delimiter(start_key: string): boolean
-        
-        /** Removes all string delimiters. */
-        clear_string_delimiters(): void
-        
-        /** Returns the delimiter index if [param line] [param column] is in a string. If [param column] is not provided, will return the delimiter index if the entire [param line] is a string. Otherwise `-1`. */
-        is_in_string(line: int64, column: int64 = -1): int64
-        
-        /** Adds a comment delimiter from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
-         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
-         */
-        add_comment_delimiter(start_key: string, end_key: string, line_only: boolean = false): void
-        
-        /** Removes the comment delimiter with [param start_key]. */
-        remove_comment_delimiter(start_key: string): void
-        
-        /** Returns `true` if comment [param start_key] exists. */
-        has_comment_delimiter(start_key: string): boolean
-        
-        /** Removes all comment delimiters. */
-        clear_comment_delimiters(): void
-        
-        /** Returns delimiter index if [param line] [param column] is in a comment. If [param column] is not provided, will return delimiter index if the entire [param line] is a comment. Otherwise `-1`. */
-        is_in_comment(line: int64, column: int64 = -1): int64
-        
-        /** Gets the start key for a string or comment region index. */
-        get_delimiter_start_key(delimiter_index: int64): string
-        
-        /** Gets the end key for a string or comment region index. */
-        get_delimiter_end_key(delimiter_index: int64): string
-        
-        /** If [param line] [param column] is in a string or comment, returns the start position of the region. If not or no start could be found, both [Vector2] values will be `-1`. */
-        get_delimiter_start_position(line: int64, column: int64): Vector2
-        
-        /** If [param line] [param column] is in a string or comment, returns the end position of the region. If not or no end could be found, both [Vector2] values will be `-1`. */
-        get_delimiter_end_position(line: int64, column: int64): Vector2
-        
-        /** Sets the code hint text. Pass an empty string to clear. */
-        set_code_hint(code_hint: string): void
-        
-        /** Sets if the code hint should draw below the text. */
-        set_code_hint_draw_below(draw_below: boolean): void
-        
-        /** Returns the full text with char `0xFFFF` at the caret location. */
-        get_text_for_code_completion(): string
-        
-        /** Emits [signal code_completion_requested], if [param force] is `true` will bypass all checks. Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request if all current options are of type file path, node path, or signal. */
-        request_code_completion(force: boolean = false): void
-        
-        /** Submits an item to the queue of potential candidates for the autocomplete menu. Call [method update_code_completion_options] to update the list.  
-         *  [param location] indicates location of the option relative to the location of the code completion query. See [enum CodeEdit.CodeCompletionLocation] for how to set this value.  
-         *      
-         *  **Note:** This list will replace all current candidates.  
-         */
-        add_code_completion_option(type: CodeEdit.CodeCompletionKind, display_text: string, insert_text: string, text_color: Color = new Color(1, 1, 1, 1), icon: Resource = undefined, value: any = <any> {}, location: int64 = 1024): void
-        
-        /** Submits all completion options added with [method add_code_completion_option]. Will try to force the autocomplete menu to popup, if [param force] is `true`.  
-         *      
-         *  **Note:** This will replace all current candidates.  
-         */
-        update_code_completion_options(force: boolean): void
-        
-        /** Gets all completion options, see [method get_code_completion_option] for return content. */
-        get_code_completion_options(): GArray
-        
-        /** Gets the completion option at [param index]. The return [Dictionary] has the following key-values:  
-         *  `kind`: [enum CodeCompletionKind]  
-         *  `display_text`: Text that is shown on the autocomplete menu.  
-         *  `insert_text`: Text that is to be inserted when this item is selected.  
-         *  `font_color`: Color of the text on the autocomplete menu.  
-         *  `icon`: Icon to draw on the autocomplete menu.  
-         *  `default_value`: Value of the symbol.  
-         */
-        get_code_completion_option(index: int64): GDictionary
-        
-        /** Gets the index of the current selected completion option. */
-        get_code_completion_selected_index(): int64
-        
-        /** Sets the current selected completion option. */
-        set_code_completion_selected_index(index: int64): void
-        
-        /** Inserts the selected entry into the text. If [param replace] is `true`, any existing text is replaced rather than merged. */
-        confirm_code_completion(replace: boolean = false): void
-        
-        /** Cancels the autocomplete menu. */
-        cancel_code_completion(): void
-        
-        /** Returns the full text with char `0xFFFF` at the cursor location. */
-        get_text_for_symbol_lookup(): string
-        
-        /** Returns the full text with char `0xFFFF` at the specified location. */
-        get_text_with_cursor_char(line: int64, column: int64): string
-        
-        /** Sets the symbol emitted by [signal symbol_validate] as a valid lookup. */
-        set_symbol_lookup_word_as_valid(valid: boolean): void
-        
-        /** Moves all lines up that are selected or have a caret on them. */
-        move_lines_up(): void
-        
-        /** Moves all lines down that are selected or have a caret on them. */
-        move_lines_down(): void
-        
-        /** Deletes all lines that are selected or have a caret on them. */
-        delete_lines(): void
-        
-        /** Duplicates all selected text and duplicates all lines with a caret on them. */
-        duplicate_selection(): void
-        
-        /** Duplicates all lines currently selected with any caret. Duplicates the entire line beneath the current one no matter where the caret is within the line. */
-        duplicate_lines(): void
-        
-        /** Set when a validated word from [signal symbol_validate] is clicked, the [signal symbol_lookup] should be emitted. */
-        get symbol_lookup_on_click(): boolean
-        set symbol_lookup_on_click(value: boolean)
-        
-        /** Sets whether line folding is allowed. */
-        get line_folding(): boolean
-        set line_folding(value: boolean)
-        
-        /** Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently. */
-        get line_length_guidelines(): PackedInt32Array
-        set line_length_guidelines(value: PackedInt32Array | int32[])
-        
-        /** Sets if breakpoints should be drawn in the gutter. This gutter is shared with bookmarks and executing lines. */
-        get gutters_draw_breakpoints_gutter(): boolean
-        set gutters_draw_breakpoints_gutter(value: boolean)
-        
-        /** Sets if bookmarked should be drawn in the gutter. This gutter is shared with breakpoints and executing lines. */
-        get gutters_draw_bookmarks(): boolean
-        set gutters_draw_bookmarks(value: boolean)
-        
-        /** Sets if executing lines should be marked in the gutter. This gutter is shared with breakpoints and bookmarks lines. */
-        get gutters_draw_executing_lines(): boolean
-        set gutters_draw_executing_lines(value: boolean)
-        
-        /** Sets if line numbers should be drawn in the gutter. */
-        get gutters_draw_line_numbers(): boolean
-        set gutters_draw_line_numbers(value: boolean)
-        
-        /** Sets if line numbers drawn in the gutter are zero padded. */
-        get gutters_zero_pad_line_numbers(): boolean
-        set gutters_zero_pad_line_numbers(value: boolean)
-        
-        /** Sets if foldable lines icons should be drawn in the gutter. */
-        get gutters_draw_fold_gutter(): boolean
-        set gutters_draw_fold_gutter(value: boolean)
-        
-        /** Sets the string delimiters. All existing string delimiters will be removed. */
-        get delimiter_strings(): PackedStringArray
-        set delimiter_strings(value: PackedStringArray | string[])
-        
-        /** Sets the comment delimiters. All existing comment delimiters will be removed. */
-        get delimiter_comments(): PackedStringArray
-        set delimiter_comments(value: PackedStringArray | string[])
-        
-        /** Sets whether code completion is allowed. */
-        get code_completion_enabled(): boolean
-        set code_completion_enabled(value: boolean)
-        
-        /** Sets prefixes that will trigger code completion. */
-        get code_completion_prefixes(): PackedStringArray
-        set code_completion_prefixes(value: PackedStringArray | string[])
-        
-        /** Size of the tabulation indent (one [kbd]Tab[/kbd] press) in characters. If [member indent_use_spaces] is enabled the number of spaces to use. */
-        get indent_size(): int64
-        set indent_size(value: int64)
-        
-        /** Use spaces instead of tabs for indentation. */
-        get indent_use_spaces(): boolean
-        set indent_use_spaces(value: boolean)
-        
-        /** Sets whether automatic indent are enabled, this will add an extra indent if a prefix or brace is found. */
-        get indent_automatic(): boolean
-        set indent_automatic(value: boolean)
-        
-        /** Prefixes to trigger an automatic indent. */
-        get indent_automatic_prefixes(): PackedStringArray
-        set indent_automatic_prefixes(value: PackedStringArray | string[])
-        
-        /** Sets whether brace pairs should be autocompleted. */
-        get auto_brace_completion_enabled(): boolean
-        set auto_brace_completion_enabled(value: boolean)
-        
-        /** Highlight mismatching brace pairs. */
-        get auto_brace_completion_highlight_matching(): boolean
-        set auto_brace_completion_highlight_matching(value: boolean)
-        
-        /** Sets the brace pairs to be autocompleted. */
-        get auto_brace_completion_pairs(): GDictionary
-        set auto_brace_completion_pairs(value: GDictionary)
-        
-        /** Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a removed is emitted at the old line. */
-        readonly breakpoint_toggled: Signal1<int64>
-        
-        /** Emitted when the user requests code completion. */
-        readonly code_completion_requested: Signal0
-        
-        /** Emitted when the user has clicked on a valid symbol. */
-        readonly symbol_lookup: Signal3<string, int64, int64>
-        
-        /** Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by calling [method set_symbol_lookup_word_as_valid]. */
-        readonly symbol_validate: Signal1<string>
-    }
-    /** A syntax highlighter intended for code.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_codehighlighter.html  
-     */
-    class CodeHighlighter extends SyntaxHighlighter {
-        constructor(identifier?: any)
-        /** Sets the color for a keyword.  
-         *  The keyword cannot contain any symbols except '_'.  
-         */
-        add_keyword_color(keyword: string, color: Color): void
-        
-        /** Removes the keyword. */
-        remove_keyword_color(keyword: string): void
-        
-        /** Returns `true` if the keyword exists, else `false`. */
-        has_keyword_color(keyword: string): boolean
-        
-        /** Returns the color for a keyword. */
-        get_keyword_color(keyword: string): Color
-        
-        /** Removes all keywords. */
-        clear_keyword_colors(): void
-        
-        /** Sets the color for a member keyword.  
-         *  The member keyword cannot contain any symbols except '_'.  
-         *  It will not be highlighted if preceded by a '.'.  
-         */
-        add_member_keyword_color(member_keyword: string, color: Color): void
-        
-        /** Removes the member keyword. */
-        remove_member_keyword_color(member_keyword: string): void
-        
-        /** Returns `true` if the member keyword exists, else `false`. */
-        has_member_keyword_color(member_keyword: string): boolean
-        
-        /** Returns the color for a member keyword. */
-        get_member_keyword_color(member_keyword: string): Color
-        
-        /** Removes all member keywords. */
-        clear_member_keyword_colors(): void
-        
-        /** Adds a color region (such as for comments or strings) from [param start_key] to [param end_key]. Both keys should be symbols, and [param start_key] must not be shared with other delimiters.  
-         *  If [param line_only] is `true` or [param end_key] is an empty [String], the region does not carry over to the next line.  
-         */
-        add_color_region(start_key: string, end_key: string, color: Color, line_only: boolean = false): void
-        
-        /** Removes the color region that uses that start key. */
-        remove_color_region(start_key: string): void
-        
-        /** Returns `true` if the start key exists, else `false`. */
-        has_color_region(start_key: string): boolean
-        
-        /** Removes all color regions. */
-        clear_color_regions(): void
-        
-        /** Sets the color for numbers. */
-        get number_color(): Color
-        set number_color(value: Color)
-        
-        /** Sets the color for symbols. */
-        get symbol_color(): Color
-        set symbol_color(value: Color)
-        
-        /** Sets color for functions. A function is a non-keyword string followed by a '('. */
-        get function_color(): Color
-        set function_color(value: Color)
-        
-        /** Sets color for member variables. A member variable is non-keyword, non-function string proceeded with a '.'. */
-        get member_variable_color(): Color
-        set member_variable_color(value: Color)
-        
-        /** Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the keyword. The value is the keyword color. */
-        get keyword_colors(): GDictionary
-        set keyword_colors(value: GDictionary)
-        
-        /** Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary] key is the member keyword. The value is the member keyword color. */
-        get member_keyword_colors(): GDictionary
-        set member_keyword_colors(value: GDictionary)
-        
-        /** Sets the color regions. All existing regions will be removed. The [Dictionary] key is the region start and end key, separated by a space. The value is the region color. */
-        get color_regions(): GDictionary
-        set color_regions(value: GDictionary)
-    }
-    class CodeTextEditor extends VBoxContainer {
-        constructor(identifier?: any)
-        readonly validate_script: Signal0
-        readonly load_theme_settings: Signal0
-        readonly show_errors_panel: Signal0
-        readonly show_warnings_panel: Signal0
-        readonly zoomed: Signal1<float64>
-    }
-    namespace CollisionObject2D {
-        enum DisableMode {
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [CollisionObject2D].  
-             *  Automatically re-added to the physics simulation when the [Node] is processed again.  
-             */
-            DISABLE_MODE_REMOVE = 0,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [Area2D]. [PhysicsBody2D] can't be affected by forces or other bodies while static.  
-             *  Automatically set [PhysicsBody2D] back to its original mode when the [Node] is processed again.  
-             */
-            DISABLE_MODE_MAKE_STATIC = 1,
-            
-            /** When [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED], do not affect the physics simulation. */
-            DISABLE_MODE_KEEP_ACTIVE = 2,
-        }
-    }
-    /** Abstract base class for 2D physics objects.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_collisionobject2d.html  
-     */
-    class CollisionObject2D extends Node2D {
-        constructor(identifier?: any)
-        /** Accepts unhandled [InputEvent]s. [param shape_idx] is the child index of the clicked [Shape2D]. Connect to [signal input_event] to easily pick up these events.  
-         *      
-         *  **Note:** [method _input_event] requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set.  
-         */
-        /* gdvirtual */ _input_event(viewport: Viewport, event: InputEvent, shape_idx: int64): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_enter(): void
-        
-        /** Called when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this function to be called. */
-        /* gdvirtual */ _mouse_exit(): void
-        
-        /** Called when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
-        /* gdvirtual */ _mouse_shape_enter(shape_idx: int64): void
-        
-        /** Called when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be called. */
-        /* gdvirtual */ _mouse_shape_exit(shape_idx: int64): void
-        
-        /** Returns the object's [RID]. */
-        get_rid(): RID
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_layer], given a [param layer_number] between 1 and 32. */
-        set_collision_layer_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_layer] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_layer_value(layer_number: int64): boolean
-        
-        /** Based on [param value], enables or disables the specified layer in the [member collision_mask], given a [param layer_number] between 1 and 32. */
-        set_collision_mask_value(layer_number: int64, value: boolean): void
-        
-        /** Returns whether or not the specified layer of the [member collision_mask] is enabled, given a [param layer_number] between 1 and 32. */
-        get_collision_mask_value(layer_number: int64): boolean
-        
-        /** Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference. */
-        create_shape_owner(owner: Object): int64
-        
-        /** Removes the given shape owner. */
-        remove_shape_owner(owner_id: int64): void
-        
-        /** Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument. */
-        get_shape_owners(): PackedInt32Array
-        
-        /** Sets the [Transform2D] of the given shape owner. */
-        shape_owner_set_transform(owner_id: int64, transform: Transform2D): void
-        
-        /** Returns the shape owner's [Transform2D]. */
-        shape_owner_get_transform(owner_id: int64): Transform2D
-        
-        /** Returns the parent object of the given shape owner. */
-        shape_owner_get_owner(owner_id: int64): Object
-        
-        /** If `true`, disables the given shape owner. */
-        shape_owner_set_disabled(owner_id: int64, disabled: boolean): void
-        
-        /** If `true`, the shape owner and its shapes are disabled. */
-        is_shape_owner_disabled(owner_id: int64): boolean
-        
-        /** If [param enable] is `true`, collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
-        shape_owner_set_one_way_collision(owner_id: int64, enable: boolean): void
-        
-        /** Returns `true` if collisions for the shape owner originating from this [CollisionObject2D] will not be reported to collided with [CollisionObject2D]s. */
-        is_shape_owner_one_way_collision_enabled(owner_id: int64): boolean
-        
-        /** Sets the `one_way_collision_margin` of the shape owner identified by given [param owner_id] to [param margin] pixels. */
-        shape_owner_set_one_way_collision_margin(owner_id: int64, margin: float64): void
-        
-        /** Returns the `one_way_collision_margin` of the shape owner identified by given [param owner_id]. */
-        get_shape_owner_one_way_collision_margin(owner_id: int64): float64
-        
-        /** Adds a [Shape2D] to the shape owner. */
-        shape_owner_add_shape(owner_id: int64, shape: Shape2D): void
-        
-        /** Returns the number of shapes the given shape owner contains. */
-        shape_owner_get_shape_count(owner_id: int64): int64
-        
-        /** Returns the [Shape2D] with the given ID from the given shape owner. */
-        shape_owner_get_shape(owner_id: int64, shape_id: int64): Shape2D
-        
-        /** Returns the child index of the [Shape2D] with the given ID from the given shape owner. */
-        shape_owner_get_shape_index(owner_id: int64, shape_id: int64): int64
-        
-        /** Removes a shape from the given shape owner. */
-        shape_owner_remove_shape(owner_id: int64, shape_id: int64): void
-        
-        /** Removes all shapes from the shape owner. */
-        shape_owner_clear_shapes(owner_id: int64): void
-        
-        /** Returns the `owner_id` of the given shape. */
-        shape_find_owner(shape_index: int64): int64
-        
-        /** Defines the behavior in physics when [member Node.process_mode] is set to [constant Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes. */
-        get disable_mode(): int64
-        set disable_mode(value: int64)
-        
-        /** The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_layer(): int64
-        set collision_layer(value: int64)
-        
-        /** The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].  
-         *      
-         *  **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [url=https://docs.godotengine.org/en/4.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.  
-         */
-        get collision_mask(): int64
-        set collision_mask(value: int64)
-        
-        /** The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level. */
-        get collision_priority(): float64
-        set collision_priority(value: float64)
-        
-        /** If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set. */
-        get input_pickable(): boolean
-        set input_pickable(value: boolean)
-        
-        /** Emitted when an input event occurs. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. See [method _input_event] for details. */
-        readonly input_event: Signal3<Node, InputEvent, int64>
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
-         */
-        readonly mouse_entered: Signal0
-        
-        /** Emitted when the mouse pointer exits all this object's shapes. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. Note that moving between different shapes within a single [CollisionObject2D] won't cause this signal to be emitted.  
-         *      
-         *  **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [CollisionObject2D]'s area is small. This signal may also not be emitted if another [CollisionObject2D] is overlapping the [CollisionObject2D] in question.  
-         */
-        readonly mouse_exited: Signal0
-        
-        /** Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to another. [param shape_idx] is the child index of the newly entered [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_entered: Signal1<int64>
-        
-        /** Emitted when the mouse pointer exits any of this object's shapes. [param shape_idx] is the child index of the exited [Shape2D]. Requires [member input_pickable] to be `true` and at least one [member collision_layer] bit to be set. */
-        readonly mouse_shape_exited: Signal1<int64>
     }
 }
